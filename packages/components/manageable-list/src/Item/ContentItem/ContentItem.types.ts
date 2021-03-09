@@ -22,6 +22,6 @@ export type ContentItemProps = {
   contentWithoutPadding?: boolean;
   onMoveTop?: (item: ItemProps) => void;
   onMoveBottom?: (item: ItemProps) => void;
-  isFirst: boolean;
-  isLast: boolean;
+  isFirst?: boolean;
+  isLast?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
