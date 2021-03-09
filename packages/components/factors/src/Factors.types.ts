@@ -105,7 +105,7 @@ export type FactorsProps = {
 
 export type FactorTypeSelectorProps = Pick<
   FactorsProps,
-  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType' | 'setSelectedFactorType'
+  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType'
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;

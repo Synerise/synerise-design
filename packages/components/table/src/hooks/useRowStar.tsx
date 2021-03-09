@@ -21,7 +21,7 @@ const createRowStarColumn = ({ isStarred, toggleStarred }: Pick<UseStarredApi, '
       const keyString = String(key);
 
       return (
-        <Tooltip title={locale?.starRowTooltip}>
+        <Tooltip title={locale?.starRowTooltip} mouseLeaveDelay={0}>
           <Button.Star
             data-testid="ds-table-star-button"
             active={isStarred(keyString)}

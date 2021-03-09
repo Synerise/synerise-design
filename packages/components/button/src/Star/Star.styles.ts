@@ -15,8 +15,13 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     fill: ${({ theme }): string => theme.palette['grey-200']} !important;
   }
 
-  /* disabled icon background - clipping with star shape */
-  .ant-btn-ghost[disabled] &::before {
+  .ant-btn-ghost:hover & .ds-icon svg,
+  .ant-btn-ghost:focus:hover & .ds-icon svg {
+    fill: ${({ theme }): string => theme.palette['blue-600']};
+  }
+
+  /* icon background - clipping with star shape */
+  .ant-btn-ghost &::before {
     clip-path: path(
       'M 19.606 9.598 l -4.794 -0.686 l -2.141 -4.276 a 0.781 0.781 0 0 0 -1.342 0 L 9.187 8.912 l -4.793 0.686 a 0.75 0.75 0 0 0 -0.414 1.284 l 3.462 3.325 l -0.817 4.691 a 0.751 0.751 0 0 0 0.74 0.88 a 0.742 0.742 0 0 0 0.344 -0.085 L 12 17.472 l 4.29 2.221 a 0.75 0.75 0 0 0 1.084 -0.795 l -0.816 -4.691 l 3.462 -3.325 a 0.75 0.75 0 0 0 -0.414 -1.284 z z'
     );
@@ -28,7 +33,16 @@ export const IconWrapper = styled.span<{ active?: boolean; error?: boolean }>`
     top: 0;
     margin: 0;
     z-index: -1;
+  }
+
+  .ant-btn-ghost[disabled] &:before {
     background: ${({ theme }): string => theme.palette['grey-050']};
+  }
+
+  .ant-btn-ghost &::before,
+  .ant-btn-ghost:hover &:before,
+  .ant-btn-ghost:focus:hover &:before {
+    background: ${({ theme }): string => theme.palette.white};
   }
 `;
 
