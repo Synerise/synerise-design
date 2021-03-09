@@ -36,6 +36,7 @@ export interface ManageableListProps {
   texts: Texts;
   expansionBehaviour?: string;
   expandedIds?: string[];
+  changeOrderByButtons?: boolean;
 }
 export type Texts = {
   addItemLabel?: string | React.ReactNode;

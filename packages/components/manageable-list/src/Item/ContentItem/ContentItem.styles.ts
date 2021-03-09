@@ -38,6 +38,20 @@ export const IconWrapper = styled.div`
   display: flex;
 `;
 
+export const MoveItemButtons = styled.div`
+  display: none;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin-right: 8px;
+  .ds-button {
+    margin-left: 8px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+`;
+
 export const ItemHeaderPrefix = styled.div`
   display: flex;
   flex-direction: row;
@@ -105,6 +119,9 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
         color: ${({ theme }): string => theme.palette['grey-600']};
         fill: ${({ theme }): string => theme.palette['grey-600']};
       }
+    }
+    ${MoveItemButtons} {
+      display: flex;
     }
     ${ItemMeta} {
       display: none;

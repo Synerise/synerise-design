@@ -2,6 +2,10 @@ import * as React from 'react';
 
 export type Props = {
   item: ItemProps;
+  isFirst?: boolean;
+  isLast?: boolean;
+  onMoveTop?: (item: ItemProps) => void;
+  onMoveBottom?: (item: ItemProps) => void;
   onRemove?: (removeParams: { id: string }) => void;
   onSelect: (selectParams: { id: string }) => void;
   onUpdate?: (updateParams: { id: string; name: string }) => void;

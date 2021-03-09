@@ -21,6 +21,10 @@ const Item: React.FC<Props> = ({
   hideExpander,
   expanded,
   onExpand,
+  onMoveBottom,
+  onMoveTop,
+  isFirst,
+  isLast,
 }) => {
   switch (listType) {
     case ListType.CONTENT:
@@ -38,6 +42,10 @@ const Item: React.FC<Props> = ({
           texts={texts}
           expanded={expanded}
           onExpand={onExpand}
+          onMoveTop={onMoveTop}
+          onMoveBottom={onMoveBottom}
+          isFirst={Boolean(isFirst)}
+          isLast={Boolean(isLast)}
         />
       );
     case ListType.FILTER:

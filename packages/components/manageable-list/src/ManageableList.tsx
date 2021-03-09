@@ -40,6 +40,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   onExpand,
   expandedIds,
   texts,
+  changeOrderByButtons = false,
 }) => {
   const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
@@ -129,17 +130,37 @@ const ManageableList: React.FC<ManageableListProps> = ({
     onItemAdd && onItemAdd();
   }, [onItemAdd]);
 
+  const onMoveTop = React.useCallback(
+    (item: ItemProps) => {
+      const newOrder = [item, ...itemsToRender.filter(i => i.id !== item.id)];
+      onChangeOrder && onChangeOrder(newOrder);
+    },
+    [itemsToRender, onChangeOrder]
+  );
+
+  const onMoveBottom = React.useCallback(
+    (item: ItemProps) => {
+      const newOrder = [...itemsToRender.filter(i => i.id !== item.id), item];
+      onChangeOrder && onChangeOrder(newOrder);
+    },
+    [itemsToRender, onChangeOrder]
+  );
+
   const getItem = React.useCallback(
-    (item: ItemProps): React.ReactNode => {
+    (item: ItemProps, index: number): React.ReactNode => {
       return (
         <Item
           key={item.id}
+          isFirst={index === 0}
+          isLast={index + 1 === itemsToRender.length}
           listType={type}
           onSelect={onItemSelect}
           onUpdate={onItemEdit}
           onRemove={onItemRemove}
           onDuplicate={onItemDuplicate}
           onExpand={onExpand}
+          onMoveTop={changeOrderByButtons ? onMoveTop : undefined}
+          onMoveBottom={changeOrderByButtons ? onMoveBottom : undefined}
           item={item}
           draggable={Boolean(onChangeOrder)}
           changeOrderDisabled={changeOrderDisabled}
@@ -153,13 +174,16 @@ const ManageableList: React.FC<ManageableListProps> = ({
       );
     },
     [
-      onItemEdit,
-      onExpand,
-      stateExpandedIds,
+      itemsToRender,
       type,
       onItemSelect,
+      onItemEdit,
       onItemRemove,
       onItemDuplicate,
+      onExpand,
+      changeOrderByButtons,
+      onMoveTop,
+      onMoveBottom,
       onChangeOrder,
       changeOrderDisabled,
       greyBackground,
@@ -167,6 +191,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
       itemTexts,
       searchQuery,
       expanderDisabled,
+      stateExpandedIds,
     ]
   );
 
