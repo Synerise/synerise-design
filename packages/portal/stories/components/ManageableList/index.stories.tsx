@@ -141,6 +141,7 @@ const stories = {
         onItemSelect={action('onItemSelect')}
         onItemDuplicate={duplicateItem}
         onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
+        changeOrderByButtons={boolean('Change order by buttons', false)}
         type="content"
         items={store.state.items}
         loading={false}
