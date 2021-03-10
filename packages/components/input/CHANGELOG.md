@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.3...@synerise/ds-input@0.17.4) (2021-03-10)
+
+
+### Bug Fixes
+
+* **input:** fixes disabled textarea when browsers zoom out is set ([4f6c378](https://github.com/synerise/synerise-design/commit/4f6c37859aefe6ef43ccc5bc04ee916ba80a9fc5))
+
+
+
+
+
 ## [0.17.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.2...@synerise/ds-input@0.17.3) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-input
