@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.0...docs@0.10.1) (2021-03-10)
+
+
+### Bug Fixes
+
+* **manageable-list:** update manageable-list docs ([fe04602](https://gitlab.synerise.com/Frontend/synerise-design/commit/fe04602a9d5953b5e1f9462c2fb56bbd6e0180cb))
+
+
+
+
+
 # [0.10.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.9.4...docs@0.10.0) (2021-03-03)
 
 
