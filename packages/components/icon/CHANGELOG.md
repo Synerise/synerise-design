@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.39.0...@synerise/ds-icon@0.40.0) (2021-03-10)
+
+
+### Features
+
+* **icon:** add angle-top and angle-bottom icons ([1b934e1](https://github.com/Synerise/synerise-design/commit/1b934e14b7e402bc708cb7e9980675c7f8dda3c4))
+
+
+
+
+
 # [0.39.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.38.2...@synerise/ds-icon@0.39.0) (2021-02-15)
 
 

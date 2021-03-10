@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.122.0](https://github.com/synerise/synerise-design/compare/portal@0.121.3...portal@0.122.0) (2021-03-10)
+
+
+### Features
+
+* **manageable-list:** adds buttons to move items to first/last position ([bd0fdda](https://github.com/synerise/synerise-design/commit/bd0fdda6f72073c2d3b1281c7ec11271e298b4e3))
+
+
+
+
+
 ## [0.121.3](https://github.com/synerise/synerise-design/compare/portal@0.121.2...portal@0.121.3) (2021-03-09)
 
 
