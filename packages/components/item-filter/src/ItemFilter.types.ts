@@ -17,10 +17,10 @@ export type ItemFilterProps = {
   hide: () => void;
   fetchData: (category: Category) => void;
   loading?: boolean;
-  removeItem?: (removeParams: { id: string }) => void;
-  editItem?: (editParams: { id: string; name: string }) => void;
-  duplicateItem?: (duplicateParams: { id: string }) => void;
-  selectItem: (selectParams: { id: string }) => void;
+  removeItem?: (removeParams: { id: React.ReactText }) => void;
+  editItem?: (editParams: { id: React.ReactText; name: string }) => void;
+  duplicateItem?: (duplicateParams: { id: React.ReactText }) => void;
+  selectItem: (selectParams: { id: React.ReactText }) => void;
   categories: Category[];
   selectedItemId: string | undefined;
   maxToShowItems?: number;

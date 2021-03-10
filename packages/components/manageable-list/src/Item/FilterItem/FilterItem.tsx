@@ -40,7 +40,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
 
   const updateName = React.useCallback(
-    (updateParams: { id: string; name: string }): void => {
+    (updateParams: { id: React.ReactText; name: string }): void => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
