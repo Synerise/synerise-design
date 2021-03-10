@@ -5841,6 +5841,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.38.2.tgz#acf55dc6d17fb720e38dba76db39daad21f4e25d"
   integrity sha512-kdBguscAV9esacblt5uZkloga2UXc2rKBrA870p8Ky5W5UI9VydgDClHNM6TeyYoW8NAPM8TNPhGlCEKweY8nQ==
 
+"@synerise/ds-icon@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
+  integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5859,6 +5864,19 @@
     "@synerise/ds-typography" "^0.7.0"
     "@synerise/ds-utils" "^0.8.5"
     uuid "^3.3.3"
+
+"@synerise/ds-input@^0.16.21", "@synerise/ds-input@^0.16.6":
+  version "0.16.25"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.16.25.tgz#38ba1902f4294e3adf4e7861e50a294a0431d217"
+  integrity sha512-iMZf5IrPPeQtchKQcJwmW2w97xG+LGkWpzD9kt4JjN3qtHKrF8Qu0fL+R1cjMUm2cRLVPWpILZvSewyo8vmf0g==
+  dependencies:
+    "@synerise/ds-icon" "^0.39.0"
+    "@synerise/ds-scrollbar" "^0.2.49"
+    "@synerise/ds-tooltip" "^0.10.16"
+    "@synerise/ds-typography" "^0.10.2"
+    "@synerise/ds-utils" "^0.12.1"
+    antd-mask-input "^0.1.13"
+    uuid "^7.0.2"
 
 "@synerise/ds-menu@^0.1.4":
   version "0.1.4"
@@ -5907,6 +5925,11 @@
   version "0.11.16"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.11.16.tgz#f01e6ff980d03d7948d2b48048019ab9da3bba24"
   integrity sha512-51nQ/eEic9VKsO+YTjBvSNR/h+KWN2sUHUy+E/H8Wwz/DnWx9nxdBVwEp6TcHRf2l3SeD7FGwuAyN9O0f/chCQ==
+
+"@synerise/ds-utils@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.12.1.tgz#8ce8bf9921a8b84d9320dfe365dae4f8638e62a4"
+  integrity sha512-7SwUcIxeMbRzl+/5HiuKh2BO+H8dFONKzwMY8T+MIZECflgAC7BZe1H5EkR2iixvwmPYK2zKJxsH0djM0epJIw==
 
 "@synerise/ds-utils@^0.8.26", "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
   version "0.8.31"
