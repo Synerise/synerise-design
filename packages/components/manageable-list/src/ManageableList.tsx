@@ -18,7 +18,7 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const ManageableList: React.FC<ManageableListProps> = ({
+const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.Element = ({
   className,
   onItemAdd,
   onItemSelect,
@@ -131,7 +131,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   }, [onItemAdd]);
 
   const onMoveTop = React.useCallback(
-    (item: ItemProps) => {
+    item => {
       const newOrder = [item, ...itemsToRender.filter(i => i.id !== item.id)];
       onChangeOrder && onChangeOrder(newOrder);
     },
@@ -139,7 +139,7 @@ const ManageableList: React.FC<ManageableListProps> = ({
   );
 
   const onMoveBottom = React.useCallback(
-    (item: ItemProps) => {
+    item => {
       const newOrder = [...itemsToRender.filter(i => i.id !== item.id), item];
       onChangeOrder && onChangeOrder(newOrder);
     },

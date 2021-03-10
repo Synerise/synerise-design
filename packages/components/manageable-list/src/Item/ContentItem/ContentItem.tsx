@@ -10,6 +10,7 @@ import * as S from './ContentItem.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { ContentItemProps } from './ContentItem.types';
+import ItemMeta from '../ItemMeta/ItemMeta';
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,
@@ -165,6 +166,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
               </Dropdown>
             </S.DropdownWrapper>
           )}
+          {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
       {item.content && (

@@ -106,6 +106,9 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
       fill: ${({ theme }): string => theme.palette['grey-400']};
     }
   }
+  ${ItemMeta} {
+    padding: 0;
+  }
 
   &:hover {
     ${ItemLabel} {
@@ -122,9 +125,6 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
     }
     ${MoveItemButtons} {
       display: flex;
-    }
-    ${ItemMeta} {
-      display: none;
     }
   }
 `;

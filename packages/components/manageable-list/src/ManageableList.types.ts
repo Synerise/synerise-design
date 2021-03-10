@@ -13,16 +13,16 @@ export enum ListType {
   FILTER = 'filter',
 }
 
-export interface ManageableListProps {
+export interface ManageableListProps<T extends object> {
   className?: string;
   maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
-  onItemRemove?: (removeParams: { id: string }) => void;
-  onItemEdit?: (editParams: { id: string; name: string }) => void;
-  onItemSelect: (selectParams: { id: string }) => void;
-  onItemDuplicate?: (duplicateParams: { id: string }) => void;
-  onChangeOrder?: (newOrder: ItemProps[]) => void;
-  items: ItemProps[];
+  onItemRemove?: (removeParams: { id: React.ReactText }) => void;
+  onItemEdit?: (editParams: { id: React.ReactText; name: string }) => void;
+  onItemSelect: (selectParams: { id: React.ReactText }) => void;
+  onItemDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
+  onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
+  items: ItemProps<T>[];
   loading: boolean;
   type?: string;
   addButtonDisabled?: boolean;
@@ -32,10 +32,10 @@ export interface ManageableListProps {
   selectedItemId?: string;
   searchQuery?: string;
   expanderDisabled?: boolean;
-  onExpand?: (id: string, isExpanded: boolean) => void;
+  onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
   texts: Texts;
   expansionBehaviour?: string;
-  expandedIds?: string[];
+  expandedIds?: React.ReactText[];
   changeOrderByButtons?: boolean;
 }
 export type Texts = {

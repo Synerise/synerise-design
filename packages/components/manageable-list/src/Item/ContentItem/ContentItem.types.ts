@@ -11,10 +11,10 @@ export type ContentItemProps = {
   headerSuffix?: React.ReactNode;
   hideExpander?: boolean;
   item: ItemProps;
-  onDuplicate?: (duplicateParams: { id: string }) => void;
-  onExpand?: (id: string, isExpanded: boolean) => void;
-  onRemove?: (removeParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
+  onDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
+  onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
+  onRemove?: (removeParams: { id: React.ReactText }) => void;
+  onUpdate?: (updateParams: { id: React.ReactText; name: string }) => void;
   texts?: {
     [k: string]: string | React.ReactNode;
   };
