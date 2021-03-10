@@ -51,7 +51,7 @@ export const TextareaWrapper = styled.div<{
     top: 1px;
     bottom: 0;
     right: 1px;
-    div {
+    .ps__rail-y {
       height: calc(100% - 1px);
     }
   }
