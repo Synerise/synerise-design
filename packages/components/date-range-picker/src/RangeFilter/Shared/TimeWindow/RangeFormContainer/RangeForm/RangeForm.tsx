@@ -32,7 +32,6 @@ const RangeForm: React.FC<RangeFormProps> = ({
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
-
   const getPopupContainer = React.useCallback(
     (node: HTMLElement): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
     []

@@ -1,18 +1,21 @@
 import * as React from 'react';
-import RangeFormContainer from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import * as dayjs from 'dayjs';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
-  TIME_FORMAT,
-} from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
-import AddButton from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/AddButton/AddButton';
-import { DateLimitMode } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import * as S from '../../TimeWindow.styles';
+  DEFAULT_TIME_FORMAT,
+  MAX_RANGES,
+  NOOP,
+  EMPTY_OBJECT,
+  RENDER_EMPTY_NODE_FN,
+} from '../constants';
+import * as S from '../../../RangeFilter.styles';
 import { DailyProps, DailySchedule } from './Daily.types';
+import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
+import { AddButton } from '../../../Shared';
+import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
-const MAX_RANGES = 4;
-const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'] }) => {
+const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], timeFormat, timePickerProps }) => {
   const defaultDayValue = React.useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -32,8 +35,8 @@ const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'] })
       updatedSchedule[index] = {
         ...schedule[index],
         restricted: true,
-        start: dayjs(value[0]).format(TIME_FORMAT),
-        stop: dayjs(value[1]).format(TIME_FORMAT),
+        start: dayjs(value[0]).format(DEFAULT_TIME_FORMAT),
+        stop: dayjs(value[1]).format(DEFAULT_TIME_FORMAT),
       };
     },
     [schedule]
@@ -65,34 +68,41 @@ const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'] })
     },
     [schedule]
   );
-  console.log('schedule',schedule)
   return (
-    <S.Wrapper>
+    <S.NewFilterContainer>
       {schedule.map((s, index) => (
         <RangeFormContainer
-          key={`schedule-range-${index}`}
+          days={EMPTY_OBJECT}
+          onChange={NOOP}
+          onMultipleDayTimeChange={NOOP}
+          // eslint-disable-next-line react/no-array-index-key
+          key={`range-${index}-${String(s?.start)}`}
           onDayTimeChange={(value): void => {
             handleDayTimeChange(value, index);
           }}
-          texts={{}}
+          dayKeys={[0]}
+          texts={EMPTY_OBJECT}
           activeDays={[0]}
           getDayValue={(): DailySchedule => getDayValue(index)}
           onRangeDelete={(): void => handleRangeDelete(index)}
           onModeChange={(mode): void => handleModeChange(mode, index)}
           valueSelectionModes={valueSelectionMode}
-          renderSuffix={()=>null}
+          renderSuffix={RENDER_EMPTY_NODE_FN}
+          getDayLabel={RENDER_EMPTY_NODE_FN}
+          timeFormat={timeFormat}
+          timePickerProps={timePickerProps}
           hideHeader
         />
       ))}
       {schedule.length < MAX_RANGES && (
         <AddButton
           label="Add range"
-          onClick={() => {
+          onClick={(): void => {
             setSchedule([...schedule, getDayValue()]);
           }}
         />
       )}
-    </S.Wrapper>
+    </S.NewFilterContainer>
   );
 };
 export default Daily;

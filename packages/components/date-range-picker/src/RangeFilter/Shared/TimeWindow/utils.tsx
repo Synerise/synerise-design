@@ -4,16 +4,16 @@ import dayjs from 'dayjs';
 import { flatten, groupBy, reverse, values } from 'lodash';
 import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 import { FilterDefinition } from '../../RangeFilter.types';
+import { DEFAULT_RANGE_START, DEFAULT_RANGE_END, DEFAULT_TIME_FORMAT } from '../../Filters/new/constants';
 
 const TODAY = new Date();
-const START_OF_DAY = '00:00:00.000';
-const END_OF_DAY = '23:59:59.999';
 
-export const getDateFromDayValue = (dayValue: string): Date => {
+export const getDateFromDayValue = (dayValue: string, hourTimeFormat?: string): Date => {
   const DAY_FORMAT = `YYYY-MM-DD`;
   const todayToString = dayjs(TODAY).format(DAY_FORMAT);
   const input = `${todayToString}-${dayValue}`;
-  return dayjs(input, `${DAY_FORMAT}-HH:mm:ss.SSS`).toDate();
+  const hourFormat = hourTimeFormat || DEFAULT_TIME_FORMAT;
+  return dayjs(input, `${DAY_FORMAT}-${hourFormat}`).toDate();
 };
 export const reverseRange = (inputRange: number[], groupItem: number): number[] => {
   const grouping = (item: number): number => Math.floor(item / groupItem);
@@ -24,13 +24,13 @@ export const getDefaultFilterForLimitMode = (mode: DateLimitMode): Partial<Filte
   switch (mode) {
     case 'Hour':
       return {
-        start: START_OF_DAY,
-        stop: START_OF_DAY,
+        start: DEFAULT_RANGE_START,
+        stop: DEFAULT_RANGE_START,
       };
     case 'Range':
       return {
-        start: START_OF_DAY,
-        stop: END_OF_DAY,
+        start: DEFAULT_RANGE_START,
+        stop: DEFAULT_RANGE_END,
       };
     default:
       return {};

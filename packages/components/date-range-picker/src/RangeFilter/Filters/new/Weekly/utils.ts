@@ -1,10 +1,17 @@
-import { DayOfWeekIndex, WeeklySchedule } from './Weekly.types';
-import { DayOptions } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/TimeWindow.types';
-import { DayKey } from '@synerise/ds-date-range-picker/dist/RangeFilter/TimeWindow/TimeWindow.types';
-import { MAX_RANGES } from './Weekly';
+import { DayOfWeekIndex, WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
+import { MAX_RANGES } from '../constants';
+import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
+import { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
 
+export const range = (start: number, stop: number): number[] => {
+  const result = [];
+  for (let i = start; i < stop; i += 1) {
+    result.push(i);
+  }
+  return result;
+};
 export const haveActiveDaysCommonRange = (
-  days: Record<keyof DayOfWeekIndex, WeeklySchedule>,
+  days: Record<DayOfWeekIndex, WeeklyScheduleDayValue>,
   activeDaysArray: DayKey[]
 ): boolean => {
   let previousDay: DayOptions | undefined;
@@ -24,7 +31,7 @@ export const haveActiveDaysCommonRange = (
   return !activeDaysHaveDifferentRanges;
 };
 
-export const canAddAnotherRange = (schedule: WeeklySchedule, activeDays: DayKey[]) => {
+export const canAddAnotherRange = (schedule: WeeklySchedule, activeDays: DayKey[]): boolean => {
   return (
     Object.keys(schedule).length < MAX_RANGES ||
     Object.keys(schedule).some(

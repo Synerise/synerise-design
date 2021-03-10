@@ -33,6 +33,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onModeChange,
   timePickerProps,
   renderSuffix,
+  timeFormat,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || DEFAULT_LIMIT_MODE);
@@ -57,6 +58,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   React.useEffect((): void => {
     setMode(dayValue?.mode || DEFAULT_LIMIT_MODE);
   }, [dayValue]);
+
   const rangeForm = React.useMemo(
     () => (
       <RangeForm
@@ -66,17 +68,17 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
           handleModeChange(selected);
         }}
         mode={mode}
-        startDate={getDateFromDayValue(dayValue.start as string)}
-        endDate={getDateFromDayValue(dayValue.stop as string)}
+        startDate={getDateFromDayValue(dayValue.start as string, timeFormat)}
+        endDate={getDateFromDayValue(dayValue.stop as string, timeFormat)}
         onStartChange={(value: Date): void =>
           activeDays.length > 1
-            ? onMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)])
-            : onDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)], dayKeys as DayKey)
+            ? onMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string, timeFormat)])
+            : onDayTimeChange([value, getDateFromDayValue(dayValue.stop as string, timeFormat)], dayKeys as DayKey)
         }
         onEndChange={(value: Date): void =>
           activeDays.length > 1
-            ? onMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string), value])
-            : onDayTimeChange([getDateFromDayValue(dayValue.start as string), value], dayKeys as DayKey)
+            ? onMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string, timeFormat), value])
+            : onDayTimeChange([getDateFromDayValue(dayValue.start as string, timeFormat), value], dayKeys as DayKey)
         }
         onExactHourSelect={(value: Date): void => {
           activeDays.length > 1
@@ -89,6 +91,8 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       />
     ),
     [
+      timeFormat,
+      valueSelectionModes,
       handleModeChange,
       activeDays,
       onMultipleDayTimeChange,

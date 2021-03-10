@@ -24,7 +24,6 @@ const WeeklyFilter = ({
     (dayOfWeek: React.ReactText): { day: React.ReactText } => ({ day: dayOfWeek }),
     []
   );
-  console.log('WeeklyFilter days', value);
   return (
     <S.WeeklyFilterContainer>
       <TimeWindow

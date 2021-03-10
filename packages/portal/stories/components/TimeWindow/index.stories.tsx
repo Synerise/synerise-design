@@ -1,14 +1,21 @@
 import * as React from 'react';
 
-import Daily from '@synerise/ds-time-window/dist/Elements/Daily/Daily';
-import Weekly from '@synerise/ds-time-window/dist/Elements/Weekly/Weekly';
+import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
+import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
+import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+
+export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
+  containerStyle: { width: '268px', maxWidth: 'none' },
+  units: ['hour', 'minute'],
+  timeFormat: 'HH:mm',
+};
 
 const stories = {
   daily: () => {
-    return <Daily />;
+    return <Daily timePickerProps={TIME_PICKER_PROPS} />;
   },
   weekly: () => {
-    return <Weekly />;
+    return <Weekly timePickerProps={TIME_PICKER_PROPS} />;
   },
 };
 

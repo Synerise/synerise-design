@@ -88,7 +88,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl, savedFilters, texts, hideFooter, onChange, valueSelectionModes } = this.props;
+    const { intl, savedFilters, texts, hideFooter, valueSelectionModes } = this.props;
     return (
       <S.Container>
         <S.Header>
@@ -124,7 +124,6 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                 onChange={(def: FilterDefinition): void => {
                   const updatedFilter = { [activeType]: { ...activeValue, definition: def } };
                   this.setState(updatedFilter);
-                  onChange && onChange(updatedFilter as any);
                 }}
                 onRangeCopy={this.handleRangeCopy}
                 rangeClipboard={rangeClipboard}
