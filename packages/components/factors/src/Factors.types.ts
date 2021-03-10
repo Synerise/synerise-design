@@ -68,6 +68,7 @@ export type FactorsTexts = {
   parameter: {
     searchPlaceholder: string;
     noResults: string;
+    loadingParameter: string;
   };
   valuePlaceholder: string;
   modalApply: string;
@@ -95,9 +96,11 @@ export type FactorsProps = {
     items: ParameterItem[];
     showAllGroup?: boolean;
   };
+  onParamsClick?: () => void;
   formulaEditor?: React.ReactNode;
   texts?: Partial<FactorsTexts>;
   opened?: boolean;
+  loading?: boolean;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -111,6 +114,7 @@ export type FactorTypeSelectorProps = Pick<
 export type FactorValueProps = Pick<
   FactorsProps,
   | 'onChangeValue'
+  | 'onParamsClick'
   | 'value'
   | 'selectedFactorType'
   | 'parameters'
@@ -119,6 +123,7 @@ export type FactorValueProps = Pick<
   | 'textType'
   | 'formulaEditor'
   | 'opened'
+  | 'loading'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -131,7 +136,9 @@ export type InputProps = Pick<
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;
   factorType: FactorType;
+  onParamsClick?: () => void;
   formulaEditor?: React.ReactNode;
+  loading?: boolean;
 };
 
 export type TextModalProps = {
@@ -149,6 +156,7 @@ export type ParameterDropdownProps = {
   items?: ParameterItem[];
   texts: FactorsTexts;
   visible: boolean;
+  loading?: boolean;
 };
 
 export type FormulaModalProps = {

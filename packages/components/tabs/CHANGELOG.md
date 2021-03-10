@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.26...@synerise/ds-tabs@0.11.27) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+
+
+
+
+## [0.11.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.25...@synerise/ds-tabs@0.11.26) (2021-03-09)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+
+
+
+
+## [0.11.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.24...@synerise/ds-tabs@0.11.25) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+
+
+
+
 ## [0.11.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.23...@synerise/ds-tabs@0.11.24) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-tabs

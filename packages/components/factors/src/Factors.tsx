@@ -54,11 +54,14 @@ export const factorTypes = {
     input: DateInput,
   },
 };
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = (): void => {};
 
 const Factors: React.FC<FactorsProps> = ({
   selectedFactorType,
-  setSelectedFactorType,
+  setSelectedFactorType = NOOP,
   onChangeValue,
+  onParamsClick,
   value,
   defaultFactorType = 'text',
   textType = 'Default',
@@ -70,6 +73,7 @@ const Factors: React.FC<FactorsProps> = ({
   texts,
   formulaEditor,
   opened,
+  loading,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -94,6 +98,10 @@ const Factors: React.FC<FactorsProps> = ({
       parameter: {
         searchPlaceholder: formatMessage({ id: 'DS.FACTORS.PARAMETER.SEARCH_PLACEHOLDER', defaultMessage: 'Search' }),
         noResults: formatMessage({ id: 'DS.FACTORS.PARAMETER.NO_RESULTS', defaultMessage: 'No results' }),
+        loadingParameter: formatMessage({
+          id: 'DS.FACTORS.PARAMETER.LOADING_PARAMETERS',
+          defaultMessage: 'Loading parameters',
+        }),
       },
       valuePlaceholder: formatMessage({ id: 'DS.FACTORS.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
       modalApply: formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),
@@ -131,6 +139,7 @@ const Factors: React.FC<FactorsProps> = ({
       <FactorValue
         value={value}
         onChangeValue={onChangeValue}
+        onParamsClick={onParamsClick}
         selectedFactor={selectedFactor}
         selectedFactorType={factorType}
         textType={textType}
@@ -140,6 +149,7 @@ const Factors: React.FC<FactorsProps> = ({
         formulaEditor={formulaEditor}
         texts={text}
         opened={opened}
+        loading={loading}
       />
     </S.Group>
   );

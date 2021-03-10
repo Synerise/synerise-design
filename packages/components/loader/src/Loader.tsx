@@ -9,7 +9,7 @@ const Loader: React.FC<LoaderProps> = ({
   color = 'blue',
   percent,
   percentFormatter,
-  mode='absolute'
+  mode,
 }) => {
   return (
     <S.LoaderWrapper mode={mode} className="ds-loader" labelPosition={labelPosition}>

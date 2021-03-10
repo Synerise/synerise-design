@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.40...@synerise/ds-app-menu@0.4.41) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+## [0.4.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.39...@synerise/ds-app-menu@0.4.40) (2021-03-09)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+## [0.4.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.38...@synerise/ds-app-menu@0.4.39) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
 ## [0.4.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.4.37...@synerise/ds-app-menu@0.4.38) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

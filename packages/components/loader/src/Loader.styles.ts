@@ -26,6 +26,7 @@ const mapElementsPosition = {
 
 export const TextWrapper = styled.div`
   display: flex;
+  line-height: 16px;
 `;
 export const PercentWrapper = styled.div`
   padding-left: 4px;
@@ -33,10 +34,17 @@ export const PercentWrapper = styled.div`
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   margin: ${(props): string => (props.size === 'L' ? '12px' : '8px')};
 `;
-export const LoaderWrapper = styled.div<{ labelPosition:  'bottom' | 'right' ; mode?: 'absolute'}>`
+export const LoaderWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode?: 'absolute' }>`
   display: flex;
   flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
   align-items: center;
+  margin: 24px;
   justify-content: center;
-   ${(props): FlattenSimpleInterpolation | false => props.mode === 'absolute' && css ` position: absolute; top: 50%; left: 50%; `};
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.mode === 'absolute' &&
+    css`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    `};
 `;
