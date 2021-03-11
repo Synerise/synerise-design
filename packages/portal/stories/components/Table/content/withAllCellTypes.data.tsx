@@ -5,7 +5,7 @@ import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
 import Icon from '@synerise/ds-icon';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
@@ -17,6 +17,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
 import { Counter} from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
+import anonymImage from '../../Avatar/av-anonym-004.png';
 
 
 export const RELATIONS = [
@@ -335,7 +336,7 @@ export const COLUMNS_WITH_STATUSES = [
 
 export const COLUMNS_WITH_AVATARS = [
   {
-    title: 'Avatar',
+    title: 'Avatar S',
     dataIndex: 'avatar',
     key: 'avatar',
     textWrap: 'none',
@@ -346,18 +347,13 @@ export const COLUMNS_WITH_AVATARS = [
       return (
         <TableCell.AvatarLabelCell
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="medium"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <Avatar
+              backgroundColor="red"
+              backgroundColorHue="050"
+              src={anonymImage}
+              size="small"
+            >
+            </Avatar>
           }
         />
       );
@@ -377,18 +373,11 @@ export const COLUMNS_WITH_AVATARS = [
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="medium"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar
+              badgeStatus="active"
+              size="medium"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
           }
           title={avatar.title}
         />
@@ -409,18 +398,11 @@ export const COLUMNS_WITH_AVATARS = [
         <TableCell.AvatarLabelCell
           avatarSize="large"
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="large"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar
+              badgeStatus="active"
+              size="medium"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
           }
           title={avatar.titleLarg}
         />
@@ -441,18 +423,11 @@ export const COLUMNS_WITH_AVATARS = [
         <TableCell.AvatarLabelCell
           avatarSize="large"
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="large"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar
+              badgeStatus="active"
+              size="medium"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
           }
           title={avatar.titleLarg}
           labels={avatar.label}
@@ -483,18 +458,10 @@ export const COLUMNS_WITH_AVATARS = [
         <TableCell.AvatarLabelCell
           avatarSize="large"
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="large"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar
+              badgeStatus="active"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
           }
           title={avatar.titleLarg}
           loader={
@@ -530,18 +497,11 @@ export const COLUMNS_WITH_AVATARS = [
       return (
         <TableCell.AvatarLabelCell
           avatar={
-            <Badge status="active">
-              <Avatar
-                hasStatus={true}
-                backgroundColor="red"
-                backgroundColorHue="050"
-                size="large"
-                iconComponent={<Icon component={avatar.icon} color="red" />}
-                shape={'circle'}
-              >
-                {avatar.initials}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar
+              badgeStatus="active"
+              size="medium"
+              iconComponent={<Icon component={avatar.icon} color="red" />}
+            />
           }
           title={avatar.titleLarg}
           labels={avatar.labels}
