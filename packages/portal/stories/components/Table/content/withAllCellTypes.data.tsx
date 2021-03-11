@@ -476,6 +476,7 @@ export const COLUMNS_WITH_AVATARS = [
                   color='blue'
                   label={loadingText}
                   labelPosition='right'
+                  style={{margin: 0}}
                 />
               </div>
             </div>
