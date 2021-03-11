@@ -32,9 +32,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-badge": "^0.4.59",
-    "@synerise/ds-icon": "^0.40.1",
-    "@synerise/ds-tooltip": "^0.10.20"
+    "@synerise/ds-badge": "^0.4.56",
+    "@synerise/ds-icon": "^0.39.0",
+    "@synerise/ds-tooltip": "^0.10.16",
+    "@synerise/ds-status": "*"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
