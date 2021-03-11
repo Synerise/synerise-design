@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.64...@synerise/ds-pagination@0.6.65) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-pagination
+
+
+
+
+
+## [0.6.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.63...@synerise/ds-pagination@0.6.64) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-pagination
+
+
+
+
+
+## [0.6.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.62...@synerise/ds-pagination@0.6.63) (2021-03-09)
+
+**Note:** Version bump only for package @synerise/ds-pagination
+
+
+
+
+
+## [0.6.62](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.61...@synerise/ds-pagination@0.6.62) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-pagination
+
+
+
+
+
 ## [0.6.61](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.6.60...@synerise/ds-pagination@0.6.61) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-pagination

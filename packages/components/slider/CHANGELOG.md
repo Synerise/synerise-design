@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.6...@synerise/ds-slider@0.10.7) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.5...@synerise/ds-slider@0.10.6) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.4...@synerise/ds-slider@0.10.5) (2021-03-09)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.3...@synerise/ds-slider@0.10.4) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
 ## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.2...@synerise/ds-slider@0.10.3) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-slider

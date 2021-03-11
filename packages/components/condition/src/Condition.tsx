@@ -41,6 +41,7 @@ const Condition: React.FC<ConditionProps> = ({
   removeStep,
   addStep,
   onChangeOrder,
+  minConditionsLength = 1,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -220,7 +221,7 @@ const Condition: React.FC<ConditionProps> = ({
                             />
                           )}
                         </S.ConditionWrapper>
-                        {removeCondition && step.conditions.length > 1 && (
+                        {removeCondition && step.conditions.length > minConditionsLength && (
                           <S.RemoveIconWrapper
                             onClick={(): void => removeCondition(step.id, condition.id)}
                             className="ds-conditions-remove-row"

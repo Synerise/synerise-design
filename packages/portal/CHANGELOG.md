@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.122.1](https://github.com/synerise/synerise-design/compare/portal@0.122.0...portal@0.122.1) (2021-03-10)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.122.0](https://github.com/synerise/synerise-design/compare/portal@0.121.3...portal@0.122.0) (2021-03-10)
+
+
+### Features
+
+* **manageable-list:** adds buttons to move items to first/last position ([bd0fdda](https://github.com/synerise/synerise-design/commit/bd0fdda6f72073c2d3b1281c7ec11271e298b4e3))
+
+
+
+
+
+## [0.121.3](https://github.com/synerise/synerise-design/compare/portal@0.121.2...portal@0.121.3) (2021-03-09)
+
+
+### Bug Fixes
+
+* **subtle-form:** style statuses inside select ([f3b8bf2](https://github.com/synerise/synerise-design/commit/f3b8bf2578c1deb82d44fae30b6aa16bb11aef7f))
+* **table:** delete Icon Avatar Label ([8bf19e7](https://github.com/synerise/synerise-design/commit/8bf19e7534ca0abb0ba474a9dba5a9cc28286c3c))
+* **unordered-list:** fix styles unorderd-list ([1abe904](https://github.com/synerise/synerise-design/commit/1abe904c75c37f4f95da286212012a27575dfd5c))
+
+
+
+
+
+## [0.121.2](https://github.com/synerise/synerise-design/compare/portal@0.121.1...portal@0.121.2) (2021-03-08)
+
+
+### Bug Fixes
+
+* **condition:** minior fixes ([26982be](https://github.com/synerise/synerise-design/commit/26982bee3f682e6f8d5126e4143c80c4405f6bae))
+
+
+
+
+
 ## [0.121.1](https://github.com/synerise/synerise-design/compare/portal@0.121.0...portal@0.121.1) (2021-03-02)
 
 **Note:** Version bump only for package portal

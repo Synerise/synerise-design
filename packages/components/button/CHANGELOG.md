@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.36](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.35...@synerise/ds-button@0.13.36) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.35](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.34...@synerise/ds-button@0.13.35) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.33...@synerise/ds-button@0.13.34) (2021-03-09)
+
+
+### Bug Fixes
+
+* **table:** fix last button radius in header selection ([2b3bdd5](https://github.com/synerise/synerise-design/commit/2b3bdd5117ac85175e486a9f02b517abe8736c24))
+
+
+
+
+
+## [0.13.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.32...@synerise/ds-button@0.13.33) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.13.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.31...@synerise/ds-button@0.13.32) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-button

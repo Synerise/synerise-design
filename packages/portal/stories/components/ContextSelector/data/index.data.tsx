@@ -5,6 +5,7 @@ export const CONTEXT_TEXTS = {
   buttonLabel: 'Choose',
   searchPlaceholder: 'Search',
   noResults: 'No results',
+  loadingResults: 'Loading results',
 };
 
 export const CONTEXT_GROUPS = [

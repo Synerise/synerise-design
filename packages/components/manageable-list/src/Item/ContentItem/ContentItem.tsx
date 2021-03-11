@@ -4,12 +4,13 @@ import DragHandleM from '@synerise/ds-icon/dist/icons/DragHandleM';
 import Button from '@synerise/ds-button';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
-import { OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { AngleBottomS, AngleTopS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import AnimateHeight from 'react-animate-height';
 import * as S from './ContentItem.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { ContentItemProps } from './ContentItem.types';
+import ItemMeta from '../ItemMeta/ItemMeta';
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,
@@ -28,6 +29,10 @@ const ContentItem: React.FC<ContentItemProps> = ({
   headerSuffix,
   headerPrefix,
   contentWithoutPadding,
+  onMoveTop,
+  onMoveBottom,
+  isFirst,
+  isLast,
   ...rest
 }): React.ReactElement => {
   const [expandedState, setExpanded] = React.useState(expanded);
@@ -53,6 +58,40 @@ const ContentItem: React.FC<ContentItemProps> = ({
   const stopPropagationHandler = React.useCallback((e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
   }, []);
+
+  const renderMoveButtons = React.useMemo(() => {
+    return (
+      (onMoveTop || onMoveBottom) && (
+        <S.MoveItemButtons>
+          {onMoveTop && !isFirst && (
+            <Button
+              type="ghost"
+              mode="single-icon"
+              onClick={(e): void => {
+                e.stopPropagation();
+                onMoveTop(item);
+              }}
+            >
+              <Icon component={<AngleTopS />} />
+            </Button>
+          )}
+          {onMoveBottom && !isLast && (
+            <Button
+              type="ghost"
+              mode="single-icon"
+              onClick={(e): void => {
+                e.stopPropagation();
+                onMoveBottom(item);
+              }}
+            >
+              <Icon component={<AngleBottomS />} />
+            </Button>
+          )}
+        </S.MoveItemButtons>
+      )
+    );
+  }, [isFirst, isLast, item, onMoveBottom, onMoveTop]);
+
   return (
     <S.ItemContainer
       opened={!!expandedState}
@@ -89,7 +128,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
         <S.ItemHeaderSuffix>
-          {(!!headerSuffix || item?.headerSuffix) && headerSuffix || item.headerSuffix}
+          {((!!headerSuffix || item?.headerSuffix) && headerSuffix) || item.headerSuffix}
+          {renderMoveButtons}
           <ItemActions
             item={item}
             duplicateAction={onDuplicate}
@@ -126,6 +166,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
               </Dropdown>
             </S.DropdownWrapper>
           )}
+          {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>
       {item.content && (

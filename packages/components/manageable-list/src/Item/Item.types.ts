@@ -2,10 +2,14 @@ import * as React from 'react';
 
 export type Props = {
   item: ItemProps;
-  onRemove?: (removeParams: { id: string }) => void;
-  onSelect: (selectParams: { id: string }) => void;
-  onUpdate?: (updateParams: { id: string; name: string }) => void;
-  onDuplicate?: (duplicateParams: { id: string }) => void;
+  isFirst?: boolean;
+  isLast?: boolean;
+  onMoveTop?: (item: ItemProps) => void;
+  onMoveBottom?: (item: ItemProps) => void;
+  onRemove?: (removeParams: { id: React.ReactText }) => void;
+  onSelect: (selectParams: { id: React.ReactText }) => void;
+  onUpdate?: (updateParams: { id: React.ReactText; name: string }) => void;
+  onDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
   draggable?: boolean;
   changeOrderDisabled?: boolean;
   greyBackground?: boolean;
@@ -15,13 +19,13 @@ export type Props = {
   texts: {
     [k: string]: string | React.ReactNode;
   };
-  onExpand?: (id: string, isExpanded: boolean) => void;
+  onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
   hideExpander?: boolean;
   expanded?: boolean;
 };
 
-export type ItemProps = {
-  id: string;
+export type ItemProps<T extends object = {}> = T & {
+  id: React.ReactText;
   canUpdate?: boolean;
   canDelete?: boolean;
   canDuplicate?: boolean;

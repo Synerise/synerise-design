@@ -6,6 +6,7 @@ import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
+import Loader from '@synerise/ds-loader';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { v4 as uuid } from 'uuid';
 import * as S from '../ContextSelector.styles';
@@ -23,6 +24,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   setDropdownVisible,
   value,
   visible,
+  loading,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -165,6 +167,16 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     );
   }, [groups]);
 
+  const getNoResultContainer = React.useMemo(
+    () =>
+      loading ? (
+        <Loader label={texts.loadingResults} labelPosition="bottom" />
+      ) : (
+        <Result noSearchResults type="no-results" description={texts.noResults} />
+      ),
+    [loading, texts]
+  );
+
   return (
     <Dropdown.Wrapper
       style={{ width: '300px' }}
@@ -204,11 +216,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       )}
       <S.ItemsList>
         <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
-          {currentItems?.length ? (
-            currentItems
-          ) : (
-            <Result noSearchResults type="no-results" description={texts.noResults} />
-          )}
+          {currentItems?.length ? currentItems : getNoResultContainer}
         </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>

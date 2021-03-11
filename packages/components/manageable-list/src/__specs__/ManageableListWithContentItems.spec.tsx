@@ -182,4 +182,115 @@ describe('ManageableList with content items', () => {
     expect(queryAllByTestId('list-item-edit').length).toBe(2);
     expect(queryAllByTestId('list-item-duplicate').length).toBe(1);
   });
+
+  it('should render with change position buttons', () => {
+    // ARRANGE
+    const onItemDuplicate = jest.fn();
+    const onItemRemove = jest.fn();
+    const onChangeOrder = jest.fn();
+    const { queryAllByTestId } = renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={onItemRemove}
+        onItemDuplicate={onItemDuplicate}
+        onChangeOrder={onChangeOrder}
+        changeOrderByButtons={true}
+        type="content"
+        texts={texts}
+      />
+    );
+
+    const items = queryAllByTestId('item-with-content');
+    // ASSERT
+    expect(items[0].querySelector('.angle-bottom-s')).toBeTruthy();
+    expect(items[0].querySelector('.angle-top-s')).toBeFalsy();
+    expect(items[1].querySelector('.angle-bottom-s')).toBeTruthy();
+    expect(items[1].querySelector('.angle-top-s')).toBeTruthy();
+    expect(items[2].querySelector('.angle-bottom-s')).toBeFalsy();
+    expect(items[2].querySelector('.angle-top-s')).toBeTruthy();
+  });
+
+  it('should change order of list on click on moveToTopButton', () => {
+    // ARRANGE
+    const onItemDuplicate = jest.fn();
+    const onItemRemove = jest.fn();
+    const onChangeOrder = jest.fn();
+    const { queryAllByTestId } = renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={onItemRemove}
+        onItemDuplicate={onItemDuplicate}
+        onChangeOrder={onChangeOrder}
+        changeOrderByButtons={true}
+        type="content"
+        texts={texts}
+      />
+    );
+
+    const items = queryAllByTestId('item-with-content');
+    // ASSERT
+    expect(items[1].querySelector('.angle-top-s')).toBeTruthy();
+    expect(items[2].querySelector('.angle-top-s')).toBeTruthy();
+
+    // ACT
+    fireEvent.click(items[1].querySelector('.angle-top-s'));
+
+    // ARRANGE
+    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[0], CONTENT_ITEMS[2]]);
+
+    // ACT
+    fireEvent.click(items[2].querySelector('.angle-top-s'));
+
+    // ARRANGE
+    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[2], CONTENT_ITEMS[0], CONTENT_ITEMS[1]]);
+  });
+  it('should change order of list on click on moveToTopButton', () => {
+    // ARRANGE
+    const onItemDuplicate = jest.fn();
+    const onItemRemove = jest.fn();
+    const onChangeOrder = jest.fn();
+    const { queryAllByTestId } = renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={onItemRemove}
+        onItemDuplicate={onItemDuplicate}
+        onChangeOrder={onChangeOrder}
+        changeOrderByButtons={true}
+        type="content"
+        texts={texts}
+      />
+    );
+
+    const items = queryAllByTestId('item-with-content');
+    // ASSERT
+    expect(items[0].querySelector('.angle-bottom-s')).toBeTruthy();
+    expect(items[1].querySelector('.angle-bottom-s')).toBeTruthy();
+
+    // ACT
+    fireEvent.click(items[0].querySelector('.angle-bottom-s'));
+
+    // ARRANGE
+    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[2], CONTENT_ITEMS[0]]);
+
+    // ACT
+    fireEvent.click(items[1].querySelector('.angle-bottom-s'));
+
+    // ARRANGE
+    expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[0], CONTENT_ITEMS[2], CONTENT_ITEMS[1]]);
+  });
 });

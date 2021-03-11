@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.18.0...@synerise/ds-manageable-list@0.18.1) (2021-03-10)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.17.7...@synerise/ds-manageable-list@0.18.0) (2021-03-10)
+
+
+### Features
+
+* **manageable-list:** adds buttons to move items to first/last position ([697a4e3](https://github.com/Synerise/synerise-design/commit/697a4e3d3c38db36597b689dacfeec76f5bf843e))
+* **manageable-list:** adds buttons to move items to first/last position ([bd0fdda](https://github.com/Synerise/synerise-design/commit/bd0fdda6f72073c2d3b1281c7ec11271e298b4e3))
+* **manageable-list:** update type of ListItem ([d76e3bb](https://github.com/Synerise/synerise-design/commit/d76e3bb20567cfd22315a6202d4489f44ea11078))
+
+
+
+
+
+## [0.17.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.17.6...@synerise/ds-manageable-list@0.17.7) (2021-03-09)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.17.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.17.5...@synerise/ds-manageable-list@0.17.6) (2021-03-03)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.17.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.17.4...@synerise/ds-manageable-list@0.17.5) (2021-03-02)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
