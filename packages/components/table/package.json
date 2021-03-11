@@ -34,6 +34,7 @@
   "dependencies": {
     "@synerise/ds-alert": "^0.2.13",
     "@synerise/ds-button": "^0.13.36",
+    "@synerise/ds-button-group": "^0.5.94",
     "@synerise/ds-checkbox": "^0.10.9",
     "@synerise/ds-column-manager": "^0.8.33",
     "@synerise/ds-dropdown": "^0.15.4",
