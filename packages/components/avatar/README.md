@@ -142,9 +142,15 @@ import Avatar from '@synerise/ds-avatar';
 | src                | Image source path                                                                                  | string                                                                                               | -        |
 | tooltip            | Tooltip text displayed on hover                                                                    | { name: string, email: string }                                                                      | -        |
 
-## Avatar.UserAvatar
+## UserAvatar
 
 A variant that renders full standard user avatar, with expected tooltip etc.
+
+This component should be used as user/client representation.
+
+```ts
+import { UserAvatar } from '@synerise/ds-avatar';
+```
 
 | Property        | Description                                    | Type                                                                                                 | Default  |
 |-----------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
@@ -158,9 +164,15 @@ A variant that renders full standard user avatar, with expected tooltip etc.
 | size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
 | tooltip         | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                     | -        |
 
-## Avatar.ProductAvatar
+## ObjectAvatar
 
-A variant that renders full standard product avatar.
+A variant that renders full standard object avatar. 
+
+This component should be used for ex. in products, services, etc.
+
+```ts
+import { ObjectAvatar } from '@synerise/ds-avatar';
+```
 
 | Property           | Description                                    | Type                                                                                                 | Default  |
 |--------------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
