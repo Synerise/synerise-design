@@ -33,12 +33,9 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const iconElement = addIconColor(iconComponent, iconColor);
 
-  const icon = !avatarText ? (
-    iconElement || <Icon 
-      component={size === 'small' ? <UserS/> : <UserM />} 
-      color={theme.palette['grey-500']} 
-    /> 
-  ) : null;
+  const icon = !avatarText 
+    ? iconElement || <Icon component={size === 'small' ? <UserS/> : <UserM />} color={theme.palette['grey-500']} /> 
+    : null;
 
   const avatar = (
     <Avatar

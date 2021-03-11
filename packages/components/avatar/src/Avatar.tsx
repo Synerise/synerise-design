@@ -33,7 +33,9 @@ const Avatar: React.FC<AvatarProps> = ({
 
   // Enforce icon to be scaled 
   if(iconElement?.type === Icon && iconScale) {
-    if(iconElement.props.component.type.name.match(/S$/)) sizes.small = 24;
+    if (iconElement.props.component.type.name.match(/S$/)) {
+      sizes.small = 24;
+    }
     
     const iconSize = sizes[size] || sizes[DEFAULT_SIZE];
 

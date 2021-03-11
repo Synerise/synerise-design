@@ -41,9 +41,9 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
 
   const iconElement = addIconColor(iconComponent, iconColor);
 
-  const icon = !avatarText ? (
-    iconElement || <Icon component={<MailM />} color={iconColor} />
-  ) : null;
+  const icon = !avatarText 
+    ? iconElement || <Icon component={<MailM />} color={iconColor} /> 
+    : null;
 
   const avatar = (
     <Avatar
