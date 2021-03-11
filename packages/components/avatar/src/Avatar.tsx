@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
-import Icon from '@synerise/ds-icon';
 
-import './style/index.less';
+import { isIconComponent } from './utils';
 import AntdAvatar from './Avatar.styles';
 import { AvatarProps } from './Avatar.types';
+
+import './style/index.less';
 
 export const DEFAULT_SIZE = 'medium';
 export const ICON_SIZES = {
@@ -32,7 +33,7 @@ const Avatar: React.FC<AvatarProps> = ({
   let iconElement = iconComponent as React.ReactElement;
 
   // Enforce icon to be scaled
-  if (iconElement?.type.name === Icon.name && iconScale) {
+  if (isIconComponent(iconElement?.type) && iconScale) {
     if (iconElement.props.component.type.name.match(/S$/)) {
       sizes.small = 24;
     }

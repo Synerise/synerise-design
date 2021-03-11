@@ -8,6 +8,10 @@ export function getUserText(firstName = '', lastName = '', src = '', text = ''):
   return null;
 }
 
+export function isIconComponent(component: React.ReactNode | undefined): boolean {
+  return component ? (component as Function).name === Icon.name : false;
+}
+
 export function getObjectName(name = '', text = ''): string | null {
   if (text) return text.toUpperCase();
   if (name) return name.substr(0, 1).toUpperCase();
@@ -16,7 +20,7 @@ export function getObjectName(name = '', text = ''): string | null {
 
 export function addIconColor(iconComponent: React.ReactNode, color: string): React.ReactElement {
   let iconElement = iconComponent as React.ReactElement;
-  if (iconElement?.type.name === Icon.name && !iconElement?.props?.color) {
+  if (isIconComponent(iconElement?.type) && !iconElement?.props?.color) {
     iconElement = React.cloneElement(iconElement, { color });
   }
   return iconElement;
