@@ -49,6 +49,8 @@ const getTexts = () => ({
     'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'
   ),
   deleteLabel: text('Delete', 'Delete'),
+  moveToTopTooltip: text('Move to the top of list', 'Move to the top of list'),
+  moveToBottomTooltip: text('Move to the bottom of list', 'Move to the bottom of list'),
 });
 
 const stories = {

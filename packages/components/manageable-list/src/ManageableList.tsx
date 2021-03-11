@@ -76,6 +76,8 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
       itemActionDuplicateTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
       itemActionDelete: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
       itemActionDeleteTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
+      moveToTopTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.MOVE-TO-TOP" />,
+      moveToBottomTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.MOVE-TO-BOTTOM" />,
       ...texts,
     }),
     [texts]
