@@ -396,7 +396,6 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => {
       return (
         <TableCell.AvatarLabelCell
-          avatarSize="large"
           avatar={
             <ObjectAvatar
               badgeStatus="active"
@@ -431,7 +430,6 @@ export const COLUMNS_WITH_AVATARS = [
       };
       return (
         <TableCell.AvatarLabelCell
-          avatarSize="large"
           avatar={
             <ObjectAvatar
               badgeStatus="active"
