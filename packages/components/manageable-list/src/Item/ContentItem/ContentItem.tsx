@@ -6,6 +6,7 @@ import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import { AngleBottomS, AngleTopS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import AnimateHeight from 'react-animate-height';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './ContentItem.styles';
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
@@ -64,33 +65,37 @@ const ContentItem: React.FC<ContentItemProps> = ({
       (onMoveTop || onMoveBottom) && (
         <S.MoveItemButtons>
           {onMoveTop && !isFirst && (
-            <Button
-              type="ghost"
-              mode="single-icon"
-              onClick={(e): void => {
-                e.stopPropagation();
-                onMoveTop(item);
-              }}
-            >
-              <Icon component={<AngleTopS />} />
-            </Button>
+            <Tooltip title={texts?.moveToTopTooltip}>
+              <Button
+                type="ghost"
+                mode="single-icon"
+                onClick={(e): void => {
+                  e.stopPropagation();
+                  onMoveTop(item);
+                }}
+              >
+                <Icon component={<AngleTopS />} />
+              </Button>
+            </Tooltip>
           )}
           {onMoveBottom && !isLast && (
-            <Button
-              type="ghost"
-              mode="single-icon"
-              onClick={(e): void => {
-                e.stopPropagation();
-                onMoveBottom(item);
-              }}
-            >
-              <Icon component={<AngleBottomS />} />
-            </Button>
+            <Tooltip title={texts?.moveToBottomTooltip}>
+              <Button
+                type="ghost"
+                mode="single-icon"
+                onClick={(e): void => {
+                  e.stopPropagation();
+                  onMoveBottom(item);
+                }}
+              >
+                <Icon component={<AngleBottomS />} />
+              </Button>
+            </Tooltip>
           )}
         </S.MoveItemButtons>
       )
     );
-  }, [isFirst, isLast, item, onMoveBottom, onMoveTop]);
+  }, [isFirst, isLast, item, onMoveBottom, onMoveTop, texts]);
 
   return (
     <S.ItemContainer
