@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.122.2](https://github.com/synerise/synerise-design/compare/portal@0.122.1...portal@0.122.2) (2021-03-12)
+
+
+### Bug Fixes
+
+* **manageable-list:** adds tooltip to moveTo buttons ([ae9f76b](https://github.com/synerise/synerise-design/commit/ae9f76b7f82d44b0bd7b16a31a81cf7538b8d965))
+
+
+
+
+
 ## [0.122.1](https://github.com/synerise/synerise-design/compare/portal@0.122.0...portal@0.122.1) (2021-03-10)
 
 **Note:** Version bump only for package portal

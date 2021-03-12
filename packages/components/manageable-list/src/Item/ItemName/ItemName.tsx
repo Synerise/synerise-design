@@ -57,7 +57,9 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
         />
       ) : (
         <S.ItemLabelWithIcon>
-          <S.ItemLabel data-testid="list-item-name">{name}</S.ItemLabel>
+          <S.ItemLabel data-testid="list-item-name" className="title">
+            {name}
+          </S.ItemLabel>
           {item.description && (
             <Tooltip description={item.description} placement="top" trigger="hover" type="largeSimple">
               <span>

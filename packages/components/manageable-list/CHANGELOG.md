@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.18.2...@synerise/ds-manageable-list@0.19.0) (2021-03-12)
+
+
+### Bug Fixes
+
+* **manageable-list:** adds tooltip to moveTo buttons ([ae9f76b](https://github.com/Synerise/synerise-design/commit/ae9f76b7f82d44b0bd7b16a31a81cf7538b8d965))
+* **manageable-list:** fix elint error ([06332e8](https://github.com/Synerise/synerise-design/commit/06332e8a95ac8855c92cb9dcc759a1c00bed8706))
+
+
+### Features
+
+* **manageable-list:** add default messages to texts prop ([d70007e](https://github.com/Synerise/synerise-design/commit/d70007e7abe678ca43ecc33bbb586c757fcdc2c6))
+
+
+
+
+
 ## [0.18.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.18.1...@synerise/ds-manageable-list@0.18.2) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
