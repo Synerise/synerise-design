@@ -25,7 +25,9 @@ const DailyFilter: React.FC<Props> = props => {
         texts={texts}
         hideHeader
         numberOfDays={0}
-        customDays={{ 0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY' }) } }}
+        customDays={{
+          0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY', defaultMessage: 'Every day' }) },
+        }}
         days={value[0] ? value[0] : value}
         onChange={(val: Days): void => {
           handleChange(val);

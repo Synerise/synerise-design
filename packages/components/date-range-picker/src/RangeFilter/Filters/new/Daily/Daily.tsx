@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as dayjs from 'dayjs';
+import { useIntl } from 'react-intl';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
@@ -16,6 +17,7 @@ import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], timeFormat, timePickerProps }) => {
+  const intl = useIntl();
   const defaultDayValue = React.useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -96,7 +98,7 @@ const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], t
       ))}
       {schedule.length < MAX_RANGES && (
         <AddButton
-          label="Add range"
+          label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
           onClick={(): void => {
             setSchedule([...schedule, getDayValue()]);
           }}

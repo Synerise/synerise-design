@@ -374,7 +374,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             title={
               <SelectionCount
                 selectedDayCount={activeDays.length}
-                label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED' })}
+                label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected: ' })}
               />
             }
           />
@@ -386,7 +386,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>
             <AddButton
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE' })}
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
               onClick={(): void => {
                 if (!daily && !this.haveActiveDaysCommonRange()) {
                   this.handleMultipleDayTimeChange([

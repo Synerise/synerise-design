@@ -92,7 +92,9 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     return (
       <S.Container>
         <S.Header>
-          <S.Title>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER' })}</S.Title>
+          <S.Title>
+            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER', defaultMessage: 'Date filter' })}
+          </S.Title>
           {!!savedFilters?.length && (
             <FilterDropdown
               filters={savedFilters}
@@ -137,10 +139,10 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             <SaveFilterForm onFilterSave={this.handleFilterSave} />
             <S.FooterSeparator />
             <Button type="ghost" onClick={this.handleCancel}>
-              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
+              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL', defaultMessage: 'Cancel' })}
             </Button>
             <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
-              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
+              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY', defaultMessage: 'Apply' })}
             </Button>
           </S.Footer>
         )}
