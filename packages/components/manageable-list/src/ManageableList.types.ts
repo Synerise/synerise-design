@@ -57,4 +57,6 @@ export type Texts = {
   itemActionDuplicateTooltip?: string | React.ReactNode;
   itemActionDelete?: string | React.ReactNode;
   itemActionDeleteTooltip?: string | React.ReactNode;
+  moveToTopTooltip?: string | React.ReactNode;
+  moveToBottomTooltip?: string | React.ReactNode;
 };

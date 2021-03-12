@@ -58,24 +58,37 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
 
   const getTexts = React.useCallback(
     (): Texts => ({
-      addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" />,
-      showMoreLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" />,
-      showLessLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" />,
-      more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" />,
-      less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" />,
-      activateItemTitle: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE-ITEM" />,
-      activate: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE" />,
-      cancel: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
-      deleteConfirmationTitle: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" />,
-      deleteConfirmationDescription: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION" />,
-      deleteConfirmationYes: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" />,
-      deleteConfirmationNo: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" />,
-      itemActionRename: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
-      itemActionRenameTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" />,
-      itemActionDuplicate: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
-      itemActionDuplicateTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" />,
-      itemActionDelete: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
-      itemActionDeleteTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" />,
+      addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" defaultMessage="Add item" />,
+      showMoreLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" defaultMessage="Show more" />,
+      showLessLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-LESS" defaultMessage="Show less" />,
+      more: <FormattedMessage id="DS.MANAGABLE-LIST.MORE" defaultMessage="more" />,
+      less: <FormattedMessage id="DS.MANAGABLE-LIST.LESS" defaultMessage="less" />,
+      activateItemTitle: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE-ITEM" defaultMessage="Active item" />,
+      activate: <FormattedMessage id="DS.MANAGABLE-LIST.ACTIVATE" defaultMessage="Activate" />,
+      cancel: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" defaultMessage="Cancel" />,
+      deleteConfirmationTitle: (
+        <FormattedMessage id="DS.MANAGABLE-LIST.DELETE-ITEM-TITLE" defaultMessage="Delete item" />
+      ),
+      deleteConfirmationDescription: (
+        <FormattedMessage
+          id="DS.MANAGABLE-LIST.DELETE-ITEM-DESCRIPTION"
+          defaultMessage="Deleting this item will permanently remove it from templates library."
+        />
+      ),
+      deleteConfirmationYes: <FormattedMessage id="DS.MANAGABLE-LIST.DELETE" defaultMessage="Yes" />,
+      deleteConfirmationNo: <FormattedMessage id="DS.MANAGABLE-LIST.CANCEL" defaultMessage="No" />,
+      itemActionRename: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" defaultMessage="Rename" />,
+      itemActionRenameTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-RENAME" defaultMessage="Rename" />,
+      itemActionDuplicate: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" defaultMessage="Duplicate" />,
+      itemActionDuplicateTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DUPLICATE" defaultMessage="Duplicate" />,
+      itemActionDelete: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" defaultMessage="Delete" />,
+      itemActionDeleteTooltip: <FormattedMessage id="DS.MANAGABLE-LIST.ITEM-DELETE" defaultMessage="Delete" />,
+      moveToTopTooltip: (
+        <FormattedMessage id="DS.MANAGABLE-LIST.MOVE-TO-TOP" defaultMessage="Move to the top of list" />
+      ),
+      moveToBottomTooltip: (
+        <FormattedMessage id="DS.MANAGABLE-LIST.MOVE-TO-BOTTOM" defaultMessage="Move to the bottom of list" />
+      ),
       ...texts,
     }),
     [texts]

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.10...@synerise/ds-table@0.33.11) (2021-03-11)
+
+
+### Bug Fixes
+
+* **table:** adds missing dependency @synerise/ds-button-group ([04ed0b4](https://github.com/synerise/synerise-design/commit/04ed0b4f62db472840e8ebbbd166871111bffeb5))
+
+
+
+
+
 ## [0.33.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.9...@synerise/ds-table@0.33.10) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-table
