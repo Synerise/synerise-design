@@ -62,9 +62,9 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
   );
 
   return badgeStatus ? (
-    <div style={style}>
+    <span style={style}>
       <Badge status={badgeStatus}>{avatar}</Badge>
-    </div>
+    </span>
   ) : (
     avatar
   );

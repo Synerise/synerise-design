@@ -58,9 +58,9 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   );
 
   return badgeStatus ? (
-    <div style={style}>
+    <span style={style}>
       <Badge status={badgeStatus}>{avatar}</Badge>
-    </div>
+    </span>
   ) : (
     avatar
   );
