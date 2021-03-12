@@ -95,7 +95,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
         </S.MoveItemButtons>
       )
     );
-  }, [isFirst, isLast, item, onMoveBottom, onMoveTop]);
+  }, [isFirst, isLast, item, onMoveBottom, onMoveTop, texts]);
 
   return (
     <S.ItemContainer
