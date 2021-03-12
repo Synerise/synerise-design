@@ -24,6 +24,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   iconComponent,
   children,
   disabled,
+  style,
   ...restProps
 }) => {
   const avatarText = getUserText(firstName, lastName, src, text);
@@ -49,13 +50,20 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       src={src}
       tooltip={avatarTooltip}
       disabled={disabled}
+      style={badgeStatus ? {} : style}
       {...restProps}
     >
       {children || avatarText}
     </Avatar>
   );
 
-  return badgeStatus ? <Badge status={badgeStatus}>{avatar}</Badge> : avatar;
+  return badgeStatus ? (
+    <div style={style}>
+      <Badge status={badgeStatus}>{avatar}</Badge>
+    </div>
+  ) : (
+    avatar
+  );
 };
 
 export default UserAvatar;

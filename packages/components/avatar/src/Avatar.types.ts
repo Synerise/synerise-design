@@ -61,7 +61,10 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   };
 }
 
-type DefinedAvatarProps = Pick<AvatarProps, 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src'>& {
+type DefinedAvatarProps = Pick<
+  AvatarProps,
+  'style' | 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src'
+> & {
   badgeStatus?: string;
   color?: Color;
   text?: string;
