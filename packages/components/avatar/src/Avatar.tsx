@@ -25,6 +25,7 @@ const Avatar: React.FC<AvatarProps> = ({
   iconComponent,
   iconScale = true,
   tooltip,
+  tooltipProps = {},
   size = DEFAULT_SIZE,
   ...antdProps
 }) => {
@@ -53,6 +54,7 @@ const Avatar: React.FC<AvatarProps> = ({
       status={tooltip?.status}
       mouseLeaveDelay={0}
       mouseEnterDelay={0}
+      {...tooltipProps}
     >
       <AntdAvatar
         className="ds-avatar"

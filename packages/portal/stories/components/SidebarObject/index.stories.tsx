@@ -6,8 +6,7 @@ import Drawer from '@synerise/ds-drawer';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
-import Badge from '@synerise/ds-badge';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 import MailS from '@synerise/ds-icon/dist/icons/MailS';
 import MailM from '@synerise/ds-icon/dist/icons/MailM';
 import Status from '@synerise/ds-status';
@@ -149,17 +148,11 @@ const stories = {
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <SidebarObject
             avatar={
-              <Badge status={'inactive'}>
-                <Avatar
-                  backgroundColor={'pink'}
-                  backgroundColorHue={'100'}
-                  size={'large'}
-                  shape={'circle'}
-                  iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
-                  hasStatus={true}
-                  style={{ flex: 1, margin: 0 }}
-                />
-              </Badge>
+              <ObjectAvatar 
+                color={'pink'}
+                iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
+                badgeStatus={'inactive'}
+              />
             }
             onCloseClick={() => setDrawerVisible(false)}
             onApplyClick={() => {}}
@@ -241,7 +234,7 @@ const stories = {
       ),
       Author: (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar src={imgSrc} size="small" shape="circle" style={{ marginRight: '10px' }} />
+          <UserAvatar src={imgSrc} size="small" badgeStatus="active" style={{marginRight: '10px'}} />
           <span>Teresa Smith</span>
         </div>
       ),
@@ -338,17 +331,11 @@ const stories = {
         <Drawer visible={drawerVisible} placement="right" width={676} onClose={() => setDrawerVisible(false)}>
           <SidebarObject
             avatar={
-              <Badge status={'inactive'}>
-                <Avatar
-                  backgroundColor={'pink'}
-                  backgroundColorHue={'100'}
-                  size={'large'}
-                  shape={'circle'}
-                  iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
-                  hasStatus={true}
-                  style={{ flex: 1, margin: 0 }}
-                />
-              </Badge>
+              <ObjectAvatar 
+                color={'pink'}
+                iconComponent={<Icon color={getColor('pink-600')} component={getIconSize('large')} />}
+                badgeStatus={'inactive'}
+              />
             }
             onCloseClick={() => setDrawerVisible(false)}
             headerPreffix={renderStarred(showStarred)}

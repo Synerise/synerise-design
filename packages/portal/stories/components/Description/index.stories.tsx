@@ -6,7 +6,7 @@ import { select, text } from '@storybook/addon-knobs';
 import { AddM, DuplicateS, LockM, MailM, PlayM, SearchM, UserM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Badge from '@synerise/ds-badge';
 import DSFlag from '@synerise/ds-flag';
@@ -14,9 +14,10 @@ import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import ModalProxy from '@synerise/ds-modal';
 
+import { image as imgSrc } from '../Avatar/constants';
+
 const SELECT = ['table', 'inline', 'dotted-list', 'numbered-list'];
 const RATIO = ['20-80', '30-70', '40-60', '50-50', '60-40', '70-30', '80-20'];
-const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
 const stories = {
   default: () => {
@@ -29,7 +30,7 @@ const stories = {
           <DescriptionRow label="Label:" value={'Value'} />
           <DescriptionRow
             label="Author:"
-            prefixEl={<Avatar src={imgSrc} size="small" shape="circle" />}
+            prefixEl={<UserAvatar src={imgSrc} size="small" />}
             value={'James Giles Peterson'}
           />
           <DescriptionRow label="Tag:" value={<Status label="Draft" type="disabled" />} />
@@ -90,7 +91,7 @@ const stories = {
           />
           <DescriptionRow
             label="Copy:"
-            prefixEl={<Avatar src={imgSrc} size="small" shape="circle" />}
+            prefixEl={<UserAvatar src={imgSrc} size="small" />}
             value={'James Giles Peterson'}
             copyValue={'James Giles Peterson'}
             texts={{ copyTooltip: 'Copy value', copiedTooltip: 'Copied!' }}
@@ -122,11 +123,7 @@ const stories = {
         visible
         title={
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-            <Badge status="active">
-              <Avatar size={'medium'} shape={'circle'} backgroundColor={'red'} backgroundColorHue={'100'} hasStatus>
-                <Icon component={<MailM />} color={theme.palette['red-500']} />{' '}
-              </Avatar>
-            </Badge>
+            <ObjectAvatar badgeStatus="active" iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />} />
             <span style={{ marginLeft: 12 }}>Modal header</span>
           </div>
         }
@@ -146,7 +143,7 @@ const stories = {
               <Description type="inline">
                 <DescriptionRow
                   label="Performed by:"
-                  prefixEl={<Avatar src={imgSrc} size="small" shape="circle" />}
+                  prefixEl={<UserAvatar src={imgSrc} badgeStatus="active" />}
                   value="James Peterson"
                 />
               </Description>

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 coHzyd ds-avatar ant-avatar-sm ant-avatar-circle"
+        class="ant-avatar Avatarstyles-xcn5o4-1 hiogYD ds-avatar ant-avatar-circle"
       >
         <span
           class="ant-avatar-string"
@@ -18,7 +18,7 @@ Object {
             size="24"
           >
             <svg
-              class="user-s"
+              class="user-m"
               viewBox="0 0 24 24"
             >
               <path
@@ -26,7 +26,7 @@ Object {
                 fill="none"
               />
               <path
-                d="M12 11.5a2.75 2.75 0 112.75-2.75A2.753 2.753 0 0112 11.5zm0-4a1.25 1.25 0 101.25 1.25A1.251 1.251 0 0012 7.5zM16.523 18H7.477A1.476 1.476 0 016 16.529v-.549a3.65 3.65 0 013.657-3.635h4.686A3.65 3.65 0 0118 15.98v.549A1.476 1.476 0 0116.523 18zm-6.866-4.155A2.148 2.148 0 007.5 15.98v.549l9-.029v-.52a2.148 2.148 0 00-2.157-2.135z"
+                d="M12 11.7a3.874 3.874 0 10-3.869-3.874A3.876 3.876 0 0012 11.7zm0-6.248a2.374 2.374 0 11-2.369 2.374A2.374 2.374 0 0112 5.452zM15.225 12.75h-6.45a4.755 4.755 0 00-4.75 4.75v.76a1.752 1.752 0 001.75 1.75h12.45a1.752 1.752 0 001.75-1.75v-.76a4.755 4.755 0 00-4.75-4.75zm3.25 5.51a.25.25 0 01-.25.25H5.775a.25.25 0 01-.25-.25v-.76a3.254 3.254 0 013.25-3.25h6.45a3.254 3.254 0 013.25 3.25z"
               />
             </svg>
           </div>
@@ -36,7 +36,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 coHzyd ds-avatar ant-avatar-sm ant-avatar-circle"
+      class="ant-avatar Avatarstyles-xcn5o4-1 hiogYD ds-avatar ant-avatar-circle"
     >
       <span
         class="ant-avatar-string"
@@ -48,7 +48,7 @@ Object {
           size="24"
         >
           <svg
-            class="user-s"
+            class="user-m"
             viewBox="0 0 24 24"
           >
             <path
@@ -56,7 +56,7 @@ Object {
               fill="none"
             />
             <path
-              d="M12 11.5a2.75 2.75 0 112.75-2.75A2.753 2.753 0 0112 11.5zm0-4a1.25 1.25 0 101.25 1.25A1.251 1.251 0 0012 7.5zM16.523 18H7.477A1.476 1.476 0 016 16.529v-.549a3.65 3.65 0 013.657-3.635h4.686A3.65 3.65 0 0118 15.98v.549A1.476 1.476 0 0116.523 18zm-6.866-4.155A2.148 2.148 0 007.5 15.98v.549l9-.029v-.52a2.148 2.148 0 00-2.157-2.135z"
+              d="M12 11.7a3.874 3.874 0 10-3.869-3.874A3.876 3.876 0 0012 11.7zm0-6.248a2.374 2.374 0 11-2.369 2.374A2.374 2.374 0 0112 5.452zM15.225 12.75h-6.45a4.755 4.755 0 00-4.75 4.75v.76a1.752 1.752 0 001.75 1.75h12.45a1.752 1.752 0 001.75-1.75v-.76a4.755 4.755 0 00-4.75-4.75zm3.25 5.51a.25.25 0 01-.25.25H5.775a.25.25 0 01-.25-.25v-.76a3.254 3.254 0 013.25-3.25h6.45a3.254 3.254 0 013.25 3.25z"
             />
           </svg>
         </div>
@@ -123,7 +123,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 gUJWqd ds-avatar ant-avatar-sm ant-avatar-circle"
+        class="ant-avatar Avatarstyles-xcn5o4-1 hfFXOL ds-avatar ant-avatar-circle"
       >
         <span
           class="ant-avatar-string"
@@ -136,7 +136,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 gUJWqd ds-avatar ant-avatar-sm ant-avatar-circle"
+      class="ant-avatar Avatarstyles-xcn5o4-1 hfFXOL ds-avatar ant-avatar-circle"
     >
       <span
         class="ant-avatar-string"

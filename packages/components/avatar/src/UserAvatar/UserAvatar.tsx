@@ -5,15 +5,15 @@ import Icon from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 
 import Avatar from '../Avatar';
-import { getUserText ,addIconColor } from '../utils';
+import { getUserText, addIconColor } from '../utils';
 import { UserAvatarProps } from '../Avatar.types';
 
 export const DEFAULT_COLOR = 'grey';
 export const DEFAULT_COLOR_HUE = '500';
 
-const UserAvatar: React.FC<UserAvatarProps> = ({ 
-  backgroundColor = 'grey', 
-  size = 'small', 
+const UserAvatar: React.FC<UserAvatarProps> = ({
+  backgroundColor = 'grey',
+  size,
   text,
   tooltip,
   badgeStatus,
@@ -24,17 +24,19 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   iconComponent,
   children,
   disabled,
+  style,
   ...restProps
 }) => {
   const avatarText = getUserText(firstName, lastName, src, text);
   const defaultTooltip = { title: `${firstName} ${lastName}`.trim(), description: email || '' };
-  const avatarTooltip = tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
+  const avatarTooltip =
+    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
 
   const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const iconElement = addIconColor(iconComponent, iconColor);
 
-  const icon = !avatarText 
-    ? iconElement || <Icon component={size === 'small' ? <UserS/> : <UserM />} color={theme.palette['grey-500']} /> 
+  const icon = !avatarText
+    ? iconElement || <Icon component={size === 'small' ? <UserS /> : <UserM />} color={theme.palette['grey-500']} />
     : null;
 
   const avatar = (
@@ -48,13 +50,20 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       src={src}
       tooltip={avatarTooltip}
       disabled={disabled}
+      style={badgeStatus ? {} : style}
       {...restProps}
     >
       {children || avatarText}
     </Avatar>
   );
-  
-  return badgeStatus ? <Badge status={badgeStatus}>{avatar}</Badge> : avatar;
+
+  return badgeStatus ? (
+    <span style={style}>
+      <Badge status={badgeStatus}>{avatar}</Badge>
+    </span>
+  ) : (
+    avatar
+  );
 };
 
 export default UserAvatar;

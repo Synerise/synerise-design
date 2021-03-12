@@ -385,31 +385,6 @@ export const COLUMNS_WITH_AVATARS = [
     },
   },
   {
-    title: 'Avatar L with label ',
-    dataIndex: 'avatar',
-    key: 'avatar',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM /> },
-    iconTooltip: { component: <InfoFillS /> },
-    render: avatar => {
-      return (
-        <TableCell.AvatarLabelCell
-          avatarSize="large"
-          avatar={
-            <ObjectAvatar
-              badgeStatus="active"
-              size="medium"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
-            />
-          }
-          title={avatar.titleLarg}
-        />
-      );
-    },
-  },
-  {
     title: 'Avatar with label and description',
     dataIndex: 'avatar',
     key: 'avatar',
@@ -421,7 +396,6 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => {
       return (
         <TableCell.AvatarLabelCell
-          avatarSize="large"
           avatar={
             <ObjectAvatar
               badgeStatus="active"
@@ -456,7 +430,6 @@ export const COLUMNS_WITH_AVATARS = [
       };
       return (
         <TableCell.AvatarLabelCell
-          avatarSize="large"
           avatar={
             <ObjectAvatar
               badgeStatus="active"

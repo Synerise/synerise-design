@@ -1,5 +1,6 @@
-import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import * as React from 'react';
+import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
+import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type Color =
   | 'red'
@@ -59,9 +60,16 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
     name?: React.ReactNode;
     email?: React.ReactNode;
   };
+  /**
+   * Tooltip properties
+   */
+  tooltipProps?: TooltipProps;
 }
 
-type DefinedAvatarProps = Pick<AvatarProps, 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src'>& {
+type DefinedAvatarProps = Pick<
+  AvatarProps,
+  'style' | 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
+> & {
   badgeStatus?: string;
   color?: Color;
   text?: string;
