@@ -1,10 +1,11 @@
 import faker from 'faker';
 import Badge from '@synerise/ds-badge';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import * as React from 'react';
 import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
-const IMG_SRC = 'https://www.w3schools.com/howto/img_avatar.png';
+
+import { image } from '../Avatar/constants';
 
 export const populateCities = numberOfCities => {
   const result = [];
@@ -64,11 +65,7 @@ export const getItemsWithAvatar = numberOfItems => {
       description: email,
       icon: <VarTypeStringM />,
       prefixel: (
-        <Badge status="active">
-          <Avatar size="medium" src={IMG_SRC} shape="circle">
-            {firstName[0] + lastName[0]}
-          </Avatar>
-        </Badge>
+        <UserAvatar badgeStatus="active" src={image} firstName={firstName[0]} lastName={lastName[0]} />
       ),
     });
   }

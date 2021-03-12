@@ -4,7 +4,7 @@ import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import {
@@ -164,13 +164,11 @@ const stories = {
                   if (a.first_name > b.first_name) return 1;
                   return 0;
                 },
-                render: firstName => {
+                render: (firstName, {last_name: lastName, city}) => {
                   return (
                     <TableCell.AvatarLabelCell
                       avatar={
-                        <Avatar backgroundColor="blue" backgroundColorHue="600" size="medium">
-                          {firstName[0]}
-                        </Avatar>
+                        <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} email={city} />
                       }
                       title={firstName}
                     />

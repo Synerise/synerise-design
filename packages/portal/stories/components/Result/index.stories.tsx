@@ -10,6 +10,7 @@ import { TextArea } from '@synerise/ds-input';
 import ModalProxy from '@synerise/ds-modal';
 import Icon from '@synerise/ds-icon';
 
+import { image } from '../Avatar/constants';
 
 const decorator = storyFn => <div style={{ width: '520px' }}>{storyFn()}</div>;
 
@@ -78,7 +79,7 @@ const exampleAvatar = (
     backgroundColorHue="100"
     size="large"
     shape="circle"
-    src={'https://www.w3schools.com/howto/img_avatar.png'}
+    src={image}
   />
 );
 

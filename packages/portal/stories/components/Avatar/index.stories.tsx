@@ -7,6 +7,9 @@ import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
 import MailM from "@synerise/ds-icon/dist/icons/MailM";
 import { Thunder2M, UserCircleM } from "@synerise/ds-icon/dist/icons";
 import { action } from '@storybook/addon-actions';
+
+import { sizes, shapes } from './constants';
+import { statuses } from '../Badge/constants';
 import anonymImage from './av-anonym-004.png';
 
 const wrapperStyles = {
@@ -25,9 +28,6 @@ const wrapperStyles = {
 
 const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
 
-const shapes = ['circle', 'square'] as const;
-const sizes = ['small', 'medium', 'large', 'extraLarge'] as const;
-const statuses = ['blocked', 'inactive', 'active', 'warning'] as const;
 const backgroundColors = [
   'red',
   'green',
