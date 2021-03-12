@@ -22,13 +22,7 @@ const AvatarLabel: React.FC<Props> = ({
         {avatar}
       </S.Avatar>
       <S.Description>
-        <S.Title
-          withLabels={Boolean(labels?.length)}
-          textSize={textSize}
-          ellipsis={Boolean(ellipsis)}
-          maxWidth={maxWidth}
-          avatarSize={avatarSize}
-        >
+        <S.Title ellipsis={Boolean(ellipsis)} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}
         </S.Title>
         {labels?.map(
