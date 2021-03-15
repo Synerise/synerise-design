@@ -24,8 +24,7 @@ const Avatar: React.FC<AvatarProps> = ({
   hasStatus = false,
   iconComponent,
   iconScale = true,
-  tooltip,
-  tooltipProps = {},
+  tooltip = {},
   size = DEFAULT_SIZE,
   ...antdProps
 }) => {
@@ -44,14 +43,17 @@ const Avatar: React.FC<AvatarProps> = ({
     iconElement = React.cloneElement(iconElement, {
       size: iconSize,
     });
-  }
+  };
+
+  const tooltipProps = tooltip !== false ? {
+    ...tooltip,
+    title: tooltip.title || tooltip.name,
+    description: tooltip.description || tooltip.description,
+  } : {};
 
   return (
     <Tooltip
       type="avatar"
-      title={tooltip?.title || tooltip?.name}
-      description={tooltip?.description || tooltip?.email}
-      status={tooltip?.status}
       mouseLeaveDelay={0}
       mouseEnterDelay={0}
       {...tooltipProps}

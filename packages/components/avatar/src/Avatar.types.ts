@@ -19,10 +19,7 @@ export type Color =
 export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
-export type TooltipObject = {
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  status?: React.ReactNode;
+export type TooltipObject = TooltipProps & {
   // Backwards compatibility:
   name?: React.ReactNode;
   email?: React.ReactNode;
@@ -62,16 +59,9 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
    * Text on a tooltip
    */
   tooltip?: TooltipObject | false;
-  /**
-   * Tooltip properties
-   */
-  tooltipProps?: TooltipProps | false;
 }
 
-type DefinedAvatarProps = Pick<
-  AvatarProps,
-  'style' | 'disabled' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
-> & {
+type DefinedAvatarProps = Pick<AvatarProps,  'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
   backgroundColor?: 'auto' | Color;
   badgeStatus?: string;
   text?: string;
