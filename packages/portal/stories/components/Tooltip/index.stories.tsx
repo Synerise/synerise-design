@@ -131,9 +131,13 @@ const stories = {
     const tooltipProps = props();
     const firstName = text('Set first name', 'Jan');
     const lastName = text('Set last name', 'Nowak');
-    const email = text('Set email', 'jan.nowak@gmail.com');
+    const tooltip = {
+      title: `${firstName} ${lastName}`,
+      description: text('Set email', 'jan.nowak@gmail.com'),
+      ...tooltipProps
+    };
 
-    return <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} email={email} tooltipProps={tooltipProps} />
+    return <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} tooltip={tooltip} />
   },
   tutorial: () => (
     <div>
