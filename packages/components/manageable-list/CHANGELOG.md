@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.19.0...@synerise/ds-manageable-list@0.20.0) (2021-03-12)
+
+
+### Features
+
+* **manageable-list:** adds className for automated tests ([c6bc4e8](https://github.com/Synerise/synerise-design/commit/c6bc4e898b192c71a63ed79762705d397706fdf4))
+
+
+
+
+
 # [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.18.2...@synerise/ds-manageable-list@0.19.0) (2021-03-12)
 
 

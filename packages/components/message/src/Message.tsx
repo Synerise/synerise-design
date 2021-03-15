@@ -1,3 +1,7 @@
 import './style/index.less';
 
-export { default } from 'antd/lib/message';
+import message from 'antd/lib/message';
+
+message.config({ duration: 3 });
+
+export default message;
