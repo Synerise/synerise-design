@@ -1,9 +1,5 @@
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import * as latin from 'latinize';
-
-// because latinize has bad typing in @types/latinize ;(
-// eslint-disable-next-line @typescript-eslint/no-explicit-any 
-const latinize = (latin as any).default;
+import latinize from 'latinize';
 
 export type ColorByLetter = {
   [index: string]: string;
@@ -32,16 +28,9 @@ export function getColor(colorString: string, forAvatar: boolean): Color {
 };
 
 function selectColorByLetter(letter?: string, forAvatar = false): Color {
-  if (typeof letter !== 'string') {
-    return getColor('orange-500', forAvatar);
-  }
-
-  const latinized = latinize(letter.toUpperCase());
-
-  switch (latinized) {
-    default:
-      return getColor(`${colorByLetter[latinized] || 'orange'}-500`, forAvatar);
-  }
+  return typeof letter !== 'string' 
+    ? getColor('orange-500', forAvatar)
+    : getColor(`${colorByLetter[latinize(letter.toUpperCase())] || 'orange'}-500`, forAvatar);
 };
 
 export default selectColorByLetter;

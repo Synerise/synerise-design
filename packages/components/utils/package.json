@@ -37,7 +37,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-core": "^0.28.2",
-    "@types/latinize": "^0.2.15"
+    "@synerise/ds-core": "^0.28.2"
   }
 }
