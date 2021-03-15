@@ -48,7 +48,7 @@ const Avatar: React.FC<AvatarProps> = ({
   const tooltipProps = tooltip !== false ? {
     ...tooltip,
     title: tooltip.title || tooltip.name,
-    description: tooltip.description || tooltip.description,
+    description: tooltip.description || tooltip.email,
   } : {};
 
   return (
