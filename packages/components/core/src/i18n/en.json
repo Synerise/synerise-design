@@ -217,7 +217,8 @@
       "SELECT-DAYS-DESCRIPTION": "Select one day or many. Use \"shift\" key or \"ctrl\" key to select more than one.",
       "ADD-RANGE": "Add range",
       "SAVE-FILTER": "Save filter",
-      "FILTER-NAME": "Filter name"
+      "FILTER-NAME": "Filter name",
+      "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries."
     },
     "CARD-TAB": {
       "REMOVE": "Remove",
