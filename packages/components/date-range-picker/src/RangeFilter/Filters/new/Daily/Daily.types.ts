@@ -6,5 +6,6 @@ export type DailySchedule = DayOptions & {
   mode: DateLimitMode;
 };
 export type DailyProps = {
-  schedule: DailySchedule[];
+  value: DailySchedule[];
+  onChange: (value: DailyProps['value']) => void;
 } & FilterBaseProps;

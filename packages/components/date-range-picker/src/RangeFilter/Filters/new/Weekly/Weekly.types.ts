@@ -12,5 +12,5 @@ export type DayOfWeekIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export type WeeklyProps = {
   value: WeeklySchedule;
-  onChange: (value: WeeklySchedule) => void;
+  onChange: (value: WeeklyProps['value']) => void;
 } & FilterBaseProps;

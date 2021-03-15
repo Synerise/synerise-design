@@ -196,7 +196,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="days of" />
                   </S.DropdownLabel>
                   <S.Select
-                    disabled
                     expanded={false}
                     dropdownOverlayStyle={{
                       minWidth: '150px',

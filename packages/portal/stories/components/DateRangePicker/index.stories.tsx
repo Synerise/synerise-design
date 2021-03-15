@@ -6,6 +6,10 @@ import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
 import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+import {
+  DEFAULT_RANGE_END,
+  DEFAULT_RANGE_START,
+} from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -18,7 +22,6 @@ export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   units: ['hour', 'minute'],
   timeFormat: 'HH:mm',
 };
-
 
 const savedFilters = [];
 const texts = {
@@ -168,10 +171,22 @@ const stories = {
     );
   },
   dailyDateFilter: () => {
-    return <Daily timePickerProps={TIME_PICKER_PROPS} />;
+    const [value, setValue] = React.useState([
+      {
+        start: DEFAULT_RANGE_START,
+        stop: DEFAULT_RANGE_END,
+        restricted: false,
+        display: false,
+        inverted: false,
+        mode: 'Hour',
+      },
+    ]);
+
+    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} />;
   },
   weeklyDateFilter: () => {
-    return <Weekly timePickerProps={TIME_PICKER_PROPS} />;
+    const [value, setValue] = React.useState({});
+    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} />;
   },
 };
 

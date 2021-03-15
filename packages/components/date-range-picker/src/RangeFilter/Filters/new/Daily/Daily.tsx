@@ -16,7 +16,13 @@ import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/Ra
 import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
-const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], timeFormat, timePickerProps }) => {
+const Daily: React.FC<DailyProps> = ({
+  value = [],
+  onChange = NOOP,
+  valueSelectionMode = ['Hour', 'Range'],
+  timeFormat,
+  timePickerProps,
+}) => {
   const intl = useIntl();
   const defaultDayValue = React.useMemo(
     () => ({
@@ -29,58 +35,59 @@ const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], t
     }),
     [valueSelectionMode]
   );
-  const [schedule, setSchedule] = React.useState<DailySchedule[]>([defaultDayValue]);
-
   const handleDayTimeChange = React.useCallback(
-    (value: [Date, Date], index: number): void => {
-      const updatedSchedule = schedule;
+    (dateValueArray: [Date, Date], index: number): void => {
+      const updatedSchedule = value;
       updatedSchedule[index] = {
-        ...schedule[index],
+        ...value[index],
         restricted: true,
-        start: dayjs(value[0]).format(DEFAULT_TIME_FORMAT),
-        stop: dayjs(value[1]).format(DEFAULT_TIME_FORMAT),
+        start: dayjs(dateValueArray[0]).format(DEFAULT_TIME_FORMAT),
+        stop: dayjs(dateValueArray[1]).format(DEFAULT_TIME_FORMAT),
       };
     },
-    [schedule]
+    [value]
   );
   const getDayValue = React.useCallback(
     (index?: number): DailySchedule => {
-      if (typeof index === 'number' && !!schedule[index]) {
-        return schedule[index];
+      if (typeof index === 'number' && !!value[index]) {
+        return value[index];
       }
       return defaultDayValue;
     },
-    [schedule, defaultDayValue]
+    [value, defaultDayValue]
   );
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode, elementIndex: number): void => {
-      const updatedSchedule = schedule;
+      const updatedSchedule = value;
       updatedSchedule[elementIndex] = {
-        ...schedule[elementIndex],
+        ...value[elementIndex],
         mode: selectedMode,
       };
     },
-    [schedule]
+    [value]
   );
   const handleRangeDelete = React.useCallback(
     (index: number): void => {
-      const updatedSchedule = schedule;
+      const updatedSchedule = value;
       delete updatedSchedule[index];
-      setSchedule(updatedSchedule.filter(s => Boolean(s)));
+      onChange(updatedSchedule.filter(s => Boolean(s)));
     },
-    [schedule]
+    [value, onChange]
   );
+  const handleRangeAdd = React.useCallback((): void => {
+    onChange([...value, getDayValue()]);
+  }, [onChange, value, getDayValue]);
   return (
     <S.NewFilterContainer>
-      {schedule.map((s, index) => (
+      {value.map((s, index) => (
         <RangeFormContainer
           days={EMPTY_OBJECT}
           onChange={NOOP}
           onMultipleDayTimeChange={NOOP}
           // eslint-disable-next-line react/no-array-index-key
           key={`range-${index}-${String(s?.start)}`}
-          onDayTimeChange={(value): void => {
-            handleDayTimeChange(value, index);
+          onDayTimeChange={(dateValueArray): void => {
+            handleDayTimeChange(dateValueArray, index);
           }}
           dayKeys={[0]}
           texts={EMPTY_OBJECT}
@@ -96,12 +103,10 @@ const Daily: React.FC<DailyProps> = ({ valueSelectionMode = ['Hour', 'Range'], t
           hideHeader
         />
       ))}
-      {schedule.length < MAX_RANGES && (
+      {value.length < MAX_RANGES && (
         <AddButton
           label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
-          onClick={(): void => {
-            setSchedule([...schedule, getDayValue()]);
-          }}
+          onClick={handleRangeAdd}
         />
       )}
     </S.NewFilterContainer>

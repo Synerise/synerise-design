@@ -79,4 +79,4 @@ export type MonthlyFilterDefinition = {
   periodType: PeriodType;
 };
 
-export type ValueSelectionModes = ['RANGE', 'HOUR'];
+export type ValueSelectionModes = ['Range', 'Hour'];
