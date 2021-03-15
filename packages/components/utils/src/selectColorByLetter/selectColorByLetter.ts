@@ -1,5 +1,9 @@
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import * as latinize from 'latinize';
+import * as latin from 'latinize';
+
+// because latinize has bad typing in @types/latinize ;(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any 
+const latinize = (latin as any).default;
 
 export type ColorByLetter = {
   [index: string]: string;
