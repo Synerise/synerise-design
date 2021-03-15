@@ -30,10 +30,14 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "latinize": "^0.5.0"
+  },
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-core": "^0.28.2"
+    "@synerise/ds-core": "^0.28.2",
+    "@types/latinize": "^0.2.15"
   }
 }
