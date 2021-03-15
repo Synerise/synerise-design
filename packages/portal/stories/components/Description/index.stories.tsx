@@ -143,7 +143,7 @@ const stories = {
               <Description type="inline">
                 <DescriptionRow
                   label="Performed by:"
-                  prefixEl={<UserAvatar src={imgSrc} badgeStatus="active" />}
+                  prefixEl={<UserAvatar src={imgSrc} badgeStatus="active" size="small" />}
                   value="James Peterson"
                 />
               </Description>
