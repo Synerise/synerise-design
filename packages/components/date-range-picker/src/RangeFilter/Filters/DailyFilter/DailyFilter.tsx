@@ -5,10 +5,12 @@ import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
 import { Days } from '../../../date.types';
 import { WithTranslations } from '../../../DateRangePicker.types';
+import { ValueSelectionModes } from '../../RangeFilter.types';
 
 export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods>, WithTranslations {
   value: string;
   onChange: (v: Days) => {};
+  valueSelectionModes: ValueSelectionModes;
 }
 
 const DailyFilter: React.FC<Props> = props => {
@@ -16,14 +18,16 @@ const DailyFilter: React.FC<Props> = props => {
     const { onChange } = props;
     onChange && onChange(value[0] as Days);
   };
-  const { value, intl, onRangeCopy, onRangePaste, onRangeClear, texts } = props;
+  const { value, intl, onRangeCopy, onRangePaste, onRangeClear, texts, valueSelectionModes } = props;
   return (
     <S.DailyFilterWrapper>
       <TimeWindow
         texts={texts}
         hideHeader
         numberOfDays={0}
-        customDays={{ 0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY' }) } }}
+        customDays={{
+          0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY', defaultMessage: 'Every day' }) },
+        }}
         days={value[0] ? value[0] : value}
         onChange={(val: Days): void => {
           handleChange(val);
@@ -32,6 +36,7 @@ const DailyFilter: React.FC<Props> = props => {
         onRangePaste={onRangePaste}
         onRangeCopy={onRangeCopy}
         onRangeClear={onRangeClear}
+        valueSelectionModes={valueSelectionModes}
       />{' '}
     </S.DailyFilterWrapper>
   );

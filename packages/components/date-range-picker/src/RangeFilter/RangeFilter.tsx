@@ -88,11 +88,13 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl, savedFilters, texts } = this.props;
+    const { intl, savedFilters, texts, hideFooter, valueSelectionModes } = this.props;
     return (
       <S.Container>
         <S.Header>
-          <S.Title>{intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER' })}</S.Title>
+          <S.Title>
+            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER', defaultMessage: 'Date filter' })}
+          </S.Title>
           {!!savedFilters?.length && (
             <FilterDropdown
               filters={savedFilters}
@@ -122,24 +124,28 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                 texts={texts}
                 value={definition}
                 onChange={(def: FilterDefinition): void => {
-                  this.setState({ [activeType]: { ...activeValue, definition: def } });
+                  const updatedFilter = { [activeType]: { ...activeValue, definition: def } };
+                  this.setState(updatedFilter);
                 }}
                 onRangeCopy={this.handleRangeCopy}
                 rangeClipboard={rangeClipboard}
+                valueSelectionModes={valueSelectionModes}
               />
             )}
           </S.MainComponentWrapper>
         </S.Body>
-        <S.Footer>
-          <SaveFilterForm onFilterSave={this.handleFilterSave} />
-          <S.FooterSeparator />
-          <Button type="ghost" onClick={this.handleCancel}>
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL' })}
-          </Button>
-          <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY' })}
-          </Button>
-        </S.Footer>
+        {!hideFooter && (
+          <S.Footer>
+            <SaveFilterForm onFilterSave={this.handleFilterSave} />
+            <S.FooterSeparator />
+            <Button type="ghost" onClick={this.handleCancel}>
+              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL', defaultMessage: 'Cancel' })}
+            </Button>
+            <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
+              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY', defaultMessage: 'Apply' })}
+            </Button>
+          </S.Footer>
+        )}
       </S.Container>
     );
   }

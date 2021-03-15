@@ -11,12 +11,15 @@ export type FilterValue<T = FilterDefinition> = {
 };
 export type RangeFilterProps = {
   value: FilterValue | undefined;
-  onApply: (filter: FilterValue) => void;
+  onApply?: (filter: FilterValue) => void;
+  onChange?: (filter: FilterValue) => void;
+  hideFooter?: boolean;
   onCancel: () => void;
   intl: IntlShape;
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
   texts?: Texts;
+  valueSelectionModes?: DateLimitMode[];
 };
 
 export type RangeFilterState = {
@@ -75,3 +78,5 @@ export type MonthlyFilterDefinition = {
   period: string;
   periodType: PeriodType;
 };
+
+export type ValueSelectionModes = ['Range', 'Hour'];

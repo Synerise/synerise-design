@@ -24,8 +24,10 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
           }}
           headerSuffix={
             <>
-              <S.SuffixText>Change</S.SuffixText>
-              <Tooltip title="Remove">
+              <S.SuffixText>
+                {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CHANGE', defaultMessage: 'Change' })}
+              </S.SuffixText>
+              <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE', defaultMessage: 'Remove' })}>
                 <Icon
                   onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
                     e.stopPropagation();
@@ -39,7 +41,7 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
           }
           item={{
             id: 'filter-trigger',
-            name: intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}` }),
+            name: intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
             tag: (
               <S.BadgeWrapper>
                 <Badge status="active" flag pulsing>
