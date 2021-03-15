@@ -51,8 +51,17 @@ export const TextareaWrapper = styled.div<{
     top: 1px;
     bottom: 0;
     right: 1px;
-    .ps__rail-y {
+    .ps__rail-y,
+    .ps__thumb-x,
+    .ps__rail-x {
       height: calc(100% - 1px);
+      max-height: 9px;
+    }
+    & > .textarea-scrollbar {
+      &,
+      & > div {
+        height: calc(100% - 2px);
+      }
     }
   }
   &&& {

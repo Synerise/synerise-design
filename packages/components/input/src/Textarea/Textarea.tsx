@@ -25,7 +25,7 @@ const Textarea: React.FC<TextAreaProps> = ({
       resize={resize}
       style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
     >
-      <Scrollbar absolute>
+      <Scrollbar absolute classes="textarea-scrollbar">
         <Input.TextArea
           autoSize={autoSize}
           {...props}
