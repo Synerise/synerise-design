@@ -19,6 +19,15 @@ export type Color =
 export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
+export type TooltipObject = {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  status?: React.ReactNode;
+  // Backwards compatibility:
+  name?: React.ReactNode;
+  email?: React.ReactNode;
+};
+
 export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
    * Aligns a badge with the avatar
@@ -52,14 +61,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
    * Text on a tooltip
    */
-  tooltip?: {
-    title?: React.ReactNode;
-    description?: React.ReactNode;
-    status?: React.ReactNode;
-    // Backward compatibility:
-    name?: React.ReactNode;
-    email?: React.ReactNode;
-  };
+  tooltip?: TooltipObject | false;
   /**
    * Tooltip properties
    */
@@ -68,11 +70,12 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
 
 type DefinedAvatarProps = Pick<
   AvatarProps,
-  'style' | 'disabled' | 'tooltip' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
+  'style' | 'disabled' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
 > & {
   backgroundColor?: 'auto' | Color;
   badgeStatus?: string;
   text?: string;
+  tooltip?: TooltipObject | false;
 };
 
 export type ObjectAvatarProps = DefinedAvatarProps & {

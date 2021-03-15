@@ -14,7 +14,7 @@ export const DEFAULT_COLOR_HUE = '600';
 export const DEFAULT_COLOR = 'grey';
 
 const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
-  backgroundColor = 'grey',
+  backgroundColor,
   badgeStatus,
   iconComponent,
   color = 'grey',
@@ -39,7 +39,9 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
   const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
   const iconColor = theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const avatarTooltip =
-    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
+    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) 
+      ? defaultTooltip 
+      : tooltip;
 
   const iconElement = addIconColor(iconComponent, iconColor);
 
