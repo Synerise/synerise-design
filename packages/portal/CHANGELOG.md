@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.123.0](https://github.com/synerise/synerise-design/compare/portal@0.122.2...portal@0.123.0) (2021-03-15)
+
+
+### Features
+
+* **message:** set default duration to 3s ([7dbedf0](https://github.com/synerise/synerise-design/commit/7dbedf005d555c9b744fb08d1fbff32abe5b4c82))
+
+
+
+
+
 ## [0.122.2](https://github.com/synerise/synerise-design/compare/portal@0.122.1...portal@0.122.2) (2021-03-12)
 
 

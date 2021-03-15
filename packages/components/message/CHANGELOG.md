@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@0.3.11...@synerise/ds-message@0.4.0) (2021-03-15)
+
+
+### Features
+
+* **message:** set default duration to 3s ([7dbedf0](https://github.com/Synerise/synerise-design/commit/7dbedf005d555c9b744fb08d1fbff32abe5b4c82))
+
+
+
+
+
 ## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-message@0.3.10...@synerise/ds-message@0.3.11) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-message
