@@ -73,7 +73,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
     user-select: none;
 
     span {
-      color: ${(props) => props.theme.palette.white} !important;
+      color: ${(props): string => props.theme.palette.white} !important;
     }
 
     &.ant-avatar-square {
