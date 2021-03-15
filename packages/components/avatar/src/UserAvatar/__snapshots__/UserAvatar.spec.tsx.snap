@@ -123,7 +123,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 hfFXOL ds-avatar ant-avatar-circle"
+        class="ant-avatar Avatarstyles-xcn5o4-1 eUarBN ds-avatar ant-avatar-circle"
       >
         <span
           class="ant-avatar-string"
@@ -136,7 +136,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 hfFXOL ds-avatar ant-avatar-circle"
+      class="ant-avatar Avatarstyles-xcn5o4-1 eUarBN ds-avatar ant-avatar-circle"
     >
       <span
         class="ant-avatar-string"

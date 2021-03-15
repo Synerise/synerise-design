@@ -29,6 +29,7 @@ const wrapperStyles = {
 const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
 
 const backgroundColors = [
+  'auto',
   'red',
   'green',
   'grey',
@@ -100,7 +101,7 @@ const stories = {
           size={select('Set size', sizes, 'medium')}
           onClick={boolean('Use onClick', true) ? action('UserAvatar clicked!') : undefined}
           badgeStatus={select('Set badge status', [...statuses, undefined], 'active')}          
-          backgroundColor={select('Set background color', backgroundColors, 'blue')}
+          backgroundColor={select('Set background color', backgroundColors, 'auto')}
           iconComponent={boolean('Use custom icon', false) ? <Icon component={<UserCircleM />} /> : undefined}
           disabled={boolean('Disabled', false)}
         />
@@ -124,8 +125,8 @@ const stories = {
           size={select('Set size', sizes, 'medium')}
           onClick={boolean('Use onClick handler', true) ? action('ObjectAvatar clicked!') : undefined}
           {...product}
-          color={select('Set icon color', backgroundColors, 'mars')}
-          backgroundColor={select('Set background color', backgroundColors, 'blue')}
+          color={select('Set icon color', backgroundColors.slice(1), 'mars')}
+          backgroundColor={select('Set background color', backgroundColors, 'auto')}
           badgeStatus={select('Set badge status', [...statuses, undefined], 'active')}
           iconComponent={boolean('Use custom icon', false) ? <Icon component={<Thunder2M />} /> : undefined}
           disabled={boolean('Disabled', false)}

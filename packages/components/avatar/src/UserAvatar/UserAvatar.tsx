@@ -5,14 +5,14 @@ import Icon from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 
 import Avatar from '../Avatar';
-import { getUserText, addIconColor } from '../utils';
+import { getUserText, addIconColor, getColorByText } from '../utils';
 import { UserAvatarProps } from '../Avatar.types';
 
 export const DEFAULT_COLOR = 'grey';
 export const DEFAULT_COLOR_HUE = '500';
 
 const UserAvatar: React.FC<UserAvatarProps> = ({
-  backgroundColor = 'grey',
+  backgroundColor,
   size,
   text,
   tooltip,
@@ -39,13 +39,15 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
     ? iconElement || <Icon component={size === 'small' ? <UserS /> : <UserM />} color={theme.palette['grey-500']} />
     : null;
 
+  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
+
   const avatar = (
     <Avatar
       iconComponent={icon}
       shape="circle"
       hasStatus={disabled === true ? false : !!badgeStatus}
-      backgroundColor={avatarText ? backgroundColor : 'grey'}
-      backgroundColorHue={avatarText ? '500' : '100'}
+      backgroundColor={avatarBackgroundColor}
+      backgroundColorHue={avatarBackgroundHue}
       size={size}
       src={src}
       tooltip={avatarTooltip}

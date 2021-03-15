@@ -1,13 +1,14 @@
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-export type Color = string | {color: string; hue: string};
+export type ColorObject = { color: string; hue: string };
+export type Color = string | ColorObject;
 
 const getColor = (colorString: string, forAvatar: boolean): Color => {
-  if(!forAvatar) return theme.palette[colorString];
+  if (!forAvatar) return theme.palette[colorString];
   return {
     color: colorString.split('-')[0],
     hue: colorString.split('-')[1],
-  }
+  };
 };
 
 const selectColorByLetter = (letter?: string, forAvatar = false): Color => {
