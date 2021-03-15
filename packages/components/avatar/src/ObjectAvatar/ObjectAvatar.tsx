@@ -6,7 +6,7 @@ import Badge from '@synerise/ds-badge';
 import Status from '@synerise/ds-status';
 
 import Avatar from '../Avatar';
-import { getObjectName, addIconColor } from '../utils';
+import { getObjectName, addIconColor, getColorByText } from '../utils';
 
 import { ObjectAvatarProps } from '../Avatar.types';
 
@@ -36,6 +36,7 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
     status: objectStatus ? <Status label={objectStatus} type="disabled" /> : '',
   };
   const avatarText = getObjectName(objectName, text);
+  const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
   const iconColor = theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const avatarTooltip =
     tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
@@ -48,8 +49,8 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
     <Avatar
       iconComponent={icon}
       shape="square"
-      backgroundColor={avatarText ? backgroundColor : 'grey'}
-      backgroundColorHue={avatarText ? '500' : '100'}
+      backgroundColor={avatarBackgroundColor}
+      backgroundColorHue={avatarBackgroundHue}
       size={size}
       hasStatus={disabled === true ? false : !!badgeStatus}
       src={src}

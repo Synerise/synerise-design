@@ -63,15 +63,15 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
    * Tooltip properties
    */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: TooltipProps | false;
 }
 
 type DefinedAvatarProps = Pick<
   AvatarProps,
-  'style' | 'disabled' | 'tooltip' | 'backgroundColor' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
+  'style' | 'disabled' | 'tooltip' | 'iconComponent' | 'size' | 'src' | 'tooltipProps'
 > & {
+  backgroundColor?: 'auto' | Color;
   badgeStatus?: string;
-  color?: Color;
   text?: string;
 };
 
@@ -79,6 +79,7 @@ export type ObjectAvatarProps = DefinedAvatarProps & {
   objectName?: string;
   objectStatus?: string;
   objectDescription?: string;
+  color?: Color;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
