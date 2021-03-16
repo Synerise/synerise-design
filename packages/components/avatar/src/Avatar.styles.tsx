@@ -72,6 +72,10 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
     transition: background 0.3s ease;
     user-select: none;
 
+    span {
+      color: ${(props): string => props.theme.palette.white} !important;
+    }
+
     &.ant-avatar-square {
       border-radius: 8px;
     }

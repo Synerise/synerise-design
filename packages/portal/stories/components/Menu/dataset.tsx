@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
-import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import {
@@ -165,7 +165,7 @@ export const avatar = [
   {
     text: TEXT_PLACEHOLDER,
     prefixel: (
-      <ObjectAvatar text="AK" size="small" />
+      <ObjectAvatar objectName="A" size="small" tooltip={false} />
     ),
   },
 ];

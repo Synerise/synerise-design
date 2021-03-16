@@ -30,7 +30,9 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   const avatarText = getUserText(firstName, lastName, src, text);
   const defaultTooltip = { title: `${firstName} ${lastName}`.trim(), description: email || '' };
   const avatarTooltip =
-    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
+    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) 
+      ? defaultTooltip 
+      : tooltip;
 
   const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const iconElement = addIconColor(iconComponent, iconColor);

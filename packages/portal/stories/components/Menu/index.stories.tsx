@@ -14,7 +14,7 @@ import withParent from './withParent/withParent';
 import withIconAndLabel from './withIconAndLabel/withIconAndLabel';
 import withOrderedList from './withOrderedList/withOrderedList';
 import withCheckbox from './withCheckbox/withCheckbox';
-import withSquareAvatar from './withSquareAvatar/withSquareAvatar';
+import withObjectAvatar from './withSquareAvatar/withSquareAvatar';
 import withSmallAvatar from './withSmallAvatar/withSmallAvatar';
 import withMediumAvatar from './withMediumAvatar/withMediumAvatar';
 import withDelete from './withDelete/withDelete';
@@ -83,7 +83,7 @@ const stories = {
   withIconAndLabel,
   withCheckbox,
   withOrderedList,
-  withSquareAvatar,
+  withObjectAvatar,
   withSmallAvatar,
   withMediumAvatar,
   withDelete,
