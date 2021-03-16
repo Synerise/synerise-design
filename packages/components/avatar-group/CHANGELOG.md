@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.3.42...@synerise/ds-avatar-group@0.4.0) (2021-03-16)
+
+
+### Features
+
+* **avatar:** STOR-700 change avatar sizes + add UserAvatar ([a1bb5b4](https://github.com/Synerise/synerise-design/commit/a1bb5b43debc5c9b152d5d2303ef5ba29591f3b9))
+
+
+
+
+
 ## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.3.41...@synerise/ds-avatar-group@0.3.42) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

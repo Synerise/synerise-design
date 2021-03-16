@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.7.37...@synerise/ds-date-range-picker@0.8.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added intl default messages ([6fb5ba3](https://github.com/Synerise/synerise-design/commit/6fb5ba3aee22ed06c037cdeeaf91e894f42a5b18))
+* **date-range-picker:** remove internal state inside new filters ([8dcf42f](https://github.com/Synerise/synerise-design/commit/8dcf42f264e426cf4cf418020808ae71de5d9114))
+
+
+### Features
+
+* **date-range-picker:** handle timeFormat in new filter ([70a864d](https://github.com/Synerise/synerise-design/commit/70a864de0b3671dce933a3e539d3f64cd65d84c8))
+* **date-range-picker:** range filter selection modes ([29c2ce3](https://github.com/Synerise/synerise-design/commit/29c2ce3d0473c4e17d9726bfe7e4ea3930fc8697))
+* **date-range-picker:** range form container improvements ([33e8b5d](https://github.com/Synerise/synerise-design/commit/33e8b5d46be0a4066f70baecc9c4a0120f4da4bf))
+
+
+
+
+
 ## [0.7.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.7.36...@synerise/ds-date-range-picker@0.7.37) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
