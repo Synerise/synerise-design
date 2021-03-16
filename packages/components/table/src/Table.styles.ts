@@ -176,4 +176,9 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   .ant-table .ant-table-cell.ant-table-selection-column + .ant-table-cell.ds-table-star-column {
     padding-left: 0;
   }
+
+  .ant-table .ant-table-column-sorter {
+    max-width: 32px;
+    min-width: 32px;
+  }
 `;
