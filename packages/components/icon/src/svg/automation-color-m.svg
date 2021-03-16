@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>01-07-automation-active-m</title><g id="Layer_2" data-name="Layer 2"><g id="icons"><rect id="canvas" width="24" height="24" style="fill:none"/><circle cx="12" cy="12" r="9" style="fill:#ff2f52"/><path d="M15.2,11.2,10.8,8.6a.95215.95215,0,0,0-1.3.3,1.6895,1.6895,0,0,0-.2.5v5.1a.969.969,0,0,0,1.4.8l4.4-2.6a.8742.8742,0,0,0,.3-1.3Z" style="fill:#ffebeb"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 26 26" style="enable-background:new 0 0 26 26;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FF5831;}
+</style>
+<g>
+	<path class="st0" d="M13,4c-4.9706,0-9,4.0294-9,9s4.0294,9,9,9s9-4.0294,9-9S17.9706,4,13,4z M16.316,14.2304l-4.1408,2.558
+		C11.95,16.9269,11.6917,17.0001,11.4284,17c-0.7861,0.0021-1.4253-0.643-1.4284-1.4417v-5.1172
+		c0.0014-0.5202,0.2781-0.9995,0.7242-1.2546c0.4529-0.2572,1.0068-0.2478,1.4509,0.0246l4.1408,2.558
+		C16.7405,12.0293,17,12.4962,17,12.9998C17,13.5034,16.7405,13.9703,16.316,14.2304z"/>
+</g>
+</svg>
