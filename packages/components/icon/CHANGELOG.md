@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.40.1...@synerise/ds-icon@0.41.0) (2021-03-16)
+
+
+### Features
+
+* **icon:** add predictions icon ([b636387](https://github.com/Synerise/synerise-design/commit/b636387738ae278db86aed03e6a712e798c55d26))
+
+
+
+
+
 ## [0.40.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.40.0...@synerise/ds-icon@0.40.1) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-icon
