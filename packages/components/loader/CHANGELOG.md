@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.11...@synerise/ds-loader@0.1.12) (2021-03-16)
+
+
+### Bug Fixes
+
+* **loader:** remove hardcoded margin ([d7cb841](https://github.com/Synerise/synerise-design/commit/d7cb84122ff7111730d21e2da9c333bf2c656fca))
+
+
+
+
+
 ## [0.1.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.10...@synerise/ds-loader@0.1.11) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-loader
