@@ -2,7 +2,7 @@ import * as React from 'react';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import { InfoFillS, InfoM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -127,18 +127,18 @@ const stories = {
       </Tooltip>
     </div>
   ),
-  avatar: () => (
-    <div>
-      <Tooltip
-        {...props()}
-        type="avatar"
-        title={text('Set user name', 'Jan Nowak')}
-        description={text('Set user email', 'jan.nowak@gmail.com')}
-      >
-        <Avatar backgroundColor='green' backgroundColorHue='600'>JN</Avatar>
-      </Tooltip>
-    </div>
-  ),
+  avatar: () => {
+    const tooltipProps = props();
+    const firstName = text('Set first name', 'Jan');
+    const lastName = text('Set last name', 'Nowak');
+    const tooltip = {
+      title: `${firstName} ${lastName}`,
+      description: text('Set email', 'jan.nowak@gmail.com'),
+      ...tooltipProps
+    };
+
+    return <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} tooltip={tooltip} />
+  },
   tutorial: () => (
     <div>
       <Tooltip

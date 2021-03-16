@@ -1,32 +1,13 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import Avatar from '@synerise/ds-avatar';
+
 import { Size } from './AvatarGroup.types';
-
-const SIZES = {
-  small: '24px',
-  medium: '32px',
-  large: '40px',
-  extraLarge: '80px',
-};
-
-const FONT_SIZES = {
-  small: '11px',
-  medium: '13px',
-  large: '13px',
-  extraLarge: '21px',
-};
 
 const MARGINS = {
   small: '-8px',
   medium: '-12px',
   large: '-16px',
   extraLarge: '-36px',
-};
-
-const applyMoreInfoStyles = (size: Size): FlattenSimpleInterpolation => {
-  return css`
-    height: ${SIZES[`${size}`] || '32px'};
-    font-size: ${FONT_SIZES[`${size}`] || '13px'};
-  `;
 };
 
 const applyMarginLeft = (size: Size): FlattenSimpleInterpolation => {
@@ -74,14 +55,20 @@ export const Group = styled.div<{ size: Size }>`
   }
 `;
 
-export const MoreInfo = styled.div<{ size: Size }>`
-  ${(props): FlattenSimpleInterpolation | false => applyMoreInfoStyles(props.size)};
-  margin-left: 8px;
-  color: ${(props): string => props.theme.palette['grey-500']};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.45;
-  cursor: pointer;
-  position: relative;
+export const MoreInfo = styled(Avatar)<{onClick: () => void}>`
+  && {
+    margin-left: 8px;
+    background: ${({theme}): string => theme.palette.white};
+    border: 1px solid ${({theme}): string => theme.palette['grey-300']};
+    color: ${({theme}): string => theme.palette['grey-400']};
+
+    ::after, ::before {
+      display: none;
+    }
+
+    &:hover, &:active {
+      color: ${({theme}): string => theme.palette['grey-500']};
+      border-color: ${({theme}): string => theme.palette['grey-500']};
+    }
+  }
 `;

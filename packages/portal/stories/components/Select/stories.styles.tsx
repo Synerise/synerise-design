@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags';
-import Avatar from '@synerise/ds-avatar';
+import { UserAvatar } from '@synerise/ds-avatar';
 
 export const TagAddon = styled(Tag)`
   height: 32px;
@@ -15,7 +15,7 @@ export const Label = styled.span`
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
-export const AvatarWithMargin = styled(Avatar)`
+export const AvatarWithMargin = styled(UserAvatar)`
   margin: 4px;
 `;
 export const IconWrapper = styled.div`

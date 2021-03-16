@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const NewFilterContainer = styled.div`
+  width: 596px;
+`;
 export const Container = styled.div``;
 
 export const Header = styled.div`

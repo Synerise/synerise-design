@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { WithTranslations } from '../../../../../DateRangePicker.types';
+import { RangeFormContainerProps } from '../RangeFormContainer.types';
 
 export type DateLimitMode = 'Hour' | 'Range';
 export type RangeFormProps = {
@@ -12,4 +13,6 @@ export type RangeFormProps = {
   onEndChange: (value: Date) => void;
   onExactHourSelect: (value: Date) => void;
   onRangeDelete?: () => void;
-} & WithTranslations;
+  valueSelectionMode: DateLimitMode[];
+} & WithTranslations &
+  Pick<RangeFormContainerProps, 'timePickerProps'>;

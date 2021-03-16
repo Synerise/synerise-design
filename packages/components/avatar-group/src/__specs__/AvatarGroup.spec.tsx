@@ -196,6 +196,7 @@ describe('AvatarGroup', () => {
       moreInfoTooltip={'more users'}
     />);
 
-    expect(container.querySelectorAll('.ant-avatar').length).toBe(5);
+    // it's 6 decause moreInfo is now avatar
+    expect(container.querySelectorAll('.ant-avatar').length).toBe(6);
   });
 });

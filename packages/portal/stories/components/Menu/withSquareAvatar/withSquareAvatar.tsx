@@ -7,7 +7,7 @@ import {
   getSuffixTrigger,
 } from '../index.stories';
 
-const withSquareAvatar = () => {
+const withObjectAvatar = () => {
   const defaultProps = getDefaultProps();
   const props = {
     dataSource: attachKnobsToDataSource(avatar),
@@ -19,4 +19,4 @@ const withSquareAvatar = () => {
   } as object;
   return decorator(props);
 };
-export default withSquareAvatar;
+export default withObjectAvatar;

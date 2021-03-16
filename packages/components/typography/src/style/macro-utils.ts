@@ -91,7 +91,7 @@ export const xsAvatar = css`
 `;
 
 export const xlAvatar = css`
-  font-size: 22px;
+  font-size: 21px;
 `;
 
 export const xlAvatarIcon = css`

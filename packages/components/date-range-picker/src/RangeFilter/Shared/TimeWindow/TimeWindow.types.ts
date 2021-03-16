@@ -3,6 +3,7 @@ import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition } from '../../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
+import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
 export type DayKey = number | string;
 
@@ -55,6 +56,7 @@ export type TimeWindowProps = {
   intl: IntlShape;
   daily?: boolean;
   rangeClipboard: Partial<FilterDefinition>;
+  valueSelectionModes: DateLimitMode[];
   texts?: TimeWindowTexts & GridTexts;
 } & Partial<RangeActions> &
   WrappedComponentProps;

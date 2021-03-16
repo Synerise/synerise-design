@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon from '@synerise/ds-icon';
 import {
@@ -22,7 +22,8 @@ import * as S from './stories.styles';
 import DSFlag from '@synerise/ds-flag';
 export const TEXT_PLACEHOLDER = 'Option';
 export const DESCRIPTION_PLACEHOLDER = 'Description';
-const IMG_SRC = 'https://www.w3schools.com/howto/img_avatar.png';
+
+import { image as IMG_SRC } from '../Avatar/constants';
 
 export const suffixType = {
   renameAndDelete: 'rename,delete',
@@ -164,11 +165,7 @@ export const avatar = [
   {
     text: TEXT_PLACEHOLDER,
     prefixel: (
-      <Badge status="active">
-        <Avatar size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
-          AK
-        </Avatar>
-      </Badge>
+      <ObjectAvatar objectName="A" size="small" tooltip={false} />
     ),
   },
 ];

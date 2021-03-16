@@ -16,8 +16,7 @@ import {
 } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import Avatar from '@synerise/ds-avatar';
-import Badge from '@synerise/ds-badge';
+import { ObjectAvatar } from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Stepper from '@synerise/ds-stepper';
 import Dropdown from '@synerise/ds-dropdown';
@@ -194,18 +193,7 @@ const stories = {
         </Button>
       }
       avatar={
-        <Badge status="active">
-          <Avatar
-            backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-            backgroundColorHue={'100'}
-            disabled={boolean('disabled', false)}
-            hasStatus
-            shape={select('shape', shapes, 'circle')}
-            size={select('size', ['small', 'medium', 'large', 'extraLarge'], 'large')}
-          >
-            <Icon component={<MailM />} color={theme.palette['red-600']} />
-          </Avatar>
-        </Badge>
+        <ObjectAvatar iconComponent={<Icon component={<MailM />} color={theme.palette['red-600']} />} badgeStatus="active" />
       }
       tabs={
         <Tabs
@@ -230,13 +218,11 @@ const stories = {
     />
   )),
   withDropdown: () => {
-    const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
     const [value, setValue] = React.useState('');
     const [selectedSpace, setSelectedSpace] = React.useState('CRM');
     const [dropdownVisible, setDropdownVisible] = React.useState(false);
     const [isFocused, setFocused] = React.useState(false);
     const ref = React.useRef<HTMLDivElement>(null);
-    const disabled = boolean('Set disabled', false)
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
@@ -308,18 +294,7 @@ const stories = {
           </Dropdown>
         }
         avatar={
-          <Badge status="active">
-            <Avatar
-              backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-              backgroundColorHue={'100'}
-              disabled={boolean('disabled', false)}
-              hasStatus
-              shape={select('shape', shapes, 'circle')}
-              size={avatarSize}
-            >
-              <Icon component={avatarSize === 'small' ? <MailS /> : <MailM />} color={theme.palette['red-600']} />
-            </Avatar>
-          </Badge>
+          <ObjectAvatar iconComponent={<Icon component={<MailM />} color={theme.palette['red-600']} />} badgeStatus="active" />
         }
         tabs={
           <Tabs
@@ -348,7 +323,6 @@ const stories = {
     activeStep: 0,
     name: 'Example',
   })(({ store }) => {
-    const avatarSize = select('size', ['small', 'medium', 'large', 'extraLarge'], 'large');
     const showTooltip = boolean('Show step tooltip', false);
     const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
 
@@ -359,18 +333,7 @@ const stories = {
     return (
       <PageHeader
         avatar={
-          <Badge status="active">
-            <Avatar
-              backgroundColor={select('backgroundColors', backgroundColors, 'red')}
-              backgroundColorHue={'100'}
-              disabled={boolean('disabled', false)}
-              hasStatus
-              shape={select('shape', shapes, 'circle')}
-              size={avatarSize}
-            >
-              <Icon component={avatarSize === 'small' ? <MailS /> : <MailM />} color={theme.palette['red-600']} />
-            </Avatar>
-          </Badge>
+          <ObjectAvatar iconComponent={<Icon component={<MailM />} color={theme.palette['red-600']} />} badgeStatus="active" />
         }
         inlineEdit={{
           name: 'name-of-input',

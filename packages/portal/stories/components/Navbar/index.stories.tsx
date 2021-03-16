@@ -7,16 +7,16 @@ import Icon from '@synerise/ds-icon';
 import { Add3M, AngleDownS, HelpM, NotificationsActiveM, BookM } from '@synerise/ds-icon/dist/icons';
 import { action } from '@storybook/addon-actions';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Avatar from '@synerise/ds-avatar';
+import { UserAvatar } from '@synerise/ds-avatar';
 
 const addonType = { avatar: 'avatar', none: 'none' };
 function renderAddonComponent(suffixElementType: string) {
   switch (suffixElementType) {
     case addonType.avatar:
       return (
-        <Avatar size="medium" backgroundColor="green" backgroundColorHue="400" shape="circle">
-          AK
-        </Avatar>
+        <Button type="ghost" mode="single-icon">
+          <UserAvatar text="AK" size="small" />
+        </Button>
       );
     default:
       return null;

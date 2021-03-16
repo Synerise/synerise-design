@@ -30,13 +30,13 @@ const Grid: React.FC<GridProps> = ({
     actions.push({
       key: 'select-all',
       onClick: onSelectAll,
-      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.SELECT-ALL" />,
+      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.SELECT-ALL" defaultMessage="Select all" />,
     });
   if (showUnselectAll)
     actions.push({
       key: 'unselect-all',
       onClick: onUnselectAll,
-      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" />,
+      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" defaultMessage="Unselect all" />,
     });
   let grid = (
     <S.Days columns={numberOfColumns}>

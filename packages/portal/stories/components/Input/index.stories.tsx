@@ -85,9 +85,7 @@ function renderAddonComponent(suffixElementType: string, labelText?: string) {
       );
     case addonType.avatar:
       return (
-        <S.AvatarWithMargin size="small" backgroundColor="green" backgroundColorHue="400" shape="square">
-          AK
-        </S.AvatarWithMargin>
+        <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />
       );
     case addonType.tag:
       return (

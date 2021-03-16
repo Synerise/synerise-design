@@ -30,6 +30,9 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
+  "dependencies": {
+    "latinize": "^0.5.0"
+  },
   "peerDependencies": {
     "react": ">=16.9.0 < 17.0.0"
   },

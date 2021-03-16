@@ -36,8 +36,8 @@ const applyDisabledStyles = (props: { disabled: boolean }): FlattenSimpleInterpo
 const BADGE_POSITION = {
   circlesmall: '2px',
   circlemedium: '5px',
-  circlelarge: '6px',
-  circleextraLarge: '11px',
+  circlelarge: '12px',
+  circleextraLarge: '17px',
   squaresmall: '3px',
   squaremedium: '3px',
   squarelarge: '3px',
@@ -65,20 +65,33 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed, ...rest }) => <Avatar {...rest} />)`
+export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, pressed, ...rest }) => <Avatar onClick={onClick} {...rest} />)`
   && {
     ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
+    user-select: none;
+
+    span {
+      color: ${(props): string => props.theme.palette.white} !important;
+    }
+
+    &.ant-avatar-square {
+      border-radius: 8px;
+    }
 
     .ant-avatar-string {
       width: 100%;
       height: 100%;
       left: 0;
       position: relative;
+      font-size: 11px;
       transform: none !important;
       ${(props): FlattenSimpleInterpolation => applyFontSize(props)};
       ${macro.flexCentered};
+      user-select: none;
+      pointer-events: none;
+
       & > div {
         max-width: 100%;
         max-height: 100%;
@@ -88,42 +101,39 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
         }
       }
     }
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: ${({ theme }): string => theme.palette['grey-800']};
-      opacity: 0.05;
+      background-color: #000;
+      opacity: 0;
       border-radius: inherit;
     }
     ${(props): FlattenSimpleInterpolation | false =>
       props.pressed &&
       css`
-        &::after {
-          opacity: 0.1;
+        &::before {
+          opacity: 0.05;
         }
       `};
 
     &:hover {
       &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette.white};
-        opacity: 0.3;
-        border-radius: inherit;
-        box-sizing: border-box;
+        opacity: 0.05;
       }
-      &::after {
-        opacity: 0.1;
-      }
+    }
+
+    ${(props): FlattenSimpleInterpolation | false => props.onClick ? css`
+      cursor: pointer;
+
+      &:active {
+        &::before {
+          opacity: 0.1;
+        }
+      }` : false
     }
 
     & + .ant-badge-dot {
@@ -147,10 +157,31 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
     ${(props): FlattenSimpleInterpolation | false =>
       props.size === 'medium' &&
       css`
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
+
         .ant-avatar-string {
-          line-height: 32px;
+          line-height: 40px;
+        }
+
+        ${props.icon &&
+          css`
+            &.ant-avatar-icon {
+              ${macro.xlAvatarIcon};
+              ${macro.flexCentered}
+            }
+          `};
+      `};
+            
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.size === 'large' &&
+      css`
+        width: 84px;
+        height: 84px;
+
+        .ant-avatar-string {
+          line-height: 84px;
+          font-size: 16px;
         }
 
         ${props.icon &&
@@ -165,12 +196,12 @@ export default styled(({ backgroundColorHue, backgroundColor, hasStatus, pressed
     ${(props): FlattenSimpleInterpolation | false =>
       props.size === 'extraLarge' &&
       css`
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
         font-size: 21px;
-        line-height: 21px;
+
         .ant-avatar-string {
-          line-height: 80px;
+          line-height: 120px;
           ${macro.xlAvatar};
         }
 

@@ -5,6 +5,8 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import * as React from 'react';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
+import avatarImage from '../Avatar/av-anonym-004.png';
+
 export const ITEMS: any = [
   {
     id: '00000000-0000-0000-0000-000000000000',
@@ -128,7 +130,7 @@ export const FILTER_LIST_ITEMS = [
     user: {
       firstname: 'Jan',
       lastname: 'Nowak',
-      avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
+      avatar_url: avatarImage,
     },
     created: '2020-02-14T08:50:05+00:00',
   },

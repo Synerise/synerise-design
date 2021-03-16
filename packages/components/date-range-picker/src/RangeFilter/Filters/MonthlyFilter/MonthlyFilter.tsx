@@ -155,7 +155,16 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   };
 
   render(): JSX.Element {
-    const { value, onRangeCopy, onRangePaste, onRangeClear, rangeClipboard, intl, texts } = this.props;
+    const {
+      value,
+      onRangeCopy,
+      onRangePaste,
+      onRangeClear,
+      rangeClipboard,
+      intl,
+      texts,
+      valueSelectionModes,
+    } = this.props;
     const { visible } = this.state;
     const data = [...value];
     return (
@@ -183,8 +192,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               name: (
                 <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
                   <S.DropdownLabel>
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" />{' '}
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" />
+                    <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" defaultMessage="Rule" />{' '}
+                    <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="days of" />
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
@@ -210,7 +219,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   />
 
                   <S.DropdownLabel>
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.COUNTED-FROM" />
+                    <FormattedMessage id="DS.DATE-RANGE-PICKER.COUNTED-FROM" defaultMessage="counted from" />
                   </S.DropdownLabel>
                   <S.Select
                     expanded={false}
@@ -253,6 +262,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     onRangePaste={onRangePaste}
                     rangeClipboard={rangeClipboard}
                     monthlyFilterPeriod={data[key].period}
+                    valueSelectionModes={valueSelectionModes}
                     {...this.getTimeWindowSettings(item)}
                     monthlyFilter
                   />
@@ -262,14 +272,17 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               ),
             }}
             texts={{
-              itemActionDeleteTooltip: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE' }),
+              itemActionDeleteTooltip: intl.formatMessage({
+                id: 'DS.DATE-RANGE-PICKER.REMOVE',
+                defaultMessage: 'Remove',
+              }),
             }}
           />
         ))}
         <S.AddContainer>
           {value.length < MAX_RULES_ALLOWED && (
             <Button.Creator
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE' })}
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE', defaultMessage: 'Add rule' })}
               onClick={this.handleAddRow}
               block
             />

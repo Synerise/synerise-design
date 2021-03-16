@@ -12,12 +12,11 @@ import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
 
 const TODAY = new Date();
-const FORM_MODES: Record<string, DateLimitMode> = {
+export const FORM_MODES: Record<string, DateLimitMode> = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
 const RangeForm: React.FC<RangeFormProps> = ({
-  mode = 'Range',
   onModeChange,
   startDate,
   endDate,
@@ -25,12 +24,14 @@ const RangeForm: React.FC<RangeFormProps> = ({
   onEndChange,
   onExactHourSelect,
   onRangeDelete,
+  valueSelectionMode = [FORM_MODES.RANGE, FORM_MODES.HOUR],
+  mode = valueSelectionMode[0],
+  timePickerProps,
   texts,
 }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
-
   const getPopupContainer = React.useCallback(
     (node: HTMLElement): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
     []
@@ -72,10 +73,10 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
+        {...timePickerProps}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer, texts]);
-
+  }, [start, onExactHourSelect, getPopupContainer, texts, timePickerProps]);
   const renderRangePicker = React.useCallback(() => {
     return (
       <>
@@ -92,6 +93,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(start, 'HOURS', null, end) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(start, 'MINUTES', null, end) : []}
           disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(start, 'SECONDS', null, end) : []}
+          {...timePickerProps}
         />
         <S.Separator>-</S.Separator>
         <TimePicker
@@ -107,27 +109,29 @@ const RangeForm: React.FC<RangeFormProps> = ({
           disabledHours={areStartAndEndValid ? getDisabledTimeOptions(end, 'HOURS', start, null) : []}
           disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(end, 'MINUTES', start, null) : []}
           disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(end, 'SECONDS', start, null) : []}
+          {...timePickerProps}
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps]);
   const limitModeSelect = React.useMemo(
-    () => (
-      <Select
-        value={mode}
-        onChange={(value): void => {
-          onModeChange(value as DateLimitMode);
-        }}
-        getPopupContainer={getPopupContainer}
-      >
-        {Object.values(FORM_MODES).map(modeName => (
-          <Select.Option key={modeName} value={modeName}>
-            {modeName}
-          </Select.Option>
-        ))}
-      </Select>
-    ),
-    [mode, onModeChange, getPopupContainer]
+    () =>
+      valueSelectionMode.length > 1 ? (
+        <Select
+          value={mode}
+          onChange={(value): void => {
+            onModeChange(value as DateLimitMode);
+          }}
+          getPopupContainer={getPopupContainer}
+        >
+          {valueSelectionMode.map(modeName => (
+            <Select.Option key={modeName} value={modeName}>
+              {modeName}
+            </Select.Option>
+          ))}
+        </Select>
+      ) : null,
+    [mode, onModeChange, getPopupContainer, valueSelectionMode]
   );
   return (
     <S.Container>

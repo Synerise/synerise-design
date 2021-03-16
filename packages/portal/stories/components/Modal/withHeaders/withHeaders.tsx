@@ -2,7 +2,7 @@ import * as React from 'react';
 import { sizes } from '../index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 import * as S from './withHeaders.styles';
-import Avatar from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import { MailM, SearchM, UserM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon from '@synerise/ds-icon';
@@ -109,11 +109,7 @@ const customHeaderProps = (headerType: string) => {
       return {
         title: headerWithPrefix(
           'Header with avatar',
-          <Badge status="active">
-            <Avatar size={'medium'} shape={'circle'} backgroundColor={'red'} backgroundColorHue={'100'} hasStatus>
-              <Icon component={<MailM />} color={theme.palette['red-500']} />{' '}
-            </Avatar>
-          </Badge>
+          <ObjectAvatar badgeStatus="active" iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />} />
         ),
       };
     }
@@ -121,11 +117,7 @@ const customHeaderProps = (headerType: string) => {
       return {
         title: headerWithPrefix(
           'Header with avatar and description',
-          <Badge status="active">
-            <Avatar size={'medium'} shape={'circle'} backgroundColor={'red'} backgroundColorHue={'100'} hasStatus>
-              <Icon component={<MailM />} color={theme.palette['red-500']} />{' '}
-            </Avatar>
-          </Badge>
+          <ObjectAvatar badgeStatus="active" iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />} />
         ),
         description: 'Description',
       };

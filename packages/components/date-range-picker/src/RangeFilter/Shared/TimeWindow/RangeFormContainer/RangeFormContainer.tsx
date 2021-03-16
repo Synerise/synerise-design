@@ -27,13 +27,22 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onRangePaste,
   onRangeCopy,
   onRangeDelete,
-  texts,
+  texts = {},
   onChange,
+  valueSelectionModes,
+  onModeChange,
+  timePickerProps,
+  renderSuffix,
+  timeFormat,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || DEFAULT_LIMIT_MODE);
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode) => {
+      if (onModeChange) {
+        onModeChange(selectedMode);
+        return;
+      }
       const updatedDays = {};
       activeDays.forEach(i => {
         updatedDays[i] = {
@@ -44,11 +53,12 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       });
       onChange({ ...days, ...updatedDays });
     },
-    [onChange, days, activeDays]
+    [onChange, days, activeDays, onModeChange]
   );
   React.useEffect((): void => {
     setMode(dayValue?.mode || DEFAULT_LIMIT_MODE);
   }, [dayValue]);
+
   const rangeForm = React.useMemo(
     () => (
       <RangeForm
@@ -58,17 +68,17 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
           handleModeChange(selected);
         }}
         mode={mode}
-        startDate={getDateFromDayValue(dayValue.start as string)}
-        endDate={getDateFromDayValue(dayValue.stop as string)}
+        startDate={getDateFromDayValue(dayValue.start as string, timeFormat)}
+        endDate={getDateFromDayValue(dayValue.stop as string, timeFormat)}
         onStartChange={(value: Date): void =>
           activeDays.length > 1
-            ? onMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)])
-            : onDayTimeChange([value, getDateFromDayValue(dayValue.stop as string)], dayKeys as DayKey)
+            ? onMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string, timeFormat)])
+            : onDayTimeChange([value, getDateFromDayValue(dayValue.stop as string, timeFormat)], dayKeys as DayKey)
         }
         onEndChange={(value: Date): void =>
           activeDays.length > 1
-            ? onMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string), value])
-            : onDayTimeChange([getDateFromDayValue(dayValue.start as string), value], dayKeys as DayKey)
+            ? onMultipleDayTimeChange([getDateFromDayValue(dayValue.start as string, timeFormat), value])
+            : onDayTimeChange([getDateFromDayValue(dayValue.start as string, timeFormat), value], dayKeys as DayKey)
         }
         onExactHourSelect={(value: Date): void => {
           activeDays.length > 1
@@ -76,9 +86,13 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
             : onDayTimeChange([value, value], dayKeys as DayKey);
         }}
         onRangeDelete={onRangeDelete}
+        valueSelectionMode={valueSelectionModes}
+        timePickerProps={timePickerProps}
       />
     ),
     [
+      timeFormat,
+      valueSelectionModes,
       handleModeChange,
       activeDays,
       onMultipleDayTimeChange,
@@ -88,8 +102,21 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       dayKeys,
       onRangeDelete,
       texts,
+      timePickerProps,
     ]
   );
+  const suffix = React.useMemo(() => {
+    return renderSuffix ? (
+      renderSuffix()
+    ) : (
+      <RangeActions
+        onRangeClear={onRangeClear}
+        onRangeCopy={onRangeCopy}
+        onRangePaste={onRangePaste}
+        texts={texts as ActionsTexts}
+      />
+    );
+  }, [onRangePaste, onRangeClear, onRangeCopy, texts, renderSuffix]);
   if (hideHeader) return rangeForm;
   return (
     <>
@@ -102,14 +129,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
             monthlyFilterPeriod={monthlyFilterPeriod}
           />
         }
-        suffix={
-          <RangeActions
-            onRangeClear={onRangeClear}
-            onRangeCopy={onRangeCopy}
-            onRangePaste={onRangePaste}
-            texts={texts as ActionsTexts}
-          />
-        }
+        suffix={suffix}
       />
       {rangeForm}
     </>

@@ -6,13 +6,12 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import Avatar from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
+import { shapes as avatarShape, sizes as avatarSize } from '../Avatar/constants';
+import { statuses } from './constants';
+
 const decorator = storyFn => (
   <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
 );
-
-const statuses = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
-const avatarSize = ['small', 'default', 'large', 'extraLarge'] as const;
-const avatarShape = ['circle', 'square'] as const;
 
 const stories = {
   standalone: () => {
@@ -191,7 +190,7 @@ const stories = {
       <Badge status={select('Status', statuses, 'active')}  >
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
-          shape={select('Avatar shape', avatarShape, 'square')}
+          shape={select('Avatar shape', avatarShape, 'circle')}
           src={'https://www.w3schools.com/howto/img_avatar.png'}
           hasStatus
         />

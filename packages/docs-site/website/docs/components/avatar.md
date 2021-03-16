@@ -1,16 +1,3 @@
-```js noeditor
-import { version } from './package.json';
-`Current version: ${version}`;
-```
-
-<div className="ds-package-info">
-  @synerise/ds-avatar
-  <a target="_blank" href="https://www.npmjs.com/package/@synerise/ds-avatar">https://www.npmjs.com/package/@synerise/ds-avatar</a>
-</div>
-
-<a target="_blank" href="/storybook-static/?path=/story/components-avatar--simple">Storybook</a>
-<br />
-<br />
 
 ## General guidelines
 
@@ -45,15 +32,11 @@ The shape of avatars can be both circular or square (make sure each corner has a
 Avatars have 4 sizes:
 
 - Small - **24x24px**
-- Medium - **32x32px**
-- Large - **40x40px**
-- Extra large - **80x80px**
-
-![Avatar](avatar/3.png)
+- Medium - **40x40px**
+- Large - **84x84px**
+- Extra large - **120x120px**
 
 The **S**-sized avatars contain the **S**-sized icons of the **Standard icons set**. The **M**, **L** and **XL** sizes contain the **M**-sized icons.
-
-![Avatar](avatar/4.png)
 
 ```
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
@@ -147,12 +130,58 @@ import Avatar from '@synerise/ds-avatar';
 ## API
 
 | Property           | Description                                                                                        | Type                                                                                                 | Default  |
-| ------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | -------- |
+|--------------------|----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
 | backgroundColor    | Background color of the avatar                                                                     | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
 | backgroundColorHue | Background color hue of the avatar                                                                 | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | `400`    |
-| disabled           | Determines if avatar is disabled                                                                   | boolean                                                                                              |`false`   |
-| hasStatus          | Aligns a badge with the avatar                                                                     | boolean                                                                                              |`false`   |
+| disabled           | Determines if avatar is disabled                                                                   | boolean                                                                                              | `false`  |
+| hasStatus          | Aligns a badge with the avatar                                                                     | boolean                                                                                              | `false`  |
 | iconComponent      | Provides a custom component as a child. If both are provided, the prop icon has a greater priority | React.ReactNode                                                                                      | -        |
+| iconScale          | Auto scale icon to sizes                                                                           | boolean                                                                                              | `true`   |
 | shape              | Shape of the avatar                                                                                | `circle` / `square`                                                                                  | `circle` |
 | size               | Size of the avatar                                                                                 | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
+| src                | Image source path                                                                                  | string                                                                                               | -        |
 | tooltip            | Tooltip text displayed on hover                                                                    | { name: string, email: string }                                                                      | -        |
+
+## UserAvatar
+
+A variant that renders full standard user avatar, with expected tooltip etc.
+
+This component should be used as user/client representation.
+
+```ts
+import { UserAvatar } from '@synerise/ds-avatar';
+```
+
+| Property        | Description                                    | Type                                                                                                 | Default  |
+|-----------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
+| firstName       | Users first name                               | string                                                                                               |          |
+| lastName        | Users last name                                | string                                                                                               |          |
+| email           | Users email                                    | string                                                                                               |          |
+| backgroundColor | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
+| badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                       | -        |
+| disabled        | Determines if avatar is disabled               | boolean                                                                                              | `false`  |
+| iconComponent   | Replace default user icon                      | React.ReactNode                                                                                      | -        |
+| size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
+| tooltip         | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                     | -        |
+
+## ObjectAvatar
+
+A variant that renders full standard object avatar. 
+
+This component should be used for ex. in products, services, etc.
+
+```ts
+import { ObjectAvatar } from '@synerise/ds-avatar';
+```
+
+| Property           | Description                                    | Type                                                                                                 | Default  |
+|--------------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
+| productName        | Product name                                   | string                                                                                               | -        |
+| productStatus      | Product status                                 | string                                                                                               | -        |
+| productDescription | Description                                    | string                                                                                               | -        |
+| color              | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
+| badgeStatus        | Badge status                                   | `active` / `error` / `warning`                                                                       | -        |
+| disabled           | Determines if avatar is disabled               | boolean                                                                                              | `false`  |
+| iconComponent      | Replace default user icon                      | React.ReactNode                                                                                      | -        |
+| size               | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
+| tooltip            | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                     | -        |

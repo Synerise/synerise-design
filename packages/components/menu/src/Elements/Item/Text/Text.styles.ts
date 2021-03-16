@@ -210,7 +210,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         width: 100%;
         height: 100%;
         background-color: transparent;
-        box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette.white};
         opacity: 0.3;
         border-radius: inherit;
         box-sizing: border-box;
