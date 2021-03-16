@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.7...@synerise/ds-menu@0.10.8) (2021-03-16)
+
+
+### Bug Fixes
+
+* **menu:** remove box-shadow on avatar ([ca8eeb7](https://github.com/Synerise/synerise-design/commit/ca8eeb73c9bd06b020cdd4e0a3f254d0ae377d8e))
+
+
+
+
+
 ## [0.10.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.6...@synerise/ds-menu@0.10.7) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-menu

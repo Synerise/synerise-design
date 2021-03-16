@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.10.15...@synerise/ds-avatar@0.11.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **avatar:** add 'auto' color to user and object avatar ([8d9bf33](https://github.com/synerise/synerise-design/commit/8d9bf3354ac0b7affdcd84db91ae5ba50fdef0d4))
+* **avatar:** div -> span ([6ca1edb](https://github.com/synerise/synerise-design/commit/6ca1edb35920168ef9c037618165777e9698ed59))
+* **avatar:** ds-status dep ([e451f42](https://github.com/synerise/synerise-design/commit/e451f420da3de7f027a15cb4f4fee9fceb86db12))
+* **avatar:** enforce white font color ([240fe9b](https://github.com/synerise/synerise-design/commit/240fe9b7c9df5f1ac963be03a8abec0f9a535021))
+* **avatar:** fix tooltip ([1169193](https://github.com/synerise/synerise-design/commit/11691936b9ef72e5d54c66a149ac3a5cfa1505d5))
+* **avatar:** fixes for tooltip and background auto color ([f7bc79d](https://github.com/synerise/synerise-design/commit/f7bc79d8c6b39365ac38b81a4766629b68eb6888))
+* **avatar:** missing return type ([8b69c30](https://github.com/synerise/synerise-design/commit/8b69c30b93bbe1302e3c0b5151f27231b2f728ef))
+* **avatar:** pass style properly to user and object avatar ([0bfed71](https://github.com/synerise/synerise-design/commit/0bfed71d4af64cf3a784d6f0e75e9e1f39868bf8))
+* **avatar:** pass tooltipProps ([e3b0cc6](https://github.com/synerise/synerise-design/commit/e3b0cc6e55fe6251a2bb7ec4dec35bdad5dc61a1))
+* **avatar:** problem with scaling custom icon ([9f1f680](https://github.com/synerise/synerise-design/commit/9f1f6808ff23cf2d77d20958a6476c26f40ce4e5))
+* **avatar:** typescript errors ([1a0ddd4](https://github.com/synerise/synerise-design/commit/1a0ddd4c1659102dec4694f641b5fa1a9713d06c))
+* **avatar:** typo ([09f913b](https://github.com/synerise/synerise-design/commit/09f913b23739249c562be473fc1ba99f58743bfe))
+* **avatar:** update snapshot ([9407cfd](https://github.com/synerise/synerise-design/commit/9407cfdefd6b9af450af4095e89ea405c4fc6842))
+* **avatar:** user avatar remove default size ([55e9da8](https://github.com/synerise/synerise-design/commit/55e9da89f713847fa243fa4079e3e0682a97e9c6))
+
+
+### Features
+
+* **avatar:** STOR-700 change avatar sizes + add UserAvatar ([a1bb5b4](https://github.com/synerise/synerise-design/commit/a1bb5b43debc5c9b152d5d2303ef5ba29591f3b9))
+
+
+
+
+
 ## [0.10.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.10.14...@synerise/ds-avatar@0.10.15) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-avatar

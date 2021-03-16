@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.15...@synerise/ds-table@0.33.16) (2021-03-16)
+
+
+### Bug Fixes
+
+* **table:** remove 16px label size ([371dbb0](https://github.com/synerise/synerise-design/commit/371dbb0dbfd6f042ac37ab3ed6e7fca7576a46a9))
+
+
+
+
+
 ## [0.33.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.14...@synerise/ds-table@0.33.15) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-table

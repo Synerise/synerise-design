@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.2...docs@0.10.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* **avatar:** problem with scaling custom icon ([9f1f680](https://gitlab.synerise.com/Frontend/synerise-design/commit/9f1f6808ff23cf2d77d20958a6476c26f40ce4e5))
+
+
+
+
+
 ## [0.10.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.1...docs@0.10.2) (2021-03-10)
 
 **Note:** Version bump only for package docs

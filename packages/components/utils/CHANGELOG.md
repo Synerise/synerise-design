@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.13.2...@synerise/ds-utils@0.14.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **utils:** fix latinize type ([bcaf70a](https://github.com/synerise/synerise-design/commit/bcaf70ac714edeb564926bc2604ac2aaa0f5e1bd))
+* **utils:** split Color type ([6de5c59](https://github.com/synerise/synerise-design/commit/6de5c592927443ec9f257e4613779604d828159e))
+
+
+### Features
+
+* **utils:** better color by letter function ([64b9f12](https://github.com/synerise/synerise-design/commit/64b9f12bb78837dc0fb11cd4414960bebff5c1d9))
+
+
+
+
+
 ## [0.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.13.1...@synerise/ds-utils@0.13.2) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-utils

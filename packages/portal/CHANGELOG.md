@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.124.0](https://github.com/synerise/synerise-design/compare/portal@0.123.0...portal@0.124.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **avatar:** add 'auto' color to user and object avatar ([8d9bf33](https://github.com/synerise/synerise-design/commit/8d9bf3354ac0b7affdcd84db91ae5ba50fdef0d4))
+* **avatar:** small size in Desciption -> onModal ([b42abd1](https://github.com/synerise/synerise-design/commit/b42abd176408ea6d42b08534eb03286af09c3300))
+* **date-range-picker:** remove internal state inside new filters ([8dcf42f](https://github.com/synerise/synerise-design/commit/8dcf42f264e426cf4cf418020808ae71de5d9114))
+* **portal:** avatars in icon picker ([a75a42b](https://github.com/synerise/synerise-design/commit/a75a42bca79c93d541a575e31ac29821060350a3))
+* **portal:** move tooltipProps to tooltip prop ([ef9893a](https://github.com/synerise/synerise-design/commit/ef9893a264a6c597a6106ea3e6762c0e3f8cd7d1))
+* **portal:** new avatar images ([4968b20](https://github.com/synerise/synerise-design/commit/4968b204df71b7389452d51423a96d1643092aeb))
+* **portal:** remove large from avatar label cell ([5b593aa](https://github.com/synerise/synerise-design/commit/5b593aaeb7cb2486dbce7af2ebefa2ee73ef4ab9))
+* **portal:** remove story that shouldn't be there ([a3eb460](https://github.com/synerise/synerise-design/commit/a3eb46053bdd11cc11a89ec84033b3b45990fb63))
+* **portal:** small avatar story fixes ([a4c8aad](https://github.com/synerise/synerise-design/commit/a4c8aadedb91adbb2893d837c88f54a30deb6612))
+* **portal:** STOR-698 fix stories ([f2ad388](https://github.com/synerise/synerise-design/commit/f2ad3880d202c96d2c2979ba0734b5daf312ccc3))
+* **portal:** use new avatars in stories ([ef3bc3f](https://github.com/synerise/synerise-design/commit/ef3bc3f16516f218c6c5624b75e5f61912fe2656))
+* **portal:** use new Avatars in Table ([e76441f](https://github.com/synerise/synerise-design/commit/e76441fe9789a604d86038b522176115d5b4540d))
+
+
+### Features
+
+* **avatar:** STOR-700 change avatar sizes + add UserAvatar ([a1bb5b4](https://github.com/synerise/synerise-design/commit/a1bb5b43debc5c9b152d5d2303ef5ba29591f3b9))
+* **date-range-picker:** handle timeFormat in new filter ([70a864d](https://github.com/synerise/synerise-design/commit/70a864de0b3671dce933a3e539d3f64cd65d84c8))
+* **date-range-picker:** range filter selection modes ([29c2ce3](https://github.com/synerise/synerise-design/commit/29c2ce3d0473c4e17d9726bfe7e4ea3930fc8697))
+* **time-window:** added timeWindow component ([4eb7b9b](https://github.com/synerise/synerise-design/commit/4eb7b9b6922702bc3a80eef878d80de7a908730d))
+
+
+
+
+
 # [0.123.0](https://github.com/synerise/synerise-design/compare/portal@0.122.2...portal@0.123.0) (2021-03-15)
 
 

@@ -1,1 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>01-03-dashboard-active-m</title><g id="Layer_2" data-name="Layer 2"><g id="icons"><rect id="canvas" width="24" height="24" style="fill:none"/><path d="M19,4H14a1,1,0,0,0-1,1V6.46265L17.53737,11H19a1,1,0,0,0,1-1V5A1,1,0,0,0,19,4Z" style="fill:#d9eeff"/><path d="M14,11h3.53735L13,6.46265V10A1,1,0,0,0,14,11Z" style="fill:#bce1ff"/><rect x="13" y="13" width="7" height="7" rx="1" style="fill:#bce1ff"/><rect x="4" y="13" width="7" height="7" rx="1" style="fill:#bce1ff"/><rect x="4" y="4" width="7" height="7" rx="1" style="fill:#0b68ff"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#8BCAFF;}
+	.st1{fill:#0B68FF;}
+	.st2{fill:#4DA7FE;}
+</style>
+<g>
+	<path class="st0" d="M2,0h14c1.105,0,2,0.895,2,2v14c0,1.105-0.895,2-2,2H2c-1.105,0-2-0.895-2-2V2C0,0.895,0.895,0,2,0z"/>
+	<path class="st1" d="M8,10.5h10V16c0,1.105-0.895,2-2,2H8l0,0V10.5z"/>
+	<path class="st2" d="M8,0h8c1.105,0,2,0.895,2,2v9l0,0H8V0z"/>
+</g>
+</svg>

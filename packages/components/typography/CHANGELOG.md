@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.10.3...@synerise/ds-typography@0.11.0) (2021-03-16)
+
+
+### Features
+
+* **avatar:** STOR-700 change avatar sizes + add UserAvatar ([a1bb5b4](https://github.com/synerise/synerise-design/commit/a1bb5b43debc5c9b152d5d2303ef5ba29591f3b9))
+
+
+
+
+
 ## [0.10.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.10.2...@synerise/ds-typography@0.10.3) (2021-03-10)
 
 **Note:** Version bump only for package @synerise/ds-typography
