@@ -181,62 +181,62 @@ const data = [
     items: [
       {
         item: (
-          <Avatar src={avatar1} size="small" />
+          <Avatar src={avatar1} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar2} size="small" />
+          <Avatar src={avatar2} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar3} size="small" />
+          <Avatar src={avatar3} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar4} size="small" />
+          <Avatar src={avatar4} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar5} size="small" />
+          <Avatar src={avatar5} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar6} size="small" />
+          <Avatar src={avatar6} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar7} size="small" />
+          <Avatar src={avatar7} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar8} size="small" />
+          <Avatar src={avatar8} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar9} size="small" />
+          <Avatar src={avatar9} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar10} size="small" />
+          <Avatar src={avatar10} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar11} size="small" />
+          <Avatar src={avatar11} size="small" shape="square" />
         ),
       },
       {
         item: (
-          <Avatar src={avatar12} size="small" />
+          <Avatar src={avatar12} size="small" shape="square" />
         ),
       },
     ],
