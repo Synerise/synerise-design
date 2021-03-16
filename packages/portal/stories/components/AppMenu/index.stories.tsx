@@ -22,6 +22,8 @@ import {
   Add3M,
   AiSearchColorM,
   AiSearchGreyM,
+  PredictionsA,
+  PredictionsN
 } from '@synerise/ds-icon/dist/icons';
 
 const stories = {
@@ -160,6 +162,9 @@ const stories = {
         )}
       >
         <AppMenu.Item.Icon active={<AnalyticsColorM />} inActive={<AnalyticsGreyM />}/>
+      </AppMenu.Item>,
+      <AppMenu.Item key="predictions" name="Predictions" id="predictions">
+        <AppMenu.Item.Icon active={<PredictionsA />} inActive={<PredictionsN />}/>
       </AppMenu.Item>,
       <AppMenu.Item
         key="ai-search"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+	 viewBox="0 0 26 26" style="enable-background:new 0 0 26 26;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#6A7580;}
 </style>
-<path class="st0" d="M16,0H8H2C0.895,0,0,0.895,0,2v14c0,1.105,0.895,2,2,2h6h8c1.105,0,2-0.895,2-2v-4v-1.5V2
-	C18,0.895,17.105,0,16,0z M2,16.5l-0.09-0.008C1.677,16.45,1.5,16.245,1.5,16V2l0.008-0.09C1.55,1.677,1.755,1.5,2,1.5h6v9V12v4.5H2
-	z M16.5,16l-0.008,0.09C16.45,16.323,16.245,16.5,16,16.5H9.5V12h7V16z M9.5,10.5v-9H16l0.09,0.008C16.323,1.55,16.5,1.755,16.5,2
-	v8.5H9.5z"/>
+<path class="st0" d="M20,4h-8H6C4.8954,4,4,4.8954,4,6v14c0,1.1046,0.8954,2,2,2h6h8c1.1046,0,2-0.8954,2-2v-4v-1.5V6
+	C22,4.8954,21.1046,4,20,4z M6,20.5l-0.0899-0.0081C5.6769,20.4496,5.5,20.2455,5.5,20V6l0.0081-0.0899
+	C5.5504,5.6769,5.7545,5.5,6,5.5h6v9V16v4.5H6z M20.5,20l-0.0081,0.0899C20.4496,20.3231,20.2455,20.5,20,20.5h-6.5V16h7V20z
+	 M13.5,14.5v-9H20l0.0899,0.0081C20.3231,5.5504,20.5,5.7545,20.5,6v8.5H13.5z"/>
 </svg>
