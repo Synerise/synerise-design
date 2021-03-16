@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-filter",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Filter UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,8 +34,8 @@
   "dependencies": {
     "@synerise/ds-button": "^0.13.36",
     "@synerise/ds-icon": "^0.40.1",
-    "@synerise/ds-logic": "^0.1.20",
-    "@synerise/ds-step-card": "^0.1.12",
+    "@synerise/ds-logic": "^0.1.21",
+    "@synerise/ds-step-card": "^0.1.13",
     "react-sortablejs": "^6.0.0"
   },
   "peerDependencies": {

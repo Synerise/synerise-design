@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.4...@synerise/ds-input@0.17.5) (2021-03-15)
+
+
+### Bug Fixes
+
+* **input:** textarea scroll styles ([1d8f310](https://github.com/synerise/synerise-design/commit/1d8f3103c31ddaad78a674cf1d3a5c89b1482f27))
+
+
+
+
+
 ## [0.17.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.3...@synerise/ds-input@0.17.4) (2021-03-10)
 
 
