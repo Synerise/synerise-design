@@ -227,7 +227,7 @@ export const COLUMNS_WITH_LABELS = [
     key: 'name',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.name < b.name,
+    sorter: (a, b) => a.name.localeCompare(b.name),
   },
   {
     title: 'Relations',
@@ -262,7 +262,7 @@ export const COLUMNS_WITH_ICONS = [
     dataIndex: 'country',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.country < b.country,
+    sorter: (a, b) => a.country.localeCompare(b.country),
     render: (country, record) => {
       return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
     },
