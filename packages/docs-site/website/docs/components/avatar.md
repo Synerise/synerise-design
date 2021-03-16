@@ -152,17 +152,17 @@ This component should be used as user/client representation.
 import { UserAvatar } from '@synerise/ds-avatar';
 ```
 
-| Property        | Description                                    | Type                                                                                                 | Default  |
-|-----------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
-| firstName       | Users first name                               | string                                                                                               |          |
-| lastName        | Users last name                                | string                                                                                               |          |
-| email           | Users email                                    | string                                                                                               |          |
-| backgroundColor | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
-| badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                       | -        |
-| disabled        | Determines if avatar is disabled               | boolean                                                                                              | `false`  |
-| iconComponent   | Replace default user icon                      | React.ReactNode                                                                                      | -        |
-| size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
-| tooltip         | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                     | -        |
+| Property        | Description                                    | Type                                                                                                          | Default  |
+|-----------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------|
+| firstName       | Users first name                               | string                                                                                                        |          |
+| lastName        | Users last name                                | string                                                                                                        |          |
+| email           | Users email                                    | string                                                                                                        |          |
+| backgroundColor | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |
+| badgeStatus     | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |
+| disabled        | Determines if avatar is disabled               | boolean                                                                                                       | `false`  |
+| iconComponent   | Replace default user icon                      | React.ReactNode                                                                                               | -        |
+| size            | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                                   | `medium` |
+| tooltip         | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                              | -        |
 
 ## ObjectAvatar
 
@@ -174,14 +174,15 @@ This component should be used for ex. in products, services, etc.
 import { ObjectAvatar } from '@synerise/ds-avatar';
 ```
 
-| Property           | Description                                    | Type                                                                                                 | Default  |
-|--------------------|------------------------------------------------|------------------------------------------------------------------------------------------------------|----------|
-| productName        | Product name                                   | string                                                                                               | -        |
-| productStatus      | Product status                                 | string                                                                                               | -        |
-| productDescription | Description                                    | string                                                                                               | -        |
-| color              | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `orange` |
-| badgeStatus        | Badge status                                   | `active` / `error` / `warning`                                                                       | -        |
-| disabled           | Determines if avatar is disabled               | boolean                                                                                              | `false`  |
-| iconComponent      | Replace default user icon                      | React.ReactNode                                                                                      | -        |
-| size               | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                          | `medium` |
-| tooltip            | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                     | -        |
+|                    | Property                                       | Description                                                                                                   | Type     | Default |
+|--------------------|------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------|---------|
+| productName        | Product name                                   | string                                                                                                        | -        |         |
+| productStatus      | Product status                                 | string                                                                                                        | -        |         |
+| productDescription | Description                                    | string                                                                                                        | -        |         |
+| color              | Background color of the avatar                 | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`          | `grey`   |         |
+| backgroundColor    | Background color of the avatar                 | `auto` / `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | `auto`   |         |
+| badgeStatus        | Badge status                                   | `active` / `error` / `warning`                                                                                | -        |         |
+| disabled           | Determines if avatar is disabled               | boolean                                                                                                       | `false`  |         |
+| iconComponent      | Replace default user icon                      | React.ReactNode                                                                                               | -        |         |
+| size               | Size of the avatar                             | `small` / `medium` / `large` / `extraLarge`                                                                   | `medium` |         |
+| tooltip            | Change default tooltip text displayed on hover | { title: string, description: string, status: string } / `false`                                              | -        |         |
