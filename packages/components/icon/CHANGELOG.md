@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.43.0...@synerise/ds-icon@0.43.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* **app-menu:** change hover icon ([42af5ec](https://github.com/Synerise/synerise-design/commit/42af5ec33fce18fb1a98c18c1b3b89b56ab26b06))
+
+
+
+
+
 # [0.43.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.42.0...@synerise/ds-icon@0.43.0) (2021-03-16)
 
 
