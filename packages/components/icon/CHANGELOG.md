@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.42.0...@synerise/ds-icon@0.43.0) (2021-03-16)
+
+
+### Features
+
+* **icon:** replace dashboard icon ([d17b051](https://github.com/Synerise/synerise-design/commit/d17b0518c1facd9df8db2096d54fe6a85e9c0ea9))
+
+
+
+
+
 # [0.42.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.41.0...@synerise/ds-icon@0.42.0) (2021-03-16)
 
 
