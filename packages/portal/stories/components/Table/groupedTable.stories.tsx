@@ -168,7 +168,7 @@ const stories = {
                   return (
                     <TableCell.AvatarLabelCell
                       avatar={
-                        <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} email={city} />
+                        <UserAvatar firstName={firstName} lastName={lastName} email={city} />
                       }
                       title={firstName}
                     />

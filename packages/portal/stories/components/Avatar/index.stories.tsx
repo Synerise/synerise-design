@@ -142,7 +142,7 @@ const stories = {
         onClick={boolean('Use onClick handler', true) ? action('ObjectAvatar clicked!') : undefined}
         size={select('Set size', sizes, 'large')}
         shape={select('Set shape', shapes, 'circle')}
-        tooltip={{title: 'Silvia Jobs', description: 'silvia.jobs@gmail.com'}}
+        tooltip={boolean('Show tooltip', true) ? {title: 'Silvia Jobs', description: 'silvia.jobs@gmail.com'} : false}
         src={boolean('Avatar', false) ? anonymImage : undefined}
         iconComponent={
           <Icon color={getColor(select('Set icon color', iconColors, 'white'))} component={<MailM/>}/>
