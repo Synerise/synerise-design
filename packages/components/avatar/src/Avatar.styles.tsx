@@ -65,7 +65,9 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, pressed, ...rest }) => <Avatar onClick={onClick} {...rest} />)`
+export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, pressed, ...rest }) => (
+  <Avatar onClick={onClick} {...rest} />
+))`
   && {
     ${(props): FlattenSimpleInterpolation => applyBgColors(props)};
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
@@ -126,15 +128,18 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       }
     }
 
-    ${(props): FlattenSimpleInterpolation | false => props.onClick ? css`
-      cursor: pointer;
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.onClick
+        ? css`
+            cursor: pointer;
 
-      &:active {
-        &::before {
-          opacity: 0.1;
-        }
-      }` : false
-    }
+            &:active {
+              &::before {
+                opacity: 0.1;
+              }
+            }
+          `
+        : false}
 
     & + .ant-badge-dot {
       display: none;
@@ -172,11 +177,12 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
             }
           `};
       `};
-            
+
     ${(props): FlattenSimpleInterpolation | false =>
       props.size === 'large' &&
       css`
         width: 84px;
+        min-width: 84px;
         height: 84px;
 
         .ant-avatar-string {
@@ -197,6 +203,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       props.size === 'extraLarge' &&
       css`
         width: 120px;
+        min-width: 120px;
         height: 120px;
         font-size: 21px;
 
