@@ -56,7 +56,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   );
   React.useEffect((): void => {
     setMode(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
-  }, [dayValue]);
+  }, [dayValue, valueSelectionModes]);
 
   const rangeForm = React.useMemo(
     () => (
