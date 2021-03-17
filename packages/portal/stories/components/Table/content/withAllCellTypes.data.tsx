@@ -121,7 +121,7 @@ export const COLUMNS_WITH_TRIGGERS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: select => (
-      <Select value={select.value}>
+      <Select getPopupContainer={()=>document.querySelector(".ds-table")} value={select.value}>
         {select.options.map((option: string) => (
           <Select.Option value={option}>{option}</Select.Option>
         ))}
