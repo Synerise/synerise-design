@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
 import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition } from '../../RangeFilter.types';
@@ -58,6 +59,8 @@ export type TimeWindowProps = {
   rangeClipboard: Partial<FilterDefinition>;
   valueSelectionModes: DateLimitMode[];
   texts?: TimeWindowTexts & GridTexts;
+  renderRangeFormSuffix?: () => React.ReactNode;
+  timePickerProps?: Partial<TimePickerProps>;
 } & Partial<RangeActions> &
   WrappedComponentProps;
 

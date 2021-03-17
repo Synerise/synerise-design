@@ -1,5 +1,5 @@
 import { groupBy, omit, range } from 'lodash';
-import { MONTHLY_TYPES, TYPES } from './constants';
+import { DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 
 import {
   NormalizedFilter,
@@ -66,7 +66,7 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
           .filter(day => day.restricted)
           .map(({ restricted, display, ...rest }) => mapTimeSchema(rest as DenormalizedFilter));
 
-        if (def.period === MONTHLY_TYPES.DAY_OF_WEEK) {
+        if (def.period === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
           rules.push({
             weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
               week: +week + 1,
@@ -128,8 +128,8 @@ export const denormalizers: { [key: string]: Function } = {
   [TYPES.WEEKLY]: (values: { days: [] }) => createWeeklyRange(values.days),
   [TYPES.MONTHLY]: (values: { rules: FilterDefinition[] }) => {
     const monthlyDenormalizers = {
-      [MONTHLY_TYPES.DAY_OF_MONTH]: createMonthlyDayRange,
-      [MONTHLY_TYPES.DAY_OF_WEEK]: createMonthlyWeekDayRange,
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: createMonthlyDayRange,
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: createMonthlyWeekDayRange,
     };
     return values.rules.map(value => ({
       period: value.type,

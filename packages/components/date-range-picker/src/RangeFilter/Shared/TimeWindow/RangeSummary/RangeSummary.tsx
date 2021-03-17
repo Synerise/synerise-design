@@ -3,8 +3,8 @@ import { useIntl } from 'react-intl';
 import * as S from './RangeSummary.styles';
 import { RangeSummaryProps } from './RangeSummary.types';
 import { DayKey } from '../TimeWindow.types';
+import { SPACE_UNICODE } from '../../../constants';
 
-const SPACE_UNICODE = '\u00A0';
 const RangeSummary: React.FC<RangeSummaryProps> = ({
   dayKeys,
   getDayLabel,

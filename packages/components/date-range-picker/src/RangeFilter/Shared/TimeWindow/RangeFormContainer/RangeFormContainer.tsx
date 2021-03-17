@@ -9,8 +9,7 @@ import RangeActions from '../RangeActions/RangeActions';
 import { DateLimitMode } from './RangeForm/RangeForm.types';
 import { ActionsTexts } from '../RangeActions/RangeActions.types';
 import { Texts } from '../../../../DateRangePicker.types';
-
-const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
+import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
 
 const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   activeDays,
@@ -29,14 +28,14 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onRangeDelete,
   texts = {},
   onChange,
-  valueSelectionModes,
+  valueSelectionModes = ['Range', 'Hour'],
   onModeChange,
   timePickerProps,
   renderSuffix,
   timeFormat,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
-  const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || DEFAULT_LIMIT_MODE);
+  const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
   const handleModeChange = React.useCallback(
     (selectedMode: DateLimitMode) => {
       if (onModeChange) {
@@ -56,7 +55,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
     [onChange, days, activeDays, onModeChange]
   );
   React.useEffect((): void => {
-    setMode(dayValue?.mode || DEFAULT_LIMIT_MODE);
+    setMode(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
   }, [dayValue]);
 
   const rangeForm = React.useMemo(
@@ -86,7 +85,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
             : onDayTimeChange([value, value], dayKeys as DayKey);
         }}
         onRangeDelete={onRangeDelete}
-        valueSelectionMode={valueSelectionModes}
+        valueSelectionModes={valueSelectionModes}
         timePickerProps={timePickerProps}
       />
     ),
