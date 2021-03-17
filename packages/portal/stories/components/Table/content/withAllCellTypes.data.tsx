@@ -115,7 +115,7 @@ export const COLUMNS_WITH_TRIGGERS = [
   {
     title: 'Select',
     dataIndex: 'select',
-    key: 'key',
+    key: 'select',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -170,7 +170,7 @@ export const COLUMNS_WITH_TRIGGERS = [
   {
     title: 'Copyable',
     dataIndex: 'name',
-    key: 'name',
+    key: 'copyable',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -229,6 +229,7 @@ export const COLUMNS_WITH_LABELS = [
     iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name.localeCompare(b.name),
     sortRender: 'string',
+    defaultSortOrder: 'ascend',
   },
   {
     title: 'Relations',
@@ -339,7 +340,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar S',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-s',
     textWrap: 'none',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -363,7 +364,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar M with label',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-m',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -388,7 +389,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with label and description',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-desc',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -413,7 +414,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with loading state',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-loading',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -461,7 +462,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with label and meta',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-meta',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { groupBy } from 'lodash';
 import { DSColumnType } from '../Table.types';
 
 export type ColumnSortOrder = 'descend' | 'ascend' | null;
@@ -21,14 +22,28 @@ export const toSortOrder = (value: string | null | undefined): ColumnSortOrder =
   return null;
 };
 
-export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[] = []): ColumnsSortState =>
-  columns.reduce<ColumnsSortState>(
+export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[] = []): ColumnsSortState => {
+  if (process.env.NODE_ENV === 'development') {
+    const columnsKeys = columns.map(c => c.key);
+    const uniqueColumnKeys = Array.from(new Set(columnsKeys));
+
+    if (columnsKeys.length !== uniqueColumnKeys.length) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'DefaultTable: column keys are not unique what may affect sorting. Columns grouped by key:',
+        groupBy(columns, 'key')
+      );
+    }
+  }
+
+  return columns.reduce<ColumnsSortState>(
     (state, column) => ({
       ...state,
-      [String(column.key)]: toSortOrder(column.sortOrder),
+      [String(column.key)]: toSortOrder(column.defaultSortOrder),
     }),
     {}
   );
+};
 
 interface ColumnSortAction {
   type: string;
