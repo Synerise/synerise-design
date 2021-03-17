@@ -229,7 +229,6 @@ export const COLUMNS_WITH_LABELS = [
     iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name.localeCompare(b.name),
     sortRender: 'string',
-    defaultSortOrder: 'ascend',
   },
   {
     title: 'Relations',
