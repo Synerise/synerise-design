@@ -5,7 +5,16 @@ import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
-import { MONTHLY_TYPES, MONTH_DAYS, PERIODS, PERIODS_TYPE, MAX_RULES_ALLOWED, defaultId } from '../../constants';
+import {
+  MONTH_DAYS,
+  DEFAULT_DAYS_OF_PERIODS,
+  DEFAULT_COUNTED_FROM,
+  MAX_RULES_ALLOWED,
+  defaultId,
+  DAYS_OF_PERIOD_ENUM,
+  COUNTED_FROM_ENUM,
+  SPACE_UNICODE,
+} from '../../constants';
 import * as S from './MonthlyFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
@@ -29,12 +38,10 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
   handleAddRow = (): void => {
     const id = Math.random();
-    const { value } = this.props;
-
-    this.setData([
-      ...value,
-      { period: MONTHLY_TYPES.DAY_OF_MONTH, periodType: PERIODS_TYPE[0].value as string, definition: {}, id },
-    ]);
+    const { value, countedFromPeriods, daysOfPeriods } = this.props;
+    const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
+    const defaultPeriodType = (countedFromPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
+    this.setData([...value, { period: defaultPeriod, periodType: defaultPeriodType, definition: {}, id }]);
     this.handleCollapse(id);
   };
 
@@ -117,20 +124,20 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     const { intl } = this.props;
 
     const settings = {
-      [MONTHLY_TYPES.DAY_OF_MONTH]: {
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: {
         numberOfDays: 31,
         reverseGroup: 1,
-        inverted: item.periodType === 'ending',
+        inverted: item.periodType === COUNTED_FROM_ENUM.ENDING,
         dayTemplate: (dayOfMonth: number): { day: number } => ({ day: dayOfMonth }),
         dayFormatter: this.dayMonthFormatter,
       },
-      [MONTHLY_TYPES.DAY_OF_WEEK]: {
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: {
         numberOfDays: 7 * 5,
         reverseGroup: 7,
         dayTemplate: this.dayTemplate,
         dayFormatter: this.dayWeekFormatter,
-        labelInverted: item.periodType === 'ending',
-        inverted: item.periodType === 'ending',
+        labelInverted: item.periodType === COUNTED_FROM_ENUM.ENDING,
+        inverted: item.periodType === COUNTED_FROM_ENUM.ENDING,
         rowLabelFormatter: (rowIndex: number): string =>
           intl.formatMessage({
             id: `DS.DATE-RANGE-PICKER.NTH.${rowIndex + 1}`,
@@ -154,6 +161,81 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     });
   };
 
+  renderDaysOfField = (item: Month, key: number): React.ReactNode => {
+    const { intl, daysOfPeriods } = this.props;
+    if (daysOfPeriods?.length === 1) {
+      return (
+        <S.PeriodMode>
+          <FormattedMessage id={daysOfPeriods[0].translationKey} />
+        </S.PeriodMode>
+      );
+    }
+    const dataSource = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).map(period => ({
+      checked: item?.period === period.value,
+      text: intl.formatMessage({ id: period.translationKey as string }),
+      onSelect: (): void => {
+        this.handleTypeChange(period.value as string, key);
+      },
+    }));
+    return (
+      <S.Select
+        expanded={false}
+        disabled
+        dropdownOverlayStyle={{
+          minWidth: '150px',
+        }}
+        dropdownProps={{
+          getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
+        }}
+        placeholder={intl.formatMessage({ id: (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].translationKey })}
+        input={{
+          name: 'days-of-period',
+          maxLength: 120,
+        }}
+        dataSource={dataSource}
+        size="small"
+      />
+    );
+  };
+
+  renderCountedFromField = (item: Month, key: number): React.ReactNode => {
+    const { intl, countedFromPeriods } = this.props;
+
+    if (countedFromPeriods?.length === 1) {
+      return (
+        <S.PeriodMode>
+          <FormattedMessage id={countedFromPeriods[0].translationKey} />
+        </S.PeriodMode>
+      );
+    }
+    const dataSource = (countedFromPeriods || DEFAULT_COUNTED_FROM).map(i => ({
+      checked: item?.periodType === i.value,
+      text: intl.formatMessage({ id: i.translationKey as string }),
+      onSelect: (): void => {
+        this.handlePeriodTypeChange(i.value as string, key);
+      },
+    }));
+    return (
+      <S.Select
+        disabled
+        expanded={false}
+        dropdownProps={{
+          getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
+        }}
+        dropdownOverlayStyle={{
+          minWidth: '150px',
+        }}
+        placeholder={intl.formatMessage({ id: (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].translationKey })}
+        input={{
+          name: 'counted-from-select',
+          maxLength: 120,
+        }}
+        dataSource={dataSource}
+        size="small"
+      />
+    );
+  };
+
   render(): JSX.Element {
     const {
       value,
@@ -164,6 +246,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
       intl,
       texts,
       valueSelectionModes,
+      timePickerProps,
+      renderRangeFormSuffix,
     } = this.props;
     const { visible } = this.state;
     const data = [...value];
@@ -173,7 +257,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
           <ContentItem
             key={item.id}
             hideExpander={false}
-            onExpand={(id): void => this.handleCollapse(id)}
+            onExpand={this.handleCollapse}
             expanded={visible[item.id]}
             onRemove={(): void => this.handleRemoveRow(key)}
             item={{
@@ -194,55 +278,15 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                   <S.DropdownLabel>
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" defaultMessage="Rule" />{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="days of" />
+                    {SPACE_UNICODE}
                   </S.DropdownLabel>
-                  <S.Select
-                    expanded={false}
-                    dropdownOverlayStyle={{
-                      minWidth: '150px',
-                    }}
-                    dropdownProps={{
-                      getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
-                    }}
-                    placeholder={intl.formatMessage({ id: PERIODS[0].translationKey })}
-                    input={{
-                      name: 'period',
-                      maxLength: 120,
-                    }}
-                    dataSource={PERIODS.map(period => ({
-                      checked: data[key]?.period === period.value,
-                      text: intl.formatMessage({ id: period.name as string }),
-                      onSelect: (): void => {
-                        this.handleTypeChange(period.value as string, key);
-                      },
-                    }))}
-                    size="small"
-                  />
-
+                  {this.renderDaysOfField(item, key)}
                   <S.DropdownLabel>
+                    {SPACE_UNICODE}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.COUNTED-FROM" defaultMessage="counted from" />
+                    {SPACE_UNICODE}
                   </S.DropdownLabel>
-                  <S.Select
-                    expanded={false}
-                    dropdownProps={{
-                      getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
-                    }}
-                    dropdownOverlayStyle={{
-                      minWidth: '150px',
-                    }}
-                    placeholder={intl.formatMessage({ id: PERIODS_TYPE[0].translationKey })}
-                    input={{
-                      name: 'period-type',
-                      maxLength: 120,
-                    }}
-                    dataSource={PERIODS_TYPE.map(i => ({
-                      checked: data[key]?.periodType === i.value,
-                      text: intl.formatMessage({ id: i.translationKey as string }),
-                      onSelect: (): void => {
-                        this.handlePeriodTypeChange(i.value as string, key);
-                      },
-                    }))}
-                    size="small"
-                  />
+                  {this.renderCountedFromField(item, key)}
                 </S.DropdownHeader>
               ),
               content: visible[item.id] ? (
@@ -251,7 +295,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     texts={texts}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
-                    title="Monthly title"
                     showSelectAll
                     invertibleTime
                     numberOfDaysPerRow={7}
@@ -263,6 +306,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
                     rangeClipboard={rangeClipboard}
                     monthlyFilterPeriod={data[key].period}
                     valueSelectionModes={valueSelectionModes}
+                    renderRangeFormSuffix={renderRangeFormSuffix}
+                    timePickerProps={timePickerProps}
                     {...this.getTimeWindowSettings(item)}
                     monthlyFilter
                   />
