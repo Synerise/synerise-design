@@ -15,12 +15,12 @@ export const MONTH_DAYS = (locale: string): string[] =>
   range(0, 31).map((i: number) => (locale === 'pl' ? `${i + 1}.` : fnsFormat(fnsAddDays(LONG_MONTH, i), 'Do')));
 
 export enum DAYS_OF_PERIOD_ENUM {
-  DAY_OF_MONTH = 'month',
-  DAY_OF_WEEK = 'week',
+  DAY_OF_MONTH = 'MONTH',
+  DAY_OF_WEEK = 'WEEK',
 }
 export enum COUNTED_FROM_ENUM {
-  BEGINNING = 'beginning',
-  ENDING = 'ending',
+  BEGINNING = 'BEGINNING',
+  ENDING = 'ENDING',
 }
 export const TYPES = {
   DAILY: 'DAILY',

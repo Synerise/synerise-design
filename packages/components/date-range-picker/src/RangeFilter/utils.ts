@@ -1,15 +1,15 @@
 import { groupBy, omit, range } from 'lodash';
-import { DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
+import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 
 import {
-  NormalizedFilter,
   DenormalizedFilter,
-  FilterValue,
   FilterDefinition,
-  WeekFilter,
-  NormalizedFilterBase,
-  WeeklyFilterDefinition,
+  FilterValue,
   MonthlyFilterDefinition,
+  NormalizedFilter,
+  NormalizedFilterBase,
+  WeekFilter,
+  WeeklyFilterDefinition,
 } from './RangeFilter.types';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 
@@ -73,10 +73,10 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
               days: daysArray.map(day => ({ ...omit(day as object, ['week']), type })),
             })),
             type: def.period,
-            inverted: def.periodType !== 'beginning',
+            inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
           });
         } else {
-          rules.push({ days, type: def.period, inverted: def.periodType !== 'beginning' });
+          rules.push({ days, type: def.period, inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING });
         }
         return rules;
       });
@@ -134,7 +134,7 @@ export const denormalizers: { [key: string]: Function } = {
     return values.rules.map(value => ({
       period: value.type,
       id: Math.random(),
-      periodType: value.inverted ? 'ending' : 'beginning',
+      periodType: value.inverted ? COUNTED_FROM_ENUM.ENDING : COUNTED_FROM_ENUM.BEGINNING,
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       definition: monthlyDenormalizers[value.type](value),
