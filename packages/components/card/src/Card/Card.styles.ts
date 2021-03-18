@@ -17,7 +17,7 @@ const backgroundColor = (props: { background: Backgrounds; theme: ThemePropsVars
 };
 
 const boxShadow = (props: { background: Backgrounds; theme: ThemePropsVars }): string => {
-  if (withBoxShadow.includes(props.background)) return props.theme.variable('@box-shadow-base') as string;
+  if (withBoxShadow.includes(props.background)) return `0 4px 12px 0 rgba(35, 41, 54, 0.04)` as string;
   if (withOutline.includes(props.background)) return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
   return 'none';
 };
