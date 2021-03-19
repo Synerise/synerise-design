@@ -114,6 +114,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       relativeModes,
       texts,
       intl,
+      rangeUnits,
+      showCustomRange,
     } = this.props;
     const { value, visibleAddonKey } = this.state;
     const addons: AddonType[] = [];
@@ -132,6 +134,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
                 onChange={this.handleRangeChange}
                 relativeModes={relativeModes}
                 texts={texts}
+                rangeUnits={rangeUnits}
+                showCustomRange={showCustomRange}
               />
             }
             expanded={addonKey === visibleAddonKey}

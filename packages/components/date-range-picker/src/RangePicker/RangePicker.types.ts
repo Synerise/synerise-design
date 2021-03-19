@@ -12,6 +12,7 @@ export interface Props extends WrappedComponentProps {
   onSwitchMode?: () => void;
   texts: Texts;
   forceAdjacentMonths?: boolean;
+  showCustomRange?: boolean;
 }
 
 export interface State {

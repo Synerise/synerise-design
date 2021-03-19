@@ -17,7 +17,6 @@ const DateRangePicker: React.FC<Props> = props => {
     showTime,
     onValueChange,
     texts,
-    popoverPlacement,
     popoverTrigger,
     forceAdjacentMonths,
     disableDefaultTexts,
@@ -87,7 +86,6 @@ const DateRangePicker: React.FC<Props> = props => {
         onVisibleChange={(visibility: boolean): void => {
           setInputActive(visibility);
         }}
-        placement={popoverPlacement}
         {...popoverProps}
         {...conditionalVisibilityProps}
       >
