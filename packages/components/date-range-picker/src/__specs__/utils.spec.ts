@@ -71,7 +71,7 @@ const denormalizedMonthlyFilterBeginningOfMonth = {
       },
       id: 0.21939252054948732,
       period: 'MONTH',
-      periodType: 'beginning',
+      periodType: 'BEGINNING',
     },
   ],
   type: 'MONTHLY',
@@ -81,7 +81,7 @@ const denormalizedMonthlyFilterWithWeekPeriod = {
   definition: [
     {
       period: 'WEEK',
-      periodType: 'beginning',
+      periodType: 'BEGINNING',
       definition: {
         '0': {
           start: '00:00:00.000',

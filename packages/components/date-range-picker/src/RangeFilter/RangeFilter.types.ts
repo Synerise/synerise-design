@@ -2,9 +2,9 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { Texts } from '../DateRangePicker.types';
+import { Props as DateRangePickerProps, Texts } from '../DateRangePicker.types';
+import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from './constants';
 
-export type PeriodType = 'ending' | 'beginning';
 export type FilterValue<T = FilterDefinition> = {
   definition?: Partial<T>;
   type: string;
@@ -20,6 +20,7 @@ export type RangeFilterProps = {
   onFilterSave?: (filters: SavedFilter[]) => void;
   texts?: Texts;
   valueSelectionModes?: DateLimitMode[];
+  rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
 };
 
 export type RangeFilterState = {
@@ -33,17 +34,16 @@ export type FilterDefinition = {
   stop?: string;
   inverted?: boolean;
   restricted?: boolean;
-  period?: string;
+  period?: DAYS_OF_PERIOD_ENUM;
   type: string;
   display?: boolean;
-  periodType?: PeriodType;
+  periodType?: COUNTED_FROM_ENUM;
   mode?: DateLimitMode;
 };
 
-export type Period = {
+export type MonthlySelectValue<T> = {
   translationKey?: string;
-  name: string | React.ReactNode;
-  value: string | React.ReactNode;
+  value: T;
 };
 
 export type DenormalizedFilter = {
@@ -75,8 +75,8 @@ export type MonthlyFilterDefinition = {
     [key: string]: FilterDefinition;
   };
   id: number;
-  period: string;
-  periodType: PeriodType;
+  period: DAYS_OF_PERIOD_ENUM;
+  periodType: COUNTED_FROM_ENUM;
 };
 
 export type ValueSelectionModes = ['Range', 'Hour'];

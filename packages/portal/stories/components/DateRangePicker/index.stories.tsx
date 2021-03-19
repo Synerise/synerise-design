@@ -103,7 +103,7 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverPlacement="bottomLeft"
+        popoverProps={{placement: 'bottomLeft'}}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
@@ -141,7 +141,7 @@ const stories = {
           clear: 'Clear',
           emptyDateError: 'Date cannot be empty',
         }}
-        popoverPlacement="bottomLeft"
+        popoverProps={{placement: 'bottomLeft'}}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         showFilter={true}
         relativeModes={getRelativeModes(modesObj)}
@@ -166,7 +166,7 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverPlacement="bottomLeft"
+        popoverProps={{placement: 'bottomLeft'}}
       />
     );
   },

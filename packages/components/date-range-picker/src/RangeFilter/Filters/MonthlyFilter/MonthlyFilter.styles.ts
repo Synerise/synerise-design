@@ -85,3 +85,6 @@ export const AddButton = styled.div`
 export const Select = styled(InlineSelect)<InlineSelectProps>`
   margin: 2px 4px 0 4px;
 `;
+export const PeriodMode = styled.span`
+  color: ${(props): string => props.theme.palette['blue-600']};
+`;
