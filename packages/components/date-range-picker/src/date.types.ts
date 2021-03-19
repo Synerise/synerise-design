@@ -5,6 +5,7 @@ export type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' |
 export type NullableDateLimit = null | string | Date;
 
 export interface DateFilter {
+  key?: string;
   type: 'ABSOLUTE' | 'RELATIVE' | 'SINCE';
   from?: NullableDateLimit;
   to?: NullableDateLimit;
