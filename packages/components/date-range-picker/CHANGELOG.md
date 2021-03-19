@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.8.4...@synerise/ds-date-range-picker@0.9.0) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/Synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **date-range-picker:** monthly filter period modes ([4eca1ad](https://github.com/Synerise/synerise-design/commit/4eca1adc2465672379278cecc42a1292541d2a9c))
+
+
+### Features
+
+* **date-range-picker:** added custom units handling ([d3271e3](https://github.com/Synerise/synerise-design/commit/d3271e3b7d3ac4aafd881a6b5cce04901fd38e72))
+
+
+
+
+
 ## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.8.3...@synerise/ds-date-range-picker@0.8.4) (2021-03-17)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

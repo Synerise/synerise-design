@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.20...@synerise/ds-table@0.33.21) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **table:** add translations ([1fe3bda](https://github.com/synerise/synerise-design/commit/1fe3bda81052b7f1168ef0e4448c9b904670e18c))
+
+
+
+
+
 ## [0.33.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.19...@synerise/ds-table@0.33.20) (2021-03-17)
 
 **Note:** Version bump only for package @synerise/ds-table

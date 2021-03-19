@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.29.0...@synerise/ds-core@0.30.0) (2021-03-19)
+
+
+### Bug Fixes
+
+* **table:** add translations ([1fe3bda](https://github.com/synerise/synerise-design/commit/1fe3bda81052b7f1168ef0e4448c9b904670e18c))
+
+
+### Features
+
+* **core:** updated translations ([9f3aa89](https://github.com/synerise/synerise-design/commit/9f3aa89d90f54e48a8c512b761f95f4d2a76dcf1))
+
+
+
+
+
 # [0.29.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.28.2...@synerise/ds-core@0.29.0) (2021-03-16)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.11...@synerise/ds-card@0.8.12) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/Synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **card:** fix box-shadow of card ([e547526](https://github.com/Synerise/synerise-design/commit/e547526b21b113e8f08e976df5a3d6e3273ceb08))
+
+
+
+
+
 ## [0.8.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.10...@synerise/ds-card@0.8.11) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-card
