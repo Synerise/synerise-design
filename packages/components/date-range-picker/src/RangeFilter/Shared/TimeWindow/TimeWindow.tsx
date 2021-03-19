@@ -25,8 +25,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   private wrapperRef = React.createRef<HTMLDivElement>();
   static defaultProps = {
     days: {},
-    numberOfDays: 7,
+    numberOfDays: 1,
     showSelectAll: false,
+    valueSelectionModes: ['Range', 'Hour'],
     dayTemplate: (index: number): { dayOfWeek: number } => ({ dayOfWeek: index + 1 }),
     dayFormatter: (dayKey: DayKey): React.ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />

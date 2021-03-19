@@ -122,7 +122,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
   getTimeWindowSettings = (item: Month): Partial<TimeWindowProps> => {
     const { intl } = this.props;
-
+    console.log(item);
     const settings = {
       [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: {
         numberOfDays: 31,
@@ -180,7 +180,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     return (
       <S.Select
         expanded={false}
-        disabled
         dropdownOverlayStyle={{
           minWidth: '150px',
         }}
@@ -217,7 +216,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
     }));
     return (
       <S.Select
-        disabled
         expanded={false}
         dropdownProps={{
           getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,

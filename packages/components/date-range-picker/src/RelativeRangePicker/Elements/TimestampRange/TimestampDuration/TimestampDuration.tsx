@@ -52,7 +52,7 @@ const TimestampDuration: React.FC<Props> = ({
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
           getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
-          {CONST.RELATIVE_TYPES.map(type => (
+          {CONST.RELATIVE_UNITS.map(type => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase()]}
             </Select.Option>
