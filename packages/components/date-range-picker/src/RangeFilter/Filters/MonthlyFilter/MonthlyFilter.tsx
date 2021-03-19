@@ -122,7 +122,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
 
   getTimeWindowSettings = (item: Month): Partial<TimeWindowProps> => {
     const { intl } = this.props;
-    console.log(item);
     const settings = {
       [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: {
         numberOfDays: 31,
