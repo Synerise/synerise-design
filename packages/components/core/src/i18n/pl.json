@@ -12,7 +12,8 @@
             "STAR_ROW_TOOLTIP": "Ulubione",
             "SELECT_ROW_TOOLTIP": "Wybierz",
             "SELECT_ALL_TOOLTIP": "Zaznacz wszystko",
-            "SELECTION_OPTIONS": "Opcje"
+            "SELECTION_OPTIONS": "Opcje",
+            "EMPTY_TEXT": "Brak danych"
         },
         "OPERATORS": {
             "BUTTON_LABEL": "Wybierz",

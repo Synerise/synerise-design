@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { compact } from 'lodash';
 import Table from 'antd/lib/table';
+import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
@@ -95,7 +96,13 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
       }}
       locale={{
         ...locale,
-        emptyText: <Result description={locale?.emptyText || 'No data'} type="no-results" noSearchResults />,
+        emptyText: (
+          <Result
+            description={locale?.emptyText || <FormattedMessage id="DS.TABLE.EMPTY_TEXT" />}
+            type="no-results"
+            noSearchResults
+          />
+        ),
       }}
       title={title}
       components={{
