@@ -58,27 +58,36 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
    * Text on a tooltip
    */
-  tooltip?: TooltipObject | false;
+  tooltip?: TooltipObject | boolean;
 }
 
-type DefinedAvatarProps = Pick<AvatarProps,  'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
+type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
   backgroundColor?: 'auto' | Color;
   badgeStatus?: string;
   text?: string;
-  tooltip?: TooltipObject | false;
+  tooltip?: TooltipObject | boolean;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+};
+
+export type ObjectAvatar = {
+  name?: string;
+  status?: string;
+  description?: string;
+  avatar?: string;
 };
 
 export type ObjectAvatarProps = DefinedAvatarProps & {
-  objectName?: string;
-  objectStatus?: string;
-  objectDescription?: string;
+  object?: ObjectAvatar;
   color?: Color;
-  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+};
+
+export type UserAvatar = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  avatar?: string;
 };
 
 export type UserAvatarProps = DefinedAvatarProps & {
-  email?: string;
-  firstName?: string;
-  lastName?: string;
-  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  user?: UserAvatar;
 };

@@ -43,21 +43,19 @@ const Avatar: React.FC<AvatarProps> = ({
     iconElement = React.cloneElement(iconElement, {
       size: iconSize,
     });
-  };
+  }
 
-  const tooltipProps = tooltip !== false ? {
-    ...tooltip,
-    title: tooltip.title || tooltip.name,
-    description: tooltip.description || tooltip.email,
-  } : {};
+  const tooltipProps =
+    typeof tooltip === 'object'
+      ? {
+          ...tooltip,
+          title: tooltip.title || tooltip.name,
+          description: tooltip.description || tooltip.email,
+        }
+      : {};
 
   return (
-    <Tooltip
-      type="avatar"
-      mouseLeaveDelay={0}
-      mouseEnterDelay={0}
-      {...tooltipProps}
-    >
+    <Tooltip type="avatar" mouseLeaveDelay={0} mouseEnterDelay={0} {...tooltipProps}>
       <AntdAvatar
         className="ds-avatar"
         onMouseDown={(): void => setPressed(true)}
