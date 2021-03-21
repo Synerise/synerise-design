@@ -8,9 +8,8 @@ import MailM from "@synerise/ds-icon/dist/icons/MailM";
 import { Thunder2M, UserCircleM } from "@synerise/ds-icon/dist/icons";
 import { action } from '@storybook/addon-actions';
 
-import { sizes, shapes } from './constants';
+import { sizes, shapes, backgroundColorHue, backgroundColors, iconColors, image as anonymImage } from './constants';
 import { statuses } from '../Badge/constants';
-import anonymImage from './av-anonym-004.png';
 
 const wrapperStyles = {
   position: 'fixed',
@@ -28,53 +27,6 @@ const wrapperStyles = {
 
 const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
 
-const backgroundColors = [
-  'auto',
-  'red',
-  'green',
-  'grey',
-  'yellow',
-  'blue',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-] as const;
-
-const iconColors = [
-  'red-600',
-  'green-600',
-  'grey-600',
-  'yellow-600',
-  'blue-600',
-  'pink-600',
-  'mars-600',
-  'orange-600',
-  'fern-600',
-  'cyan-600',
-  'purple-600',
-  'violet-600',
-  'white',
-] as const;
-
-const backgroundColorHue = [
-  '900',
-  '800',
-  '700',
-  '600',
-  '500',
-  '400',
-  '300',
-  '200',
-  '100',
-  '050',
-] as const;
-
-const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
-
 const objectDataGroup = 'Object data';
 const userDataGroup = 'User data';
 
@@ -90,14 +42,15 @@ const stories = {
       firstName: text('First Name', 'John', userDataGroup),
       lastName: text('Last name', 'Doe', userDataGroup),
       email: text('E-mail', 'john.doe@synerise.com', userDataGroup),
-      src: boolean('Avatar', false, userDataGroup) ? anonymImage : undefined
+      avatar: boolean('Avatar', false, userDataGroup) ? anonymImage : undefined
     } : {};
 
     return (
       <div style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <UserAvatar 
           text={customText}
-          {...user}
+          tooltip={user.tooltip}
+          user={user}
           size={select('Set size', sizes, 'medium')}
           onClick={boolean('Use onClick', true) ? action('UserAvatar clicked!') : undefined}
           badgeStatus={select('Set badge status', [...statuses, undefined], 'active')}          
@@ -112,10 +65,10 @@ const stories = {
     const customText = text('Custom text', '', objectDataGroup);
     const product = boolean('Show object data', false, objectDataGroup) ? { 
       tooltip: boolean('Show tooltip', true, objectDataGroup) ? undefined : false,
-      objectName: text('Name', 'Shovel Import', objectDataGroup),
-      objectStatus: text('Type', 'API', objectDataGroup),
-      objectDescription: text('Description', 'Some great description', objectDataGroup),
-      src: boolean('Avatar', false, objectDataGroup) ? anonymImage : undefined
+      name: text('Name', 'Shovel Import', objectDataGroup),
+      status: text('Type', 'API', objectDataGroup),
+      description: text('Description', 'Some great description', objectDataGroup),
+      avatar: boolean('Avatar', false, objectDataGroup) ? anonymImage : undefined
     } : {};
 
     return (
@@ -124,7 +77,7 @@ const stories = {
           text={customText}
           size={select('Set size', sizes, 'medium')}
           onClick={boolean('Use onClick handler', true) ? action('ObjectAvatar clicked!') : undefined}
-          {...product}
+          object={product}
           color={select('Set icon color', backgroundColors.slice(1), 'mars')}
           backgroundColor={select('Set background color', backgroundColors, 'auto')}
           badgeStatus={select('Set badge status', [...statuses, undefined], 'active')}

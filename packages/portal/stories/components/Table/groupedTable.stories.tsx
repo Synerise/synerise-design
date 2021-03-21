@@ -164,11 +164,12 @@ const stories = {
                   if (a.first_name > b.first_name) return 1;
                   return 0;
                 },
-                render: (firstName, {last_name: lastName, city}) => {
+                render: (firstName, {last_name: lastName, city: email}) => {
+                  const user = { firstName, lastName, email };
                   return (
                     <TableCell.AvatarLabelCell
                       avatar={
-                        <UserAvatar firstName={firstName} lastName={lastName} email={city} />
+                        <UserAvatar user={user} />
                       }
                       title={firstName}
                     />
