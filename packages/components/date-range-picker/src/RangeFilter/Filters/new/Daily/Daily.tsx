@@ -79,33 +79,34 @@ const Daily: React.FC<DailyProps> = ({
   }, [onChange, value, getDayValue]);
   return (
     <S.NewFilterContainer>
-      {value.map((s, index) => (
-        <RangeFormContainer
-          days={EMPTY_OBJECT}
-          onChange={NOOP}
-          onMultipleDayTimeChange={NOOP}
-          // eslint-disable-next-line react/no-array-index-key
-          key={`range-${index}-${String(s?.start)}`}
-          onDayTimeChange={(dateValueArray): void => {
-            handleDayTimeChange(dateValueArray, index);
-          }}
-          dayKeys={[0]}
-          texts={EMPTY_OBJECT}
-          activeDays={[0]}
-          getDayValue={(): DailySchedule => getDayValue(index)}
-          onRangeDelete={(): void => handleRangeDelete(index)}
-          onModeChange={(mode): void => handleModeChange(mode, index)}
-          valueSelectionModes={valueSelectionMode}
-          renderSuffix={RENDER_EMPTY_NODE_FN}
-          getDayLabel={RENDER_EMPTY_NODE_FN}
-          timeFormat={timeFormat}
-          timePickerProps={timePickerProps}
-          hideHeader
-        />
-      ))}
+      {!!value &&
+        value.map((s, index) => (
+          <RangeFormContainer
+            days={EMPTY_OBJECT}
+            onChange={NOOP}
+            onMultipleDayTimeChange={NOOP}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`range-${index}-${String(s?.start)}`}
+            onDayTimeChange={(dateValueArray): void => {
+              handleDayTimeChange(dateValueArray, index);
+            }}
+            dayKeys={[0]}
+            texts={EMPTY_OBJECT}
+            activeDays={[0]}
+            getDayValue={(): DailySchedule => getDayValue(index)}
+            onRangeDelete={(): void => handleRangeDelete(index)}
+            onModeChange={(mode): void => handleModeChange(mode, index)}
+            valueSelectionModes={valueSelectionMode}
+            renderSuffix={RENDER_EMPTY_NODE_FN}
+            getDayLabel={RENDER_EMPTY_NODE_FN}
+            timeFormat={timeFormat}
+            timePickerProps={timePickerProps}
+            hideHeader
+          />
+        ))}
       {value.length < MAX_RANGES && (
         <AddButton
-          label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
+          label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add range' })}
           onClick={handleRangeAdd}
         />
       )}

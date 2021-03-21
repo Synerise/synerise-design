@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.125.0](https://github.com/synerise/synerise-design/compare/portal@0.124.0...portal@0.125.0) (2021-03-16)
+
+
+### Features
+
+* **icon:** replace dashboard icon ([d17b051](https://github.com/synerise/synerise-design/commit/d17b0518c1facd9df8db2096d54fe6a85e9c0ea9))
+
+
+
+
+
 # [0.124.0](https://github.com/synerise/synerise-design/compare/portal@0.123.0...portal@0.124.0) (2021-03-16)
 
 

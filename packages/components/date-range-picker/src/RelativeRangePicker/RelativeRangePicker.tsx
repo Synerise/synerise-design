@@ -25,6 +25,8 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
     ranges: CONST.RELATIVE_PRESETS,
     relativeModes: ['PAST', 'FUTURE'],
+    rangeUnits: CONST.RELATIVE_UNITS,
+    showCustomRange: true,
   };
 
   constructor(props: Props) {
@@ -124,7 +126,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
 
   renderCustomRangeForm = (): React.ReactNode => {
     const { currentRange, currentGroup, sinceTimestamp } = this.state;
-    const { ranges, texts, relativeModes } = this.props;
+    const { ranges, texts, relativeModes, rangeUnits } = this.props;
     return (
       <CustomRangeForm
         handleModeChange={this.onModeChange}
@@ -138,12 +140,13 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
         timestamp={sinceTimestamp}
         relativeModes={relativeModes || []}
         texts={texts}
+        rangeUnits={rangeUnits}
       />
     );
   };
 
   render(): React.ReactNode {
-    const { texts, value } = this.props;
+    const { texts, value, showCustomRange } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
     const isCustomValue = !value?.key || !currentRange?.key;
     const visibleRanges = groupedRanges ? groupedRanges.slice(0, 3) : [];
@@ -152,17 +155,19 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     return (
       <S.Container>
         <S.Ranges>
-          <S.Range
-            key={CUSTOM_RANGE_KEY}
-            onClick={this.handleCustomClick}
-            type={isCustomValue ? 'primary' : 'tertiary'}
-          >
-            {texts?.custom}
-          </S.Range>
+          {showCustomRange && (
+            <S.Range
+              key={CUSTOM_RANGE_KEY}
+              onClick={this.handleCustomClick}
+              type={isCustomValue ? 'primary' : 'tertiary'}
+            >
+              {texts?.custom}
+            </S.Range>
+          )}
           {this.renderRanges(visibleRanges)}
           {this.renderRangesDropdown(hiddenRanges)}
         </S.Ranges>
-        {isCustomValue && this.renderCustomRangeForm()}
+        {isCustomValue && showCustomRange && this.renderCustomRangeForm()}
       </S.Container>
     );
   }

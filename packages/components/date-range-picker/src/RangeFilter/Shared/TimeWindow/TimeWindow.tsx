@@ -15,6 +15,9 @@ import AddButton from '../AddButton/AddButton';
 import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 import Day from './Day/Day';
 import SelectionHint from '../SelectionHint/SelectionHint';
+import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+
+export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -22,8 +25,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   private wrapperRef = React.createRef<HTMLDivElement>();
   static defaultProps = {
     days: {},
-    numberOfDays: 7,
+    numberOfDays: 1,
     showSelectAll: false,
+    valueSelectionModes: ['Range', 'Hour'],
     dayTemplate: (index: number): { dayOfWeek: number } => ({ dayOfWeek: index + 1 }),
     dayFormatter: (dayKey: DayKey): React.ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
@@ -167,7 +171,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   getDayValue = (dayKey: DayKey): Partial<FilterDefinition> => {
-    const { days, dayTemplate, customDays, daily } = this.props;
+    const { days, dayTemplate, customDays, daily, valueSelectionModes } = this.props;
     let dayValue = {};
     if (daily) dayValue = days;
     else if (days[dayKey]) dayValue = days[dayKey];
@@ -181,7 +185,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       restricted: false,
       display: false,
       inverted: false,
-      mode: 'Range',
+      mode: valueSelectionModes[0] || DEFAULT_LIMIT_MODE,
       ...dayValue,
     };
   };
@@ -280,6 +284,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       onChange,
       texts,
       valueSelectionModes,
+      renderRangeFormSuffix,
+      timePickerProps,
     } = this.props;
     return (
       <RangeFormContainer
@@ -299,6 +305,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
         texts={(texts || {}) as TimeWindowTexts}
+        renderSuffix={renderRangeFormSuffix}
+        timePickerProps={timePickerProps}
         valueSelectionModes={valueSelectionModes}
       />
     );
@@ -386,7 +394,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>
             <AddButton
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add time' })}
               onClick={(): void => {
                 if (!daily && !this.haveActiveDaysCommonRange()) {
                   this.handleMultipleDayTimeChange([

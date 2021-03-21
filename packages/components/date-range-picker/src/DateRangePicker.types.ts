@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
-import { DateFilter, DateRange } from './date.types';
+import { DateFilter, DateRange, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
@@ -15,21 +15,9 @@ export interface Props extends WrappedComponentProps {
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
-  popoverPlacement?:
-    | 'top'
-    | 'left'
-    | 'right'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomLeft'
-    | 'bottomRight'
-    | 'leftTop'
-    | 'leftBottom'
-    | 'rightTop'
-    | 'rightBottom';
   popoverTrigger?: React.ReactNode;
   ranges?: DateRange[];
+  rangeUnits?: RelativeUnits[];
   relativeFuture?: boolean;
   relativePast?: boolean;
   relativeModes?: RelativeMode[];
@@ -37,6 +25,7 @@ export interface Props extends WrappedComponentProps {
   showRelativePicker?: boolean;
   showFilter?: boolean;
   showTime?: boolean;
+  showCustomRange?: boolean;
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;

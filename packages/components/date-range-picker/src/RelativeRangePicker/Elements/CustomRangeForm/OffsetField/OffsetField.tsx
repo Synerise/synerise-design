@@ -3,9 +3,10 @@ import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
 import * as S from '../../../RelativeRangePicker.styles';
 import * as CONST from '../../../../constants';
+import { RANGES_MODE } from '../../../utils';
 import { setOffsetType } from '../CustomRangeForm';
 import { Props } from './OffsetField.types';
-import { RANGES_MODE } from '../../../utils';
+import { RelativeUnits } from '../../../../date.types';
 
 const SELECT_DROPDOWN_OFFSET = -4;
 const OffsetField: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const OffsetField: React.FC<Props> = ({
   handleChange,
   currentRange,
   texts,
+  rangeUnits,
 }: Props) => {
   const { offset } = currentRange;
   React.useEffect(() => {
@@ -43,7 +45,7 @@ const OffsetField: React.FC<Props> = ({
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
           getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}
         >
-          {CONST.RELATIVE_TYPES.map(type => (
+          {((rangeUnits || CONST.RELATIVE_UNITS) as RelativeUnits[]).map(type => (
             <Select.Option key={type} value={type}>
               {texts[type.toLowerCase()]}
             </Select.Option>

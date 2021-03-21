@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.3...@synerise/ds-avatar@0.11.4) (2021-03-17)
+
+
+### Bug Fixes
+
+* **avatar:** bug with name + widths ([090b13a](https://github.com/synerise/synerise-design/commit/090b13a17011e92041ce4678eaca943377fbd555))
+
+
+
+
+
+## [0.11.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.2...@synerise/ds-avatar@0.11.3) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.11.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.1...@synerise/ds-avatar@0.11.2) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.11.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.0...@synerise/ds-avatar@0.11.1) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
 # [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.10.15...@synerise/ds-avatar@0.11.0) (2021-03-16)
 
 

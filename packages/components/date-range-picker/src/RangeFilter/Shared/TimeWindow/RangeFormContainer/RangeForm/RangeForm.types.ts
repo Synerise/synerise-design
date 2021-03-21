@@ -13,6 +13,6 @@ export type RangeFormProps = {
   onEndChange: (value: Date) => void;
   onExactHourSelect: (value: Date) => void;
   onRangeDelete?: () => void;
-  valueSelectionMode: DateLimitMode[];
+  valueSelectionModes: DateLimitMode[];
 } & WithTranslations &
   Pick<RangeFormContainerProps, 'timePickerProps'>;

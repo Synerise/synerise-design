@@ -24,8 +24,8 @@ const RangeForm: React.FC<RangeFormProps> = ({
   onEndChange,
   onExactHourSelect,
   onRangeDelete,
-  valueSelectionMode = [FORM_MODES.RANGE, FORM_MODES.HOUR],
-  mode = valueSelectionMode[0],
+  valueSelectionModes = [FORM_MODES.RANGE, FORM_MODES.HOUR],
+  mode = valueSelectionModes[0],
   timePickerProps,
   texts,
 }) => {
@@ -116,7 +116,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps]);
   const limitModeSelect = React.useMemo(
     () =>
-      valueSelectionMode.length > 1 ? (
+      valueSelectionModes.length > 1 ? (
         <Select
           value={mode}
           onChange={(value): void => {
@@ -124,14 +124,14 @@ const RangeForm: React.FC<RangeFormProps> = ({
           }}
           getPopupContainer={getPopupContainer}
         >
-          {valueSelectionMode.map(modeName => (
+          {valueSelectionModes.map(modeName => (
             <Select.Option key={modeName} value={modeName}>
               {modeName}
             </Select.Option>
           ))}
         </Select>
       ) : null,
-    [mode, onModeChange, getPopupContainer, valueSelectionMode]
+    [mode, onModeChange, getPopupContainer, valueSelectionModes]
   );
   return (
     <S.Container>
