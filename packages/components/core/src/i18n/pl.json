@@ -77,7 +77,37 @@
             "YES-TEXT": "Tak",
             "NO-TEXT": "Nie",
             "CHANGE-BUTTON": "Zmień",
-            "CLEAR": "Usuń"
+            "CLEAR": "Usuń",
+            "SEARCH": "Szukaj",
+            "NO-RESULTS": "Brak wyników"
+        },
+        "COLUMN-MANAGER": {
+            "GROUP_TITLE": "Ustawienia dla grupowania wyników w tabeli",
+            "SELECT_PLACEHOLDER": "Wybierz",
+            "INTERVAL_PLACEHOLDER": "Ustaw interwał",
+            "SET_GROUPING_TYPE": "Wybierz rodzaj grupowania",
+            "VIEW-DESCRIPTION": "Opis",
+            "VIEW-NAME": "Nazwa widoku",
+            "VIEW-NAME-PLACEHOLDER": "Wprowadź nazwę widoku",
+            "VIEW-DESCRIPTION-PLACEHOLDER": "Wprowadź opis widoku",
+            "GROUP_BY_RANGERS": "Grupuj według zakresów",
+            "GROUP_BY_INTERVALS": "Grupuj według interwałów",
+            "TITLE": "Zarządzaj kolumnami",
+            "SEARCH-PLACEHOLDER": "Szukaj",
+            "SEARCH-RESULTS": "Wyniki wyszukiwania",
+            "NO-RESULTS": "Brak wyników",
+            "VISIBLE": "Widoczne",
+            "HIDDEN": "Ukryte",
+            "SAVE-VIEW": "Zapisz widok",
+            "CANCEL": "Anuluj",
+            "APPLY": "Zapisz",
+            "CLEAR": "Wyczyść",
+            "MUST-NOT-BE-EMPTY": "To pole jest wymagane",
+            "SWITCH-ON": "Włącz",
+            "SWITCH-OFF": "Wyłącz",
+            "GROUP": "Grupowanie",
+            "GROUP_BY_VALUE": "Grupuj według wartości",
+            "GROUP_DISABLED": "Grupowanie wyłączone"
         }
     }
 }
