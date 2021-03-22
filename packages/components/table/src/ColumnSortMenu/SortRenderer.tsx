@@ -8,6 +8,7 @@ import { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@syn
 import { DSColumnType } from '../Table.types';
 import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
+import * as S from './SortRenderer.styles';
 
 interface SortRendererProps<T> {
   sortStateApi: SortStateAPI;
@@ -51,9 +52,22 @@ export const CommonRenderer = <T extends unknown>({
             </Menu.Item>
             {/* TODO: add translation */}
             {!!columnSortOrder && (
-              <Menu.Item key="null" prefixel={<Icon component={<Close2M />} color="red" />}>
-                Clear
-              </Menu.Item>
+              <S.ClearItemWrapper
+                onClick={(e): void => {
+                  e.preventDefault();
+                }}
+              >
+                <Menu.Item
+                  key="null"
+                  prefixel={
+                    <span>
+                      <Icon component={<Close2M />} />
+                    </span>
+                  }
+                >
+                  Clear
+                </Menu.Item>
+              </S.ClearItemWrapper>
             )}
           </Menu>
         </Dropdown.Wrapper>
@@ -104,9 +118,22 @@ export const StringRenderer = <T extends unknown>({
             {/* TODO: add translation */}
             {/* TODO: add reddish background */}
             {!!columnSortOrder && (
-              <Menu.Item key="null" prefixel={<Icon component={<Close2M />} />}>
-                Clear
-              </Menu.Item>
+              <S.ClearItemWrapper
+                onClick={(e): void => {
+                  e.preventDefault();
+                }}
+              >
+                <Menu.Item
+                  key="null"
+                  prefixel={
+                    <span>
+                      <Icon component={<Close2M />} />
+                    </span>
+                  }
+                >
+                  Clear
+                </Menu.Item>
+              </S.ClearItemWrapper>
             )}
           </Menu>
         </Dropdown.Wrapper>
