@@ -63,7 +63,21 @@
             "ACTIVATE": "Aktywuj",
             "CANCEL": "Anuluj",
             "DELETE-CONFIRMATION-TITLE": "Usuń filtr",
-            "ACTIVATE-ITEM-TITLE": "Aktywacja tego filtra usunie wszystkie niezapisane zmiany Twojego filtra"
+            "ACTIVATE-ITEM-TITLE": "Aktywacja tego filtra usunie wszystkie niezapisane zmiany Twojego filtra",
+            "NO-RESULTS": "Brak wyników",
+            "SEARCH-CLEAR": "Wyczyść",
+            "TITLE": "Filtry",
+            "DELETE-CONFIRMATION-DESCRIPTION": "Filtr zostanie trwale usunięty z biblioteki szablonów. Wszystkie tabele, które korzystają z filtra zostaną zresetowane. ",
+            "DELETE-CONFIRMATION-YES": "Usuń",
+            "DELETE-CONFIRMATION-NO": "Anuluj",
+            "SEARCH-PLACEHOLDER": "Szukaj"
+        },
+        "ITEM-PICKER": {
+            "CLEAR-CONFIRM": "Czy na pewno chcesz usunąć to zaznaczenie?",
+            "YES-TEXT": "Tak",
+            "NO-TEXT": "Nie",
+            "CHANGE-BUTTON": "Zmień",
+            "CLEAR": "Usuń"
         }
     }
 }
