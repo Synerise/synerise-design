@@ -103,7 +103,7 @@
             "SELECT_PLACEHOLDER": "Select",
             "INTERVAL_PLACEHOLDER": "Set interval",
             "SET_GROUPING_TYPE": "Set grouping type",
-            "GROUPING_TYPE_TOOLTIP": "More details about grouping",
+            "GROUPING_TYPE_TOOLTIP": "This option allows grouping the results according to value (e.g. users with the same name), ranges (e.g. users with names that start from A to K), and intervals (e.g. users are divided into groups of a defined number).",
             "FROM": "From",
             "TO": "To",
             "REMOVE": "Remove",
