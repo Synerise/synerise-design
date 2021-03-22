@@ -2,7 +2,7 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Carousel } from 'antd';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import * as S from './Popconfirm.styles';
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
 import { PopconfirmType } from './Popconfirm.types';
@@ -20,6 +20,7 @@ const Popconfirm: PopconfirmType = ({
   cancelButtonProps,
   cancelText = DEFAULT_CANCEL,
   onConfirm,
+  onClick = NOOP,
   okButtonProps,
   okText = DEFAULT_OK,
   okType = 'primary',
@@ -28,7 +29,7 @@ const Popconfirm: PopconfirmType = ({
   ...antdProps
 }) => {
   const popupRef = React.useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = React.useState<boolean | undefined>( undefined);
+  const [visible, setVisible] = React.useState<boolean | undefined>(undefined);
   useOnClickOutside(popupRef, () => {
     setVisible(false);
   });
@@ -43,6 +44,12 @@ const Popconfirm: PopconfirmType = ({
       )
     );
   }, [images, imagesAutoplay, imagesAutoplaySpeed]);
+
+  const handleOnClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    onClick(event);
+    setVisible(!disabled);
+  };
+
   return (
     <S.AntdPopconfirm
       {...antdProps}
@@ -83,7 +90,7 @@ const Popconfirm: PopconfirmType = ({
         </S.PopconfirmContent>
       }
     >
-      <S.PopconfirmChildren role="main" className="ds-popconfirm-children" onClick={(): void => setVisible(!disabled)}>
+      <S.PopconfirmChildren role="main" className="ds-popconfirm-children" onClick={handleOnClick}>
         {children}
       </S.PopconfirmChildren>
     </S.AntdPopconfirm>
