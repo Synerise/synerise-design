@@ -6,7 +6,11 @@
             "ADD-ITEM": "Dodaj",
             "SHOW-MORE": "Pokaż więcej",
             "SHOW-LESS": "Pokaż mniej",
-            "ITEM-RENAME": "Zmień nazwę"
+            "ITEM-RENAME": "Zmień nazwę",
+            "ITEM-DELETE": "Usuń",
+            "ITEM-DUPLICATE": "Duplikuj",
+            "CANCEL": "Nie, zostaw",
+            "DELETE": "Tak, usuń"
         },
         "TABLE": {
             "STAR_ROW_TOOLTIP": "Ulubione",
@@ -54,6 +58,12 @@
         "DESCRIPTION": {
             "COPY-VALUE": "Kopiuj wartość",
             "COPIED": "Skopiowano"
+        },
+        "ITEM-FILTER": {
+            "ACTIVATE": "Aktywuj",
+            "CANCEL": "Anuluj",
+            "DELETE-CONFIRMATION-TITLE": "Usuń filtr",
+            "ACTIVATE-ITEM-TITLE": "Aktywacja tego filtra usunie wszystkie niezapisane zmiany Twojego filtra"
         }
     }
 }
