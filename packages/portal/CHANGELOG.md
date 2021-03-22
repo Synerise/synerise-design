@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.127.0](https://github.com/synerise/synerise-design/compare/portal@0.126.0...portal@0.127.0) (2021-03-22)
+
+
+### Features
+
+* **portal:** STOR-698 implement new avatar api ([634faba](https://github.com/synerise/synerise-design/commit/634faba949f967170086d49cf540fc8bcefd8e9a))
+
+
+
+
+
 # [0.126.0](https://github.com/synerise/synerise-design/compare/portal@0.125.0...portal@0.126.0) (2021-03-19)
 
 

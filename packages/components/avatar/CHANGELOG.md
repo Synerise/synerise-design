@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.5...@synerise/ds-avatar@0.12.0) (2021-03-22)
+
+
+### Features
+
+* **avatar:** STOR-698 move User/ObjectAvatar data source to object ([f3c79dd](https://github.com/synerise/synerise-design/commit/f3c79dd21e9ea32cb05d9159b721ba91098530e2))
+
+
+
+
+
 ## [0.11.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.4...@synerise/ds-avatar@0.11.5) (2021-03-19)
 
 **Note:** Version bump only for package @synerise/ds-avatar
