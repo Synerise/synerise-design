@@ -112,9 +112,9 @@
             "ERROR_EMPTY_RANGE": "Fill at least one of the fields",
             "ERROR_EMPTY_FROM_FIELD": "Only the \"From\" field in the first range can be left blank",
             "ERROR_EMPTY_TO_FIELD": "Only the \"To\" field in the last range can be left blank",
-            "ERROR_CHOOSE_GROUPING": "Error - Choose type of grouping",
-            "ERROR_INTERVAL": "Error - Provide correct interval value",
-            "ERROR_RANGE": "Error - Provide correct value"
+            "ERROR_CHOOSE_GROUPING": "Choose the type of grouping",
+            "ERROR_INTERVAL": "Enter a number",
+            "ERROR_RANGE": "Provide a correct value"
         },
         "TABLE": {
             "PAGINATION": {
