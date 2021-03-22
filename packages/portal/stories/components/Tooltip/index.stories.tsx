@@ -136,8 +136,9 @@ const stories = {
       description: text('Set email', 'jan.nowak@gmail.com'),
       ...tooltipProps
     };
+    const user = { firstName, lastName };
 
-    return <UserAvatar backgroundColor="blue" firstName={firstName} lastName={lastName} tooltip={tooltip} />
+    return <UserAvatar backgroundColor="blue" user={user} tooltip={tooltip} />
   },
   tutorial: () => (
     <div>

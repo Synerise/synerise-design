@@ -46,7 +46,7 @@ const Avatar: React.FC<AvatarProps> = ({
   }
 
   const tooltipProps =
-    tooltip !== false
+    typeof tooltip === 'object'
       ? {
           ...tooltip,
           title: tooltip.title || tooltip.name,

@@ -1,317 +1,317 @@
 {
-  "DS": {
-    "DESCRIPTION": {
-      "COPY-VALUE": "Copy value",
-      "COPIED": "Copied"
-    },
-    "FACTORS": {
-      "DATE_PICKER": {
-        "APPLY": "Apply",
-        "CLEAR_TOOLTIP": "Clear",
-        "INPUT_PLACEHOLDER": "Select date",
-        "NOW": "Now"
-      },
-      "MODAL_TITLE": "Value",
-      "MODAL_CANCEL": "Cancel",
-      "MODAL_APPLY": "Apply",
-      "VALUE_PLACEHOLDER": "Value",
-      "PARAMETER": {
-        "NO_RESULTS": "No results",
-        "SEARCH_PLACEHOLDER": "Search",
-        "LOADING_PARAMETERS": "Loading parameters"
-      },
-      "FORMULA": {
-        "BUTTON_PLACEHOLDER": "Formula",
-        "DEFAULT_NAME": "Formula"
-      },
-      "DYNAMIC_KEY": {
-        "VALUE_PLACEHOLDER": "Value",
-        "KEY_PLACEHOLDER": "Key"
-      }
-    },
-    "OPERATORS": {
-      "BUTTON_LABEL": "Choose",
-      "SEARCH_PLACEHOLDER": "Search",
-      "NO_RESULTS": "No results"
-    },
-    "MANAGABLE-LIST": {
-      "LESS": "less",
-      "MORE": "more",
-      "ADD-ITEM": "Add item",
-      "SHOW-MORE": "Show more",
-      "SHOW-LESS": "Show less",
-      "ITEM-RENAME": "Rename",
-      "ITEM-DUPLICATE": "Duplicate",
-      "ITEM-DELETE": "Delete",
-      "CANCEL": "No, keep it",
-      "DELETE": "Yes, delete view"
-    },
-    "FILE-UPLOADER": {
-      "BUTTON-LABEL": "Upload a new file",
-      "BUTTON-DESC": "or drag one here",
-      "SIZE": "Size:",
-      "UPLOADING": "Uploading..."
-    },
-    "ITEM-FILTER": {
-      "ACTIVATE-ITEM-TITLE": "By activating this filter, you will cancel your unsaved filter settings",
-      "ACTIVATE": "Activate",
-      "CANCEL": "Cancel",
-      "DELETE-CONFIRMATION-TITLE": "Delete filter",
-      "DELETE-CONFIRMATION-DESCRIPTION": "Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.",
-      "DELETE-CONFIRMATION-YES": "Delete",
-      "DELETE-CONFIRMATION-NO": "Cancel",
-      "NO-RESULTS": "No results",
-      "SEARCH-PLACEHOLDER": "Search",
-      "SEARCH-CLEAR": "Clear",
-      "TITLE": "Filter"
-    },
-    "ITEM-PICKER": {
-      "CLEAR-CONFIRM": "Are you sure to remove this selection?",
-      "YES-TEXT": "Yes",
-      "NO-TEXT": "No",
-      "CHANGE-BUTTON": "Change",
-      "CLEAR": "Remove",
-      "SEARCH": "Search",
-      "NO-RESULTS": "No results"
-    },
-    "COLUMN-MANAGER": {
-      "TITLE": "Manage columns",
-      "SEARCH-PLACEHOLDER": "Search",
-      "SEARCH-RESULTS": "Search results",
-      "NO-RESULTS": "No results",
-      "VISIBLE": "Visible",
-      "HIDDEN": "Hidden",
-      "SAVE-VIEW": "Save view",
-      "CANCEL": "Cancel",
-      "APPLY": "Apply",
-      "FIXED-LEFT": "Fixed left",
-      "FIXED-RIGHT": "Fixed right",
-      "CLEAR": "Clear",
-      "VIEW-NAME": "View name",
-      "VIEW-DESCRIPTION": "Description",
-      "VIEW-NAME-PLACEHOLDER": "Placeholder",
-      "VIEW-DESCRIPTION-PLACEHOLDER": "Placeholder",
-      "MUST-NOT-BE-EMPTY": "Must not be empty",
-      "SWITCH-ON": "Switch on",
-      "SWITCH-OFF": "Switch off",
-      "GROUP": "Group",
-      "GROUP_BY_VALUE": "Group by value",
-      "GROUP_BY_RANGERS": "Group by ranges",
-      "GROUP_BY_INTERVALS": "Group by intervals",
-      "GROUP_DISABLED": "Group disabled",
-      "GROUP_TITLE": "Table content group",
-      "SELECT_PLACEHOLDER": "Select",
-      "INTERVAL_PLACEHOLDER": "Set interval",
-      "SET_GROUPING_TYPE": "Set grouping type",
-      "GROUPING_TYPE_TOOLTIP": "More details about grouping",
-      "FROM": "From",
-      "TO": "To",
-      "REMOVE": "Remove",
-      "ADD_RANGE": "Add more",
-      "NO_RESULTS": "No results",
-      "ERROR_EMPTY_RANGE": "You should fill one of these fields",
-      "ERROR_EMPTY_FROM_FIELD": "Only the \"From\" field in the first range can be left blank",
-      "ERROR_EMPTY_TO_FIELD": "Only the \"To\" field in the last range can be left blank",
-      "ERROR_CHOOSE_GROUPING": "Error - Choose type of grouping",
-      "ERROR_INTERVAL": "Error - Provide correct interval value",
-      "ERROR_RANGE": "Error - Provide correct value"
-    },
-    "TABLE": {
-      "PAGINATION": {
-        "ITEMS": "results",
-        "GROUPS": "groups"
-      },
-      "SELECTED": "selected",
-      "EMPTY_TEXT": "No data",
-      "SELECTION_LIMIT_WARNING": "Selection limit has been reached.",
-      "STAR_ROW_TOOLTIP": "Starred",
-      "SELECT_ROW_TOOLTIP": "Select",
-      "SELECT_ALL_TOOLTIP": "Select all",
-      "SELECTION_OPTIONS": "Options"
-    },
-    "ICON-PICKER": {
-      "NO-RESULTS": "No results"
-    },
-    "SEARCH-BAR": {
-      "CLEAR-TOOLTIP": "Clear"
-    },
-    "TIME-PICKER": {
-      "CLEAR-TOOLTIP": "Clear",
-      "PLACEHOLDER": "Select time"
-    },
-    "ITEMS-ROLL": {
-      "CHANGE-SELECTION": "Change selection",
-      "CLEAR-ALL": "Clear all",
-      "CLEAR-TOOLTIP": "Clear",
-      "CONFIRM-NO": "No",
-      "CONFIRM-TITLE": "Are you sure you want to remove all items from list?",
-      "CONFIRM-YES": "Yes",
-      "ITEMS": "Items",
-      "MORE": "more",
-      "NO-RESULTS": "No results",
-      "REMOVE-TOOLTIP": "Remove",
-      "SHOW": "Show",
-      "SHOW-LESS": "Show less"
-    },
-    "DATE-PICKER": {
-      "APPLY": "Apply",
-      "SELECT-DATE": "Select date",
-      "SELECT-TIME": "Select time",
-      "NOW": "Now"
-    },
-    "DATE-RANGE-PICKER": {
-      "TODAY": "Today",
-      "YESTERDAY": "Yesterday",
-      "LAST-7-DAYS": "Last 7 days",
-      "THIS-WEEK": "This week",
-      "LAST-WEEK": "Last week",
-      "THIS-MONTH": "This month",
-      "LAST-MONTH": "Last month",
-      "LAST-3-MONTHS": "Last 3 months",
-      "LAST-6-MONTHS": "Last 6 months",
-      "LAST-YEAR": "Last year",
-      "ALL-TIME": "Lifetime",
-      "TOMORROW": "Tomorrow",
-      "NEXT-7-DAYS": "Next 7 days",
-      "NEXT-WEEK": "Next week",
-      "NEXT-MONTH": "Next month",
-      "NEXT-3-MONTHS": "Next 3 months",
-      "NEXT-6-MONTHS": "Next 6 months",
-      "NEXT-YEAR": "Next year",
-      "CUSTOM": "Custom",
-      "MORE": "More",
-      "RELATIVE-DATE-RANGE": "Relative date range",
-      "LAST": "Last",
-      "BEFORE": "before",
-      "AFTER": "after",
-      "SINCE": "Since",
-      "NEXT": "Next",
-      "SECONDS": "Seconds",
-      "MINUTES": "Minutes",
-      "HOURS": "Hours",
-      "DAYS": "Days",
-      "WEEKS": "Weeks",
-      "MONTHS": "Months",
-      "YEARS": "Years",
-      "TIMESTAMP-LAST": "Last",
-      "TIMESTAMP-NEXT": "Next",
-      "TIMESTAMP-TILL": "till",
-      "APPLY": "Apply",
-      "NOW": "Now",
-      "FILTER": "Filter",
-      "SELECT-DATE": "Select date",
-      "SELECT-TIME": "Select time",
-      "START-DATE": "Start date",
-      "END-DATE": "End date",
-      "CLEAR": "Clear",
-      "DAILY": "Everyday",
-      "WEEKLY": "Every week",
-      "MONTHLY": "Every month",
-      "ADD-RULE": "Add rule",
-      "RULE": "Rule",
-      "COUNTED-FROM": " counted from",
-      "CANCEL": "Cancel",
-      "SELECT-ALL": "Select all",
-      "UNSELECT-ALL": "Unselect all",
-      "WEEKDAYS-SHORT-0": "Mon",
-      "WEEKDAYS-SHORT-1": "Tue",
-      "WEEKDAYS-SHORT-2": "Wed",
-      "WEEKDAYS-SHORT-3": "Thu",
-      "WEEKDAYS-SHORT-4": "Fri",
-      "WEEKDAYS-SHORT-5": "Sat",
-      "WEEKDAYS-SHORT-6": "Sun",
-      "DAYS-OF": "days of",
-      "WEEKIN": "week",
-      "MONTHIN": "month",
-      "BEGINNING": "beginning",
-      "END": "end",
-      "CLICK-TO-SELECT": "Click to select",
-      "NTH": {
-        "1": "1st",
-        "2": "2nd",
-        "3": "3rd",
-        "4": "4th",
-        "5": "5th"
-      },
-      "WEEKDAYS_LONG": {
-        "1": "Monday",
-        "2": "Tuesday",
-        "3": "Wednesday",
-        "4": "Thursday",
-        "5": "Friday",
-        "6": "Saturday",
-        "7": "Sunday"
-      },
-      "EVERY_DAY": "every day",
-      "REMOVE": "Remove",
-      "DATES_FILTER": "Date filter",
-      "NTH-DAY-OF-MONTH": " day of month",
-      "SELECTED": "Selected",
-      "MULTIPLE-MODE-HINT": "Use the shift key to get multiple selection.",
-      "SELECT-DAYS-DESCRIPTION": "Select one day or many. Use \"shift\" key or \"ctrl\" key to select more than one.",
-      "ADD-TIME": "Add time",
-      "SAVE-FILTER": "Save filter",
-      "FILTER-NAME": "Filter name",
-      "IN-WEEK": "week",
-      "IN-MONTH": "month",
-      "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries."
-    },
-    "CARD-TAB": {
-      "REMOVE": "Remove",
-      "RENAME": "Rename",
-      "DUPLICATE": "Duplicate"
-    },
-    "FORMAT-PICKER": {
-      "HEADER": "Number format",
-      "FORMAT": "Format",
-      "NUMERIC": "Numeric",
-      "PERCENTAGE": "Percentage",
-      "CASH": "Cash",
-      "SET-DEFAULT": "Set default",
-      "USE-SEPARATOR": "Use 1000 separator",
-      "COMPACT-NUMBERS": "Use compact numbers"
-    },
-    "COMPLETED-WITHIN": {
-      "INTERVAL": "Interval",
-      "YEARS": "Years",
-      "MONTHS": "Months",
-      "DAYS": "Days",
-      "HOURS": "Hours",
-      "MINUTES": "Minutes",
-      "SECONDS": "Seconds"
-    },
-    "LOGIC": {
-      "AND": "And",
-      "OR": "Or"
-    },
-    "MATCHING": {
-      "MATCHING": "matching",
-      "NOT-MATCHING": "not matching"
-    },
-    "STEP-CARD": {
-      "NAME-PLACEHOLDER": "Name",
-      "MOVE": "Move",
-      "DELETE": "Delete",
-      "DUPLICATE": "Duplicate"
-    },
-    "WIZARD": {
-      "BACK-BUTTON": "Back",
-      "NEXT-BUTTON": "Next step"
-    },
-    "FILTER": {
-      "DROP-ME-HERE": "Drop me here",
-      "ADD-FILTER": "Add filter"
-    },
-    "CONDITION": {
-      "STEP_NAME-PLACEHOLDER": "Step name",
-      "REMOVE-CONDITION-ROW-TOOLTIP": "Delete",
-      "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
-      "ADD-CONDITION-ROW-BUTTON": "Add condition",
-      "ADD-STEP": "Add step",
-      "DROP-LABEL": "Drop me here",
-      "MOVE-TOOLTIP": "Move",
-      "DUPLICATE-TOOLTIP": "Duplicate",
-      "REMOVE-TOOLTIP": "Delete"
+    "DS": {
+        "DESCRIPTION": {
+            "COPY-VALUE": "Copy value",
+            "COPIED": "Copied"
+        },
+        "FACTORS": {
+            "DATE_PICKER": {
+                "APPLY": "Apply",
+                "CLEAR_TOOLTIP": "Clear",
+                "INPUT_PLACEHOLDER": "Select date",
+                "NOW": "Now"
+            },
+            "MODAL_TITLE": "Value",
+            "MODAL_CANCEL": "Cancel",
+            "MODAL_APPLY": "Apply",
+            "VALUE_PLACEHOLDER": "Value",
+            "PARAMETER": {
+                "NO_RESULTS": "No results",
+                "SEARCH_PLACEHOLDER": "Search",
+                "LOADING_PARAMETERS": "Loading parameters"
+            },
+            "FORMULA": {
+                "BUTTON_PLACEHOLDER": "Formula",
+                "DEFAULT_NAME": "Formula"
+            },
+            "DYNAMIC_KEY": {
+                "VALUE_PLACEHOLDER": "Value",
+                "KEY_PLACEHOLDER": "Key"
+            }
+        },
+        "OPERATORS": {
+            "BUTTON_LABEL": "Choose",
+            "SEARCH_PLACEHOLDER": "Search",
+            "NO_RESULTS": "No results"
+        },
+        "MANAGABLE-LIST": {
+            "LESS": "less",
+            "MORE": "more",
+            "ADD-ITEM": "Add item",
+            "SHOW-MORE": "Show more",
+            "SHOW-LESS": "Show less",
+            "ITEM-RENAME": "Rename",
+            "ITEM-DUPLICATE": "Duplicate",
+            "ITEM-DELETE": "Delete",
+            "CANCEL": "No, keep it",
+            "DELETE": "Yes, delete view"
+        },
+        "FILE-UPLOADER": {
+            "BUTTON-LABEL": "Upload a new file",
+            "BUTTON-DESC": "or drag one here",
+            "SIZE": "Size:",
+            "UPLOADING": "Uploading..."
+        },
+        "ITEM-FILTER": {
+            "ACTIVATE-ITEM-TITLE": "By activating this filter, you will cancel your unsaved filter settings",
+            "ACTIVATE": "Activate",
+            "CANCEL": "Cancel",
+            "DELETE-CONFIRMATION-TITLE": "Delete filter",
+            "DELETE-CONFIRMATION-DESCRIPTION": "This filter will be deleted permanently from the template library. All tables that use this filter will be reset. ",
+            "DELETE-CONFIRMATION-YES": "Delete",
+            "DELETE-CONFIRMATION-NO": "Cancel",
+            "NO-RESULTS": "No results",
+            "SEARCH-PLACEHOLDER": "Search",
+            "SEARCH-CLEAR": "Clear",
+            "TITLE": "Filters"
+        },
+        "ITEM-PICKER": {
+            "CLEAR-CONFIRM": "Are you sure you want to remove this selection?",
+            "YES-TEXT": "Yes",
+            "NO-TEXT": "No",
+            "CHANGE-BUTTON": "Change",
+            "CLEAR": "Remove",
+            "SEARCH": "Search",
+            "NO-RESULTS": "No results"
+        },
+        "COLUMN-MANAGER": {
+            "TITLE": "Manage columns",
+            "SEARCH-PLACEHOLDER": "Search",
+            "SEARCH-RESULTS": "Search results",
+            "NO-RESULTS": "No results",
+            "VISIBLE": "Visible",
+            "HIDDEN": "Hidden",
+            "SAVE-VIEW": "Save view",
+            "CANCEL": "Cancel",
+            "APPLY": "Apply",
+            "FIXED-LEFT": "Fixed left",
+            "FIXED-RIGHT": "Fixed right",
+            "CLEAR": "Clear",
+            "VIEW-NAME": "View name",
+            "VIEW-DESCRIPTION": "Description",
+            "VIEW-NAME-PLACEHOLDER": "Enter a view name",
+            "VIEW-DESCRIPTION-PLACEHOLDER": "Enter the description of the view",
+            "MUST-NOT-BE-EMPTY": "This field is required",
+            "SWITCH-ON": "Switch on",
+            "SWITCH-OFF": "Switch off",
+            "GROUP": "Group",
+            "GROUP_BY_VALUE": "Group by value",
+            "GROUP_BY_RANGERS": "Group by ranges",
+            "GROUP_BY_INTERVALS": "Group by intervals",
+            "GROUP_DISABLED": "Group disabled",
+            "GROUP_TITLE": "Settings for grouping the table results",
+            "SELECT_PLACEHOLDER": "Select",
+            "INTERVAL_PLACEHOLDER": "Set interval",
+            "SET_GROUPING_TYPE": "Set grouping type",
+            "GROUPING_TYPE_TOOLTIP": "This option allows grouping the results according to value (e.g. users with the same name), ranges (e.g. users with names that start from A to K), and intervals (e.g. users are divided into groups of a defined number).",
+            "FROM": "From",
+            "TO": "To",
+            "REMOVE": "Remove",
+            "ADD_RANGE": "Add more",
+            "NO_RESULTS": "No results",
+            "ERROR_EMPTY_RANGE": "Fill at least one of the fields",
+            "ERROR_EMPTY_FROM_FIELD": "Only the \"From\" field in the first range can be left blank",
+            "ERROR_EMPTY_TO_FIELD": "Only the \"To\" field in the last range can be left blank",
+            "ERROR_CHOOSE_GROUPING": "Choose the type of grouping",
+            "ERROR_INTERVAL": "Enter a number",
+            "ERROR_RANGE": "Provide a correct value"
+        },
+        "TABLE": {
+            "PAGINATION": {
+                "ITEMS": "results",
+                "GROUPS": "groups"
+            },
+            "SELECTED": "selected",
+            "EMPTY_TEXT": "No data",
+            "SELECTION_LIMIT_WARNING": "Selection limit has been reached.",
+            "STAR_ROW_TOOLTIP": "Starred",
+            "SELECT_ROW_TOOLTIP": "Select",
+            "SELECT_ALL_TOOLTIP": "Select all",
+            "SELECTION_OPTIONS": "Options"
+        },
+        "ICON-PICKER": {
+            "NO-RESULTS": "No results"
+        },
+        "SEARCH-BAR": {
+            "CLEAR-TOOLTIP": "Clear"
+        },
+        "TIME-PICKER": {
+            "CLEAR-TOOLTIP": "Clear",
+            "PLACEHOLDER": "Select time"
+        },
+        "ITEMS-ROLL": {
+            "CHANGE-SELECTION": "Change selection",
+            "CLEAR-ALL": "Clear all",
+            "CLEAR-TOOLTIP": "Clear",
+            "CONFIRM-NO": "No",
+            "CONFIRM-TITLE": "Are you sure you want to remove all items from the list?",
+            "CONFIRM-YES": "Yes",
+            "ITEMS": "Items",
+            "MORE": "more",
+            "NO-RESULTS": "No results",
+            "REMOVE-TOOLTIP": "Remove",
+            "SHOW": "Show",
+            "SHOW-LESS": "Show less"
+        },
+        "DATE-PICKER": {
+            "APPLY": "Apply",
+            "SELECT-DATE": "Select date",
+            "SELECT-TIME": "Select time",
+            "NOW": "Now"
+        },
+        "DATE-RANGE-PICKER": {
+            "TODAY": "Today",
+            "YESTERDAY": "Yesterday",
+            "LAST-7-DAYS": "Last 7 days",
+            "THIS-WEEK": "This week",
+            "LAST-WEEK": "Last week",
+            "THIS-MONTH": "This month",
+            "LAST-MONTH": "Last month",
+            "LAST-3-MONTHS": "Last 3 months",
+            "LAST-6-MONTHS": "Last 6 months",
+            "LAST-YEAR": "Last year",
+            "ALL-TIME": "Lifetime",
+            "TOMORROW": "Tomorrow",
+            "NEXT-7-DAYS": "Next 7 days",
+            "NEXT-WEEK": "Next week",
+            "NEXT-MONTH": "Next month",
+            "NEXT-3-MONTHS": "Next 3 months",
+            "NEXT-6-MONTHS": "Next 6 months",
+            "NEXT-YEAR": "Next year",
+            "CUSTOM": "Custom",
+            "MORE": "More",
+            "RELATIVE-DATE-RANGE": "Relative date range",
+            "LAST": "Last",
+            "BEFORE": "before",
+            "AFTER": "after",
+            "SINCE": "Since",
+            "NEXT": "Next",
+            "SECONDS": "Seconds",
+            "MINUTES": "Minutes",
+            "HOURS": "Hours",
+            "DAYS": "Days",
+            "WEEKS": "Weeks",
+            "MONTHS": "Months",
+            "YEARS": "Years",
+            "TIMESTAMP-LAST": "Last",
+            "TIMESTAMP-NEXT": "Next",
+            "TIMESTAMP-TILL": "till",
+            "APPLY": "Apply",
+            "NOW": "Now",
+            "FILTER": "Filter",
+            "SELECT-DATE": "Select date",
+            "SELECT-TIME": "Select time",
+            "START-DATE": "Start date",
+            "END-DATE": "End date",
+            "CLEAR": "Clear",
+            "DAILY": "Everyday",
+            "WEEKLY": "Every week",
+            "MONTHLY": "Every month",
+            "ADD-RULE": "Add rule",
+            "RULE": "Rule",
+            "COUNTED-FROM": " counted from",
+            "CANCEL": "Cancel",
+            "SELECT-ALL": "Select all",
+            "UNSELECT-ALL": "Unselect all",
+            "WEEKDAYS-SHORT-0": "Mon",
+            "WEEKDAYS-SHORT-1": "Tue",
+            "WEEKDAYS-SHORT-2": "Wed",
+            "WEEKDAYS-SHORT-3": "Thu",
+            "WEEKDAYS-SHORT-4": "Fri",
+            "WEEKDAYS-SHORT-5": "Sat",
+            "WEEKDAYS-SHORT-6": "Sun",
+            "DAYS-OF": "days of",
+            "WEEKIN": "week",
+            "MONTHIN": "month",
+            "BEGINNING": "beginning",
+            "END": "end",
+            "CLICK-TO-SELECT": "Click to select",
+            "NTH": {
+                "1": "1st",
+                "2": "2nd",
+                "3": "3rd",
+                "4": "4th",
+                "5": "5th"
+            },
+            "WEEKDAYS_LONG": {
+                "1": "Monday",
+                "2": "Tuesday",
+                "3": "Wednesday",
+                "4": "Thursday",
+                "5": "Friday",
+                "6": "Saturday",
+                "7": "Sunday"
+            },
+            "EVERY_DAY": "every day",
+            "REMOVE": "Remove",
+            "DATES_FILTER": "Date filter",
+            "NTH-DAY-OF-MONTH": " day of month",
+            "SELECTED": "Selected",
+            "MULTIPLE-MODE-HINT": "Use the shift key to get multiple selection.",
+            "SELECT-DAYS-DESCRIPTION": "Select one day or many. Use \"shift\" key or \"ctrl\" key to select more than one.",
+            "ADD-TIME": "Add time",
+            "SAVE-FILTER": "Save filter",
+            "FILTER-NAME": "Filter name",
+            "IN-WEEK": "week",
+            "IN-MONTH": "month",
+            "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries."
+        },
+        "CARD-TAB": {
+            "REMOVE": "Remove",
+            "RENAME": "Rename",
+            "DUPLICATE": "Duplicate"
+        },
+        "FORMAT-PICKER": {
+            "HEADER": "Number format",
+            "FORMAT": "Format",
+            "NUMERIC": "Numeric",
+            "PERCENTAGE": "Percentage",
+            "CASH": "Cash",
+            "SET-DEFAULT": "Set default",
+            "USE-SEPARATOR": "Use thousands separator",
+            "COMPACT-NUMBERS": "Use compact numbers"
+        },
+        "COMPLETED-WITHIN": {
+            "INTERVAL": "Interval",
+            "YEARS": "Years",
+            "MONTHS": "Months",
+            "DAYS": "Days",
+            "HOURS": "Hours",
+            "MINUTES": "Minutes",
+            "SECONDS": "Seconds"
+        },
+        "LOGIC": {
+            "AND": "And",
+            "OR": "Or"
+        },
+        "MATCHING": {
+            "MATCHING": "matching",
+            "NOT-MATCHING": "not matching"
+        },
+        "STEP-CARD": {
+            "NAME-PLACEHOLDER": "Name",
+            "MOVE": "Move",
+            "DELETE": "Delete",
+            "DUPLICATE": "Duplicate"
+        },
+        "WIZARD": {
+            "BACK-BUTTON": "Back",
+            "NEXT-BUTTON": "Next step"
+        },
+        "FILTER": {
+            "DROP-ME-HERE": "Drop me here",
+            "ADD-FILTER": "Add filter"
+        },
+        "CONDITION": {
+            "STEP_NAME-PLACEHOLDER": "Step name",
+            "REMOVE-CONDITION-ROW-TOOLTIP": "Delete",
+            "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
+            "ADD-CONDITION-ROW-BUTTON": "Add condition",
+            "ADD-STEP": "Add step",
+            "DROP-LABEL": "Drop me here",
+            "MOVE-TOOLTIP": "Move",
+            "DUPLICATE-TOOLTIP": "Duplicate",
+            "REMOVE-TOOLTIP": "Delete"
+        }
     }
-  }
 }

@@ -17,9 +17,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   text,
   tooltip,
   badgeStatus,
-  firstName = '',
-  lastName = '',
-  email,
+  user = {},
   src,
   iconComponent,
   children,
@@ -27,11 +25,12 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   style,
   ...restProps
 }) => {
+  const { firstName = '', lastName = '', email = '', avatar } = user || {};
   const avatarText = getUserText(firstName, lastName, src, text);
   const defaultTooltip = { title: `${firstName} ${lastName}`.trim(), description: email || '' };
   const avatarTooltip =
-    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) 
-      ? defaultTooltip 
+    (tooltip === undefined || tooltip === true) && (defaultTooltip.title || defaultTooltip.description)
+      ? defaultTooltip
       : tooltip;
 
   const iconColor = theme.palette[`${DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
@@ -43,7 +42,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
 
   const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
 
-  const avatar = (
+  const avatarRender = (
     <Avatar
       iconComponent={icon}
       shape="circle"
@@ -51,7 +50,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
       backgroundColor={avatarBackgroundColor}
       backgroundColorHue={avatarBackgroundHue}
       size={size}
-      src={src}
+      src={avatar || src}
       tooltip={avatarTooltip}
       disabled={disabled}
       style={badgeStatus ? {} : style}
@@ -63,10 +62,10 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
 
   return badgeStatus ? (
     <span style={style}>
-      <Badge status={badgeStatus}>{avatar}</Badge>
+      <Badge status={badgeStatus}>{avatarRender}</Badge>
     </span>
   ) : (
-    avatar
+    avatarRender
   );
 };
 
