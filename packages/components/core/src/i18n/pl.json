@@ -237,7 +237,9 @@
             "PERCENTAGE": "Procentowy",
             "HEADER": "Format liczbowy",
             "CASH": "Gotówkowy",
-            "SET-DEFAULT": "Ustaw domyślny"
+            "SET-DEFAULT": "Ustaw domyślny",
+            "USE-SEPARATOR": "Użyj separatora dla tysięcy",
+            "COMPACT-NUMBERS": "Użyj skrócony format liczb"
         },
         "ICON-PICKER": {
             "NO-RESULTS": "Brak wyników"
@@ -268,6 +270,48 @@
         "TIME-PICKER": {
             "PLACEHOLDER": "Wybierz czas",
             "CLEAR-TOOLTIP": "Wyczyść"
+        },
+        "COMPLETED-WITHIN": {
+            "MONTHS": "Miesiące",
+            "INTERVAL": "Interwał",
+            "YEARS": "Lata",
+            "SECONDS": "Sekundy",
+            "DAYS": "Dni",
+            "MINUTES": "Minuty",
+            "HOURS": "Godziny"
+        },
+        "LOGIC": {
+            "AND": "i",
+            "OR": "lub"
+        },
+        "MATCHING": {
+            "MATCHING": "pasujące do",
+            "NOT-MATCHING": "niepasujące do"
+        },
+        "STEP-CARD": {
+            "NAME-PLACEHOLDER": "Nazwa",
+            "MOVE": "Przenieś",
+            "DELETE": "Usuń",
+            "DUPLICATE": "Duplikuj"
+        },
+        "WIZARD": {
+            "BACK-BUTTON": "Wstecz",
+            "NEXT-BUTTON": "Kolejny krok"
+        },
+        "CONDITION": {
+            "ADD-CONDITION-ROW-BUTTON": "Dodaj warunek",
+            "ADD-FIRST-CONDITION-ROW-BUTTON": "Dodaj warunek",
+            "REMOVE-CONDITION-ROW-TOOLTIP": "Usuń",
+            "ADD-STEP": "Dodaj krok",
+            "STEP_NAME-PLACEHOLDER": "Nazwa kroku",
+            "DROP-LABEL": "Upuść mnie tutaj",
+            "MOVE-TOOLTIP": "Przenieś",
+            "DUPLICATE-TOOLTIP": "Duplikuj",
+            "REMOVE-TOOLTIP": "Usuń"
+        },
+        "FILTER": {
+            "DROP-ME-HERE": "Upuść mnie tutaj",
+            "ADD-FILTER": "Dodaj filtr"
         }
     }
 }
