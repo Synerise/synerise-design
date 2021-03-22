@@ -268,7 +268,7 @@
             "PERCENTAGE": "Percentage",
             "CASH": "Cash",
             "SET-DEFAULT": "Set default",
-            "USE-SEPARATOR": "Use 1000 separator",
+            "USE-SEPARATOR": "Use thousands separator",
             "COMPACT-NUMBERS": "Use compact numbers"
         },
         "COMPLETED-WITHIN": {
