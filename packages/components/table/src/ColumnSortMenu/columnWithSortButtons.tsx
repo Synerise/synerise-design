@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ColumnTitleProps } from 'antd/lib/table/interface';
 import { DSColumnType } from '../Table.types';
 import { SortStateAPI } from './useSortState';
 import { TitleWithSort, SortRender, SortButtonsRenderer } from './TitleWithSort';
@@ -31,7 +32,9 @@ export const columnWithSortButtons = (sortStateApi: SortStateAPI) => <T extends 
     ? {
         ...column,
         sortOrder: column.key ? sortStateApi.getColumnSortOrder(String(column.key)) : null,
-        title: <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} />,
+        title: (titleProps: ColumnTitleProps<T>): React.ReactElement => (
+          <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} titleProps={titleProps} />
+        ),
       }
     : column;
 };

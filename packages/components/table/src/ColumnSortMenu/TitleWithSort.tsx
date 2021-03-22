@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ColumnTitleProps } from 'antd/lib/table/interface';
 import { DSColumnType } from '../Table.types';
 import createReplaceButtonsPortal from './replaceSortButtons';
 import { SortStateAPI } from './useSortState';
@@ -10,6 +11,7 @@ export type SortRender<T> = 'default' | 'string' | SortButtonsRenderer<T>;
 export interface TitleWithSortOwnProps<T> {
   column: DSColumnType<T>;
   sortRender: React.ReactElement;
+  titleProps: ColumnTitleProps<T>;
 }
 
 export type TitleWithSortProps<T> = TitleWithSortOwnProps<T> & React.ComponentPropsWithoutRef<'span'>;
@@ -17,6 +19,7 @@ export type TitleWithSortProps<T> = TitleWithSortOwnProps<T> & React.ComponentPr
 export const TitleWithSort = <T extends unknown>({
   column,
   sortRender,
+  titleProps,
   ...spanProps
 }: TitleWithSortProps<T>): React.ReactElement => {
   const itemRef = React.useRef<HTMLSpanElement>(null);
@@ -24,9 +27,8 @@ export const TitleWithSort = <T extends unknown>({
 
   return (
     <>
-      {/* TODO: column.title may be a function */}
       <span ref={itemRef} {...spanProps}>
-        {column.title}
+        {typeof column.title === 'function' ? column.title(titleProps) : column.title}
       </span>
       <ReplaceButtonsPortal />
     </>
