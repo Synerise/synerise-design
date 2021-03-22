@@ -9,10 +9,16 @@ import { DSColumnType } from '../Table.types';
 import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
 
-export const common = <T extends unknown>(
-  { setColumnSortOrder, getColumnSortOrder }: SortStateAPI,
-  column: DSColumnType<T>
-): React.ReactElement => {
+interface SortRendererProps<T> {
+  sortStateApi: SortStateAPI;
+  column: DSColumnType<T>;
+}
+
+export const CommonRenderer = <T extends unknown>({
+  column,
+  sortStateApi,
+}: SortRendererProps<T>): React.ReactElement => {
+  const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
   const columnSortOrder = column.key ? getColumnSortOrder(columnKey) : null;
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
@@ -45,7 +51,7 @@ export const common = <T extends unknown>(
             </Menu.Item>
             {/* TODO: add translation */}
             {!!columnSortOrder && (
-              <Menu.Item key="null" prefixel={<Icon component={<Close2M />} />}>
+              <Menu.Item key="null" prefixel={<Icon component={<Close2M />} color="red" />}>
                 Clear
               </Menu.Item>
             )}
@@ -60,10 +66,11 @@ export const common = <T extends unknown>(
   );
 };
 
-export const string = <T extends unknown>(
-  { setColumnSortOrder, getColumnSortOrder }: SortStateAPI,
-  column: DSColumnType<T>
-): React.ReactElement => {
+export const StringRenderer = <T extends unknown>({
+  column,
+  sortStateApi,
+}: SortRendererProps<T>): React.ReactElement => {
+  const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
   const columnSortOrder = column.key ? getColumnSortOrder(columnKey) : null;
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);

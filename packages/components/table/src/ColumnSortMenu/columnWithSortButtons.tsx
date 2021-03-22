@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DSColumnType } from '../Table.types';
 import { SortStateAPI } from './useSortState';
 import { TitleWithSort, SortRender, SortButtonsRenderer } from './TitleWithSort';
-import * as defaultRenderers from './defaultSortRenderers';
+import { CommonRenderer, StringRenderer } from './SortRenderer';
 
 const getSortRenderer = <T extends unknown>(sortRender: SortRender<T> = 'default'): SortButtonsRenderer<T> => {
   if (typeof sortRender === 'function') {
@@ -11,24 +11,29 @@ const getSortRenderer = <T extends unknown>(sortRender: SortRender<T> = 'default
 
   switch (sortRender) {
     case 'string':
-      return defaultRenderers.string;
+      return (sortStateApi, column): React.ReactElement => (
+        <StringRenderer<T> sortStateApi={sortStateApi} column={column} />
+      );
     case 'default':
     default:
-      return defaultRenderers.common;
+      return (sortStateApi, column): React.ReactElement => (
+        <CommonRenderer<T> sortStateApi={sortStateApi} column={column} />
+      );
   }
 };
 
 export const columnWithSortButtons = (sortStateApi: SortStateAPI) => <T extends unknown>(
   column: DSColumnType<T>
-): DSColumnType<T> =>
-  column.sorter
+): DSColumnType<T> => {
+  const sortRenderer = getSortRenderer<T>(column.sortRender);
+
+  return column.sorter
     ? {
         ...column,
         sortOrder: column.key ? sortStateApi.getColumnSortOrder(String(column.key)) : null,
-        title: (
-          <TitleWithSort column={column} sortRender={getSortRenderer<T>(column.sortRender)(sortStateApi, column)} />
-        ),
+        title: <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} />,
       }
     : column;
+};
 
 export default { columnWithSortButtons };
