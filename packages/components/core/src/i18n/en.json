@@ -91,7 +91,7 @@
             "VIEW-DESCRIPTION": "Description",
             "VIEW-NAME-PLACEHOLDER": "Enter a view name",
             "VIEW-DESCRIPTION-PLACEHOLDER": "Enter the description of the view",
-            "MUST-NOT-BE-EMPTY": "Must not be empty",
+            "MUST-NOT-BE-EMPTY": "This field is required",
             "SWITCH-ON": "Switch on",
             "SWITCH-OFF": "Switch off",
             "GROUP": "Group",
