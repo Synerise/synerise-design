@@ -227,7 +227,10 @@ export const COLUMNS_WITH_LABELS = [
     key: 'name',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.name.localeCompare(b.name),
+    sorter: {
+      compare: (a, b) => a.name.localeCompare(b.name),
+      multiple: 1,
+    },
     sortRender: 'string',
   },
   {
@@ -263,7 +266,10 @@ export const COLUMNS_WITH_ICONS = [
     dataIndex: 'country',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.country.localeCompare(b.country),
+    sorter: {
+      compare: (a, b) => a.country.localeCompare(b.country),
+      multiple: 2,
+    },
     render: (country, record) => {
       return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
     },
@@ -271,12 +277,14 @@ export const COLUMNS_WITH_ICONS = [
 
 
   {
+    key: 'icon-with-label',
     title: 'Icon with label',
     dataIndex: 'name',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <UserM /> },
     iconTooltip: { component: <InfoFillS /> },
+    sorter: (a, b) => (a, b) => a.name.localeCompare(b.name),
     render: (name, record) => (
       <TableCell.IconLabelCell icon={{ component: <UserM />, color: '#6a7580' }} label={name} />
     ),
