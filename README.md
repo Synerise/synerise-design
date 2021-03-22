@@ -33,4 +33,4 @@ import Button from '@synerise/ds-button'
 <DSProvider>
     <Button>Click Me!</Button>
 </DSProvider>
-```
+``` 
