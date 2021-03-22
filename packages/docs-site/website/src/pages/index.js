@@ -66,9 +66,6 @@ function Index() {
                   <p className="c-text-paragraph-component c-text-paragraph c-generic-section__description">
                     Based on the Colloid Design language, the system consists of working code, human interface guidelines and a vibrant community contributions.
                   </p>
-                  <div className="c-generic-section__buttons">
-                    <a className="c-button-filled" href="/docs/palette" target="_self">Learn more</a>
-                  </div>
                 </div>
               </div>
             </div>
