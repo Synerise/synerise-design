@@ -77,6 +77,7 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     .ant-menu-vertical,
     .ant-menu-vertical-left {
       border-right-width: 0px;
+      margin: 8px 0 8px 0;
     }
   }
 `;
@@ -131,6 +132,12 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     }
     .ant-menu-item {
       padding-right:5px;
+      padding-left: 10px !important;
+      margin-left: 24px;
+      max-width: 176px;
+    }
+    .ds-menu-prefix {
+      margin-left: 0px ;
     }
     
     &.ant-menu-item-selected {
@@ -152,7 +159,12 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             &::before {
             color: ${(props): string => props.theme.palette['grey-600']};
           }
+          .ds-menu-prefix {
+            svg {
+                fill: ${(props): string => props.theme.palette['blue-600']};
+            }
           }
+        }
     
           &::after {
             content: none;
@@ -180,21 +192,26 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       &:not(:hover) {
         color: ${(props): string => props.theme.palette['grey-700']};
       }
-      background:${(props): string => props.theme.palette['grey-050']};
+      background:${(props): string => props.theme.palette['blue-050']};
+      .ds-menu-content-wrapper {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      background: ${(props): string => props.theme.palette['blue-050']};
+      }
+
       
       & > i.ant-menu-submenu-arrow {
          transform: rotate(180deg);
          background-image: url("${(props): string =>
            props.disabled
              ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
-             : arrowDownSvgWithCustomColor(props.theme.palette['grey-500'])}");
+             : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
     }
     > .ant-menu-submenu-title {
       border-radius: 3px;
       & > i.ant-menu-submenu-arrow {
           transform: rotate(0deg);
-          top:5px;
+          top:calc(50% - 12px);
           right:5px;
           height:24px;
           width:24px;

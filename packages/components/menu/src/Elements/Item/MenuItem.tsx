@@ -1,12 +1,14 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 
+import Tooltip from '@synerise/ds-tooltip';
 import { ItemType, MenuItemProps } from './MenuItem.types';
 import SubMenuItem from '../SubMenu/SubMenu';
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
 import Text from './Text/Text';
 import Select from './Select/Select';
 import Danger from './Danger/Danger';
+import { MenuDivider } from '../../Menu.styles';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -37,7 +39,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         ordered={ordered}
         disabled={disabled}
         danger={danger}
-        text={text}
+        text={<Tooltip title="dupa">{text}</Tooltip>}
         description={description}
         indentLevel={indentLevel || 0}
         subMenu={subMenu}
@@ -82,6 +84,8 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           {text || children}
         </Danger>
       );
+    case ItemType.DIVIDER:
+      return <MenuDivider />;
     default:
       return (
         <Text

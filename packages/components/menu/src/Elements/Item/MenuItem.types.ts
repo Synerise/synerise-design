@@ -7,6 +7,7 @@ export enum ItemType {
   DEFAULT = 'default',
   SELECT = 'select',
   DANGER = 'danger',
+  DIVIDER = 'divider',
 }
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   key?: React.ReactText;
@@ -27,7 +28,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   prefixVisibilityTrigger?: VisibilityTrigger;
   onItemHover?: (e: MouseEvent) => void;
   children?: React.ReactNode;
-  type?: 'default' | 'select' | 'danger' | string;
+  type?: ItemType | string;
   indentLevel?: number;
   menuItemKey?: React.ReactText;
   checked?: boolean;

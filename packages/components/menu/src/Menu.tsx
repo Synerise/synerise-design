@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Menu.styles';
 
 import SubMenuItem from './Elements/SubMenu/SubMenu';
@@ -19,7 +20,7 @@ class Menu extends React.Component<AntdMenuProps> {
   static Divider = S.MenuDivider;
 
   render(): React.ReactNode {
-    const { dataSource, ordered, selectable, children, ...rest } = this.props;
+    const { dataSource, ordered, selectable, children, showTextTooltip, ...rest } = this.props;
     return (
       <S.AntdMenu
         ordered={ordered}
@@ -36,7 +37,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 prefixel={item.prefixel}
                 suffixel={item.suffixel}
                 disabled={item.disabled}
-                text={item.text}
+                text={showTextTooltip ? <Tooltip title={item.text}>{item.text}</Tooltip> : item.text}
                 description={item.description}
                 subMenu={item.subMenu}
                 ordered={item.ordered === undefined ? ordered : item.ordered}
@@ -48,6 +49,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 menuItemKey={item.key || `${item.text}${index}`}
                 {...rest}
+                {...item}
               />
             ) : (
               <MenuItem
@@ -56,7 +58,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 prefixel={item.prefixel}
                 suffixel={item.suffixel}
                 disabled={item.disabled}
-                text={item.text}
+                text={showTextTooltip ? <Tooltip title={item.text}>{item.text}</Tooltip> : item.text}
                 description={item.description}
                 subMenu={item.subMenu}
                 ordered={item.ordered === undefined ? ordered : item.ordered}
@@ -71,6 +73,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 menuItemKey={item.key || `${item.text}${index}`}
                 {...rest}
+                {...item}
               />
             )
           )}

@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import Menu from '@synerise/ds-menu';
+import InlineEdit from '@synerise/ds-inline-edit';
+import { InlineEditProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
+
 
 export const ItemWithoutHover = styled(Menu.Item)`
   &&&:hover {
@@ -27,6 +30,17 @@ export const StyledMenuItem = styled(Menu.Item)<{ selected: boolean }>`
     }
   }
 `;
+export const StyledInlineEditMenu = styled(InlineEdit)<InlineEditProps>`
+  && .autosize-input > input {
+    max-width: 100px;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.39;
+    min-height: 18px;
+    padding: 0;
+  }
+`;
+
 export const MenuWrapper = styled.div`
   .ant-menu {
     .ds-menu-item {

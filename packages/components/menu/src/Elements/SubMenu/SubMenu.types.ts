@@ -1,5 +1,6 @@
 import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
+import { MenuItemProps } from '../Item/MenuItem.types';
 
 export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   key?: React.ReactText;
@@ -23,4 +24,4 @@ export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
 export interface SubMenuState {
   uuidKey: string;
 }
-export type SubMenuItemProps = SubMenuProps & { onClick?: (item: SubMenuProps) => void };
+export type SubMenuItemProps = SubMenuProps & MenuItemProps & { onClick?: (item: SubMenuProps) => void };
