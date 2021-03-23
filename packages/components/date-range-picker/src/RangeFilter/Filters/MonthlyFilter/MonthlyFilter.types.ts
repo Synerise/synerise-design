@@ -27,3 +27,9 @@ export type Month<T = DenormalizedFilter> = {
     [day: number]: T;
   };
 };
+
+export type MonthlyFilterState = {
+  visible: {
+    [guid: string]: boolean;
+  };
+}

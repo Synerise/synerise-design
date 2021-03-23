@@ -1,4 +1,5 @@
 import { range } from 'lodash';
+import { v4 as uuid } from 'uuid';
 import MonthlyFilter from './Filters/MonthlyFilter/MonthlyFilter';
 import WeeklyFilter from './Filters/WeeklyFilter/WeeklyFilter';
 import DailyFilter from './Filters/DailyFilter/DailyFilter';
@@ -50,7 +51,7 @@ export const DEFAULT_COUNTED_FROM: MonthlySelectValue<COUNTED_FROM_ENUM>[] = [
   },
 ];
 
-export const defaultId = Math.random();
+export const defaultId = uuid();
 
 export const TYPES_DATA = {
   MONTHLY: {
