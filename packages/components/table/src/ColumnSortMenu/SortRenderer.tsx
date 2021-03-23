@@ -6,6 +6,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon/dist/icons';
 import { DSColumnType } from '../Table.types';
+import { TableLocaleContext } from '../utils/locale';
 import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
 import * as S from './SortRenderer.styles';
@@ -25,58 +26,59 @@ export const CommonRenderer = <T extends unknown>({
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
 
   return (
-    <Dropdown
-      overlay={
-        <Dropdown.Wrapper>
-          <Menu
-            onClick={({ key }): void => {
-              onSortOrderChange(toSortOrder(key));
-            }}
-            style={{ padding: 8 }}
-          >
-            {/* TODO: add translation */}
-            <Menu.Item
-              key="ascend"
-              prefixel={<Icon component={<SortAscendingM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
-            >
-              Sort ascending
-            </Menu.Item>
-            {/* TODO: add translation */}
-            <Menu.Item
-              key="descend"
-              prefixel={<Icon component={<SortDescendingM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
-            >
-              Sort descending
-            </Menu.Item>
-            {/* TODO: add translation */}
-            {!!columnSortOrder && (
-              <S.ClearItemWrapper
-                onClick={(e): void => {
-                  e.preventDefault();
+    <TableLocaleContext.Consumer>
+      {(locale): React.ReactElement => (
+        <Dropdown
+          overlay={
+            <Dropdown.Wrapper>
+              <Menu
+                onClick={({ key }): void => {
+                  onSortOrderChange(toSortOrder(key));
                 }}
+                style={{ padding: 8 }}
               >
                 <Menu.Item
-                  key="null"
-                  prefixel={
-                    <span>
-                      <Icon component={<Close2M />} />
-                    </span>
-                  }
+                  key="ascend"
+                  prefixel={<Icon component={<SortAscendingM />} />}
+                  suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
                 >
-                  Clear
+                  {locale.columnSortAscend}
                 </Menu.Item>
-              </S.ClearItemWrapper>
-            )}
-          </Menu>
-        </Dropdown.Wrapper>
-      }
-    >
-      <Button type="ghost" mode="single-icon">
-        <DefaultSortIcon sortOrder={columnSortOrder} />
-      </Button>
-    </Dropdown>
+                <Menu.Item
+                  key="descend"
+                  prefixel={<Icon component={<SortDescendingM />} />}
+                  suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
+                >
+                  {locale.columnSortDescend}
+                </Menu.Item>
+                {!!columnSortOrder && (
+                  <S.ClearItemWrapper
+                    onClick={(e): void => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <Menu.Item
+                      key="null"
+                      prefixel={
+                        <span>
+                          <Icon component={<Close2M />} />
+                        </span>
+                      }
+                    >
+                      {locale.columnSortClear}
+                    </Menu.Item>
+                  </S.ClearItemWrapper>
+                )}
+              </Menu>
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button type="ghost" mode="single-icon">
+            <DefaultSortIcon sortOrder={columnSortOrder} />
+          </Button>
+        </Dropdown>
+      )}
+    </TableLocaleContext.Consumer>
   );
 };
 
@@ -90,58 +92,58 @@ export const StringRenderer = <T extends unknown>({
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
 
   return (
-    <Dropdown
-      overlay={
-        <Dropdown.Wrapper>
-          <Menu
-            onClick={({ key }): void => {
-              onSortOrderChange(toSortOrder(key));
-            }}
-            style={{ padding: 8 }}
-          >
-            {/* TODO: add translation */}
-            <Menu.Item
-              key="ascend"
-              prefixel={<Icon component={<SortAzM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
-            >
-              Sort a-z
-            </Menu.Item>
-            {/* TODO: add translation */}
-            <Menu.Item
-              key="descend"
-              prefixel={<Icon component={<SortZaM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
-            >
-              Sort z-a
-            </Menu.Item>
-            {/* TODO: add translation */}
-            {/* TODO: add reddish background */}
-            {!!columnSortOrder && (
-              <S.ClearItemWrapper
-                onClick={(e): void => {
-                  e.preventDefault();
+    <TableLocaleContext.Consumer>
+      {(locale): React.ReactElement => (
+        <Dropdown
+          overlay={
+            <Dropdown.Wrapper>
+              <Menu
+                onClick={({ key }): void => {
+                  onSortOrderChange(toSortOrder(key));
                 }}
+                style={{ padding: 8 }}
               >
                 <Menu.Item
-                  key="null"
-                  prefixel={
-                    <span>
-                      <Icon component={<Close2M />} />
-                    </span>
-                  }
+                  key="ascend"
+                  prefixel={<Icon component={<SortAzM />} />}
+                  suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
                 >
-                  Clear
+                  {locale.columnSortAz}
                 </Menu.Item>
-              </S.ClearItemWrapper>
-            )}
-          </Menu>
-        </Dropdown.Wrapper>
-      }
-    >
-      <Button type="ghost" mode="single-icon">
-        <StringSortIcon sortOrder={columnSortOrder} />
-      </Button>
-    </Dropdown>
+                <Menu.Item
+                  key="descend"
+                  prefixel={<Icon component={<SortZaM />} />}
+                  suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
+                >
+                  {locale.columnSortZa}
+                </Menu.Item>
+                {!!columnSortOrder && (
+                  <S.ClearItemWrapper
+                    onClick={(e): void => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <Menu.Item
+                      key="null"
+                      prefixel={
+                        <span>
+                          <Icon component={<Close2M />} />
+                        </span>
+                      }
+                    >
+                      {locale.columnSortClear}
+                    </Menu.Item>
+                  </S.ClearItemWrapper>
+                )}
+              </Menu>
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button type="ghost" mode="single-icon">
+            <StringSortIcon sortOrder={columnSortOrder} />
+          </Button>
+        </Dropdown>
+      )}
+    </TableLocaleContext.Consumer>
   );
 };

@@ -67,6 +67,11 @@ export type Locale = TableLocale & {
   selectAllTooltip?: string;
   starRowTooltip?: string;
   selectionOptionsTooltip?: string;
+  columnSortAz?: string;
+  columnSortZa?: string;
+  columnSortAscend?: string;
+  columnSortDescend?: string;
+  columnSortClear?: string;
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
