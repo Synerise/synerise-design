@@ -284,7 +284,7 @@ export const COLUMNS_WITH_ICONS = [
     ellipsis: true,
     icon: { component: <UserM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => (a, b) => a.name.localeCompare(b.name),
+    sorter: (a, b) => a.name.localeCompare(b.name),
     render: (name, record) => (
       <TableCell.IconLabelCell icon={{ component: <UserM />, color: '#6a7580' }} label={name} />
     ),
