@@ -16,6 +16,8 @@ interface SortRendererProps<T> {
   column: DSColumnType<T>;
 }
 
+const getPopupParent = (triggerNode: HTMLElement): HTMLElement => triggerNode.parentElement as HTMLElement;
+
 export const CommonRenderer = <T extends unknown>({
   column,
   sortStateApi,
@@ -29,6 +31,7 @@ export const CommonRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
+          getPopupContainer={getPopupParent}
           overlay={
             <Dropdown.Wrapper>
               <Menu
@@ -95,6 +98,7 @@ export const StringRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
+          getPopupContainer={getPopupParent}
           overlay={
             <Dropdown.Wrapper>
               <Menu
