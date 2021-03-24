@@ -27,10 +27,12 @@ export const HeaderSideChildren = styled.div`
   padding-left: 24px;
 `;
 
-export const IconContainer = styled.div<{ compact?: boolean }>`
+export const IconContainer = styled.div<{ compact?: boolean; description?: React.ReactNode }>`
+  display: flex;
   width: 24px;
-  height: 24px;
+  height: ${(props): string => (props.description ? '24px' : '32px')};
   margin-top: ${(props): string => (props.compact ? '4px' : '0px')};
+  align-items: center;
 `;
 
 export const Container = styled.div<{
