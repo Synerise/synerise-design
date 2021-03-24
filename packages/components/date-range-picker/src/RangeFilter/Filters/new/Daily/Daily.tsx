@@ -17,6 +17,7 @@ import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 const Daily: React.FC<DailyProps> = ({
+  disabled,
   value = [],
   onChange = NOOP,
   valueSelectionMode = ['Hour', 'Range'],
@@ -82,6 +83,7 @@ const Daily: React.FC<DailyProps> = ({
       {!!value &&
         value.map((s, index) => (
           <RangeFormContainer
+            disabled={disabled}
             days={EMPTY_OBJECT}
             onChange={NOOP}
             onMultipleDayTimeChange={NOOP}
@@ -94,7 +96,7 @@ const Daily: React.FC<DailyProps> = ({
             texts={EMPTY_OBJECT}
             activeDays={[0]}
             getDayValue={(): DailySchedule => getDayValue(index)}
-            onRangeDelete={(): void => handleRangeDelete(index)}
+            onRangeDelete={disabled ? undefined : (): void => handleRangeDelete(index)}
             onModeChange={(mode): void => handleModeChange(mode, index)}
             valueSelectionModes={valueSelectionMode}
             renderSuffix={RENDER_EMPTY_NODE_FN}
@@ -104,7 +106,7 @@ const Daily: React.FC<DailyProps> = ({
             hideHeader
           />
         ))}
-      {value.length < MAX_RANGES && (
+      {value.length < MAX_RANGES && !disabled && (
         <AddButton
           label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add range' })}
           onClick={handleRangeAdd}

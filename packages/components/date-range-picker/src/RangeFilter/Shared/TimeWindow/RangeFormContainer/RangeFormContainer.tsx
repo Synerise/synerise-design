@@ -13,6 +13,7 @@ import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
 
 const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   activeDays,
+  disabled,
   days,
   dayKeys,
   getDayValue,
@@ -61,6 +62,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const rangeForm = React.useMemo(
     () => (
       <RangeForm
+        disabled={disabled}
         texts={texts as Texts}
         onModeChange={(selected: DateLimitMode): void => {
           setMode(selected);

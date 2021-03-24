@@ -5,9 +5,9 @@ import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { RangeActions as RangeActionsMethods } from '../../Shared/TimeWindow/TimeWindow.types';
 import { Days } from '../../../date.types';
 import { WithTranslations } from '../../../DateRangePicker.types';
-import { ValueSelectionModes } from '../../RangeFilter.types';
+import { ValueSelectionModes, WithDisabledProp } from '../../RangeFilter.types';
 
-export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods>, WithTranslations {
+export interface Props extends WrappedComponentProps, Partial<RangeActionsMethods>, WithTranslations, WithDisabledProp {
   value: string;
   onChange: (v: Days) => {};
   valueSelectionModes: ValueSelectionModes;
@@ -18,10 +18,11 @@ const DailyFilter: React.FC<Props> = props => {
     const { onChange } = props;
     onChange && onChange(value[0] as Days);
   };
-  const { value, intl, onRangeCopy, onRangePaste, onRangeClear, texts, valueSelectionModes } = props;
+  const { value, intl, onRangeCopy, onRangePaste, onRangeClear, texts, valueSelectionModes, disabled } = props;
   return (
     <S.DailyFilterWrapper>
       <TimeWindow
+        disabled={disabled}
         texts={texts}
         hideHeader
         numberOfDays={0}

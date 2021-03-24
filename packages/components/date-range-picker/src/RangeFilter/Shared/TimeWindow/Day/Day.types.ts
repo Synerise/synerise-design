@@ -9,6 +9,6 @@ export type DayProps = {
   restricted: boolean;
   active: boolean;
   onToggle: (dayKey: DayKey, forceState?: boolean) => void;
-  readOnly: boolean;
+  readOnly?: boolean;
   texts?: GridTexts;
 } & WrappedComponentProps;

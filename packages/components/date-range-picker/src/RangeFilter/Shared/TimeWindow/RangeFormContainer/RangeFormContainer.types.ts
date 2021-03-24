@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
 import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
-import { FilterDefinition } from '../../../RangeFilter.types';
+import { FilterDefinition, WithDisabledProp } from '../../../RangeFilter.types';
 import { DateLimitMode } from './RangeForm/RangeForm.types';
 
 export type RangeFormContainerProps = {
@@ -18,5 +18,5 @@ export type RangeFormContainerProps = {
   timeFormat?: string;
   timePickerProps?: Partial<TimePickerProps>;
   renderSuffix?: () => React.ReactNode;
-} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> &
+} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> & WithDisabledProp &
   Partial<RangeActions>;
