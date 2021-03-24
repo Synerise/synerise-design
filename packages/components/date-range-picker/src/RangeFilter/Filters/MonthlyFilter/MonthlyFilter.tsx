@@ -4,7 +4,8 @@ import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/Cont
 import { Tag, TagShape } from '@synerise/ds-tags';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
-import { Month, MonthlyFilterProps } from './MonthlyFilter.types';
+import { v4 as uuid } from 'uuid';
+import { Month, MonthlyFilterProps, MonthlyFilterState } from './MonthlyFilter.types';
 import {
   MONTH_DAYS,
   DEFAULT_DAYS_OF_PERIODS,
@@ -19,7 +20,7 @@ import * as S from './MonthlyFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 
-class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
+class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilterState> {
   state = {
     visible: {
       [defaultId]: true,
@@ -37,7 +38,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
   };
 
   handleAddRow = (): void => {
-    const id = Math.random();
+    const id = uuid();
     const { value, countedFromPeriods, daysOfPeriods } = this.props;
     const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
     const defaultPeriodType = (countedFromPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
@@ -271,7 +272,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps> {
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               name: (
-                <S.DropdownHeader className={visible[item.id] && 'dropdown-header-visible'}>
+                <S.DropdownHeader className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}>
                   <S.DropdownLabel>
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" defaultMessage="Rule" />{' '}
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="days of" />

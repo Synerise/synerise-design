@@ -42,7 +42,7 @@ const Card: React.FC<CardProps> = ({
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
           {icon && (
-            <S.IconContainer compact={compactHeader}>
+            <S.IconContainer description={description} compact={compactHeader}>
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )}
