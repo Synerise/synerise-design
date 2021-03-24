@@ -15,7 +15,6 @@ const fakeData = new Array(50).fill({}).map((v, i) => ({
 }));
 
 
-const sortOrderTypes: ['ascend', 'descend', false] = ['ascend', 'descend', false];
 const sortRenderTypes: ['string', 'default'] = ['string', 'default'];
 
 const stories = {
