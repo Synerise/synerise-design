@@ -162,7 +162,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
   };
 
   renderDaysOfField = (item: Month, key: number): React.ReactNode => {
-    const { intl, daysOfPeriods } = this.props;
+    const { intl, daysOfPeriods, disabled } = this.props;
     if (daysOfPeriods?.length === 1) {
       return (
         <S.PeriodMode>
@@ -179,6 +179,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     }));
     return (
       <S.Select
+        disabled={disabled}
         expanded={false}
         dropdownOverlayStyle={{
           minWidth: '150px',
@@ -198,7 +199,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
   };
 
   renderCountedFromField = (item: Month, key: number): React.ReactNode => {
-    const { intl, countedFromPeriods } = this.props;
+    const { intl, countedFromPeriods, disabled } = this.props;
 
     if (countedFromPeriods?.length === 1) {
       return (
@@ -216,6 +217,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     }));
     return (
       <S.Select
+        disabled={disabled}
         expanded={false}
         dropdownProps={{
           getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
@@ -245,6 +247,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       texts,
       valueSelectionModes,
       timePickerProps,
+      disabled,
       renderRangeFormSuffix,
     } = this.props;
     const { visible } = this.state;
@@ -267,7 +270,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   textColor={theme.palette['grey-500']}
                 />
               ),
-              canDelete: true,
+              canDelete: !disabled,
               id: item.id as string,
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
@@ -290,6 +293,8 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow
+                    disabled={disabled}
+                    readOnly={disabled}
                     texts={texts}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
@@ -323,7 +328,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           />
         ))}
         <S.AddContainer>
-          {value.length < MAX_RULES_ALLOWED && (
+          {!disabled && value.length < MAX_RULES_ALLOWED && (
             <Button.Creator
               label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE', defaultMessage: 'Add rule' })}
               onClick={this.handleAddRow}

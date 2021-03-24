@@ -200,20 +200,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     return label;
   };
 
-  // Will be useful when we start to support multiple ranges
-  /*  handleRangeClear = (dayKeys: DayKey): void => {
-    const { activeDays } = this.state;
-    activeDays.length > 1
-      ? this.handleMultipleDayTimeChange([
-          getDateFromDayValue(DEFAULT_RANGE_START),
-          getDateFromDayValue(DEFAULT_RANGE_END),
-        ])
-      : this.handleDayTimeChange(
-          [getDateFromDayValue(DEFAULT_RANGE_START), getDateFromDayValue(DEFAULT_RANGE_END)],
-          dayKeys
-        );
-  }; */
-
   handleRangePaste = (dayKeys: DayKey): void => {
     const { rangeClipboard } = this.props;
     const { activeDays } = this.state;
@@ -286,9 +272,11 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       valueSelectionModes,
       renderRangeFormSuffix,
       timePickerProps,
+      disabled,
     } = this.props;
     return (
       <RangeFormContainer
+        disabled={disabled}
         onChange={onChange}
         days={days}
         activeDays={activeDays}
@@ -297,8 +285,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         getDayValue={this.getDayValue}
         onMultipleDayTimeChange={this.handleMultipleDayTimeChange}
         onDayTimeChange={this.handleDayTimeChange}
-        onRangeClear={this.handleRangeDelete}
-        onRangeCopy={this.handleRangeCopy}
+        onRangeClear={disabled ? undefined : this.handleRangeDelete}
+        onRangeCopy={disabled ? undefined : this.handleRangeCopy}
         onRangePaste={(): void => this.handleRangePaste(dayKeys as DayKey)}
         hideHeader={hideHeader}
         monthlyFilter={monthlyFilter}
@@ -351,15 +339,15 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   render(): JSX.Element {
-    const { days, numberOfDays, daily, intl, texts, ...rest } = this.props;
+    const { days, numberOfDays, daily, intl, texts, disabled, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
 
     const shouldRenderRangeForm = (!!activeDays.length && isRangeDefined) || !!daily;
-    const shouldRenderSelectionHint = !activeDays.length;
-    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined;
+    const shouldRenderSelectionHint = !activeDays.length && !disabled;
+    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined && !disabled;
     return (
       <S.TimeWindowContainer
         tabIndex={0}
