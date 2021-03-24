@@ -99,6 +99,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       onMultipleDayTimeChange,
       onDayTimeChange,
       mode,
+      disabled,
       dayValue,
       dayKeys,
       onRangeDelete,

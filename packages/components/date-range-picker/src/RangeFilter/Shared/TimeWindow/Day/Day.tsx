@@ -37,7 +37,7 @@ const Day: React.FC<DayProps> = ({
 
   const handleButtonClick = React.useCallback((): void => {
     onToggle && onToggle(dayKey, true);
-  }, [readOnly, onToggle, dayKey]);
+  }, [onToggle, dayKey]);
 
   const icon = React.useMemo(() => {
     return hovered && !readOnly ? (
@@ -45,7 +45,7 @@ const Day: React.FC<DayProps> = ({
     ) : (
       <Icon component={<CheckS />} color={theme.palette['green-600']} />
     );
-  }, [hovered, handleIconClick]);
+  }, [hovered, handleIconClick, readOnly]);
 
   const getPopupContainer = React.useCallback(
     (node: HTMLElement): HTMLElement => (node.parentElement ? node.parentElement : document.body),
