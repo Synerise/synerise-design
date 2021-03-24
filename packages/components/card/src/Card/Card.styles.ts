@@ -26,6 +26,11 @@ export const HeaderSideChildren = styled.div`
   position: relative;
   padding-left: 24px;
 `;
+export const IconWrapper = styled.div<{ description?: React.ReactNode }>`
+  display: flex;
+  height: ${(props): string => (props.description ? '24px' : '32px')};
+  align-items: center;
+`;
 
 export const IconContainer = styled.div<{ compact?: boolean }>`
   width: 24px;

@@ -42,9 +42,11 @@ const Card: React.FC<CardProps> = ({
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
           {icon && (
-            <S.IconContainer compact={compactHeader}>
-              <Icon component={icon} color={iconColor} />
-            </S.IconContainer>
+            <S.IconWrapper description={description}>
+              <S.IconContainer compact={compactHeader}>
+                <Icon component={icon} color={iconColor} />
+              </S.IconContainer>
+            </S.IconWrapper>
           )}
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
