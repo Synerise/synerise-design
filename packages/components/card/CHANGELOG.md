@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.12...@synerise/ds-card@0.8.13) (2021-03-24)
+
+
+### Bug Fixes
+
+* **card:** change height of icon ([d41bb42](https://github.com/Synerise/synerise-design/commit/d41bb422830fc201e28a8a44f8fa6ac88fd029f3))
+* **card:** change height of icon and remove unnecessary wrapper ([4123f6b](https://github.com/Synerise/synerise-design/commit/4123f6b10792c2a10df4a453838517c427279519))
+
+
+
+
+
 ## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.11...@synerise/ds-card@0.8.12) (2021-03-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.15...@synerise/ds-inline-edit@0.4.0) (2021-03-24)
+
+
+### Features
+
+* **inline-edit:** export inline select in index ([cf9a6cf](https://github.com/Synerise/synerise-design/commit/cf9a6cff486bcd071294e0a2438b866861c0b661))
+
+
+
+
+
 ## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.14...@synerise/ds-inline-edit@0.3.15) (2021-03-22)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit
