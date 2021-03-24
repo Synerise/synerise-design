@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.2...@synerise/ds-date-range-picker@0.9.3) (2021-03-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** handling disabled state in filters ([51e4005](https://github.com/Synerise/synerise-design/commit/51e4005f00ebfb540e37a239cd1d2db0ef3bd710))
+
+
+
+
+
 ## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.1...@synerise/ds-date-range-picker@0.9.2) (2021-03-24)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
