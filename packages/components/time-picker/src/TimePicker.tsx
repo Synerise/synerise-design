@@ -146,9 +146,9 @@ const TimePicker: React.FC<TimePickerProps> = ({
         onClick={clear}
       />
     ) : (
-      <Icon component={<ClockM />} size={24} onClick={(): void => setOpen(true)} />
+      <Icon component={<ClockM />} size={24} onClick={disabled ? undefined : (): void => setOpen(true)} />
     );
-  }, [open, dateString, clear, clearTooltip, alwaysOpen]);
+  }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = React.useMemo((): string => {
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
@@ -168,6 +168,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         {...dropdownProps}
       >
         <S.TimePickerInput
+          disabled={disabled}
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
           value={use12HourClock && !!dateString ? `${dateString} ${clockMode}` : dateString}
