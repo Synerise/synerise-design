@@ -19,4 +19,4 @@ export const ClearItemWrapper = styled.div`
   }
 `;
 
-export const fuckoff = '';
+export default { ClearItemWrapper };
