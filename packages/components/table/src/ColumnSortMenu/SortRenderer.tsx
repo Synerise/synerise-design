@@ -16,7 +16,10 @@ interface SortRendererProps<T> {
   column: DSColumnType<T>;
 }
 
-const getPopupParent = (triggerNode: HTMLElement): HTMLElement => triggerNode.parentElement as HTMLElement;
+const getPopupParent = (triggerNode: HTMLElement): HTMLElement =>
+  // dropdown target node must be resolved relatively to triggerNode (which comes from getPopupContainer)
+  // go up to <thead> due to possible columns ellipsis overflow
+  triggerNode.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as HTMLElement;
 
 export const CommonRenderer = <T extends unknown>({
   column,
