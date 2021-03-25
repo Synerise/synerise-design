@@ -21,17 +21,29 @@ const boxShadow = (props: { background: Backgrounds; theme: ThemePropsVars }): s
   if (withOutline.includes(props.background)) return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
   return 'none';
 };
+type IconContainerProps = { compact?: boolean; description?: React.ReactNode };
+const getHeight = (props: IconContainerProps): string => {
+  if (props.compact && props.description) {
+    return ' 32px';
+  }
+  if (props.compact) {
+    return ' 32px';
+  }
+  if (props.description) {
+    return '24px';
+  }
+  return ' 32px';
+};
 
 export const HeaderSideChildren = styled.div`
   position: relative;
   padding-left: 24px;
 `;
 
-export const IconContainer = styled.div<{ compact?: boolean; description?: React.ReactNode }>`
+export const IconContainer = styled.div<IconContainerProps>`
   display: flex;
   width: 24px;
-  height: ${(props): string => (props.description ? '24px' : '32px')};
-  margin-top: ${(props): string => (props.compact ? '4px' : '0px')};
+  height: ${(props): string => getHeight(props)};
   align-items: center;
 `;
 
