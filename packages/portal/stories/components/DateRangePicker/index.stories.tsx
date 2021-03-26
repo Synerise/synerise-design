@@ -103,7 +103,7 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{placement: 'bottomLeft'}}
+        popoverProps={{ placement: 'bottomLeft' }}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
@@ -141,7 +141,7 @@ const stories = {
           clear: 'Clear',
           emptyDateError: 'Date cannot be empty',
         }}
-        popoverProps={{placement: 'bottomLeft'}}
+        popoverProps={{ placement: 'bottomLeft' }}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         showFilter={true}
         relativeModes={getRelativeModes(modesObj)}
@@ -166,11 +166,13 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{placement: 'bottomLeft'}}
+        popoverProps={{ placement: 'bottomLeft' }}
       />
     );
   },
   dailyDateFilter: () => {
+    const disabled = boolean('Set disabled', false);
+
     const [value, setValue] = React.useState([
       {
         start: DEFAULT_RANGE_START,
@@ -182,11 +184,12 @@ const stories = {
       },
     ]);
 
-    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} />;
+    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
   },
   weeklyDateFilter: () => {
+    const disabled = boolean('Set disabled', false);
     const [value, setValue] = React.useState({});
-    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} />;
+    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
   },
 };
 

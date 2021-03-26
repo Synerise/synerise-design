@@ -65,7 +65,9 @@ export type NormalizedFilterBase = {
 export type WeekFilter = {
   week: number;
 };
-
+export type WithDisabledProp = {
+  disabled?: boolean;
+}
 export type WeeklyFilterDefinition = {
   [key: string]: FilterDefinition;
 };
