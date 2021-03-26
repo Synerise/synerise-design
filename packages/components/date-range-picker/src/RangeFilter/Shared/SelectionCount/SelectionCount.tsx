@@ -10,5 +10,4 @@ const SelectionCount: React.FC<SelectionCountProps> = ({ label, selectedDayCount
     </S.Container>
   );
 };
-
-export default SelectionCount;
+export default React.memo(SelectionCount);

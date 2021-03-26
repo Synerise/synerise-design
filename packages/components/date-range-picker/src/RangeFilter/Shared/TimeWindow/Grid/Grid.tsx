@@ -38,11 +38,11 @@ const Grid: React.FC<GridProps> = ({
       onClick: onUnselectAll,
       label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" defaultMessage="Unselect all" />,
     });
-  let grid = (
+  let grid = React.useMemo(()=>(
     <S.Days columns={numberOfColumns}>
       {inverted ? reverseRange(keys, reverseGroup).map(renderDay) : keys.map(renderDay)}
     </S.Days>
-  );
+  ),[numberOfColumns, inverted, keys, reverseGroup, renderDay]);
   const numberOfRows = Math.ceil(numberOfDays / numberOfColumns);
 
   if (rowLabelFormatter) {
