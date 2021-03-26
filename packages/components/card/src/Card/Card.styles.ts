@@ -123,13 +123,13 @@ export const Header = styled.div<{ onClick?: React.MouseEventHandler; headerBord
   }
 `;
 
-export const Title = styled(Typography.Title)<{ fat: boolean }>`
+export const Title = styled(Typography.Title)<{ fat: boolean; description?: React.ReactNode }>`
   && {
     display: flex;
     align-items: center;
     min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
-    margin-bottom: 6px;
+    margin-bottom: ${(props): string => (props.description ? '6px' : '0')};
   }
 `;
 
