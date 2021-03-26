@@ -60,7 +60,7 @@ export const prefixType = {
 export const CheckboxWithTooltip = ({checked, onChecked}) => {
   return (
     <Tooltip type="default" title={'Checkbox'}>
-      <div onClick={(e)=> e.stopPropagation() }>
+      <div style={{padding: '0 4px'}} onClick={(e)=> e.stopPropagation() }>
         <Checkbox checked={checked} onChange={(e)=> onChecked(e.target.checked)} />
       </div>
     </Tooltip>

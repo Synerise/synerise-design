@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 import { getDefaultProps } from '../Menu/index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, suffixType } from '../Menu/dataset';
@@ -12,13 +11,13 @@ import Checkbox from '@synerise/ds-checkbox/dist';
 import { StyledInlineEditMenu } from '../Menu/stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 
-
 const stories = {
   default: () => {
     const disabledParent = boolean('Set parent disabled', false);
     const disabledChild = boolean('Set child disabled', false);
     const parentDescription = boolean('Set medium parent', false);
     const childDescription = boolean('Set medium child', false);
+    const [selectedKeysObj, setSelectedKeysObj] = React.useState({});
     const [suffixElement1, setSuffixElement1] = React.useState(false);
     const [suffixElement2, setSuffixElement2] = React.useState(false);
     const [suffixElement3, setSuffixElement3] = React.useState(false);
@@ -26,27 +25,32 @@ const stories = {
     const [checkedParent2, setCheckedParent2] = React.useState(false);
     const [checkedParent3, setCheckedParent3] = React.useState(false);
     const [renameElement, setRenameElement] = React.useState(false);
-    const [prefixStatus,setPrefixStatus] = React.useState([false,false,false,false,false,false,false,false,false])
-    const subMenuElement1 = (initValue,index) => {
+
+    const updateSelectedKeys =  (value,key) => {
+      const newSelectedKeys = {...selectedKeysObj,[key]: value}
+      setSelectedKeysObj(newSelectedKeys)
+    }
+    const subMenuElement1 = (initValue) => {
       const [value, setValue] = React.useState<string>(initValue);
-      return{
+      const key = React.useMemo(()=>(`p1-${initValue}`),[]);
+      return {
         text: renameElement ? (
           <Tooltip title={value}>
-          <StyledInlineEditMenu
-            input={{
-              name: 'name-of-input',
-              value: value,
-              maxLength: 120,
-              placeholder: '',
-              onChange: event => setValue(event.target.value),
-            }}
-            hideIcon={true}
-          />
+            <StyledInlineEditMenu
+              input={{
+                name: 'name-of-input',
+                value: value,
+                maxLength: 120,
+                placeholder: '',
+                onChange: event => setValue(event.target.value),
+              }}
+              hideIcon={true}
+            />
           </Tooltip>
         ) : (
           <Tooltip title={value}>{value}</Tooltip>
         ),
-        key: `p1-${initValue}`,
+        key: key,
         suffixel:
           suffixElement1 === true ? (
             <Icon color={theme.palette['green-600']} component={<CheckS />} />
@@ -55,17 +59,24 @@ const stories = {
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel:
-          checkedParent1 === true ? <Checkbox defaultChecked={true} /> : renderPrefixIcon(prefixKnobChild,prefixStatus[index],()=>{
-            const values = prefixStatus.map((status, prefixIndex) =>  prefixIndex === index ? !status : status);
-            setPrefixStatus(values)}),
+          (hover) => hover ? <div style={{padding: '0 4px'}}><Checkbox defaultChecked={selectedKeysObj[key]} onChange={e=>{updateSelectedKeys(e.target.checked,key)}} /></div> :
+          checkedParent1 === true ? (
+            <div style={{padding: '0 4px'}}><Checkbox defaultChecked={true} /></div>
+          ) : (
+            renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], (value) => {
+             updateSelectedKeys(value,key)
+            })
+          ),
         description: childDescription ? 'description' : undefined,
         size: childDescription ? 'large' : undefined,
         disabled: disabledChild,
         ordered: orderedChildren,
-      }};
-    const subMenuElement2 = (initValue,index) => {
+      };
+    };
+    const subMenuElement2 = (initValue) => {
       const [value, setValue] = React.useState<string>(initValue);
-      return{
+      const key = React.useMemo(()=>(`p2-${initValue}`),[]);
+      return {
         text: renameElement ? (
           <Tooltip title={value}>
             <StyledInlineEditMenu
@@ -91,17 +102,24 @@ const stories = {
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel:
-          checkedParent2 === true ? <Checkbox defaultChecked={true} /> : renderPrefixIcon(prefixKnobChild,prefixStatus[index],()=>{
-            const values = prefixStatus.map((status, prefixIndex) =>  prefixIndex === index ? !status : status);
-            setPrefixStatus(values)}),
+          (hover) => hover ? <div style={{padding: '0 4px'}}><Checkbox defaultChecked={selectedKeysObj[key]} onChange={e=>{updateSelectedKeys(e.target.checked,key)}} /></div> :
+            checkedParent2 === true ? (
+              <div style={{padding: '0 4px'}}><Checkbox defaultChecked={true} /></div>
+            ) : (
+              renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], (value) => {
+                updateSelectedKeys(value,key)
+              })
+            ),
         description: childDescription ? 'description' : undefined,
         size: childDescription ? 'large' : undefined,
         disabled: disabledChild,
         ordered: orderedChildren,
-      }};
-    const subMenuElement3 = (initValue,index) => {
+      };
+    };
+    const subMenuElement3 = (initValue) => {
       const [value, setValue] = React.useState<string>(initValue);
-      return{
+      const key = React.useMemo(()=>(`p3-${initValue}`),[]);
+      return {
         text: renameElement ? (
           <Tooltip title={value}>
             <StyledInlineEditMenu
@@ -127,14 +145,20 @@ const stories = {
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel:
-          checkedParent3 === true ? <Checkbox defaultChecked={true} /> : renderPrefixIcon(prefixKnobChild,prefixStatus[index],()=>{
-            const values = prefixStatus.map((status, prefixIndex) =>  prefixIndex === index ? !status : status);
-            setPrefixStatus(values)}),
+          (hover) => hover ? <div style={{padding: '0 4px'}}><Checkbox defaultChecked={selectedKeysObj[key]} onChange={e=>{updateSelectedKeys(e.target.checked,key)}} /></div> :
+            checkedParent3 === true ? (
+              <div style={{padding: '0 4px'}}><Checkbox defaultChecked={true} /></div>
+            ) : (
+              renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], (value) => {
+                updateSelectedKeys(value,key)
+              })
+            ),
         description: childDescription ? 'description' : undefined,
         size: childDescription ? 'large' : undefined,
         disabled: disabledChild,
         ordered: orderedChildren,
-      }};
+      };
+    };
     const prefixKnobParent = select(
       'Set parent prefix type',
       [prefixType.singleIcon, prefixType.avatar, prefixType.none, prefixType.checkbox],
@@ -165,10 +189,10 @@ const stories = {
     );
     const orderedChildren = boolean('Set children ordered', false);
     const orderedParents = boolean('Set parents ordered', false);
-    const setDivider = boolean ('Set divder', false);
+    const setDivider = boolean('Set divider', false);
 
     const props = {
-      showTextTooltip : true,
+      showTextTooltip: true,
       dataSource: [
         {
           text: 'Parent 1',
@@ -188,11 +212,11 @@ const stories = {
           ordered: orderedParents,
           disabled: disabledParent,
           subMenu: [
-            subMenuElement1('Child 1',0),
-            setDivider ? {type: 'divider'} : null,
-            subMenuElement1('Child 2',1),
-            subMenuElement1('Child 3',2),
-            setDivider ? {type: 'divider'} : null,
+            subMenuElement1('Child 1'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement1('Child 2'),
+            subMenuElement1('Child 3'),
+            setDivider ? { type: 'divider' } : null,
           ].filter(item => !!item),
         },
         {
@@ -209,11 +233,7 @@ const stories = {
           description: parentDescription ? 'description' : undefined,
           size: parentDescription ? 'medium' : undefined,
           ordered: orderedParents,
-          subMenu: [
-            subMenuElement2('Child 1',3),
-            subMenuElement2('Child 2',4),
-            subMenuElement2('Child 3',5),
-          ],
+          subMenu: [subMenuElement2('Child 1'), subMenuElement2('Child 2'), subMenuElement2('Child 3')],
         },
         {
           text: 'Parent 3',
@@ -229,11 +249,7 @@ const stories = {
           description: parentDescription ? 'description' : undefined,
           size: parentDescription ? 'medium' : undefined,
           ordered: orderedParents,
-          subMenu: [
-            subMenuElement3('Child 1',6),
-            subMenuElement3('Child 2',7),
-            subMenuElement3('Child 3',8),
-          ],
+          subMenu: [subMenuElement3('Child 1'), subMenuElement3('Child 2'), subMenuElement3('Child 3')],
         },
       ],
     } as object;
