@@ -18,8 +18,8 @@ interface SortRendererProps<T> {
 
 const getPopupParent = (triggerNode: HTMLElement): HTMLElement =>
   // dropdown target node must be resolved relatively to triggerNode (which comes from getPopupContainer)
-  // go up to <thead> due to possible columns ellipsis overflow
-  triggerNode.parentElement?.parentElement?.parentElement?.parentElement?.parentElement?.parentElement as HTMLElement;
+  // go up to <th> due to possible columns ellipsis overflow
+  triggerNode.parentElement?.parentElement?.parentElement?.parentElement as HTMLElement;
 
 export const CommonRenderer = <T extends unknown>({
   column,
