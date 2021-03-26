@@ -49,7 +49,7 @@ const Card: React.FC<CardProps> = ({
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (
-              <S.Title level={4} fat={!!fatTitle}>
+              <S.Title description={description} level={4} fat={!!fatTitle}>
                 {title}
               </S.Title>
             )}
