@@ -251,14 +251,14 @@ const Weekly: React.FC<WeeklyProps> = ({
     onChange(updatedSchedule);
   }, [value, activeDays, defaultDayValue, onChange]);
 
-  const gridTitle = React.useMemo(
-    () => (
+  const renderGridTitle = React.useCallback(
+    (count) => (
       <SelectionCount
-        selectedDayCount={activeDays.length}
+        selectedDayCount={count}
         label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected' })}
       />
     ),
-    [intl, activeDays]
+    [intl]
   );
   const canAddRange = canAddAnotherRange(value, activeDays);
   const isAnyDaySelected = activeDays.length > 0;
@@ -277,7 +277,7 @@ const Weekly: React.FC<WeeklyProps> = ({
         intl={intl}
         numberOfDays={7}
         texts={EMPTY_OBJECT}
-        title={gridTitle}
+        title={renderGridTitle(activeDays.length)}
       />
       {isAnyDaySelected &&
         filteredSchedule.map((guid, index) => (
