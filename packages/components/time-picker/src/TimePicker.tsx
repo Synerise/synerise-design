@@ -36,7 +36,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   disabledSeconds,
   overlayClassName,
   className,
-  clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR" />,
+  clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR-TOOLTIP" defaultMessage="Clear" />,
   raw,
   onClockModeChange,
   intl,
