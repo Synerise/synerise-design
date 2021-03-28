@@ -4,10 +4,14 @@ import selectColorByLetter, { ColorObject } from '@synerise/ds-utils/dist/select
 
 import { Color, ColorHue } from './Avatar.types';
 
-export function getUserText(firstName = '', lastName = '', src = '', text = ''): string | null {
-  if (src) return null;
+function getFirstLetter(from: string | null): string {
+  return (from || '').substr(0, 1).toUpperCase();
+}
+
+export function getUserText(firstName = '', lastName = '', avatar = '', text = ''): string | null {
+  if (avatar) return null;
   if (text) return text;
-  if (firstName || lastName) return `${firstName.substr(0, 1).toUpperCase()}${lastName.substr(0, 1).toUpperCase()}`;
+  if (firstName || lastName) return `${getFirstLetter(firstName)}${getFirstLetter(lastName)}`;
   return null;
 }
 
