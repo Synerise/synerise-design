@@ -259,6 +259,17 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     );
   };
 
+  handleRangeAdd = (): void => {
+    const {daily} = this.props;
+    if (!daily && !this.haveActiveDaysCommonRange()) {
+      this.handleMultipleDayTimeChange([
+        getDateFromDayValue(DEFAULT_RANGE_START),
+        getDateFromDayValue(DEFAULT_RANGE_END),
+      ]);
+    }
+    this.setState({ isRangeDefined: true });
+  };
+
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
     const {
@@ -338,6 +349,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
+
   render(): JSX.Element {
     const { days, numberOfDays, daily, intl, texts, disabled, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
@@ -383,15 +395,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
           <S.AddButtonWrapper>
             <AddButton
               label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add time' })}
-              onClick={(): void => {
-                if (!daily && !this.haveActiveDaysCommonRange()) {
-                  this.handleMultipleDayTimeChange([
-                    getDateFromDayValue(DEFAULT_RANGE_START),
-                    getDateFromDayValue(DEFAULT_RANGE_END),
-                  ]);
-                }
-                this.setState({ isRangeDefined: true });
-              }}
+              onClick={this.handleRangeAdd}
             />
           </S.AddButtonWrapper>
         )}
