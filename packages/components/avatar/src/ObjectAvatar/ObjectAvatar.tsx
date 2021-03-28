@@ -55,6 +55,7 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
       src={avatar || src}
       tooltip={avatarTooltip}
       disabled={disabled}
+      style={badgeStatus ? {} : style}
       {...restProps}
     >
       {children || avatarText}
