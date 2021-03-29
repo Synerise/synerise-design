@@ -5,12 +5,15 @@ import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { DSTableProps, RowType, DSColumnType } from '../Table.types';
+import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import useRowStar from '../hooks/useRowStar';
+import { DSColumnType, DSTableProps, RowType } from '../Table.types';
+import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
   const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns } = props;
+  const sortStateApi = useSortState(columnsToSortState(columns));
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
   const starColumn = getRowStarColumn(props);
 
@@ -78,6 +81,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
   }, []);
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
+  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi)(column));
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -87,8 +91,8 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
       columns={[
         ...prependedColumns,
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore: columns type is different in DSTableProps than AntTableProps
-        ...columns,
+        // @ts-ignore: decoratedColumns type is different in DSTableProps than AntTableProps
+        ...decoratedColumns,
       ]}
       expandable={{
         expandIconColumnIndex: -1,
