@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.12.1...@synerise/ds-avatar@0.12.2) (2021-03-29)
+
+
+### Bug Fixes
+
+* **avatar:** fix if Icon is not ds Icon ([9afac7d](https://github.com/synerise/synerise-design/commit/9afac7dc3109c3c67c1df9aca9c4440f8fcede5a))
+
+
+
+
+
 ## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.12.0...@synerise/ds-avatar@0.12.1) (2021-03-29)
 
 

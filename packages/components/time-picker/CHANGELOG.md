@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.5.13...@synerise/ds-time-picker@0.5.14) (2021-03-29)
+
+
+### Bug Fixes
+
+* **time-picker:** changed clear tooltip translation key ([9d630a7](https://github.com/Synerise/synerise-design/commit/9d630a709a0a45bb3d72d94eb3103f30aa7641e2))
+
+
+
+
+
 ## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.5.12...@synerise/ds-time-picker@0.5.13) (2021-03-24)
 
 
