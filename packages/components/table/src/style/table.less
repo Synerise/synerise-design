@@ -66,6 +66,13 @@
     }
   }
 
+  th.ant-table-cell-ellipsis.ant-table-column-has-sorters {
+    overflow: visible;
+  }
+  th.ant-table-cell-ellipsis.ant-table-column-has-sorters > [class^='ant-table-column-sorters'] {
+    overflow: hidden;
+  }
+
   .virtual-table {
     colgroup {
       height: 0;
@@ -255,6 +262,7 @@
 
       &:not(.@{table-prefix-cls}-column-sort) {
         .@{table-prefix-cls}-column-sorter {
+          margin-left: 8px;
           opacity: 0;
         }
         &:hover {

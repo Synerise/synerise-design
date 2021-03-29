@@ -115,7 +115,7 @@ export const COLUMNS_WITH_TRIGGERS = [
   {
     title: 'Select',
     dataIndex: 'select',
-    key: 'key',
+    key: 'select',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -170,7 +170,7 @@ export const COLUMNS_WITH_TRIGGERS = [
   {
     title: 'Copyable',
     dataIndex: 'name',
-    key: 'name',
+    key: 'copyable',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -227,7 +227,11 @@ export const COLUMNS_WITH_LABELS = [
     key: 'name',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.name < b.name,
+    sorter: {
+      compare: (a, b) => a.name.localeCompare(b.name),
+      multiple: 1,
+    },
+    sortRender: 'string',
   },
   {
     title: 'Relations',
@@ -262,7 +266,10 @@ export const COLUMNS_WITH_ICONS = [
     dataIndex: 'country',
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: (a, b) => a.country < b.country,
+    sorter: {
+      compare: (a, b) => a.country.localeCompare(b.country),
+      multiple: 2,
+    },
     render: (country, record) => {
       return <TableCell.FlagLabelCell countryCode={country} label={record.name} />;
     },
@@ -270,12 +277,14 @@ export const COLUMNS_WITH_ICONS = [
 
 
   {
+    key: 'icon-with-label',
     title: 'Icon with label',
     dataIndex: 'name',
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <UserM /> },
     iconTooltip: { component: <InfoFillS /> },
+    sorter: (a, b) => a.name.localeCompare(b.name),
     render: (name, record) => (
       <TableCell.IconLabelCell icon={{ component: <UserM />, color: '#6a7580' }} label={name} />
     ),
@@ -338,7 +347,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar S',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-s',
     textWrap: 'none',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
@@ -362,7 +371,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar M with label',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-m',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -387,7 +396,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with label and description',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-desc',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -412,7 +421,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with loading state',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-loading',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,
@@ -460,7 +469,7 @@ export const COLUMNS_WITH_AVATARS = [
   {
     title: 'Avatar with label and meta',
     dataIndex: 'avatar',
-    key: 'avatar',
+    key: 'avatar-meta',
     width: 254,
     textWrap: 'word-break',
     ellipsis: true,

@@ -4,6 +4,7 @@ import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { RowStar } from './hooks/useRowStar.types';
+import { SortRender } from './ColumnSortMenu/TitleWithSort';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
@@ -66,10 +67,16 @@ export type Locale = TableLocale & {
   selectAllTooltip?: string;
   starRowTooltip?: string;
   selectionOptionsTooltip?: string;
+  columnSortAz?: string;
+  columnSortZa?: string;
+  columnSortAscend?: string;
+  columnSortDescend?: string;
+  columnSortClear?: string;
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   fixed?: 'left' | 'right' | string;
+  sortRender?: SortRender<T>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

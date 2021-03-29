@@ -17,6 +17,11 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
   selectRowTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ROW_TOOLTIP', defaultMessage: 'Select' }),
   selectAllTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECT_ALL_TOOLTIP', defaultMessage: 'Select' }),
   selectionOptionsTooltip: intl.formatMessage({ id: 'DS.TABLE.SELECTION_OPTIONS', defaultMessage: 'Options' }),
+  columnSortAz: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_AZ', defaultMessage: 'Sort a-z' }),
+  columnSortZa: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_ZA', defaultMessage: 'Sort z-a' }),
+  columnSortAscend: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_ASCEND', defaultMessage: 'Sort ascending' }),
+  columnSortDescend: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_DESCEND', defaultMessage: 'Sort descending' }),
+  columnSortClear: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_CLEAR', defaultMessage: 'Clear' }),
 });
 
 export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>
@@ -27,3 +32,5 @@ export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>
       pagination: { ...getDefaultLocale(intl).pagination, ...locale?.pagination },
     };
   }, [intl, locale]);
+
+export const TableLocaleContext = React.createContext<Locale>({});
