@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.14...@synerise/ds-card@0.8.15) (2021-03-29)
+
+
+### Bug Fixes
+
+* **card:** change margin of Title ([a055ea4](https://github.com/Synerise/synerise-design/commit/a055ea428f5726bffe183454241f8dc899d0acb4))
+
+
+
+
+
 ## [0.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.13...@synerise/ds-card@0.8.14) (2021-03-25)
 
 

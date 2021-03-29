@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.12.0...@synerise/ds-avatar@0.12.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* **avatar:** fix when firstName/lastName gets null ([d3f3ecb](https://github.com/synerise/synerise-design/commit/d3f3ecba1757d100c9f9930e8b0b62d11b11689b))
+* **avatar:** ObjectAvatar pass style ([1d06a7f](https://github.com/synerise/synerise-design/commit/1d06a7fc2aa33a7e8fda10fe7d4fb2664e430aa7))
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.11.5...@synerise/ds-avatar@0.12.0) (2021-03-22)
 
 
