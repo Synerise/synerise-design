@@ -12,7 +12,7 @@ import TableHeader from './TableHeader/TableHeader';
 import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
-import { useTableLocale } from './utils/locale';
+import { useTableLocale, TableLocaleContext } from './utils/locale';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -128,35 +128,37 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
   }, [pagination, grouped, tableLocale]);
 
   return (
-    <S.TableWrapper
-      className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
-      hideColumnNames={hideColumnNames}
-    >
-      {loading && (
-        <S.Spinner className="spinner">
-          <Icon component={<SpinnerM />} color="#6a7580" />
-        </S.Spinner>
-      )}
-      {grouped && dataSource?.length ? (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        <GroupTable<T>
-          {...props}
-          locale={tableLocale}
-          title={renderHeader}
-          pagination={dataSource?.length && pagination ? footerPagination : false}
-        />
-      ) : (
-        <DefaultTable<T>
-          scroll={{ x: 'auto' }}
-          tableLayout="auto"
-          {...props}
-          locale={tableLocale}
-          title={renderHeader}
-          pagination={dataSource?.length && pagination ? footerPagination : false}
-        />
-      )}
-    </S.TableWrapper>
+    <TableLocaleContext.Provider value={tableLocale}>
+      <S.TableWrapper
+        className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
+        hideColumnNames={hideColumnNames}
+      >
+        {loading && (
+          <S.Spinner className="spinner">
+            <Icon component={<SpinnerM />} color="#6a7580" />
+          </S.Spinner>
+        )}
+        {grouped && dataSource?.length ? (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          <GroupTable<T>
+            {...props}
+            locale={tableLocale}
+            title={renderHeader}
+            pagination={dataSource?.length && pagination ? footerPagination : false}
+          />
+        ) : (
+          <DefaultTable<T>
+            scroll={{ x: 'auto' }}
+            tableLayout="auto"
+            {...props}
+            locale={tableLocale}
+            title={renderHeader}
+            pagination={dataSource?.length && pagination ? footerPagination : false}
+          />
+        )}
+      </S.TableWrapper>
+    </TableLocaleContext.Provider>
   );
 }
 
