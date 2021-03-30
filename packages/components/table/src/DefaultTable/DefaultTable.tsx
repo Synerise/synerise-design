@@ -88,6 +88,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     // @ts-ignore
     <Table<T>
       {...props}
+      data-popup-container
       columns={[
         ...prependedColumns,
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -137,7 +138,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
             const isIndeterminate =
               hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
-              <Tooltip title={locale?.selectRowTooltip} mouseLeaveDelay={0}>
+              <Tooltip title={locale?.selectRowTooltip}>
                 <Button.Checkbox
                   checked={checked || allChildsChecked}
                   disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}

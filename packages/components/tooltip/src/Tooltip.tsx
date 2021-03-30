@@ -2,6 +2,7 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdTooltip from 'antd/lib/tooltip';
 import * as React from 'react';
+import { getPopupContainer } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import NotificationsM from '@synerise/ds-icon/dist/icons/NotificationsM';
 import { Carousel } from 'antd';
@@ -112,6 +113,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       autoAdjustOverflow={false}
       title={tooltipComponent}
       align={{ offset: [0, 0] }}
+      getPopupContainer={getPopupContainer}
       {...props}
     >
       {children}
