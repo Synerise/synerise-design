@@ -26,8 +26,8 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   ...restProps
 }) => {
   const { firstName = '', lastName = '', email = '', avatar } = user || {};
-  const avatarText = getUserText(firstName, lastName, src, text);
-  const defaultTooltip = { title: `${firstName} ${lastName}`.trim(), description: email || '' };
+  const avatarText = getUserText(user, src, text);
+  const defaultTooltip = { title: `${firstName || ''} ${lastName || ''}`.trim(), description: email || '' };
   const avatarTooltip =
     (tooltip === undefined || tooltip === true) && (defaultTooltip.title || defaultTooltip.description)
       ? defaultTooltip

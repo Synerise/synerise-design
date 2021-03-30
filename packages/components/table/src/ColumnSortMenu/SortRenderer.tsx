@@ -9,7 +9,6 @@ import { DSColumnType } from '../Table.types';
 import { TableLocaleContext } from '../utils/locale';
 import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
-import * as S from './SortRenderer.styles';
 
 interface SortRendererProps<T> {
   sortStateApi: SortStateAPI;
@@ -38,6 +37,7 @@ export const CommonRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper>
               <Menu
+                asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
@@ -58,22 +58,9 @@ export const CommonRenderer = <T extends unknown>({
                   {locale.columnSortDescend}
                 </Menu.Item>
                 {!!columnSortOrder && (
-                  <S.ClearItemWrapper
-                    onClick={(e): void => {
-                      e.preventDefault();
-                    }}
-                  >
-                    <Menu.Item
-                      key="null"
-                      prefixel={
-                        <span>
-                          <Icon component={<Close2M />} />
-                        </span>
-                      }
-                    >
-                      {locale.columnSortClear}
-                    </Menu.Item>
-                  </S.ClearItemWrapper>
+                  <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
+                    {locale.columnSortClear}
+                  </Menu.Item>
                 )}
               </Menu>
             </Dropdown.Wrapper>
@@ -105,6 +92,7 @@ export const StringRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper>
               <Menu
+                asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
@@ -125,22 +113,9 @@ export const StringRenderer = <T extends unknown>({
                   {locale.columnSortZa}
                 </Menu.Item>
                 {!!columnSortOrder && (
-                  <S.ClearItemWrapper
-                    onClick={(e): void => {
-                      e.preventDefault();
-                    }}
-                  >
-                    <Menu.Item
-                      key="null"
-                      prefixel={
-                        <span>
-                          <Icon component={<Close2M />} />
-                        </span>
-                      }
-                    >
-                      {locale.columnSortClear}
-                    </Menu.Item>
-                  </S.ClearItemWrapper>
+                  <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
+                    {locale.columnSortClear}
+                  </Menu.Item>
                 )}
               </Menu>
             </Dropdown.Wrapper>

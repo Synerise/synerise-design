@@ -178,6 +178,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   }
 
   .ant-table .ant-table-column-sorter {
+    margin-left: 8px;
     max-width: 32px;
     min-width: 32px;
   }

@@ -41,7 +41,7 @@
     "@synerise/ds-flag": "^0.2.11",
     "@synerise/ds-icon": "^0.43.2",
     "@synerise/ds-input": "^0.17.13",
-    "@synerise/ds-menu": "^0.1.4",
+    "@synerise/ds-menu": "^0.10.14",
     "@synerise/ds-pagination": "^0.6.73",
     "@synerise/ds-search": "^0.5.17",
     "@synerise/ds-search-bar": "^0.3.17",
