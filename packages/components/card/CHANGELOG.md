@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.15...@synerise/ds-card@0.8.16) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.14...@synerise/ds-card@0.8.15) (2021-03-29)
+
+
+### Bug Fixes
+
+* **card:** change margin of Title ([a055ea4](https://github.com/Synerise/synerise-design/commit/a055ea428f5726bffe183454241f8dc899d0acb4))
+
+
+
+
+
+## [0.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.13...@synerise/ds-card@0.8.14) (2021-03-25)
+
+
+### Bug Fixes
+
+* **card:** change height of icon ([ac56683](https://github.com/Synerise/synerise-design/commit/ac56683301733a7eca07ec2364814e8f2e2e9252))
+
+
+
+
+
+## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.12...@synerise/ds-card@0.8.13) (2021-03-24)
+
+
+### Bug Fixes
+
+* **card:** change height of icon ([d41bb42](https://github.com/Synerise/synerise-design/commit/d41bb422830fc201e28a8a44f8fa6ac88fd029f3))
+* **card:** change height of icon and remove unnecessary wrapper ([4123f6b](https://github.com/Synerise/synerise-design/commit/4123f6b10792c2a10df4a453838517c427279519))
+
+
+
+
+
+## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.11...@synerise/ds-card@0.8.12) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/Synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **card:** fix box-shadow of card ([e547526](https://github.com/Synerise/synerise-design/commit/e547526b21b113e8f08e976df5a3d6e3273ceb08))
+
+
+
+
+
 ## [0.8.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.10...@synerise/ds-card@0.8.11) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-card

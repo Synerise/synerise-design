@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.127.2](https://github.com/synerise/synerise-design/compare/portal@0.127.1...portal@0.127.2) (2021-03-29)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.127.1](https://github.com/synerise/synerise-design/compare/portal@0.127.0...portal@0.127.1) (2021-03-24)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.127.0](https://github.com/synerise/synerise-design/compare/portal@0.126.0...portal@0.127.0) (2021-03-22)
+
+
+### Features
+
+* **portal:** STOR-698 implement new avatar api ([634faba](https://github.com/synerise/synerise-design/commit/634faba949f967170086d49cf540fc8bcefd8e9a))
+
+
+
+
+
+# [0.126.0](https://github.com/synerise/synerise-design/compare/portal@0.125.0...portal@0.126.0) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **table:** fix dropdown in select in table ([844a72e](https://github.com/synerise/synerise-design/commit/844a72e89d07377f68d1c0c7c84b16353c107018))
+
+
+### Features
+
+* **date-range-picker:** added custom units handling ([d3271e3](https://github.com/synerise/synerise-design/commit/d3271e3b7d3ac4aafd881a6b5cce04901fd38e72))
+* **icon:** merge to dev ([f248315](https://github.com/synerise/synerise-design/commit/f248315c25501d3c81c1c6bbb0f221eec7897590))
+
+
+
+
+
 # [0.125.0](https://github.com/synerise/synerise-design/compare/portal@0.124.0...portal@0.125.0) (2021-03-16)
 
 

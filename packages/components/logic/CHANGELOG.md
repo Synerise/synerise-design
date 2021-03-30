@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.28...@synerise/ds-logic@0.1.29) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.27...@synerise/ds-logic@0.1.28) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.26...@synerise/ds-logic@0.1.27) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
 ## [0.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.1.25...@synerise/ds-logic@0.1.26) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-logic
