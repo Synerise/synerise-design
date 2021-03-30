@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.25...@synerise/ds-table@0.33.26) (2021-03-30)
+
+
+### Bug Fixes
+
+* **table:** add document.body as fallback ([7bc4d08](https://github.com/synerise/synerise-design/commit/7bc4d08a34c790e17981c11590b78617bf51f290))
+* **table:** fix column sorter margin left ([55233f6](https://github.com/synerise/synerise-design/commit/55233f6e020a465ae98e48f461b8056d2c1e78f5))
+
+
+
+
+
 ## [0.33.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.24...@synerise/ds-table@0.33.25) (2021-03-29)
 
 **Note:** Version bump only for package @synerise/ds-table
