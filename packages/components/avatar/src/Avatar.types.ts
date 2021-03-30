@@ -70,10 +70,10 @@ type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponen
 };
 
 export type ObjectAvatar = {
-  name?: string;
-  status?: string;
-  description?: string;
-  avatar?: string;
+  name?: string | null;
+  status?: string | null;
+  description?: string | null;
+  avatar?: string | null;
 };
 
 export type ObjectAvatarProps = DefinedAvatarProps & {
@@ -82,10 +82,10 @@ export type ObjectAvatarProps = DefinedAvatarProps & {
 };
 
 export type UserAvatar = {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  avatar?: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  avatar?: string | null;
 };
 
 export type UserAvatarProps = DefinedAvatarProps & {
