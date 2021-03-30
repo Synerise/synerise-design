@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.57...@synerise/ds-navbar@0.4.58) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-navbar
+
+
+
+
+
+## [0.4.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.56...@synerise/ds-navbar@0.4.57) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-navbar
+
+
+
+
+
 ## [0.4.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.55...@synerise/ds-navbar@0.4.56) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-navbar

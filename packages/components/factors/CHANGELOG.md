@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.13...@synerise/ds-factors@0.6.14) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.6.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.12...@synerise/ds-factors@0.6.13) (2021-03-24)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.6.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.11...@synerise/ds-factors@0.6.12) (2021-03-24)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.6.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.10...@synerise/ds-factors@0.6.11) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.6.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.9...@synerise/ds-factors@0.6.10) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
 ## [0.6.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.8...@synerise/ds-factors@0.6.9) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-factors
