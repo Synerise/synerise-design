@@ -78,6 +78,8 @@ const Text: React.FC<BasicItemProps> = ({
     }
     return !!prefixElement;
   }, [showPrefixOnHover, prefixElement, hovered]);
+  const renderPrefixElement = (isHover: boolean): React.ReactNode =>
+    prefixel instanceof Function ? prefixel(isHover) : prefixel;
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -109,7 +111,7 @@ const Text: React.FC<BasicItemProps> = ({
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (
               <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
-                {prefixel}
+                {renderPrefixElement(hovered)}
               </S.PrefixelWrapper>
             )}
             <S.Content className="ds-menu-content" highlight={!!highlight}>

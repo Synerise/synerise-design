@@ -30,6 +30,10 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
       onTitleClick,
       menuItemKey,
       selectedKeys,
+      suffixVisibilityTrigger,
+      prefixVisibilityTrigger,
+      size,
+      description,
       ...rest
     } = this.props;
     const { uuidKey } = this.state;
@@ -41,6 +45,11 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
             prefixel={prefixel}
             suffixel={suffixel}
             onClick={onTitleClick}
+            disabled={disabled}
+            suffixVisibilityTrigger={suffixVisibilityTrigger}
+            prefixVisibilityTrigger={prefixVisibilityTrigger}
+            size={size}
+            description={description}
           >
             {text}
           </SubmenuText>
@@ -70,6 +79,8 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               subMenu={subItem.subMenu}
               ordered={subItem.ordered === undefined ? ordered : subItem.ordered}
               description={subItem.description}
+              suffixVisibilityTrigger={subItem.suffixVisibilityTrigger}
+              prefixVisibilityTrigger={subItem.prefixVisibilityTrigger}
               // eslint-disable-next-line react/jsx-handler-names
               onClick={(): void => {
                 subItem.onClick && subItem.onClick(subItem);
@@ -77,6 +88,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               key={subItem.key || `${uuidKey}-${index}`} // eslint-disable-line react/no-array-index-key
               menuItemKey={subItem.key || `${uuidKey}-${index}`}
               selectedKeys={selectedKeys}
+              {...subItem}
             />
           ))}
       </S.SubMenuItem>
