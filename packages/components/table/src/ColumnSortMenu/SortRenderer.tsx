@@ -35,13 +35,13 @@ export const CommonRenderer = <T extends unknown>({
         <Dropdown
           getPopupContainer={getPopupParent}
           overlay={
-            <Dropdown.Wrapper>
+            <Dropdown.Wrapper style={{ width: 220 }}>
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
-                style={{ padding: 8 }}
+                style={{ width: 220 }}
               >
                 <Menu.Item
                   key="ascend"
@@ -90,13 +90,13 @@ export const StringRenderer = <T extends unknown>({
         <Dropdown
           getPopupContainer={getPopupParent}
           overlay={
-            <Dropdown.Wrapper>
+            <Dropdown.Wrapper style={{ width: 170 }}>
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
-                style={{ padding: 8 }}
+                style={{ width: 170 }}
               >
                 <Menu.Item
                   key="ascend"
