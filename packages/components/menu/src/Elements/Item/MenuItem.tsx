@@ -1,7 +1,6 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 
-import Tooltip from '@synerise/ds-tooltip';
 import { ItemType, MenuItemProps } from './MenuItem.types';
 import SubMenuItem from '../SubMenu/SubMenu';
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
@@ -39,7 +38,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         ordered={ordered}
         disabled={disabled}
         danger={danger}
-        text={<Tooltip title="dupa">{text}</Tooltip>}
+        text={text}
         description={description}
         indentLevel={indentLevel || 0}
         subMenu={subMenu}
