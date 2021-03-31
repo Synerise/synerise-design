@@ -19,7 +19,12 @@ const stories = {
     const parentDescription = boolean('Set medium parent', false);
     const childDescription = boolean('Set medium child', false);
     const setCheckbox = boolean('Set visibility trigger checkbox', false);
-    const [selectedKeysObj, setSelectedKeysObj] = React.useState({ "p1-Parent 1": false,"p1-Child 1": false,"p1-Child 2": false,"p1-Child 3": false  });
+    const [selectedKeysObj, setSelectedKeysObj] = React.useState({
+      'p1-Parent 1': false,
+      'p1-Child 1': false,
+      'p1-Child 2': false,
+      'p1-Child 3': false,
+    });
     const [suffixElement1, setSuffixElement1] = React.useState(false);
     const [suffixElement2, setSuffixElement2] = React.useState(false);
     const [suffixElement3, setSuffixElement3] = React.useState(false);
@@ -47,7 +52,7 @@ const stories = {
                 placeholder: '',
                 onChange: event => setValue(event.target.value),
                 onBlur: () => {
-                  setRenameElement(false)
+                  setRenameElement(false);
                 },
                 onEnterPress: action('onEnterPress'),
               }}
@@ -60,13 +65,13 @@ const stories = {
         key: key,
         suffixel:
           suffixElement1 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
+            <Icon color={theme.palette['green-600']} component={<CheckS />} />
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel: hover =>
-          setCheckbox && hover || selectedKeysObj[key] ? (
+          (setCheckbox && hover) || selectedKeysObj[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
                 defaultChecked={selectedKeysObj[key]}
@@ -77,7 +82,7 @@ const stories = {
             </div>
           ) : checkedParent1 === true ? (
             <div style={{ padding: '0 4px' }}>
-              <Checkbox defaultChecked={true}/>
+              <Checkbox defaultChecked={true} />
             </div>
           ) : (
             renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
@@ -106,7 +111,7 @@ const stories = {
                 placeholder: '',
                 onChange: event => setValue(event.target.value),
                 onBlur: () => {
-                  setRenameElement(false)
+                  setRenameElement(false);
                 },
                 onEnterPress: action('onEnterPress'),
               }}
@@ -119,13 +124,13 @@ const stories = {
         key: `p2-${initValue}`,
         suffixel:
           suffixElement2 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
+            <Icon color={theme.palette['green-600']} component={<CheckS />} />
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel: hover =>
-          setCheckbox && hover || selectedKeysObj[key] ? (
+          (setCheckbox && hover) || selectedKeysObj[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
                 defaultChecked={selectedKeysObj[key]}
@@ -136,7 +141,7 @@ const stories = {
             </div>
           ) : checkedParent2 === true ? (
             <div style={{ padding: '0 4px' }}>
-              <Checkbox defaultChecked={true}/>
+              <Checkbox defaultChecked={true} />
             </div>
           ) : (
             renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
@@ -165,7 +170,7 @@ const stories = {
                 placeholder: '',
                 onChange: event => setValue(event.target.value),
                 onBlur: () => {
-                  setRenameElement(false)
+                  setRenameElement(false);
                 },
                 onEnterPress: action('onEnterPress'),
               }}
@@ -178,13 +183,13 @@ const stories = {
         key: `p3-${initValue}`,
         suffixel:
           suffixElement3 === true ? (
-            <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
+            <Icon color={theme.palette['green-600']} component={<CheckS />} />
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
         suffixVisibilityTrigger: 'hover',
         prefixel: hover =>
-          setCheckbox && hover || selectedKeysObj[key] ? (
+          (setCheckbox && hover) || selectedKeysObj[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
                 defaultChecked={selectedKeysObj[key]}
@@ -195,7 +200,7 @@ const stories = {
             </div>
           ) : checkedParent3 === true ? (
             <div style={{ padding: '0 4px' }}>
-              <Checkbox defaultChecked={true}/>
+              <Checkbox defaultChecked={true} />
             </div>
           ) : (
             renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
@@ -239,133 +244,150 @@ const stories = {
     const orderedChildren = boolean('Set children ordered', false);
     const orderedParents = boolean('Set parents ordered', false);
     const setDivider = boolean('Set divider', false);
-    const initValue = ('Parent');
+    const initValue = 'Parent';
     const key = React.useMemo(() => `p1-${initValue}`, [initValue]);
 
-        const props = {
-          showTextTooltip: true,
-          dataSource: [
-            {
-              text: 'Parent 1',
-              key: 'Parent 1',
-              suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement1(!suffixElement1)),
-              suffixVisibilityTrigger: 'hover',
-              prefixel: hover =>
-                setCheckbox && hover || selectedKeysObj[key]  ? (
-                    <div style={{ padding: '0 4px' }}>
-                      <Checkbox
-                        defaultChecked={selectedKeysObj[key]}
-                        onChange={e => {
-                          updateSelectedKeys(e.target.checked, key);
-                        }}
-                      />
-                    </div>
-                  ) :
-                  suffixElement1 === true ? (
-                    <div>
-                      <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
-                    </div>
-                  ) : (
-                    renderPrefixIcon(prefixKnobParent, checkedParent1, setCheckedParent1)
-                  ),
-              description: parentDescription ? 'description' : undefined,
-              size: parentDescription ? 'medium' : undefined,
-              ordered: orderedParents,
-              disabled: disabledParent,
-              subMenu: [
-                subMenuElement1('Child 1'),
-                setDivider ? { type: `divider` } : null,
-                subMenuElement1('Child 2'),
-                setDivider ? { type: 'divider' } : null,
-                subMenuElement1('Child 3'),
-                setDivider ? { type: 'divider' } : null,
-              ].filter(item => !!item),
-            },
-            {
-              text: 'Parent 2',
-              key: 'Parent 2',
-              suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement2(!suffixElement2)),
-              suffixVisibilityTrigger: 'hover',
-              prefixel:
-                suffixElement2 === true ? (
-                  <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
-                ) : (
-                  renderPrefixIcon(prefixKnobParent, checkedParent2, setCheckedParent2)
-                ),
-              description: parentDescription ? 'description' : undefined,
-              size: parentDescription ? 'medium' : undefined,
-              ordered: orderedParents,
-              subMenu: [
-                subMenuElement2('Child 1'),
-                setDivider ? { type: 'divider' } : null,
-                subMenuElement2('Child 2'),
-                setDivider ? { type: 'divider' } : null,
-                subMenuElement2('Child 3'),
-                setDivider ? { type: 'divider' } : null,
-              ].filter(item => !!item),
-            },
-            {
-              text: 'Parent 3',
-              key: 'Parent 3',
-              suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement3(!suffixElement3)),
-              suffixVisibilityTrigger: 'hover',
-              prefixel:
-                suffixElement3 === true ? (
-                  <Icon color={theme.palette['green-600']} component={<CheckS/>}/>
-                ) : (
-                  renderPrefixIcon(prefixKnobParent, checkedParent3, setCheckedParent3)
-                ),
-              description: parentDescription ? 'description' : undefined,
-              size: parentDescription ? 'medium' : undefined,
-              ordered: orderedParents,
-              subMenu: [
-                subMenuElement3('Child 1'),
-                setDivider ? { type: 'divider' } : null,
-                subMenuElement3('Child 2'),
-                setDivider ? { type: 'divider' } : null,
-                subMenuElement3('Child 3'),
-                setDivider ? { type: 'divider' } : null,
-              ].filter(item => !!item),
-            },
-          ],
-        } as object;
-        const [selectedKeys, setSelectedKeys] = React.useState([]);
+    const props = {
+      showTextTooltip: true,
+      dataSource: [
+        {
+          text: 'Parent 1',
+          key: 'Parent 1',
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement1(!suffixElement1)),
+          suffixVisibilityTrigger: 'hover',
+          prefixel: hover =>
+            (setCheckbox && hover) || selectedKeysObj[key] ? (
+              <div style={{ padding: '0 4px' }}>
+                <Checkbox
+                  defaultChecked={selectedKeysObj[key]}
+                  onChange={e => {
+                    updateSelectedKeys(e.target.checked, key);
+                  }}
+                />
+              </div>
+            ) : suffixElement1 === true ? (
+              <div>
+                <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
+              </div>
+            ) : (
+              renderPrefixIcon(prefixKnobParent, checkedParent1, setCheckedParent1)
+            ),
+          description: parentDescription ? 'description' : undefined,
+          size: parentDescription ? 'medium' : undefined,
+          ordered: orderedParents,
+          disabled: disabledParent,
+          subMenu: [
+            subMenuElement1('Child 1'),
+            setDivider ? { type: `divider` } : null,
+            subMenuElement1('Child 2'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement1('Child 3'),
+            setDivider ? { type: 'divider' } : null,
+          ].filter(item => !!item),
+        },
+        {
+          text: 'Parent 2',
+          key: 'Parent 2',
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement2(!suffixElement2)),
+          suffixVisibilityTrigger: 'hover',
+          prefixel: hover =>
+            (setCheckbox && hover) || selectedKeysObj[key] ? (
+              <div style={{ padding: '0 4px' }}>
+                <Checkbox
+                  defaultChecked={selectedKeysObj[key]}
+                  onChange={e => {
+                    updateSelectedKeys(e.target.checked, key);
+                  }}
+                />
+              </div>
+            ) : suffixElement2 === true ? (
+              <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
+            ) : (
+              renderPrefixIcon(prefixKnobParent, checkedParent2, setCheckedParent2)
+            ),
+          description: parentDescription ? 'description' : undefined,
+          size: parentDescription ? 'medium' : undefined,
+          ordered: orderedParents,
+          subMenu: [
+            subMenuElement2('Child 1'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement2('Child 2'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement2('Child 3'),
+            setDivider ? { type: 'divider' } : null,
+          ].filter(item => !!item),
+        },
+        {
+          text: 'Parent 3',
+          key: 'Parent 3',
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement3(!suffixElement3)),
+          suffixVisibilityTrigger: 'hover',
+          prefixel: hover =>
+            (setCheckbox && hover) || selectedKeysObj[key] ? (
+              <div style={{ padding: '0 4px' }}>
+                <Checkbox
+                  defaultChecked={selectedKeysObj[key]}
+                  onChange={e => {
+                    updateSelectedKeys(e.target.checked, key);
+                  }}
+                />
+              </div>
+            ) : suffixElement3 === true ? (
+              <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
+            ) : (
+              renderPrefixIcon(prefixKnobParent, checkedParent3, setCheckedParent3)
+            ),
+          description: parentDescription ? 'description' : undefined,
+          size: parentDescription ? 'medium' : undefined,
+          ordered: orderedParents,
+          subMenu: [
+            subMenuElement3('Child 1'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement3('Child 2'),
+            setDivider ? { type: 'divider' } : null,
+            subMenuElement3('Child 3'),
+            setDivider ? { type: 'divider' } : null,
+          ].filter(item => !!item),
+        },
+      ],
+    } as object;
+    const [selectedKeys, setSelectedKeys] = React.useState([]);
 
-        const onClickCallback = (clickedKey: string) => {
-          if (selectedKeys.indexOf(clickedKey) !== -1) {
-            setSelectedKeys([]);
-            return;
-          }
-          setSelectedKeys([clickedKey]);
-        };
-        const itemsWithOnClick = props.dataSource.map(item => {
-          let newItem = item;
-          newItem.onTitleClick = () => {
-            onClickCallback(item.key);
-          };
-          newItem.subMenu = item.subMenu.map(submenuItem => ({
-            ...submenuItem,
-            onClick: () => {
-              onClickCallback(submenuItem.key);
-            },
-          }));
-          return newItem;
-        });
-        return (
-          <div style={{ width: '200px' }}>
-            <Menu
-              onTitleClick={eventParamas => {
-                const { domEvent } = eventParamas;
-                domEvent.stopPropagation();
-              }}
-              dataSource={itemsWithOnClick}
-              selectable
-              selectedKeys={selectedKeys}
-              ordered
-            />
-          </div>
-        );
-      },
+    const onClickCallback = (clickedKey: string) => {
+      if (selectedKeys.indexOf(clickedKey) !== -1) {
+        setSelectedKeys([]);
+        return;
+      }
+      setSelectedKeys([clickedKey]);
+    };
+    const itemsWithOnClick = props.dataSource.map(item => {
+      let newItem = item;
+      newItem.onTitleClick = () => {
+        onClickCallback(item.key);
+      };
+      newItem.subMenu = item.subMenu.map(submenuItem => ({
+        ...submenuItem,
+        onClick: () => {
+          onClickCallback(submenuItem.key);
+        },
+      }));
+      return newItem;
+    });
+    return (
+      <div style={{ width: '200px' }}>
+        <Menu
+          onTitleClick={eventParamas => {
+            const { domEvent } = eventParamas;
+            domEvent.stopPropagation();
+          }}
+          dataSource={itemsWithOnClick}
+          selectable
+          selectedKeys={selectedKeys}
+          ordered
+        />
+      </div>
+    );
+  },
 };
 
 export default {
