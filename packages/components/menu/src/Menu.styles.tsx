@@ -23,8 +23,8 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 
 export const MenuDivider = styled.div`
   height: 1px;
-  width: 100%;
-  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 0;
+  width: 75%;
+  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 35px;
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
 
@@ -143,26 +143,11 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     &.ant-menu-item-selected {
       background:inherit;
       .ant-menu-submenu-title {
-          &::before {
-            color: ${(props): string => props.theme.palette['blue-600']};
-          }
-          .ds-submenu-title {
-            color: ${(props): string => props.theme.palette['blue-600']};
-          .ds-menu-prefix {
-            svg {
-               fill: ${(props): string => props.theme.palette['blue-600']};
-            }
-          }
           &:focus,
           &:active {
             background: ${(props): string => props.theme.palette['grey-050']};
             &::before {
             color: ${(props): string => props.theme.palette['grey-600']};
-          }
-          .ds-menu-prefix {
-            svg {
-                fill: ${(props): string => props.theme.palette['blue-600']};
-            }
           }
         }
     
@@ -196,6 +181,11 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       .ds-menu-content-wrapper {
       color: ${(props): string => props.theme.palette['blue-600']};
       background: ${(props): string => props.theme.palette['blue-050']};
+      }
+      & > .ds-menu-prefix {
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']};
+        }
       }
 
       

@@ -38,6 +38,7 @@ export const StyledInlineEditMenu = styled(InlineEdit)<InlineEditProps>`
     line-height: 1.39;
     min-height: 18px;
     padding: 0;
+    font-variant-numeric: tabular-nums;
   }
 `;
 
