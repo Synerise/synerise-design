@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.12.2...@synerise/ds-avatar@0.13.0) (2021-03-30)
+
+
+### Features
+
+* **avatar:** STOR-698 allow nullish values + email as text if no names ([21838ec](https://github.com/synerise/synerise-design/commit/21838ecb3b94857701db601290ff545ab8cc5cc3))
+
+
+
+
+
 ## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.12.1...@synerise/ds-avatar@0.12.2) (2021-03-29)
 
 
