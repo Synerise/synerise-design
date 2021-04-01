@@ -12,7 +12,11 @@ type SubMenuProps = {
   title: string | React.ReactNode;
   tabIndex?: number;
 };
-
+const overflowStyles = css`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
 export const prefixelWrapper = styled.div``;
 
 const arrowDownSvgWithCustomColor = (color: string): string => {
@@ -71,6 +75,13 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   }
   .ant-menu-submenu-title {
     display: flex;
+    ${overflowStyles}
+    .ds-submenu-title-wrapper {
+      ${overflowStyles}
+      .ds-submenu-title {
+        ${overflowStyles}
+      }
+    }
   }
   && {
     .ant-menu-inline,

@@ -77,6 +77,24 @@ export const Rename = ({onSelectEdit}) => {
     </Tooltip>
   );
 };
+export const RenameWithDelete = ({onClickEdit}) => {
+  return (
+    <React.Fragment>
+      <Tooltip type="default" trigger="hover" title={'Rename'}>
+        <S.HoverableIconWrapper>
+          <Icon onClick={(e): void => {
+            onClickEdit();
+            e.stopPropagation();}} color={theme.palette['grey-600']} component={<EditS />} />
+        </S.HoverableIconWrapper>
+      </Tooltip>
+      <Tooltip type="default" trigger="hover" title={'Delete'}>
+        <div>
+          <Icon color={theme.palette['red-600']} component={<CloseS />} />
+        </div>
+      </Tooltip>
+    </React.Fragment>
+  )
+}
 export const SwitchWithTooltip = () => {
   const [checked, setChecked] = React.useState(false);
   return (
@@ -165,22 +183,11 @@ export const suffixVisibilityTrigger = {
 };
 export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
-export function renderSuffix(suffixElementType: string, selectSuffixCallback?: () => void) {
+export function renderSuffix(suffixElementType: string, selectSuffixCallback?: () => void, clickSuffixCallback?: () => void,) {
   switch (suffixElementType) {
     case suffixType.renameAndDelete:
       return (
-        <React.Fragment>
-          <Tooltip type="default" trigger="hover" title={'Rename'}>
-            <S.HoverableIconWrapper>
-              <Icon color={theme.palette['grey-600']} component={<EditS />} />
-            </S.HoverableIconWrapper>
-          </Tooltip>
-          <Tooltip type="default" trigger="hover" title={'Delete'}>
-            <div>
-              <Icon color={theme.palette['red-600']} component={<CloseS />} />
-            </div>
-          </Tooltip>
-        </React.Fragment>
+        <RenameWithDelete onClickEdit={clickSuffixCallback}/>
       );
     case suffixType.rename:
       return (

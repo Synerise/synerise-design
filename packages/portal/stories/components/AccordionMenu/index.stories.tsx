@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { getDefaultProps } from '../Menu/index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, suffixType } from '../Menu/dataset';
 import Menu from '@synerise/ds-menu';
@@ -19,12 +18,7 @@ const stories = {
     const parentDescription = boolean('Set medium parent', false);
     const childDescription = boolean('Set medium child', false);
     const setCheckbox = boolean('Set visibility trigger checkbox', false);
-    const [selectedKeysObj, setSelectedKeysObj] = React.useState({
-      'p1-Parent 1': false,
-      'p1-Child 1': false,
-      'p1-Child 2': false,
-      'p1-Child 3': false,
-    });
+    const [selectedKeysObj, setSelectedKeysObj] = React.useState({});
     const [suffixElement1, setSuffixElement1] = React.useState(false);
     const [suffixElement2, setSuffixElement2] = React.useState(false);
     const [suffixElement3, setSuffixElement3] = React.useState(false);
@@ -244,24 +238,54 @@ const stories = {
     const orderedChildren = boolean('Set children ordered', false);
     const orderedParents = boolean('Set parents ordered', false);
     const setDivider = boolean('Set divider', false);
-    const initValue = 'Parent';
-    const key = React.useMemo(() => `p1-${initValue}`, [initValue]);
+    const initValue1 = 'Parent 1';
+    const initValue2 = 'Parent 2';
+    const initValue3 = 'Parent 3';
+    const [value1, setValue1] = React.useState<string>(initValue1);
+    const [value2, setValue2] = React.useState<string>(initValue2);
+    const [value3, setValue3] = React.useState<string>(initValue3);
+    const key1 = React.useMemo(() => `p1-${initValue1}`, [initValue1]);
+    const key2 = React.useMemo(() => `p2-${initValue2}`, [initValue2]);
+    const key3 = React.useMemo(() => `p3-${initValue3}`, [initValue3]);
+    const [renameElement1, setRenameElement1] = React.useState(false);
+    const [renameElement2, setRenameElement2] = React.useState(false);
+    const [renameElement3, setRenameElement3] = React.useState(false);
 
     const props = {
       showTextTooltip: true,
       dataSource: [
         {
-          text: 'Parent 1',
-          key: 'Parent 1',
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement1(!suffixElement1)),
+          text:  renameElement1 ? (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value1}</div>}>
+              <StyledInlineEditMenu
+                autoFocus={true}
+                input={{
+                  name: 'name-of-input',
+                  value: value1,
+                  maxLength: 120,
+                  placeholder: '',
+                  onChange: event => setValue1(event.target.value),
+                  onBlur: () => {
+                    setRenameElement1(false);
+                  },
+                  onEnterPress: action('onEnterPress'),
+                }}
+                hideIcon={true}
+              />
+            </Tooltip>
+          ) : (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value1}</div>}>{value1}</Tooltip>
+          ),
+          key: `p1-${initValue1}`,
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement1(!suffixElement1), () => setRenameElement1(!renameElement1)),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key] ? (
+            (setCheckbox && hover) || selectedKeysObj[key1] ? (
               <div style={{ padding: '0 4px' }}>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key]}
+                  defaultChecked={selectedKeysObj[key1]}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key);
+                    updateSelectedKeys(e.target.checked, key1);
                   }}
                 />
               </div>
@@ -286,17 +310,39 @@ const stories = {
           ].filter(item => !!item),
         },
         {
-          text: 'Parent 2',
-          key: 'Parent 2',
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement2(!suffixElement2)),
+          text:  renameElement2 ? (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value2}</div>}>
+              <div onClick={event => {event.stopPropagation()}}>
+                <StyledInlineEditMenu
+                  autoFocus={true}
+                  input={{
+                    name: 'name-of-input',
+                    value: value2,
+                    maxLength: 120,
+                    placeholder: '',
+                    onChange: event => setValue2(event.target.value),
+                    onBlur: () => {
+                      setRenameElement2(false);
+                    },
+                    onEnterPress: action('onEnterPress'),
+                  }}
+                  hideIcon={true}
+                />
+              </div>
+            </Tooltip>
+          ) : (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value2}</div>}>{value2}</Tooltip>
+          ),
+          key: `p2-${initValue2}`,
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement2(!suffixElement2), () => setRenameElement2(!renameElement2)),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key] ? (
+            (setCheckbox && hover) || selectedKeysObj[key2] ? (
               <div style={{ padding: '0 4px' }}>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key]}
+                  defaultChecked={selectedKeysObj[key2]}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key);
+                    updateSelectedKeys(e.target.checked, key2);
                   }}
                 />
               </div>
@@ -318,17 +364,39 @@ const stories = {
           ].filter(item => !!item),
         },
         {
-          text: 'Parent 3',
-          key: 'Parent 3',
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement3(!suffixElement3)),
+          text:   renameElement3 ? (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value3}</div>}>
+              <div onClick={event => {event.stopPropagation()}}>
+                <StyledInlineEditMenu
+                  autoFocus={true}
+                  input={{
+                    name: 'name-of-input',
+                    value: value3,
+                    maxLength: 120,
+                    placeholder: '',
+                    onChange: event => setValue3(event.target.value),
+                    onBlur: () => {
+                      setRenameElement3(false);
+                    },
+                    onEnterPress: action('onEnterPress'),
+                  }}
+                  hideIcon={true}
+                />
+              </div>
+            </Tooltip>
+          ) : (
+            <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value3}</div>}>{value3}</Tooltip>
+          ),
+          key: `p3-${initValue3}`,
+          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement3(!suffixElement3), () => setRenameElement3(!renameElement3)),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key] ? (
+            (setCheckbox && hover) || selectedKeysObj[key3] ? (
               <div style={{ padding: '0 4px' }}>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key]}
+                  defaultChecked={selectedKeysObj[key3]}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key);
+                    updateSelectedKeys(e.target.checked, key3);
                   }}
                 />
               </div>
