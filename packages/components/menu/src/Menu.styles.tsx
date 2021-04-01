@@ -71,6 +71,19 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   }
   .ant-menu-submenu-title {
     display: flex;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    .ds-submenu-title-wrapper {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      .ds-submenu-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
   }
   && {
     .ant-menu-inline,
