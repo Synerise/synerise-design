@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { getDefaultProps } from '../Menu/index.stories';
 import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, suffixType } from '../Menu/dataset';
 import Menu from '@synerise/ds-menu';
