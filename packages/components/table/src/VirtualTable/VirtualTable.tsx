@@ -7,6 +7,8 @@ import { useIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
+import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
@@ -21,16 +23,17 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   props: Props<T>
 ): React.ReactElement {
   const {
-    columns,
+    columns = [],
     scroll,
     className,
     cellHeight = 52,
+    infiniteScroll,
     selection,
     onRowClick,
     rowKey,
     rowStar,
     initialWidth = 0,
-    dataSource,
+    dataSource = [],
     expandable,
     locale,
   } = props;
@@ -190,14 +193,39 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     return obj;
   });
 
+  const scrollBarRef = React.useRef<HTMLElement>(null);
+
   const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
+    const handleScrollEndReach = infiniteScroll?.onScrollEndReach;
+
     return (
-      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y}>
+      <Scrollbar ref={scrollBarRef} onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={handleScrollEndReach}>
         {children}
       </Scrollbar>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const listInnerElementType = React.forwardRef<HTMLDivElement>(
+    ({ style, ...rest }: React.HTMLAttributes<HTMLDivElement>, ref) => (
+      <div
+        ref={ref}
+        style={{
+          ...style,
+          height: `${Number(style?.height) + infiniteLoaderItemHeight}px`,
+        }}
+        {...rest}
+      />
+    )
+  );
+
+  const handleBackToTopClick = (): void => {
+    if (!scrollBarRef.current) {
+      return;
+    }
+
+    scrollBarRef.current.scrollTop = 0;
+  };
 
   const renderBody = React.useCallback(
     (rawData, meta): React.ReactNode => {
@@ -206,21 +234,26 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
         // eslint-disable-next-line no-param-reassign
         ref.current = connectObject;
         return (
-          <List
-            ref={listRef}
-            className="virtual-grid"
-            height={scroll.y}
-            itemCount={data.length}
-            itemSize={cellHeight}
-            width={tableWidth}
-            itemData={{ mergedColumns, selection, onRowClick, dataSource: data }}
-            itemKey={(index): string => {
-              return String(getRowKey(data[index]));
-            }}
-            outerElementType={CustomScrollbar}
-          >
-            {VirtualTableRow}
-          </List>
+          <>
+            <List
+              ref={listRef}
+              className="virtual-grid"
+              height={scroll.y}
+              itemCount={data.length}
+              itemSize={cellHeight}
+              width={tableWidth}
+              itemData={{ mergedColumns, selection, onRowClick, dataSource: data, infiniteScroll, cellHeight }}
+              itemKey={(index): string => {
+                return String(getRowKey(data[index]));
+              }}
+              outerElementType={CustomScrollbar}
+              overscanCount={1}
+              innerElementType={infiniteScroll && listInnerElementType}
+            >
+              {VirtualTableRow}
+            </List>
+            { infiniteScroll && <BackToTopButton onClick={handleBackToTopClick} /> }
+          </>
         );
       };
 
@@ -251,6 +284,8 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
       CustomScrollbar,
       cellHeight,
       connectObject,
+      infiniteScroll,
+      listInnerElementType,
     ]
   );
 
