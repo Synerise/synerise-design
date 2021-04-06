@@ -7,25 +7,38 @@ import * as S from './Scrollbar.styles';
 import { ScrollbarProps } from './Scrollbar.types';
 
 const Scrollbar: React.FC<ScrollbarProps> = ({
-  loading,
-  hasMore,
-  fetchData,
+  absolute = false,
   children,
   classes,
+  hasMore,
+  loading,
   maxHeight,
-  absolute = false,
-  onScroll,
   style,
+  fetchData,
+  onScroll,
+  onYReachEnd,
 }) => {
   const scrollRef = React.useRef<HTMLElement>();
   const [lastScrollTop, setLastScrollTop] = React.useState(0);
 
-  const handleReachEnd = React.useCallback(() => {
-    if (!loading && hasMore && scrollRef?.current?.scrollTop !== lastScrollTop && fetchData) {
+  const handleReachEnd = React.useCallback(
+    (container: HTMLElement) => {
+      if (scrollRef?.current?.scrollTop === lastScrollTop) {
+        return;
+      }
+
       scrollRef.current && setLastScrollTop(scrollRef.current.scrollTop);
-      fetchData();
-    }
-  }, [loading, hasMore, lastScrollTop, fetchData]);
+
+      if (typeof onYReachEnd === 'function') {
+        onYReachEnd(container);
+      }
+
+      if (!loading && hasMore && fetchData) {
+        fetchData();
+      }
+    },
+    [loading, hasMore, lastScrollTop, fetchData, onYReachEnd]
+  );
 
   const renderScrollbar = React.useMemo(() => {
     return (
@@ -59,4 +72,5 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
     renderScrollbar
   );
 };
+
 export default Scrollbar;
