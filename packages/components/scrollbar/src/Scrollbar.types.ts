@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { ScrollBarProps } from 'react-perfect-scrollbar';
 
 export type ScrollbarProps = {
+  absolute?: boolean;
   children: React.ReactNode | string;
   classes?: string;
-  maxHeight?: string | number;
-  absolute?: boolean;
-  onScroll?: (e: React.UIEvent) => void;
-  loading?: boolean;
   hasMore?: boolean;
-  fetchData?: () => void;
+  loading?: boolean;
+  maxHeight?: string | number;
   style?: React.CSSProperties;
+  fetchData?: () => void;
+  onScroll?: (e: React.UIEvent) => void;
+  onYReachEnd?: ScrollBarProps['onYReachEnd'];
 };
