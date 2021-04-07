@@ -5771,13 +5771,6 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
-"@synerise/ds-button@^0.13.44":
-  version "0.13.44"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.13.44.tgz#ce19d827e3fa750bc8a54a58df07206681d05000"
-  integrity sha512-f/XznXzhUCRFBgNFPDAWrr1lxm7FG9n91wUBWI+a3Ax1k8+POClJgpMHbiHpRjiw87TeiQal92ypinRr6HRlew==
-  dependencies:
-    "@synerise/ds-icon" "^0.43.2"
-
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
@@ -5832,11 +5825,6 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
 
-"@synerise/ds-icon@^0.43.2":
-  version "0.43.2"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.43.2.tgz#db992fd5de12a8a9f098f2da7482a4129b026ed2"
-  integrity sha512-Z57fL+3o/t8f+fetw/JEqmT0aIuaFPvcLQDBvQ+XIP5SjP/6HUfPlXn9/DhgmoOTqOhatWKC0fiIKjt6HSm9cQ==
-
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5869,15 +5857,6 @@
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
 
-"@synerise/ds-menu@^0.10.14":
-  version "0.10.14"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-menu/-/ds-menu-0.10.14.tgz#8c05ca293075d4efa837dee8f4fa448db835bb1b"
-  integrity sha512-EgpBShvDbH6DPcsYgeosIVMXMIBaGsg+SOlPpnekR1MdPOLdecn8lipRIxpJs2GIy554zy5TsI8mFj1OSCZMLg==
-  dependencies:
-    "@synerise/ds-icon" "^0.43.2"
-    "@synerise/ds-tooltip" "^0.10.28"
-    "@synerise/ds-typography" "^0.11.0"
-
 "@synerise/ds-search-bar@^0.2.105":
   version "0.2.120"
   resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.120.tgz#b00c0309d30b0fc7f66e5a36367d30146921d8cf"
@@ -5886,14 +5865,6 @@
     "@synerise/ds-button" "^0.13.28"
     "@synerise/ds-input" "^0.16.21"
     "@synerise/ds-typography" "^0.10.2"
-
-"@synerise/ds-tooltip@^0.10.28":
-  version "0.10.28"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.10.28.tgz#b2640d9981c7e03aba74a74327d7ce3163cc49e3"
-  integrity sha512-AvCBY2QK41leV3fHb7afabtzgTkx0mbrIkIL0ovK2QlgtT55son9q8IPqBmjOiYCvWMPd8heHDZ8CF7KY8AevA==
-  dependencies:
-    "@synerise/ds-button" "^0.13.44"
-    "@synerise/ds-icon" "^0.43.2"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
