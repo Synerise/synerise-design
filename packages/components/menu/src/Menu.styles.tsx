@@ -17,7 +17,6 @@ const overflowStyles = css`
   overflow: hidden;
   white-space: nowrap;
 `;
-export const prefixelWrapper = styled.div``;
 
 const arrowDownSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');
@@ -79,6 +78,8 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     .ds-submenu-title-wrapper {
       ${overflowStyles}
       .ds-submenu-title {
+        padding-top: 5px;
+        padding-bottom: 5px;
         ${overflowStyles}
       }
     }
@@ -121,9 +122,10 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       line-height: 1.39;
       height: auto;
       margin: 0;
-      padding-bottom: 7px;
-      padding-top: 7px;
+      padding-bottom: 2px;
+      padding-top: 2px;
       max-width: 100%;
+      align-items: center;
 
       .ds-submenu-title-wrapper > .ds-submenu-title:focus:not(:active) {
          box-shadow: inset 0 0 0 2px transparent;
@@ -272,11 +274,6 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             ${(props): string | false =>
               !props.disabled &&
               `
-              ${prefixelWrapper} {
-                svg {
-                  fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
-                }
-              }
               color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
               background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
            `}

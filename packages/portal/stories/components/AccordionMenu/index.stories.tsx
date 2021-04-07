@@ -11,6 +11,18 @@ import { StyledInlineEditMenu } from '../Menu/stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import { action } from '@storybook/addon-actions';
 
+const initialSelectedKeys = {
+  'p1-Child 1': false,
+  'p1-Child 2': false,
+  'p1-Child 3': false,
+  'p2-Child 1': false,
+  'p2-Child 2': false,
+  'p2-Child 3': false,
+  'p3-Child 1': false,
+  'p3-Child 2': false,
+  'p3-Child 3': false,
+};
+
 const stories = {
   default: () => {
     const disabledParent = boolean('Set parent disabled', false);
@@ -18,18 +30,36 @@ const stories = {
     const parentDescription = boolean('Set medium parent', false);
     const childDescription = boolean('Set medium child', false);
     const setCheckbox = boolean('Set visibility trigger checkbox', false);
-    const [selectedKeysObj, setSelectedKeysObj] = React.useState({});
+    const [selectedKeysObj, setSelectedKeysObj] = React.useState(initialSelectedKeys);
     const [suffixElement1, setSuffixElement1] = React.useState(false);
     const [suffixElement2, setSuffixElement2] = React.useState(false);
     const [suffixElement3, setSuffixElement3] = React.useState(false);
-    const [checkedParent1, setCheckedParent1] = React.useState(false);
-    const [checkedParent2, setCheckedParent2] = React.useState(false);
-    const [checkedParent3, setCheckedParent3] = React.useState(false);
+    const parentChilds = {
+      parent1: ['p1-Child 1', 'p1-Child 2', 'p1-Child 3'],
+      parent2: ['p2-Child 1', 'p2-Child 2', 'p2-Child 3'],
+      parent3: ['p3-Child 1', 'p3-Child 2', 'p3-Child 3'],
+  };
 
     const updateSelectedKeys = (value, key) => {
       const newSelectedKeys = { ...selectedKeysObj, [key]: value };
       setSelectedKeysObj(newSelectedKeys);
     };
+    const checkParentChilds = (key) => {
+      const children = parentChilds[key];
+      const checked = children.filter(child => selectedKeysObj[child]);
+      return checked.length === children.length
+    }
+    const checkAllChildren = (key,value) => {
+      const children = parentChilds[key];
+      const newSelectedKeys = { ...selectedKeysObj};
+      children.forEach(child => {newSelectedKeys[child] = value});
+      setSelectedKeysObj(newSelectedKeys);
+    }
+    const checkIfParentHasChecked = (key) => {
+      const children = parentChilds[key];
+      const checked = children.filter(child => selectedKeysObj[child]);
+      return checked.length > 0 && checked.length < children.length
+    }
     const subMenuElement1 = initValue => {
       const [value, setValue] = React.useState<string>(initValue);
       const key = React.useMemo(() => `p1-${initValue}`, [initValue]);
@@ -74,7 +104,7 @@ const stories = {
                 }}
               />
             </div>
-          ) : checkedParent1 === true ? (
+          ) :checkParentChilds('parent1') ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox defaultChecked={true} />
             </div>
@@ -115,7 +145,7 @@ const stories = {
         ) : (
           <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value}</div>}>{value}</Tooltip>
         ),
-        key: `p2-${initValue}`,
+        key: key,
         suffixel:
           suffixElement2 === true ? (
             <Icon color={theme.palette['green-600']} component={<CheckS />} />
@@ -133,7 +163,7 @@ const stories = {
                 }}
               />
             </div>
-          ) : checkedParent2 === true ? (
+          ) :checkParentChilds('parent2') ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox defaultChecked={true} />
             </div>
@@ -174,7 +204,7 @@ const stories = {
         ) : (
           <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value}</div>}>{value}</Tooltip>
         ),
-        key: `p3-${initValue}`,
+        key: key,
         suffixel:
           suffixElement3 === true ? (
             <Icon color={theme.palette['green-600']} component={<CheckS />} />
@@ -192,7 +222,7 @@ const stories = {
                 }}
               />
             </div>
-          ) : checkedParent3 === true ? (
+          ) :checkParentChilds('parent3') ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox defaultChecked={true} />
             </div>
@@ -250,12 +280,13 @@ const stories = {
     const [renameElement1, setRenameElement1] = React.useState(false);
     const [renameElement2, setRenameElement2] = React.useState(false);
     const [renameElement3, setRenameElement3] = React.useState(false);
+    const [selectedKeys, setSelectedKeys] = React.useState([]);
 
     const props = {
       showTextTooltip: true,
       dataSource: [
         {
-          text:  renameElement1 ? (
+          text: renameElement1 ? (
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value1}</div>}>
               <StyledInlineEditMenu
                 autoFocus={true}
@@ -277,16 +308,21 @@ const stories = {
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value1}</div>}>{value1}</Tooltip>
           ),
           key: `p1-${initValue1}`,
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement1(!suffixElement1), () => setRenameElement1(!renameElement1)),
+          suffixel: renderSuffix(
+            suffixKnobParent,
+            () => setSuffixElement1(!suffixElement1),
+            () => setRenameElement1(!renameElement1)
+          ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key1] ? (
-              <div style={{ padding: '0 4px' }}>
+            (setCheckbox && hover) || checkParentChilds('parent1') || checkIfParentHasChecked('parent1') ? (
+              <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key1]}
+                  checked={checkParentChilds('parent1')}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key1);
+                    checkAllChildren('parent1',e.target.checked);
                   }}
+                  indeterminate={checkIfParentHasChecked('parent1')}
                 />
               </div>
             ) : suffixElement1 === true ? (
@@ -294,7 +330,7 @@ const stories = {
                 <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
               </div>
             ) : (
-              renderPrefixIcon(prefixKnobParent, checkedParent1, setCheckedParent1)
+              renderPrefixIcon(prefixKnobParent, checkParentChilds('parent1'), (value) => checkAllChildren('parent1',value))
             ),
           description: parentDescription ? 'description' : undefined,
           size: parentDescription ? 'medium' : undefined,
@@ -310,9 +346,13 @@ const stories = {
           ].filter(item => !!item),
         },
         {
-          text:  renameElement2 ? (
+          text: renameElement2 ? (
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value2}</div>}>
-              <div onClick={event => {event.stopPropagation()}}>
+              <div
+                onClick={event => {
+                  event.stopPropagation();
+                }}
+              >
                 <StyledInlineEditMenu
                   autoFocus={true}
                   input={{
@@ -334,22 +374,27 @@ const stories = {
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value2}</div>}>{value2}</Tooltip>
           ),
           key: `p2-${initValue2}`,
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement2(!suffixElement2), () => setRenameElement2(!renameElement2)),
+          suffixel: renderSuffix(
+            suffixKnobParent,
+            () => setSuffixElement2(!suffixElement2),
+            () => setRenameElement2(!renameElement2)
+          ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key2] ? (
-              <div style={{ padding: '0 4px' }}>
+            (setCheckbox && hover) || checkParentChilds('parent2')  || checkIfParentHasChecked('parent2')? (
+              <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key2]}
+                  checked={checkParentChilds('parent2')}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key2);
+                    checkAllChildren('parent2',e.target.checked);
                   }}
+                  indeterminate={checkIfParentHasChecked('parent2')}
                 />
               </div>
             ) : suffixElement2 === true ? (
               <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
             ) : (
-              renderPrefixIcon(prefixKnobParent, checkedParent2, setCheckedParent2)
+              renderPrefixIcon(prefixKnobParent ,checkParentChilds('parent2'), (value) => checkAllChildren('parent2',value))
             ),
           description: parentDescription ? 'description' : undefined,
           size: parentDescription ? 'medium' : undefined,
@@ -364,9 +409,13 @@ const stories = {
           ].filter(item => !!item),
         },
         {
-          text:   renameElement3 ? (
+          text: renameElement3 ? (
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value3}</div>}>
-              <div onClick={event => {event.stopPropagation()}}>
+              <div
+                onClick={event => {
+                  event.stopPropagation();
+                }}
+              >
                 <StyledInlineEditMenu
                   autoFocus={true}
                   input={{
@@ -388,22 +437,27 @@ const stories = {
             <Tooltip title={<div style={{ wordBreak: 'break-all' }}>{value3}</div>}>{value3}</Tooltip>
           ),
           key: `p3-${initValue3}`,
-          suffixel: renderSuffix(suffixKnobParent, () => setSuffixElement3(!suffixElement3), () => setRenameElement3(!renameElement3)),
+          suffixel: renderSuffix(
+            suffixKnobParent,
+            () => setSuffixElement3(!suffixElement3),
+            () => setRenameElement3(!renameElement3)
+          ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || selectedKeysObj[key3] ? (
-              <div style={{ padding: '0 4px' }}>
+            (setCheckbox && hover) || checkParentChilds('parent3')  || checkIfParentHasChecked('parent3') ? (
+              <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
-                  defaultChecked={selectedKeysObj[key3]}
+                  checked={checkParentChilds('parent3')}
                   onChange={e => {
-                    updateSelectedKeys(e.target.checked, key3);
+                    checkAllChildren('parent3',e.target.checked);
                   }}
+                  indeterminate={checkIfParentHasChecked('parent3')}
                 />
               </div>
             ) : suffixElement3 === true ? (
               <Icon className="ds-check-icon" color={theme.palette['green-600']} component={<CheckS />} />
             ) : (
-              renderPrefixIcon(prefixKnobParent, checkedParent3, setCheckedParent3)
+              renderPrefixIcon(prefixKnobParent, checkParentChilds('parent3'), (value) => checkAllChildren('parent3',value))
             ),
           description: parentDescription ? 'description' : undefined,
           size: parentDescription ? 'medium' : undefined,
@@ -419,7 +473,6 @@ const stories = {
         },
       ],
     } as object;
-    const [selectedKeys, setSelectedKeys] = React.useState([]);
 
     const onClickCallback = (clickedKey: string) => {
       if (selectedKeys.indexOf(clickedKey) !== -1) {
