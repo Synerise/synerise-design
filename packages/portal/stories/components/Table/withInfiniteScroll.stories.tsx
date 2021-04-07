@@ -68,7 +68,6 @@ const stories = {
           { title: 'Color', key: 'color', dataIndex: 'color' },
         ]}
         onScrollEndReach={fakeFetchData}
-        isLoading={store.state.isLoading}
         footer={() => (
           store.state.isLoading
             ? <Loader size='M' label='Loading more items' />
