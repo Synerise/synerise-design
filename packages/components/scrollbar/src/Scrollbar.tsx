@@ -40,6 +40,12 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
     [loading, hasMore, lastScrollTop, fetchData, onYReachEnd]
   );
 
+  const handleScrollUp = (): void => {
+    if (scrollRef?.current?.scrollTop !== 0) {
+      setLastScrollTop(0);
+    }
+  };
+
   const renderScrollbar = React.useMemo(() => {
     return (
       <PerfectScrollbar
@@ -47,6 +53,7 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
           scrollRef.current = ref;
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
+        onScrollUp={handleScrollUp}
         options={{ minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
       >
