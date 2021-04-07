@@ -15,11 +15,6 @@ interface SortRendererProps<T> {
   column: DSColumnType<T>;
 }
 
-const getPopupParent = (triggerNode: HTMLElement): HTMLElement =>
-  // dropdown target node must be resolved relatively to triggerNode (which comes from getPopupContainer)
-  // go up to <th> due to possible columns ellipsis overflow
-  triggerNode.parentElement?.parentElement?.parentElement?.parentElement as HTMLElement;
-
 export const CommonRenderer = <T extends unknown>({
   column,
   sortStateApi,
@@ -33,15 +28,14 @@ export const CommonRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
-          getPopupContainer={getPopupParent}
           overlay={
-            <Dropdown.Wrapper>
+            <Dropdown.Wrapper style={{ width: 220 }}>
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
-                style={{ padding: 8 }}
+                style={{ width: 220 }}
               >
                 <Menu.Item
                   key="ascend"
@@ -88,15 +82,14 @@ export const StringRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
-          getPopupContainer={getPopupParent}
           overlay={
-            <Dropdown.Wrapper>
+            <Dropdown.Wrapper style={{ width: 170 }}>
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(key));
                 }}
-                style={{ padding: 8 }}
+                style={{ width: 170 }}
               >
                 <Menu.Item
                   key="ascend"
