@@ -7,6 +7,7 @@ import { SubMenuProps } from '../SubMenu/SubMenu.types';
 import Text from './Text/Text';
 import Select from './Select/Select';
 import Danger from './Danger/Danger';
+import { MenuDivider } from '../../Menu.styles';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -82,6 +83,8 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           {text || children}
         </Danger>
       );
+    case ItemType.DIVIDER:
+      return <MenuDivider />;
     default:
       return (
         <Text

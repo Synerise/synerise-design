@@ -6,7 +6,7 @@ import * as S from './SubmenuText.styles';
 import { BasicItemProps } from '../Text/Text.types';
 
 const SubmenuText: React.FC<BasicItemProps> = props => {
-  const { disabled, children, prefixel, suffixel, key } = props;
+  const { disabled, children, prefixel, suffixel, key, ...rest } = props;
   return (
     <S.SubtitleItemWrapper className="ds-submenu-title-wrapper">
       <S.SubmenuText
@@ -15,6 +15,7 @@ const SubmenuText: React.FC<BasicItemProps> = props => {
         prefixel={prefixel}
         suffixel={suffixel}
         className="ds-submenu-title"
+        {...rest}
       >
         {children}
       </S.SubmenuText>

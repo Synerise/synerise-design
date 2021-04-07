@@ -12,8 +12,11 @@ type SubMenuProps = {
   title: string | React.ReactNode;
   tabIndex?: number;
 };
-
-export const prefixelWrapper = styled.div``;
+const overflowStyles = css`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
 
 const arrowDownSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');
@@ -23,8 +26,8 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 
 export const MenuDivider = styled.div`
   height: 1px;
-  width: 100%;
-  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 0;
+  width: 75%;
+  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 35px;
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
 
@@ -71,12 +74,22 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
   }
   .ant-menu-submenu-title {
     display: flex;
+    ${overflowStyles}
+    .ds-submenu-title-wrapper {
+      ${overflowStyles}
+      .ds-submenu-title {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        ${overflowStyles}
+      }
+    }
   }
   && {
     .ant-menu-inline,
     .ant-menu-vertical,
     .ant-menu-vertical-left {
       border-right-width: 0px;
+      margin: 8px 0 8px 0;
     }
   }
 `;
@@ -109,9 +122,10 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       line-height: 1.39;
       height: auto;
       margin: 0;
-      padding-bottom: 7px;
-      padding-top: 7px;
+      padding-bottom: 2px;
+      padding-top: 2px;
       max-width: 100%;
+      align-items: center;
 
       .ds-submenu-title-wrapper > .ds-submenu-title:focus:not(:active) {
          box-shadow: inset 0 0 0 2px transparent;
@@ -131,28 +145,24 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     }
     .ant-menu-item {
       padding-right:5px;
+      padding-left: 10px !important;
+      margin-left: 24px;
+      max-width: 176px;
+    }
+    .ds-menu-prefix {
+      margin-left: 0px ;
     }
     
     &.ant-menu-item-selected {
       background:inherit;
       .ant-menu-submenu-title {
-          &::before {
-            color: ${(props): string => props.theme.palette['blue-600']};
-          }
-          .ds-submenu-title {
-            color: ${(props): string => props.theme.palette['blue-600']};
-          .ds-menu-prefix {
-            svg {
-               fill: ${(props): string => props.theme.palette['blue-600']};
-            }
-          }
           &:focus,
           &:active {
             background: ${(props): string => props.theme.palette['grey-050']};
             &::before {
             color: ${(props): string => props.theme.palette['grey-600']};
           }
-          }
+        }
     
           &::after {
             content: none;
@@ -180,21 +190,36 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       &:not(:hover) {
         color: ${(props): string => props.theme.palette['grey-700']};
       }
-      background:${(props): string => props.theme.palette['grey-050']};
+      background:${(props): string => props.theme.palette['blue-050']};
+      .ds-menu-content-wrapper {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      background: ${(props): string => props.theme.palette['blue-050']};
+      }
+      .ds-menu-prefix {
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']};
+        }
+      }
+      .ds-check-icon{
+        svg {
+          fill: ${(props): string => props.theme.palette['green-600']};
+        }
+      }
+
       
       & > i.ant-menu-submenu-arrow {
          transform: rotate(180deg);
          background-image: url("${(props): string =>
            props.disabled
              ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
-             : arrowDownSvgWithCustomColor(props.theme.palette['grey-500'])}");
+             : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
     }
     > .ant-menu-submenu-title {
       border-radius: 3px;
       & > i.ant-menu-submenu-arrow {
           transform: rotate(0deg);
-          top:5px;
+          top:calc(50% - 12px);
           right:5px;
           height:24px;
           width:24px;
@@ -249,11 +274,6 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             ${(props): string | false =>
               !props.disabled &&
               `
-              ${prefixelWrapper} {
-                svg {
-                  fill: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
-                }
-              }
               color: ${props.danger ? props.theme.palette['red-600'] : props.theme.palette['blue-600']};
               background: ${props.danger ? props.theme.palette['red-050'] : props.theme.palette['grey-050']};
            `}
