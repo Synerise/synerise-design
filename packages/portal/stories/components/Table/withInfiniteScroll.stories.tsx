@@ -67,7 +67,7 @@ const stories = {
           { title: 'Price', key: 'price', dataIndex: 'price' },
           { title: 'Color', key: 'color', dataIndex: 'color' },
         ]}
-        onScrollReachEnd={fakeFetchData}
+        onScrollEndReach={fakeFetchData}
         isLoading={store.state.isLoading}
         footer={() => (
           store.state.isLoading

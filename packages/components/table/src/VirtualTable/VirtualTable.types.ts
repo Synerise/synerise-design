@@ -9,5 +9,5 @@ export interface Props<T> extends DSTableProps<T> {
     y: number;
   };
   onRowClick?: (row: T) => void;
-  onScrollReachEnd?: ScrollBarProps['onYReachEnd'];
+  onScrollEndReach?: ScrollBarProps['onYReachEnd'];
 }

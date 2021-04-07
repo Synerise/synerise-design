@@ -33,7 +33,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     dataSource,
     expandable,
     locale,
-    onScrollReachEnd,
+    onScrollEndReach,
   } = props;
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
@@ -193,7 +193,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
 
   const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
     return (
-      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={onScrollReachEnd}>
+      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={onScrollEndReach}>
         {children}
       </Scrollbar>
     );
