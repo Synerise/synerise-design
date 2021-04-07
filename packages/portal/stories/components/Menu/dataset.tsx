@@ -245,7 +245,7 @@ export function renderSuffix(suffixElementType: string, selectSuffixCallback?: (
   }
 }
 
-export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: ()=> void,) => {
+export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: (value:boolean)=> void,) => {
   switch (prefixIconType) {
     case prefixType.twoIcons:
       return (
