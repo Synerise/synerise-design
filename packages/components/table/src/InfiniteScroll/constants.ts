@@ -1,9 +1,11 @@
-export interface InfiniteScrollProps {
+export interface InfiniteScrollState {
   hasError: boolean;
   hasMore: boolean;
   isLoading: boolean;
-  // TODO: add custom renderer
-  // render?: (loaderItemProps: Omit<LoaderItemProps, 'render'>) => React.ReactElement;
+}
+
+export interface InfiniteScrollProps extends InfiniteScrollState {
+  render?: (state: InfiniteScrollState) => React.ReactElement;
   onRetryButtonClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onScrollEndReach: () => void;
 }

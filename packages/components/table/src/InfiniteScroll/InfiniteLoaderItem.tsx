@@ -6,6 +6,7 @@ import { RefreshM } from '@synerise/ds-icon/dist/icons';
 import Loader from '@synerise/ds-loader';
 import { TableLocaleContext } from '../utils/locale';
 import { InfiniteScrollProps } from './constants';
+import { infiniteScrollPropsToState } from './utils';
 
 export interface LoaderItemProps {
   infiniteScroll: InfiniteScrollProps;
@@ -52,9 +53,11 @@ const ErrorItem = ({ onRetryClick }: ErrorItemProps): React.ReactElement => (
 );
 
 const InfiniteLoaderItem = ({ infiniteScroll }: LoaderItemProps): React.ReactElement => {
-  const { hasMore, isLoading, hasError, onRetryButtonClick } = infiniteScroll;
+  const { hasMore, isLoading, hasError, onRetryButtonClick, render } = infiniteScroll;
 
-  // TODO: add custom renderer
+  if (typeof render === 'function') {
+    return render(infiniteScrollPropsToState(infiniteScroll));
+  }
 
   return (
     <>
