@@ -72,6 +72,10 @@ export type Locale = TableLocale & {
   columnSortAscend?: string;
   columnSortDescend?: string;
   columnSortClear?: string;
+  infiniteScrollError?: string;
+  infiniteScrollRetry?: string;
+  infiniteScrollNoMoreData?: string;
+  infiniteScrollLoading?: string;
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {

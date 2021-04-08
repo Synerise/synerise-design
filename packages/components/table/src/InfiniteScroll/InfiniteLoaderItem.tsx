@@ -4,18 +4,26 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { RefreshM } from '@synerise/ds-icon/dist/icons';
 import Loader from '@synerise/ds-loader';
+import { TableLocaleContext } from '../utils/locale';
 import { InfiniteScrollProps } from './constants';
 
 export interface LoaderItemProps {
   infiniteScroll: InfiniteScrollProps;
-  // TODO: add message labels
-  // locale: ??
 }
 
+const LoadingItem = (): React.ReactElement => (
+  <TableLocaleContext.Consumer>
+    {(tableLocale): React.ReactElement => <Loader size="M" label={tableLocale.infiniteScrollLoading} />}
+  </TableLocaleContext.Consumer>
+);
+
 const NoMoreItem = (): React.ReactElement => (
-  // TODO: add type="info" to InlineAlert
-  // TODO: add locale
-  <Alert.InlineAlert type="warning" message="There is no more data to load" />
+  <TableLocaleContext.Consumer>
+    {(tableLocale): React.ReactElement => (
+      // TODO: add type="info" to InlineAlert
+      <Alert.InlineAlert type="warning" message={tableLocale.infiniteScrollNoMoreData} />
+    )}
+  </TableLocaleContext.Consumer>
 );
 
 interface ErrorItemProps {
@@ -23,22 +31,24 @@ interface ErrorItemProps {
 }
 
 const ErrorItem = ({ onRetryClick }: ErrorItemProps): React.ReactElement => (
-  <div style={{ display: 'flex' }}>
-    {/* TODO: add locale */}
-    <Alert.InlineAlert type="alert" message="Can't fetch data" />
-    {onRetryClick && (
-      <Button
-        onClick={onRetryClick}
-        type="ghost"
-        mode="icon-label"
-        icon={<Icon component={<RefreshM />} />}
-        style={{ marginLeft: 8 }}
-      >
-        {/* TODO: add locale */}
-        Retry
-      </Button>
+  <TableLocaleContext.Consumer>
+    {(tableLocale): React.ReactElement => (
+      <div style={{ display: 'flex' }}>
+        <Alert.InlineAlert type="alert" message={tableLocale.infiniteScrollError} />
+        {onRetryClick && (
+          <Button
+            onClick={onRetryClick}
+            type="ghost"
+            mode="icon-label"
+            icon={<Icon component={<RefreshM />} />}
+            style={{ marginLeft: 8 }}
+          >
+            {tableLocale.infiniteScrollRetry}
+          </Button>
+        )}
+      </div>
     )}
-  </div>
+  </TableLocaleContext.Consumer>
 );
 
 const InfiniteLoaderItem = ({ infiniteScroll }: LoaderItemProps): React.ReactElement => {
@@ -48,8 +58,7 @@ const InfiniteLoaderItem = ({ infiniteScroll }: LoaderItemProps): React.ReactEle
 
   return (
     <>
-      {/* TODO: add locale */}
-      {isLoading && <Loader size="M" label="Loading more items" />}
+      {isLoading && <LoadingItem />}
       {!isLoading && !hasMore && <NoMoreItem />}
       {!isLoading && hasError && <ErrorItem onRetryClick={onRetryButtonClick} />}
     </>
