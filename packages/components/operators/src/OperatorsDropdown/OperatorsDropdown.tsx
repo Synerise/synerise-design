@@ -59,7 +59,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
           resultItems.push(
             <OperatorsDropdownItem
               className={classNames}
-              key={item.name + item.id}
+              key={uuid()}
               item={item}
               searchQuery={searchQuery}
               hideDropdown={(): void => setDropdownVisible(false)}

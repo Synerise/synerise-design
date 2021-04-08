@@ -12,7 +12,7 @@ export const StepName = styled.div`
   font-size: 13px;
   line-height: 1.84;
   color: ${(props): string => props.theme.palette['grey-400']};
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -39,6 +39,16 @@ export const StepCruds = styled.div`
   justify-content: flex-end;
   opacity: 0;
   visibility: hidden;
+  margin-bottom: 8px;
+`;
+
+export const StepHeader = styled.div`
+  display: flex;
+  width: 100%;
+  height: 46px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
 `;
 
 export const Step = styled.div<{ withStepName: boolean }>`
@@ -46,7 +56,7 @@ export const Step = styled.div<{ withStepName: boolean }>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${(props): string => (props.withStepName ? '12px 0 36px' : '24px 0')};
+  padding: ${(props): string => (props.withStepName ? '0 0 36px' : '0 0 24px 0')};
   border-top: 1px dotted ${(props): string => props.theme.palette['grey-300']};
   
   &:first-of-type {
@@ -75,7 +85,9 @@ export const Step = styled.div<{ withStepName: boolean }>`
     justify-content: center;
     padding: 0 20px;
     box-shadow: 0 16px 32px 0 #23293619;
-
+    ${StepHeader} {
+      align-items: center;
+      }
     ${StepName} {
       margin: 0;
       ${IconWrapper} {
@@ -97,10 +109,10 @@ export const Step = styled.div<{ withStepName: boolean }>`
     align-items: center;
     justify-content: center;
     padding: 0;
-    margin-bottom: 24px;
     height: 50px;
     box-shadow: none;
     position: relative;
+    margin: 24px 0;
     &:after {
       content: '';
       position: absolute;
@@ -121,14 +133,6 @@ export const Step = styled.div<{ withStepName: boolean }>`
     }
   }
 }
-`;
-
-export const StepHeader = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
 `;
 
 export const ConditionWrapper = styled.div``;
