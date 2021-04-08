@@ -236,7 +236,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
             }}
             outerElementType={CustomScrollbar}
             overscanCount={1}
-            innerElementType={listInnerElementType}
+            innerElementType={infiniteScroll && listInnerElementType}
           >
             {VirtualTableRow}
           </List>
