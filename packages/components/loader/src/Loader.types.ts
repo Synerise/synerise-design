@@ -12,7 +12,7 @@ export enum FontSize {
 
 export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
-  fontsize?: 'small' | 'medium';
+  fontSize?: 'small' | 'medium';
   text?: string | React.ReactNode;
   label?: string | React.ReactNode;
   labelPosition?: 'bottom' | 'right';
