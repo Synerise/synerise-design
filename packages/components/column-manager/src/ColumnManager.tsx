@@ -9,6 +9,7 @@ import { CloseM, FolderM, SearchM } from '@synerise/ds-icon/dist/icons';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';
 import { ColumnManagerProps, State, Texts } from './ColumnManager.types';
@@ -57,6 +58,7 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     const { texts, intl } = this.props;
     return {
       title: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.TITLE' }),
+      savedViews: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SAVED-VIEWS', defaultMessage: 'Saved views' }),
       searchPlaceholder: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.SEARCH-PLACEHOLDER' }),
       searchClearTooltip: intl.formatMessage({ id: 'DS.ITEM-FILTER.SEARCH-CLEAR' }),
       noResults: intl.formatMessage({ id: 'DS.COLUMN-MANAGER.NO-RESULTS' }),
@@ -218,14 +220,16 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
               <Typography.Title style={{ flex: 1, margin: 0 }} level={4}>
                 {this.texts.title}
               </Typography.Title>
-              <Button
-                data-testid="ds-column-manager-show-filters"
-                type="ghost"
-                mode="single-icon"
-                onClick={this.handleShowItemFilter}
-              >
-                <Icon component={<FolderM />} />
-              </Button>
+              <Tooltip title={this.texts.savedViews} placement="bottom">
+                <Button
+                  data-testid="ds-column-manager-show-filters"
+                  type="ghost"
+                  mode="single-icon"
+                  onClick={this.handleShowItemFilter}
+                >
+                  <Icon component={<FolderM />} />
+                </Button>
+              </Tooltip>
               <Button
                 data-testid="ds-column-manager-close"
                 style={{ marginLeft: '8px' }}
