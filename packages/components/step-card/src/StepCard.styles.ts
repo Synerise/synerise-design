@@ -26,9 +26,24 @@ export const Header = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 24px;
+  padding: 21px 0;
+  margin: 0 24px;
   width: 100%;
-  border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-300']};
+  max-width: calc(100% - 48px);
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: transparent;
+    background-image: linear-gradient(to right, #ffffff 66%, #dbe0e3 34%);
+    background-position: top;
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+  }
   &:hover {
     ${CrudsWrapper} {
       opacity: 1;
@@ -58,12 +73,21 @@ export const RightSide = styled.div`
 `;
 
 export const Body = styled.div`
-  padding: 24px;
+  padding: 0 24px 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
+  .ds-conditions {
+    &:first-of-type {
+      padding-top: 0;
+    }
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
 `;
 
 export const Footer = styled.div`
