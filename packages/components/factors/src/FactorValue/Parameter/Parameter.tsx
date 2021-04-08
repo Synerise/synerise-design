@@ -32,11 +32,7 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [onParamsClick]);
 
   React.useEffect(() => {
-    if (opened) {
-      setDropdownVisible(true);
-    } else {
-      setDropdownVisible(false);
-    }
+    setDropdownVisible(!!opened);
   }, [opened]);
 
   return (

@@ -39,7 +39,8 @@ export const Header = styled.div`
     right: 0;
     height: 1px;
     background-color: transparent;
-    background-image: linear-gradient(to right, #ffffff 66%, #dbe0e3 34%);
+    background-image: ${(props): string =>
+      `linear-gradient(to right, ${props.theme.palette.white} 66%, ${props.theme.palette['grey-300']} 34%)`};
     background-position: top;
     background-size: 5px 1px;
     background-repeat: repeat-x;
