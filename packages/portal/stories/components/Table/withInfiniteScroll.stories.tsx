@@ -1,11 +1,6 @@
 import * as React from 'react';
 import faker from 'faker';
 import { withState } from '@dump247/storybook-state';
-import Alert from '@synerise/ds-alert';
-import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { RefreshM } from '@synerise/ds-icon/dist/icons';
-import Loader from '@synerise/ds-loader';
 import { VirtualTable } from '@synerise/ds-table';
 
 interface DataRow {
@@ -23,35 +18,47 @@ const getDataPortion = (items: number = 15) => new Array(items).fill({}).map(() 
   color: faker.commerce.color(),
 } as DataRow));
 
-const getDataPortionAsync = (items: number = 15) => new Promise<DataRow[]>(
-  (resolve) => { setTimeout(() => resolve(getDataPortion(items)), randomRangeInt(50, 1000)) }
+const getDataPortionAsync = (items: number = 15, isError = false) => new Promise<DataRow[]>(
+  (resolve, reject) => {
+    setTimeout(
+      () => {
+        if (isError) {
+          reject('Cannot get data');
+        }
+
+        resolve(getDataPortion(items))
+      },
+      randomRangeInt(50, 1000))
+  }
 );
 
 const stories = {
-  default: withState({ dataSource: getDataPortion(), isLoading: false, hasError: false, failCount: 0, })(({ store }) => {
-    const isFailCounterClear = store.state.failCount === 0;
+  default: withState({ dataSource: getDataPortion(25), isLoading: false, hasError: false, hasMore: true, })(({ store }) => {
     const fakeFetchData = async () => {
-      const itemsToGet = randomRangeInt(5, 15);
+      const itemsToGet = 25;
+      const itemsLimitish = 100;
+
       store.set({
         isLoading: true,
         hasError: false,
       });
-      const newItems = await getDataPortionAsync(itemsToGet);
 
-      if (itemsToGet > 10 && isFailCounterClear) {
+      try {
+        const newItems = await getDataPortionAsync(itemsToGet, randomRangeInt(1, 5) > 3);
+        const newDataSource = [
+          ...store.state.dataSource,
+          ...newItems,
+        ];
+
         store.set({
-          hasError: true,
+          dataSource: newDataSource,
           isLoading: false,
-          failCount: store.state.failCount + 1,
+          hasMore: newDataSource.length < itemsLimitish,
         });
-      } else {
+      } catch (error) {
         store.set({
-          dataSource: [
-            ...store.state.dataSource,
-            ...newItems,
-          ],
           isLoading: false,
-          failCount: 0,
+          hasError: true,
         });
       }
     }
@@ -67,25 +74,19 @@ const stories = {
           { title: 'Price', key: 'price', dataIndex: 'price' },
           { title: 'Color', key: 'color', dataIndex: 'color' },
         ]}
-        onScrollEndReach={fakeFetchData}
-        footer={() => (
-          store.state.isLoading
-            ? <Loader size='M' label='Loading more items' />
-            : store.state.hasError ? (
-              <div style={{ display: 'flex' }}>
-                <Alert.InlineAlert type="alert" message="Can't fetch data" />
-                <Button
-                  onClick={() => fakeFetchData()}
-                  type="ghost"
-                  mode="icon-label"
-                  icon={<Icon component={<RefreshM />} />}
-                  style={{ marginLeft: 8 }}
-                >
-                  Retry
-                </Button>
-              </div>
-            ) : 'Scroll down to load more items'
-        )}
+        infiniteScroll={{
+          hasError: store.state.hasError,
+          hasMore: store.state.hasMore,
+          isLoading: store.state.isLoading,
+          onRetryButtonClick: () => {
+            fakeFetchData();
+          },
+          onScrollEndReach: () => {
+            if (store.state.hasMore) {
+              fakeFetchData();
+            }
+          }
+        }}
       />
     )
   }),

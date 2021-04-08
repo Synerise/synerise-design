@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
+import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import DSTable from '../Table';
 import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
@@ -25,15 +26,15 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     scroll,
     className,
     cellHeight = 52,
+    infiniteScroll,
     selection,
     onRowClick,
     rowKey,
     rowStar,
     initialWidth = 0,
-    dataSource,
+    dataSource = [],
     expandable,
     locale,
-    onScrollEndReach,
   } = props;
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
@@ -192,13 +193,28 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   });
 
   const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
+    const handleScrollEndReach = infiniteScroll?.onScrollEndReach;
+
     return (
-      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={onScrollEndReach}>
+      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={handleScrollEndReach}>
         {children}
       </Scrollbar>
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const listInnerElementType = React.forwardRef<HTMLDivElement>(
+    ({ style, ...rest }: React.HTMLAttributes<HTMLDivElement>, ref) => (
+      <div
+        ref={ref}
+        style={{
+          ...style,
+          height: `${Number(style?.height) + infiniteLoaderItemHeight}px`,
+        }}
+        {...rest}
+      />
+    )
+  );
 
   const renderBody = React.useCallback(
     (rawData, meta): React.ReactNode => {
@@ -214,11 +230,13 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
             itemCount={data.length}
             itemSize={cellHeight}
             width={tableWidth}
-            itemData={{ mergedColumns, selection, onRowClick, dataSource: data }}
+            itemData={{ mergedColumns, selection, onRowClick, dataSource: data, infiniteScroll, cellHeight }}
             itemKey={(index): string => {
               return String(getRowKey(data[index]));
             }}
             outerElementType={CustomScrollbar}
+            overscanCount={1}
+            innerElementType={listInnerElementType}
           >
             {VirtualTableRow}
           </List>
@@ -252,6 +270,8 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
       CustomScrollbar,
       cellHeight,
       connectObject,
+      infiniteScroll,
+      listInnerElementType,
     ]
   );
 
