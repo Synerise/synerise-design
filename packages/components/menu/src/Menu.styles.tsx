@@ -163,6 +163,12 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             color: ${(props): string => props.theme.palette['grey-600']};
           }
         }
+        & > .ds-menu-prefix {
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']};
+        }
+      }
+
     
           &::after {
             content: none;

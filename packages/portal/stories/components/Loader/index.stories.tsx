@@ -69,6 +69,28 @@ const stories = {
       </div>
     )
   },
+  loaderSmallComplex: () => {
+    const colors = select('Set custom color', colorOptions, colorOptions.blue);
+    const Description = text('Description', 'Please wait a second to proceed.');
+    const Header = text('Title', 'You will be redirected to Synerise');
+
+    return(
+      <div>
+        <Loader fontSize='small' text={Header}  size='L' color={colors} label={Description} labelPosition='bottom'></Loader>
+      </div>
+    )
+  },
+  loaderMediumComplex: () => {
+    const colors = select('Set custom color', colorOptions, colorOptions.blue);
+    const Description = text('Description', 'Currently you have no Segmentations saved. Get started with a new one to analyze your database.');
+    const Header = text('Title', 'Create new Segmentation');
+
+    return(
+      <div>
+        <Loader fontSize='medium' text={Header}  size='L' color={colors} label={Description} labelPosition='bottom'></Loader>
+      </div>
+    )
+  }
 };
 
 export default {
