@@ -42,19 +42,21 @@ const FactorValue: React.FC<FactorValueProps> = ({
       />
     );
   }, [
-    selectedFactorType,
+    selectedFactor.input,
+    selectedFactor.name,
+    factorKey,
     value,
+    texts,
     onChangeValue,
-    onParamsClick,
-    selectedFactor,
-    autocompleteText,
     textType,
+    selectedFactorType,
+    autocompleteText,
     parameters,
     withoutTypeSelector,
-    texts,
     formulaEditor,
     opened,
     loading,
+    onParamsClick,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;

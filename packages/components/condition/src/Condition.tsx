@@ -95,7 +95,7 @@ const Condition: React.FC<ConditionProps> = ({
       setCurrentConditionId(newConditionId);
       setCurrentField(PARAMETER);
     }
-  }, [prevSteps, steps]);
+  }, [currentConditionId, prevSteps, steps]);
 
   const clearConditionRow = React.useCallback(
     step => {
