@@ -492,6 +492,8 @@ const stories = {
               deleteConfirmationTitle: 'Delete view',
               deleteConfirmationDescription:
                 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+              deleteConfirmationYes: text('Delete confirmation yes', 'Yes'),
+              deleteConfirmationNo: text('Delete confirmation no', 'No'),
               deleteLabel: 'Delete',
               noResults: 'No results',
               searchPlaceholder: 'Search',
