@@ -16,6 +16,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   formulaEditor,
   opened,
   loading,
+  factorKey,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent = selectedFactor.input;
@@ -24,6 +25,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       <InputComponent
+        key={`${factorKey}-${selectedFactor.name}`}
         value={value}
         placeholder={texts.valuePlaceholder}
         onChange={onChangeValue}
