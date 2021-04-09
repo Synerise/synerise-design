@@ -252,7 +252,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
             >
               {VirtualTableRow}
             </List>
-            <BackToTopButton onClick={handleBackToTopClick} />
+            { infiniteScroll && <BackToTopButton onClick={handleBackToTopClick} /> }
           </>
         );
       };
