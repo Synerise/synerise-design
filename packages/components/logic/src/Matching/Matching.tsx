@@ -5,7 +5,7 @@ import * as S from './Matching.styles';
 
 const MATCHING_TOGGLE = '#MATCHING_TOGGLE#';
 
-const Matching: React.FC<MatchingProps> = ({ matching, sentence, onChange, texts }) => {
+const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange, texts }) => {
   const intl = useIntl();
 
   const text = React.useMemo(() => {

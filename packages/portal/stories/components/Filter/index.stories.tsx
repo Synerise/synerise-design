@@ -21,7 +21,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
   id: uuid(),
   data: {
     name: '',
-    matching: false,
+    matching: true,
   },
   logic: {
     type: 'LOGIC',
@@ -45,7 +45,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
 
 const DEFAULT_STATE = {
   expressions: [DEFAULT_EXPRESSION()],
-  matching: false,
+  matching: true,
 };
 
 const stories = {

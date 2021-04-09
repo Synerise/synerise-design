@@ -37,7 +37,7 @@ const DEFAULT_STEP = {
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
-    selectedItem: undefined,
+    selectedItem: SUBJECT_ITEMS[0],
     items: SUBJECT_ITEMS,
   },
 };

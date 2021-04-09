@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import { InputGroup } from '@synerise/ds-input';
+import { OuterWrapper } from '@synerise/ds-input/dist/Input.styles';
 import { FactorInput } from '../FactorValue/FactorValue.style';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
   && {
+    ${OuterWrapper} {
+      margin: 0;
+    }
     ${FactorInput} {
       width: auto;
       display: inline-flex;

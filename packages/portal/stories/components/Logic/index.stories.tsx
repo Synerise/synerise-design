@@ -13,7 +13,7 @@ const stories = {
     const handleChange = value => store.set({ value });
     return <Logic value={store.state.value} onChange={handleChange} />;
   }),
-  matching: withState({ matching: false })(({ store }) => {
+  matching: withState({ matching: true })(({ store }) => {
     const handleChange = matching => store.set({ matching });
     return (
       <Logic.Matching

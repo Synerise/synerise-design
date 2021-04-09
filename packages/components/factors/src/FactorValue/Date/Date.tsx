@@ -2,7 +2,7 @@ import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { InputProps } from '../../Factors.types';
 
-const DateInput: React.FC<InputProps> = ({ value, onChange, texts }) => {
+const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened }) => {
   const changeHandler = React.useCallback(
     (date: Date | undefined) => {
       onChange(date);
@@ -20,6 +20,7 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts }) => {
       disabledHours={[]}
       disabledMinutes={[]}
       disabledSeconds={[]}
+      autoFocus={opened}
     />
   );
 };
