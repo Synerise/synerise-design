@@ -35,6 +35,10 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
     id: 'DS.TABLE.INFINITE_SCROLL.LOADING',
     defaultMessage: 'Loading more items',
   }),
+  infiniteScrollBackToTop: intl.formatMessage({
+    id: 'DS.TABLE.INFINITE_SCROLL.BACK_TO_TOP',
+    defaultMessage: 'Back to top',
+  }),
 });
 
 export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>

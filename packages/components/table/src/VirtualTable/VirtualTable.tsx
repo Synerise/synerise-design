@@ -8,6 +8,7 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
+import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
@@ -192,11 +193,13 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     return obj;
   });
 
+  const scrollBarRef = React.useRef<HTMLElement>(null);
+
   const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
     const handleScrollEndReach = infiniteScroll?.onScrollEndReach;
 
     return (
-      <Scrollbar onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={handleScrollEndReach}>
+      <Scrollbar ref={scrollBarRef} onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={handleScrollEndReach}>
         {children}
       </Scrollbar>
     );
@@ -216,6 +219,14 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     )
   );
 
+  const handleBackToTopClick = (): void => {
+    if (!scrollBarRef.current) {
+      return;
+    }
+
+    scrollBarRef.current.scrollTop = 0;
+  };
+
   const renderBody = React.useCallback(
     (rawData, meta): React.ReactNode => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -223,23 +234,26 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
         // eslint-disable-next-line no-param-reassign
         ref.current = connectObject;
         return (
-          <List
-            ref={listRef}
-            className="virtual-grid"
-            height={scroll.y}
-            itemCount={data.length}
-            itemSize={cellHeight}
-            width={tableWidth}
-            itemData={{ mergedColumns, selection, onRowClick, dataSource: data, infiniteScroll, cellHeight }}
-            itemKey={(index): string => {
-              return String(getRowKey(data[index]));
-            }}
-            outerElementType={CustomScrollbar}
-            overscanCount={1}
-            innerElementType={infiniteScroll && listInnerElementType}
-          >
-            {VirtualTableRow}
-          </List>
+          <>
+            <List
+              ref={listRef}
+              className="virtual-grid"
+              height={scroll.y}
+              itemCount={data.length}
+              itemSize={cellHeight}
+              width={tableWidth}
+              itemData={{ mergedColumns, selection, onRowClick, dataSource: data, infiniteScroll, cellHeight }}
+              itemKey={(index): string => {
+                return String(getRowKey(data[index]));
+              }}
+              outerElementType={CustomScrollbar}
+              overscanCount={1}
+              innerElementType={infiniteScroll && listInnerElementType}
+            >
+              {VirtualTableRow}
+            </List>
+            <BackToTopButton onClick={handleBackToTopClick} />
+          </>
         );
       };
 
