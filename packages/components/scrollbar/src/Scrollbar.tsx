@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { combineRefs } from '@synerise/ds-utils';
+import { useCombinedRefs } from '@synerise/ds-utils';
 import './style/index.less';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Icon from '@synerise/ds-icon';
@@ -20,7 +20,7 @@ const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(({
   onYReachEnd,
 }, forwardedRef) => {
   const scrollRef = React.useRef<HTMLElement>();
-  const combinedScrollRef = combineRefs(forwardedRef, scrollRef);
+  const combinedScrollRef = useCombinedRefs(forwardedRef, scrollRef);
   const [lastScrollTop, setLastScrollTop] = React.useState(0);
 
   const handleReachEnd = React.useCallback(
