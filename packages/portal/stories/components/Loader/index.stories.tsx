@@ -11,6 +11,10 @@ const iconSizes = {
   Medium: 'M',
   Large: 'L'
 };
+const fontSizes = {
+  Small: 'small',
+  Medium: 'medium',
+};
 const colorOptions = {
   blue: 'blue',
   grey:'grey',
@@ -45,7 +49,6 @@ const stories = {
     const size = select('Size', iconSizes,'M')
     const labelPosition = select('Position of elements', ['right','bottom'],'right');
     const showText = boolean ('Show Loading text',true, );
-    const colors = select('Set custom color', colorOptions, colorOptions.blue);
     const loadingText = text('Loading', 'Loading...');
     const showPercent = boolean ('Show percent text',false , );
 
@@ -65,32 +68,21 @@ const stories = {
     };
     return(
       <div>
-        <Loader mode='absolute' percentFormatter={getPercent} size={size} color={colors} label={loadingText && getLoading(showText)} labelPosition={labelPosition}></Loader>
+        <Loader mode='absolute' percentFormatter={getPercent} size={size}  label={loadingText && getLoading(showText)} labelPosition={labelPosition}></Loader>
       </div>
     )
   },
-  loaderSmallComplex: () => {
-    const colors = select('Set custom color', colorOptions, colorOptions.blue);
+  loaderComplex: () => {
     const Description = text('Description', 'Please wait a second to proceed.');
     const Header = text('Title', 'You will be redirected to Synerise');
+    const size = select('Set size of text',fontSizes, fontSizes.Small)
 
     return(
       <div>
-        <Loader fontSize='small' text={Header}  size='L' color={colors} label={Description} labelPosition='bottom'></Loader>
+        <Loader fontSize={size} text={Header}  size='L' label={Description} labelPosition='bottom'></Loader>
       </div>
     )
   },
-  loaderMediumComplex: () => {
-    const colors = select('Set custom color', colorOptions, colorOptions.blue);
-    const Description = text('Description', 'Currently you have no Segmentations saved. Get started with a new one to analyze your database.');
-    const Header = text('Title', 'Create new Segmentation');
-
-    return(
-      <div>
-        <Loader fontSize='medium' text={Header}  size='L' color={colors} label={Description} labelPosition='bottom'></Loader>
-      </div>
-    )
-  }
 };
 
 export default {
