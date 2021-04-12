@@ -93,7 +93,7 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement1 ? null : 'hover',
         prefixel: hover =>
           (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
@@ -152,7 +152,7 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement2 ? null : 'hover',
         prefixel: hover =>
           (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
@@ -211,7 +211,7 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement3 ? null : 'hover',
         prefixel: hover =>
           (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
