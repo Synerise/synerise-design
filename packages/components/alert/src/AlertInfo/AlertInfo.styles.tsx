@@ -13,7 +13,7 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   line-height: 16px;
   max-width: 440px;
   word-wrap: break-word;
-  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : '')};
+  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : 'flex-start')};
   text-align: center;
 `;
 export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'L' | 'XL' }>`
