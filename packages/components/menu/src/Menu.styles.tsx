@@ -163,6 +163,12 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             color: ${(props): string => props.theme.palette['grey-600']};
           }
         }
+        & > .ds-menu-prefix {
+        svg {
+          fill: ${(props): string => props.theme.palette['blue-600']};
+        }
+      }
+
     
           &::after {
             content: none;
@@ -194,10 +200,10 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       .ds-menu-content-wrapper {
       color: ${(props): string => props.theme.palette['blue-600']};
       background: ${(props): string => props.theme.palette['blue-050']};
-      }
-      .ds-menu-prefix {
-        svg {
-          fill: ${(props): string => props.theme.palette['blue-600']};
+        .ds-menu-prefix {
+          svg {
+            fill: ${(props): string => props.theme.palette['blue-600']};
+          }
         }
       }
       .ds-check-icon{

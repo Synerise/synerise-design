@@ -29,8 +29,8 @@ const stories = {
     const disabledChild = boolean('Set child disabled', false);
     const parentDescription = boolean('Set medium parent', false);
     const childDescription = boolean('Set medium child', false);
-    const setCheckbox = boolean('Set visibility trigger checkbox', false);
-    const [selectedKeysObj, setSelectedKeysObj] = React.useState(initialSelectedKeys);
+    const checkboxVisibilityTrigger = boolean('Set visibility trigger checkbox', false);
+    const [checkedKeys, setCheckedKeys] = React.useState(initialSelectedKeys);
     const [suffixElement1, setSuffixElement1] = React.useState(false);
     const [suffixElement2, setSuffixElement2] = React.useState(false);
     const [suffixElement3, setSuffixElement3] = React.useState(false);
@@ -40,24 +40,24 @@ const stories = {
       parent3: ['p3-Child 1', 'p3-Child 2', 'p3-Child 3'],
   };
 
-    const updateSelectedKeys = (value, key) => {
-      const newSelectedKeys = { ...selectedKeysObj, [key]: value };
-      setSelectedKeysObj(newSelectedKeys);
+    const updateCheckedKeys = (value, key) => {
+      const newSelectedKeys = { ...checkedKeys, [key]: value };
+      setCheckedKeys(newSelectedKeys);
     };
     const checkParentChilds = (key) => {
       const children = parentChilds[key];
-      const checked = children.filter(child => selectedKeysObj[child]);
+      const checked = children.filter(child => checkedKeys[child]);
       return checked.length === children.length
     }
     const checkAllChildren = (key,value) => {
       const children = parentChilds[key];
-      const newSelectedKeys = { ...selectedKeysObj};
+      const newSelectedKeys = { ...checkedKeys};
       children.forEach(child => {newSelectedKeys[child] = value});
-      setSelectedKeysObj(newSelectedKeys);
+      setCheckedKeys(newSelectedKeys);
     }
     const checkIfParentHasChecked = (key) => {
       const children = parentChilds[key];
-      const checked = children.filter(child => selectedKeysObj[child]);
+      const checked = children.filter(child => checkedKeys[child]);
       return checked.length > 0 && checked.length < children.length
     }
     const subMenuElement1 = initValue => {
@@ -93,14 +93,14 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement1 ? null : 'hover',
         prefixel: hover =>
-          (setCheckbox && hover) || selectedKeysObj[key] ? (
+          (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
-                defaultChecked={selectedKeysObj[key]}
+                defaultChecked={checkedKeys[key]}
                 onChange={e => {
-                  updateSelectedKeys(e.target.checked, key);
+                  updateCheckedKeys(e.target.checked, key);
                 }}
               />
             </div>
@@ -109,8 +109,8 @@ const stories = {
               <Checkbox defaultChecked={true} />
             </div>
           ) : (
-            renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
-              updateSelectedKeys(value, key);
+            renderPrefixIcon(prefixKnobChild, checkedKeys[key], value => {
+              updateCheckedKeys(value, key);
             })
           ),
         description: childDescription ? 'description' : undefined,
@@ -152,14 +152,14 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement2 ? null : 'hover',
         prefixel: hover =>
-          (setCheckbox && hover) || selectedKeysObj[key] ? (
+          (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
-                defaultChecked={selectedKeysObj[key]}
+                defaultChecked={checkedKeys[key]}
                 onChange={e => {
-                  updateSelectedKeys(e.target.checked, key);
+                  updateCheckedKeys(e.target.checked, key);
                 }}
               />
             </div>
@@ -168,8 +168,8 @@ const stories = {
               <Checkbox defaultChecked={true} />
             </div>
           ) : (
-            renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
-              updateSelectedKeys(value, key);
+            renderPrefixIcon(prefixKnobChild, checkedKeys[key], value => {
+              updateCheckedKeys(value, key);
             })
           ),
         description: childDescription ? 'description' : undefined,
@@ -211,14 +211,14 @@ const stories = {
           ) : (
             renderSuffix(suffixKnobChild, () => setRenameElement(!renameElement))
           ),
-        suffixVisibilityTrigger: 'hover',
+        suffixVisibilityTrigger: suffixElement3 ? null : 'hover',
         prefixel: hover =>
-          (setCheckbox && hover) || selectedKeysObj[key] ? (
+          (checkboxVisibilityTrigger && hover) || checkedKeys[key] ? (
             <div style={{ padding: '0 4px' }}>
               <Checkbox
-                defaultChecked={selectedKeysObj[key]}
+                defaultChecked={checkedKeys[key]}
                 onChange={e => {
-                  updateSelectedKeys(e.target.checked, key);
+                  updateCheckedKeys(e.target.checked, key);
                 }}
               />
             </div>
@@ -227,8 +227,8 @@ const stories = {
               <Checkbox defaultChecked={true} />
             </div>
           ) : (
-            renderPrefixIcon(prefixKnobChild, selectedKeysObj[key], value => {
-              updateSelectedKeys(value, key);
+            renderPrefixIcon(prefixKnobChild, checkedKeys[key], value => {
+              updateCheckedKeys(value, key);
             })
           ),
         description: childDescription ? 'description' : undefined,
@@ -274,9 +274,6 @@ const stories = {
     const [value1, setValue1] = React.useState<string>(initValue1);
     const [value2, setValue2] = React.useState<string>(initValue2);
     const [value3, setValue3] = React.useState<string>(initValue3);
-    const key1 = React.useMemo(() => `p1-${initValue1}`, [initValue1]);
-    const key2 = React.useMemo(() => `p2-${initValue2}`, [initValue2]);
-    const key3 = React.useMemo(() => `p3-${initValue3}`, [initValue3]);
     const [renameElement1, setRenameElement1] = React.useState(false);
     const [renameElement2, setRenameElement2] = React.useState(false);
     const [renameElement3, setRenameElement3] = React.useState(false);
@@ -315,7 +312,7 @@ const stories = {
           ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || checkParentChilds('parent1') || checkIfParentHasChecked('parent1') ? (
+            (checkboxVisibilityTrigger && hover) || checkParentChilds('parent1') || checkIfParentHasChecked('parent1') ? (
               <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
                   checked={checkParentChilds('parent1')}
@@ -381,7 +378,7 @@ const stories = {
           ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || checkParentChilds('parent2')  || checkIfParentHasChecked('parent2')? (
+            (checkboxVisibilityTrigger && hover) || checkParentChilds('parent2')  || checkIfParentHasChecked('parent2')? (
               <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
                   checked={checkParentChilds('parent2')}
@@ -444,7 +441,7 @@ const stories = {
           ),
           suffixVisibilityTrigger: 'hover',
           prefixel: hover =>
-            (setCheckbox && hover) || checkParentChilds('parent3')  || checkIfParentHasChecked('parent3') ? (
+            (checkboxVisibilityTrigger && hover) || checkParentChilds('parent3')  || checkIfParentHasChecked('parent3') ? (
               <div style={{ padding: '0 4px' }} onClick={(e)=> e.stopPropagation() }>
                 <Checkbox
                   checked={checkParentChilds('parent3')}
@@ -475,6 +472,8 @@ const stories = {
     } as object;
 
     const onClickCallback = (clickedKey: string) => {
+      if (checkboxVisibilityTrigger || prefixKnobParent === prefixType.checkbox || prefixKnobChild === prefixType.checkbox)
+        return;
       if (selectedKeys.indexOf(clickedKey) !== -1) {
         setSelectedKeys([]);
         return;
@@ -503,7 +502,7 @@ const stories = {
           }}
           dataSource={itemsWithOnClick}
           selectable
-          selectedKeys={selectedKeys}
+          selectedKeys={[...selectedKeys,...Object.keys(checkedKeys).filter(key=>checkedKeys[key])]}
           ordered
         />
       </div>

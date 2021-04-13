@@ -83,24 +83,24 @@ const saveFilter = (savedView: SavedView, store) => {
 
 const removeItem = (props, store): void => {
   store.set({
-    categories: store.state.categories.map(category => ({
+    savedViews: store.state.savedViews.map((category) => ({
       ...category,
-      items: category.items.filter(item => item.id !== props.id),
-    })),
+      items: category.items.filter(item => item.id !== props.id)
+    }))
   });
 };
 
 const editItem = (props, store): void => {
   store.set({
-    categories: store.state.categories.map(category => ({
+    savedViews: store.state.savedViews.map(category => ({
       ...category,
       items: category.items.map(item => {
-        if (item.id === props.id) {
+        if(item.id === props.id) {
           item.name = props.name;
         }
         return item;
       }),
-    })),
+    }))
   });
 };
 
@@ -492,6 +492,8 @@ const stories = {
               deleteConfirmationTitle: 'Delete view',
               deleteConfirmationDescription:
                 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+              deleteConfirmationYes: text('Delete confirmation yes', 'Yes'),
+              deleteConfirmationNo: text('Delete confirmation no', 'No'),
               deleteLabel: 'Delete',
               noResults: 'No results',
               searchPlaceholder: 'Search',

@@ -77,6 +77,7 @@ export type FactorsTexts = {
 };
 
 export type FactorsProps = {
+  factorKey?: React.ReactText;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -124,6 +125,7 @@ export type FactorValueProps = Pick<
   | 'formulaEditor'
   | 'opened'
   | 'loading'
+  | 'factorKey'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;

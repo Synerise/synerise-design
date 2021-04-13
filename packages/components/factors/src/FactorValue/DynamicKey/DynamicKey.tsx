@@ -3,7 +3,7 @@ import { RawInput } from '@synerise/ds-input';
 import { DynamicKeyValueType, InputProps } from '../../Factors.types';
 import * as S from './DynamicKey.style';
 
-const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false, texts }) => {
+const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false, texts, opened }) => {
   const handleChange = React.useCallback(
     event => {
       const newValue = { ...(value as DynamicKeyValueType) };
@@ -20,6 +20,7 @@ const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector
         value={(value as DynamicKeyValueType)?.key}
         name="key"
         onChange={handleChange}
+        autoFocus={opened}
       />
       <RawInput
         placeholder={texts.dynamicKey.valuePlaceholder}
