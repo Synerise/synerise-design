@@ -15,6 +15,10 @@ interface SortRendererProps<T> {
   column: DSColumnType<T>;
 }
 
+const handleButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+  e.stopPropagation();
+};
+
 export const CommonRenderer = <T extends unknown>({
   column,
   sortStateApi,
@@ -28,6 +32,7 @@ export const CommonRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
+          trigger={['click']}
           overlay={
             <Dropdown.Wrapper style={{ width: 220 }}>
               <Menu
@@ -60,7 +65,7 @@ export const CommonRenderer = <T extends unknown>({
             </Dropdown.Wrapper>
           }
         >
-          <Button type="ghost" mode="single-icon">
+          <Button type="ghost" mode="single-icon" onClick={handleButtonClick}>
             <DefaultSortIcon sortOrder={columnSortOrder} />
           </Button>
         </Dropdown>
@@ -82,6 +87,7 @@ export const StringRenderer = <T extends unknown>({
     <TableLocaleContext.Consumer>
       {(locale): React.ReactElement => (
         <Dropdown
+          trigger={['click']}
           overlay={
             <Dropdown.Wrapper style={{ width: 170 }}>
               <Menu
@@ -114,7 +120,7 @@ export const StringRenderer = <T extends unknown>({
             </Dropdown.Wrapper>
           }
         >
-          <Button type="ghost" mode="single-icon">
+          <Button type="ghost" mode="single-icon" onClick={handleButtonClick}>
             <StringSortIcon sortOrder={columnSortOrder} />
           </Button>
         </Dropdown>
