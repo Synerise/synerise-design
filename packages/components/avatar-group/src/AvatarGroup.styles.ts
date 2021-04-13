@@ -55,20 +55,26 @@ export const Group = styled.div<{ size: Size }>`
   }
 `;
 
-export const MoreInfo = styled(Avatar)<{onClick: () => void}>`
+export const MoreInfo = styled(Avatar)<{ onClick: () => void }>`
   && {
     margin-left: 8px;
-    background: ${({theme}): string => theme.palette.white};
-    border: 1px solid ${({theme}): string => theme.palette['grey-300']};
-    color: ${({theme}): string => theme.palette['grey-400']};
+    background: ${({ theme }): string => theme.palette.white};
+    border: 1px solid ${({ theme }): string => theme.palette['grey-300']};
+    color: ${({ theme }): string => theme.palette['grey-400']};
 
-    ::after, ::before {
+    span {
+      color: ${({ theme }): string => theme.palette['grey-400']} !important;
+    }
+
+    ::after,
+    ::before {
       display: none;
     }
 
-    &:hover, &:active {
-      color: ${({theme}): string => theme.palette['grey-500']};
-      border-color: ${({theme}): string => theme.palette['grey-500']};
+    &:hover,
+    &:active {
+      color: ${({ theme }): string => theme.palette['grey-500']};
+      border-color: ${({ theme }): string => theme.palette['grey-500']};
     }
   }
 `;
