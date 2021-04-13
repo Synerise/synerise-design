@@ -65,7 +65,7 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, pressed, ...rest }) => (
+export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, hasTooltip, ...rest }) => (
   <Avatar onClick={onClick} {...rest} />
 ))`
   && {
@@ -114,19 +114,16 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       opacity: 0;
       border-radius: inherit;
     }
+
     ${(props): FlattenSimpleInterpolation | false =>
-      props.pressed &&
+      (props.onClick || props.hasTooltip) &&
       css`
-        &::before {
-          opacity: 0.05;
+        &:hover {
+          &::before {
+            opacity: 0.05;
+          }
         }
       `};
-
-    &:hover {
-      &::before {
-        opacity: 0.05;
-      }
-    }
 
     ${(props): FlattenSimpleInterpolation | false =>
       props.onClick
