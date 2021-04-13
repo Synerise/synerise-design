@@ -25,6 +25,7 @@ class Dropdown extends React.Component<DropdownProps> {
       <AntdDropdown
         getPopupContainer={getPopupContainer}
         align={{ offset: [0, 8] }} // STOR-588
+        trigger={['click']}
         {...this.props}
       />
     );
