@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 knkXli ds-avatar ant-avatar-square"
+        class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-square"
       >
         <span
           class="ant-avatar-string"
@@ -37,7 +37,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 knkXli ds-avatar ant-avatar-square"
+      class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-square"
     >
       <span
         class="ant-avatar-string"
@@ -125,7 +125,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 ewuusF ds-avatar ant-avatar-square"
+        class="ant-avatar Avatarstyles-xcn5o4-1 fwDort ds-avatar ant-avatar-square"
       >
         <span
           class="ant-avatar-string"
@@ -138,7 +138,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 ewuusF ds-avatar ant-avatar-square"
+      class="ant-avatar Avatarstyles-xcn5o4-1 fwDort ds-avatar ant-avatar-square"
     >
       <span
         class="ant-avatar-string"
@@ -208,7 +208,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 ewuusF ds-avatar ant-avatar-square ant-avatar-image"
+        class="ant-avatar Avatarstyles-xcn5o4-1 fwDort ds-avatar ant-avatar-square ant-avatar-image"
       >
         <img
           src="https://image.com/image.jpg"
@@ -218,7 +218,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 ewuusF ds-avatar ant-avatar-square ant-avatar-image"
+      class="ant-avatar Avatarstyles-xcn5o4-1 fwDort ds-avatar ant-avatar-square ant-avatar-image"
     >
       <img
         src="https://image.com/image.jpg"
