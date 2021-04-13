@@ -2,7 +2,16 @@ import * as React from 'react';
 import Alert from '@synerise/ds-alert';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import { Add3M, AppleFillM, ArrowUpCircleM, DollarCircleM } from '@synerise/ds-icon/dist/icons';
+import {
+  Add3M,
+  AppleFillM,
+  ArrowUpCircleM,
+  DollarCircleM,
+  RefreshM,
+} from '@synerise/ds-icon/dist/icons';
+import AlertInfo from '@synerise/ds-alert/dist/AlertInfo/AlertInfo';
+import Button from '@synerise/ds-button';
+import Icon from '@synerise/ds-icon';
 
 const decorator = storyFn => (
   <div
@@ -19,6 +28,40 @@ const decorator = storyFn => (
   >
     {storyFn()}
   </div>
+);
+const getDefaultProps = () => ({
+  type: select('Select type', types, 'error'),
+});
+const iconSizes = {
+  Large: 'L',
+  ExtraLarge: 'XL',
+};
+const fontSizes = {
+  Small: 'small',
+  Medium: 'medium',
+};
+const types = {
+  success: 'success',
+  warning: 'warning',
+  error: 'error',
+};
+const typesText = {
+  success: 'Campaign has been send to the customers.',
+  warning: 'The form must be completed before sending the campaign.',
+  error: 'Please reload this content or notify our helpdesk.',
+};
+const typesHeaders = {
+  success: 'Campaign successful send',
+  warning: 'Please fill the form.',
+  error: 'Some problem occured',
+};
+const buttonSetExample = (
+  <>
+    <Button mode="icon-label" type="ghost" onClick={action('onClick: Cancel')}>
+      <Icon component={<RefreshM />} />
+      Refresh list
+    </Button>
+  </>
 );
 
 const ALERT_TYPES = ['success', 'warning', 'error', 'info'];
@@ -341,6 +384,40 @@ const stories = {
           onShowMore={boolean('Enable show more', true) && action('Show more')}
         />
         <br />
+      </div>
+    );
+  },
+  alertWithIcon: () => {
+    const props = getDefaultProps();
+    const Description = select(
+      'Description',
+      typesText,typesText.error
+    );
+    const Header = select('Title', typesHeaders,typesHeaders.error);
+    const iconSize = select('Size of icon', iconSizes,iconSizes.Large);
+    const fontSize = select('Set size of text',fontSizes, fontSizes.Small);
+    const showButton = boolean('Set button', true);
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <AlertInfo
+          {...props}
+          fontSize={fontSize}
+          text={Header}
+          size={iconSize}
+          label={Description}
+          button={ showButton ? buttonSetExample : null}
+          labelPosition="bottom"
+        />
       </div>
     );
   },
