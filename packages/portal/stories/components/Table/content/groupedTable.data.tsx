@@ -206,7 +206,7 @@ export const DATA_SOURCE = [
 
 export const VIEWS = [
   {
-    label: 'All filters',
+    label: 'All views',
     hasMore: false,
     items: [
       {
