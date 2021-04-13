@@ -83,7 +83,7 @@ const CATEGORIES = [
     items: [
       {
         id: '0000',
-        name: 'Filter #1',
+        name: 'View #1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: true,
@@ -97,7 +97,7 @@ const CATEGORIES = [
       },
       {
         id: '0001',
-        name: 'Filter #2',
+        name: 'View #2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: false,
@@ -111,7 +111,7 @@ const CATEGORIES = [
       },
       {
         id: '0002',
-        name: 'Filter #3',
+        name: 'View #3',
         created: randomDate(),
         canUpdate: false,
         canDelete: false,
@@ -131,7 +131,7 @@ const CATEGORIES = [
     items: [
       {
         id: '0000',
-        name: 'Filter #1',
+        name: 'My view #1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: true,
@@ -145,7 +145,7 @@ const CATEGORIES = [
       },
       {
         id: '0001',
-        name: 'Filter #2',
+        name: 'My view #2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: false,
