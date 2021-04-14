@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.2...@synerise/ds-avatar@0.13.3) (2021-04-14)
+
+
+### Bug Fixes
+
+* **avatar:** add auto tooltip typing ([50c3e15](https://github.com/synerise/synerise-design/commit/50c3e151352c3aec92fdd709fd8ecdf8cc53e851))
+
+
+
+
+
 ## [0.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.1...@synerise/ds-avatar@0.13.2) (2021-04-13)
 
 
