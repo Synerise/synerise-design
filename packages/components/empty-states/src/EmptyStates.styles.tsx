@@ -1,0 +1,62 @@
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { FontSize } from './EmptyStates.types';
+
+const FONT_SIZE_DEFAULT = 14;
+const mapElementsPosition = {
+  right: 'row',
+  bottom: 'column',
+};
+
+export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
+  display: flex;
+  line-height: 16px;
+  max-width: 440px;
+  word-wrap: break-word;
+  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : 'flex-start')};
+  text-align: center;
+  padding-bottom: 8px;
+`;
+export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'L' | 'XL' }>`
+  display: flex;
+  line-height: 16px;
+  color: ${(props): string => props.theme.palette['grey-800']};
+  font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  font-weight: 500;
+  padding-bottom: ${(props): string => (props.fontSize === 'small' ? '12px' : '18px')};
+`;
+export const ButtonWrapper = styled.div`
+  padding-top: 12px;
+`;
+export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode?: 'absolute' }>`
+  display: flex;
+  flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
+  align-items: center;
+  justify-content: center;
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.mode === 'absolute' &&
+    css`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    `};
+`;
+export const EmptyStatesIconContainer = styled.div<{ size?: 'L' | 'XL' }>`
+  margin-bottom: ${(props): string => (props.size === 'L' ? '8px' : '40px')};
+`;
+export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`
+  background-color: ${(props): string => props.theme.palette[props.background]};
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  && {
+    ${IconContainer} {
+      fill: ${(props): string => props.theme.palette[props.iconColor]};
+    }
+  }
+`;
