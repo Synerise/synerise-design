@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import selectColorByLetter, { ColorObject } from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
 
-import { Color, ColorHue, UserAvatar } from './Avatar.types';
+import { Color, ColorHue, UserAvatar, AvatarProps, TooltipObject } from './Avatar.types';
 
 function getFirstLetter(from: string | null): string {
   return (from || '').substr(0, 1).toUpperCase();
@@ -41,4 +41,34 @@ export function getColorByText(text: string | null, backgroundColor?: 'auto' | C
   const color = text && backgroundColor && backgroundColor !== 'auto' ? (backgroundColor as Color) : autoColor;
   const hue = text ? '500' : '100';
   return [color as Color, hue as ColorHue];
+}
+
+export function getTooltipProps(tooltip: AvatarProps['tooltip']): TooltipObject {
+  const tooltipProps: TooltipObject =
+    typeof tooltip === 'object'
+      ? {
+          ...tooltip,
+          title: tooltip.title || tooltip.name,
+          description: tooltip.description || tooltip.email,
+        }
+      : {};
+
+  const tooltipType =
+    ['title', 'description', 'status'].reduce((prev, next) => (tooltipProps[next] ? prev + 1 : prev), 0) === 1
+      ? 'default'
+      : 'avatar';
+
+  const finalTooltipProps: TooltipObject =
+    tooltipType === 'default'
+      ? {
+          ...tooltipProps,
+          title: tooltipProps.title || tooltipProps.description || tooltipProps.status,
+          type: 'default',
+        }
+      : {
+          ...tooltipProps,
+          type: 'avatar',
+        };
+
+  return finalTooltipProps;
 }
