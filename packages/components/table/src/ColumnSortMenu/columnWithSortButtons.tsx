@@ -32,6 +32,8 @@ export const columnWithSortButtons = (sortStateApi: SortStateAPI) => <T extends 
     ? {
         ...column,
         sortOrder: column.key ? sortStateApi.getColumnSortOrder(String(column.key)) : null,
+        onHeaderCell: (): React.HTMLAttributes<HTMLTableHeaderCellElement> =>
+          ({ 'data-popup-container': true } as React.HTMLAttributes<HTMLTableHeaderCellElement>),
         title: (titleProps: ColumnTitleProps<T>): React.ReactElement => (
           <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} titleProps={titleProps} />
         ),
