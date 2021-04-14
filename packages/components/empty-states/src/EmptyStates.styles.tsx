@@ -1,5 +1,4 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import { FontSize } from './EmptyStates.types';
 
 const FONT_SIZE_DEFAULT = 14;
@@ -44,8 +43,7 @@ export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'
 export const EmptyStatesIconContainer = styled.div<{ size?: 'L' | 'XL' }>`
   margin-bottom: ${(props): string => (props.size === 'L' ? '8px' : '40px')};
 `;
-export const StatusIconContainer = styled.div<{ iconColor: string; background: string }>`
-  background-color: ${(props): string => props.theme.palette[props.background]};
+export const StatusIconContainer = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 20px;
@@ -54,9 +52,5 @@ export const StatusIconContainer = styled.div<{ iconColor: string; background: s
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  && {
-    ${IconContainer} {
-      fill: ${(props): string => props.theme.palette[props.iconColor]};
-    }
-  }
+ 
 `;

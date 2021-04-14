@@ -24,7 +24,7 @@ const EmptyStates: React.FC<EmptyStatesProps> = ({
   fontSize,
   mode,
 }) => {
-  const mapTypeToStatus = {
+  const mapTypeToStatus = React.useMemo(()=>({
     Add: {
       IconComponent: size === 'L' ? AddL : AddXl,
     },
@@ -34,12 +34,13 @@ const EmptyStates: React.FC<EmptyStatesProps> = ({
     SearchNoResults: {
       IconComponent: size === 'L' ? SearchNoResultsL : SearchNoResultsXl,
     },
-  };
-  const { IconComponent, ...iconContainerStyles } = mapTypeToStatus[type];
+  }),[size])
+
+  const { IconComponent } = mapTypeToStatus[type];
   return (
     <S.EmptyStatesWrapper mode={mode} className="ds-empty-states" labelPosition={labelPosition}>
       <S.EmptyStatesIconContainer size={size}>
-        <S.StatusIconContainer {...iconContainerStyles}>
+        <S.StatusIconContainer >
           <Icon component={<IconComponent />} size={mapSizeToPx[size]} />
         </S.StatusIconContainer>
       </S.EmptyStatesIconContainer>

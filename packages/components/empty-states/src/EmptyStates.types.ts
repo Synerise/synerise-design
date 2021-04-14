@@ -18,5 +18,5 @@ export type EmptyStatesProps = {
   labelPosition?: 'bottom' | 'right';
   mode?: 'absolute';
   customIcon?: React.ReactElement;
-  type: string | 'Add' | 'NoResults' | 'SearchNoResults';
+  type: 'Add' | 'NoResults' | 'SearchNoResults';
 };
