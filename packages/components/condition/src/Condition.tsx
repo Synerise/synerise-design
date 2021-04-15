@@ -13,6 +13,7 @@ import ContextSelector from '@synerise/ds-context-selector';
 import Cruds from '@synerise/ds-cruds';
 import { ReactSortable } from 'react-sortablejs';
 import { useIntl } from 'react-intl';
+import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
@@ -70,6 +71,31 @@ const Condition: React.FC<ConditionProps> = ({
   );
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
+  const prevSteps = usePrevious(steps);
+
+  React.useEffect(() => {
+    const newConditionId =
+      prevSteps &&
+      steps &&
+      steps.reduce((id: string | number | undefined, step: ConditionStep) => {
+        let result = id;
+        const conditions = step.conditions.map((condition: StepConditions) => condition.id);
+        const oldStep = prevSteps.find((prevStep: ConditionStep) => prevStep.id === step.id);
+        if (oldStep) {
+          const oldConditions = oldStep.conditions.map((condition: StepConditions) => condition.id);
+          const newCondition = conditions.find(condId => oldConditions.indexOf(condId) === -1);
+          result = newCondition || result;
+        } else {
+          result = step.conditions[0]?.id;
+        }
+
+        return result;
+      }, undefined);
+    if (newConditionId && newConditionId !== currentConditionId) {
+      setCurrentConditionId(newConditionId);
+      setCurrentField(PARAMETER);
+    }
+  }, [currentConditionId, prevSteps, steps]);
 
   const clearConditionRow = React.useCallback(
     step => {
@@ -131,11 +157,16 @@ const Condition: React.FC<ConditionProps> = ({
     }
   }, []);
 
-  React.useEffect(() => {
-    if (currentField !== DEFAULT_FIELD) {
-      setCurrentField(DEFAULT_FIELD);
-    }
-  }, [currentField, setCurrentField]);
+  const setStepConditionFactorType = React.useCallback((step, condition, factorType): void => {
+    setCurrentConditionId(condition.id);
+    setCurrentField(FACTOR);
+    condition.factor && condition.factor.setSelectedFactorType(factorType);
+  }, []);
+
+  const setStepConditionFactorValue = React.useCallback((step, condition, value) => {
+    setCurrentField(DEFAULT_FIELD);
+    condition.factor && condition.factor.setSelectedFactorType(value);
+  }, []);
 
   const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
 
@@ -204,23 +235,32 @@ const Condition: React.FC<ConditionProps> = ({
                             />
                           )}
                         </S.ConditionWrapper>
-                        <S.ConditionWrapper>
-                          {condition.operator && (
-                            <Operators
-                              {...condition.operator}
-                              onChange={(value): void => selectOperator(condition, value)}
-                              opened={condition.id === currentConditionId && currentField === OPERATOR}
-                            />
-                          )}
-                        </S.ConditionWrapper>
-                        <S.ConditionWrapper>
-                          {condition.factor && (
-                            <Factors
-                              {...condition.factor}
-                              opened={condition.id === currentConditionId && currentField === FACTOR}
-                            />
-                          )}
-                        </S.ConditionWrapper>
+                        {condition?.parameter?.value && (
+                          <S.ConditionWrapper>
+                            {condition.operator && (
+                              <Operators
+                                {...condition.operator}
+                                onChange={(value): void => selectOperator(condition, value)}
+                                opened={condition.id === currentConditionId && currentField === OPERATOR}
+                              />
+                            )}
+                          </S.ConditionWrapper>
+                        )}
+                        {condition?.operator?.value && (
+                          <S.ConditionWrapper>
+                            {condition.factor && (
+                              <Factors
+                                {...condition.factor}
+                                setSelectedFactorType={(factorType): void =>
+                                  setStepConditionFactorType(step, condition, factorType)
+                                }
+                                onChangeValue={(value): void => setStepConditionFactorValue(step, condition, value)}
+                                factorKey={condition.id}
+                                opened={condition.id === currentConditionId && currentField === FACTOR}
+                              />
+                            )}
+                          </S.ConditionWrapper>
+                        )}
                         {removeCondition && step.conditions.length > minConditionsLength && (
                           <S.RemoveIconWrapper
                             onClick={(): void => removeCondition(step.id, condition.id)}
@@ -236,7 +276,14 @@ const Condition: React.FC<ConditionProps> = ({
                   {addCondition && (
                     <S.AddConditionRow>
                       <S.ConditionConnections last first={step.conditions.length === 0} />
-                      <Button type="ghost" mode="icon-label" onClick={(): void => addCondition(step.id)}>
+                      <Button
+                        type="ghost"
+                        mode="icon-label"
+                        onClick={(): void => {
+                          addCondition(step.id);
+                        }}
+                        disabled={!(Boolean(step.subject?.selectedItem) || Boolean(step.context?.selectedItem))}
+                      >
                         <Icon component={<Add2M />} />
                         {step.conditions.length > 0 ? text.addConditionRowButton : text.addFirstConditionRowButton}
                       </Button>

@@ -56,16 +56,20 @@ export const getSuggestions = filter => {
 export const getItemsWithAvatar = numberOfItems => {
   const results = [];
   for (let i = 0; i < numberOfItems; i++) {
-    const firstName = faker.name.firstName();
-    const lastName = faker.name.lastName();
-    const email = faker.internet.email();
+    const user = {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+      avatar: image,
+    };
+
     results.push({
-      text: firstName + ' ' + lastName,
+      text: user.firstName + ' ' + user.lastName,
       filter: 'User Name',
-      description: email,
+      description: user.email,
       icon: <VarTypeStringM />,
       prefixel: (
-        <UserAvatar badgeStatus="active" src={image} firstName={firstName[0]} lastName={lastName[0]} />
+        <UserAvatar badgeStatus="active" user={user} />
       ),
     });
   }

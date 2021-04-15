@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.2...@synerise/ds-inline-edit@0.4.3) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.1...@synerise/ds-inline-edit@0.4.2) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.0...@synerise/ds-inline-edit@0.4.1) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.15...@synerise/ds-inline-edit@0.4.0) (2021-03-24)
+
+
+### Features
+
+* **inline-edit:** export inline select in index ([cf9a6cf](https://github.com/Synerise/synerise-design/commit/cf9a6cff486bcd071294e0a2438b866861c0b661))
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.14...@synerise/ds-inline-edit@0.3.15) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.13...@synerise/ds-inline-edit@0.3.14) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.12...@synerise/ds-inline-edit@0.3.13) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.11...@synerise/ds-inline-edit@0.3.12) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.10...@synerise/ds-inline-edit@0.3.11) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
 ## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.3.9...@synerise/ds-inline-edit@0.3.10) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

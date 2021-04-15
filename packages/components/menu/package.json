@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-menu",
-  "version": "0.10.8",
+  "version": "0.10.16",
   "description": "Menu UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.41.0",
-    "@synerise/ds-tooltip": "^0.10.22",
+    "@synerise/ds-icon": "^0.43.3",
+    "@synerise/ds-tooltip": "^0.10.30",
     "@synerise/ds-typography": "^0.11.0"
   },
   "peerDependencies": {

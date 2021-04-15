@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 knkXli ds-avatar ant-avatar-circle"
+        class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-circle"
       >
         <span
           class="ant-avatar-string"
@@ -36,7 +36,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 knkXli ds-avatar ant-avatar-circle"
+      class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-circle"
     >
       <span
         class="ant-avatar-string"
@@ -123,7 +123,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 bBbSDZ ds-avatar ant-avatar-circle"
+        class="ant-avatar Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar ant-avatar-circle"
       >
         <span
           class="ant-avatar-string"
@@ -136,7 +136,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 bBbSDZ ds-avatar ant-avatar-circle"
+      class="ant-avatar Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar ant-avatar-circle"
     >
       <span
         class="ant-avatar-string"
@@ -144,6 +144,83 @@ Object {
       >
         JD
       </span>
+    </span>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`UserAvatar should match snapshot with user data and avatar 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <span
+        class="ant-avatar Avatarstyles-xcn5o4-1 jAqoPa ds-avatar ant-avatar-circle ant-avatar-image"
+      >
+        <img
+          src="http://image.com/image.jpg"
+        />
+      </span>
+    </div>
+  </body>,
+  "container": <div>
+    <span
+      class="ant-avatar Avatarstyles-xcn5o4-1 jAqoPa ds-avatar ant-avatar-circle ant-avatar-image"
+    >
+      <img
+        src="http://image.com/image.jpg"
+      />
     </span>
   </div>,
   "debug": [Function],

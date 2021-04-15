@@ -8,11 +8,14 @@ export const COLUMNS = [
     width: 254,
     fixed: 'left',
     key: 'name',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    sorter: (a, b) => {
-      return a.name - b.name ? -1 : 1;
-    }
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.name.localeCompare(b.name),
+      multiple: 1,
+    },
+    sortRender: 'string',
+    defaultSortOrder: 'ascend',
   },
   {
     title: 'City',
@@ -21,11 +24,13 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'city',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    sorter: (a, b) => {
-      return a.city - b.city ? -1 : 1;
-    }
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.city.localeCompare(b.city),
+      multiple: 2,
+    },
+    sortRender: 'string',
   },
   {
     title: 'System',
@@ -34,8 +39,13 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'system',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.system.localeCompare(b.system),
+      multiple: 3,
+    },
+    sortRender: 'string',
   },
   {
     title: 'Format',
@@ -44,8 +54,13 @@ export const COLUMNS = [
     textWrap: 'word-break',
     ellipsis: true,
     key: 'format',
-    icon: { component: <VarTypeStringM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.system.localeCompare(b.system),
+      multiple: 4,
+    },
+    sortRender: 'string',
   },
   {
     title: 'Age',
@@ -55,10 +70,11 @@ export const COLUMNS = [
     ellipsis: true,
     fixed: 'right',
     key: 'age',
-    icon: { component: <VarTypeNumberM/>},
-    iconTooltip: { component: <InfoFillS/>},
-    sorter: (a, b) => {
-      return a.age - b.age ? -1 : 1;
-    }
+    icon: { component: <VarTypeNumberM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.age - b.age,
+      multiple: 5,
+    },
   },
 ];

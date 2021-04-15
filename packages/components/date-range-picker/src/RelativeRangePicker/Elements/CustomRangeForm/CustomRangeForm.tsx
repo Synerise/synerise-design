@@ -8,11 +8,13 @@ import DurationField from './DurationField/DurationField';
 import OffsetField from './OffsetField/OffsetField';
 import { RANGES_MODE } from '../../utils';
 import TimestampRange from '../TimestampRange/TimestampRange';
+import { RelativeUnits } from '../../../date.types';
 
 export const setOffsetType = set(lensPath(['offset', 'type']));
 
 const CustomRangeForm: React.FC<Props> = ({
   ranges,
+  rangeUnits,
   currentRange,
   currentGroup,
   handleDurationValueChange,
@@ -34,6 +36,7 @@ const CustomRangeForm: React.FC<Props> = ({
           handleChange={handleChange}
           handleOffsetValueChange={handleOffsetValueChange}
           texts={texts}
+          rangeUnits={rangeUnits as RelativeUnits[]}
         />
       </S.RangeFormColumn>
     );
@@ -47,6 +50,7 @@ const CustomRangeForm: React.FC<Props> = ({
           handleChange={handleChange}
           handleDurationValueChange={handleDurationValueChange}
           texts={texts}
+          rangeUnits={rangeUnits as RelativeUnits[]}
         />
       </S.RangeFormColumn>
     );

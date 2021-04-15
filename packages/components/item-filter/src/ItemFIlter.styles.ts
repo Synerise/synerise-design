@@ -6,7 +6,7 @@ export const FiltersList = styled.div`
   ${ItemContainer} {
     max-height: 48px;
     box-shadow: none;
-    border: 1px solid ${(props): string => props.theme.palette['grey-200']};
+    background: ${(props): string => props.theme.palette['grey-050']};
   }
   .ds-result {
     margin-top: 24px;

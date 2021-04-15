@@ -3,6 +3,113 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.27...@synerise/ds-table@0.33.28) (2021-04-13)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.26...@synerise/ds-table@0.33.27) (2021-04-07)
+
+
+### Bug Fixes
+
+* **table:** set sort menu width ([0e26464](https://github.com/synerise/synerise-design/commit/0e26464085a6c06d7d30fa8ea455b75e9acd4f52))
+
+
+
+
+
+## [0.33.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.25...@synerise/ds-table@0.33.26) (2021-03-30)
+
+
+### Bug Fixes
+
+* **table:** add document.body as fallback ([7bc4d08](https://github.com/synerise/synerise-design/commit/7bc4d08a34c790e17981c11590b78617bf51f290))
+* **table:** fix column sorter margin left ([55233f6](https://github.com/synerise/synerise-design/commit/55233f6e020a465ae98e48f461b8056d2c1e78f5))
+
+
+
+
+
+## [0.33.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.24...@synerise/ds-table@0.33.25) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.23...@synerise/ds-table@0.33.24) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.22...@synerise/ds-table@0.33.23) (2021-03-24)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.21...@synerise/ds-table@0.33.22) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.21](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.20...@synerise/ds-table@0.33.21) (2021-03-19)
+
+
+### Bug Fixes
+
+* resolved conflicts ([196f535](https://github.com/synerise/synerise-design/commit/196f535303c35cd69074422050737b44c40ca59f))
+* **table:** add translations ([1fe3bda](https://github.com/synerise/synerise-design/commit/1fe3bda81052b7f1168ef0e4448c9b904670e18c))
+
+
+
+
+
+## [0.33.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.19...@synerise/ds-table@0.33.20) (2021-03-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.18...@synerise/ds-table@0.33.19) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.17...@synerise/ds-table@0.33.18) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.16...@synerise/ds-table@0.33.17) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.33.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.15...@synerise/ds-table@0.33.16) (2021-03-16)
 
 

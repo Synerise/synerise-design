@@ -121,7 +121,6 @@ export function renderFooter(suffixElementType: string) {
 
 const stories = {
   basic: {
-    trigger: ['click'],
     overlay: <div>Dropdown overlay content</div>,
     children: <Button>Click</Button>,
   },

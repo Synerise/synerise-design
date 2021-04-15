@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.16...@synerise/ds-slider@0.10.17) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.15...@synerise/ds-slider@0.10.16) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.14...@synerise/ds-slider@0.10.15) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.13...@synerise/ds-slider@0.10.14) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.12...@synerise/ds-slider@0.10.13) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.11...@synerise/ds-slider@0.10.12) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.10...@synerise/ds-slider@0.10.11) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
+## [0.10.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.9...@synerise/ds-slider@0.10.10) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-slider
+
+
+
+
+
 ## [0.10.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.10.8...@synerise/ds-slider@0.10.9) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-slider

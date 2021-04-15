@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.15...@synerise/ds-menu@0.10.16) (2021-04-07)
+
+
+### Bug Fixes
+
+* **table:** set sort menu width ([0e26464](https://github.com/Synerise/synerise-design/commit/0e26464085a6c06d7d30fa8ea455b75e9acd4f52))
+
+
+
+
+
+## [0.10.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.14...@synerise/ds-menu@0.10.15) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.13...@synerise/ds-menu@0.10.14) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.12...@synerise/ds-menu@0.10.13) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.11...@synerise/ds-menu@0.10.12) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.10...@synerise/ds-menu@0.10.11) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.9...@synerise/ds-menu@0.10.10) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.8...@synerise/ds-menu@0.10.9) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
 ## [0.10.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.7...@synerise/ds-menu@0.10.8) (2021-03-16)
 
 

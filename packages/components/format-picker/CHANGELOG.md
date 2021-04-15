@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.30...@synerise/ds-format-picker@0.1.31) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.29...@synerise/ds-format-picker@0.1.30) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.28...@synerise/ds-format-picker@0.1.29) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.27...@synerise/ds-format-picker@0.1.28) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.26...@synerise/ds-format-picker@0.1.27) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.25...@synerise/ds-format-picker@0.1.26) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.24...@synerise/ds-format-picker@0.1.25) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.23...@synerise/ds-format-picker@0.1.24) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
 ## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.1.22...@synerise/ds-format-picker@0.1.23) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

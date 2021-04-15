@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.6](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.5...docs@0.10.6) (2021-03-30)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.10.5](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.4...docs@0.10.5) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docs:** remove button ([93e31dd](https://gitlab.synerise.com/Frontend/synerise-design/commit/93e31dd8951ebf9a54d797d5cb82541c8314f140))
+* yarn+readme ([97e909d](https://gitlab.synerise.com/Frontend/synerise-design/commit/97e909d98c0b41f2becd29bc6a70e5a97833c73e))
+
+
+
+
+
+## [0.10.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.3...docs@0.10.4) (2021-03-16)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 ## [0.10.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.2...docs@0.10.3) (2021-03-16)
 
 

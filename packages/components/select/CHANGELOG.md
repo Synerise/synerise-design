@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.14...@synerise/ds-select@0.13.15) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.13...@synerise/ds-select@0.13.14) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.12...@synerise/ds-select@0.13.13) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.11...@synerise/ds-select@0.13.12) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.10...@synerise/ds-select@0.13.11) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.9...@synerise/ds-select@0.13.10) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.8...@synerise/ds-select@0.13.9) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.7...@synerise/ds-select@0.13.8) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.6...@synerise/ds-select@0.13.7) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-select

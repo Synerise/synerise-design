@@ -1,15 +1,15 @@
 import { groupBy, omit, range } from 'lodash';
-import { MONTHLY_TYPES, TYPES } from './constants';
+import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM, TYPES } from './constants';
 
 import {
-  NormalizedFilter,
   DenormalizedFilter,
-  FilterValue,
   FilterDefinition,
-  WeekFilter,
-  NormalizedFilterBase,
-  WeeklyFilterDefinition,
+  FilterValue,
   MonthlyFilterDefinition,
+  NormalizedFilter,
+  NormalizedFilterBase,
+  WeekFilter,
+  WeeklyFilterDefinition,
 } from './RangeFilter.types';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 
@@ -66,17 +66,17 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
           .filter(day => day.restricted)
           .map(({ restricted, display, ...rest }) => mapTimeSchema(rest as DenormalizedFilter));
 
-        if (def.period === MONTHLY_TYPES.DAY_OF_WEEK) {
+        if (def.period === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
           rules.push({
             weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
               week: +week + 1,
               days: daysArray.map(day => ({ ...omit(day as object, ['week']), type })),
             })),
             type: def.period,
-            inverted: def.periodType !== 'beginning',
+            inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
           });
         } else {
-          rules.push({ days, type: def.period, inverted: def.periodType !== 'beginning' });
+          rules.push({ days, type: def.period, inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING });
         }
         return rules;
       });
@@ -128,13 +128,13 @@ export const denormalizers: { [key: string]: Function } = {
   [TYPES.WEEKLY]: (values: { days: [] }) => createWeeklyRange(values.days),
   [TYPES.MONTHLY]: (values: { rules: FilterDefinition[] }) => {
     const monthlyDenormalizers = {
-      [MONTHLY_TYPES.DAY_OF_MONTH]: createMonthlyDayRange,
-      [MONTHLY_TYPES.DAY_OF_WEEK]: createMonthlyWeekDayRange,
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: createMonthlyDayRange,
+      [DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK]: createMonthlyWeekDayRange,
     };
     return values.rules.map(value => ({
       period: value.type,
       id: Math.random(),
-      periodType: value.inverted ? 'ending' : 'beginning',
+      periodType: value.inverted ? COUNTED_FROM_ENUM.ENDING : COUNTED_FROM_ENUM.BEGINNING,
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       definition: monthlyDenormalizers[value.type](value),

@@ -18,18 +18,17 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
   badgeStatus,
   iconComponent,
   color = 'grey',
+  object = {},
   size,
   src,
   tooltip,
-  objectName,
-  objectDescription,
-  objectStatus,
   text,
   children,
   disabled,
   style,
   ...restProps
 }) => {
+  const { name: objectName, description: objectDescription, status: objectStatus, avatar } = object || {};
   const defaultTooltip = {
     title: objectName || '',
     description: objectDescription || '',
@@ -39,15 +38,13 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
   const [avatarBackgroundColor, avatarBackgroundHue] = getColorByText(avatarText, backgroundColor);
   const iconColor = theme.palette[`${color || DEFAULT_COLOR}-${DEFAULT_COLOR_HUE}`];
   const avatarTooltip =
-    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) 
-      ? defaultTooltip 
-      : tooltip;
+    tooltip === undefined && (defaultTooltip.title || defaultTooltip.description) ? defaultTooltip : tooltip;
 
   const iconElement = addIconColor(iconComponent, iconColor);
 
   const icon = !avatarText ? iconElement || <Icon component={<MailM />} color={iconColor} /> : null;
 
-  const avatar = (
+  const avatarRender = (
     <Avatar
       iconComponent={icon}
       shape="square"
@@ -55,9 +52,10 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
       backgroundColorHue={avatarBackgroundHue}
       size={size}
       hasStatus={disabled === true ? false : !!badgeStatus}
-      src={src}
+      src={avatar || src}
       tooltip={avatarTooltip}
       disabled={disabled}
+      style={badgeStatus ? {} : style}
       {...restProps}
     >
       {children || avatarText}
@@ -66,10 +64,10 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
 
   return badgeStatus ? (
     <span style={style}>
-      <Badge status={badgeStatus}>{avatar}</Badge>
+      <Badge status={badgeStatus}>{avatarRender}</Badge>
     </span>
   ) : (
-    avatar
+    avatarRender
   );
 };
 

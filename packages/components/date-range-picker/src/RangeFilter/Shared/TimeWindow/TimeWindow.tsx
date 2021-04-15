@@ -15,6 +15,9 @@ import AddButton from '../AddButton/AddButton';
 import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 import Day from './Day/Day';
 import SelectionHint from '../SelectionHint/SelectionHint';
+import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+
+export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
 class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
@@ -22,8 +25,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   private wrapperRef = React.createRef<HTMLDivElement>();
   static defaultProps = {
     days: {},
-    numberOfDays: 7,
+    numberOfDays: 1,
     showSelectAll: false,
+    valueSelectionModes: ['Range', 'Hour'],
     dayTemplate: (index: number): { dayOfWeek: number } => ({ dayOfWeek: index + 1 }),
     dayFormatter: (dayKey: DayKey): React.ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
@@ -167,7 +171,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   getDayValue = (dayKey: DayKey): Partial<FilterDefinition> => {
-    const { days, dayTemplate, customDays, daily } = this.props;
+    const { days, dayTemplate, customDays, daily, valueSelectionModes } = this.props;
     let dayValue = {};
     if (daily) dayValue = days;
     else if (days[dayKey]) dayValue = days[dayKey];
@@ -181,7 +185,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       restricted: false,
       display: false,
       inverted: false,
-      mode: 'Range',
+      mode: valueSelectionModes[0] || DEFAULT_LIMIT_MODE,
       ...dayValue,
     };
   };
@@ -195,20 +199,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     if (!label) label = dayFormatter(dayKey, long);
     return label;
   };
-
-  // Will be useful when we start to support multiple ranges
-  /*  handleRangeClear = (dayKeys: DayKey): void => {
-    const { activeDays } = this.state;
-    activeDays.length > 1
-      ? this.handleMultipleDayTimeChange([
-          getDateFromDayValue(DEFAULT_RANGE_START),
-          getDateFromDayValue(DEFAULT_RANGE_END),
-        ])
-      : this.handleDayTimeChange(
-          [getDateFromDayValue(DEFAULT_RANGE_START), getDateFromDayValue(DEFAULT_RANGE_END)],
-          dayKeys
-        );
-  }; */
 
   handleRangePaste = (dayKeys: DayKey): void => {
     const { rangeClipboard } = this.props;
@@ -269,6 +259,17 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     );
   };
 
+  handleRangeAdd = (): void => {
+    const {daily} = this.props;
+    if (!daily && !this.haveActiveDaysCommonRange()) {
+      this.handleMultipleDayTimeChange([
+        getDateFromDayValue(DEFAULT_RANGE_START),
+        getDateFromDayValue(DEFAULT_RANGE_END),
+      ]);
+    }
+    this.setState({ isRangeDefined: true });
+  };
+
   renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
     const { activeDays } = this.state;
     const {
@@ -280,9 +281,13 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       onChange,
       texts,
       valueSelectionModes,
+      renderRangeFormSuffix,
+      timePickerProps,
+      disabled,
     } = this.props;
     return (
       <RangeFormContainer
+        disabled={disabled}
         onChange={onChange}
         days={days}
         activeDays={activeDays}
@@ -291,14 +296,16 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         getDayValue={this.getDayValue}
         onMultipleDayTimeChange={this.handleMultipleDayTimeChange}
         onDayTimeChange={this.handleDayTimeChange}
-        onRangeClear={this.handleRangeDelete}
-        onRangeCopy={this.handleRangeCopy}
+        onRangeClear={disabled ? undefined : this.handleRangeDelete}
+        onRangeCopy={disabled ? undefined : this.handleRangeCopy}
         onRangePaste={(): void => this.handleRangePaste(dayKeys as DayKey)}
         hideHeader={hideHeader}
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
         texts={(texts || {}) as TimeWindowTexts}
+        renderSuffix={renderRangeFormSuffix}
+        timePickerProps={timePickerProps}
         valueSelectionModes={valueSelectionModes}
       />
     );
@@ -342,16 +349,17 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
+
   render(): JSX.Element {
-    const { days, numberOfDays, daily, intl, texts, ...rest } = this.props;
+    const { days, numberOfDays, daily, intl, texts, disabled, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
     const keys = this.getAllKeys();
     const singleMode = keys.length === 1;
     const rangeFormKey = singleMode ? keys[0] : activeDays;
 
     const shouldRenderRangeForm = (!!activeDays.length && isRangeDefined) || !!daily;
-    const shouldRenderSelectionHint = !activeDays.length;
-    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined;
+    const shouldRenderSelectionHint = !activeDays.length && !disabled;
+    const shouldRenderAddButton = !!activeDays.length && !daily && !isRangeDefined && !disabled;
     return (
       <S.TimeWindowContainer
         tabIndex={0}
@@ -386,16 +394,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>
             <AddButton
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RANGE', defaultMessage: 'Add range' })}
-              onClick={(): void => {
-                if (!daily && !this.haveActiveDaysCommonRange()) {
-                  this.handleMultipleDayTimeChange([
-                    getDateFromDayValue(DEFAULT_RANGE_START),
-                    getDateFromDayValue(DEFAULT_RANGE_END),
-                  ]);
-                }
-                this.setState({ isRangeDefined: true });
-              }}
+              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add time' })}
+              onClick={this.handleRangeAdd}
             />
           </S.AddButtonWrapper>
         )}

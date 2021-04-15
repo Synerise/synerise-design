@@ -18,14 +18,15 @@ export const FORM_MODES: Record<string, DateLimitMode> = {
 };
 const RangeForm: React.FC<RangeFormProps> = ({
   onModeChange,
+  disabled,
   startDate,
   endDate,
   onStartChange,
   onEndChange,
   onExactHourSelect,
   onRangeDelete,
-  valueSelectionMode = [FORM_MODES.RANGE, FORM_MODES.HOUR],
-  mode = valueSelectionMode[0],
+  valueSelectionModes = [FORM_MODES.RANGE, FORM_MODES.HOUR],
+  mode = valueSelectionModes[0],
   timePickerProps,
   texts,
 }) => {
@@ -62,6 +63,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   const singleHourPicker = React.useMemo(() => {
     return (
       <TimePicker
+        disabled={disabled}
         clearTooltip={texts?.clear}
         onChange={(date): void => {
           date && onExactHourSelect(date);
@@ -76,11 +78,12 @@ const RangeForm: React.FC<RangeFormProps> = ({
         {...timePickerProps}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer, texts, timePickerProps]);
+  }, [start, onExactHourSelect, getPopupContainer, texts, timePickerProps, disabled]);
   const renderRangePicker = React.useCallback(() => {
     return (
       <>
         <TimePicker
+          disabled={disabled}
           clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setStart(date);
@@ -97,6 +100,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
         <S.Separator>-</S.Separator>
         <TimePicker
+          disabled={disabled}
           clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setEnd(date);
@@ -113,32 +117,33 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps]);
+  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps, disabled]);
   const limitModeSelect = React.useMemo(
     () =>
-      valueSelectionMode.length > 1 ? (
+      valueSelectionModes.length > 1 ? (
         <Select
           value={mode}
+          disabled={disabled}
           onChange={(value): void => {
             onModeChange(value as DateLimitMode);
           }}
           getPopupContainer={getPopupContainer}
         >
-          {valueSelectionMode.map(modeName => (
+          {valueSelectionModes.map(modeName => (
             <Select.Option key={modeName} value={modeName}>
               {modeName}
             </Select.Option>
           ))}
         </Select>
       ) : null,
-    [mode, onModeChange, getPopupContainer, valueSelectionMode]
+    [mode, onModeChange, getPopupContainer, valueSelectionModes, disabled]
   );
   return (
     <S.Container>
       <S.Row justifyContent="flex-start">
         {limitModeSelect}
         {mode === FORM_MODES.HOUR ? singleHourPicker : renderRangePicker()}
-        {!!onRangeDelete && (
+        {!!onRangeDelete && !disabled && (
           <S.RemoveIconWrapper onClick={onRangeDelete}>
             <Icon component={<CloseS />} color={theme.palette['red-600']} />
           </S.RemoveIconWrapper>

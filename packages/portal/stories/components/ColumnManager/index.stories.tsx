@@ -78,12 +78,12 @@ const COLUMNS: Column[] = [
 
 const CATEGORIES = [
   {
-    label: 'All filters',
+    label: 'All views',
     hasMore: false,
     items: [
       {
         id: '0000',
-        name: 'Filter #1',
+        name: 'View #1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: true,
@@ -97,7 +97,7 @@ const CATEGORIES = [
       },
       {
         id: '0001',
-        name: 'Filter #2',
+        name: 'View #2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: false,
@@ -111,7 +111,7 @@ const CATEGORIES = [
       },
       {
         id: '0002',
-        name: 'Filter #3',
+        name: 'View #3',
         created: randomDate(),
         canUpdate: false,
         canDelete: false,
@@ -126,12 +126,12 @@ const CATEGORIES = [
     ],
   },
   {
-    label: 'My filters',
+    label: 'My views',
     hasMore: false,
     items: [
       {
         id: '0000',
-        name: 'Filter #1',
+        name: 'My view #1',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: true,
@@ -145,7 +145,7 @@ const CATEGORIES = [
       },
       {
         id: '0001',
-        name: 'Filter #2',
+        name: 'My view #2',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do elit',
         created: randomDate(),
         canUpdate: false,
@@ -168,7 +168,7 @@ const EMPTY_FILTER = {
   canUpdate: true,
   canDelete: true,
   canDuplicate: true,
-  categories: ['All filters', 'My filters'],
+  categories: ['All views', 'My views'],
   user: {
     avatar_url: 'https://www.w3schools.com/howto/img_avatar.png',
     firstname: 'Kamil',
@@ -181,15 +181,15 @@ const getTexts = () => ({
   activateItemTitle: text('Activate item', 'By activating this filter, you will cancel your unsaved filter settings'),
   activate: text('Activate', 'Activate'),
   cancel: text('Cancel', 'Cancel'),
-  deleteConfirmationTitle: text('Delete confirmation title', 'Delete filter'),
-  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.'),
+  deleteConfirmationTitle: text('Delete confirmation title', 'Delete view'),
+  deleteConfirmationDescription: text('Delete confirmation description', 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.'),
   deleteConfirmationYes: text('Delete confirmation yes', 'Yes'),
   deleteConfirmationNo: text('Delete confirmation no', 'No'),
   deleteLabel: text('Delete', 'Delete'),
   noResults: text('No results', 'No results'),
   searchPlaceholder: text('Search placeholder', 'Search'),
   searchClearTooltip: text('Clear tooltip', 'Clear'),
-  title: text('Drawer title', 'Filter'),
+  title: text('Drawer title', 'Views list'),
   itemActionRename: text('Rename filter label', 'Rename'),
   itemActionDuplicate: text('Duplicate filter label', 'Duplicate'),
   itemActionDelete: text('Delete filter label', 'Delete'),

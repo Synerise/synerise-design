@@ -66,6 +66,13 @@
     }
   }
 
+  th.ant-table-cell-ellipsis.ant-table-column-has-sorters {
+    overflow: visible;
+  }
+  th.ant-table-cell-ellipsis.ant-table-column-has-sorters > [class^='ant-table-column-sorters'] {
+    overflow: hidden;
+  }
+
   .virtual-table {
     colgroup {
       height: 0;
@@ -262,6 +269,11 @@
             opacity: 1;
           }
         }
+      }
+
+      &.ant-table-cell-fix-left,
+      &.ant-table-cell-fix-right {
+        z-index: 10;
       }
     }
 

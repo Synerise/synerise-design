@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
 import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { DayProps } from './Day/Day.types';
-import { FilterDefinition } from '../../RangeFilter.types';
+import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
 import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
@@ -58,7 +59,9 @@ export type TimeWindowProps = {
   rangeClipboard: Partial<FilterDefinition>;
   valueSelectionModes: DateLimitMode[];
   texts?: TimeWindowTexts & GridTexts;
-} & Partial<RangeActions> &
+  renderRangeFormSuffix?: () => React.ReactNode;
+  timePickerProps?: Partial<TimePickerProps>;
+} & Partial<RangeActions> & WithDisabledProp &
   WrappedComponentProps;
 
 export type State = {

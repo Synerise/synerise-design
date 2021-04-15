@@ -7,6 +7,7 @@ import { Range, GroupSettingsTexts } from './ColumnManagerGroupSettings/ColumnMa
 export type Texts =
   | GroupSettingsTexts
   | 'title'
+  | 'savedViews'
   | 'searchPlaceholder'
   | 'searchClearTooltip'
   | 'noResults'

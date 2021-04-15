@@ -31,12 +31,13 @@ export const Content = styled.div`
   width: 45px;
   margin-left: -8px;
 `;
-export const IconWrapper = styled.div<{ active: boolean }>`
+export const IconWrapper = styled.div<{ active: boolean; readonly?: boolean }>`
   position: absolute;
   top: 3px;
   right: 3px;
+  pointer-events: ${(props): string => (props.readonly ? 'none' : 'all')};
   &&& .ds-icon svg {
     fill: ${(props): string =>
-      props.active ? props.theme.palette['red-600'] : props.theme.palette['green-600']} !important;
+      props.active && !props.readonly ? props.theme.palette['red-600'] : props.theme.palette['green-600']} !important;
   }
 `;

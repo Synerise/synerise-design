@@ -14,7 +14,7 @@ type HeaderProps = {
   suffix?: React.ReactNode;
 };
 
-export const Header: React.FC<HeaderProps> = ({ title, actions, suffix }) => (
+const HeaderBase: React.FC<HeaderProps> = ({ title, actions, suffix }) => (
   <S.Container data-attr="time-window-header">
     <S.Title data-attr="title">{title}</S.Title>
     <S.Actions data-attr="actions">
@@ -29,3 +29,4 @@ export const Header: React.FC<HeaderProps> = ({ title, actions, suffix }) => (
     {suffix}
   </S.Container>
 );
+export const Header = React.memo(HeaderBase);

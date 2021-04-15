@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.17...@synerise/ds-subject@0.5.18) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.16...@synerise/ds-subject@0.5.17) (2021-03-30)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.15...@synerise/ds-subject@0.5.16) (2021-03-29)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.14...@synerise/ds-subject@0.5.15) (2021-03-22)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.13...@synerise/ds-subject@0.5.14) (2021-03-19)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.12...@synerise/ds-subject@0.5.13) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.11...@synerise/ds-subject@0.5.12) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.10...@synerise/ds-subject@0.5.11) (2021-03-16)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
 ## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.9...@synerise/ds-subject@0.5.10) (2021-03-16)
 
 **Note:** Version bump only for package @synerise/ds-subject

@@ -42,14 +42,14 @@ const Card: React.FC<CardProps> = ({
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
           {icon && (
-            <S.IconContainer compact={compactHeader}>
+            <S.IconContainer description={description} compact={compactHeader}>
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )}
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (
-              <S.Title level={4} fat={!!fatTitle}>
+              <S.Title description={description} level={4} fat={!!fatTitle}>
                 {title}
               </S.Title>
             )}

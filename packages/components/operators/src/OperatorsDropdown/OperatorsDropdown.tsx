@@ -59,7 +59,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
           resultItems.push(
             <OperatorsDropdownItem
               className={classNames}
-              key={item.name + item.id}
+              key={uuid()}
               item={item}
               searchQuery={searchQuery}
               hideDropdown={(): void => setDropdownVisible(false)}
@@ -118,12 +118,12 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       });
     }
 
-    if (activeGroup) {
+    if (activeGroup?.id) {
       return groupByGroupName(items?.filter((item: OperatorsItem) => item.groupId === activeGroup.id));
     }
 
     return groupByGroupName(
-      items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup).id)
+      items?.filter((item: OperatorsItem) => item.groupId === (groups[activeTab] as OperatorsGroup)?.id)
     );
   }, [
     currentTabItems,

@@ -29,6 +29,7 @@ export const GroupRowLeft = styled.div`
 
   ${StatusTag} {
     margin-left: 12px;
+    padding: 0 5px;
   }
 `;
 
