@@ -10,11 +10,11 @@ export default function useTexts(texts: TagsListTexts | undefined): TagsListText
     () => ({
       add: formatMessage({ id: 'DS.TAGS-LIST.ADD', defaultMessage: 'Add' }),
       addItemLabel: formatMessage({ id: 'DS.TAGS-LIST.ADD-ITEM', defaultMessage: 'Add tag' }),
-      addToFavourite: formatMessage({ id: 'DS.TAGS-LIST.FAVOURITE', defaultMessage: 'Favourite' }),
+      addToFavourite: formatMessage({ id: 'DS.TAGS-LIST.FAVOURITE', defaultMessage: 'Add to starred' }),
       applyAdd: formatMessage({ id: 'DS.TAGS-LIST.APPLY', defaultMessage: 'Apply' }),
       cancel: formatMessage({ id: 'DS.TAGS-LIST.CANCEL', defaultMessage: 'Cancel' }),
       delete: formatMessage({ id: 'DS.TAGS-LIST.DELETE', defaultMessage: 'Delete' }),
-      deleteFromFavourites: formatMessage({ id: 'DS.TAGS-LIST.DELETE-FROM-FAVOURITE', defaultMessage: 'Favourite' }),
+      deleteFromFavourites: formatMessage({ id: 'DS.TAGS-LIST.DELETE-FROM-FAVOURITE', defaultMessage: 'Remove from starred' }),
       edit: formatMessage({ id: 'DS.TAGS-LIST.RENAME', defaultMessage: 'Rename' }),
       enterSettings: formatMessage({ id: 'DS.TAGS-LIST.MANAGE-TAGS', defaultMessage: 'Manage tags' }),
       favourite: formatMessage({ id: 'DS.TAGS-LIST.FAVOURITE', defaultMessage: 'Favourite' }),
