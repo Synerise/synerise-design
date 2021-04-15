@@ -98,7 +98,7 @@ export const RenameWithDelete = ({onClickEdit}) => {
 export const SwitchWithTooltip = () => {
   const [checked, setChecked] = React.useState(false);
   return (
-    <Tooltip type="default" trigger="hover" title={'Switch on'}>
+    <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
       <ExtendedAntdSwitchComponent
         onChange={(value, event) => {
           event.stopPropagation();
@@ -121,6 +121,7 @@ export const ActionsMenu = ({ onSelectClick }) => {
     <Dropdown
       visible={dropdownVisible}
       placement="bottomCenter"
+      align={{offset: [-38,8]}}
       overlay={
         <DropdownWrapper style={{ width: '167px' }} ref={ref}>
           <Menu asDropdownMenu style={{ width: '100%' }}>
