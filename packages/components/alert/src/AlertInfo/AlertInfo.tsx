@@ -8,12 +8,12 @@ import { AlertInfoProps } from './AlertInfo.types';
 import * as S from './AlertInfo.styles';
 
 const mapSizeToPx = {
-  L: 48,
-  XL: 96,
+  small: 48,
+  medium: 96,
 };
 
 const AlertInfo: React.FC<AlertInfoProps> = ({
-  size = 'L',
+  size = 'small',
   label,
   labelPosition = 'right',
   type,
@@ -24,15 +24,15 @@ const AlertInfo: React.FC<AlertInfoProps> = ({
 }) => {
   const mapTypeToStatus = {
     warning: {
-      IconComponent: size === 'L' ? WarningL : WarningXl,
+      IconComponent: size === 'small' ? WarningL : WarningXl,
       iconColor: 'yellow-600',
     },
     error: {
-      IconComponent: size === 'L' ? WarningL : WarningXl,
+      IconComponent: size === 'small' ? WarningL : WarningXl,
       iconColor: 'red-600',
     },
     success: {
-      IconComponent: size === 'L' ? CheckL : CheckXl,
+      IconComponent: size === 'small' ? CheckL : CheckXl,
       iconColor: 'green-600',
     },
   };

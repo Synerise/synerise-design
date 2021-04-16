@@ -16,14 +16,14 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : 'flex-start')};
   text-align: center;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'L' | 'XL' }>`
+export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'small' | 'medium' }>`
   display: flex;
   line-height: 16px;
   color: ${(props): string => props.theme.palette['grey-800']};
   font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  margin-top: ${(props): string => (props.size === 'L' ? '0px' : '16px')};
-  padding: ${(props): string => (props.fontSize === 'small' ? '8px 0 12px' : '8px 0 18px')};
+  margin-top: ${(props): string => (props.size === 'small' ? '0px' : '30px')};
+  padding: ${(props): string => (props.fontSize === 'small' ? '4px 0 12px' : '8px 0 18px')};
 `;
 export const ButtonWrapper = styled.div`
   padding-top: 12px;
