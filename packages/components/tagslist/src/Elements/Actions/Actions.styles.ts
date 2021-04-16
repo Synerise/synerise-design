@@ -23,7 +23,10 @@ export const ActionsWrapper = styled.div`
   }
 `;
 export const DropdownMenu = styled(Menu)<AntdMenuProps>`
-  padding: 8px;
+  && {
+    padding: 8px;
+    width: 230px;
+  }
 `;
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   max-height: 32px;
