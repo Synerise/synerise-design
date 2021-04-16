@@ -26,6 +26,7 @@ export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 
 `;
 export const ButtonWrapper = styled.div`
   padding-top: 12px;
+  display: flex;
 `;
 export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode?: 'absolute' }>`
   display: flex;
