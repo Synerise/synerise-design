@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { FontSize } from './EmptyStates.types';
+import { EmptyStatesSize, FontSize } from './EmptyStates.types';
 
 const FONT_SIZE_DEFAULT = 14;
 const mapElementsPosition = {
@@ -16,13 +16,13 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   text-align: center;
   padding-bottom: 8px;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'small' | 'medium' }>`
+export const HeaderWrapper = styled.div<{ fontSize?: EmptyStatesSize; size?: EmptyStatesSize }>`
   display: flex;
   line-height: 16px;
   color: ${(props): string => props.theme.palette['grey-800']};
   font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  padding-bottom: ${(props): string => (props.fontSize === 'small' ? '12px' : '18px')};
+  padding-bottom: ${(props): string => (props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px')};
 `;
 export const ButtonWrapper = styled.div`
   padding-top: 12px;
@@ -41,8 +41,8 @@ export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'
       left: 50%;
     `};
 `;
-export const EmptyStatesIconContainer = styled.div<{ size?: 'small' | 'medium' }>`
-  margin-bottom: ${(props): string => (props.size === 'small' ? '8px' : '40px')};
+export const EmptyStatesIconContainer = styled.div<{ size?: EmptyStatesSize }>`
+  margin-bottom: ${(props): string => (props.size === EmptyStatesSize.SMALL ? '8px' : '40px')};
 `;
 export const StatusIconContainer = styled.div`
   width: 40px;

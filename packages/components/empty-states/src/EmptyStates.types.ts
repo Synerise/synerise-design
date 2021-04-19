@@ -1,17 +1,10 @@
 import * as React from 'react';
 
-export enum IconSize {
-  'small' = 48,
-  'medium' = 96,
-}
-export enum FontSize {
-  'small' = 14,
-  'medium' = 18,
-}
+
 
 export type EmptyStatesProps = {
-  size?: 'small' | 'medium';
-  fontSize?: 'small' | 'medium';
+  size?: EmptyStatesSize;
+  fontSize?: EmptyStatesSize;
   text?: string | React.ReactNode;
   button?: string | React.ReactNode;
   label?: string | React.ReactNode;
@@ -19,3 +12,6 @@ export type EmptyStatesProps = {
   mode?: 'absolute';
   customIcon?: React.ReactElement;
 };
+export enum EmptyStatesSize {  SMALL = "small", MEDIUM = "medium"  }
+export const IconSize = { [EmptyStatesSize.SMALL] : 48, [EmptyStatesSize.MEDIUM]: 96  }
+export const FontSize = { [EmptyStatesSize.SMALL] : 14, [EmptyStatesSize.MEDIUM]: 18  }

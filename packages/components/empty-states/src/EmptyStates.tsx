@@ -1,15 +1,15 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './EmptyStates.styles';
-import { EmptyStatesProps } from './EmptyStates.types';
+import { EmptyStatesProps, EmptyStatesSize } from './EmptyStates.types';
 
 const mapSizeToPx = {
-  small: 48,
-  medium: 96,
+  [EmptyStatesSize.SMALL]: 48,
+  [EmptyStatesSize.MEDIUM]: 96,
 };
 
 const EmptyStates: React.FC<EmptyStatesProps> = ({
-  size = 'small',
+  size = EmptyStatesSize.SMALL,
   label,
   labelPosition = 'right',
   text,
