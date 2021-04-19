@@ -91,7 +91,7 @@ const stories = {
       applyGroupSettings(savedView.groupSettings);
     };
 
-    const removeItem = (props, store): void => {
+    const removeViewItem = (props, store): void => {
       store.set({
         savedViews: store.state.savedViews.map((category) => ({
           ...category,
@@ -100,9 +100,32 @@ const stories = {
       });
     };
 
-    const editItem = (props, store): void => {
+    const editViewItem = (props, store): void => {
       store.set({
         savedViews: store.state.savedViews.map(category => ({
+          ...category,
+          items: category.items.map(item => {
+            if(item.id === props.id) {
+              item.name = props.name;
+            }
+            return item;
+          }),
+        }))
+      });
+    };
+
+    const removeItem = (props, store): void => {
+      store.set({
+        savedViews: store.state.categories.map((category) => ({
+          ...category,
+          items: category.items.filter(item => item.id !== props.id)
+        }))
+      });
+    };
+
+    const editItem = (props, store): void => {
+      store.set({
+        savedViews: store.state.categories.map(category => ({
           ...category,
           items: category.items.map(item => {
             if(item.id === props.id) {
@@ -225,6 +248,10 @@ const stories = {
 
     const duplicateItem = (props): void => {
       action('Duplicate item');
+    };
+
+    const duplicateViewItem = (): void => {
+      action('Duplicate view item');
     };
 
     const toggleItemFilterVisible = (): void => {
@@ -616,10 +643,10 @@ const stories = {
           groupSettings={store.state.groupSettings}
           onSave={savedView => saveFilter(savedView, store)}
           itemFilterConfig={{
-            removeItem: params => removeItem(params, store),
-            editItem: params => editItem(params, store),
+            removeItem: params => removeViewItem(params, store),
+            editItem: params => editViewItem(params, store),
             selectItem: params => setSelectedView(params, store),
-            duplicateItem: action('duplicate item'),
+            duplicateItem: params => duplicateViewItem(params, store),
             selectedItemId: store.state.selectedView,
             categories: store.state.savedViews,
             texts: {
@@ -648,7 +675,7 @@ const stories = {
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedFilter(props, store)}
-          duplicateItem={props => duplicateItem(props)}
+          duplicateItem={props => duplicateItem(props, store)}
           selectedItemId={store.state.selectedFilter}
           categories={store.state.categories}
         />

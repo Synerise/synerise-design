@@ -10,7 +10,6 @@ import * as S from './AlertInfo.styles';
 const mapSizeToPx = {
   [AlertSize.SMALL]: 48,
   [AlertSize.MEDIUM]: 96,
-
 };
 
 const AlertInfo: React.FC<AlertInfoProps> = ({

@@ -21,7 +21,7 @@ const EmptyStates: React.FC<EmptyStatesProps> = ({
   return (
     <S.EmptyStatesWrapper mode={mode} className="ds-empty-states" labelPosition={labelPosition}>
       <S.EmptyStatesIconContainer size={size}>
-        <S.StatusIconContainer >
+        <S.StatusIconContainer>
           <Icon component={customIcon} size={mapSizeToPx[size]} />
         </S.StatusIconContainer>
       </S.EmptyStatesIconContainer>
