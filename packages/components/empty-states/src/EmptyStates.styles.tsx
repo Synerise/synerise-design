@@ -16,7 +16,7 @@ export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   text-align: center;
   padding-bottom: 8px;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'L' | 'XL' }>`
+export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium'; size?: 'small' | 'medium' }>`
   display: flex;
   line-height: 16px;
   color: ${(props): string => props.theme.palette['grey-800']};
@@ -41,8 +41,8 @@ export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'
       left: 50%;
     `};
 `;
-export const EmptyStatesIconContainer = styled.div<{ size?: 'L' | 'XL' }>`
-  margin-bottom: ${(props): string => (props.size === 'L' ? '8px' : '40px')};
+export const EmptyStatesIconContainer = styled.div<{ size?: 'small' | 'medium' }>`
+  margin-bottom: ${(props): string => (props.size === 'small' ? '8px' : '40px')};
 `;
 export const StatusIconContainer = styled.div`
   width: 40px;

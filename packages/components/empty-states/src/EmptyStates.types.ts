@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 export enum IconSize {
-  'L' = 48,
-  'XL' = 96,
+  'small' = 48,
+  'medium' = 96,
 }
 export enum FontSize {
   'small' = 14,
@@ -10,7 +10,7 @@ export enum FontSize {
 }
 
 export type EmptyStatesProps = {
-  size?: 'L' | 'XL';
+  size?: 'small' | 'medium';
   fontSize?: 'small' | 'medium';
   text?: string | React.ReactNode;
   button?: string | React.ReactNode;

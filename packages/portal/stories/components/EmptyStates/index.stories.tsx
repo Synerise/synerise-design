@@ -14,8 +14,8 @@ const reqXl = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.j
 const iconsRawXl = reqXl(reqXl.keys()[0]);
 const iconsNamesXl = Object.keys(iconsRawXl);
 const iconSizes = {
-  Large: 'L',
-  ExtraLarge: 'XL',
+  Large: 'small',
+  ExtraLarge: 'medium',
 };
 const fontSizes = {
   Small: 'small',
@@ -95,7 +95,7 @@ const stories = {
           label={Description}
           button={ showButton ? buttonPick[buttonSelect] : null}
           labelPosition="bottom"
-          customIcon={iconSize === 'L' ? <IconCompL/> : <IconCompXl/>}
+          customIcon={iconSize === 'small' ? <IconCompL/> : <IconCompXl/>}
         />
       </div>
     );
