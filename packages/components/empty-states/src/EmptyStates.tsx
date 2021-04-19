@@ -1,47 +1,28 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import AddXl from '@synerise/ds-icon/dist/icons/XL/AddXl';
-import SearchNoResultsL from '@synerise/ds-icon/dist/icons/L/SearchNoResultsL';
-import InboxNoResultsXl from '@synerise/ds-icon/dist/icons/XL/InboxNoResultsXl';
-import InboxNoResultsL from '@synerise/ds-icon/dist/icons/L/InboxNoResultsL';
-import SearchNoResultsXl from '@synerise/ds-icon/dist/icons/XL/SearchNoResultsXl';
-import AddL from '@synerise/ds-icon/dist/icons/L/AddL';
 import * as S from './EmptyStates.styles';
-import { EmptyStatesProps } from './EmptyStates.types';
+import { EmptyStatesProps, EmptyStatesSize } from './EmptyStates.types';
 
 const mapSizeToPx = {
-  L: 48,
-  XL: 96,
+  [EmptyStatesSize.SMALL]: 48,
+  [EmptyStatesSize.MEDIUM]: 96,
 };
 
 const EmptyStates: React.FC<EmptyStatesProps> = ({
-  size = 'L',
+  size = EmptyStatesSize.SMALL,
   label,
   labelPosition = 'right',
-  type,
   text,
   button,
   fontSize,
+  customIcon,
   mode,
 }) => {
-  const mapTypeToStatus = React.useMemo(()=>({
-    Add: {
-      IconComponent: size === 'L' ? AddL : AddXl,
-    },
-    NoResults: {
-      IconComponent: size === 'L' ? InboxNoResultsL : InboxNoResultsXl,
-    },
-    SearchNoResults: {
-      IconComponent: size === 'L' ? SearchNoResultsL : SearchNoResultsXl,
-    },
-  }),[size])
-
-  const { IconComponent } = mapTypeToStatus[type];
   return (
     <S.EmptyStatesWrapper mode={mode} className="ds-empty-states" labelPosition={labelPosition}>
       <S.EmptyStatesIconContainer size={size}>
         <S.StatusIconContainer >
-          <Icon component={<IconComponent />} size={mapSizeToPx[size]} />
+          <Icon component={customIcon} size={mapSizeToPx[size]} />
         </S.StatusIconContainer>
       </S.EmptyStatesIconContainer>
       {text && (

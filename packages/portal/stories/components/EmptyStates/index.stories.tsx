@@ -7,28 +7,26 @@ import { action } from '@storybook/addon-actions';
 
 
 
-const getDefaultProps = () => ({
-  type: select('Select type', types, 'Add'),
-});
+const reqL = require.context('@synerise/ds-icon/dist/icons/L', false, /index.js/);
+const iconsRawL = reqL(reqL.keys()[0]);
+const iconsNamesL = Object.keys(iconsRawL);
+const reqXl = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
+const iconsRawXl = reqXl(reqXl.keys()[0]);
+const iconsNamesXl = Object.keys(iconsRawXl);
 const iconSizes = {
-  Large: 'L',
-  ExtraLarge: 'XL',
+  Large: 'small',
+  ExtraLarge: 'medium',
 };
 const fontSizes = {
   Small: 'small',
   Medium: 'medium',
 };
-const types = {
-  Add: 'Add',
-  NoResults: 'NoResults',
-  SearchNoResults: 'SearchNoResults',
-};
 const buttonGhostPrimary = (
-  <>
+  <div style={{marginTop: '-8px'}}>
     <Button mode="label" type="ghost-primary" onClick={action('onClick: Apply')}>
       New segmentation
     </Button>
-  </>
+  </div>
 );
 const buttonPrimary = (
   <>
@@ -39,12 +37,16 @@ const buttonPrimary = (
 );
 const buttonsSetExample = (
   <>
-    <Button type="ghost" onClick={action('onClick: Cancel')}>
-      Cancel
-    </Button>
-    <Button type="primary" onClick={action('onClick: Unpublish')}>
-      New segmentation
-    </Button>
+    <div>
+      <Button type="ghost" onClick={action('onClick: Cancel')}>
+        Cancel
+      </Button>
+    </div>
+    <div style={{paddingLeft: '8px'}}>
+      <Button type="primary" onClick={action('onClick: Unpublish')}>
+        New segmentation
+      </Button>
+    </div>
   </>
 );
 const additionalButtons = [
@@ -56,7 +58,8 @@ const additionalButtons = [
 
 const stories = {
   default: () => {
-    const props = getDefaultProps();
+    const Header = text('Title', 'Create new segmentation');
+    const fontSize = select('Set size of title',fontSizes, fontSizes.Small);
     const Description = text(
       'Description',
       'Currently you have no Segmentations saved. Get started with a new one to analyze your database.'
@@ -66,9 +69,11 @@ const stories = {
       singleButtonGhostPrimary: buttonGhostPrimary,
       twoButtons: buttonsSetExample,
     };
-    const Header = text('Title', 'Create new segmentation');
     const iconSize = select('Size of icon', iconSizes,iconSizes.Large);
-    const fontSize = select('Set size of text',fontSizes, fontSizes.Small);
+    const customLIcon = select('Set custom L Icon', iconsNamesL, iconsNamesL[0]);
+    const customXlIcon = select('Set custom XL Icon', iconsNamesXl, iconsNamesXl[0]);
+    const IconCompL = iconsRawL[customLIcon];
+    const IconCompXl = iconsRawXl[customXlIcon];
     const showButton = boolean('Set button', true);
     const buttonSelect = select('Set type of button', additionalButtons,'singleButtonPrimary')
 
@@ -84,13 +89,13 @@ const stories = {
         }}
       >
         <EmptyStates
-          {...props}
           fontSize={fontSize}
           text={Header}
           size={iconSize}
           label={Description}
           button={ showButton ? buttonPick[buttonSelect] : null}
           labelPosition="bottom"
+          customIcon={iconSize === 'small' ? <IconCompL/> : <IconCompXl/>}
         />
       </div>
     );
