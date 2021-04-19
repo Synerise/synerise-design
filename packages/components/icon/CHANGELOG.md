@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.43.2...@synerise/ds-icon@0.43.3) (2021-04-07)
+
+
+### Bug Fixes
+
+* **table:** set sort menu width ([0e26464](https://github.com/Synerise/synerise-design/commit/0e26464085a6c06d7d30fa8ea455b75e9acd4f52))
+
+
+
+
+
 ## [0.43.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.43.1...@synerise/ds-icon@0.43.2) (2021-03-29)
 
 **Note:** Version bump only for package @synerise/ds-icon
