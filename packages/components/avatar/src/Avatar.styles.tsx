@@ -73,6 +73,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
     user-select: none;
+    min-width: 24px;
 
     span {
       color: ${(props): string => props.theme.palette.white} !important;
@@ -160,6 +161,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       props.size === 'medium' &&
       css`
         width: 40px;
+        min-width: 40px;
         height: 40px;
 
         .ant-avatar-string {
