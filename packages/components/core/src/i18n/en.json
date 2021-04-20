@@ -99,7 +99,7 @@
             "GROUP_BY_RANGERS": "Group by ranges",
             "GROUP_BY_INTERVALS": "Group by intervals",
             "GROUP_DISABLED": "Group disabled",
-            "GROUP_TITLE": "Settings for grouping the table results",
+            "GROUP_TITLE": "Table content group",
             "SELECT_PLACEHOLDER": "Select",
             "INTERVAL_PLACEHOLDER": "Set interval",
             "SET_GROUPING_TYPE": "Set grouping type",

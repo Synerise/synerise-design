@@ -250,6 +250,10 @@ const stories = {
       action('Duplicate item');
     };
 
+    const duplicateViewItem = (): void => {
+      action('Duplicate view item');
+    };
+
     const toggleItemFilterVisible = (): void => {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
@@ -642,7 +646,7 @@ const stories = {
             removeItem: params => removeViewItem(params, store),
             editItem: params => editViewItem(params, store),
             selectItem: params => setSelectedView(params, store),
-            duplicateItem: action('duplicate item'),
+            duplicateItem: params => duplicateViewItem(params, store),
             selectedItemId: store.state.selectedView,
             categories: store.state.savedViews,
             texts: {
@@ -671,7 +675,7 @@ const stories = {
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedFilter(props, store)}
-          duplicateItem={props => duplicateItem(props)}
+          duplicateItem={props => duplicateItem(props, store)}
           selectedItemId={store.state.selectedFilter}
           categories={store.state.categories}
         />

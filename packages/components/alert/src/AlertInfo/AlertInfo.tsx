@@ -4,16 +4,16 @@ import CheckL from '@synerise/ds-icon/dist/icons/L/CheckL';
 import WarningL from '@synerise/ds-icon/dist/icons/L/WarningL';
 import WarningXl from '@synerise/ds-icon/dist/icons/XL/WarningXl';
 import CheckXl from '@synerise/ds-icon/dist/icons/XL/CheckXl';
-import { AlertInfoProps } from './AlertInfo.types';
+import { AlertInfoProps, AlertSize } from './AlertInfo.types';
 import * as S from './AlertInfo.styles';
 
 const mapSizeToPx = {
-  L: 48,
-  XL: 96,
+  [AlertSize.SMALL]: 48,
+  [AlertSize.MEDIUM]: 96,
 };
 
 const AlertInfo: React.FC<AlertInfoProps> = ({
-  size = 'L',
+  size = AlertSize.SMALL,
   label,
   labelPosition = 'right',
   type,
@@ -24,15 +24,15 @@ const AlertInfo: React.FC<AlertInfoProps> = ({
 }) => {
   const mapTypeToStatus = {
     warning: {
-      IconComponent: size === 'L' ? WarningL : WarningXl,
+      IconComponent: size === AlertSize.SMALL ? WarningL : WarningXl,
       iconColor: 'yellow-600',
     },
     error: {
-      IconComponent: size === 'L' ? WarningL : WarningXl,
+      IconComponent: size === AlertSize.SMALL ? WarningL : WarningXl,
       iconColor: 'red-600',
     },
     success: {
-      IconComponent: size === 'L' ? CheckL : CheckXl,
+      IconComponent: size === AlertSize.SMALL ? CheckL : CheckXl,
       iconColor: 'green-600',
     },
   };

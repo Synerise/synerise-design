@@ -2,7 +2,7 @@ import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
 
-import { isIconComponent } from './utils';
+import { isIconComponent, getTooltipProps } from './utils';
 import AntdAvatar from './Avatar.styles';
 import { AvatarProps } from './Avatar.types';
 
@@ -28,7 +28,6 @@ const Avatar: React.FC<AvatarProps> = ({
   size = DEFAULT_SIZE,
   ...antdProps
 }) => {
-  const [pressed, setPressed] = React.useState(false);
   const sizes = { ...ICON_SIZES };
   let iconElement = iconComponent as React.ReactElement;
 
@@ -45,25 +44,17 @@ const Avatar: React.FC<AvatarProps> = ({
     });
   }
 
-  const tooltipProps =
-    typeof tooltip === 'object'
-      ? {
-          ...tooltip,
-          title: tooltip.title || tooltip.name,
-          description: tooltip.description || tooltip.email,
-        }
-      : {};
+  const { type, ...tooltipProps } = getTooltipProps(tooltip);
+
+  const hasTooltip =
+    Object.keys(tooltipProps).length && !!Object.values(tooltipProps).reduce((prev, next) => next || prev);
 
   return (
-    <Tooltip type="avatar" mouseLeaveDelay={0} mouseEnterDelay={0} {...tooltipProps}>
+    <Tooltip type={type} mouseLeaveDelay={0} mouseEnterDelay={0} {...tooltipProps}>
       <AntdAvatar
         className="ds-avatar"
-        onMouseDown={(): void => setPressed(true)}
-        onMouseOut={(): void => setPressed(false)}
-        onMouseUp={(): void => setPressed(false)}
-        onBlur={(): void => setPressed(false)}
-        pressed={pressed}
         hasStatus={hasStatus}
+        hasTooltip={hasTooltip}
         backgroundColor={backgroundColor}
         backgroundColorHue={backgroundColorHue}
         disabled={disabled}

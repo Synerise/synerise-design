@@ -205,10 +205,10 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             fill: ${(props): string => props.theme.palette['blue-600']};
           }
         }
-      }
-      .ds-check-icon{
-        svg {
-          fill: ${(props): string => props.theme.palette['green-600']};
+        .ds-check-icon{
+          svg {
+            fill: ${(props): string => props.theme.palette['green-600']};
+          }
         }
       }
 

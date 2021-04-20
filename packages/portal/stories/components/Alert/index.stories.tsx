@@ -32,11 +32,7 @@ const decorator = storyFn => (
 const getDefaultProps = () => ({
   type: select('Select type', types, 'error'),
 });
-const iconSizes = {
-  Large: 'L',
-  ExtraLarge: 'XL',
-};
-const fontSizes = {
+const sizes = {
   Small: 'small',
   Medium: 'medium',
 };
@@ -44,16 +40,6 @@ const types = {
   success: 'success',
   warning: 'warning',
   error: 'error',
-};
-const typesText = {
-  success: 'Campaign has been send to the customers.',
-  warning: 'The form must be completed before sending the campaign.',
-  error: 'Please reload this content or notify our helpdesk.',
-};
-const typesHeaders = {
-  success: 'Campaign successful send',
-  warning: 'Please fill the form.',
-  error: 'Some problem occured',
 };
 const buttonSetExample = (
   <>
@@ -389,13 +375,12 @@ const stories = {
   },
   alertWithIcon: () => {
     const props = getDefaultProps();
-    const Description = select(
+    const Description = text(
       'Description',
-      typesText,typesText.error
+      'Please reload this content or notify our helpdesk.'
     );
-    const Header = select('Title', typesHeaders,typesHeaders.error);
-    const iconSize = select('Size of icon', iconSizes,iconSizes.Large);
-    const fontSize = select('Set size of text',fontSizes, fontSizes.Small);
+    const Header = text('Title', 'Some problem occured');
+    const size = select('Set size',sizes, sizes.Small);
     const showButton = boolean('Set button', true);
 
     return (
@@ -411,9 +396,9 @@ const stories = {
       >
         <AlertInfo
           {...props}
-          fontSize={fontSize}
+          fontSize={size}
           text={Header}
-          size={iconSize}
+          size={size}
           label={Description}
           button={ showButton ? buttonSetExample : null}
           labelPosition="bottom"

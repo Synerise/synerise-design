@@ -65,7 +65,7 @@ const applyFontSize = (props: AvatarProps): FlattenSimpleInterpolation => {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, pressed, ...rest }) => (
+export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus, hasTooltip, ...rest }) => (
   <Avatar onClick={onClick} {...rest} />
 ))`
   && {
@@ -73,6 +73,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
     ${(props): FlattenSimpleInterpolation | false => applyDisabledStyles(props)};
     transition: background 0.3s ease;
     user-select: none;
+    min-width: 24px;
 
     span {
       color: ${(props): string => props.theme.palette.white} !important;
@@ -114,19 +115,16 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       opacity: 0;
       border-radius: inherit;
     }
+
     ${(props): FlattenSimpleInterpolation | false =>
-      props.pressed &&
+      (props.onClick || props.hasTooltip) &&
       css`
-        &::before {
-          opacity: 0.05;
+        &:hover {
+          &::before {
+            opacity: 0.05;
+          }
         }
       `};
-
-    &:hover {
-      &::before {
-        opacity: 0.05;
-      }
-    }
 
     ${(props): FlattenSimpleInterpolation | false =>
       props.onClick
@@ -163,6 +161,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
       props.size === 'medium' &&
       css`
         width: 40px;
+        min-width: 40px;
         height: 40px;
 
         .ant-avatar-string {

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.4.12...@synerise/ds-avatar-group@0.4.13) (2021-04-14)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
+## [0.4.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.4.11...@synerise/ds-avatar-group@0.4.12) (2021-04-13)
+
+
+### Bug Fixes
+
+* **avatar-group:** override color ([67c2ee4](https://github.com/Synerise/synerise-design/commit/67c2ee47e69e829ab179e574424b6faf33d6d47c))
+
+
+
+
+
+## [0.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.4.10...@synerise/ds-avatar-group@0.4.11) (2021-04-07)
+
+**Note:** Version bump only for package @synerise/ds-avatar-group
+
+
+
+
+
 ## [0.4.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-avatar-group@0.4.9...@synerise/ds-avatar-group@0.4.10) (2021-03-30)
 
 **Note:** Version bump only for package @synerise/ds-avatar-group

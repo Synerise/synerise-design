@@ -75,7 +75,7 @@ const stories = {
   loaderComplex: () => {
     const Description = text('Description', 'Please wait a second to proceed.');
     const Header = text('Title', 'You will be redirected to Synerise');
-    const size = select('Set size of text',fontSizes, fontSizes.Small)
+    const size = select('Set size of title',fontSizes, fontSizes.Small)
 
     return(
       <div>
