@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.7.18...@synerise/ds-item-picker@0.7.19) (2021-04-20)
+
+
+### Bug Fixes
+
+* **item-picker:** pass searchbar props ([e61db9d](https://github.com/Synerise/synerise-design/commit/e61db9d258be6656ff1f6bc9cd146f0184c34e65))
+
+
+
+
+
 ## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.7.17...@synerise/ds-item-picker@0.7.18) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-item-picker
