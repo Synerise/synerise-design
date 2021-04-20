@@ -1,4 +1,5 @@
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 
 export interface Props {
   onChange: (item: MenuItemProps) => void;
@@ -11,4 +12,5 @@ export interface Props {
   dropdownBottomAction?: React.ReactNode;
   closeOnBottomAction?: boolean;
   isDropdownOpened: boolean;
+  searchBarProps?: Partial<SearchBarProps>;
 }
