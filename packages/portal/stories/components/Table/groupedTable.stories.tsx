@@ -91,7 +91,7 @@ const stories = {
       applyGroupSettings(savedView.groupSettings);
     };
 
-    const removeItem = (props, store): void => {
+    const removeViewItem = (props, store): void => {
       store.set({
         savedViews: store.state.savedViews.map((category) => ({
           ...category,
@@ -100,9 +100,32 @@ const stories = {
       });
     };
 
-    const editItem = (props, store): void => {
+    const editViewItem = (props, store): void => {
       store.set({
         savedViews: store.state.savedViews.map(category => ({
+          ...category,
+          items: category.items.map(item => {
+            if(item.id === props.id) {
+              item.name = props.name;
+            }
+            return item;
+          }),
+        }))
+      });
+    };
+
+    const removeItem = (props, store): void => {
+      store.set({
+        categories: store.state.categories.map((category) => ({
+          ...category,
+          items: category.items.filter(item => item.id !== props.id)
+        }))
+      });
+    };
+
+    const editItem = (props, store): void => {
+      store.set({
+        categories: store.state.categories.map(category => ({
           ...category,
           items: category.items.map(item => {
             if(item.id === props.id) {
@@ -616,8 +639,8 @@ const stories = {
           groupSettings={store.state.groupSettings}
           onSave={savedView => saveFilter(savedView, store)}
           itemFilterConfig={{
-            removeItem: params => removeItem(params, store),
-            editItem: params => editItem(params, store),
+            removeItem: params => removeViewItem(params, store),
+            editItem: params => editViewItem(params, store),
             selectItem: params => setSelectedView(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedView,
