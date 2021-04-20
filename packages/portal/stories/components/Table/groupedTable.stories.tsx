@@ -116,7 +116,7 @@ const stories = {
 
     const removeItem = (props, store): void => {
       store.set({
-        savedViews: store.state.categories.map((category) => ({
+        categories: store.state.categories.map((category) => ({
           ...category,
           items: category.items.filter(item => item.id !== props.id)
         }))
@@ -125,7 +125,7 @@ const stories = {
 
     const editItem = (props, store): void => {
       store.set({
-        savedViews: store.state.categories.map(category => ({
+        categories: store.state.categories.map(category => ({
           ...category,
           items: category.items.map(item => {
             if(item.id === props.id) {
