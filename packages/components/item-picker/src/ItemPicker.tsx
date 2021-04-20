@@ -29,14 +29,15 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   label,
   onBlur,
   onFocus,
-  noResults = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS' }),
-  noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT' }),
+  noResults = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-RESULTS', defaultMessage: 'No results' }),
+  noText = intl.formatMessage({ id: 'DS.ITEM-PICKER.NO-TEXT', defaultMessage: 'No' }),
   placeholderIcon,
-  searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH' }),
+  searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH', defaultMessage: 'Search' }),
+  searchBarProps,
   selectedItem,
   tooltip,
   size = 'small',
-  yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT' }),
+  yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),
   withClearConfirmation,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
@@ -66,6 +67,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   const dropdownOverlay = React.useMemo(
     () => (
       <ItemPickerDropdown
+        searchBarProps={searchBarProps}
         onChange={onChange}
         dataSource={dataSource}
         placeholder={searchPlaceholder}
@@ -79,6 +81,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       />
     ),
     [
+      searchBarProps,
       onChange,
       dataSource,
       searchPlaceholder,
