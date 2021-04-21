@@ -45,7 +45,11 @@ const Button: React.FC<Props> = ({
       onClick && onClick(event);
     }
   };
-
+  const classNameString = React.useMemo((): string => {
+    const modeStringifed = !mode ? "" : mode;
+    const classNameStringifed = !className ? "" : className;
+    return `ds-button ${modeStringifed} ${classNameStringifed}`
+  },[mode, className]);
   return (
     <S.AntdButton
       justifyContent={justifyContent}
@@ -61,7 +65,7 @@ const Button: React.FC<Props> = ({
         setPressed(false);
       }}
       pressed={pressed}
-      className={`ds-button ${className} ${mode}`}
+      className={classNameString}
       customColor={color}
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
