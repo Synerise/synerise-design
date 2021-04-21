@@ -46,7 +46,6 @@ const DetailsModal: React.FC<ModalProps<DataSourceType>> = ({
         scroll={{ y: 500, x: 0 }}
         cellHeight={64}
         initialWidth={500}
-        tsigni
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-expect-error: FIXME: Property 'children' is missing in type '{ key: ReactText; }' but required in type 'RowType<DataSourceType>'.ts(2322)
         dataSource={filteredItems}
