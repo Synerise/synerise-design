@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ClickParam } from 'antd/lib/menu';
+import { MenuProps } from 'antd/lib/menu';
 
 export type AddonRenderer = (hovered: boolean) => React.ReactNode;
 
@@ -11,7 +11,7 @@ export interface BasicItemProps {
   suffixel?: React.ReactNode | AddonRenderer;
   danger?: boolean;
   actions?: React.ReactNode;
-  onClick?: (props: ClickParam) => void;
+  onClick?: MenuProps['onClick'];
   description?: string | React.ReactNode;
   copyable?: boolean;
   copyHint?: string | React.ReactNode;

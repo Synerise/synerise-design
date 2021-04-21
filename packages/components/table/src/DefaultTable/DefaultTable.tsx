@@ -46,7 +46,11 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         if (dataSource) {
           dataSource.forEach(row => {
             const dataRowKey = getRowKey(row);
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
             if (row.children !== undefined && Array.isArray(row.children)) {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
               row.children.forEach((child: T) => {
                 const childKey = getRowKey(child);
                 if (childKey && selectedKeys.indexOf(childKey) >= 0) {
@@ -122,20 +126,28 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
           selections: selection?.selections?.filter(Boolean),
           columnWidth: 64,
           renderCell: (checked: boolean, record: T): React.ReactNode => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
             const hasChilds = record.children !== undefined && Array.isArray(record.children);
             const allChildsChecked =
               (hasChilds &&
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
                 record.children?.filter((child: T) => {
                   const childKey = getRowKey(child);
                   return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
                 }).length === 0) ||
               false;
             const checkedChilds =
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
               record.children?.filter((child: T) => {
                 const childKey = getRowKey(child);
                 return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
               }) || [];
             const isIndeterminate =
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
               hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
             return (
               <Tooltip title={locale?.selectRowTooltip}>

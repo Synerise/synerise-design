@@ -52,7 +52,7 @@ export interface Filter {
 }
 
 export type RowType<T> = {
-  children?: T[];
+  children: T[];
 };
 
 export type Locale = TableLocale & {

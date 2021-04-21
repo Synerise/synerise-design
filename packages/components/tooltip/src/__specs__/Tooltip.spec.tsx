@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, waitFor } from "@testing-library/react";
 import Tooltip from '../index';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 
@@ -22,12 +22,13 @@ describe('Tooltip', () => {
     const TOOLTIP_TITLE = 'Test';
     const TEST_ID = 'inner-element';
 
-    it('should render', () => {
+    it('should render', async () => {
         // ARRANGE
         const { getByText } = renderWithProvider(<Tooltip visible title={TOOLTIP_TITLE} />);
 
         // ASSERT
-        expect(getByText(TOOLTIP_TITLE)).toBeTruthy();
+        const tooltip = await waitFor(() => getByText(TOOLTIP_TITLE));
+        expect(tooltip).toBeTruthy();
     });
 
     it('should appear on mouseOver', () => {

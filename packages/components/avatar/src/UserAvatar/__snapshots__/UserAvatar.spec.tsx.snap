@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-circle"
+        class="ant-avatar ant-avatar-circle Avatarstyles-xcn5o4-1 eLBiNg ds-avatar"
       >
         <span
           class="ant-avatar-string"
@@ -36,7 +36,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 eLBiNg ds-avatar ant-avatar-circle"
+      class="ant-avatar ant-avatar-circle Avatarstyles-xcn5o4-1 eLBiNg ds-avatar"
     >
       <span
         class="ant-avatar-string"
@@ -123,7 +123,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar ant-avatar-circle"
+        class="ant-avatar ant-avatar-circle Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar"
       >
         <span
           class="ant-avatar-string"
@@ -136,7 +136,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar ant-avatar-circle"
+      class="ant-avatar ant-avatar-circle Avatarstyles-xcn5o4-1 ijGHfJ ds-avatar"
     >
       <span
         class="ant-avatar-string"
@@ -206,7 +206,7 @@ Object {
   "baseElement": <body>
     <div>
       <span
-        class="ant-avatar Avatarstyles-xcn5o4-1 jAqoPa ds-avatar ant-avatar-circle ant-avatar-image"
+        class="ant-avatar ant-avatar-circle ant-avatar-image Avatarstyles-xcn5o4-1 jAqoPa ds-avatar"
       >
         <img
           src="http://image.com/image.jpg"
@@ -216,7 +216,7 @@ Object {
   </body>,
   "container": <div>
     <span
-      class="ant-avatar Avatarstyles-xcn5o4-1 jAqoPa ds-avatar ant-avatar-circle ant-avatar-image"
+      class="ant-avatar ant-avatar-circle ant-avatar-image Avatarstyles-xcn5o4-1 jAqoPa ds-avatar"
     >
       <img
         src="http://image.com/image.jpg"

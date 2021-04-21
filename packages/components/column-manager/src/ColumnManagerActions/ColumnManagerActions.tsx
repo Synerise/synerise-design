@@ -30,12 +30,12 @@ class ColumnManagerActions extends React.Component<Props, State> {
 
   handleChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = event.currentTarget;
-    this.setState({
+    this.setState(({
       [name]: {
         value,
         error: '',
       },
-    } as State);
+    } as unknown) as State);
   };
 
   handleSubmit = (): void => {

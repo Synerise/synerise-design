@@ -1,6 +1,5 @@
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item.types';
 import * as React from 'react';
-import { IntlFormatters } from 'react-intl';
 
 export type Category = {
   label: string;
@@ -30,7 +29,6 @@ export type ItemFilterProps = {
   theme: {
     [k: string]: string;
   };
-  intl: IntlFormatters;
   search?: {
     onChange: (value: string) => void;
     onClear: () => void;

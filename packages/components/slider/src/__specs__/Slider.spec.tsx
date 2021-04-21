@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor, getByRole } from '@testing-library/react';
 
 import Slider from '../index';
 import { AllocationVariant } from '../Allocation/Allocation.types';
@@ -83,9 +83,9 @@ describe('Slider', () => {
     expect(fourthSliderHandle && fourthSliderHandle.getAttribute('aria-valuenow')).toBe(`80`);
   });
 
-  it('should show tooltip on hover', () => {
+  it('should show tooltip on hover', async () => {
     // ARRANGE
-    const { container } = renderWithProvider(
+    const { container, getByRole } = renderWithProvider(
       <Slider max={MAX} min={MIN} value={FIFTY} tipFormatter={tipFormatter} tooltipVisible />
     );
 
@@ -95,10 +95,11 @@ describe('Slider', () => {
     // ACT
     sliderHandle && fireEvent.mouseOver(sliderHandle);
 
-    const tooltipContent = container.querySelector('.ant-tooltip-inner');
+    // const tooltipContent = container.querySelector('.ant-tooltip-inner');
+    const tooltip = await waitFor(() => getByRole('tooltip'));
 
     // ASSERT
-    expect(tooltipContent && tooltipContent.textContent).toBe(`${FIFTY}`);
+    expect(tooltip).toHaveTextContent(`${FIFTY}`);
   });
 
   it('should handle onChange event', () => {

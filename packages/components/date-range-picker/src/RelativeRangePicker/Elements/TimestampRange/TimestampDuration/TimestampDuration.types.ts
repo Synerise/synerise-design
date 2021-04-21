@@ -4,7 +4,7 @@ import { Texts } from '../../../../DateRangePicker.types';
 export type Props = {
   currentRange: RelativeDateRange;
   currentGroup: string | null;
-  handleDurationValueChange: (value?: number) => void;
+  handleDurationValueChange: (value?: string | number) => void;
   onDurationModifierChange: (modifier: string) => void;
   durationModifier: string;
   value: number;
