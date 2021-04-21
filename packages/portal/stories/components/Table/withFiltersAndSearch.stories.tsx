@@ -81,7 +81,7 @@ const saveFilter = (savedView: SavedView, store) => {
   });
 };
 
-const removeItem = (props, store): void => {
+const removeViewItem = (props, store): void => {
   store.set({
     savedViews: store.state.savedViews.map((category) => ({
       ...category,
@@ -90,9 +90,32 @@ const removeItem = (props, store): void => {
   });
 };
 
-const editItem = (props, store): void => {
+const editViewItem = (props, store): void => {
   store.set({
     savedViews: store.state.savedViews.map(category => ({
+      ...category,
+      items: category.items.map(item => {
+        if(item.id === props.id) {
+          item.name = props.name;
+        }
+        return item;
+      }),
+    }))
+  });
+};
+
+const removeItem = (props, store): void => {
+  store.set({
+    savedViews: store.state.categories.map((category) => ({
+      ...category,
+      items: category.items.filter(item => item.id !== props.id)
+    }))
+  });
+};
+
+const editItem = (props, store): void => {
+  store.set({
+    savedViews: store.state.categories.map(category => ({
       ...category,
       items: category.items.map(item => {
         if(item.id === props.id) {
@@ -479,8 +502,8 @@ const stories = {
           onApply={columns => store.set({ columns: columns, columnManagerVisible: false })}
           onSave={savedView => saveFilter(savedView, store)}
           itemFilterConfig={{
-            removeItem: params => removeItem(params, store),
-            editItem: params => editItem(params, store),
+            removeItem: params => removeViewItem(params, store),
+            editItem: params => editViewItem(params, store),
             selectItem: params => setSelectedView(params, store),
             duplicateItem: action('duplicate item'),
             selectedItemId: store.state.selectedView,

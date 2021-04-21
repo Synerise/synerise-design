@@ -212,7 +212,7 @@ export const FOLDERS: TagsListItem[] = [
 export const TEXTS: TagsListTexts = {
   add: 'Add',
   addItemLabel: 'Add tag',
-  addToFavourite: 'Favourite',
+  addToFavourite: 'Add to starred',
   applyAdd: 'Apply',
   cancel: 'Cancel',
   chooseDestinationFolder: 'Choose folder',
@@ -220,7 +220,7 @@ export const TEXTS: TagsListTexts = {
   deleteFolderLabel: 'Remove folder',
   deleteFolderConfirmationMessage: 'Are you sure you want to remove folder',
   deleteFolderDescription: 'What you want to do with content? ',
-  deleteFromFavourites: 'Favourite',
+  deleteFromFavourites: 'Remove from starred',
   deleteAllContent: 'Remove all items',
   edit: 'Rename',
   enterSettings: 'Manage tags',
