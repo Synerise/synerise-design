@@ -47,9 +47,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   };
 
   focusInput = (): void => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    this.inputRef.current && this.inputRef.current.focus({ preventScroll: true });
+    this.inputRef.current && this.inputRef.current.focus();
   };
 
   toggleOpen = (): void => {
