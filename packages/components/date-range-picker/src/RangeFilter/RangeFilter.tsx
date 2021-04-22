@@ -47,7 +47,6 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     this.setState({
       activeType: type,
       [type]: {
-        type,
         definition: previousDefinition || cloneDeep(TYPES_DATA[type].definition),
         ...previousValue,
       } as FilterValue,

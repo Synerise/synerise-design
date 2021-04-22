@@ -1,5 +1,5 @@
 import { FieldProps } from '../CustomRangeForm.types';
 
 export type Props = {
-  handleDurationValueChange: (value?: number) => void;
+  handleDurationValueChange: (value?: string | number) => void;
 } & FieldProps;

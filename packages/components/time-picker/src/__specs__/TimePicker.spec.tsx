@@ -17,12 +17,13 @@ describe('TimePicker', () => {
     expect(getByTestId(CONTAINER_TESTID)).toBeTruthy();
   });
 
-  it('should render opened by default', () => {
+  it('should render opened by default', async () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(<TimePicker defaultOpen={true} />);
 
     // ASSERT
-    expect(getByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+    const overlayContainer = await waitFor(() => getByTestId(OVERLAY_CONTAINER_TESTID));
+    expect(overlayContainer).toBeTruthy();
   });
 
   it('should render overlay after clicking on input', () => {

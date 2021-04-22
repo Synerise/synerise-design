@@ -43,7 +43,7 @@ export const CommonRenderer = <T extends unknown>({
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSortOrderChange(toSortOrder(key));
+                  onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 220 }}
               >
@@ -109,7 +109,7 @@ export const StringRenderer = <T extends unknown>({
               <Menu
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSortOrderChange(toSortOrder(key));
+                  onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 170 }}
               >

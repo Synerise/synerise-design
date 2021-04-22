@@ -106,7 +106,7 @@ const TimestampRange: React.FC<Props> = ({
         currentGroup={currentGroup}
         value={durationValue}
         handleDurationValueChange={(val): void => {
-          val && setDurationValue(val);
+          val && setDurationValue(Number(val));
         }}
         onDurationUnitChange={(unit): void => {
           unit && setDurationUnit(unit as RelativeUnits);

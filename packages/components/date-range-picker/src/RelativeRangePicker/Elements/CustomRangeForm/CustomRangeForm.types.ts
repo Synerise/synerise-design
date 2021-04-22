@@ -2,18 +2,18 @@ import { RelativeMode, Texts, Props as DateRangePickerProps } from '../../../Dat
 import { DateRange, RelativeDateRange, RelativeUnits } from '../../../date.types';
 
 export type Props = {
-  ranges: DateRange[];
+  ranges?: DateRange[];
   currentRange: RelativeDateRange;
   currentGroup: string | null;
   handleChange: (value: DateRange) => void;
-  handleDurationValueChange: (value?: number) => void;
-  handleOffsetValueChange: (value?: number) => void;
+  handleDurationValueChange: (value?: string | number) => void;
+  handleOffsetValueChange: (value?: string | number) => void;
   handleModeChange: (mode: RelativeMode | null) => void;
   handleTimestampChange?: (timestamp: Date | undefined) => void;
   timestamp?: Date | undefined;
   texts: Texts;
   relativeModes: RelativeMode[];
-  rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
+  rangeUnits: DateRangePickerProps['rangeUnits'];
 };
 
 export type FieldProps = {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 export interface ConfirmMessageProps {
-  children: React.ReactChildren | React.ReactChild;
   displayDuration?: number;
   title: string;
   onClick: (callback: () => void) => void;

@@ -5,7 +5,7 @@ import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import Icon from '@synerise/ds-icon';
 
 export type TagsListItemType = {
-  inline: boolean;
+  inline?: boolean;
   editMode: boolean;
   hovered: boolean;
   rootPrefixCls?: string;
@@ -91,7 +91,7 @@ export const TagsListItem = styled(Menu.Item)<TagsListItemType>`
 
     &:hover {
       ${SuffixWrapper} {
-        ${(props): string | false => props.inline && 'display:flex;'}
+        ${(props): string | false => !!props.inline && 'display:flex;'}
         opacity: 1;
       }
       ${InlineEditWrapper} {

@@ -10,7 +10,6 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   subMenu,
   indexFormatter,
   index,
-
   subMenuProps,
   text,
 }) => {

@@ -63,7 +63,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
 }: GroupSettingsProps) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
-  const [interval, setIntervalValue] = React.useState<number | undefined>(undefined);
+  const [interval, setIntervalValue] = React.useState<string | number | undefined>(undefined);
   const [error, setError] = React.useState<React.ReactNode | undefined>(undefined);
 
   const clearState = React.useCallback(() => {
@@ -166,7 +166,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
             data-testid="group-by-interval"
             min={1}
             label={texts.intervalPlaceholder}
-            value={interval}
+            value={Number(interval)}
             onChange={setIntervalValue}
           />
         </S.IntervalInput>

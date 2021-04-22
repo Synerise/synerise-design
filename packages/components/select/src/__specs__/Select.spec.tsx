@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
-import Select from '../index';
+import { fireEvent, waitFor } from '@testing-library/react';
+import Select from '../Select';
 
 const { Option } = Select;
 
@@ -16,7 +16,7 @@ describe('Select', () => {
     expect(getByText('Lucy')).toBeTruthy();
   });
 
-  it('change selected item when unselected is clicked', () => {
+  it('change selected item when unselected is clicked', async () => {
     const options = [{ value: 'red', label: 'Red' }, { value: 'green', label: 'Green' }];
     const { getByTestId, getByText } = renderWithProvider(
       <Select open data-testid="select" defaultValue="red">
@@ -28,16 +28,16 @@ describe('Select', () => {
       </Select>
     );
 
-    const select = getByTestId('select') as HTMLSelectElement;
+    const select = await waitFor(() => getByTestId('select') as HTMLSelectElement);
     const selectedOption = select.querySelector('.ant-select-selection-item');
     expect(selectedOption && selectedOption.textContent).toBe('Red');
     fireEvent.click(select);
-    const unselectedOption = getByText('Green');
+    const unselectedOption = await waitFor(() => getByText('Green'));
     fireEvent.click(unselectedOption);
     expect(selectedOption && selectedOption.textContent).toBe('Green');
   });
 
-  it('handle clicking multiple mode', () => {
+  it('handle clicking multiple mode', async () => {
     const onChange = jest.fn();
     const children = [];
     for (let i = 10; i < 36; i++) {
@@ -57,10 +57,10 @@ describe('Select', () => {
     );
 
     const select = getByTestId('select-multiple') as HTMLSelectElement;
-    const selectedOption = getAllByText('a10');
+    const selectedOption = await waitFor(() => getAllByText('a10'));
     expect(selectedOption[0].textContent).toBe('a10');
     fireEvent.click(select);
-    const unselectedOption = getAllByText('b11');
+    const unselectedOption = await waitFor(() => getAllByText('b11'));
     fireEvent.click(unselectedOption[0]);
     const selectedOptions = document.querySelectorAll('div[aria-selected="true"]');
     expect(selectedOptions.length).toBe(2);
@@ -87,11 +87,12 @@ describe('Select', () => {
     expect(getByText(DESC)).toBeTruthy();
   });
 
-  it('should be empty', () => {
+  it('should be empty', async () => {
     // ARRANGE
     const { getByText } = renderWithProvider(<Select open data-testid="select-empty" />);
 
     // ASSERT
-    expect(getByText('No Data')).toBeTruthy();
+    const noDataElem = await waitFor(() => getByText('No Data'));
+    expect(noDataElem).toBeTruthy();
   });
 });

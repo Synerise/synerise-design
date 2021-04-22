@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import * as S from './RelativeRangePicker.styles';
 import * as CONST from '../constants';
 import getRelativePresetForRange from '../dateUtils/getRelativePresetForRange';
@@ -21,8 +21,8 @@ import { DEFAULT_RANGE, normalizeRange } from '../utils';
 import { RelativeMode } from '../DateRangePicker.types';
 import { CUSTOM_RANGE_KEY } from '../constants';
 
-class RelativeRangePicker extends React.PureComponent<Props, State> {
-  static defaultProps = {
+class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentProps, State> {
+  static defaultProps: Partial<Props> = {
     ranges: CONST.RELATIVE_PRESETS,
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
@@ -108,7 +108,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     return <RangeDropdown ranges={ranges} currentRange={currentRange} texts={texts} onChange={onChange} />;
   };
 
-  onOffsetValueChange = (value: number | undefined): void => {
+  onOffsetValueChange = (value: string | number | undefined): void => {
     const { currentRange } = this.state;
     if (typeof value === 'number' && value >= 0 && currentRange) {
       const changes = setOffsetValue(value, currentRange);
@@ -116,7 +116,7 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
     }
   };
 
-  onDurationValueChange = (value: number | undefined): void => {
+  onDurationValueChange = (value: string | number | undefined): void => {
     const { currentRange } = this.state;
     if (value && currentRange) {
       const changes = setDurationValue(value, currentRange);
@@ -173,6 +173,4 @@ class RelativeRangePicker extends React.PureComponent<Props, State> {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 export default injectIntl(RelativeRangePicker);

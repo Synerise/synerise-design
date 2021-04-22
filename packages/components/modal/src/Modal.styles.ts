@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Typography from '@synerise/ds-typography';
-import { ModalProps } from 'antd/lib/modal';
-import Modal from 'antd/lib/modal/Modal';
+import Modal, { ModalProps } from 'antd/lib/modal';
 
 export const TitleContainer = styled.div`
   display: flex;
@@ -64,4 +63,7 @@ export const FooterContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
-export const AntdModal = styled(Modal)<ModalProps>``;
+
+// FIXME: Exported variable 'AntdModal' has or is using name 'ModalInterface' from external module (probabli Antd's types issue)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const AntdModal = styled(Modal as any)<ModalProps>``;
