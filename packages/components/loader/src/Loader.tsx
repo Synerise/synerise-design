@@ -9,6 +9,8 @@ const Loader: React.FC<LoaderProps> = ({
   color = 'blue',
   percent,
   percentFormatter,
+  text,
+  fontSize,
   mode,
 }) => {
   return (
@@ -16,7 +18,8 @@ const Loader: React.FC<LoaderProps> = ({
       <S.Wrapper size={size}>
         <S.Loader size={size} color={color} />
       </S.Wrapper>
-      <S.TextWrapper>
+      {text && <S.HeaderWrapper fontSize={fontSize}>{text}</S.HeaderWrapper>}
+      <S.TextWrapper labelPosition={labelPosition}>
         {label}
         {percentFormatter && <S.PercentWrapper>{percentFormatter(percent)}</S.PercentWrapper>}
       </S.TextWrapper>

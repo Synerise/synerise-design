@@ -259,7 +259,7 @@ const Collector: React.FC<CollectorProps> = ({
         }}
         onClick={(): void => {
           if (inputRef?.current) {
-            inputRef.current.focus();
+            inputRef.current.focus({ preventScroll: true });
           }
         }}
         showAddButton={allowCustomValue && allowMultipleValues}

@@ -262,13 +262,13 @@
 
       &:not(.@{table-prefix-cls}-column-sort) {
         .@{table-prefix-cls}-column-sorter {
-          opacity: 0;
+          margin-left: 8px;
         }
-        &:hover {
-          .@{table-prefix-cls}-column-sorter {
-            opacity: 1;
-          }
-        }
+      }
+
+      &.ant-table-cell-fix-left,
+      &.ant-table-cell-fix-right {
+        z-index: 10;
       }
     }
 

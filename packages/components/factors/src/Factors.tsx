@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon/dist/icons';
-import InputNumber from '@synerise/ds-input-number';
 import * as S from './style/Factors.style';
 import { FactorsProps } from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';
@@ -11,6 +10,7 @@ import DateInput from './FactorValue/Date/Date';
 import FormulaInput from './FactorValue/Formula/Formula';
 import TextInput from './FactorValue/Text/Text';
 import ParameterInput from './FactorValue/Parameter/Parameter';
+import NumberInput from './FactorValue/Number/NumberInput';
 
 export const factorTypes = {
   text: {
@@ -21,7 +21,7 @@ export const factorTypes = {
   number: {
     icon: <HashM />,
     name: 'Number',
-    input: InputNumber,
+    input: NumberInput,
   },
   parameter: {
     icon: <BookM />,
@@ -74,6 +74,7 @@ const Factors: React.FC<FactorsProps> = ({
   formulaEditor,
   opened,
   loading,
+  factorKey,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -150,8 +151,10 @@ const Factors: React.FC<FactorsProps> = ({
         texts={text}
         opened={opened}
         loading={loading}
+        factorKey={factorKey}
       />
     </S.Group>
   );
 };
+
 export default Factors;

@@ -4,7 +4,6 @@ import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
-import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import {
@@ -92,20 +91,49 @@ const stories = {
       applyGroupSettings(savedView.groupSettings);
     };
 
-    const removeItem = (props): void => {
+    const removeViewItem = (props, store): void => {
       store.set({
-        items: store.state.items.filter(item => item.id !== props.id),
+        savedViews: store.state.savedViews.map((category) => ({
+          ...category,
+          items: category.items.filter(item => item.id !== props.id)
+        }))
       });
     };
 
-    const editItem = (props): void => {
+    const editViewItem = (props, store): void => {
       store.set({
-        items: store.state.items.map(item => {
-          if (item.id === props.id) {
-            item.name = props.name;
-          }
-          return item;
-        }),
+        savedViews: store.state.savedViews.map(category => ({
+          ...category,
+          items: category.items.map(item => {
+            if(item.id === props.id) {
+              item.name = props.name;
+            }
+            return item;
+          }),
+        }))
+      });
+    };
+
+    const removeItem = (props, store): void => {
+      store.set({
+        categories: store.state.categories.map((category) => ({
+          ...category,
+          items: category.items.filter(item => item.id !== props.id)
+        }))
+      });
+    };
+
+    const editItem = (props, store): void => {
+      store.set({
+        categories: store.state.categories.map(category => ({
+          ...category,
+          items: category.items.map(item => {
+            if(item.id === props.id) {
+              item.name = props.name;
+            }
+            return item;
+          }),
+        }))
       });
     };
 
@@ -164,17 +192,6 @@ const stories = {
                   if (a.first_name > b.first_name) return 1;
                   return 0;
                 },
-                render: (firstName, {last_name: lastName, city: email}) => {
-                  const user = { firstName, lastName, email };
-                  return (
-                    <TableCell.AvatarLabelCell
-                      avatar={
-                        <UserAvatar user={user} />
-                      }
-                      title={firstName}
-                    />
-                  );
-                },
               };
             }
             case 'city': {
@@ -231,6 +248,10 @@ const stories = {
 
     const duplicateItem = (props): void => {
       action('Duplicate item');
+    };
+
+    const duplicateViewItem = (): void => {
+      action('Duplicate view item');
     };
 
     const toggleItemFilterVisible = (): void => {
@@ -458,7 +479,7 @@ const stories = {
       const evenRows = store.state.dataSource.map(row => row.key).filter((key, index) => index % 2);
       store.set({ selectedRows: evenRows });
     };
-
+    
     return (
       <>
         <Table
@@ -622,10 +643,10 @@ const stories = {
           groupSettings={store.state.groupSettings}
           onSave={savedView => saveFilter(savedView, store)}
           itemFilterConfig={{
-            removeItem: params => removeItem(params, store),
-            editItem: params => editItem(params, store),
+            removeItem: params => removeViewItem(params, store),
+            editItem: params => editViewItem(params, store),
             selectItem: params => setSelectedView(params, store),
-            duplicateItem: action('duplicate item'),
+            duplicateItem: params => duplicateViewItem(params, store),
             selectedItemId: store.state.selectedView,
             categories: store.state.savedViews,
             texts: {
@@ -635,6 +656,8 @@ const stories = {
               deleteConfirmationTitle: 'Delete view',
               deleteConfirmationDescription:
                 'Deleting this view will permanently remove it from templates library. All tables using this view will be reset.',
+              deleteConfirmationYes: text('Delete confirmation yes', 'Yes'),
+              deleteConfirmationNo: text('Delete confirmation no', 'No'),
               deleteLabel: 'Delete',
               noResults: 'No results',
               searchPlaceholder: 'Search',
@@ -652,7 +675,7 @@ const stories = {
           removeItem={props => removeItem(props, store)}
           editItem={props => editItem(props, store)}
           selectItem={props => setSelectedFilter(props, store)}
-          duplicateItem={props => duplicateItem(props)}
+          duplicateItem={props => duplicateItem(props, store)}
           selectedItemId={store.state.selectedFilter}
           categories={store.state.categories}
         />

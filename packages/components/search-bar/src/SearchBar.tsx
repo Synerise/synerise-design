@@ -29,7 +29,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   React.useEffect(() => {
     if (inputRef) {
       handleInputRef && handleInputRef(inputRef);
-      autofocus && inputRef.current && inputRef.current.focus();
+      autofocus && inputRef.current && inputRef.current.focus({ preventScroll: true });
     }
   }, [autofocus, handleInputRef, inputRef]);
 

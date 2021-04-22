@@ -182,4 +182,13 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     max-width: 32px;
     min-width: 32px;
   }
+
+  .ant-table-cell .ds-sort-dropdown-button {
+    opacity: 0;
+  }
+
+  .ant-table-cell:hover .ds-sort-dropdown-button,
+  .ant-table-cell.ant-table-column-sort .ds-sort-dropdown-button {
+    opacity: 1;
+  }
 `;

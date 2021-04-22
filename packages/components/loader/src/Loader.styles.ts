@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
-import { LoaderSize } from './Loader.types';
+import { LoaderSize, FontSize } from './Loader.types';
 
 export const spinnerAnimation = keyframes`
 
@@ -11,6 +11,7 @@ export const spinnerAnimation = keyframes`
   }
 `;
 const SIZE_DEFAULT = 20;
+const FONT_SIZE_DEFAULT = 14;
 export const Loader = styled.div<{ size?: 'S' | 'M' | 'L'; color: string }>`
   border: 2px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
   border-top: 2px solid transparent;
@@ -24,9 +25,21 @@ const mapElementsPosition = {
   bottom: 'column',
 };
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
   display: flex;
   line-height: 16px;
+  max-width: 440px;
+  word-wrap: break-word;
+  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : '')};
+  text-align: center;
+`;
+export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium' }>`
+  display: flex;
+  line-height: 16px;
+  color: ${(props): string => props.theme.palette['grey-800']};
+  font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  font-weight: 500;
+  padding: ${(props): string => (props.fontSize === 'small' ? '8px 0 12px' : '8px 0 18px')};
 `;
 export const PercentWrapper = styled.div`
   padding-left: 4px;

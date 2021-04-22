@@ -7,6 +7,7 @@ import Grid from '@synerise/ds-grid';
 import Card from '@synerise/ds-card';
 import LayoutAppMenu from './utils/AppMenu';
 import LayoutNavbar from './utils/Navbar';
+import LayoutFooter from './utils/Footer';
 import * as S from './utils/Layout.styles';
 
 const stories = {
@@ -73,6 +74,7 @@ const stories = {
               </Card>
             </Grid.Item>
           </Grid>
+          <LayoutFooter />
         </Layout>
       </Page>
     );
