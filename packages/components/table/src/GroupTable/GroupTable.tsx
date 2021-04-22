@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Table, { ColumnsType } from 'antd/lib/table';
+import Table from 'antd/lib/table';
 import { DSTableProps } from '../Table.types';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
 import '../style/index.less';
@@ -131,7 +131,9 @@ function GroupTable<T extends GroupType<T>>(
       <Table<T>
         {...props}
         dataSource={data}
-        columns={tableColumns as ColumnsType<T>}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-expect-error: FIXME: Type 'false' is not assignable to type '"ascend" | "descend" | null | undefined'.ts(2322)
+        columns={tableColumns}
         components={{
           header: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any

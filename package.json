@@ -56,7 +56,7 @@
     ]
   },
   "dependencies": {
-    "antd": "4.1.5",
+    "antd": "4.7.0",
     "invariant": "^2.2.4",
     "react": "16.13.0",
     "react-dom": "16.13.0",
@@ -124,6 +124,6 @@
     "styled-components": "5.0.1",
     "ts-jest": "25.2.1",
     "ts-loader": "^6.2.2",
-    "typescript": "3.7.4"
+    "typescript": "3.9.9"
   }
 }

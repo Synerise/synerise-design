@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, waitFor } from "@testing-library/react";
 import Dropdown from '../index';
 
 describe('Dropdown', () => {
@@ -17,28 +17,34 @@ describe('Dropdown', () => {
     expect(getByText(TEST_TEXT)).toBeTruthy();
   });
 
-  it('by default should open in [data-popup-container]', () => {
-    const render = renderWithProvider(
+  it('by default should open in [data-popup-container]', async () => {
+    const { container, getByText } = renderWithProvider(
       <div data-popup-container>
-        <Dropdown overlay={<div/>} trigger={['click']} visible={true}>
-          <button/>
+        <Dropdown overlay={<p>dropdown content</p>} trigger={['click']} visible={true}>
+          <button />
         </Dropdown>
       </div>
     );
-    
-    expect(render.container.querySelector('.ant-dropdown')).toBeTruthy();
+
+    // make sure the dropdown is already opened before assertion
+    await waitFor(() => getByText('dropdown content'));
+
+    expect(container.querySelector('.ant-dropdown')).toBeTruthy();
   });
 
-  it('if no [data-popup-container] open in body', () => {
-    const render = renderWithProvider(
+  it('if no [data-popup-container] open in body', async () => {
+    const { container, getByText } = renderWithProvider(
       <div>
-        <Dropdown overlay={<div/>} trigger={['click']} visible={true}>
-          <button/>
+        <Dropdown overlay={<p>dropdown content</p>} trigger={['click']} visible={true}>
+          <button />
         </Dropdown>
       </div>
     );
-    
-    expect(render.container.querySelector('.ant-dropdown')).toBeFalsy();
+
+    // make sure the dropdown is already opened before assertion
+    await waitFor(() => getByText('dropdown content'));
+
+    expect(container.querySelector('.ant-dropdown')).toBeFalsy();
     expect(document.body.querySelector('.ant-dropdown')).toBeTruthy();
   });
 
@@ -52,7 +58,7 @@ describe('Dropdown', () => {
         <Dropdown.SearchInput
           onSearchChange={onSearchChange}
           placeholder={PLACEHOLDER}
-        value=""
+          value=""
         />
       );
 

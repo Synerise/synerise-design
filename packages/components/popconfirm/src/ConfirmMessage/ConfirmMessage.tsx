@@ -10,7 +10,7 @@ export const ConfirmMessage: React.FC<ConfirmMessageProps> = ({
   onClick,
   displayDuration = 5000,
   icon,
-}: ConfirmMessageProps) => {
+}) => {
   const [visible, setVisible] = React.useState<boolean>(false);
 
   React.useEffect((): (() => void) => {

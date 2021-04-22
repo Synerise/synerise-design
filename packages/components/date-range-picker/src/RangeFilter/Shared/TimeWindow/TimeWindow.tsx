@@ -23,12 +23,12 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
   state: State = { activeDays: this.props.daily ? [0] : [], controlKeyPressed: false };
   private wrapperRef = React.createRef<HTMLDivElement>();
-  static defaultProps = {
+  static defaultProps: Partial<TimeWindowProps> = {
     days: {},
     numberOfDays: 1,
     showSelectAll: false,
     valueSelectionModes: ['Range', 'Hour'],
-    dayTemplate: (index: number): { dayOfWeek: number } => ({ dayOfWeek: index + 1 }),
+    dayTemplate: (index): { dayOfWeek: number } => ({ dayOfWeek: Number(index) + 1 }),
     dayFormatter: (dayKey: DayKey): React.ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
     ),
@@ -190,7 +190,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     };
   };
 
-  getDayLabel = (dayKey: DayKey, long?: boolean): string | object => {
+  getDayLabel = (dayKey: DayKey, long?: boolean): string | object | React.ReactNode => {
     const { dayFormatter, customDays } = this.props;
     let label;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
@@ -260,7 +260,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   handleRangeAdd = (): void => {
-    const {daily} = this.props;
+    const { daily } = this.props;
     if (!daily && !this.haveActiveDaysCommonRange()) {
       this.handleMultipleDayTimeChange([
         getDateFromDayValue(DEFAULT_RANGE_START),
@@ -349,7 +349,6 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
-
   render(): JSX.Element {
     const { days, numberOfDays, daily, intl, texts, disabled, ...rest } = this.props;
     const { activeDays, isRangeDefined } = this.state;
@@ -404,7 +403,4 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 }
 
-const TimeWindow = TimeWindowBase;
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-export default injectIntl(TimeWindow);
+export default injectIntl(TimeWindowBase);

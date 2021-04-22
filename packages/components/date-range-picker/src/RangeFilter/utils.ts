@@ -102,6 +102,8 @@ export const createMonthlyWeekDayRange = (rules: { weeks?: (NormalizedFilter & W
     const weekStartIndex = Math.floor(i / 7);
     const week = weekStartIndex;
     const dayOfWeek = i - weekStartIndex * 7;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-expect-error: FIXME: Type 'undefined' is not assignable to type 'NormalizedFilter[]'.ts(2322)
     const days: NormalizedFilter[] =
       rules.weeks &&
       rules.weeks.reduce(

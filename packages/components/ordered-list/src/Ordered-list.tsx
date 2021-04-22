@@ -13,8 +13,8 @@ const OrderedList: React.FC<ListProps> = ({ data, indexFormatter, listStyle, tex
         </S.ContentAbove>
       )}
       <S.OrderedList listStyle={listStyle}>
-        {data.map((item, index) => (
-          <Item listStyle={listStyle} index={index} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
+        {data.map(({ index, ...item }, i) => (
+          <Item listStyle={listStyle} index={i} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
         ))}
       </S.OrderedList>
     </div>

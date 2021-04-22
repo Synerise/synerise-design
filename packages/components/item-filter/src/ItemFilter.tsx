@@ -8,7 +8,7 @@ import { CloseM } from '@synerise/ds-icon/dist/icons';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import Result from '@synerise/ds-result';
 import { withTheme } from 'styled-components';
-import { injectIntl } from 'react-intl';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import SearchBar from '@synerise/ds-search-bar';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
@@ -21,7 +21,7 @@ const FILTER_ITEM_HEIGHT = 48;
 const FILTER_ITEM_MARGIN_BOTTOM = 16;
 const FILTER_LIST_PADDING = 24;
 
-const ItemFilter: React.FC<ItemFilterProps> = ({
+const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
   visible,
   hide,
   removeItem,

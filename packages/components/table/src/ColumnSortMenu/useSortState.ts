@@ -57,7 +57,7 @@ export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[]
             ...state,
             [String(column.key)]: {
               sortOrder: toSortOrder(column.defaultSortOrder),
-              multiple: column.sorter.multiple,
+              multiple: column.sorter.multiple || false,
             },
           }
         : {

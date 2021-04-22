@@ -1,8 +1,10 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import Slider, { SliderProps } from 'antd/lib/slider';
+import Slider, { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ComponentType } from 'react';
 import { ColorMapProps, Props as DsSliderProps } from './Slider.types';
+
+type SliderProps = SliderSingleProps | SliderRangeProps;
 
 const INDEX_MAP = {
   '0': 'green-600',

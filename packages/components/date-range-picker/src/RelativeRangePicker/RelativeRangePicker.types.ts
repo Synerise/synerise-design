@@ -3,16 +3,16 @@ import { DateRange, RelativeDateRange } from '../date.types';
 import { Props as DateRangePickerProps, RelativeMode, Texts } from '../DateRangePicker.types';
 
 export type Props = {
-  ranges: RelativeDateRange[];
+  ranges?: DateRange[];
   value: DateRange;
   onChange: (range: DateRange | undefined) => void;
-  future: boolean;
-  past: boolean;
-  since: boolean;
+  future?: boolean;
+  past?: boolean;
+  since?: boolean;
   intl: IntlShape;
   texts: Texts;
   relativeModes?: RelativeMode[];
-  rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
+  rangeUnits: DateRangePickerProps['rangeUnits'];
   showCustomRange?: boolean;
 };
 export type State = {

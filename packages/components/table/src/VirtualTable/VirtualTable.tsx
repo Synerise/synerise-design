@@ -17,7 +17,7 @@ import { useTableLocale } from '../utils/locale';
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {

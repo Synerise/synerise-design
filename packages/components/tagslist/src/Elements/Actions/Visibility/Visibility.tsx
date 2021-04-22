@@ -1,9 +1,9 @@
 import React from 'react';
+import { MenuProps } from 'antd/lib/menu';
 
 import { CheckS, ShowM, ShowCheckM, HideM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { ClickParam } from 'antd/es/menu';
 import { NOOP } from '@synerise/ds-utils';
 
 import { TagVisibility } from '../../../TagsList.types';
@@ -32,7 +32,7 @@ const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOO
     <>
       {Object.keys(visibilities).map((key: string) => {
         const text = visibilities[key];
-        const dropdownMenuItemClick = (event: ClickParam): void => {
+        const dropdownMenuItemClick: MenuProps['onClick'] = (event): void => {
           event.domEvent.stopPropagation();
           const vis = key as TagVisibility;
           setVisibility(vis);

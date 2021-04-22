@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
-import { SliderValue } from 'antd/es/slider';
 import { DescriptionWrapper, Description } from '../Slider.styles';
 import * as S from './Allocation.styles';
 import { Props } from '../Slider.types';
@@ -62,7 +61,7 @@ const Allocation: React.FC<Props> = ({
   );
 
   const handleChange = React.useCallback(
-    (value: SliderValue) => {
+    (value: [number, number]) => {
       if (typeof value === 'number') {
         return;
       }
@@ -85,7 +84,7 @@ const Allocation: React.FC<Props> = ({
       marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
       onChange={handleChange}
       step={1}
-      tipFormatter={(value): React.ReactNode => (
+      tipFormatter={(value?: number): React.ReactNode => (
         <DescriptionWrapper>
           {description && <Description>{description}</Description>}
           {tipFormatter && tipFormatter(value)}
