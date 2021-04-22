@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.17...@synerise/ds-card@0.8.18) (2021-04-22)
+
+
+### Bug Fixes
+
+* **card:** remove overflow ([32d698d](https://github.com/Synerise/synerise-design/commit/32d698d1d3a4108a28dd520e0b857c34781fa515))
+
+
+
+
+
 ## [0.8.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.16...@synerise/ds-card@0.8.17) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-card

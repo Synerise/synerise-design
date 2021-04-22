@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.14.2...@synerise/ds-utils@0.15.0) (2021-04-22)
+
+
+### Features
+
+* **utils:** usePrevious hook ([529fa7b](https://github.com/synerise/synerise-design/commit/529fa7baf3edbdc949fe22b6f7e8b9430fe94aea))
+
+
+
+
+
 ## [0.14.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.14.1...@synerise/ds-utils@0.14.2) (2021-03-22)
 
 **Note:** Version bump only for package @synerise/ds-utils

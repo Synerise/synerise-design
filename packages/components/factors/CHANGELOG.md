@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.16...@synerise/ds-factors@0.7.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **condition:** eslint warnings ([9e9e83d](https://github.com/Synerise/synerise-design/commit/9e9e83d85e7445a8859deef1735bb85b2f17caea))
+* **condition:** fixes from CR ([ac5e675](https://github.com/Synerise/synerise-design/commit/ac5e6750b8e4ae370e5043708f2497c202c8490b))
+
+
+### Features
+
+* **factors:** autofocus on current FactorValue input ([6ba4248](https://github.com/Synerise/synerise-design/commit/6ba4248b3e8b2d0e789dceac01c3a48eab85cfc1))
+
+
+
+
+
 ## [0.6.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.15...@synerise/ds-factors@0.6.16) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-factors

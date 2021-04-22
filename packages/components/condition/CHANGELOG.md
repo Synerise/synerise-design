@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.6.21...@synerise/ds-condition@0.7.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **condition:** eslint warnings ([9e9e83d](https://github.com/Synerise/synerise-design/commit/9e9e83d85e7445a8859deef1735bb85b2f17caea))
+* **condition:** fix tests ([8dc4571](https://github.com/Synerise/synerise-design/commit/8dc45719ca8fc31ec16cd90c4216ab96f6be49f3))
+* **condition:** fixes from CR ([ac5e675](https://github.com/Synerise/synerise-design/commit/ac5e6750b8e4ae370e5043708f2497c202c8490b))
+
+
+### Features
+
+* **condition:** update flow of values selection ([eb8cc2c](https://github.com/Synerise/synerise-design/commit/eb8cc2c3605041c2be28c3f212d454975eea5cc0))
+
+
+
+
+
 ## [0.6.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.6.20...@synerise/ds-condition@0.6.21) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-condition

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.16...@synerise/ds-menu@0.10.17) (2021-04-22)
+
+
+### Bug Fixes
+
+* **menu:** add changes to show on hover checkboxes on childs ([eeaa329](https://github.com/Synerise/synerise-design/commit/eeaa329604dc8ca91b2f3d0ff76da85e0447dbd6))
+* **menu:** add hidden text in parent ([cb01deb](https://github.com/Synerise/synerise-design/commit/cb01debb5a7cbe6081db60e237fe546ed1c8d21e))
+* **menu:** add hidden text in parent and add inline edit ([a5732cb](https://github.com/Synerise/synerise-design/commit/a5732cb444070aa3367de7dea1708f95d6799d07))
+* **menu:** add option to set check children checked when parent is ([a9b2f47](https://github.com/Synerise/synerise-design/commit/a9b2f4741f8dd1a12afbcfcfa00e009fb9508f5a))
+* **menu:** add some styles and option to select all menu items active ([b93bd76](https://github.com/Synerise/synerise-design/commit/b93bd76e5227982eee03e86afbe358b20ab9b982))
+* **menu:** add some styles and to select all menu items with check ([800f612](https://github.com/Synerise/synerise-design/commit/800f6128d762e595e4d4da5ad173e7a674223739))
+* **menu:** change color of icon ([879cebd](https://github.com/Synerise/synerise-design/commit/879cebd5459ebb8ee1961c91bfd096bb4e557e54))
+* **menu:** change styles and add option to show checkbox on hover ([317a581](https://github.com/Synerise/synerise-design/commit/317a581a87cd4f4b33875a1e38b033b7d7370afa))
+* **menu:** change styles and move dropdown ([9a84e04](https://github.com/Synerise/synerise-design/commit/9a84e04e9e4b46747650f33848a29789aa660cff))
+* **menu:** change tooltip to prop ([73f259f](https://github.com/Synerise/synerise-design/commit/73f259f77b8d52728dbffa2a4c6f06186fc170f5))
+* **menu:** new component accordion-menu ([8ae017d](https://github.com/Synerise/synerise-design/commit/8ae017d947b78277665b3afb1b9a47015b7c9337))
+
+
+
+
+
 ## [0.10.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.15...@synerise/ds-menu@0.10.16) (2021-04-07)
 
 
