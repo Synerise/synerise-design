@@ -20,6 +20,7 @@ export const Switch: React.FC<Props> = ({ errorText, label, description, onChang
       <ExtendedAntdSwitchComponent
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdSwitchProps}
+        size="small"
         className={errorText ? 'error' : ''}
         id={id}
         ref={switchElement}
