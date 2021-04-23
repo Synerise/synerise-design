@@ -38,7 +38,7 @@ export function childrenHaveString(items: TreeNode[], searchQuery: string): bool
   let haveString = false;
 
   items.forEach(item => {
-    if (item.model.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1) {
+    if (item.model.title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1) {
       haveString = true;
       return;
     }
@@ -69,6 +69,7 @@ export function getItemsToRender(
     thisItem.index = index;
 
     if (
+      title &&
       searchQuery &&
       !(
         title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1 ||

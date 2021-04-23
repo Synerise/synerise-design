@@ -114,11 +114,11 @@ export const ItemContainer = styled.div<ItemContainerProps>`
       props.editMode
         ? css`
             background: ${props.theme.palette['blue-050']};
-            border-left: 0;
+            border-left-color: transparent;
             color: ${props.theme.palette['blue-600']};
 
             ${DragHandle} {
-              display: none;
+              visibility: hidden;
             }
           `
         : false}
@@ -171,7 +171,7 @@ export const ItemContainer = styled.div<ItemContainerProps>`
       border-left: 0;
 
       ${DragHandle} {
-        display: none;
+        visibility: hidden;
       }
     }
   }

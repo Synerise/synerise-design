@@ -34,6 +34,7 @@ export type TreeMenuTexts = {
   deleteConfirm?: string;
   loading?: string;
   searchClear?: string;
+  search?: string;
 };
 
 export type TreeMenuItemAction = (item: TreeNode, context: TreeNode | undefined) => TreeNode | false;

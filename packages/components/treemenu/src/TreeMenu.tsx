@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import { FolderAddM } from '@synerise/ds-icon/dist/icons';
 import { NOOP } from '@synerise/ds-utils';
@@ -13,6 +13,7 @@ import useTexts from './useTexts';
 
 import { TreeMenuTexts, TreeMenuProps } from './TreeMenu.types';
 import * as S from './TreeMenu.styles';
+import { getCount } from './utils';
 
 // Remove this itshould be deeper
 export const defaultItemTypes = {
@@ -38,6 +39,8 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   const [loaded, setLoaded] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [searchOpen, setSearchOpen] = React.useState<boolean>(false);
+
+  const count = useMemo(() => getCount(items), [items]);
 
   // This needs to be done because scrollbar
   useEffect(() => {
@@ -68,7 +71,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
             <AddModal texts={texts} itemTypes={addItemList} onItemAdd={handleItemAdd} />
           </Toolbar>
         )}
-        {showHeader && <Header texts={texts} />}
+        {showHeader && <Header texts={texts} count={count} />}
         <Tree
           items={items}
           addItemList={addItemList}

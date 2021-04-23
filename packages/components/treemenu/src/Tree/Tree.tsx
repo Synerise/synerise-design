@@ -13,6 +13,7 @@ import Ghost from './Ghost';
 interface ItemProps {
   [key: string]: Function;
 }
+
 export default function Tree({
   items,
   expandedKeys: propExpandedKeys,

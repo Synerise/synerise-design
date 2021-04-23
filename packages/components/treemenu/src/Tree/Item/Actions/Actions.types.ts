@@ -1,6 +1,6 @@
 import { TreeNode, TreeMenuTexts } from '../../../TreeMenu.types';
 
-export type ChangeAction = (item: TreeNode, items?: TreeNode[], rerender?: () => {}) => void;
+export type ChangeAction = (item: TreeNode, items?: TreeNode[]) => void | false;
 
 export type WithChangeActions = {
   onDelete?: ChangeAction;

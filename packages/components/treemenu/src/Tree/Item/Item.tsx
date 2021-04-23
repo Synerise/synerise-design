@@ -134,7 +134,7 @@ const ItemContainer: React.FC<ItemProps> = ({
       };
 
   const changeTitle = (itemTitle: string, originalTitle: string): void => {
-    const thisTitle = validateItemName(itemTitle) ? itemTitle.trim() : originalTitle;
+    const thisTitle = validateItemName(itemTitle || '') ? itemTitle.trim() : originalTitle;
     const thisItem = item;
     thisItem.model.title = thisTitle;
     onEditChange(item, thisTitle, item.getPath().shift()?.model.children);
@@ -167,7 +167,6 @@ const ItemContainer: React.FC<ItemProps> = ({
         prefixel={prefixel}
         suffixel={suffixel}
         selectedKeys={[itemKey]}
-        type="danger"
         suffixVisibilityTrigger={selected || editMode ? undefined : 'hover'}
         {...props}
       >

@@ -15,7 +15,14 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   texts?: TreeMenuTexts;
 
   onItemEditChange?: ItemProps['onEditChange'];
-  onItemExpandToggle?: () => ItemProps['onExpandToggle'];
+  onItemExpandToggle?: ItemProps['onExpandToggle'];
+  onItemAdd?: ItemProps['onAdd'];
+  onItemDuplicate?: ItemProps['onDuplicate'];
+  onItemCopy?: ItemProps['onCopy'];
+  onItemPaste?: ItemProps['onPaste'];
+  onItemCut?: ItemProps['onCut'];
+  onItemDelete?: ItemProps['onDelete'];
+
   onItemDragStart?: (draggedNode: TreeNode) => void;
   onItemDragEnd?: (items: TreeData[], draggedNode: TreeNode, targetNode?: TreeNode) => void;
 };
