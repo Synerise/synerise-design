@@ -191,4 +191,16 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   .ant-table-cell.ant-table-column-sort .ds-sort-dropdown-button {
     opacity: 1;
   }
+
+  .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll .ant-table .ant-table-header {
+    box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  }
+
+  .ant-table .ant-table-thead .ant-table-cell:not(:hover):not(.ant-table-column-sort) {
+    background-color: ${({ theme }): string => theme.palette.white};
+  }
+
+  .ant-table .ant-table-thead .ant-table-cell {
+    border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
+  }
 `;

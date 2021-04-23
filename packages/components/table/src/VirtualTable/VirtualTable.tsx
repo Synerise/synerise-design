@@ -199,7 +199,13 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     const handleScrollEndReach = infiniteScroll?.onScrollEndReach;
 
     return (
-      <Scrollbar ref={scrollBarRef} onScroll={onScroll} absolute maxHeight={scroll.y} onYReachEnd={handleScrollEndReach}>
+      <Scrollbar
+        ref={scrollBarRef}
+        onScroll={onScroll}
+        absolute
+        maxHeight={scroll.y}
+        onYReachEnd={handleScrollEndReach}
+      >
         {children}
       </Scrollbar>
     );
@@ -252,7 +258,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
             >
               {VirtualTableRow}
             </List>
-            { infiniteScroll && <BackToTopButton onClick={handleBackToTopClick} /> }
+            {infiniteScroll && <BackToTopButton onClick={handleBackToTopClick} />}
           </>
         );
       };
@@ -299,7 +305,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     >
       <DSTable
         {...props}
-        className={classNames(className, 'virtual-table')}
+        className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
         // Remove columns which cause header columns indent
         columns={mergedColumns.slice(columnsSliceStartIndex)}
         pagination={false}
