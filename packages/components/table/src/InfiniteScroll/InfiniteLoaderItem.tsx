@@ -21,8 +21,7 @@ const LoadingItem = (): React.ReactElement => (
 const NoMoreItem = (): React.ReactElement => (
   <TableLocaleContext.Consumer>
     {(tableLocale): React.ReactElement => (
-      // TODO: add type="info" to InlineAlert
-      <Alert.InlineAlert type="warning" message={tableLocale.infiniteScrollNoMoreData} />
+      <Alert.InlineAlert type="info" message={tableLocale.infiniteScrollNoMoreData} />
     )}
   </TableLocaleContext.Consumer>
 );
