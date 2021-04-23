@@ -31,4 +31,14 @@ describe('Inline alert', () => {
     expect(container.querySelector('.warning-fill-m')).toBeTruthy();
     expect(getByText('Inline warning')).toBeTruthy();
   });
+  it('Should render as info', () => {
+    // ARRANGE
+    const { getByText, container } = renderWithProvider(
+      <Alert.InlineAlert type={'info'} message={'Inline info'} />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.info-m')).toBeTruthy();
+    expect(getByText('Inline info')).toBeTruthy();
+  });
 });
