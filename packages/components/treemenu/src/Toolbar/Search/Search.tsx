@@ -23,6 +23,7 @@ const Search: React.FC = () => {
         closeOnClickOutside
         onToggle={onToggle}
         onClear={onClear}
+        placeholder={texts?.search}
         clearTooltip={texts?.searchClear}
       />
     </SearchContainer>

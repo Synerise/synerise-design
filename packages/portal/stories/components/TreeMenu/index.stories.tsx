@@ -6,11 +6,11 @@ import Button from '@synerise/ds-button';
 import * as S from '@synerise/ds-layout/dist/Layout.styles';
 import { boolean, number } from '@storybook/addon-knobs';
 import { StarFillM, UserM } from '@synerise/ds-icon/dist/icons';
-import { action } from '@storybook/addon-actions';
+import TreeModel from 'tree-model';
 
 import { dataSource, dataSourceAlter } from './data';
 import itemTypes from './itemTypes';
-import { TreeData, TreeNode } from '@synerise/ds-treemenu/src/TreeMenu.types';
+import { TreeData, TreeNode } from '@synerise/ds-treemenu/dist/TreeMenu.types';
 
 
 const wrapperStyles: React.CSSProperties = {
@@ -25,14 +25,10 @@ const getContainer = (): HTMLElement => {
 };
 
 const stories = {
-  default: () => (
-    <div style={{width: `${number('Container width', 300, { min: 200, max: 1200 })}px`}}>
-      <TreeMenu dataSource={[...dataSource]} />
-    </div>
-  ),
   customItems: () => {
     const [data, setData] = React.useState<TreeData[]>(JSON.parse(JSON.stringify(dataSource)));
     const [expandedKeys, setExpandedKeys] = React.useState<React.Key[]>([]);
+    const [copyCount, setCopyCount] = React.useState<number>(0);
 
     const addItemsList = {
       folder: defaultItemTypes.folder,
@@ -51,9 +47,8 @@ const stories = {
       }
     };
 
-    const handleEditChange = (item: TreeNode, newTitle: string, treeNode: TreeNode) => {
-      console.log(treeNode);
-      setData(treeNode);
+    const handleEditChange = (item: TreeNode, newTitle: string, newItems: TreeData[]) => {
+      setTimeout(() => { setData(newItems); });
     };
 
     const handleExpandToggle = (expandedKeys: React.Key[]) => {
@@ -64,6 +59,38 @@ const stories = {
       setData(newItems);
     };
 
+    const handleItemDuplicate = (item: TreeNode) => {
+      const { title, key } = item.model;
+
+      const duplicate = new TreeModel().parse({
+        ...item.model,
+        key: key + ' (' + copyCount + ')',
+        title: title.replace(/ \([0-9+]\)$/, '') + ' (' + copyCount + ')',
+      });
+
+      console.log(duplicate, item.parent);
+      item.parent.addChildAtIndex(duplicate, item.getIndex()+1);
+
+      setCopyCount(copyCount+1);
+      setData([...item.getPath().shift().model.children]);
+    };
+
+    const handleItemCopy = (item: TreeNode, context?: TreeNode) => {
+      console.log('grr', item, context)
+    }
+
+    const handleItemPaste = (newItems: TreeData[]) => {
+      console.log('grr', newItems);
+    }
+
+    const handleItemCut = (newItems: TreeData[]) => {
+      
+    }
+
+    const handleItemDelete = (newItems: TreeData[]) => {
+      setData(newItems);
+    }
+
     return (
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
@@ -73,12 +100,19 @@ const stories = {
                 <TreeMenu 
                   getContainer={getContainer} 
                   draggable={boolean('Drag & Drop', true)}
+                  showHeader={boolean('Show header', true)}
+                  showToolbar={boolean('Show toolbar', true)}
                   dataSource={data}
                   expandedKeys={expandedKeys}
                   addItemList={itemTypes}
                   onItemEditChange={handleEditChange}
                   onItemExpandToggle={handleExpandToggle}
                   onItemDragEnd={handleDragEnd}
+                  onItemDuplicate={handleItemDuplicate}
+                  onItemCopy={handleItemDuplicate}
+                  onItemPaste={handleItemDuplicate}
+                  onItemCut={handleItemDuplicate}
+                  onItemDelete={handleItemDelete}
                 />
               </div>
             </Scrollbar>
