@@ -5,6 +5,7 @@ const COLORS: Record<InlineAlertType, string> = {
   success: 'green-600',
   warning: 'yellow-600',
   alert: 'red-600',
+  info: 'grey-600',
 };
 
 export const Message = styled.span`

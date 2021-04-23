@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type InlineAlertType = 'success' | 'alert' | 'warning';
+export type InlineAlertType = 'success' | 'alert' | 'warning' | 'info';
 
 export type InlineAlertProps = {
   type: InlineAlertType;
