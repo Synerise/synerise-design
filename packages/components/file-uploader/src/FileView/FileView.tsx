@@ -14,6 +14,7 @@ import Button from '@synerise/ds-button';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const getDefaultProps = () => ({
   cancelText: 'No',
   okText: 'Yes',
