@@ -1,4 +1,4 @@
-import styled, { SimpleInterpolation } from 'styled-components';
+import styled, { SimpleInterpolation, css } from 'styled-components';
 import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
   && {
-    margin: ${(props): SimpleInterpolation => (props.hasError ? '4px 0 0' : '8px 0 0')};
+    margin: ${(props): SimpleInterpolation => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
     display: block;
     color: ${(props): string => props.theme.palette['grey-500']};
   }
@@ -21,7 +21,7 @@ export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
 `;
 
 export const DropAreaLabel = styled(Typography.Text)`
-  color: ${(props): string => props.theme.palette['grey-500']};
+  color: ${(props): string => props.theme.palette['grey-600']};
   font-weight: 500;
 `;
 
@@ -30,7 +30,7 @@ export const LargeDropAreaLabel = styled(TypographyLabel)`
     font-size: 14px;
     margin: 4px 0 0;
     display: block;
-    color: ${(props): string => props.theme.palette['grey-500']};
+    color: ${(props): string => props.theme.palette['grey-600']};
   }
 `;
 
@@ -38,11 +38,16 @@ export const LargeDropAreaDescription = styled(Typography.Text)`
   && {
     margin: 4px 0 0;
     display: block;
-    color: ${(props): string => props.theme.palette['grey-500']};
+    color: ${(props): string => props.theme.palette['grey-600']};
   }
 `;
 
-export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: boolean; mode: string }>`
+export const DropAreaButton = styled.button<{
+  isDropping?: boolean;
+  hasError?: boolean;
+  mode: string;
+  pressed: boolean;
+}>`
   display: flex;
   align-items: center;
   border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
@@ -64,7 +69,7 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
   `};
 
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['grey-500']};
+    fill: ${(props): string => props.theme.palette['grey-600']};
   }
 
   span {
@@ -78,9 +83,19 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
       background-color: ${props.theme.palette['red-050']};
       border-color: ${props.theme.palette['red-600']};
     `}
+  ${(props): SimpleInterpolation =>
+    props.pressed &&
+    !props.disabled &&
+    css`
+      &&&:active,
+      &&& {
+        background-color: ${props.theme.palette['grey-100']};
+      }
+    `}
+
 
   &:hover:not(:disabled) {
-    background-color: transparent;
+    background-color: ${(props): string => props.theme.palette['grey-050']};
     border-color: ${(props): string => props.theme.palette['grey-400']};
 
     ${DropAreaLabel}, ${LargeDropAreaLabel} {
@@ -93,19 +108,22 @@ export const DropAreaButton = styled.button<{ isDropping?: boolean; hasError?: b
     }
   }
 
-  
   &:disabled {
     background-color: ${(props): string => props.theme.palette['grey-050']};
+     ${LargeDropAreaLabel} {
+      color: ${(props): string => props.theme.palette['grey-400']};
+    }
   }
 
   &&:active {
-    color:${(props): string => props.theme.palette['red-400']};
+    color: ${(props): string => props.theme.palette['red-400']};
     border-color: ${(props): string => props.theme.palette['grey-400']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
   &:focus:not(:active):not(:disabled) {
     border-color: ${(props): string => props.theme.palette['blue-600']};
+    background-color: ${(props): string => props.theme.palette['blue-050']};
   }
 
   &:disabled {
