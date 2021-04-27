@@ -32,6 +32,15 @@ export const Title = styled.div`
   }
 `;
 
+export const TitleSeparator = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+  width: 1px;
+  height: 16px;
+  margin: -2px 12px 0px 12px;
+  background: ${({ theme }): string => theme.palette['grey-200']};
+`;
+
 export const Left = styled.div`
   display: flex;
   align-items: center;

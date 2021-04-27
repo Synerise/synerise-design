@@ -96,6 +96,7 @@ const stories = {
 
     return (
       <Table
+        title={text('Table title', 'Expandable table')}
         dataSource={dataSource}
         columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}

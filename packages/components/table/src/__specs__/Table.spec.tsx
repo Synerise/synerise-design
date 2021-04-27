@@ -100,13 +100,13 @@ describe('Table', () => {
     expect(getAllByText('10 Downing Street')).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should render title with results count', () => {
     // ARRANGE
-    const TITLE = 'test title';
-    const { getByText } = renderWithProvider(<Table columns={props.columns} title={TITLE} />);
+    const TEXT = 'test title 0 results';
+    const { getByText } = renderWithProvider(<Table dataSource={[]} columns={props.columns} title={TEXT} />);
 
     // ASSERT
-    expect(getByText(TITLE)).toBeTruthy();
+    expect(getByText(TEXT)).toBeTruthy();
   });
 
   it('should not render pagination', () => {
@@ -273,7 +273,7 @@ describe('Table', () => {
     expect(handleShowList).toBeCalled();
   });
 
-  it('Should render auto title', () => {
+  it('Should render results title', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
@@ -282,22 +282,13 @@ describe('Table', () => {
     expect(getByTestId('ds-table-title').textContent).toEqual('6 results');
   });
 
-  it('Should render auto title with custom locale', () => {
+  it('Should render results title with custom locale', () => {
     // ARRANGE
     const { getByTestId } = renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
     );
     // ASSERT
     expect(getByTestId('ds-table-title').textContent).toEqual('6 records');
-  });
-
-  it('Should render custom title', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
-      <Table dataSource={props.dataSource} columns={props.columns} title={'Custom table title'} />
-    );
-    // ASSERT
-    expect(getByText('Custom table title').textContent).toBeTruthy();
   });
 
   it('Should render with unchecked and disabled row selection checkbox', () => {

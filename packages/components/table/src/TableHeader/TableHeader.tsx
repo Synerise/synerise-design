@@ -41,15 +41,15 @@ const TableHeader: React.FC<Props> = ({
     ) : (
       <S.Left data-testid="ds-table-title">
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} locale={locale} />}
-        {title ? (
-          <S.Title>
-            <strong>{title}</strong>
-          </S.Title>
-        ) : (
-          <S.Title>
-            <strong>{dataSource.length}</strong> {locale.pagination.items}
-          </S.Title>
-        )}
+        <S.Title>
+          {title && (
+            <>
+              <strong>{title}</strong>
+              <S.TitleSeparator />
+            </>
+          )}
+          <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
+        </S.Title>
       </S.Left>
     );
   }, [selection, dataSource, itemsMenu, locale, selectedRows, rowKey, renderSelectionTitle, filters, title]);
