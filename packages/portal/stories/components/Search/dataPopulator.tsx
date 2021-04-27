@@ -67,7 +67,6 @@ export const getItemsWithAvatar = numberOfItems => {
       text: user.firstName + ' ' + user.lastName,
       filter: 'User Name',
       description: user.email,
-      icon: <VarTypeStringM />,
       prefixel: (
         <UserAvatar badgeStatus="active" user={user} />
       ),
