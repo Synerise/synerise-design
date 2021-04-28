@@ -6,7 +6,7 @@ export interface ExtendedFile {
   error?: string;
   disabled?: boolean;
   progress?: number;
-  success?: boolean | React.ReactNode;
+  success?: boolean;
 }
 
 export interface FileWithContent extends File {
