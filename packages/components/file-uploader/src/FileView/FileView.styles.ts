@@ -57,7 +57,7 @@ export const SizeOrError = styled(Typography.Text)`
 
 export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
   display: ${(props): string => (props.pressed ? 'flex' : 'none')};
-  background-color: #fff;
+  background-color: ${(props): string => props. theme.palette.white};
   z-index: 10;
   border: 0;
   padding: 0;

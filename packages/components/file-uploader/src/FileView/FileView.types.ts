@@ -3,8 +3,10 @@ import { ExtendedFile } from '../FileUploader.types';
 
 export interface FileViewTexts {
   size: string | React.ReactNode;
-  uploading: string | React.ReactNode;
+  cancelText: string | React.ReactNode;
   removeTooltip?: string | React.ReactNode;
+  okText: string | React.ReactNode;
+  removeConfirmTitle: string | React.ReactNode;
 }
 
 export interface FileViewProps {

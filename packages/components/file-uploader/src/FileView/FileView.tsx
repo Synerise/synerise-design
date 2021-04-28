@@ -12,6 +12,7 @@ import { boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 
 
@@ -83,11 +84,11 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
         <Popconfirm
           onConfirm={handleRemove}
           onCancel={(): void => setPressed(false)}
-          icon={<Icon component={<WarningFillM />} color="#ffc300" />}
-          cancelText='No'
-          okText='Yes'
+          icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
+          cancelText={texts.cancelText}
+          okText={texts.okText}
           okType='primary'
-          title='Are you sure to remove this file ?'
+          title={texts.removeConfirmTitle}
           disabled={boolean('disabled', false)}
           placement= 'top'
           mouseEnterDelay= {250}

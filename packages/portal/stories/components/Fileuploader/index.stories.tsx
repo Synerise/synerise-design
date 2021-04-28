@@ -12,7 +12,9 @@ const getDefaultProps = () => ({
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   buttonDescription: text('Button description', 'Drag and drop your files here, or browses'),
   size: text('Preview size label', 'Size:'),
-  uploading: text('Uploading label', 'Uploading...'),
+  okText: 'Yes',
+  cancelText: 'No',
+  removeConfirmTitle: 'Are you sure to remove this file ?',
   mode: select(
     'Mode',
     {
@@ -41,7 +43,9 @@ const stories = {
       testFileProgress,
       testFileDisable,
       testFileSuccess,
-      uploading,
+      okText,
+      cancelText,
+      removeConfirmTitle,
       buttonLabel,
       buttonDescription,
       size,
@@ -53,7 +57,9 @@ const stories = {
       buttonLabel,
       buttonDescription,
       size,
-      uploading,
+      okText,
+      cancelText,
+      removeConfirmTitle,
       removeTooltip,
     };
 
