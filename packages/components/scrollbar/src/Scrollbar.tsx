@@ -1,39 +1,61 @@
 import * as React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { useCombinedRefs } from '@synerise/ds-utils';
 import './style/index.less';
 import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import Icon from '@synerise/ds-icon';
 import * as S from './Scrollbar.styles';
 import { ScrollbarProps } from './Scrollbar.types';
 
-const Scrollbar: React.FC<ScrollbarProps> = ({
-  loading,
-  hasMore,
-  fetchData,
+const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(({
+  absolute = false,
   children,
   classes,
+  hasMore,
+  loading,
   maxHeight,
-  absolute = false,
-  onScroll,
   style,
-}) => {
+  fetchData,
+  onScroll,
+  onYReachEnd,
+}, forwardedRef) => {
   const scrollRef = React.useRef<HTMLElement>();
+  const combinedScrollRef = useCombinedRefs(forwardedRef, scrollRef);
   const [lastScrollTop, setLastScrollTop] = React.useState(0);
 
-  const handleReachEnd = React.useCallback(() => {
-    if (!loading && hasMore && scrollRef?.current?.scrollTop !== lastScrollTop && fetchData) {
-      scrollRef.current && setLastScrollTop(scrollRef.current.scrollTop);
-      fetchData();
+  const handleReachEnd = React.useCallback(
+    (container: HTMLElement) => {
+      if (combinedScrollRef?.current?.scrollTop === lastScrollTop) {
+        return;
+      }
+
+      combinedScrollRef.current && setLastScrollTop(combinedScrollRef.current.scrollTop);
+
+      if (typeof onYReachEnd === 'function') {
+        onYReachEnd(container);
+      }
+
+      if (!loading && hasMore && fetchData) {
+        fetchData();
+      }
+    },
+    [loading, hasMore, lastScrollTop, fetchData, onYReachEnd, combinedScrollRef]
+  );
+
+  const handleScrollUp = React.useCallback((): void => {
+    if (combinedScrollRef?.current?.scrollTop !== 0) {
+      setLastScrollTop(0);
     }
-  }, [loading, hasMore, lastScrollTop, fetchData]);
+  }, [combinedScrollRef]);
 
   const renderScrollbar = React.useMemo(() => {
     return (
       <PerfectScrollbar
         containerRef={(ref): void => {
-          scrollRef.current = ref;
+          combinedScrollRef.current = ref;
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
+        onScrollUp={handleScrollUp}
         options={{ minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
       >
@@ -44,7 +66,7 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
         </S.ScrollbarContent>
       </PerfectScrollbar>
     );
-  }, [scrollRef, onScroll, handleReachEnd, classes, maxHeight, absolute, loading, style, children]);
+  }, [onScroll, handleReachEnd, handleScrollUp, classes, maxHeight, absolute, loading, style, children, combinedScrollRef]);
 
   return fetchData ? (
     <S.ScrollbarContainer>
@@ -56,7 +78,8 @@ const Scrollbar: React.FC<ScrollbarProps> = ({
       )}
     </S.ScrollbarContainer>
   ) : (
-    renderScrollbar
-  );
-};
+      renderScrollbar
+    );
+});
+
 export default Scrollbar;
