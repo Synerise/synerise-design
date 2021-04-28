@@ -10,9 +10,9 @@ import { RepeatLoopM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import Popconfirm from '@synerise/ds-popconfirm';
 import { boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 
 
@@ -46,9 +46,9 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
         {hasProgress ? (
           <>
             <S.Name>
-              {file.name} <S.FileWeight>1.3MB/2.3MB</S.FileWeight>
+              {file.name} <S.FileWeight>{texts.fileWeight}</S.FileWeight>
             </S.Name>
-            <ProgressBar amount={100} percent={60} />
+            <ProgressBar amount={100} percent={texts.percent} />
             <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
               <Tooltip title={texts.removeTooltip}>
                 <Icon component={<Close3M />} size={20} />
@@ -89,7 +89,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
           okText={texts.okText}
           okType='primary'
           title={texts.removeConfirmTitle}
-          disabled={boolean('disabled', false)}
+          disabled={texts.disabled}
           placement= 'top'
           mouseEnterDelay= {250}
           mouseLeaveDelay= {250}

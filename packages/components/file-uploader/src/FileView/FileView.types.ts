@@ -7,6 +7,9 @@ export interface FileViewTexts {
   removeTooltip?: string | React.ReactNode;
   okText: string | React.ReactNode;
   removeConfirmTitle: string | React.ReactNode;
+  fileWeight: string | React.ReactNode;
+  percent: number;
+  disabled: boolean;
 }
 
 export interface FileViewProps {

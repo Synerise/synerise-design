@@ -15,6 +15,9 @@ const getDefaultProps = () => ({
   okText: 'Yes',
   cancelText: 'No',
   removeConfirmTitle: 'Are you sure to remove this file ?',
+  fileWeight: '1.3MB/2.3MB',
+  percent: '60',
+  disabled: boolean('disabled', false),
   mode: select(
     'Mode',
     {
@@ -46,6 +49,9 @@ const stories = {
       okText,
       cancelText,
       removeConfirmTitle,
+      fileWeight,
+      percent,
+      disabled,
       buttonLabel,
       buttonDescription,
       size,
@@ -59,6 +65,9 @@ const stories = {
       size,
       okText,
       cancelText,
+      fileWeight,
+      percent,
+      disabled,
       removeConfirmTitle,
       removeTooltip,
     };
