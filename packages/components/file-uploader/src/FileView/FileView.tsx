@@ -8,7 +8,6 @@ import ProgressBar from '@synerise/ds-progress-bar';
 import Tooltip from '@synerise/ds-tooltip';
 import { RepeatLoopM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import Popconfirm from '@synerise/ds-popconfirm';
-import { boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';
