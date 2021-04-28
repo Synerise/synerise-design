@@ -17,7 +17,7 @@ export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
 
 export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
   width: 100%;
-  margin: ${(props): string => (props.canUploadMore ? '12px 0 0' : '0')};
+  margin: ${(props): string => (props.canUploadMore ? '12px 0 8px' : '0')};
 `;
 
 export const DropAreaLabel = styled(Typography.Text)`
@@ -47,6 +47,7 @@ export const DropAreaButton = styled.button<{
   hasError?: boolean;
   mode: string;
   pressed: boolean;
+  filesLength: number;
 }>`
   display: flex;
   align-items: center;
@@ -60,7 +61,7 @@ export const DropAreaButton = styled.button<{
   transition: height 0.3s;
 
   ${(props): SimpleInterpolation =>
-    props.mode === 'multi-large' &&
+    props.mode === 'multi-large' && props.filesLength === 0 &&
     `
       height: 108px;
       flex-direction: column;

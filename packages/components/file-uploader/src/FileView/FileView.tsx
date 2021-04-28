@@ -9,24 +9,11 @@ import Tooltip from '@synerise/ds-tooltip';
 import { RepeatLoopM, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import Popconfirm from '@synerise/ds-popconfirm';
 import { boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getDefaultProps = () => ({
-  cancelText: 'No',
-  okText: 'Yes',
-  okType: 'primary',
-  title: 'Are you sure to remove this file ?',
-  disabled: boolean('disabled', false),
-  placement: 'top',
-  onVisibleChange: action('onVisibilityChange'),
-  mouseEnterDelay: 250,
-  mouseLeaveDelay: 250,
-  trigger: 'click',
-});
+
 
 const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable }) => {
   const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
@@ -94,10 +81,18 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
       )}
       {removable && !disabled && !error && !hasProgress && (
         <Popconfirm
-          {...getDefaultProps()}
           onConfirm={handleRemove}
           onCancel={(): void => setPressed(false)}
           icon={<Icon component={<WarningFillM />} color="#ffc300" />}
+          cancelText='No'
+          okText='Yes'
+          okType='primary'
+          title='Are you sure to remove this file ?'
+          disabled={boolean('disabled', false)}
+          placement= 'top'
+          mouseEnterDelay= {250}
+          mouseLeaveDelay= {250}
+          trigger= 'click'
         >
           <S.RemoveButtonWrapper
             onMouseDown={(): void => setPressed(true)}

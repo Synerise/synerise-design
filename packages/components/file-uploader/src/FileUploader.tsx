@@ -128,8 +128,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({
               onMouseUp={(): void => setPressed(false)}
               pressed={pressed}
               data-testid="droparea"
+              filesLength={files.length}
             >
-              {mode === 'multi-large' ? (
+              {mode === 'multi-large' && files.length === 0 ? (
                 <>
                   <Icon component={<FileUploadL />} size={48} />
                   <S.LargeDropAreaLabel>{texts.buttonLabel}</S.LargeDropAreaLabel>
@@ -145,17 +146,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           </S.DropAreaContainer>
         </>
       )}
-      {hasError &&
-        errors &&
-        errors.map((errorText, index) => (
-          <S.ErrorMessage
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-          >
-            {errorText}
-          </S.ErrorMessage>
-        ))}
-      {description && <S.Description hasError={hasError}>{description}</S.Description>}
       {files.length > 0 &&
       files.map((file, index) => (
         <FileView
@@ -167,6 +157,17 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           data={file}
         />
       ))}
+      {hasError &&
+        errors &&
+        errors.map((errorText, index) => (
+          <S.ErrorMessage
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+          >
+            {errorText}
+          </S.ErrorMessage>
+        ))}
+      {description && <S.Description hasError={hasError}>{description}</S.Description>}
     </S.Container>
   );
 };
