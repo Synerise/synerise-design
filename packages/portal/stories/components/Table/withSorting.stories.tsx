@@ -20,6 +20,7 @@ const sortRenderTypes: ['string', 'default'] = ['string', 'default'];
 const stories = {
   default: () => (
     <Table
+      title={text('Table title', 'Table with sorting')}
       dataSource={fakeData}
       columns={[
         {

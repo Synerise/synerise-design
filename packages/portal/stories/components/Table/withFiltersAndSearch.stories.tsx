@@ -347,6 +347,7 @@ const stories = {
     return (
       <>
         <Table
+          title={text('Table title', 'Filters and search')}
           dataSource={filteredDataSource()}
           tableLayout="fixed"
           scroll={{ x: 1200 }}

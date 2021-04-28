@@ -71,6 +71,7 @@ const getDefaultProps = () => ({
   scroll: {
     x: false,
   },
+  title: text('Table title', ''),
   onSearch: action('onSearch'),
   cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
   headerButton: boolean('Show header button', false) && (

@@ -44,6 +44,7 @@ const stories = {
 
     return (
       <Table
+        title={text('Table title', 'Fixed columns')}
         dataSource={dataSource}
         columns={renderWithIconInHeaders(COLUMNS, boolean('Set icons in headers', false))}
         scroll={{ x: 1200 }}

@@ -286,7 +286,8 @@ const stories = {
 
     return (
       <>
-        <Table
+        <Table  
+          title={text('Table title', 'Empty table')}
           dataSource={filteredDataSource()}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}

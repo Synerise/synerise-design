@@ -58,6 +58,7 @@ const stories = {
     return (
       <div style={{ width: 792 }}>
         <VirtualTable
+          title={text('Table title', 'Virtualized table')}
           scroll={{ y: 500, x: 0 }}
           initialWidth={792}
           dataSource={filteredDataSource()}
