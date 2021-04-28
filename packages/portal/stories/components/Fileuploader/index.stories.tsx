@@ -67,7 +67,6 @@ const stories = {
       cancelText,
       fileWeight,
       percent,
-      disabled,
       removeConfirmTitle,
       removeTooltip,
     };

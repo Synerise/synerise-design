@@ -40,7 +40,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   files = [],
   texts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
-    disabled: <FormattedMessage id="DS.FILE-UPLOADER.DISABLED" />,
     fileWeight: <FormattedMessage id="DS.FILE-UPLOADER.FILE-WEIGHT" />,
     percent: <FormattedMessage id="DS.FILE-UPLOADER.PERCENT" />,
     okText: <FormattedMessage id="DS.FILE-UPLOADER.OK-TEXT" />,
