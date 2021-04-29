@@ -11,7 +11,8 @@ import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
-import { FileViewTexts } from '../dist/FileView/FileView.types';
+import { FileViewTexts } from './FileView/FileView.types';
+
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
