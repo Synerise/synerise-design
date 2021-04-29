@@ -58,12 +58,13 @@ import FileUploader from '@synerise/ds-file-uploader'
 
 ## ExtendedFile
 
-| Property | Description                                | Type            | Default |
-| -------- | ------------------------------------------ | -------         | ------- |
-| file     | actual file                                | FileWithContent | -       |
-| disabled | whether or not the file should be disabled | boolean         | -       |
-| error    | file error text                            | string          | -       |
-| progress | upload progress                            | number          | -       |
+| Property | Description                                | Type                     | Default |
+| -------- | ------------------------------------------ | ----------------         | ------- |
+| file     | actual file                                | FileWithContent          | -       |
+| disabled | whether or not the file should be disabled | boolean                  | -       |
+| error    | file error text                            | string                   | -       |
+| progress | upload progress                            | number                   | -       |
+| success  | upload success                             | boolean                  | -       |
 
 ## FileWithContent (extends [File](https://developer.mozilla.org/pl/docs/Web/API/File))
 
