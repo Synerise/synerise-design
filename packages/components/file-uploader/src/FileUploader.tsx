@@ -11,6 +11,7 @@ import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
+import { FileViewTexts } from '../dist/FileView/FileView.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -150,7 +151,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
         <FileView
           // eslint-disable-next-line react/no-array-index-key
           key={index}
-          texts={texts}
+          texts={texts as FileViewTexts}
           removable={removable}
           onRemove={(): void => onRemove && onRemove(file.file, index)}
           data={file}
