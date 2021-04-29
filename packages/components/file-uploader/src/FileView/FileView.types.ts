@@ -9,6 +9,8 @@ export interface FileViewTexts {
   removeConfirmTitle: string | React.ReactNode;
   fileWeight: string | React.ReactNode;
   percent: number;
+  buttonLabel: string | React.ReactNode;
+  buttonDescription: string | React.ReactNode;
 }
 
 export interface FileViewProps {

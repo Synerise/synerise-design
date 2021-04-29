@@ -40,14 +40,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   files = [],
   texts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
-    fileWeight: <FormattedMessage id="DS.FILE-UPLOADER.FILE-WEIGHT" />,
-    percent: <FormattedMessage id="DS.FILE-UPLOADER.PERCENT" />,
-    okText: <FormattedMessage id="DS.FILE-UPLOADER.OK-TEXT" />,
-    cancelText: <FormattedMessage id="DS.FILE-UPLOADER.CANCEL-TEXT" />,
-    removeConfirmTitle: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-CANCEL-TITLE" />,
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
-    uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
     removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
   },
 }) => {

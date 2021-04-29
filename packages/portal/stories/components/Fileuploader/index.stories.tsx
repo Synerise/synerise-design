@@ -28,7 +28,6 @@ const getDefaultProps = () => ({
     'single'
   ),
   filesAmount: number('Uploading files amount', 1),
-  disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', undefined),
   accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain']),
