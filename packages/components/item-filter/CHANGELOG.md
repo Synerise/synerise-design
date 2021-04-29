@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.6.21...@synerise/ds-item-filter@0.6.22) (2021-04-22)
+
+
+### Bug Fixes
+
+* **item-filter:** STOR-694 change border to bg + default no/yes ([93ce7ea](https://github.com/Synerise/synerise-design/commit/93ce7eafd9e5f184886ea6dde48d3ea957c2b60d))
+
+
+
+
+
+## [0.6.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.6.20...@synerise/ds-item-filter@0.6.21) (2021-04-20)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+
+
+
+
 ## [0.6.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.6.19...@synerise/ds-item-filter@0.6.20) (2021-04-14)
 
 **Note:** Version bump only for package @synerise/ds-item-filter

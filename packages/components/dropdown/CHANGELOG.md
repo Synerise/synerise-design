@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.15.15...@synerise/ds-dropdown@0.16.0) (2021-04-22)
+
+
+### Features
+
+* **dropdown:** set default open trigger to click ([59b9d8f](https://github.com/synerise/synerise-design/commit/59b9d8f51a4fb6beb4062f4f526bf209a2b02e85))
+
+
+
+
+
 ## [0.15.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.15.14...@synerise/ds-dropdown@0.15.15) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

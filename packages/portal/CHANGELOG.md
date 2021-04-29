@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.128.0](https://github.com/synerise/synerise-design/compare/portal@0.127.3...portal@0.128.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **alert:** add new component alertWithIcon ([7b1a6a1](https://github.com/synerise/synerise-design/commit/7b1a6a157d82028c48c5e3147e9270968243add1))
+* **alert:** fix styles and remove unneeded knobs ([ba39d93](https://github.com/synerise/synerise-design/commit/ba39d9382a8d7a676c6acbfaf7ae719af07bf030))
+* **empty-states:** fix names of sizes icons ([d18b905](https://github.com/synerise/synerise-design/commit/d18b9055a84211e8af494dc9e8026248d803971e))
+* **empty-states:** fix styles, add all L and XL Icons ([89fe867](https://github.com/synerise/synerise-design/commit/89fe867cd1c1915fd2b72c99691034921280ce9b))
+* **loader:** add new loaderSmallComplex and loaderMediumComplex ([bded682](https://github.com/synerise/synerise-design/commit/bded682eae3bad16717df66ef2d9d43d9f3eb694))
+* **loader:** delete prop to set color and add to change font size ([7e9a23f](https://github.com/synerise/synerise-design/commit/7e9a23f205428cdd2c607c3bca3a484236423f5c))
+* **loader:** fix name of knobs ([375731d](https://github.com/synerise/synerise-design/commit/375731d08383f511affa3dfb1a74669cb4b274f3))
+* **menu:** add changes to show on hover checkboxes on childs ([eeaa329](https://github.com/synerise/synerise-design/commit/eeaa329604dc8ca91b2f3d0ff76da85e0447dbd6))
+* **menu:** add hidden text in parent ([cb01deb](https://github.com/synerise/synerise-design/commit/cb01debb5a7cbe6081db60e237fe546ed1c8d21e))
+* **menu:** add hidden text in parent and add inline edit ([a5732cb](https://github.com/synerise/synerise-design/commit/a5732cb444070aa3367de7dea1708f95d6799d07))
+* **menu:** add option to set check children checked when parent is ([a9b2f47](https://github.com/synerise/synerise-design/commit/a9b2f4741f8dd1a12afbcfcfa00e009fb9508f5a))
+* **menu:** add some styles and option to select all menu items active ([b93bd76](https://github.com/synerise/synerise-design/commit/b93bd76e5227982eee03e86afbe358b20ab9b982))
+* **menu:** add some styles and to select all menu items with check ([800f612](https://github.com/synerise/synerise-design/commit/800f6128d762e595e4d4da5ad173e7a674223739))
+* **menu:** change color of icon ([879cebd](https://github.com/synerise/synerise-design/commit/879cebd5459ebb8ee1961c91bfd096bb4e557e54))
+* **menu:** change styles and add option to show checkbox on hover ([317a581](https://github.com/synerise/synerise-design/commit/317a581a87cd4f4b33875a1e38b033b7d7370afa))
+* **menu:** change styles and move dropdown ([9a84e04](https://github.com/synerise/synerise-design/commit/9a84e04e9e4b46747650f33848a29789aa660cff))
+* **menu:** new component accordion-menu ([8ae017d](https://github.com/synerise/synerise-design/commit/8ae017d947b78277665b3afb1b9a47015b7c9337))
+* **portal:** fix categories in tables ([e15faa1](https://github.com/synerise/synerise-design/commit/e15faa160b9533ef7199ed5f57f98570e8e72035))
+* **portal:** labels in ColumnManager ([4e19b65](https://github.com/synerise/synerise-design/commit/4e19b6570b640111f8fa812663cd850cfb339260))
+* **portal:** names in story ([ba6ad2f](https://github.com/synerise/synerise-design/commit/ba6ad2f3440d9bf7f8cfa07dc5b5a90e11b6cef1))
+* **portal:** STOR-694 fix views bugs ([45ed60a](https://github.com/synerise/synerise-design/commit/45ed60ae230a7957e9d3f2216c27d23e256eda70))
+* **portal:** STOR-694 update stories ([bb542b2](https://github.com/synerise/synerise-design/commit/bb542b2e1f9e28aadd06bced0eac6e1cc99d5240))
+* **portal:** table stories bugs ([0d9de62](https://github.com/synerise/synerise-design/commit/0d9de62a771187ecbfaa7cc935f1bf4b04a5238a))
+* **table:** fix grouped table story ([2492b16](https://github.com/synerise/synerise-design/commit/2492b160000b8fcd3fe019880f5939f4ba38ad4a))
+* **tagslist:** change name in item ([f503ad8](https://github.com/synerise/synerise-design/commit/f503ad8e3c48d46a27cb0163a938e6c2c594f745))
+
+
+### Features
+
+* **dropdown:** set default open trigger to click ([59b9d8f](https://github.com/synerise/synerise-design/commit/59b9d8f51a4fb6beb4062f4f526bf209a2b02e85))
+* **empty-states:** new component empty-states ([02a89bf](https://github.com/synerise/synerise-design/commit/02a89bfac159b912d9b84d318510088414b2b9ca))
+* **footer:** new component footer ([6c11dd3](https://github.com/synerise/synerise-design/commit/6c11dd3b24f7fe634367d848c3310b9998ea37da))
+* **logic:** true as default matching value ([bf39b4b](https://github.com/synerise/synerise-design/commit/bf39b4b619ec1392c293cb63f12dc9bdd3e2cb18))
+
+
+
+
+
 ## [0.127.3](https://github.com/synerise/synerise-design/compare/portal@0.127.2...portal@0.127.3) (2021-04-07)
 
 
