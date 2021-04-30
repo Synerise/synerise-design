@@ -19,7 +19,6 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   groups,
   items,
   setDropdownVisible,
-  visible,
   loading,
 }) => {
   const defaultTab = React.useMemo(() => {
@@ -197,7 +196,6 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
               setActiveTab(index);
               setActiveGroup(undefined);
             }}
-            visible={visible}
           />
         </S.TabsWrapper>
       )}
