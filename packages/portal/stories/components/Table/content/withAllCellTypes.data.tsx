@@ -348,6 +348,7 @@ export const COLUMNS_WITH_AVATARS = [
     title: 'Avatar S',
     dataIndex: 'avatar',
     key: 'avatar-s',
+    width: 100,
     textWrap: 'none',
     ellipsis: true,
     icon: { component: <VarTypeListM /> },
