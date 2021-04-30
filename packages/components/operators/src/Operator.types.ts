@@ -44,5 +44,4 @@ export type OperatorsDropdownProps = {
   items: OperatorsItem[];
   texts: OperatorTexts;
   value: OperatorsItem | undefined;
-  visible?: boolean;
 };

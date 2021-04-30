@@ -21,7 +21,6 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   items,
   setDropdownVisible,
   value,
-  visible,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
@@ -183,7 +182,6 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
               setActiveTab(index);
               setActiveGroup(undefined);
             }}
-            visible={visible}
           />
         </S.TabsWrapper>
       )}
