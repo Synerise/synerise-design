@@ -46,7 +46,6 @@ const ParameterInput: React.FC<InputProps> = ({
           setSelected={handleChange}
           {...restParameters}
           texts={texts}
-          visible={dropdownVisible}
           loading={loading}
         />
       }
