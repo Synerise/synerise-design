@@ -17,7 +17,7 @@ const getDefaultProps = () => ({
   removeConfirmTitle: 'Are you sure to remove this file ?',
   fileWeight: '1.3MB/2.3MB',
   percent: '60',
-  disabled: boolean('disabled', false),
+  disabled: boolean('Disabled', false),
   mode: select(
     'Mode',
     {
@@ -30,7 +30,7 @@ const getDefaultProps = () => ({
   filesAmount: number('Uploading files amount', 1),
   removable: boolean('Allow to remove uploaded files', true),
   error: text('Error message', undefined),
-  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/html,video/quicktime, application/pdf, application/zip, audio/mpeg, application/vnd.ms-excel']),
   testFileError: boolean('Display preview error example', false),
   testFileDisable: boolean('Display disabled preview example', false),
   testFileProgress: boolean('Display upload progress bar example', false),
@@ -50,7 +50,6 @@ const stories = {
       removeConfirmTitle,
       fileWeight,
       percent,
-      disabled,
       buttonLabel,
       buttonDescription,
       size,

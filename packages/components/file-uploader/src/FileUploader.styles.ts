@@ -21,7 +21,7 @@ export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
 `;
 
 export const DropAreaLabel = styled(Typography.Text)`
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 500;
 `;
 
@@ -30,7 +30,7 @@ export const LargeDropAreaLabel = styled(TypographyLabel)`
     font-size: 14px;
     margin: 4px 0 0;
     display: block;
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: ${(props): string => props.theme.palette['grey-700']};
   }
 `;
 
@@ -38,7 +38,7 @@ export const LargeDropAreaDescription = styled(Typography.Text)`
   && {
     margin: 4px 0 0;
     display: block;
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: ${(props): string => props.theme.palette['grey-700']};
   }
 `;
 
@@ -100,12 +100,12 @@ export const DropAreaButton = styled.button<{
     border-color: ${(props): string => props.theme.palette['grey-400']};
 
     ${DropAreaLabel}, ${LargeDropAreaLabel} {
-      color: ${(props): string => props.theme.palette['grey-600']};
+      color: ${(props): string => props.theme.palette['grey-700']};
     }
 
     ${IconContainer} {
-      fill: ${(props): string => props.theme.palette['grey-600']};
-      color: ${(props): string => props.theme.palette['grey-600']};
+      fill: ${(props): string => props.theme.palette['grey-700']};
+      color: ${(props): string => props.theme.palette['grey-700']};
     }
   }
 
