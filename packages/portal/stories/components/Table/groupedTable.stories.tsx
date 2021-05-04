@@ -483,6 +483,7 @@ const stories = {
     return (
       <>
         <Table
+          title={text('Table title', 'Grouped table')}
           grouped={Boolean(store.state.groupSettings)}
           hideGroupExpander={boolean('Hide group expander', false)}
           initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}

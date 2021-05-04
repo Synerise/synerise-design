@@ -186,6 +186,7 @@ const stories = {
 
     return (
       <TreeTable
+        title={text('Table title', 'Table tree')}
         dataSource={data}
         columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
         loading={boolean('Set loading state', false)}

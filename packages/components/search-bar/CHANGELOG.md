@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.3.19...@synerise/ds-search-bar@0.3.20) (2021-04-22)
+
+
+### Bug Fixes
+
+* **search-bar:** prevent scroll on focus ([78c3d30](https://github.com/Synerise/synerise-design/commit/78c3d309c6f1827b709d272df697a024fa2b3298))
+
+
+
+
+
 ## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.3.18...@synerise/ds-search-bar@0.3.19) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

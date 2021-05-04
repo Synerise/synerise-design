@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.20.17...@synerise/ds-manageable-list@0.20.18) (2021-04-22)
+
+
+### Bug Fixes
+
+* **manageable-list:** use new avatar ([f428a0e](https://github.com/Synerise/synerise-design/commit/f428a0e7fd685d8c537885763b972f8a3a56342b))
+
+
+
+
+
+## [0.20.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.20.16...@synerise/ds-manageable-list@0.20.17) (2021-04-20)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.20.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.20.15...@synerise/ds-manageable-list@0.20.16) (2021-04-14)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

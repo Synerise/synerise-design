@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { hexToRgba } from '@synerise/ds-utils';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -30,6 +31,15 @@ export const Title = styled.div`
   strong {
     font-weight: 500;
   }
+`;
+
+export const TitleSeparator = styled.span`
+  display: inline-block;
+  vertical-align: middle;
+  width: 1px;
+  height: 16px;
+  margin: -2px 12px 0px 12px;
+  background: ${({ theme }): string => theme.palette['grey-200']};
 `;
 
 export const Left = styled.div`
@@ -177,6 +187,59 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     padding-left: 0;
   }
 
+  .ant-table .ant-table-thead th {
+    background-color: ${({ theme }): string => theme.palette.white};
+    border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
+
+    &:hover {
+      background-color: ${({ theme }): string => hexToRgba(theme.palette['grey-200'], 0.3)};
+      border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
+    }
+
+    &.ant-table-column-sort {
+      background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+      border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
+
+      &:hover {
+        background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.4)};
+        border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
+      }
+
+      & > [class^='ant-table-column-sorters'] {
+        overflow: hidden;
+      }
+    }
+
+    &.ant-table-cell-ellipsis.ant-table-column-has-sorters {
+      overflow: visible;
+    }
+
+    &:not(.ds-table-column-sort) {
+      .ds-table-column-sorter {
+        margin-left: 8px;
+      }
+    }
+
+    &.ds-table-active-column {
+      background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-100'], 0.7)};
+      border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-400']};
+      cursor: default;
+
+      &:hover {
+        background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-200'], 0.7)};
+        border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-600']};
+      }
+
+      .ant-table-column-sorter {
+        display: none;
+      }
+    }
+  }
+
+  .ant-table tr.ant-table-row td.ant-table-column-sort {
+    background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+  }
+
   .ant-table .ant-table-column-sorter {
     margin-left: 8px;
     max-width: 32px;
@@ -190,5 +253,9 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   .ant-table-cell:hover .ds-sort-dropdown-button,
   .ant-table-cell.ant-table-column-sort .ds-sort-dropdown-button {
     opacity: 1;
+  }
+
+  .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll .ant-table .ant-table-header {
+    box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   }
 `;

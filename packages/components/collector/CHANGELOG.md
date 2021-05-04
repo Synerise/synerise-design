@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.43...@synerise/ds-collector@0.2.44) (2021-04-22)
+
+
+### Bug Fixes
+
+* **collector:** prevent scroll on focus ([b61c2bd](https://github.com/Synerise/synerise-design/commit/b61c2bda491966bca1a1214ea6d7f9a7d36ad6ab))
+
+
+
+
+
 ## [0.2.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.2.42...@synerise/ds-collector@0.2.43) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-collector

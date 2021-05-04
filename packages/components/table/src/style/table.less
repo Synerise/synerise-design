@@ -66,13 +66,6 @@
     }
   }
 
-  th.ant-table-cell-ellipsis.ant-table-column-has-sorters {
-    overflow: visible;
-  }
-  th.ant-table-cell-ellipsis.ant-table-column-has-sorters > [class^='ant-table-column-sorters'] {
-    overflow: hidden;
-  }
-
   .virtual-table {
     colgroup {
       height: 0;
@@ -205,15 +198,9 @@
     tbody > tr > td,
     tfoot > tr > th {
       padding: 16px 24px;
-      &.@{table-prefix-cls}-column-sort {
-        background-color: @sort-column-background;
-      }
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
-      }
-      &.ds-table-active-column {
-        background-color: @group-column;
       }
     }
 
@@ -225,29 +212,7 @@
       padding: 0 24px;
       color: @gray-color-lighter-1;
       border-bottom: 1px solid @gray-color-lighter-6;
-      &.@{table-prefix-cls}-column-has-sorters {
-        cursor: pointer;
-        position: relative;
-        > * {
-          position: relative;
-        }
-        &:hover {
-          background-color: @has-sorters-hover;
-        }
-      }
-      &.@{table-prefix-cls}-column-sort {
-        background-color: @sort-header-background;
-        &:hover {
-          background-color: @sort-hover;
-        }
-      }
-      &.ds-table-active-column {
-        background-color: @group-header;
-        pointer-events: none;
-        .ant-table-column-sorter {
-          display: none;
-        }
-      }
+
       &.@{table-prefix-cls}-cell-fix-left,
       &.@{table-prefix-cls}-cell-fix-right {
         display: table-cell;
@@ -258,12 +223,6 @@
 
       .@{table-prefix-cls}-selection {
         display: none;
-      }
-
-      &:not(.@{table-prefix-cls}-column-sort) {
-        .@{table-prefix-cls}-column-sorter {
-          margin-left: 8px;
-        }
       }
 
       &.ant-table-cell-fix-left,

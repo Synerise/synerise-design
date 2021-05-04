@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.43.3...@synerise/ds-icon@0.44.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **icon:** add new icons ([5ed3de4](https://github.com/Synerise/synerise-design/commit/5ed3de405ca11ba20dc4f5345a5010c8ed2a172e))
+* **icon:** remove fill styles in icons ([fbd3052](https://github.com/Synerise/synerise-design/commit/fbd3052a4f367a77fad59c39edaaf2e1ee926e9c))
+
+
+### Features
+
+* **icon:** add nodata icon l size ([adcdd24](https://github.com/Synerise/synerise-design/commit/adcdd24ecf0b3de6393e5871e6d513730fc4c468))
+
+
+
+
+
 ## [0.43.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.43.2...@synerise/ds-icon@0.43.3) (2021-04-07)
 
 
