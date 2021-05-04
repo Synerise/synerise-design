@@ -2,15 +2,10 @@ import styled, { SimpleInterpolation } from 'styled-components';
 import Typography, { Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-export const PreviewImage = styled.div<{ source: string }>`
-  background: url('${(props): string => props.source}') 50% 50% no-repeat;
-  background-size: cover;
-  min-width: 32px;
-  min-height: 32px;
-  width: 32px;
-  height: 32px;
-  border-radius: 3px;
-  overflow: hidden;
+export const PreviewImage = styled.div`
+ ${IconContainer} {
+    fill: ${(props): string => props.theme.palette['grey-700']};
+  }
 `;
 
 export const PlaceholderImage = styled.div`
@@ -57,7 +52,7 @@ export const SizeOrError = styled(Typography.Text)`
 
 export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
   display: ${(props): string => (props.pressed ? 'flex' : 'none')};
-  background-color: ${(props): string => props. theme.palette.white};
+  background-color: transparent;
   z-index: 10;
   border: 0;
   padding: 0;
@@ -84,7 +79,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
 `;
 export const RemoveWrapper = styled.div`
   display: flex;
-  background-color: #fff;
+  background-color: ${(props): string => props.theme.palette['grey-050']};
   z-index: 10;
   border: 0;
   padding: 0;
@@ -105,12 +100,13 @@ export const RemoveWrapper = styled.div`
 
     &:hover {
       fill: ${(props): string => props.theme.palette['red-500']};
+      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
   }
 `;
 export const CheckButtonWrapper = styled.div`
   display: flex;
-  background-color: #fff;
+  background-color: ${(props): string => props.theme.palette['grey-050']};
   z-index: 10;
   margin: 0;
   height: 16px;
@@ -128,6 +124,7 @@ export const CheckButtonWrapper = styled.div`
     fill: ${(props): string => props.theme.palette['green-600']};
     &:hover {
       fill: ${(props): string => props.theme.palette['green-500']};
+      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
   }
 `;
