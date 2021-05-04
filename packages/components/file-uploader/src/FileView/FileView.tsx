@@ -26,22 +26,23 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 
+const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml','text/plain','text/html','video/quicktime', 'application/pdf', 'application/zip', 'audio/mpeg', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+const mapperOfIcons = {
+  'image/png': <FileTypeImage />,
+  'image/gif': <FileTypePdf />,
+  'image/jpeg': <FileTypeImage />,
+  'image/svg+xml': <FileTypeSvg />,
+  'application/pdf' : <FileTypePdf />,
+  'application/zip' : <FileTypeZip />,
+  'text/plain' : <FileTypeTxt />,
+  'text/html' : <FileTypeHtml />,
+  'video/quicktime' : <FileTypeVideo />,
+  'audio/mpeg' : <FileTypeMp3 />,
+  'application/vnd.ms-excel': <FileTypeXls/>,
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx/>
+};
+
 const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable }) => {
-  const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml','text/plain','text/html','video/quicktime', 'application/pdf', 'application/zip', 'audio/mpeg', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
-  const mapperOfIcons = {
-    'image/png': <FileTypeImage />,
-    'image/gif': <FileTypePdf />,
-    'image/jpeg': <FileTypeImage />,
-    'image/svg+xml': <FileTypeSvg />,
-    'application/pdf' : <FileTypePdf />,
-    'application/zip' : <FileTypeZip />,
-    'text/plain' : <FileTypeTxt />,
-    'text/html' : <FileTypeHtml />,
-    'video/quicktime' : <FileTypeVideo />,
-    'audio/mpeg' : <FileTypeMp3 />,
-    'application/vnd.ms-excel': <FileTypeXls/>,
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx/>
-  };
 
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
