@@ -6,9 +6,9 @@ import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
+import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 import useRowStar from '../hooks/useRowStar';
 import { DSColumnType, DSTableProps, RowType } from '../Table.types';
-import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {

@@ -1,24 +1,30 @@
 import * as React from 'react';
+import { flow } from 'lodash';
 import Table from 'antd/lib/table';
-import { DSTableProps } from '../Table.types';
+import { DSTableProps, DSColumnType } from '../Table.types';
+import { columnsToSortState, useSortState, SortStateAPI } from '../ColumnSortMenu/useSortState';
+import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 import GroupTableBody from './GroupTableBody/GroupTableBody';
 import '../style/index.less';
-import GroupTableHeader from './GroupTableHeader/GroupTableHeader';
-import { SortOrderType, GroupType, GroupColumnsType } from './GroupTable.types';
+import { getColumnsWithActiveSorting, sortDataSourceRows } from '../ColumnSortMenu/groupedColumnsSort';
+import { GroupType } from './GroupTable.types';
 
-const EMPTY_COLUMN = {
-  sortOrder: false,
-};
+const addActiveColumnClass = <T extends unknown>(activeColumn?: string) => (column: DSColumnType<T>): DSColumnType<T> =>
+  column.key === activeColumn
+    ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ds-table-active-column' }) }
+    : column;
 
-const getNextSortOrder = (current: SortOrderType): SortOrderType => {
-  const SORT_ORDER_MAP = {
-    ascend: 'descend',
-    descend: false,
-    false: 'ascend',
-  };
+const clearDefaultColumnSortOrder = <T extends unknown>(column: DSColumnType<T>): DSColumnType<T> => ({
+  ...column,
+  sortOrder: null,
+});
 
-  return SORT_ORDER_MAP[String(current)];
-};
+const addSortClassFromByState = <T extends unknown>(sortStateApi: SortStateAPI) => (
+  column: DSColumnType<T>
+): DSColumnType<T> =>
+  sortStateApi.getColumnSortOrder(String(column.key))
+    ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ant-table-column-sort' }) }
+    : column;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function GroupTable<T extends GroupType<T>>(
@@ -42,28 +48,14 @@ function GroupTable<T extends GroupType<T>>(
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
     initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key)
   );
+  const sortStateApi = useSortState(columnsToSortState(columns));
 
   const [data, setData] = React.useState<T[]>(dataSource || []);
-  const [tableColumns, setColumns] = React.useState<GroupColumnsType<T>[]>([]);
 
   React.useEffect(() => {
     setData(dataSource || []);
     setExpandedGroups(initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key));
   }, [dataSource, initialGroupsCollapsed]);
-
-  React.useEffect(() => {
-    const normalizedColumns = columns?.map(column => ({
-      ...EMPTY_COLUMN,
-      ...column,
-    }));
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    setColumns(normalizedColumns || []);
-  }, [columns]);
-
-  const activeColumn = React.useMemo(() => {
-    return data?.length ? data[0].column : undefined;
-  }, [data]);
 
   const toggleExpand = React.useCallback(
     (groupKey: React.ReactText) => {
@@ -75,6 +67,10 @@ function GroupTable<T extends GroupType<T>>(
     },
     [expandedGroups, setExpandedGroups]
   );
+
+  const activeColumn = React.useMemo(() => {
+    return data?.length ? data[0].column : undefined;
+  }, [data]);
 
   const allItems = React.useMemo<T[]>(() => {
     const result: T[] = [];
@@ -94,53 +90,28 @@ function GroupTable<T extends GroupType<T>>(
     [data]
   );
 
-  const sortColumn = React.useCallback(
-    column => {
-      const currentSortOrder = tableColumns.find(col => col.key === column.key)?.sortOrder || false;
-      const nextSortOrder = getNextSortOrder(currentSortOrder);
-
-      const sortedColumns = dataSource?.map(group => {
-        const rows = group.rows.sort(column.props.column.sorter);
-        if (nextSortOrder === 'descend') {
-          rows.reverse();
-        }
-        return {
-          ...group,
-          rows,
-        };
-      });
-      const updatedColumns = tableColumns.map(col => {
-        if (col.key === column.key) {
-          return {
-            ...col,
-            sortOrder: nextSortOrder,
-          };
-        }
-        return {
-          ...col,
-          sortOrder: false,
-        };
-      });
-      setColumns(updatedColumns);
-      setData(sortedColumns || []);
-    },
-    [dataSource, tableColumns]
+  const groupTableColumnDecorator = flow(
+    columnWithSortButtons(sortStateApi),
+    addActiveColumnClass(activeColumn),
+    clearDefaultColumnSortOrder,
+    addSortClassFromByState(sortStateApi)
   );
+  const decoratedColumns = columns?.map(groupTableColumnDecorator);
+
+  const columnsWithActiveSorting = getColumnsWithActiveSorting(sortStateApi, columns);
+  const sortedRowsData = activeColumn
+    ? sortDataSourceRows(sortStateApi, columnsWithActiveSorting, dataSource)
+    : dataSource;
+
   return (
     <div className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}>
       <Table<T>
         {...props}
-        dataSource={data}
+        dataSource={sortedRowsData}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-expect-error: FIXME: Type 'false' is not assignable to type '"ascend" | "descend" | null | undefined'.ts(2322)
-        columns={tableColumns}
+        // @ts-ignore: FIXME: antd table columns type is not compatible with DS
+        columns={decoratedColumns}
         components={{
-          header: {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            row: (header: any): JSX.Element => (
-              <GroupTableHeader header={header} activeColumnKey={activeColumn} sortColumn={sortColumn} />
-            ),
-          },
           body: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             row: (record: any): JSX.Element => {
@@ -153,7 +124,9 @@ function GroupTable<T extends GroupType<T>>(
                   allItems={allItems}
                   expanded={expandedGroups.indexOf(record['data-row-key']) >= 0}
                   expandGroup={toggleExpand}
-                  columns={tableColumns}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                  // @ts-ignore: FIXME: Type 'DSColumnType<T>[]' is not assignable to type 'GroupColumnsType<T>[]'.
+                  columns={columns}
                   addItem={addItem}
                   activeGroup={activeGroup}
                   hideGroupExpander={hideGroupExpander}
