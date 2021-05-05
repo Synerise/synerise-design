@@ -4,8 +4,10 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
+import Tooltip from '@synerise/ds-tooltip';
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
+import * as S from './Operators.style';
 
 const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, texts, opened }) => {
   const { formatMessage } = useIntl();
@@ -46,10 +48,12 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
         />
       }
     >
-      <Button type="secondary" mode="label-icon" onClick={(): void => setDropdownVisible(true)}>
-        {value ? (value as OperatorsItem).name : text.buttonLabel}
-        <Icon component={<AngleDownS />} />
-      </Button>
+      <Tooltip title={(value as OperatorsItem)?.name || ''} trigger={['hover']}>
+        <Button type="secondary" mode="label-icon" onClick={(): void => setDropdownVisible(true)}>
+          <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
+          <Icon component={<AngleDownS />} />
+        </Button>
+      </Tooltip>
     </Dropdown>
   );
 };

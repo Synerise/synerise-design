@@ -50,19 +50,24 @@ const Tabs: React.FC<TabsProps> = ({
   }, [items]); // eslint-disable-line react-hooks/exhaustive-deps
 
   React.useEffect((): void => {
-    let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
-    const visibleItems: TabWithRef[] = [];
-    const hiddenItems: TabWithRef[] = [];
-    itemsWidths.forEach((itemWidth, index) => {
-      if (containerRef && tabsWidth + itemWidth < width) {
-        visibleItems.push(items[index]);
-      } else {
-        hiddenItems.push(items[index]);
-      }
-      tabsWidth += itemWidth;
-    });
-    setVisibleTabs(visibleItems);
-    setHiddenTabs(hiddenItems);
+    if (block) {
+      setVisibleTabs(items);
+      setHiddenTabs([]);
+    } else {
+      let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
+      const visibleItems: TabWithRef[] = [];
+      const hiddenItems: TabWithRef[] = [];
+      itemsWidths.forEach((itemWidth, index) => {
+        if (containerRef && tabsWidth + itemWidth < width) {
+          visibleItems.push(items[index]);
+        } else {
+          hiddenItems.push(items[index]);
+        }
+        tabsWidth += itemWidth;
+      });
+      setVisibleTabs(visibleItems);
+      setHiddenTabs(hiddenItems);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsWidths, width]);
 

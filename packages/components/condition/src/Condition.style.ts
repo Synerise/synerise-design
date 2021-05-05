@@ -165,6 +165,7 @@ export const ConditionRow = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   padding-bottom: 16px;
+  min-width: 780px;
 
   ${ConditionWrapper} {
     margin-right: 8px;
