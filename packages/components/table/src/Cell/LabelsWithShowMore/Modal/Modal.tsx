@@ -46,8 +46,12 @@ const DetailsModal: React.FC<ModalProps<DataSourceType>> = ({
         scroll={{ y: 500, x: 0 }}
         cellHeight={64}
         initialWidth={500}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-expect-error: FIXME: Property 'children' is missing in type '{ key: ReactText; }' but required in type 'RowType<DataSourceType>'.ts(2322)
         dataSource={filteredItems}
         title={`${filteredItems.length} ${texts.records}`}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-expect-error: FIXME: Property 'key' is missing in type 'RowType<DataSourceType>
         columns={columns}
         loading={loading}
         showHeader={false}

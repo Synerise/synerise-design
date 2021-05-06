@@ -124,6 +124,7 @@ const stories = {
         <Alert.InlineAlert type="warning" message="Inline warning" />
         <Alert.InlineAlert type="alert" message="Inline alert" />
         <Alert.InlineAlert type="success" message="Inline success" />
+        <Alert.InlineAlert type="info" message="Inline info" />
       </div>
     );
   },

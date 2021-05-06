@@ -3,7 +3,9 @@ import * as React from 'react';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import Tooltip from '@synerise/ds-tooltip';
 import { InputProps, ParameterValueType } from '../../Factors.types';
+import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 
 const ParameterInput: React.FC<InputProps> = ({
@@ -44,16 +46,17 @@ const ParameterInput: React.FC<InputProps> = ({
           setSelected={handleChange}
           {...restParameters}
           texts={texts}
-          visible={dropdownVisible}
           loading={loading}
         />
       }
     >
-      <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
-        <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
-        {(value as ParameterValueType)?.name || buttonLabel}
-        <Icon component={<AngleDownS />} />
-      </Button>
+      <Tooltip title={(value as ParameterValueType)?.name || ''} trigger={['hover']}>
+        <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
+          <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
+          <Value>{(value as ParameterValueType)?.name || buttonLabel}</Value>
+          <Icon component={<AngleDownS />} />
+        </Button>
+      </Tooltip>
     </Dropdown>
   );
 };

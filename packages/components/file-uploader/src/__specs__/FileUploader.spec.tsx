@@ -118,27 +118,6 @@ describe('FileUploader', () => {
     expect(onUpload).not.toHaveBeenCalled();
   });
 
-  it('should fire onRemove', () => {
-    // ARRANGE
-    const onRemove = jest.fn();
-
-    const { getByTestId } = renderWithProvider(
-      <FileUploader
-        mode="single"
-        files={[{file}]}
-        accept={['image/*']}
-        texts={defaultTexts}
-        onRemove={onRemove}
-      />
-    );
-
-    // ACT
-    fireEvent.click(getByTestId(REMOVE_BUTTON_TESTID));
-
-    // ASSERT
-    expect(onRemove).toHaveBeenCalled();
-  });
-
   it('should not show remove button if `removable` prop is false', () => {
     // ARRANGE
     const { queryByTestId } = renderWithProvider(

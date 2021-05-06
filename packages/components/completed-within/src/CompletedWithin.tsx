@@ -41,7 +41,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
     }));
   }, [periods, intl]);
 
-  const [innerValue, setInnerValue] = React.useState<number | undefined>(value.value);
+  const [innerValue, setInnerValue] = React.useState<string | number | undefined>(value.value);
   const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period || DEFAULT_PERIOD);
 
   const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
@@ -49,7 +49,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
       if (!visible && innerValue && innerPeriod) {
-        onSetValue({ value: innerValue, period: innerPeriod });
+        onSetValue({ value: Number(innerValue), period: innerPeriod });
       }
     },
     [innerPeriod, innerValue, onSetValue]
@@ -80,7 +80,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
       <Dropdown
         overlay={
           <Settings
-            value={{ value: innerValue, period: innerPeriod }}
+            value={{ value: Number(innerValue), period: innerPeriod }}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
             text={texts}

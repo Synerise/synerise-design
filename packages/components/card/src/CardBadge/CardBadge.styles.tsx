@@ -32,7 +32,7 @@ export const CardBadge = styled.div<{ status: BadgeStatus }>`
   background-color: ${(props): string => props.theme.palette[background[props.status]]};
   box-shadow: ${(props): string => boxShadow(props)};
   border-radius: 50%;
-  svg {
+  &&& svg {
     color: ${(props): string => props.theme.palette[color[props.status]]};
     fill: ${(props): string => props.theme.palette[color[props.status]]};
   }

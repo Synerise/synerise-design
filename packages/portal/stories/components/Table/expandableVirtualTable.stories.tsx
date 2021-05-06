@@ -1,4 +1,4 @@
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
@@ -83,6 +83,7 @@ const stories = {
     return (
       <ModalProxy visible size="medium" title="VirtualTable with expandable rows" bodyStyle={{ padding: 0 }}>
         <VirtualTable
+          title={text('Table title', 'Expandable virtual table')}
           scroll={{ y: 600 }}
           initialWidth={792}
           cellHeight={50}

@@ -8,8 +8,8 @@ export type WeeklyFilterProps = {
   value: Days;
   onChange: (days: Days) => void;
   intl: IntlShape;
-  rangeClipboard?: Partial<FilterDefinition>;
-  valueSelectionModes?: DateLimitMode[];
+  rangeClipboard: Partial<FilterDefinition>;
+  valueSelectionModes: DateLimitMode[];
 } & WithTranslations &
   Partial<RangeActions>;
 

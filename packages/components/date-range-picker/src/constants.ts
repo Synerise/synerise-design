@@ -1,17 +1,17 @@
-import { RelativeDateRange } from './date.types';
+import { RelativeDateRange, RelativeUnits } from './date.types';
 
-export const SECONDS = 'SECONDS' as const;
-export const MINUTES = 'MINUTES' as const;
-export const HOURS = 'HOURS' as const;
-export const DAYS = 'DAYS' as const;
-export const WEEKS = 'WEEKS' as const;
-export const MONTHS = 'MONTHS' as const;
-export const YEARS = 'YEARS' as const;
-export const ABSOLUTE = 'ABSOLUTE' as const;
-export const RELATIVE = 'RELATIVE' as const;
+export const SECONDS = 'SECONDS';
+export const MINUTES = 'MINUTES';
+export const HOURS = 'HOURS';
+export const DAYS = 'DAYS';
+export const WEEKS = 'WEEKS';
+export const MONTHS = 'MONTHS';
+export const YEARS = 'YEARS';
+export const ABSOLUTE = 'ABSOLUTE';
+export const RELATIVE = 'RELATIVE';
 export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
-export const RELATIVE_UNITS = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS] as const;
+export const RELATIVE_UNITS: RelativeUnits[] = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {

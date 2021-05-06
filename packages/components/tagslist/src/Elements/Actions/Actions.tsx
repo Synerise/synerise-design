@@ -4,7 +4,7 @@ import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
 import { NOOP } from '@synerise/ds-utils';
-import { ClickParam } from 'antd/es/menu';
+import { MenuProps } from 'antd/lib/menu';
 import { TagVisibility, TagsListItem } from '../../TagsList.types';
 
 import Visibility, { CheckIcon } from './Visibility';
@@ -13,7 +13,7 @@ import { ActionProps } from './Actions.types';
 import * as S from './Actions.styles';
 
 const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => event.stopPropagation();
-const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
+const dropdownMenuClick: MenuProps['onClick'] = (event): void => event.domEvent.stopPropagation();
 
 const Actions: React.FC<ActionProps> = ({
   onVisibilityChange = NOOP,
@@ -54,7 +54,7 @@ const Actions: React.FC<ActionProps> = ({
                 </S.FavouriteIconWrapper>
               }
               suffixel={favourite ? <CheckIcon /> : null}
-              onClick={(e: ClickParam): void => {
+              onClick={(e): void => {
                 e.domEvent.stopPropagation();
                 onFavouriteChange();
                 onDropdownToggle(false);
@@ -66,7 +66,7 @@ const Actions: React.FC<ActionProps> = ({
           {!!onEdit && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<EditM />} />}
-              onClick={(e: ClickParam): void => {
+              onClick={(e): void => {
                 e.domEvent.stopPropagation();
                 onEdit();
                 onDropdownToggle(false);
@@ -78,7 +78,7 @@ const Actions: React.FC<ActionProps> = ({
           {!!onSettingsEnter && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<Settings2M />} />}
-              onClick={(e: ClickParam): void => {
+              onClick={(e): void => {
                 e.domEvent.stopPropagation();
                 onSettingsEnter(e.domEvent);
                 onDropdownToggle(false);
@@ -92,7 +92,7 @@ const Actions: React.FC<ActionProps> = ({
             <S.DropdownMenuItem
               prefixel={<Icon component={<TrashM />} />}
               type="danger"
-              onClick={(e: ClickParam): void => {
+              onClick={(e): void => {
                 e.domEvent.stopPropagation();
                 onDelete(item);
                 onDropdownToggle(false);

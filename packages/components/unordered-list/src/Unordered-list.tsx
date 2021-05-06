@@ -13,8 +13,8 @@ const UnorderedList: React.FC<ListProps> = ({ data, indexFormatter, text }) => {
         </S.ContentAbove>
       )}
       <S.UnorderedList>
-        {data.map((item, index) => (
-          <Item index={index} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
+        {data.map(({ index, ...item }, i) => (
+          <Item index={i} key={String(item?.id)} indexFormatter={indexFormatter} {...item} />
         ))}
       </S.UnorderedList>
     </div>

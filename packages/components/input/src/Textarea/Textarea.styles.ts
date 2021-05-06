@@ -85,5 +85,9 @@ export const TextareaWrapper = styled.div<{
         //duplicate to override firefox styles
       }
     }
+
+    .ant-input-textarea {
+      height: 100%;
+    }
   }
 `;

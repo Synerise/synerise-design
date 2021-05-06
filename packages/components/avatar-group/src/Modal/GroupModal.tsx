@@ -95,10 +95,14 @@ const GroupModal: React.FC<GroupModalProps> = ({
       <VirtualTable
         hideColumnNames
         title={listTitle}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-expect-error: FIXME: Type 'RowType<DataSource> is missing following properties [...]
         columns={getColums}
         scroll={{ y: 430 }}
         cellHeight={64}
         initialWidth={520}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-expect-error: FIXME: Property 'children' is missing in type 'BadgeProps
         dataSource={dataSource}
         rowKey="id"
       />

@@ -6,6 +6,7 @@ export interface ExtendedFile {
   error?: string;
   disabled?: boolean;
   progress?: number;
+  success?: boolean;
 }
 
 export interface FileWithContent extends File {

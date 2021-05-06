@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
-import { IntlShape, WrappedComponentProps } from 'react-intl';
+import { WrappedComponentProps } from 'react-intl';
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
@@ -45,7 +45,7 @@ export type TimeWindowProps = {
   numberOfDaysPerRow?: number;
   rowLabelFormatter?: (rowIndex: number) => string;
   dayTemplate: (day: DayKey) => object;
-  dayFormatter: (day: DayKey, long?: boolean) => string;
+  dayFormatter: (day: DayKey, long?: boolean) => string | React.ReactNode;
   hideHeader?: boolean;
   onCheckDay?: (dayKey: DayKey) => void;
   onSelectAll?: () => void;
@@ -54,14 +54,14 @@ export type TimeWindowProps = {
   inverted?: boolean;
   labelInverted?: boolean;
   reverseGroup: number;
-  intl: IntlShape;
   daily?: boolean;
   rangeClipboard: Partial<FilterDefinition>;
   valueSelectionModes: DateLimitMode[];
   texts?: TimeWindowTexts & GridTexts;
   renderRangeFormSuffix?: () => React.ReactNode;
   timePickerProps?: Partial<TimePickerProps>;
-} & Partial<RangeActions> & WithDisabledProp &
+} & Partial<RangeActions> &
+  WithDisabledProp &
   WrappedComponentProps;
 
 export type State = {

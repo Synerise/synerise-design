@@ -293,20 +293,28 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                 <S.ContentWrapper>
                   <TimeWindow
                     disabled={disabled}
-                    readOnly={disabled}
+                    readOnly={!!disabled}
                     texts={texts}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
                     showSelectAll
                     invertibleTime
                     numberOfDaysPerRow={7}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-expect-error: FIXME: Type '{ [day: number]: DenormalizedFilter; }' is not assignable to type 'Days'.
                     days={item.definition}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-expect-error: FIXME: Type '(definition: Month) => void' is not assignable to type '(days: Days) => void'.
                     onChange={(definition: Month): void => this.handleDefinitionChange(definition, key)}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-expect-error: FIXME: Type 'Partial<FilterDefinition> | undefined' is not assignable to type 'Partial<FilterDefinition>'.
                     rangeClipboard={rangeClipboard}
                     monthlyFilterPeriod={data[key].period}
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-expect-error: FIXME: Type 'Partial<FilterDefinition> | undefined' is not assignable to type 'Partial<FilterDefinition>'.
                     valueSelectionModes={valueSelectionModes}
                     renderRangeFormSuffix={renderRangeFormSuffix}
                     timePickerProps={timePickerProps}

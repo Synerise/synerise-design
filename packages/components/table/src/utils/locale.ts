@@ -22,6 +22,23 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
   columnSortAscend: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_ASCEND', defaultMessage: 'Sort ascending' }),
   columnSortDescend: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_DESCEND', defaultMessage: 'Sort descending' }),
   columnSortClear: intl.formatMessage({ id: 'DS.TABLE.COLUMN.SORT_CLEAR', defaultMessage: 'Clear' }),
+  infiniteScrollError: intl.formatMessage({
+    id: 'DS.TABLE.INFINITE_SCROLL.ERROR',
+    defaultMessage: 'Cannot load more items',
+  }),
+  infiniteScrollRetry: intl.formatMessage({ id: 'DS.TABLE.INFINITE_SCROLL.RETRY', defaultMessage: 'Retry' }),
+  infiniteScrollNoMoreData: intl.formatMessage({
+    id: 'DS.TABLE.INFINITE_SCROLL.NO_MORE_DATA',
+    defaultMessage: 'There are no more items to load',
+  }),
+  infiniteScrollLoading: intl.formatMessage({
+    id: 'DS.TABLE.INFINITE_SCROLL.LOADING',
+    defaultMessage: 'Loading more items',
+  }),
+  infiniteScrollBackToTop: intl.formatMessage({
+    id: 'DS.TABLE.INFINITE_SCROLL.BACK_TO_TOP',
+    defaultMessage: 'Back to top',
+  }),
 });
 
 export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>

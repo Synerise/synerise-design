@@ -348,6 +348,7 @@ const stories = {
         size={select('Select card size', ['small', 'medium', 'large', 'extraLarge'], 'extraLarge')}
       >
         <Table
+          title={text('Table title', '')}
           headerWithBorderTop
           dataSource={filteredDataSource()}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}

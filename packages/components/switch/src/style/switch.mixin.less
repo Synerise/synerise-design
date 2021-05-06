@@ -28,11 +28,19 @@
     }
   }
 
-  &::after {
+  & .ant-switch-handle {
     width: 12px;
     height: 12px;
-    box-shadow: none;
     top: 0;
+    left: 0;
+  }
+
+  & .ant-switch-handle::before {
+    box-shadow: none;
+  }
+
+  && .ant-click-animating-node {
+    display: none;
   }
 }
 
@@ -49,6 +57,10 @@
       }
     }
   }
+
+  && .ant-switch-handle {
+    left: calc(100% - 12px);
+  }
 }
 
 &&.ant-switch:focus {
@@ -62,10 +74,6 @@
 
 &&.ant-switch:not(.ant-switch-checked)::after {
   left: 0;
-}
-
-&&.ant-click-animating-node {
-  display: none;
 }
 
 &&.ant-switch-disabled {

@@ -1,4 +1,4 @@
-import { Check2M, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import { InlineAlertProps, InlineAlertType } from './InlineAlert.types';
@@ -8,6 +8,7 @@ const ICONS: Record<InlineAlertType, React.ReactNode> = {
   success: <Check2M />,
   alert: <WarningFillM />,
   warning: <WarningFillM />,
+  info: <InfoM />,
 };
 
 const InlineAlert: React.FC<InlineAlertProps> = ({ type = 'warning', message }) => {

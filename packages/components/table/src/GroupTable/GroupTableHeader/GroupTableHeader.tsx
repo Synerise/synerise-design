@@ -16,13 +16,15 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
       {header.children.map(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child: any): React.ReactNode => {
+          const isColumnActive = activeColumnKey === child.key;
+
           return (
             <th
               key={child.key}
               rowSpan={child.props.rowspan}
-              onClick={(): void => clickHandle(child)}
+              onClick={isColumnActive ? (e): void => e.preventDefault() : (): void => clickHandle(child)}
               className={`${child.props.className} ${child.props.additionalProps?.className || ''} ${
-                activeColumnKey === child.key ? 'ds-table-active-column' : ''
+                isColumnActive ? 'ds-table-active-column' : ''
               }`}
             >
               {child.props.children}

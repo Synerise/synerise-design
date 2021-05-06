@@ -5,12 +5,14 @@ import { useDropzone } from 'react-dropzone';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import AddM from '@synerise/ds-icon/dist/icons/AddM';
-import ArrowDownCircleM from '@synerise/ds-icon/dist/icons/ArrowDownCircleM';
 import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
+import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
+import { FileViewTexts } from './FileView/FileView.types';
+
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -42,7 +44,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
-    uploading: <FormattedMessage id="DS.FILE-UPLOADER.UPLOADING" />,
     removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
   },
 }) => {
@@ -95,6 +96,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   }
 
   const hasError = Boolean(error) || !uploadSuccess;
+  const [pressed, setPressed] = React.useState<boolean>(false);
   const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
     <S.Container className={`ds-file-uploader ${className || ''}`}>
@@ -110,17 +112,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           )}
         </S.Label>
       )}
-      {files.length > 0 &&
-        files.map((file, index) => (
-          <FileView
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            texts={texts}
-            removable={removable}
-            onRemove={(): void => onRemove && onRemove(file.file, index)}
-            data={file}
-          />
-        ))}
       {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
         <>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -134,11 +125,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({
               disabled={disabled}
               isDropping={isDragActive}
               hasError={hasError}
+              onMouseDown={(): void => setPressed(true)}
+              onMouseUp={(): void => setPressed(false)}
+              pressed={pressed}
               data-testid="droparea"
+              filesLength={files.length}
             >
-              {mode === 'multi-large' ? (
+              {mode === 'multi-large' && files.length === 0 ? (
                 <>
-                  <Icon component={<ArrowDownCircleM />} size={24} />
+                  <Icon component={<FileUploadL />} size={48} />
                   <S.LargeDropAreaLabel>{texts.buttonLabel}</S.LargeDropAreaLabel>
                   <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
                 </>
@@ -152,6 +147,17 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           </S.DropAreaContainer>
         </>
       )}
+      {files.length > 0 &&
+      files.map((file, index) => (
+        <FileView
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          texts={texts as FileViewTexts}
+          removable={removable}
+          onRemove={(): void => onRemove && onRemove(file.file, index)}
+          data={file}
+        />
+      ))}
       {hasError &&
         errors &&
         errors.map((errorText, index) => (
