@@ -17,6 +17,7 @@ module.exports = {
     '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
   },
   rootDir: path.resolve(__dirname, '..', '..'),
+  setupFiles: ['<rootDir>/config/jest/setup/canvas.js'],
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],
   transform: {
     '^.+\\.[jt]sx?$': '<rootDir>/config/jest/babel-transformer.js',
