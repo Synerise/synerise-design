@@ -1,3 +1,4 @@
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 const path = require('path');
 
 module.exports = async ({ config, mode }) => {
@@ -57,6 +58,10 @@ module.exports = async ({ config, mode }) => {
   });
 
   config.resolve.extensions.push('.ts', '.tsx');
+
+  config.plugins.push(
+    new MonacoWebpackPlugin()
+  )
 
   return config;
 };

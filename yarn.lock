@@ -5783,6 +5783,13 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-button@^0.13.47":
+  version "0.13.47"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.13.47.tgz#988f769f74b27eb3f3dbb18daa94fd62c2eedf69"
+  integrity sha512-X4X7zowevMNCQkfG4/eLtcnxnZr80opI+53FamiFUdB5rFPvD/z0eb2XYH2D85I25qc+J+evgVBgdysGGEV2+g==
+  dependencies:
+    "@synerise/ds-icon" "^0.44.0"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
@@ -5837,6 +5844,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
 
+"@synerise/ds-icon@^0.44.0":
+  version "0.44.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.44.0.tgz#65cb24c3b07efd0ed8d97a79bc8511b1e1b9efc3"
+  integrity sha512-yNXCBoW4Zr3rQXt66MYbr6KxJHUxfDBwM+BmZxuF5Z4G92E0CKQovEBZ98MI4O3BYg+dBh1Nsvsfn2AkQ3gbBw==
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5869,6 +5881,27 @@
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
 
+"@synerise/ds-input@^0.17.17":
+  version "0.17.17"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-input/-/ds-input-0.17.17.tgz#64e0530ff126847369de8e1b2e7c4b98886ddb05"
+  integrity sha512-He4S0/+7VmCqdQ9XIyboVVK3ibNk4MAogsB4RJx/za0zzKX5khZTVKyBL0TaOnrbYjMr9YECJF06FGKKprLn2A==
+  dependencies:
+    "@synerise/ds-icon" "^0.44.0"
+    "@synerise/ds-scrollbar" "^0.2.63"
+    "@synerise/ds-tooltip" "^0.10.32"
+    "@synerise/ds-typography" "^0.11.0"
+    "@synerise/ds-utils" "^0.15.1"
+    antd-mask-input "^0.1.13"
+    uuid "^7.0.2"
+
+"@synerise/ds-scrollbar@^0.2.63":
+  version "0.2.63"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.63.tgz#95a6d3aa435d82bd839e708bf02218daf86cb6a4"
+  integrity sha512-qKKSrdz7PqOiqVi1wbBuy4N1mVuKNvY5qJ0lVwhY3RvGADznZg44bv4mKM2DZWRfuJtm4jHIL2i0R30l6A8UKw==
+  dependencies:
+    "@synerise/ds-icon" "^0.44.0"
+    react-perfect-scrollbar "^1.5.8"
+
 "@synerise/ds-search-bar@^0.2.105":
   version "0.2.120"
   resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.120.tgz#b00c0309d30b0fc7f66e5a36367d30146921d8cf"
@@ -5877,6 +5910,14 @@
     "@synerise/ds-button" "^0.13.28"
     "@synerise/ds-input" "^0.16.21"
     "@synerise/ds-typography" "^0.10.2"
+
+"@synerise/ds-tooltip@^0.10.32":
+  version "0.10.32"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.10.32.tgz#337302bd927f9cd93550204e13da810fd6377f5e"
+  integrity sha512-ZY8Lh5SEZqZpmq6zBp36DhKcYLdYHdfPTttx0PfcCaLwNROyzU3GK80xqYQuKSRaa9gbfXICznGUwmxldyTyWw==
+  dependencies:
+    "@synerise/ds-button" "^0.13.47"
+    "@synerise/ds-icon" "^0.44.0"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
@@ -5912,6 +5953,13 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.12.1.tgz#8ce8bf9921a8b84d9320dfe365dae4f8638e62a4"
   integrity sha512-7SwUcIxeMbRzl+/5HiuKh2BO+H8dFONKzwMY8T+MIZECflgAC7BZe1H5EkR2iixvwmPYK2zKJxsH0djM0epJIw==
+
+"@synerise/ds-utils@^0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.15.1.tgz#745550cf43d3e146dbdd7b7f4e7c2b747ea56c8c"
+  integrity sha512-wpXSozzw++gYyN7cJtIA3Wmv05kJZFbRDP4CGzyftjRvd/1cxumgqiP4HiBzcdvzwEWKDWfNJgF+xfgonDiRog==
+  dependencies:
+    latinize "^0.5.0"
 
 "@synerise/ds-utils@^0.8.31", "@synerise/ds-utils@^0.8.5":
   version "0.8.31"
@@ -16952,6 +17000,18 @@ moment@^2.25.3:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
   integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
 
+monaco-editor-webpack-plugin@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-3.0.1.tgz#b9bf93314eb2708907c232cfbf359622e7a6d98a"
+  integrity sha512-Hym4HqWgIpyoi9G0spln/b/7rkDKfYwIOrNzo1fHHMc+MLYSwD1JXHwKSDS77X27ZHfVJsEXbMZYdGhSYuVF0w==
+  dependencies:
+    loader-utils "^2.0.0"
+
+monaco-editor@*:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.23.0.tgz#24844ba5640c7adb3a2a3ff3b520cf2d7170a6f0"
+  integrity sha512-q+CP5zMR/aFiMTE9QlIavGyGicKnG2v/H8qVvybLzeFsARM8f6G9fL0sMST2tyVYCwDKkGamZUI6647A0jR/Lg==
+
 moo@^0.5.0:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/moo/-/moo-0.5.1.tgz#7aae7f384b9b09f620b6abf6f74ebbcd1b65dbc4"
@@ -20517,6 +20577,14 @@ react-loadable@^5.5.0:
   integrity sha512-C8Aui0ZpMd4KokxRdVAm2bQtI03k2RMRNzOB+IipV3yxFTSVICv7WoUr5L9ALB5BmKO1iHgZtWM8EvYG83otdg==
   dependencies:
     prop-types "^15.5.0"
+
+react-monaco-editor@^0.41.2:
+  version "0.41.2"
+  resolved "https://registry.yarnpkg.com/react-monaco-editor/-/react-monaco-editor-0.41.2.tgz#7ec9cadc101d73003a908fca61c50011f237d2b5"
+  integrity sha512-0nNqkkSLtUQDHtcCASv3ccYukD+P2uvFzcFZGh6iWg9RZF3Rj9/+jqsTNo2cl4avkX8JVGC/qnZr/g7hxXTBTQ==
+  dependencies:
+    monaco-editor "*"
+    prop-types "^15.7.2"
 
 react-onclickoutside@^6.9.0:
   version "6.9.0"
