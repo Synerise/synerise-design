@@ -22,9 +22,9 @@
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": [
     "dist/style/*",
@@ -32,17 +32,17 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "^0.11.0",
-    "@synerise/ds-input": "^0.17.17",
     "@synerise/ds-icon": "^0.44.0",
+    "@synerise/ds-input": "^0.17.17",
     "@synerise/ds-modal": "^0.13.31",
-    "react-monaco-editor": "^0.41.2",
-    "lodash": "^4.17.11"
+    "@synerise/ds-typography": "^0.11.0",
+    "lodash": "^4.17.11",
+    "monaco-editor": "^0.23.0",
+    "react-monaco-editor": "^0.41.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

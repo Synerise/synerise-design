@@ -5790,6 +5790,13 @@
   dependencies:
     "@synerise/ds-icon" "^0.44.0"
 
+"@synerise/ds-button@^0.13.48":
+  version "0.13.48"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.13.48.tgz#ff5195af254348668decc898bf88d2db46821b64"
+  integrity sha512-Xs0O2MDv0zt4JLtuOK104xMEQnRtP+AdYNZmKBk/NuM6viHpE5LAvE9A8l+FoSC0AIL5Izqv2qoQKXBLlDHiQg==
+  dependencies:
+    "@synerise/ds-icon" "^0.44.1"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
@@ -5849,6 +5856,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.44.0.tgz#65cb24c3b07efd0ed8d97a79bc8511b1e1b9efc3"
   integrity sha512-yNXCBoW4Zr3rQXt66MYbr6KxJHUxfDBwM+BmZxuF5Z4G92E0CKQovEBZ98MI4O3BYg+dBh1Nsvsfn2AkQ3gbBw==
 
+"@synerise/ds-icon@^0.44.1":
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.44.1.tgz#03c84112cbfcd66f09c84f29bf1be736fec1b4ef"
+  integrity sha512-El7V9G20B5+MBSnlcF0xCbRtsyCE9HZhG+e94NopmZ0/JcCHIL7ihMycM4viTiyC84Jh9c3KBT9DTqlUIvI25Q==
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -5893,6 +5905,16 @@
     "@synerise/ds-utils" "^0.15.1"
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
+
+"@synerise/ds-modal@^0.13.31":
+  version "0.13.32"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-modal/-/ds-modal-0.13.32.tgz#826190dafcf057cb3ef2c8522d716143021f4dcf"
+  integrity sha512-jrf9nMC0VpneDH9fE7h/nN2P+KOsOD1yqOt/NynlkioPVxuGfGR8nHq1if4YuOvC9R1OfCrYyg4mePuLqqraYw==
+  dependencies:
+    "@synerise/ds-button" "^0.13.48"
+    "@synerise/ds-icon" "^0.44.1"
+    "@synerise/ds-typography" "^0.11.0"
+    classnames "^2.2.6"
 
 "@synerise/ds-scrollbar@^0.2.63":
   version "0.2.63"
@@ -17007,7 +17029,7 @@ monaco-editor-webpack-plugin@^3.0.1:
   dependencies:
     loader-utils "^2.0.0"
 
-monaco-editor@*:
+monaco-editor@*, monaco-editor@^0.23.0:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.23.0.tgz#24844ba5640c7adb3a2a3ff3b520cf2d7170a6f0"
   integrity sha512-q+CP5zMR/aFiMTE9QlIavGyGicKnG2v/H8qVvybLzeFsARM8f6G9fL0sMST2tyVYCwDKkGamZUI6647A0jR/Lg==
