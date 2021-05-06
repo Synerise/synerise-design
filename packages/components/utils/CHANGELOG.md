@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.15.1...@synerise/ds-utils@0.16.0) (2021-05-06)
+
+
+### Features
+
+* **utils:** add combineRefs utils ([227e530](https://github.com/synerise/synerise-design/commit/227e530fed452444bc367e99b29411d1e36b3c01))
+
+
+
+
+
 ## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.15.0...@synerise/ds-utils@0.15.1) (2021-04-29)
 
 **Note:** Version bump only for package @synerise/ds-utils

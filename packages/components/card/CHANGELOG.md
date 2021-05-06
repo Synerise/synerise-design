@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.18...@synerise/ds-card@0.8.19) (2021-05-06)
+
+
+### Bug Fixes
+
+* **card:** fix card type ([1e22aa4](https://github.com/Synerise/synerise-design/commit/1e22aa484fda83422b150acce0c1cc496a5b0f5c))
+
+
+
+
+
 ## [0.8.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.17...@synerise/ds-card@0.8.18) (2021-04-22)
 
 

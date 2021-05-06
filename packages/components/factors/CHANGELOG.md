@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.1...@synerise/ds-factors@0.7.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* **factors:** fixes tabs in factor dropdowns ([5de3097](https://github.com/Synerise/synerise-design/commit/5de309792741847892f5a7e902e3d648294cc88a))
+* **factors:** fixes tabs in factor dropdowns ([df38c77](https://github.com/Synerise/synerise-design/commit/df38c774586a0f68b693edd8e9bef71009700b08))
+
+
+
+
+
 ## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.0...@synerise/ds-factors@0.7.1) (2021-04-29)
 
 **Note:** Version bump only for package @synerise/ds-factors

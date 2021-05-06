@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.42...@synerise/ds-tabs@0.11.43) (2021-05-06)
+
+
+### Bug Fixes
+
+* **operators:** fixes tabs on dropdowns ([62e70bf](https://github.com/synerise/synerise-design/commit/62e70bfe8e70198ce6b76294dd3f308afcf500fa))
+
+
+
+
+
 ## [0.11.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.11.41...@synerise/ds-tabs@0.11.42) (2021-04-29)
 
 **Note:** Version bump only for package @synerise/ds-tabs

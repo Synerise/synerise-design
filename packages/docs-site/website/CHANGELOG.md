@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.7](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.6...docs@0.10.7) (2021-05-06)
+
+
+### Bug Fixes
+
+* **card:** fix card type ([1e22aa4](https://gitlab.synerise.com/Frontend/synerise-design/commit/1e22aa484fda83422b150acce0c1cc496a5b0f5c))
+
+
+
+
+
 ## [0.10.6](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.10.5...docs@0.10.6) (2021-03-30)
 
 **Note:** Version bump only for package docs
