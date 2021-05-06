@@ -1,7 +1,9 @@
 const path = require('path');
 const { defaults } = require('jest-config');
 
-const esModules = ['@synerise'].join('|');
+const esModules = ['@synerise', 'react-monaco-editor', 'monaco-editor']
+  .map((str) => `(${str})`)
+  .join('|');
 
 module.exports = {
   coverageDirectory: '<rootDir>/coverage',

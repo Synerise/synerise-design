@@ -8,27 +8,17 @@ import Icon from '@synerise/ds-icon';
 import { FullScreenM } from '@synerise/ds-icon/dist/icons';
 import Modal from '@synerise/ds-modal';
 
+import { removeContextMenuElements } from './helpers/contextMenu';
 import * as S from './CodeArea.styles';
 import { CodeAreaProps } from './CodeArea.types';
-
-const MONACO_EDITOR_LAYOUT_EVENT_NAME = 'monacoEditor:layout';
-
-const MONACO_EDITOR_DEFAULT_OPTIONS = {
-  minimap: {
-    enabled: false,
-  },
-  scrollbar: {
-    horizontal: 'hidden' as 'hidden',
-    vertical: 'hidden' as 'hidden',
-  },
-  overviewRulerLanes: 0,
-  folding: false,
-  renderLineHighlightOnlyWhenFocus: true,
-};
-
-const MONACO_EDITOR_ON_CHANGE_DELAY = 300;
-
-const transparentColorCode = '#00000000';
+import {
+  MONACO_EDITOR_ON_CHANGE_DELAY,
+  MONACO_EDITOR_DEFAULT_OPTIONS,
+  MONACO_EDITOR_LAYOUT_EVENT_NAME,
+  MONACO_EDITOR_MENU_ID,
+  MONACO_EDITOR_MENU_IDS_TO_REMOVE,
+  transparentColorCode,
+} from './consts';
 
 const CodeArea: React.FC<CodeAreaProps> = ({
   label,
@@ -43,13 +33,20 @@ const CodeArea: React.FC<CodeAreaProps> = ({
   errorText,
   ...props
 }) => {
-  const [size, setSize] = React.useState<{ width: string; height: string }>({ width: '284px', height: '120px' });
+  const [size, setSize] = React.useState<{ width: string; height: string }>({ width: '282px', height: '118px' });
   const [editor, setEditor] = React.useState<monaco.editor.IStandaloneCodeEditor>();
   const [isFullScreen, setFullScreen] = React.useState<boolean>(false);
 
   const showError = React.useMemo(() => Boolean(error && errorText), [errorText, error]);
 
   const editLayoutUpdate = React.useCallback(() => editor?.layout(), [editor]);
+
+  React.useEffect(
+    function removeMenuElements() {
+      removeContextMenuElements(MONACO_EDITOR_MENU_ID, MONACO_EDITOR_MENU_IDS_TO_REMOVE);
+    },
+    [editor]
+  );
 
   React.useLayoutEffect(
     function resizeMonacoEditor() {
@@ -96,7 +93,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
 
   const handleMinimize = (): void => {
     setFullScreen(false);
-    setSize({ width: '284px', height: '120px' });
+    setSize({ width: '282px', height: '118px' });
   };
 
   return !isFullScreen ? (
