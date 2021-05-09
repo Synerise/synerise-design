@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { RepeatM, FileTypeImageM, Close3M, FileM, FileTypeSvg } from '@synerise/ds-icon/dist/icons';
+import { RepeatM, FileTypeImageM, Close3M, FileM } from '@synerise/ds-icon/dist/icons';
 import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 import * as S from './FileViewAvatar.styles';
 import { FileViewAvatarProps } from './FileViewAvatar.types';
