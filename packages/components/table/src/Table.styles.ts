@@ -188,12 +188,26 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   }
 
   .ant-table .ant-table-thead th {
+    transition: background 0.3s, border-color 0.3s;
     background-color: ${({ theme }): string => theme.palette.white};
     border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
 
     &:hover {
       background-color: ${({ theme }): string => hexToRgba(theme.palette['grey-200'], 0.3)};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
+
+      > * {
+        margin-bottom: -1px;
+      }
+    }
+
+    > * {
+      display: flex;
+      width: 100%;
+    }
+
+    [class^='ant-table-column-sorters'] {
+      width: 100%;
     }
 
     &.ant-table-column-sort {
@@ -207,6 +221,10 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
 
       & > [class^='ant-table-column-sorters'] {
         overflow: hidden;
+      }
+
+      > * {
+        margin-bottom: -1px;
       }
     }
 
@@ -232,6 +250,10 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
 
       .ant-table-column-sorter {
         display: none;
+      }
+
+      > * {
+        margin-bottom: -1px;
       }
     }
   }
