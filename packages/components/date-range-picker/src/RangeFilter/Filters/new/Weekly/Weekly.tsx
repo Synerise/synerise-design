@@ -172,7 +172,7 @@ const Weekly: React.FC<WeeklyProps> = ({
       excludeDayFromActive(dayKey);
       onChange(updatedSchedule);
     },
-    [value, activeDays, onChange]
+    [value, activeDays, onChange, excludeDayFromActive]
   );
   const uncheckActiveDay = React.useCallback(
     (dayKey: DayKey): void => {
@@ -217,7 +217,7 @@ const Weekly: React.FC<WeeklyProps> = ({
         activeDays.includes(dayKey) ? uncheckActiveDay(dayKey) : checkActiveDay(dayKey);
       }
     },
-    [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay]
+    [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay, excludeDayFromActive]
   );
 
   const renderDay = React.useCallback(
