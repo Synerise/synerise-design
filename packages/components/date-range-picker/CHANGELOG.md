@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.15...@synerise/ds-date-range-picker@0.9.16) (2021-05-10)
+
+
+### Bug Fixes
+
+* **date-range-picker:** toggle active days ([3f2a59e](https://github.com/Synerise/synerise-design/commit/3f2a59ed73b2d6a405e701c3bd5663e35d9330de))
+
+
+
+
+
 ## [0.9.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.14...@synerise/ds-date-range-picker@0.9.15) (2021-05-06)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
