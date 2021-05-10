@@ -187,11 +187,17 @@ const stories = {
                 title: 'First name',
                 dataIndex: 'first_name',
                 key: 'first_name',
-                sorter: (a, b) => {
-                  if (a.first_name < b.first_name) return -1;
-                  if (a.first_name > b.first_name) return 1;
-                  return 0;
-                },
+                sorter: (a, b) => a.first_name.localeCompare(b.first_name),
+                sortRender: 'string',
+              };
+            }
+            case 'last_name': {
+              return {
+                title: 'Last name',
+                dataIndex: 'last_name',
+                key: 'last_name',
+                sorter: (a, b) => a.last_name.localeCompare(b.last_name),
+                sortRender: 'string',
               };
             }
             case 'city': {
@@ -201,11 +207,8 @@ const stories = {
                 key: 'city',
                 icon: { component: <VarTypeStringM /> },
                 iconTooltip: { component: <InfoFillS /> },
-                sorter: (a, b) => {
-                  if (a.city < b.city) return -1;
-                  if (a.city > b.city) return 1;
-                  return 0;
-                },
+                sorter: (a, b) => a.city.localeCompare(b.city),
+                sortRender: 'string',
               };
             }
             case 'age': {
@@ -236,11 +239,11 @@ const stories = {
                 icon: { component: <VarTypeListM /> },
                 iconTooltip: { component: <InfoFillS /> },
                 dataIndex: column.key,
-                sorter: (a, b) => {
-                  if (a[column.key] < b[column.key]) return -1;
-                  if (a[column.key] > b[column.key]) return 1;
-                  return 0;
-                },
+                // sorter: (a, b) => {
+                //   if (a[column.key] < b[column.key]) return -1;
+                //   if (a[column.key] > b[column.key]) return 1;
+                //   return 0;
+                // },
               };
           }
         });
