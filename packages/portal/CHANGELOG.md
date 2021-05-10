@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.129.1](https://github.com/synerise/synerise-design/compare/portal@0.129.0...portal@0.129.1) (2021-05-06)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.129.0](https://github.com/synerise/synerise-design/compare/portal@0.128.0...portal@0.129.0) (2021-05-06)
+
+
+### Bug Fixes
+
+* **file-uploader:** add icons to type of uploader file and fix styles ([b816f33](https://github.com/synerise/synerise-design/commit/b816f3394f073f5a89ba4ffe8c9ff871cb8f3743))
+* **file-uploader:** change component styles and add new features ([b28f7b9](https://github.com/synerise/synerise-design/commit/b28f7b948e94b853048532b6a4d9aac2ad0e3aac))
+* **file-uploader:** fix props ([1d281c8](https://github.com/synerise/synerise-design/commit/1d281c8853d2bba9927b3d7107ecceac9ca28b11))
+* **file-uploader:** fix props text and add them ([570e338](https://github.com/synerise/synerise-design/commit/570e3380d88fad1716c06b2221447e34d6334032))
+* **file-uploader:** fix props text and some styles ([b113d5f](https://github.com/synerise/synerise-design/commit/b113d5f39a26c01a9b6971db83113d1aa76e29ca))
+* **file-uploader:** remove disabled text prop ([ae4d049](https://github.com/synerise/synerise-design/commit/ae4d0493b42f7baa364bad15f150e1d00227cecf))
+* **portal:** change defaultViewport to 1920 ([bfd9c54](https://github.com/synerise/synerise-design/commit/bfd9c54b5df0be6a49808e9f07ee50436fe656c4))
+* **portal:** delete defaultViewport ([f839f29](https://github.com/synerise/synerise-design/commit/f839f2906aae361357bc6bb57d751635c1c43d6c))
+* **table:** fix table cell of avatar S ([f9fe976](https://github.com/synerise/synerise-design/commit/f9fe976991eeee13dd45920b0910be15f2108869))
+
+
+### Features
+
+* **alert:** add info type to InlineAlert ([3146c3a](https://github.com/synerise/synerise-design/commit/3146c3a2518ebdd764e78078dafaa941d066b434))
+* **table:** add infinite scroll to VirtualTable ([bad0b27](https://github.com/synerise/synerise-design/commit/bad0b2788c8649320a775977b23cbe6b4822141e))
+* **table:** add title with separator ([14f6426](https://github.com/synerise/synerise-design/commit/14f6426eca1d383478b9842bc25cedcd4e08e8a1))
+
+
+
+
+
 # [0.128.0](https://github.com/synerise/synerise-design/compare/portal@0.127.3...portal@0.128.0) (2021-04-22)
 
 

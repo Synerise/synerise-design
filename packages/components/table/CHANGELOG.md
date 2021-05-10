@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.34.0...@synerise/ds-table@0.34.1) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.34.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.32...@synerise/ds-table@0.34.0) (2021-05-06)
+
+
+### Features
+
+* **table:** add infinite scroll to VirtualTable ([bad0b27](https://github.com/synerise/synerise-design/commit/bad0b2788c8649320a775977b23cbe6b4822141e))
+* **table:** add title with separator ([14f6426](https://github.com/synerise/synerise-design/commit/14f6426eca1d383478b9842bc25cedcd4e08e8a1))
+* **table:** update active and sorter column colors ([a816f87](https://github.com/synerise/synerise-design/commit/a816f87943fca3596339c1acf2f933cbc344e26e))
+* **table:** update header styles in VirtualTable ([deeafc4](https://github.com/synerise/synerise-design/commit/deeafc48050846dc7661c4d4e75374c3fc9f8c93))
+* **table:** update no more items alert to info type ([0eead37](https://github.com/synerise/synerise-design/commit/0eead37284334210782811f7fc09a1c86eac0e21))
+
+
+
+
+
+## [0.33.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.31...@synerise/ds-table@0.33.32) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.33.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.30...@synerise/ds-table@0.33.31) (2021-04-22)
 
 

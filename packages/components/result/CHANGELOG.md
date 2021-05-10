@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.55...@synerise/ds-result@0.5.56) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-result
+
+
+
+
+
+## [0.5.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.54...@synerise/ds-result@0.5.55) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-result
+
+
+
+
+
+## [0.5.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.53...@synerise/ds-result@0.5.54) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-result
+
+
+
+
+
 ## [0.5.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.5.52...@synerise/ds-result@0.5.53) (2021-04-22)
 
 **Note:** Version bump only for package @synerise/ds-result

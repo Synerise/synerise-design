@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.2...@synerise/ds-condition@0.7.3) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.1...@synerise/ds-condition@0.7.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* **condition:** fixes changes value of factor ([2bfb499](https://github.com/Synerise/synerise-design/commit/2bfb4990e64171d6c2e19a98abe03196eb514058))
+* **operators:** fixes tabs on dropdowns ([62e70bf](https://github.com/Synerise/synerise-design/commit/62e70bfe8e70198ce6b76294dd3f308afcf500fa))
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.0...@synerise/ds-condition@0.7.1) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
 # [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.6.21...@synerise/ds-condition@0.7.0) (2021-04-22)
 
 

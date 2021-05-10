@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.0...@synerise/ds-alert@0.3.1) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.24...@synerise/ds-alert@0.3.0) (2021-05-06)
+
+
+### Features
+
+* **alert:** add info type to InlineAlert ([3146c3a](https://github.com/Synerise/synerise-design/commit/3146c3a2518ebdd764e78078dafaa941d066b434))
+
+
+
+
+
+## [0.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.23...@synerise/ds-alert@0.2.24) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
 ## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.22...@synerise/ds-alert@0.2.23) (2021-04-22)
 
 
