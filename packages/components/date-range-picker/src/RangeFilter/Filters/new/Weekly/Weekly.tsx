@@ -149,6 +149,13 @@ const Weekly: React.FC<WeeklyProps> = ({
     [dayFormatter]
   );
 
+  const excludeDayFromActive = React.useCallback(
+    (dayKey: DayKey) => {
+      setActiveDays(activeDays.filter(day => day !== dayKey));
+    },
+    [activeDays]
+  );
+
   const isDayRestricted = React.useCallback(
     (dayKey: DayKey): boolean => {
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
@@ -162,10 +169,10 @@ const Weekly: React.FC<WeeklyProps> = ({
       Object.keys(value).forEach(key => {
         delete updatedSchedule[key][dayKey];
       });
-      setActiveDays(activeDays.filter(day => day !== dayKey));
+      excludeDayFromActive(dayKey);
       onChange(updatedSchedule);
     },
-    [value, activeDays, onChange]
+    [value, onChange, excludeDayFromActive]
   );
   const uncheckActiveDay = React.useCallback(
     (dayKey: DayKey): void => {
@@ -202,7 +209,7 @@ const Weekly: React.FC<WeeklyProps> = ({
     (dayKey: DayKey, forcedState?: boolean): void => {
       if (typeof forcedState !== 'undefined') {
         if (controlKeyPressed && forcedState) {
-          activeDays.includes(dayKey) ? uncheckActiveDay(dayKey) : checkActiveDay(dayKey);
+          activeDays.includes(dayKey) ? excludeDayFromActive(dayKey) : checkActiveDay(dayKey);
           return;
         }
         forcedState ? checkActiveDay(dayKey) : uncheckActiveDay(dayKey);
@@ -210,7 +217,7 @@ const Weekly: React.FC<WeeklyProps> = ({
         activeDays.includes(dayKey) ? uncheckActiveDay(dayKey) : checkActiveDay(dayKey);
       }
     },
-    [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay]
+    [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay, excludeDayFromActive]
   );
 
   const renderDay = React.useCallback(
@@ -252,7 +259,7 @@ const Weekly: React.FC<WeeklyProps> = ({
   }, [value, activeDays, defaultDayValue, onChange]);
 
   const renderGridTitle = React.useCallback(
-    (count) => (
+    count => (
       <SelectionCount
         selectedDayCount={count}
         label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected' })}
