@@ -5869,6 +5869,14 @@
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
 
+"@synerise/ds-scrollbar@^0.2.49":
+  version "0.2.63"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.63.tgz#95a6d3aa435d82bd839e708bf02218daf86cb6a4"
+  integrity sha1-labTqkNdgr2DnnCL8CIY2vhstqQ=
+  dependencies:
+    "@synerise/ds-icon" "^0.44.0"
+    react-perfect-scrollbar "^1.5.8"
+
 "@synerise/ds-search-bar@^0.2.105":
   version "0.2.120"
   resolved "https://registry.yarnpkg.com/@synerise/ds-search-bar/-/ds-search-bar-0.2.120.tgz#b00c0309d30b0fc7f66e5a36367d30146921d8cf"
