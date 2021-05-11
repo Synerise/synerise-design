@@ -11,6 +11,7 @@ const getDefaultProps = () => ({
   tooltip: text('Informational tooltip text', 'Test Tooltip'),
   removeTooltip: text('Remove tooltip', 'Clear'),
   retryTooltip: text('Retry tooltip', 'Retry'),
+  retry: boolean ('Set retry button', false),
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   buttonDescription: text('Button description', 'Drag and drop your files here, or browses'),
   size: text('Preview size label', 'Size:'),

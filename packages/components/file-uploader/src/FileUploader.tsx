@@ -40,6 +40,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   mode = 'single',
   removable = true,
   files = [],
+  retry,
   texts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
@@ -156,6 +157,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           removable={removable}
           onRemove={(): void => onRemove && onRemove(file.file, index)}
           data={file}
+          retry={retry}
         />
       ))}
       {hasError &&

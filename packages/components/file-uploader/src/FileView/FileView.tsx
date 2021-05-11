@@ -20,7 +20,6 @@ import {
   FileTypeXls,
   FileTypePptx
 } from '@synerise/ds-icon/dist/icons';
-import Popconfirm from '@synerise/ds-popconfirm';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';
@@ -42,7 +41,7 @@ const mapperOfIcons = {
   'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx/>
 };
 
-const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable }) => {
+const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry }) => {
 
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
@@ -55,7 +54,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
     onRemove && onRemove();
     setPressed(false);
   };
-
+console.log(retry,error)
   return (
     <S.FileViewContainer disabled={disabled} error={hasError} removable={removable} type="button">
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
@@ -95,7 +94,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
           </>
         )}
       </S.Info>
-      {error && (
+      {error && retry && (
         <Button mode="icon-label" type="ghost-primary">
           <Icon component={<RepeatM />} />
           Retry
@@ -107,7 +106,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
         </S.CheckButtonWrapper>
       )}
       {removable && !disabled && !error && !hasProgress && (
-        <Popconfirm
+        <S.PopconfirmOnRemove
           onConfirm={handleRemove}
           onCancel={(): void => setPressed(false)}
           icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
@@ -129,7 +128,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable })
               <Icon component={<Close3M />} size={20} />
             </Tooltip>
           </S.RemoveButtonWrapper>
-        </Popconfirm>
+        </S.PopconfirmOnRemove>
       )}
     </S.FileViewContainer>
   );

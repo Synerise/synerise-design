@@ -18,4 +18,5 @@ export interface FileViewProps {
   texts: FileViewTexts;
   removable?: boolean;
   onRemove?: () => void;
+  retry?: boolean;
 }
