@@ -1,11 +1,13 @@
 import styled, { SimpleInterpolation } from 'styled-components';
 import Typography, { Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import Popconfirm from '@synerise/ds-popconfirm';
 
 export const PreviewImage = styled.div`
  ${IconContainer} {
     fill: ${(props): string => props.theme.palette['grey-700']};
   }
+  margin: -4px -8px -4px -4px;
 `;
 
 export const PlaceholderImage = styled.div`
@@ -25,10 +27,19 @@ export const Info = styled.div`
   margin: 0 0 0 10px;
   width: 100%;
 `;
+
+export const PopconfirmOnRemove = styled(Popconfirm)`
+  .ant-popover-buttons{
+    &:first-of-type {
+        padding: 6px;
+    }
+  }
+`;
 export const FileWeight = styled.div`
   color: ${(props): string => props.theme.palette['grey-500']};
   padding-right: 30px;
   font-weight: normal;
+  font-size: 13px;
 `;
 
 export const Name = styled(Label)`
@@ -79,7 +90,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
 `;
 export const RemoveWrapper = styled.div`
   display: flex;
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  background-color: transparent;
   z-index: 10;
   border: 0;
   padding: 0;
@@ -100,13 +111,12 @@ export const RemoveWrapper = styled.div`
 
     &:hover {
       fill: ${(props): string => props.theme.palette['red-500']};
-      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
   }
 `;
 export const CheckButtonWrapper = styled.div`
   display: flex;
-  background-color: ${(props): string => props.theme.palette['grey-050']};
+  background-color: transparent;
   z-index: 10;
   margin: 0;
   height: 16px;
@@ -124,7 +134,6 @@ export const CheckButtonWrapper = styled.div`
     fill: ${(props): string => props.theme.palette['green-600']};
     &:hover {
       fill: ${(props): string => props.theme.palette['green-500']};
-      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
   }
 `;
@@ -135,7 +144,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
   border: 1px solid ${(props): string => props.theme.palette['grey-200']};
   display: flex;
   align-items: center;
-  padding: 7px;
+  padding: 8px;
   height: 48px;
   width: 100%;
   text-align: left;
@@ -162,7 +171,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
 
   &:focus {
     border-color: ${(props): string => props.theme.palette['blue-500']};
-    background-color: ${(props): string => props.theme.palette['grey-100']};
+    background-color: ${(props): string => props.theme.palette['grey-050']};
   }
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
