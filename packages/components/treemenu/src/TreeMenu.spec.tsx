@@ -4,19 +4,22 @@ import { TreeData } from './TreeMenu.types';
 import TreeMenu from './TreeMenu';
 
 const dataSource: TreeData[] = [
-  { title: 'Label 1', key: 1, type: 'folder' },
-  { title: 'Label 2', key: 2, type: 'folder' },
-  { title: 'Label 3', key: 3, type: 'folder' },
-  { title: 'Label 4', key: 4, type: 'folder' },
-  { title: 'Label 5', key: 5, type: 'folder' },
+  { name: 'Label 1', key: 1, type: 'folder' },
+  { name: 'Label 2', key: 2, type: 'folder' },
+  { name: 'Label 3', key: 3, type: 'folder' },
+  { name: 'Label 4', key: 4, type: 'folder' },
+  { name: 'Label 5', key: 5, type: 'folder' },
 ];
 
 describe('TreeMenu', () => {
   it(`should have ${dataSource.length} items + ghost item`, () => {
-    const { getByText, getAllByRole } = renderWithProvider(<TreeMenu dataSource={dataSource} />);
+    const handleChange = jest.fn();
+    const { getByText, getAllByRole } = renderWithProvider(
+      <TreeMenu dataSource={dataSource} onChange={handleChange} />
+    );
     expect(getAllByRole('menuitem')).toHaveLength(6);
     dataSource.forEach(data => {
-      expect(getByText(data.title as string)).toBeTruthy();
+      expect(getByText(data.name as string)).toBeTruthy();
     });
   });
 });

@@ -13,6 +13,7 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   draggable?: boolean;
   searchQuery?: string;
   texts?: TreeMenuTexts;
+  hasClipboard: boolean;
 
   onItemEditChange?: ItemProps['onEditChange'];
   onItemExpandToggle?: ItemProps['onExpandToggle'];
@@ -22,6 +23,7 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   onItemPaste?: ItemProps['onPaste'];
   onItemCut?: ItemProps['onCut'];
   onItemDelete?: ItemProps['onDelete'];
+  onItemVisibilityChange?: ItemProps['onVisibilityChange'];
 
   onItemDragStart?: (draggedNode: TreeNode) => void;
   onItemDragEnd?: (items: TreeData[], draggedNode: TreeNode, targetNode?: TreeNode) => void;
@@ -30,8 +32,9 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
 export type IconType = ReactNode | ((props: any) => ReactNode);
 
 export type TreeData = {
-  key: ReactText;
-  title: ReactText;
+  id?: ReactText;
+  key?: ReactText;
+  name: ReactText;
   icon?: IconType;
   disabled?: boolean;
   draggable?: boolean;
@@ -41,6 +44,7 @@ export type TreeData = {
   style?: CSSProperties;
   children?: TreeData[];
   type?: string;
+  hidden?: boolean;
 };
 
 export type TreeNode = Node<TreeData>;

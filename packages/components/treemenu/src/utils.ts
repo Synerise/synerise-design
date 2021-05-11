@@ -1,5 +1,17 @@
 import TreeModel from 'tree-model';
 
+import {
+  ButtonM,
+  CheckboxM,
+  FileUploadM,
+  FolderM,
+  InputM,
+  RadioButtonM,
+  SelectMenuM,
+  SwitchM,
+  TextAreaM,
+  TransformM,
+} from '@synerise/ds-icon/dist/icons';
 import { TreeData, TreeNode } from './TreeMenu.types';
 
 /**
@@ -10,7 +22,7 @@ export function generateTree(items: TreeData[]): TreeNode {
   const treeModel = new TreeModel();
   const model = treeModel.parse({
     key: 'root',
-    title: 'root',
+    name: 'root',
     children: items,
   });
 
@@ -38,7 +50,7 @@ export function childrenHaveString(items: TreeNode[], searchQuery: string): bool
   let haveString = false;
 
   items.forEach(item => {
-    if (item.model.title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1) {
+    if (item.model.name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1) {
       haveString = true;
       return;
     }
@@ -63,16 +75,16 @@ export function getItemsToRender(
     const thisItem = rawItem;
     const { children } = thisItem;
     if (!thisItem.model) return;
-    const { title, key } = thisItem.model;
+    const { name, key } = thisItem.model;
 
     thisItem.depth = depth;
     thisItem.index = index;
 
     if (
-      title &&
+      name &&
       searchQuery &&
       !(
-        title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1 ||
+        name.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1 ||
         (children && childrenHaveString(children, searchQuery))
       )
     )
@@ -104,4 +116,17 @@ export const validateItemName = (name: string): boolean => {
     return false;
   }
   return true;
+};
+
+export const typeIcons = {
+  folder: FolderM,
+  text: InputM,
+  textArea: TextAreaM,
+  relation: TransformM,
+  switch: SwitchM,
+  radio: RadioButtonM,
+  checkbox: CheckboxM,
+  select: SelectMenuM,
+  upload: FileUploadM,
+  button: ButtonM,
 };

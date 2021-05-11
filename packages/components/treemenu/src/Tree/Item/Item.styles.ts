@@ -4,6 +4,7 @@ import styled, { FlattenSimpleInterpolation, FlattenInterpolation, css } from 's
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import Icon from '@synerise/ds-icon';
+import { SuffixWraper } from '@synerise/ds-menu/dist/Elements/Item/Text/Text.styles';
 
 export const ArrowIcon = styled(Icon)<{ expanded: boolean }>`
   transition: transform 0.2s ease;
@@ -22,7 +23,7 @@ export const ButtonFiller = styled.div`
   background: #000;
 `;
 
-export const SuffixWrapper = styled.div`
+export const Suffix = styled.div`
   display: flex;
   // width: 0;
   overflow: hidden;
@@ -36,7 +37,7 @@ export const Item = styled(Menu.Item)`
 
   :hover,
   &.ant-menu-item-selected {
-    ${SuffixWrapper} {
+    ${Suffix} {
       // width: 100%;
     }
   }
@@ -91,6 +92,8 @@ export type ItemContainerProps = {
   fullWidth?: boolean;
   isDraggable?: boolean;
   editMode?: boolean;
+  deleteMode?: boolean;
+  expanded?: boolean;
 };
 
 export const ItemContainer = styled.div<ItemContainerProps>`
@@ -98,6 +101,26 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 
   .ds-tree-menu-no-pointer & {
     pointer-events: none;
+  }
+
+  ${SuffixWraper} {
+    opacity: 1;
+    visibility: visible;
+    ${Suffix} {
+      display: none;
+    }
+  }
+  &:hover {
+    ${SuffixWraper} {
+      opacity: 1;
+      visibility: visible;
+      .ds-treemenu-hidden-icon {
+        display: none;
+      }
+      ${Suffix} {
+        display: flex;
+      }
+    }
   }
 
   ${Item} {
@@ -132,6 +155,31 @@ export const ItemContainer = styled.div<ItemContainerProps>`
             margin-left: ${props.depth * DEFAULT_DEPTH_WIDTH}px !important;
             padding-left: 8px !important;
           `};
+
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.deleteMode
+        ? css`
+            background: ${props.theme.palette['red-050']} !important;
+            color: ${props.theme.palette['red-600']} !important;
+            svg {
+              fill: ${props.theme.palette['red-600']} !important;
+            }
+            ${DragHandle} {
+              visibility: hidden;
+            }
+          `
+        : false}
+
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.expanded
+        ? css`
+            background: ${props.theme.palette['blue-050']} !important;
+            color: ${props.theme.palette['blue-600']} !important;
+            svg {
+              fill: ${props.theme.palette['blue-600']} !important;
+            }
+          `
+        : false}
   }
 
   ${InlineEditWrapper} {

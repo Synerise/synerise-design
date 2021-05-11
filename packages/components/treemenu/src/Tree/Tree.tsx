@@ -9,6 +9,7 @@ import Item, { SortableItem } from './Item';
 
 import { TreeProps, TreeNode, SortableNode, SortableItemRef } from './Tree.types';
 import Ghost from './Ghost';
+import { EmptyList } from './EmptyList';
 
 interface ItemProps {
   [key: string]: Function;
@@ -24,6 +25,7 @@ export default function Tree({
   onItemDragStart = NOOP,
   onItemDragEnd = NOOP,
   getContainer,
+  hasClipboard,
   ...restProps
 }: TreeProps): ReactElement {
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(propExpandedKeys || []);
@@ -121,7 +123,7 @@ export default function Tree({
     onItemDragEnd([...treeItems.model.children], dragged.node?.treeNode as TreeNode, target?.node?.treeNode);
   };
 
-  return (
+  return itemsToRender.length ? (
     <div>
       <Ghost ref={itemGhostRef} />
       <SortableContainer
@@ -136,6 +138,8 @@ export default function Tree({
         {itemsToRender.map((item, index) => {
           const ItemComponent = draggable || item.draggable ? SortableItem : Item;
           return (
+            /*
+            // @ts-ignore */
             <ItemComponent
               key={item.model.key}
               draggable={draggable}
@@ -146,11 +150,14 @@ export default function Tree({
               expandedKeys={expandedKeys}
               searchQuery={searchQuery}
               texts={texts}
+              hasClipboard={hasClipboard}
               {...itemProps}
             />
           );
         })}
       </SortableContainer>
     </div>
+  ) : (
+    <EmptyList />
   );
 }
