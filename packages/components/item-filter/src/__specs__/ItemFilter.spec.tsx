@@ -296,3 +296,29 @@ describe('Drawer component', () => {
     expect(hideFn).toBeCalled();
   });
 });
+
+describe('category list items order', () => {
+  it('should show list with non changed order by default', () => {
+    const { getAllByText } = renderWithProvider(ITEM_FILTER(true, NOOP));
+
+    const categoryItems = getAllByText(/^Filter #/);
+
+    categoryItems.forEach((item, index) => {
+      expect(item.textContent).toEqual(CATEGORIES[0].items[index].name);
+    });
+  });
+
+  it('should show items sorted by selected element', () => {
+    const secondItemId = '0001';
+    const { getAllByText } = renderWithProvider(ITEM_FILTER(true, NOOP, secondItemId));
+
+    const [firstItem, secondItem, ...restItems] = CATEGORIES[0].items;
+    const itemsByExpectedOrder = [secondItem, firstItem, ...restItems];
+
+    const categoryItems = getAllByText(/^Filter #/);
+
+    categoryItems.forEach((item, index) => {
+      expect(item.textContent).toEqual(itemsByExpectedOrder[index].name);
+    });
+  });
+});
