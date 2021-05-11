@@ -17,6 +17,8 @@ export default function useTexts(texts: TreeMenuTexts | undefined): TreeMenuText
       copy: formatMessage({ id: 'DS.TREE-MENU.CUT', defaultMessage: 'Copy' }),
       cancel: formatMessage({ id: 'DS.TREE-MENU.CANCEL', defaultMessage: 'Cancel' }),
       delete: formatMessage({ id: 'DS.TREE-MENU.DELETE', defaultMessage: 'Delete' }),
+      showItem: formatMessage({ id: 'DS.TREE-MENU.SHOW-ITEM', defaultMessage: 'Show item' }),
+      hideItem: formatMessage({ id: 'DS.TREE-MENU.HIDE-ITEM', defaultMessage: 'Hide item' }),
       deleteConfirm: formatMessage({
         id: 'DS.TREEMENU.DELETE-CONFIRM',
         defaultMessage: 'Are you sure you want to delete?',

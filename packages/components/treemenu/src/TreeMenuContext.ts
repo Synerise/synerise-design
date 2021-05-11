@@ -15,6 +15,7 @@ export const defaultValue: ContextValues = {
   searchQuery: '',
   setSearchQuery: NOOP,
   setSearchOpen: NOOP,
+  onChange: NOOP,
 };
 
 const TreeMenuContext: React.Context<ContextValues> = React.createContext(defaultValue);

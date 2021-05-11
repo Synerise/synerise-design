@@ -102,13 +102,15 @@ const Folder: React.FC<FolderProps> = ({
         <Actions
           item={item}
           texts={texts}
-          onVisibleChange={onVisibleChange}
           onDelete={onDelete}
           onPaste={onPaste}
           onCopy={onCopy}
           onCut={onCut}
           onDuplicate={onDuplicate}
           onEdit={handleOnEdit}
+          deleteMode={false}
+          onDeleteConfirmationVisibilityChange={NOOP}
+          onVisibilityChange={NOOP}
         />
       </Is.SuffixWrapper>
     );

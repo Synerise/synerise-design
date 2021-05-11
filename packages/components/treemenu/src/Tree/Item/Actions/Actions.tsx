@@ -1,126 +1,145 @@
-import React, { useRef } from 'react';
+import React, { MouseEvent } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import {
   EditM,
-  OptionHorizontalM,
   DuplicateM,
   CopyClipboardM,
   CutM,
   PasteClipboardM,
   TrashM,
-  WarningFillM,
+  OptionVerticalM,
+  ShowCheckM,
+  ShowBlockM,
+  InfoFillM,
 } from '@synerise/ds-icon/dist/icons';
-import { NOOP } from '@synerise/ds-utils';
-import { ClickParam } from 'antd/es/menu';
 
+import { MenuInfo } from 'rc-menu/lib/interface';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Tooltip from '@synerise/ds-tooltip';
 import { ActionProps } from './Actions.types';
 import * as S from './Actions.styles';
 
 const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => event.stopPropagation();
-const dropdownMenuClick = (event: ClickParam): void => event.domEvent.stopPropagation();
-
-type ClickEvent = React.MouseEvent<HTMLElement, MouseEvent> | undefined;
+const dropdownMenuClick = (event: MenuInfo): void => event.domEvent.stopPropagation();
 
 const Actions: React.FC<ActionProps> = ({
-  onVisibleChange = NOOP,
-  onEdit = NOOP,
-  onDelete = NOOP,
-  onPaste = NOOP,
-  onCopy = NOOP,
-  onCut = NOOP,
-  onDuplicate = NOOP,
+  onEdit,
+  onPaste,
+  onCopy,
+  onCut,
+  onDuplicate,
+  onDeleteConfirmationVisibilityChange,
+  onVisibilityChange,
   item,
   texts,
 }) => {
-  const deleteConfirmRef = useRef<HTMLButtonElement | null>(null);
-  const copyRef = useRef<TreeNode | null>(null);
+  const handleDuplicate = React.useCallback(
+    (event: MenuInfo): void => {
+      if (event) event.domEvent.stopPropagation();
+      onDuplicate(item);
+    },
+    [item, onDuplicate]
+  );
 
-  const handleDuplicate = (event?: ClickParam): void => {
+  const handleDelete = React.useCallback(
+    (event: MenuInfo): void => {
+      if (event) event.domEvent.stopPropagation();
+      onDeleteConfirmationVisibilityChange(true);
+    },
+    [onDeleteConfirmationVisibilityChange]
+  );
+
+  const handleCopy = React.useCallback(
+    (event: MenuInfo): void => {
+      if (event) event.domEvent.stopPropagation();
+      onCopy(item);
+    },
+    [onCopy, item]
+  );
+
+  const handleEdit = React.useCallback(
+    (event: MenuInfo): void => {
+      event.domEvent.stopPropagation();
+      onEdit(item);
+    },
+    [onEdit, item]
+  );
+
+  const handleCut = React.useCallback(
+    (event: MenuInfo) => {
+      if (event) event.domEvent.stopPropagation();
+      onCut(item);
+    },
+    [item, onCut]
+  );
+
+  const handlePaste = (event: MenuInfo): void => {
     if (event) event.domEvent.stopPropagation();
-    onDuplicate(item);
-    onVisibleChange(false);
+    typeof onPaste === 'function' && onPaste(item);
   };
 
-  const handleDeleteCancel = (event?: ClickEvent): void => {
-    if (event) event.stopPropagation();
-    onVisibleChange(false);
+  const handleItemVisibilityChange = (): void => {
+    const newItem = { ...item };
+    newItem.model.hidden = !newItem.model.hidden;
+    onVisibilityChange && onVisibilityChange(item, [...item.getPath().shift()?.model.children]);
   };
 
-  const handleDeleteConfirm = (event?: ClickEvent): void => {
-    if (event) event.stopPropagation();
-    const root = item.getPath().shift();
-    item.drop();
-    onDelete([...root.model.children], item);
-    onVisibleChange(false);
-  };
+  const visibilityIcon = React.useMemo(() => {
+    return item.model.hidden ? <ShowCheckM /> : <ShowBlockM />;
+  }, [item.model.hidden]);
 
-  const handleDelete = (): void => {
-    if (deleteConfirmRef.current) {
-      deleteConfirmRef.current.dispatchEvent(new window.MouseEvent('click', { bubbles: true }));
-    }
-  };
-
-  const handleCopy = (): void => {
-    copyRef.current = item;
-    onCopy(item);
-    onVisibleChange(false);
-  };
-
-  const handlePaste = (): void => {
-    copyRef.current = item;
-    onPaste(item);
-    onVisibleChange(false);
-  };
-
-  const handleVisibilityChange = (visibility: boolean): void => {
-    onVisibleChange(visibility);
-  };
+  const visibilityLabel = React.useMemo(() => {
+    return item.model.hidden ? texts?.showItem : texts?.hideItem;
+  }, [item.model.hidden, texts]);
 
   return (
     <>
       <Dropdown
         placement="bottomRight"
         trigger={['click']}
-        onVisibleChange={onVisibleChange}
         align={{ offset: [12, 16] }}
         overlay={
           // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
           <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
             <S.DropdownMenuItem prefixel={<Icon component={<DuplicateM />} />} onClick={handleDuplicate}>
-                {texts?.duplicate}
-              </S.DropdownMenuItem>
+              {texts?.duplicate}
+            </S.DropdownMenuItem>
 
-            <S.DropdownMenuItem
-                prefixel={<Icon component={<EditM />} />}
-                onClick={(e: ClickParam): void => {
-                  e.domEvent.stopPropagation();
-                  onEdit(item);
-                  onVisibleChange(false);
-                }}
-              >
-                {texts?.edit}
-              </S.DropdownMenuItem>
+            <S.DropdownMenuItem prefixel={<Icon component={<EditM />} />} onClick={handleEdit}>
+              {texts?.edit}
+            </S.DropdownMenuItem>
 
             <S.DropdownMenuItem prefixel={<Icon component={<CopyClipboardM />} />} onClick={handleCopy}>
-                {texts?.copy}
-              </S.DropdownMenuItem>
-
-            <S.DropdownMenuItem prefixel={<Icon component={<PasteClipboardM />} />} onClick={handlePaste}>
-                {texts?.paste}
-              </S.DropdownMenuItem>
+              {texts?.copy}
+            </S.DropdownMenuItem>
 
             <S.DropdownMenuItem
-                prefixel={<Icon component={<CutM />} />}
-                onClick={(e: ClickParam): void => {
-                  e.domEvent.stopPropagation();
-                  onCut(item);
-                  onVisibleChange(false);
-                }}
-              >
-                {texts?.cut}
+              prefixel={<Icon component={<PasteClipboardM />} />}
+              onClick={handlePaste}
+              disabled={!onPaste}
+            >
+              {texts?.paste}
+            </S.DropdownMenuItem>
+
+            <S.DropdownMenuItem
+              prefixel={<Icon component={<CutM />} />}
+              suffixel={
+                <Tooltip title="Cut element should be pasted">
+                  <Icon component={<InfoFillM />} color={theme.palette['grey-600']} />
+                </Tooltip>
+              }
+              onClick={handleCut}
+            >
+              {texts?.cut}
+            </S.DropdownMenuItem>
+
+            {onVisibilityChange && (
+              <S.DropdownMenuItem prefixel={<Icon component={visibilityIcon} />} onClick={handleItemVisibilityChange}>
+                {visibilityLabel}
               </S.DropdownMenuItem>
+            )}
 
             <Menu.Divider />
             <S.DropdownMenuItem prefixel={<Icon component={<TrashM />} />} type="danger" onClick={handleDelete}>
@@ -129,23 +148,10 @@ const Actions: React.FC<ActionProps> = ({
           </S.DropdownMenu>
         }
       >
-        <S.DropdownTrigger component={<OptionHorizontalM />} onClick={triggerClick} />
+        {/*
+        // @ts-ignore */}
+        <S.DropdownTrigger component={<OptionVerticalM />} onClick={triggerClick} />
       </Dropdown>
-      <S.DeletePopconfirm
-        title={texts?.deleteConfirm}
-        trigger="click"
-        cancelText="No"
-        icon={<Icon color="#ffc300" component={<WarningFillM />} />}
-        okText="Yes"
-        onConfirm={handleDeleteConfirm}
-        onCancel={handleDeleteCancel}
-        onClick={handleDeleteCancel}
-        onVisibleChange={handleVisibilityChange}
-      >
-        <button type="button" ref={deleteConfirmRef} aria-hidden>
-          Delete
-        </button>
-      </S.DeletePopconfirm>
     </>
   );
 };

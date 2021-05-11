@@ -35,15 +35,18 @@ export type TreeMenuTexts = {
   loading?: string;
   searchClear?: string;
   search?: string;
+  showItem?: string;
+  hideItem?: string;
 };
 
 export type TreeMenuItemAction = (item: TreeNode, context: TreeNode | undefined) => TreeNode | false;
 
-export type TreeMenuProps = Omit<TreeProps, 'items'> & {
+export type TreeMenuProps = Omit<TreeProps, 'items' | 'hasClipboard'> & {
   texts?: TreeMenuTexts;
   showToolbar?: boolean | ReactNode;
   showHeader?: boolean | ReactNode;
   dataSource?: TreeData[];
+  onChange: (items: TreeData[]) => void;
 };
 
 export type TreeMenuItemRef = HTMLDivElement & {

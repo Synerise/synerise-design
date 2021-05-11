@@ -69,13 +69,15 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
       <Actions
         item={item}
         texts={restProps.texts}
-        onVisibleChange={onVisibleChange}
         onDelete={onDelete}
         onCopy={onCopy}
         onCut={onCut}
         onDuplicate={onDuplicate}
         onPaste={onPaste}
         onEdit={onEdit}
+        onVisibilityChange={NOOP}
+        deleteMode={false}
+        onDeleteConfirmationVisibilityChange={NOOP}
       />
     </S.SuffixWrapper>
   ) : (

@@ -35,6 +35,11 @@ export const DropdownMenu = styled(Menu)<AntdMenuProps>`
 
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   max-height: 32px;
+  &:hover {
+    svg {
+      fill: ${(props): string => props.theme.palette['blue-600']};
+    }
+  }
 `;
 
 export const FavouriteIconWrapper = styled.div<{ favourite: boolean }>`
