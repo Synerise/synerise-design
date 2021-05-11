@@ -54,7 +54,6 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
     onRemove && onRemove();
     setPressed(false);
   };
-console.log(retry,error)
   return (
     <S.FileViewContainer disabled={disabled} error={hasError} removable={removable} type="button">
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
@@ -97,7 +96,7 @@ console.log(retry,error)
       {error && retry && (
         <Button mode="icon-label" type="ghost-primary">
           <Icon component={<RepeatM />} />
-          Retry
+          {texts.retryLabel}
         </Button>
       )}
       {success && !disabled && (

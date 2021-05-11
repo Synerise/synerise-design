@@ -12,6 +12,7 @@ const getDefaultProps = () => ({
   removeTooltip: text('Remove tooltip', 'Clear'),
   retryTooltip: text('Retry tooltip', 'Retry'),
   retry: boolean ('Set retry button', false),
+  retryLabel: 'Retry',
   buttonLabel: text('Button label', 'Upload a new file or drop one here'),
   buttonDescription: text('Button description', 'Drag and drop your files here, or browses'),
   size: text('Preview size label', 'Size:'),
@@ -69,6 +70,7 @@ const stories = {
       fileWeight,
       percent,
       buttonLabel,
+      retryLabel,
       buttonDescription,
       size,
       removeTooltip,
@@ -85,6 +87,7 @@ const stories = {
       percent,
       removeConfirmTitle,
       removeTooltip,
+      retryLabel,
     };
 
     const getFiles = () => {

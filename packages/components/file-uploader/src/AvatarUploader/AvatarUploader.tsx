@@ -10,9 +10,10 @@ import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 import CameraM from '@synerise/ds-icon/dist/icons/CameraM';
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
-import { FileContent, AvatarUploaderProps } from './AvatarUploader.types';
+import { FileContent } from '../../dist/FileUploader.types';
 import * as S from './AvatarUploader.styles';
 import { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
+import { FileUploaderProps } from '../FileUploader.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -26,7 +27,7 @@ function readAsText(file: File): Promise<FileContent> {
   });
 }
 
-const AvatarUploader: React.FC<AvatarUploaderProps> = ({
+const AvatarUploader: React.FC<FileUploaderProps> = ({
   className,
   onUpload,
   disabled,

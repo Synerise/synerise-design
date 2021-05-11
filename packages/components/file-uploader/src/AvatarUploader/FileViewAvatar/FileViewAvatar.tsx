@@ -21,15 +21,15 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
 
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';
-  const [pressed1, setPressed1] = React.useState<boolean>(false);
-  const handleRemove1 = (): void => {
+  const [pressed, setPressed] = React.useState<boolean>(false);
+  const handleRemoveAvatar = (): void => {
     onRemove && onRemove();
-    setPressed1(false);
+    setPressed(false);
   };
-  const [pressed2, setPressed2] = React.useState<boolean>(false);
-  const handleRemove2 = (): void => {
+  const [removeButtonPressed, removeButtonSetPressed] = React.useState<boolean>(false);
+  const handleRemove = (): void => {
     onRemove && onRemove();
-    setPressed2(false);
+    removeButtonSetPressed(false);
   };
 
   return (
@@ -37,9 +37,9 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
       <S.AvatarContainer  removable={removable} disabled={disabled} source={fileSource}>
         {removable && !disabled && !error && !hasProgress && (
           <S.RemoveWrapper
-            onClick={handleRemove1}
-            onMouseDown={(): void => setPressed1(true)}
-            pressed={pressed1}
+            onClick={handleRemoveAvatar}
+            onMouseDown={(): void => setPressed(true)}
+            pressed={pressed}
             data-testid="file-view-avatar-remove"
           >
             <Tooltip title={texts.removeTooltip}>
@@ -78,9 +78,9 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
           )}
           {removable && !disabled && !error && !hasProgress && (
             <S.RemoveButtonWrapper
-              onClick={handleRemove2}
-              onMouseDown={(): void => setPressed2(true)}
-              pressed={pressed2}
+              onClick={handleRemove}
+              onMouseDown={(): void => removeButtonSetPressed(true)}
+              pressed={removeButtonPressed}
               data-testid="fileview-remove"
             >
               <Tooltip title={texts.removeTooltip}>
