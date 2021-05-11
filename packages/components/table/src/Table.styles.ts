@@ -279,4 +279,8 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll .ant-table .ant-table-header {
     box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   }
+
+  & .ant-table .ant-table-header {
+    overflow: visible !important; // overwrite antd's inline style
+  }
 `;
