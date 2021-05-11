@@ -191,7 +191,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     background-color: ${({ theme }): string => theme.palette.white};
     border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
 
-    &:hover {
+    &.ant-table-column-has-sorters:hover {
       background-color: ${({ theme }): string => theme.palette['grey-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
 
