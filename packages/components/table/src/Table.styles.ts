@@ -257,7 +257,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     }
   }
 
-  .ant-table tr.ant-table-row td.ant-table-column-sort {
+  .ant-table tr.ant-table-row:not(:hover) td.ant-table-column-sort {
     background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
