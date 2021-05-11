@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
-import { hexToRgba } from '@synerise/ds-utils';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -188,25 +187,43 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   }
 
   .ant-table .ant-table-thead th {
+    transition: background 0.3s, border-color 0.3s;
     background-color: ${({ theme }): string => theme.palette.white};
     border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
 
     &:hover {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['grey-200'], 0.3)};
+      background-color: ${({ theme }): string => theme.palette['grey-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
+
+      > * {
+        margin-bottom: -1px;
+      }
+    }
+
+    > * {
+      display: flex;
+      width: 100%;
+    }
+
+    [class^='ant-table-column-sorters'] {
+      width: 100%;
     }
 
     &.ant-table-column-sort {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+      background-color: ${({ theme }): string => theme.palette['blue-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
 
       &:hover {
-        background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.4)};
+        background-color: ${({ theme }): string => theme.palette['blue-050']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
       }
 
       & > [class^='ant-table-column-sorters'] {
         overflow: hidden;
+      }
+
+      > * {
+        margin-bottom: -1px;
       }
     }
 
@@ -221,23 +238,27 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     }
 
     &.ds-table-active-column {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-100'], 0.7)};
+      background-color: ${({ theme }): string => theme.palette['yellow-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-400']};
       cursor: default;
 
       &:hover {
-        background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-200'], 0.7)};
+        background-color: ${({ theme }): string => theme.palette['yellow-100']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-600']};
       }
 
       .ant-table-column-sorter {
         display: none;
       }
+
+      > * {
+        margin-bottom: -1px;
+      }
     }
   }
 
-  .ant-table tr.ant-table-row td.ant-table-column-sort {
-    background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+  .ant-table tr.ant-table-row:not(:hover) td.ant-table-column-sort {
+    background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
   .ant-table .ant-table-column-sorter {
