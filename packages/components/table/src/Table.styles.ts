@@ -22,7 +22,11 @@ export const Size = styled.div`
   }
 `;
 
-export const Title = styled.div`
+export const TitleContainer = styled.div`
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+
   ${macro.small};
   color: ${(props): string => props.theme.palette['grey-700']};
   padding: 0 24px 0 0;
@@ -32,18 +36,37 @@ export const Title = styled.div`
   }
 `;
 
+export const TitlePartEllipsis = styled.span`
+  display: flex;
+  max-width: 100%;
+  min-width: 100px;
+
+  strong {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
+export const TitlePart = styled.span`
+  flex-shrink: 0;
+`;
+
 export const TitleSeparator = styled.span`
   display: inline-block;
   vertical-align: middle;
+  flex-shrink: 0;
   width: 1px;
   height: 16px;
-  margin: -2px 12px 0px 12px;
+  margin: 1px 12px 0px 12px;
   background: ${({ theme }): string => theme.palette['grey-200']};
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
+  min-width: 0;
 `;
 
 export const Right = styled.div`
