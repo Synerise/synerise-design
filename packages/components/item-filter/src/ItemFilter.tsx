@@ -64,7 +64,19 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
     const category = categories[activeTab];
     return {
       ...category,
-      items: category.items.sort((a, b) => (a.id === selectedItemId && b.id !== selectedItemId ? -1 : 1)),
+      items: selectedItemId
+        ? [...category.items].sort((a, b) => {
+            if (a.id === selectedItemId) {
+              return -1;
+            }
+
+            if (b.id === selectedItemId) {
+              return 1;
+            }
+
+            return 0;
+          })
+        : category.items,
     };
   }, [categories, activeTab, selectedItemId]);
 
