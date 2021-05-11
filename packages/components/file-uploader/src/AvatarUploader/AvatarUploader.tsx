@@ -10,9 +10,9 @@ import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 import CameraM from '@synerise/ds-icon/dist/icons/CameraM';
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
-import { FileContent, FileUploaderProps } from '../../dist/FileUploader.types';
 import * as S from './AvatarUploader.styles';
 import { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
+import { FileUploaderProps,FileContent } from '../FileUploader.types';
 
 
 function readAsText(file: File): Promise<FileContent> {
