@@ -110,5 +110,3 @@ docs_deploy_from_tag:
     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
-    - docker pull quay.io/synerise/stevedore:master-latest
-    - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest
