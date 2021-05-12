@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.20...@synerise/ds-tagslist@0.6.21) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.19...@synerise/ds-tagslist@0.6.20) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.18...@synerise/ds-tagslist@0.6.19) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.17...@synerise/ds-tagslist@0.6.18) (2021-04-22)
+
+
+### Bug Fixes
+
+* **tagslist:** change name in item ([f503ad8](https://github.com/Synerise/synerise-design/commit/f503ad8e3c48d46a27cb0163a938e6c2c594f745))
+* **tagslist:** change width of dropdown ([6f4815f](https://github.com/Synerise/synerise-design/commit/6f4815f552d16c1486b00a9266d62d1822844aa7))
+
+
+
+
+
 ## [0.6.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.16...@synerise/ds-tagslist@0.6.17) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

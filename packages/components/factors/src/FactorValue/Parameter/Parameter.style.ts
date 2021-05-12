@@ -22,3 +22,9 @@ export const SearchResultHighlight = styled.span`
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
+
+export const Value = styled.span`
+  max-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;

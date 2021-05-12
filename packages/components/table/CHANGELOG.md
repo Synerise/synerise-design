@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.34.1...@synerise/ds-table@0.35.0) (2021-05-10)
+
+
+### Features
+
+* **table:** add new sorting to GroupTable ([e6c897e](https://github.com/synerise/synerise-design/commit/e6c897ef10d5c7b9fa1d4e0fcb6edc32acc0f7e9))
+
+
+
+
+
+## [0.34.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.34.0...@synerise/ds-table@0.34.1) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.34.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.32...@synerise/ds-table@0.34.0) (2021-05-06)
+
+
+### Features
+
+* **table:** add infinite scroll to VirtualTable ([bad0b27](https://github.com/synerise/synerise-design/commit/bad0b2788c8649320a775977b23cbe6b4822141e))
+* **table:** add title with separator ([14f6426](https://github.com/synerise/synerise-design/commit/14f6426eca1d383478b9842bc25cedcd4e08e8a1))
+* **table:** update active and sorter column colors ([a816f87](https://github.com/synerise/synerise-design/commit/a816f87943fca3596339c1acf2f933cbc344e26e))
+* **table:** update header styles in VirtualTable ([deeafc4](https://github.com/synerise/synerise-design/commit/deeafc48050846dc7661c4d4e75374c3fc9f8c93))
+* **table:** update no more items alert to info type ([0eead37](https://github.com/synerise/synerise-design/commit/0eead37284334210782811f7fc09a1c86eac0e21))
+
+
+
+
+
+## [0.33.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.31...@synerise/ds-table@0.33.32) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.33.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.30...@synerise/ds-table@0.33.31) (2021-04-22)
+
+
+### Bug Fixes
+
+* **table:** change sort dropdown button trigger to click ([15dc0b3](https://github.com/synerise/synerise-design/commit/15dc0b367664917b604a2ba149dec1b331285a92))
+* **table:** filter number in circle ([c62d450](https://github.com/synerise/synerise-design/commit/c62d4508c116fbecfb05f48679941c29ffe0c73a))
+* **table:** fix sort menu z-index ([f329182](https://github.com/synerise/synerise-design/commit/f329182013a6a190c2f71c540e66e359346f46ef))
+* **table:** remove custom getPopupParent to fix sort dropdown ([7063294](https://github.com/synerise/synerise-design/commit/7063294f27802f8b5d1a5cf34383f1ece3e10355))
+* **table:** set sort menu width ([3272c6a](https://github.com/synerise/synerise-design/commit/3272c6a62d7f3c0e0b316b872f5c3b12aa6e1d59))
+* **table:** toggle button hover visibility ([885347e](https://github.com/synerise/synerise-design/commit/885347ec87a4040e51e40cbda9f433a411cae729))
+
+
+
+
+
+## [0.33.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.29...@synerise/ds-table@0.33.30) (2021-04-20)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.33.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.33.28...@synerise/ds-table@0.33.29) (2021-04-14)
 
 **Note:** Version bump only for package @synerise/ds-table

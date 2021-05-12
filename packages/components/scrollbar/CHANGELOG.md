@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.3.0...@synerise/ds-scrollbar@0.3.1) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-scrollbar
+
+
+
+
+
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.63...@synerise/ds-scrollbar@0.3.0) (2021-05-06)
+
+
+### Features
+
+* **scrollbar:** add onYReachEnd prop ([5f3f055](https://github.com/Synerise/synerise-design/commit/5f3f0557a80425617b6f4d7ad6748cb2c84ced49))
+* **scrollbar:** reset lastScrollTop on scroll up ([16ca38c](https://github.com/Synerise/synerise-design/commit/16ca38c774fa3ac6f95b6b40a75b44ee58222d2a))
+* **table:** add infinite scroll to VirtualTable ([bad0b27](https://github.com/Synerise/synerise-design/commit/bad0b2788c8649320a775977b23cbe6b4822141e))
+
+
+
+
+
+## [0.2.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.62...@synerise/ds-scrollbar@0.2.63) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-scrollbar
+
+
+
+
+
+## [0.2.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.61...@synerise/ds-scrollbar@0.2.62) (2021-04-22)
+
+**Note:** Version bump only for package @synerise/ds-scrollbar
+
+
+
+
+
 ## [0.2.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.2.60...@synerise/ds-scrollbar@0.2.61) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.2...@synerise/ds-factors@0.7.3) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.1...@synerise/ds-factors@0.7.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* **factors:** fixes tabs in factor dropdowns ([5de3097](https://github.com/Synerise/synerise-design/commit/5de309792741847892f5a7e902e3d648294cc88a))
+* **factors:** fixes tabs in factor dropdowns ([df38c77](https://github.com/Synerise/synerise-design/commit/df38c774586a0f68b693edd8e9bef71009700b08))
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.0...@synerise/ds-factors@0.7.1) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.16...@synerise/ds-factors@0.7.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **condition:** eslint warnings ([9e9e83d](https://github.com/Synerise/synerise-design/commit/9e9e83d85e7445a8859deef1735bb85b2f17caea))
+* **condition:** fixes from CR ([ac5e675](https://github.com/Synerise/synerise-design/commit/ac5e6750b8e4ae370e5043708f2497c202c8490b))
+
+
+### Features
+
+* **factors:** autofocus on current FactorValue input ([6ba4248](https://github.com/Synerise/synerise-design/commit/6ba4248b3e8b2d0e789dceac01c3a48eab85cfc1))
+
+
+
+
+
 ## [0.6.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.6.15...@synerise/ds-factors@0.6.16) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-factors

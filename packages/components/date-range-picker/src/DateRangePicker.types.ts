@@ -17,7 +17,7 @@ export interface Props extends WrappedComponentProps {
   popoverProps?: Partial<PopoverProps>;
   popoverTrigger?: React.ReactNode;
   ranges?: DateRange[];
-  rangeUnits: Array<RelativeUnits>;
+  rangeUnits?: Array<RelativeUnits>;
   relativeFuture?: boolean;
   relativePast?: boolean;
   relativeModes?: RelativeMode[];

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.18...@synerise/ds-input@0.17.19) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.17.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.17...@synerise/ds-input@0.17.18) (2021-05-06)
+
+
+### Bug Fixes
+
+* **input:** add height 100% to new textarea class ([23b743d](https://github.com/synerise/synerise-design/commit/23b743dc8c94635a9dff1295fc2680d293df8785))
+
+
+
+
+
+## [0.17.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.16...@synerise/ds-input@0.17.17) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.17.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.15...@synerise/ds-input@0.17.16) (2021-04-22)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
 ## [0.17.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.14...@synerise/ds-input@0.17.15) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-input

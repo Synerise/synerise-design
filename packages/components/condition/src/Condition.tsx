@@ -165,7 +165,7 @@ const Condition: React.FC<ConditionProps> = ({
 
   const setStepConditionFactorValue = React.useCallback((step, condition, value) => {
     setCurrentField(DEFAULT_FIELD);
-    condition.factor && condition.factor.setSelectedFactorType(value);
+    condition.factor && condition.factor.onChangeValue(value);
   }, []);
 
   const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);

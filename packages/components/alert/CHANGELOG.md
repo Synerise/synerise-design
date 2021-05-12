@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.0...@synerise/ds-alert@0.3.1) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.24...@synerise/ds-alert@0.3.0) (2021-05-06)
+
+
+### Features
+
+* **alert:** add info type to InlineAlert ([3146c3a](https://github.com/Synerise/synerise-design/commit/3146c3a2518ebdd764e78078dafaa941d066b434))
+
+
+
+
+
+## [0.2.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.23...@synerise/ds-alert@0.2.24) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.2.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.22...@synerise/ds-alert@0.2.23) (2021-04-22)
+
+
+### Bug Fixes
+
+* **alert:** add new component alertWithIcon ([7b1a6a1](https://github.com/Synerise/synerise-design/commit/7b1a6a157d82028c48c5e3147e9270968243add1))
+* **alert:** change styles ([51066d3](https://github.com/Synerise/synerise-design/commit/51066d35f1ddee6a41686857cb521b67776a22be))
+* **alert:** fix styles and remove unneeded knobs ([ba39d93](https://github.com/Synerise/synerise-design/commit/ba39d9382a8d7a676c6acbfaf7ae719af07bf030))
+* **alert:** fix types of Alert ([4575938](https://github.com/Synerise/synerise-design/commit/4575938731fdc53930e3a82d2764aebb7ec2f25d))
+* **alert:** fix types of Alert ([5bc9497](https://github.com/Synerise/synerise-design/commit/5bc9497f45ad0c534bcf592f765e139db4a369d6))
+
+
+
+
+
 ## [0.2.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.2.21...@synerise/ds-alert@0.2.22) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-alert

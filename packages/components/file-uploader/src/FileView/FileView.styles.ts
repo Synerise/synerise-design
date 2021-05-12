@@ -2,15 +2,10 @@ import styled, { SimpleInterpolation } from 'styled-components';
 import Typography, { Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
-export const PreviewImage = styled.div<{ source: string }>`
-  background: url('${(props): string => props.source}') 50% 50% no-repeat;
-  background-size: cover;
-  min-width: 32px;
-  min-height: 32px;
-  width: 32px;
-  height: 32px;
-  border-radius: 3px;
-  overflow: hidden;
+export const PreviewImage = styled.div`
+ ${IconContainer} {
+    fill: ${(props): string => props.theme.palette['grey-700']};
+  }
 `;
 
 export const PlaceholderImage = styled.div`
@@ -30,16 +25,22 @@ export const Info = styled.div`
   margin: 0 0 0 10px;
   width: 100%;
 `;
+export const FileWeight = styled.div`
+  color: ${(props): string => props.theme.palette['grey-500']};
+  padding-right: 30px;
+  font-weight: normal;
+`;
 
 export const Name = styled(Label)`
   && {
     color: ${(props): string => props.theme.palette['grey-600']};
-    display: block;
+    display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
     cursor: initial;
+    justify-content: space-between;
   }
 `;
 
@@ -49,31 +50,81 @@ export const SizeOrError = styled(Typography.Text)`
   }
 `;
 
-export const RemoveButtonWrapper = styled.div`
-  display: none;
-  background-color: #fff;
-  z-index: 100;
+export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
+  display: ${(props): string => (props.pressed ? 'flex' : 'none')};
+  background-color: transparent;
+  z-index: 10;
   border: 0;
-  border-radius: 8px;
   padding: 0;
   margin: 0;
   height: 16px;
   width: 16px;
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: 14px;
+  right: 10px;
   cursor: pointer;
-  overflow: hidden;
+  overflow: ${(props): string => (props.pressed ? 'visible' : 'hidden')};
 
   ${IconContainer} {
     position: absolute;
-    right: -4px;
-    top: -4px;
+    right: -2px;
+    top: -2px;
     transition: fill 0.3s;
     fill: ${(props): string => props.theme.palette['red-600']};
 
     &:hover {
       fill: ${(props): string => props.theme.palette['red-500']};
+    }
+  }
+`;
+export const RemoveWrapper = styled.div`
+  display: flex;
+  background-color: ${(props): string => props.theme.palette['grey-050']};
+  z-index: 10;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  cursor: pointer;
+
+  ${IconContainer} {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    transition: fill 0.3s;
+    fill: ${(props): string => props.theme.palette['grey-300']};
+
+    &:hover {
+      fill: ${(props): string => props.theme.palette['red-500']};
+      background-color: ${(props): string => props.theme.palette['grey-100']};
+    }
+  }
+`;
+export const CheckButtonWrapper = styled.div`
+  display: flex;
+  background-color: ${(props): string => props.theme.palette['grey-050']};
+  z-index: 10;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  cursor: pointer;
+
+  ${IconContainer} {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    transition: fill 0.3s;
+    fill: ${(props): string => props.theme.palette['green-600']};
+    &:hover {
+      fill: ${(props): string => props.theme.palette['green-500']};
+      background-color: ${(props): string => props.theme.palette['grey-100']};
     }
   }
 `;
@@ -111,12 +162,15 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
 
   &:focus {
     border-color: ${(props): string => props.theme.palette['blue-500']};
+    background-color: ${(props): string => props.theme.palette['grey-100']};
+  }
+  &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
   }
 
   &:active {
     border-color: ${(props): string => props.theme.palette['grey-300']};
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: ${(props): string => props.theme.palette['grey-100']};
   }
 
   ${(props): SimpleInterpolation =>
@@ -132,7 +186,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
     && {
       border: 1px solid ${props.theme.palette['red-600']};
 
-      ${SizeOrError}, ${Name} {
+      ${SizeOrError} {
         color: ${props.theme.palette['red-600']};
       }
     }
@@ -140,5 +194,6 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
 
   .ant-progress-line {
     margin: 8px 0 0 !important;
+    width: 93%;
   }
 `;

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.7...@synerise/ds-avatar@0.13.8) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.6...@synerise/ds-avatar@0.13.7) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.13.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.5...@synerise/ds-avatar@0.13.6) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.13.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.4...@synerise/ds-avatar@0.13.5) (2021-04-22)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.13.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.3...@synerise/ds-avatar@0.13.4) (2021-04-20)
+
+
+### Bug Fixes
+
+* **avatar:** enforce min-width otherwise flex squizes it ([33b075a](https://github.com/synerise/synerise-design/commit/33b075aedf91b64f4e4b1035da3f94ba07bd5d68))
+
+
+
+
+
 ## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.13.2...@synerise/ds-avatar@0.13.3) (2021-04-14)
 
 

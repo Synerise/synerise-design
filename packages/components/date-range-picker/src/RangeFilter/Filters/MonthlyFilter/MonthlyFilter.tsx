@@ -277,8 +277,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               name: (
                 <S.DropdownHeader className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}>
                   <S.DropdownLabel>
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.RULE" defaultMessage="Rule" />{' '}
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="days of" />
+                    <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="Days of" />
                     {SPACE_UNICODE}
                   </S.DropdownLabel>
                   {this.renderDaysOfField(item, key)}

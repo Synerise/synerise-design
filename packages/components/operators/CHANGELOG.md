@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.4.2...@synerise/ds-operators@0.4.3) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.4.1...@synerise/ds-operators@0.4.2) (2021-05-06)
+
+
+### Bug Fixes
+
+* **operators:** fixes tabs in factor dropdowns ([a621e0c](https://github.com/Synerise/synerise-design/commit/a621e0ca97b295ed0ae82cf7b6abea75ec49e85f))
+* **operators:** fixes tabs in factor dropdowns ([60c9352](https://github.com/Synerise/synerise-design/commit/60c93526c8e0cccbb8a1092784117c3455a8d321))
+* **operators:** fixes tabs on dropdowns ([62e70bf](https://github.com/Synerise/synerise-design/commit/62e70bfe8e70198ce6b76294dd3f308afcf500fa))
+
+
+
+
+
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.4.0...@synerise/ds-operators@0.4.1) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.3.18...@synerise/ds-operators@0.4.0) (2021-04-22)
+
+
+### Features
+
+* **condition:** update flow of values selection ([eb8cc2c](https://github.com/Synerise/synerise-design/commit/eb8cc2c3605041c2be28c3f212d454975eea5cc0))
+
+
+
+
+
 ## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.3.17...@synerise/ds-operators@0.3.18) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-operators

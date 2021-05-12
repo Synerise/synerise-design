@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.71](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.70...@synerise/ds-file-uploader@0.5.71) (2021-05-06)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.5.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.69...@synerise/ds-file-uploader@0.5.70) (2021-05-06)
+
+
+### Bug Fixes
+
+* **file-uploader:** add icons to type of uploader file and fix styles ([b816f33](https://github.com/Synerise/synerise-design/commit/b816f3394f073f5a89ba4ffe8c9ff871cb8f3743))
+* **file-uploader:** add prop in Readme ([35ad36d](https://github.com/Synerise/synerise-design/commit/35ad36d4f9c97b9cca136d96ac0603be1dd7d5c9))
+* **file-uploader:** change component styles and add new features ([b28f7b9](https://github.com/Synerise/synerise-design/commit/b28f7b948e94b853048532b6a4d9aac2ad0e3aac))
+* **file-uploader:** fix description prop in Readme ([5442eb5](https://github.com/Synerise/synerise-design/commit/5442eb55f88e50fabec97db61fadd2007730bcd1))
+* **file-uploader:** fix description prop in Readme and in types ([90c18b8](https://github.com/Synerise/synerise-design/commit/90c18b8344565fa521471feb5c1eb17369ff25d4))
+* **file-uploader:** fix icons ([4dfc7c1](https://github.com/Synerise/synerise-design/commit/4dfc7c183d67d47900904cc9f017f3aea4417d5f))
+* **file-uploader:** fix import ([3e867c5](https://github.com/Synerise/synerise-design/commit/3e867c5c7a20900999daa9a19b43bfd0233a8231))
+* **file-uploader:** fix props ([b69ce8f](https://github.com/Synerise/synerise-design/commit/b69ce8f5985d68d9d1d1f9b5ee6dd777a43e7f45))
+* **file-uploader:** fix props ([2ea8618](https://github.com/Synerise/synerise-design/commit/2ea861878da815081045eae91972e2ce5344b9b1))
+* **file-uploader:** fix props ([1d281c8](https://github.com/Synerise/synerise-design/commit/1d281c8853d2bba9927b3d7107ecceac9ca28b11))
+* **file-uploader:** fix props text and add them ([570e338](https://github.com/Synerise/synerise-design/commit/570e3380d88fad1716c06b2221447e34d6334032))
+* **file-uploader:** fix props text and some styles ([b113d5f](https://github.com/Synerise/synerise-design/commit/b113d5f39a26c01a9b6971db83113d1aa76e29ca))
+* **file-uploader:** fix return in function ([776f46d](https://github.com/Synerise/synerise-design/commit/776f46da4f00059cd9c5d47b4be6546f000ec0c3))
+* **file-uploader:** fix styles of single and multi-large uploader ([2b9a3fe](https://github.com/Synerise/synerise-design/commit/2b9a3fec55c84aee091117ebb5aee69cbf783e8c))
+* **file-uploader:** remove disabled text prop ([ae4d049](https://github.com/Synerise/synerise-design/commit/ae4d0493b42f7baa364bad15f150e1d00227cecf))
+* **file-uploader:** remove knobs from component ([e20dc16](https://github.com/Synerise/synerise-design/commit/e20dc16ec740e1c718496d0b1f733bb7c57407e2))
+* **file-uploader:** remove unneeded test ([0722f1b](https://github.com/Synerise/synerise-design/commit/0722f1bfd2bd4406376eb9e05a91488ab107f2b5))
+
+
+
+
+
+## [0.5.69](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.68...@synerise/ds-file-uploader@0.5.69) (2021-04-29)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.5.68](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.67...@synerise/ds-file-uploader@0.5.68) (2021-04-22)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
 ## [0.5.67](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.66...@synerise/ds-file-uploader@0.5.67) (2021-04-07)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

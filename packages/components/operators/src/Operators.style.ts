@@ -31,3 +31,9 @@ export const Title = styled.div`
   color: ${(props): string => props.theme.palette['grey-500']};
   padding: 8px 12px;
 `;
+
+export const Value = styled.span`
+  max-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
