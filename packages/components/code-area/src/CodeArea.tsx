@@ -9,7 +9,9 @@ import { FullScreenM } from '@synerise/ds-icon/dist/icons';
 import Modal from '@synerise/ds-modal';
 
 import { removeContextMenuElements } from './helpers/contextMenu';
+import { getEditorColor, getGutterColor } from './helpers/helpers';
 import * as S from './CodeArea.styles';
+import './style/index.less';
 import { CodeAreaProps } from './CodeArea.types';
 import {
   MONACO_EDITOR_ON_CHANGE_DELAY,
@@ -36,6 +38,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
   const [size, setSize] = React.useState<{ width: string; height: string }>({ width: '282px', height: '118px' });
   const [editor, setEditor] = React.useState<monaco.editor.IStandaloneCodeEditor>();
   const [isFullScreen, setFullScreen] = React.useState<boolean>(false);
+  const [focused, setFocused] = React.useState<boolean>(false);
 
   const showError = React.useMemo(() => Boolean(error && errorText), [errorText, error]);
 
@@ -65,14 +68,14 @@ const CodeArea: React.FC<CodeAreaProps> = ({
       inherit: true,
       rules: [],
       colors: {
-        'editor.background': `${theme.palette[showError ? 'red-100' : 'white']}`,
-        'editorGutter.background': `${theme.palette[showError ? 'red-200' : 'grey-200']}`,
+        'editor.background': `${theme.palette[getEditorColor(showError)]}`,
+        'editorGutter.background': `${theme.palette[getGutterColor(focused, showError)]}`,
         'editorLineNumber.foreground': '#404c5a',
         'editor.lineHighlightBackground': transparentColorCode,
         'editor.lineHighlightBorder': transparentColorCode,
       },
     });
-  }, [theme, showError]);
+  }, [theme, showError, focused]);
 
   const editorDidMountWrapper = (
     currentEditor: monaco.editor.IStandaloneCodeEditor,
@@ -88,7 +91,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
 
   const handleFullScreenClick = (): void => {
     setFullScreen(true);
-    setSize({ width: '98%', height: '950px' });
+    setSize({ width: '1196px', height: '950px' });
   };
 
   const handleMinimize = (): void => {
@@ -103,7 +106,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
           <Label label={label} />
         </S.LabelWrapper>
       )}
-      <S.MonacoWrapper error={error}>
+      <S.MonacoWrapper error={error} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}>
         <MonacoEditorBase
           options={{ ...MONACO_EDITOR_DEFAULT_OPTIONS, ...options }}
           onChange={onChangeWrapper}
@@ -113,7 +116,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
           height={size.height}
           {...props}
         />
-        <S.FullScreenWrapper>
+        <S.FullScreenWrapper height={size.height}>
           <Icon component={<FullScreenM />} color={theme.palette['grey-600']} onClick={handleFullScreenClick} />
         </S.FullScreenWrapper>
       </S.MonacoWrapper>

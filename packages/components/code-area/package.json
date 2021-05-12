@@ -36,6 +36,7 @@
     "@synerise/ds-input": "^0.17.17",
     "@synerise/ds-modal": "^0.13.31",
     "@synerise/ds-typography": "^0.11.0",
+    "@synerise/ds-button": "^0.13.49",
     "lodash": "^4.17.11",
     "monaco-editor": "^0.23.0",
     "react-monaco-editor": "^0.41.2"

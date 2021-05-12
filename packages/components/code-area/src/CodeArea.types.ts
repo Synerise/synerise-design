@@ -2,9 +2,9 @@ import * as React from 'react';
 import { MonacoEditorProps } from 'react-monaco-editor';
 
 export type CodeAreaProps = MonacoEditorProps & {
-  onChangeDebounced: boolean;
-  onChangeDebouncedWait: number;
   theme: Record<string, string>;
+  onChangeDebounced?: boolean;
+  onChangeDebouncedWait?: number;
   description?: React.ReactNode;
   label?: React.ReactNode;
   error?: boolean;

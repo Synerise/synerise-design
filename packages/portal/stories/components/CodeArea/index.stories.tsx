@@ -1,11 +1,24 @@
 import * as React from 'react';
 import CodeArea from '@synerise/ds-code-area';
 import { text, boolean } from '@storybook/addon-knobs';
+import { withState } from '@dump247/storybook-state';
 
 const stories = {
-  default: () => ({
-    onChange: (val, event) => console.log('val ', val, ' event ', event),
-    value: text('Set value', ''),
+  default: withState({
+    value: 'Test',
+  })(({store}) => {
+    const handleOnChange = (value) => {
+      store.set({
+        value,
+      });
+    };
+
+    return (
+      <CodeArea
+        onChange={handleOnChange}
+        value={store.state.value}
+      />
+    )
   }),
   withLabel: () => ({
     onChange: (val, event) => console.log('val ', val, ' event ', event),
