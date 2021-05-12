@@ -1,10 +1,10 @@
-export const getEditorColor = (error: boolean) => {
+export const getEditorColor = (error: boolean): string => {
   if(error)
     return 'red-100';
   return 'white';
 }
 
-export const getGutterColor = (focused: boolean, error: boolean) => {
+export const getGutterColor = (focused: boolean, error: boolean): string => {
   if(error)
     return 'red-200';
   if(focused)

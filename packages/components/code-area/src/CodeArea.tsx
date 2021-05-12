@@ -106,7 +106,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
           <Label label={label} />
         </S.LabelWrapper>
       )}
-      <S.MonacoWrapper error={error} onFocus={() => setFocused(true)} onBlur={() => setFocused(false)}>
+      <S.MonacoWrapper error={error} onFocus={(): void => setFocused(true)} onBlur={(): void => setFocused(false)}>
         <MonacoEditorBase
           options={{ ...MONACO_EDITOR_DEFAULT_OPTIONS, ...options }}
           onChange={onChangeWrapper}

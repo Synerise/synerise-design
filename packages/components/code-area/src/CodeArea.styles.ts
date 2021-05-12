@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const FullScreenWrapper = styled.div<{height: string}>`
   position: absolute;
   top: 0;
   right: 0;
-  height: ${props => props.height};
+  height: ${(props): string => props.height};
   display: none;
   padding-right: 8px;
   background-color: white;
@@ -20,12 +20,12 @@ export const MonacoWrapper = styled.div<{ error?: boolean}>`
   border: solid ${(props): string => props?.error ? '2px' : '1px'} ${(props): string => props?.error ? props.theme.palette['red-600'] : props.theme.palette['grey-300']};
   
   &:focus-within, :active {
-    ${props => !props.error && css`
-      border: solid 2px ${(props): string => props.theme.palette['blue-600']};
+    ${(props): FlattenSimpleInterpolation | false => !props.error && css`
+      border: solid 2px ${props.theme.palette['blue-600']};
     `}
     ${FullScreenWrapper} {
       display: block;
-      ${props => props.error && css`
+      ${(props): FlattenSimpleInterpolation | false | undefined => props.error && css`
         background-color: ${props.theme.palette['red-100']}
       `}
     };
