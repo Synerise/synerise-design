@@ -237,7 +237,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
       border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
 
       &:hover {
-        background-color: ${({ theme }): string => theme.palette['blue-050']};
+        background-color: ${({ theme }): string => theme.palette['blue-100']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
       }
 
