@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.50](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.49...@synerise/ds-button@0.13.50) (2021-05-14)
+
+
+### Bug Fixes
+
+* **button:** fix expander styles ([eb72527](https://github.com/synerise/synerise-design/commit/eb72527303f525bc26c6174e7e7457546841b3ab))
+
+
+
+
+
 ## [0.13.49](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.48...@synerise/ds-button@0.13.49) (2021-05-06)
 
 **Note:** Version bump only for package @synerise/ds-button

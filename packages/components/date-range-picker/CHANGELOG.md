@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.17...@synerise/ds-date-range-picker@0.9.18) (2021-05-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** validator fixes ([d136ad1](https://github.com/Synerise/synerise-design/commit/d136ad17993b618ebfd591ebd281655961ca2ff7))
+
+
+
+
+
 ## [0.9.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.16...@synerise/ds-date-range-picker@0.9.17) (2021-05-10)
 
 
