@@ -86,7 +86,6 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { state } = this;
     const { activeType, rangeClipboard } = state;
     const activeValue = state[activeType] as FilterValue;
-    console.log(activeValue);
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
     const { intl, savedFilters, texts, hideFooter, valueSelectionModes } = this.props;
