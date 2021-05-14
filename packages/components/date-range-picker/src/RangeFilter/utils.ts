@@ -160,7 +160,11 @@ export const denormalizeValue = (values: FilterValue<FilterDefinition>): Partial
   definition: denormalizers[values.type](values),
 });
 
-export const isValidValue = (value: FilterValue<FilterDefinition>): boolean => validators[value.type](value);
+const alwaysValid = (): true => true;
+export const isValidValue = (value: FilterValue<FilterDefinition>): boolean => {
+  const validator = typeof validators[value?.type] === 'function' ? validators[value.type] : alwaysValid;
+  return validator(value);
+};
 
 export const isDuplicate = (itemsList: SavedFilter[], item: SavedFilter): boolean => {
   return itemsList.some(i => i.name.toLowerCase() === item.name.toLowerCase() && i.id !== item.id);
