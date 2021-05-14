@@ -203,7 +203,9 @@ export const AntdButton = styled(
         &.ant-btn {
           &:not(:disabled) {
             svg {
-              fill: ${props.iconColor ? props.theme.palette[`${props.iconColor}-600`] : props.theme.palette['grey-600']};
+              fill: ${props.iconColor
+                ? props.theme.palette[`${props.iconColor}-600`]
+                : props.theme.palette['grey-600']};
             }
             &:hover {
               svg {
@@ -277,7 +279,7 @@ export const AntdButton = styled(
     ${(props): FlattenSimpleInterpolation | false =>
       props.mode === 'single-icon' &&
       css`
-        &.ant-btn {
+        &.ant-btn:not(.ds-expander) {
           display: flex;
           align-items: center;
           justify-content: center;

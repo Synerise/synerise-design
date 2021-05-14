@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.130.0](https://github.com/synerise/synerise-design/compare/portal@0.129.1...portal@0.130.0) (2021-05-10)
+
+
+### Features
+
+* **table:** add new sorting to GroupTable ([e6c897e](https://github.com/synerise/synerise-design/commit/e6c897ef10d5c7b9fa1d4e0fcb6edc32acc0f7e9))
+
+
+
+
+
 ## [0.129.1](https://github.com/synerise/synerise-design/compare/portal@0.129.0...portal@0.129.1) (2021-05-06)
 
 **Note:** Version bump only for package portal
