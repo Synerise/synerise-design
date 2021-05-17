@@ -10,7 +10,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
-import { RowType } from '../Table.types';
+import { RowType, DSTableProps } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
@@ -234,7 +234,7 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   };
 
   const renderBody = React.useCallback(
-    (rawData, meta): React.ReactNode => {
+    (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
         // eslint-disable-next-line no-param-reassign
@@ -248,7 +248,15 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
               itemCount={data.length}
               itemSize={cellHeight}
               width={tableWidth}
-              itemData={{ mergedColumns, selection, onRowClick, dataSource: data, infiniteScroll, cellHeight }}
+              itemData={{
+                mergedColumns,
+                selection,
+                onRowClick,
+                dataSource: data,
+                infiniteScroll,
+                cellHeight,
+                defaultTableProps,
+              }}
               itemKey={(index): string => {
                 return String(getRowKey(data[index]));
               }}

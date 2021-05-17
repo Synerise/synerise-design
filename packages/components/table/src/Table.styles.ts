@@ -307,6 +307,10 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     overflow: auto hidden;
   }
 
+  .virtual-table .virtual-table-row:not(:hover) .virtual-table-cell.ant-table-column-sort {
+    background-color: ${({ theme }): string => theme.palette['blue-050']};
+  }
+
   & .ant-table .ant-table-header {
     overflow: visible !important; // overwrite antd's inline style
   }

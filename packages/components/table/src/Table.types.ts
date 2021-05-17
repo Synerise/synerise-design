@@ -84,6 +84,23 @@ export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   sortRender?: SortRender<T>;
 };
 
+type AntTableComponentsType<T> = AntTableProps<T>['components'];
+
+type DSTableComponentsType<T> = AntTableComponentsType<T> & {
+  // This type has been copied from Ant and extended because it's not accessible directly
+  body?: (
+    data: T[],
+    info: {
+      scrollbarSize: number;
+      ref: React.Ref<{
+        scrollLeft: number;
+      }>;
+      onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
+    },
+    defaultTableProps?: DSTableProps<T>
+  ) => React.ReactNode;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
   title?: string | React.ReactNode;
@@ -105,5 +122,6 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   hideColumnNames?: boolean;
   columns?: DSColumnType<T>[];
   locale?: Locale;
+  components?: AntTableComponentsType<T> | DSTableComponentsType<T>;
   renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
 }
