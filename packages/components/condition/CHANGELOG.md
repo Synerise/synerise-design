@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.6...@synerise/ds-condition@0.7.7) (2021-05-18)
+
+
+### Bug Fixes
+
+* **condition:** removes focus on preselected param ([4eff5bc](https://github.com/Synerise/synerise-design/commit/4eff5bc43aaaa6ecf0e11d3dad2793da7f551fe4))
+
+
+
+
+
 ## [0.7.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.5...@synerise/ds-condition@0.7.6) (2021-05-14)
 
 **Note:** Version bump only for package @synerise/ds-condition
