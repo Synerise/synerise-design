@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-description",
-  "version": "0.2.43",
+  "version": "0.2.46",
   "description": "Description UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,12 +32,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-avatar": "^0.13.8",
-    "@synerise/ds-button": "^0.13.49",
-    "@synerise/ds-core": "^0.30.4",
-    "@synerise/ds-icon": "^0.44.2",
-    "@synerise/ds-tooltip": "^0.10.34",
-    "@synerise/ds-typography": "^0.11.1",
+    "@synerise/ds-avatar": "^0.13.11",
+    "@synerise/ds-button": "^0.13.52",
+    "@synerise/ds-core": "^0.30.6",
+    "@synerise/ds-icon": "^0.44.4",
+    "@synerise/ds-tooltip": "^0.10.37",
+    "@synerise/ds-typography": "^0.11.3",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {
@@ -46,6 +46,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.16.1"
+    "@synerise/ds-utils": "^0.16.3"
   }
 }

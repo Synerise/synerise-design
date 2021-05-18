@@ -88,6 +88,7 @@ addParameters({
   },
   viewport: {
     viewports: VIEWPORTS,
+    defaultViewport: 'responsive',
   }
 });
 
