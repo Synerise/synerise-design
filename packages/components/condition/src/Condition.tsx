@@ -79,12 +79,15 @@ const Condition: React.FC<ConditionProps> = ({
       steps &&
       steps.reduce((id: string | number | undefined, step: ConditionStep) => {
         let result = id;
-        const conditions = step.conditions.map((condition: StepConditions) => condition.id);
+        const conditions = step.conditions.map((condition: StepConditions) => ({
+          id: condition.id,
+          value: condition.parameter?.value,
+        }));
         const oldStep = prevSteps.find((prevStep: ConditionStep) => prevStep.id === step.id);
         if (oldStep) {
           const oldConditions = oldStep.conditions.map((condition: StepConditions) => condition.id);
-          const newCondition = conditions.find(condId => oldConditions.indexOf(condId) === -1);
-          result = newCondition || result;
+          const newCondition = conditions.find(condition => oldConditions.indexOf(condition.id) === -1);
+          result = newCondition && !newCondition.value ? newCondition.id : result;
         } else {
           result = step.conditions[0]?.id;
         }
@@ -95,7 +98,7 @@ const Condition: React.FC<ConditionProps> = ({
       setCurrentConditionId(newConditionId);
       setCurrentField(PARAMETER);
     }
-  }, [currentConditionId, prevSteps, steps]);
+  }, [currentConditionId, currentField, prevSteps, steps]);
 
   const clearConditionRow = React.useCallback(
     step => {

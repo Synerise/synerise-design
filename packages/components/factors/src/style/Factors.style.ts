@@ -6,6 +6,7 @@ import { FactorInput } from '../FactorValue/FactorValue.style';
 // eslint-disable-next-line import/prefer-default-export
 export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
   && {
+    display: flex;
     ${OuterWrapper} {
       margin: 0;
     }
