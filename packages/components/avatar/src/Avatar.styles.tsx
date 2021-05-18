@@ -186,7 +186,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
 
         .ant-avatar-string {
           line-height: 84px;
-          font-size: 16px;
+          font-size: 18px;
         }
 
         ${props.icon &&
@@ -204,7 +204,7 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
         width: 120px;
         min-width: 120px;
         height: 120px;
-        font-size: 21px;
+        font-size: 22px;
 
         .ant-avatar-string {
           line-height: 120px;
