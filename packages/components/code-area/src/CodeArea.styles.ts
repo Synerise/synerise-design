@@ -18,10 +18,19 @@ export const MonacoWrapper = styled.div<{ error?: boolean}>`
   position: relative;
   border-radius: 3px;
   border: solid ${(props): string => props?.error ? '2px' : '1px'} ${(props): string => props?.error ? props.theme.palette['red-600'] : props.theme.palette['grey-300']};
+  margin: ${(props): string => props?.error ? '-2px' : '-1px'};
+  
+  &:hover {
+    ${(props): FlattenSimpleInterpolation | false => !props.error && css`
+      border: solid 1px ${props.theme.palette['grey-400']};
+      margin: -1px;
+    `}
+  };
   
   &:focus-within, :active {
     ${(props): FlattenSimpleInterpolation | false => !props.error && css`
       border: solid 2px ${props.theme.palette['blue-600']};
+      margin: -2px;
     `}
     ${FullScreenWrapper} {
       display: block;
@@ -43,5 +52,9 @@ export const LabelWrapper = styled.div`
   pointer-events: none;
   padding: 8px 0;
 `
+
+export const ErrorWrapper = styled.div`
+  margin-top: 2px;
+`;
 
 

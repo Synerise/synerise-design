@@ -7,9 +7,9 @@ import { Description, ErrorText } from '@synerise/ds-typography';
 import Icon from '@synerise/ds-icon';
 import { FullScreenM } from '@synerise/ds-icon/dist/icons';
 import Modal from '@synerise/ds-modal';
+import Tooltip from '@synerise/ds-tooltip';
 
 import { removeContextMenuElements } from './helpers/contextMenu';
-import { getEditorColor, getGutterColor } from './helpers/helpers';
 import * as S from './CodeArea.styles';
 import './style/index.less';
 import { CodeAreaProps } from './CodeArea.types';
@@ -19,7 +19,8 @@ import {
   MONACO_EDITOR_LAYOUT_EVENT_NAME,
   MONACO_EDITOR_MENU_ID,
   MONACO_EDITOR_MENU_IDS_TO_REMOVE,
-  transparentColorCode,
+  syneriseThemeColors,
+  syneriseThemeRules
 } from './consts';
 
 const CodeArea: React.FC<CodeAreaProps> = ({
@@ -33,6 +34,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
   theme,
   error,
   errorText,
+  tooltipText,
   ...props
 }) => {
   const [size, setSize] = React.useState<{ width: string; height: string }>({ width: '282px', height: '118px' });
@@ -66,14 +68,8 @@ const CodeArea: React.FC<CodeAreaProps> = ({
     monaco.editor.defineTheme('synerise-theme', {
       base: 'vs',
       inherit: true,
-      rules: [],
-      colors: {
-        'editor.background': `${theme.palette[getEditorColor(showError)]}`,
-        'editorGutter.background': `${theme.palette[getGutterColor(focused, showError)]}`,
-        'editorLineNumber.foreground': '#404c5a',
-        'editor.lineHighlightBackground': transparentColorCode,
-        'editor.lineHighlightBorder': transparentColorCode,
-      },
+      rules: syneriseThemeRules(),
+      colors: syneriseThemeColors(theme, showError, focused),
     });
   }, [theme, showError, focused]);
 
@@ -106,7 +102,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
           <Label label={label} />
         </S.LabelWrapper>
       )}
-      <S.MonacoWrapper error={error} onFocus={(): void => setFocused(true)} onBlur={(): void => setFocused(false)}>
+      <S.MonacoWrapper error={showError} onFocus={(): void => setFocused(true)} onBlur={(): void => setFocused(false)}>
         <MonacoEditorBase
           options={{ ...MONACO_EDITOR_DEFAULT_OPTIONS, ...options }}
           onChange={onChangeWrapper}
@@ -117,10 +113,16 @@ const CodeArea: React.FC<CodeAreaProps> = ({
           {...props}
         />
         <S.FullScreenWrapper height={size.height}>
-          <Icon component={<FullScreenM />} color={theme.palette['grey-600']} onClick={handleFullScreenClick} />
+          <Tooltip title={tooltipText || 'Full screen'}>
+            <Icon component={<FullScreenM />} color={theme.palette['grey-600']} onClick={handleFullScreenClick} />
+          </Tooltip>
         </S.FullScreenWrapper>
       </S.MonacoWrapper>
-      {showError && <ErrorText>{errorText}</ErrorText>}
+      {showError && (
+        <S.ErrorWrapper>
+          <ErrorText>{errorText}</ErrorText>
+        </S.ErrorWrapper>
+      )}
       {description && (
         <S.LabelWrapper>
           <Description>{description}</Description>
@@ -138,7 +140,7 @@ const CodeArea: React.FC<CodeAreaProps> = ({
       footer={null}
       title={<S.LabelModalWrapper>{label}</S.LabelModalWrapper>}
     >
-      <S.MonacoWrapper error={error}>
+      <S.MonacoWrapper error={showError}>
         <MonacoEditorBase
           options={{ ...MONACO_EDITOR_DEFAULT_OPTIONS, ...options }}
           onChange={onChangeWrapper}

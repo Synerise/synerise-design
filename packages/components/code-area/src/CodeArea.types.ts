@@ -9,6 +9,7 @@ export type CodeAreaProps = MonacoEditorProps & {
   label?: React.ReactNode;
   error?: boolean;
   errorText?: React.ReactNode;
+  tooltipText?: React.ReactNode;
 };
 
 type CommandType = {

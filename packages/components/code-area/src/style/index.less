@@ -9,8 +9,29 @@
 
 .monaco-scrollable-element {
   margin-top: 4px;
+  left: 38px !important;
 }
 
 .line-numbers {
   left: -4px !important;
+}
+
+.monaco-editor{
+  &:focus-within {
+    .current-line {
+      background-color: #d9eeff;
+    }
+  }
+}
+
+.view-line {
+  left: 4px !important;
+}
+
+.cigr {
+  display: none;
+}
+
+.cigra {
+  display: none;
 }
