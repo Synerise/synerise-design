@@ -41,7 +41,7 @@ const mapperOfIcons = {
   'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx/>
 };
 
-const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry }) => {
+const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry,retryButtonProps }) => {
 
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
@@ -55,7 +55,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
     setPressed(false);
   };
   return (
-    <S.FileViewContainer disabled={disabled} error={hasError} removable={removable} type="button">
+    <S.FileViewContainer success={success} progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
         <S.PreviewImage>
           <Icon component={mapperOfIcons[file.type]} size={40} />
@@ -66,18 +66,20 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
         </S.PlaceholderImage>
       )}
 
-      <S.Info>
+      <S.Info progress={hasProgress}>
         {hasProgress ? (
           <>
             <S.Name>
               {file.name} <S.FileWeight>{texts.fileWeight}</S.FileWeight>
             </S.Name>
+            <div style={{display: 'flex'}}>
             <ProgressBar amount={100} percent={texts.percent} />
             <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
               <Tooltip title={texts.removeTooltip}>
                 <Icon component={<Close3M />} size={20} />
               </Tooltip>
             </S.RemoveWrapper>
+            </div>
           </>
         ) : (
           <>
@@ -93,13 +95,15 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
           </>
         )}
       </S.Info>
-      {error && retry && (
-        <Button mode="icon-label" type="ghost-primary">
+      {error && retry && !hasProgress && (
+        <Button onClick={(event): void=> {onRemove && onRemove();
+        if (retryButtonProps?.onClick) {
+        retryButtonProps.onClick(event)}}} mode="icon-label" type="ghost-primary">
           <Icon component={<RepeatM />} />
           {texts.retryLabel}
         </Button>
       )}
-      {success && !disabled && (
+      {!error && !disabled && !hasProgress && (
         <S.CheckButtonWrapper data-testid="fileview-check">
           <Icon component={<Check3M />} size={20} />
         </S.CheckButtonWrapper>

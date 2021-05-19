@@ -1,9 +1,10 @@
 import styled, { SimpleInterpolation } from 'styled-components';
-import { Description, Label } from '@synerise/ds-typography';
+import {  Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
+    display: flex;
     fill: ${(props): string => props.theme.palette['grey-700']};
   }
 `;
@@ -30,20 +31,14 @@ export const PlaceholderImage = styled.div`
     fill: ${(props): string => props.theme.palette['grey-500']};
   }
 `;
-
-export const FileAvatarContainer = styled.div`
-  display: flex;
+export const FileViewContainer = styled.div`
+  padding-bottom: 8px;
 `;
-export const FileViewContainer = styled.div``;
 
 export const Info = styled.div`
   overflow: hidden;
   margin: 0 0 0 4px;
   width: 100%;
-`;
-export const DescriptionUploader = styled(Description)`
-  margin: 16px 0 8px 0;
-  color: ${(props): string => props.theme.palette['grey-500']};
 `;
 
 export const Name = styled(Label)`
@@ -86,49 +81,6 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
     }
   }
 `;
-export const RemoveWrapper = styled.div<{ pressed?: boolean }>`
-  z-index: 100;
-  height: 0;
-  width: 0;
-  position: relative;
-  bottom: 10px;
-  left: 68px;
-  cursor: pointer;
-  overflow: hidden;
-
-  ${IconContainer} {
-    transition: fill 0.3s;
-    fill: ${(props): string => props.theme.palette['red-600']};
-    &:hover {
-      fill: ${(props): string => props.theme.palette['red-600']};
-    }
-  }
-`;
-export const AvatarContainer = styled.div<{ source: string; disabled?: boolean; removable?: boolean }>`
-  background: url('${(props): string => props.source}') 50% 50% no-repeat;
-  background-size: cover;
-  min-width: 80px;
-  min-height: 80px;
-  width: 80px;
-  height: 80px;
-  border-radius: 3px;
-  overflow: visible;
-  margin-right: 20px;
-  ${(props): SimpleInterpolation =>
-    props.disabled &&
-    `
-    background-color: ${props.theme.palette['grey-100']};
-    opacity: 0.4;
-  `};
-   
-   &:hover {
-     ${RemoveWrapper} {
-       display: flex;
-       overflow: visible;
-     }
-   }
-  
-`;
 
 export const FileView = styled.button<{ disabled?: boolean; error?: boolean; removable?: boolean; progress?: boolean }>`
   background-color: ${(props): string => props.theme.palette['grey-100']};
@@ -160,9 +112,9 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
     }
 
     ${(props): SimpleInterpolation =>
-      props.removable &&
-      !props.disabled &&
-      `
+  props.removable &&
+  !props.disabled &&
+  `
       ${RemoveButtonWrapper} {
         display: block;
       }
@@ -191,15 +143,15 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   }
 
   ${(props): SimpleInterpolation =>
-    props.disabled &&
-    `
+  props.disabled &&
+  `
     background-color: ${props.theme.palette['grey-100']};
     opacity: 0.4;
   `};
 
   ${(props): SimpleInterpolation =>
-    props.error &&
-    `
+  props.error &&
+  `
     && {
       padding-right: 7px;
       border: 1px solid ${props.theme.palette['red-600']};
@@ -210,8 +162,8 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
     }
   `};
   ${(props): SimpleInterpolation =>
-    props.progress &&
-    `
+  props.progress &&
+  `
     && {
       padding-right: 7px;
     }

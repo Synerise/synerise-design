@@ -4,15 +4,16 @@ import { useDropzone } from 'react-dropzone';
 
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import AddM from '@synerise/ds-icon/dist/icons/AddM';
 import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
-import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
-import FileView from './FileView/FileView';
-import { FileContent, FileUploaderProps } from './FileUploader.types';
-import * as S from './FileUploader.styles';
-import { FileViewTexts } from './FileView/FileView.types';
+import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import Button from '@synerise/ds-button';
 
+import * as S from './ItemUploader.styles';
+
+import { FileUploaderProps, FileContent } from '../FileUploader.types';
+import { FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
+import FileViewItem from './UploaderButton/FileViewItem';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -26,12 +27,11 @@ function readAsText(file: File): Promise<FileContent> {
   });
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({
+const ItemUploader: React.FC<FileUploaderProps> = ({
   className,
   onUpload,
   disabled,
   accept,
-  error,
   label,
   onRemove,
   description,
@@ -40,10 +40,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   mode = 'single',
   removable = true,
   files = [],
-  retry,
   texts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
-    buttonLabelLarge: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL-LARGE" />,
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
     removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
@@ -84,7 +82,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     [filesAmount, files, setUploadSuccess, readFilesContent]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     accept: accept ? accept.join(',') : undefined,
     multiple: mode !== 'single',
     onDrop,
@@ -97,11 +95,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     throw new Error('Invalid value of property "filesAmount" ');
   }
 
-  const hasError = Boolean(error) || !uploadSuccess;
-  const [pressed, setPressed] = React.useState<boolean>(false);
-  const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
-    <S.Container className={`ds-file-uploader ${className || ''}`}>
+    <S.Container className={`ds-file-avatar-uploader ${className || ''}`}>
       {label && (
         <S.Label>
           <span>{label}</span>
@@ -114,66 +109,34 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           )}
         </S.Label>
       )}
-        <>
+      {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
+        <S.UploaderContainer>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
+          <S.DropAreaContainer canUploadMore={mode !== 'single' && files.length > 0}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <input {...getInputProps()} data-testid="droparea-input" />
-
-            <S.DropAreaButton
-              type="button"
-              hidden={!(mode !== 'single' && (filesAmount ? files.length < filesAmount : true) || files.length === 0)}
-              mode={mode}
-              disabled={disabled}
-              isDropping={isDragActive}
-              hasError={hasError}
-              onMouseDown={(): void => setPressed(true)}
-              onMouseUp={(): void => setPressed(false)}
-              pressed={pressed}
-              data-testid="droparea"
-              filesLength={files.length}
-            >
-              {mode === 'multi-large' && files.length === 0 ? (
-                <>
-                  <Icon component={<FileUploadL />} size={48} />
-                  <S.LargeDropAreaLabel>{texts.buttonLabelLarge}</S.LargeDropAreaLabel>
-                  <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
-                </>
-              ) : (
-                <>
-                  <Icon component={<AddM />} size={24} />
-                  <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
-                </>
-              )}
-            </S.DropAreaButton>
+            <input {...getInputProps()} data-testid="drop-area-input" />
+              <>
+                <Button {...getRootProps()} disabled={disabled} type="ghost-primary" mode="icon-label">
+                  <Icon component={<Add3M />} size={24} />
+                  Add file
+                </Button>
+              </>
           </S.DropAreaContainer>
-        </>
+        </S.UploaderContainer>
+      )}
       {files.length > 0 &&
       files.map((file, index) => (
-        <FileView
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          texts={texts as FileViewTexts}
+        <FileViewItem
+          key={file.file.lastModified}
+          texts={texts as FileViewAvatarTexts}
           removable={removable}
           onRemove={(): void => onRemove && onRemove(file.file, index)}
           data={file}
-          retry={retry}
-          retryButtonProps={{...getRootProps()}}
+          description={description}
         />
       ))}
-      {hasError &&
-        errors &&
-        errors.map((errorText, index) => (
-          <S.ErrorMessage
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-          >
-            {errorText}
-          </S.ErrorMessage>
-        ))}
-      {description && <S.Description hasError={hasError}>{description}</S.Description>}
     </S.Container>
   );
 };
 
-export default FileUploader;
+export default ItemUploader;
