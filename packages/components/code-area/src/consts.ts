@@ -35,7 +35,7 @@ export const syneriseThemeColors = (theme: Record<string,string>, showError: boo
 
 // Can not pass hex as color so we need to hard code them
 // for more tokens visit editor.main.js 95301
-export const syneriseThemeRules = (): { token: string, foreground: string }[] => ([
+export const syneriseThemeRules = (): { token: string; foreground: string }[] => ([
   { token: '', foreground:  '57616d'},
   { token: 'comment' , foreground: '0bcb38'},
   { token: 'attribute.value', foreground: 'f52922'},
