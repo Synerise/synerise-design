@@ -153,6 +153,13 @@ export const ErrorMessage = styled(Typography.Text)`
     color: ${(props): string => props.theme.palette['red-600']};
   }
 `;
+export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
+  && {
+    margin: ${(props): SimpleInterpolation => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
+    display: block;
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
+`;
 
 export const Label = styled(TypographyLabel)`
   && {

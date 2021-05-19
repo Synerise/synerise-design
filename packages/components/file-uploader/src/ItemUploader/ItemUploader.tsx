@@ -37,6 +37,7 @@ const ItemUploader: React.FC<FileUploaderProps> = ({
   description,
   tooltip,
   filesAmount,
+  error,
   mode = 'single',
   removable = true,
   files = [],
@@ -94,6 +95,8 @@ const ItemUploader: React.FC<FileUploaderProps> = ({
     filesAmount = 1;
     throw new Error('Invalid value of property "filesAmount" ');
   }
+  const hasError = Boolean(error) || !uploadSuccess;
+  const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
 
   return (
     <S.Container className={`ds-file-avatar-uploader ${className || ''}`}>
@@ -115,26 +118,37 @@ const ItemUploader: React.FC<FileUploaderProps> = ({
           <S.DropAreaContainer canUploadMore={mode !== 'single' && files.length > 0}>
             {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <input {...getInputProps()} data-testid="drop-area-input" />
-              <>
-                <Button {...getRootProps()} disabled={disabled} type="ghost-primary" mode="icon-label">
-                  <Icon component={<Add3M />} size={24} />
-                  Add file
-                </Button>
-              </>
+            <>
+              <Button {...getRootProps()} disabled={disabled} type="ghost-primary" mode="icon-label">
+                <Icon component={<Add3M />} size={24} />
+                Add file
+              </Button>
+            </>
           </S.DropAreaContainer>
         </S.UploaderContainer>
       )}
       {files.length > 0 &&
-      files.map((file, index) => (
-        <FileViewItem
-          key={file.file.lastModified}
-          texts={texts as FileViewAvatarTexts}
-          removable={removable}
-          onRemove={(): void => onRemove && onRemove(file.file, index)}
-          data={file}
-          description={description}
-        />
-      ))}
+        files.map((file, index) => (
+          <FileViewItem
+            key={file.file.lastModified}
+            texts={texts as FileViewAvatarTexts}
+            removable={removable}
+            onRemove={(): void => onRemove && onRemove(file.file, index)}
+            data={file}
+            description={description}
+          />
+        ))}
+      {hasError &&
+        errors &&
+        errors.map((errorText, index) => (
+          <S.ErrorMessage
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+          >
+            {errorText}
+          </S.ErrorMessage>
+        ))}
+      {description && <S.Description hasError={hasError}>{description}</S.Description>}
     </S.Container>
   );
 };
