@@ -16,6 +16,6 @@ describe('CodeArea', () => {
     );
 
     // ASSERT
+    expect(getByText('Label')).toBeTruthy();
   });
-
 });

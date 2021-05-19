@@ -24,7 +24,7 @@ export const MONACO_EDITOR_DEFAULT_OPTIONS = {
 };
 const transparentColorCode = '#00000000';
 
-export const syneriseThemeColors = (theme: Record<string,string>, showError: boolean, focused: boolean) => ({
+export const syneriseThemeColors = (theme: Record<string,string>, showError: boolean, focused: boolean): Record<string, string> => ({
   'editor.background': `${theme.palette[getEditorColor(showError)]}`,
   'editorGutter.background': `${theme.palette[getGutterColor(focused, showError)]}`,
   'editorLineNumber.foreground': '#404c5a',
@@ -33,9 +33,9 @@ export const syneriseThemeColors = (theme: Record<string,string>, showError: boo
   'editor.lineHighlightBorder': transparentColorCode,
 })
 
-//Can not pass hex as color so we need to hard code them
+// Can not pass hex as color so we need to hard code them
 // for more tokens visit editor.main.js 95301
-export const syneriseThemeRules = () => ([
+export const syneriseThemeRules = (): { token: string, foreground: string }[] => ([
   { token: '', foreground:  '57616d'},
   { token: 'comment' , foreground: '0bcb38'},
   { token: 'attribute.value', foreground: 'f52922'},
