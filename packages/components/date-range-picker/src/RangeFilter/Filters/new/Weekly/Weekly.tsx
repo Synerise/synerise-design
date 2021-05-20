@@ -20,12 +20,13 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_TIME_FORMAT,
   EMPTY_OBJECT,
-  MAX_RANGES,
+  DEFAULT_MAX_ENTRIES,
   RENDER_EMPTY_NODE_FN,
   NOOP,
 } from '../constants';
 
 const Weekly: React.FC<WeeklyProps> = ({
+  maxEntries = DEFAULT_MAX_ENTRIES,
   valueSelectionMode = ['Hour', 'Range'],
   onChange = NOOP,
   timeFormat = 'HH:mm',
@@ -267,9 +268,9 @@ const Weekly: React.FC<WeeklyProps> = ({
     ),
     [intl]
   );
-  const canAddRange = canAddAnotherRange(value, activeDays);
+  const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
   const isAnyDaySelected = activeDays.length > 0;
-  const shouldRenderAddButton = isAnyDaySelected && filteredSchedule.length < MAX_RANGES && canAddRange && !disabled;
+  const shouldRenderAddButton = isAnyDaySelected && filteredSchedule.length < maxEntries && canAddRange && !disabled;
   return (
     <S.NewFilterContainer ref={ref as React.RefObject<HTMLDivElement>}>
       <Grid

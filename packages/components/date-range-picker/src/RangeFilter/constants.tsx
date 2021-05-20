@@ -78,5 +78,4 @@ export const TYPES_DATA = {
   },
 };
 
-export const MAX_RULES_ALLOWED = 4;
 export const SPACE_UNICODE = '\u00A0';
