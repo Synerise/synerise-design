@@ -55,7 +55,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
     setPressed(false);
   };
   return (
-    <S.FileViewContainer success={success} progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
+    <S.FileViewContainer success={success} pressed={pressed} progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
         <S.PreviewImage>
           <Icon component={mapperOfIcons[file.type]} size={40} />

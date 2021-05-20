@@ -2,7 +2,6 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { RepeatM, FileTypeTextM, Close3M, FileM } from '@synerise/ds-icon/dist/icons';
-import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 import * as S from './FileViewItem.styles';
 import { FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 
@@ -45,7 +44,7 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
           </S.Info>
           {hasProgress && (
             <S.LoaderIcon>
-              <Loader color="blue" size="S" />
+              <S.SmallLoader color="blue" size="S" />
             </S.LoaderIcon>
           )}
           {error && (

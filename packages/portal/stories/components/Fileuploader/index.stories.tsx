@@ -88,74 +88,7 @@ const getAvatarUploaderProps = () => ({
 });
 
 const stories = {
-  Custom: () => {
-    const [files, setFiles] = React.useState([]);
-    const {
-      testFileError,
-      testFileProgress,
-      testFileDisable,
-      testFileSuccess,
-      okText,
-      cancelText,
-      removeConfirmTitle,
-      fileWeight,
-      percent,
-      buttonLabel,
-      buttonLabelLarge,
-      retryLabel,
-      buttonDescription,
-      size,
-      removeTooltip,
-      ...rest
-    } = getCustomUploaderProps();
-
-    const texts = {
-      buttonLabelLarge,
-      buttonLabel,
-      buttonDescription,
-      size,
-      okText,
-      cancelText,
-      fileWeight,
-      percent,
-      removeConfirmTitle,
-      removeTooltip,
-      retryLabel,
-    };
-
-    const getFiles = () => {
-      if (testFileError) {
-        return files.map(f => ({ ...f, error: 'Error notification' }));
-      }
-
-      if (testFileDisable) {
-        return files.map(f => ({ ...f, disabled: true }));
-      }
-
-      if (testFileProgress) {
-        return files.map(f => ({ ...f, progress: random(0, 100) }));
-      }
-      if (testFileSuccess) {
-        return files.map(f => ({ ...f, success: true }));
-      }
-      return files;
-    };
-
-    return (
-      <div style={{ margin: 24, width: 540, padding: 24, backgroundColor: 'white' }}>
-        <FileUploader
-          {...rest}
-          files={getFiles()}
-          texts={texts}
-          onUpload={newFiles => {
-            setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
-          }}
-          onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
-        />
-      </div>
-    );
-  },
-  DefaultUploader: () => {
+  Default: () => {
     const [files, setFiles] = React.useState([]);
     const {
       testFileError,
@@ -309,13 +242,80 @@ const stories = {
             'Mode',
             {
               single: 'single',
-              'multi-large': 'multi-large',
+              'multi': 'multi',
             },
             'single'
           )}
           filesAmount={number('Uploading files amount', 100)}
           files={getFiles()}
           texts={texts1}
+          onUpload={newFiles => {
+            setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
+          }}
+          onRemove={(rf, rfi) => setFiles(files.filter((f, i) => i !== rfi))}
+        />
+      </div>
+    );
+  },
+  Custom: () => {
+    const [files, setFiles] = React.useState([]);
+    const {
+      testFileError,
+      testFileProgress,
+      testFileDisable,
+      testFileSuccess,
+      okText,
+      cancelText,
+      removeConfirmTitle,
+      fileWeight,
+      percent,
+      buttonLabel,
+      buttonLabelLarge,
+      retryLabel,
+      buttonDescription,
+      size,
+      removeTooltip,
+      ...rest
+    } = getCustomUploaderProps();
+
+    const texts = {
+      buttonLabelLarge,
+      buttonLabel,
+      buttonDescription,
+      size,
+      okText,
+      cancelText,
+      fileWeight,
+      percent,
+      removeConfirmTitle,
+      removeTooltip,
+      retryLabel,
+    };
+
+    const getFiles = () => {
+      if (testFileError) {
+        return files.map(f => ({ ...f, error: 'Error notification' }));
+      }
+
+      if (testFileDisable) {
+        return files.map(f => ({ ...f, disabled: true }));
+      }
+
+      if (testFileProgress) {
+        return files.map(f => ({ ...f, progress: random(0, 100) }));
+      }
+      if (testFileSuccess) {
+        return files.map(f => ({ ...f, success: true }));
+      }
+      return files;
+    };
+
+    return (
+      <div style={{ margin: 24, width: 540, padding: 24, backgroundColor: 'white' }}>
+        <FileUploader
+          {...rest}
+          files={getFiles()}
+          texts={texts}
           onUpload={newFiles => {
             setFiles([...files, ...newFiles.map((file, index) => ({ file }))]);
           }}

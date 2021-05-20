@@ -145,6 +145,7 @@ export const FileViewContainer = styled.button<{
   removable?: boolean;
   success?: boolean;
   progress?: boolean;
+  pressed?: boolean;
 }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
@@ -188,6 +189,13 @@ export const FileViewContainer = styled.button<{
   &:focus {
     border-color: ${(props): string => props.theme.palette['blue-500']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
+    ${(props): SimpleInterpolation =>
+  props.pressed &&
+  `
+      ${CheckButtonWrapper} {
+        display: none;
+      }
+    `}
   }
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};

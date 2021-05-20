@@ -8,7 +8,7 @@ export const Container = styled.div`
 `;
 export const UploaderContainer = styled.div`
   align-items: center;
-  padding-right: 20px;
+  padding-right: 14px;
 `;
 export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
   && {
@@ -140,7 +140,7 @@ export const DropAreaButton = styled.button<{
   props.isDropping &&
   !props.disabled &&
   `
-      height: ${props.mode === 'multi-large' ? '168px' : 'auto'};
+      height: ${props.mode === 'multi-large' ? '200px' : '80px'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
 

@@ -1,6 +1,7 @@
-import styled, { SimpleInterpolation } from 'styled-components';
+import styled, { keyframes, SimpleInterpolation } from 'styled-components';
 import {  Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
@@ -18,6 +19,21 @@ export const RepeatIcon = styled.div`
 `;
 export const LoaderIcon = styled.div`
   padding-left: 10px;
+`;
+export const spinnerAnimation = keyframes`
+
+  0% {
+     transform: rotate(0deg);
+  }
+  100% {
+     transform: rotate(720deg);
+  }
+`;
+export const SmallLoader = styled(Loader)`
+  border: 1px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: ${spinnerAnimation} 2s linear infinite;
 `;
 
 export const PlaceholderImage = styled.div`
@@ -88,7 +104,7 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   border: 2px solid transparent;
   display: flex;
   align-items: center;
-  padding: 7px 7px 7px 4px;
+  padding: 7px 12px 7px 6px;
   height: 32px;
   text-align: left;
   line-height: initial;
@@ -101,7 +117,7 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
 
   &:hover {
     border-color: ${(props): string => props.theme.palette['grey-200']};
-    padding-right: ${(props): string => (props.removable ? '30px' : '7px')};
+    padding-right: ${(props): string => (props.removable ? '30px' : '12px')};
     ${Name} {
       color: ${(props): string => props.theme.palette['blue-600']};
     }
