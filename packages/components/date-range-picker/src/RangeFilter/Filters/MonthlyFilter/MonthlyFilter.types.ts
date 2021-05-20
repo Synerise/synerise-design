@@ -7,6 +7,7 @@ import { DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeF
 import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from '../../constants';
 
 export type MonthlyFilterProps = {
+  maxEntries?: number;
   value: Month[];
   onChange: (definition: Month[]) => void;
   intl: IntlShape;

@@ -1,4 +1,4 @@
-export const MAX_RANGES = 4;
+export const DEFAULT_MAX_ENTRIES = 4;
 export const DEFAULT_TIME_FORMAT = 'HH:mm:ss.SSS';
 export const DEFAULT_RANGE_START = '00:00:00.000';
 export const DEFAULT_RANGE_END = '23:59:59.999';

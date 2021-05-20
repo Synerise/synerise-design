@@ -10,7 +10,6 @@ import {
   MONTH_DAYS,
   DEFAULT_DAYS_OF_PERIODS,
   DEFAULT_COUNTED_FROM,
-  MAX_RULES_ALLOWED,
   defaultId,
   DAYS_OF_PERIOD_ENUM,
   COUNTED_FROM_ENUM,
@@ -21,6 +20,10 @@ import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilterState> {
+  static defaultProps = {
+    maxEntries: 4,
+  };
+
   state = {
     visible: {
       [defaultId]: true,
@@ -249,6 +252,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       timePickerProps,
       disabled,
       renderRangeFormSuffix,
+      maxEntries,
     } = this.props;
     const { visible } = this.state;
     const data = [...value];
@@ -335,7 +339,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           />
         ))}
         <S.AddContainer>
-          {!disabled && value.length < MAX_RULES_ALLOWED && (
+          {!disabled && value.length < Number(maxEntries) && (
             <Button.Creator
               label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE', defaultMessage: 'Add rule' })}
               onClick={this.handleAddRow}
