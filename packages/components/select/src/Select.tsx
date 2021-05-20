@@ -35,8 +35,8 @@ class Select extends React.Component<Props> {
       <>
         <S.Label label={label} tooltip={tooltip} />
         <S.SelectWrapper
-          withDescription={description}
-          withError={errorText}
+          description={Boolean(description)}
+          error={Boolean(errorText)}
           className={classNames(
             'ds-select-wrapper',
             { error: errorText || error },
@@ -67,7 +67,7 @@ class Select extends React.Component<Props> {
         </S.SelectWrapper>
 
         {errorText && (
-          <S.ErrorWrapper withDescription={description}>
+          <S.ErrorWrapper description={Boolean(description)}>
             <ErrorText>{errorText}</ErrorText>
           </S.ErrorWrapper>
         )}
