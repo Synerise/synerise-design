@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.35.4...@synerise/ds-table@0.35.5) (2021-05-20)
+
+
+### Bug Fixes
+
+* **table:** fix table head cells text position ([ac99de9](https://github.com/synerise/synerise-design/commit/ac99de99929db17842f3d089963071397bc645ce))
+
+
+
+
+
 ## [0.35.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.35.3...@synerise/ds-table@0.35.4) (2021-05-18)
 
 **Note:** Version bump only for package @synerise/ds-table
