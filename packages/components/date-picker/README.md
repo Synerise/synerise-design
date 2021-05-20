@@ -44,6 +44,7 @@ import DatePicker from '@synerise/ds-date-picker'
 | texts           | Object containing texts                                     | object               | {}         |
 | prefixel        | String or ReactNode to set prefix                           | string / ReactNode   | -          |
 | suffixel        | String or ReactNode to set suffix                           | string / ReactNode   | -          |
+| hideNow         | Hide now button                                             | boolean / undefined  | -          |
 
 ### Texts
 
