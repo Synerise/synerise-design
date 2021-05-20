@@ -102,15 +102,12 @@ const stories = {
 
     const editViewItem = (props, store): void => {
       store.set({
-        savedViews: store.state.savedViews.map(category => ({
-          ...category,
-          items: category.items.map(item => {
-            if(item.id === props.id) {
-              item.name = props.name;
-            }
-            return item;
-          }),
-        }))
+        savedViews: store.state.savedViews.map((view) => ({
+          items: view.items.map((item) => ({
+            ...item,
+            name: props.id === item.id ? props.name : item.name,
+          })),
+        })),
       });
     };
 
@@ -128,7 +125,7 @@ const stories = {
         categories: store.state.categories.map(category => ({
           ...category,
           items: category.items.map(item => {
-            if(item.id === props.id) {
+            if (item.id === props.id) {
               item.name = props.name;
             }
             return item;
@@ -482,7 +479,7 @@ const stories = {
       const evenRows = store.state.dataSource.map(row => row.key).filter((key, index) => index % 2);
       store.set({ selectedRows: evenRows });
     };
-    
+
     return (
       <>
         <Table

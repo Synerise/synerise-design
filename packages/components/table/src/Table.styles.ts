@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
-import { hexToRgba } from '@synerise/ds-utils';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
@@ -23,7 +22,11 @@ export const Size = styled.div`
   }
 `;
 
-export const Title = styled.div`
+export const TitleContainer = styled.div`
+  display: flex;
+  max-width: 100%;
+  min-width: 0;
+
   ${macro.small};
   color: ${(props): string => props.theme.palette['grey-700']};
   padding: 0 24px 0 0;
@@ -33,18 +36,37 @@ export const Title = styled.div`
   }
 `;
 
+export const TitlePartEllipsis = styled.span`
+  display: flex;
+  max-width: 100%;
+  min-width: 100px;
+
+  strong {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+`;
+
+export const TitlePart = styled.span`
+  flex-shrink: 0;
+`;
+
 export const TitleSeparator = styled.span`
   display: inline-block;
   vertical-align: middle;
+  flex-shrink: 0;
   width: 1px;
   height: 16px;
-  margin: -2px 12px 0px 12px;
+  margin: 1px 12px 0px 12px;
   background: ${({ theme }): string => theme.palette['grey-200']};
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
+  min-width: 0;
 `;
 
 export const Right = styled.div`
@@ -188,25 +210,43 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   }
 
   .ant-table .ant-table-thead th {
+    transition: background 0.3s, border-color 0.3s;
     background-color: ${({ theme }): string => theme.palette.white};
     border-bottom-color: ${({ theme }): string => theme.palette['grey-300']};
 
-    &:hover {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['grey-200'], 0.3)};
+    &.ant-table-column-has-sorters:hover {
+      background-color: ${({ theme }): string => theme.palette['grey-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
+
+      > * {
+        margin-bottom: -1px;
+      }
+    }
+
+    > * {
+      display: flex;
+      width: 100%;
+    }
+
+    [class^='ant-table-column-sorters'] {
+      width: 100%;
     }
 
     &.ant-table-column-sort {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+      background-color: ${({ theme }): string => theme.palette['blue-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
 
       &:hover {
-        background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.4)};
+        background-color: ${({ theme }): string => theme.palette['blue-050']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
       }
 
       & > [class^='ant-table-column-sorters'] {
         overflow: hidden;
+      }
+
+      > * {
+        margin-bottom: -1px;
       }
     }
 
@@ -221,23 +261,27 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     }
 
     &.ds-table-active-column {
-      background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-100'], 0.7)};
+      background-color: ${({ theme }): string => theme.palette['yellow-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-400']};
       cursor: default;
 
       &:hover {
-        background-color: ${({ theme }): string => hexToRgba(theme.palette['yellow-200'], 0.7)};
+        background-color: ${({ theme }): string => theme.palette['yellow-100']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['yellow-600']};
       }
 
       .ant-table-column-sorter {
         display: none;
       }
+
+      > * {
+        margin-bottom: -1px;
+      }
     }
   }
 
-  .ant-table tr.ant-table-row td.ant-table-column-sort {
-    background-color: ${({ theme }): string => hexToRgba(theme.palette['blue-200'], 0.1)};
+  .ant-table tr.ant-table-row:not(:hover) td.ant-table-column-sort {
+    background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
   .ant-table .ant-table-column-sorter {
@@ -257,5 +301,13 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
 
   .ant-table-wrapper.virtual-table.virtual-table-infinite-scroll .ant-table .ant-table-header {
     box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  }
+
+  .virtual-table .ant-table-container {
+    overflow: auto hidden;
+  }
+
+  & .ant-table .ant-table-header {
+    overflow: visible !important; // overwrite antd's inline style
   }
 `;

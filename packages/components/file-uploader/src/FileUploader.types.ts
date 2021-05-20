@@ -36,4 +36,5 @@ export interface FileUploaderProps {
   accept?: string[];
   onRemove?: (file: FileWithContent, index: number) => void;
   onUpload?: (files: FileWithContent[]) => void;
+  retry?: boolean;
 }
