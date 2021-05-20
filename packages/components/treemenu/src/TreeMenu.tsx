@@ -73,17 +73,23 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
     setLoaded(true);
   }, []);
 
-  const getRoot = React.useMemo(() => {
+  const treeRoot = React.useMemo(() => {
     return generateTree(dataSource);
   }, [dataSource]);
 
   const handleAdd = React.useCallback(
     (item, context) => {
-      const newItem = new TreeModel().parse({ ...initNewItem(), name: item.name, type: item.type });
+      const { expandedKeys, onItemExpandToggle } = restProps;
+      const newItem = new TreeModel().parse({ ...initNewItem(), name: item.name, type: item.type, editMode: true });
       context.addChild(newItem);
+      const path = context
+        .getPath()
+        .map((node: TreeNode) => node.model.id)
+        .filter(Boolean);
+      onItemExpandToggle && onItemExpandToggle([...(expandedKeys || []), ...path]);
       onChange([...context.getPath().shift().model.children]);
     },
-    [onChange]
+    [onChange, restProps]
   );
 
   const handleCopy = React.useCallback(
@@ -112,6 +118,10 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
 
   const handlePaste = React.useCallback(
     item => {
+      let target = item;
+      if (item === undefined) {
+        target = treeRoot;
+      }
       if (clipboard !== undefined) {
         const { name } = clipboard;
         const id = uuid();
@@ -122,13 +132,13 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
           name: `${name.replace(/ \([0-9+]\)$/, '')} (${copyCount})`,
           children: updateChildrenKeys(clipboard.children),
         });
-        item.addChild(duplicateItem);
+        target.addChild(duplicateItem);
 
         setCopyCount(copyCount + 1);
-        onChange([...item.getPath().shift()?.model.children]);
+        onChange([...target.getPath().shift()?.model.children]);
       }
     },
-    [clipboard, copyCount, onChange]
+    [clipboard, copyCount, treeRoot, onChange]
   );
 
   const handleDuplicate = React.useCallback(
@@ -188,8 +198,14 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
       <TreeMenuContext.Provider value={contextValue}>
         {showToolbar && (
           <Toolbar>
-            {/* eslint-disable-next-line react/jsx-handler-names */}
-            <AddModal texts={texts} itemTypes={addItemList} onItemAdd={handleAdd} context={getRoot} />
+            <AddModal
+              texts={texts}
+              itemTypes={addItemList}
+              onItemAdd={handleAdd}
+              context={treeRoot}
+              hasClipboard={clipboard !== undefined}
+              onItemPaste={handlePaste}
+            />
           </Toolbar>
         )}
         {showHeader && searchQuery.length === 0 && <Header texts={texts} count={count} />}

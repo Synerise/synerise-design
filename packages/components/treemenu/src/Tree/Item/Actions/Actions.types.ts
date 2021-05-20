@@ -5,7 +5,7 @@ export type ChangeAction = (item: TreeNode, items?: TreeNode[]) => void | false;
 export type WithChangeActions = {
   onDelete: ChangeAction;
   onEdit: ChangeAction;
-  onPaste: ChangeAction | boolean;
+  onPaste: (item?: TreeNode, items?: TreeNode[]) => void | false;
   onCopy: ChangeAction;
   onCut: ChangeAction;
   onDuplicate: ChangeAction;

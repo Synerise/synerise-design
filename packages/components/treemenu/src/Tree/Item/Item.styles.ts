@@ -124,10 +124,10 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   }
 
   ${Item} {
-    border-left: 2px solid transparent;
+    //border-left: 2px solid transparent;
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
-    box-shadow: none !important;
+    //box-shadow: none !important;
 
     :focus {
       background: none;
@@ -188,7 +188,17 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 
   :hover {
     ${Item} {
-      border-left-color: ${(props): string => props.theme.palette['blue-600']};
+      //border-left-color: ${(props): string => props.theme.palette['blue-600']};
+      &:before {
+        content: '';
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 2px;
+        background-color: ${(props): string => props.theme.palette['blue-600']};
+      }
     }
 
     ${DragHandle} {

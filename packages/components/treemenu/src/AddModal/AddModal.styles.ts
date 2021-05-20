@@ -4,6 +4,7 @@ import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 
 import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
+import ButtonGroup from '@synerise/ds-button-group';
 
 export const AddItemLayout = styled.div`
   display: flex;
@@ -44,6 +45,13 @@ export const TagItem = styled(Menu.Item)`
         visibility: visible;
       }
     }
+  }
+`;
+
+export const AddButtonWithPaste = styled(ButtonGroup)`
+  margin: 0;
+  .ant-btn-group {
+    margin: 0;
   }
 `;
 

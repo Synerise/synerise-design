@@ -37,7 +37,7 @@ export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   max-height: 32px;
   &:hover {
     svg {
-      fill: ${(props): string => props.theme.palette['blue-600']};
+      fill: ${(props): string => (!props.disabled ? props.theme.palette['blue-600'] : props.theme.palette['grey-600'])};
     }
   }
 `;

@@ -22,7 +22,7 @@ export type ItemProps = Omit<MenuItemProps, 'onClick'> &
     onAdd: (item: any, context: TreeNode | undefined) => void;
     onSelected: (selected: boolean) => void;
     onEditChange: (item: TreeNode, newName: string, newItems?: TreeNode[]) => void;
-    onExpandToggle: (expandedKeys: React.Key[], item: TreeNode, expanded: boolean) => void;
+    onExpandToggle: (expandedKeys: React.Key[], item?: TreeNode, expanded?: boolean) => void;
     onClick: (item: TreeNode) => void;
     onVisibilityChange: (item: TreeNode, visible: boolean) => void;
   };
