@@ -5,7 +5,7 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
   DEFAULT_TIME_FORMAT,
-  MAX_RANGES,
+  DEFAULT_MAX_ENTRIES,
   NOOP,
   EMPTY_OBJECT,
   RENDER_EMPTY_NODE_FN,
@@ -17,6 +17,7 @@ import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 const Daily: React.FC<DailyProps> = ({
+  maxEntries = DEFAULT_MAX_ENTRIES,
   disabled,
   value = [],
   onChange = NOOP,
@@ -106,7 +107,7 @@ const Daily: React.FC<DailyProps> = ({
             hideHeader
           />
         ))}
-      {value.length < MAX_RANGES && !disabled && (
+      {value.length < maxEntries && !disabled && (
         <AddButton
           label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add range' })}
           onClick={handleRangeAdd}

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.130.5](https://github.com/synerise/synerise-design/compare/portal@0.130.4...portal@0.130.5) (2021-05-20)
+
+
+### Bug Fixes
+
+* **table:** fix table head cells text position ([ac99de9](https://github.com/synerise/synerise-design/commit/ac99de99929db17842f3d089963071397bc645ce))
+
+
+
+
+
+## [0.130.4](https://github.com/synerise/synerise-design/compare/portal@0.130.3...portal@0.130.4) (2021-05-20)
+
+
+### Bug Fixes
+
+* **date-picker:** add hideNow prop ([bceb5d1](https://github.com/synerise/synerise-design/commit/bceb5d15a5cb53a65cc9469d200eb5ec8e9e00ee))
+
+
+
+
+
 ## [0.130.3](https://github.com/synerise/synerise-design/compare/portal@0.130.2...portal@0.130.3) (2021-05-14)
 
 **Note:** Version bump only for package portal

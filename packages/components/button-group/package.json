@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-button-group",
-  "version": "0.5.110",
+  "version": "0.5.111",
   "description": "Button-Group UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.52",
-    "@synerise/ds-utils": "^0.16.3"
+    "@synerise/ds-button": "^0.13.53",
+    "@synerise/ds-utils": "^0.16.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

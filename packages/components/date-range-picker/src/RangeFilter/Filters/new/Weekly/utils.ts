@@ -1,5 +1,5 @@
 import { DayOfWeekIndex, WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
-import { MAX_RANGES } from '../constants';
+import { DEFAULT_MAX_ENTRIES } from '../constants';
 import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
 import { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
 
@@ -31,9 +31,13 @@ export const haveActiveDaysCommonRange = (
   return !activeDaysHaveDifferentRanges;
 };
 
-export const canAddAnotherRange = (schedule: WeeklySchedule, activeDays: DayKey[]): boolean => {
+export const canAddAnotherRange = (
+  schedule: WeeklySchedule,
+  activeDays: DayKey[],
+  maxRanges: number = DEFAULT_MAX_ENTRIES
+): boolean => {
   return (
-    Object.keys(schedule).length < MAX_RANGES ||
+    Object.keys(schedule).length < maxRanges ||
     Object.keys(schedule).some(
       key =>
         activeDays.every(day => schedule[key][day] === undefined) &&
