@@ -27,6 +27,18 @@ const withSuffixStyles = (): string => `
   border-top-right-radius:0;
   border-bottom-right-radius:0;
 `;
+const getPaddingBottom = (props): string => {
+  if (props.withError && props.withDescription)  {
+    return '0';
+  }
+  if (props.withDescription) {
+    return '0';
+  }
+  if (props.withError) {
+    return '0';
+  }
+  return '16px';
+};
 
 const addonStyles = (props: ThemeProps): string => `
   display: flex;
@@ -107,12 +119,12 @@ export const LabelWrapper = styled.div`
   margin: 0 0 8px 0;
 `;
 
-export const ErrorWrapper = styled.div`
-  margin: 8px 0 0;
+export const ErrorWrapper = styled.div<{ withDescription: boolean }>`
+  margin: ${(props): string => (props.withDescription ? '8px 0 0' : '8px 0 16px')};
 `;
 
 export const DescWrapper = styled.div<{ withError: boolean }>`
-  margin: ${(props): string => (props.withError ? '4px 0 0' : '8px 0 0')};
+  margin: ${(props): string => (props.withError ? '4px 0 16px' : '8px 0 16px')};
 `;
 
 export const Label = styled(DSLabel)`
@@ -121,8 +133,9 @@ export const Label = styled(DSLabel)`
     margin-top: -1px;
   }
 `;
-export const SelectWrapper = styled.div`
+export const SelectWrapper = styled.div<{ withDescription: boolean; withError: boolean }>`
   display: flex;
+  padding-bottom: ${(props): string => (props.withError || props.withDescription ? '0' : '16px')};
 `;
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
