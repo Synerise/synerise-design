@@ -27,18 +27,6 @@ const withSuffixStyles = (): string => `
   border-top-right-radius:0;
   border-bottom-right-radius:0;
 `;
-const getPaddingBottom = (props): string => {
-  if (props.withError && props.withDescription)  {
-    return '0';
-  }
-  if (props.withDescription) {
-    return '0';
-  }
-  if (props.withError) {
-    return '0';
-  }
-  return '16px';
-};
 
 const addonStyles = (props: ThemeProps): string => `
   display: flex;
