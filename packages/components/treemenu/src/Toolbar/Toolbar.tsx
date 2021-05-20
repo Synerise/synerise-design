@@ -12,7 +12,7 @@ const Toolbar: React.FC = ({ children }) => {
 
   React.useEffect(() => {
     if (addItemRef.current) setAddItemWidth(addItemRef.current.offsetWidth);
-  }, [addItemRef]);
+  }, [addItemRef, searchOpen]);
 
   return (
     <S.ToolbarLayout>

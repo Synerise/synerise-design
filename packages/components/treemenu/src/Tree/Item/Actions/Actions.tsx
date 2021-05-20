@@ -12,7 +12,7 @@ import {
   OptionVerticalM,
   ShowCheckM,
   ShowBlockM,
-  InfoFillM,
+  InfoFillS,
 } from '@synerise/ds-icon/dist/icons';
 
 import { MenuInfo } from 'rc-menu/lib/interface';
@@ -127,7 +127,7 @@ const Actions: React.FC<ActionProps> = ({
               prefixel={<Icon component={<CutM />} />}
               suffixel={
                 <Tooltip title="Cut element should be pasted">
-                  <Icon component={<InfoFillM />} color={theme.palette['grey-600']} />
+                  <Icon component={<InfoFillS />} color={theme.palette['grey-600']} />
                 </Tooltip>
               }
               onClick={handleCut}

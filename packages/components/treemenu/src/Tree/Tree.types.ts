@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-explicit-any: 0 */
 import { ReactNode, CSSProperties, ReactText } from 'react';
 import { SortableContainerProps } from 'react-sortable-hoc';
 import { Node } from 'tree-model';

@@ -13,4 +13,6 @@ export type AddModalProps = {
   onItemAdd?: ItemProps['onAdd'];
   itemTypes?: any;
   align?: any;
+  hasClipboard?: boolean;
+  onItemPaste?: (item?: TreeNode) => void;
 };

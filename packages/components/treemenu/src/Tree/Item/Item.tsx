@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect, useRef } from 'react';
 
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { AngleRightS, AddS, ShowBlockM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import { AngleRightS, AddS, WarningFillM, ShowRemoveM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { NOOP } from '@synerise/ds-utils';
 import { SortableElement } from 'react-sortable-hoc';
@@ -60,6 +60,12 @@ const ItemContainer: React.FC<ItemProps> = ({
     if (editMode && inputRef.current) inputRef.current.focus();
   }, [editMode]);
 
+  useEffect(() => {
+    if (item.model.editMode) {
+      setEditMode(true);
+    }
+  }, [item]);
+
   const prefixel = useMemo((): React.ReactNode => {
     const style = hasChildren ? {} : { opacity: 0 };
     const TypeIcon = typeIcons[item.model.type];
@@ -95,7 +101,7 @@ const ItemContainer: React.FC<ItemProps> = ({
     return (
       <>
         {item.model.hidden === true && (
-          <Icon className="ds-treemenu-hidden-icon" component={<ShowBlockM />} color={theme.palette['grey-600']} />
+          <Icon className="ds-treemenu-hidden-icon" component={<ShowRemoveM />} color={theme.palette['grey-600']} />
         )}
         <S.Suffix>
           {item.model.type === FOLDER && (
@@ -145,6 +151,7 @@ const ItemContainer: React.FC<ItemProps> = ({
     const thisName = validateItemName(itemName || '') ? itemName.trim() : originalName;
     const thisItem = { ...item };
     thisItem.model.name = thisName;
+    thisItem.model.editMode = false;
     onEditChange(item, thisName, item.getPath().shift()?.model.children);
     setEditMode(false);
   };
