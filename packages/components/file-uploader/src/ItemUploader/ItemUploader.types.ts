@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ExtendedFile, FileWithContent } from '../FileUploader.types';
 import { FileViewTexts } from '../FileView/FileView.types';
 
 export interface ExtendedFile {

@@ -11,10 +11,9 @@ import Button from '@synerise/ds-button';
 
 import * as S from './ItemUploader.styles';
 
-import {  FileContent } from '../FileUploader.types';
 import { FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 import FileViewItem from './UploaderButton/FileViewItem';
-import { ItemUploaderProps } from './ItemUploader.types';
+import { ItemUploaderProps, FileContent } from './ItemUploader.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
