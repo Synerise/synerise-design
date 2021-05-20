@@ -7,7 +7,7 @@ import { ItemRef, ItemProps } from './Item/Item.types';
 
 export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   items: TreeData[];
-  addItemList?: any;
+  addItemList?: unknown;
   expandedKeys?: React.Key[];
   draggable?: boolean;
   searchQuery?: string;
@@ -28,7 +28,7 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   onItemDragEnd?: (items: TreeData[], draggedNode: TreeNode, targetNode?: TreeNode) => void;
 };
 
-export type IconType = ReactNode | ((props: any) => ReactNode);
+export type IconType = ReactNode | ((props: unknown) => ReactNode);
 
 export type TreeData = {
   id?: ReactText;
