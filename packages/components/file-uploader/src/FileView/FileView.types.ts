@@ -11,6 +11,7 @@ export interface FileViewTexts {
   percent: number;
   buttonLabel: string | React.ReactNode;
   buttonDescription: string | React.ReactNode;
+  retryLabel: string | React.ReactNode;
 }
 
 export interface FileViewProps {
@@ -18,4 +19,5 @@ export interface FileViewProps {
   texts: FileViewTexts;
   removable?: boolean;
   onRemove?: () => void;
+  retry?: boolean;
 }

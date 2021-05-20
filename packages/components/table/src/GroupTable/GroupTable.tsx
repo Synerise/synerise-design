@@ -19,7 +19,7 @@ const clearDefaultColumnSortOrder = <T extends unknown>(column: DSColumnType<T>)
   sortOrder: null,
 });
 
-const addSortClassFromByState = <T extends unknown>(sortStateApi: SortStateAPI) => (
+const addSortClassByState = <T extends unknown>(sortStateApi: SortStateAPI) => (
   column: DSColumnType<T>
 ): DSColumnType<T> =>
   sortStateApi.getColumnSortOrder(String(column.key))
@@ -91,14 +91,14 @@ function GroupTable<T extends GroupType<T>>(
   );
 
   const groupTableColumnDecorator = flow(
-    columnWithSortButtons(sortStateApi),
-    addActiveColumnClass(activeColumn),
-    clearDefaultColumnSortOrder,
-    addSortClassFromByState(sortStateApi)
+    addActiveColumnClass<T>(activeColumn),
+    addSortClassByState<T>(sortStateApi),
+    clearDefaultColumnSortOrder
   );
-  const decoratedColumns = columns?.map(groupTableColumnDecorator);
-
+  const columnsWithCustomSorting = columns?.map(columnWithSortButtons(sortStateApi));
+  const decoratedColumns = columnsWithCustomSorting?.map(groupTableColumnDecorator);
   const columnsWithActiveSorting = getColumnsWithActiveSorting(sortStateApi, columns);
+
   const sortedRowsData = activeColumn
     ? sortDataSourceRows(sortStateApi, columnsWithActiveSorting, dataSource)
     : dataSource;
@@ -126,7 +126,7 @@ function GroupTable<T extends GroupType<T>>(
                   expandGroup={toggleExpand}
                   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                   // @ts-ignore: FIXME: Type 'DSColumnType<T>[]' is not assignable to type 'GroupColumnsType<T>[]'.
-                  columns={columns}
+                  columns={columnsWithCustomSorting}
                   addItem={addItem}
                   activeGroup={activeGroup}
                   hideGroupExpander={hideGroupExpander}

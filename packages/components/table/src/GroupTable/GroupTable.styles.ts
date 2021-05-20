@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { hexToRgba } from '@synerise/ds-utils';
 import { StatusTag } from '@synerise/ds-status/dist/Status.styles';
 import Button from '@synerise/ds-button';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
@@ -65,12 +64,17 @@ export const GroupValueLabel = styled.span`
 `;
 
 export const SubRow = styled.td<{ selected?: boolean; withBorderLeft?: boolean; sorted?: boolean }>`
-  background-color: ${(props): string => {
-      if (props.selected) return `${hexToRgba(props.theme.palette['yellow-200'], 0.1)} !important;`;
-      if (props.sorted) return `${hexToRgba(props.theme.palette['blue-200'], 0.1)} !important;`;
-      return `${props.theme.palette['grey-050']};`;
-    }}
-    &&& {
+  background-color: ${({ theme }): string => theme.palette['grey-050']};
+
+  &&&&& {
+    background-color: ${({ theme, selected, sorted }): string => {
+      if (selected) return `${theme.palette['yellow-050']};`;
+      if (sorted) return `${theme.palette['blue-050']};`;
+      return ``;
+    }};
+  }
+
+  &&& {
     font-weight: ${(props): string => {
       if (props.selected || props.sorted) return '500';
       return 'initial';

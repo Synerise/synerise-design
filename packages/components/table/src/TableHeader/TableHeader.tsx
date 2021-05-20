@@ -1,10 +1,14 @@
 import * as React from 'react';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter } from '../Table.types';
 import TableSelection from './TableSelection';
 import { Props } from './TableHeader.types';
 import { TableLimit } from './TableLimit';
+
+const isTruncated = (element?: HTMLElement): boolean | undefined =>
+  element && element.offsetWidth < element.scrollWidth;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -23,6 +27,17 @@ const TableHeader: React.FC<Props> = ({
   locale,
   renderSelectionTitle,
 }) => {
+  const titleRef = React.useRef<HTMLElement>(null);
+  const [isTitleTruncated, setIsTitleTruncated] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const isElementTruncated = isTruncated(titleRef.current || undefined);
+
+    if (isElementTruncated !== undefined && isElementTruncated !== isTitleTruncated) {
+      setIsTitleTruncated(isElementTruncated);
+    }
+  }, [titleRef, isTitleTruncated, title]);
+
   const renderLeftSide = React.useMemo(() => {
     if (selection?.limit)
       return <TableLimit total={dataSource.length} selection={selection} itemsMenu={itemsMenu} locale={locale} />;
@@ -32,27 +47,51 @@ const TableHeader: React.FC<Props> = ({
         {renderSelectionTitle ? (
           renderSelectionTitle(selection, filters)
         ) : (
-          <S.Title>
-            <strong>{selectedRows}</strong> {locale.selected}
-          </S.Title>
+          <S.TitleContainer>
+            <S.TitlePart>
+              <strong>{selectedRows}</strong> <span>{locale.selected}</span>
+            </S.TitlePart>
+          </S.TitleContainer>
         )}
         {itemsMenu}
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
         {selection && <TableSelection rowKey={rowKey} dataSource={dataSource} selection={selection} locale={locale} />}
-        <S.Title>
+        <S.TitleContainer>
           {title && (
             <>
-              <strong>{title}</strong>
+              <S.TitlePartEllipsis>
+                {isTitleTruncated ? (
+                  <Tooltip type="largeSimple" description={title} offset="small" autoAdjustOverflow>
+                    <strong ref={titleRef}>{title}</strong>
+                  </Tooltip>
+                ) : (
+                  <strong ref={titleRef}>{title}</strong>
+                )}
+              </S.TitlePartEllipsis>
               <S.TitleSeparator />
             </>
           )}
-          <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
-        </S.Title>
+          <S.TitlePart>
+            <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
+          </S.TitlePart>
+        </S.TitleContainer>
       </S.Left>
     );
-  }, [selection, dataSource, itemsMenu, locale, selectedRows, rowKey, renderSelectionTitle, filters, title]);
+  }, [
+    dataSource,
+    titleRef,
+    filters,
+    isTitleTruncated,
+    itemsMenu,
+    locale,
+    renderSelectionTitle,
+    rowKey,
+    selectedRows,
+    selection,
+    title,
+  ]);
 
   return (
     <S.Header withBorderTop={withBorderTop}>
