@@ -26,6 +26,7 @@ export type Props = {
   value?: Date;
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
+  hideNow?: boolean;
 };
 
 export type State = {

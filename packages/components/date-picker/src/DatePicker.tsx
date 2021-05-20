@@ -23,6 +23,7 @@ const DatePicker: React.FC<Props> = ({
   onDropdownVisibleChange,
   dropdownProps,
   suffixel,
+  hideNow,
   ...rest
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
@@ -64,6 +65,7 @@ const DatePicker: React.FC<Props> = ({
             onApply={onApplyCallback}
             onValueChange={onValueChangeCallback}
             value={selectedDate}
+            hideNow={hideNow}
           />
         </S.OverlayContainer>
       }

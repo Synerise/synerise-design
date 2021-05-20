@@ -11,4 +11,5 @@ export type Props = {
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;
+  hideNow?: boolean;
 } & WrappedComponentProps;

@@ -207,7 +207,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
 
   render(): React.ReactNode {
     const { mode, changed, value, texts } = this.state;
-    const { showTime } = this.props;
+    const { showTime, hideNow } = this.props;
 
     const isValid = !!value;
 
@@ -241,6 +241,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
           canSwitchMode={isValid}
           onSwitchMode={(): void => this.handleModeSwitch(mode === 'time' ? 'date' : 'time')}
           texts={texts}
+          hideNow={hideNow}
         />
       </S.Container>
     );

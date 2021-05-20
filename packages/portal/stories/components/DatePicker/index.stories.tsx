@@ -9,6 +9,8 @@ const stories = {
     const disabled = boolean("Set disabled", false);
     const prefixel = text('prefixel', 'Prefixel');
     const suffixel = text('suffixel', 'Suffixel');
+    const hideNow = boolean('Hide now button', false);
+
     return (
       <div>
         <DatePicker
@@ -25,6 +27,7 @@ const stories = {
             inputPlaceholder: 'Select date',
             clearTooltip: 'Clear',
           }}
+          hideNow={hideNow}
         />
       </div>
     );

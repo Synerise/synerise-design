@@ -20,6 +20,7 @@ const Footer: React.FC<Props> = ({
   dateOnly,
   message,
   texts,
+  hideNow,
   ...rest
 }) => {
   const SwitchModeButton = React.useMemo(
@@ -39,15 +40,17 @@ const Footer: React.FC<Props> = ({
   );
   return (
     <S.Container className="ds-date-picker-footer" key="date-picker-footer" {...rest}>
-      <S.Range
-        data-testid="range-now"
-        type="tertiary"
-        onClick={(): void => {
-          onApply && onApply(new Date());
-        }}
-      >
-        {texts.now}
-      </S.Range>
+      {!hideNow && (
+        <S.Range
+          data-testid="range-now"
+          type="tertiary"
+          onClick={(): void => {
+            onApply && onApply(new Date());
+          }}
+        >
+          {texts.now}
+        </S.Range>
+      )}
       <S.ActionsPlaceholder />
       <S.Actions>
         {!dateOnly && SwitchModeButton}
