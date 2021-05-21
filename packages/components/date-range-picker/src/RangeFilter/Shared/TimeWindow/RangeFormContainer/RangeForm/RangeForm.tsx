@@ -1,7 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import dayjs from 'dayjs';
 import Select from '@synerise/ds-select';
 import Icon from '@synerise/ds-icon';
 import { CloseS } from '@synerise/ds-icon/dist/icons';
@@ -11,7 +8,6 @@ import { DateLimitMode, RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
 
-const TODAY = new Date();
 export const FORM_MODES: Record<string, DateLimitMode> = {
   HOUR: 'Hour',
   RANGE: 'Range',
@@ -37,28 +33,10 @@ const RangeForm: React.FC<RangeFormProps> = ({
     (node: HTMLElement): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
     []
   );
-
   React.useEffect(() => {
     setStart(startDate);
     setEnd(endDate);
   }, [startDate, endDate]);
-
-  React.useEffect(() => {
-    if (!start) {
-      setStart(
-        dayjs(TODAY)
-          .startOf('day')
-          .toDate()
-      );
-    }
-    if (!end) {
-      setEnd(
-        dayjs(TODAY)
-          .endOf('day')
-          .toDate()
-      );
-    }
-  }, [start, end]);
 
   const singleHourPicker = React.useMemo(() => {
     return (
@@ -117,7 +95,17 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [areStartAndEndValid, start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps, disabled]);
+  }, [
+    areStartAndEndValid,
+    start,
+    end,
+    onStartChange,
+    onEndChange,
+    getPopupContainer,
+    texts,
+    timePickerProps,
+    disabled,
+  ]);
   const limitModeSelect = React.useMemo(
     () =>
       valueSelectionModes.length > 1 ? (
