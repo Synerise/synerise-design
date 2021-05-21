@@ -176,22 +176,24 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
     });
   }, [virtualColumns, tableWidth, initialWidth]);
 
+  // FIXME: [1] Temporarily turn off this scroll sync which causes content disappearing. Horizontal scrolling doesn't work anyway.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const listRef = React.useRef<any>();
+  // const listRef = React.useRef<any>();
+  // @link https://ant.design/components/table/#components-table-demo-virtual-list
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [connectObject] = React.useState<any>(() => {
-    const obj = {};
-    Object.defineProperty(obj, 'scrollLeft', {
-      get: () => null,
-      set: (scrollLeft: number) => {
-        if (listRef.current) {
-          listRef.current.scrollTo({ scrollLeft });
-        }
-      },
-    });
+  // const [connectObject] = React.useState<any>(() => {
+  //   const obj = {};
+  //   Object.defineProperty(obj, 'scrollLeft', {
+  //     get: () => null,
+  //     set: (scrollLeft: number) => {
+  //       if (listRef.current) {
+  //         listRef.current.scrollTo({ scrollLeft });
+  //       }
+  //     },
+  //   });
 
-    return obj;
-  });
+  //   return obj;
+  // });
 
   const scrollBarRef = React.useRef<HTMLElement>(null);
 
@@ -235,14 +237,19 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
 
   const renderBody = React.useCallback(
     (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
+      // FIXME: Read [1]
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
+      // const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
+      const renderVirtualList = (data: T[]): React.ReactNode => {
         // eslint-disable-next-line no-param-reassign
-        ref.current = connectObject;
+
+        // FIXME: Read [1]
+        // ref.current = connectObject;
         return (
           <>
             <List
-              ref={listRef}
+              // FIXME: Read [1]
+              // ref={listRef}
               className="virtual-grid"
               height={scroll.y}
               itemCount={data.length}
@@ -283,9 +290,13 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
           }
           return [...result, currentRow];
         }, []);
-        return renderVirtualList(expandedRows, meta);
+        // FIXME: Read [1]
+        // return renderVirtualList(expandedRows, meta);
+        return renderVirtualList(expandedRows);
       }
-      return renderVirtualList(rawData, meta);
+      // FIXME: Read [1]
+      // return renderVirtualList(rawData, meta);
+      return renderVirtualList(rawData);
     },
     [
       expandable,
@@ -297,7 +308,8 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
       tableWidth,
       CustomScrollbar,
       cellHeight,
-      connectObject,
+      // FIXME: Read [1]
+      // connectObject,
       infiniteScroll,
       listInnerElementType,
     ]
