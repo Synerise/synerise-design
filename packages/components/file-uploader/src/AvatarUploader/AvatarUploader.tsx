@@ -8,7 +8,7 @@ import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
 import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
-import CameraM from '@synerise/ds-icon/dist/icons/CameraM';
+import FileTypePictureL from '@synerise/ds-icon/dist/icons/L/FileTypePictureL';
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
 import * as S from './AvatarUploader.styles';
 import { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
@@ -143,7 +143,7 @@ const AvatarUploader: React.FC<FileUploaderProps> = ({
               filesLength={files.length}
             >
                 <>
-                  <Icon component={<CameraM />} size={36} />
+                  <Icon component={<FileTypePictureL />} size={48} />
                 </>
             </S.DropAreaButton>
           </S.DropAreaContainer>
