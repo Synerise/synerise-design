@@ -139,7 +139,7 @@ export const DropAreaButton = styled.button<{
     props.isDropping &&
     !props.disabled &&
     `
-      height: ${props.mode === 'multi-large' ? '160px' : 'auto'};
+      height: ${props.mode === 'multi-large' && props.filesLength === 0 ? '160px' : 'auto'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
 
