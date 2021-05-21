@@ -16,6 +16,8 @@ const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth
 const dataSource = [...new Array(5000)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
+  city: faker.address.city(),
+  number: faker.finance.amount(),
 }));
 
 const columns = [
@@ -27,6 +29,19 @@ const columns = [
     iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name.localeCompare(b.name),
     sortRender: 'string',
+  },
+  {
+    title: 'City',
+    key: 'city',
+    dataIndex: 'city',
+    sorter: (a, b) => a.city.localeCompare(b.city),
+    sortRender: 'string',
+  },
+  {
+    title: 'Number',
+    key: 'number',
+    dataIndex: 'number',
+    sorter: (a, b) => a.number - b.number,
   },
 ];
 

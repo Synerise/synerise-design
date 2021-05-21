@@ -237,7 +237,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
       border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-400']};
 
       &:hover {
-        background-color: ${({ theme }): string => theme.palette['blue-050']};
+        background-color: ${({ theme }): string => theme.palette['blue-100']};
         border-bottom: 2px solid ${({ theme }): string => theme.palette['blue-600']};
       }
 
@@ -305,6 +305,10 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
 
   .virtual-table .ant-table-container {
     overflow: auto hidden;
+  }
+
+  .virtual-table .virtual-table-row:not(:hover) .virtual-table-cell.ant-table-column-sort {
+    background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
   & .ant-table .ant-table-header {
