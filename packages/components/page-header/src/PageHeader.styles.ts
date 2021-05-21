@@ -103,6 +103,9 @@ export const PageHeaderTitle = styled.span`
 
 export const PageHeaderTabsWrapper = styled.div`
   padding: 0 24px;
+  &&& .ds-tabs {
+    padding: 0px;
+  }
 `;
 
 export const PageHeaderBar = styled.div`
