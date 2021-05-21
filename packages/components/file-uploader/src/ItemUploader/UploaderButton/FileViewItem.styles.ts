@@ -60,13 +60,11 @@ export const Info = styled.div`
 export const Name = styled(Label)`
   && {
     color: ${(props): string => props.theme.palette['grey-600']};
-    display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
+    max-width: 260px;
     cursor: initial;
-    justify-content: space-between;
   }
 `;
 
