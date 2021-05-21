@@ -69,8 +69,8 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
           handleModeChange(selected);
         }}
         mode={mode}
-        startDate={getDateFromDayValue(dayValue.start as string, timeFormat)}
-        endDate={getDateFromDayValue(dayValue.stop as string, timeFormat)}
+        startDate={dayValue?.start ? getDateFromDayValue(dayValue.start as string, timeFormat) : undefined}
+        endDate={dayValue?.stop ? getDateFromDayValue(dayValue.stop as string, timeFormat) : undefined}
         onStartChange={(value: Date): void =>
           activeDays.length > 1
             ? onMultipleDayTimeChange([value, getDateFromDayValue(dayValue.stop as string, timeFormat)])

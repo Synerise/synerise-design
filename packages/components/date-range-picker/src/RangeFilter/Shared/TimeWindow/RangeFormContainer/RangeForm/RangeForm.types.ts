@@ -8,12 +8,13 @@ export type RangeFormProps = {
   mode: DateLimitMode;
   onModeChange: (mode: DateLimitMode) => void;
   title?: React.ReactNode;
-  startDate: Date;
-  endDate: Date;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   onStartChange: (value: Date) => void;
   onEndChange: (value: Date) => void;
   onExactHourSelect: (value: Date) => void;
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
-} & WithTranslations & WithDisabledProp &
+} & WithTranslations &
+  WithDisabledProp &
   Pick<RangeFormContainerProps, 'timePickerProps'>;
