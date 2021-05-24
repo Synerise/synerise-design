@@ -124,10 +124,8 @@ export const ItemContainer = styled.div<ItemContainerProps>`
   }
 
   ${Item} {
-    //border-left: 2px solid transparent;
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
-    //box-shadow: none !important;
 
     :focus {
       background: none;
@@ -188,7 +186,6 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 
   :hover {
     ${Item} {
-      //border-left-color: ${(props): string => props.theme.palette['blue-600']};
       &:before {
         content: '';
         display: flex;

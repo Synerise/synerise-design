@@ -81,7 +81,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
     (item, context) => {
       const { expandedKeys, onItemExpandToggle } = restProps;
       const newItem = new TreeModel().parse({ ...initNewItem(), name: item.name, type: item.type, editMode: true });
-      context.addChild(newItem);
+      context.addChildAtIndex(newItem, 0);
       const path = context
         .getPath()
         .map((node: TreeNode) => node.model.id)

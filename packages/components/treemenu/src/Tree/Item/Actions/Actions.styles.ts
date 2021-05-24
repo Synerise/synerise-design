@@ -35,6 +35,7 @@ export const DropdownMenu = styled(Menu)<AntdMenuProps>`
 
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   max-height: 32px;
+  pointer-events: ${(props): string => (props.disabled ? 'none' : 'all')};
   &:hover {
     svg {
       fill: ${(props): string => (!props.disabled ? props.theme.palette['blue-600'] : props.theme.palette['grey-600'])};

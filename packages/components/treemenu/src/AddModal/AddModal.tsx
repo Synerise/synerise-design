@@ -12,6 +12,7 @@ import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
 
+import Tooltip from '@synerise/ds-tooltip';
 import { AddModalProps } from './AddModal.types';
 
 import * as S from './AddModal.styles';
@@ -143,7 +144,9 @@ const AddModal: React.FC<AddModalProps> = ({
           {texts?.addItemLabel}
         </Button>
         <Button type="ghost" mode="single-icon" disabled={disabled} onClick={handleItemPaste}>
-          <Icon component={<PasteClipboardM />} />
+          <Tooltip title="Paste in place">
+            <Icon component={<PasteClipboardM />} />
+          </Tooltip>
         </Button>
       </S.AddButtonWithPaste>
     );
