@@ -12,6 +12,7 @@ type SubMenuProps = {
   title: string | React.ReactNode;
   tabIndex?: number;
 };
+
 const overflowStyles = css`
   text-overflow: ellipsis;
   overflow: hidden;
@@ -26,8 +27,9 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
 
 export const MenuDivider = styled.div`
   height: 1px;
-  width: 75%;
-  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')} 35px;
+  width: ${(props): string => (props?.level && props?.level > 1 ? '75%' : '100%')};
+  margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')}
+    ${(props): string => (props?.level && props?.level > 1 ? '35px' : '0px')};
   border-top: 1px dashed ${(props): string => props.theme.palette['grey-300']};
 `;
 

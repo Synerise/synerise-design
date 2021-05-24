@@ -10,6 +10,7 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
 
 export type MenuDividerProps = {
   higher?: boolean;
+  level?: number;
 };
 
 export enum VisibilityTrigger {

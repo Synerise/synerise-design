@@ -84,7 +84,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         </Danger>
       );
     case ItemType.DIVIDER:
-      return <MenuDivider />;
+      return <MenuDivider level={rest.level} />;
     default:
       return (
         <Text

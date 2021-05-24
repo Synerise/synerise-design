@@ -6,9 +6,14 @@ import Button from '@synerise/ds-button';
 import { boolean, select } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
 
-
 const Default: React.FC = () => {
-  const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
+  const data = [
+    { text: 'Preview' },
+    { text: 'Edit' },
+    { text: 'Duplicate' },
+    { type: 'divider' },
+    { text: 'Delete', type: 'danger' },
+  ];
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const footer = boolean('Set footer', false);
   const navigation = boolean('Set navigation', false);
@@ -20,15 +25,17 @@ const Default: React.FC = () => {
   return (
     <div>
       <Dropdown
-        overlayStyle={{borderRadius: '3px'}}
+        overlayStyle={{ borderRadius: '3px' }}
         visible={dropdownVisible}
         placement="bottomLeft"
         overlay={
-          <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
-            focusWithArrowKeys(e, 'ds-menu-item',() => {})} ref={ref} >
-            {navigation &&
-            <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />}
-            <Menu dataSource={data} asDropdownMenu={true}  style={{ width: '204px' }} />
+          <Dropdown.Wrapper
+            style={{ width: '220px' }}
+            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            ref={ref}
+          >
+            {navigation && <Dropdown.BackAction label="Attributes" onClick={() => alert('BackAction clicked')} />}
+            <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
             {footer && renderFooter(setTypeFooter)}
           </Dropdown.Wrapper>
         }
