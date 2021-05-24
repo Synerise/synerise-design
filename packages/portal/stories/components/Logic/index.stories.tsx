@@ -26,7 +26,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/Logic',
+  name: 'Components/Filter/Logic',
   config: {},
   stories,
   Component: Logic,

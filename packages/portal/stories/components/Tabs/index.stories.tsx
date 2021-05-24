@@ -179,7 +179,7 @@ const stories = {
 };
 
 export default {
-  name: 'Tabs/Tabs',
+  name: 'Components/Tabs',
   decorator,
   stories,
   Component: Tabs,

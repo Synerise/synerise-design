@@ -287,7 +287,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/Filter',
+  name: 'Components/Filter/Filter',
   config: {},
   stories,
   Component: Filter,

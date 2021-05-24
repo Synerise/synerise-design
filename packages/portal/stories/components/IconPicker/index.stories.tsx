@@ -299,7 +299,7 @@ const stories = {
 };
 
 export default {
-  name: 'Pickers/IconPicker',
+  name: 'Components/Pickers/IconPicker',
   config: {},
   withoutCenter: true,
   decorator,
