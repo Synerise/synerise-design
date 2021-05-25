@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.46](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.12.45...@synerise/ds-page-header@0.12.46) (2021-05-25)
+
+
+### Bug Fixes
+
+* **page-header:** fix padding ([8303d5f](https://github.com/synerise/synerise-design/commit/8303d5f977f26a8e20278150d5d4130246074622))
+
+
+
+
+
 ## [0.12.45](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.12.44...@synerise/ds-page-header@0.12.45) (2021-05-24)
 
 **Note:** Version bump only for package @synerise/ds-page-header
