@@ -74,6 +74,7 @@ const getDefaultProps = (isSplit = false) => ({
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
 });
+
 const getSplitProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
   type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
@@ -139,11 +140,10 @@ const stories = {
             {props.label}
           </Button>
           <Button mode="single-icon" {...props}>
-            <Icon component={defaultProps.rightIconSize === 'M' ?<AngleDownM/> : <AngleDownS/> } />
+            <Icon component={defaultProps.rightIconSize === 'M' ? <AngleDownM /> : <AngleDownS />} />
           </Button>
         </ButtonGroup>
       </div>
-
     );
   },
   twoIcons: () => {
