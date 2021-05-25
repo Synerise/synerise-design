@@ -46,6 +46,7 @@ class ModalProxy extends React.Component<Props> {
       description,
       size,
       blank,
+      titleContainerStyle,
       ...antModalProps
     } = this.props;
     const handleOnClose = antModalProps.onCancel;
@@ -70,7 +71,7 @@ class ModalProxy extends React.Component<Props> {
           </Button>
         )}
         {title && (
-          <S.TitleContainer>
+          <S.TitleContainer style={titleContainerStyle}>
             <S.Title level={3}>{title}</S.Title>
             <S.ActionButtons>
               {headerActions}
