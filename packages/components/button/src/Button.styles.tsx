@@ -107,7 +107,7 @@ export const ButtonFocus = styled.div`
   transition: box-shadow 0.3s ease;
   border-radius: inherit;
   z-index: 99;
-  box-shadow: inset 0 0 0 0px transparent;
+  box-shadow: inset 0 0 0 0 transparent;
 `;
 
 // eslint-disable-next-line react/jsx-props-no-spreading
@@ -156,6 +156,15 @@ export const AntdButton = styled(
       width: 24px;
       height: 24px;
     }
+    
+    &:disabled {
+      && {
+        ${ButtonFocus} {
+          box-shadow: none;
+        }
+      }
+    };
+    
     &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator),
     &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator){
       &:active{
@@ -364,6 +373,7 @@ export const AntdButton = styled(
           &:disabled {
             opacity: 0.4;
             background-color: ${props.theme.palette[`${props.customColor}-600`]};
+
             span {
               color: ${props.theme.palette.white};
             }

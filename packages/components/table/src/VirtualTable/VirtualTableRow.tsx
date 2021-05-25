@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
 import { InfiniteScrollProps } from '../InfiniteScroll/constants';
-import { RowSelection } from '../Table.types';
+import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './VirtualTable';
 import * as S from './VirtualTable.styles';
 
@@ -15,15 +15,19 @@ interface Props<T> {
     mergedColumns: any[];
     selection?: RowSelection<T>;
     onRowClick?: (row: T) => void;
+    defaultTableProps?: DSTableProps<T>;
   };
   index: number;
   style: React.CSSProperties;
 }
 
+const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], column: DSColumnType<T>): boolean =>
+  !!columns.find((c): boolean => c.key === column.key && !!c.sortOrder);
+
 class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
   render(): React.ReactNode {
     const { index, style, data } = this.props;
-    const { mergedColumns, onRowClick, selection, dataSource, cellHeight, infiniteScroll } = data;
+    const { mergedColumns, onRowClick, selection, dataSource, cellHeight, infiniteScroll, defaultTableProps } = data;
     const rowData = dataSource[index];
 
     return (
@@ -48,6 +52,7 @@ class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
                     rowData[EXPANDED_ROW_PROPERTY] &&
                     ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
                 },
+                isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
                 column.className
               )}
               key={`row-${index}-column-${column.dataIndex || column.key}`}

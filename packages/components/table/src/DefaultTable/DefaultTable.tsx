@@ -86,6 +86,24 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
   const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi)(column));
+  const decoratedComponents =
+    components &&
+    Object.entries(components)
+      .map(([key, value]) => {
+        if (typeof value === 'function') {
+          return [
+            key,
+            (rawData: T[], meta: unknown): ReturnType<typeof value> =>
+              value(rawData, meta, {
+                ...props,
+                columns: decoratedColumns,
+              }),
+          ];
+        }
+
+        return [key, value];
+      })
+      .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -118,7 +136,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         body: {
           row: RenderRow,
         },
-        ...components,
+        ...decoratedComponents,
       }}
       rowSelection={
         selection && {
