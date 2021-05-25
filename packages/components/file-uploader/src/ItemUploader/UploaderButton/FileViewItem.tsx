@@ -14,7 +14,7 @@ const mapperOfIcons = {
   'image/svg+xml': <FileTypeTextM />,
 };
 
-const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable, description }) => {
+const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable }) => {
   const { disabled, error, file, progress } = data;
 
   const hasError = !!error;
@@ -27,6 +27,7 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
 
   return (
       <S.FileViewContainer>
+        <Tooltip overlayStyle={{maxWidth: '350px'}} title={file.name}>
         <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
           {previewableMimeTypes.indexOf(file.type) > -1 ? (
             <S.PreviewImage>
@@ -67,6 +68,7 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
             </S.RemoveButtonWrapper>
           )}
         </S.FileView>
+        </Tooltip>
       </S.FileViewContainer>
   );
 };

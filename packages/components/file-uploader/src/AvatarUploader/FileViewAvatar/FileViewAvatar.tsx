@@ -47,6 +47,7 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
         )}
       </S.AvatarContainer>
       <S.FileViewContainer>
+        <Tooltip overlayStyle={{maxWidth: '350px'}} title={file.name}>
         <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
           {previewableMimeTypes.indexOf(file.type) > -1 ? (
             <S.PreviewImage>
@@ -88,6 +89,7 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
           )}
         </S.FileView>
         <S.DescriptionUploader>{description}</S.DescriptionUploader>
+        </Tooltip>
       </S.FileViewContainer>
     </S.FileAvatarContainer>
   );
