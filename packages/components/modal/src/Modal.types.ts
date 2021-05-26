@@ -7,6 +7,7 @@ export interface Props extends ModalProps {
   size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
+  titleContainerStyle?: React.CSSProperties;
   texts?: {
     okButton?: string;
     cancelButton?: string;
