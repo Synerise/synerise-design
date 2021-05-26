@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.25...@synerise/ds-input@0.17.26) (2021-05-25)
+
+
+### Bug Fixes
+
+* **input:** fix margins ([f4a1180](https://github.com/synerise/synerise-design/commit/f4a1180638361c52e93b94bbf43947c9529e0e68))
+
+
+
+
+
 ## [0.17.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.24...@synerise/ds-input@0.17.25) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-input

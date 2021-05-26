@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.130.9](https://github.com/synerise/synerise-design/compare/portal@0.130.8...portal@0.130.9) (2021-05-25)
+
+
+### Bug Fixes
+
+* **button:** removes focus styles for disabled button ([873791c](https://github.com/synerise/synerise-design/commit/873791cec04f207d2a0ccc71808f78a135ef7fe8))
+* **file-uploader:** fix defualt uploader props and props in uploaderAvatar ([7e3c476](https://github.com/synerise/synerise-design/commit/7e3c476030c3206408b618a5391cbe697f9e9260))
+* **file-uploader:** fix defualt uploader styles and popconfirm button ([d898d20](https://github.com/synerise/synerise-design/commit/d898d20055869864072e050a62d0e4ba664c5453))
+* **file-uploader:** new component avatar uploader ([e240d95](https://github.com/synerise/synerise-design/commit/e240d95c39c77f72ade64047be96d5d68bed591c))
+* **item-filter:** update items sorting by selected id ([41e432c](https://github.com/synerise/synerise-design/commit/41e432cd2dbb46c0d345192c21ee6958925995ef))
+* **table:** sorted columns styles in VirtualTable ([fae8839](https://github.com/synerise/synerise-design/commit/fae88395bbaca4752af43f816fb30f8b0112d39d))
+
+
+
+
+
+## [0.130.8](https://github.com/synerise/synerise-design/compare/portal@0.130.7...portal@0.130.8) (2021-05-24)
+
+
+### Bug Fixes
+
+* **menu:** fixes Menu.Divider styles ([bcb1235](https://github.com/synerise/synerise-design/commit/bcb1235a18f1511e9077db0446f02b882695952f))
+
+
+
+
+
 ## [0.130.7](https://github.com/synerise/synerise-design/compare/portal@0.130.6...portal@0.130.7) (2021-05-20)
 
 **Note:** Version bump only for package portal

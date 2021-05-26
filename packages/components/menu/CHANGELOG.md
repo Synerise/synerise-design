@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.27...@synerise/ds-menu@0.10.28) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.10.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.26...@synerise/ds-menu@0.10.27) (2021-05-24)
+
+
+### Bug Fixes
+
+* **menu:** fixes Menu.Divider styles ([bcb1235](https://github.com/Synerise/synerise-design/commit/bcb1235a18f1511e9077db0446f02b882695952f))
+
+
+
+
+
 ## [0.10.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.25...@synerise/ds-menu@0.10.26) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-menu

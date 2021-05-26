@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.35.8...@synerise/ds-table@0.36.0) (2021-05-25)
+
+
+### Bug Fixes
+
+* **table:** comment out scroll obj sync in VirtualTable ([f26a4fe](https://github.com/synerise/synerise-design/commit/f26a4fe36c12daef320860b6e5b0a71f316e3a68))
+* **table:** fix row hover styles in GroupTable ([99fd4b1](https://github.com/synerise/synerise-design/commit/99fd4b17cc50a03760076a82bbb548aff6f10b73))
+* **table:** fix sort menu aligment in VirtualTable ([569afe9](https://github.com/synerise/synerise-design/commit/569afe93882ae5ef0fa1107d9481aa462d7d4890))
+* **table:** fix sorter column header hover color ([68d6ba3](https://github.com/synerise/synerise-design/commit/68d6ba3890096d1277fc416a46248cb4b92a0941))
+* **table:** fix table head cells text position ([b469c95](https://github.com/synerise/synerise-design/commit/b469c953d7639a94dfa3c40647559ee423c5ebc8))
+* **table:** overwrite table head overflow ([fc21ccc](https://github.com/synerise/synerise-design/commit/fc21ccc15ac6c25bddb0262a22c454ae3ea5211f))
+* **table:** replace rgba colors with hex without alpha ([9847edc](https://github.com/synerise/synerise-design/commit/9847edca2cc153f586a16fb7a232e1df4bbee3bf))
+* **table:** sorted columns styles in VirtualTable ([fae8839](https://github.com/synerise/synerise-design/commit/fae88395bbaca4752af43f816fb30f8b0112d39d))
+* **table:** update head hover to work with sortable columns only ([4d07147](https://github.com/synerise/synerise-design/commit/4d0714749d63f2c8fc9c5148e28903319abdab54))
+
+
+### Features
+
+* **table:** add title truncating with tooltip ([7717c5a](https://github.com/synerise/synerise-design/commit/7717c5af6611fb1a0c9f31c5015b40a333a009d4))
+
+
+
+
+
+## [0.35.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.35.7...@synerise/ds-table@0.35.8) (2021-05-24)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.35.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.35.6...@synerise/ds-table@0.35.7) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-table
