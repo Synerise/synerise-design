@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.13.40...@synerise/ds-modal@0.14.0) (2021-05-26)
+
+
+### Features
+
+* **modal:** pass title container styles ([c6bdcc9](https://github.com/synerise/synerise-design/commit/c6bdcc932a23ce380abd6cc5a7c2c2d97cac2fba))
+
+
+
+
+
 ## [0.13.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.13.39...@synerise/ds-modal@0.13.40) (2021-05-25)
 
 **Note:** Version bump only for package @synerise/ds-modal
