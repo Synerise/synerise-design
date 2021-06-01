@@ -5,12 +5,13 @@ import { RepeatM, FileTypeImageM, Close3M, FileM } from '@synerise/ds-icon/dist/
 import * as S from './FileViewAvatar.styles';
 import { FileViewAvatarProps } from './FileViewAvatar.types';
 
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
+const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'text/csv'];
 const mapperOfIcons = {
   'image/png': <FileTypeImageM />,
   'image/gif': <FileTypeImageM />,
   'image/jpeg': <FileTypeImageM />,
   'image/svg+xml': <FileTypeImageM />,
+  'text/csv' : <FileTypeImageM/>
 };
 
 const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable, description }) => {

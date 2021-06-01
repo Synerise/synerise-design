@@ -37,7 +37,7 @@ const getCustomUploaderProps = () => ({
   ),
   filesAmount: number('Uploading files amount', 100),
   removable: boolean('Allow to remove uploaded files', true),
-  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/html,video/quicktime, application/pdf, application/zip, audio/mpeg, application/vnd.ms-excel']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/html,video/quicktime, application/pdf, application/zip, audio/mpeg, application/vnd.ms-excel, text/csv']),
   testFileDisable: boolean('Display disabled preview example', false),
   testFileProgress: boolean('Display upload progress bar example', false),
 });
@@ -73,7 +73,7 @@ const getDefaultProps = () => ({
   ),
   filesAmount: number('Uploading files amount', 100),
   removable: boolean('Allow to remove uploaded files', true),
-  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/html,video/quicktime, application/pdf, application/zip, audio/mpeg, application/vnd.ms-excel']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/html,video/quicktime, application/pdf, application/zip, audio/mpeg, application/vnd.ms-excel, text/csv']),
 });
 
 const getAvatarUploaderProps = () => ({
@@ -81,7 +81,7 @@ const getAvatarUploaderProps = () => ({
   retryTooltip: text('Retry tooltip', 'Retry'),
   disabled: boolean('Disabled', false),
   removable: boolean('Allow to remove uploaded files', true),
-  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg']),
+  accept: array('Accepted mime types (comma separated)', ['image/png, image/svg+xml, text/plain, image/jpeg, text/csv']),
   testFileError: boolean('Display preview error example', false),
   testFileDisable: boolean('Display disabled preview example', false),
   testFileUploading: boolean('Display upload loader example', false),
