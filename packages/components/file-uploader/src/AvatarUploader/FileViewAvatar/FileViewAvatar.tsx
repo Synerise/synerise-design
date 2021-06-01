@@ -89,8 +89,8 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
             </S.RemoveButtonWrapper>
           )}
         </S.FileView>
-        <S.DescriptionUploader>{description}</S.DescriptionUploader>
         </Tooltip>
+        <S.DescriptionUploader>{description}</S.DescriptionUploader>
       </S.FileViewContainer>
     </S.FileAvatarContainer>
   );
