@@ -86,7 +86,7 @@ addParameters({
   options: {
     theme: syneriseTheme,
     storySort: {
-      order: ['Welcome','Intro','Components'],
+      order: ['Introduction','Tokens','Components'],
       method: 'alphabetical',
     },
   },

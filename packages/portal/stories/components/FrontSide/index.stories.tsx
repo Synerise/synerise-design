@@ -11,7 +11,7 @@ const stories = {
 };
 
 export default {
-name: 'Welcome/Welcome',
+name: 'Introduction/Welcome',
   config: {},
   stories,
 }
