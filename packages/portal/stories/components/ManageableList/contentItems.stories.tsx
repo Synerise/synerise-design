@@ -355,7 +355,7 @@ const stories = {
 };
 
 export default {
-  name: 'manageable list/Content items',
+  name: 'Components/Manageable list/Content items',
   decorator,
   stories,
   Component: ContentItem,

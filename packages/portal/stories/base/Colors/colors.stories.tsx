@@ -56,7 +56,7 @@ const stories = {
 };
 
 export default {
-  name: 'Intro/Core',
+  name: 'Tokens/Colors',
   stories,
   Component: ColorBar,
 };

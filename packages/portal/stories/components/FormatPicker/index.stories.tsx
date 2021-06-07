@@ -60,7 +60,7 @@ const stories = {
 };
 
 export default {
-  name: 'Pickers/FormatPicker',
+  name: 'Components/Pickers/FormatPicker',
   config: {},
   stories,
   Component: FormatPicker,

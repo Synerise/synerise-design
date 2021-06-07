@@ -93,7 +93,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Table with infinite scrolling',
+  name: 'Components/Table/Table with infinite scrolling',
   decorator,
   stories,
   Component: VirtualTable,

@@ -85,6 +85,10 @@ addDecorator(withDSProvider);
 addParameters({
   options: {
     theme: syneriseTheme,
+    storySort: {
+      order: ['Introduction','Tokens','Components'],
+      method: 'alphabetical',
+    },
   },
   viewport: {
     viewports: VIEWPORTS,

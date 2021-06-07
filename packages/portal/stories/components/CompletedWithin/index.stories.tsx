@@ -31,7 +31,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/CompletedWithin',
+  name: 'Components/Filter/CompletedWithin',
   config: {},
   stories,
   Component: CompletedWithin,

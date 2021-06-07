@@ -39,7 +39,7 @@ const stories = {
 };
 
 export default {
-  name: 'Layout/Layout',
+  name: 'Components/Layout/Layout',
   withoutCenter: true,
   stories,
   Component: Layout,

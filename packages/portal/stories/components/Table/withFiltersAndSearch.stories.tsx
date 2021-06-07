@@ -559,7 +559,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Table with filters and search',
+  name: 'Components/Table/Table with filters and search',
   decorator,
   stories,
   Component: Table,

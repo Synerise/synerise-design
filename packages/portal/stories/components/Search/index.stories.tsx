@@ -238,7 +238,7 @@ const stories = {
 };
 
 export default {
-  name: 'Search/Search',
+  name: 'Components/Search/Search',
   config: {},
   stories,
   decorator,
