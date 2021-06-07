@@ -1,5 +1,6 @@
 import { create } from '@storybook/theming';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import image from '../logo_synerise.svg';
 
 export default create({
   base: 'light',
@@ -12,5 +13,5 @@ export default create({
   colorSecondary: theme.palette['blue-500'],
   brandTitle: 'Synerise Design System',
   brandUrl: 'https://synerise.com',
-  brandImage: 'https://strapi.synerise.com/uploads/0525bd360f03436f947a2d0fe501ad68.svg',
+  brandImage: image,
 });
