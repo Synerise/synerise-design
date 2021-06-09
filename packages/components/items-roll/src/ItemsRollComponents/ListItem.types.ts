@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ItemRollElement, ItemsRollGroup } from '../ItemsRoll.types';
 
 export type ItemElementProps = {
-  highlight: string;
+  highlight?: string;
   item: ItemRollElement;
   group?: ItemsRollGroup;
   onItemClick?: (id: string, group?: ItemsRollGroup) => void;

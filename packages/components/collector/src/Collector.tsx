@@ -34,6 +34,7 @@ const Collector: React.FC<CollectorProps> = ({
   dropdownContent,
   disableButtonPanel,
   disableSearch,
+  dropdownItemHeight,
   searchValue,
   onSearchValueChange,
 }) => {
@@ -247,6 +248,7 @@ const Collector: React.FC<CollectorProps> = ({
         options={filteredSuggestions}
         onItemAdd={onItemAdd}
         lookupKey={displayLookupKey}
+        dropdownItemHeight={dropdownItemHeight}
         value={value}
         visible={
           isFocused &&
@@ -255,7 +257,7 @@ const Collector: React.FC<CollectorProps> = ({
         }
         onSelect={(item): void => {
           onSelect && onSelect(item);
-          !allowMultipleValues && item[displayLookupKey] && setValue(item[displayLookupKey]);
+          !allowMultipleValues && item[filterLookupKey] && setValue(item[filterLookupKey]);
         }}
         onClick={(): void => {
           if (inputRef?.current) {
