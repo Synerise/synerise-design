@@ -76,9 +76,8 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
         dataIndex: 'key',
         render: (key: string, record: T): React.ReactNode => {
           const recordKey = getRowKey(record);
-          const hasChilds = record.children !== undefined && Array.isArray(record.children);
           const allChildsChecked =
-            hasChilds &&
+            Array.isArray(record.children) &&
             record.children?.filter((child: T) => {
               const childKey = getRowKey(child);
               return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
@@ -89,7 +88,9 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
               return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
             }) || [];
           const isIndeterminate =
-            hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
+            Array.isArray(record.children) &&
+            checkedChilds.length > 0 &&
+            checkedChilds.length < (record.children?.length || 0);
           const checked =
             (recordKey !== undefined &&
               selection.selectedRowKeys &&
@@ -126,12 +127,12 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
                         }
                       });
                     if (isChecked) {
-                      if (hasChilds) {
+                      if (Array.isArray(record.children)) {
                         selectedRows = [...selectedRows, ...record.children];
                       } else {
                         selectedRows = [...selectedRows, record];
                       }
-                    } else if (hasChilds) {
+                    } else if (Array.isArray(record.children)) {
                       const childsKeys = record.children.map((child: T) => getRowKey(child));
                       selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
                     } else {
@@ -281,7 +282,12 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
       if (expandable?.expandedRowKeys?.length) {
         const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
           const key = getRowKey(currentRow);
-          if (key !== undefined && expandable?.expandedRowKeys?.includes(key) && currentRow.children.length) {
+          if (
+            key !== undefined &&
+            expandable?.expandedRowKeys?.includes(key) &&
+            Array.isArray(currentRow.children) &&
+            currentRow.children.length
+          ) {
             return [
               ...result,
               currentRow,
