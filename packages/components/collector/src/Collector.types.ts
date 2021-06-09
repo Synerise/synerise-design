@@ -25,6 +25,7 @@ export type CollectorProps = {
   selected: CollectorValue[];
   suggestions: CollectorValue[];
   texts: CollectorTexts;
+  dropdownItemHeight?: 'large';
 };
 export type CollectorTexts = {
   add: string | React.ReactNode;

@@ -1,11 +1,9 @@
 import * as React from 'react';
+import { NOOP } from '@synerise/ds-utils';
 
 import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
 import { ItemElementProps } from './ListItem.types';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export const NOOP = (): void => {};
 
 const ItemElement: React.FC<ItemElementProps> = ({
   item,

@@ -3,7 +3,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ItemsRoll from '@synerise/ds-items-roll';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
+import { Add3M, WebhookM } from '@synerise/ds-icon/dist/icons';
 
 import {
   ACTIONS,
@@ -19,6 +19,7 @@ import {
   onChangeSelectionOptions,
   SEARCH_PLACEHOLDER,
 } from './dataset';
+import Icon from '@synerise/ds-icon';
 
 const decorator = storyFn => (
   <div style={{ width: '800px' }}>
@@ -63,6 +64,7 @@ const onClearAll = store => {
 const generateProps = (store, { onClearAllOptions }) => ({
   actions: boolean(`Show Actions menu`, true) && ACTIONS,
   className: 'custom-class',
+  customSidebarActions: <Icon component={<WebhookM />} /> ,
   items: store.state.items,
   maxToShowItems: number('maxToShowItems', 10),
   onChangeSelection: select('onChangeSelection', onChangeSelectionOptions, onChangeSelectionOptions.function),
@@ -76,6 +78,7 @@ const generateProps = (store, { onClearAllOptions }) => ({
   showMoreStep: number('showMoreStep', 10),
   useFooter: boolean('useFooter', true),
   useVirtualizedList: boolean('useVirtualizedList', false),
+  hideSearch: boolean('Hide search', false),
 });
 
 const stories = {
@@ -196,6 +199,7 @@ const stories = {
     const props = {
       actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
       className: 'custom-class',
+      customSidebarActions: <Icon component={<WebhookM />} /> ,
       items: ITEMS_100.slice(0, 10),
       onClearAll: () => setVisible(false),
       onItemClick: action('onItemClick'),
@@ -222,6 +226,7 @@ const stories = {
       }
     };
 
+    // @ts-ignore
     return <ItemsRoll {...props} />;
   },
 };

@@ -12,7 +12,9 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
   changeSelectionIcon,
   changeSelectionDropdownProps,
   className,
+  customSidebarActions,
   groups,
+  hideSearch,
   intl,
   items,
   maxToShowItems = 10,
@@ -84,6 +86,8 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
         allTexts={allTexts}
         changeSelectionIcon={changeSelectionIcon}
         changeSelectionDropdownProps={changeSelectionDropdownProps}
+        customSidebarActions={customSidebarActions}
+        hideSearch={hideSearch}
         itemsCount={items.length}
         onChangeSelection={onChangeSelection}
         onSearch={onSearch}
