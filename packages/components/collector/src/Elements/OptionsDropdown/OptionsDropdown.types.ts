@@ -14,4 +14,5 @@ export type OptionsDropdownProps = {
   showNavigationHints?: boolean;
   lookupKey: string;
   customContent?: React.ReactNode;
+  dropdownItemHeight?: 'large';
 };

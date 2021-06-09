@@ -11,6 +11,8 @@ export type HeaderProps = Pick<
   | 'onSearchClear'
   | 'searchValue'
   | 'searchPlaceholder'
+  | 'hideSearch'
+  | 'customSidebarActions'
 > & {
   allTexts: { [k in Texts]: string | React.ReactNode };
   itemsCount: number;
