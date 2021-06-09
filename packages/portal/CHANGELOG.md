@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.130.10](https://github.com/synerise/synerise-design/compare/portal@0.130.9...portal@0.130.10) (2021-06-09)
+
+
+### Bug Fixes
+
+* **items-roll:** fixes ([dfe2481](https://github.com/synerise/synerise-design/commit/dfe2481f2aa7a0f37e4363a22a76657b2ad00346))
+
+
+
+
+
 ## [0.130.9](https://github.com/synerise/synerise-design/compare/portal@0.130.8...portal@0.130.9) (2021-05-25)
 
 
