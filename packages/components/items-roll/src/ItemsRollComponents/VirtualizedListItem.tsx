@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ListChildComponentProps } from 'react-window';
 import Menu from '@synerise/ds-menu';
-import * as S from './ListItem.styles';
+import { NOOP } from '@synerise/ds-utils';
 
+import * as S from './ListItem.styles';
 import { RemoveIcon } from './ItemRemoveIcon';
 import { ItemRollElement } from '../ItemsRoll.types';
-import { NOOP } from './ListItem';
 import { ItemRendererProps } from './VirtualizedListItem.types';
 
 const ItemRenderer = ({ highlight, onItemClick, onItemRemove, tooltipLabel, group }: ItemRendererProps) => ({

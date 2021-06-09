@@ -42,6 +42,7 @@ import Collector from '@synerise/ds-collector'
 | disableSearch       | Disables an option to type value in the input.                       | boolean                                       | `false` |
 | disableButtonPanel  | Hides the right-hand side panel with "cancel" and "add" buttons      | boolean                                       | `false` |
 | dropdownContent     | Custom content of the dropdown displayed when component is focused   | React.ReactNode                               | `false` |
+| dropdownItemHeight  | Enable setting size in dropdown items                                | 'large'                                       | ---     |
 | errorText           | error message, if provided input will be set in error state          | string                                        | ---     |
 | error               | If provided input will be set in error state, without error message  | boolean                                       | ---     |
 | fixedHeight         | If provided, Input will preserve the constant height value           | boolean                                       | `false` |
