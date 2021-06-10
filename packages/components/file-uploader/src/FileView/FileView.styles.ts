@@ -4,7 +4,7 @@ import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 import Popconfirm from '@synerise/ds-popconfirm';
 
 export const PreviewImage = styled.div`
- ${IconContainer} {
+  ${IconContainer} {
     fill: ${(props): string => props.theme.palette['grey-700']};
   }
   margin: -4px -8px -4px -4px;
@@ -22,16 +22,18 @@ export const PlaceholderImage = styled.div`
   }
 `;
 
-export const Info = styled.div`
+export const Info = styled.div<{ progress: boolean }>`
   overflow: hidden;
   margin: 0 0 0 10px;
-  width: 100%;
+  width: ${(props): string => (props.progress ? '100%' : '80%')};
 `;
 
 export const PopconfirmOnRemove = styled(Popconfirm)`
-  .ant-popover-buttons{
-    &:first-of-type {
-        padding: 6px;
+  .ant-popover-buttons {
+    .ant-btn-sm {
+      &:first-of-type {
+        padding-left: 6px;
+      }
     }
   }
 `;
@@ -58,34 +60,6 @@ export const Name = styled(Label)`
 export const SizeOrError = styled(Typography.Text)`
   && {
     color: ${(props): string => props.theme.palette['grey-600']};
-  }
-`;
-
-export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
-  display: ${(props): string => (props.pressed ? 'flex' : 'none')};
-  background-color: transparent;
-  z-index: 10;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  height: 16px;
-  width: 16px;
-  position: absolute;
-  top: 14px;
-  right: 10px;
-  cursor: pointer;
-  overflow: ${(props): string => (props.pressed ? 'visible' : 'hidden')};
-
-  ${IconContainer} {
-    position: absolute;
-    right: -2px;
-    top: -2px;
-    transition: fill 0.3s;
-    fill: ${(props): string => props.theme.palette['red-600']};
-
-    &:hover {
-      fill: ${(props): string => props.theme.palette['red-500']};
-    }
   }
 `;
 export const RemoveWrapper = styled.div`
@@ -137,14 +111,48 @@ export const CheckButtonWrapper = styled.div`
     }
   }
 `;
+export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
+  display: ${(props): string => (props.pressed ? 'flex' : 'none')};
+  background-color: transparent;
+  z-index: 10;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  cursor: pointer;
+  overflow: ${(props): string => (props.pressed ? 'visible' : 'hidden')};
 
-export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boolean; removable?: boolean }>`
+  ${IconContainer} {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    transition: fill 0.3s;
+    fill: ${(props): string => props.theme.palette['red-600']};
+
+    &:hover {
+      fill: ${(props): string => props.theme.palette['red-500']};
+    }
+  }
+`;
+
+export const FileViewContainer = styled.button<{
+  disabled?: boolean;
+  error?: boolean;
+  removable?: boolean;
+  success?: boolean;
+  progress?: boolean;
+  pressed?: boolean;
+}>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 3px;
   border: 1px solid ${(props): string => props.theme.palette['grey-200']};
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 12px 6px;
   height: 48px;
   width: 100%;
   text-align: left;
@@ -168,10 +176,26 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
       }
     `}
   }
+  &:hover {
+    ${(props): SimpleInterpolation =>
+      !props.disabled &&
+      `
+      ${CheckButtonWrapper} {
+        display: none;
+      }
+    `}
+  }
 
   &:focus {
     border-color: ${(props): string => props.theme.palette['blue-500']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
+    ${(props): SimpleInterpolation =>
+  props.pressed &&
+  `
+      ${CheckButtonWrapper} {
+        display: none;
+      }
+    `}
   }
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
@@ -191,6 +215,7 @@ export const FileViewContainer = styled.button<{ disabled?: boolean; error?: boo
 
   ${(props): SimpleInterpolation =>
     props.error &&
+    !props.progress &&
     `
     && {
       border: 1px solid ${props.theme.palette['red-600']};

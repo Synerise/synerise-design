@@ -132,7 +132,7 @@ const stories = {
 };
 
 export default {
-  name: 'Dropdown/Dropdown',
+  name: 'Components/Dropdown',
   stories,
   Component: Dropdown,
   decorator,

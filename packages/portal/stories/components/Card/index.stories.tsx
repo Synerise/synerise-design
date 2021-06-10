@@ -492,7 +492,7 @@ const stories = {
 };
 
 export default {
-  name: 'Card/Card',
+  name: 'Components/Card',
   stories,
   Component: Card,
 };

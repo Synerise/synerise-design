@@ -39,7 +39,7 @@ const decorator = storyFn => (
   </div>
 );
 export default {
-  name: 'Pickers/DatePicker',
+  name: 'Components/Pickers/DatePicker',
   config: {},
   stories,
   decorator,

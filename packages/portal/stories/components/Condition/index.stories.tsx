@@ -318,7 +318,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/Condition',
+  name: 'Components/Filter/Condition',
   config: {},
   stories,
   Component: Condition,

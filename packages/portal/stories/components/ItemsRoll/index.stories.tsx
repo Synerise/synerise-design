@@ -264,7 +264,7 @@ const stories = {
 };
 
 export default {
-  name: 'ItemsRoll/ItemsRoll',
+  name: 'Components/ItemsRoll',
   decorator,
   stories,
   Component: ItemsRoll,
