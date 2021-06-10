@@ -3,7 +3,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ItemsRoll from '@synerise/ds-items-roll';
-import { Add3M, WebhookM } from '@synerise/ds-icon/dist/icons';
+import { Add3M, SaveM } from '@synerise/ds-icon/dist/icons';
 
 import {
   ACTIONS,
@@ -20,6 +20,8 @@ import {
   SEARCH_PLACEHOLDER,
 } from './dataset';
 import Icon from '@synerise/ds-icon';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '@synerise/ds-button';
 
 const decorator = storyFn => (
   <div style={{ width: '800px' }}>
@@ -64,7 +66,6 @@ const onClearAll = store => {
 const generateProps = (store, { onClearAllOptions }) => ({
   actions: boolean(`Show Actions menu`, true) && ACTIONS,
   className: 'custom-class',
-  customSidebarActions: <Icon component={<WebhookM />} /> ,
   items: store.state.items,
   maxToShowItems: number('maxToShowItems', 10),
   onChangeSelection: select('onChangeSelection', onChangeSelectionOptions, onChangeSelectionOptions.function),
@@ -199,7 +200,6 @@ const stories = {
     const props = {
       actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
       className: 'custom-class',
-      customSidebarActions: <Icon component={<WebhookM />} /> ,
       items: ITEMS_100.slice(0, 10),
       onClearAll: () => setVisible(false),
       onItemClick: action('onItemClick'),
@@ -229,6 +229,38 @@ const stories = {
     // @ts-ignore
     return <ItemsRoll {...props} />;
   },
+  withCustomSideBarActions: withState(DEFAULT_STATE)(({store}) => {
+
+    const onClearAllOptions = {
+      function: () => onClearAll(store),
+      none: undefined,
+    };
+    const props = generateProps(store, { onClearAllOptions });
+
+    return (
+        <ItemsRoll
+          {...props}
+          onChangeSelection={!boolean('Hide change selection', true) && props.onChangeSelection}
+          customSidebarActions={
+            <div style={{ display: 'flex', marginRight: '8px' }}>
+              <Button
+                mode='icon-label'
+                type='ghost'
+                icon={
+                  <Icon
+                    component={<SaveM />}
+                    color={theme.palette['grey-600']}
+                  />
+                }
+                onClick={() => window.alert('Click custom action')}
+              >
+                Save list
+              </Button>
+            </div>
+          }
+        />
+      );
+  })
 };
 
 export default {
