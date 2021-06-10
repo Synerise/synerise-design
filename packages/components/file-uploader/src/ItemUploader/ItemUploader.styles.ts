@@ -1,19 +1,14 @@
 import styled, { SimpleInterpolation, css } from 'styled-components';
 import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
-import Button from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const Container = styled.div`
   width: 100%;
 `;
-
-export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
-  && {
-    margin: ${(props): SimpleInterpolation => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
-    display: block;
-    color: ${(props): string => props.theme.palette['grey-500']};
-  }
+export const UploaderContainer = styled.div`
+  padding-right: 20px;
 `;
+
 
 export const DropAreaContainer = styled.div<{ canUploadMore: boolean }>`
   width: 100%;
@@ -48,30 +43,28 @@ export const DropAreaButton = styled.button<{
   mode: string;
   pressed: boolean;
   filesLength: number;
-  hidden: boolean;
 }>`
-  display: ${(props): string => props.hidden ? 'none': 'flex' };
   align-items: center;
   border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
   padding: 11px 12px;
   border-radius: 3px;
   cursor: pointer;
   background-color: transparent;
-  width: 100%;
-  height: 48px;
-  transition: height 0.03s;
+  width: 80px;
+  height: 80px;
+  transition: height 0.3s;
 
   ${(props): SimpleInterpolation =>
-    props.mode === 'multi-large' && props.filesLength === 0 &&
-    `
-      height: 160px;
+  props.mode === 'multi-large' && props.filesLength === 0 &&
+  `
+      height: 108px;
       flex-direction: column;
       text-align: center;
       justify-content: center;
   `};
 
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['grey-700']};
+    fill: ${(props): string => props.theme.palette['grey-800']};
   }
 
   span {
@@ -80,15 +73,15 @@ export const DropAreaButton = styled.button<{
   }
 
   ${(props): SimpleInterpolation =>
-    props.hasError &&
-    `
+  props.hasError &&
+  `
       background-color: ${props.theme.palette['red-050']};
       border-color: ${props.theme.palette['red-600']};
     `}
   ${(props): SimpleInterpolation =>
-    props.pressed &&
-    !props.disabled &&
-    css`
+  props.pressed &&
+  !props.disabled &&
+  css`
       &&&:active,
       &&& {
         background-color: ${props.theme.palette['grey-100']};
@@ -136,10 +129,10 @@ export const DropAreaButton = styled.button<{
   }
 
   ${(props): SimpleInterpolation =>
-    props.isDropping &&
-    !props.disabled &&
-    `
-      height: ${props.mode === 'multi-large' && props.filesLength === 0 ? '160px' : 'auto'};
+  props.isDropping &&
+  !props.disabled &&
+  `
+      height: ${props.mode === 'multi-large' ? '168px' : 'auto'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
 
@@ -160,6 +153,13 @@ export const ErrorMessage = styled(Typography.Text)`
     color: ${(props): string => props.theme.palette['red-600']};
   }
 `;
+export const Description = styled(Typography.Text)<{ hasError?: boolean }>`
+  && {
+    margin: ${(props): SimpleInterpolation => (props.hasError ? '4px 0 8px' : '8px 0 8px')};
+    display: block;
+    color: ${(props): string => props.theme.palette['grey-500']};
+  }
+`;
 
 export const Label = styled(TypographyLabel)`
   && {
@@ -174,4 +174,3 @@ export const Label = styled(TypographyLabel)`
   }
 `;
 
-export const UploadButton = styled(Button)``;

@@ -152,7 +152,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Expandable table with container',
+  name: 'Components/Table/Expandable table with container',
   decorator,
   stories,
   Component: Table,

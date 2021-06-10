@@ -44,7 +44,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/Subject',
+  name: 'Components/Filter/Subject',
   config: {},
   stories,
   Component: Subject,

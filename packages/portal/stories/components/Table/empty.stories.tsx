@@ -483,7 +483,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Empty table',
+  name: 'Components/Table/Empty table',
   decorator,
   stories,
   Component: Table,

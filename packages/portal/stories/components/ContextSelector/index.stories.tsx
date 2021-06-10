@@ -45,7 +45,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/ContextSelector',
+  name: 'Components/Filter/ContextSelector',
   config: {},
   stories,
   Component: ContextSelector,

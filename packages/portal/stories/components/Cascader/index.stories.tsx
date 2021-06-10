@@ -30,7 +30,7 @@ const stories = {
 };
 
 export default {
-  name: 'Dropdown/Dropdown/cascader',
+  name: 'Components/Dropdown/cascader',
   config: {},
   stories,
   decorator,

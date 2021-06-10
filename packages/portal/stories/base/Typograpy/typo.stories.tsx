@@ -27,7 +27,7 @@ const stories = {
 };
 
 export default {
-  name: 'Intro/Core',
+  name: 'Tokens/Typography',
   stories,
   Component: Typography,
 };

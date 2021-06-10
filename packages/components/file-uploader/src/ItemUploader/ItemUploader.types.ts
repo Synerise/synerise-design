@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FileViewTexts } from './FileView/FileView.types';
+import { FileViewTexts } from '../FileView/FileView.types';
 
 export interface ExtendedFile {
   file: FileWithContent;
@@ -20,10 +20,9 @@ type FileUploaderTexts = FileViewTexts & {
   buttonLabelLarge: string | React.ReactNode;
   buttonDescription: string | React.ReactNode;
 };
-
-export interface FileUploaderProps {
+export interface ItemUploaderProps {
   className?: string;
-  mode: 'single' | 'multi-medium' | 'multi-large';
+  mode: 'single' | 'multi';
   filesAmount?: number;
   description?: string;
   disabled?: boolean;

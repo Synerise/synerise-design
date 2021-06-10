@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DropzoneRootProps } from 'react-dropzone';
 import { ExtendedFile } from '../FileUploader.types';
 
 export interface FileViewTexts {
@@ -19,5 +20,6 @@ export interface FileViewProps {
   texts: FileViewTexts;
   removable?: boolean;
   onRemove?: () => void;
-  retry?: boolean;
+  retry?: boolean | React.ReactNode;
+  retryButtonProps?: DropzoneRootProps;
 }

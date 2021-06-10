@@ -41,7 +41,7 @@ const stories = {
 };
 
 export default {
-  name: 'Layout/Footer',
+  name: 'Components/Layout/Footer',
   decorator,
   config: {},
   stories,
