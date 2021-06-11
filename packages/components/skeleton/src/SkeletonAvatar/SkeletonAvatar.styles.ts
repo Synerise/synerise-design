@@ -5,7 +5,7 @@ import { SkeletonSize, WrapperSize,LeftSize,Left1Size, SkeletonWidth } from './S
 const SIZE_LEFT = 10;
 const SIZE_LEFT1 = -10;
 const SKELETON_WIDTH = 80;
-export const loadingAnimation =(size?: 'S' | 'M' | 'L'| 'Xl' ): Keyframes => keyframes`
+export const loadingAnimation =(size?: 'S' | 'M' | 'L'| 'XL' ): Keyframes => keyframes`
   0% {
      background: linear-gradient(90deg, rgba(252,252,255,1) 0%, rgba(243,243,245,1) 17%, rgba(156,157,157,1) 100%); left:${Left1Size[size as string] || SIZE_LEFT1}px; top:0px;
      opacity: 0;
