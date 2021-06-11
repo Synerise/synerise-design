@@ -215,10 +215,10 @@ const stories = {
       onChangeSelection: () => {},
       changeSelectionDropdownProps: {
         overlay: (
-          <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-          </ul>
+          <div style={{ padding: '8px'}}>
+              <div style={{padding: '7px 12px'}}>Option 1</div>
+              <div style={{padding: '7px 12px'}}>Option 2</div>
+          </div>
         ),
         trigger: ['click'],
         visible,
