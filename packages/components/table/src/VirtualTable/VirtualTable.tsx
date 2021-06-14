@@ -19,7 +19,7 @@ import { useTableLocale } from '../utils/locale';
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {
@@ -77,19 +77,24 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
         render: (key: string, record: T): React.ReactNode => {
           const recordKey = getRowKey(record);
           const allChildsChecked =
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             Array.isArray(record.children) &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             record.children?.filter((child: T) => {
               const childKey = getRowKey(child);
               return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
             }).length === 0;
           const checkedChilds =
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             record.children?.filter((child: T) => {
               const childKey = getRowKey(child);
               return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
             }) || [];
           const isIndeterminate =
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             Array.isArray(record.children) &&
             checkedChilds.length > 0 &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             checkedChilds.length < (record.children?.length || 0);
           const checked =
             (recordKey !== undefined &&
@@ -112,7 +117,9 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
                     let selectedRows: T[] = [];
                     dataSource &&
                       dataSource.forEach((row: T): void => {
+                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                         if (row.children !== undefined && Array.isArray(row.children)) {
+                          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                           row.children.forEach((child: T) => {
                             const k = getRowKey(child);
                             if (k && selectedRowKeys.indexOf(k) >= 0) {
@@ -127,12 +134,16 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
                         }
                       });
                     if (isChecked) {
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                       if (Array.isArray(record.children)) {
+                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                         selectedRows = [...selectedRows, ...record.children];
                       } else {
                         selectedRows = [...selectedRows, record];
                       }
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                     } else if (Array.isArray(record.children)) {
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                       const childsKeys = record.children.map((child: T) => getRowKey(child));
                       selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
                     } else {
@@ -285,12 +296,15 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
           if (
             key !== undefined &&
             expandable?.expandedRowKeys?.includes(key) &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             Array.isArray(currentRow.children) &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             currentRow.children.length
           ) {
             return [
               ...result,
               currentRow,
+              // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
               ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
             ];
           }
