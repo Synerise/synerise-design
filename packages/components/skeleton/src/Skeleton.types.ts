@@ -6,9 +6,9 @@ export enum SkeletonSize {
   'L' = 30,
 };
 export enum WrapperSize {
-  'S' = 16,
-  'M' = 22,
-  'L' = 32,
+  'S' = 14,
+  'M' = 20,
+  'L' = 30,
 }
 
 export type SkeletonProps = {

@@ -17,17 +17,16 @@ export const Container = styled.div`
 `
 
 const SIZE_DEFAULT = 20;
-const SIZE_WRAPPER_DEFAULT = 22
+const SIZE_WRAPPER_DEFAULT = 20
 export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   width: 55%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
   position: relative;
-  animation: ${loadingAnimation} 2s linear infinite;
+  animation: ${loadingAnimation} 1s linear infinite;
 `;
 
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   display: flex;
-  border: 1px solid ${(props): string => props.theme.palette[`grey-100`]};
   border-right: transparent;
   border-left: transparent;
   margin: 15px 0px;

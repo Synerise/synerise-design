@@ -16,7 +16,7 @@ export const loadingAnimation =(size?: 'S' | 'M' | 'L'| 'XL' ): Keyframes => key
   }
 `;
 const SIZE_DEFAULT = 40;
-const SIZE_WRAPPER_DEFAULT = 42;
+const SIZE_WRAPPER_DEFAULT = 40;
 export const Container = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
   width: ${(props): string => WrapperSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
 `
@@ -24,13 +24,12 @@ export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
   width: ${(props): string => SkeletonWidth[props.size as string] || SKELETON_WIDTH}%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
   position: relative;
-  animation: ${(props): Keyframes => loadingAnimation(props.size)} 2s linear infinite;
+  animation: ${(props): Keyframes => loadingAnimation(props.size)} 1s linear infinite;
   border-radius: 70%;
 `;
 
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
   display: flex;
-  border: 1px solid ${(props): string => props.theme.palette[`grey-100`]};
   margin: 15px 0px;
   border-radius: 48%;
   width: 100%;

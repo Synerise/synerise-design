@@ -6,28 +6,28 @@ export enum SkeletonSize {
   'XL' = 120
 };
 export enum WrapperSize {
-  'S' = 26,
-  'M' = 42,
-  'L' = 86,
-  'XL' = 122
+  'S' = 24,
+  'M' = 40,
+  'L' = 84,
+  'XL' = 120
 };
 export enum SkeletonWidth {
   'S' = 80,
   'M' = 80,
-  'L' = 60,
-  'XL' = 60,
+  'L' = 80,
+  'XL' = 80,
 };
 export enum LeftSize {
-  'S' = 5,
-  'M' = 9,
-  'L' = 34,
-  'XL' = 48,
+  'S' = 4,
+  'M' = 8,
+  'L' = 18,
+  'XL' = 26,
 };
 export enum Left1Size {
   'S' = -5,
   'M' = -10,
-  'L' = -15,
-  'XL' = -20,
+  'L' = -25,
+  'XL' = -35,
 };
 
 export type SkeletonAvatarProps = {
