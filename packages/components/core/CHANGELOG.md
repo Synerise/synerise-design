@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.30.9...@synerise/ds-core@0.30.10) (2021-06-14)
+
+
+### Bug Fixes
+
+* **core:** change color of yellow-200 ([8dfc22d](https://github.com/synerise/synerise-design/commit/8dfc22d0ed955f2fde1727b311c083e31e2a1d93))
+* **portal:** update and change some styles in storybook ([04c5595](https://github.com/synerise/synerise-design/commit/04c5595d64174cbf187db3255292faaf8df3143a))
+
+
+
+
+
 ## [0.30.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.30.8...@synerise/ds-core@0.30.9) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-core
