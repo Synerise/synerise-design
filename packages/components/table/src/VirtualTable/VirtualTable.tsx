@@ -251,7 +251,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       return (
         <>
           <List
-            // FIXME: Read [1]
             ref={listRef}
             onScroll={({ scrollOffset, scrollDirection }): void => {
               if (
