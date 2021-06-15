@@ -314,4 +314,8 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
   & .ant-table .ant-table-header {
     overflow: visible !important; // overwrite antd's inline style
   }
+
+  & .ant-table .ant-table-cell-scrollbar {
+    box-shadow: none;
+  }
 `;
