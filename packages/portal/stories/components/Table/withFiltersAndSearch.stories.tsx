@@ -95,7 +95,7 @@ const editViewItem = (props, store): void => {
     savedViews: store.state.savedViews.map(category => ({
       ...category,
       items: category.items.map(item => {
-        if(item.id === props.id) {
+        if (item.id === props.id) {
           item.name = props.name;
         }
         return item;
@@ -118,7 +118,7 @@ const editItem = (props, store): void => {
     categories: store.state.categories.map(category => ({
       ...category,
       items: category.items.map(item => {
-        if(item.id === props.id) {
+        if (item.id === props.id) {
           item.name = props.name;
         }
         return item;
@@ -199,6 +199,7 @@ const getSuggestions = value => {
 
 const stories = {
   default: withState({
+    currentDataSource: dataSource,
     categories: CATEGORIES,
     columns: COLUMNS,
     columnManagerVisible: false,
@@ -214,7 +215,7 @@ const stories = {
     starredRowKeys: [],
     selectedView: undefined,
   })(({ store }) => {
-    const { selectedRows, columns } = store.state;
+    const { selectedRows, columns, currentDataSource } = store.state;
 
     const handleSelectRow = selectedRowKeys => {
       store.set({ selectedRows: selectedRowKeys });
@@ -231,9 +232,17 @@ const stories = {
                 title: column.name,
                 dataIndex: column.key,
                 width: 254,
-                render: active => (
-                  <Tooltip title={active ? 'Switch off' : 'Switch on'} placement="topLeft">
-                    <Switch onChange={action('Status change')} checked={active} label="" />
+                render: (isActive: boolean, { key }) => (
+                  <Tooltip title={isActive ? 'Switch off' : 'Switch on'} placement="topLeft">
+                    <Switch
+                      onChange={(isChecked) => {
+                        store.set({
+                          currentDataSource: currentDataSource.map((value) => value.key === key ? { ...value, active: isChecked } : value)
+                        })
+                      }}
+                      checked={isActive}
+                      label=""
+                    />
                   </Tooltip>
                 ),
               };
@@ -320,7 +329,7 @@ const stories = {
 
     const filteredDataSource = () => {
       if (store.state.searchFilterValue && store.state.searchValue) {
-        return dataSource.filter(record => {
+        return currentDataSource.filter(record => {
           const value = {
             name: record.name,
             age: record.age,
@@ -331,10 +340,10 @@ const stories = {
         });
       }
       return !store.state.searchValue
-        ? dataSource
-        : dataSource.filter(record => {
-            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-          });
+        ? currentDataSource
+        : currentDataSource.filter(record => {
+          return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
+        });
     };
 
     const selectEven = () => {
@@ -455,7 +464,7 @@ const stories = {
                   return (
                     <S.DropdownMenuItem
                       highlight={store.state.searchValue}
-                      onItemHover={(): void => {}}
+                      onItemHover={(): void => { }}
                       prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
                     >
                       {item && item.text}
@@ -471,7 +480,7 @@ const stories = {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <S.DropdownMenuItem onItemHover={(): void => {}}>{item && item.text}</S.DropdownMenuItem>
+                  <S.DropdownMenuItem onItemHover={(): void => { }}>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               suggestions={store.state.searchSuggestions}
@@ -480,7 +489,7 @@ const stories = {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <S.DropdownMenuItem onItemHover={(): void => {}}>{item && item.text}</S.DropdownMenuItem>
+                  <S.DropdownMenuItem onItemHover={(): void => { }}>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               textLookupConfig={{
