@@ -50,7 +50,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
   componentDidUpdate(prevProps: SearchProps<AnyObject, AnyObject>): void {
     const { recent, suggestions, parameters, value, textLookupConfig, hideLabel, parameterValue } = this.props;
 
-    if (prevProps.value !== value && !value) {
+    if ((prevProps.value !== value && !value) || (prevProps.parameterValue && !parameterValue)) {
       this.handleChange(value);
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ isResultChosen: false });
