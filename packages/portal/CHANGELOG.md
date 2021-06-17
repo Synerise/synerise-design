@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.131.0](https://github.com/synerise/synerise-design/compare/portal@0.130.11...portal@0.131.0) (2021-06-16)
+
+
+### Features
+
+* **table:** add showBackToTopButton to infinite scroll in VirtualTable ([be3ce68](https://github.com/synerise/synerise-design/commit/be3ce68ba1cd2f03c8172270de06df3eb90f526f))
+
+
+
+
+
 ## [0.130.11](https://github.com/synerise/synerise-design/compare/portal@0.130.10...portal@0.130.11) (2021-06-14)
 
 
