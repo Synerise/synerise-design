@@ -1,20 +1,21 @@
-import { select } from '@storybook/addon-knobs';
-import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
+import { boolean, select } from '@storybook/addon-knobs';
 import * as React from 'react';
 import Skeleton from '@synerise/ds-skeleton';
 
 
-const SkeletonAvatarSizes = {
+const SkeletonSizes = {
   Small: 'S',
   Medium: 'M',
   Large: 'L',
-  ExtraLarge: 'XL'
 };
 const stories = {
   default: () => {
-    const size = select('Size', SkeletonAvatarSizes, 'M');
+    const size = select('Size', SkeletonSizes, 'M');
+    const number = boolean('Show more skeletons',false);
     return (
-      <SkeletonAvatar size={size}/>
+      <div style={{width: '150px'}}>
+      <Skeleton size={size} number={number}/>
+      </div>
     )
   },
 };
