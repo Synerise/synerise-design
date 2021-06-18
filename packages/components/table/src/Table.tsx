@@ -6,6 +6,7 @@ import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
 import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import { useIntl } from 'react-intl';
+import Skeleton from '@synerise/ds-skeleton';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
@@ -45,6 +46,8 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     headerButton,
     hideColumnNames,
     renderSelectionTitle,
+    hideTitlePart,
+    customPagination
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -77,6 +80,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
           rowKey={rowKey}
           locale={tableLocale}
           renderSelectionTitle={renderSelectionTitle}
+          hideTitlePart={hideTitlePart}
         />
       )
     );
@@ -100,10 +104,12 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
   const footerPagination = React.useMemo((): object => {
     return {
       showTotal: (total: number, range: number[]): React.ReactNode => (
-        <span>
+        hideTitlePart ? (<span>
           <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
           {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
-        </span>
+        </span>) : (<div style={{width: '150px'}}>
+          <Skeleton size='M'/>
+        </div>)
       ),
       columnWidth: 72,
       itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {

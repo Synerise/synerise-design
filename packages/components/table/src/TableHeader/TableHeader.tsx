@@ -26,6 +26,7 @@ const TableHeader: React.FC<Props> = ({
   headerButton,
   locale,
   renderSelectionTitle,
+  hideTitlePart
 }) => {
   const titleRef = React.useRef<HTMLElement>(null);
   const [isTitleTruncated, setIsTitleTruncated] = React.useState<boolean>(false);
@@ -70,12 +71,16 @@ const TableHeader: React.FC<Props> = ({
                   <strong ref={titleRef}>{title}</strong>
                 )}
               </S.TitlePartEllipsis>
+              {hideTitlePart &&(
               <S.TitleSeparator />
+              )}
             </>
           )}
+          {hideTitlePart &&(
           <S.TitlePart>
             <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
           </S.TitlePart>
+          )}
         </S.TitleContainer>
       </S.Left>
     );
