@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Checkbox from '@synerise/ds-checkbox/dist';
+import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxSkeletonProps } from './CheckboxSkeleton.types';
 import * as S from './CheckboxSkeleton.styles';
 

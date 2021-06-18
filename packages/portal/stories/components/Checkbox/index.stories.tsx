@@ -46,7 +46,7 @@ const stories = {
       </Checkbox>
     </Checkbox.Group>
   ),
-  CheckboxSkeleton: () => {
+  checkboxSkeleton: () => {
     return (
       <CheckboxSkeleton size='M' />
     )
