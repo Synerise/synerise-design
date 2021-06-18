@@ -2,7 +2,7 @@ import * as React from 'react';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import { select } from '@storybook/addon-knobs';
-import Skeleton from '@synerise/ds-skeleton';
+import DropdownSkeleton from '@synerise/ds-skeleton/dist/DropdownSkeleton/DropdownSkeleton';
 
 const Default: React.FC = () => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -19,11 +19,11 @@ const Default: React.FC = () => {
         placement="bottomLeft"
         overlay={
           <Dropdown.Wrapper
-            style={{ width: '200px' }}
+            style={{ width: '220px' }}
             onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
             ref={ref}
           >
-            <div style={{width: '150px', marginLeft: '20px'}}><Skeleton number={true}/></div>
+            <DropdownSkeleton/>
           </Dropdown.Wrapper>
         }
       >
