@@ -20,18 +20,18 @@ const SIZE_WRAPPER_DEFAULT = 40;
 export const Container = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
   width: ${(props): string => WrapperSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
 `
-export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
+export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: boolean }>`
   width: ${(props): string => SkeletonWidth[props.size as string] || SKELETON_WIDTH}%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
   position: relative;
   animation: ${(props): Keyframes => loadingAnimation(props.size)} 1s linear infinite;
-  border-radius: 70%;
+  border-radius: ${(props): string => (props.shape ? '6px' : '70%')};
 `;
 
-export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL' }>`
+export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: boolean }>`
   display: flex;
-  margin: 15px 0px;
-  border-radius: 48%;
+  margin: 0px 0px;
+  border-radius: ${(props): string => (props.shape ? '6px' : '48%')};
   width: 100%;
   height: ${(props): string => WrapperSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
   background-color: ${(props): string => props.theme.palette[`grey-050`]};

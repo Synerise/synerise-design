@@ -32,4 +32,5 @@ export enum Left1Size {
 
 export type SkeletonAvatarProps = {
   size?: 'S' | 'M' | 'L'| 'XL';
+  shape?: boolean;
 };
