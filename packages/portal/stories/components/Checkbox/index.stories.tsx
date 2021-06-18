@@ -2,6 +2,7 @@ import * as React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Checkbox from '@synerise/ds-checkbox';
+import CheckboxSkeleton from '@synerise/ds-skeleton/dist/CheckboxSkeleton/CheckboxSkeleton';
 
 const stories = {
   default: () => ({
@@ -45,6 +46,11 @@ const stories = {
       </Checkbox>
     </Checkbox.Group>
   ),
+  CheckboxSkeleton: () => {
+    return (
+      <CheckboxSkeleton size='M' />
+    )
+  },
 };
 
 export default {
