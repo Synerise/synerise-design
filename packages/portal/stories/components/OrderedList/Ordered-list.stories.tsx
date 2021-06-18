@@ -268,7 +268,7 @@ const stories = {
 
     return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={formatter} />;
   },
-  OrderedListSkeleton: () => {
+  orderedListSkeleton: () => {
     const hasLabel = boolean('Set label', true);
     const label = text('Label', 'Header label');
     const getLabel = (hasLabel: boolean): string => {
