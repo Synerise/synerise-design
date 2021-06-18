@@ -125,5 +125,4 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   components?: AntTableComponentsType<T> | DSTableComponentsType<T>;
   renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
   hideTitlePart?: boolean;
-  customPagination?: React.ReactNode;
 }

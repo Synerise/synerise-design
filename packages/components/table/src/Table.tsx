@@ -47,7 +47,6 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     hideColumnNames,
     renderSelectionTitle,
     hideTitlePart,
-    customPagination
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
