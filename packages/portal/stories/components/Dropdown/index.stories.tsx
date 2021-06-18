@@ -5,6 +5,7 @@ import Example1 from './examples/Example1';
 import withTabs from './withTabs/withTabs';
 import WithSearch from './examples/withSearch';
 import WithTextTrigger from './examples/withTextTrigger';
+import skeletonDropdown from './examples/skeletonDropdown'
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon/dist/icons';
@@ -129,6 +130,7 @@ const stories = {
   withSearch: WithSearch,
   withTabs: withTabs,
   withTextTrigger: WithTextTrigger,
+  skeletonDropdown: skeletonDropdown,
 };
 
 export default {
