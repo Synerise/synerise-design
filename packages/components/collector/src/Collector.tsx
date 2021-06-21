@@ -17,6 +17,7 @@ const Collector: React.FC<CollectorProps> = ({
   error,
   className,
   description,
+  enableCustomFilteringSuggestions,
   selected,
   suggestions,
   showNavigationHints,
@@ -91,8 +92,9 @@ const Collector: React.FC<CollectorProps> = ({
   }, [selectedValues, mainContentRef, fixedHeight]);
 
   React.useEffect((): void => {
-    filterSuggestions(value);
-  }, [value, selectedValues, filterSuggestions]);
+    if(!enableCustomFilteringSuggestions)
+      filterSuggestions(value);
+  }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
 
   const clear = React.useCallback((): void => {
     setSelectedValues([]);
@@ -221,7 +223,8 @@ const Collector: React.FC<CollectorProps> = ({
                 ? (e): void => {
                     onSearchValueChange && onSearchValueChange(e.target.value);
                     setValue(e.target.value);
-                    filterSuggestions(e.target.value);
+                    if(!enableCustomFilteringSuggestions)
+                      filterSuggestions(e.target.value);
                   }
                 : undefined
             }

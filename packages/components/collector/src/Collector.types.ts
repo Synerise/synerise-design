@@ -26,6 +26,7 @@ export type CollectorProps = {
   suggestions: CollectorValue[];
   texts: CollectorTexts;
   dropdownItemHeight?: 'large';
+  enableCustomFilteringSuggestions?: boolean;
 };
 export type CollectorTexts = {
   add: string | React.ReactNode;
