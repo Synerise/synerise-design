@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.5.33...@synerise/ds-search@0.5.34) (2021-06-21)
+
+
+### Bug Fixes
+
+* **serach:** fixes visibility of params when suggestions list is empty ([4d6983f](https://github.com/Synerise/synerise-design/commit/4d6983f2970e3fe727ff6150dd467d8d612ddaf1))
+
+
+
+
+
 ## [0.5.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.5.32...@synerise/ds-search@0.5.33) (2021-06-14)
 
 **Note:** Version bump only for package @synerise/ds-search
