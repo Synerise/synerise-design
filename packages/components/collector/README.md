@@ -43,6 +43,7 @@ import Collector from '@synerise/ds-collector'
 | disableButtonPanel  | Hides the right-hand side panel with "cancel" and "add" buttons      | boolean                                       | `false` |
 | dropdownContent     | Custom content of the dropdown displayed when component is focused   | React.ReactNode                               | `false` |
 | dropdownItemHeight  | Enable setting size in dropdown items                                | 'large'                                       | ---     |
+| enableCustomFilteringSuggestions | Disable filtering suggestions inside component          | boolean                                       | false |
 | errorText           | error message, if provided input will be set in error state          | string                                        | ---     |
 | error               | If provided input will be set in error state, without error message  | boolean                                       | ---     |
 | fixedHeight         | If provided, Input will preserve the constant height value           | boolean                                       | `false` |
