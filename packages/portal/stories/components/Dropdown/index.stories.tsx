@@ -10,6 +10,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon/dist/icons';
 import Default from './examples/Default';
 import { BottomAction } from '@synerise/ds-dropdown/dist/elements/BottomAction/BottomAction.styles';
+import Advanced from './examples/advanced';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -30,8 +31,6 @@ export function renderFooter(suffixElementType: string) {
       return (
         <Dropdown.BottomAction
           onClickAction={() => {}}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
           style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto' }}
         >
           <Button type="ghost" style={{ paddingLeft: '8px', marginBottom: '1px' }}>
@@ -129,6 +128,7 @@ const stories = {
   withSearch: WithSearch,
   withTabs: withTabs,
   withTextTrigger: WithTextTrigger,
+  advanced: Advanced,
 };
 
 export default {
