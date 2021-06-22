@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.131.1](https://github.com/synerise/synerise-design/compare/portal@0.131.0...portal@0.131.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **serach:** fixes visibility of params when suggestions list is empty ([4d6983f](https://github.com/synerise/synerise-design/commit/4d6983f2970e3fe727ff6150dd467d8d612ddaf1))
+
+
+
+
+
 # [0.131.0](https://github.com/synerise/synerise-design/compare/portal@0.130.11...portal@0.131.0) (2021-06-16)
 
 
