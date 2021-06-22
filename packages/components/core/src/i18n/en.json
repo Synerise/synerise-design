@@ -127,7 +127,21 @@
             "STAR_ROW_TOOLTIP": "Starred",
             "SELECT_ROW_TOOLTIP": "Select",
             "SELECT_ALL_TOOLTIP": "Select all",
-            "SELECTION_OPTIONS": "Options"
+            "SELECTION_OPTIONS": "Options",
+            "COLUMN": {
+                "SORT_AZ": "Sort a-z",
+                "SORT_ZA": "Sort z-a",
+                "SORT_ASCEND": "Sort ascending",
+                "SORT_DESCEND": "Sort descending",
+                "SORT_CLEAR": "Clear"
+            },
+            "INFINITE_SCROLL": {
+                "ERROR": "Cannot load more items",
+                "RETRY": "Retry",
+                "NO_MORE_DATA": "There are no more items to load",
+                "LOADING": "Loading more items",
+                "BACK_TO_TOP": "Back to top"
+            }
         },
         "ICON-PICKER": {
             "NO-RESULTS": "No results"
