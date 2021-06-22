@@ -32,11 +32,11 @@ const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearc
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const searchDebounce = React.useRef(debounce(onSearch, debounceTimeout)).current;
 
-  const onSearchChange = (value: string, force?: boolean) => {
+  const onSearchChange = (value: string, disableDebounce?: boolean) => {
     searchDebounce.cancel();
     setSearchQuery(value);
 
-    if (force) {
+    if (disableDebounce) {
       onSearch(value);
     } else {
       searchDebounce(value);
