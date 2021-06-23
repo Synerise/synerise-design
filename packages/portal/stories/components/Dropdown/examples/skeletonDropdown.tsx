@@ -23,7 +23,9 @@ const Default: React.FC = () => {
             onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
             ref={ref}
           >
+            <div style={{width: '200px'}}>
             <DropdownSkeleton/>
+            </div>
           </Dropdown.Wrapper>
         }
       >
