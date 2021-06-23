@@ -56,18 +56,18 @@ const tabs = [
 ];
 const tabsSkeleton = [
   {
-    label: <div style={{width: '50px'}}>
-      <Skeleton/>
+    label: <div style={{width: '66px'}}>
+      <Skeleton width='M'/>
     </div>,
   },
   {
-    label: <div style={{width: '50px'}}>
-      <Skeleton/>
+    label: <div style={{width: '66px'}}>
+      <Skeleton width='M'/>
     </div>,
   },
   {
-    label: <div style={{width: '50px'}}>
-      <Skeleton/>
+    label: <div style={{width: '66px'}}>
+      <Skeleton width='M'/>
     </div>,
   },
 ];
@@ -365,7 +365,7 @@ const stories = {
             <div style={{width: '150px'}}>
               <Skeleton/>
             </div>
-            <div style={{width: '50px'}}>
+            <div style={{width: '66px'}}>
               <Skeleton width='M'/>
             </div>
           </>
