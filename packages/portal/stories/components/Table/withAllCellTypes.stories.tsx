@@ -18,8 +18,6 @@ import {
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
-import Skeleton from '@synerise/ds-skeleton';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -85,38 +83,6 @@ const getDefaultProps = () => ({
     </Button>
   ),
 });
-const getSkeletonDefaultProps = () => ({
-  hideTitleBar: false,
-  hideTitlePart: false,
-  dataSource,
-  loading: boolean('Set loading state', false),
-  roundedHeader: boolean('Rounded header', false),
-  footer: () => (
-    <div style={{ backgroundColor: theme.palette['grey-050'], height: '70px', display: 'flex', justifyContent:'space-between' }}>
-      <div style={{ width: '150px', marginLeft: '15px', marginTop: '10px' }}>
-        <Skeleton size="M" />
-      </div>
-      <div style={{ width: '150px', display:'flex', marginRight: '40px', marginTop: '10px' }}>
-        <div style={{ width: '150px' }}>
-          <Skeleton size="M" />
-        </div>{' '}
-        <div style={{ width: '150px' }}>
-          <Skeleton size="M" />
-        </div>
-      </div>
-    </div>
-  ),
-  scroll: {
-    x: false,
-  },
-  title: (
-    <div style={{ width: '150px' }}>
-      <Skeleton size="M" />
-    </div>
-  ),
-  onSearch: action('onSearch'),
-  cellSize: select('Set cells size', CELL_SIZES, CELL_SIZES.default),
-});
 
 const stories = {
   default: () => ({
@@ -142,10 +108,6 @@ const stories = {
   withTriggers: () => ({
     ...getDefaultProps(),
     columns: renderWithIconInHeaders(COLUMNS_WITH_TRIGGERS as Column[], boolean('Set icons in headers', false)),
-  }),
-  withSkeleton: () => ({
-    ...getSkeletonDefaultProps(),
-    columns: renderWithIconInHeaders(COLUMNS_WITH_SKELETON as Column[], false),
   }),
 };
 

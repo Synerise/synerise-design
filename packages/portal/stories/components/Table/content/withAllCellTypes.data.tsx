@@ -497,8 +497,8 @@ export const COLUMNS_WITH_AVATARS = [
 ];
 export const COLUMNS_WITH_SKELETON = [
   {
-    title: <div style={{width: '50px'}}>
-      <Skeleton />
+    title: <div style={{width: '66px'}}>
+      <Skeleton width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton',
@@ -510,8 +510,8 @@ export const COLUMNS_WITH_SKELETON = [
     render: skeleton => <Checkbox withoutPadding checked={null} />,
   },
   {
-    title: <div style={{width: '50px'}}>
-      <Skeleton />
+    title: <div style={{width: '66px'}}>
+      <Skeleton width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton',
@@ -535,8 +535,8 @@ export const COLUMNS_WITH_SKELETON = [
     },
   },
   {
-    title: <div style={{width: '50px'}}>
-      <Skeleton />
+    title: <div style={{width: '66px'}}>
+      <Skeleton width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
@@ -554,8 +554,8 @@ export const COLUMNS_WITH_SKELETON = [
     },
   },
   {
-    title: <div style={{width: '50px'}}>
-      <Skeleton />
+    title: <div style={{width: '66px'}}>
+      <Skeleton width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
