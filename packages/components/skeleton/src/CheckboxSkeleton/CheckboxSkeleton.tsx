@@ -6,15 +6,15 @@ import * as S from './CheckboxSkeleton.styles';
 const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({ size = 'M' }) => {
   return (
     <S.Container>
-      <Checkbox/>
-      <div>
+      <Checkbox />
+      <S.SkeletonWrapper>
         <S.Wrapper size={size}>
           <S.SkeletonBar size={size} />
         </S.Wrapper>
         <S.Wrapper size={size}>
           <S.SkeletonBar size={size} />
         </S.Wrapper>
-      </div>
+      </S.SkeletonWrapper>
     </S.Container>
   );
 };
