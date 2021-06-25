@@ -116,10 +116,11 @@ export default () => {
   const [data, setData] = React.useState<any[]>(generateData());
   const [value, setValue] = React.useState<string | null>(null);
   const [dropdownVisible, setDropdownVisible] = React.useState<boolean>(false);
+  const [query, setQuery] = React.useState<string>('');
 
   const onSearchChange = (query: string) => {
     action(`Debounced search query`)(query);
-    setData(generateData());
+    setQuery(query);
   };
 
   const onChange = ({ id }: { id: string }) => {
@@ -134,9 +135,11 @@ export default () => {
       ...generateData(),
     ]);
 
+  const filteredData = query.length > 1 ? data.filter(d => d.text.toLowerCase().includes(query.toLowerCase())) : data;
+
   return (
     <Advanced
-      data={data}
+      data={filteredData}
       value={value}
       onSearch={onSearchChange}
       onChange={onChange}
