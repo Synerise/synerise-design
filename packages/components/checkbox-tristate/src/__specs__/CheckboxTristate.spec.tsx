@@ -104,6 +104,24 @@ describe('CheckboxTristate', () => {
       rerender(<CheckboxTristate checked={undefined}>Label</CheckboxTristate>);
       expect(container.querySelector(SELECTOR_INDETERMINATE)).toBeTruthy();
     });
+
+    it('should change checkbox from indeterminate (undefined) to other states', () => {
+      const { rerender, container } = renderWithProvider(
+        <CheckboxTristate checked={true}>Label</CheckboxTristate>
+      );
+
+      rerender(<CheckboxTristate checked={undefined}>Label</CheckboxTristate>);
+      expect(container.querySelector(SELECTOR_INDETERMINATE)).toBeTruthy();
+
+      rerender(<CheckboxTristate checked>Label</CheckboxTristate>);
+      expect(container.querySelector(SELECTOR_TRUE)).toBeTruthy();
+
+      rerender(<CheckboxTristate checked={undefined}>Label</CheckboxTristate>);
+      expect(container.querySelector(SELECTOR_INDETERMINATE)).toBeTruthy();
+
+      rerender(<CheckboxTristate checked={false}>Label</CheckboxTristate>);
+      expect(container.querySelector(SELECTOR_FALSE)).toBeTruthy();
+    });
   });
   
 });
