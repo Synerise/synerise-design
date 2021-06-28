@@ -167,7 +167,7 @@ const stories = {
     return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} listStyle='none' data={data}
                         indexFormatter={dashedFormatter}/>;
   },
-  iconListSkeleton: () => {
+  unorderedListSkeleton: () => {
     const hasLabel = boolean('Set label', true);
     const label = text('Label', 'Header label');
     const getLabel = (hasLabel: boolean): string => {

@@ -137,7 +137,7 @@ const stories = {
 
     return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={emptyFormatter} />;
   },
-  unorderedListSkeleton: () => {
+  iconListSkeleton: () => {
     const emptyFormatter = () => ``;
     const hasLabel = boolean('Set label', true);
     const label = text('Label', 'Header label');
