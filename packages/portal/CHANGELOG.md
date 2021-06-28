@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.132.0](https://github.com/synerise/synerise-design/compare/portal@0.131.1...portal@0.132.0) (2021-06-28)
+
+
+### Bug Fixes
+
+* **dropdown:** advanced example real search ([fcc762c](https://github.com/synerise/synerise-design/commit/fcc762cbca62d3e1d1c0007d9a96d0d482a92025))
+
+
+### Features
+
+* **dropdown:** add advanced dropdown example with lazy-load and search debounce ([0a59a98](https://github.com/synerise/synerise-design/commit/0a59a98aaf26f9be04d0da86b11acb8cd1545a92))
+
+
+
+
+
 ## [0.131.1](https://github.com/synerise/synerise-design/compare/portal@0.131.0...portal@0.131.1) (2021-06-21)
 
 
