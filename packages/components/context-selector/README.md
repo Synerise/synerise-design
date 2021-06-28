@@ -93,7 +93,8 @@ import ContextSelector from '@synerise/ds-context-selector'
 | texts        | Translations object                                        | ContextSelectorTexts                                   | -         |
 | selectedItem | Selected item                                              | ContextItem \ undefined                                | undefined |
 | addMode      | If true trigger doesn't change style when value is set     | ContextItem \ undefined                                | undefined |
-
+| customTriggerComponent | Add custom trigger                                | React.ReactNode                                        | undefined |
+| trigger      | Add custom trigger to modal                                | 'click' \ 'hover' \ 'contextMenu'                      | 'click    |
 ### ContextGroup
 
 | Property     | Description                      | Type            | Default |
