@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CSSProperties } from 'react';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -46,6 +47,7 @@ export type ContextProps = {
   customTriggerComponent?: React.ReactNode;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   menuItemHeight?: 'large' | 'default';
+  dropdownWrapperStyles?: CSSProperties;
 };
 
 export type ContextDropdownProps = {
@@ -59,6 +61,7 @@ export type ContextDropdownProps = {
   visible?: boolean;
   loading?: boolean;
   menuItemHeight?: 'large' | 'default';
+  dropdownWrapperStyles?: CSSProperties;
 };
 
 export type ContextSelectorDropdownItemProps = {

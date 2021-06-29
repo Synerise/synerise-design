@@ -21,6 +21,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   customTriggerComponent,
   trigger,
   menuItemHeight,
+  dropdownWrapperStyles,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -90,6 +91,7 @@ const ContextSelector: React.FC<ContextProps> = ({
           visible={dropdownVisible}
           loading={loading}
           menuItemHeight={menuItemHeight}
+          dropdownWrapperStyles={dropdownWrapperStyles}
         />
       }
     >
