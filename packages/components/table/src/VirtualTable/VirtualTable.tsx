@@ -12,6 +12,7 @@ import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType, DSTableProps } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
+import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
 import { useTableLocale } from '../utils/locale';
@@ -249,43 +250,40 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       // ref.current = connectObject;
 
       return (
-        <>
-          <List
-            ref={listRef}
-            onScroll={({ scrollOffset, scrollDirection }): void => {
-              if (
-                scrollDirection === 'forward' &&
-                scrollOffset >= listHeight &&
-                typeof infiniteScroll?.onScrollEndReach === 'function'
-              ) {
-                infiniteScroll.onScrollEndReach();
-              }
-            }}
-            className="virtual-grid"
-            height={scroll.y}
-            itemCount={data.length}
-            itemSize={cellHeight}
-            width={tableWidth}
-            itemData={{
-              mergedColumns,
-              selection,
-              onRowClick,
-              dataSource: data,
-              infiniteScroll,
-              cellHeight,
-              defaultTableProps,
-            }}
-            itemKey={(index): string => {
-              return String(getRowKey(data[index]));
-            }}
-            outerElementType={CustomScrollbar}
-            overscanCount={1}
-            innerElementType={infiniteScroll && listInnerElementType}
-          >
-            {VirtualTableRow}
-          </List>
-          {!!infiniteScroll?.showBackToTopButton && <BackToTopButton onClick={handleBackToTopClick} />}
-        </>
+        <List
+          ref={listRef}
+          onScroll={({ scrollOffset, scrollDirection }): void => {
+            if (
+              scrollDirection === 'forward' &&
+              scrollOffset >= listHeight &&
+              typeof infiniteScroll?.onScrollEndReach === 'function'
+            ) {
+              infiniteScroll.onScrollEndReach();
+            }
+          }}
+          className="virtual-grid"
+          height={scroll.y}
+          itemCount={data.length}
+          itemSize={cellHeight}
+          width={tableWidth}
+          itemData={{
+            mergedColumns,
+            selection,
+            onRowClick,
+            dataSource: data,
+            infiniteScroll,
+            cellHeight,
+            defaultTableProps,
+          }}
+          itemKey={(index): string => {
+            return String(getRowKey(data[index]));
+          }}
+          outerElementType={CustomScrollbar}
+          overscanCount={1}
+          innerElementType={infiniteScroll && listInnerElementType}
+        >
+          {VirtualTableRow}
+        </List>
       );
     };
 
@@ -321,23 +319,28 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
 
   return (
-    <ResizeObserver
-      onResize={({ offsetWidth }): void => {
-        setTableWidth(offsetWidth);
-      }}
-    >
-      <DSTable
-        {...props}
-        className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
-        // Remove columns which cause header columns indent
-        columns={mergedColumns.slice(columnsSliceStartIndex)}
-        pagination={false}
-        components={{
-          body: renderBody,
+    <RelativeContainer style={{ position: 'relative' }}>
+      <ResizeObserver
+        onResize={({ offsetWidth }): void => {
+          setTableWidth(offsetWidth);
         }}
-        locale={tableLocale}
-      />
-    </ResizeObserver>
+      >
+        <DSTable
+          {...props}
+          className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
+          // Remove columns which cause header columns indent
+          columns={mergedColumns.slice(columnsSliceStartIndex)}
+          pagination={false}
+          components={{
+            body: renderBody,
+          }}
+          locale={tableLocale}
+        />
+      </ResizeObserver>
+      {!!infiniteScroll?.showBackToTopButton && (
+        <BackToTopButton onClick={handleBackToTopClick}>{tableLocale.infiniteScrollBackToTop}</BackToTopButton>
+      )}
+    </RelativeContainer>
   );
 }
 
