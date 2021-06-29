@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List, ListOnScrollProps } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { compact } from 'lodash';
@@ -245,6 +245,16 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     const renderVirtualList = (data: T[]): React.ReactNode => {
       const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
 
+      const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps): void => {
+        if (
+          scrollDirection === 'forward' &&
+          scrollOffset >= listHeight &&
+          typeof infiniteScroll?.onScrollEndReach === 'function'
+        ) {
+          infiniteScroll.onScrollEndReach();
+        }
+      };
+
       // eslint-disable-next-line no-param-reassign
       // FIXME: Read [1]
       // ref.current = connectObject;
@@ -252,15 +262,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       return (
         <List
           ref={listRef}
-          onScroll={({ scrollOffset, scrollDirection }): void => {
-            if (
-              scrollDirection === 'forward' &&
-              scrollOffset >= listHeight &&
-              typeof infiniteScroll?.onScrollEndReach === 'function'
-            ) {
-              infiniteScroll.onScrollEndReach();
-            }
-          }}
+          onScroll={handleListScroll}
           className="virtual-grid"
           height={scroll.y}
           itemCount={data.length}
