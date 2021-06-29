@@ -26,6 +26,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   visible,
   loading,
   menuItemHeight,
+  dropdownWrapperStyles,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -182,7 +183,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   return (
     <Dropdown.Wrapper
-      style={{ width: '300px' }}
+      style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
@@ -191,6 +192,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
             setSearchInputFocus(true);
           });
       }}
+
     >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
