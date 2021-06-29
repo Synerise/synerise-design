@@ -25,6 +25,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   value,
   visible,
   loading,
+  menuItemHeight,
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -73,6 +74,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               item={item}
               searchQuery={searchQuery}
               select={handleOnSetGroup}
+              menuItemHeight={menuItemHeight}
             />
           ) : (
             <ContextSelectorDropdownItem
@@ -83,6 +85,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               hideDropdown={(): void => setDropdownVisible(false)}
               select={setSelected}
               selected={Boolean(value) && item.id === value?.id}
+              menuItemHeight={menuItemHeight}
             />
           );
           resultItems.push(resultItem);
@@ -90,7 +93,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       });
       return resultItems;
     },
-    [activeGroup, classNames, searchQuery, setSelected, value, setDropdownVisible, handleOnSetGroup]
+    [activeGroup, classNames, searchQuery, setSelected, value, setDropdownVisible, handleOnSetGroup, menuItemHeight]
   );
 
   const currentTabItems = React.useMemo((): ContextGroup | undefined => {

@@ -8,22 +8,28 @@ export type ContextTexts = {
 };
 
 export type ContextItem = {
+  id: React.ReactText;
   name: string;
   icon: React.ReactNode;
+  customSuffix?: React.ReactNode;
+  description?: React.ReactNode;
   groupId?: React.ReactText;
   groupName?: string;
-  id: React.ReactText;
   subGroups?: ContextGroup[];
+  useCustomIcon?: boolean;
 };
 
 export type ContextGroup = {
-  defaultGroup?: boolean;
-  icon?: React.ReactNode;
   id: React.ReactText;
-  itemType?: string;
   name: string;
+  customSuffix?: React.ReactNode;
+  defaultGroup?: boolean;
+  description?: React.ReactNode;
+  icon?: React.ReactNode;
+  itemType?: string;
   tooltip?: string;
   subGroups?: ContextGroup[];
+  useCustomIcon?: boolean;
 };
 
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
@@ -39,6 +45,7 @@ export type ContextProps = {
   loading?: boolean;
   customTriggerComponent?: React.ReactNode;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
+  menuItemHeight?: 'large' | 'default';
 };
 
 export type ContextDropdownProps = {
@@ -51,6 +58,7 @@ export type ContextDropdownProps = {
   onSetGroup?: (val: ContextItem | ContextGroup) => void;
   visible?: boolean;
   loading?: boolean;
+  menuItemHeight?: 'large' | 'default';
 };
 
 export type ContextSelectorDropdownItemProps = {
@@ -61,4 +69,5 @@ export type ContextSelectorDropdownItemProps = {
   select: (item: ContextItem | ContextGroup) => void;
   selected?: boolean;
   className: string;
+  menuItemHeight?: 'large' | 'default';
 };
