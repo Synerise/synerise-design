@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.19...@synerise/ds-inline-edit@0.4.20) (2021-06-30)
+
+
+### Bug Fixes
+
+* **inline-edit:** handle initial value ([81ea808](https://github.com/Synerise/synerise-design/commit/81ea808dc84696518f0378a789aac838cf520098))
+
+
+
+
+
 ## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.18...@synerise/ds-inline-edit@0.4.19) (2021-06-22)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit
