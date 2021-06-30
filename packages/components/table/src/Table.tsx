@@ -104,7 +104,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
   const footerPagination = React.useMemo((): object => {
     return {
       showTotal: (total: number, range: number[]): React.ReactNode =>
-        hideTitlePart ? (
+        !hideTitlePart ? (
           <span>
             <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
             {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
