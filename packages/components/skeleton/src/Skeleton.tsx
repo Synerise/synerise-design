@@ -5,15 +5,15 @@ import * as S from './Skeleton.styles';
 const Skeleton: React.FC<SkeletonProps> = ({ size = 'M', number, width }) => {
   return (
     <S.Container>
-      <S.Wrapper size={size} width={width}>
+      <S.Wrapper className="ds-skeleton" size={size} width={width}>
         <S.SkeletonBar width={width} size={size} />
       </S.Wrapper>
       {number && (
         <>
-          <S.Wrapper size={size} width={width}>
+          <S.Wrapper className="ds-skeleton" size={size} width={width}>
             <S.SkeletonBar width={width} size={size} />
           </S.Wrapper>
-          <S.Wrapper size={size} width={width}>
+          <S.Wrapper className="ds-skeleton" size={size} width={width}>
             <S.SkeletonBar width={width} size={size} />
           </S.Wrapper>
         </>

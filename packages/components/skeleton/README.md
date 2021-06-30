@@ -26,5 +26,9 @@ import Skeleton from '@synerise/ds-skeleton'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property         | Description                  | Type                      | Default     |
+| ---------------- | ---------------------------- | ------------------------- | ----------- |
+| size             | Changing size of Skeleton    | 'S' / 'M' / 'L'           | M           |
+| width            | Changing width of Skeleton   | 'M' / 'L'                 | M           |
+| number           | Add more Skeletons           | boolean                   | false       |
+| shape            | Change shape of Skeletons    | boolean                   | false       |
