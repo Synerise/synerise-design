@@ -131,6 +131,7 @@ export const DropdownContent = styled.div<{ visible?: boolean }>`
   top: 4px;
   left: 0;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  z-index: 99;
 `;
 
 export const DropdownAddButton = styled(Button)`

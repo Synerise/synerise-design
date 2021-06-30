@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.10.42...@synerise/ds-tooltip@0.10.43) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.10.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.10.41...@synerise/ds-tooltip@0.10.42) (2021-05-27)
+
+
+### Bug Fixes
+
+* **tooltip:** force transform none ([284afef](https://github.com/synerise/synerise-design/commit/284afef9e8058c9a164b7c77164368a4b3bf44e1))
+
+
+
+
+
 ## [0.10.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.10.40...@synerise/ds-tooltip@0.10.41) (2021-05-25)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

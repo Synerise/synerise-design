@@ -17,6 +17,7 @@ const Collector: React.FC<CollectorProps> = ({
   error,
   className,
   description,
+  enableCustomFilteringSuggestions,
   selected,
   suggestions,
   showNavigationHints,
@@ -34,6 +35,7 @@ const Collector: React.FC<CollectorProps> = ({
   dropdownContent,
   disableButtonPanel,
   disableSearch,
+  dropdownItemHeight,
   searchValue,
   onSearchValueChange,
 }) => {
@@ -90,8 +92,9 @@ const Collector: React.FC<CollectorProps> = ({
   }, [selectedValues, mainContentRef, fixedHeight]);
 
   React.useEffect((): void => {
-    filterSuggestions(value);
-  }, [value, selectedValues, filterSuggestions]);
+    if(!enableCustomFilteringSuggestions)
+      filterSuggestions(value);
+  }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
 
   const clear = React.useCallback((): void => {
     setSelectedValues([]);
@@ -220,7 +223,8 @@ const Collector: React.FC<CollectorProps> = ({
                 ? (e): void => {
                     onSearchValueChange && onSearchValueChange(e.target.value);
                     setValue(e.target.value);
-                    filterSuggestions(e.target.value);
+                    if(!enableCustomFilteringSuggestions)
+                      filterSuggestions(e.target.value);
                   }
                 : undefined
             }
@@ -247,6 +251,7 @@ const Collector: React.FC<CollectorProps> = ({
         options={filteredSuggestions}
         onItemAdd={onItemAdd}
         lookupKey={displayLookupKey}
+        dropdownItemHeight={dropdownItemHeight}
         value={value}
         visible={
           isFocused &&
@@ -255,7 +260,7 @@ const Collector: React.FC<CollectorProps> = ({
         }
         onSelect={(item): void => {
           onSelect && onSelect(item);
-          !allowMultipleValues && item[displayLookupKey] && setValue(item[displayLookupKey]);
+          !allowMultipleValues && item[filterLookupKey] && setValue(item[filterLookupKey]);
         }}
         onClick={(): void => {
           if (inputRef?.current) {

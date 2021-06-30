@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.1...@synerise/ds-table@0.37.2) (2021-06-21)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.37.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.0...@synerise/ds-table@0.37.1) (2021-06-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.37.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.36.4...@synerise/ds-table@0.37.0) (2021-06-16)
+
+
+### Bug Fixes
+
+* **table:** remove memoization from list body and outerElement renderers ([331c7db](https://github.com/synerise/synerise-design/commit/331c7db28536d259b73323812b3ab09ea4db9f92))
+* **table:** remove scrollbar cell box shadow ([76ef053](https://github.com/synerise/synerise-design/commit/76ef0531695264641a9543772ef04ae7562bd91e))
+
+
+### Features
+
+* **table:** add showBackToTopButton to infinite scroll in VirtualTable ([be3ce68](https://github.com/synerise/synerise-design/commit/be3ce68ba1cd2f03c8172270de06df3eb90f526f))
+
+
+
+
+
+## [0.36.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.36.3...@synerise/ds-table@0.36.4) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.36.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.36.2...@synerise/ds-table@0.36.3) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.36.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.36.1...@synerise/ds-table@0.36.2) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.36.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.36.0...@synerise/ds-table@0.36.1) (2021-05-26)
 
 **Note:** Version bump only for package @synerise/ds-table

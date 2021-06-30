@@ -30,6 +30,7 @@ const CheckboxTristate: React.FC<CheckboxTristateProps> = props => {
     if (isControlled && (checked !== currentChecked || (checked === false && currentChecked === false))) {
       if (checked === undefined) {
         setIndeterminate(true);
+        setChecked(false);
       } else {
         setChecked(checked);
         setIndeterminate(false);

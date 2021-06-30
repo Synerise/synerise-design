@@ -13,7 +13,8 @@ const stories = {
 
     return (
       <CheckboxTristate 
-        checked={checked} 
+        // NOTE: select knob replaces undefined with empty string
+        checked={typeof checked === 'string' ? undefined : checked}
         onChange={(event: CheckboxTristateChangeEvent) => {
           alert(`Tristate Checkbox is set to: ${checked}, onChange event wants to change it to: ${event.target.checked}`)
         }}
