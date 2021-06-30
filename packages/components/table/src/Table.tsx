@@ -98,18 +98,22 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     headerButton,
     rowKey,
     tableLocale,
+    hideTitlePart,
   ]);
 
   const footerPagination = React.useMemo((): object => {
     return {
-      showTotal: (total: number, range: number[]): React.ReactNode => (
-        hideTitlePart ? (<span>
-          <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
-          {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
-        </span>) : (<div style={{width: '150px'}}>
-          <Skeleton size='M'/>
-        </div>)
-      ),
+      showTotal: (total: number, range: number[]): React.ReactNode =>
+        hideTitlePart ? (
+          <span>
+            <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
+            {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
+          </span>
+        ) : (
+          <div style={{ width: '150px' }}>
+            <Skeleton size="M" />
+          </div>
+        ),
       columnWidth: 72,
       itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {
         if (type === ITEM_RENDER_TYPE.prev) {
@@ -130,7 +134,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       },
       ...pagination,
     };
-  }, [pagination, grouped, tableLocale]);
+  }, [pagination, grouped, tableLocale, hideTitlePart]);
 
   return (
     <TableLocaleContext.Provider value={tableLocale}>
