@@ -37,6 +37,8 @@ export type ContextProps = {
   opened?: boolean;
   addMode?: boolean;
   loading?: boolean;
+  customTriggerComponent?: React.ReactNode;
+  trigger?: ('click' | 'hover' | 'contextMenu')[];
 };
 
 export type ContextDropdownProps = {

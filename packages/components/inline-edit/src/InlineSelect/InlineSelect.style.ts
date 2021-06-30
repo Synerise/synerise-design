@@ -26,11 +26,9 @@ const applyColorActive = (props: ThemeProps & InPlaceEditableInputContainerProps
   return props.theme.palette['blue-700'];
 };
 
-
-
 const applyDotsOnError = (props: ThemeProps & InPlaceEditableInputContainerProps): string => {
   if (props.error)
-    return `background-image: linear-gradient(to right, ${((applyColor(props)))} 20%, rgba(255, 255, 255, 0) 10%);
+    return `background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
   background-color: transparent;
   background-position: bottom left;
   background-size: 5px 1px;
@@ -73,7 +71,7 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
-  margin-right: -3px;
+    margin-right: -3px;
     svg {
       color: ${(props): string => applyColor(props)};
       fill: ${(props): string => applyColor(props)};
@@ -95,43 +93,49 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
     }
   }
   ${(props): FlattenSimpleInterpolation | false =>
-    !props.pressed && !props.dropdownOpened &&
+    !props.pressed &&
+    !props.dropdownOpened &&
     css`
-    &&&{
-      &:focus:not(:active),
-      &:focus-within {
-        background-color: transparent;
-        background-position: bottom left;
-        background-size: 5px 1px;
-        background-repeat: repeat-x;
-        background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
+      &&& {
+        &:focus:not(:active),
+        &:focus-within {
+          background-color: transparent;
+          background-position: bottom left;
+          background-size: 5px 1px;
+          background-repeat: repeat-x;
+          background-image: linear-gradient(to right, ${applyColor(props)} 20%, rgba(255, 255, 255, 0) 10%);
+          input {
+            color: transparent;
+            cursor: pointer;
+            text-shadow: 0 0 0 ${applyColor(props)};
+          }
+          ${IconWrapper} {
+            background-color: transparent;
+            svg {
+              fill: ${applyColor(props)};
+            }
+          }
+        }
+      }
+    `}
+  ${(props): FlattenSimpleInterpolation | false =>
+    (props.dropdownOpened || props.pressed) &&
+    css`
+      &&&:active,
+      &&& {
         input {
           color: transparent;
           cursor: pointer;
-          text-shadow: 0 0 0 ${applyColor(props)};
+          text-shadow: 0 0 0 ${applyColorActive(props)};
         }
         ${IconWrapper} {
           background-color: transparent;
           svg {
-            fill: ${applyColor(props)};
+            fill: ${applyColorActive(props)};
           }
         }
       }
-      }
     `}
-${(props): FlattenSimpleInterpolation | false => (props.dropdownOpened || props.pressed) && css `&&&:active, &&&{
-    input {
-      color: transparent;
-      cursor: pointer;
-      text-shadow: 0 0 0 ${ applyColorActive(props)};
-    }
-    ${IconWrapper} {
-      background-color: transparent;
-      svg {
-        fill: ${ applyColorActive(props)};
-      }
-    }
-  }`}
   
   
 
@@ -154,6 +158,7 @@ ${(props): FlattenSimpleInterpolation | false => (props.dropdownOpened || props.
     padding: 0;
     margin: 0;
     vertical-align: top;
+    font-weight: 500;
     color: transparent;
     text-shadow: 0 0 0 ${(props): string => applyColor(props)};
     ::placeholder {
