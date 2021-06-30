@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import Icon from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
+import { NOOP } from '@synerise/ds-utils';
 import EditM from '@synerise/ds-icon/dist/icons/EditM';
 
 import Extras from '../Extras';
@@ -13,6 +14,8 @@ const Header: React.FC<HeaderProps> = ({
   allTexts,
   changeSelectionIcon: ChangeSelectionIcon = EditM,
   changeSelectionDropdownProps,
+  customSidebarActions,
+  hideSearch,
   itemsCount,
   onChangeSelection,
   onSearch,
@@ -42,16 +45,18 @@ const Header: React.FC<HeaderProps> = ({
           ) : (
             ChangeSelectionButton
           ))}
-        <S.SearchWrapper>
-          <SearchInput
-            clearTooltip={allTexts.searchClearTooltipLabel}
-            onClear={onSearchClear}
-            onChange={onSearch}
-            placeholder={searchPlaceholder}
-            value={searchValue}
-            closeOnClickOutside
-          />
-        </S.SearchWrapper>
+        {!hideSearch && <S.SearchWrapper>
+            <SearchInput
+              clearTooltip={allTexts.searchClearTooltipLabel}
+              onClear={onSearchClear || NOOP}
+              onChange={onSearch || NOOP}
+              placeholder={searchPlaceholder}
+              value={searchValue || ''}
+              closeOnClickOutside
+            />
+          </S.SearchWrapper>
+        }
+        { customSidebarActions }
         {actions && <Extras actions={actions} />}
       </S.HeaderRight>
     </S.ContainerSpaceBetween>

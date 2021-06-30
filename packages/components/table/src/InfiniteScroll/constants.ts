@@ -5,6 +5,7 @@ export interface InfiniteScrollState {
 }
 
 export interface InfiniteScrollProps extends InfiniteScrollState {
+  showBackToTopButton?: boolean;
   render?: (state: InfiniteScrollState) => React.ReactElement;
   onRetryButtonClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onScrollEndReach: () => void;

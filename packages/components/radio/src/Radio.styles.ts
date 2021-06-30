@@ -1,6 +1,7 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import AntdRadio from 'antd/lib/radio';
+import { macro } from '@synerise/ds-typography/';
 
 export const RadioWrapper = styled.div`
   & {
@@ -12,6 +13,7 @@ export const RadioWrapper = styled.div`
 export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
+ ${macro.small}
 `;
 
 export const AdditionalData = styled.div`

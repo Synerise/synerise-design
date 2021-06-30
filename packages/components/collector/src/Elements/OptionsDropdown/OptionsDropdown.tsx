@@ -10,6 +10,12 @@ import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
 import { CollectorValue } from '../../Collector.types';
 
+const gerRowHeight = (size?: string): number => {
+  if(size === 'large')
+    return 50;
+  return 32;
+};
+
 const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   showAddButton,
   options,
@@ -23,6 +29,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   lookupKey,
   texts,
   customContent,
+  dropdownItemHeight,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
@@ -67,9 +74,9 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
                 visibleRows={6}
                 onItemClick={onSelect}
                 itemRender={(val: CollectorValue): React.ReactElement => (
-                  <Menu.Item key={`${val}`}>{val[lookupKey]}</Menu.Item>
+                  <Menu.Item size={dropdownItemHeight} key={`${val}`}>{val[lookupKey]}</Menu.Item>
                 )}
-                rowHeight={32}
+                rowHeight={gerRowHeight(dropdownItemHeight)}
                 width={width}
                 listProps={{ scrollTop }}
               />

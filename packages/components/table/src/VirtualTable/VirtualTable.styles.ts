@@ -31,3 +31,7 @@ export const ColWrapper = styled.div<{ width?: number }>`
     padding-left: 0;
   }
 `;
+
+export const RelativeContainer = styled.div`
+  position: relative;
+`;
