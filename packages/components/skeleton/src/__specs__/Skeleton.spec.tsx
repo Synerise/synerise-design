@@ -15,16 +15,4 @@ describe('Skeleton', () => {
     // ASSERT
     expect(container.querySelector('.ds-skeleton')).toBeTruthy();
   });
-  it('should have size ', function() {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <Skeleton
-        size='M'
-        number={false}
-        width='L'
-      />
-    );
-    // ASSERT
-    expect(container.querySelector('M')).toBeTruthy();
-  })
 });
