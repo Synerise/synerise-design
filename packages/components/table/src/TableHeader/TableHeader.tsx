@@ -71,10 +71,10 @@ const TableHeader: React.FC<Props> = ({
                   <strong ref={titleRef}>{title}</strong>
                 )}
               </S.TitlePartEllipsis>
-              {hideTitlePart && <S.TitleSeparator />}
+              {!hideTitlePart && <S.TitleSeparator />}
             </>
           )}
-          {hideTitlePart && (
+          {!hideTitlePart && (
             <S.TitlePart>
               <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
             </S.TitlePart>

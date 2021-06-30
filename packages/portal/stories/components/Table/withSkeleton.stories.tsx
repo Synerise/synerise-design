@@ -40,7 +40,7 @@ const CELL_SIZES = {
 };
 const getSkeletonDefaultProps = () => ({
   hideTitleBar: false,
-  hideTitlePart: false,
+  hideTitlePart: true,
   dataSource,
   loading: boolean('Set loading state', false),
   roundedHeader: boolean('Rounded header', false),

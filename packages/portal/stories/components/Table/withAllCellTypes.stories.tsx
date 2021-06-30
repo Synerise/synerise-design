@@ -61,7 +61,7 @@ const CELL_SIZES = {
 
 const getDefaultProps = () => ({
   hideTitleBar: boolean('Hide title bar', false),
-  hideTitlePart: true,
+  hideTitlePart: false,
   dataSource,
   loading: boolean('Set loading state', false),
   roundedHeader: boolean('Rounded header', false),
