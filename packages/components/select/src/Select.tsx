@@ -28,6 +28,7 @@ class Select extends React.Component<Props> {
       listHeight,
       className,
       getPopupContainer = defaultGetPopupContainer,
+      grey,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
@@ -35,6 +36,7 @@ class Select extends React.Component<Props> {
       <>
         <S.Label label={label} tooltip={tooltip} />
         <S.SelectWrapper
+          grey={grey}
           description={Boolean(description)}
           error={Boolean(errorText)}
           className={classNames(

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Select from 'antd/lib/select';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
@@ -121,10 +121,6 @@ export const Label = styled(DSLabel)`
     margin-top: -1px;
   }
 `;
-export const SelectWrapper = styled.div<{ description?: boolean; error?: boolean }>`
-  display: flex;
-  padding-bottom: ${(props): string => (props.error || props.description ? '0' : '16px')};
-`;
 export const PrefixWrapper = styled.div`
   border-radius: 3px 0 0 3px;
   margin-right: -2px;
@@ -136,4 +132,19 @@ export const SuffixWrapper = styled.div`
   border-radius: 0 3px 3px 0;
   margin-left: -1px;
   ${(props): string => addonStyles(props)};
+`;
+
+export const SelectWrapper = styled.div<{ description?: boolean; error?: boolean; grey?: boolean }>`
+  display: flex;
+  padding-bottom: ${(props): string => (props.error || props.description ? '0' : '16px')};
+  ${(props): FlattenSimpleInterpolation | undefined | false =>
+    props.grey &&
+    !props.error &&
+    css`
+      && {
+        .ant-select-selector {
+          background-color: ${props.theme.palette['grey-100']};
+        }
+      }
+    `}
 `;
