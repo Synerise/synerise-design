@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table",
-  "version": "0.37.4",
+  "version": "0.37.5",
   "description": "Table UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -45,7 +45,7 @@
     "@synerise/ds-pagination": "^0.6.87",
     "@synerise/ds-search": "^0.5.35",
     "@synerise/ds-search-bar": "^0.3.33",
-    "@synerise/ds-select": "^0.13.29",
+    "@synerise/ds-select": "^0.13.30",
     "@synerise/ds-status": "^0.2.52",
     "@synerise/ds-tags": "^0.3.52",
     "@synerise/ds-tooltip": "^0.10.44",

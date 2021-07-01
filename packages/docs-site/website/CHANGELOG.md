@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.11.2...docs@0.11.3) (2021-07-01)
+
+
+### Bug Fixes
+
+* **select:** added grey option ([7de7029](https://gitlab.synerise.com/Frontend/synerise-design/commit/7de7029210ec4e03a558ad70a49ceb921e4eaa93))
+
+
+
+
+
 ## [0.11.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.11.1...docs@0.11.2) (2021-07-01)
 
 **Note:** Version bump only for package docs

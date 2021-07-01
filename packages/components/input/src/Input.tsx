@@ -88,24 +88,26 @@ const enhancedInput = <P extends object>(
         </S.ContentAbove>
       )}
       <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
-        <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
-          <S.IconsFlexContainer type={type}>
-            <Tooltip title={icon1Tooltip}>
-              <S.IconWrapper className={className}>
-                {icon1 &&
-                  React.cloneElement(icon1, {
-                    className: 'icon icon1',
-                    ...(icon2 && { style: { marginRight: '4px' } }),
-                  })}
-              </S.IconWrapper>
-            </Tooltip>
-            <Tooltip title={icon2Tooltip}>
-              <S.IconWrapper className={className}>
-                {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
-              </S.IconWrapper>
-            </Tooltip>
-          </S.IconsFlexContainer>
-        </S.IconsWrapper>
+        {(icon1 || icon2) && (
+          <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
+            <S.IconsFlexContainer type={type}>
+              <Tooltip title={icon1Tooltip}>
+                <S.IconWrapper className={className}>
+                  {icon1 &&
+                    React.cloneElement(icon1, {
+                      className: 'icon icon1',
+                      ...(icon2 && { style: { marginRight: '4px' } }),
+                    })}
+                </S.IconWrapper>
+              </Tooltip>
+              <Tooltip title={icon2Tooltip}>
+                <S.IconWrapper className={className}>
+                  {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+                </S.IconWrapper>
+              </Tooltip>
+            </S.IconsFlexContainer>
+          </S.IconsWrapper>
+        )}
         <WrappedComponent
           {...antdInputProps}
           className={hasErrorMessage || error ? 'error' : undefined}
