@@ -19,7 +19,9 @@ const ContextSelector: React.FC<ContextProps> = ({
   addMode,
   loading,
   customTriggerComponent,
-  trigger
+  trigger,
+  menuItemHeight,
+  dropdownWrapperStyles,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -88,6 +90,8 @@ const ContextSelector: React.FC<ContextProps> = ({
           texts={texts}
           visible={dropdownVisible}
           loading={loading}
+          menuItemHeight={menuItemHeight}
+          dropdownWrapperStyles={dropdownWrapperStyles}
         />
       }
     >
