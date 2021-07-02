@@ -4,12 +4,6 @@ export enum SkeletonSize {
   'L' = 84,
   'XL' = 120,
 }
-export enum WrapperSize {
-  'S' = 24,
-  'M' = 40,
-  'L' = 84,
-  'XL' = 120,
-}
 export enum SkeletonWidth {
   'S' = 80,
   'M' = 80,
@@ -21,12 +15,6 @@ export enum LeftSize {
   'M' = 40,
   'L' = 70,
   'XL' = 90,
-}
-export enum Left1Size {
-  'S' = -25,
-  'M' = -40,
-  'L' = -70,
-  'XL' = -90,
 }
 
 export type SkeletonAvatarProps = {
