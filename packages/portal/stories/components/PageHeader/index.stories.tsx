@@ -57,17 +57,17 @@ const tabs = [
 const tabsSkeleton = [
   {
     label: <div style={{width: '66px'}}>
-      <Skeleton width='M'/>
+      <Skeleton numberOfSkeletons={1} width='M'/>
     </div>,
   },
   {
     label: <div style={{width: '66px'}}>
-      <Skeleton width='M'/>
+      <Skeleton numberOfSkeletons={1} width='M'/>
     </div>,
   },
   {
     label: <div style={{width: '66px'}}>
-      <Skeleton width='M'/>
+      <Skeleton numberOfSkeletons={1} width='M'/>
     </div>,
   },
 ];
@@ -343,13 +343,13 @@ const stories = {
       <PageHeader
         bar={
           <div style={{width: '150px'}}>
-            <Skeleton/>
+            <Skeleton numberOfSkeletons={1}/>
           </div>
         }
 
         more={
           <div style={{width: '150px'}}>
-            <Skeleton/>
+            <Skeleton numberOfSkeletons={1}/>
           </div>
         }
         avatar={
@@ -363,10 +363,10 @@ const stories = {
         rightSide={
           <>
             <div style={{width: '150px'}}>
-              <Skeleton/>
+              <Skeleton numberOfSkeletons={1}/>
             </div>
             <div style={{width: '66px'}}>
-              <Skeleton width='M'/>
+              <Skeleton numberOfSkeletons={1} width='M'/>
             </div>
           </>
         }
