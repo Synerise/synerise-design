@@ -498,7 +498,7 @@ export const COLUMNS_WITH_AVATARS = [
 export const COLUMNS_WITH_SKELETON = [
   {
     title: <div style={{width: '66px'}}>
-      <Skeleton width='M' />
+      <Skeleton numberOfSkeletons={1} width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton',
@@ -511,7 +511,7 @@ export const COLUMNS_WITH_SKELETON = [
   },
   {
     title: <div style={{width: '66px'}}>
-      <Skeleton width='M' />
+      <Skeleton numberOfSkeletons={1} width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton',
@@ -528,7 +528,7 @@ export const COLUMNS_WITH_SKELETON = [
             <SkeletonAvatar size='M' shape={false}  />
           }
           title={<div style={{width: '150px'}}>
-            <Skeleton size='M'  />
+            <Skeleton numberOfSkeletons={1} size='M'  />
           </div>}
         />
       );
@@ -536,7 +536,7 @@ export const COLUMNS_WITH_SKELETON = [
   },
   {
     title: <div style={{width: '66px'}}>
-      <Skeleton width='M' />
+      <Skeleton numberOfSkeletons={1} width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
@@ -548,14 +548,14 @@ export const COLUMNS_WITH_SKELETON = [
     render: skeleton  => {
       return (
         <div style={{width: '150px'}}>
-          <Skeleton size='M'  />
+          <Skeleton numberOfSkeletons={1} size='M'  />
         </div>
       );
     },
   },
   {
     title: <div style={{width: '66px'}}>
-      <Skeleton width='M' />
+      <Skeleton numberOfSkeletons={1} width='M' />
     </div>,
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
@@ -567,7 +567,7 @@ export const COLUMNS_WITH_SKELETON = [
     render: skeleton => {
       return (
         <div style={{width: '150px'}}>
-          <Skeleton size='M'  />
+          <Skeleton numberOfSkeletons={1} size='M'  />
         </div>
       );
     },
