@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.29...@synerise/ds-input@0.17.30) (2021-07-01)
+
+
+### Bug Fixes
+
+* **input:** show iconWrapper only if icon is  provided ([bd627e6](https://github.com/synerise/synerise-design/commit/bd627e6c3df1737b5005c51e442d9d34252831f7))
+
+
+
+
+
 ## [0.17.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.28...@synerise/ds-input@0.17.29) (2021-06-22)
 
 **Note:** Version bump only for package @synerise/ds-input
