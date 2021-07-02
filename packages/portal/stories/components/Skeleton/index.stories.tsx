@@ -1,4 +1,4 @@
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import * as React from 'react';
 import Skeleton from '@synerise/ds-skeleton';
 
@@ -11,10 +11,10 @@ const SkeletonSizes = {
 const stories = {
   default: () => {
     const size = select('Size', SkeletonSizes, 'M');
-    const number = boolean('Show more skeletons',false);
+    const numberOfSkeletons = number('Number of skeletons', 2);
     return (
       <div style={{width: '150px'}}>
-      <Skeleton size={size} number={number}/>
+      <Skeleton size={size} numberOfSkeletons={numberOfSkeletons}/>
       </div>
     )
   },

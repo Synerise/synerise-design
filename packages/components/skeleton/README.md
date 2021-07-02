@@ -30,5 +30,5 @@ import Skeleton from '@synerise/ds-skeleton'
 | ---------------- | ---------------------------- | ------------------------- | ----------- |
 | size             | Changing size of Skeleton    | 'S' / 'M' / 'L'           | M           |
 | width            | Changing width of Skeleton   | 'M' / 'L'                 | M           |
-| number           | Add more Skeletons           | boolean                   | false       |
+| numberOfSkeletons| Add more Skeletons           | number                    | 2           |
 | shape            | Change shape of Skeletons    | boolean                   | false       |
