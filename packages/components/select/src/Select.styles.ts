@@ -143,7 +143,7 @@ export const SelectWrapper = styled.div<{ description?: boolean; error?: boolean
     css`
       && {
         .ant-select-selector {
-          background-color: ${props.theme.palette['grey-100']};
+          background-color: ${props.theme.palette['grey-050']};
         }
       }
     `}
