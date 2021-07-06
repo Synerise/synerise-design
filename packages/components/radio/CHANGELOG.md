@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.68](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.67...@synerise/ds-radio@0.10.68) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+
+
+
+
+## [0.10.67](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.66...@synerise/ds-radio@0.10.67) (2021-06-17)
+
+
+### Bug Fixes
+
+* **radio:** fix font size ([64e89c1](https://github.com/synerise/synerise-design/commit/64e89c1f2d4e2e35bb25959e9e8336f959515daa))
+
+
+
+
+
+## [0.10.66](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.65...@synerise/ds-radio@0.10.66) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+
+
+
+
 ## [0.10.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.10.64...@synerise/ds-radio@0.10.65) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-radio

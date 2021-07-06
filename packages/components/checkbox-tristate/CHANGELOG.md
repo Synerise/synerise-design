@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.1.23...@synerise/ds-checkbox-tristate@0.1.24) (2021-06-28)
+
+
+### Bug Fixes
+
+* **checkbox-tristate:** set checked state to false when indeterminate ([3adf814](https://github.com/Synerise/synerise-design/commit/3adf8147fe73acf3b092932419d6af20889ebb18))
+
+
+
+
+
+## [0.1.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.1.22...@synerise/ds-checkbox-tristate@0.1.23) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-checkbox-tristate
+
+
+
+
+
+## [0.1.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.1.21...@synerise/ds-checkbox-tristate@0.1.22) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-checkbox-tristate
+
+
+
+
+
 ## [0.1.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.1.20...@synerise/ds-checkbox-tristate@0.1.21) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-checkbox-tristate

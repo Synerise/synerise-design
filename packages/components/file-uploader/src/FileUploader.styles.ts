@@ -48,8 +48,9 @@ export const DropAreaButton = styled.button<{
   mode: string;
   pressed: boolean;
   filesLength: number;
+  hidden: boolean;
 }>`
-  display: flex;
+  display: ${(props): string => props.hidden ? 'none': 'flex' };
   align-items: center;
   border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
   padding: 11px 12px;
@@ -58,19 +59,19 @@ export const DropAreaButton = styled.button<{
   background-color: transparent;
   width: 100%;
   height: 48px;
-  transition: height 0.3s;
+  transition: height 0.03s;
 
   ${(props): SimpleInterpolation =>
     props.mode === 'multi-large' && props.filesLength === 0 &&
     `
-      height: 108px;
+      height: 160px;
       flex-direction: column;
       text-align: center;
       justify-content: center;
   `};
 
   ${IconContainer} {
-    fill: ${(props): string => props.theme.palette['grey-600']};
+    fill: ${(props): string => props.theme.palette['grey-700']};
   }
 
   span {
@@ -138,7 +139,7 @@ export const DropAreaButton = styled.button<{
     props.isDropping &&
     !props.disabled &&
     `
-      height: ${props.mode === 'multi-large' ? '168px' : 'auto'};
+      height: ${props.mode === 'multi-large' && props.filesLength === 0 ? '160px' : 'auto'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
 

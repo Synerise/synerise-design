@@ -1,6 +1,7 @@
-import styled, { SimpleInterpolation } from 'styled-components';
-import  { Label } from '@synerise/ds-typography';
+import styled, { keyframes, SimpleInterpolation } from 'styled-components';
+import { Description, Label } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 
 export const PreviewImage = styled.div`
   ${IconContainer} {
@@ -17,6 +18,21 @@ export const RepeatIcon = styled.div`
 `;
 export const LoaderIcon = styled.div`
   padding-left: 10px;
+`;
+export const spinnerAnimation = keyframes`
+
+  0% {
+     transform: rotate(0deg);
+  }
+  100% {
+     transform: rotate(720deg);
+  }
+`;
+export const SmallLoader = styled(Loader)`
+  border: 1px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: ${spinnerAnimation} 2s linear infinite;
 `;
 
 export const PlaceholderImage = styled.div`
@@ -41,17 +57,19 @@ export const Info = styled.div`
   margin: 0 0 0 4px;
   width: 100%;
 `;
+export const DescriptionUploader = styled(Description)`
+  margin: 16px 0 8px 0;
+  color: ${(props): string => props.theme.palette['grey-500']};
+`;
 
 export const Name = styled(Label)`
   && {
     color: ${(props): string => props.theme.palette['grey-600']};
-    display: flex;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
+    max-width: 260px;
     cursor: initial;
-    justify-content: space-between;
   }
 `;
 
@@ -61,7 +79,7 @@ export const RemoveButtonWrapper = styled.div<{ pressed?: boolean }>`
   z-index: 10;
   border: 0;
   padding: 0;
-  margin: 0;
+  margin: 0 4px 0 0;
   height: 16px;
   width: 16px;
   position: absolute;
@@ -109,7 +127,7 @@ export const AvatarContainer = styled.div<{ source: string; disabled?: boolean; 
   height: 80px;
   border-radius: 3px;
   overflow: visible;
-  margin-right: 20px;
+  margin-right: 14px;
   ${(props): SimpleInterpolation =>
     props.disabled &&
     `
@@ -132,7 +150,7 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   border: 2px solid transparent;
   display: flex;
   align-items: center;
-  padding: 7px 7px 7px 4px;
+  padding: 7px 12px 7px 6px;
   height: 32px;
   text-align: left;
   line-height: initial;
@@ -145,7 +163,7 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
 
   &:hover {
     border-color: ${(props): string => props.theme.palette['grey-200']};
-    padding-right: ${(props): string => (props.removable ? '25px' : '7px')};
+    padding-right: ${(props): string => (props.removable ? '30px' : '12px')};
     ${Name} {
       color: ${(props): string => props.theme.palette['blue-600']};
     }

@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.132.0](https://github.com/synerise/synerise-design/compare/portal@0.131.1...portal@0.132.0) (2021-06-28)
+
+
+### Bug Fixes
+
+* **dropdown:** advanced example real search ([fcc762c](https://github.com/synerise/synerise-design/commit/fcc762cbca62d3e1d1c0007d9a96d0d482a92025))
+
+
+### Features
+
+* **dropdown:** add advanced dropdown example with lazy-load and search debounce ([0a59a98](https://github.com/synerise/synerise-design/commit/0a59a98aaf26f9be04d0da86b11acb8cd1545a92))
+
+
+
+
+
+## [0.131.1](https://github.com/synerise/synerise-design/compare/portal@0.131.0...portal@0.131.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **serach:** fixes visibility of params when suggestions list is empty ([4d6983f](https://github.com/synerise/synerise-design/commit/4d6983f2970e3fe727ff6150dd467d8d612ddaf1))
+
+
+
+
+
+# [0.131.0](https://github.com/synerise/synerise-design/compare/portal@0.130.11...portal@0.131.0) (2021-06-16)
+
+
+### Features
+
+* **table:** add showBackToTopButton to infinite scroll in VirtualTable ([be3ce68](https://github.com/synerise/synerise-design/commit/be3ce68ba1cd2f03c8172270de06df3eb90f526f))
+
+
+
+
+
+## [0.130.11](https://github.com/synerise/synerise-design/compare/portal@0.130.10...portal@0.130.11) (2021-06-14)
+
+
+### Bug Fixes
+
+* **file-uploader:** add text/csv to upload on all type uploader ([f0bbc77](https://github.com/synerise/synerise-design/commit/f0bbc7758b93077bbaa5b4fd67c518a5b9cd277a))
+* **file-uploader:** fix styles of components ([e561e68](https://github.com/synerise/synerise-design/commit/e561e68e2a81a673296aefac7c4124c14496b886))
+* **file-uploader:** new componennts and fixes ([8774c65](https://github.com/synerise/synerise-design/commit/8774c65dd20828d7fae4c8583cdf038dbe81b4f5))
+* **items-roll:** fixes ([3be1de1](https://github.com/synerise/synerise-design/commit/3be1de11967bf5fabcc4245362a8e3cf631ec2f1))
+* **portal:** add new logo ([ab6dea6](https://github.com/synerise/synerise-design/commit/ab6dea682b457c75e457940ef0169f7f3f84ab97))
+* **portal:** add new stories Welcome ([79b4b84](https://github.com/synerise/synerise-design/commit/79b4b84ea3241cf76ca736414ab6f115befc8dfa))
+* **portal:** add order in and change names of folders in storybook ([feab7b3](https://github.com/synerise/synerise-design/commit/feab7b3dd72a3ee373ecc3553763d5753e45c09b))
+* **portal:** change image sb_colloid.png ([5886c87](https://github.com/synerise/synerise-design/commit/5886c87ef00262c0f9cfccdedb9095863b130ff7))
+* **portal:** change logo ([90ac763](https://github.com/synerise/synerise-design/commit/90ac76374f7b8c7c0b1d51d89079113f7ba352dd))
+* **portal:** change logo ([50f3f7f](https://github.com/synerise/synerise-design/commit/50f3f7f4ae9cc668c583b7768c9ed2ef3dedfee9))
+* **portal:** change stories to alphabetical order ([aba5b5e](https://github.com/synerise/synerise-design/commit/aba5b5e655a471051273646eb361e49d54464f56))
+* **portal:** changed stories indentation level ([c592486](https://github.com/synerise/synerise-design/commit/c592486cecc42d1119c32a74744cf538db0d12ba))
+* **portal:** update and change some styles in storybook ([04c5595](https://github.com/synerise/synerise-design/commit/04c5595d64174cbf187db3255292faaf8df3143a))
+
+
+
+
+
+## [0.130.10](https://github.com/synerise/synerise-design/compare/portal@0.130.9...portal@0.130.10) (2021-06-09)
+
+
+### Bug Fixes
+
+* **items-roll:** fixes ([dfe2481](https://github.com/synerise/synerise-design/commit/dfe2481f2aa7a0f37e4363a22a76657b2ad00346))
+
+
+
+
+
+## [0.130.9](https://github.com/synerise/synerise-design/compare/portal@0.130.8...portal@0.130.9) (2021-05-25)
+
+
+### Bug Fixes
+
+* **button:** removes focus styles for disabled button ([873791c](https://github.com/synerise/synerise-design/commit/873791cec04f207d2a0ccc71808f78a135ef7fe8))
+* **file-uploader:** fix defualt uploader props and props in uploaderAvatar ([7e3c476](https://github.com/synerise/synerise-design/commit/7e3c476030c3206408b618a5391cbe697f9e9260))
+* **file-uploader:** fix defualt uploader styles and popconfirm button ([d898d20](https://github.com/synerise/synerise-design/commit/d898d20055869864072e050a62d0e4ba664c5453))
+* **file-uploader:** new component avatar uploader ([e240d95](https://github.com/synerise/synerise-design/commit/e240d95c39c77f72ade64047be96d5d68bed591c))
+* **item-filter:** update items sorting by selected id ([41e432c](https://github.com/synerise/synerise-design/commit/41e432cd2dbb46c0d345192c21ee6958925995ef))
+* **table:** sorted columns styles in VirtualTable ([fae8839](https://github.com/synerise/synerise-design/commit/fae88395bbaca4752af43f816fb30f8b0112d39d))
+
+
+
+
+
+## [0.130.8](https://github.com/synerise/synerise-design/compare/portal@0.130.7...portal@0.130.8) (2021-05-24)
+
+
+### Bug Fixes
+
+* **menu:** fixes Menu.Divider styles ([bcb1235](https://github.com/synerise/synerise-design/commit/bcb1235a18f1511e9077db0446f02b882695952f))
+
+
+
+
+
 ## [0.130.7](https://github.com/synerise/synerise-design/compare/portal@0.130.6...portal@0.130.7) (2021-05-20)
 
 **Note:** Version bump only for package portal

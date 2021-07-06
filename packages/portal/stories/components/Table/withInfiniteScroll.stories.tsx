@@ -1,5 +1,6 @@
 import * as React from 'react';
 import faker from 'faker';
+import { boolean } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';
 import { VirtualTable } from '@synerise/ds-table';
 
@@ -78,6 +79,7 @@ const stories = {
           hasError: store.state.hasError,
           hasMore: store.state.hasMore,
           isLoading: store.state.isLoading,
+          showBackToTopButton: boolean('Back to top button', true),
           onRetryButtonClick: () => {
             fakeFetchData();
           },
@@ -93,7 +95,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Table with infinite scrolling',
+  name: 'Components/Table/Table with infinite scrolling',
   decorator,
   stories,
   Component: VirtualTable,

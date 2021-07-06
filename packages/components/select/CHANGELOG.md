@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.30...@synerise/ds-select@0.13.31) (2021-07-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.29...@synerise/ds-select@0.13.30) (2021-07-01)
+
+
+### Bug Fixes
+
+* **select:** added grey option ([7de7029](https://github.com/synerise/synerise-design/commit/7de7029210ec4e03a558ad70a49ceb921e4eaa93))
+
+
+
+
+
+## [0.13.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.28...@synerise/ds-select@0.13.29) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.27...@synerise/ds-select@0.13.28) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.26...@synerise/ds-select@0.13.27) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.13.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.25...@synerise/ds-select@0.13.26) (2021-05-25)
+
+
+### Bug Fixes
+
+* **select:** fix paddings and margins ([588f3ec](https://github.com/synerise/synerise-design/commit/588f3ec5b66acdb772a3e400429a607a940e328a))
+* **select:** fix props error and description ([b15e19c](https://github.com/synerise/synerise-design/commit/b15e19cc4994f9eb759c3ac32c0650a972d9d5b7))
+* **select:** fix styles ([6a72bd8](https://github.com/synerise/synerise-design/commit/6a72bd8f15468b333b6370b81bfb3678a68d758d))
+
+
+
+
+
 ## [0.13.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.24...@synerise/ds-select@0.13.25) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-select

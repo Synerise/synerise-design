@@ -43,6 +43,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   retry,
   texts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
+    buttonLabelLarge: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL-LARGE" />,
     buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
     size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
     removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
@@ -113,7 +114,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           )}
         </S.Label>
       )}
-      {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
         <>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
@@ -122,6 +122,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
 
             <S.DropAreaButton
               type="button"
+              hidden={!(mode !== 'single' && (filesAmount ? files.length < filesAmount : true) || files.length === 0)}
               mode={mode}
               disabled={disabled}
               isDropping={isDragActive}
@@ -135,7 +136,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
               {mode === 'multi-large' && files.length === 0 ? (
                 <>
                   <Icon component={<FileUploadL />} size={48} />
-                  <S.LargeDropAreaLabel>{texts.buttonLabel}</S.LargeDropAreaLabel>
+                  <S.LargeDropAreaLabel>{texts.buttonLabelLarge}</S.LargeDropAreaLabel>
                   <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
                 </>
               ) : (
@@ -147,7 +148,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             </S.DropAreaButton>
           </S.DropAreaContainer>
         </>
-      )}
       {files.length > 0 &&
       files.map((file, index) => (
         <FileView
@@ -158,6 +158,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           onRemove={(): void => onRemove && onRemove(file.file, index)}
           data={file}
           retry={retry}
+          retryButtonProps={{...getRootProps()}}
         />
       ))}
       {hasError &&

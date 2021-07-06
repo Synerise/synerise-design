@@ -77,7 +77,7 @@ const stories = {
 };
 
 export default {
-  name: 'Filter/StepCard',
+  name: 'Components/Filter/StepCard',
   config: {},
   stories,
   Component: StepCard,

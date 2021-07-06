@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List, ListOnScrollProps } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { compact } from 'lodash';
@@ -12,14 +12,23 @@ import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType, DSTableProps } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
+import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
 import { useTableLocale } from '../utils/locale';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
+const CustomScrollbar = React.forwardRef<HTMLElement, React.HTMLAttributes<Element>>(
+  ({ onScroll, children, style }, ref): React.ReactElement => (
+    <Scrollbar ref={ref} onScroll={onScroll} absolute maxHeight={style?.height}>
+      {children}
+    </Scrollbar>
+  )
+);
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {
@@ -39,6 +48,8 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   } = props;
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
+
+  const listRef = React.useRef<List>(null);
 
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
@@ -76,20 +87,26 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
         dataIndex: 'key',
         render: (key: string, record: T): React.ReactNode => {
           const recordKey = getRowKey(record);
-          const hasChilds = record.children !== undefined && Array.isArray(record.children);
           const allChildsChecked =
-            hasChilds &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+            Array.isArray(record.children) &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             record.children?.filter((child: T) => {
               const childKey = getRowKey(child);
               return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
             }).length === 0;
           const checkedChilds =
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
             record.children?.filter((child: T) => {
               const childKey = getRowKey(child);
               return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
             }) || [];
           const isIndeterminate =
-            hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+            Array.isArray(record.children) &&
+            checkedChilds.length > 0 &&
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+            checkedChilds.length < (record.children?.length || 0);
           const checked =
             (recordKey !== undefined &&
               selection.selectedRowKeys &&
@@ -111,7 +128,9 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
                     let selectedRows: T[] = [];
                     dataSource &&
                       dataSource.forEach((row: T): void => {
+                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                         if (row.children !== undefined && Array.isArray(row.children)) {
+                          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                           row.children.forEach((child: T) => {
                             const k = getRowKey(child);
                             if (k && selectedRowKeys.indexOf(k) >= 0) {
@@ -126,12 +145,16 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
                         }
                       });
                     if (isChecked) {
-                      if (hasChilds) {
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+                      if (Array.isArray(record.children)) {
+                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                         selectedRows = [...selectedRows, ...record.children];
                       } else {
                         selectedRows = [...selectedRows, record];
                       }
-                    } else if (hasChilds) {
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+                    } else if (Array.isArray(record.children)) {
+                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
                       const childsKeys = record.children.map((child: T) => getRowKey(child));
                       selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
                     } else {
@@ -178,7 +201,6 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
 
   // FIXME: [1] Temporarily turn off this scroll sync which causes content disappearing. Horizontal scrolling doesn't work anyway.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const listRef = React.useRef<any>();
   // @link https://ant.design/components/table/#components-table-demo-virtual-list
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // const [connectObject] = React.useState<any>(() => {
@@ -195,25 +217,6 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   //   return obj;
   // });
 
-  const scrollBarRef = React.useRef<HTMLElement>(null);
-
-  const CustomScrollbar = React.useCallback(({ onScroll, children }): React.ReactElement => {
-    const handleScrollEndReach = infiniteScroll?.onScrollEndReach;
-
-    return (
-      <Scrollbar
-        ref={scrollBarRef}
-        onScroll={onScroll}
-        absolute
-        maxHeight={scroll.y}
-        onYReachEnd={handleScrollEndReach}
-      >
-        {children}
-      </Scrollbar>
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const listInnerElementType = React.forwardRef<HTMLDivElement>(
     ({ style, ...rest }: React.HTMLAttributes<HTMLDivElement>, ref) => (
       <div
@@ -228,113 +231,118 @@ function VirtualTable<T extends RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean
   );
 
   const handleBackToTopClick = (): void => {
-    if (!scrollBarRef.current) {
+    if (!listRef.current) {
       return;
     }
 
-    scrollBarRef.current.scrollTop = 0;
+    listRef.current.scrollTo(0);
   };
 
-  const renderBody = React.useCallback(
-    (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
-      // FIXME: Read [1]
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
-      const renderVirtualList = (data: T[]): React.ReactNode => {
-        // eslint-disable-next-line no-param-reassign
+  const renderBody = (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
+    // FIXME: Read [1]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
+    const renderVirtualList = (data: T[]): React.ReactNode => {
+      const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
 
-        // FIXME: Read [1]
-        // ref.current = connectObject;
-        return (
-          <>
-            <List
-              // FIXME: Read [1]
-              // ref={listRef}
-              className="virtual-grid"
-              height={scroll.y}
-              itemCount={data.length}
-              itemSize={cellHeight}
-              width={tableWidth}
-              itemData={{
-                mergedColumns,
-                selection,
-                onRowClick,
-                dataSource: data,
-                infiniteScroll,
-                cellHeight,
-                defaultTableProps,
-              }}
-              itemKey={(index): string => {
-                return String(getRowKey(data[index]));
-              }}
-              outerElementType={CustomScrollbar}
-              overscanCount={1}
-              innerElementType={infiniteScroll && listInnerElementType}
-            >
-              {VirtualTableRow}
-            </List>
-            {infiniteScroll && <BackToTopButton onClick={handleBackToTopClick} />}
-          </>
-        );
+      const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps): void => {
+        if (
+          scrollDirection === 'forward' &&
+          scrollOffset >= listHeight &&
+          typeof infiniteScroll?.onScrollEndReach === 'function'
+        ) {
+          infiniteScroll.onScrollEndReach();
+        }
       };
 
-      if (expandable?.expandedRowKeys?.length) {
-        const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
-          const key = getRowKey(currentRow);
-          if (key !== undefined && expandable?.expandedRowKeys?.includes(key) && currentRow.children.length) {
-            return [
-              ...result,
-              currentRow,
-              ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
-            ];
-          }
-          return [...result, currentRow];
-        }, []);
-        // FIXME: Read [1]
-        // return renderVirtualList(expandedRows, meta);
-        return renderVirtualList(expandedRows);
-      }
+      // eslint-disable-next-line no-param-reassign
       // FIXME: Read [1]
-      // return renderVirtualList(rawData, meta);
-      return renderVirtualList(rawData);
-    },
-    [
-      expandable,
-      getRowKey,
-      mergedColumns,
-      onRowClick,
-      scroll,
-      selection,
-      tableWidth,
-      CustomScrollbar,
-      cellHeight,
+      // ref.current = connectObject;
+
+      return (
+        <List
+          ref={listRef}
+          onScroll={handleListScroll}
+          className="virtual-grid"
+          height={scroll.y}
+          itemCount={data.length}
+          itemSize={cellHeight}
+          width={tableWidth}
+          itemData={{
+            mergedColumns,
+            selection,
+            onRowClick,
+            dataSource: data,
+            infiniteScroll,
+            cellHeight,
+            defaultTableProps,
+          }}
+          itemKey={(index): string => {
+            return String(getRowKey(data[index]));
+          }}
+          outerElementType={CustomScrollbar}
+          overscanCount={1}
+          innerElementType={infiniteScroll && listInnerElementType}
+        >
+          {VirtualTableRow}
+        </List>
+      );
+    };
+
+    if (expandable?.expandedRowKeys?.length) {
+      const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
+        const key = getRowKey(currentRow);
+        if (
+          key !== undefined &&
+          expandable?.expandedRowKeys?.includes(key) &&
+          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+          Array.isArray(currentRow.children) &&
+          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+          currentRow.children.length
+        ) {
+          return [
+            ...result,
+            currentRow,
+            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
+            ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
+          ];
+        }
+        return [...result, currentRow];
+      }, []);
       // FIXME: Read [1]
-      // connectObject,
-      infiniteScroll,
-      listInnerElementType,
-    ]
-  );
+      // return renderVirtualList(expandedRows, meta);
+      return renderVirtualList(expandedRows);
+    }
+    // FIXME: Read [1]
+    // return renderVirtualList(rawData, meta);
+    return renderVirtualList(rawData);
+  };
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
 
   return (
-    <ResizeObserver
-      onResize={({ offsetWidth }): void => {
-        setTableWidth(offsetWidth);
-      }}
-    >
-      <DSTable
-        {...props}
-        className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
-        // Remove columns which cause header columns indent
-        columns={mergedColumns.slice(columnsSliceStartIndex)}
-        pagination={false}
-        components={{
-          body: renderBody,
+    <RelativeContainer style={{ position: 'relative' }}>
+      <ResizeObserver
+        onResize={({ offsetWidth }): void => {
+          setTableWidth(offsetWidth);
         }}
-        locale={tableLocale}
-      />
-    </ResizeObserver>
+      >
+        <DSTable
+          {...props}
+          className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
+          // Remove columns which cause header columns indent
+          columns={mergedColumns.slice(columnsSliceStartIndex)}
+          pagination={false}
+          components={{
+            body: renderBody,
+          }}
+          locale={tableLocale}
+        />
+      </ResizeObserver>
+      {!!infiniteScroll?.showBackToTopButton && (
+        <BackToTopButton onClick={handleBackToTopClick}>{tableLocale.infiniteScrollBackToTop}</BackToTopButton>
+      )}
+    </RelativeContainer>
   );
 }
 

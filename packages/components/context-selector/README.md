@@ -84,39 +84,48 @@ import ContextSelector from '@synerise/ds-context-selector'
 
 ## API
 
-| Property     | Description                                                | Type                                                   | Default   |
-| ---          | ---                                                        | ---                                                    | ---       |
-| groups       | Groups of items                                            | ContextGroup[]                                         | []        |
-| items        | Array of items                                             | ContextItem[]                                          | []        |
-| onSelectItem | Callback called when user selects item                     | (item: ContextItem \ ContextGroup \ undefined) => void | -         |
-| opened       | Whether if dropdown should opens from outside of component | boolean                                                | false     |
-| texts        | Translations object                                        | ContextSelectorTexts                                   | -         |
-| selectedItem | Selected item                                              | ContextItem \ undefined                                | undefined |
-| addMode      | If true trigger doesn't change style when value is set     | ContextItem \ undefined                                | undefined |
+| Property               | Description                                                | Type                                                   | Default   |
+| ---                    | ---                                                        | ---                                                    | ---       |
+| groups                 | Groups of items                                            | ContextGroup[]                                         | []        |
+| items                  | Array of items                                             | ContextItem[]                                          | []        |
+| onSelectItem           | Callback called when user selects item                     | (item: ContextItem \ ContextGroup \ undefined) => void | -         |
+| opened                 | Whether if dropdown should opens from outside of component | boolean                                                | false     |
+| texts                  | Translations object                                        | ContextSelectorTexts                                   | -         |
+| selectedItem           | Selected item                                              | ContextItem \ undefined                                | undefined |
+| addMode                | If true trigger doesn't change style when value is set     | ContextItem \ undefined                                | undefined |
+| customTriggerComponent | Add custom trigger                                         | React.ReactNode                                        | undefined |
+| trigger                | Add custom trigger to modal                                | 'click' \ 'hover' \ 'contextMenu'                      | 'click    |
+| menuItemHeight         | Set component Menu.Item height                             | 'large' \ 'default'                                    | -         |
 
 ### ContextGroup
 
-| Property     | Description                      | Type            | Default |
-| ---          | ---                              | ---             | ---     |
-| defaultGroup | Whether if this group is default | boolean         | false   |
-| icon         | Icon of group                    | React.ReactNode | -       |
-| id           | Id of group                      | React.ReactText | -       |
-| itemType     | Type of items                    | string          | -       |
-| name         | Name of group                    | string          | -       |
-| subGroups    | Subgroups of groups              | ContextGroup[]  | -       |
-| tooltip      | Tooltip text                     | string          | -       |
+| Property      | Description                                                      | Type            | Default |
+| ---           | ---                                                              | ---             | ---     |
+| defaultGroup  | Whether if this group is default                                 | boolean         | false   |
+| icon          | Icon of group                                                    | React.ReactNode | -       |
+| id            | Id of group                                                      | React.ReactText | -       |
+| itemType      | Type of items                                                    | string          | -       |
+| name          | Name of group                                                    | string          | -       |
+| subGroups     | Subgroups of groups                                              | ContextGroup[]  | -       |
+| tooltip       | Tooltip text                                                     | string          | -       |
+| useCustomIcon | Use custom icon instead of wrapping it inside Icon component     | boolean         | false   |
+| description   | Set menu item description ( recommended to use with 'large' size | React.ReactNode | -       |
+| customSuffix  | Use custom suffix instead of default 'check' icon                | React.ReactNode | -       |
 
 
 ### ContextItem
 
-| Property  | Description       | Type            | Default |
-| ---       | ---               | ---             | ---     |
-| groupId   | Id of group       | React.ReactText | -       |
-| groupName | Name of group     | string          | -       |
-| icon      | Icon of item      | React.ReactNode | -       |
-| id        | Id of item        | React.ReactText | -       |
-| name      | Name of item      | string          | -       |
-| subGroups | Subgroups of item | ContextGroup[]  | -       |
+| Property      | Description                                                      | Type            | Default |
+| ---           | ---                                                              | ---             | ---     |
+| groupId       | Id of group                                                      | React.ReactText | -       |
+| groupName     | Name of group                                                    | string          | -       |
+| icon          | Icon of item                                                     | React.ReactNode | -       |
+| id            | Id of item                                                       | React.ReactText | -       |
+| name          | Name of item                                                     | string          | -       |
+| subGroups     | Subgroups of item                                                | ContextGroup[]  | -       |
+| useCustomIcon | Use custom icon instead of wrapping it inside Icon component     | boolean         | false   |
+| description   | Set menu item description ( recommended to use with 'large' size | React.ReactNode | -       |
+| customSuffix  | Use custom suffix instead of default 'check' icon                | React.ReactNode | -       |
 
 
 ### ContextSelectorTexts

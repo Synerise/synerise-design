@@ -16,7 +16,7 @@ const stories = {
 };
 
 export default {
-  name: 'ActionArea/ActionArea',
+  name: 'Components/ActionArea',
   config: {},
   stories,
   Component: ActionArea,

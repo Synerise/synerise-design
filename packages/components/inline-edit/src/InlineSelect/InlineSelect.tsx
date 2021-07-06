@@ -22,6 +22,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   input,
   placeholder,
   dataSource,
+  initialValue,
 }): React.ReactElement => {
   const inputRef = React.useMemo(() => {
     return React.createRef<HTMLInputElement>();
@@ -47,7 +48,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
-  const [selectedValue, setSelectedValue] = React.useState<string>(placeholder || 'option');
+  const [selectedValue, setSelectedValue] = React.useState<string>(initialValue || placeholder || 'option');
   const [opened, setOpened] = React.useState<boolean>(false);
   const [pressed, setPressed] = React.useState<boolean>(false);
 

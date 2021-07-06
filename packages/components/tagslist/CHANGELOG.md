@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.34...@synerise/ds-tagslist@0.6.35) (2021-07-01)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.33...@synerise/ds-tagslist@0.6.34) (2021-06-28)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.32...@synerise/ds-tagslist@0.6.33) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.31...@synerise/ds-tagslist@0.6.32) (2021-06-21)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.30...@synerise/ds-tagslist@0.6.31) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.29...@synerise/ds-tagslist@0.6.30) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.28...@synerise/ds-tagslist@0.6.29) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.6.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.27...@synerise/ds-tagslist@0.6.28) (2021-05-24)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
 ## [0.6.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.26...@synerise/ds-tagslist@0.6.27) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

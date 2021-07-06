@@ -3,7 +3,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ItemsRoll from '@synerise/ds-items-roll';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
+import { Add3M, SaveM } from '@synerise/ds-icon/dist/icons';
 
 import {
   ACTIONS,
@@ -19,6 +19,13 @@ import {
   onChangeSelectionOptions,
   SEARCH_PLACEHOLDER,
 } from './dataset';
+import Icon from '@synerise/ds-icon';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '@synerise/ds-button';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
+import Dropdown from '@synerise/ds-dropdown';
+import Menu from '@synerise/ds-menu';
+import { renderFooter } from '../Dropdown/index.stories';
 
 const decorator = storyFn => (
   <div style={{ width: '800px' }}>
@@ -76,6 +83,7 @@ const generateProps = (store, { onClearAllOptions }) => ({
   showMoreStep: number('showMoreStep', 10),
   useFooter: boolean('useFooter', true),
   useVirtualizedList: boolean('useVirtualizedList', false),
+  hideSearch: boolean('Hide search', false),
 });
 
 const stories = {
@@ -193,6 +201,11 @@ const stories = {
   withChangeSelectionDropdown: () => {
     const [visible, setVisible] = React.useState(false);
 
+    const data = [
+      { text: 'Option 1' },
+      { text: 'Option 2' },
+    ];
+
     const props = {
       actions: select(`Actions menu`, actionsSelectOptions, actionsSelectOptions.actions),
       className: 'custom-class',
@@ -211,10 +224,12 @@ const stories = {
       onChangeSelection: () => {},
       changeSelectionDropdownProps: {
         overlay: (
-          <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-          </ul>
+          <Dropdown.Wrapper
+            style={{ width: '157px' }}
+            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+          >
+            <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
+          </Dropdown.Wrapper>
         ),
         trigger: ['click'],
         visible,
@@ -222,12 +237,45 @@ const stories = {
       }
     };
 
+    // @ts-ignore
     return <ItemsRoll {...props} />;
   },
+  withCustomSideBarActions: withState(DEFAULT_STATE)(({store}) => {
+
+    const onClearAllOptions = {
+      function: () => onClearAll(store),
+      none: undefined,
+    };
+    const props = generateProps(store, { onClearAllOptions });
+
+    return (
+        <ItemsRoll
+          {...props}
+          onChangeSelection={!boolean('Hide change selection', true) && props.onChangeSelection}
+          customSidebarActions={
+            <div style={{ display: 'flex', marginRight: '8px' }}>
+              <Button
+                mode='icon-label'
+                type='ghost'
+                icon={
+                  <Icon
+                    component={<SaveM />}
+                    color={theme.palette['grey-600']}
+                  />
+                }
+                onClick={() => window.alert('Click custom action')}
+              >
+                Save list
+              </Button>
+            </div>
+          }
+        />
+      );
+  })
 };
 
 export default {
-  name: 'ItemsRoll/ItemsRoll',
+  name: 'Components/ItemsRoll',
   decorator,
   stories,
   Component: ItemsRoll,

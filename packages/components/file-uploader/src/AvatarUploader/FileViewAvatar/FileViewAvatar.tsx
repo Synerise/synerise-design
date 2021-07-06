@@ -2,17 +2,16 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { RepeatM, FileTypeImageM, Close3M, FileM } from '@synerise/ds-icon/dist/icons';
-import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 import * as S from './FileViewAvatar.styles';
 import { FileViewAvatarProps } from './FileViewAvatar.types';
-import { Description } from '../AvatarUploader.styles';
 
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'];
+const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'text/csv'];
 const mapperOfIcons = {
   'image/png': <FileTypeImageM />,
   'image/gif': <FileTypeImageM />,
   'image/jpeg': <FileTypeImageM />,
   'image/svg+xml': <FileTypeImageM />,
+  'text/csv' : <FileTypeImageM/>
 };
 
 const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable, description }) => {
@@ -42,13 +41,14 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
             pressed={pressed}
             data-testid="file-view-avatar-remove"
           >
-            <Tooltip title={texts.removeTooltip}>
+            <Tooltip align={{offset:[0,8] }} title={texts.removeTooltip}>
               <Icon component={<Close3M />} size={24} />
             </Tooltip>
           </S.RemoveWrapper>
         )}
       </S.AvatarContainer>
       <S.FileViewContainer>
+        <Tooltip overlayStyle={{maxWidth: '350px'}} title={file.name}>
         <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
           {previewableMimeTypes.indexOf(file.type) > -1 ? (
             <S.PreviewImage>
@@ -66,7 +66,7 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
           </S.Info>
           {hasProgress && (
             <S.LoaderIcon>
-              <Loader color="blue" size="S" />
+              <S.SmallLoader color="blue" size="S" />
             </S.LoaderIcon>
           )}
           {error && (
@@ -89,7 +89,8 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
             </S.RemoveButtonWrapper>
           )}
         </S.FileView>
-        <Description>{description}</Description>
+        </Tooltip>
+        <S.DescriptionUploader>{description}</S.DescriptionUploader>
       </S.FileViewContainer>
     </S.FileAvatarContainer>
   );

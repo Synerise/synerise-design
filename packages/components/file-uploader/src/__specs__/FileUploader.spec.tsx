@@ -37,27 +37,7 @@ describe('FileUploader', () => {
     expect(getByText(BUTTON_LABEL)).toBeTruthy();
   });
 
-  it('should render with multi-large type and description', () => {
-    // ARRANGE
-    const BUTTON_LABEL = 'UPLOAD NOW';
-    const BUTTON_DESC = 'OR DROP HERE';
 
-    const { getByText } = renderWithProvider(
-      <FileUploader
-        mode="multi-large"
-        files={[]}
-        texts={{
-          ...defaultTexts,
-          buttonLabel: BUTTON_LABEL,
-          buttonDescription: BUTTON_DESC,
-        }}
-      />
-    );
-
-    // ASSERT
-    expect(getByText(BUTTON_LABEL)).toBeTruthy();
-    expect(getByText(BUTTON_DESC)).toBeTruthy();
-  });
 
   it('should render with tooltip', () => {
     // ARRANGE

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.29...@synerise/ds-popconfirm@0.6.30) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
+## [0.6.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.28...@synerise/ds-popconfirm@0.6.29) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
+## [0.6.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.27...@synerise/ds-popconfirm@0.6.28) (2021-05-27)
+
+
+### Bug Fixes
+
+* **popconfirm:** force transform none ([e775b50](https://github.com/Synerise/synerise-design/commit/e775b5044f9cadee883d2332bf6ec09298e5f255))
+
+
+
+
+
+## [0.6.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.26...@synerise/ds-popconfirm@0.6.27) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
 ## [0.6.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.25...@synerise/ds-popconfirm@0.6.26) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

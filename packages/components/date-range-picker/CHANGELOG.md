@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.35...@synerise/ds-date-range-picker@0.9.36) (2021-07-01)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.34...@synerise/ds-date-range-picker@0.9.35) (2021-06-30)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.33...@synerise/ds-date-range-picker@0.9.34) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.32...@synerise/ds-date-range-picker@0.9.33) (2021-06-21)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.31...@synerise/ds-date-range-picker@0.9.32) (2021-06-17)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.30...@synerise/ds-date-range-picker@0.9.31) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.29...@synerise/ds-date-range-picker@0.9.30) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.28...@synerise/ds-date-range-picker@0.9.29) (2021-05-26)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.27...@synerise/ds-date-range-picker@0.9.28) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.9.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.26...@synerise/ds-date-range-picker@0.9.27) (2021-05-24)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
 ## [0.9.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.25...@synerise/ds-date-range-picker@0.9.26) (2021-05-21)
 
 

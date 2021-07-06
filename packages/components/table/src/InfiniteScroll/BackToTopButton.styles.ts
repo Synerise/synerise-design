@@ -6,6 +6,7 @@ export const OffsetButton = styled(Button)`
     position: absolute;
     right: -16px;
     bottom: -16px;
+    z-index: 2;
   }
 `;
 

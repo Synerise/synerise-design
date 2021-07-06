@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.58...@synerise/ds-card-tabs@0.8.59) (2021-07-01)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.57...@synerise/ds-card-tabs@0.8.58) (2021-06-30)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.56...@synerise/ds-card-tabs@0.8.57) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.55...@synerise/ds-card-tabs@0.8.56) (2021-06-21)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.54...@synerise/ds-card-tabs@0.8.55) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.53...@synerise/ds-card-tabs@0.8.54) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.52...@synerise/ds-card-tabs@0.8.53) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.8.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.51...@synerise/ds-card-tabs@0.8.52) (2021-05-24)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
 ## [0.8.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.50...@synerise/ds-card-tabs@0.8.51) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

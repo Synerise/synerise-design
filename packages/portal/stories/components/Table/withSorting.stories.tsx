@@ -75,7 +75,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Table with sorting',
+  name: 'Components/Table/Table with sorting',
   // decorator,
   stories,
   Component: Table,

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.37...@synerise/ds-filter@0.2.38) (2021-07-01)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.36...@synerise/ds-filter@0.2.37) (2021-06-30)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.35...@synerise/ds-filter@0.2.36) (2021-06-22)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.34...@synerise/ds-filter@0.2.35) (2021-06-21)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.33...@synerise/ds-filter@0.2.34) (2021-06-14)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.32...@synerise/ds-filter@0.2.33) (2021-05-27)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.31...@synerise/ds-filter@0.2.32) (2021-05-25)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.2.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.30...@synerise/ds-filter@0.2.31) (2021-05-24)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
 ## [0.2.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.2.29...@synerise/ds-filter@0.2.30) (2021-05-20)
 
 **Note:** Version bump only for package @synerise/ds-filter

@@ -137,7 +137,7 @@ const stories = {
 };
 
 export default {
-  name: 'Table/Table on modal',
+  name: 'Components/Table/Table on modal',
   decorator,
   stories,
   Component: Table,

@@ -16,6 +16,7 @@ export interface InlineSelectProps {
   error?: boolean;
   hideIcon?: boolean;
   expanded: boolean;
+  initialValue?: string;
   placeholder?: string;
   dataSource: MenuItemProps[];
 }

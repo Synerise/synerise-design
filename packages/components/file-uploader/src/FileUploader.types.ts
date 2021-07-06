@@ -17,6 +17,7 @@ export type FileContent = string | ArrayBuffer | null;
 
 type FileUploaderTexts = FileViewTexts & {
   buttonLabel: string | React.ReactNode;
+  buttonLabelLarge: string | React.ReactNode;
   buttonDescription: string | React.ReactNode;
 };
 
