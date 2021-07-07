@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.31...@synerise/ds-select@0.13.32) (2021-07-02)
+
+
+### Bug Fixes
+
+* **select:** changed background color of grey select to 050 ([702117f](https://github.com/synerise/synerise-design/commit/702117fc8132e93e7d1e27b865dbe1562bc4cd9a))
+
+
+
+
+
 ## [0.13.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.30...@synerise/ds-select@0.13.31) (2021-07-01)
 
 **Note:** Version bump only for package @synerise/ds-select
