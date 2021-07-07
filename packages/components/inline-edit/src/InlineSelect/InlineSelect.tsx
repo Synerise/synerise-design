@@ -48,10 +48,15 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
     }
   }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
 
-  const [selectedValue, setSelectedValue] = React.useState<string>(initialValue || placeholder || 'option');
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(initialValue || placeholder || 'option');
   const [opened, setOpened] = React.useState<boolean>(false);
   const [pressed, setPressed] = React.useState<boolean>(false);
 
+  React.useEffect(() => {
+    if (input?.value !== selectedValue) {
+      setSelectedValue(input?.value as string);
+    }
+  }, [input, selectedValue]);
   return (
     <Dropdown
       visible={!disabled && opened}
