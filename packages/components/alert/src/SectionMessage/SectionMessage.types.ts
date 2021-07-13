@@ -6,19 +6,7 @@ export type AlertType = 'positive' | 'notice' | 'negative' | 'informative' | 'ne
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
   type: AlertType;
-  color?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
+  color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow';
   mode?: 'background' | 'background-outline' | 'outline' | 'clear';
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
