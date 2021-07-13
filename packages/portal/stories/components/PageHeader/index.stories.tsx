@@ -24,6 +24,8 @@ import Menu from '@synerise/ds-menu';
 import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 import Radio from '@synerise/ds-radio';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import Skeleton from '@synerise/ds-skeleton';
+import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
 
 const shapes = ['circle', 'square'] as const;
 
@@ -50,6 +52,23 @@ const tabs = [
   },
   {
     label: 'Tab Third',
+  },
+];
+const tabsSkeleton = [
+  {
+    label: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M'/>
+    </div>,
+  },
+  {
+    label: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M'/>
+    </div>,
+  },
+  {
+    label: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M'/>
+    </div>,
   },
 ];
 
@@ -318,6 +337,41 @@ const stories = {
         }
       />
     );
+  },
+  withSkeleton: () => {
+    return (
+      <PageHeader
+        bar={
+          <div style={{width: '150px'}}>
+            <Skeleton numberOfSkeletons={1}/>
+          </div>
+        }
+
+        more={
+          <div style={{width: '150px'}}>
+            <Skeleton numberOfSkeletons={1}/>
+          </div>
+        }
+        avatar={
+          <SkeletonAvatar size='M' shape={true} />
+        }
+        tabs={
+          <Tabs
+            tabs={tabsSkeleton}
+          />
+        }
+        rightSide={
+          <>
+            <div style={{width: '150px'}}>
+              <Skeleton numberOfSkeletons={1}/>
+            </div>
+            <div style={{width: '66px'}}>
+              <Skeleton numberOfSkeletons={1} width='M'/>
+            </div>
+          </>
+        }
+      />
+    )
   },
   withStepper: withState({
     activeStep: 0,

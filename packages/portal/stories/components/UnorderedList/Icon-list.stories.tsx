@@ -6,6 +6,7 @@ import Close3S from '@synerise/ds-icon/dist/icons/Close3S';
 import Check3S from '@synerise/ds-icon/dist/icons/Check3S';
 import OrderedList from '@synerise/ds-ordered-list';
 import * as React from 'react';
+import OrderedListSkeleton from '@synerise/ds-skeleton/dist/OrderedListSkeleton/OrderedListSkeleton';
 
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
@@ -135,6 +136,26 @@ const stories = {
     ];
 
     return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={emptyFormatter} />;
+  },
+  iconListSkeleton: () => {
+    const emptyFormatter = () => ``;
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
+    const data = [
+      {
+        label: <OrderedListSkeleton size='M' />,
+      },
+    ];
+    return (
+      <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={emptyFormatter} />
+    )
   },
 };
 

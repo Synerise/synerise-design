@@ -9,6 +9,7 @@ import markdown from '@/button/README.md';
 import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
 import { withState } from '@dump247/storybook-state';
 import ButtonGroup from '@synerise/ds-button-group';
+import Skeleton from '@synerise/ds-skeleton';
 
 const typeOptions = {
   Primary: 'primary',
@@ -54,6 +55,11 @@ const buttonSizes = {
 const iconSizes = {
   Small: 'S',
   Medium: 'M',
+};
+const SkeletonSizes = {
+  Small: 'S',
+  Medium: 'M',
+  Large: 'L',
 };
 
 const CREATOR_TYPE = {
@@ -282,6 +288,13 @@ const stories = {
     return (
       <div>
         <Button.Creator {...props} label={'Add position'} onClick={action('Creator Click')}></Button.Creator>
+      </div>
+    );
+  },
+  buttonSkeleton: () => {
+    return (
+      <div style={{width: '66px'}}>
+        <Skeleton numberOfSkeletons={1} width='M' size='L'/>
       </div>
     );
   },
