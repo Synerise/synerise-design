@@ -238,15 +238,13 @@ const Condition: React.FC<ConditionProps> = ({
                             />
                           )}
                         </S.ConditionWrapper>
-                        {condition?.parameter?.value && (
+                        {(!condition?.parameter || condition?.parameter?.value) && condition.operator && (
                           <S.ConditionWrapper>
-                            {condition.operator && (
-                              <Operators
-                                {...condition.operator}
-                                onChange={(value): void => selectOperator(condition, value)}
-                                opened={condition.id === currentConditionId && currentField === OPERATOR}
-                              />
-                            )}
+                            <Operators
+                              {...condition.operator}
+                              onChange={(value): void => selectOperator(condition, value)}
+                              opened={condition.id === currentConditionId && currentField === OPERATOR}
+                            />
                           </S.ConditionWrapper>
                         )}
                         {condition?.operator?.value && (
