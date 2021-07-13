@@ -16,7 +16,7 @@ const Item: React.FC<UnorderedListItem & Pick<ListProps, 'indexFormatter'>> = ({
   return (
     <>
       <S.ItemWrapper>
-        <S.IndexFormatterWrapper>{indexFormatter ? indexFormatter(index) : index}</S.IndexFormatterWrapper>
+        {indexFormatter && <S.IndexFormatterWrapper>{indexFormatter(index)}</S.IndexFormatterWrapper>}
         {prefixel}
         {label}
         {suffixel}
