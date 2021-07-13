@@ -23,6 +23,8 @@ const data = [
         <div style={{ marginLeft: '4px', color: theme.palette['grey-400'], cursor: 'pointer' }}>(505-456)</div>
       </div>
     ),
+    index: (1),
+    id:('list')
   },
   {
     label: (
@@ -31,6 +33,8 @@ const data = [
         <div style={{ marginLeft: '4px', color: theme.palette['grey-400'], cursor: 'pointer' }}>(505-456)</div>
       </div>
     ),
+    index: (1),
+    id:('list')
   },
 ];
 
@@ -76,7 +80,7 @@ const SectionMessage: React.FC<Props> = (props: Props) => {
         )}
         {unorderedList && !moreButtons && (
           <S.Wrapper>
-            <UnorderedList data={data} indexFormatter={null} />
+            <UnorderedList data={data} indexFormatter={undefined} />
           </S.Wrapper>
         )}
       </S.AlertContent>
