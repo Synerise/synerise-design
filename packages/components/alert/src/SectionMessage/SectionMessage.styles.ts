@@ -14,37 +14,102 @@ export const AllContent = styled.div`
 export const Text = styled.div`
   display: flex;
 `;
-export const IconWrapper = styled.div<{ color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow' }>`
+export const IconWrapper = styled.div<{ color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow'; customColorIcon?:
+      | 'blue'
+      | 'grey'
+      | 'red'
+      | 'green'
+      | 'yellow'
+      | 'pink'
+      | 'mars'
+      | 'orange'
+      | 'fern'
+      | 'cyan'
+      | 'purple'
+      | 'violet'; }>`
   margin: 10px 12px;
   display: flex;
   svg {
     color: ${(props): string =>
-      props.color === 'blue' ? props.theme.palette['yellow-600'] : props.theme.palette[`${props.color}-600`]};
+  props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : props.theme.palette[`${props.color}-600`]};
     fill: ${(props): string =>
-      props.color === 'blue' ? props.theme.palette['yellow-600'] : props.theme.palette[`${props.color}-600`]};
+  props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : props.theme.palette[`${props.color}-600`]};
+  }
+`;
+export const IconCloseWrapper = styled.div`
+  margin: 3px 5px 2px;
+  cursor: pointer;
+  svg {
+    color: ${(props): string =>
+   props.theme.palette['grey-700']};
+    fill: ${(props): string =>
+   props.theme.palette['grey-700']};
   }
 `;
 export const ButtonWrapper = styled.div`
   padding: 6px 8px 0 8px;
   display: flex;
 `;
+export const NumberWrapper = styled.div`
+  margin-left: 4px; 
+  color: ${(props): string => props.theme.palette['grey-400']}; 
+  cursor: pointer;
+  &:hover{
+    background-image: linear-gradient(to right, ${(props): string => props.theme.palette['grey-400']} 20%, rgba(255, 255, 255, 0) 10%);
+    background-color: transparent;
+    background-position: bottom left;
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+    color: ${(props): string => props.theme.palette['grey-700']};
+  }
+`;
 export const ButtonsWrapper = styled.div`
   padding: 16px 0 0 0;
   display: flex;
 `;
+export const IconOrderWrapper = styled.div`
+  display: none;
+  margin: -4px 0;
+  svg {
+    color: ${(props): string => props.theme.palette['grey-700']};
+    fill: ${(props): string => props.theme.palette['grey-700']};
+  }
+`;
+export const OrderWrapper = styled.div`
+  display: flex;
+  &:hover{
+    ${IconOrderWrapper} {
+        display: block;
+      }
+  }
+`;
 export const Wrapper = styled.div`
   margin-top: 10px;
+  color: ${(props): string => props.theme.palette['grey-700']};
 `;
-export const Container = styled.div<{ color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow' }>`
-  width: 790px;
+export const Container = styled.div<{ color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow'; customColor?:
+      | 'blue'
+      | 'grey'
+      | 'red'
+      | 'green'
+      | 'yellow'
+      | 'pink'
+      | 'mars'
+      | 'orange'
+      | 'fern'
+      | 'cyan'
+      | 'purple'
+      | 'violet'; }>`
+  width: 100%;
   align-items: center;
   justify-content: center;
   background-color: ${(props): string =>
-    props.color === 'blue' ? props.theme.palette.white : props.theme.palette[`${props.color}-050`]};
+    props.customColor ? props.theme.palette[`${props.customColor}-050`] : props.theme.palette[`${props.color}-050`]};
   border: 1px solid
     ${(props): string =>
-      props.color === 'blue' ? props.theme.palette['grey-200'] : props.theme.palette[`${props.color}-200`]};
-  border-top: 2px solid ${(props): string => props.theme.palette[`${props.color}-600`]};
+  props.customColor ? props.theme.palette[`${props.customColor}-200`] : props.theme.palette[`${props.color}-200`]};
+  border-top: 2px solid ${(props): string =>
+  props.customColor ? props.theme.palette[`${props.customColor}-600`] : props.theme.palette[`${props.color}-600`]};
   border-radius: 4px;
 `;
 export const WrapperSectionMessage = styled.div`
@@ -72,7 +137,7 @@ export const AlertDescription = styled.span`
   font-weight: normal;
   padding-right: 3px;
   margin-top: 2px;
-  color: inherit;
+  color: ${(props): string => props.theme.palette['grey-700']};
 `;
 export const WithEmphasis = styled.span`
   display: flex;

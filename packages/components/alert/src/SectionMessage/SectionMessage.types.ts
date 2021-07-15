@@ -1,12 +1,42 @@
 import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
 
-export type AlertType = 'positive' | 'notice' | 'negative' | 'informative' | 'neutral';
+export type AlertType = 'positive' | 'notice' | 'negative'  | 'neutral';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
-  type: AlertType;
-  color?: 'blue' | 'grey' | 'red' | 'green' | 'yellow';
+  type: string | AlertType;
+  customColor?:
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet';
+  customColorIcon?:
+    | 'blue'
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow'
+    | 'pink'
+    | 'mars'
+    | 'orange'
+    | 'fern'
+    | 'cyan'
+    | 'purple'
+    | 'violet';
+  color?:
+    | 'grey'
+    | 'red'
+    | 'green'
+    | 'yellow';
   mode?: 'background' | 'background-outline' | 'outline' | 'clear';
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
@@ -15,4 +45,6 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   withEmphasis?: React.ReactNode;
   withLink?: React.ReactNode;
   unorderedList?: React.ReactNode;
+  withClose?: React.ReactNode;
+  customIcon?: React.ReactElement;
 }

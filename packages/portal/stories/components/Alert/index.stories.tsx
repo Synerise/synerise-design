@@ -12,7 +12,6 @@ import {
 import AlertInfo from '@synerise/ds-alert/dist/AlertInfo/AlertInfo';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSemanticColor';
 import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
 import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
@@ -57,7 +56,7 @@ const buttonSetExample = (
 
 const ALERT_TYPES = ['success', 'warning', 'error', 'info'];
 const SEMANTIC_COLOR_TYPES = ['positive', 'notice' , 'negative' , 'informative' , 'neutral','supply' , 'service' , 'entity'];
-const SECTION_COLOR_TYPES = ['positive', 'notice' , 'negative' , 'informative' , 'neutral'];
+
 
 const CUSTOM_COLORS = [
   '',
@@ -84,13 +83,6 @@ const additionalMapper = {
   supply: {color:'violet',icon: <UserCheckM/>},
   service: {color:'purple',icon: <UpdateDataM/>},
   entity: {color:'cyan',icon: <NotificationsReceiveM/>},
-};
-const additionalAlertMapper = {
-  positive: {color:'green',icon: <Check3M />},
-  notice: {color:'yellow',icon: <WarningFillM />},
-  negative: {color:'red',icon: <WarningFillM />},
-  informative: {color:'blue',icon: <InfoFillM />},
-  neutral: {color:'grey',icon: <HelpFillM/>},
 };
 
 const MODES = ['', 'background', 'background-outline', 'outline', 'clear'];
@@ -428,103 +420,6 @@ const stories = {
           label={Description}
           button={ showButton ? buttonSetExample : null}
           labelPosition="bottom"
-        />
-      </div>
-    );
-  },
-  customSectionMessage: () => {
-    const showButton = boolean('Set button', false);
-    const showUnorderedList = boolean('Set unorderedList', false);
-    const showButtons = boolean('Set buttons', false);
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
-    const description = text('Description', 'This is a simple message');
-    const messsage = text('Message', 'Alert!');
-    const withEmphasis = text('withEmphasis', 'with emphasis');
-    const withLink = text('withLink', 'Click here to learn more');
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-        }}>
-        <SectionMessage
-          description={description}
-          message={messsage}
-          withEmphasis={withEmphasis}
-          withLink={withLink}
-          newClient={showButton}
-          moreButtons={showButtons}
-          unorderedList={showUnorderedList}
-          type={type}
-          color={additionalAlertMapper[type].color}
-        />
-      </div>
-    );
-  },
-  allAlertsSectionMessage: () => {
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative')
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-        }}>
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          message={text('Message', 'Alert!')}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          newClient={true}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          message={text('Message', 'Alert!')}
-          moreButtons={true}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          withEmphasis={text('withEmphasis', 'with emphasis')}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          withLink={text('withLink', 'Click here to learn more')}
-        />
-        <br />
-        <SectionMessage
-          type={type}
-          color={additionalAlertMapper[type].color}
-          description={text('Description', 'This is a simple message')}
-          message={text('Message', 'Alert!')}
-          unorderedList={true}
         />
       </div>
     );
