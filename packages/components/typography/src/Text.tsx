@@ -11,6 +11,7 @@ const MapSizeToComponent = {
   xsmall: XSmallText,
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const Text: React.FC<TextProps> = ({ size = 'medium', children }) => {
   const Component = MapSizeToComponent[size];
   return <Component className="ds-text">{children}</Component>;
