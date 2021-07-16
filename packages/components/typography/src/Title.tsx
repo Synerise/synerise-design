@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { H1, H2, H3, H4, H5, H6 } from './CommonElements';
+import { H1, H2, H3, H4, H5, H6, H7 } from './CommonElements';
 import { Props } from './Title.types';
 
 const StyledElements = {
@@ -9,14 +9,19 @@ const StyledElements = {
   4: H4,
   5: H5,
   6: H6,
+  7: H7,
 };
 
-const Title: React.FC<Props> = ({ level = 1, children }) => {
+const Title: React.FC<Props> = ({ level = 1, withoutMargin, children }) => {
   const TitleElement = React.useMemo(() => {
     return StyledElements[level];
   }, [level]);
 
-  return <TitleElement className="ds-title">{children}</TitleElement>;
+  return (
+    <TitleElement className="ds-title" withoutMargin={Boolean(withoutMargin)}>
+      {children}
+    </TitleElement>
+  );
 };
 
 export default Title;

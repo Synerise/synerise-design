@@ -1,27 +1,128 @@
 import * as React from 'react';
-import Typography, { Title } from '@synerise/ds-typography';
-import * as S from './examples';
+import Typography, { Title, Text, Paragraph } from '@synerise/ds-typography';
+import Table from '@synerise/ds-table';
+
+const DATA = [
+  {
+    name: `<Title level={1}></Title>`,
+    example: <Title level={1}>h1. Synerise DS</Title>,
+    fontSize: '24px',
+    lineHeight: '28px',
+    letterSpacing: '-0.05px',
+  },
+  {
+    name: `<Title level={2}></Title>`,
+    example: <Title level={2}>h2. Synerise DS</Title>,
+    fontSize: '21px',
+    lineHeight: '26px',
+    letterSpacing: '-0.05px',
+  },
+  {
+    name: `<Title level={3}></Title>`,
+    example: <Title level={3}>h3. Synerise DS</Title>,
+    fontSize: '18px',
+    lineHeight: '22px',
+    letterSpacing: '-0.05px',
+  },
+  {
+    name: `<Title level={4}></Title>`,
+    example: <Title level={4}>h4. Synerise DS</Title>,
+    fontSize: '16px',
+    lineHeight: '20px',
+    letterSpacing: '-0.05px',
+  },
+  {
+    name: `<Title level={5}></Title>`,
+    example: <Title level={5}>h5. Synerise DS</Title>,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Title level={6}></Title>`,
+    example: <Title level={6}>h6. Synerise DS</Title>,
+    fontSize: '13px',
+    lineHeight: '18px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Title level={7}></Title>`,
+    example: <Title level={7}>h6. Synerise DS</Title>,
+    fontSize: '10px',
+    lineHeight: '16px',
+    letterSpacing: '0.05px',
+  },
+  {
+    name: `<Text size="medium"></Text>`,
+    example: <Text size="medium">span. Synerise DS</Text>,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Text size="small"></Text>`,
+    example: <Text size="small">span. Synerise DS</Text>,
+    fontSize: '13px',
+    lineHeight: '12px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Text size="xsmall"></Text>`,
+    example: <Text size="xsmall">span. Synerise DS</Text>,
+    fontSize: '11px',
+    lineHeight: '16px',
+    letterSpacing: '0.05px',
+  },
+  {
+    name: `<Paragraph size="medium"></Paragraph>`,
+    example: <Paragraph size="medium">p. Synerise DS</Paragraph>,
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Paragraph size="small"></Paragraph>`,
+    example: <Paragraph size="small">p. Synerise DS</Paragraph>,
+    fontSize: '13px',
+    lineHeight: '12px',
+    letterSpacing: '0px',
+  },
+  {
+    name: `<Paragraph size="xsmall"></Paragraph>`,
+    example: <Paragraph size="xsmall">p. Synerise DS</Paragraph>,
+    fontSize: '11px',
+    lineHeight: '16px',
+    letterSpacing: '0.05px',
+  },
+];
+
+const columns = [
+  {
+    title: 'Component',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Example',
+    dataIndex: 'example',
+  },
+  {
+    title: 'Font size',
+    dataIndex: 'fontSize',
+  },
+  {
+    title: 'Line height',
+    dataIndex: 'lineHeight',
+  },
+  {
+    title: 'Letter spacing',
+    dataIndex: 'letterSpacing',
+  },
+];
 
 const stories = {
   Typography: () => (
     <div style={{ padding: 10 }}>
-      <Title>Headers: </Title>
-      <Title level={1}>h1. Synerise DS</Title>
-      <Title level={2}>h2. Synerise DS</Title>
-      <Title level={3}>h3. Synerise DS</Title>
-      <Title level={4}>h4. Synerise DS</Title>
-      <Title level={5}>h5. Synerise DS</Title>
-      <Title level={6}>h6. Synerise DS</Title>
-      <br />
-      <Title>Span Text: </Title>
-      <Typography.Text className="container">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </Typography.Text>
-      <br />
-      <Title>Paragraph Text: </Title>
-      <Typography.Paragraph className="container">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-      </Typography.Paragraph>
+      <Table title={'Typography tokens'} columns={columns} dataSource={DATA}></Table>
     </div>
   ),
 };
