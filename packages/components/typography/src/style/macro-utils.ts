@@ -12,51 +12,69 @@ export const regular = css`
 export const h700 = css`
   ${heading};
   font-size: 24px;
+  line-height: 1.17;
+  letter-spacing: -0.05px;
 `;
 
 export const h600 = css`
   ${heading};
   font-size: 21px;
+  line-height: 1.24;
+  letter-spacing: -0.05px;
 `;
 
 export const h500 = css`
   ${heading};
   font-size: 18px;
+  line-height: 1.22;
+  letter-spacing: -0.05px;
 `;
 
 export const h400 = css`
   ${heading};
   font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.05px;
 `;
 
 export const h300 = css`
   ${heading};
   font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0;
 `;
 
 export const h200 = css`
   ${heading};
   font-size: 13px;
+  line-height: 1.38;
+  letter-spacing: 0;
 `;
 
 export const h100 = css`
   ${heading};
   font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: 0.05px;
 `;
 
 export const medium = css`
   ${regular};
   font-size: 14px;
+  line-height: 1.43;
 `;
 
 export const small = css`
   ${regular};
   font-size: 13px;
+  line-height: 1.38;
 `;
 
 export const xsmall = css`
   ${regular};
   font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.05px;
 `;
 
 export const link = css`
