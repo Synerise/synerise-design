@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { CloseM, WarningFillM, UserAddM, Check3M, HelpFillM, DuplicateS } from '@synerise/ds-icon/dist/icons';
+import {
+  CloseM,
+  WarningFillM,
+  UserAddM,
+  Check3M,
+  HelpFillM,
+  DuplicateS,
+  UserUpM,
+  UpdateDataM, NotificationsReceiveM,
+} from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import UnorderedList from '@synerise/ds-unordered-list';
@@ -11,6 +20,9 @@ const ICONS: Record<AlertType, React.ReactNode> = {
   notice: <WarningFillM />,
   negative: <WarningFillM />,
   neutral: <HelpFillM />,
+  supply: <UserUpM/>,
+  service:<UpdateDataM/>,
+  entity: <NotificationsReceiveM/>,
 };
 
 const data = [

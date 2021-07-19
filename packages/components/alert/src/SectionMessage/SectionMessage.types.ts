@@ -1,7 +1,7 @@
 import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
 
-export type AlertType = 'positive' | 'notice' | 'negative'  | 'neutral';
+export type AlertType = 'positive' | 'notice' | 'negative'  | 'neutral'|'supply'|'service'|'entity';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
@@ -36,7 +36,10 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
     | 'grey'
     | 'red'
     | 'green'
-    | 'yellow';
+    | 'yellow'
+    | 'violet'
+    | 'purple'
+    | 'cyan';
   mode?: 'background' | 'background-outline' | 'outline' | 'clear';
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;

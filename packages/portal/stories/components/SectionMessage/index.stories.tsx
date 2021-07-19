@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { Check3M, CheckS, HelpFillM, InfoFillM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import {
+  Check3M,
+  CheckS,
+  HelpFillM,
+  NotificationsReceiveM,
+  UpdateDataM,
+  UserUpM,
+  WarningFillM,
+} from '@synerise/ds-icon/dist/icons';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import Alert from '@synerise/ds-alert';
@@ -33,7 +41,7 @@ const iconsNames = Object.keys(iconsRaw);
 const getDefaultProps = () => ({
   customIcon: boolean('Set custom symbol', false),
 });
-const SECTION_COLOR_TYPES = ['positive', 'notice' , 'negative' , 'neutral'];
+const SECTION_COLOR_TYPES = ['positive', 'notice' , 'negative' , 'neutral' ,'supply', 'service' , 'entity',];
 
 const CUSTOM_COLORS = [
   '',
@@ -57,6 +65,9 @@ const additionalAlertMapper = {
   notice: {color:'yellow',icon: <WarningFillM />},
   negative: {color:'red',icon: <WarningFillM />},
   neutral: {color:'grey',icon: <HelpFillM/>},
+  supply:{color:'violet',icon: <UserUpM/>},
+  service:{color:'purple',icon: <UpdateDataM/>},
+  entity:{color:'cyan',icon: <NotificationsReceiveM/>},
 };
 const stories = {
   Default: () => {
@@ -234,50 +245,6 @@ const stories = {
       </div>
     );
   },
-  Playground: () => {
-    const showButton = boolean('Set button', false);
-    const withClose = boolean('Set close button', false);
-    const showUnorderedList = boolean('Set unorderedList', false);
-    const showButtons = boolean('Set buttons', false);
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
-    const description = text('Description', 'This is a simple message');
-    const message = text('Message', 'Alert!');
-    const withEmphasis = text('withEmphasis', 'with emphasis');
-    const withLink = text('withLink', 'Click here to learn more');
-    const customColor = select('Set color', CUSTOM_COLORS, '');
-    const customColorIcon = select('Set color Icon', CUSTOM_COLORS, '');
-    const customMIcon = select('Set custom M Icon', iconsNames, iconsNames[3]);
-    const IconComp = iconsRaw[customMIcon]
-    const props = getDefaultProps();
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '788px',
-          height: '100%',
-        }}>
-        <SectionMessage
-          {...props}
-          description={description}
-          message={message}
-          withEmphasis={withEmphasis}
-          withLink={withLink}
-          customColor={customColor}
-          customColorIcon={customColorIcon}
-          customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}
-          newClient={showButton}
-          moreButtons={showButtons}
-          unorderedList={showUnorderedList}
-          type={type}
-          color={additionalAlertMapper[type].color}
-          withClose={withClose}
-        />
-      </div>
-    );
-  },
   CardWithSectionMessage: () => {
     const withClose = boolean('Set close button', false);
     const type = select('Set type', SECTION_COLOR_TYPES, 'notice');
@@ -392,6 +359,50 @@ const stories = {
         />
         </div>
       </ModalProxy>
+    );
+  },
+  Playground: () => {
+    const showButton = boolean('Set button', false);
+    const withClose = boolean('Set close button', false);
+    const showUnorderedList = boolean('Set unorderedList', false);
+    const showButtons = boolean('Set buttons', false);
+    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const description = text('Description', 'This is a simple message');
+    const message = text('Message', 'Alert!');
+    const withEmphasis = text('withEmphasis', 'with emphasis');
+    const withLink = text('withLink', 'Click here to learn more');
+    const customColor = select('Set color', CUSTOM_COLORS, '');
+    const customColorIcon = select('Set color Icon', CUSTOM_COLORS, '');
+    const customMIcon = select('Set custom M Icon', iconsNames, iconsNames[3]);
+    const IconComp = iconsRaw[customMIcon]
+    const props = getDefaultProps();
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '788px',
+          height: '100%',
+        }}>
+        <SectionMessage
+          {...props}
+          description={description}
+          message={message}
+          withEmphasis={withEmphasis}
+          withLink={withLink}
+          customColor={customColor}
+          customColorIcon={customColorIcon}
+          customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}
+          newClient={showButton}
+          moreButtons={showButtons}
+          unorderedList={showUnorderedList}
+          type={type}
+          color={additionalAlertMapper[type].color}
+          withClose={withClose}
+        />
+      </div>
     );
   },
 }
