@@ -6,7 +6,6 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
-import syneriseTheme from './theme';
 import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
 import VIEWPORTS from './viewports';
@@ -84,7 +83,6 @@ addDecorator(withDSProvider);
 
 addParameters({
   options: {
-    theme: syneriseTheme,
     storySort: {
       order: ['Introduction','Tokens','Components'],
       method: 'alphabetical',

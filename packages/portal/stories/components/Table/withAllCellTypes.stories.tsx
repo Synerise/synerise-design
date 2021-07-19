@@ -10,6 +10,7 @@ import {
   COLUMNS_WITH_AVATARS,
   COLUMNS_WITH_ICONS,
   COLUMNS_WITH_LABELS,
+  COLUMNS_WITH_SKELETON,
   COLUMNS_WITH_STATUSES,
   COLUMNS_WITH_TRIGGERS,
   RELATIONS,
@@ -60,6 +61,7 @@ const CELL_SIZES = {
 
 const getDefaultProps = () => ({
   hideTitleBar: boolean('Hide title bar', false),
+  hideTitlePart: false,
   dataSource,
   loading: boolean('Set loading state', false),
   roundedHeader: boolean('Rounded header', false),

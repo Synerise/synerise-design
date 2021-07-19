@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import OrderedList from '@synerise/ds-ordered-list';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import OrderedListSkeleton from '@synerise/ds-skeleton/dist/OrderedListSkeleton/OrderedListSkeleton';
 
 
 
@@ -35,6 +36,7 @@ const romanize = num => {
   }
   return `${roman}. `;
 };
+const emptyFormatter = () => ``;
 const numberFormatter = (index: number) => `${index + 1}. `;
 const withZerosFormatter = (index: number) => `0${index + 1}. `;
 const withLettersFormatter = (index: number) => `${String.fromCharCode(index + 97).toLowerCase()}. `;
@@ -265,6 +267,25 @@ const stories = {
     ];
 
     return <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={formatter} />;
+  },
+  orderedListSkeleton: () => {
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
+    const data = [
+      {
+        label: <OrderedListSkeleton size='M' />,
+      },
+    ];
+    return (
+      <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={emptyFormatter} />
+    )
   },
 };
 

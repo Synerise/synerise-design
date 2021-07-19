@@ -1,6 +1,8 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import UnorderedList from '@synerise/ds-unordered-list';
 import * as React from 'react';
+import OrderedListSkeleton from '@synerise/ds-skeleton/dist/OrderedListSkeleton/OrderedListSkeleton';
+import OrderedList from '@synerise/ds-ordered-list';
 
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
@@ -9,6 +11,7 @@ const renderLabel = (text: string) => {
 
 
 const dashedFormatter = () => ` - `;
+const emptyFormatter = () => ``;
 const squareFormatter = () => ` ▪ `;
 const discFormatter = () => ` ● `;
 const formatterUnorderedType = {
@@ -163,6 +166,25 @@ const stories = {
 
     return <UnorderedList text={renderLabel(label && getLabel(hasLabel))} listStyle='none' data={data}
                         indexFormatter={dashedFormatter}/>;
+  },
+  unorderedListSkeleton: () => {
+    const hasLabel = boolean('Set label', true);
+    const label = text('Label', 'Header label');
+    const getLabel = (hasLabel: boolean): string => {
+      if (hasLabel) {
+        return label;
+      } else {
+        return '';
+      }
+    };
+    const data = [
+      {
+        label: <OrderedListSkeleton size='M' />,
+      },
+    ];
+    return (
+      <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={emptyFormatter} />
+    )
   },
 }
 

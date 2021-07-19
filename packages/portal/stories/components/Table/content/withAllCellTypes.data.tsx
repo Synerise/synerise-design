@@ -18,6 +18,8 @@ import ProgressBar from '@synerise/ds-progress-bar';
 import { Counter} from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
 import anonymImage from '../../Avatar/av-anonym-004.png';
+import Skeleton from '@synerise/ds-skeleton';
+import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
 
 
 export const RELATIONS = [
@@ -489,6 +491,84 @@ export const COLUMNS_WITH_AVATARS = [
           title={avatar.titleLarg}
           labels={avatar.labels}
         />
+      );
+    },
+  },
+];
+export const COLUMNS_WITH_SKELETON = [
+  {
+    title: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M' />
+    </div>,
+    dataIndex: 'skeleton',
+    key: 'skeleton',
+    width: 100,
+    textWrap: 'none',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: skeleton => <Checkbox withoutPadding checked={null} />,
+  },
+  {
+    title: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M' />
+    </div>,
+    dataIndex: 'skeleton',
+    key: 'skeleton',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: skeleton => {
+      return (
+        <TableCell.AvatarLabelCell
+          avatarAction={action('Avatar Action')}
+          avatar={
+            <SkeletonAvatar size='M' shape={false}  />
+          }
+          title={<div style={{width: '150px'}}>
+            <Skeleton numberOfSkeletons={1} size='M'  />
+          </div>}
+        />
+      );
+    },
+  },
+  {
+    title: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M' />
+    </div>,
+    dataIndex: 'skeleton',
+    key: 'skeleton-desc',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: skeleton  => {
+      return (
+        <div style={{width: '150px'}}>
+          <Skeleton numberOfSkeletons={1} size='M'  />
+        </div>
+      );
+    },
+  },
+  {
+    title: <div style={{width: '66px'}}>
+      <Skeleton numberOfSkeletons={1} width='M' />
+    </div>,
+    dataIndex: 'skeleton',
+    key: 'skeleton-desc',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: skeleton => {
+      return (
+        <div style={{width: '150px'}}>
+          <Skeleton numberOfSkeletons={1} size='M'  />
+        </div>
       );
     },
   },

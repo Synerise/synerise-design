@@ -10,6 +10,7 @@ import { action } from '@storybook/addon-actions';
 
 import { sizes, shapes, backgroundColorHue, backgroundColors, iconColors, image as anonymImage } from './constants';
 import { statuses } from '../Badge/constants';
+import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
 
 const wrapperStyles = {
   position: 'fixed',
@@ -23,6 +24,12 @@ const wrapperStyles = {
   overflow: 'auto',
   width: '100%',
   height: '100%',
+};
+const SkeletonAvatarSizes = {
+  Small: 'S',
+  Medium: 'M',
+  Large: 'L',
+  ExtraLarge: 'XL'
 };
 
 const decorator = storyFn => <div style={wrapperStyles}>{storyFn()}</div>;
@@ -106,6 +113,18 @@ const stories = {
       >JJ</Avatar>
     </Badge>
   ),
+  userAvatarSkeleton: () => {
+    const size = select('Size', SkeletonAvatarSizes,'M');
+    return (
+      <SkeletonAvatar size={size}  />
+    )
+  },
+  objectAvatarSkeleton: () => {
+    const size = select('Size', SkeletonAvatarSizes,'M');
+    return (
+      <SkeletonAvatar size={size} shape={true}  />
+    )
+  },
 };
 
 export default {

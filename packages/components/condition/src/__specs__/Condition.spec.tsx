@@ -15,7 +15,7 @@ import Condition from '../Condition';
 import { fireEvent } from '@testing-library/react';
 import { ConditionProps, ConditionStep, StepConditions } from '../Condition.types';
 
-const DEFAULT_CONDITION_ROW = {
+const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditions[P]> } = {
   id: uuid(),
   parameter: {
     value: '',
@@ -29,16 +29,17 @@ const DEFAULT_CONDITION_ROW = {
     value: '',
   },
 };
-const DEFAULT_STEP = {
+const DEFAULT_STEP: Partial<ConditionStep> = {
   id: 0,
   stepName: 'Step name',
   subject: {
-    showPreview: undefined,
     type: 'event',
     placeholder: 'Choose event',
     iconPlaceholder: <NotificationsM />,
     selectedItem: SUBJECT_ITEMS[0],
     items: SUBJECT_ITEMS,
+    onSelectItem: () => { },
+    texts: undefined,
   },
 };
 
@@ -61,8 +62,8 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
       availableFactorTypes: ['parameter'],
       selectedFactorType: 'parameter',
       defaultFactorType: 'parameter',
-      setSelectedFactorType: () => {},
-      onChangeValue: () => {},
+      setSelectedFactorType: () => { },
+      onChangeValue: () => { },
       value: condition.parameter.value,
       parameters: {
         buttonLabel: 'Parameter',
@@ -74,7 +75,7 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
       texts: FACTORS_TEXTS,
     },
     operator: {
-      onChange: () => {},
+      onChange: () => { },
       value: condition.operator.value,
       items: OPERATORS_ITEMS,
       groups: OPERATORS_GROUPS,
@@ -83,8 +84,8 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
     factor: {
       selectedFactorType: condition.factor.selectedFactorType,
       defaultFactorType: 'text',
-      setSelectedFactorType: () => {},
-      onChangeValue: () => {},
+      setSelectedFactorType: () => { },
+      onChangeValue: () => { },
       textType: 'default',
       value: condition.factor.value,
       formulaEditor: <div>Formula editor</div>,
@@ -99,7 +100,7 @@ const getConditions = (conditionsNumber: number): StepConditions[] => {
   }));
 };
 
-const getSteps = (stepsNumber: number, conditionsNumber: number): StepConditions[] => {
+const getSteps = (stepsNumber: number, conditionsNumber: number): ConditionStep[] => {
   return [...new Array(stepsNumber)].map((_, index) => {
     return {
       ...DEFAULT_STEP,
@@ -124,16 +125,16 @@ const DEFAULT_TEXTS = {
 
 const DEFAULT_PROPS = (): ConditionProps => ({
   texts: DEFAULT_TEXTS,
-  addCondition: () => {},
-  removeCondition: () => {},
-  updateStepName: () => {},
-  removeStep: () => {},
-  duplicateStep: () => {},
-  addStep: () => {},
+  addCondition: () => { },
+  removeCondition: () => { },
+  updateStepName: () => { },
+  removeStep: () => { },
+  duplicateStep: () => { },
+  addStep: () => { },
   steps: getSteps(1, 1) as ConditionStep[],
 });
 
-const RENDER_CONDITIONS = (props?: {}) => {
+const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
   return <Condition {...DEFAULT_PROPS()} {...props} />;
 };
 
@@ -162,7 +163,7 @@ describe('Condition component', () => {
 
   test('Should not render add condition row button', () => {
     // ARRANGE
-    const { queryByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition: false }));
+    const { queryByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition: undefined }));
     const addConditionButton = queryByText(DEFAULT_TEXTS.addConditionRowButton);
 
     // ASSERT
@@ -266,5 +267,277 @@ describe('Condition component', () => {
 
     // ASSERT
     expect(duplicateStep).toBeCalledWith(0);
+  });
+
+  test('rendering only parameter if there are no operator and factor provided', () => {
+    const { getByText } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: {
+            availableFactorTypes: ['parameter'],
+            selectedFactorType: 'parameter',
+            defaultFactorType: 'parameter',
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+            value: 'parameter value',
+            parameters: {
+              buttonLabel: 'Parameter label',
+              buttonIcon: <VarTypeStringM />,
+              groups: PARAMETER_GROUPS,
+              items: PARAMETER_ITEMS,
+            },
+            withoutTypeSelector: true,
+            texts: FACTORS_TEXTS,
+          },
+          operator: undefined,
+          factor: undefined,
+        }]
+      }]
+    }));
+
+    expect(getByText('Parameter label')).toBeTruthy();
+  });
+
+  test('rendering only operator if there are no parameter and factor provided', () => {
+    const { getByText } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: undefined,
+          operator: {
+            items: [],
+            groups: [],
+            onChange: () => { },
+            value: {
+              group: 'groupId',
+              groupId: 'groupId',
+              icon: <span>i</span>,
+              id: 'id',
+              logic: 'logic',
+              name: 'Operator name',
+              value: 'operator value',
+            }
+          },
+          factor: undefined,
+        }]
+      }]
+    }));
+
+    expect(getByText('Operator name')).toBeTruthy();
+  });
+
+  test('not rendering operator if there is also parameter provided but without value', () => {
+    const { getByText, queryByText } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: {
+            availableFactorTypes: ['parameter'],
+            selectedFactorType: 'parameter',
+            defaultFactorType: 'parameter',
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+            value: undefined,
+            parameters: {
+              buttonLabel: 'Parameter label',
+              buttonIcon: <VarTypeStringM />,
+              groups: PARAMETER_GROUPS,
+              items: PARAMETER_ITEMS,
+            },
+            withoutTypeSelector: true,
+            texts: FACTORS_TEXTS,
+          },
+          operator: {
+            items: [],
+            groups: [],
+            onChange: () => { },
+            value: {
+              group: 'groupId',
+              groupId: 'groupId',
+              icon: <span>i</span>,
+              id: 'id',
+              logic: 'logic',
+              name: 'Operator name',
+              value: 'operator value',
+            }
+          },
+          factor: undefined,
+        }]
+      }]
+    }));
+
+    expect(getByText('Parameter label')).toBeTruthy();
+    expect(queryByText('Operator name')).toBeFalsy();
+  });
+
+  test('rendering operator and parameter if there is parameter value set', () => {
+    const { getByText } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: {
+            availableFactorTypes: ['parameter'],
+            selectedFactorType: 'parameter',
+            defaultFactorType: 'parameter',
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+            value: 'parameter value',
+            parameters: {
+              buttonLabel: 'Parameter label',
+              buttonIcon: <VarTypeStringM />,
+              groups: PARAMETER_GROUPS,
+              items: PARAMETER_ITEMS,
+            },
+            withoutTypeSelector: true,
+            texts: FACTORS_TEXTS,
+          },
+          operator: {
+            items: [],
+            groups: [],
+            onChange: () => { },
+            value: {
+              group: 'groupId',
+              groupId: 'groupId',
+              icon: <span>i</span>,
+              id: 'id',
+              logic: 'logic',
+              name: 'Operator name',
+              value: 'operator value',
+            }
+          },
+          factor: undefined,
+        }]
+      }]
+    }));
+
+    expect(getByText('Parameter label')).toBeTruthy();
+    expect(getByText('Operator name')).toBeTruthy();
+  });
+
+  test('not rendering factor if there is operator but without value', () => {
+    const { getByText, queryByDisplayValue } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: {
+            availableFactorTypes: ['parameter'],
+            selectedFactorType: 'parameter',
+            defaultFactorType: 'parameter',
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+            value: 'parameter value',
+            parameters: {
+              buttonLabel: 'Parameter label',
+              buttonIcon: <VarTypeStringM />,
+              groups: PARAMETER_GROUPS,
+              items: PARAMETER_ITEMS,
+            },
+            withoutTypeSelector: true,
+            texts: FACTORS_TEXTS,
+          },
+          operator: {
+            items: [],
+            groups: [],
+            onChange: () => { },
+            value: undefined,
+          },
+          factor: {
+            selectedFactorType: 'text',
+            defaultFactorType: 'text',
+            textType: 'default',
+            autocompleteText: {
+              options: ['option'],
+            },
+            value: 'factor value',
+            parameters: {
+              buttonLabel: 'Factor label',
+              buttonIcon: <span>i</span>,
+              groups: [],
+              items: [],
+            },
+            texts: undefined,
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+          },
+        }]
+      }]
+    }));
+
+    expect(getByText('Parameter label')).toBeTruthy();
+    expect(queryByDisplayValue('factor value')).toBeFalsy();
+  });
+
+  test('rendering factor if there is operator with value set', () => {
+    const { getByText, queryByDisplayValue } = renderWithProvider(RENDER_CONDITIONS({
+      steps: [{
+        ...DEFAULT_STEP,
+        id: 'test-id',
+        conditions: [{
+          id: 'test-id',
+          parameter: {
+            availableFactorTypes: ['parameter'],
+            selectedFactorType: 'parameter',
+            defaultFactorType: 'parameter',
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+            value: 'parameter value',
+            parameters: {
+              buttonLabel: 'Parameter label',
+              buttonIcon: <VarTypeStringM />,
+              groups: PARAMETER_GROUPS,
+              items: PARAMETER_ITEMS,
+            },
+            withoutTypeSelector: true,
+            texts: FACTORS_TEXTS,
+          },
+          operator: {
+            items: [],
+            groups: [],
+            onChange: () => { },
+            value: {
+              group: 'groupId',
+              groupId: 'groupId',
+              icon: <span>i</span>,
+              id: 'id',
+              logic: 'logic',
+              name: 'Operator name',
+              value: 'operator value',
+            },
+          },
+          factor: {
+            selectedFactorType: 'text',
+            defaultFactorType: 'text',
+            textType: 'default',
+            autocompleteText: {
+              options: ['option'],
+            },
+            value: 'factor value',
+            parameters: {
+              buttonLabel: 'Factor label',
+              buttonIcon: <span>i</span>,
+              groups: [],
+              items: [],
+            },
+            texts: undefined,
+            setSelectedFactorType: () => { },
+            onChangeValue: () => { },
+          },
+        }]
+      }]
+    }));
+
+    expect(getByText('Parameter label')).toBeTruthy();
+    expect(queryByDisplayValue('factor value')).toBeTruthy();
   });
 });
