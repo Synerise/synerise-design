@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.133.0](https://github.com/synerise/synerise-design/compare/portal@0.132.1...portal@0.133.0) (2021-07-19)
+
+
+### Features
+
+* **typography:** updates stories ([ab7fc6b](https://github.com/synerise/synerise-design/commit/ab7fc6b9911e86f88147117288b89916a2744682))
+
+
+
+
+
 ## [0.132.1](https://github.com/synerise/synerise-design/compare/portal@0.132.0...portal@0.132.1) (2021-07-08)
 
 **Note:** Version bump only for package portal
