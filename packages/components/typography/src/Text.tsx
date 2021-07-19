@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { MediumText, SmallText, XSmallText } from './CommonElements';
 
+export type TextSize = 'medium' | 'small' | 'xsmall';
+
 type TextProps = {
-  size?: 'medium' | 'small' | 'xsmall';
+  size?: TextSize;
 };
 
 const MapSizeToComponent = {
