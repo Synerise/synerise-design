@@ -122,7 +122,7 @@ const columns = [
 const stories = {
   Typography: () => (
     <div style={{ padding: 10 }}>
-      <Table title={'Typography tokens'} columns={columns} dataSource={DATA}></Table>
+      <Table title={'Typography tokens'} columns={columns} dataSource={DATA} hideTitleBar></Table>
     </div>
   ),
 };
