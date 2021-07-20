@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-completed-within",
-  "version": "0.2.37",
+  "version": "0.2.38",
   "description": "CompletedWithin UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,10 +33,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.13.60",
-    "@synerise/ds-dropdown": "^0.16.16",
+    "@synerise/ds-dropdown": "^0.16.17",
     "@synerise/ds-icon": "^0.34.0",
     "@synerise/ds-input-number": "^0.3.45",
-    "@synerise/ds-select": "^0.13.34",
+    "@synerise/ds-select": "^0.13.35",
     "@synerise/ds-tooltip": "^0.9.6"
   },
   "peerDependencies": {

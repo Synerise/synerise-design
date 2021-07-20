@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.26...@synerise/ds-condition@0.8.0) (2021-07-19)
+
+
+### Features
+
+* **condition:** change operator displaying rules ([f8ae932](https://github.com/Synerise/synerise-design/commit/f8ae932ea48e1e2f49aefea2807f38c9cfe41951))
+
+
+
+
+
+## [0.7.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.25...@synerise/ds-condition@0.7.26) (2021-07-19)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
 ## [0.7.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.7.24...@synerise/ds-condition@0.7.25) (2021-07-08)
 
 **Note:** Version bump only for package @synerise/ds-condition

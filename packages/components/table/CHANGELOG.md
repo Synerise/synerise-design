@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.10...@synerise/ds-table@0.37.11) (2021-07-19)
+
+
+### Bug Fixes
+
+* **table:** add new component skeletonTable ([81e3010](https://github.com/synerise/synerise-design/commit/81e30100e8c64e4fad1cd2a2ee20a0bb16084983))
+* **table:** back to top button overflow ([f04076b](https://github.com/synerise/synerise-design/commit/f04076b2b6597144c52f4ce97de6ab92974f02f6))
+* **table:** fix prop hideTitlePart ([639f043](https://github.com/synerise/synerise-design/commit/639f0432a4f7df51c70f8145af232ffaa92a139c))
+* **table:** fix prop hideTitlePart ([a93ba88](https://github.com/synerise/synerise-design/commit/a93ba888da0554ebb76e80f142e1a7c13dcfabe2))
+* **table:** fix props ([ea4d62a](https://github.com/synerise/synerise-design/commit/ea4d62a1c3a0775227699529a9b6aae349e854bb))
+* **table:** fix skeletonTable ([370ff0d](https://github.com/synerise/synerise-design/commit/370ff0d115c69f0674c0eca1eef2aa3f90fa2714))
+
+
+
+
+
+## [0.37.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.9...@synerise/ds-table@0.37.10) (2021-07-19)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.37.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.8...@synerise/ds-table@0.37.9) (2021-07-08)
 
 **Note:** Version bump only for package @synerise/ds-table
