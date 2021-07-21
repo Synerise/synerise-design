@@ -5,13 +5,11 @@ import {
   UserAddM,
   Check3M,
   HelpFillM,
-  DuplicateS,
   UserUpM,
   UpdateDataM, NotificationsReceiveM,
 } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
-import UnorderedList from '@synerise/ds-unordered-list';
 import * as S from './SectionMessage.styles';
 import { AlertType, Props } from './SectionMessage.types';
 
@@ -24,31 +22,6 @@ const ICONS: Record<AlertType, React.ReactNode> = {
   service:<UpdateDataM/>,
   entity: <NotificationsReceiveM/>,
 };
-
-const data = [
-  {
-    label: (
-      <S.OrderWrapper >
-        <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
-        <S.NumberWrapper>(505-456)</S.NumberWrapper>
-        <S.IconOrderWrapper><Icon component={<DuplicateS/>}/></S.IconOrderWrapper>
-      </S.OrderWrapper>
-    ),
-    index: (1),
-    id:('list')
-  },
-  {
-    label: (
-      <S.OrderWrapper >
-        <div style={{ marginRight: '10px' }}>•</div> Missing email template
-        <S.NumberWrapper>(505-456)</S.NumberWrapper>
-        <S.IconOrderWrapper><Icon component={<DuplicateS/>}/></S.IconOrderWrapper>
-      </S.OrderWrapper>
-    ),
-    index: (1),
-    id:('list')
-  },
-];
 
 const DEFAULT_ICON = <WarningFillM />;
 
@@ -71,7 +44,6 @@ const SectionMessage: React.FC<Props> = (props: Props) => {
     customColorIcon,
     customIcon,
   } = props;
-
   const renderMessage = React.useMemo(() => {
     return (
       <S.AlertContent>
@@ -95,9 +67,7 @@ const SectionMessage: React.FC<Props> = (props: Props) => {
           </S.ButtonsWrapper>
         )}
         {unorderedList && !moreButtons && (
-          <S.Wrapper>
-            <UnorderedList data={data} indexFormatter={undefined} />
-          </S.Wrapper>
+         unorderedList
         )}
       </S.AlertContent>
     );

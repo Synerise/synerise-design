@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   Check3M,
-  CheckS,
+  CheckS, DuplicateS,
   HelpFillM,
   NotificationsReceiveM,
   UpdateDataM,
@@ -12,12 +12,19 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import Alert from '@synerise/ds-alert';
 import Card, { CardBadge } from '@synerise/ds-card';
-import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
+import { CardProps } from '@synerise/ds-card/dist/Card/Card.types';
 import Button from '@synerise/ds-button';
 import * as S from '../Card/stories.styles';
 import ModalProxy from '@synerise/ds-modal';
 import { sizes } from '../Modal/index.stories';
 import Icon from '@synerise/ds-icon';
+import UnorderedList from '@synerise/ds-unordered-list';
+import Tooltip from '@synerise/ds-tooltip';
+import {
+  IconOrderWrapper,
+  NumberWrapper,
+  OrderWrapper, Wrapper,
+} from '@synerise/ds-alert/dist/SectionMessage/SectionMessage.styles';
 
 const decorator = storyFn => (
   <div
@@ -208,7 +215,7 @@ const stories = {
           newClient={true}
           withClose={withClose}
         />
-        <br />
+        <div style={{padding: '10px'}}/>
         <SectionMessage
           type={type}
           color={additionalAlertMapper[type].color}
@@ -223,6 +230,35 @@ const stories = {
   WithList: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'negative')
     const withClose = boolean('Set close button', false);
+    const [iconCopied, setIconCopied] = React.useState(false);
+    const data = [
+      {
+        label: (
+          <OrderWrapper >
+            <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
+            <NumberWrapper>(505-456)</NumberWrapper>
+            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+              <IconOrderWrapper><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+            </Tooltip>
+          </OrderWrapper>
+        ),
+        index: (1),
+        id:('list')
+      },
+      {
+        label: (
+          <OrderWrapper >
+            <div style={{ marginRight: '10px' }}>•</div> Missing email template
+            <NumberWrapper>(505-456)</NumberWrapper>
+            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+              <IconOrderWrapper><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+            </Tooltip>
+          </OrderWrapper>
+        ),
+        index: (1),
+        id:('list')
+      },
+    ];
     return (
       <div
         style={{
@@ -239,7 +275,10 @@ const stories = {
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
           message={text('Message', 'Alert!')}
-          unorderedList={true}
+          unorderedList={
+            <Wrapper>
+              <UnorderedList data={data} indexFormatter={undefined} />
+            </Wrapper>}
           withClose={withClose}
         />
       </div>
@@ -376,6 +415,35 @@ const stories = {
     const customMIcon = select('Set custom M Icon', iconsNames, iconsNames[3]);
     const IconComp = iconsRaw[customMIcon]
     const props = getDefaultProps();
+    const [iconCopied, setIconCopied] = React.useState(false);
+    const data = [
+      {
+        label: (
+          <OrderWrapper >
+            <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
+            <NumberWrapper>(505-456)</NumberWrapper>
+            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+              <IconOrderWrapper><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+            </Tooltip>
+          </OrderWrapper>
+        ),
+        index: (1),
+        id:('list')
+      },
+      {
+        label: (
+          <OrderWrapper >
+            <div style={{ marginRight: '10px' }}>•</div> Missing email template
+            <NumberWrapper>(505-456)</NumberWrapper>
+            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+              <IconOrderWrapper><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+            </Tooltip>
+          </OrderWrapper>
+        ),
+        index: (1),
+        id:('list')
+      },
+    ];
     return (
       <div
         style={{
@@ -397,7 +465,10 @@ const stories = {
           customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}
           newClient={showButton}
           moreButtons={showButtons}
-          unorderedList={showUnorderedList}
+          unorderedList={showUnorderedList && (
+            <Wrapper>
+            <UnorderedList data={data} indexFormatter={undefined} />
+          </Wrapper>)}
           type={type}
           color={additionalAlertMapper[type].color}
           withClose={withClose}
