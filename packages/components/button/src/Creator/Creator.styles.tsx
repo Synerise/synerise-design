@@ -93,7 +93,7 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     ${(props): string | false => props.withLabel && !props.block && `min-width: 200px;`}
     padding: 0;
     border-radius: 3px;
-    border: 1px dashed ${({ theme }): string => theme.palette['grey-300']};
+    border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
     background: ${({ theme }): string => theme.palette.white};
     transition: all 0.3s ease;
     justify-content: ${(props): string => (props.withLabel ? `flex-start` : 'center')};
@@ -127,7 +127,7 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     }
     &:hover:not(:disabled):not(:focus) {
       border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
-      background-color: ${({ theme }): string => theme.palette.white};
+      background-color: rgba(233, 237, 238, 0.2);
     }
     ${(props): string | false => props.pressed && `background-color: ${props.theme.palette['grey-050']};`}
 
