@@ -46,7 +46,7 @@ const SectionMessage: React.FC<Props> = (props: Props) => {
   } = props;
   const renderMessage = React.useMemo(() => {
     return (
-      <S.AlertContent>
+      <S.AlertContent withLink={withLink}>
         {message && <S.AlertMessage>{message}</S.AlertMessage>}
         <S.Text>
           {description && <S.AlertDescription>{description}</S.AlertDescription>}

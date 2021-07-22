@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import * as React from 'react';
 
-export const AlertContent = styled.div`
+export const AlertContent = styled.div<{withLink?: React.ReactNode}>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 12px 0 12px 0;
+  padding: ${(props): string => props.withLink ? '12px 0 11px' : '12px 0'};
 `;
 export const AllContent = styled.div`
   display: flex;
