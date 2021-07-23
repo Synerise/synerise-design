@@ -124,6 +124,7 @@ export const AntdButton = styled(
     pressed,
     size,
     iconColor,
+    error,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -328,6 +329,105 @@ export const AntdButton = styled(
           border-radius: 0 3px 3px 0;
         }
       `}
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.error && 
+        css`
+        &.ant-btn {
+          background-color: ${props.theme.palette[`red-050`]} !important;
+          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']}; !important;
+          span {
+            color: ${props.theme.palette[`red-600`]} !important;
+          }
+          svg {
+              color: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]} !important;
+            }
+          &&&:hover:not(:disabled):not(:focus) {
+            background-color: ${props.theme.palette[`red-200`]} !important;
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']}; !important;
+            span {
+              color: ${props.theme.palette[`red-600`]} !important;
+            }
+            svg {
+              color: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]} !important;
+            }
+          }
+          &:active {
+              background-color: ${props.theme.palette[`red-600`]} !important;
+              span {
+              color: ${props.theme.palette.white} !important;
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+            }
+          &:focus:not(:active) {
+              border: none !important;
+              background-color: ${props.theme.palette[`red-600`]} !important;
+              span {
+              color: ${props.theme.palette.white} !important;
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+          }
+          &:focus {
+            &:active {
+              border: none !important;
+              background-color: ${props.theme.palette[`red-600`]} !important;
+              span {
+              color: ${props.theme.palette.white} !important;
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+            }
+          }
+          ${RippleEffect} {
+            background-color: ${props.theme.palette[`red-700`]};
+          }
+        `}
+          ${(props): FlattenSimpleInterpolation | false =>
+            props.error && props.type === 'secondary' &&
+            css`
+           &.ant-btn .btn-focus {
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
+            &&&:hover {
+              box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
+              background-color: ${props.theme.palette[`red-200`]} !important;
+            }
+            &&&:active {
+              background-color: ${props.theme.palette[`red-600`]} !important;
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']} !important;
+              span {
+              color: ${props.theme.palette.white} !important;
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+            }
+          &&&.ant-btn:focus .btn-focus {
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']} !important;
+              background-color: ${props.theme.palette[`red-600`]} !important;
+              span {
+              color: ${props.theme.palette.white} !important;
+            }
+            svg {
+              color: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} !important;
+            }
+          }
+          ${RippleEffect} {
+            background-color: ${props.theme.palette[`red-700`]};
+          }
+          }
+        `}
+        
 
     ${(props): FlattenSimpleInterpolation | false =>
       props.type === 'custom-color' &&
