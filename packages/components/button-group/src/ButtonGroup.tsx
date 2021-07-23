@@ -13,6 +13,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   buttonsPosition = 'center',
   disabled,
   splitMode,
+  error,
 }) => (
   <S.Container
     className={`ds-button-group ${className || ''}`}
@@ -20,6 +21,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
     buttonsPosition={buttonsPosition}
     disabled={disabled}
     splitMode={splitMode}
+    error={error}
   >
     {title && <S.Title>{title}</S.Title>}
     <Button.Group size={size}>{children}</Button.Group>
