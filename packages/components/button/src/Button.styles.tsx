@@ -365,13 +365,13 @@ export const AntdButton = styled(
             }
           &:focus:not(:active) {
               border: none !important;
-              background-color: ${props.theme.palette[`red-600`]} !important;
+              background-color: ${props.theme.palette[`red-050`]} !important;
               span {
-              color: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette[`red-600`]}} !important;
             }
             svg {
-              color: ${props.theme.palette.white} !important;
-              fill: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]} !important;
             }
           }
           &:focus {
