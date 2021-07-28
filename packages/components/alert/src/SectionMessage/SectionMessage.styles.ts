@@ -56,6 +56,9 @@ export const ButtonWrapper = styled.div`
   padding: 6px 8px 0 8px;
   display: flex;
 `;
+export const FirstButtonWrapper = styled.div`
+  margin-right: 8px;
+`;
 export const NumberWrapper = styled.div`
   margin-left: 4px;
   color: ${(props): string => props.theme.palette['grey-400']};
@@ -171,7 +174,7 @@ export const AlertDescription = styled.span`
   margin-top: 2px;
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
-export const WithEmphasis = styled.span`
+export const EmphasisWrapper = styled.span`
   display: flex;
   font-size: 13px;
   line-height: 1.39;
@@ -179,7 +182,7 @@ export const WithEmphasis = styled.span`
   margin-top: 2px;
   color: inherit;
 `;
-export const WithLink = styled.span`
+export const LinkWrapper = styled.span`
   display: flex;
   font-size: 13px;
   line-height: 1.5;

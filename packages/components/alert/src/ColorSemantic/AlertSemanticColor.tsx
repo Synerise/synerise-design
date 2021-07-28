@@ -19,8 +19,7 @@ const ICONS: Record<AlertType, React.ReactNode> = {
 };
 const DEFAULT_ICON = <WarningFillM />;
 
-const AlertSemanticColor: React.FC<Props> = (props: Props) => {
-  const { icon, type, color, mode } = props;
+const AlertSemanticColor: React.FC<Props> = ({icon, type, color, mode}: Props) => {
 
   const renderIcon = React.useMemo(() => {
     if (icon) return icon;

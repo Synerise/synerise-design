@@ -1,46 +1,31 @@
 import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
+import { AlertType } from '../ColorSemantic/AlertSemanticColor.types';
 
-export type AlertType = 'positive' | 'notice' | 'negative'  | 'neutral'|'supply'|'service'|'entity';
+export type AlertTypes = Exclude<AlertType,'informative'>
+export type CustomColorType =
+  | 'blue'
+  | 'grey'
+  | 'red'
+  | 'green'
+  | 'yellow'
+  | 'pink'
+  | 'mars'
+  | 'orange'
+  | 'fern'
+  | 'cyan'
+  | 'purple'
+  | 'violet';
+export type ColorType = 'grey' | 'red' | 'green' | 'yellow' | 'violet' | 'purple' | 'cyan';
+export type ModeType = 'background' | 'background-outline' | 'outline' | 'clear';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
-  type: string | AlertType;
-  customColor?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
-  customColorIcon?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
-  color?:
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'violet'
-    | 'purple'
-    | 'cyan';
-  mode?: 'background' | 'background-outline' | 'outline' | 'clear';
+  type: string | AlertTypes;
+  customColor?: CustomColorType;
+  customColorIcon?: CustomColorType;
+  color?: ColorType;
+  mode?: ModeType;
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
   newClient?: boolean | React.ReactNode;

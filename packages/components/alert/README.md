@@ -55,3 +55,30 @@ import Alert from '@synerise/ds-alert'
 | type     | Type of InlineAlert, options: `success`, `alert`, `warning` | `string`                     | `warning` | 
 | message  | Message of alert                                            | `string` \ `React.ReactNode` | -         | 
 
+### Alert.SectionMessage
+
+| Property        | Description                                                                                                            | Type                        | Default    | 
+| ----            | ---                                                                                                                    | ---                         | ---        | 
+| type            | Type of SectionMessage, options: `notice`, `negative`, `positive`,`neutral`,`supply`,`service`,`entity`                | `string`                    | `negative` | 
+| message         | Message of section messsage                                                                                            | `React.ReactNode`           | -          | 
+| customColor     | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`                    | -          |
+| customColorIcon | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`                    | -          |
+| color           | type of colors,options: `red`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`                                       | `string`                    | -          |
+| mode            | type of modes, options: `background`, `background-outline`,`outline`,`clear`                                           | `string`                    | -          |
+| showMoreLabel   | prop to show label                                                                                                     | `React.ReactNode`           | -          |
+| onShowMore      | prop to show label                                                                                                     | `void`                      | -          |
+| newClient       | prop to show button                                                                                                    | `React.ReactNode`/`boolean` | -          |
+| moreButtons     | prop to show buttons                                                                                                   | `React.ReactNode`/`boolean` | -          |
+| withEmphasis    | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
+| withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
+| unorderedList   | prop to show unordered list                                                                                            | `React.ReactNode`           | -          |
+| withClose       | prop to show close button                                                                                              | `React.ReactNode`           | -          |
+| customIcon      | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
+
+### Alert.AlertSemanticColor
+
+| Property | Description                                                 | Type                         | Default   | 
+| ---      | ---                                                         | ---                          | ---       | 
+| type     | Type of AlertSemanticColor, options: `notice`, `negative`, `positive`,`informative`,`neutral`,`supply`,`service`,`entity`                | `string`                    | `positive` |
+| color    | type of colors,options: `red`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`blue`                                                  | `string`                    | -          |
+| mode     | type of modes, options: `background`, `background-outline`,`outline`,`shadow`                                                            | `string`                    | -          |

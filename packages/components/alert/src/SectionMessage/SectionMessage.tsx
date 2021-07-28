@@ -11,9 +11,9 @@ import {
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import * as S from './SectionMessage.styles';
-import { AlertType, Props } from './SectionMessage.types';
+import { Props,AlertTypes } from './SectionMessage.types';
 
-const ICONS: Record<AlertType, React.ReactNode> = {
+const ICONS: Record<AlertTypes, React.ReactNode> = {
   positive: <Check3M />,
   notice: <WarningFillM />,
   negative: <WarningFillM />,
@@ -25,47 +25,18 @@ const ICONS: Record<AlertType, React.ReactNode> = {
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const SectionMessage: React.FC<Props> = (props: Props) => {
-  const {
-    icon,
-    type,
-    message,
-    description,
-    showMoreLabel,
-    onShowMore,
-    newClient,
-    moreButtons,
-    withEmphasis,
-    withLink,
-    unorderedList,
-    color,
-    withClose,
-    customColor,
-    customColorIcon,
-    customIcon,
-  } = props;
+const SectionMessage: React.FC<Props> = ({icon, type, message, description, showMoreLabel, onShowMore, newClient, moreButtons, withEmphasis, withLink, unorderedList, color, withClose, customColor, customColorIcon, customIcon}: Props) => {
   const renderMessage = React.useMemo(() => {
     return (
       <S.AlertContent withLink={withLink}>
         {message && <S.AlertMessage>{message}</S.AlertMessage>}
         <S.Text>
           {description && <S.AlertDescription>{description}</S.AlertDescription>}
-          {withLink && <S.WithLink>{withLink}</S.WithLink>}
-          {withEmphasis && !withLink && <S.WithEmphasis>{withEmphasis}</S.WithEmphasis>}
+          {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
+          {withEmphasis && !withLink && <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>}
         </S.Text>
         {onShowMore && showMoreLabel && <S.AlertShowMore onClick={onShowMore}>{showMoreLabel}</S.AlertShowMore>}
-        {moreButtons && (
-          <S.ButtonsWrapper>
-            <div style={{ marginRight: '8px' }}>
-              <Button type="secondary" mode="label">
-                Button
-              </Button>
-            </div>
-            <Button type="ghost" mode="label">
-              Button
-            </Button>
-          </S.ButtonsWrapper>
-        )}
+        {moreButtons}
         {unorderedList && !moreButtons && (
          unorderedList
         )}

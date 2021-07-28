@@ -21,6 +21,7 @@ import Icon from '@synerise/ds-icon';
 import UnorderedList from '@synerise/ds-unordered-list';
 import Tooltip from '@synerise/ds-tooltip';
 import {
+  ButtonsWrapper, FirstButtonWrapper,
   IconOrderWrapper,
   NumberWrapper,
   OrderWrapper, Wrapper,
@@ -221,7 +222,16 @@ const stories = {
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
           message={text('Message', 'Alert!')}
-          moreButtons={true}
+          moreButtons={<ButtonsWrapper>
+            <FirstButtonWrapper>
+              <Button type="secondary" mode="label">
+                Button
+              </Button>
+            </FirstButtonWrapper>
+            <Button type="ghost" mode="label">
+              Button
+            </Button>
+          </ButtonsWrapper>}
           withClose={withClose}
         />
       </div>
@@ -464,7 +474,16 @@ const stories = {
           customColorIcon={customColorIcon}
           customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}
           newClient={showButton}
-          moreButtons={showButtons}
+          moreButtons={showButtons && (<ButtonsWrapper>
+            <FirstButtonWrapper>
+              <Button type="secondary" mode="label">
+                Button
+              </Button>
+            </FirstButtonWrapper>
+            <Button type="ghost" mode="label">
+              Button
+            </Button>
+          </ButtonsWrapper>)}
           unorderedList={showUnorderedList && (
             <Wrapper>
             <UnorderedList data={data} indexFormatter={undefined} />
