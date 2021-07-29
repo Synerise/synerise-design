@@ -6318,6 +6318,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.10.3.tgz#38a3693d35b546a09e82989fa5830d3f074629fb"
   integrity sha512-eIA15WcuHXo3kJ5ZuqNkK1QMbfEBDZHUFIFultsrMvf7awhi8RBhpRg/28B4XtTKK1EvWm8ejSzfdiPU5pyr8Q==
 
+"@synerise/ds-typography@^0.11.7":
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.11.7.tgz#46166eab661326b243d70f53d46f2c3ac2f14138"
+  integrity sha512-OgPwvAQEO1a+cl8aPKr0UIjrdoNlA3DFtW1AY7I4bpF3hTncouiUrvqEWETqxchKhXiwdNqOb3NYSjcUk3bV6w==
+
 "@synerise/ds-typography@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.7.0.tgz#42ec6d4adee553ba23c7b1406f20af7b2b1b2232"
