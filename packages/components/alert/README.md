@@ -66,10 +66,10 @@ import Alert from '@synerise/ds-alert'
 | color           | type of colors,options: `red`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`                                       | `string`                    | -          |
 | mode            | type of modes, options: `background`, `background-outline`,`outline`,`clear`                                           | `string`                    | -          |
 | showMoreLabel   | prop to show label                                                                                                     | `React.ReactNode`           | -          |
-| onShowMore      | prop to show label                                                                                                     | `void`                      | -          |
+| onShowMore      | callback executed after clicking                                                                                       | `void`                      | -          |
 | newClient       | prop to show button                                                                                                    | `React.ReactNode`/`boolean` | -          |
 | moreButtons     | prop to show buttons                                                                                                   | `React.ReactNode`/`boolean` | -          |
-| withEmphasis    | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
+| withEmphasis    | prop to show bolder text                                                                                               | `React.ReactNode`           | -          |
 | withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
 | unorderedList   | prop to show unordered list                                                                                            | `React.ReactNode`           | -          |
 | withClose       | prop to show close button                                                                                              | `React.ReactNode`           | -          |

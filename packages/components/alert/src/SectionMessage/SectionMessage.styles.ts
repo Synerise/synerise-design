@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as React from 'react';
+import { ColorType, CustomColorType } from './SectionMessage.types';
 
 export const AlertContent = styled.div<{withLink?: React.ReactNode}>`
   display: flex;
@@ -16,20 +17,9 @@ export const Text = styled.div`
   display: flex;
 `;
 export const IconWrapper = styled.div<{
-  color?: 'grey' | 'red' | 'green' | 'yellow' | 'cyan' | 'purple' | 'violet';
+  color?: ColorType;
   customColorIcon?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
+    CustomColorType;
 }>`
   margin: 10px 12px;
   display: flex;
@@ -48,7 +38,6 @@ export const IconCloseWrapper = styled.div`
   margin: 3px 5px 2px;
   cursor: pointer;
   svg {
-    color: ${(props): string => props.theme.palette['grey-700']};
     fill: ${(props): string => props.theme.palette['grey-700']};
   }
 `;
@@ -84,12 +73,10 @@ export const IconOrderWrapper = styled.div`
   display: none;
   margin: -4px 0;
   svg {
-    color: ${(props): string => props.theme.palette['grey-700']};
     fill: ${(props): string => props.theme.palette['grey-700']};
   }
   &:hover {
     svg {
-      color: ${(props): string => props.theme.palette['blue-600']};
       fill: ${(props): string => props.theme.palette['blue-600']};
       cursor: pointer;
     }
@@ -120,20 +107,9 @@ export const Wrapper = styled.div`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 export const Container = styled.div<{
-  color?: 'grey' | 'red' | 'green' | 'yellow' | 'cyan' | 'purple' | 'violet';
+  color?: ColorType;
   customColor?:
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
+    CustomColorType;
 }>`
   width: 100%;
   align-items: center;
