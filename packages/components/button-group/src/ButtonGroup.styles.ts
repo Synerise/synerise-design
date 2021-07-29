@@ -111,7 +111,7 @@ export const Container = styled.div<{
           &.ant-btn-ghost {
             border-left: 0px;
             &:active {
-              border-left: 0px ;
+              border-left: 0px;
             }
           }
         }
@@ -124,8 +124,8 @@ export const Container = styled.div<{
         .ds-button.single-icon.ant-btn-primary,
         .ds-button.single-icon.ant-btn-custom-color
         {
-          border-left: 0px !important;
-          padding-left: 1px !important;
+          border-left: 0px;
+          padding-left: 1px;
         }
         .ds-button:hover:not(:focus) {
           &.ant-btn-tertiary,
@@ -133,7 +133,7 @@ export const Container = styled.div<{
           &.ant-btn-tertiary-white,
           &.ant-btn-ghost-white
           {
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']}; !important;
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
           }
         }
         `};

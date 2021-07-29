@@ -333,57 +333,52 @@ export const AntdButton = styled(
         props.error && 
         css`
         &.ant-btn {
-          background-color: ${props.theme.palette[`red-050`]} !important;
-          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']}; !important;
+          background-color: ${props.theme.palette[`red-050`]} ;
+          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} ;
           span {
-            color: ${props.theme.palette[`red-600`]} !important;
+            color: ${props.theme.palette[`red-600`]} ;
           }
           svg {
-              color: ${props.theme.palette[`red-600`]} !important;
-              fill: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]};
             }
           &&&:hover:not(:disabled):not(:focus) {
-            background-color: ${props.theme.palette[`red-200`]} !important;
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']}; !important;
+            background-color: ${props.theme.palette[`red-200`]} ;
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
             span {
-              color: ${props.theme.palette[`red-600`]} !important;
+              color: ${props.theme.palette[`red-600`]} ;
             }
             svg {
-              color: ${props.theme.palette[`red-600`]} !important;
               fill: ${props.theme.palette[`red-600`]} !important;
             }
           }
           &:active {
-              background-color: ${props.theme.palette[`red-600`]} !important;
+              background-color: ${props.theme.palette[`red-600`]} ;
               span {
-              color: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette.white} ;
             }
             svg {
-              color: ${props.theme.palette.white} !important;
-              fill: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} ;
             }
             }
           &:focus:not(:active) {
               border: none !important;
-              background-color: ${props.theme.palette[`red-050`]} !important;
+              background-color: ${props.theme.palette[`red-050`]} ;
               span {
-              color: ${props.theme.palette[`red-600`]}} !important;
+              color: ${props.theme.palette[`red-600`]}} ;
             }
             svg {
-              color: ${props.theme.palette[`red-600`]} !important;
-              fill: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]} ;
             }
           }
           &:focus {
             &:active {
               border: none !important;
-              background-color: ${props.theme.palette[`red-600`]} !important;
+              background-color: ${props.theme.palette[`red-600`]} ;
               span {
-              color: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette.white} ;
             }
             svg {
-              color: ${props.theme.palette.white} !important;
-              fill: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} ;
             }
             }
           }
@@ -394,32 +389,29 @@ export const AntdButton = styled(
           ${(props): FlattenSimpleInterpolation | false =>
             props.error && props.type === 'secondary' &&
             css`
-           &.ant-btn .btn-focus {
+           &&&.ant-btn .btn-focus {
             box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
             &&&:hover {
-              box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
-              background-color: ${props.theme.palette[`red-200`]} !important;
+              background-color: ${props.theme.palette[`red-200`]} ;
             }
             &&&:active {
-              background-color: ${props.theme.palette[`red-600`]} !important;
+              background-color: ${props.theme.palette[`red-600`]} ;
               box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']} !important;
               span {
-              color: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette.white} ;
             }
             svg {
-              color: ${props.theme.palette.white} !important;
-              fill: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} ;
             }
             }
           &&&.ant-btn:focus .btn-focus {
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']} !important;
-              background-color: ${props.theme.palette[`red-600`]} !important;
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']}!important;
+              background-color: ${props.theme.palette[`red-600`]};
               span {
-              color: ${props.theme.palette.white} !important;
+              color: ${props.theme.palette.white} ;
             }
             svg {
-              color: ${props.theme.palette.white} !important;
-              fill: ${props.theme.palette.white} !important;
+              fill: ${props.theme.palette.white} ;
             }
           }
           ${RippleEffect} {

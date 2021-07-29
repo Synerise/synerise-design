@@ -92,6 +92,7 @@ const getSplitProps = (isSplit = false) => ({
   disabled: boolean('Disabled', false),
   loading: boolean('Loading', false),
   onClick: action('onClick CLICK'),
+  block: boolean('Block', false),
   error: boolean('Set validation state', false),
 });
 
