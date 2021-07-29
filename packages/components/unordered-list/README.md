@@ -32,6 +32,6 @@ import UnorderedList from '@synerise/ds-unordered-list'
 | index          | set number of ordered list    | number                   | -           |
 | id             | name of the item              | string                   | -           |
 | subMenu        | items list                    | OrderedListItem[]        | -           |
-| label          | label contains text           | string                   | -           |
+| label          | label contains text           | React.ReactNode / string | -           |
 | suffixel       | place to set item             | React.ReactNode          | -           |
 | prefixel       | place to set item             | React.ReactNode          | -           |

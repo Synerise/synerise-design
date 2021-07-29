@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type UnorderedListItem = {
   id: string;
-  label: string;
+  label: React.ReactNode | string;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
   index: number;
