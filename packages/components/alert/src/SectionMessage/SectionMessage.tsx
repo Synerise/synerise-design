@@ -25,7 +25,7 @@ const ICONS: Record<AlertTypes, React.ReactNode> = {
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const SectionMessage: React.FC<Props> = ({icon, type, message, description, showMoreLabel, onShowMore, newClient, moreButtons, withEmphasis, withLink, unorderedList, color, withClose, customColor, customColorIcon, customIcon}: Props) => {
+const SectionMessage: React.FC<Props> = ({icon, type, message, description, showMoreLabel, onShowMore, newClient, moreButtons, withEmphasis, withLink, unorderedList, color, withClose, customColor, customColorIcon, customIcon,textButton}: Props) => {
   const renderMessage = React.useMemo(() => {
     return (
       <S.AlertContent withLink={withLink}>
@@ -65,7 +65,7 @@ const SectionMessage: React.FC<Props> = ({icon, type, message, description, show
           {newClient && (
             <Button type="ghost" mode="icon-label">
               <Icon component={<UserAddM />} />
-              Add client
+              {textButton}
             </Button>
           )}
           {withClose && (

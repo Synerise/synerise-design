@@ -213,6 +213,7 @@ const stories = {
           type={type}
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
+          textButton='Add client'
           newClient={true}
           withClose={withClose}
         />
@@ -470,6 +471,7 @@ const stories = {
           message={message}
           withEmphasis={withEmphasis}
           withLink={withLink}
+          textButton='Add client'
           customColor={customColor}
           customColorIcon={customColorIcon}
           customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}

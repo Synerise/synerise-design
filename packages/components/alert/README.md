@@ -74,6 +74,7 @@ import Alert from '@synerise/ds-alert'
 | unorderedList   | prop to show unordered list                                                                                            | `React.ReactNode`           | -          |
 | withClose       | prop to show close button                                                                                              | `React.ReactNode`           | -          |
 | customIcon      | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
+| textButton      | text for button                                                                                                        | `string         `           | -          |
 
 ### Alert.AlertSemanticColor
 

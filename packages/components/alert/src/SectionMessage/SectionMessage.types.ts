@@ -35,4 +35,5 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   unorderedList?: React.ReactNode;
   withClose?: React.ReactNode;
   customIcon?: React.ReactElement;
+  textButton?: string;
 }
