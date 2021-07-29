@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.134.0](https://github.com/synerise/synerise-design/compare/portal@0.133.0...portal@0.134.0) (2021-07-19)
+
+
+### Bug Fixes
+
+* move theme settings to addons.ts file from config.ts file ([0d77fdf](https://github.com/synerise/synerise-design/commit/0d77fdf47d5f4fb254758fd69b334ffcc5a5595a))
+* **avatar:** add new components userAvatar and objectAvatar ([da91d26](https://github.com/synerise/synerise-design/commit/da91d2669d6c541c0e0f7c62aab88fa012899783))
+* **button:** add prop in table-skeleton ([82310e9](https://github.com/synerise/synerise-design/commit/82310e96c4f8884015b95722d2c2c0c796d13bba))
+* **button:** add skeleten button ([e4f169e](https://github.com/synerise/synerise-design/commit/e4f169ed04b44360ed71ae49e2c9b8dfa920cc80))
+* **checkbox:** add new component skeleton-checkbox ([118db79](https://github.com/synerise/synerise-design/commit/118db7969353b4a4666991bdd1c0870bd5f9a9b5))
+* **checkbox:** fix name of skeleton-checkbox ([2e87bea](https://github.com/synerise/synerise-design/commit/2e87bea0fa94bcad603ca7d706be0b6e937a4374))
+* **dropdown:** add new component skeletonDropdown ([4c5b057](https://github.com/synerise/synerise-design/commit/4c5b057eabd44a3159f7c78b46d8057ef7af8a9a))
+* **dropdown:** fix skeletonDropdown ([2d5ad9c](https://github.com/synerise/synerise-design/commit/2d5ad9c9e29d0198f1c60abdc47654f67bbefe15))
+* **dropdown:** fix styles of skeleton-dropdown ([bb78878](https://github.com/synerise/synerise-design/commit/bb78878ff2d3abe3f302d928297161589bb7ce76))
+* **menu:** add skeleten menu ([e3c53ab](https://github.com/synerise/synerise-design/commit/e3c53abe59662a6a09314d33dc8865ed9128c081))
+* **ordered-list:** add new component OrderedListSkeleton ([f214537](https://github.com/synerise/synerise-design/commit/f2145375b3c021528e3cbd3406405adda8cc2636))
+* **ordered-list:** add new component OrderedListSkeleton ([723e671](https://github.com/synerise/synerise-design/commit/723e67158ac133073c5387ed104c39f87722aa5c))
+* **ordered-list:** fix styles of skeleton-ordered-list ([6ec9be4](https://github.com/synerise/synerise-design/commit/6ec9be46681e59936e20ab13c4bb449f621adb01))
+* **page-header:** add new component withSkeleton ([a948a38](https://github.com/synerise/synerise-design/commit/a948a381487e9c27481bc9b12b5269abab82e997))
+* **page-header:** add prop in table-skeleton ([91ff994](https://github.com/synerise/synerise-design/commit/91ff9940eab83bea9650c2f51bbda62acb1721e0))
+* **page-header:** fix page-header-skeleton ([1f69e14](https://github.com/synerise/synerise-design/commit/1f69e14ec4a0284e35c395de14d8b4c8e20c33fe))
+* **skeleton:** change animation styles and update readme ([1076727](https://github.com/synerise/synerise-design/commit/1076727160834593c7c30ec3e1ce28f52d0ca076))
+* **table:** add new component skeletonTable ([81e3010](https://github.com/synerise/synerise-design/commit/81e30100e8c64e4fad1cd2a2ee20a0bb16084983))
+* **table:** add prop in table-skeleton ([9465e0a](https://github.com/synerise/synerise-design/commit/9465e0a2858750c8c8f2a1218965383679b7bc05))
+* **table:** fix prop hideTitlePart ([a93ba88](https://github.com/synerise/synerise-design/commit/a93ba888da0554ebb76e80f142e1a7c13dcfabe2))
+* **table:** fix skeletonTable ([370ff0d](https://github.com/synerise/synerise-design/commit/370ff0d115c69f0674c0eca1eef2aa3f90fa2714))
+* **table:** fix styles of skeleton-table ([6719a2c](https://github.com/synerise/synerise-design/commit/6719a2c476177b390096bdd802d6b26979f5a6a3))
+* **unordered-list:** fix names of components ([df68c17](https://github.com/synerise/synerise-design/commit/df68c177654da372f54b61443285d69727879b03))
+
+
+### Features
+
+* **skeleton:** add props to fix animation ([1b3b693](https://github.com/synerise/synerise-design/commit/1b3b6931e188e0c843075067a0c2a7f3c7d5f1ab))
+* **skeleton:** add skeleton ([ad19b6d](https://github.com/synerise/synerise-design/commit/ad19b6d87a69e12384cf5a7203deee0fb3f08802))
+* **skeleton:** add stories ([2c1baf9](https://github.com/synerise/synerise-design/commit/2c1baf9dc2b5eae0f0dff031f4efb451ee9ccf4b))
+* **skeleton:** new component skeleton ([c1e0deb](https://github.com/synerise/synerise-design/commit/c1e0deb5952121232c7300468e8145b4a8fd1b12))
+
+
+
+
+
+# [0.133.0](https://github.com/synerise/synerise-design/compare/portal@0.132.1...portal@0.133.0) (2021-07-19)
+
+
+### Features
+
+* **typography:** updates stories ([ab7fc6b](https://github.com/synerise/synerise-design/commit/ab7fc6b9911e86f88147117288b89916a2744682))
+
+
+
+
+
+## [0.132.1](https://github.com/synerise/synerise-design/compare/portal@0.132.0...portal@0.132.1) (2021-07-08)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
 # [0.132.0](https://github.com/synerise/synerise-design/compare/portal@0.131.1...portal@0.132.0) (2021-06-28)
 
 

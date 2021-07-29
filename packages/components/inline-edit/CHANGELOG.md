@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.23...@synerise/ds-inline-edit@0.4.24) (2021-07-19)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.22...@synerise/ds-inline-edit@0.4.23) (2021-07-08)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.21...@synerise/ds-inline-edit@0.4.22) (2021-07-07)
+
+
+### Bug Fixes
+
+* **inline-edit:** update input value after mount ([eb92b56](https://github.com/Synerise/synerise-design/commit/eb92b5613f00a5dbcb24d693754a8f1146539f73))
+
+
+
+
+
 ## [0.4.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.4.20...@synerise/ds-inline-edit@0.4.21) (2021-07-01)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit
