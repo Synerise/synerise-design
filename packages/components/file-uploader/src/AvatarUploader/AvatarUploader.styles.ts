@@ -1,6 +1,7 @@
 import styled, { SimpleInterpolation, css } from 'styled-components';
 import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { hexToRgba } from '@synerise/ds-utils';
 
 export const Container = styled.div`
   width: 100%;
@@ -53,7 +54,7 @@ export const DropAreaButton = styled.button<{
   filesLength: number;
 }>`
   align-items: center;
-  border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  border: 1px dashed ${(props): string => props.theme.palette['grey-400']};
   padding: 11px 12px;
   border-radius: 3px;
   cursor: pointer;
@@ -63,8 +64,9 @@ export const DropAreaButton = styled.button<{
   transition: height 0.3s;
 
   ${(props): SimpleInterpolation =>
-  props.mode === 'multi-large' && props.filesLength === 0 &&
-  `
+    props.mode === 'multi-large' &&
+    props.filesLength === 0 &&
+    `
       height: 108px;
       flex-direction: column;
       text-align: center;
@@ -81,24 +83,24 @@ export const DropAreaButton = styled.button<{
   }
 
   ${(props): SimpleInterpolation =>
-  props.hasError &&
-  `
+    props.hasError &&
+    `
       background-color: ${props.theme.palette['red-050']};
       border-color: ${props.theme.palette['red-600']};
     `}
   ${(props): SimpleInterpolation =>
-  props.pressed &&
-  !props.disabled &&
-  css`
+    props.pressed &&
+    !props.disabled &&
+    css`
       &&&:active,
       &&& {
-        background-color: ${props.theme.palette['grey-100']};
+        background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)};
       }
     `}
 
 
   &:hover:not(:disabled) {
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: ${(props): string => hexToRgba(props.theme.palette['grey-200'], 0.2)};
     border-color: ${(props): string => props.theme.palette['grey-400']};
 
     ${DropAreaLabel}, ${LargeDropAreaLabel} {
@@ -113,7 +115,7 @@ export const DropAreaButton = styled.button<{
 
   &:disabled {
     background-color: ${(props): string => props.theme.palette['grey-050']};
-     ${LargeDropAreaLabel} {
+    ${LargeDropAreaLabel} {
       color: ${(props): string => props.theme.palette['grey-400']};
     }
   }
@@ -137,9 +139,9 @@ export const DropAreaButton = styled.button<{
   }
 
   ${(props): SimpleInterpolation =>
-  props.isDropping &&
-  !props.disabled &&
-  `
+    props.isDropping &&
+    !props.disabled &&
+    `
       height: ${props.mode === 'multi-large' ? '200px' : '80px'};
       background-color: ${props.theme.palette['blue-050']} !important;
       border-color: ${props.theme.palette['blue-300']} !important;
@@ -174,4 +176,3 @@ export const Label = styled(TypographyLabel)`
     }
   }
 `;
-

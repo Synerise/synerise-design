@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { hexToRgba } from '@synerise/ds-utils';
 
 import Button from '../Button';
 import { ButtonFocus, RippleEffect } from '../Button.styles';
@@ -127,9 +128,10 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     }
     &:hover:not(:disabled):not(:focus) {
       border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
-      background-color: rgba(233, 237, 238, 0.2);
+      background-color: ${({ theme }): string => hexToRgba(theme.palette['grey-200'], 0.2)};
     }
-    ${(props): string | false => props.pressed && `background-color: ${props.theme.palette['grey-050']};`}
+    ${(props): string | false =>
+      props.pressed && `&&{ background-color: ${hexToRgba(props.theme.palette['grey-200'], 0.4)}; }`}
 
     &:focus:active {
       border: 1px dashed ${(props): string => props.theme.palette['grey-400']} !important ;
