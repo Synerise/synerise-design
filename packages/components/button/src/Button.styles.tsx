@@ -360,7 +360,7 @@ export const AntdButton = styled(
               fill: ${props.theme.palette.white} ;
             }
             }
-          &:focus:not(:active) {
+          &&&:focus:not(:active) {
               border: none !important;
               background-color: ${props.theme.palette[`red-050`]} ;
               span {
@@ -370,8 +370,8 @@ export const AntdButton = styled(
               fill: ${props.theme.palette[`red-600`]} ;
             }
           }
-          &:focus {
-            &:active {
+          &&&:focus {
+            &&&:active {
               border: none !important;
               background-color: ${props.theme.palette[`red-600`]} ;
               span {
@@ -396,7 +396,7 @@ export const AntdButton = styled(
             }
             &&&:active {
               background-color: ${props.theme.palette[`red-600`]} ;
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']} !important;
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
               span {
               color: ${props.theme.palette.white} ;
             }
@@ -404,16 +404,6 @@ export const AntdButton = styled(
               fill: ${props.theme.palette.white} ;
             }
             }
-          &&&.ant-btn:focus .btn-focus {
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']}!important;
-              background-color: ${props.theme.palette[`red-600`]};
-              span {
-              color: ${props.theme.palette.white} ;
-            }
-            svg {
-              fill: ${props.theme.palette.white} ;
-            }
-          }
           ${RippleEffect} {
             background-color: ${props.theme.palette[`red-700`]};
           }
