@@ -21,12 +21,12 @@ export const loadingAnimation = (size?: 'S' | 'M' | 'L' | 'XL'): Keyframes => ke
 `;
 const SIZE_DEFAULT = 40;
 const SIZE_WRAPPER_DEFAULT = 40;
-export const Container = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: boolean }>`
+export const Container = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: 'square' | 'circle' }>`
   width: ${(props): string => SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
   overflow: hidden;
-  border-radius: ${(props): string => (props.shape ? '6px' : '48%')};
+  border-radius: ${(props): string => (props.shape ==='square' ? '6px' : '48%')};
 `;
-export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: boolean }>`
+export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: 'square' | 'circle' }>`
   width: ${(props): string => SkeletonWidth[props.size as string] || SKELETON_WIDTH}%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_DEFAULT}px;
   position: relative;
@@ -34,10 +34,10 @@ export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: b
   border-radius: 6px;
 `;
 
-export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: boolean }>`
+export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' | 'XL'; shape?: 'square' | 'circle' }>`
   display: flex;
   margin: 0px 0px;
-  border-radius: ${(props): string => (props.shape ? '6px' : '48%')};
+  border-radius: ${(props): string => (props.shape ==='square' ? '6px' : '48%')};
   width: 100%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;
   background-color: ${(props): string => props.theme.palette[`grey-050`]};
