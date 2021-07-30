@@ -5,13 +5,17 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import {
   Add3M,
   AppleFillM,
-  ArrowUpCircleM,
-  DollarCircleM,
-  RefreshM,
+  ArrowUpCircleM, Check3M,
+  DollarCircleM, HelpFillM, InfoFillM,
+  RefreshM, WarningFillM,
 } from '@synerise/ds-icon/dist/icons';
 import AlertInfo from '@synerise/ds-alert/dist/AlertInfo/AlertInfo';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
+import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSemanticColor';
+import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
+import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
+import UpdateDataM from '@synerise/ds-icon/dist/icons/UpdateDataM';
 
 const decorator = storyFn => (
   <div
@@ -51,6 +55,8 @@ const buttonSetExample = (
 );
 
 const ALERT_TYPES = ['success', 'warning', 'error', 'info'];
+const SEMANTIC_COLOR_TYPES = ['positive', 'notice' , 'negative' , 'informative' , 'neutral','supply' , 'service' , 'entity'];
+
 
 const CUSTOM_COLORS = [
   '',
@@ -67,6 +73,17 @@ const CUSTOM_COLORS = [
   'purple',
   'violet',
 ];
+
+const additionalMapper = {
+  positive: {color:'green',icon: <Check3M />},
+  notice: {color:'yellow',icon: <WarningFillM />},
+  negative: {color:'red',icon: <WarningFillM />},
+  informative: {color:'blue',icon: <InfoFillM />},
+  neutral: {color:'grey',icon: <HelpFillM/>},
+  supply: {color:'violet',icon: <UserCheckM/>},
+  service: {color:'purple',icon: <UpdateDataM/>},
+  entity: {color:'cyan',icon: <NotificationsReceiveM/>},
+};
 
 const MODES = ['', 'background', 'background-outline', 'outline', 'clear'];
 
@@ -407,6 +424,31 @@ const stories = {
       </div>
     );
   },
+  AlertSemanticColor: () => {
+    const type = select('Set type', SEMANTIC_COLOR_TYPES, 'positive')
+    const showMore = boolean('Set one more', true)
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+        }}>
+        <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='background-outline'/>
+        <br />
+        <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='background'/>
+        <br />
+        <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='clear'/>
+        <br />
+        {showMore && (
+        <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='shadow'/>)}
+      </div>
+    );
+  },
+
 };
 
 export default {

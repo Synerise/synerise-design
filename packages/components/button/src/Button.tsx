@@ -18,6 +18,7 @@ const Button: React.FC<Props> = ({
   onClick,
   className,
   color = 'red',
+  error,
   ...antdProps
 }) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
@@ -55,6 +56,7 @@ const Button: React.FC<Props> = ({
       justifyContent={justifyContent}
       type={type || 'secondary'}
       mode={mode}
+      error={error}
       groupVariant={groupVariant}
       loading={loading}
       onClick={handleClick}

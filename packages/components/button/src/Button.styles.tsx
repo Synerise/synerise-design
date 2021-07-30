@@ -124,6 +124,7 @@ export const AntdButton = styled(
     pressed,
     size,
     iconColor,
+    error,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -328,6 +329,87 @@ export const AntdButton = styled(
           border-radius: 0 3px 3px 0;
         }
       `}
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.error && 
+        css`
+        &.ant-btn {
+          background-color: ${props.theme.palette[`red-050`]} ;
+          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} ;
+          span {
+            color: ${props.theme.palette[`red-600`]} ;
+          }
+          svg {
+              fill: ${props.theme.palette[`red-600`]};
+            }
+          &&&:hover:not(:disabled):not(:focus) {
+            background-color: ${props.theme.palette[`red-200`]} ;
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+            span {
+              color: ${props.theme.palette[`red-600`]} ;
+            }
+            svg {
+              fill: ${props.theme.palette[`red-600`]} !important;
+            }
+          }
+          &:active {
+              background-color: ${props.theme.palette[`red-600`]} ;
+              span {
+              color: ${props.theme.palette.white} ;
+            }
+            svg {
+              fill: ${props.theme.palette.white} ;
+            }
+            }
+          &&&:focus:not(:active) {
+              border: none !important;
+              background-color: ${props.theme.palette[`red-050`]} ;
+              span {
+              color: ${props.theme.palette[`red-600`]}} ;
+            }
+            svg {
+              fill: ${props.theme.palette[`red-600`]} ;
+            }
+          }
+          &&&:focus {
+            &&&:active {
+              border: none !important;
+              background-color: ${props.theme.palette[`red-600`]} ;
+              span {
+              color: ${props.theme.palette.white} ;
+            }
+            svg {
+              fill: ${props.theme.palette.white} ;
+            }
+            }
+          }
+          ${RippleEffect} {
+            background-color: ${props.theme.palette[`red-700`]};
+          }
+        `}
+          ${(props): FlattenSimpleInterpolation | false =>
+            props.error && props.type === 'secondary' &&
+            css`
+           &&&.ant-btn .btn-focus {
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
+            &&&:hover {
+              background-color: ${props.theme.palette[`red-200`]} ;
+            }
+            &&&:active {
+              background-color: ${props.theme.palette[`red-600`]} ;
+              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+              span {
+              color: ${props.theme.palette.white} ;
+            }
+            svg {
+              fill: ${props.theme.palette.white} ;
+            }
+            }
+          ${RippleEffect} {
+            background-color: ${props.theme.palette[`red-700`]};
+          }
+          }
+        `}
+        
 
     ${(props): FlattenSimpleInterpolation | false =>
       props.type === 'custom-color' &&
