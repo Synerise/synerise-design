@@ -14,10 +14,14 @@ services:
 
 stages:
   - test
+  - build
   - deploy
 
 include:
   - template: Code-Quality.gitlab-ci.yml
+  - project: 'Core/gitlab_templates'
+    ref: master
+    file: '/core_deploy_kapitan.yml'
 
 build:
   stage: test
@@ -60,7 +64,7 @@ docs_build:
 
 docs_deploy:
   image: docker:stable
-  stage: deploy
+  stage: build
   needs: ['docs_build']
   only:
     refs:
@@ -83,12 +87,10 @@ docs_deploy:
     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
-    - docker pull quay.io/synerise/stevedore:master-latest
-    - docker run -e APPLICATION="${APP}" -e AUTODEPLOY_BRANCH="${SANITY_BRANCH}" -e SSHA1=${CI_COMMIT_SHA} -e AUTODEPLOY_TAG="${CI_COMMIT_TAG}" -e USERNAME="${GITLAB_USER_NAME}" --entrypoint /autodeploy.sh quay.io/synerise/stevedore:master-latest
 
 docs_deploy_from_tag:
   image: docker:stable
-  stage: deploy
+  stage: build
   needs: ['docs_build']
   only:
     refs:
@@ -110,3 +112,13 @@ docs_deploy_from_tag:
     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
+
+k8s-deploy-branch-release:
+  extends: .k8s-deploy-branch-stage
+  stage: deploy
+  variables:
+    APPLICATION: ${APP}
+    NAMESPACE: jsons
+    CURRENT_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  only:
+    - dev
