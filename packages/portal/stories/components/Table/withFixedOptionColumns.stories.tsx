@@ -12,6 +12,7 @@ import {
   RELATIONS,
 } from './content/withAllCellTypes.data';
 import { withState } from '@dump247/storybook-state';
+import randomDate from '../../utils/randomDate';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 const dataSource = [...new Array(55)].map((i, k) => ({
@@ -21,6 +22,7 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   city: faker.random.arrayElement(['Kraków', 'Warszawa', 'Poznań', 'Łódź', 'Wrocław', 'Gdańsk']),
   phone:faker.random.arrayElement(['571345127', '678990320', '588991567', '666245912', '654666871', '631001372']),
   color: faker.random.arrayElement(['red', 'blue', 'green', 'yellow', 'orange', 'cyan','purple','violet']),
+  last_activity: randomDate(),
   active: faker.random.boolean(),
   country: faker.random.arrayElement(['us', 'pl', 'de', 'it', 'es', 'ru']),
   age: (Math.random() * 50 + 10).toFixed(0),

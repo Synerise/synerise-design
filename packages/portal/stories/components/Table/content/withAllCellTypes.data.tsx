@@ -7,7 +7,7 @@ import {
   VarTypeBooleanM,
   VarTypeListM,
   UserM,
-  SettingsM, OptionHorizontalM,
+  SettingsM, OptionHorizontalM, VarTypeNumberM, VarTypeDateM,
 } from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
@@ -28,6 +28,7 @@ import Loader from '@synerise/ds-loader';
 import anonymImage from '../../Avatar/av-anonym-004.png';
 import Skeleton from '@synerise/ds-skeleton';
 import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
+import randomDate from '../../../utils/randomDate';
 
 
 export const RELATIONS = [
@@ -662,6 +663,45 @@ export const COLUMNS_WITH_FIXED = [
       multiple: 1,
     },
     sortRender: 'string',
+  },
+  {
+    title: 'Age',
+    key: 'age',
+    dataIndex: 'age',
+    visible: true,
+    type: 'number',
+    icon: { component: <VarTypeNumberM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    sorter: {
+      compare: (a, b) => a.city.localeCompare(b.city),
+      multiple: 1,
+    },
+    sortRender: 'string',
+  },
+  {
+    title: 'Last activity',
+    key: 'last_activity',
+    dataIndex: 'last_activity',
+    type: 'date',
+    width: 254,
+    visible: true,
+    icon: { component: <VarTypeDateM/>},
+    iconTooltip: { component: <InfoFillS/>},
+    sorter: {
+      compare: (a, b) => a.city.localeCompare(b.city),
+      multiple: 1,
+    },
+    sortRender: 'string',
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeBooleanM /> },
+    tooltip: { title: 'Tooltip', description: 'Description' },
+    render: status => <TableCell.StatusLabelCell status={status} label={status} />,
   },
   {
     title: <Button type="ghost" mode="single-icon">
