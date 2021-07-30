@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.12...@synerise/ds-alert@0.3.13) (2021-07-30)
+
+
+### Bug Fixes
+
+* **alert:** add index and id ([058a171](https://github.com/Synerise/synerise-design/commit/058a171886d16883c5ce348ed8b97ff20a7a0966))
+* **alert:** add prop for text ([d3037c5](https://github.com/Synerise/synerise-design/commit/d3037c5949e4b8c9ff255354c357412cfcdac6d9))
+* **alert:** fix dependecies in package.json ([810e800](https://github.com/Synerise/synerise-design/commit/810e8004cc41d69f72ca01956886c026ef97630b))
+* **alert:** fix props ([a89abc4](https://github.com/Synerise/synerise-design/commit/a89abc411b473700448d3358ca5bc32d57f7633f))
+* **alert:** fix props and add packages ([f6d26aa](https://github.com/Synerise/synerise-design/commit/f6d26aa657ed753b268c9bca198e9c626a884246))
+* **alert:** fix styles and add new types of styles ([4f30690](https://github.com/Synerise/synerise-design/commit/4f3069095fc23b79240dc1c493d5fb0db3e1afc1))
+* **alert:** fix styles and add props to set custom colors ([a259c49](https://github.com/Synerise/synerise-design/commit/a259c490fa676183492d2c41ac8bbaad17874910))
+* **alert:** fix styles and component unordered list ([da76a77](https://github.com/Synerise/synerise-design/commit/da76a778123563f8797f6b5a433a0bcd9c4f34f9))
+* **alert:** fix styles and fix prop withLink ([6dfd15b](https://github.com/Synerise/synerise-design/commit/6dfd15bf30e8bbc2829e8dd0f76657082cc8336f))
+* **alert:** fix styles and update documents ([183aa7a](https://github.com/Synerise/synerise-design/commit/183aa7a968798af02777ce8a6f8228c8981398c0))
+* **alert:** new components section message and semantic colors ([b111358](https://github.com/Synerise/synerise-design/commit/b111358cc22ecea0b42b333635edbbf10e83f34d))
+* **alert:** update dependencies ([a88884e](https://github.com/Synerise/synerise-design/commit/a88884ecff6384a849530642c0df90e030b5b80a))
+* **alert:** update documents and tests ([59aa598](https://github.com/Synerise/synerise-design/commit/59aa598f2947827578b879c5127c66faca4d5609))
+
+
+
+
+
 ## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.11...@synerise/ds-alert@0.3.12) (2021-07-19)
 
 **Note:** Version bump only for package @synerise/ds-alert

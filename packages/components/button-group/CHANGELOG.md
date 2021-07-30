@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.119](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.118...@synerise/ds-button-group@0.5.119) (2021-07-30)
+
+
+### Bug Fixes
+
+* **button:** fix styles ([86b5911](https://github.com/Synerise/synerise-design/commit/86b591146208ac1eccaecdeedd85c31dafef43f9))
+* **button-group:** add validate state to split-buttons ([b112c6c](https://github.com/Synerise/synerise-design/commit/b112c6ce0f2e702095fb15f4b6b9a917b2790ffd))
+
+
+
+
+
 ## [0.5.118](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.5.117...@synerise/ds-button-group@0.5.118) (2021-07-08)
 
 **Note:** Version bump only for package @synerise/ds-button-group

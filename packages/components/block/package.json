@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-block",
-  "version": "0.3.127",
+  "version": "0.3.128",
   "description": "Block UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.60",
-    "@synerise/ds-card": "^0.8.29",
+    "@synerise/ds-button": "^0.13.61",
+    "@synerise/ds-card": "^0.9.0",
     "@synerise/ds-typography": "^0.11.7"
   },
   "peerDependencies": {
