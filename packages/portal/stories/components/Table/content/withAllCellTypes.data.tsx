@@ -1,6 +1,14 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import { InfoFillS, LockM, VarTypeStringM, VarTypeBooleanM, VarTypeListM, UserM } from '@synerise/ds-icon/dist/icons';
+import {
+  InfoFillS,
+  LockM,
+  VarTypeStringM,
+  VarTypeBooleanM,
+  VarTypeListM,
+  UserM,
+  SettingsM, OptionHorizontalM,
+} from '@synerise/ds-icon/dist/icons';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
@@ -569,6 +577,109 @@ export const COLUMNS_WITH_SKELETON = [
         <div style={{width: '150px'}}>
           <Skeleton numberOfSkeletons={1} size='M'  />
         </div>
+      );
+    },
+  },
+];
+export const COLUMNS_WITH_FIXED = [
+  {
+    title: 'Name',
+    dataIndex: 'avatar',
+    key: 'avatar-m',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: (avatar, record) => {
+      const userDataGroup = 'User data';
+      const user = boolean('Show user data', true, userDataGroup) ? {
+        tooltip: boolean('Show tooltip', true, userDataGroup) ? undefined : false,
+        firstName: record.name,
+        lastName: record.lastName,
+        email: `${record.name}.${record.lastName}@synerise.com`,
+        avatar: boolean('Avatar', false, userDataGroup) ? anonymImage : undefined
+      } : {};
+      return (
+        <TableCell.AvatarLabelCell
+          avatarAction={action('Avatar Action')}
+          avatar={
+            <UserAvatar
+              user={user}
+              badgeStatus="active"
+              size="medium"
+              backgroundColor={record.color}
+            />
+          }
+          title={`${record.name} ${record.lastName}`}
+        />
+      );
+    },
+  },
+  {
+    title: 'Email address',
+    width: 254,
+    ellipsis: true,
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.address.localeCompare(b.address),
+      multiple: 1,
+    },
+    sortRender: 'string',
+    render:(record) =>{
+      return(
+        <div>
+          {`${record.name}.${record.lastName}@synerise.com`}
+        </div>
+      )
+    }
+  },
+  {
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.phone.localeCompare(b.phone),
+      multiple: 1,
+    },
+    sortRender: 'string',
+  },
+  {
+    title: 'City',
+    dataIndex: 'city',
+    key: 'city',
+    ellipsis: true,
+    icon: { component: <VarTypeStringM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    sorter: {
+      compare: (a, b) => a.city.localeCompare(b.city),
+      multiple: 1,
+    },
+    sortRender: 'string',
+  },
+  {
+    title: <Button type="ghost" mode="single-icon">
+      <Icon component={<SettingsM/>} />
+    </Button>,
+    dataIndex: 'skeleton',
+    key: 'skeleton-desc',
+    width: 50,
+    textWrap: 'word-break',
+    ellipsis: true,
+    fixed: 'right',
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: button => {
+      return (
+        <Button type="ghost" mode="single-icon">
+          <Icon component={<OptionHorizontalM/>} />
+        </Button>
       );
     },
   },
