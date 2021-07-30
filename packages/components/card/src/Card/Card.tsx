@@ -25,6 +25,7 @@ const Card: React.FC<CardProps> = ({
   headerBorderBottom,
   background = 'white-shadow',
   hideContent,
+  staticContent,
   showSideChildrenWhenHeaderHidden,
 }) => {
   const fatTitle = !description || (description && compactHeader);
@@ -65,6 +66,17 @@ const Card: React.FC<CardProps> = ({
           )}
         </S.Header>
       )}
+
+      {staticContent && (
+        <AnimateHeight className="static-content-card-animation" duration={300} height={hideContent ? 'auto' : 0}>
+          <S.ChildrenContainer>
+            <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
+              {staticContent}
+            </S.PaddingWrapper>
+          </S.ChildrenContainer>
+        </AnimateHeight>
+      )}
+
       <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
         <S.ChildrenContainer>
           <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
@@ -72,6 +84,7 @@ const Card: React.FC<CardProps> = ({
           </S.PaddingWrapper>
         </S.ChildrenContainer>
       </AnimateHeight>
+
       {showSideChildrenWhenHeaderHidden && (
         <AnimateHeight
           className="card-animation-footer"

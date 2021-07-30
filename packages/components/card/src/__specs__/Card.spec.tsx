@@ -19,6 +19,24 @@ describe('Card', () => {
     expect(getByText('Card description')).toBeTruthy();
   });
 
+  it('should render static content when hidden', function() {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <Card
+        title="Card title"
+        description="Card description"
+        staticContent={(
+          <span>Some static content</span>
+        )}
+        hideContent
+        withHeader
+      />
+    );
+
+    // ASSERT
+    expect(getByText('Some static content')).toBeTruthy();
+  });
+
   it('should render with content', async function() {
     // ARRANGE
     const TEST_ID = 'test_id';

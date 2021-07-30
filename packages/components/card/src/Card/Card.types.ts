@@ -15,6 +15,7 @@ export interface CardProps {
   description?: React.ReactNode;
   icon?: React.ReactNode;
   iconColor?: string;
+  staticContent?: React.ReactNode;
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;
   withoutPadding?: boolean;
