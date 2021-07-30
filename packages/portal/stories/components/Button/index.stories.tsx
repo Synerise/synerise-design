@@ -79,6 +79,7 @@ const getDefaultProps = (isSplit = false) => ({
   loading: boolean('Loading', false),
   block: boolean('Block', false),
   onClick: action('onClick CLICK'),
+  error: boolean('Set validation state', false),
 });
 
 const getSplitProps = (isSplit = false) => ({
@@ -91,6 +92,8 @@ const getSplitProps = (isSplit = false) => ({
   disabled: boolean('Disabled', false),
   loading: boolean('Loading', false),
   onClick: action('onClick CLICK'),
+  block: boolean('Block', false),
+  error: boolean('Set validation state', false),
 });
 
 const getExpanderProps = (isSplit = false) => ({
@@ -141,7 +144,7 @@ const stories = {
     } as object;
     return (
       <div style={getBackgroundStyles(props.type)}>
-        <ButtonGroup fullWidth={fullWidth} buttonsPosition="center" splitMode={true}>
+        <ButtonGroup error={defaultProps.error} fullWidth={fullWidth} buttonsPosition="center" splitMode={true}>
           <Button mode="label" {...props}>
             {props.label}
           </Button>

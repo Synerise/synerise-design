@@ -122,7 +122,7 @@ const stories = {
   objectAvatarSkeleton: () => {
     const size = select('Size', SkeletonAvatarSizes,'M');
     return (
-      <SkeletonAvatar size={size} shape={true}  />
+      <SkeletonAvatar size={size} shape='square'  />
     )
   },
 };

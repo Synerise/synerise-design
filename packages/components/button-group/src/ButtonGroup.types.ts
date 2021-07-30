@@ -9,4 +9,5 @@ export interface ButtonGroupProps extends AntButtonGroupProps {
   buttonsPosition?: string | 'left' | 'center' | 'right';
   disabled?: boolean;
   splitMode?: boolean;
+  error?:  boolean;
 }

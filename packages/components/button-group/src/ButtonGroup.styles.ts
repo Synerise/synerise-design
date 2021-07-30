@@ -24,6 +24,7 @@ export const Container = styled.div<{
   buttonsPosition: string | 'left' | 'center' | 'right';
   disabled?: boolean;
   splitMode?: boolean;
+  error?: boolean;
 }>`
   width: 100%;
   .ant-btn-group {
@@ -34,7 +35,7 @@ export const Container = styled.div<{
     align-items: center;
     justify-content: ${(props): string => mapButtonsPosition[props.buttonsPosition]};
     ${(props): FlattenSimpleInterpolation | false =>
-      !!props.splitMode &&
+      !!props.splitMode && !props.error &&
       css`
         *:not(:first-child).ds-button.single-icon,
         .ds-button.single-icon.ant-btn-custom-color,
@@ -69,12 +70,12 @@ export const Container = styled.div<{
           color: ${props.theme.palette['grey-500']} !important;
         }
         &:hover:not(:disabled) {
-          .ds-button {
+           *:not(:first-child).ds-button.single-icon {
             &.ant-btn-tertiary,
             &.ant-btn-tertiary-white,
             &.ant-btn-primary,
             &.ant-btn-custom-color {
-              border-color: transparent !important;
+              border-left: transparent !important;
             }
           }
         }
@@ -90,6 +91,52 @@ export const Container = styled.div<{
           }
         }
       `};
+    ${(props): FlattenSimpleInterpolation | false =>
+      !!props.splitMode && !!props.error &&
+        css`
+          *:not(:first-child).ds-button.single-icon,
+          .ds-button.single-icon.ant-btn-custom-color,
+          .ds-button.single-icon.ant-btn-tertiary-white,
+          .ds-button.single-icon.ant-btn-ghost,
+          .ds-button.single-icon.ant-btn-ghost-white {
+            border-left: 1px solid ${props.theme.palette['red-600']};
+          }
+          .ds-button:focus {
+          &.ant-btn-primary,
+          &.ant-btn-tertiary,
+          &.ant-btn-tertiary-white,
+          &.ant-btn-custom-color,
+          &.ant-btn-ghost-primary,
+          &.ant-btn-ghost-white,
+          &.ant-btn-ghost {
+            border-left: 0px;
+            &:active {
+              border-left: 0px;
+            }
+          }
+        }
+        *:not(:first-child).ds-button.single-icon.ant-btn-ghost-primary,
+        .ds-button.single-icon.ant-btn-ghost,
+        .ds-button.single-icon.ant-btn-ghost-white,
+        .ds-button.single-icon.ant-btn-secondary, 
+        .ds-button.single-icon.ant-btn-tertiary,
+        .ds-button.single-icon.ant-btn-tertiary-white,
+        .ds-button.single-icon.ant-btn-primary,
+        .ds-button.single-icon.ant-btn-custom-color
+        {
+          border-left: 0px;
+          padding-left: 1px;
+        }
+        .ds-button:hover:not(:focus) {
+          &.ant-btn-tertiary,
+          &.ant-btn-ghost,
+          &.ant-btn-tertiary-white,
+          &.ant-btn-ghost-white
+          {
+            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+          }
+        }
+        `};
 
     & > .ant-btn {
       width: auto;

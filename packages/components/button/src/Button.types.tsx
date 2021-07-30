@@ -75,6 +75,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
     | 'cyan'
     | 'purple'
     | 'violet';
+  error?: boolean;
 };
 
 export type ButtonSubComponents = {
