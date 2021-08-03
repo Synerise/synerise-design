@@ -253,6 +253,13 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         ) {
           infiniteScroll.onScrollEndReach();
         }
+        if (
+          scrollDirection === 'backward' &&
+          scrollOffset === 0 &&
+          typeof infiniteScroll?.onScrollTopReach === 'function'
+        ) {
+          infiniteScroll.onScrollTopReach();
+        }
       };
 
       // eslint-disable-next-line no-param-reassign
