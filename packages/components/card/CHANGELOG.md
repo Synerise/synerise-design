@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.9.0...@synerise/ds-card@0.9.1) (2021-07-30)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.29...@synerise/ds-card@0.9.0) (2021-07-30)
+
+
+### Features
+
+* **card:** add ability to define static content ([78b04b6](https://github.com/Synerise/synerise-design/commit/78b04b6105e0cb444291ddb8a5e1b9aa189f2a91))
+
+
+
+
+
 ## [0.8.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.8.28...@synerise/ds-card@0.8.29) (2021-07-19)
 
 **Note:** Version bump only for package @synerise/ds-card

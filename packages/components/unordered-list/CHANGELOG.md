@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.1.36...@synerise/ds-unordered-list@0.1.37) (2021-07-30)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.1.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.1.35...@synerise/ds-unordered-list@0.1.36) (2021-07-30)
+
+
+### Bug Fixes
+
+* **alert:** new components section message and semantic colors ([b111358](https://github.com/Synerise/synerise-design/commit/b111358cc22ecea0b42b333635edbbf10e83f34d))
+* **unordered-list:** fix props ([bf77894](https://github.com/Synerise/synerise-design/commit/bf77894b4ece8977861a5e4299d2bc42c48f0510))
+* **unordered-list:** update documents ([0ece25d](https://github.com/Synerise/synerise-design/commit/0ece25d819faff8a92825b79338fc2b1f1dd7ff3))
+
+
+
+
+
 ## [0.1.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.1.34...@synerise/ds-unordered-list@0.1.35) (2021-07-19)
 
 **Note:** Version bump only for package @synerise/ds-unordered-list

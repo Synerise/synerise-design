@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.1.1...@synerise/ds-skeleton@0.1.2) (2021-07-30)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
+## [0.1.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.1.0...@synerise/ds-skeleton@0.1.1) (2021-07-30)
+
+
+### Bug Fixes
+
+* **avatar:** fix prop in documents ([4846fb0](https://github.com/Synerise/synerise-design/commit/4846fb0eb58a6edc621400eaeecf8fcb9150804b))
+* **avatar:** fix styles and prop in skeleton avatar ([317845e](https://github.com/Synerise/synerise-design/commit/317845ed1b044fb9b5cf4e613e7f8baec2d1a247))
+
+
+
+
+
 # 0.1.0 (2021-07-19)
 
 

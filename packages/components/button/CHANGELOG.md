@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.62](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.61...@synerise/ds-button@0.13.62) (2021-07-30)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.13.61](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.60...@synerise/ds-button@0.13.61) (2021-07-30)
+
+
+### Bug Fixes
+
+* **button:** add validate state to button ([4948cd2](https://github.com/synerise/synerise-design/commit/4948cd2e6131b4fbd49d360a648b76fe3315db9d))
+* **button:** fix styles ([91bb77d](https://github.com/synerise/synerise-design/commit/91bb77d4b8ebeae16eaffd624c81ae0a28f635d2))
+* **button:** fix styles ([86b5911](https://github.com/synerise/synerise-design/commit/86b591146208ac1eccaecdeedd85c31dafef43f9))
+* **button:** fix styles on focus ([5599bd8](https://github.com/synerise/synerise-design/commit/5599bd892cfcea9c7bfad2d27bdbbd7432e0a127))
+
+
+
+
+
 ## [0.13.60](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.59...@synerise/ds-button@0.13.60) (2021-07-08)
 
 **Note:** Version bump only for package @synerise/ds-button

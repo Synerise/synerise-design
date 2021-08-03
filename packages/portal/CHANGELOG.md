@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.135.1](https://github.com/synerise/synerise-design/compare/portal@0.135.0...portal@0.135.1) (2021-07-30)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.135.0](https://github.com/synerise/synerise-design/compare/portal@0.134.0...portal@0.135.0) (2021-07-30)
+
+
+### Bug Fixes
+
+* **alert:** add prop for text ([d3037c5](https://github.com/synerise/synerise-design/commit/d3037c5949e4b8c9ff255354c357412cfcdac6d9))
+* **alert:** fix styles and add new types of styles ([4f30690](https://github.com/synerise/synerise-design/commit/4f3069095fc23b79240dc1c493d5fb0db3e1afc1))
+* **alert:** fix styles and add props to set custom colors ([a259c49](https://github.com/synerise/synerise-design/commit/a259c490fa676183492d2c41ac8bbaad17874910))
+* **alert:** fix styles and component unordered list ([da76a77](https://github.com/synerise/synerise-design/commit/da76a778123563f8797f6b5a433a0bcd9c4f34f9))
+* **alert:** new components section message and semantic colors ([b111358](https://github.com/synerise/synerise-design/commit/b111358cc22ecea0b42b333635edbbf10e83f34d))
+* **alert:** update documents and tests ([59aa598](https://github.com/synerise/synerise-design/commit/59aa598f2947827578b879c5127c66faca4d5609))
+* **avatar:** fix styles and prop in skeleton avatar ([317845e](https://github.com/synerise/synerise-design/commit/317845ed1b044fb9b5cf4e613e7f8baec2d1a247))
+* **button:** fix styles ([86b5911](https://github.com/synerise/synerise-design/commit/86b591146208ac1eccaecdeedd85c31dafef43f9))
+* **button-group:** add validate state to split-buttons ([b112c6c](https://github.com/synerise/synerise-design/commit/b112c6ce0f2e702095fb15f4b6b9a917b2790ffd))
+
+
+### Features
+
+* **card:** add ability to define static content ([78b04b6](https://github.com/synerise/synerise-design/commit/78b04b6105e0cb444291ddb8a5e1b9aa189f2a91))
+
+
+
+
+
 # [0.134.0](https://github.com/synerise/synerise-design/compare/portal@0.133.0...portal@0.134.0) (2021-07-19)
 
 
