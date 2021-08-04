@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.14...@synerise/ds-table@0.38.0) (2021-08-04)
+
+
+### Features
+
+* **table:** add onListRefChange prop to virtual table ([badfda0](https://github.com/synerise/synerise-design/commit/badfda0387b78a186fcffb8497f147504264bbf1))
+
+
+
+
+
 ## [0.37.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.13...@synerise/ds-table@0.37.14) (2021-08-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.11.6...docs@0.12.0) (2021-08-04)
+
+
+### Features
+
+* **table:** add onListRefChange prop to virtual table ([badfda0](https://gitlab.synerise.com/Frontend/synerise-design/commit/badfda0387b78a186fcffb8497f147504264bbf1))
+
+
+
+
+
 ## [0.11.6](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.11.5...docs@0.11.6) (2021-07-30)
 
 **Note:** Version bump only for package docs
