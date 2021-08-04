@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.13...@synerise/ds-table@0.37.14) (2021-08-03)
+
+
+### Bug Fixes
+
+* **table:** add onScrollTopReach prop ([6a0daeb](https://github.com/synerise/synerise-design/commit/6a0daeb4d2c6a02617416855f87b1cc5fb3ac0fe))
+
+
+
+
+
 ## [0.37.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.37.12...@synerise/ds-table@0.37.13) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-table
