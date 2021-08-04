@@ -45,14 +45,18 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     dataSource = [],
     expandable,
     locale,
+    onListRefChange,
   } = props;
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
-
   const listRef = React.useRef<List>(null);
-
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
+
+  React.useEffect(() => {
+    onListRefChange && onListRefChange(listRef);
+  }, [listRef, onListRefChange]);
+
   const propsForRowStar = {
     ...props,
     rowStar: {
