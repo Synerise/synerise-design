@@ -66,7 +66,7 @@ const disableOrdering = (): FlattenSimpleInterpolation => css`
   }
 `;
 
-const applySizeStyles = (props: WrapperProps) => {
+const applySizeStyles = (props: WrapperProps): FlattenSimpleInterpolation => {
   if (props.size === ItemSize.LARGE) {
     return css`
       &.large {
