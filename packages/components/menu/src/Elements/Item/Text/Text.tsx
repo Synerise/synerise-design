@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -81,6 +82,9 @@ const Text: React.FC<BasicItemProps> = ({
   const renderPrefixElement = (isHover: boolean): React.ReactNode =>
     prefixel instanceof Function ? prefixel(isHover) : prefixel;
 
+  const className = React.useMemo<string>(() => {
+    return classNames('ds-menu-item', rest.className, size);
+  }, [rest.className, size]);
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -99,12 +103,13 @@ const Text: React.FC<BasicItemProps> = ({
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
       description={description}
-      className="ds-menu-item"
       style={style}
       indentLevel={Number(indentLevel)}
       ordered={ordered}
       size={size}
       {...rest}
+      className={className}
+
     >
       <Tooltip type="default" trigger="click" title={copyTooltip}>
         <S.Inner>

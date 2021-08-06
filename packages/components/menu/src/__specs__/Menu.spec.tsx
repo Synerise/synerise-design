@@ -231,3 +231,26 @@ describe('Menu with copyable items', () => {
     expect(element.textContent).toBe('Disabled');
   });
 });
+
+describe('Menu item', () => {
+  it('should apply classes according to size', () => {
+    const {container} = renderWithProvider(<Menu>
+      <Menu.Item className="custom-class another-class" size="large">Hello</Menu.Item>
+    </Menu>)
+    const menuItem = container.querySelector("li")
+    expect(menuItem).toHaveClass('large');
+    expect(menuItem).toHaveClass('ds-menu-item');
+    expect(menuItem).toHaveClass('custom-class');
+    expect(menuItem).toHaveClass('another-class');
+  });
+  it('should apply default class when size is not provided', () => {
+    const {container} = renderWithProvider(<Menu>
+      <Menu.Item className="custom-class another-class">Hello</Menu.Item>
+    </Menu>)
+    const menuItem = container.querySelector("li")
+    expect(menuItem).toHaveClass('default');
+    expect(menuItem).toHaveClass('ds-menu-item');
+    expect(menuItem).toHaveClass('custom-class');
+    expect(menuItem).toHaveClass('another-class');
+  });
+});

@@ -15,6 +15,10 @@ type WrapperProps = {
   active?: boolean;
 };
 
+enum ItemSize  {
+  DEFAULT = 'default',
+  LARGE = 'large',
+}
 const INDENT_LEVEL_STEP = 16;
 
 const TRANSITION_FN = '0.2s ease-out';
@@ -61,10 +65,28 @@ const disableOrdering = (): FlattenSimpleInterpolation => css`
     content: none;
   }
 `;
+
+const applySizeStyles = (props: WrapperProps) => {
+  if (props.size === ItemSize.LARGE) {
+    return css`
+      &.large {
+        min-height: 50px;
+      }
+    `;
+  }
+  if (props.size === ItemSize.DEFAULT && !props.description) {
+    return css`
+      &.default {
+        max-height: 32px;
+      }
+    `;
+  }
+  return css``;
+};
 export const Wrapper = styled(MenuItem)<WrapperProps>`
   &&& {
-    ${(props): string | false => !props.description && props.size === 'default' && `max-height: 32px;`}
-    ${(props): string | false => props.size === 'large' && `min-height: 50px;`}
+    ${(props): string | false => !props.description && props.size === ItemSize.DEFAULT && `max-height: 32px;`}
+    ${(props): string | false => props.size === ItemSize.LARGE && `min-height: 50px;`}
     ${(props): string | FlattenSimpleInterpolation => (props.ordered ? '' : disableOrdering())};
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
@@ -88,6 +110,8 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
        pointer-events: none
     }`
         : ''}
+
+    ${(props): undefined | FlattenSimpleInterpolation => props.size &&  applySizeStyles(props)}
     &.ant-menu-item-only-child {
       margin-bottom: 0px;
     }
