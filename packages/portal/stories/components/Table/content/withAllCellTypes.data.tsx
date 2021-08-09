@@ -623,11 +623,6 @@ export const COLUMNS_WITH_FIXED = [
     ellipsis: true,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: {
-      compare: (a, b) => a.address.localeCompare(b.address),
-      multiple: 1,
-    },
-    sortRender: 'string',
     render:(record) =>{
       return(
         <div>
@@ -640,15 +635,11 @@ export const COLUMNS_WITH_FIXED = [
     title: 'Phone',
     dataIndex: 'phone',
     key: 'phone',
-    width: 254,
+    width: 180,
     textWrap: 'word-break',
     ellipsis: true,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: {
-      compare: (a, b) => a.phone.localeCompare(b.phone),
-      multiple: 1,
-    },
     sortRender: 'string',
   },
   {
@@ -656,27 +647,20 @@ export const COLUMNS_WITH_FIXED = [
     dataIndex: 'city',
     key: 'city',
     ellipsis: true,
+    width: 120,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    sorter: {
-      compare: (a, b) => a.city.localeCompare(b.city),
-      multiple: 1,
-    },
     sortRender: 'string',
   },
   {
     title: 'Age',
     key: 'age',
     dataIndex: 'age',
+    width: 100,
     visible: true,
     type: 'number',
     icon: { component: <VarTypeNumberM/>},
     iconTooltip: { component: <InfoFillS/>},
-    sorter: {
-      compare: (a, b) => a.city.localeCompare(b.city),
-      multiple: 1,
-    },
-    sortRender: 'string',
   },
   {
     title: 'Last activity',
@@ -687,17 +671,14 @@ export const COLUMNS_WITH_FIXED = [
     visible: true,
     icon: { component: <VarTypeDateM/>},
     iconTooltip: { component: <InfoFillS/>},
-    sorter: {
-      compare: (a, b) => a.city.localeCompare(b.city),
-      multiple: 1,
-    },
-    sortRender: 'string',
+
   },
   {
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
     textWrap: 'word-break',
+    width: 100,
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
