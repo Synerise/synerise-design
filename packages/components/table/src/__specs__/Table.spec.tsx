@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Table, { VirtualTable } from '../index';
-import { fireEvent, getByRole, getAllByRole, getAllByTestId, waitFor } from '@testing-library/react';
+import Table from '../index';
+import { fireEvent, getByRole, getAllByRole, getAllByTestId } from '@testing-library/react';
 import { Grid2M } from '@synerise/ds-icon/dist/icons';
 
 const props = {
@@ -48,19 +48,16 @@ const props = {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      minWidth: 400,
     },
     {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      minWidth: 400,
     },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      minWidth: 400,
     },
   ],
 };
@@ -306,7 +303,10 @@ describe('Table', () => {
       />
     );
 
-    const rowSelectionCheckbox = getByRole(getByTestId('ds-table-title'), 'checkbox');
+    const rowSelectionCheckbox = getByRole(
+      getByTestId('ds-table-title'),
+      'checkbox',
+    );
 
     // ASSERT
     expect(rowSelectionCheckbox).not.toBeChecked();
@@ -324,9 +324,10 @@ describe('Table', () => {
         />
       );
 
-      const buttonsPressedValues = getAllByTestId(container, 'ds-table-star-button').map(elem =>
-        elem.getAttribute('aria-pressed')
-      );
+      const buttonsPressedValues = getAllByTestId(
+        container,
+        'ds-table-star-button',
+      ).map((elem) => elem.getAttribute('aria-pressed'));
 
       expect(buttonsPressedValues).toEqual(['false', 'false', 'true', 'true', 'false', 'true']);
     });
@@ -338,21 +339,23 @@ describe('Table', () => {
           {...props}
           rowStar={{
             starredRowKeys: ['4'],
-            onChange: onChangeSpy,
+            onChange: onChangeSpy
           }}
         />
       );
 
-      const starButtons = getAllByTestId('ds-table-star-button');
+      const starButtons = getAllByTestId(
+        'ds-table-star-button',
+      );
 
       fireEvent.click(starButtons[1]);
       expect(onChangeSpy).toHaveBeenCalledWith(['4', '2']);
-
+  
       fireEvent.click(starButtons[3]);
       expect(onChangeSpy).toHaveBeenCalledWith(['2']);
 
       fireEvent.click(starButtons[1]);
       expect(onChangeSpy).toHaveBeenCalledWith([]);
     });
-  });
+  })
 });

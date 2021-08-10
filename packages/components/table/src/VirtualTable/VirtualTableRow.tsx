@@ -40,31 +40,27 @@ class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
           style={style}
           onClick={(): void => onRowClick && onRowClick(rowData)}
         >
-          {mergedColumns.map((column, columnIndex) => {
-            return (
-              <S.ColWrapper
-                className={classNames(
-                  'virtual-table-cell',
-                  {
-                    'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
-                    'ant-table-selection-column': columnIndex === 0 && selection,
-                    'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
-                    'ds-expanded-row-data':
-                      rowData[EXPANDED_ROW_PROPERTY] &&
-                      ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
-                  },
-                  isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
-                  column.className
-                )}
-                key={`row-${index}-column-${column.dataIndex || column.key}`}
-                minWidth={column?.minWidth}
-                width={column.width}
-                maxWidth={column?.maxWidth}
-              >
-                {column.render ? column.render(rowData[column.dataIndex], rowData) : rowData[column.dataIndex]}
-              </S.ColWrapper>
-            );
-          })}
+          {mergedColumns.map((column, columnIndex) => (
+            <S.ColWrapper
+              className={classNames(
+                'virtual-table-cell',
+                {
+                  'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+                  'ant-table-selection-column': columnIndex === 0 && selection,
+                  'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
+                  'ds-expanded-row-data':
+                    rowData[EXPANDED_ROW_PROPERTY] &&
+                    ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
+                },
+                isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
+                column.className
+              )}
+              key={`row-${index}-column-${column.dataIndex || column.key}`}
+              width={column.width}
+            >
+              {column.render ? column.render(rowData[column.dataIndex], rowData) : rowData[column.dataIndex]}
+            </S.ColWrapper>
+          ))}
         </S.RowWrapper>
         {infiniteScroll && index === dataSource.length - 1 && (
           <S.RowWrapper
