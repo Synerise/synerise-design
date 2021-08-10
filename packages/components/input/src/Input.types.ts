@@ -17,7 +17,6 @@ export interface Props {
   icon1Tooltip?: React.ReactElement;
   icon2?: React.ReactElement;
   icon2Tooltip?: React.ReactElement;
-  resetMargin?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
