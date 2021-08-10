@@ -134,7 +134,7 @@ export const SuffixWrapper = styled.div`
   ${(props): string => addonStyles(props)};
 `;
 
-export const SelectWrapper = styled.div<{ description?: boolean; error?: boolean; grey?: boolean }>`
+export const SelectWrapper = styled.div<{ error?: boolean; grey?: boolean }>`
   display: flex;
   ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.grey &&
