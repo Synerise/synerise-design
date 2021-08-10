@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.10.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.36...@synerise/ds-menu@0.10.37) (2021-08-06)
-
-
-### Bug Fixes
-
-* **menu:** apply styles according to size ([76cbce8](https://github.com/Synerise/synerise-design/commit/76cbce80828ab3a2a45954d4aa2567905a0a8db4))
-
-
-
-
-
 ## [0.10.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.10.35...@synerise/ds-menu@0.10.36) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-menu
