@@ -13,7 +13,7 @@ const InputGroup: React.FC<Props> = ({
   tooltip,
   ...antdInputGroupProps
 }) => (
-  <InputStyles.OuterWrapper>
+  <InputStyles.OuterWrapper resetMargin={resetMargin}>
     {label && (
       <InputStyles.ContentAbove>
         <Label label={label} tooltip={tooltip} />
