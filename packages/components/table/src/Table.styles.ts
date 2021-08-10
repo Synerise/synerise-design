@@ -311,10 +311,6 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
     background-color: ${({ theme }): string => theme.palette['blue-050']};
   }
 
-  & .ant-table .ant-table-header {
-    overflow: visible !important; // overwrite antd's inline style
-  }
-
   & .ant-table .ant-table-cell-scrollbar {
     box-shadow: none;
   }
