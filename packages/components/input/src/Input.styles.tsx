@@ -14,7 +14,8 @@ const errorInputStyle = (props: ThemeProps): string => `
   }
 `;
 
-export const OuterWrapper = styled.div`
+export const OuterWrapper = styled.div<{ resetMargin?: boolean }>`
+  margin: ${(props): string => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
       input {
