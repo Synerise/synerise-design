@@ -9,6 +9,7 @@ const InputGroup: React.FC<Props> = ({
   label,
   errors,
   description,
+  resetMargin,
   tooltip,
   ...antdInputGroupProps
 }) => (

@@ -30,6 +30,7 @@ const enhancedInput = <P extends object>(
   icon1Tooltip,
   icon2,
   icon2Tooltip,
+  resetMargin,
   handleInputRef,
   prefixel,
   suffixel,
