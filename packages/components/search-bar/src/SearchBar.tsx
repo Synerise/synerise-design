@@ -63,6 +63,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         placeholder={placeholder}
         value={value}
         className={className}
+        resetMargin
         handleInputRef={setInputRef}
         disabled={disabled}
         autoComplete="off"
