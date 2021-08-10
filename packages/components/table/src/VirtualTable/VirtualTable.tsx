@@ -225,24 +225,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     });
   }, [virtualColumns, tableWidth, initialWidth]);
 
-  // FIXME: [1] Temporarily turn off this scroll sync which causes content disappearing. Horizontal scrolling doesn't work anyway.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // @link https://ant.design/components/table/#components-table-demo-virtual-list
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const [connectObject] = React.useState<any>(() => {
-  //   const obj = {};
-  //   Object.defineProperty(obj, 'scrollLeft', {
-  //     get: () => null,
-  //     set: (scrollLeft: number) => {
-  //       if (listRef.current) {
-  //         listRef.current.scrollTo({ scrollLeft });
-  //       }
-  //     },
-  //   });
-
-  //   return obj;
-  // });
-
   const listInnerElementType = React.forwardRef<HTMLDivElement>(
     ({ style, ...rest }: React.HTMLAttributes<HTMLDivElement>, ref) => (
       <div
@@ -267,9 +249,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
   const outerElement = React.useMemo(() => CustomScrollbar(containerRef), [containerRef]);
 
   const renderBody = (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
-    // FIXME: Read [1]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
     const renderVirtualList = (data: T[]): React.ReactNode => {
       const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
 
@@ -289,10 +268,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
           infiniteScroll.onScrollTopReach();
         }
       };
-
-      // eslint-disable-next-line no-param-reassign
-      // FIXME: Read [1]
-      // ref.current = connectObject;
 
       return (
         <List
@@ -344,12 +319,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         }
         return [...result, currentRow];
       }, []);
-      // FIXME: Read [1]
-      // return renderVirtualList(expandedRows, meta);
       return renderVirtualList(expandedRows);
     }
-    // FIXME: Read [1]
-    // return renderVirtualList(rawData, meta);
     return renderVirtualList(rawData);
   };
 
