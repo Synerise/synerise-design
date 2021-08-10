@@ -5,6 +5,5 @@ export interface Props extends GroupProps {
   label?: React.ReactNode;
   errors?: string[];
   description?: React.ReactNode;
-  resetMargin?: boolean;
   tooltip?: React.ReactNode;
 }
