@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Table, { VirtualTable } from '../index';
+import Table from '../index';
 import { fireEvent, getByRole, getAllByRole, getAllByTestId, waitFor } from '@testing-library/react';
 import { Grid2M } from '@synerise/ds-icon/dist/icons';
 
@@ -48,19 +48,16 @@ const props = {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      minWidth: 400,
     },
     {
       title: 'Age',
       dataIndex: 'age',
       key: 'age',
-      minWidth: 400,
     },
     {
       title: 'Address',
       dataIndex: 'address',
       key: 'address',
-      minWidth: 400,
     },
   ],
 };
