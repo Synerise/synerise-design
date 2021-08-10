@@ -136,7 +136,6 @@ export const SuffixWrapper = styled.div`
 
 export const SelectWrapper = styled.div<{ description?: boolean; error?: boolean; grey?: boolean }>`
   display: flex;
-  padding-bottom: ${(props): string => (props.error || props.description ? '0' : '16px')};
   ${(props): FlattenSimpleInterpolation | undefined | false =>
     props.grey &&
     !props.error &&

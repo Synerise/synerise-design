@@ -37,7 +37,6 @@ class Select extends React.Component<Props> {
         <S.Label label={label} tooltip={tooltip} />
         <S.SelectWrapper
           grey={grey}
-          description={Boolean(description)}
           error={Boolean(errorText)}
           className={classNames(
             'ds-select-wrapper',
