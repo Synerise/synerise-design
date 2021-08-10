@@ -76,7 +76,7 @@ const enhancedInput = <P extends object>(
     inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
   }, [inputRef]);
   return (
-    <S.OuterWrapper className={className} resetMargin={resetMargin}>
+    <S.OuterWrapper className={className}>
       {(label || counterLimit) && (
         <S.ContentAbove>
           <Label label={label} id={id} tooltip={tooltip} tooltipConfig={tooltipConfig} />
