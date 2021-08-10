@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { compact } from 'lodash';
 import { useIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
@@ -19,13 +20,32 @@ import { useTableLocale } from '../utils/locale';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
-const CustomScrollbar = React.forwardRef<HTMLElement, React.HTMLAttributes<Element>>(
-  ({ onScroll, children, style }, ref): React.ReactElement => (
-    <Scrollbar ref={ref} onScroll={onScroll} absolute maxHeight={style?.height}>
-      {children}
-    </Scrollbar>
-  )
-);
+const CustomScrollbar = (containerRef: React.RefObject<HTMLDivElement>): React.FC =>
+  React.forwardRef<HTMLElement, React.HTMLAttributes<Element>>(
+    ({ onScroll, children, style }, ref): React.ReactElement => {
+      const [header, setHeader] = React.useState<HTMLDivElement | null>(null);
+      React.useEffect(() => {
+        if (containerRef?.current) {
+          const headerElement = containerRef.current.querySelector<HTMLDivElement>('.ant-table-header');
+          headerElement && setHeader(headerElement);
+        }
+      }, []);
+      const onScrollHandler: ScrollbarProps['onScroll'] = React.useCallback(
+        e => {
+          if (header) {
+            header.scrollTo({ left: e.currentTarget.scrollLeft });
+          }
+          onScroll && onScroll(e);
+        },
+        [onScroll, header]
+      );
+      return (
+        <Scrollbar ref={ref} onScroll={onScrollHandler} absolute maxHeight={style?.height}>
+          {children}
+        </Scrollbar>
+      );
+    }
+  );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
@@ -50,6 +70,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
   const listRef = React.useRef<List>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
   const [tableWidth, setTableWidth] = React.useState(initialWidth);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
 
@@ -203,24 +225,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     });
   }, [virtualColumns, tableWidth, initialWidth]);
 
-  // FIXME: [1] Temporarily turn off this scroll sync which causes content disappearing. Horizontal scrolling doesn't work anyway.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // @link https://ant.design/components/table/#components-table-demo-virtual-list
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // const [connectObject] = React.useState<any>(() => {
-  //   const obj = {};
-  //   Object.defineProperty(obj, 'scrollLeft', {
-  //     get: () => null,
-  //     set: (scrollLeft: number) => {
-  //       if (listRef.current) {
-  //         listRef.current.scrollTo({ scrollLeft });
-  //       }
-  //     },
-  //   });
-
-  //   return obj;
-  // });
-
   const listInnerElementType = React.forwardRef<HTMLDivElement>(
     ({ style, ...rest }: React.HTMLAttributes<HTMLDivElement>, ref) => (
       <div
@@ -242,10 +246,9 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     listRef.current.scrollTo(0);
   };
 
+  const outerElement = React.useMemo(() => CustomScrollbar(containerRef), [containerRef]);
+
   const renderBody = (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
-    // FIXME: Read [1]
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const renderVirtualList = (data: T[], { ref }: any): React.ReactNode => {
     const renderVirtualList = (data: T[]): React.ReactNode => {
       const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
 
@@ -266,10 +269,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         }
       };
 
-      // eslint-disable-next-line no-param-reassign
-      // FIXME: Read [1]
-      // ref.current = connectObject;
-
       return (
         <List
           ref={listRef}
@@ -278,7 +277,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
           height={scroll.y}
           itemCount={data.length}
           itemSize={cellHeight}
-          width={tableWidth}
+          width="100%"
           itemData={{
             mergedColumns,
             selection,
@@ -291,7 +290,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
           itemKey={(index): string => {
             return String(getRowKey(data[index]));
           }}
-          outerElementType={CustomScrollbar}
+          outerElementType={outerElement}
           overscanCount={1}
           innerElementType={infiniteScroll && listInnerElementType}
         >
@@ -320,19 +319,14 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         }
         return [...result, currentRow];
       }, []);
-      // FIXME: Read [1]
-      // return renderVirtualList(expandedRows, meta);
       return renderVirtualList(expandedRows);
     }
-    // FIXME: Read [1]
-    // return renderVirtualList(rawData, meta);
     return renderVirtualList(rawData);
   };
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
-
   return (
-    <RelativeContainer style={{ position: 'relative' }}>
+    <RelativeContainer ref={containerRef} style={{ position: 'relative' }}>
       <ResizeObserver
         onResize={({ offsetWidth }): void => {
           setTableWidth(offsetWidth);

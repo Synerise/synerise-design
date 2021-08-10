@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.25...@synerise/ds-factors@0.7.26) (2021-08-06)
+
+
+### Bug Fixes
+
+* **factors:** inrease specifity of styles ([2dfd1c0](https://github.com/Synerise/synerise-design/commit/2dfd1c02f859f2dce4e8411a3451a220e44bcb9e))
+
+
+
+
+
 ## [0.7.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.24...@synerise/ds-factors@0.7.25) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-factors
