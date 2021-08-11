@@ -13,6 +13,7 @@ export type PopconfirmType = React.FC<
   text?: ButtonTexts;
   buttons?: React.ReactNode;
   typeButton?: string;
+  titlePadding?: boolean;
 }
   > & {
   ConfirmMessage: React.FC<ConfirmMessageProps>;

@@ -106,11 +106,11 @@ export const PopconfirmTextWrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
-export const PopconfirmHeaderWrapper = styled.div<{ title: React.ReactNode }>`
+export const PopconfirmHeaderWrapper = styled.div<{ titlePadding?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-top: ${(props): string => (props.title ? '4px' : 'none')};
+  padding-top: ${(props): string => (props.titlePadding ? '4px' : 'none')};
 `;
 
 export const PopconfirmImage = styled.img`

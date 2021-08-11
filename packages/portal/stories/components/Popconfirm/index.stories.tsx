@@ -57,6 +57,7 @@ const stories = {
           typeButton='primary'
           buttons={true}
           text={texts}
+          titlePadding={true}
         >
           <Button>Click me</Button>
         </Popconfirm>
@@ -73,6 +74,7 @@ const stories = {
           typeButton='primary'
           buttons={true}
           text={texts}
+          titlePadding={true}
         >
           <Button>Click me</Button>
         </Popconfirm>
@@ -92,6 +94,7 @@ const stories = {
           typeButton='primary'
           buttons={true}
           text={texts}
+          titlePadding={true}
         >
           <Button>Click me</Button>
         </Popconfirm>
@@ -109,6 +112,7 @@ const stories = {
         typeButton='primary'
         buttons={true}
         text={texts}
+        titlePadding={true}
       >
         <Button>
           Click to show ConfirmMessage!

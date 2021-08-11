@@ -19,6 +19,7 @@ const Popconfirm: PopconfirmType = ({
   buttons,
   text,
   typeButton,
+  titlePadding,
   ...antdProps
 }) => {
   const renderImageCarousel = React.useMemo(() => {
@@ -40,7 +41,7 @@ const Popconfirm: PopconfirmType = ({
         <S.PopconfirmContent>
           <S.PopconfirmWrapper>
           <S.PopconfirmContentWrapper>
-            <S.PopconfirmHeaderWrapper title={title}>
+            <S.PopconfirmHeaderWrapper titlePadding={titlePadding}>
               {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
               <S.PopconfirmTitle>{title}</S.PopconfirmTitle>
             </S.PopconfirmHeaderWrapper>
