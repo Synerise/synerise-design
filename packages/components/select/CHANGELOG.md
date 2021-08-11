@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.37...@synerise/ds-select@0.13.38) (2021-08-11)
+
+
+### Bug Fixes
+
+* **select:** remove padding ([26618ad](https://github.com/synerise/synerise-design/commit/26618adbf1b53f8fd1761e47148e56b307f443e8))
+* **select:** remove props description ([83c438c](https://github.com/synerise/synerise-design/commit/83c438cf85fb49750bbf2c5653d7bf73b83c6d61))
+
+
+
+
+
 ## [0.13.37](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.13.36...@synerise/ds-select@0.13.37) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-select
