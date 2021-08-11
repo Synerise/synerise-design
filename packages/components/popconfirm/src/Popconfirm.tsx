@@ -13,6 +13,9 @@ const Popconfirm: PopconfirmType = ({
   images,
   imagesAutoplay,
   imagesAutoplaySpeed = 5000,
+  withLink,
+  closeIcon,
+  buttons,
   ...antdProps
 }) => {
   const renderImageCarousel = React.useMemo(() => {
@@ -32,13 +35,19 @@ const Popconfirm: PopconfirmType = ({
       {...antdProps}
       title={
         <S.PopconfirmContent>
+          <S.PopconfirmWrapper>
           <S.PopconfirmContentWrapper>
-            {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
-            <S.PopconfirmTextWrapper>
+            <S.PopconfirmHeaderWrapper title={title}>
+              {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
               <S.PopconfirmTitle>{title}</S.PopconfirmTitle>
-              {description && <S.PopconfirmDescription>{description}</S.PopconfirmDescription>}
+            </S.PopconfirmHeaderWrapper>
+            <S.PopconfirmTextWrapper>
+              {description && <S.PopconfirmDescription >{description}</S.PopconfirmDescription>}
+              {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
             </S.PopconfirmTextWrapper>
           </S.PopconfirmContentWrapper>
+            {closeIcon && <S.PopconfirmCloseIcon>{closeIcon}</S.PopconfirmCloseIcon>}
+          </S.PopconfirmWrapper>
           {renderImageCarousel}
         </S.PopconfirmContent>
       }

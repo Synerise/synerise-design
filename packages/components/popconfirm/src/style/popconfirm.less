@@ -9,6 +9,9 @@
     border-radius: 3px;
     box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
   }
+  .@{popover-prefix-cls}-content {
+    margin: 0px !important;
+  }
 
   .@{popover-prefix-cls}-inner-content {
     padding: 16px;
@@ -34,16 +37,16 @@
     }
 
     .@{popover-prefix-cls}-buttons {
-      margin: 16px 0 0;
+      margin: 16px 0 0 -8px;
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
   }
   &-arrow {
     &&& {
-      display: none;
+      display: flex !important;
     }
   }
 }

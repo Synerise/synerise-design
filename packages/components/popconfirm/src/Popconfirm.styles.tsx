@@ -2,13 +2,22 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
 
-export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
+export const AntdPopconfirm = styled(({buttons: boolean, ...rest }) => <Popconfirm {...rest} />)`
+  .ant-popover {
+    .ant-popover-inner-content {
+      .ant-popover-buttons {
+        overflow: ${(props): string => (props.buttons ? 'visible' : 'hidden')};
+      }
+    }
+  }
+`;
 
 export const PopconfirmContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  margin: 0px;
 
   .ant-carousel {
     position: relative;
@@ -66,17 +75,22 @@ export const PopconfirmDescription = styled.div`
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;
-  margin-top: 16px;
+  margin-top: 6px;
   color: ${(props): string => props.theme.palette['grey-800']};
 `;
 
 export const PopconfirmIcon = styled.div`
   margin-right: 8px;
 `;
+export const PopconfirmCloseIcon = styled.div``;
+export const PopconfirmWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const PopconfirmContentWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 `;
@@ -87,6 +101,13 @@ export const PopconfirmTextWrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
+export const PopconfirmHeaderWrapper = styled.div<{ title: React.ReactNode }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: ${(props): string => (props.title ? '4px' : 'none')};
+`;
 
 export const PopconfirmImage = styled.img`
   display: flex;
@@ -96,4 +117,14 @@ export const PopconfirmImage = styled.img`
   & > * {
     max-width: 100%;
   }
+`;
+export const LinkWrapper = styled.span`
+  display: flex;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-top: 2px;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 `;

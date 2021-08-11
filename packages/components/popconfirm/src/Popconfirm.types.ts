@@ -5,6 +5,9 @@ import { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
 export type PopconfirmType = React.FC<
   PopconfirmProps & {
   description?: string | React.ReactNode;
+  withLink?: React.ReactNode;
+  closeIcon?: React.ReactNode;
+  buttons?: boolean;
   images?: string[];
   imagesAutoplay?: boolean;
   imagesAutoplaySpeed?: number;
