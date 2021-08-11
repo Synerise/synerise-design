@@ -11,6 +11,21 @@ module.exports = api => {
     babelrcRoots: ['.', ...packages],
     ignore,
 
+    env: {
+      cjs: {
+        presets: [
+          [
+            '@babel/env',
+            {
+              targets: {
+                node: 6,
+              },
+              useBuiltIns: 'usage',
+            },
+          ],
+        ],
+      },
+    },
     presets: [
       '@babel/preset-react',
       [

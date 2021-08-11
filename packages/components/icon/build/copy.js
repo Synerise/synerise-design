@@ -1,7 +1,8 @@
 const fs = require('fs-extra');
 
 const ICON_PATH = './src/svg/';
-const ICON_PATH_DIST = './dist/svg';
+const ICON_PATH_DIST = `./dist/${process.env.BUILD_TYPE}/svg`;
+console.log('copy',{ICON_PATH_DIST})
 const OPTIONS = {
   filter: file => !/\.ts$/.exec(file),
 };
