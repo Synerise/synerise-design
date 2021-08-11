@@ -32,7 +32,7 @@
   },
   "exports": {
     ".": "./dist/esm",
-    "./dist/": "./dist/esm/"
+    "/dist/": "./dist/esm/"
   },
   "sideEffects": [
     "dist/style/*",
