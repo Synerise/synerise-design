@@ -2,14 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
 
-export const AntdPopconfirm = styled(({buttons: boolean, ...rest }) => <Popconfirm {...rest} />)`
-  .ant-popover {
-    .ant-popover-inner-content {
-      .ant-popover-buttons {
-        overflow: ${(props): string => (props.buttons ? 'visible' : 'hidden')};
-      }
-    }
-  }
+export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)`
 `;
 
 export const PopconfirmContent = styled.div`
@@ -70,19 +63,31 @@ export const PopconfirmTitle = styled.div`
   font-weight: 500;
   padding-top: 2px;
 `;
+export const PopconfirmButtonWrapper = styled.div`
+  display: flex;
+  padding-top: 16px;
+  align-items: center;
+  justify-content: flex-start;
+`;
+export const ButtonWrapper = styled.div`
+  margin-left: 8px;
+`;
 
 export const PopconfirmDescription = styled.div`
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;
-  margin-top: 6px;
+  margin: 6px 0;
   color: ${(props): string => props.theme.palette['grey-800']};
 `;
 
 export const PopconfirmIcon = styled.div`
   margin-right: 8px;
+  
 `;
-export const PopconfirmCloseIcon = styled.div``;
+export const PopconfirmCloseIcon = styled.div`
+  margin-left: 8px;
+`;
 export const PopconfirmWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -104,7 +109,6 @@ export const PopconfirmTextWrapper = styled.div`
 export const PopconfirmHeaderWrapper = styled.div<{ title: React.ReactNode }>`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: flex-start;
   padding-top: ${(props): string => (props.title ? '4px' : 'none')};
 `;

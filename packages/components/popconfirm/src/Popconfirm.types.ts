@@ -7,11 +7,17 @@ export type PopconfirmType = React.FC<
   description?: string | React.ReactNode;
   withLink?: React.ReactNode;
   closeIcon?: React.ReactNode;
-  buttons?: boolean;
   images?: string[];
   imagesAutoplay?: boolean;
   imagesAutoplaySpeed?: number;
+  text?: ButtonTexts;
+  buttons?: React.ReactNode;
+  typeButton?: string;
 }
   > & {
   ConfirmMessage: React.FC<ConfirmMessageProps>;
 };
+export type ButtonTexts = Partial<{
+  cancelButton: string;
+  applyButton: string;
+}>;

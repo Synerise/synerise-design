@@ -2,6 +2,7 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Carousel } from 'antd';
+import Button from '@synerise/ds-button';
 import * as S from './Popconfirm.styles';
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
 import { PopconfirmType } from './Popconfirm.types';
@@ -16,6 +17,8 @@ const Popconfirm: PopconfirmType = ({
   withLink,
   closeIcon,
   buttons,
+  text,
+  typeButton,
   ...antdProps
 }) => {
   const renderImageCarousel = React.useMemo(() => {
@@ -49,6 +52,17 @@ const Popconfirm: PopconfirmType = ({
             {closeIcon && <S.PopconfirmCloseIcon>{closeIcon}</S.PopconfirmCloseIcon>}
           </S.PopconfirmWrapper>
           {renderImageCarousel}
+          {buttons &&
+          <S.PopconfirmButtonWrapper>
+            <Button type="secondary" >
+              {text?.applyButton}
+            </Button>
+            <S.ButtonWrapper>
+            <Button type={typeButton} >
+              {text?.cancelButton}
+            </Button>
+            </S.ButtonWrapper>
+          </S.PopconfirmButtonWrapper>}
         </S.PopconfirmContent>
       }
     />
