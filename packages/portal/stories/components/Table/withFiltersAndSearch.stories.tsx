@@ -32,7 +32,6 @@ import ModalProxy from '@synerise/ds-modal';
 import { COLUMNS, EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
 import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 import Search from '@synerise/ds-search';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
