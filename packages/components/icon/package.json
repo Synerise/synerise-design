@@ -4,7 +4,7 @@
   "description": "Icon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
-  "main": "dist/cjs/index.js",
+  "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
   "files": [
     "/dist",
@@ -20,7 +20,7 @@
     "build": "rm -rf dist && npm run build:svgr && (BUILD_TYPE=esm npm run build-module & BUILD_TYPE=cjs npm run build-module)",
     "build-module": "npm run build-ts:$BUILD_TYPE ",
     "build-ts:cjs": "tsc --module commonjs  --outDir dist/cjs",
-    "build-ts:esm": "tsc --module es2020 --outDir dist/esm ",
+    "build-ts:esm": "tsc --module esnext --outDir dist/esm ",
     "build:cjs": "babel --root-mode upward src --env-name cjs --extensions '.js,.ts,.tsx' -d dist/cjs/ src/ ",
     "build:esm": "babel --root-mode upward src --extensions '.js,.ts,.tsx' -d dist/esm/ src/ ",
     "build:svgr": "node ./build/svgr.js && node ./build/rename.js",
@@ -30,11 +30,14 @@
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit"
   },
+  "exports": {
+    ".": "./dist/esm"
+  },
   "sideEffects": [
     "dist/style/*",
     "*.less"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
