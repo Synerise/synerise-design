@@ -23,8 +23,11 @@ const decorator = storyFn => (
     {storyFn()}
   </div>
 );
-const typeOptions = ['default', 'primary', 'ghost', 'dashed', 'danger', 'link', 'success', 'flat', 'warning'] as const;
 
+const texts = {
+  cancelButton: 'Button',
+  applyButton: 'Button',
+};
 const placements = [
   'top',
   'left',
@@ -72,12 +75,7 @@ const stories = {
   },
   withTitle: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Notification title'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
@@ -99,6 +97,7 @@ const stories = {
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
+          buttons={false}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -107,12 +106,7 @@ const stories = {
   },
   withHeader: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Problem with your request'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
@@ -133,6 +127,7 @@ const stories = {
         <Popconfirm
           {...getDefaultIconAlertProps()}
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
+          buttons={false}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -141,12 +136,7 @@ const stories = {
   },
   withLink: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Notification title'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
@@ -169,6 +159,7 @@ const stories = {
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
           withLink={text('withLink', 'This is a link')}
+          buttons={false}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -177,12 +168,7 @@ const stories = {
   },
   withIconAndTitle: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Notification title'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
@@ -205,6 +191,7 @@ const stories = {
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
+          buttons={false}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -213,12 +200,7 @@ const stories = {
   },
   withActions: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Notification title'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
@@ -241,6 +223,9 @@ const stories = {
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
+          typeButton='ghost'
+          buttons={true}
+          text={texts}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -250,17 +235,16 @@ const stories = {
 
   Playground: () => {
     const getDefaultIconAlertProps = () => ({
-      cancelText: text('cancelText', 'Button'),
-      okText: text('okText', 'Button'),
-      okType: select('Set type', typeOptions, 'ghost'),
       title: text('Set title', 'Notification title'),
-      onCancel: action('onCancel Clicked'),
-      onConfirm: action('onConfirm Clicked'),
       disabled: boolean('disabled', false),
       placement: select('placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('trigger', triggers, 'click'),
     });
+    const hasButtons = boolean('Set Buttons', false);
+    const hasDescription = boolean('Set Description', false);
+    const hasIcon = boolean('Set Icon', false);
+    const hasLink = boolean('Set Link', false);
     return (
       <div
         style={{
@@ -275,11 +259,15 @@ const stories = {
       >
         <Popconfirm
           {...getDefaultIconAlertProps()}
-          icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
-          description='I will never close automatically. I will be close automatically. I will never close automatically.'
+          icon={ hasIcon && (<Icon component={<WarningFillM/>} color='#ffc300'/>)}
+          description={hasDescription && ('I will never close automatically. I will be close automatically. I will never close automatically.')}
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
+          withLink={hasLink && (text('withLink', 'This is a link'))}
+          typeButton='ghost'
+          buttons={hasButtons}
+          text={texts}
         >
-          <IconAlert iconAlert={true}  type="warning"/>
+          <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
       </div>
     );
