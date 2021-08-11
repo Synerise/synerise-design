@@ -98,6 +98,7 @@ const stories = {
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
           buttons={false}
+          titlePadding={true}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -128,6 +129,7 @@ const stories = {
           {...getDefaultIconAlertProps()}
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
           buttons={false}
+          titlePadding={true}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -160,6 +162,7 @@ const stories = {
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
           withLink={text('withLink', 'This is a link')}
           buttons={false}
+          titlePadding={true}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -192,6 +195,7 @@ const stories = {
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Button type='ghost' mode='single-icon'><Icon component={<CloseM/>}/></Button>}
           buttons={false}
+          titlePadding={true}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -226,6 +230,7 @@ const stories = {
           typeButton='ghost'
           buttons={true}
           text={texts}
+          titlePadding={true}
         >
           <IconAlert iconAlert={true} type="warning"/>
         </Popconfirm>
