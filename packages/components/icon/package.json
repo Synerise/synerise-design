@@ -31,7 +31,8 @@
     "types": "tsc --noEmit"
   },
   "exports": {
-    ".": "./dist/esm"
+    ".": "./dist/esm",
+    "./dist/": "./dist/esm/"
   },
   "sideEffects": [
     "dist/style/*",
