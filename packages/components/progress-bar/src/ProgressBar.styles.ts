@@ -62,13 +62,6 @@ export const Label = styled(DSLabel)`
     align-items: center;
     cursor: initial;
     height: auto;
-    span {
-      font-weight: normal;
-      color: ${(props): string => props.theme.palette['grey-600']};
-      font-size: 11px;
-      line-height: 16px;
-      letter-spacing: 0.1px;
-    }
     .ds-icon > svg {
       cursor: pointer;
       margin: 0;
@@ -85,9 +78,18 @@ export const LabelsWrapper = styled.div<{ isLeftLabel: boolean; isRightLabel: bo
     if (props.isRightLabel) return 'flex-end';
     return 'flex-start';
   }};
+  align-items: center;
 `;
 
 export const LabelsAboveWrapper = styled(LabelsWrapper)`
+  height: 24px;
   margin-bottom: 4px;
+  span {
+    font-weight: normal;
+    color: ${(props): string => props.theme.palette['grey-600']};
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+  }
 `;
 export const TotalValue = styled(MaxValue)``;
