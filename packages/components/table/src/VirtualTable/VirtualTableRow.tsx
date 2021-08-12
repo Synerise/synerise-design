@@ -5,6 +5,7 @@ import { InfiniteScrollProps } from '../InfiniteScroll/constants';
 import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './VirtualTable';
 import * as S from './VirtualTable.styles';
+import { calculatePixels } from '../utils/calculatePixels';
 
 interface Props<T> {
   data: {
@@ -24,6 +25,8 @@ interface Props<T> {
 const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], column: DSColumnType<T>): boolean =>
   !!columns.find((c): boolean => c.key === column.key && !!c.sortOrder);
 
+const calculateToPixelsIfDefined = (value: string | number | undefined | null):  number | undefined | null =>
+  value ? calculatePixels(value) : value as number;
 class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
   render(): React.ReactNode {
     const { index, style, data } = this.props;
@@ -57,9 +60,9 @@ class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
                   column.className
                 )}
                 key={`row-${index}-column-${column.dataIndex || column.key}`}
-                minWidth={column?.minWidth}
+                minWidth={calculateToPixelsIfDefined(column?.minWidth)}
                 width={column.width}
-                maxWidth={column?.maxWidth}
+                maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
               >
                 {column.render ? column.render(rowData[column.dataIndex], rowData) : rowData[column.dataIndex]}
               </S.ColWrapper>

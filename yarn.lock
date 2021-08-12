@@ -24623,6 +24623,11 @@ unist-util-visit@^1.1.0:
   dependencies:
     unist-util-visit-parents "^2.0.0"
 
+unit-to-px@^1.0.5:
+  version "1.0.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/unit-to-px/-/unit-to-px-1.0.5.tgz#0bd2ad303c49e36c7b9700905a6ecaa73ef6a1d3"
+  integrity sha1-C9KtMDxJ42x7lwCQWm7Kpz72odM=
+
 universal-user-agent@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-4.0.1.tgz#fd8d6cb773a679a709e967ef8288a31fcc03e557"
