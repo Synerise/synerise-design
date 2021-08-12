@@ -117,10 +117,11 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
             hideDropdown={(): void => setDropdownVisible(false)}
             select={setSelected}
             selected={Boolean(value) && item.id === value?.id}
+            menuItemHeight={menuItemHeight}
           />
         );
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected, value, classNames]);
+  }, [items, searchQuery, setDropdownVisible, setSelected, value, classNames, menuItemHeight]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
