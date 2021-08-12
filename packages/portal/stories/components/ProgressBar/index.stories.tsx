@@ -80,6 +80,21 @@ const stories = {
       ></ProgressBar>
     );
   },
+  complexSoloBar: () => {
+    const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    return (
+      <ProgressBar
+        amount={5_223}
+        percent={10.99}
+        showLabel={true}
+        description="Description"
+        strokeColor={colors}
+        rightLabel="628314"
+        aboveLeftLabel="Estimated reach"
+        aboveRightLabel="Audience total"
+      ></ProgressBar>
+    );
+  },
   multivalueBar: () => {
     const percentArray = [
       {

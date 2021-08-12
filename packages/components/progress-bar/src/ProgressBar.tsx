@@ -26,6 +26,10 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
       thick,
       labelFormatter,
       containerStyles,
+      rightLabel,
+      aboveLeftLabel,
+      aboveRightLabel,
+      tooltipHint = 'tooltip',
     } = this.props;
     return (
       <S.Container
@@ -33,15 +37,28 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
         data-testid="progress-bar-container"
         style={containerStyles}
       >
-        {showLabel &&
-          (labelFormatter ? (
-            labelFormatter(amount, percent)
-          ) : (
-            <span className="progress-bar-label" data-testid="progress-bar-label">
-              <S.MaxValue data-testid="progress-bar-max-value">{amount}</S.MaxValue>
-              <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
-            </span>
-          ))}
+        {(aboveLeftLabel || aboveRightLabel) && (
+          <S.LabelsAboveWrapper isLeftLabel={!!aboveLeftLabel} isRightLabel={!!aboveRightLabel}>
+            {aboveLeftLabel && (
+              <S.Label label={<span>{aboveLeftLabel}</span>} tooltip={tooltipHint} className="label-left" />
+            )}
+            {aboveRightLabel && <S.Label label={<span>{aboveRightLabel}</span>} className="label-right" />}
+          </S.LabelsAboveWrapper>
+        )}
+        {(showLabel || rightLabel) && (
+          <S.LabelsWrapper isLeftLabel={!!showLabel} isRightLabel={!!rightLabel}>
+            {showLabel &&
+              (labelFormatter ? (
+                labelFormatter(amount, percent)
+              ) : (
+                <span className="progress-bar-label" data-testid="progress-bar-label">
+                  <S.MaxValue data-testid="progress-bar-max-value">{amount}</S.MaxValue>
+                  <span data-testid="progress-bar-max-percent">{` (${percent}%)`}</span>
+                </span>
+              ))}
+            {rightLabel && <S.TotalValue data-testid="progress-bar-total-value">{rightLabel}</S.TotalValue>}
+          </S.LabelsWrapper>
+        )}
         <S.AntdProgressBar
           percent={percent}
           type={type}

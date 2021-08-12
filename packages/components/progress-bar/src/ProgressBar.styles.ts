@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Progress from 'antd/lib/progress';
+import { Label as DSLabel } from '@synerise/ds-input';
 import { ProgressProps } from './ProgressBar.types';
 
 export const Container = styled.div`
@@ -19,6 +20,8 @@ export const Container = styled.div`
 export const MaxValue = styled.strong`
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-800']};
+  font-size: 13px;
+  line-height: 18px;
 `;
 export const AntdProgressBar = styled(Progress)<ProgressProps>`
   &.ant-progress-line {
@@ -52,3 +55,39 @@ export const AntdProgressBar = styled(Progress)<ProgressProps>`
     }
   }
 `;
+
+export const Label = styled(DSLabel)`
+  & {
+    display: flex;
+    align-items: center;
+    cursor: initial;
+    height: auto;
+    span {
+      font-weight: normal;
+      color: ${(props): string => props.theme.palette['grey-600']};
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 0.1px;
+    }
+    .ds-icon > svg {
+      cursor: pointer;
+      margin: 0;
+      fill: ${(props): string => props.theme.palette['grey-500']};
+    }
+  }
+`;
+
+export const LabelsWrapper = styled.div<{ isLeftLabel: boolean; isRightLabel: boolean }>`
+  width: 100%;
+  display: flex;
+  justify-content: ${(props): string => {
+    if (!!props.isLeftLabel && !!props.isRightLabel) return 'space-between';
+    if (props.isRightLabel) return 'flex-end';
+    return 'flex-start';
+  }};
+`;
+
+export const LabelsAboveWrapper = styled(LabelsWrapper)`
+  margin-bottom: 4px;
+`;
+export const TotalValue = styled(MaxValue)``;

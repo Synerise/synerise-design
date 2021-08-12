@@ -13,12 +13,16 @@ Progress-Bar UI Component
 
 #### Props
 
-| Property    | Description                                                           | Type                            | Default   |
-| ----------- | --------------------------------------------------------------------- | ------------------------------- | --------- |
-| amount      | Number visibile in progress bar label                                 | number                          | -         |
-| description | Text of description under progress bar                                | string                          | -         |
-| percent     | Value of progress bar, also visible in label                          | number                          | -         |
-| showLabel   | Shows label above progress bar, label contains amount and percentage. | boolean                         | `false`   |
-| type        | Type of progress bar                                                  | `line` / `circle` / `dashboard` | `line`    |
-| strokeLine  | To set the style of the progress linecap                              | `round` / `square`              | `round`   |
-| strokeColor | Color of progress bar                                                 | string                          | `#76dc25` |
+| Property        | Description                                                           | Type                            | Default   |
+| --------------- | --------------------------------------------------------------------- | ------------------------------- | --------- |
+| amount          | Number visibile in progress bar label                                 | number                          | -         |
+| description     | Text of description under progress bar                                | string                          | -         |
+| percent         | Value of progress bar, also visible in label                          | number                          | -         |
+| showLabel       | Shows label above progress bar, label contains amount and percentage. | boolean                         | `false`   |
+| type            | Type of progress bar                                                  | `line` / `circle` / `dashboard` | `line`    |
+| strokeLine      | To set the style of the progress linecap                              | `round` / `square`              | `round`   |
+| strokeColor     | Color of progress bar                                                 | string                          | `#76dc25` |
+| rightLabel      | Text of label over progress bar on right side                         | string                          | -         |
+| aboveRightLabel | Text over label on right side                                         | string                          | -         |
+| aboveLeftLabel  | Text over label on left side                                          | string                          | -         |
+| tooltipHint     | Text to display after hover tooltip                                   | string                          | `tooltip` |
