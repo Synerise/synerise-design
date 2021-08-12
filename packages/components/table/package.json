@@ -55,7 +55,8 @@
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.3.1",
     "rc-resize-observer": "^0.2.1",
-    "react-window": "^1.8.6"
+    "react-window": "^1.8.6",
+    "unit-to-px": "^1.0.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
