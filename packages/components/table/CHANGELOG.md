@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.3...@synerise/ds-table@0.39.0) (2021-08-12)
+
+
+### Features
+
+* **table:** handle css units in column width ([1908caa](https://github.com/synerise/synerise-design/commit/1908caa5e9f2d3521b905bd9f42b7fc129917273))
+
+
+
+
+
 ## [0.38.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.2...@synerise/ds-table@0.38.3) (2021-08-11)
 
 **Note:** Version bump only for package @synerise/ds-table
