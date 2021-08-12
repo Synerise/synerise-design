@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.2...@synerise/ds-table@0.38.3) (2021-08-11)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.38.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.1...@synerise/ds-table@0.38.2) (2021-08-10)
+
+
+### Bug Fixes
+
+* **table:** handle column width - scroll bug ([6da3642](https://github.com/synerise/synerise-design/commit/6da3642b126bd2a63f3944cc4f6ee4beec11d737))
+
+
+
+
+
 ## [0.38.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.0...@synerise/ds-table@0.38.1) (2021-08-06)
 
 **Note:** Version bump only for package @synerise/ds-table

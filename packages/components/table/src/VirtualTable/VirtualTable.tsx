@@ -17,9 +17,10 @@ import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
 import { useTableLocale } from '../utils/locale';
+import { calculatePixels } from '../utils/calculatePixels';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
-
+const relativeInlineStyle: React.CSSProperties = { position: 'relative' };
 const CustomScrollbar = (containerRef: React.RefObject<HTMLDivElement>): React.FC =>
   React.forwardRef<HTMLElement, React.HTMLAttributes<Element>>(
     ({ onScroll, children, style }, ref): React.ReactElement => {
@@ -94,7 +95,6 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     locale: tableLocale,
   } as Props<T>;
   const rowStarColumn = getRowStarColumn(propsForRowStar);
-
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
@@ -215,7 +215,10 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
 
     return virtualColumns?.map(column => {
       if (column.width) {
-        return column;
+        return {
+          ...column,
+          width:  calculatePixels(column.width),
+        }
       }
 
       return {
@@ -326,7 +329,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
   return (
-    <RelativeContainer ref={containerRef} style={{ position: 'relative' }}>
+    <RelativeContainer key="relative-container" ref={containerRef} style={relativeInlineStyle}>
       <ResizeObserver
         onResize={({ offsetWidth }): void => {
           setTableWidth(offsetWidth);

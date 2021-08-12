@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 type ColWrapperProps = {
-  width?: number;
-  minWidth?: number;
-  maxWidth?: number;
+  width?: number | null;
+  minWidth?: number | null;
+  maxWidth?: number | null;
 };
 const numberToPixels = (num: number): string => `${num}px`;
 
