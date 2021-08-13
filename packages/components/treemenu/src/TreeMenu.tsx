@@ -12,11 +12,10 @@ import Folder from './Elements/Item/Items/Folder';
 import Toolbar from './Toolbar';
 import useTexts from './useTexts';
 
-import { TreeMenuTexts, TreeMenuProps, TreeNode, TreeData } from './TreeMenu.types';
+import { TreeMenuTexts, TreeMenuProps, TreeNode, TreeData, TreeMenuItem } from './TreeMenu.types';
 import * as S from './TreeMenu.styles';
 import { generateTree, getCount } from './utils';
 
-// Remove this it should be deeper
 export const defaultItemTypes = {
   folder: {
     name: 'Folder',
@@ -25,8 +24,7 @@ export const defaultItemTypes = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const initNewItem = () => {
+const initNewItem = (): Partial<TreeMenuItem> => {
   const id = uuid();
   return {
     id,

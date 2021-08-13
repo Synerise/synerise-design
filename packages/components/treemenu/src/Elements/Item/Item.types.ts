@@ -10,7 +10,7 @@ export type ItemProps = Omit<MenuItemProps, 'onClick'> &
     depth?: number;
     expanded?: boolean;
     ghostDynamic?: boolean;
-    texts?: TreeMenuTexts;
+    texts: TreeMenuTexts;
     editMode?: boolean;
     index?: number;
     itemTypes?: any;

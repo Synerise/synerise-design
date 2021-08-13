@@ -94,6 +94,7 @@ const Folder: React.FC<FolderProps> = ({
           onVisibleChange={onVisibleChange}
           onItemAdd={handleOnItemAdd}
           align={{ offset: [32, 16] }}
+          texts={texts}
         >
           <Tooltip title={texts?.addItemLabel} mouseLeaveDelay={0}>
             <As.DropdownTrigger component={<AddS />} />

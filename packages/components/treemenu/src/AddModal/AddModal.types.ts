@@ -4,7 +4,7 @@ import { ItemProps } from '../Tree/Item/Item.types';
 
 export type AddModalProps = {
   disabled?: boolean;
-  texts?: TreeMenuTexts;
+  texts: TreeMenuTexts;
   context?: TreeNode;
   loading?: boolean;
   tristate?: boolean;

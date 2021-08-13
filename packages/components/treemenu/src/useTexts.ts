@@ -39,6 +39,9 @@ export default function useTexts(texts: TreeMenuTexts | undefined): TreeMenuText
       visibilityShow: formatMessage({ id: 'DS.TREE-MENU.SHOW', defaultMessage: 'Show' }),
       visibilityShowIfUsed: formatMessage({ id: 'DS.TREE-MENU.SHOW-IF-USED', defaultMessage: 'Show if used' }),
       visibilityHide: formatMessage({ id: 'DS.TREE-MENU.HIDE', defaultMessage: 'Hide' }),
+      cutTooltip: formatMessage({ id: 'DS.TREE-MENU.CUT_TOOLTIP', defaultMessage: 'Cut element should be pasted' }),
+      noResults: formatMessage({ id: 'DS.TREE-MENU.NO_RESULTS', defaultMessage: 'No results' }),
+      pasteTooltip: formatMessage({ id: 'DS.TREE-MENU.PASTE_TOOLTIP', defaultMessage: 'Paste in place' }),
       ...texts,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -158,6 +158,6 @@ export default function Tree({
       </SortableContainer>
     </div>
   ) : (
-    <EmptyList />
+    <EmptyList texts={texts} />
   );
 }

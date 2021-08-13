@@ -97,7 +97,7 @@ const AddModal: React.FC<AddModalProps> = ({
         }
       );
 
-    if (!rendered.length) return <Result description="No results" type="no-results" />;
+    if (!rendered.length) return <Result description={texts.noResults} type="no-results" />;
 
     return rendered;
   };
@@ -144,7 +144,7 @@ const AddModal: React.FC<AddModalProps> = ({
           {texts?.addItemLabel}
         </Button>
         <Button type="ghost" mode="single-icon" disabled={disabled} onClick={handleItemPaste}>
-          <Tooltip title="Paste in place">
+          <Tooltip title={texts.pasteTooltip}>
             <Icon component={<PasteClipboardM />} />
           </Tooltip>
         </Button>

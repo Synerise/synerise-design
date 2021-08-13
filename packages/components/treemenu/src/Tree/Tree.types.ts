@@ -11,7 +11,7 @@ export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   expandedKeys?: React.Key[];
   draggable?: boolean;
   searchQuery?: string;
-  texts?: TreeMenuTexts;
+  texts: TreeMenuTexts;
   hasClipboard: boolean;
 
   onItemEditChange?: ItemProps['onEditChange'];

@@ -16,6 +16,10 @@ export type TreeMenuItem = {
   name: string;
   type?: string;
   children?: TreeMenuItems;
+  editMode?: boolean;
+  id?: string;
+  key?: string;
+  hidden?: boolean;
 };
 export type TreeMenuItems = TreeMenuItem[];
 // End of oldies
@@ -37,6 +41,9 @@ export type TreeMenuTexts = {
   search?: string;
   showItem?: string;
   hideItem?: string;
+  cutTooltip?: string;
+  noResults?: string;
+  pasteTooltip?: string;
 };
 
 export type TreeMenuItemAction = (item: TreeNode, context: TreeNode | undefined) => TreeNode | false;

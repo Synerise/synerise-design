@@ -15,7 +15,7 @@ describe('TreeMenu', () => {
   it(`should have ${dataSource.length} items + ghost item`, () => {
     const handleChange = jest.fn();
     const { getByText, getAllByRole } = renderWithProvider(
-      <TreeMenu dataSource={dataSource} onChange={handleChange} />
+      <TreeMenu dataSource={dataSource} onChange={handleChange} texts={{ noResults: 'No results' }} />
     );
     expect(getAllByRole('menuitem')).toHaveLength(6);
     dataSource.forEach(data => {

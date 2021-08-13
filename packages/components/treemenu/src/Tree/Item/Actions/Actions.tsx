@@ -126,7 +126,7 @@ const Actions: React.FC<ActionProps> = ({
             <S.DropdownMenuItem
               prefixel={<Icon component={<CutM />} />}
               suffixel={
-                <Tooltip title="Cut element should be pasted">
+                <Tooltip title={texts?.cutTooltip}>
                   <Icon component={<InfoFillS />} color={theme.palette['grey-600']} />
                 </Tooltip>
               }
