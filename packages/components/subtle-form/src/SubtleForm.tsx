@@ -16,12 +16,22 @@ const SubtleForm: React.FC & SubtleFormSubComponents = () => {
 };
 SubtleForm.TextArea = (props: SubtleTextAreaProps): React.ReactElement<SubtleTextAreaProps> =>
   SubtleTextArea(props) as React.ReactElement<SubtleTextAreaProps>;
+SubtleForm.TextArea.displayName = 'SubtleTextArea';
+
 SubtleForm.Select = (props: SubtleSelectProps): React.ReactElement<SubtleSelectProps> =>
   SubtleSelect(props) as React.ReactElement<SubtleSelectProps>;
+SubtleForm.Select.displayName = 'SubtleSelect';
+
 SubtleForm.DatePicker = (props: SubtleDatePickerProps): React.ReactElement<SubtleDatePickerProps> =>
   SubtleDatePicker(props) as React.ReactElement<SubtleDatePickerProps>;
+SubtleForm.DatePicker.displayName = 'SubtleDatePicker';
+
 SubtleForm.Field = (props: SubtleFieldProps): React.ReactElement<SubtleFieldProps> =>
   SubtleField(props) as React.ReactElement<SubtleFieldProps>;
+SubtleForm.Field.displayName = 'SubtleField';
+
 SubtleForm.Input = (props: SubtleInputProps): React.ReactElement<SubtleInputProps> =>
   SubtleInput(props) as React.ReactElement<SubtleInputProps>;
+SubtleForm.Input.displayName = 'SubtleInput';
+
 export default SubtleForm;
