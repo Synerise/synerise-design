@@ -12,7 +12,6 @@ export type PopconfirmType = React.FC<
   imagesAutoplaySpeed?: number;
   text?: ButtonTexts;
   buttons?: React.ReactNode;
-  typeButton?: string;
   titlePadding?: boolean;
 }
   > & {

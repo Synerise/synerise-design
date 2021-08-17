@@ -37,8 +37,8 @@ const getDefaultProps = () => ({
   okText: text('okText', 'Yes'),
   okType: select('Set type', typeOptions, 'primary'),
   title: text('Set title', 'Are you sure to delete this item and move to the next category'),
-  onCancel: action('onCancel Clicked'),
-  onConfirm: action('onConfirm Clicked'),
+  onCancel:() => action('onCancel Clicked'),
+  onConfirm:() => action('onConfirm Clicked'),
   disabled: boolean('disabled', false),
   placement: select('placement', placements, 'top'),
   onVisibleChange: action('onVisibilityChange'),
@@ -54,7 +54,6 @@ const stories = {
         <Popconfirm
           {...getDefaultProps()}
           icon={<Icon component={<WarningFillM />} color='#ffc300' />}
-          typeButton='primary'
           buttons={true}
           text={texts}
           titlePadding={true}
@@ -71,7 +70,6 @@ const stories = {
           {...getDefaultProps()}
           description={text('Set description', 'This is popconfirm modal example with simple body text here')}
           icon={<Icon component={<WarningFillM />} color='#ffc300' />}
-          typeButton='primary'
           buttons={true}
           text={texts}
           titlePadding={true}
@@ -91,7 +89,6 @@ const stories = {
           imagesAutoplay={boolean('Enable autoplay', true)}
           imagesAutoplaySpeed={number('Set speed of autoplay (ms)', 1000)}
           images={['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg']}
-          typeButton='primary'
           buttons={true}
           text={texts}
           titlePadding={true}
@@ -109,10 +106,6 @@ const stories = {
         displayDuration={number('Set confirm message display time', 2000)}
         placement={select('Placement', placements, 'topLeft')}
         onClick={(showMessage) => {showMessage()}}
-        typeButton='primary'
-        buttons={true}
-        text={texts}
-        titlePadding={true}
       >
         <Button>
           Click to show ConfirmMessage!
