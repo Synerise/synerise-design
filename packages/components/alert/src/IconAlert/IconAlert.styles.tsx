@@ -74,7 +74,7 @@ export const EmphasisWrapper = styled.span`
 export const LinkWrapper = styled.span`
   display: flex;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.39;
   font-weight: 400;
   margin-left: 3px;
   color: inherit;
