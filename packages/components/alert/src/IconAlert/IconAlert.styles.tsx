@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { IconAlertType } from './IconAlert.types';
 
 const COLORS: Record<IconAlertType, string> = {
@@ -6,6 +6,12 @@ const COLORS: Record<IconAlertType, string> = {
   warning: 'yellow-600',
   alert: 'red-600',
   info: 'grey-600',
+};
+const COLORSTEXT: Record<IconAlertType, string> = {
+  success: 'green-700',
+  warning: 'yellow-700',
+  alert: 'red-700',
+  info: 'grey-700',
 };
 const COLORSHOVER: Record<IconAlertType, string> = {
   success: 'green-700',
@@ -21,10 +27,10 @@ export const Message = styled.span`
   font-weight: 400;
   color: inherit;
   margin-left: 4px;
-  margin-top: 2px;
+  margin-top: 1px;
 `;
 
-export const IconAlertWrapper = styled.span<{ type: IconAlertType }>`
+export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?: boolean; disabled?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -32,8 +38,8 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType }>`
   &:hover {
     cursor: pointer;
     svg {
-      color: ${(props): string => props.theme.palette[COLORSHOVER[props.type]]};
-      fill: ${(props): string => props.theme.palette[COLORSHOVER[props.type]]};
+      color: ${(props): string => props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
+      fill: ${(props): string => props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
     }
   }
   &:active{
@@ -46,8 +52,14 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType }>`
     color: ${(props): string => props.theme.palette[COLORS[props.type]]};
     fill: ${(props): string => props.theme.palette[COLORS[props.type]]};
   }
+  ${(props): FlattenSimpleInterpolation | false =>
+  !!props.disabled &&
+  css`
+      pointer-events: none;
+      opacity: 0.4;
+    `};
   ${Message} {
-    color: ${(props): string => props.theme.palette[COLORS[props.type]]};
+    color: ${(props): string => props.theme.palette[COLORSTEXT[props.type]]};
   }
 `;
 export const EmphasisWrapper = styled.span`
@@ -55,6 +67,7 @@ export const EmphasisWrapper = styled.span`
   padding-bottom: 1px;
   font-size: 13px;
   line-height: 1.39;
+  padding-left: 3px;
   font-weight: 500;
   color: inherit;
 `;
@@ -63,6 +76,7 @@ export const LinkWrapper = styled.span`
   font-size: 13px;
   line-height: 1.5;
   font-weight: 400;
+  margin-left: 3px;
   color: inherit;
   text-decoration: underline;
   cursor: pointer;

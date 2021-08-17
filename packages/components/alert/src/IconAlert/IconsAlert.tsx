@@ -11,15 +11,15 @@ const ICONS: Record<IconAlertType, React.ReactNode> = {
   info: <InfoM />,
 };
 
-const IconAlert: React.FC<IconAlertProps> = ({ type = 'warning', iconAlert, message, withLink,withEmphasis,...rest }) => {
+const IconAlert: React.FC<IconAlertProps> = ({ type = 'warning', iconAlert, message, withLink,withEmphasis,hoverButton,disabled,...rest }) => {
   const icon = React.useMemo(() => {
     return ICONS[type];
   }, [type]);
   return (
-    <S.IconAlertWrapper {...rest} type={type} className="ds-inline-alert">
+    <S.IconAlertWrapper {...rest} type={type} disabled={disabled} hoverButton={hoverButton} className="ds-inline-alert">
       {iconAlert && <Icon component={icon} />}
-      <S.Message>{message}{withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
-        {withEmphasis && !withLink && <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>}</S.Message>
+      {message && <S.Message>{message}{withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
+        {withEmphasis && !withLink && <S.EmphasisWrapper>{withEmphasis}</S.EmphasisWrapper>}</S.Message>}
     </S.IconAlertWrapper>
   );
 };

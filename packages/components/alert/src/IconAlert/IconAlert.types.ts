@@ -8,4 +8,6 @@ export type IconAlertProps = {
   withEmphasis?: React.ReactNode;
   withLink?: React.ReactNode;
   iconAlert?: boolean;
+  hoverButton?: boolean;
+  disabled?: boolean;
 };

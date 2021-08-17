@@ -16,7 +16,6 @@ import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSeman
 import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
 import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
 import UpdateDataM from '@synerise/ds-icon/dist/icons/UpdateDataM';
-import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconsAlert';
 
 const decorator = storyFn => (
   <div
@@ -446,52 +445,6 @@ const stories = {
         <br />
         {showMore && (
         <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='shadow'/>)}
-      </div>
-    );
-  },
-  InlineNoteDefault: () => {
-    const icon = boolean('Set icon', true)
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-        }}>
-        <IconAlert iconAlert={icon} message='Inline warning.' />
-      </div>
-    );
-  },
-  InlineNoteWithEmphasis: () => {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-        }}>
-        <IconAlert  iconAlert={true} message='Inline warning.' withEmphasis='Reset the screen' type="warning"/>
-      </div>
-    );
-  },
-  InlineNoteWithLink: () => {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          height: '100%',
-        }}>
-        <IconAlert iconAlert={true} message='Inline warning.' withLink='Reset the screen' type="warning"/>
       </div>
     );
   },
