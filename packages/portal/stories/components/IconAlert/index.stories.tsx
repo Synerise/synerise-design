@@ -42,15 +42,30 @@ const placements = [
   'rightTop',
   'rightBottom',
 ] as const;
+const getPopconfirmAlign = (placements): number[] => {
+  if (placements === 'topLeft' ) {
+    return [-8,0];
+  }
+  if (placements === 'topRight' ) {
+    return [8,0];
+  }
+  if (placements === 'bottomLeft' ) {
+    return [-8,0];
+  }
+  if (placements === 'bottomRight' ) {
+    return [8,0];
+  }
+  return [0,0];
+};
 
 const triggers = ['hover', 'click'] as const;
 const stories = {
   default: () => {
     const getDefaultIconAlertProps = () => ({
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       trigger: select('Trigger', triggers, 'hover'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -67,6 +82,8 @@ const stories = {
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon  component={<CloseM/>}/>}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -77,10 +94,10 @@ const stories = {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -99,6 +116,8 @@ const stories = {
           closeIcon={<Icon component={<CloseM/>}/>}
           buttons={false}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -109,10 +128,10 @@ const stories = {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -130,6 +149,8 @@ const stories = {
           closeIcon={<Icon component={<CloseM/>}/>}
           buttons={false}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -140,10 +161,10 @@ const stories = {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -163,6 +184,8 @@ const stories = {
           withLink={text('withLink', 'This is a link')}
           buttons={false}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -173,10 +196,10 @@ const stories = {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -196,6 +219,8 @@ const stories = {
           closeIcon={<Icon component={<CloseM/>}/>}
           buttons={false}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -207,12 +232,12 @@ const stories = {
       title: text('Set title', 'Notification title'),
       okType: select('Set type', typeOptions, 'ghost'),
       disabled: boolean('Disabled', false),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
       onCancel:() => action('onCancel Clicked'),
       onConfirm:() => action('onConfirm Clicked'),
     });
+    const placement = select('Placement', placements, 'top');
     return (
       <div
         style={{
@@ -233,6 +258,8 @@ const stories = {
           buttons={true}
           text={texts}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
@@ -245,12 +272,12 @@ const stories = {
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
       okType: select('Set type', typeOptions, 'ghost'),
-      placement: select('Placement', placements, 'top'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
       onCancel:() => action('onCancel Clicked'),
       onConfirm:() => action('onConfirm Clicked'),
     });
+    const placement = select('Placement', placements, 'top');
     const hasButtons = boolean('Set Buttons', false);
     const hasDescription = boolean('Set Description', false);
     const hasIcon = boolean('Set Icon', false);
@@ -276,6 +303,8 @@ const stories = {
           buttons={hasButtons}
           text={texts}
           titlePadding={true}
+          placement={placement}
+          align={{ offset: getPopconfirmAlign(placement)}}
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
