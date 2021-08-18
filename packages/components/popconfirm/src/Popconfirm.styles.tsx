@@ -101,9 +101,9 @@ export const PopconfirmIcon = styled.div`
 `;
 export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
   margin-left: ${(props): string => (props.titlePadding ? '8px' : '6px')};
-  cursor: pointer;
   svg {
     fill: ${(props): string => props.theme.palette['grey-600']};
+    cursor: pointer;
   }
 `;
 export const PopconfirmWrapper = styled.div`
