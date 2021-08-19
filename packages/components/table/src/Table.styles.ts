@@ -186,7 +186,7 @@ export const Spinner = styled.div`
   }
 `;
 
-export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
+export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColumnNamesLineBreak?: boolean }>`
   table {
     .ant-table-thead {
       ${(props): string => (props.hideColumnNames ? 'display: none' : '')};
@@ -313,5 +313,8 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean }>`
 
   & .ant-table .ant-table-cell-scrollbar {
     box-shadow: none;
+  }
+  & .ant-table th.ant-table-cell {
+    white-space: ${(props): string => (props.disableColumnNamesLineBreak ? 'nowrap' : 'normal')};
   }
 `;
