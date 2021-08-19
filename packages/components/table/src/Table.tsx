@@ -47,6 +47,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     hideColumnNames,
     renderSelectionTitle,
     hideTitlePart,
+    disableColumnNamesLineBreak
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -141,6 +142,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
       <S.TableWrapper
         className={`ds-table ds-table-cell-size-${cellSize} ${roundedHeader ? 'ds-table-rounded' : ''}`}
         hideColumnNames={hideColumnNames}
+        disableColumnNamesLineBreak={disableColumnNamesLineBreak}
       >
         {loading && (
           <S.Spinner className="spinner">

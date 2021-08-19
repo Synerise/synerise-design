@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.4.41...@synerise/ds-context-selector@0.4.42) (2021-08-12)
+
+
+### Bug Fixes
+
+* **context-selector:** pass menu item height to filtered items ([9cdfa8c](https://github.com/Synerise/synerise-design/commit/9cdfa8cc0ca665fec584e4e0e3436c1abcc84598))
+
+
+
+
+
 ## [0.4.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.4.40...@synerise/ds-context-selector@0.4.41) (2021-08-06)
 
 **Note:** Version bump only for package @synerise/ds-context-selector
