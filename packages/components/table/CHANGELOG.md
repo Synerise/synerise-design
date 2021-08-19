@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.39.0...@synerise/ds-table@0.40.0) (2021-08-19)
+
+
+### Features
+
+* **table:** allow to prevent from line break in column ([03c99ea](https://github.com/synerise/synerise-design/commit/03c99ea699850314d146902c30f95e13e6d947c8))
+
+
+
+
+
 # [0.39.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.38.3...@synerise/ds-table@0.39.0) (2021-08-12)
 
 
