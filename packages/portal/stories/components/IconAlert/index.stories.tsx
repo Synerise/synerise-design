@@ -230,7 +230,7 @@ const stories = {
   withActions: () => {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
-      okType: select('Set type', typeOptions, 'ghost'),
+      okType: select('Set type Button', typeOptions, 'ghost'),
       disabled: boolean('Disabled', false),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
@@ -271,7 +271,6 @@ const stories = {
     const getDefaultIconAlertProps = () => ({
       title: text('Set title', 'Notification title'),
       disabled: boolean('Disabled', false),
-      okType: select('Set type', typeOptions, 'ghost'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
       onCancel:() => action('onCancel Clicked'),
@@ -279,6 +278,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'top');
     const hasButtons = boolean('Set Buttons', false);
+    const okType = select('Set type Button', typeOptions, 'ghost');
     const hasDescription = boolean('Set Description', false);
     const hasIcon = boolean('Set Icon', false);
     const hasLink = boolean('Set Link', false);
@@ -301,6 +301,7 @@ const stories = {
           closeIcon={<Icon component={<CloseM/>}/>}
           withLink={hasLink && (text('withLink', 'This is a link'))}
           buttons={hasButtons}
+          okType={okType}
           text={texts}
           titlePadding={true}
           placement={placement}
