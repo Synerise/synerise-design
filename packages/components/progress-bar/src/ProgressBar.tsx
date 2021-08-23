@@ -40,7 +40,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
         {(aboveLeftLabel || aboveRightLabel) && (
           <S.LabelsAboveWrapper isLeftLabel={!!aboveLeftLabel} isRightLabel={!!aboveRightLabel}>
             {aboveLeftLabel && (
-              <S.Label label={<span>{aboveLeftLabel}</span>} tooltip={tooltipHint} className="label-left" />
+              <S.Label label={<span>{aboveLeftLabel}</span>} tooltipConfig={{offset:"small", title:tooltipHint}} className="label-left" />
             )}
             {aboveRightLabel && <span className="label-right">{aboveRightLabel}</span>}
           </S.LabelsAboveWrapper>
