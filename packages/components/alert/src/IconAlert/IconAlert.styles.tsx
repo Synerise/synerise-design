@@ -36,7 +36,7 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?:
   justify-content: flex-start;
   flex-direction: row;
   &:hover {
-    cursor: pointer;
+    cursor: ${(props): string => props.hoverButton ? 'pointer' : 'auto'};
     svg {
       color: ${(props): string => props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
       fill: ${(props): string => props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
@@ -79,5 +79,5 @@ export const LinkWrapper = styled.span`
   margin-left: 3px;
   color: inherit;
   text-decoration: underline;
-  cursor: pointer;
+  cursor: auto;
 `;

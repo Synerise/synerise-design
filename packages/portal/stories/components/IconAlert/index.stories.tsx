@@ -65,7 +65,7 @@ const stories = {
       disabled: boolean('Disabled', false),
       trigger: select('Trigger', triggers, 'hover'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -97,7 +97,7 @@ const stories = {
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -131,7 +131,7 @@ const stories = {
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -164,7 +164,7 @@ const stories = {
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -199,7 +199,7 @@ const stories = {
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -237,7 +237,7 @@ const stories = {
       onCancel:() => action('onCancel Clicked'),
       onConfirm:() => action('onConfirm Clicked'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     return (
       <div
         style={{
@@ -276,7 +276,7 @@ const stories = {
       onCancel:() => action('onCancel Clicked'),
       onConfirm:() => action('onConfirm Clicked'),
     });
-    const placement = select('Placement', placements, 'top');
+    const placement = select('Placement', placements, 'topLeft');
     const hasButtons = boolean('Set Buttons', false);
     const okType = select('Set type Button', typeOptions, 'ghost');
     const hasDescription = boolean('Set Description', false);
