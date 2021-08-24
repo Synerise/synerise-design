@@ -6,12 +6,18 @@ import Block from '@synerise/ds-block';
 import Icon from '@synerise/ds-icon';
 import { EditM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import SidebarWithButton from '@synerise/ds-sidebar/dist/SidebarWithButton/SidebarWithButton';
 
 const wrapperStyles = {
   width: '338px',
   background: 'white',
   paddingBottom: '24px',
 };
+const data = [
+  { text: 'Item 1' },
+  { text: 'Item 2' },
+  { text: 'Item 3' },
+];
 
 const stories = {
   default: () => (
@@ -90,6 +96,18 @@ const stories = {
       </Sidebar>
     </div>
   ),
+  sidebarWithButton: () => (
+    <div style={{
+      display: 'flex',
+      width: '338px',
+      background: 'white',
+      paddingBottom: '24px',
+      height: '100%',
+    }}>
+      <SidebarWithButton textButton="Button" dataSource={data}/>
+    </div>
+  ),
+
 };
 
 export default {
