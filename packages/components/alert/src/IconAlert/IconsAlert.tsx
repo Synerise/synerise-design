@@ -11,7 +11,7 @@ const ICONS: Record<IconAlertType, React.ReactNode> = {
   info: <InfoM />,
 };
 
-const IconAlert: React.FC<IconAlertProps> = ({ type = 'warning', iconAlert, message, withLink,withEmphasis,hoverButton,disabled,...rest }) => {
+const IconsAlert: React.FC<IconAlertProps> = ({ type = 'warning', iconAlert, message, withLink,withEmphasis,hoverButton,disabled,...rest }) => {
   const icon = React.useMemo(() => {
     return ICONS[type];
   }, [type]);
@@ -24,4 +24,4 @@ const IconAlert: React.FC<IconAlertProps> = ({ type = 'warning', iconAlert, mess
   );
 };
 
-export default IconAlert;
+export default IconsAlert;

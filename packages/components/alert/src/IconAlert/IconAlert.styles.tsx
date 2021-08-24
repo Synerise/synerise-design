@@ -79,5 +79,5 @@ export const LinkWrapper = styled.span`
   margin-left: 3px;
   color: inherit;
   text-decoration: underline;
-  cursor: auto;
+  cursor: pointer;
 `;
