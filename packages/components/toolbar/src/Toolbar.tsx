@@ -6,7 +6,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Toolbar.styles';
 import { ToolbarProps } from './Toolbar.types';
 
-const Toolbar: React.FC<ToolbarProps> = ({}) => {
+const Toolbar: React.FC<ToolbarProps> = () => {
   return (
     <S.ToolbarWrapper>
       <S.Wrapper>

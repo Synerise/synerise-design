@@ -3,7 +3,11 @@ import * as React from 'react';
 import Toolbar from '@synerise/ds-toolbar';
 
 const stories = {
-  default: () => ({}),
+  default: () => {
+    return (
+    <Toolbar/>
+    )
+  },
 };
 
 export default {
