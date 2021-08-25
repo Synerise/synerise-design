@@ -14,6 +14,9 @@ const COLLECTOR_CLASSNAME = 'ds-collector';
 const Collector: React.FC<CollectorProps> = ({
   allowCustomValue,
   allowMultipleValues,
+  addButtonProps,
+  cancelButtonProps,
+  keepSearchQueryOnSelect,
   error,
   className,
   description,
@@ -30,13 +33,14 @@ const Collector: React.FC<CollectorProps> = ({
   texts,
   lookupConfig,
   onItemAdd,
-  onDeselect,
-  onSelect,
+  onItemDeselect,
+  onItemSelect,
   dropdownContent,
   disableButtonPanel,
   disableSearch,
   dropdownItemHeight,
   searchValue,
+  renderItem,
   onSearchValueChange,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -76,11 +80,12 @@ const Collector: React.FC<CollectorProps> = ({
   React.useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
     setFilteredSuggestions(suggestions || []);
-    allowMultipleValues && setValue('');
+    !searchValue && allowMultipleValues && setValue('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
 
   React.useEffect(() => {
-    searchValue && setValue(searchValue as string);
+    setValue(searchValue as string);
   }, [searchValue]);
 
   React.useEffect((): void => {
@@ -92,8 +97,7 @@ const Collector: React.FC<CollectorProps> = ({
   }, [selectedValues, mainContentRef, fixedHeight]);
 
   React.useEffect((): void => {
-    if(!enableCustomFilteringSuggestions)
-      filterSuggestions(value);
+    if (!enableCustomFilteringSuggestions) filterSuggestions(value);
   }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
 
   const clear = React.useCallback((): void => {
@@ -104,13 +108,13 @@ const Collector: React.FC<CollectorProps> = ({
   }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
+    if (!enableCustomFilteringSuggestions && e.key === 'Enter') {
       const suggestionsIncludesCurrentValue = filteredSuggestions.some(
         suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
       );
       if (allowMultipleValues && (allowCustomValue || suggestionsIncludesCurrentValue)) {
         const newValue = onItemAdd && onItemAdd(value);
-        newValue && onSelect(newValue);
+        newValue && onItemSelect(newValue);
         return;
       }
       if (!allowMultipleValues) {
@@ -119,14 +123,14 @@ const Collector: React.FC<CollectorProps> = ({
           if (newValue) {
             onConfirm && onConfirm([newValue]);
           }
-          clear();
+          !keepSearchQueryOnSelect && clear();
         }
       }
     }
     if (allowMultipleValues && e.key === 'Backspace' && !value && !!selectedValues?.length) {
       const lastElement = selected.pop();
-      if (lastElement && onDeselect) {
-        onDeselect(lastElement);
+      if (lastElement && onItemDeselect) {
+        onItemDeselect(lastElement);
       }
     }
   };
@@ -137,6 +141,9 @@ const Collector: React.FC<CollectorProps> = ({
   }, [onCancel, clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
+    if (!value?.trim()) {
+      return;
+    }
     if (allowMultipleValues) {
       onConfirm && onConfirm(selectedValues);
       clear();
@@ -166,6 +173,12 @@ const Collector: React.FC<CollectorProps> = ({
     (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
     [containerRef]
   );
+
+  const handleDropdownClick = React.useCallback((): void => {
+    if (inputRef?.current) {
+      inputRef.current.focus({ preventScroll: true });
+    }
+  }, [inputRef]);
 
   useOnClickOutside(containerRef, (): void => {
     setFocused(false);
@@ -209,7 +222,7 @@ const Collector: React.FC<CollectorProps> = ({
         >
           <Values
             values={selectedValues}
-            onDeselect={onDeselect}
+            onDeselect={onItemDeselect}
             focused={isFocused}
             disabled={!!disabled}
             displayLookupKey={displayLookupKey}
@@ -223,8 +236,7 @@ const Collector: React.FC<CollectorProps> = ({
                 ? (e): void => {
                     onSearchValueChange && onSearchValueChange(e.target.value);
                     setValue(e.target.value);
-                    if(!enableCustomFilteringSuggestions)
-                      filterSuggestions(e.target.value);
+                    if (!enableCustomFilteringSuggestions) filterSuggestions(e.target.value);
                   }
                 : undefined
             }
@@ -243,6 +255,8 @@ const Collector: React.FC<CollectorProps> = ({
               disabled={!!disabled}
               showCancel={!!value || !!selectedValues?.length}
               texts={texts}
+              addButtonProps={addButtonProps}
+              cancelButtonProps={cancelButtonProps}
             />
           </S.RightSide>
         )}
@@ -259,14 +273,11 @@ const Collector: React.FC<CollectorProps> = ({
           (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
         }
         onSelect={(item): void => {
-          onSelect && onSelect(item);
-          !allowMultipleValues && item[filterLookupKey] && setValue(item[filterLookupKey]);
+          onItemSelect && onItemSelect(item);
+          !keepSearchQueryOnSelect && item[filterLookupKey] && setValue(item[filterLookupKey]);
         }}
-        onClick={(): void => {
-          if (inputRef?.current) {
-            inputRef.current.focus({ preventScroll: true });
-          }
-        }}
+        onClick={handleDropdownClick}
+        renderItem={renderItem}
         showAddButton={allowCustomValue && allowMultipleValues}
         showNavigationHints={showNavigationHints}
         width={getContainerWidth()}
