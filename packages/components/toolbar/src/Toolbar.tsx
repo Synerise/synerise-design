@@ -6,18 +6,19 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Toolbar.styles';
 import { ToolbarProps } from './Toolbar.types';
 
-const Toolbar: React.FC<ToolbarProps> = () => {
+const Toolbar: React.FC<ToolbarProps> = ({textPercent}) => {
+  const [active, setActive] = React.useState(false);
   return (
     <S.ToolbarWrapper>
       <S.Wrapper>
         <S.ToolbarButtons>
           <Tooltip title='back'>
-            <Button type="ghost" mode="single-icon">
+            <Button activated type="ghost" mode="single-icon">
               <Icon component={<StepBackM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title='back'>
-            <Button type="ghost" mode="single-icon">
+          <Tooltip title='forward'>
+            <Button activated type="ghost" mode="single-icon">
               <Icon component={<StepForwardM />} color="#ffffff" />
             </Button>
           </Tooltip>
@@ -26,17 +27,21 @@ const Toolbar: React.FC<ToolbarProps> = () => {
       <S.Wrapper>
         <S.ToolbarButtons>
           <Tooltip title='fit to view'>
-            <Button type="ghost" mode="single-icon">
+            <Button activated type="ghost" mode="single-icon">
               <Icon component={<FullScreenM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title='show map'>
-            <Button type="ghost" mode="single-icon">
+          <Tooltip title={ active ? 'show map' : 'hide map'}>
+            <Button onClick={(): void => {
+              setActive(!active);
+            }} activated type="ghost" mode="single-icon">
               <Icon component={<LocationM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title='show notes'>
-            <Button type="ghost" mode="single-icon">
+          <Tooltip title={active ? 'show notes' : 'hide notes'}>
+            <Button onClick={(): void => {
+              setActive(!active);
+            }} activated type="ghost" mode="single-icon">
               <Icon component={<NotepadM />} color="#ffffff" />
             </Button>
           </Tooltip>
@@ -45,17 +50,15 @@ const Toolbar: React.FC<ToolbarProps> = () => {
       <S.Wrapper>
         <S.ToolbarButtons>
           <Tooltip title='hide map'>
-            <Button type="ghost" mode="single-icon">
+            <Button activated type="ghost" mode="single-icon">
               <Icon component={<FullScreenM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip>
-            <Button type="ghost" mode="label">
-              100%
-            </Button>
-          </Tooltip>
+            <S.ViewPercent>
+              {textPercent}
+            </S.ViewPercent>
           <Tooltip title='hide notes'>
-            <Button type="ghost" mode="single-icon">
+            <Button activated type="ghost" mode="single-icon">
               <Icon component={<NotepadM />} color="#ffffff" />
             </Button>
           </Tooltip>
@@ -63,7 +66,7 @@ const Toolbar: React.FC<ToolbarProps> = () => {
       </S.Wrapper>
       <S.WrapperButton>
         <Tooltip title='auto align'>
-        <Button type="ghost" mode="single-icon">
+        <Button activated type="ghost" mode="single-icon">
           <Icon component={<FolderTreeM />} />
         </Button>
         </Tooltip>

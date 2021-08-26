@@ -21,4 +21,9 @@ export const ToolbarButtons = styled(ButtonGroup)`
     margin: 0px;
   }
 `;
+export const ViewPercent = styled.div`
+  padding: 8px;
+  font-weight: 500;
+  color: ${(props): string => props.theme.palette['grey-600']};
+`;
 

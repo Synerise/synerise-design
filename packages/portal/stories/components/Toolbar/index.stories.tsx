@@ -5,7 +5,7 @@ import Toolbar from '@synerise/ds-toolbar';
 const stories = {
   default: () => {
     return (
-    <Toolbar/>
+    <Toolbar textPercent='100%'/>
     )
   },
 };
