@@ -14,8 +14,9 @@ describe('Collector', () => {
       <Collector
         allowCustomValue
         allowMultipleValues
-        onSelect={onSelectFn}
+        onItemSelect={onSelectFn}
         selected={[]}
+        searchValue={''}
         suggestions={SUGGESTIONS}
         onConfirm={onConfirmFn}
         texts={{
@@ -38,7 +39,7 @@ describe('Collector', () => {
       <Collector
         allowCustomValue
         allowMultipleValues
-        onSelect={onSelectFn}
+        onItemSelect={onSelectFn}
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -62,7 +63,7 @@ describe('Collector', () => {
       <Collector
         allowCustomValue
         allowMultipleValues
-        onSelect={onSelectFn}
+        onItemSelect={onSelectFn}
         onItemAdd={value => ({ text: value })}
         selected={[]}
         suggestions={[]}
@@ -86,11 +87,12 @@ describe('Collector', () => {
     const onConfirmFn = jest.fn();
     const onSelectFn = jest.fn();
 
-    const { getByText } = renderWithProvider(
+    const { getByText, container } = renderWithProvider(
       <Collector
         allowCustomValue
         allowMultipleValues
-        onSelect={onSelectFn}
+        onItemSelect={onSelectFn}
+        searchValue="search val "
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}
@@ -117,7 +119,7 @@ describe('Collector', () => {
       <Collector
         allowCustomValue
         allowMultipleValues
-        onSelect={onSelectFn}
+        onItemSelect={onSelectFn}
         selected={SELECTED}
         suggestions={[]}
         onConfirm={onConfirmFn}

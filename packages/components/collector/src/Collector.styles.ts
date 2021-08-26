@@ -121,6 +121,8 @@ export const DropdownWrapper = styled.div`
 `;
 export const CustomContentWrapper = styled.div`
   position: absolute;
+  z-index: 99;
+
 `;
 export const DropdownContent = styled.div<{ visible?: boolean }>`
   background: ${(props): string => props.theme.palette.white};
@@ -130,7 +132,7 @@ export const DropdownContent = styled.div<{ visible?: boolean }>`
   width: 100%;
   top: 4px;
   left: 0;
-  box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
+  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.12);
   z-index: 99;
 `;
 
