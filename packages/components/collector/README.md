@@ -35,8 +35,8 @@ import Collector from '@synerise/ds-collector'
 | Property                         | Description                                                            | Type                                          | Default |
 | -------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------- | ------- |
 | allowMultipleValues              | Enables an option to select multiple values                            | boolean                                       | `false` |
-| addButtonProps                   | Props object applied to primary button                                 | Partial<ButtonProps>                          | -       |
-| cancelButtonProps                | Props object applied to secondary button                               | Partial<ButtonProps>                          | -       |
+| addButtonProps                   | Props object applied to primary button                                 | ButtonProps                                   | -       |
+| cancelButtonProps                | Props object applied to secondary button                               | ButtonProps                                   | -       |
 | allowCustomValue                 | Enables an option to add value not included in the suggestions array   | boolean                                       | `false` |
 | className                        | Class added to the parent container                                    | string                                        | ---     |
 | description                      | Description rendered below the main component                          | string / React.ReactNode                      | ---     |
