@@ -125,6 +125,7 @@ export const AntdButton = styled(
     size,
     iconColor,
     error,
+    activated,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -328,6 +329,21 @@ export const AntdButton = styled(
         &.ant-btn {
           border-radius: 0 3px 3px 0;
         }
+      `}
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.activated &&
+        css`
+        &.ant-btn {
+          &&&:focus {
+              background-color: ${props.theme.palette[`blue-050`]} ;
+              span {
+              color: ${props.theme.palette[`blue-600`]};
+            }
+            svg {
+              fill: ${props.theme.palette[`blue-600`]};
+            }
+            }
+          }
       `}
       ${(props): FlattenSimpleInterpolation | false =>
         props.error && 
