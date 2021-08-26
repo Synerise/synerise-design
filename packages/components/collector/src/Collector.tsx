@@ -85,7 +85,9 @@ const Collector: React.FC<CollectorProps> = ({
   }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
 
   React.useEffect(() => {
-    setValue(searchValue as string);
+    if (searchValue !== undefined && searchValue !== null) {
+      setValue(searchValue as string);
+    }
   }, [searchValue]);
 
   React.useEffect((): void => {
@@ -110,7 +112,7 @@ const Collector: React.FC<CollectorProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (!enableCustomFilteringSuggestions && e.key === 'Enter') {
       const suggestionsIncludesCurrentValue = filteredSuggestions.some(
-        suggestion => suggestion.trim().toLowerCase() === value.trim().toLowerCase()
+        suggestion => suggestion[filterLookupKey].trim().toLowerCase() === value.trim().toLowerCase()
       );
       if (allowMultipleValues && (allowCustomValue || suggestionsIncludesCurrentValue)) {
         const newValue = onItemAdd && onItemAdd(value);
