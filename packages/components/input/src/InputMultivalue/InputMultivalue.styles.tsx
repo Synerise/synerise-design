@@ -45,6 +45,7 @@ const hoverStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
 
 export const ContentBelow = styled.div`
   margin-top: 8px;
+  line-height: 13px;
 `;
 
 export const ErrorText = styled.div`

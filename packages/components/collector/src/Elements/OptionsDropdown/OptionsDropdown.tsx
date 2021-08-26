@@ -11,8 +11,7 @@ import NavigationHint from '../NavigationHint/NavigationHint';
 import { CollectorValue } from '../../Collector.types';
 
 const gerRowHeight = (size?: string): number => {
-  if(size === 'large')
-    return 50;
+  if (size === 'large') return 54;
   return 32;
 };
 
@@ -29,12 +28,26 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   lookupKey,
   texts,
   customContent,
+  renderItem,
   dropdownItemHeight,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
     setScrollTop(0);
   }, [visible]);
+  const renderItemFn = React.useCallback(
+    (itemValue: CollectorValue) => {
+      return renderItem ? (
+        renderItem(itemValue)
+      ) : (
+        <Menu.Item tabIndex={-1} size={dropdownItemHeight} key={`${itemValue}`}>
+          {itemValue[lookupKey]}
+        </Menu.Item>
+      );
+    },
+    [lookupKey, renderItem, dropdownItemHeight]
+  );
+  const shouldRenderList = !!options?.length;
   return (
     <S.DropdownWrapper onClick={onClick}>
       {visible &&
@@ -61,25 +74,25 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
                     <span>{texts?.add}</span>
                     <strong>{value}</strong>
                   </S.DropdownAddButton>
-                  {options?.length > 0 && (
+                  {shouldRenderList && (
                     <S.DividerContainer>
                       <Divider dashed />
                     </S.DividerContainer>
                   )}
                 </S.DropdownTop>
               )}
-              <SearchItems
-                data={options}
-                highlight={value as string}
-                visibleRows={6}
-                onItemClick={onSelect}
-                itemRender={(val: CollectorValue): React.ReactElement => (
-                  <Menu.Item size={dropdownItemHeight} key={`${val}`}>{val[lookupKey]}</Menu.Item>
-                )}
-                rowHeight={gerRowHeight(dropdownItemHeight)}
-                width={width}
-                listProps={{ scrollTop }}
-              />
+              {shouldRenderList && (
+                <SearchItems
+                  data={options}
+                  highlight={value as string}
+                  visibleRows={6}
+                  onItemClick={onSelect}
+                  itemRender={renderItemFn}
+                  rowHeight={gerRowHeight(dropdownItemHeight)}
+                  width={width}
+                  listProps={{ scrollTop }}
+                />
+              )}
             </Scrollbar>
             {showNavigationHints && <NavigationHint texts={texts} />}
           </S.DropdownContent>

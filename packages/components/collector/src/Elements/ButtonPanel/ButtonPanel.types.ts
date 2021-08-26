@@ -1,4 +1,4 @@
-import { CollectorTexts } from '../../Collector.types';
+import { CollectorTexts, CollectorProps } from '../../Collector.types';
 
 export type ButtonPanelProps = {
   onCancel: () => void;
@@ -6,4 +6,4 @@ export type ButtonPanelProps = {
   disabled: boolean;
   showCancel: boolean;
   texts: CollectorTexts;
-}
+} & Pick<CollectorProps, 'addButtonProps' | 'cancelButtonProps'>

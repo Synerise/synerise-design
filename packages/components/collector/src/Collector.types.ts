@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { Props as DsButtonProps } from '@synerise/ds-button/dist/Button.types';
 
 export type CollectorProps = {
+  addButtonProps?: Partial<DsButtonProps>;
   allowCustomValue?: boolean;
   allowMultipleValues?: boolean;
+  cancelButtonProps?: Partial<DsButtonProps>;
   className?: string;
   description?: React.ReactNode | string;
   disabled?: boolean;
@@ -12,14 +15,16 @@ export type CollectorProps = {
   error?: boolean;
   errorText?: React.ReactNode | string;
   fixedHeight?: boolean;
+  keepSearchQueryOnSelect?: boolean;
   label?: React.ReactNode | string;
   lookupConfig?: LookupConfig;
   onSearchValueChange?: (value: string) => void;
   onConfirm?: (values: CollectorValue[]) => void;
   onCancel?: () => void;
-  onDeselect?: (item: CollectorValue) => void;
+  onItemDeselect?: (item: CollectorValue) => void;
   onItemAdd?: (itemName: React.ReactText) => CollectorValue;
-  onSelect: (item: CollectorValue) => void;
+  onItemSelect: (item: CollectorValue) => void;
+  renderItem?: (value: CollectorValue) => JSX.Element;
   showNavigationHints?: boolean;
   searchValue?: string;
   selected: CollectorValue[];

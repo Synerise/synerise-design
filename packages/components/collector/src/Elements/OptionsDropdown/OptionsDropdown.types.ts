@@ -7,6 +7,7 @@ export type OptionsDropdownProps = {
   visible?: boolean;
   value: React.ReactText;
   onSelect: (value: CollectorValue) => void;
+  renderItem?: (value: CollectorValue) => JSX.Element;
   onItemAdd?: (itemName: React.ReactText) => void;
   onClick: () => void;
   texts: CollectorTexts;
@@ -15,4 +16,5 @@ export type OptionsDropdownProps = {
   lookupKey: string;
   customContent?: React.ReactNode;
   dropdownItemHeight?: 'large';
+
 };
