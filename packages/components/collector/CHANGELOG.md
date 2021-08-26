@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.3.9...@synerise/ds-collector@0.3.10) (2021-08-26)
+
+
+### Bug Fixes
+
+* **collector:** filter suggestions by key ([b109424](https://github.com/Synerise/synerise-design/commit/b109424775e45d8a3afe646640b7342ea8a675af))
+* **collector:** pass a custom render fn ([1bb7756](https://github.com/Synerise/synerise-design/commit/1bb775641b729693fbf5885b04f6b255119f0e2b))
+
+
+
+
+
 ## [0.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.3.8...@synerise/ds-collector@0.3.9) (2021-08-06)
 
 **Note:** Version bump only for package @synerise/ds-collector

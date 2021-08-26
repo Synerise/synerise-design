@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.41...@synerise/ds-tagslist@0.6.42) (2021-08-26)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
 ## [0.6.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.6.40...@synerise/ds-tagslist@0.6.41) (2021-08-06)
 
 **Note:** Version bump only for package @synerise/ds-tagslist
