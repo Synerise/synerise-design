@@ -49,6 +49,6 @@ import Sidebar from '@synerise/ds-sidebar'
 
 | Property     | Description                   | Type                     | Default |
 | ------------ | ----------------------------- | ------------------------ | ------- |
-| buttonLabel  | text of button                | string                   | -       |
-| title        | text of span                  | string                   | -       |
+| buttonLabel  | prop to show text of button   | string                   | -       |
+| title        | prop to show title            | string                   | -       |
 | dataSource   | data of all items in dropdown | string / MenuItemProps   | -       |
