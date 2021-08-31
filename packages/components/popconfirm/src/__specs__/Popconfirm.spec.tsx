@@ -70,21 +70,7 @@ describe('Popconfirm', () => {
     expect(onConfirm).toHaveBeenCalledTimes(1);
   });
 
-  it('should have custom text on buttons', () => {
-    // ARRANGE
-    const { getAllByText, getByText } = renderWithProvider(
-      <Popconfirm title={TITLE} okText="okText" cancelText="cancelText">
-        <button>{TEXT}</button>
-      </Popconfirm>
-    );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
-
-    //ASSERT
-    expect(getAllByText('okText')[0]).toBeInTheDocument();
-    expect(getAllByText('cancelText')[0]).toBeInTheDocument();
-  });
 
   it('should have provided placement', () => {
     // ARRANGE
