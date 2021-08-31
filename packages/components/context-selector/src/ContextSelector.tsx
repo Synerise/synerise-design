@@ -22,6 +22,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   trigger,
   menuItemHeight,
   dropdownWrapperStyles,
+  onClickOutsideEvents,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -92,6 +93,7 @@ const ContextSelector: React.FC<ContextProps> = ({
           loading={loading}
           menuItemHeight={menuItemHeight}
           dropdownWrapperStyles={dropdownWrapperStyles}
+          onClickOutsideEvents={onClickOutsideEvents}
         />
       }
     >

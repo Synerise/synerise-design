@@ -27,6 +27,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   loading,
   menuItemHeight,
   dropdownWrapperStyles,
+  onClickOutsideEvents,
+
 }) => {
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -52,7 +54,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   useOnClickOutside(overlayRef, () => {
     setDropdownVisible(false);
-  });
+  }, onClickOutsideEvents);
 
   const groupByGroupName = React.useCallback(
     activeItems => {
