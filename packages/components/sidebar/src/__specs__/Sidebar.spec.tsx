@@ -39,6 +39,15 @@ describe('Sidebar', () => {
     // ASSERT
     expect(getByText(HEADER_1)).toBeTruthy();
   });
+  it('should render text Button', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <SidebarWithButton textButton="Button"></SidebarWithButton>
+    );
+
+    // ASSERT
+    expect(getByText("Button")).toBeTruthy();
+  });
 
 
   it('should fire open collapse', () => {
@@ -85,4 +94,5 @@ describe('Sidebar', () => {
     expect(container.querySelectorAll('.ant-collapse-header')[1].textContent).toEqual(HEADER_2);
     expect(container.querySelectorAll('.ant-collapse-header')[2].textContent).toEqual(HEADER_1);
   });
+
 });

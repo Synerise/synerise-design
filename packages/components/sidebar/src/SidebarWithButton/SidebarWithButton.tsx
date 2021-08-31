@@ -8,7 +8,7 @@ import Menu from '@synerise/ds-menu';
 import { SidebarWithButtonProps } from './SidebarWithButton.types';
 import * as S from './SidebarWithButton.styles';
 
-const SidebarWithButton: React.FC<SidebarWithButtonProps> = ({ dataSource, textButton }) => {
+const SidebarWithButton: React.FC<SidebarWithButtonProps> = ({ dataSource, textButton, spanText }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -17,7 +17,7 @@ const SidebarWithButton: React.FC<SidebarWithButtonProps> = ({ dataSource, textB
   return (
     <S.SidebarWithButtonWrapper className="ds-SidebarWithButton">
       <S.TextWrapper>
-        <span>Section Name</span>
+        <span>{spanText}</span>
       </S.TextWrapper>
       <Dropdown
         overlayStyle={{ borderRadius: '3px' }}

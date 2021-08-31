@@ -104,7 +104,7 @@ const stories = {
       paddingBottom: '24px',
       height: '100%',
     }}>
-      <SidebarWithButton textButton="Button" dataSource={data}/>
+      <SidebarWithButton textButton="Button" spanText="Section Name" dataSource={data}/>
     </div>
   ),
 

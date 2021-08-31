@@ -3,4 +3,5 @@ import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.typ
 export type SidebarWithButtonProps = {
   dataSource: MenuItemProps[];
   textButton?: string;
+  spanText?: string;
 };
