@@ -83,3 +83,15 @@ import Alert from '@synerise/ds-alert'
 | type     | Type of AlertSemanticColor, options: `notice`, `negative`, `positive`,`informative`,`neutral`,`supply`,`service`,`entity`                | `string`                    | `positive` |
 | color    | type of colors,options: `red`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`blue`                                                  | `string`                    | -          |
 | mode     | type of modes, options: `background`, `background-outline`,`outline`,`shadow`                                                            | `string`                    | -          |
+
+### Alert.IconAlert
+
+| Property        | Description                                                                                                            | Type                        | Default    | 
+| ----            | ---                                                                                                                    | ---                         | ---        | 
+| type            | Type of Alert styles, options: `success`, `info`, `warning`, `error`                                                   | `string`                    | `warning`  | 
+| message         | Message of Icon Alert                                                                                                  | `React.ReactNode`           | -          | 
+| disabled        | prop to set disabled icon                                                                                              | `boolean`                   | -          |
+| withEmphasis    | prop to show bolder text                                                                                               | `React.ReactNode`           | -          |
+| withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
+| iconAlert       | prop to set custom icon                                                                                                | `boolean`                   | -          |
+| hoverButton     | prop to set hover state button                                                                                         | `boolean`                   | -          |
