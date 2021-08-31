@@ -49,6 +49,6 @@ import Sidebar from '@synerise/ds-sidebar'
 
 | Property     | Description                   | Type                     | Default |
 | ------------ | ----------------------------- | ------------------------ | ------- |
-| textButton   | text of button                | string                   | -       |
-| spanText     | text of span                  | string                   | -       |
+| buttonLabel  | text of button                | string                   | -       |
+| title        | text of span                  | string                   | -       |
 | dataSource   | data of all items in dropdown | string / MenuItemProps   | -       |
