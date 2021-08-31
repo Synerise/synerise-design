@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Sidebar from "../index";
+import SidebarWithButton from '../../dist/SidebarWithButton/SidebarWithButton';
 import {fireEvent} from "@testing-library/dom";
 
 describe('Sidebar', () => {
@@ -38,6 +39,15 @@ describe('Sidebar', () => {
 
     // ASSERT
     expect(getByText(HEADER_1)).toBeTruthy();
+  });
+  it('should render text Button', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      <SidebarWithButton buttonLabel="Button"/>
+    );
+
+    // ASSERT
+    expect(getByText("Button")).toBeTruthy();
   });
 
 
@@ -85,4 +95,5 @@ describe('Sidebar', () => {
     expect(container.querySelectorAll('.ant-collapse-header')[1].textContent).toEqual(HEADER_2);
     expect(container.querySelectorAll('.ant-collapse-header')[2].textContent).toEqual(HEADER_1);
   });
+
 });
