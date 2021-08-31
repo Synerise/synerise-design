@@ -2,14 +2,18 @@ import { RefObject, useEffect, useRef } from 'react';
 
 const MOUSEDOWN = 'mousedown';
 const TOUCHSTART = 'touchstart';
-type HandledEvents = [typeof MOUSEDOWN, typeof TOUCHSTART];
-type HandledEventsType = HandledEvents[number];
+const CLICK = 'click';
+const CONTEXTMENU = 'contextmenu';
+
+type HandledEvents = [typeof MOUSEDOWN, typeof TOUCHSTART, typeof CLICK, typeof CONTEXTMENU];
+export type HandledEventsType = HandledEvents[number];
 type PossibleEvent = { [Type in HandledEventsType]: HTMLElementEventMap[Type] }[HandledEventsType];
 type Handler = (event: PossibleEvent) => void;
-const events: HandledEvents = [MOUSEDOWN, TOUCHSTART];
+const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
-const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: Handler | null): void => {
+const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: Handler | null, customEventsTypes?: HandledEventsType[]): void => {
   const handlerRef = useRef(handler);
+  const events = customEventsTypes || defaultEvents;
 
   useEffect(() => {
     handlerRef.current = handler;
@@ -32,7 +36,7 @@ const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: Handler | null)
         document.removeEventListener(event, listener);
       });
     };
-  }, [handler, ref]);
+  }, [handler, ref, events]);
 };
 
 export default useOnClickOutside;
