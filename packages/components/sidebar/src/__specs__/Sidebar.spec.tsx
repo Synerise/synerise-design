@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Sidebar from "../index";
+import SidebarWithButton from '../../dist/SidebarWithButton/SidebarWithButton';
 import {fireEvent} from "@testing-library/dom";
 
 describe('Sidebar', () => {
@@ -42,7 +43,7 @@ describe('Sidebar', () => {
   it('should render text Button', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <SidebarWithButton buttonLabel="Button"></SidebarWithButton>
+      <SidebarWithButton buttonLabel="Button"/>
     );
 
     // ASSERT
