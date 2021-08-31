@@ -234,8 +234,8 @@ const stories = {
       disabled: boolean('Disabled', false),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
-      onCancel:() => action('onCancel Clicked'),
-      onConfirm:() => action('onConfirm Clicked'),
+      onCancel: action('onCancel Clicked'),
+      onConfirm: action('onConfirm Clicked'),
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
@@ -274,8 +274,8 @@ const stories = {
       okText: text('okText', 'Button'),
       onVisibleChange: action('onVisibilityChange'),
       trigger: select('Trigger', triggers, 'hover'),
-      onCancel:() => action('onCancel Clicked'),
-      onConfirm:() => action('onConfirm Clicked'),
+      onCancel: action('onCancel Clicked'),
+      onConfirm: action('onConfirm Clicked'),
     });
     const placement = select('Placement', placements, 'topLeft');
     const hasButtons = boolean('Set Buttons', false);
