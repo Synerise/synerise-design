@@ -43,6 +43,10 @@ import Popconfirm from '@synerise/ds-popconfirm';
 | onConfirm           | Callback of confirmation               | (e: Event) => void       | -                                    |
 | icon                | Customize icon of confirmation         | React.ReactNode          | `<Icon type="exclamation-circle" />` |
 | disabled            | Whether component is disabled          | boolean                  | `false`                              |
+| withLink            | Text with highlited text               | React.ReactNode          | -                                    |
+| closeIcon           | Icon to close popconfirm               | React.ReactNode          | -                                    |
+| buttons             | prop to show buttons                   | React.ReactNode          | -                                    |
+| titlePadding        | prop to set padding                    | boolean                  | `false`                              |
 
 # Popcofirm.ConfirmMessage
 

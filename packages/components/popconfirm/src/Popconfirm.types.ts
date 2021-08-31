@@ -9,6 +9,10 @@ export type PopconfirmType = React.FC<
     imagesAutoplay?: boolean;
     imagesAutoplaySpeed?: number;
     onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    withLink?: React.ReactNode;
+    closeIcon?: React.ReactNode;
+    titlePadding?: boolean;
+    buttons?: React.ReactNode;
   }
 > & {
   ConfirmMessage: React.FC<ConfirmMessageProps>;

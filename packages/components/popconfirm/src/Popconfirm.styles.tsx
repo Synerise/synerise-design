@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
+import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
+import Button from '@synerise/ds-button';
 
 export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
 
@@ -9,6 +11,7 @@ export const PopconfirmContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  margin: 0px;
 
   .ant-carousel {
     position: relative;
@@ -60,24 +63,61 @@ export const PopconfirmTitle = styled.div`
   color: ${(props): string => props.theme.palette['grey-800']};
   font-weight: 500;
   padding-top: 2px;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
-export const PopconfirmDescription = styled.div`
+export const PopconfirmButton = styled(Button)<ButtonProps>`
+  && {
+    height: 32px;
+  }
+`;
+export const PopconfirmButtonWrapper = styled.div`
+  display: flex;
+  padding-top: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  ${PopconfirmButton}:not(:first-of-type) {
+    margin-left: 8px;
+  }
+`;
+export const ButtonWrapper = styled.div`
+  margin-left: 8px;
+`;
+
+export const PopconfirmDescription = styled.div<{ titlePadding?: boolean }>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: 400;
-  margin-top: 16px;
+  margin-top: ${(props): string => (props.titlePadding ? '6px' : 'none')};
   color: ${(props): string => props.theme.palette['grey-800']};
 `;
 
 export const PopconfirmIcon = styled.div`
   margin-right: 8px;
 `;
+export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
+  margin-left: ${(props): string => (props.titlePadding ? '8px' : '6px')};
+  svg {
+    fill: ${(props): string => props.theme.palette['grey-600']};
+    cursor: pointer;
+  }
+`;
+export const PopconfirmWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const PopconfirmContentWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-start;
+`;
+export const PopconfirmHeaderWrapper = styled.div<{ titlePadding?: boolean }>`
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
 `;
 
@@ -96,4 +136,15 @@ export const PopconfirmImage = styled.img`
   & > * {
     max-width: 100%;
   }
+`;
+export const LinkWrapper = styled.span`
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: ${(props): string => props.theme.palette['grey-700']};
+  text-decoration: underline;
+  cursor: pointer;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
