@@ -42,7 +42,7 @@ describe('Sidebar', () => {
   it('should render text Button', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <SidebarWithButton textButton="Button"></SidebarWithButton>
+      <SidebarWithButton buttonLabel="Button"></SidebarWithButton>
     );
 
     // ASSERT
