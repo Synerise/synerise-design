@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.16.10...@synerise/ds-utils@0.17.0) (2021-08-31)
+
+
+### Features
+
+* **utils:** enable custom event listener from list ([94091f1](https://github.com/synerise/synerise-design/commit/94091f174274f02f1ccb8ccf8ecaebd0ab7a4cb5))
+
+
+
+
+
 ## [0.16.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.16.9...@synerise/ds-utils@0.16.10) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-utils
