@@ -38,7 +38,7 @@ describe('Popconfirm', () => {
     // ARRANGE
     const onCancel = jest.fn();
     const { getAllByText } = renderWithProvider(
-      <Popconfirm title={TITLE} onCancel={onCancel}>
+      <Popconfirm title={TITLE} cancelText={CANCEL} onCancel={onCancel}>
         <button>{TEXT}</button>
       </Popconfirm>
     );

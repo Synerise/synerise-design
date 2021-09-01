@@ -22,7 +22,7 @@ const Popconfirm: PopconfirmType = ({
   onConfirm,
   okButtonProps,
   okType = 'primary',
-  buttons,
+  hideButtons,
   cancelText,
   okText,
   ...antdProps
@@ -61,7 +61,7 @@ const Popconfirm: PopconfirmType = ({
               </S.PopconfirmHeaderWrapper>
               <S.PopconfirmTextWrapper>
                 {description && (
-                  <S.PopconfirmDescription titlePadding={titlePadding}>{description}</S.PopconfirmDescription>
+                  <S.PopconfirmDescription titlePadding={!titlePadding}>{description}</S.PopconfirmDescription>
                 )}
                 {withLink && <S.LinkWrapper>{withLink}</S.LinkWrapper>}
               </S.PopconfirmTextWrapper>
@@ -73,7 +73,7 @@ const Popconfirm: PopconfirmType = ({
             )}
           </S.PopconfirmWrapper>
           {renderImageCarousel}
-          {buttons && (
+          {!hideButtons && (
             <S.PopconfirmButtonWrapper>
               <S.PopconfirmButton
                 type="secondary"
