@@ -80,6 +80,8 @@ const stories = {
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon  component={<CloseM/>}/>}
+          hideButtons
+          titlePadding={true}
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -112,8 +114,7 @@ const stories = {
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon component={<CloseM/>}/>}
-          buttons={false}
-          titlePadding={true}
+          hideButtons
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -145,8 +146,7 @@ const stories = {
         <Popconfirm
           {...getDefaultIconAlertProps()}
           closeIcon={<Icon component={<CloseM/>}/>}
-          buttons={false}
-          titlePadding={true}
+          hideButtons
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -180,8 +180,7 @@ const stories = {
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon component={<CloseM/>}/>}
           withLink={text('withLink', 'This is a link')}
-          buttons={false}
-          titlePadding={true}
+          hideButtons
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -215,8 +214,7 @@ const stories = {
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon component={<CloseM/>}/>}
-          buttons={false}
-          titlePadding={true}
+          hideButtons
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -255,8 +253,6 @@ const stories = {
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
           closeIcon={<Icon component={<CloseM/>}/>}
-          buttons={true}
-          titlePadding={true}
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
@@ -278,7 +274,7 @@ const stories = {
       onConfirm: action('onConfirm Clicked'),
     });
     const placement = select('Placement', placements, 'topLeft');
-    const hasButtons = boolean('Set Buttons', false);
+    const hasButtons = boolean('Hide Buttons', true);
     const okType = select('Set type Button', typeOptions, 'ghost');
     const hasDescription = boolean('Set Description', false);
     const hasIcon = boolean('Set Icon', false);
@@ -301,9 +297,8 @@ const stories = {
           description={hasDescription && ('I will never close automatically. I will be close automatically. I will never close automatically.')}
           closeIcon={<Icon component={<CloseM/>}/>}
           withLink={hasLink && (text('withLink', 'This is a link'))}
-          buttons={hasButtons}
+          hideButtons={hasButtons}
           okType={okType}
-          titlePadding={true}
           placement={placement}
           align={{ offset: getPopconfirmAlign(placement)}}
         >
