@@ -7,13 +7,13 @@ const COLORS: Record<IconAlertType, string> = {
   alert: 'red-600',
   info: 'grey-600',
 };
-const COLORSTEXT: Record<IconAlertType, string> = {
+const COLORS_TEXT: Record<IconAlertType, string> = {
   success: 'green-700',
   warning: 'yellow-700',
   alert: 'red-700',
   info: 'grey-700',
 };
-const COLORSHOVER: Record<IconAlertType, string> = {
+const COLORS_HOVER: Record<IconAlertType, string> = {
   success: 'green-700',
   warning: 'yellow-700',
   alert: 'red-700',
@@ -39,9 +39,9 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?:
     cursor: ${(props): string => (props.hoverButton ? 'pointer' : 'auto')};
     svg {
       color: ${(props): string =>
-        props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
+        props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
       fill: ${(props): string =>
-        props.hoverButton ? props.theme.palette[COLORSHOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
+        props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
     }
   }
   &:active {
@@ -61,7 +61,7 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?:
       opacity: 0.4;
     `};
   ${Message} {
-    color: ${(props): string => props.theme.palette[COLORSTEXT[props.type]]};
+    color: ${(props): string => props.theme.palette[COLORS_TEXT[props.type]]};
   }
 `;
 export const EmphasisWrapper = styled.span`
