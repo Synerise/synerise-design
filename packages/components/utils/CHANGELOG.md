@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.17.0...@synerise/ds-utils@0.17.1) (2021-09-01)
+
+
+### Bug Fixes
+
+* **utils:** export type separatly, to be removed during build from js ([d110a3b](https://github.com/synerise/synerise-design/commit/d110a3b0a0009edb8cebf3d4dcb5ef287482fada))
+
+
+
+
+
 # [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.16.10...@synerise/ds-utils@0.17.0) (2021-08-31)
 
 
