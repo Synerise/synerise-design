@@ -45,7 +45,7 @@ import Popconfirm from '@synerise/ds-popconfirm';
 | disabled            | Whether component is disabled          | boolean                  | `false`                              |
 | withLink            | Text with highlited text               | React.ReactNode          | -                                    |
 | closeIcon           | Icon to close popconfirm               | React.ReactNode          | -                                    |
-| buttons             | prop to show buttons                   | React.ReactNode          | -                                    |
+| hideButtons         | prop to hide buttons                   | React.ReactNode          | -                                    |
 | titlePadding        | prop to set padding                    | boolean                  | `false`                              |
 
 # Popcofirm.ConfirmMessage
