@@ -50,6 +50,7 @@ export type ContextProps = {
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
   onClickOutsideEvents?: HandledEventsType [];
+  onClickOutside?: () => void;
 };
 
 export type ContextDropdownProps = {
@@ -65,6 +66,7 @@ export type ContextDropdownProps = {
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
   onClickOutsideEvents?: HandledEventsType [];
+  onClickOutside?: () => void;
 };
 
 export type ContextSelectorDropdownItemProps = {

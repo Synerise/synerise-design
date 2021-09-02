@@ -96,6 +96,9 @@ import ContextSelector from '@synerise/ds-context-selector'
 | customTriggerComponent | Add custom trigger                                         | React.ReactNode                                        | undefined |
 | trigger                | Add custom trigger to modal                                | 'click' \ 'hover' \ 'contextMenu'                      | 'click    |
 | menuItemHeight         | Set component Menu.Item height                             | 'large' \ 'default'                                    | -         |
+| dropdownWrapperStyles  | Apply custom styles to dropdown wrapper                    | CSSProperties \ undefined                              | -         |
+| onClickOutsideEvents   | Overwrite default events for document listener             | HandledEventsType[] \ undefined                        | -         |
+| onClickOutside         | Callback called when user click outside dropdown           | () => void \ undefined                                 | -         |
 
 ### ContextGroup
 
