@@ -12,12 +12,13 @@ export enum CodeSnippetType {
 }
 export interface CodeSnippetProps {
   type?: CodeSnippetType;
-  colorSynatax?: boolean;
+  colorSyntax?: boolean;
   className?: string;
   children?: string;
   languages?: LanguageHighlight[];
   style?: React.CSSProperties;
-  tooltipHint?: string;
+  tooltipTitleHover?: string;
+  tooltipTitleClick?: string;
   labelBeforeExpanded?: string;
   labelAfterExpanded?: string;
   fontSize?: FontSize;

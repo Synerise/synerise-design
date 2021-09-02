@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as he from 'he';
 import { text, select, boolean, number} from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
 import CodeSnippet from '@synerise/ds-code-snippet';
+import { CodeSnippetType } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
 
 const tempJson2 = `{SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {
   SR.event.track("Add to favourites", {
@@ -12,19 +12,18 @@ const tempJson2 = `{SR.event.track("Add to favourites", {SR.event.track("Add to 
 const getPropsMulti = () => ({
   children:text("Content",tempJson2),
   rows:number('Number of lines to be shown before expanded',6),
-  tooltipHint:text("Tooltip hint",'Copy'),
-  colorSynatax:boolean('Color syntax',false),
+  tooltipTitleHover:text("Tooltip hint on hover",'Copy'),
+  tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
+  colorSyntax:boolean('Color syntax',false),
   labelBeforeExpanded:text('Label before expand', 'Show more'),
   labelAfterExpanded:text('Label after expand', 'Show less'),
-  wrap:boolean('Wrap text',false),
-  onButtonClick: action('onClick Button CLICK'),
-  onIconClick: action('onClick ICON CLICK'),
+  wrap:boolean('Wrap text',false)
 });
 const getPropsSingle = () => ({
   children:text("Content","Some code text style"),
-  tooltipHint:text("Tooltip hint",'Copy'),
+  tooltipTitleHover:text("Tooltip hint on hover",'Copy'),
+  tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
   fontSize: select('Set size', fontSizeOptions, fontSizeOptions.small),
-  onIconClick: action('onClick ICON CLICK')
 });
 const getPropsInline = () => ({
   children:text("Content","Some code text style")
@@ -44,7 +43,7 @@ const stories = {
       } as object;
       return (
         <div>
-          <CodeSnippet type="inline" {...props}/>
+          <CodeSnippet {...props}/>
         </div>
       );
     },
@@ -55,7 +54,7 @@ const stories = {
       } as object;
       return (
         <div>
-        <CodeSnippet type="single-line" {...props}/>
+        <CodeSnippet type={CodeSnippetType.SINGLE_LINE} {...props}/>
       </div>
     );
   },
@@ -68,7 +67,7 @@ const stories = {
     } as object;
     return (
       <div style={{maxWidth:'600px'}}>
-        <CodeSnippet type="multi-line" {...props} />
+        <CodeSnippet type={CodeSnippetType.MULTI_LINE} {...props} />
       </div>
     );
   },
