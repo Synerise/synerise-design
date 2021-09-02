@@ -333,7 +333,7 @@ export const AntdButton = styled(
       ${(props): FlattenSimpleInterpolation | false =>
         props.activated &&
         css`
-          &.ant-btn {
+          &&&.ant-btn {
             background-color: ${props.theme.palette[`blue-050`]};
             span {
               color: ${props.theme.palette['blue-600']};
