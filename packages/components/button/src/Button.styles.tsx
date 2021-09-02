@@ -334,6 +334,13 @@ export const AntdButton = styled(
         props.activated &&
         css`
           &.ant-btn {
+            background-color: ${props.theme.palette[`blue-050`]};
+            span {
+              color: ${props.theme.palette['blue-600']};
+            }
+            svg {
+              fill: ${props.theme.palette['blue-600']};
+            }
             &&&:focus {
               background-color: ${props.theme.palette[`blue-050`]};
               span {
