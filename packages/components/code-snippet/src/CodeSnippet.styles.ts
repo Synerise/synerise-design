@@ -5,6 +5,7 @@ import { FontSize, CodeSnippetType } from './CodeSnippet.types';
 
 export const FONT_SIZE_DEFAULT = FontSize.SMALL;
 export const LINE_HEIGHT_DEFAULT = 17;
+export const ICON_CLASSNAME = 'copy';
 
 export const ContentIconWrapper = styled.div<{
   type?: string;
@@ -91,7 +92,7 @@ export const CodeSnippetWrapper = styled.div<{
     cursor: pointer;
     background-color: ${(props): string => props.theme.palette['grey-100']};
     svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
+      fill: ${(props): string => props.theme.palette['grey-400']};
     }
   }
 
@@ -126,8 +127,9 @@ export const InlineCodeWrapper = styled.code`
     display: inline-block;
     padding: 0 4px;
     margin-right: 4px;
+    border-radius: 3px;
     color: #e31a5d;
-    background-color: rgba(245, 41, 34, 0.2);
+    background-color: ${(props): string => props.theme.palette[`pink-100`]};
   }
 `;
 export const BlockCodeWrapper = styled.code<{
@@ -140,7 +142,7 @@ export const BlockCodeWrapper = styled.code<{
     font-family: Monaco;
     font-size: ${(props): string => `${props.fontSize || FONT_SIZE_DEFAULT}px`};
     line-height: ${LINE_HEIGHT_DEFAULT}px;
-    color: ${(props): string => props.theme.palette[`grey-700`]};
+    color: ${(props): string => props.theme.palette[`grey-600`]};
     ${(props): false | string =>
       props.type === CodeSnippetType.SINGLE_LINE &&
       `
