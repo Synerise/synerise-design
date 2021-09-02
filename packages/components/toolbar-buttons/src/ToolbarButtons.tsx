@@ -18,7 +18,7 @@ const initialButtonKeys = {
 };
 const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
   const [active, setActive] = React.useState([initialButtonKeys]);
-  const updateActiveKeys = (value: string, key: string): void => {
+  const updateActiveKeys = (value: boolean, key: string): void => {
     const newActiveKeys = { ...active, [key]: value };
     setActive(newActiveKeys);
   };
