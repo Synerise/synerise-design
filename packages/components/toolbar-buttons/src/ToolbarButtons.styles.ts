@@ -3,11 +3,13 @@ import ButtonGroup from '@synerise/ds-button-group';
 
 export const Wrapper = styled.div`
   margin-right: 12px;
+  border-radius: 4px;
   background-color: ${(props): string => props.theme.palette.white};
   color: ${(props): string => props.theme.palette['grey-600']};
 `;
 export const WrapperButton = styled.div`
   background-color: ${(props): string => props.theme.palette.white};
+  border-radius: 4px;
 `;
 export const ToolbarWrapper = styled.div`
   display: flex;
@@ -22,7 +24,7 @@ export const ToolbarButtons = styled(ButtonGroup)`
   }
 `;
 export const ViewPercent = styled.div`
-  padding: 8px;
+  padding: 7px;
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-600']};
 `;
