@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.5.1...@synerise/ds-context-selector@0.6.0) (2021-09-03)
+
+
+### Features
+
+* **context-selector:** add onClickOutSide callback ([40edab8](https://github.com/Synerise/synerise-design/commit/40edab8c6b09b2229a33207531b97073331a8d54))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.5.0...@synerise/ds-context-selector@0.5.1) (2021-09-01)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

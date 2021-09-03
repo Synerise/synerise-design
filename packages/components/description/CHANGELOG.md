@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.64](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.2.63...@synerise/ds-description@0.2.64) (2021-09-03)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
 ## [0.2.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.2.62...@synerise/ds-description@0.2.63) (2021-09-01)
 
 **Note:** Version bump only for package @synerise/ds-description
