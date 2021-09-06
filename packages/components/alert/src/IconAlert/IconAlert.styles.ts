@@ -27,7 +27,6 @@ export const Message = styled.span`
   font-weight: 400;
   color: inherit;
   margin-left: 4px;
-  margin-top: 1px;
 `;
 
 export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?: boolean; disabled?: boolean }>`
