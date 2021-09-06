@@ -26,23 +26,13 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
     <S.ToolbarWrapper>
       <S.Wrapper>
         <S.ToolbarButtons>
-          <Tooltip title="back">
-            <Button
-              onClick={(): void => updateActiveKeys(!active['Button 1'], 'Button 1')}
-              activated={active['Button 1']}
-              type="ghost"
-              mode="single-icon"
-            >
+          <Tooltip title="Back">
+            <Button active type="ghost" mode="single-icon">
               <Icon component={<StepBackM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title="forward">
-            <Button
-              onClick={(): void => updateActiveKeys(!active['Button 2'], 'Button 2')}
-              activated={active['Button 2']}
-              type="ghost"
-              mode="single-icon"
-            >
+          <Tooltip title="Forward">
+            <Button active type="ghost" mode="single-icon">
               <Icon component={<StepForwardM />} color="#ffffff" />
             </Button>
           </Tooltip>
@@ -50,7 +40,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
       </S.Wrapper>
       <S.Wrapper>
         <S.ToolbarButtons>
-          <Tooltip title="fit to view">
+          <Tooltip title="Fit to view">
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 3'], 'Button 3')}
               activated={active['Button 3']}
@@ -60,7 +50,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
               <Icon component={<FullScreenM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title={active['Button 4'] ? 'hide map' : 'show map'}>
+          <Tooltip title={active['Button 4'] ? 'Hide map' : 'Show map'}>
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 4'], 'Button 4')}
               activated={active['Button 4']}
@@ -70,7 +60,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
               <Icon component={<LocationM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title={active['Button 5'] ? 'hide notes' : 'show notes'}>
+          <Tooltip title={active['Button 5'] ? 'Hide notes' : 'Show notes'}>
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 5'], 'Button 5')}
               activated={active['Button 5']}
@@ -84,7 +74,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
       </S.Wrapper>
       <S.Wrapper>
         <S.ToolbarButtons>
-          <Tooltip title="fit to view">
+          <Tooltip title="Fit to view">
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 6'], 'Button 6')}
               activated={active['Button 6']}
@@ -95,7 +85,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
             </Button>
           </Tooltip>
           <S.ViewPercent>{textPercent}</S.ViewPercent>
-          <Tooltip title="hide notes">
+          <Tooltip title="Hide notes">
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 7'], 'Button 7')}
               activated={active['Button 7']}
@@ -108,7 +98,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
         </S.ToolbarButtons>
       </S.Wrapper>
       <S.WrapperButton>
-        <Tooltip title="auto align">
+        <Tooltip title="Auto align">
           <Button
             onClick={(): void => updateActiveKeys(!active['Button 8'], 'Button 8')}
             activated={active['Button 8']}
