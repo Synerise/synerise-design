@@ -27,12 +27,12 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
       <S.Wrapper>
         <S.ToolbarButtons>
           <Tooltip title="Back">
-            <Button active type="ghost" mode="single-icon">
+            <Button type="ghost" mode="single-icon">
               <Icon component={<StepBackM />} color="#ffffff" />
             </Button>
           </Tooltip>
           <Tooltip title="Forward">
-            <Button active type="ghost" mode="single-icon">
+            <Button type="ghost" mode="single-icon">
               <Icon component={<StepForwardM />} color="#ffffff" />
             </Button>
           </Tooltip>
