@@ -26,12 +26,12 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
     <S.ToolbarWrapper>
       <S.Wrapper>
         <S.ToolbarButtons>
-          <Tooltip title="Back">
+          <Tooltip title="Previous">
             <Button type="ghost" mode="single-icon">
               <Icon component={<StepBackM />} color="#ffffff" />
             </Button>
           </Tooltip>
-          <Tooltip title="Forward">
+          <Tooltip title="Next">
             <Button type="ghost" mode="single-icon">
               <Icon component={<StepForwardM />} color="#ffffff" />
             </Button>
@@ -85,7 +85,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ textPercent }) => {
             </Button>
           </Tooltip>
           <S.ViewPercent>{textPercent}</S.ViewPercent>
-          <Tooltip title="Hide notes">
+          <Tooltip title={active['Button 7'] ? 'Show notes' : 'Hide notes'}>
             <Button
               onClick={(): void => updateActiveKeys(!active['Button 7'], 'Button 7')}
               activated={active['Button 7']}
