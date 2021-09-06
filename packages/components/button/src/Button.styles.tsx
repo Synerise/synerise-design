@@ -332,24 +332,6 @@ export const AntdButton = styled(
         }
       `}
       ${(props): FlattenSimpleInterpolation | false =>
-        props.active &&
-        css`
-          &&&.ant-btn {
-            &&&:focus {
-              background-color: ${props.theme.palette[`blue-050`]};
-              span {
-                color: ${props.theme.palette['blue-600']};
-              }
-              svg {
-                fill: ${props.theme.palette['blue-600']};
-              }
-            }
-          }
-          &.ant-btn .btn-focus {
-            box-shadow: none;
-          }
-        `}
-      ${(props): FlattenSimpleInterpolation | false =>
         props.activated &&
         css`
           &&&.ant-btn {
