@@ -33,14 +33,14 @@ List UI Component
 
 ### List.TextItem
 
-| Property | Description                                               | Type               | Default  |
-| -------- | --------------------------------------------------------- | ------------------ | -------- |
-| disabled | If element is disabled                                    | boolean            | -        |
-| icon     | Item will be prefixed with this element                   | React.ReactNode    | -        |
-| danger   | If element should be marked as danger action (ie. delete) | boolean            | -        |
-| actions  | Actions for item, will be rendered at the end of the row  | React.ReactNode    | -        |
-| onSelect | Callback for selecting item                               | (item) => void     | -        |
-| size     | Size of item in list                                      | `small` / `medium` | `medium` |
+| Property | Description                                               | Type                               | Default  |
+| -------- | --------------------------------------------------------- | ---------------------------------- | -------- |
+| disabled | If element is disabled                                    | boolean                            | -        |
+| icon     | Item will be prefixed with this element                   | React.ReactNode                    | -        |
+| danger   | If element should be marked as danger action (ie. delete) | boolean                            | -        |
+| actions  | Actions for item, will be rendered at the end of the row  | React.ReactNode                    | -        |
+| onSelect | Callback for selecting item                               | (e?: React.MouseEvent) => void     | -        |
+| size     | Size of item in list                                      | `small` / `medium`                 | `medium` |
 
 ### List.Divider
 
