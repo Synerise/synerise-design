@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CSSProperties } from 'react';
+import { HandledEventsType } from '@synerise/ds-utils';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -48,6 +49,8 @@ export type ContextProps = {
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
+  onClickOutsideEvents?: HandledEventsType [];
+  onClickOutside?: () => void;
 };
 
 export type ContextDropdownProps = {
@@ -62,6 +65,8 @@ export type ContextDropdownProps = {
   loading?: boolean;
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
+  onClickOutsideEvents?: HandledEventsType [];
+  onClickOutside?: () => void;
 };
 
 export type ContextSelectorDropdownItemProps = {

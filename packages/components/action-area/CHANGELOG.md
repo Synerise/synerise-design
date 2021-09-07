@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.1.50...@synerise/ds-action-area@0.1.51) (2021-09-03)
+
+**Note:** Version bump only for package @synerise/ds-action-area
+
+
+
+
+
+## [0.1.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.1.49...@synerise/ds-action-area@0.1.50) (2021-09-01)
+
+**Note:** Version bump only for package @synerise/ds-action-area
+
+
+
+
+
+## [0.1.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.1.48...@synerise/ds-action-area@0.1.49) (2021-08-31)
+
+**Note:** Version bump only for package @synerise/ds-action-area
+
+
+
+
+
 ## [0.1.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.1.47...@synerise/ds-action-area@0.1.48) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-action-area
