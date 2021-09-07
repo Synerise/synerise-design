@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.13.0...docs@0.13.1) (2021-09-07)
+
+
+### Bug Fixes
+
+* **list:** event type handling ([674c223](https://gitlab.synerise.com/Frontend/synerise-design/commit/674c2238bf507c6dff1a1488f66be4d578e646da))
+* **list:** update docs ([a17c79f](https://gitlab.synerise.com/Frontend/synerise-design/commit/a17c79f044488ab9589299c4b384742eed223d84))
+
+
+
+
+
 # [0.13.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.12.1...docs@0.13.0) (2021-08-19)
 
 

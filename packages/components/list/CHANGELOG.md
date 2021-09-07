@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.56...@synerise/ds-list@0.5.57) (2021-09-07)
+
+
+### Bug Fixes
+
+* **list:** event type handling ([674c223](https://github.com/Synerise/synerise-design/commit/674c2238bf507c6dff1a1488f66be4d578e646da))
+
+
+
+
+
 ## [0.5.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.55...@synerise/ds-list@0.5.56) (2021-09-07)
 
 
