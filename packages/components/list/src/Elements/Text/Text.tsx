@@ -6,7 +6,7 @@ interface Props {
   icon?: JSX.Element;
   danger?: boolean;
   actions?: React.ReactNode;
-  onSelect?: () => void;
+  onSelect?: (e?: React.MouseEvent) => void;
   size?: S.ListItemType;
 }
 
