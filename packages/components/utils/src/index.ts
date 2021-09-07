@@ -11,3 +11,5 @@ export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export * from './getPopupContainer';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const NOOP = (): void => {};
+// separate type import to be cut off during build to js, babel <= 7.9
+export type { HandledEventsType } from './useOnClickOutside/useOnClickOutside';

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.43...@synerise/ds-subject@0.5.44) (2021-09-03)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.42...@synerise/ds-subject@0.5.43) (2021-09-01)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.5.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.41...@synerise/ds-subject@0.5.42) (2021-08-31)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
 ## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.5.40...@synerise/ds-subject@0.5.41) (2021-08-26)
 
 **Note:** Version bump only for package @synerise/ds-subject
