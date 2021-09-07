@@ -24,12 +24,13 @@
     "storybook": "yarn run build && cd packages/portal && yarn run storybook",
     "test:ci": "npx lerna run test --parallel",
     "types": "yarn npx:lerna run types --parallel",
+    "update-docs": "node ./scripts/docs/componentmd.js",
     "zeplin": "cd config/zeplin && zeplin connect"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn update-docs && lint-staged"
     }
   },
   "lint-staged": {
