@@ -125,6 +125,7 @@ export const AntdButton = styled(
     size,
     iconColor,
     error,
+    activated,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -330,56 +331,86 @@ export const AntdButton = styled(
         }
       `}
       ${(props): FlattenSimpleInterpolation | false =>
-        props.error && 
+        props.activated &&
         css`
-        &.ant-btn {
-          background-color: ${props.theme.palette[`red-050`]} ;
-          box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} ;
-          span {
-            color: ${props.theme.palette[`red-600`]} ;
-          }
-          svg {
-              fill: ${props.theme.palette[`red-600`]};
+          &&&.ant-btn {
+            background-color: ${props.theme.palette[`blue-050`]};
+            span {
+              color: ${props.theme.palette['blue-600']};
             }
-          &&&:hover:not(:disabled):not(:focus) {
-            background-color: ${props.theme.palette[`red-200`]} ;
+            svg {
+              fill: ${props.theme.palette['blue-600']};
+            }
+            &&&:focus {
+              background-color: ${props.theme.palette[`blue-050`]};
+              span {
+                color: ${props.theme.palette['blue-600']};
+              }
+              svg {
+                fill: ${props.theme.palette['blue-600']};
+              }
+              &&&:hover:not(:active) {
+                background-color: ${props.theme.palette[`blue-100`]};
+              }
+            }
+          }
+          &.ant-btn .btn-focus {
+            box-shadow: none;
+          }
+        `}
+
+      ${(props): FlattenSimpleInterpolation | false =>
+        props.error &&
+        css`
+          &.ant-btn {
+            background-color: ${props.theme.palette[`red-050`]};
             box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
             span {
-              color: ${props.theme.palette[`red-600`]} ;
+              color: ${props.theme.palette[`red-600`]};
             }
             svg {
-              fill: ${props.theme.palette[`red-600`]} !important;
+              fill: ${props.theme.palette[`red-600`]};
             }
-          }
-          &:active {
-              background-color: ${props.theme.palette[`red-600`]} ;
+            &&&:hover:not(:disabled):not(:focus) {
+              background-color: ${props.theme.palette[`red-200`]};
+              box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
               span {
-              color: ${props.theme.palette.white} ;
+                color: ${props.theme.palette[`red-600`]};
+              }
+              svg {
+                fill: ${props.theme.palette[`red-600`]} !important;
+              }
             }
-            svg {
-              fill: ${props.theme.palette.white} ;
+            &:active {
+              background-color: ${props.theme.palette[`red-600`]};
+              span {
+                color: ${props.theme.palette.white};
+              }
+              svg {
+                fill: ${props.theme.palette.white};
+              }
             }
-            }
-          &&&:focus:not(:active) {
+            &&&:focus:not(:active) {
               border: none !important;
-              background-color: ${props.theme.palette[`red-050`]} ;
+              background-color: ${props.theme.palette[`red-050`]};
               span {
-              color: ${props.theme.palette[`red-600`]}} ;
+                color: ${props.theme.palette[`red-600`]};
+              }
             }
             svg {
-              fill: ${props.theme.palette[`red-600`]} ;
+              fill: ${props.theme.palette[`red-600`]};
             }
           }
           &&&:focus {
             &&&:active {
               border: none !important;
-              background-color: ${props.theme.palette[`red-600`]} ;
+              background-color: ${props.theme.palette[`red-600`]};
               span {
-              color: ${props.theme.palette.white} ;
-            }
-            svg {
-              fill: ${props.theme.palette.white} ;
-            }
+                color: ${props.theme.palette.white};
+              }
+              svg {
+                fill: ${props.theme.palette.white};
+              }
             }
           }
           ${RippleEffect} {
@@ -387,28 +418,29 @@ export const AntdButton = styled(
           }
         `}
           ${(props): FlattenSimpleInterpolation | false =>
-            props.error && props.type === 'secondary' &&
+            props.error &&
+            props.type === 'secondary' &&
             css`
-           &&&.ant-btn .btn-focus {
-            box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
-            &&&:hover {
-              background-color: ${props.theme.palette[`red-200`]} ;
-            }
-            &&&:active {
-              background-color: ${props.theme.palette[`red-600`]} ;
-              box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
-              span {
-              color: ${props.theme.palette.white} ;
-            }
-            svg {
-              fill: ${props.theme.palette.white} ;
-            }
-            }
-          ${RippleEffect} {
-            background-color: ${props.theme.palette[`red-700`]};
-          }
-          }
-        `}
+              &&&.ant-btn .btn-focus {
+                box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
+                &&&:hover {
+                  background-color: ${props.theme.palette[`red-200`]};
+                }
+                &&&:active {
+                  background-color: ${props.theme.palette[`red-600`]};
+                  box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+                  span {
+                    color: ${props.theme.palette.white};
+                  }
+                  svg {
+                    fill: ${props.theme.palette.white};
+                  }
+                }
+                ${RippleEffect} {
+                  background-color: ${props.theme.palette[`red-700`]};
+                }
+              }
+            `}
         
 
     ${(props): FlattenSimpleInterpolation | false =>
