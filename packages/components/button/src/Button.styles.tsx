@@ -126,7 +126,6 @@ export const AntdButton = styled(
     iconColor,
     error,
     activated,
-    active,
     ...rest
   }) => {
     // eslint-disable-next-line react/jsx-props-no-spreading
