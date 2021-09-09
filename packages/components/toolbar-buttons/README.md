@@ -26,5 +26,5 @@ import ToolbarButtons from '@synerise/ds-toolbar-buttons'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property    | Description                | Type            | Default |
+| textPercent | prop to set percent number | React.ReactNode |  -      |
