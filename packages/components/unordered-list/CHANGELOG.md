@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.1.42...@synerise/ds-unordered-list@0.1.43) (2021-09-09)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
 ## [0.1.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.1.41...@synerise/ds-unordered-list@0.1.42) (2021-09-09)
 
 **Note:** Version bump only for package @synerise/ds-unordered-list

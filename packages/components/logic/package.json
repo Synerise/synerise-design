@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-logic",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "description": "Logic UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-dropdown": "^0.16.24",
+    "@synerise/ds-dropdown": "^0.16.25",
     "@synerise/ds-menu": "^0.10.40",
     "@synerise/ds-utils": "^0.18.0"
   },
