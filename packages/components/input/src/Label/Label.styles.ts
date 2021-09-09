@@ -11,6 +11,7 @@ export const Label = styled.label`
   white-space: nowrap;
   span {
     display: inline-block;
+    font-size: 13px;
   }
   .ds-icon > svg {
     margin-top: -1px;
