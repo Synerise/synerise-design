@@ -30,7 +30,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn update-docs && lint-staged"
+      "pre-commit": "yarn run update-docs && git add *.md && lint-staged"
     }
   },
   "lint-staged": {
