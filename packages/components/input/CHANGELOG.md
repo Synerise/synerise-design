@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.39...@synerise/ds-input@0.17.40) (2021-09-09)
+
+
+### Bug Fixes
+
+* **input:** removed unused import ([7f587d6](https://github.com/synerise/synerise-design/commit/7f587d670b4d5a4fe1e2786cb212e20c6e7db713))
+* **input:** set font size in the label node ([4a9ee67](https://github.com/synerise/synerise-design/commit/4a9ee67e417cdb75e3ccf0085c039a2e41990807))
+* **input:** use macro in styles ([e691b86](https://github.com/synerise/synerise-design/commit/e691b86d095a30892f026730838c5bcf8c82a86c))
+
+
+
+
+
 ## [0.17.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.38...@synerise/ds-input@0.17.39) (2021-09-03)
 
 **Note:** Version bump only for package @synerise/ds-input
