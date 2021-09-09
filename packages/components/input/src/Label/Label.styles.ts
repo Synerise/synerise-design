@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
-import { small } from '@synerise/ds-typography/dist/style/macro-utils';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Label = styled.label`
