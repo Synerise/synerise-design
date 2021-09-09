@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
+import { small } from '@synerise/ds-typography/dist/style/macro-utils';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Label = styled.label`
@@ -11,7 +12,8 @@ export const Label = styled.label`
   white-space: nowrap;
   span {
     display: inline-block;
-    font-size: 13px;
+    ${macro.small};
+    ${macro.heading};
   }
   .ds-icon > svg {
     margin-top: -1px;
