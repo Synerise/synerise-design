@@ -38,7 +38,7 @@ interface InputWrapperProps {
 
 export const InputWrapper = styled.div<InputWrapperProps>`
   position: relative;
-  .ant-input {
+  && .ant-input {
     padding-right: ${(props): string => {
       if (props.icon1 && props.icon2) return '64px;';
       if (props.icon1 || props.icon2) return '36px;';
