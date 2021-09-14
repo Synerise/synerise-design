@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.32...@synerise/ds-factors@0.7.33) (2021-09-14)
+
+
+### Bug Fixes
+
+* **factors:** fire method when dropdown is opened ([2ec39ec](https://github.com/Synerise/synerise-design/commit/2ec39ec0f075675f1fbf23af89cfde2a26f529e4))
+
+
+
+
+
 ## [0.7.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.31...@synerise/ds-factors@0.7.32) (2021-09-09)
 
 **Note:** Version bump only for package @synerise/ds-factors
