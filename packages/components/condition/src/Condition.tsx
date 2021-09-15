@@ -1,19 +1,21 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
+import { ReactSortable } from 'react-sortablejs';
+
 import InlineEdit from '@synerise/ds-inline-edit';
 import { Add2M, Add3M, CloseS, DragHandleM } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
-import { ChangeEvent } from 'react';
+import { NOOP } from '@synerise/ds-utils';
 import Subject from '@synerise/ds-subject';
 import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
 import ContextSelector from '@synerise/ds-context-selector';
 import Cruds from '@synerise/ds-cruds';
-import { ReactSortable } from 'react-sortablejs';
-import { useIntl } from 'react-intl';
 import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
+
 import { ConditionProps, ConditionStep, StepConditions } from './Condition.types';
 import * as S from './Condition.style';
 
@@ -22,8 +24,6 @@ const DEFAULT_CONDITION = '';
 const OPERATOR = 'operator';
 const PARAMETER = 'parameter';
 const FACTOR = 'factor';
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 const SORTABLE_CONFIG = {
   ghostClass: 'steps-list-ghost-element',
   className: 'steps-list',
@@ -189,7 +189,7 @@ const Condition: React.FC<ConditionProps> = ({
                         value: step.stepName,
                         name: `condition-step-name-${step.id}`,
                         placeholder: text.stepNamePlaceholder,
-                        onChange: (event: ChangeEvent<HTMLInputElement>): void =>
+                        onChange: (event: React.ChangeEvent<HTMLInputElement>): void =>
                           updateStepName && updateStepName(step.id, event.target.value),
                       }}
                     />
