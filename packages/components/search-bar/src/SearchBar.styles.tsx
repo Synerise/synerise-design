@@ -69,13 +69,13 @@ export const SearchBarWrapper = styled.div<{
   user-select: ${(props): string => (props.disabled ? 'none' : '')};
   border-radius: ${(props): string => (props.borderRadius ? '3px' : '')};
 
-  && {
+  &&& {
     svg {
       transition: all 0.3s ease-out;
       fill: ${(props): string => (props.disabled ? props.theme.palette['grey-400'] : '')};
     }
 
-    input {
+    input.ant-input {
       border-radius: 0;
       line-height: 18px;
       padding: ${(props): string => {
@@ -85,9 +85,9 @@ export const SearchBarWrapper = styled.div<{
         return '0 12px 0 12px';
       }};
       width: ${(props): string => {
-        if (props.iconLeft && !props.isEmpty) return 'calc(100% - 94px)';
-        if (props.iconLeft && props.isEmpty) return 'calc(100% - 64px)';
-        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 54px)';
+        if (props.iconLeft && !props.isEmpty) return 'calc(100% - 92px)';
+        if (props.iconLeft && props.isEmpty) return 'calc(100% - 62px)';
+        if (!props.iconLeft && !props.isEmpty) return 'calc(100% - 52px)';
         return 'calc(100% - 24px)';
       }};
     }
