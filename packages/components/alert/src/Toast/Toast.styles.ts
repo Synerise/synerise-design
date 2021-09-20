@@ -90,9 +90,9 @@ export const IconWrapper = styled.div<{
   display: flex;
   svg {
     color: ${(props): string =>
-      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon(props)};
+      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon};
     fill: ${(props): string =>
-      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon(props)};
+      props.customColorIcon ? props.theme.palette[`${props.customColorIcon}-600`] : getColorIcon};
   }
 `;
 export const IconCloseWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`

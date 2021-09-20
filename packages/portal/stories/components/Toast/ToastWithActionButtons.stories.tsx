@@ -116,6 +116,7 @@ const stories = {
   WithActionButton: () => {
     const message = text('Message', 'Campaign saved!');
     const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const description = text('Description', 'No response from server, try again later');
     return (
       <div
         style={{
@@ -129,6 +130,7 @@ const stories = {
           type={type}
           color={additionalAlertMapper[type].color}
           colorIcon={additionalAlertMapper[type].colorIcon}
+          description={description}
           expanded
           expandedContent={<FirstButtonWrapper>
             <Button type="tertiary-white" mode="label">

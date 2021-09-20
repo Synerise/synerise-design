@@ -41,4 +41,5 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   onCloseClick?: () => void;
   visible?: React.ReactNode | boolean;
+  show?: boolean;
 }
