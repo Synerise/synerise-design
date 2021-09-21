@@ -143,9 +143,6 @@ const Collector: React.FC<CollectorProps> = ({
   }, [onCancel, clear]);
 
   const onConfirmCallback = React.useCallback((): void => {
-    if (!value?.trim()) {
-      return;
-    }
     if (allowMultipleValues) {
       onConfirm && onConfirm(selectedValues);
       clear();
