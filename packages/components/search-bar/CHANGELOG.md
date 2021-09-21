@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.3.45...@synerise/ds-search-bar@0.3.46) (2021-09-15)
+
+
+### Bug Fixes
+
+* **search-bar:** fix shrinking search input ([2c14f61](https://github.com/Synerise/synerise-design/commit/2c14f6184b6c4a955c93d614bfb69c105e0b1e8b))
+
+
+
+
+
 ## [0.3.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.3.44...@synerise/ds-search-bar@0.3.45) (2021-09-09)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
