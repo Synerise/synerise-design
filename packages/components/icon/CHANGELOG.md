@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.44.11...@synerise/ds-icon@0.45.0) (2021-09-21)
+
+
+### Features
+
+* **icon:** adds InformationNoSearchResults icon ([191459d](https://github.com/Synerise/synerise-design/commit/191459db95ed6f30dd8ea81b3f1cfcccc0b73dc3))
+
+
+
+
+
 ## [0.44.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.44.10...@synerise/ds-icon@0.44.11) (2021-07-30)
 
 **Note:** Version bump only for package @synerise/ds-icon

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.66](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.65...@synerise/ds-button@0.13.66) (2021-09-21)
+
+
+### Bug Fixes
+
+* **button:** add new prop and fix styles ([d09b804](https://github.com/synerise/synerise-design/commit/d09b8040a2f7a4df6e046ea29b307beb0238661e))
+* **button:** add prop activated to button ([a59a371](https://github.com/synerise/synerise-design/commit/a59a371f3d4b52aef549bbcd6127cea5fda583d3))
+* **button:** delete prop ([2d31f61](https://github.com/synerise/synerise-design/commit/2d31f61c9efdba5aefe774fa2e53f9ba8da2f35a))
+* **button:** fix styles ([bac6b4a](https://github.com/synerise/synerise-design/commit/bac6b4a8733de192fc72d9c29d139ad277f0a2e6))
+* **button:** fix styles ([45c1ff9](https://github.com/synerise/synerise-design/commit/45c1ff917739339dbd087dd6de8bf59aa38e777b))
+* **button:** fix styles to prop activated ([fdb004c](https://github.com/synerise/synerise-design/commit/fdb004c1ad0db133bc4c06c81a10d2f339029946))
+* change background-color on hover and border color in creator button ([563331d](https://github.com/synerise/synerise-design/commit/563331d95dd51fe7fc3aa74f4b07bc8f8119b7db))
+* change border, background color in creator button and uploader ([b35c306](https://github.com/synerise/synerise-design/commit/b35c306051abf8ac0d8488551b65330a1510ca23))
+
+
+
+
+
 ## [0.13.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.64...@synerise/ds-button@0.13.65) (2021-09-03)
 
 **Note:** Version bump only for package @synerise/ds-button

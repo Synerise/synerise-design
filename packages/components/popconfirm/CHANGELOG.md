@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.38...@synerise/ds-popconfirm@0.7.0) (2021-09-21)
+
+
+### Bug Fixes
+
+* **alert:** fix props and tests ([2639ac3](https://github.com/Synerise/synerise-design/commit/2639ac3e775a8879722e1fbaf137fb0d0c07a0e9))
+* **popconfirm:** add new buttons and closeIcon ([4201b84](https://github.com/Synerise/synerise-design/commit/4201b84de4ac551afe84feeac7805238da517535))
+* **popconfirm:** fix documentation ([c6a57b6](https://github.com/Synerise/synerise-design/commit/c6a57b6f2139487c8c5064127edb2fc2cf21d287))
+* **popconfirm:** fix styles ([eba797b](https://github.com/Synerise/synerise-design/commit/eba797ba6f49810af127d204b04a5ecb44844fc6))
+* **popconfirm:** fix tests ([b3d6502](https://github.com/Synerise/synerise-design/commit/b3d650293c7ea0374252f9bd0bf5c92ca52e0e36))
+
+
+### Features
+
+* **treemenu:** STOR-673 new TreeMenu component ([c5f95fa](https://github.com/Synerise/synerise-design/commit/c5f95fa3e196b546cf7232f8dd62179f87ce6e3c))
+
+
+
+
+
 ## [0.6.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.6.37...@synerise/ds-popconfirm@0.6.38) (2021-09-03)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm
