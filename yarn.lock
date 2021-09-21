@@ -3089,6 +3089,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.14.6":
+  version "7.15.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+  integrity sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.2.0":
   version "7.15.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
@@ -5155,6 +5162,14 @@
   resolved "https://registry.yarnpkg.com/@react-dnd/shallowequal/-/shallowequal-2.0.0.tgz#a3031eb54129f2c66b2753f8404266ec7bf67f0a"
   integrity sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==
 
+"@rebass/grid@^6.1.0":
+  version "6.1.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@rebass/grid/-/grid-6.1.0.tgz#17827e13d9b461d86e3e5c6b47393b5aea857370"
+  integrity sha1-F4J+E9m0YdhuPlxrRzk7WuqFc3A=
+  dependencies:
+    "@styled-system/prop-types" "^5.0.18"
+    styled-system "^5.0.18"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -5897,6 +5912,103 @@
     resolve-from "^5.0.0"
     store2 "^2.12.0"
 
+"@styled-system/background@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/background/-/background-5.1.2.tgz#75c63d06b497ab372b70186c0bf608d62847a2ba"
+  integrity sha1-dcY9BrSXqzcrcBhsC/YI1ihHoro=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/border@^5.1.5":
+  version "5.1.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/border/-/border-5.1.5.tgz#0493d4332d2b59b74bb0d57d08c73eb555761ba6"
+  integrity sha1-BJPUMy0rWbdLsNV9CMc+tVV2G6Y=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/color@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/color/-/color-5.1.2.tgz#b8d6b4af481faabe4abca1a60f8daa4ccc2d9f43"
+  integrity sha1-uNa0r0gfqr5KvKGmD42qTMwtn0M=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/core@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/core/-/core-5.1.2.tgz#b8b7b86455d5a0514f071c4fa8e434b987f6a772"
+  integrity sha1-uLe4ZFXVoFFPBxxPqOQ0uYf2p3I=
+  dependencies:
+    object-assign "^4.1.1"
+
+"@styled-system/css@^5.1.5":
+  version "5.1.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/css/-/css-5.1.5.tgz#0460d5f3ff962fa649ea128ef58d9584f403bbbc"
+  integrity sha1-BGDV8/+WL6ZJ6hKO9Y2VhPQDu7w=
+
+"@styled-system/flexbox@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/flexbox/-/flexbox-5.1.2.tgz#077090f43f61c3852df63da24e4108087a8beecf"
+  integrity sha1-B3CQ9D9hw4Ut9j2iTkEICHqL7s8=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/grid@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/grid/-/grid-5.1.2.tgz#7165049877732900b99cd00759679fbe45c6c573"
+  integrity sha1-cWUEmHdzKQC5nNAHWWefvkXGxXM=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/layout@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/layout/-/layout-5.1.2.tgz#12d73e79887e10062f4dbbbc2067462eace42339"
+  integrity sha1-Etc+eYh+EAYvTbu8IGdGLqzkIzk=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/position@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/position/-/position-5.1.2.tgz#56961266566836f57a24d8e8e33ce0c1adb59dd3"
+  integrity sha1-VpYSZlZoNvV6JNjo4zzgwa21ndM=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/prop-types@^5.0.18":
+  version "5.1.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/prop-types/-/prop-types-5.1.5.tgz#f813b78c583f9a3a9693d5eb185c2fd3dd0448a8"
+  integrity sha1-+BO3jFg/mjqWk9XrGFwv090ESKg=
+  dependencies:
+    prop-types "^15.7.2"
+
+"@styled-system/shadow@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/shadow/-/shadow-5.1.2.tgz#beddab28d7de03cd0177a87ac4ed3b3b6d9831fd"
+  integrity sha1-vt2rKNfeA80Bd6h6xO07O22YMf0=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/space@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/space/-/space-5.1.2.tgz#38925d2fa29a41c0eb20e65b7c3efb6e8efce953"
+  integrity sha1-OJJdL6KaQcDrIOZbfD77bo786VM=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/typography@^5.1.2":
+  version "5.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/typography/-/typography-5.1.2.tgz#65fb791c67d50cd2900d234583eaacdca8c134f7"
+  integrity sha1-Zft5HGfVDNKQDSNFg+qs3KjBNPc=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+
+"@styled-system/variant@^5.1.5":
+  version "5.1.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@styled-system/variant/-/variant-5.1.5.tgz#8446d8aad06af3a4c723d717841df2dbe4ddeafd"
+  integrity sha1-hEbYqtBq86THI9cXhB3y2+Td6v0=
+  dependencies:
+    "@styled-system/core" "^5.1.2"
+    "@styled-system/css" "^5.1.5"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
@@ -6471,6 +6583,11 @@
   resolved "https://registry.yarnpkg.com/@types/flat/-/flat-5.0.0.tgz#de18742aea57ce3dd2c093c7d2ba8fd3a4135b53"
   integrity sha512-GcgAp7RXXGmA61spVEKZYpIy3/iV6GHbTW9f9kaKwHVQgnWitt6X026e+3N6j8ep1bkIWj83qPHQ3Y9Ft8FqiQ==
 
+"@types/geojson@*":
+  version "7946.0.8"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/geojson/-/geojson-7946.0.8.tgz#30744afdb385e2945e22f3b033f897f76b1f12ca"
+  integrity sha1-MHRK/bOF4pReIvOwM/iX92sfEso=
+
 "@types/glob-base@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@types/glob-base/-/glob-base-0.3.0.tgz#a581d688347e10e50dd7c17d6f2880a10354319d"
@@ -6499,6 +6616,13 @@
   integrity sha1-sWhy8qYUTHAl8pb7ljamZ+u3nNk=
   dependencies:
     "@types/unist" "*"
+
+"@types/highcharts@^5.0.44":
+  version "5.0.44"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/highcharts/-/highcharts-5.0.44.tgz#39f677e8e637555ace4c3e690e8627a61abc9563"
+  integrity sha1-OfZ36OY3VVrOTD5pDoYnphq8lWM=
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/history@*":
   version "4.7.5"
@@ -6692,6 +6816,14 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-highcharts@^16.0.3":
+  version "16.0.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-highcharts/-/react-highcharts-16.0.3.tgz#27ea80db6c8d491b831adef6bc031c977c37c052"
+  integrity sha1-J+qA22yNSRuDGt72vAMcl3w3wFI=
+  dependencies:
+    "@types/highcharts" "^5.0.44"
+    "@types/react" "*"
+
 "@types/react-highlight-words@^0.16.1":
   version "0.16.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-highlight-words/-/react-highlight-words-0.16.1.tgz#9744f9587e16cf74870b77ab419ec79c29f63068"
@@ -6764,6 +6896,14 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@types/rebass__grid@^6.0.7":
+  version "6.0.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/rebass__grid/-/rebass__grid-6.0.7.tgz#d1bc83bc83e8f8277ee5eff4752df4be1efe9130"
+  integrity sha1-0byDvIPo+Cd+5e/0dS30vh7+kTA=
+  dependencies:
+    "@types/react" "*"
+    "@types/styled-system" "*"
+
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -6783,6 +6923,13 @@
     "@types/react" "*"
     "@types/react-native" "*"
     csstype "^2.2.0"
+
+"@types/styled-system@*":
+  version "5.1.13"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/styled-system/-/styled-system-5.1.13.tgz#9ad667534d3bd75720dd7778c94c783449cb5c14"
+  integrity sha1-mtZnU00711cg3Xd4yUx4NEnLXBQ=
+  dependencies:
+    csstype "^3.0.2"
 
 "@types/tapable@*", "@types/tapable@^1.0.5":
   version "1.0.5"
@@ -10581,6 +10728,11 @@ csstype@^2.6.5:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.10.tgz#e63af50e66d7c266edb6b32909cfd0aabe03928b"
   integrity sha512-D34BqZU4cIlMCY93rZHbrq9pjTAQJ3U8S8rfBqjwHxkGPThWFjzZDQpgMJY0QViLxth6ZKYiwFBo14RdN44U/w==
 
+csstype@^3.0.2:
+  version "3.0.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/csstype/-/csstype-3.0.9.tgz#6410af31b26bd0520933d02cbc64fce9ce3fbf0b"
+  integrity sha1-ZBCvMbJr0FIJM9AsvGT86c4/vws=
+
 currently-unhandled@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/currently-unhandled/-/currently-unhandled-0.4.1.tgz#988df33feab191ef799a61369dd76c17adf957ea"
@@ -13631,6 +13783,23 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
+highcharts-custom-events@^3.0.10:
+  version "3.0.10"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highcharts-custom-events/-/highcharts-custom-events-3.0.10.tgz#6f2fcd67d062221e5dd2bfdfdccb1bba1b695372"
+  integrity sha1-by/NZ9BiIh5d0r/f3MsbuhtpU3I=
+  dependencies:
+    highcharts ">=5.0.9"
+
+highcharts@>=5.0.9, highcharts@^9.2.2:
+  version "9.2.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highcharts/-/highcharts-9.2.2.tgz#4ace4aa7c4d2b4051115d9be70bfd2038559d656"
+  integrity sha1-Ss5Kp8TStAURFdm+cL/SA4VZ1lY=
+
+highcharts@^6.0.4:
+  version "6.2.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highcharts/-/highcharts-6.2.0.tgz#2a6d04652eb43c66f462ca7e2d2808f1f2782b61"
+  integrity sha1-Km0EZS60PGb0Ysp+LSgI8fJ4K2E=
+
 highlight-words-core@^1.2.0:
   version "1.2.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
@@ -16473,6 +16642,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -16705,8 +16879,8 @@ lodash@^4.17.19:
 
 lodash@^4.17.21:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -21130,6 +21304,13 @@ react-helmet@^6.0.0-beta:
     react-fast-compare "^2.0.4"
     react-side-effect "^2.1.0"
 
+react-highcharts@^16.1.0:
+  version "16.1.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-highcharts/-/react-highcharts-16.1.0.tgz#aa2d451171197462e07fa8652a42bac43da6068a"
+  integrity sha1-qi1FEXEZdGLgf6hlKkK6xD2mBoo=
+  dependencies:
+    highcharts "^6.0.4"
+
 react-highlight-words@^0.17.0:
   version "0.17.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-highlight-words/-/react-highlight-words-0.17.0.tgz#e79a559a2de301548339d7216264d6cd0f1eed6f"
@@ -21208,6 +21389,23 @@ react-json-view@^1.13.3:
     react-base16-styling "^0.6.0"
     react-lifecycles-compat "^3.0.4"
     react-textarea-autosize "^6.1.0"
+
+react-jsx-highcharts@4.3.1:
+  version "4.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-jsx-highcharts/-/react-jsx-highcharts-4.3.1.tgz#c951f35a6dbe6929ed7ee89a7ffc970f7733cbbd"
+  integrity sha1-yVHzWm2+aSntfuiaf/yXD3czy70=
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    uuid "^8.3.2"
+
+react-jsx-highstock@^4.3.1:
+  version "4.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-jsx-highstock/-/react-jsx-highstock-4.3.1.tgz#b4f90f10bf97a78548fdad7ba591318df91d00de"
+  integrity sha1-tPkPEL+Xp4VI/a17pZExjfkdAN4=
+  dependencies:
+    "@babel/runtime" "^7.14.6"
+    lodash-es "^4.17.21"
+    react-jsx-highcharts "4.3.1"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -23708,6 +23906,25 @@ styled-is@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/styled-is/-/styled-is-1.3.0.tgz#4319a41e9c83d15667bbe7a4dea90c548892091a"
   integrity sha512-AjIoyFzESxNFmkO+5ZwfCDNj6fCtEpg7A40CFBHGYpog07KuJRCmOINpIMH70DAvs0y1RqwH96yVynJVQjfTLw==
+
+styled-system@^5.0.18:
+  version "5.1.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/styled-system/-/styled-system-5.1.5.tgz#e362d73e1dbb5641a2fd749a6eba1263dc85075e"
+  integrity sha1-42LXPh27VkGi/XSabroSY9yFB14=
+  dependencies:
+    "@styled-system/background" "^5.1.2"
+    "@styled-system/border" "^5.1.5"
+    "@styled-system/color" "^5.1.2"
+    "@styled-system/core" "^5.1.2"
+    "@styled-system/flexbox" "^5.1.2"
+    "@styled-system/grid" "^5.1.2"
+    "@styled-system/layout" "^5.1.2"
+    "@styled-system/position" "^5.1.2"
+    "@styled-system/shadow" "^5.1.2"
+    "@styled-system/space" "^5.1.2"
+    "@styled-system/typography" "^5.1.2"
+    "@styled-system/variant" "^5.1.5"
+    object-assign "^4.1.1"
 
 stylehacks@^4.0.0:
   version "4.0.3"
