@@ -73,7 +73,7 @@ const additionalAlertMapper = {
 const stories = {
   Default: () => {
     const message = text('Message', 'Campaign saved!');
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     return (
         <div
           style={{
@@ -93,7 +93,7 @@ const stories = {
   },
   WithDescription: () => {
     const message = text('Message', 'Campaign saved!');
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const description = text('Description', 'No response from server, try again later');
     return (
       <div
@@ -115,7 +115,7 @@ const stories = {
   },
   WithList: () => {
     const message = text('Message', 'Campaign saved!');
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const customColorText = select('Set custom color text', CUSTOM_COLORS, '');
     const [iconCopied, setIconCopied] = React.useState(false);
     const data = [
@@ -169,18 +169,17 @@ const stories = {
   },
   WithListAndDescription: () => {
     const message = text('Message', 'Campaign saved!');
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const description = text('Description', 'No response from server, try again later');
-    const customColorText = select('Set custom color text', CUSTOM_COLORS, '');
     const [iconCopied, setIconCopied] = React.useState(false);
     const data = [
       {
         label: (
-          <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
+          <OrderWrapper  color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
             <NumberWrapper>(505-456)</NumberWrapper>
             <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
-              <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} ><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+              <IconOrderWrapper  color={additionalAlertMapper[type].color} ><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
         ),
@@ -189,11 +188,11 @@ const stories = {
       },
       {
         label: (
-          <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
+          <OrderWrapper color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Missing email template
             <NumberWrapper>(505-456)</NumberWrapper>
             <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
-              <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color}><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
+              <IconOrderWrapper color={additionalAlertMapper[type].color}><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
         ),
@@ -225,7 +224,7 @@ const stories = {
   },
   WithGroupToast: () => {
     const message = text('Message', 'Campaign saved!');
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const [show1, setShow1] = React.useState(true);
     const [shouldRender1, setRender1] = React.useState(show1);
     const [show2, setShow2] = React.useState(true);
@@ -267,7 +266,7 @@ const stories = {
             show={show1}
             onAnimationEnd={onAnimationEnd1}
           >
-        <div style={{paddingBottom: '30px'}}>
+        <div style={{paddingBottom: '20px'}}>
         <Toast
           show={show1}
           onCloseClick={() => setShow1(show1 =>!show1)}
@@ -284,7 +283,7 @@ const stories = {
             show={show2}
             onAnimationEnd={onAnimationEnd2}
           >
-            <div style={{paddingBottom: '30px'}}>
+            <div style={{paddingBottom: '20px'}}>
             <Toast
               show={show2}
               onCloseClick={() => setShow2( !show2)}
@@ -315,12 +314,15 @@ const stories = {
     );
   },
   Playground: () => {
-    const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
+    const expanderButton = boolean('Set expander button', false);
+    const withClose = boolean('Set close button', true);
+    const typeExpandedContent = select('Set type content', typeOfContent, '');
+    const type = select('Set type', SECTION_COLOR_TYPES, 'success');
+    const props = getDefaultProps();
     const customMIcon = select('Set custom M Icon', iconsNames, iconsNames[3]);
     const customColor = select('Set custom color', CUSTOM_COLORS, '');
     const customColorIcon = select('Set custom color Icon', CUSTOM_COLORS, '');
     const customColorText = select('Set custom color text', CUSTOM_COLORS, '');
-    const props = getDefaultProps();
     const [iconCopied, setIconCopied] = React.useState(false);
     const [opened, setOpened] = React.useState(false);
     const data = [
@@ -356,15 +358,12 @@ const stories = {
         <UnorderedList data={data} indexFormatter={undefined} />
       </Wrapper>,
       button: <FirstButtonWrapper>
-        <Button type="tertiary-white" mode="label">
+        <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
           Button
         </Button>
       </FirstButtonWrapper>,
       '': '',
     };
-    const expanderButton = boolean('Set expander button', false);
-    const withClose = boolean('Set close button', true);
-    const typeExpandedContent = select('Set type content', typeOfContent, '');
     const description = text('Description', 'No response from server, try again later');
     const message = text('Message', 'Campaign saved!');
     const IconComp = iconsRaw[customMIcon];
