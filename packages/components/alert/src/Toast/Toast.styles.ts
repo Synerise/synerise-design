@@ -7,6 +7,9 @@ import { ColorIconType, ColorType, CustomColorType } from './Toast.types';
 type InsertShapeStyles = {
   colorIcon?: ColorIconType;
   color?: ColorType;
+  expandedContent?: React.ReactNode | boolean;
+  expander?: React.ReactNode | boolean;
+  withClose?: React.ReactNode | boolean;
 } & ThemeProps;
 const getColorIcon = (props: InsertShapeStyles): string => {
   if (props.colorIcon === 'white') {
@@ -42,7 +45,16 @@ const getColorBackground = (props: InsertShapeStyles): string => {
   if (props.color === 'blue') {
     return props.theme.palette['blue-050'];
   }
+  if (props.color === 'red') {
+    return props.theme.palette['red-500'];
+  }
   return props.theme.palette[`${props.color}-600`];
+};
+const getWidth = (props: InsertShapeStyles): string => {
+  if (props.expandedContent || (props.expander && props.withClose)) {
+    return '420px';
+  }
+  return '354px';
 };
 export const openingAnimation = (): Keyframes => keyframes`
 
@@ -184,6 +196,7 @@ export const OrderWrapper = styled.div<{ customColorText?: CustomColorType; colo
       background-position: bottom left;
       background-size: 5px 1px;
       background-repeat: repeat-x;
+      opacity: 1;
       color: ${(props): string =>
         props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
     }
@@ -205,12 +218,13 @@ export const Container = styled.div<{
   expander?: React.ReactNode | boolean;
   withClose?: React.ReactNode | boolean;
 }>`
-  width: ${(props): string => (props.expander && props.expandedContent && props.withClose ? '460px' : '390px')};
+  width: ${(props): string => (props.expander && props.expandedContent && props.withClose ? '460px' : getWidth(props))};
   align-items: center;
   justify-content: center;
   background-color: ${(props): string =>
     props.customColor ? props.theme.palette[`${props.customColor}-600`] : getColorBackground(props)};
   border-radius: 4px;
+  box-shadow: ${(props): string => (props.color ? `0px 16px 32px 5px ${props.theme.palette[`grey-200`]}` : 'none')};
 `;
 export const WrapperSectionMessage = styled.div`
   display: flex;
@@ -239,14 +253,4 @@ export const AlertDescription = styled.span<{ customColorText?: CustomColorType;
   margin-top: 2px;
   color: ${(props): string =>
     props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
-`;
-
-export const AlertShowMore = styled.span`
-  display: flex;
-  font-size: 13px;
-  font-weight: 500;
-  color: ${(props): string => props.theme.palette['grey-050']};
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 6px;
 `;
