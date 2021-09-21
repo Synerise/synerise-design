@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.3.16...@synerise/ds-collector@0.3.17) (2021-09-21)
+
+
+### Bug Fixes
+
+* **ds-collector:** remove trim method ([cf96fd6](https://github.com/Synerise/synerise-design/commit/cf96fd662ee6cd38e760e452837f663e28856eac))
+
+
+
+
+
 ## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.3.15...@synerise/ds-collector@0.3.16) (2021-09-15)
 
 **Note:** Version bump only for package @synerise/ds-collector
