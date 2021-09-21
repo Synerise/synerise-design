@@ -143,9 +143,11 @@ const enhancedInput = <P extends object>(
   );
 };
 
-export const TextArea = enhancedInput(Textarea, { type: 'textArea' });
-export const Input = enhancedInput(S.AntdInput, { type: 'input' });
-export const MaskedInput = enhancedInput(S.AntdMaskedInput, { type: 'input' });
+export const TextArea = Object.assign(enhancedInput(Textarea, { type: 'textArea' }), { displayName: 'TextArea' });
+export const Input = Object.assign(enhancedInput(S.AntdInput, { type: 'input' }), { displayName: 'Input' });
+export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type: 'input' }), {
+  displayName: 'MaskedInput',
+});
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
 
