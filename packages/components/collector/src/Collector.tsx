@@ -293,4 +293,5 @@ const Collector: React.FC<CollectorProps> = ({
     </S.Container>
   );
 };
+
 export default Collector;
