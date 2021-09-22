@@ -119,16 +119,13 @@ const columns = [
   },
 ];
 
-const stories = {
-  Typography: () => (
-    <div style={{ padding: 10 }}>
-      <Table title={'Typography tokens'} columns={columns} dataSource={DATA} hideTitleBar></Table>
-    </div>
-  ),
+export default {
+  title: 'Tokens/Typography',
+  component: Typography
 };
 
-export default {
-  name: 'Tokens/Typography',
-  stories,
-  Component: Typography,
-};
+export const Basic = () => (
+  <div style={{ padding: 10 }}>
+    <Table title={'Typography tokens'} columns={columns} dataSource={DATA} hideTitleBar></Table>
+  </div>
+);

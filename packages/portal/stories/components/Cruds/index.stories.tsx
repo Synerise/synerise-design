@@ -18,46 +18,43 @@ const getCrudsKnobs = () => ({
   type: select('Set type', CRUDS_OPTIONS, 'Multiple'),
 });
 
-const stories = {
-  default: () => {
-    const crudProps = getCrudsKnobs();
-    const props = {
-      ...crudProps,
-      style: {
-        margin: 4,
-      },
-    } as object;
-    return (
-<div>
-  <Cruds
-    {...props}
-    onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
-    addTooltip="Add"
-    onDelete={
-      crudProps.type === 'Delete' || crudProps.type === 'Multiple' ? action('onDelete event triggered') : null
-    }
-    deleteTooltip="Delete"
-    onDuplicate={
-      crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
-        ? action('onDuplicate event triggered')
-        : null
-    }
-    duplicateTooltip="Duplicate"
-    onEdit={crudProps.type === 'Edit' || crudProps.type === 'Multiple' ? action('onEdit event triggered') : null}
-    editTooltip="Edit"
-    onMove={crudProps.type === 'Move' ? action('onMove event triggered') : null}
-    moveTooltip="Move"
-    onRemove={crudProps.type === 'Remove' ? action('onRemove event triggered') : null}
-    removeTooltip="Remove"
-  />
-</div>
-);
-  }
-};
-
 export default {
-name: 'Components/Cruds',
+  title: 'Components/Cruds',
   config: {},
-  stories,
   Component: Cruds,
 }
+
+export const Basic = () => {
+  const crudProps = getCrudsKnobs();
+  const props = {
+    ...crudProps,
+    style: {
+      margin: 4,
+    },
+  } as object;
+  return (
+<div>
+<Cruds
+  {...props}
+  onAdd={crudProps.type === 'Add' || crudProps.type === 'Multiple' ? action('onAdd event triggered') : null}
+  addTooltip="Add"
+  onDelete={
+    crudProps.type === 'Delete' || crudProps.type === 'Multiple' ? action('onDelete event triggered') : null
+  }
+  deleteTooltip="Delete"
+  onDuplicate={
+    crudProps.type === 'Duplicate' || crudProps.type === 'Multiple'
+      ? action('onDuplicate event triggered')
+      : null
+  }
+  duplicateTooltip="Duplicate"
+  onEdit={crudProps.type === 'Edit' || crudProps.type === 'Multiple' ? action('onEdit event triggered') : null}
+  editTooltip="Edit"
+  onMove={crudProps.type === 'Move' ? action('onMove event triggered') : null}
+  moveTooltip="Move"
+  onRemove={crudProps.type === 'Remove' ? action('onRemove event triggered') : null}
+  removeTooltip="Remove"
+/>
+</div>
+);
+};

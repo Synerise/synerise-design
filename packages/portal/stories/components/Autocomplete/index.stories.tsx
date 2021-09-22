@@ -90,13 +90,11 @@ const AutocompleteWithState: React.FC = () => {
   );
 };
 
-const stories = {
-  default: () => <AutocompleteWithState />,
+export default {
+  title: 'Components/Autocomplete',
+  component: Autocomplete,
 };
 
-export default {
-name: 'Components/Autocomplete',
-  config: {},
-  stories,
-  Component: Autocomplete,
-};
+export const Basic = () => (
+  <AutocompleteWithState />
+)

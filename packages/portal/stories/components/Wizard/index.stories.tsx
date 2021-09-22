@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Wizard from '@synerise/ds-wizard';
-import { boolean, text } from '@storybook/addon-knobs';
+import {withKnobs, boolean, text } from '@storybook/addon-knobs';
 import Stepper from '@synerise/ds-stepper';
 import Radio from '@synerise/ds-radio';
 import { withState } from '@dump247/storybook-state';
@@ -75,8 +75,12 @@ const DEFAULT_STATE = {
   visible: false,
 };
 
-const stories = {
-  default: withState(DEFAULT_STATE)(({ store }) => {
+export default {
+  title: 'Components/Wizard',
+  component: Wizard,
+};
+
+export const Basic = withState(DEFAULT_STATE)(({ store }) => {
     const setActiveStep = index => store.set({ activeStep: index });
     const handlePrevStep = () => store.set({ activeStep: store.state.activeStep - 1 });
     const handleNextStep = () => store.set({ activeStep: store.state.activeStep + 1 });
@@ -131,8 +135,8 @@ const stories = {
         <Button onClick={handleShow}>Show wizard</Button>
       </>
     );
-  }),
-  onModal: withState(DEFAULT_STATE)(({ store }) => {
+  });
+export const onModal = withState(DEFAULT_STATE)(({ store }) => {
     const setActiveStep = index => store.set({ activeStep: index });
     const handlePrevStep = () => store.set({ activeStep: store.state.activeStep - 1 });
     const handleNextStep = () => store.set({ activeStep: store.state.activeStep + 1 });
@@ -190,12 +194,4 @@ const stories = {
         <Button onClick={handleShow}>Show wizard</Button>
       </>
     );
-  }),
-};
-
-export default {
-  name: 'Components/Wizard',
-  config: {},
-  stories,
-  Component: Wizard,
-};
+  });

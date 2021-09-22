@@ -1,23 +1,33 @@
 import * as React from 'react';
-
+import {action} from '@storybook/addon-actions';
+import {text} from '@storybook/addon-knobs';
 import ActionArea from '@synerise/ds-action-area';
-import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import mdx from './ActionArea.mdx';
 
-const stories = {
-  default: () => (
-    <ActionArea
+export default {
+  title: 'Components/ActionArea',
+  component: ActionArea,
+  parameters:{
+    docs:{
+      page:mdx,
+      // component: ActionArea,
+    }
+  },
+};
+
+export const Basic = () => (
+  <ActionArea
       label={text('Set label', 'Label')}
       description={text('Set description', 'Very long description')}
       actionLabel={text('Set button label', 'Define')}
       action={action('handle action')}
     />
-  ),
-};
-
-export default {
-  name: 'Components/ActionArea',
-  config: {},
-  stories,
-  Component: ActionArea,
-};
+)
+export const my = () => {
+  <ActionArea
+      label={'Label'}
+      actionLabel="marek"
+      description="very long"
+      action={()=>{}}
+      />
+}

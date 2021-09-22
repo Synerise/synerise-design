@@ -16,23 +16,8 @@ import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSeman
 import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
 import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
 import UpdateDataM from '@synerise/ds-icon/dist/icons/UpdateDataM';
+import mdx from './Alert.mdx';
 
-const decorator = storyFn => (
-  <div
-    style={{
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-    }}
-  >
-    {storyFn()}
-  </div>
-);
 const getDefaultProps = () => ({
   type: select('Select type', types, 'error'),
 });
@@ -97,8 +82,38 @@ const ICONS = {
   DollarCircleM: <DollarCircleM />,
 };
 
-const stories = {
-  default: () => {
+export default {
+  title: 'Components/Alert',
+  component: Alert,
+  parameters:{
+    docs:{
+      page:mdx,
+      inlineStories: false,
+      // iframe: {
+      //   height: '750px'
+      // }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+      }}>
+        <Story/>
+      </div>
+    )
+  ] 
+};
+
+export const Basic = () => {
     return (
       <div
         style={{
@@ -124,8 +139,9 @@ const stories = {
         />
       </div>
     );
-  },
-  inlineAlerts: () => {
+  };
+
+ export const inlineAlerts = () => {
     return (
       <div
         style={{
@@ -144,8 +160,8 @@ const stories = {
         <Alert.InlineAlert type="info" message="Inline info" />
       </div>
     );
-  },
-  allSizes: () => {
+  };
+export const allSizes = () => {
     return (
       <div
         style={{
@@ -186,8 +202,9 @@ const stories = {
         />
       </div>
     );
-  },
-  allModes: () => {
+  };
+
+  export const allModes = () => {
     return (
       <div
         style={{
@@ -244,8 +261,9 @@ const stories = {
         />
       </div>
     );
-  },
-  allTypes: () => {
+  };
+
+  export const allTypes = () => {
     return (
       <div
         style={{
@@ -390,8 +408,9 @@ const stories = {
         <br />
       </div>
     );
-  },
-  alertWithIcon: () => {
+  };
+
+export const alertWithIcon = () => {
     const props = getDefaultProps();
     const Description = text(
       'Description',
@@ -423,8 +442,8 @@ const stories = {
         />
       </div>
     );
-  },
-  AlertSemanticColor: () => {
+  };
+export const AlertSemanticColors = () => {
     const type = select('Set type', SEMANTIC_COLOR_TYPES, 'positive')
     const showMore = boolean('Set one more', true)
     return (
@@ -447,14 +466,4 @@ const stories = {
         <AlertSemanticColor type={type} color={additionalMapper[type].color} mode='shadow'/>)}
       </div>
     );
-  },
-
-};
-
-export default {
-  name: 'Components/Alert',
-  config: {},
-  decorator,
-  stories,
-  Component: Alert,
-};
+  };

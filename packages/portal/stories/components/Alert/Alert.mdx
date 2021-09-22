@@ -1,0 +1,18 @@
+import { Story, ArgsTable, Source, Canvas} from '@storybook/addon-docs/blocks';
+import {action} from '@storybook/addon-actions';
+import * as stories from './index.stories.tsx';
+import {withKnobs, text} from '@storybook/addon-knobs';
+import Alert from '@synerise/ds-alert';
+
+### ALERT start
+
+<Canvas>
+    <Story id="components-alert--basic"/>
+</Canvas>
+
+# Component API
+<ArgsTable />
+
+<Canvas>
+    <Story id="components-alert--inline-alerts"/>
+</Canvas>

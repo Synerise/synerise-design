@@ -44,3 +44,11 @@ import Sidebar from '@synerise/ds-sidebar'
 | header   | Panel header name | React.ReactNode / string | -       |
 | children | Panel content     | React.ReactNode / string | -       |
 | id       | Panel unique id   | string                   | -       |
+
+#### SidebarButton
+
+| Property     | Description                   | Type                     | Default |
+| ------------ | ----------------------------- | ------------------------ | ------- |
+| buttonLabel  | prop to show text of button   | string                   | -       |
+| title        | prop to show title            | string                   | -       |
+| dataSource   | data of all items in dropdown | string / MenuItemProps   | -       |

@@ -65,6 +65,8 @@ import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 | onClick        | Callback executed after clicking the button                                  | (event: React.MouseEvent) => void                                                                                                         | -           |
 | type           | Defines the type of the button.                                              | `primary` / `secondary`/ `tertiary`/ `tertiary-white` / `ghost-primary` / `ghost` / `ghost-white` / `custom-color` / `custom-color-ghost` | `secondary` |
 | iconColor      | Defines color of `icon` in button.                                           | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet`                                      | `grey`      |
+| error          | Defines if the button has error button styles .                              | boolean                                                                                                                                   | `false`     |
+| activated      | Defines if the button has activated button styles .                          | boolean                                                                                                                                   | `false`     |
 
 ## Button.Creator
 
