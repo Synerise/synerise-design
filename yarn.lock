@@ -3089,7 +3089,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.14.6":
+"@babel/runtime@^7.14.6", "@babel/runtime@^7.5.4":
   version "7.15.4"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
   integrity sha1-/RfRa/34eObdAtGXU6OfqKjZyEo=
@@ -3914,6 +3914,32 @@
   integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
   dependencies:
     "@hapi/hoek" "^8.3.0"
+
+"@hon2a/get-regexp-matches@^0.0.3":
+  version "0.0.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@hon2a/get-regexp-matches/-/get-regexp-matches-0.0.3.tgz#bfb9731977d0cd8e836cbbfbea6e4571ce3647f9"
+  integrity sha1-v7lzGXfQzY6DbLv76m5Fcc42R/k=
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+
+"@hon2a/less-vars-loader@^0.0.5":
+  version "0.0.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@hon2a/less-vars-loader/-/less-vars-loader-0.0.5.tgz#3ff08b6603f00335e82c9535df92b22301b13cad"
+  integrity sha1-P/CLZgPwAzXoLJU135KyIwGxPK0=
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@hon2a/less-vars-to-js" "^0.0.12"
+    loader-utils "^1.2.3"
+    lodash "^4.17.15"
+
+"@hon2a/less-vars-to-js@^0.0.12":
+  version "0.0.12"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@hon2a/less-vars-to-js/-/less-vars-to-js-0.0.12.tgz#e9780f1e71d3b21423518f1e19e73a47109e8c12"
+  integrity sha1-6XgPHnHTshQjUY8eGec6RxCejBI=
+  dependencies:
+    "@babel/runtime" "^7.5.4"
+    "@hon2a/get-regexp-matches" "^0.0.3"
+    fs-extra "^8.1.0"
 
 "@icons/material@0.4.1":
   version "0.4.1"
