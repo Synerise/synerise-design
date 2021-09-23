@@ -6328,6 +6328,13 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-button@^0.13.66":
+  version "0.13.66"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-button/-/ds-button-0.13.66.tgz#fc2fe6ecbd0b1baed49ff729616a5917cbc616c9"
+  integrity sha1-/C/m7L0LG67Un/cpYWpZF8vGFsk=
+  dependencies:
+    "@synerise/ds-icon" "^0.45.0"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
@@ -6382,6 +6389,11 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
 
+"@synerise/ds-icon@^0.45.0":
+  version "0.45.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.45.0.tgz#2ba8026dd877fc0f1c34ed8e3293db5ad25e9ef8"
+  integrity sha1-K6gCbdh3/A8cNO2OMpPbWtJenvg=
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -6414,6 +6426,16 @@
     antd-mask-input "^0.1.13"
     uuid "^7.0.2"
 
+"@synerise/ds-menu@^0.10.41":
+  version "0.10.41"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-menu/-/ds-menu-0.10.41.tgz#d6597f168dea4295fead3dcf19d37aceb9cec983"
+  integrity sha1-1ll/Fo3qQpX+rT3PGdN6zrnOyYM=
+  dependencies:
+    "@synerise/ds-icon" "^0.45.0"
+    "@synerise/ds-tooltip" "^0.10.52"
+    "@synerise/ds-typography" "^0.11.9"
+    classnames "^2.2.6"
+
 "@synerise/ds-scrollbar@^0.2.49":
   version "0.2.63"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-scrollbar/-/ds-scrollbar-0.2.63.tgz#95a6d3aa435d82bd839e708bf02218daf86cb6a4"
@@ -6430,6 +6452,14 @@
     "@synerise/ds-button" "^0.13.28"
     "@synerise/ds-input" "^0.16.21"
     "@synerise/ds-typography" "^0.10.2"
+
+"@synerise/ds-tooltip@^0.10.52":
+  version "0.10.52"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-tooltip/-/ds-tooltip-0.10.52.tgz#6a022bf4270dca9c700220668f8f6d98b0ea3580"
+  integrity sha1-agIr9CcNypxwAiBmj49tmLDqNYA=
+  dependencies:
+    "@synerise/ds-button" "^0.13.66"
+    "@synerise/ds-icon" "^0.45.0"
 
 "@synerise/ds-tooltip@^0.4.26":
   version "0.4.26"
@@ -6450,6 +6480,11 @@
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@synerise/ds-typography/-/ds-typography-0.10.3.tgz#38a3693d35b546a09e82989fa5830d3f074629fb"
   integrity sha512-eIA15WcuHXo3kJ5ZuqNkK1QMbfEBDZHUFIFultsrMvf7awhi8RBhpRg/28B4XtTKK1EvWm8ejSzfdiPU5pyr8Q==
+
+"@synerise/ds-typography@^0.11.9":
+  version "0.11.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-typography/-/ds-typography-0.11.9.tgz#835e72f88ace657213a64c7043eb781256059dfb"
+  integrity sha1-g15y+IrOZXITpkxwQ+t4ElYFnfs=
 
 "@synerise/ds-typography@^0.7.0":
   version "0.7.0"
