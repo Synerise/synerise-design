@@ -1,1 +1,1 @@
-export { default as HighchartColumn } from './HighchartColumn';
+export { default as ColumnChart } from './HighchartColumn';

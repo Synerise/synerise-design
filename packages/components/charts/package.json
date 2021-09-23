@@ -42,8 +42,8 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "@synerise/ds-loader": "^0.1.30",
-    "@synerise/ds-tooltip": "^0.10.51",
     "@synerise/ds-modal": "^0.14.10",
+    "@synerise/ds-tooltip": "^0.10.51",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {

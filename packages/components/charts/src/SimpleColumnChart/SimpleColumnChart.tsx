@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TooltipFormatterContextObject, AlignValue } from 'highcharts';
-import { HighchartColumn } from '../HighchartColumn';
+import { ColumnChart } from '../HighchartColumn';
 import * as S from './SimpleColumnChart.styles';
 import { Props, DataItem } from './SimpleColumnChart.types';
 import { colors } from '../common/ChartStyles.styles';
@@ -139,7 +139,7 @@ const SimpleColumnChart: React.FC<Props> = ({
     >
       <S.Content maxHeight={contentMaxHeight} spacing={spacing}>
         <S.ChartTitle>{title}</S.ChartTitle>
-        <HighchartColumn
+        <ColumnChart
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           chartData={getChartData}

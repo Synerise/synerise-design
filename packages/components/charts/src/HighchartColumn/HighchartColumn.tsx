@@ -78,6 +78,7 @@ const HighchartsColumn: React.FC<HighchartsColumnProps> = ({
   noPreloading,
   getHighchartsChart,
 }) => {
+  console.log('column chart');
   React.useEffect(() => {
     HighchartsCustomEvent(Highcharts);
   }, []);

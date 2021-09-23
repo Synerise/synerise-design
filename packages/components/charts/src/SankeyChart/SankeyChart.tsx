@@ -31,7 +31,9 @@ class SankeyChart extends React.PureComponent<SankeyChartProps, SankeyChartState
 
   handleAfterSankeyInit = (): void => {
     const { nodeColumns } = (this.chart as ChartType).series[0];
+
     const nodeXCoords = getNodeXCoords(nodeColumns);
+    console.log('after init', nodeColumns, nodeXCoords);
     this.setState({ nodeXCoords });
   };
 
@@ -54,6 +56,7 @@ class SankeyChart extends React.PureComponent<SankeyChartProps, SankeyChartState
     const { nodeXCoords, isModalVisible, nodeEventObject } = this.state;
     const tooltipConfig = merge(defaultChartConfig.tooltip, chartData.tooltip);
     const plotOptionsConfig = merge(defaultChartConfig.plotOptions, chartData.plotOptions);
+    console.log('sankey chert', this.props);
 
     const { isDrillDownDisabled, drillDown } = this.props;
     return (

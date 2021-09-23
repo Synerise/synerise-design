@@ -1,6 +1,4 @@
 import * as React from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import ReactHighmaps from 'react-highcharts/ReactHighmaps';
 
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -9,12 +7,6 @@ import { GeneralChartStyles } from './MatrixChart.styles';
 import type { Props } from './MatrixChart.types';
 
 class MatrixChartBase extends React.Component<Props> {
-
-  private color: React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined;
-  private series: any;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  private point: {x: number; y: number; value: number; contrastColor: string};
 
   static defaultProps = {
     maxColor: '@primary-color-lighter-1',
@@ -109,7 +101,7 @@ class MatrixChartBase extends React.Component<Props> {
         borderWidth: 0,
         borderRadius: 5,
         backgroundColor: theme.variable(tooltipBackgroundColor),
-        formatter: (): React.ReactNode => {
+        formatter(): React.ReactNode {
           return `<div>
               <span class="dot" style="background:${this.color}"></span>
               from ${this.series.yAxis.categories[this.point.y]}
@@ -128,12 +120,9 @@ class MatrixChartBase extends React.Component<Props> {
           dataLabels: {
             enabled: true,
             color: 'contrast',
-            formatter: (): string => {
-              const customContrastColor =
-                this.point.contrastColor === '#FFFFFF' ? '#FFF' : theme.variable('@primary-color-darker-1');
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
-              return `<span style="color: ${customContrastColor}">${this.point.value}</span>`;
+            formatter(): string {
+              const customContrastColor = this.point.contrastColor === '#FFFFFF' ? '#FFF' : theme.variable('@primary-color-darker-1');
+              return this.point?.value && `<span style="color: ${customContrastColor}">${this.point?.value}</span>`;
             },
             style: {
               fontSize: dataLabelSize,
@@ -151,7 +140,6 @@ class MatrixChartBase extends React.Component<Props> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const { config } = this.setUpDefaultConfig();
-
     return (
       <GeneralChartStyles>
         <ReactHighmaps config={config} />

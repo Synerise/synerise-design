@@ -95,6 +95,8 @@ const HighchartCombination: React.FC<Props> = props => {
     },
   } = props;
 
+  console.log('combination chart', props);
+
   return (
     <HighchartsProvider Highcharts={Highcharts}>
       <ChartWrapper>
@@ -107,7 +109,6 @@ const HighchartCombination: React.FC<Props> = props => {
             plotOptions={plotOptions}
             loading={loading}
             colors={colors || defaultOpt.colors}
-            yAxis={yAxis || defaultOpt.yAxis}
             time={time || defaultOpt.time}
             exporting={exporting || DEFAULT_EXPORTING_OPTIONS}
           >
