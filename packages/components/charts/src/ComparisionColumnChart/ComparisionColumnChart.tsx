@@ -20,7 +20,8 @@ const ComparisionColumnChart: React.FC<Props> = ({
           data.map((item, i) => {
             return (
               <SimpleColumnChart
-                key={i}
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${item.meta.title}-${i}`}
                 chartItemHeight={chartItemHeight}
                 chartItemWidth={chartItemWidth}
                 items={item}
@@ -45,7 +46,7 @@ const ComparisionColumnChart: React.FC<Props> = ({
               setInactiveSeries(newInactiveSeries);
             };
             return (
-              <S.LegendItem onClick={setActiveSerie} inactive={exists} key={i}>
+              <S.LegendItem onClick={setActiveSerie} inactive={exists} key={`${item.name}-${item.result}`}>
                 <S.LegendColor color={colors[i]} inactive={exists} />
                 <S.LegendText>{item.name}</S.LegendText>
               </S.LegendItem>

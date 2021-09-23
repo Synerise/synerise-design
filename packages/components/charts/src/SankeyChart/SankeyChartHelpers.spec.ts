@@ -62,7 +62,7 @@ describe('formatLabel', () => {
     expect(labelSpan.innerHTML).toBe('label');
   });
 
-  it('Return proper html string when height is more than 32px with drilldown text', () => {
+  it('Return proper html string when height is more than 32px without drilldown text', () => {
     const newNode = document.createElement('div');
     newNode.innerHTML = formatLabel(smallHeightLabelSankeyBody as any, labelContentWithoutDrilldown);
     const wrapperDiv = newNode.querySelector('div') as Element;

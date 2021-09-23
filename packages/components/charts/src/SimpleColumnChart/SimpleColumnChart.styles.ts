@@ -46,19 +46,19 @@ type ChartContent = {
 };
 
 export const Content = styled.div<{ maxHeight?: string; spacing?: string | number }>`
-  margin: ${(props) => props.spacing};
-  max-height: ${({ maxHeight }) => maxHeight || '167px'};
+  margin: ${(props): string | number | undefined => props.spacing};
+  max-height: ${({ maxHeight }): string => maxHeight || '167px'};
   position: relative;
   ${chartStyles}
 `;
 
 export const Wrapper = styled.div<ChartContent>`
-  ${(props) => props.showBorder && 'border: 1px solid #ebebed;'};
+  ${(props): undefined | false | string => props.showBorder && 'border: 1px solid #ebebed;'};
   background: #fff;
   padding-top: 20px;
-  max-width: ${(props) => props.chartItemMaxWidth};
-  min-width: ${(props) => props.chartItemMinWidth};
-  width: ${(props) => props.chartItemWidth};
+  max-width: ${(props): string | undefined => props.chartItemMaxWidth};
+  min-width: ${(props): string | undefined => props.chartItemMinWidth};
+  width: ${(props): string | undefined => props.chartItemWidth};
 `;
 
 export const ChartTitle = styled.div`

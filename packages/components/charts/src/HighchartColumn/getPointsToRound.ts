@@ -3,7 +3,7 @@ import { NullishPointData, missingIndexes } from './highchartsRoundedCorners';
 const SecondSeriesContainsSameValueIndexAsFirst = (
   secondSeries: NullishPointData[],
   firstSeriesPoint: NullishPointData
-) => secondSeries && secondSeries.filter(p => p.valueIndex === firstSeriesPoint.valueIndex).length > 0;
+): boolean => secondSeries && secondSeries.filter(p => p.valueIndex === firstSeriesPoint.valueIndex).length > 0;
 
 const pointShouldBeRounded = ({
   nullishPointsConfig,
@@ -13,7 +13,7 @@ const pointShouldBeRounded = ({
   nullishPointsConfig: { [key: number]: NullishPointData[] };
   idx: number;
   pointCandidate: NullishPointData;
-}) => {
+}): boolean => {
   return (
     !nullishPointsConfig[idx + 1] ||
     (nullishPointsConfig[idx + 1] &&
@@ -24,7 +24,7 @@ const pointShouldBeRounded = ({
 const getNextCandidate = (
   nullishPointsConfig: { [key: number]: NullishPointData[] },
   pointCandidate: NullishPointData
-) => {
+): NullishPointData => {
   let dynamicColorIndex = 2;
 
   // eslint-disable-next-line no-restricted-syntax
@@ -51,7 +51,7 @@ const getNextCandidate = (
     : { ...pointCandidate, colorIndex: pointCandidate.colorIndex + 1 };
 };
 
-export const getPointsToRound = (nullishPointsConfig: { [key: number]: NullishPointData[] }) => {
+export const getPointsToRound = (nullishPointsConfig: { [key: number]: NullishPointData[] }): NullishPointData[] => {
   const secondSeriesColorIndex = 1;
 
   return nullishPointsConfig[0].map((firstSeriesPoint: NullishPointData) => {

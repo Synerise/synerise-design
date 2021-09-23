@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const Wrapper = styled.div`
   max-width: 100%;
@@ -23,7 +23,7 @@ export const LegendItem = styled.div<{ inactive?: boolean }>`
   padding-right: 20px;
   cursor: pointer;
   user-select: none;
-  ${props =>
+  ${(props): undefined | false | FlattenSimpleInterpolation =>
     props.inactive &&
     css`
       opacity: 0.4;
@@ -31,12 +31,12 @@ export const LegendItem = styled.div<{ inactive?: boolean }>`
 `;
 
 export const LegendColor = styled.div<{ color?: string; inactive?: boolean }>`
-  background: ${props => props.color};
+  background: ${(props): string | undefined => props.color};
   border-radius: 5px;
   width: 5px;
   height: 5px;
   margin-right: 10px;
-  ${props =>
+  ${(props): undefined | false | FlattenSimpleInterpolation =>
     props.inactive &&
     css`
       background: #ddd;

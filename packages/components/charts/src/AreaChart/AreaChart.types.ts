@@ -1,4 +1,4 @@
-import { AxisLabelsFormatterCallbackFunction } from 'highcharts';
+import { AxisLabelsFormatterCallbackFunction, SeriesAreasplineOptions } from 'highcharts';
 
 export type AxisConfig = {
   formatter?: AxisLabelsFormatterCallbackFunction;
@@ -12,7 +12,7 @@ export type AxesConfig = {
 };
 
 export type Props = {
-  data: Array<any>;
+  data: SeriesAreasplineOptions['data'];
   lineColor: string;
   areaColor: string;
   axesColor: string;

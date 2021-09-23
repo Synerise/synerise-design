@@ -15,26 +15,28 @@ type Point = {
   };
 };
 
-let nullishPoints: NullishPointData[][] = [];
+const nullishPoints: NullishPointData[][] = [];
 let pointsToRound: NullishPointData[] = [];
-export let missingIndexes: number[] = [];
+export const missingIndexes: number[] = [];
 
-const pointNeedsRounding = (point: Point, pointsToRound: NullishPointData[]) => {
+const pointNeedsRounding = (point: Point, pointsToRoundArray: NullishPointData[]): boolean => {
   return (
-    pointsToRound.filter(p => p && p.colorIndex === point.colorIndex && p.valueIndex === point.options.valueIndex)
+    pointsToRoundArray.filter(p => p && p.colorIndex === point.colorIndex && p.valueIndex === point.options.valueIndex)
       .length > 0
   );
 };
 
-const getDataFromNullishPoints = (points: Point[]) => {
+const getDataFromNullishPoints = (points: Point[]): NullishPointData[] => {
   return points.reduce<NullishPointData[]>(
     (acc, p) => (p.options.y === 0 ? [...acc, { colorIndex: p.colorIndex, valueIndex: p.options.valueIndex }] : acc),
     []
   );
 };
 
-const createConfigFromNullishPoints = (nullishPoints: NullishPointData[][]) =>
-  nullishPoints.reduce<{ [key: number]: NullishPointData[] }>((res, pointsArr, i) => {
+const createConfigFromNullishPoints = (
+  nullishPointsArray: NullishPointData[][]
+): { [key: number]: NullishPointData[] } =>
+  nullishPointsArray.reduce<{ [key: number]: NullishPointData[] }>((res, pointsArr, i) => {
     if (pointsArr.length === 0) {
       missingIndexes.push(i);
       return res;
@@ -43,11 +45,13 @@ const createConfigFromNullishPoints = (nullishPoints: NullishPointData[][]) =>
     return { ...res, [i]: pointsArr };
   }, {});
 
-function roundedCorners(H: any) {
-  let rel = H.relativeLength;
+function roundedCorners(H: any): void {
+  const rel = H.relativeLength;
 
-  H.wrap(H.seriesTypes.column.prototype, 'translate', function(proceed: any) {
+  H.wrap(H.seriesTypes.column.prototype, 'translate', (proceed: any) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
     proceed.call(self);
 
@@ -69,9 +73,9 @@ function roundedCorners(H: any) {
       pointsToRound = getPointsToRound(nullishPointsConfig);
     }
 
-    const roundPointCorners = (point: any) => {
+    const roundPointCorners = (point: any): void => {
       const roundBoolean = pointsToRound.length > 0 && pointNeedsRounding(point, pointsToRound);
-      let { width: w, height: h, x, y } = point.shapeArgs;
+      const { width: w, height: h, x, y } = point.shapeArgs;
       let rTopLeft = rel(borderRadiusTopLeft || roundBoolean ? self.yAxis.series[0].options.borderRadiusTopLeft : 0, w);
       let rTopRight = rel(
         borderRadiusTopRight || roundBoolean ? self.yAxis.series[0].options.borderRadiusTopRight : 0,
@@ -81,7 +85,7 @@ function roundedCorners(H: any) {
       let rBottomLeft = rel(borderRadiusBottomLeft || 0, w);
 
       if (rTopLeft || rTopRight || rBottomRight || rBottomLeft || roundBoolean) {
-        let maxR = Math.min(w, h) / 2;
+        const maxR = Math.min(w, h) / 2;
 
         if (rTopLeft > maxR) {
           rTopLeft = maxR;
@@ -100,8 +104,11 @@ function roundedCorners(H: any) {
         }
 
         // Preserve the box for data labels
+        // eslint-disable-next-line no-param-reassign
         point.dlBox = point.shapeArgs;
+        // eslint-disable-next-line no-param-reassign
         point.shapeType = 'path';
+        // eslint-disable-next-line no-param-reassign
         point.shapeArgs = {
           d: [
             'M',
