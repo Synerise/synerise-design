@@ -1,5 +1,5 @@
 export type Props = {
-  data: any[];
+  data: unknown[];
   categoriesX: string[];
   categoriesY: string[];
   minColor: string;

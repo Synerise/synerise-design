@@ -36,8 +36,8 @@ export const SankeyChartDrilldown: React.FC<Props> = ({
       style={{
         position: 'absolute',
         maxWidth: 230,
-        top: eventObj.clientY + 100 > window.innerHeight ? eventObj.clientY - 100 : eventObj.clientY,
-        left: eventObj.clientX + 150 > window.innerWidth ? eventObj.clientX - 150 : eventObj.clientX,
+        top: eventObj && eventObj.clientY + 100 > window.innerHeight ? eventObj.clientY - 100 : eventObj.clientY,
+        left: eventObj && eventObj.clientX + 150 > window.innerWidth ? eventObj.clientX - 150 : eventObj.clientX,
       }}
       visible={visible}
     >

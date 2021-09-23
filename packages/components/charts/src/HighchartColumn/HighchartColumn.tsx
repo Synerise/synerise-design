@@ -32,7 +32,6 @@ import Stripped from '../Defs/Stripped';
 import Defs from '../Defs';
 import { ChartWrapper, PreloaderWrapper, WithCustomLabel } from '../common/ChartStyles.styles';
 import { ColumnChartStrokeStyles } from '../SimpleColumnChart/SimpleColumnChart.types';
-// import { PartialChartObject } from '../SimpleAreaChart/SimpleAreaChart.types';
 
 import { defaultColor, DEFAULT_EXPORTING_OPTIONS } from '../common/chartsConfig';
 
@@ -78,7 +77,6 @@ const HighchartsColumn: React.FC<HighchartsColumnProps> = ({
   noPreloading,
   getHighchartsChart,
 }) => {
-  console.log('column chart');
   React.useEffect(() => {
     HighchartsCustomEvent(Highcharts);
   }, []);

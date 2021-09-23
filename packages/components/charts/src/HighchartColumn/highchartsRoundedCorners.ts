@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import Highcharts from 'highcharts';
 import { getPointsToRound } from './getPointsToRound';
 
 export type NullishPointData = {
@@ -13,6 +16,21 @@ type Point = {
     y: number;
     valueIndex: number;
   };
+};
+
+type PointType = Point & {
+  shapeArgs:
+    | {
+        width: number;
+        height: number;
+        x: number;
+        y: number;
+      }
+    | {
+        d: string[];
+      };
+  dlBox: unknown;
+  shapeType: string;
 };
 
 const nullishPoints: NullishPointData[][] = [];
@@ -45,10 +63,10 @@ const createConfigFromNullishPoints = (
     return { ...res, [i]: pointsArr };
   }, {});
 
-function roundedCorners(H: any): void {
+function roundedCorners(H: Highcharts): void {
   const rel = H.relativeLength;
 
-  H.wrap(H.seriesTypes.column.prototype, 'translate', (proceed: any) => {
+  H.wrap(H.seriesTypes.column.prototype, 'translate', (proceed: Highcharts.WrapProceedFunction) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -73,8 +91,10 @@ function roundedCorners(H: any): void {
       pointsToRound = getPointsToRound(nullishPointsConfig);
     }
 
-    const roundPointCorners = (point: any): void => {
+    const roundPointCorners = (point: PointType): void => {
       const roundBoolean = pointsToRound.length > 0 && pointNeedsRounding(point, pointsToRound);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       const { width: w, height: h, x, y } = point.shapeArgs;
       let rTopLeft = rel(borderRadiusTopLeft || roundBoolean ? self.yAxis.series[0].options.borderRadiusTopLeft : 0, w);
       let rTopRight = rel(

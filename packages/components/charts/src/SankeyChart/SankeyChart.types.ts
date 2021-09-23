@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SeriesClickEventObject, XAxisOptions, SeriesSankeyPointOptionsObject } from 'highcharts';
 
 type Tooltip = {
   borderWidth: number;
@@ -47,13 +48,13 @@ type PlotOptions = {
 };
 export interface SankeyChartProps {
   series: {
-    data: any[];
+    data: SeriesSankeyPointOptionsObject[];
     keys: string[];
   };
   chartData: {
     name: string;
     tooltip: Tooltip;
-    xAxis: any;
+    xAxis: XAxisOptions;
     plotOptions: PlotOptions;
   };
   onClick: Function;
@@ -67,7 +68,7 @@ export interface SankeyChartProps {
 export interface SankeyChartState {
   nodeXCoords: number[] | null;
   isModalVisible: boolean;
-  nodeEventObject: any;
+  nodeEventObject: SeriesClickEventObject | null;
 }
 
 export type nodeLabelArgs = {
@@ -118,8 +119,8 @@ export interface ChartType {
 }
 
 type Series = {
-  nodeColumns: any[];
-  nodes: any[];
+  nodeColumns: unknown[];
+  nodes: Node[];
 };
 
 export type SankeyChartBody = {

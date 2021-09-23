@@ -1,4 +1,6 @@
 import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import ReactHighmaps from 'react-highcharts/ReactHighmaps';
 
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -101,13 +103,14 @@ class MatrixChartBase extends React.Component<Props> {
         borderWidth: 0,
         borderRadius: 5,
         backgroundColor: theme.variable(tooltipBackgroundColor),
+
         formatter(): React.ReactNode {
-          return `<div>
-              <span class="dot" style="background:${this.color}"></span>
-              from ${this.series.yAxis.categories[this.point.y]}
-              to ${this.series.xAxis.categories[this.point.x]}
-              <strong>${this.point.value}</strong>
-            </div>`;
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          const { yAxis, xAxis } = this.series;
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          return `<div><span class="dot" style="background:${this.color}"></span> from ${yAxis.categories[this.point.y]} to ${xAxis.categories[this.point.x]}<strong>${this.point.value}</strong></div>`;
         },
       },
 
@@ -121,7 +124,11 @@ class MatrixChartBase extends React.Component<Props> {
             enabled: true,
             color: 'contrast',
             formatter(): string {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
               const customContrastColor = this.point.contrastColor === '#FFFFFF' ? '#FFF' : theme.variable('@primary-color-darker-1');
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
               return this.point?.value && `<span style="color: ${customContrastColor}">${this.point?.value}</span>`;
             },
             style: {

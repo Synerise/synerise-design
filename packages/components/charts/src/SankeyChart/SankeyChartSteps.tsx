@@ -31,7 +31,6 @@ const StepWithDottedLine = (nodeXCoords: number[], i: number): React.ReactNode =
 
 // eslint-disable-next-line import/prefer-default-export
 export const SankeyChartSteps: React.FC<Props> = ({ nodeXCoords }) => {
-  console.log('nodeXCoords', nodeXCoords);
   return (
     <SankeyStepsWrapper>
       {nodeXCoords ? (

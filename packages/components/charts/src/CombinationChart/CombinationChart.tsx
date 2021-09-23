@@ -95,8 +95,6 @@ const HighchartCombination: React.FC<Props> = props => {
     },
   } = props;
 
-  console.log('combination chart', props);
-
   return (
     <HighchartsProvider Highcharts={Highcharts}>
       <ChartWrapper>

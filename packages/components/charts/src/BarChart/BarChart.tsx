@@ -13,14 +13,14 @@ import {
 } from 'react-jsx-highstock';
 
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { Props, AxesConfig, DataItem } from './BarChart.types';
+import { Props, AxesConfig, DataItem, DataItemValue } from './BarChart.types';
 import { DEFAULT_EXPORTING_OPTIONS } from '../common/chartsConfig';
 
-const createDataToColumnChartSeriesMapper = (axes: AxesConfig): ((data: DataItem[]) => any[][]) => {
+const createDataToColumnChartSeriesMapper = (axes: AxesConfig): ((data: DataItem[]) => DataItemValue[][]) => {
   const xProperty = axes.x.dataProperty;
   const yProperty = axes.y.dataProperty;
 
-  return (data): any[] => data.map(entry => [entry[xProperty], entry[yProperty]]);
+  return (data): DataItemValue[][] => data.map(entry => [entry[xProperty], entry[yProperty]]);
 };
 
 const BarChart: React.FC<Props> = ({
@@ -81,6 +81,8 @@ const BarChart: React.FC<Props> = ({
     },
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const chartMargin = plotOptions.margin || [30, 10, 50, 10];
 
   return (
@@ -88,7 +90,11 @@ const BarChart: React.FC<Props> = ({
       <HighchartsChart plotOptions={merge(defaultPlotOptions, plotOptions)} exporting={DEFAULT_EXPORTING_OPTIONS}>
         <Chart margin={chartMargin} height={350} />
         <Tooltip {...tooltip} />
+        {/*
+        // @ts-ignore */}
         <XAxis {...xAxisConfig} />
+        {/*
+        // @ts-ignore */}
         <YAxis {...yAxisConfig}>
           {chartType === 'bar' ? (
             <BarSeries data={mapDataToColumnChartSeries(data)} keys={['x', 'y']} />

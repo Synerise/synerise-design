@@ -1,9 +1,17 @@
+import {
+  AxisLabelsFormatterCallbackFunction,
+  PlotOptions,
+  TooltipOptions,
+  XAxisLabelsOptions,
+  YAxisLabelsOptions,
+} from 'highcharts';
+
 export type AxisConfig = {
   dataProperty: string;
-  formatter?: Function;
+  formatter?: AxisLabelsFormatterCallbackFunction;
   offset?: number;
   allowDecimals?: boolean;
-  labels?: any;
+  labels?: XAxisLabelsOptions | YAxisLabelsOptions | undefined;
 };
 
 export type AxesConfig = {
@@ -11,7 +19,9 @@ export type AxesConfig = {
   y: AxisConfig;
 };
 
-export type DataItem = Record<string, any>;
+export type DataItemValue = string | number | boolean;
+
+export type DataItem = Record<string, DataItemValue>;
 
 export type Props = {
   data: DataItem[];
@@ -20,6 +30,6 @@ export type Props = {
   axesTickColor: string;
   axes: AxesConfig;
   chartType: string;
-  plotOptions: Record<string, any>;
-  tooltip: Record<string, any>;
+  plotOptions: PlotOptions;
+  tooltip: TooltipOptions;
 };

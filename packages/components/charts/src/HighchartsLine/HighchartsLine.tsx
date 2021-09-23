@@ -5,7 +5,6 @@ import HighchartsExportData from 'highcharts/modules/export-data';
 import {
   HighchartsChart,
   Chart,
-  withHighcharts,
   XAxis,
   YAxis,
   Title,
@@ -67,4 +66,4 @@ const HighchartsLine: React.FC<HighchartsChartProps> = ({ chartData, strokeStyle
   );
 };
 
-export default withHighcharts(HighchartsLine, Highcharts);
+export default HighchartsLine;

@@ -4,7 +4,7 @@ import { HighchartsChart, HighchartsProvider, SankeySeries, Tooltip, XAxis, YAxi
 import Sankey from 'highcharts/modules/sankey';
 import { merge } from 'lodash';
 
-import { SeriesClickEventObject } from 'highcharts';
+import { SeriesClickCallbackFunction } from 'highcharts';
 import { SankeyChartDrilldown } from './SankeyChartDrilldown';
 import { Defs } from './SankeyChartDefs';
 import { defaultChartConfig } from './DefaultChartConfig';
@@ -33,11 +33,10 @@ class SankeyChart extends React.PureComponent<SankeyChartProps, SankeyChartState
     const { nodeColumns } = (this.chart as ChartType).series[0];
 
     const nodeXCoords = getNodeXCoords(nodeColumns);
-    console.log('after init', nodeColumns, nodeXCoords);
     this.setState({ nodeXCoords });
   };
 
-  handleShowModal = (e: SeriesClickEventObject): void => {
+  handleShowModal: SeriesClickCallbackFunction = (e): void => {
     const { onClick } = this.props;
     this.setState({
       isModalVisible: true,
@@ -56,7 +55,6 @@ class SankeyChart extends React.PureComponent<SankeyChartProps, SankeyChartState
     const { nodeXCoords, isModalVisible, nodeEventObject } = this.state;
     const tooltipConfig = merge(defaultChartConfig.tooltip, chartData.tooltip);
     const plotOptionsConfig = merge(defaultChartConfig.plotOptions, chartData.plotOptions);
-    console.log('sankey chert', this.props);
 
     const { isDrillDownDisabled, drillDown } = this.props;
     return (
@@ -90,6 +88,8 @@ class SankeyChart extends React.PureComponent<SankeyChartProps, SankeyChartState
               visible={isModalVisible}
               /* eslint-disable-next-line react/jsx-handler-names */
               setVisible={this.handleModalAppearence}
+              /*
+              // @ts-ignore */
               eventObj={nodeEventObject}
               isDrillDownDisabled={isDrillDownDisabled}
               drillDown={drillDown}

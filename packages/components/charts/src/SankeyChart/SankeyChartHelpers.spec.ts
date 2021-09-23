@@ -47,7 +47,7 @@ const ribbonTooltipData = {
 describe('formatLabel', () => {
   it('Return proper html string when height is more than 32px with drilldown text', () => {
     const newNode = document.createElement('div');
-    newNode.innerHTML = formatLabel(RegularLabelSankeyBody as any, labelContent);
+    newNode.innerHTML = formatLabel(RegularLabelSankeyBody as never, labelContent);
     const wrapperDiv = newNode.querySelector('div') as Element;
     const drilldownSpan = newNode.querySelector('.sankey-node-label-drilldown');
     const weightPercentSpan = newNode.querySelector('.sankey-node-label-percent') as Element;
@@ -64,7 +64,7 @@ describe('formatLabel', () => {
 
   it('Return proper html string when height is more than 32px without drilldown text', () => {
     const newNode = document.createElement('div');
-    newNode.innerHTML = formatLabel(smallHeightLabelSankeyBody as any, labelContentWithoutDrilldown);
+    newNode.innerHTML = formatLabel(smallHeightLabelSankeyBody as never, labelContentWithoutDrilldown);
     const wrapperDiv = newNode.querySelector('div') as Element;
     const drilldownSpan = newNode.querySelector('.sankey-node-label-drilldown');
     const weightPercentSpan = newNode.querySelector('.sankey-node-label-percent') as Element;
@@ -82,8 +82,8 @@ describe('formatLabel', () => {
 
 describe('getNodeXCoords', () => {
   it('returns proper values', () => {
-    expect(getNodeXCoords(nodeColumns1 as any)).toEqual([0, -70, -140, -210]);
-    expect(getNodeXCoords(nodeColumns2 as any)).toEqual([-50, 80, 760, 69640]);
+    expect(getNodeXCoords(nodeColumns1 as never)).toEqual([0, -70, -140, -210]);
+    expect(getNodeXCoords(nodeColumns2 as never)).toEqual([-50, 80, 760, 69640]);
   });
 });
 
