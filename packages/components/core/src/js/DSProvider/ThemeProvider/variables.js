@@ -1,27 +1,30 @@
 /* eslint import/no-webpack-loader-syntax: off */
-const colors = require('!less-vars-loader?resolveVariables!../../../style/colors.less');
-const variables = require('!less-vars-loader?resolveVariables!../../../style/config.less');
+const colors = require('!@hon2a/less-vars-loader?resolveVariables!../../../style/colors.less');
+const variables = require('!@hon2a/less-vars-loader?resolveVariables!../../../style/config.less');
+
+const variablesValues = variables.default;
+const colorsValues = colors.default;
 
 const MAX_DEPTH = 8;
 
-const resolveVariable = (name, variables, depth = 0) => {
-  if (!variables[name] || depth > MAX_DEPTH) {
+const resolveVariable = (name, vars, depth = 0) => {
+  if (!vars[name] || depth > MAX_DEPTH) {
     return null;
   }
-  return variables[name].replace(/@[\w-]+/g, match => resolveVariable(match.slice(1), depth + 1) || match);
+  return vars[name].replace(/@[\w-]+/g, match => resolveVariable(match.slice(1), depth + 1) || match);
 };
 
-for (const name in variables) {
-  if (Object.prototype.hasOwnProperty.call(variables, name)) {
-    variables[name] = resolveVariable(name, variables);
+for (const name in variablesValues) {
+  if (Object.prototype.hasOwnProperty.call(variablesValues, name)) {
+    variablesValues[name] = resolveVariable(name, variablesValues);
   }
 }
-for (const name in colors) {
-  if (Object.prototype.hasOwnProperty.call(colors, name)) {
-    colors[name] = resolveVariable(name, colors);
+for (const name in colorsValues) {
+  if (Object.prototype.hasOwnProperty.call(colorsValues, name)) {
+    colorsValues[name] = resolveVariable(name, colorsValues);
   }
 }
 export default {
-  variables,
-  colors,
+  variables: variablesValues,
+  colors: colorsValues,
 };
