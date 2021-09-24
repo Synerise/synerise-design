@@ -29,13 +29,11 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   color?: ColorType;
   colorIcon?: ColorIconType;
   mode?: ModeType;
-  showMoreLabel?: React.ReactNode;
-  onShowMore?: () => void;
   expander?: boolean | React.ReactNode;
   expandedContent?: React.ReactNode;
   withClose?: React.ReactNode;
   customIcon?: React.ReactElement;
-  textButton?: string;
+  button?: React.ReactNode;
   expanded?: boolean;
   onExpand?: (isExpanded: boolean) => void;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;

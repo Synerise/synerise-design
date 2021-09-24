@@ -167,8 +167,8 @@ const stories = {
           colorIcon={additionalAlertMapper[type].colorIcon}
           description={description}
           expanded
-          expandedContent={<FirstButtonWrapper>
-            <Button type="tertiary-white" mode="label">
+          button={<FirstButtonWrapper>
+            <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
               Button
             </Button>
           </FirstButtonWrapper>}
@@ -178,7 +178,7 @@ const stories = {
   },
 }
 export default {
-  name: 'Components/Alert/Toast/ActionButtons',
+  name: 'Components/Alert/Toast/WithActions',
   config: {},
   decorator,
   stories,
