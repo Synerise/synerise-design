@@ -18,6 +18,7 @@ import {
   OrderWrapper,
   Wrapper,
 } from '@synerise/ds-alert/dist/Toast/Toast.styles';
+import AnimateHeight from 'react-animate-height';
 
 
 
@@ -44,7 +45,7 @@ const getDefaultProps = () => ({
   customIcon: boolean('Set custom symbol', false),
 });
 const SECTION_COLOR_TYPES = ['success', 'warning' , 'negative' , 'neutral' ,'informative'];
-const typeOfContent = ['unorderedList', 'button', ''];
+const typeOfContent = ['unorderedList', ''];
 const CUSTOM_COLORS = [
   '',
   'blue',
@@ -124,7 +125,7 @@ const stories = {
           <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} ><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -137,7 +138,7 @@ const stories = {
           <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Missing email template
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color}><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -178,7 +179,7 @@ const stories = {
           <OrderWrapper  color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper  color={additionalAlertMapper[type].color} ><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -191,7 +192,7 @@ const stories = {
           <OrderWrapper color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Missing email template
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper color={additionalAlertMapper[type].color}><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -261,6 +262,7 @@ const stories = {
           justifyContent: 'bottom',
           alignItems: 'bottom',
         }}>
+        <AnimateHeight className="Toast-animation" duration={400} height={show1 ? 'auto' : 0}>
         {!shouldRender1 && (
           <AnimationContainer
             show={show1}
@@ -278,6 +280,8 @@ const stories = {
         />
       </div>
           </AnimationContainer>)}
+        </AnimateHeight>
+        <AnimateHeight className="Toast-animation" duration={400} height={show2 ? 'auto' : 0}>
         {!shouldRender2 && (
           <AnimationContainer
             show={show2}
@@ -286,7 +290,7 @@ const stories = {
             <div style={{paddingBottom: '20px'}}>
             <Toast
               show={show2}
-              onCloseClick={() => setShow2( !show2)}
+              onCloseClick={() => setShow2( show2 =>!show2)}
               message={message}
               type={type}
               withClose
@@ -295,6 +299,8 @@ const stories = {
             />
             </div>
           </AnimationContainer>)}
+        </AnimateHeight>
+        <AnimateHeight className="Toast-animation" duration={400} height={show3 ? 'auto' : 0}>
         {!shouldRender3 && (
           <AnimationContainer
             show={show3}
@@ -302,7 +308,7 @@ const stories = {
           >
               <Toast
                 show={show3}
-                onCloseClick={() => setShow3(!show3)}
+                onCloseClick={() => setShow3(show3 =>!show3)}
                 message={message}
                 type={type}
                 withClose
@@ -310,6 +316,7 @@ const stories = {
                 colorIcon={additionalAlertMapper[type].colorIcon}
               />
           </AnimationContainer>)}
+        </AnimateHeight>
       </div>
     );
   },
@@ -318,6 +325,7 @@ const stories = {
     const withClose = boolean('Set close button', true);
     const typeExpandedContent = select('Set type content', typeOfContent, '');
     const type = select('Set type', SECTION_COLOR_TYPES, 'success');
+    const showButton = boolean('Set button', false);
     const props = getDefaultProps();
     const customMIcon = select('Set custom M Icon', iconsNames, iconsNames[3]);
     const customColor = select('Set custom color', CUSTOM_COLORS, '');
@@ -331,7 +339,7 @@ const stories = {
           <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Schedule section must be defined
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} ><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -344,7 +352,7 @@ const stories = {
           <OrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color} >
             <div style={{ marginRight: '10px' }}>•</div> Missing email template
             <NumberWrapper>(505-456)</NumberWrapper>
-            <Tooltip title={iconCopied ? 'Copied!' : 'Copy'}>
+            <Tooltip mouseLeaveDelay={0.5} title={iconCopied ? 'Copied!' : 'Copy'}>
               <IconOrderWrapper customColorText={customColorText} color={additionalAlertMapper[type].color}><Icon onClick={(): void => setIconCopied(!iconCopied)} component={<DuplicateS/>}/></IconOrderWrapper>
             </Tooltip>
           </OrderWrapper>
@@ -357,11 +365,6 @@ const stories = {
       unorderedList: <Wrapper>
         <UnorderedList data={data} indexFormatter={undefined} />
       </Wrapper>,
-      button: <FirstButtonWrapper>
-        <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
-          Button
-        </Button>
-      </FirstButtonWrapper>,
       '': '',
     };
     const description = text('Description', 'No response from server, try again later');
@@ -416,6 +419,11 @@ const stories = {
           customIcon={props.customIcon ? <Icon component={<IconComp />}/> : null}
           expander={expanderButton}
           expandedContent={expandedContent[typeExpandedContent]}
+          button={showButton && <FirstButtonWrapper>
+            <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
+              Button
+            </Button>
+          </FirstButtonWrapper>}
           type={type}
           color={additionalAlertMapper[type].color}
           colorIcon={additionalAlertMapper[type].colorIcon}

@@ -19,8 +19,6 @@ const Toast: React.FC<Props> = ({
   type,
   message,
   description,
-  showMoreLabel,
-  onShowMore,
   expander,
   expandedContent,
   color,
@@ -34,6 +32,7 @@ const Toast: React.FC<Props> = ({
   onExpand,
   onCloseClick,
   show,
+  button,
 }: Props) => {
   const renderMessage = React.useMemo(() => {
     return (
@@ -50,11 +49,11 @@ const Toast: React.FC<Props> = ({
             </S.AlertDescription>
           )}
         </S.Text>
-
-        {expandedContent && expanded && <S.ListWrapper visible={expanded}>{expandedContent}</S.ListWrapper>}
+        {expandedContent && expanded && !button && <S.ListWrapper visible={expanded}>{expandedContent}</S.ListWrapper>}
+        {button}
       </S.AlertContent>
     );
-  }, [message, description, showMoreLabel, onShowMore, expandedContent, customColorText, color, expanded]);
+  }, [message, description, expandedContent, customColorText, color, expanded, button]);
   const renderIcon = React.useMemo(() => {
     if (icon) return icon;
     if (ICONS[type]) return ICONS[type];
