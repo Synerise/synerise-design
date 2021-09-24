@@ -1,5 +1,5 @@
 import { ThemeProps, ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import styled, { css, FlattenSimpleInterpolation,FlattenInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, FlattenInterpolation } from 'styled-components';
 import { TagShape } from './Tag.types';
 
 const defaultStatusStyles = css`
@@ -13,7 +13,7 @@ const defaultStatusStyles = css`
   padding: 0 8px;
   line-height: 18px;
 `;
-export const getColorText = (theme: ThemePropsVars, color?: string, ): string => {
+export const getColorText = (theme: ThemePropsVars, color?: string): string => {
   return color === theme.palette['grey-200'] ? theme.palette['grey-600'] : theme.palette.white;
 };
 
@@ -70,7 +70,7 @@ export const TagName = styled.span`
   text-overflow: ellipsis;
 `;
 export const RemoveButton = styled.div`
-  color: ${({color,theme}): string => getColorText(theme,color)};
+  color: ${({ color, theme }): string => getColorText(theme, color)};
   height: 18px;
   width: 18px;
   border-radius: 10px;
@@ -138,7 +138,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props.theme,props.color)};
+        color: ${props.textColor || getColorText(props.theme, props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -181,7 +181,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.DEFAULT_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props.theme,props.color)};
+        color: ${props.textColor || getColorText(props.theme, props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -223,7 +223,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_ROUND:
       return css`
-        color: ${props.textColor || getColorText(props.theme,props.color)};
+        color: ${props.textColor || getColorText(props.theme, props.color)};
         border-radius: 12px;
         font-size: 13px;
         height: 24px;
@@ -234,7 +234,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
 
     case TagShape.SINGLE_CHARACTER_SQUARE:
       return css`
-        color: ${props.textColor || getColorText(props.theme,props.color)};
+        color: ${props.textColor || getColorText(props.theme, props.color)};
         border-radius: 3px;
         font-size: 13px;
         height: 24px;
@@ -338,10 +338,7 @@ export const Tag = styled.div<TagProps>`
   display: inline-flex;
   font-weight: 500;
   overflow: hidden;
-  cursor: pointer;
-  &:hover:before {
-    filter: ${getFilterColor};
-  }
+  cursor: default;
 
   ${(props): FlattenSimpleInterpolation => insertShapeStyles(props)};
   ${(props): string | false =>
