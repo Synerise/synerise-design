@@ -978,9 +978,9 @@ const stories = {
   },
 };
 
-export default {
-  name: 'Components/Chart/SankeysChart',
-  config: {},
-  stories,
-  // Component: Charts,
-};
+// export default {
+//   name: 'Components/Chart/SankeysChart',
+//   config: {},
+//   stories,
+//   // Component: Charts,
+// };

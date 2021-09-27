@@ -66,7 +66,7 @@ const createConfigFromNullishPoints = (
 function roundedCorners(H: Highcharts): void {
   const rel = H.relativeLength;
 
-  H.wrap(H.seriesTypes.column.prototype, 'translate', (proceed: Highcharts.WrapProceedFunction) => {
+  H.wrap(H.seriesTypes.column.prototype, 'translate', function(proceed: Highcharts.WrapProceedFunction) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     // eslint-disable-next-line @typescript-eslint/no-this-alias

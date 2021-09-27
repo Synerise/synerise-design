@@ -24,6 +24,7 @@ for (const name in colorsValues) {
     colorsValues[name] = resolveVariable(name, colorsValues);
   }
 }
+
 export default {
   variables: variablesValues,
   colors: colorsValues,

@@ -7,7 +7,7 @@ Object {
     "960px",
     "1280px",
   ],
-  "palette": Object {},
+  "palette": undefined,
   "space": Array [
     0,
     8,
@@ -19,6 +19,6 @@ Object {
     64,
   ],
   "variable": [Function],
-  "variables": Object {},
+  "variables": undefined,
 }
 `;

@@ -25,11 +25,11 @@ export type DataItem = Record<string, DataItemValue>;
 
 export type Props = {
   data: DataItem[];
-  barColor: string;
-  axesColor: string;
-  axesTickColor: string;
+  barColor?: string;
+  axesColor?: string;
+  axesTickColor?: string;
   axes: AxesConfig;
   chartType: string;
-  plotOptions: PlotOptions;
-  tooltip: TooltipOptions;
+  plotOptions?: PlotOptions;
+  tooltip?: TooltipOptions;
 };
