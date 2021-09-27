@@ -44,12 +44,17 @@ const Toast: React.FC<Props> = ({
         )}
         <S.Text customColorText={customColorText} color={color}>
           {description && (
-            <S.AlertDescription customColorText={customColorText} color={color}>
+            <S.AlertDescription
+              expandedContent={expandedContent}
+              button={button}
+              customColorText={customColorText}
+              color={color}
+            >
               {description}
             </S.AlertDescription>
           )}
         </S.Text>
-        {expandedContent && expanded && !button && <S.ListWrapper visible={expanded}>{expandedContent}</S.ListWrapper>}
+        {expandedContent && expanded && <S.ListWrapper visible={expanded}>{expandedContent}</S.ListWrapper>}
         {button}
       </S.AlertContent>
     );

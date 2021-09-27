@@ -135,9 +135,6 @@ export const ButtonWrapper = styled.div`
 `;
 export const FirstButtonWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
   margin-right: 8px;
-  padding: 16px 0 0 0;
-  color: ${(props): string =>
-    props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
 `;
 export const NumberWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
   margin-left: 4px;
@@ -203,7 +200,6 @@ export const OrderWrapper = styled.div<{ customColorText?: CustomColorType; colo
   }
 `;
 export const Wrapper = styled.div`
-  margin-top: 10px;
   color: ${(props): string => props.theme.palette['grey-050']};
 `;
 export const AnimationContainer = styled.div<{ show?: boolean }>`
@@ -244,12 +240,17 @@ export const AlertMessage = styled.span<{ customColorText?: CustomColorType; col
     props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
 `;
 
-export const AlertDescription = styled.span<{ customColorText?: CustomColorType; color?: ColorType }>`
+export const AlertDescription = styled.span<{
+  customColorText?: CustomColorType;
+  color?: ColorType;
+  button?: React.ReactNode | boolean;
+  expandedContent?: React.ReactNode | boolean;
+}>`
   display: flex;
   font-size: 13px;
   line-height: 1.39;
   font-weight: normal;
-  padding-right: 3px;
+  padding: ${(props): string => (props.button || props.expandedContent ? ' 0 3px 10px 0' : '0px')};
   margin-top: 2px;
   color: ${(props): string =>
     props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
