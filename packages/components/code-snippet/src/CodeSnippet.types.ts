@@ -15,6 +15,7 @@ export interface CodeSnippetProps {
   colorSyntax?: boolean;
   className?: string;
   children?: string;
+  expanded?: boolean;
   languages?: LanguageHighlight[];
   style?: React.CSSProperties;
   tooltipTitleHover?: string;
@@ -24,4 +25,6 @@ export interface CodeSnippetProps {
   fontSize?: FontSize;
   rows?: number;
   wrap?: boolean;
+  onExpand?: () => void;
+  onCopy?: () => void;
 }
