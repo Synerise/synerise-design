@@ -9,6 +9,9 @@ const DEFAULT_TEXTS = {
     matching: 'Matching',
     notMatching: 'Not matching',
   },
+  placeholder: {
+    textPlaceholder: 'Choose items',
+  },
   addFilter: 'Add filter',
 };
 
