@@ -39,6 +39,7 @@
     "@storybook/addon-actions": "6.2.9",
     "@storybook/addon-docs": "6.2.9",
     "@storybook/addon-controls":"6.2.9",
+    "@storybook/preset-create-react-app":"3.2.0",
     "@storybook/addon-knobs": "6.2.9",
     "@storybook/addon-links": "6.2.9",
     "@storybook/addon-notes": "5.3.21",

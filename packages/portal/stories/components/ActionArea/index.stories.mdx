@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import {action} from '@storybook/addon-actions'
+import ActionArea from '@synerise/ds-action-area';
+
+<Meta title="Components/ActionArea" component={ActionArea} />
+
+export const Template = (args) => <ActionArea {...args } />
+
+# ActionArea opis
+
+How it works
+
+<Canvas>
+  <Story 
+    name="Basic"
+    args = {{ 
+      label: 'Label',
+      description: 'Very long description',
+      actionLabel:'Define',
+      action:action('handle click'),
+    }}
+    argTypes = {{ 
+      label:{control:'text'},
+      description:{control:'text'},
+      actionLabel:{control:'text'},
+      action: { table: { disable: true } },
+    }
+    }>
+    {(args) => <ActionArea {...args }/>}
+  </Story>
+</Canvas>
+
+
+<ArgsTable story="Basic" />
+
