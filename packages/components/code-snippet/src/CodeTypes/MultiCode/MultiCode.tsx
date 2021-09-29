@@ -54,12 +54,15 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
     onMounting();
   }, [onMounting, children, rows, wrap]);
 
-  const handleButton = React.useCallback((isScroll: boolean): void => {
-    setExpandedState(prevState => !prevState);
-    if (isScroll) setTimeout(() => setScrollable(prevState => !prevState), ANIMATE_HEIGHT_TIME);
-    else setScrollable(prevState => !prevState);
-    onExpand && onExpand();
-  }, []);
+  const handleButton = React.useCallback(
+    (isScroll: boolean): void => {
+      setExpandedState(prevState => !prevState);
+      if (isScroll) setTimeout(() => setScrollable(prevState => !prevState), ANIMATE_HEIGHT_TIME);
+      else setScrollable(prevState => !prevState);
+      onExpand && onExpand();
+    },
+    [onExpand]
+  );
 
   const isButtonVisible = React.useMemo((): boolean => allRows > rows + 1, [rows, allRows]);
   const extraHeightOption = React.useMemo((): number | string => (isButtonVisible ? initialContentHeight : 'auto'), [
@@ -89,7 +92,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
         </AnimateHeight>
       </S.PreBlock>
     ),
-    [wrap, rows, expandedState, isButtonVisible, scrollable, codeRef, children]
+    [wrap, rows, expandedState, isButtonVisible, scrollable, codeRef, extraHeightOption, children]
   );
   const iconElement = React.useMemo(
     () => (
@@ -104,7 +107,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
         icon={<DuplicateS />}
       />
     ),
-    [children, tooltipTitleHover, tooltipTitleClick]
+    [children, tooltipTitleHover, tooltipTitleClick, onCopy]
   );
 
   return (
