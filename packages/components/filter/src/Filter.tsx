@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
+import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
@@ -54,6 +55,9 @@ const Filter: React.FC<FilterProps> = ({
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
+      },
+      placeholder: {
+        text: formatMessage({ id: 'DS.FILTER.PLACEHOLDER' }),
       },
     }),
     [formatMessage, texts]
@@ -109,9 +113,15 @@ const Filter: React.FC<FilterProps> = ({
   return (
     <S.FilterWrapper>
       {matching && <Matching {...matching} texts={text.matching} />}
-      <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
-        {expressions.map(renderExpression)}
-      </ReactSortable>
+      <>
+        {expressions.length > 0 ? (
+          <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
+            {expressions.map(renderExpression)}
+          </ReactSortable>
+        ) : (
+          <Placeholder text={text.placeholder} />
+        )}
+      </>
       {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}
     </S.FilterWrapper>
   );
