@@ -45,7 +45,6 @@ const Condition: React.FC<ConditionProps> = ({
   minConditionsLength = 1,
   autoClearCondition,
 }) => {
-  console.log('Condition');
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
