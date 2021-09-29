@@ -43,7 +43,9 @@ const Condition: React.FC<ConditionProps> = ({
   addStep,
   onChangeOrder,
   minConditionsLength = 1,
+  autoClearCondition,
 }) => {
+  console.log('Condition');
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
@@ -110,11 +112,12 @@ const Condition: React.FC<ConditionProps> = ({
           }
         });
       }
-      step.conditions.forEach((condition: StepConditions) => {
-        condition.factor && condition.factor.onChangeValue(undefined);
-        condition.operator && condition.operator.onChange(undefined);
-        condition.parameter && condition.parameter.onChangeValue(undefined);
-      });
+      autoClearCondition &&
+        step.conditions.forEach((condition: StepConditions) => {
+          condition.factor && condition.factor.onChangeValue(undefined);
+          condition.operator && condition.operator.onChange(undefined);
+          condition.parameter && condition.parameter.onChangeValue(undefined);
+        });
       setCurrentConditionId(step.conditions[0].id);
       if (step.conditions[0].parameter) {
         setCurrentField(PARAMETER);
@@ -122,7 +125,7 @@ const Condition: React.FC<ConditionProps> = ({
         setCurrentField(OPERATOR);
       }
     },
-    [removeCondition, addCondition]
+    [removeCondition, addCondition, autoClearCondition]
   );
 
   const selectSubject = React.useCallback(
@@ -141,24 +144,30 @@ const Condition: React.FC<ConditionProps> = ({
     [clearConditionRow]
   );
 
-  const selectParameter = React.useCallback((condition: StepConditions, value): void => {
-    if (condition.id && condition.parameter) {
-      condition.operator && condition.operator.onChange(undefined);
-      condition.factor && condition.factor.onChangeValue(undefined);
-      condition.parameter.onChangeValue(value);
-      setCurrentConditionId(condition.id);
-      setCurrentField(OPERATOR);
-    }
-  }, []);
+  const selectParameter = React.useCallback(
+    (condition: StepConditions, value): void => {
+      if (condition.id && condition.parameter) {
+        autoClearCondition && condition.operator && condition.operator.onChange(undefined);
+        autoClearCondition && condition.factor && condition.factor.onChangeValue(undefined);
+        condition.parameter.onChangeValue(value);
+        setCurrentConditionId(condition.id);
+        setCurrentField(OPERATOR);
+      }
+    },
+    [autoClearCondition]
+  );
 
-  const selectOperator = React.useCallback((condition: StepConditions, value): void => {
-    if (condition.id && condition.operator) {
-      condition.factor && condition.factor.onChangeValue(undefined);
-      condition.operator.onChange(value);
-      setCurrentConditionId(condition.id);
-      setCurrentField(FACTOR);
-    }
-  }, []);
+  const selectOperator = React.useCallback(
+    (condition: StepConditions, value): void => {
+      if (condition.id && condition.operator) {
+        autoClearCondition && condition.factor && condition.factor.onChangeValue(undefined);
+        condition.operator.onChange(value);
+        setCurrentConditionId(condition.id);
+        setCurrentField(FACTOR);
+      }
+    },
+    [autoClearCondition]
+  );
 
   const setStepConditionFactorType = React.useCallback((step, condition, factorType): void => {
     setCurrentConditionId(condition.id);
