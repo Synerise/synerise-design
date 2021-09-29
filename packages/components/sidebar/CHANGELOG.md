@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.135](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.134...@synerise/ds-sidebar@0.2.135) (2021-09-21)
+
+
+### Bug Fixes
+
+* **sidebar:** add new component SidebarWithButton ([2a26939](https://github.com/Synerise/synerise-design/commit/2a26939ce8ef5866fceaf9050f4eef71f0eefa2b))
+* **sidebar:** add tests and add to readme informations ([0652fad](https://github.com/Synerise/synerise-design/commit/0652fad170c662782002731d498fef48d107f439))
+* **sidebar:** add tests and add to readme informations ([dcda0b1](https://github.com/Synerise/synerise-design/commit/dcda0b12ba35dba24cdf464266b01f7ea563c94e))
+* **sidebar:** fix readme ([0e72336](https://github.com/Synerise/synerise-design/commit/0e723366db666a32cea07f4203213c550b2d35d0))
+* **sidebar:** fix readme ([8ae24bb](https://github.com/Synerise/synerise-design/commit/8ae24bb909635f1a3617c15e0be7f9170caa3b4e))
+* **sidebar:** fix tests ([ed78778](https://github.com/Synerise/synerise-design/commit/ed78778fc4e9b4717e917b519b3f2d4ad1f021c0))
+* **sidebar:** update dependencies ([816a4ac](https://github.com/Synerise/synerise-design/commit/816a4acd727f2caea9b10eb88fbc7f93edbe51eb))
+
+
+
+
+
 ## [0.2.134](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.2.133...@synerise/ds-sidebar@0.2.134) (2021-09-03)
 
 **Note:** Version bump only for package @synerise/ds-sidebar

@@ -19,6 +19,7 @@ const Button: React.FC<Props> = ({
   className,
   color = 'red',
   error,
+  activated,
   ...antdProps
 }) => {
   const rippleRef = React.useRef<HTMLSpanElement>(null);
@@ -47,16 +48,17 @@ const Button: React.FC<Props> = ({
     }
   };
   const classNameString = React.useMemo((): string => {
-    const modeStringifed = !mode ? "" : mode;
-    const classNameStringifed = !className ? "" : className;
-    return `ds-button ${modeStringifed} ${classNameStringifed}`
-  },[mode, className]);
+    const modeStringifed = !mode ? '' : mode;
+    const classNameStringifed = !className ? '' : className;
+    return `ds-button ${modeStringifed} ${classNameStringifed}`;
+  }, [mode, className]);
   return (
     <S.AntdButton
       justifyContent={justifyContent}
       type={type || 'secondary'}
       mode={mode}
       error={error}
+      activated={activated}
       groupVariant={groupVariant}
       loading={loading}
       onClick={handleClick}

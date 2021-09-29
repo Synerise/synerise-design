@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.90](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.89...@synerise/ds-file-uploader@0.5.90) (2021-09-21)
+
+
+### Bug Fixes
+
+* change border, background color in creator button and uploader ([b35c306](https://github.com/Synerise/synerise-design/commit/b35c306051abf8ac0d8488551b65330a1510ca23))
+
+
+
+
+
 ## [0.5.89](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.5.88...@synerise/ds-file-uploader@0.5.89) (2021-09-03)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader
