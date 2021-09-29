@@ -1,3 +1,7 @@
+export type PlaceholderText = {
+  textPlaceholder: string;
+};
+
 export type PlaceholderType = {
-  text: string;
+  text?: PlaceholderText;
 };

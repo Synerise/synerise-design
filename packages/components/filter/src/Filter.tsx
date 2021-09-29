@@ -57,7 +57,7 @@ const Filter: React.FC<FilterProps> = ({
         ...texts?.step,
       },
       placeholder: {
-        text: formatMessage({ id: 'DS.FILTER.PLACEHOLDER' }),
+        textPlaceholder: formatMessage({ id: 'DS.FILTER.PLACEHOLDER' }),
       },
     }),
     [formatMessage, texts]
