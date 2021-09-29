@@ -13,19 +13,23 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   fontSize = FontSize.SMALL,
   tooltipTitleHover = 'Copy',
   tooltipTitleClick = 'Copied!',
-  labelBeforeExpanded,
-  labelAfterExpanded,
+  labelBeforeExpanded = 'Show more',
+  labelAfterExpanded = 'Show less',
   wrap = false,
   rows = 6,
+  className,
+  onExpand,
+  onCopy,
 }) => {
   switch (type) {
     case CodeSnippetType.SINGLE_LINE:
       return (
         <SingleCode
-          type={type}
           fontSize={fontSize}
           tooltipTitleHover={tooltipTitleHover}
           tooltipTitleClick={tooltipTitleClick}
+          className={className}
+          onCopy={onCopy}
         >
           {children}
         </SingleCode>
@@ -33,7 +37,6 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
     case CodeSnippetType.MULTI_LINE:
       return (
         <MultiCode
-          type={type}
           languages={languages}
           colorSyntax={colorSyntax}
           fontSize={fontSize}
@@ -41,14 +44,17 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
           tooltipTitleClick={tooltipTitleClick}
           labelBeforeExpanded={labelBeforeExpanded}
           labelAfterExpanded={labelAfterExpanded}
+          className={className}
           wrap={wrap}
           rows={rows}
+          onExpand={onExpand}
+          onCopy={onCopy}
         >
           {children}
         </MultiCode>
       );
     default:
-      return <InlineCode>{children}</InlineCode>;
+      return <InlineCode className={className}>{children}</InlineCode>;
   }
 };
 

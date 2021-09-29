@@ -1,30 +1,39 @@
 import * as React from 'react';
 import * as he from 'he';
 import { text, select, boolean, number} from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import CodeSnippet from '@synerise/ds-code-snippet';
 import { CodeSnippetType } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
 
-const tempJson2 = `{SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {SR.event.track("Add to favourites", {
-  SR.event.track("Add to favourites", {
-    "eventLabel": "homePageFav",
-    "name": "iPhone XR 128GB",}}`
- 
+const exampleContent =`const registerButton = document.getElementById("registerButton");
+const emailInput = document.querySekector(".email-input");
+registerButton.addEventListener('click',()=>{
+  alert('Invalid data');
+  alert(emailInput.value);
+  console.log('Something went wrong');
+})`
+
 const getPropsMulti = () => ({
-  children:text("Content",tempJson2),
+  children:text("Content",exampleContent),
   rows:number('Number of lines to be shown before expanded',6),
   tooltipTitleHover:text("Tooltip hint on hover",'Copy'),
   tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
   colorSyntax:boolean('Color syntax',false),
   labelBeforeExpanded:text('Label before expand', 'Show more'),
   labelAfterExpanded:text('Label after expand', 'Show less'),
-  wrap:boolean('Wrap text',false)
+  wrap:boolean('Wrap text',false),
+  onCopy:action('onCopy action'),
+  onExpand:action('onExpand action'),
 });
+
 const getPropsSingle = () => ({
   children:text("Content","Some code text style"),
   tooltipTitleHover:text("Tooltip hint on hover",'Copy'),
   tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
   fontSize: select('Set size', fontSizeOptions, fontSizeOptions.small),
+  onCopy:action('onCopy action'),
 });
+
 const getPropsInline = () => ({
   children:text("Content","Some code text style")
 });

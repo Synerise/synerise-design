@@ -3,47 +3,51 @@ import * as copy from 'copy-to-clipboard';
 import { DuplicateS } from '@synerise/ds-icon/dist/icons';
 
 import CopyAction from '../../CopyAction/CopyAction';
-import * as S from '../../CodeSnippet.styles';
-import { CodeSnippetType, FontSize } from '../../CodeSnippet.types';
+import * as S from './SingleCode.styles';
+import { FontSize } from '../../CodeSnippet.types';
 
 export interface SingleCodeProps {
-  type?: CodeSnippetType;
-  className?: string;
   children?: string;
+  className?: string;
   style?: React.CSSProperties;
   tooltipTitleHover?: string;
   tooltipTitleClick?: string;
   fontSize?: FontSize;
+  onCopy?: () => void;
 }
 
 const SingleCode: React.FC<SingleCodeProps> = ({
-  type = CodeSnippetType.INLINE,
   children = '',
   fontSize = FontSize.SMALL,
   tooltipTitleHover,
   tooltipTitleClick,
+  className,
+  onCopy,
 }) => {
-  const iconElement: React.ReactNode = (
-    <CopyAction
-      tooltipTitleHover={tooltipTitleHover}
-      tooltipTitleClick={tooltipTitleClick}
-      className={S.ICON_CLASSNAME}
-      onClick={(): void => {
-        copy(children);
-      }}
-      icon={<DuplicateS />}
-    />
+  const iconElement = React.useMemo(
+    () => (
+      <CopyAction
+        tooltipTitleHover={tooltipTitleHover}
+        tooltipTitleClick={tooltipTitleClick}
+        className={S.ICON_CLASSNAME}
+        onClick={(): void => {
+          copy(children);
+          onCopy && onCopy();
+        }}
+        icon={<DuplicateS />}
+        data-testid="ds-copy-code-snippet"
+      />
+    ),
+    [children, tooltipTitleHover, tooltipTitleClick]
   );
 
   return (
-    <S.CodeSnippetWrapper type={type} fontSize={fontSize}>
-      <S.ContentIconWrapper type={type}>
-        <S.BlockCodeWrapper fontSize={fontSize} type={type}>
-          {children}
-        </S.BlockCodeWrapper>
+    <S.CodeSnippetWrapperSingle fontSize={fontSize} className={className}>
+      <S.ContentIconWrapper>
+        <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
         {iconElement}
       </S.ContentIconWrapper>
-    </S.CodeSnippetWrapper>
+    </S.CodeSnippetWrapperSingle>
   );
 };
 
