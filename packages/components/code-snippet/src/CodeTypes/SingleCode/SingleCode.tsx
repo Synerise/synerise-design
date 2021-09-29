@@ -38,7 +38,7 @@ const SingleCode: React.FC<SingleCodeProps> = ({
         data-testid="ds-copy-code-snippet"
       />
     ),
-    [children, tooltipTitleHover, tooltipTitleClick]
+    [children, tooltipTitleHover, tooltipTitleClick, onCopy]
   );
 
   return (
