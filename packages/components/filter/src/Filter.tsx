@@ -56,9 +56,6 @@ const Filter: React.FC<FilterProps> = ({
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
       },
-      placeholder: {
-        textPlaceholder: formatMessage({ id: 'DS.FILTER.PLACEHOLDER' }),
-      },
     }),
     [formatMessage, texts]
   );
@@ -119,7 +116,7 @@ const Filter: React.FC<FilterProps> = ({
             {expressions.map(renderExpression)}
           </ReactSortable>
         ) : (
-          <Placeholder text={text.placeholder} />
+          <Placeholder text="Choose type of condition below" />
         )}
       </>
       {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}
