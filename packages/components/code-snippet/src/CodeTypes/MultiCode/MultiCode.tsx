@@ -33,12 +33,16 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   const [allRows, setAllRows] = React.useState(1);
   const codeRef = React.useRef<HTMLElement>(null);
 
-  const buttonProps = {
-    type: 'ghost',
-    mode: 'icon-label',
-    className: 'btn-expander',
-    expanded: expandedState,
-  };
+  const buttonProps = React.useMemo(
+    () => ({
+      type: 'ghost',
+      mode: 'icon-label',
+      className: 'btn-expander',
+      expanded: expandedState,
+    }),
+    [expandedState]
+  );
+
   const initialContentHeight = React.useMemo((): number => {
     const numberRows = allRows > rows ? rows : allRows;
     return (numberRows + 1) * LINE_HEIGHT_DEFAULT;
