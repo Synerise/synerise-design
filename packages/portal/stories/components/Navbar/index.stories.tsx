@@ -8,6 +8,7 @@ import { Add3M, AngleDownS, HelpM, NotificationsActiveM, BookM } from '@synerise
 import { action } from '@storybook/addon-actions';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { UserAvatar } from '@synerise/ds-avatar';
+import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconAlert';
 
 const addonType = { avatar: 'avatar', none: 'none' };
 function renderAddonComponent(suffixElementType: string) {
@@ -40,12 +41,22 @@ const backgroundColors = {
 
 const logoSrc = 'https://app.synerise.com/spa/assets/images/logo.svg';
 
+const renderAlertNotification=(isAlertNotification:boolean)=>(
+  isAlertNotification?
+  <React.Fragment>
+    <IconAlert iconAlert={true} message="Trial - Expire in 12 days." type="info" />
+    <Button onClick={action('onClick button Alert')} type="tertiary-white">Button</Button>
+  </React.Fragment>
+  :null
+);
+
 const stories = {
   default: () => {
     const suffixType = select('Set suffix type', addonType, addonType.none);
     const colorAll = select('Background color', backgroundColors, '#0b68ff');
     const hasButton = boolean('Set button', false);
-
+    const withAlertNotification = boolean('With alert notification',false);
+    
     return (
       <Navbar
         description={'Module name'}
@@ -75,6 +86,7 @@ const stories = {
             )}
           </div>,
         ]}
+        alertNotification={renderAlertNotification(withAlertNotification)}
         actions={renderAddonComponent(suffixType)}
       />
     );

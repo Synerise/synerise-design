@@ -3,13 +3,19 @@ import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';
 
 const Navbar: React.FC<NavbarProps> & { Divider: typeof S.NavbarDivider } = props => {
-  const { className, color, logo, description, children, actions, additionalNodes } = props;
+  const { className, color, logo, description, children, actions, additionalNodes, alertNotification } = props;
 
   return (
     <S.Navbar className={`ds-navbar ${className || ''}`} color={color}>
       {typeof logo === 'string' ? <img src={logo} alt="" /> : logo}
       <S.NavbarDivider />
       <S.NavbarDescription>{description}</S.NavbarDescription>
+      {alertNotification && (
+        <>
+          <S.NavbarAlertNotification>{alertNotification}</S.NavbarAlertNotification>
+          <S.NavbarDivider />
+        </>
+      )}
       {additionalNodes &&
         additionalNodes.map(node => (
           <>
