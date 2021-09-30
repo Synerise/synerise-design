@@ -6,6 +6,7 @@ describe('Navbar', () => {
   const DESCRIPTION = 'DESCRIPTION';
   const LOGO = 'LOGO';
   const ACTIONS = 'ACTIONS';
+  const ALERT_NOTIFICATION = 'ALERT NOTIFICATION';
 
   it('should render logo', () => {
     // ARRANGE
@@ -37,6 +38,13 @@ describe('Navbar', () => {
     const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} logo actions={ACTIONS} />);
     // ASSERT
     expect(getByText(ACTIONS)).toBeTruthy();
+  });
+
+  it('should render alert notification', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(<Navbar description={DESCRIPTION} logo actions alertNotification={ALERT_NOTIFICATION} />);
+    // ASSERT
+    expect(getByText(ALERT_NOTIFICATION)).toBeTruthy();
   });
 
 });
