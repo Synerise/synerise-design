@@ -234,6 +234,7 @@ const stories = {
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
+          autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
           addCondition={boolean('Enable add new condition row', true) && addStepCondition}
           removeCondition={removeStepCondition}
           updateStepName={updateStepName}
@@ -271,7 +272,9 @@ const stories = {
                 defaultFactorType: 'parameter',
                 setSelectedFactorType: () => {},
                 onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
-                onParamsClick: () => { console.log('params click')},
+                onParamsClick: () => {
+                  console.log('params click');
+                },
                 value: condition.parameter.value,
                 parameters: {
                   buttonLabel: 'Parameter',

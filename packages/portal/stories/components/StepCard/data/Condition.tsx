@@ -246,6 +246,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         removeTooltip: 'Remove',
         moveTooltip: 'Move',
       }}
+      autoClearCondition
       addCondition={boolean('Enable add new condition row', true) && addStepCondition}
       removeCondition={removeStepCondition}
       updateStepName={updateStepName}
