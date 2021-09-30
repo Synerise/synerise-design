@@ -27,6 +27,7 @@ const CardTab: React.FC<CardTabProps> = ({
   onRemoveTab,
   texts,
   color = 'yellow',
+  colorDot,
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
@@ -109,7 +110,7 @@ const CardTab: React.FC<CardTabProps> = ({
       data-id={id}
       data-testid="card-tab-container"
     >
-      <CardTabPrefix draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
+      <CardTabPrefix colorDot={colorDot} draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
       <S.CardTabLabel data-testid="card-tab-label" invalidName={Boolean(invalidName) && !invalid}>
         {edited ? (
           <InlineEdit
@@ -138,7 +139,11 @@ const CardTab: React.FC<CardTabProps> = ({
           texts={getTexts}
         />
       )}
-      {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
+      {suffixIcon && (
+        <S.CardSuffixWrapper>
+          <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />
+        </S.CardSuffixWrapper>
+      )}
     </S.CardTabContainer>
   );
 };

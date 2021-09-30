@@ -7,22 +7,22 @@ import CardTab from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
 import { prefixType }  from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
-import { ShowM, FileM} from '@synerise/ds-icon/dist/icons';
+import { ShowM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
 
-const COLORS = ['yellow', 'green', 'blue', 'pink', 'purple', 'mars', 'grey', 'orange', 'fern', 'cyan', 'red', 'violet'];
+
 
 const stories = {
   default: withState({
     name: 'Example',
   })(({store}) => {
     const bg = boolean('White background', true);
-    const suffixIcon = boolean('Show suffix icon', false);
+    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON,'colorDot': prefixType.DOT}, prefixType.TAG);
+    const suffixIcon = boolean('Set single icon', false);
+    const isActive = boolean('Is active', false);
     const disabled = boolean('Disabled tabs', false);
-    const draggable = boolean('Enable change order of tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
-    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
-
     const handleChangeName = (id, name) => {
       store.set({
         name
@@ -36,10 +36,12 @@ const stories = {
           index={1}
           name={store.state.name}
           tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
-          active={boolean('Is active', false)}
+          active={isActive}
           greyBackground={!bg}
+          color={'yellow-600'}
+          colorDot={<CardDot/>}
           prefixIcon={<ShowM />}
-          suffixIcon={suffixIcon ? <FileM /> : null}
+          suffixIcon={suffixIcon ? <OptionHorizontalM /> : null}
           disabled={disabled}
           prefix={prefix}
           onChangeName={handleChangeName}
@@ -52,7 +54,7 @@ const stories = {
           }}
           invalid={invalid}
           invalidName={invalidName}
-          draggable={draggable}
+          draggable={true}
         />
       </div>
     )
@@ -62,20 +64,18 @@ const stories = {
         id: i,
         name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
         tag: String.fromCharCode(65 + i).toUpperCase(),
-        color: COLORS[i % COLORS.length],
       }
     )),
     activeTab: 0,
     nextId: 3,
   })(({store}) => {
     const bg = boolean('White background', true);
-    const suffixIcon = boolean('Show suffix icon', false);
+    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON, 'colorDot': prefixType.DOT}, prefixType.TAG);
+    const suffixIcon = boolean('Set single icon', false);
     const disabled = boolean('Disabled tabs', false);
-    const draggable = boolean('Enable change order of tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
-    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON}, prefixType.TAG);
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -128,7 +128,7 @@ const stories = {
       <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
         <CardTabs
           maxTabsCount={maxTabCount}
-          onChangeOrder={draggable ? handleChangeOrder : null}
+          onChangeOrder={ handleChangeOrder }
           onAddTab={handleAddItem}
         >
           {store.state.items.map((item) => (
@@ -138,9 +138,10 @@ const stories = {
               tag={item.tag}
               active={item.id === store.state.activeTab}
               color={item.color}
+              colorDot={<CardDot/>}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
-              suffixIcon={suffixIcon ? <FileM /> : null}
+              suffixIcon={suffixIcon ? <OptionHorizontalM /> : null}
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}
@@ -154,7 +155,7 @@ const stories = {
               }}
               invalid={invalid}
               invalidName={invalidName}
-              draggable={draggable}
+              draggable={true}
             />
           ))}
         </CardTabs>

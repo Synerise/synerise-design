@@ -4,6 +4,7 @@ import { IntlShape } from 'react-intl';
 export enum prefixType {
   TAG,
   ICON,
+  DOT,
 }
 
 export type Color =
@@ -11,7 +12,7 @@ export type Color =
   | 'green'
   | 'grey'
   | 'yellow'
-  | 'blue'
+  | ['blue-400']
   | 'pink'
   | 'mars'
   | 'orange'
@@ -32,6 +33,7 @@ export interface CardTabProps {
   name: string;
   tag: string;
   prefix: prefixType;
+  colorDot: React.ReactNode;
   color?: Color;
   active?: boolean;
   draggable?: boolean;
