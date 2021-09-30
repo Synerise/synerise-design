@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.137.0](https://github.com/synerise/synerise-design/compare/portal@0.136.0...portal@0.137.0) (2021-09-30)
+
+
+### Features
+
+* **condition:** adds autoclearCondition props ([58111ea](https://github.com/synerise/synerise-design/commit/58111ea895ad4b77eafc82257d263820f7b3cf39))
+
+
+
+
+
 # [0.136.0](https://github.com/synerise/synerise-design/compare/portal@0.135.1...portal@0.136.0) (2021-09-21)
 
 

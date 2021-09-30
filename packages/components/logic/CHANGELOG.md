@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.2.29...@synerise/ds-logic@0.3.0) (2021-09-30)
+
+
+### Features
+
+* **filter:** add placeholder into filter component ([2330b78](https://github.com/Synerise/synerise-design/commit/2330b78b0e64d2102d76795d9de5792e563ce9bf))
+
+
+
+
+
 ## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.2.28...@synerise/ds-logic@0.2.29) (2021-09-21)
 
 **Note:** Version bump only for package @synerise/ds-logic
