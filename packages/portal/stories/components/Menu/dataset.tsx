@@ -77,174 +77,174 @@ export const Rename = ({onSelectEdit}) => {
     </Tooltip>
   );
 };
-export const RenameWithDelete = ({onClickEdit}) => {
-  return (
-    <React.Fragment>
-      <Tooltip type="default" trigger="hover" title={'Rename'}>
-        <S.HoverableIconWrapper>
-          <Icon onClick={(e): void => {
-            onClickEdit();
-            e.stopPropagation();}} color={theme.palette['grey-600']} component={<EditS />} />
-        </S.HoverableIconWrapper>
-      </Tooltip>
-      <Tooltip type="default" trigger="hover" title={'Delete'}>
-        <div>
-          <Icon color={theme.palette['red-600']} component={<CloseS />} />
-        </div>
-      </Tooltip>
-    </React.Fragment>
-  )
-}
-export const SwitchWithTooltip = () => {
-  const [checked, setChecked] = React.useState(false);
-  return (
-    <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
-      <ExtendedAntdSwitchComponent
-        onChange={(value, event) => {
-          event.stopPropagation();
-          setChecked(value);
-        }}
-        defaultChecked={false}
-        checked={checked}
-        id={'toggle'}
-      />
-    </Tooltip>
-  );
-};
-export const ActionsMenu = ({ onSelectClick }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => {
-    setDropdownVisible(false);
-  });
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
-  return (
-    <Dropdown
-      visible={dropdownVisible}
-      placement="bottomCenter"
-      align={{offset: [-38,8]}}
-      overlay={
-        <DropdownWrapper style={{ width: '167px' }} ref={ref}>
-          <Menu asDropdownMenu style={{ width: '100%' }}>
-            <Menu.Item
-              onClick={(e): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<EditM />} />}
-            >
-              Rename
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<DuplicateM />} />}
-            >
-              Duplicate
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                onSelectClick();
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<TaskCheckM />} />}
-            >
-              Select
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              type="danger"
-              prefixel={<Icon component={<TrashM />} />}
-            >
-              Delete
-            </Menu.Item>
-          </Menu>
-        </DropdownWrapper>
-      }
-    >
-      <S.HoverableIconWrapper>
-        <Icon
-          color={theme.palette['grey-400']}
-          onClick={(e): void => {
-            e.stopPropagation();
-            setDropdownVisible(!dropdownVisible);
-          }}
-          component={<OptionHorizontalM />}
-        />
-      </S.HoverableIconWrapper>
-    </Dropdown>
-  );
-};
+// export const RenameWithDelete = ({onClickEdit}) => {
+//   return (
+//     <React.Fragment>
+//       <Tooltip type="default" trigger="hover" title={'Rename'}>
+//         <S.HoverableIconWrapper>
+//           <Icon onClick={(e): void => {
+//             onClickEdit();
+//             e.stopPropagation();}} color={theme.palette['grey-600']} component={<EditS />} />
+//         </S.HoverableIconWrapper>
+//       </Tooltip>
+//       <Tooltip type="default" trigger="hover" title={'Delete'}>
+//         <div>
+//           <Icon color={theme.palette['red-600']} component={<CloseS />} />
+//         </div>
+//       </Tooltip>
+//     </React.Fragment>
+//   )
+// }
+// export const SwitchWithTooltip = () => {
+//   // const [checked, setChecked] = React.useState(false);
+//   return (
+//     <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
+//       <ExtendedAntdSwitchComponent
+//         onChange={(value, event) => {
+//           event.stopPropagation();
+//           // setChecked(value);
+//         }}
+//         defaultChecked={false}
+//         // checked={checked}
+//         id={'toggle'}
+//       />
+//     </Tooltip>
+//   );
+// };
+// export const ActionsMenu = ({ onSelectClick }) => {
+//   const ref = React.useRef<HTMLDivElement>(null);
+//   useOnClickOutside(ref, () => {
+//     // setDropdownVisible(false);
+//   });
+//   // const [dropdownVisible, setDropdownVisible] = React.useState(false);
+//   return (
+//     <Dropdown
+//       visible={dropdownVisible}
+//       placement="bottomCenter"
+//       align={{offset: [-38,8]}}
+//       overlay={
+//         <DropdownWrapper style={{ width: '167px' }} ref={ref}>
+//           <Menu asDropdownMenu style={{ width: '100%' }}>
+//             <Menu.Item
+//               onClick={(e): void => {
+//                 setDropdownVisible(!dropdownVisible);
+//               }}
+//               prefixel={<Icon component={<EditM />} />}
+//             >
+//               Rename
+//             </Menu.Item>
+//             <Menu.Item
+//               onClick={(): void => {
+//                 setDropdownVisible(!dropdownVisible);
+//               }}
+//               prefixel={<Icon component={<DuplicateM />} />}
+//             >
+//               Duplicate
+//             </Menu.Item>
+//             <Menu.Item
+//               onClick={(): void => {
+//                 onSelectClick();
+//                 setDropdownVisible(!dropdownVisible);
+//               }}
+//               prefixel={<Icon component={<TaskCheckM />} />}
+//             >
+//               Select
+//             </Menu.Item>
+//             <Menu.Item
+//               onClick={(): void => {
+//                 setDropdownVisible(!dropdownVisible);
+//               }}
+//               type="danger"
+//               prefixel={<Icon component={<TrashM />} />}
+//             >
+//               Delete
+//             </Menu.Item>
+//           </Menu>
+//         </DropdownWrapper>
+//       }
+//     >
+//       <S.HoverableIconWrapper>
+//         <Icon
+//           color={theme.palette['grey-400']}
+//           onClick={(e): void => {
+//             e.stopPropagation();
+//             setDropdownVisible(!dropdownVisible);
+//           }}
+//           component={<OptionHorizontalM />}
+//         />
+//       </S.HoverableIconWrapper>
+//     </Dropdown>
+//   );
+// };
 
 
-export const suffixVisibilityTrigger = {
-  default: VisibilityTrigger.NONE,
-  hover: VisibilityTrigger.HOVER,
-};
-export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
+// export const suffixVisibilityTrigger = {
+//   // default: VisibilityTrigger.NONE,
+//   hover: VisibilityTrigger.HOVER,
+// };
+// export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
 
-export function renderSuffix(suffixElementType: string, selectSuffixCallback?: () => void, clickSuffixCallback?: () => void,) {
-  switch (suffixElementType) {
-    case suffixType.renameAndDelete:
-      return (
-        <RenameWithDelete onClickEdit={clickSuffixCallback}/>
-      );
-    case suffixType.rename:
-      return (
-        <Rename onSelectEdit={selectSuffixCallback}/>
-      );
-    case suffixType.dropdown:
-      return <ActionsMenu onSelectClick={selectSuffixCallback} />;
-    case suffixType.delete:
-      return (
-        <Tooltip type="default" title={'Delete'}>
-          <div>
-            <Icon color={theme.palette['red-600']} component={<CloseS />} />
-          </div>
-        </Tooltip>
-      );
-    case suffixType.check:
-      return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
-    case suffixType.warning:
-      return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
-    case suffixType.icon:
-      return (
-        <S.HoverableIconWrapper className="icon-suffix">
-          <Icon color={theme.palette['grey-600']} component={<UserS />} />
-        </S.HoverableIconWrapper>
-      );
-    case suffixType.label:
-      return (
-        <Label
-          label={
-            <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
-              <span>Text</span>
-            </div>
-          }
-        />
-      );
-    case suffixType.select:
-      return (
-        <Label
-          label={
-            <Tooltip type="default" trigger="hover" title={'Select product'}>
-              <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>
-                <span>select</span>
-              </div>
-            </Tooltip>
-          }
-        />
-      );
-    case suffixType.switch:
-      return <SwitchWithTooltip />;
-    case suffixType.none:
-      return null;
-    default:
-      return null;
-      break;
-  }
-}
+// export function renderSuffix(suffixElementType: string, selectSuffixCallback?: () => void, clickSuffixCallback?: () => void,) {
+//   switch (suffixElementType) {
+//     case suffixType.renameAndDelete:
+//       return (
+//         <RenameWithDelete onClickEdit={clickSuffixCallback}/>
+//       );
+//     case suffixType.rename:
+//       return (
+//         <Rename onSelectEdit={selectSuffixCallback}/>
+//       );
+//     case suffixType.dropdown:
+//       return <ActionsMenu onSelectClick={selectSuffixCallback} />;
+//     case suffixType.delete:
+//       return (
+//         <Tooltip type="default" title={'Delete'}>
+//           <div>
+//             <Icon color={theme.palette['red-600']} component={<CloseS />} />
+//           </div>
+//         </Tooltip>
+//       );
+//     case suffixType.check:
+//       return <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+//     case suffixType.warning:
+//       return <Icon color={theme.palette['orange-600']} component={<WarningFillS />} />;
+//     case suffixType.icon:
+//       return (
+//         <S.HoverableIconWrapper className="icon-suffix">
+//           <Icon color={theme.palette['grey-600']} component={<UserS />} />
+//         </S.HoverableIconWrapper>
+//       );
+//     case suffixType.label:
+//       return (
+//         <Label
+//           label={
+//             <div style={{ color: theme.palette['grey-400'], lineHeight: '18px' }}>
+//               <span>Text</span>
+//             </div>
+//           }
+//         />
+//       );
+//     case suffixType.select:
+//       return (
+//         <Label
+//           label={
+//             <Tooltip type="default" trigger="hover" title={'Select product'}>
+//               <div style={{ lineHeight: '18px', marginRight: '4px', color: theme.palette['blue-600'] }}>
+//                 <span>select</span>
+//               </div>
+//             </Tooltip>
+//           }
+//         />
+//       );
+//     case suffixType.switch:
+//       return <SwitchWithTooltip />;
+//     case suffixType.none:
+//       return null;
+//     default:
+//       return null;
+//       break;
+//   }
+// }
 
 export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: (value:boolean)=> void,) => {
   switch (prefixIconType) {
