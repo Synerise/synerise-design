@@ -12,7 +12,7 @@ export type Color =
   | 'green'
   | 'grey'
   | 'yellow'
-  | ['blue-400']
+  | 'blue'
   | 'pink'
   | 'mars'
   | 'orange'
