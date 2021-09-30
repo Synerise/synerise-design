@@ -10,6 +10,7 @@ type CardTabContainerProps = {
   color: string;
   disabled: boolean;
   edited: boolean;
+  draggable?: boolean;
 };
 
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
@@ -43,6 +44,9 @@ export const CardTabName = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+`;
+export const CardSuffixWrapper = styled.span`
+  display: none;
 `;
 
 export const CardTabLabel = styled.span<{ invalidName: boolean }>`
@@ -94,7 +98,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   }
 `;
 
-export const CardTabTag = styled.div`
+export const CardTabTag = styled.div<{ draggable?: boolean }>`
   ${macro.h200}
   color: ${({ theme }): string => theme.palette.white};
   display: flex;
@@ -104,6 +108,25 @@ export const CardTabTag = styled.div`
   height: 24px;
   border-radius: 3px;
 `;
+export const CardDotPrefix = styled.div`
+  ${macro.h200}
+  color: ${({ theme }): string => theme.palette.white};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+`;
+export const CardDot = styled.div`
+  ${macro.h200}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+`;
 
 export const CardTabPrefix = styled.div`
   display: flex;
@@ -112,6 +135,12 @@ export const CardTabPrefix = styled.div`
   width: 24px;
   height: 24px;
   margin-right: 12px;
+`;
+export const CardDragPrefix = styled.div`
+  display: none;
+`;
+export const CardIconPrefix = styled.div`
+  display: flex;
 `;
 
 export const CardTabContainer = styled.div<CardTabContainerProps>`
@@ -125,7 +154,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];
-    if (active && !edited) return theme.palette[`${color}-600`];
+    if (active && !edited) return theme.palette[`${color}`];
     if (greyBackground) return theme.palette.white;
     return theme.palette['grey-050'];
   }};
@@ -134,23 +163,32 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   border-width: 1px;
   border-color: ${({ theme, active, invalid, color, edited }): string => {
     if (invalid) return theme.palette['red-600'];
-    return getColor(active && !edited, theme.palette[`${color}-600`], theme.palette['grey-050']);
+    return getColor(active && !edited, theme.palette[`${color}`], theme.palette['grey-300']);
   }};
   border-style: solid;
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
 
   ${CardTabTag} {
     background-color: ${({ theme, active, color, edited }): string =>
-      getColor(active && !edited, theme.palette.white, theme.palette[`${color}-600`])};
+      getColor(active && !edited, theme.palette.white, theme.palette[`${color}`])};
     color: ${({ theme, active, color, edited }): string =>
-      getColor(active && !edited, theme.palette[`${color}-600`], theme.palette.white)};
+      getColor(active && !edited, theme.palette[`${color}`], theme.palette.white)};
+  }
+  ${CardDot} {
+    background-color: ${({ theme, active, color, edited }): string =>
+      getColor(active && !edited, theme.palette.white, theme.palette[`${color}`])};
   }
 
   &:hover {
     cursor: pointer;
+    box-shadow: ${({ greyBackground }): string =>
+      greyBackground ? '0px 10px 13px -7px #000000,-25px 20px 19px -16px rgba(0,0,0,0)' : '0'};
     background-color: ${({ theme, greyBackground }): string =>
       greyBackground ? theme.palette.white : theme.palette['grey-050']};
     ${CardTabSuffix} {
+      display: ${({ edited }): string => (edited ? 'none' : 'flex')};
+    }
+    ${CardSuffixWrapper} {
       display: ${({ edited }): string => (edited ? 'none' : 'flex')};
     }
     ${CardTabLabel} {
@@ -158,10 +196,28 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
         invalidName ? theme.palette['red-600'] : theme.palette['grey-800']};
     }
     ${CardTabTag} {
-      background-color: ${({ theme, color }): string => theme.palette[`${color}-600`]};
+      background-color: ${({ theme, color }): string => theme.palette[`${color}`]};
       color: ${({ theme }): string => theme.palette.white};
+      display: none;
     }
     ${CardTabPrefix} {
+      svg {
+        color: ${({ theme }): string => theme.palette['grey-600']} !important;
+        fill: ${({ theme }): string => theme.palette['grey-600']} !important;
+      }
+    }
+    ${CardDragPrefix} {
+      display: flex;
+      svg {
+        color: ${({ theme }): string => theme.palette['grey-600']} !important;
+        fill: ${({ theme }): string => theme.palette['grey-600']} !important;
+      }
+    }
+    ${CardDotPrefix} {
+      display: none;
+    }
+    ${CardIconPrefix} {
+      display: none;
       svg {
         color: ${({ theme }): string => theme.palette['grey-600']} !important;
         fill: ${({ theme }): string => theme.palette['grey-600']} !important;
