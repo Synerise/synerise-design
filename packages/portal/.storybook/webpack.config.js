@@ -4,6 +4,11 @@ module.exports = async ({ config, mode }) => {
   config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
 
   config.module.rules.push({
+    test: /(\/|\.)(stories|story)\.[tj]sx?$/,
+    use: '@storybook/source-loader',
+  })
+
+  config.module.rules.push({
     test: /\.less$/,
     use: [
       {
