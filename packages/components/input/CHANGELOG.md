@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.41...@synerise/ds-input@0.17.42) (2021-09-21)
+
+
+### Bug Fixes
+
+* set display name for input and subtle-form components ([465ac0a](https://github.com/synerise/synerise-design/commit/465ac0ae6fc0c27c5af975bad8d5ea1057546c5b))
+
+
+
+
+
 ## [0.17.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.17.40...@synerise/ds-input@0.17.41) (2021-09-09)
 
 

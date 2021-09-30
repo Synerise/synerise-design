@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tagslist",
-  "version": "0.6.48",
+  "version": "0.6.49",
   "description": "TagsList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -31,12 +31,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.65",
-    "@synerise/ds-checkbox-tristate": "^0.1.29",
-    "@synerise/ds-dropdown": "^0.16.26",
-    "@synerise/ds-menu": "^0.10.40",
-    "@synerise/ds-search": "^0.5.49",
-    "@synerise/ds-utils": "^0.18.0",
+    "@synerise/ds-button": "^0.13.66",
+    "@synerise/ds-checkbox-tristate": "^0.1.30",
+    "@synerise/ds-dropdown": "^0.16.27",
+    "@synerise/ds-menu": "^0.10.41",
+    "@synerise/ds-search": "^0.5.50",
+    "@synerise/ds-utils": "^0.18.1",
     "@types/react-highlight-words": "^0.16.1",
     "random-hash": "^4.0.1",
     "react-highlight-words": "^0.17.0"

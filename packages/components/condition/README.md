@@ -99,17 +99,18 @@ import Condition from '@synerise/ds-condition'
 
 ## API
 
-| Property        | Description                                                 | Type                                                               | Default |
-| ---             | ---                                                         | ---                                                                | ---     |
-| addCondition    | Callback called when user adds new row of conditions        | (stepId: React.ReactText) => void                                  | -       |
-| removeCondition | Callback called when user clicks on remove row of condtions | (stepId: React.ReactText, conditionRowId: React.ReactText) => void | -       |
-| steps           | Array contains all steps of condition                       | ConditionStep[]                                                    | -       |
-| texts           | Translations object                                         | Texts                                                              | -       |
-| updateStepName  | Callback called when user change the name of step           | (stepId: React.ReactText, value: string) => void                   | -       |
-| addStep         | Callback called when user clicks on add step button         | () => void                                                         | -       |
-| duplicateStep   | Callback called when user clicks on duplicate step button   | (stepId: React.ReactText) => void                                  | -       |
-| removeStep      | Callback called when user clicks on remove step button      | (stepId: React.ReactText) => void                                  | -       |
-| onChangeOrder   | Callback called when user change order of steps             | (order: ConditionStep[]) => void                                   | -       |
+| Property           | Description                                                         | Type                                                               | Default |
+| ---                | ---                                                                 | ---                                                                | ---     |
+| addCondition       | Callback called when user adds new row of conditions                | (stepId: React.ReactText) => void                                  | -       |
+| removeCondition    | Callback called when user clicks on remove row of condtions         | (stepId: React.ReactText, conditionRowId: React.ReactText) => void | -       |
+| steps              | Array contains all steps of condition                               | ConditionStep[]                                                    | -       |
+| texts              | Translations object                                                 | Texts                                                              | -       |
+| updateStepName     | Callback called when user change the name of step                   | (stepId: React.ReactText, value: string) => void                   | -       |
+| addStep            | Callback called when user clicks on add step button                 | () => void                                                         | -       |
+| duplicateStep      | Callback called when user clicks on duplicate step button           | (stepId: React.ReactText) => void                                  | -       |
+| removeStep         | Callback called when user clicks on remove step button              | (stepId: React.ReactText) => void                                  | -       |
+| onChangeOrder      | Callback called when user change order of steps                     | (order: ConditionStep[]) => void                                   | -       |
+| autoClearCondition | Automatically fires clearing values of dependent elements           | Boolean                                                            | false   |
 
 ### ConditionStep
 

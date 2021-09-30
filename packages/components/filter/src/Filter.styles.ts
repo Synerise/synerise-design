@@ -4,7 +4,7 @@ import { Body, Footer } from '@synerise/ds-step-card/dist/StepCard.styles';
 export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
   width: auto;
 `;

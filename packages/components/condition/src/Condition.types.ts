@@ -42,4 +42,5 @@ export type ConditionProps = {
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
   minConditionsLength?: number;
+  autoClearCondition?: boolean;
 };

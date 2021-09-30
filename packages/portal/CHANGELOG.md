@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.137.0](https://github.com/synerise/synerise-design/compare/portal@0.136.0...portal@0.137.0) (2021-09-30)
+
+
+### Features
+
+* **condition:** adds autoclearCondition props ([58111ea](https://github.com/synerise/synerise-design/commit/58111ea895ad4b77eafc82257d263820f7b3cf39))
+
+
+
+
+
+# [0.136.0](https://github.com/synerise/synerise-design/compare/portal@0.135.1...portal@0.136.0) (2021-09-21)
+
+
+### Bug Fixes
+
+* **alert:** fix prop ([74c6c46](https://github.com/synerise/synerise-design/commit/74c6c4605f75af6855fba5b83081fa0823b289b0))
+* **alert:** fix props ([bf938e9](https://github.com/synerise/synerise-design/commit/bf938e9e15ec12b70e2eddb9827cc66fb169c072))
+* **alert:** fix props and tests ([2639ac3](https://github.com/synerise/synerise-design/commit/2639ac3e775a8879722e1fbaf137fb0d0c07a0e9))
+* **alert:** two new components IconAlert and InlineAlert ([7e28f50](https://github.com/synerise/synerise-design/commit/7e28f50cb5b5d5c35d10b7c196d3cb36b112df15))
+* **button:** delete component but add it to stories ([5b6e88d](https://github.com/synerise/synerise-design/commit/5b6e88d84c500908037b2ff45eb328deca33e08e))
+* **popconfirm:** add new buttons and closeIcon ([4201b84](https://github.com/synerise/synerise-design/commit/4201b84de4ac551afe84feeac7805238da517535))
+* **popconfirm:** fix styles ([eba797b](https://github.com/synerise/synerise-design/commit/eba797ba6f49810af127d204b04a5ecb44844fc6))
+* **sidebar:** add new component SidebarWithButton ([2a26939](https://github.com/synerise/synerise-design/commit/2a26939ce8ef5866fceaf9050f4eef71f0eefa2b))
+* **sidebar:** add tests and add to readme informations ([0652fad](https://github.com/synerise/synerise-design/commit/0652fad170c662782002731d498fef48d107f439))
+* **sidebar:** add tests and add to readme informations ([dcda0b1](https://github.com/synerise/synerise-design/commit/dcda0b12ba35dba24cdf464266b01f7ea563c94e))
+* **table:** add new columns ([76b3dcb](https://github.com/synerise/synerise-design/commit/76b3dcb07b545a04fb8b2c59b69bb643a146a79d))
+* **table:** add width to columns ([2eb41e1](https://github.com/synerise/synerise-design/commit/2eb41e1234d9850773acf7c3ca292409f3536f8a))
+* **table:** new table with fixed options ([6acbc6f](https://github.com/synerise/synerise-design/commit/6acbc6fabdb59ef40ec869fe058371759c088ae8))
+
+
+### Features
+
+* **toolbar-buttons:** add new component toolbar ([cd9a8da](https://github.com/synerise/synerise-design/commit/cd9a8dad1a2dc5ede118e0dd21016b637ca30a23))
+* **treemenu:** current state ([281349b](https://github.com/synerise/synerise-design/commit/281349bd246f8ab696f3ec9b912d779944cdf82a))
+* **treemenu:** STOR-673 new TreeMenu component ([c5f95fa](https://github.com/synerise/synerise-design/commit/c5f95fa3e196b546cf7232f8dd62179f87ce6e3c))
+* **treemenu:** update stories ([89b3602](https://github.com/synerise/synerise-design/commit/89b3602d37589135a830f355f2850e83b87a5c86))
+
+
+
+
+
 ## [0.135.1](https://github.com/synerise/synerise-design/compare/portal@0.135.0...portal@0.135.1) (2021-07-30)
 
 **Note:** Version bump only for package portal

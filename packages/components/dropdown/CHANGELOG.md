@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.16.26...@synerise/ds-dropdown@0.16.27) (2021-09-21)
+
+**Note:** Version bump only for package @synerise/ds-dropdown
+
+
+
+
+
 ## [0.16.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.16.25...@synerise/ds-dropdown@0.16.26) (2021-09-15)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

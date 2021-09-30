@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.7.51...@synerise/ds-subtle-form@0.7.52) (2021-09-21)
+
+
+### Bug Fixes
+
+* set display name for input and subtle-form components ([465ac0a](https://github.com/Synerise/synerise-design/commit/465ac0ae6fc0c27c5af975bad8d5ea1057546c5b))
+
+
+
+
+
 ## [0.7.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.7.50...@synerise/ds-subtle-form@0.7.51) (2021-09-15)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

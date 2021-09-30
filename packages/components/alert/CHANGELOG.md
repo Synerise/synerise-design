@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.20...@synerise/ds-alert@0.3.21) (2021-09-21)
+
+
+### Bug Fixes
+
+* **alert:** fix styles ([a24c6a3](https://github.com/Synerise/synerise-design/commit/a24c6a353f6209205794b57ca115f5ebd3c605c1))
+* **alert:** fix styles ([ddce48c](https://github.com/Synerise/synerise-design/commit/ddce48c5e36f9beb2078a123364990a2a6b9e741))
+* **alert:** two new components IconAlert and InlineAlert ([7e28f50](https://github.com/Synerise/synerise-design/commit/7e28f50cb5b5d5c35d10b7c196d3cb36b112df15))
+
+
+
+
+
 ## [0.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.19...@synerise/ds-alert@0.3.20) (2021-09-09)
 
 **Note:** Version bump only for package @synerise/ds-alert
