@@ -14,9 +14,6 @@ module.exports = {
             },
         },
         '@storybook/addon-controls',
-        // '@storybook/preset-create-react-app',
-        '@storybook/addon-backgrounds',
-        '@storybook/addon-notes/register',
         '@storybook/addon-links',
     ],
     // stories:['../stories/**/*.stories.tsx','../stories/**/*.mdx']
