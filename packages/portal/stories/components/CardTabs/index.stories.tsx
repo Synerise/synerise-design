@@ -35,9 +35,18 @@ const stories = {
         name
       });
     };
+    const handleSelect = (id) => {
+      store.set({activeTab: id});
+    };
+    const handleChangeOrder = (newOrder: CardTabsItem): void => {
+      store.set({items: newOrder});
+    };
 
     return (
       <div style={{background: bg ? '#fff' : '#f9fafb', padding: '12px'}}>
+        <CardTabs
+          onChangeOrder={handleChangeOrder}
+        >
         <CardTab
           id={1}
           index={1}
@@ -51,6 +60,7 @@ const stories = {
           suffixIcon={suffixType[setSuffix]}
           disabled={disabled}
           prefix={prefix}
+          onSelectTab={handleSelect}
           onChangeName={handleChangeName}
           onRemoveTab={action('Remove tab')}
           onDuplicateTab={action('Duplicate')}
@@ -63,6 +73,7 @@ const stories = {
           invalidName={invalidName}
           draggable={true}
         />
+        </CardTabs>
       </div>
     )
   }),
@@ -135,7 +146,7 @@ const stories = {
       <div style={{background: bg ? '#fff' : '#f9fafb', padding: '12px'}}>
         <CardTabs
           maxTabsCount={maxTabCount}
-          onChangeOrder={ handleChangeOrder }
+          onChangeOrder={handleChangeOrder}
           onAddTab={handleAddItem}
         >
           {store.state.items.map((item) => (
