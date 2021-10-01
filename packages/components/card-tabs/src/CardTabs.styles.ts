@@ -9,7 +9,7 @@ export const CardTabsContainer = styled.div`
   justify-content: flex-start;
   width: 100%;
   ${CardTabContainer} {
-    margin-right: 16px;
+    margin-right: 12px;
     margin-bottom: 24px;
   }
   .ds-card-tags-sortable {

@@ -163,6 +163,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   border-width: 1px;
   border-color: ${({ theme, active, invalid, color, edited }): string => {
     if (invalid) return theme.palette['red-600'];
+    if (edited) return theme.palette['blue-600'];
     return getColor(active && !edited, theme.palette[`${color}`], theme.palette['grey-300']);
   }};
   border-style: solid;
@@ -181,8 +182,10 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
 
   &:hover {
     cursor: pointer;
-    box-shadow: ${({ greyBackground }): string =>
-      greyBackground ? '0px 10px 13px -7px #000000,-25px 20px 19px -16px rgba(0,0,0,0)' : '0'};
+    box-shadow: ${({ greyBackground, theme }): string =>
+      greyBackground
+        ? '0px 10px 13px -7px #000000,-25px 20px 19px -16px rgba(0,0,0,0)'
+        : `0px 4px 8px 5px ${theme.palette[`grey-050`]}`};
     background-color: ${({ theme, greyBackground }): string =>
       greyBackground ? theme.palette.white : theme.palette['grey-050']};
     ${CardTabSuffix} {
