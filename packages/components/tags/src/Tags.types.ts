@@ -35,5 +35,6 @@ export interface Props {
   overlayStyle?: React.CSSProperties;
   maxHeight?: number;
   overlayPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
+  asPill?: boolean;
   onManageTagClick?: () => void;
 }
