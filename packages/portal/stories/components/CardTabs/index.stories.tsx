@@ -11,14 +11,21 @@ import { ShowM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
 
 
-
+const suffixType = {
+  singleIcon: <OptionHorizontalM />,
+  cruds: null,
+};
+const types = {
+  singleIcon: 'singleIcon',
+  cruds: 'cruds',
+};
 const stories = {
   default: withState({
     name: 'Example',
   })(({store}) => {
     const bg = boolean('White background', true);
-    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON,'colorDot': prefixType.DOT}, prefixType.TAG);
-    const suffixIcon = boolean('Set single icon', false);
+    const prefix = select('Set prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON,'colorDot': prefixType.DOT}, prefixType.TAG);
+    const setSuffix = select('Set suffix type', types,'cruds');
     const isActive = boolean('Is active', false);
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
@@ -30,7 +37,7 @@ const stories = {
     };
 
     return (
-      <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
+      <div style={{background: bg ? '#fff' : '#f9fafb', padding: '12px'}}>
         <CardTab
           id={1}
           index={1}
@@ -38,10 +45,10 @@ const stories = {
           tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
           active={isActive}
           greyBackground={!bg}
-          color={'yellow-600'}
+          color={'blue-600'}
           colorDot={<CardDot/>}
           prefixIcon={<ShowM />}
-          suffixIcon={suffixIcon ? <OptionHorizontalM /> : null}
+          suffixIcon={suffixType[setSuffix]}
           disabled={disabled}
           prefix={prefix}
           onChangeName={handleChangeName}
@@ -70,8 +77,8 @@ const stories = {
     nextId: 3,
   })(({store}) => {
     const bg = boolean('White background', true);
-    const prefix = select('Prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON, 'colorDot': prefixType.DOT}, prefixType.TAG);
-    const suffixIcon = boolean('Set single icon', false);
+    const prefix = select('Set prefix type', {'tag': prefixType.TAG, 'icon': prefixType.ICON, 'colorDot': prefixType.DOT}, prefixType.TAG);
+    const setSuffix = select('Set suffix type', types,'cruds');
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
@@ -125,7 +132,7 @@ const stories = {
     };
 
     return (
-      <div style={{background: bg ? '#fff' : '#f9fafb', padding: '24px'}}>
+      <div style={{background: bg ? '#fff' : '#f9fafb', padding: '12px'}}>
         <CardTabs
           maxTabsCount={maxTabCount}
           onChangeOrder={ handleChangeOrder }
@@ -141,7 +148,7 @@ const stories = {
               colorDot={<CardDot/>}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
-              suffixIcon={suffixIcon ? <OptionHorizontalM /> : null}
+              suffixIcon={suffixType[setSuffix]}
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}
