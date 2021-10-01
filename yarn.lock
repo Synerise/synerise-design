@@ -6244,7 +6244,7 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
 
-"@synerise/ds-icon@^0.44.0":
+"@synerise/ds-icon@^0.44.0", "@synerise/ds-icon@^0.44.8":
   version "0.44.11"
   resolved "https://registry.npmjs.org/@synerise/ds-icon/-/ds-icon-0.44.11.tgz#791106b37c12270a6fedf8953388428c3e590605"
   integrity sha512-/jBhFV20S/M+RdcLXd3XhGhTvYCOsUmqXkBelCGZfRmQitu5zMk1hrB2KxWEynaCuFol+7ygw3NL5KkfguEedw==

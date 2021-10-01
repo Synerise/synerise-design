@@ -81,7 +81,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} disabled={disabled} />
+          <Tags tagShape={shape} selected={thisTag} disabled={disabled} asPill={true}/>
         </div>
       </React.Fragment>
     );
