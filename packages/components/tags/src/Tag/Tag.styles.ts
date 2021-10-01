@@ -340,9 +340,10 @@ export const Tag = styled.div<TagProps>`
   font-weight: 500;
   overflow: hidden;
   cursor:default;
-  ${(props: TagProps): string | false =>
+
+  ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
     !props.asPill &&
-    `
+    css`
       cursor: pointer;
       &:hover:before {
         filter: ${getFilterColor};
