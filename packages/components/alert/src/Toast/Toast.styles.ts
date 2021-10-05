@@ -156,7 +156,7 @@ export const NumberWrapper = styled.div<{ customColorText?: CustomColorType; col
       props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
   }
 `;
-export const ListWrapper = styled.div<{ visible?: boolean; description?: boolean }>`
+export const ListWrapper = styled.div<{ visible?: boolean; description?: React.ReactNode }>`
   display: flex;
   margin-top: ${(props): string => (!props.description ? '10px' : '0')};
 `;
