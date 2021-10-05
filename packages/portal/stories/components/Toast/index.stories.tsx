@@ -1,4 +1,4 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import {
   Check3M, DuplicateS,
   InfoFillM,
@@ -323,6 +323,7 @@ const stories = {
   Playground: () => {
     const expanderButton = boolean('Set expander button', false);
     const withClose = boolean('Set close button', true);
+    const durationClose = number('Set time to close', 3000)
     const typeExpandedContent = select('Set type content', typeOfContent, '');
     const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const showButton = boolean('Set button', false);
@@ -390,6 +391,14 @@ const stories = {
     const onAnimationEnd = (): void => {
       if (!show) setRender(false);
     };
+    React.useEffect((): (() => void) => {
+      const timeout = setTimeout(() => {
+        setShow(false);
+      }, durationClose);
+      return (): void => {
+        clearTimeout(timeout);
+      };
+    }, [shouldRender, durationClose]);
     return (
       <div style={{
         display: 'flex',
@@ -400,7 +409,7 @@ const stories = {
 
       }}>
         <Button type="primary" mode="label" onClick={() => setShow(show => !show)}>
-          {show ? "hide" : "show"}
+          show
         </Button>
       <div
         style={{
