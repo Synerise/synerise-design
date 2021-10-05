@@ -27,6 +27,7 @@ const Tags: React.FC<Props> = ({
   maxHeight,
   overlayStyle,
   overlayPlacement,
+  asPill,
   onManageTagClick,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
@@ -162,6 +163,7 @@ const Tags: React.FC<Props> = ({
               onRemove={removable ? onRemove : undefined}
               disabled={disabled}
               texts={texts}
+              asPill={asPill}
               {...tag}
             />
           ))}
