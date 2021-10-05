@@ -54,7 +54,11 @@ const Toast: React.FC<Props> = ({
             </S.AlertDescription>
           )}
         </S.Text>
-        {expandedContent && expanded && <S.ListWrapper visible={expanded}>{expandedContent}</S.ListWrapper>}
+        {expandedContent && expanded && (
+          <S.ListWrapper description={description} visible={expanded}>
+            {expandedContent}
+          </S.ListWrapper>
+        )}
         {button}
       </S.AlertContent>
     );

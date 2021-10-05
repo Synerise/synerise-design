@@ -12,7 +12,6 @@ import UnorderedList from '@synerise/ds-unordered-list';
 import Alert from '@synerise/ds-alert';
 import Toast from '@synerise/ds-alert/dist/Toast/Toast';
 import {
-  AnimationContainer,
   FirstButtonWrapper, IconOrderWrapper,
   NumberWrapper,
   OrderWrapper,
@@ -37,29 +36,7 @@ const decorator = storyFn => (
     {storyFn()}
   </div>
 );
-const req = require.context('@synerise/ds-icon/dist/icons', false, /index.js/);
-const iconsRaw = req(req.keys()[0]);
-const iconsNames = Object.keys(iconsRaw);
-const getDefaultProps = () => ({
-  customIcon: boolean('Set custom symbol', false),
-});
 const SECTION_COLOR_TYPES = ['success', 'warning' , 'negative' , 'neutral' ,'informative'];
-const typeOfContent = ['unorderedList', 'button', ''];
-const CUSTOM_COLORS = [
-  '',
-  'blue',
-  'grey',
-  'red',
-  'green',
-  'yellow',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-];
 
 
 const additionalAlertMapper = {
@@ -152,6 +129,15 @@ const stories = {
     const message = text('Message', 'Campaign saved!');
     const type = select('Set type', SECTION_COLOR_TYPES, 'success');
     const description = text('Description', 'No response from server, try again later');
+    const getTypeButton = (type): string => {
+      if (type === 'neutral') {
+        return 'tertiary';
+      }
+      if (type === 'informative') {
+        return 'tertiary';
+      }
+      return 'tertiary-white';
+    };
     return (
       <div
         style={{
@@ -168,7 +154,7 @@ const stories = {
           description={description}
           expanded
           button={<FirstButtonWrapper>
-            <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
+            <Button type={getTypeButton(type)} mode="label">
               Button
             </Button>
           </FirstButtonWrapper>}

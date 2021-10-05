@@ -156,8 +156,9 @@ export const NumberWrapper = styled.div<{ customColorText?: CustomColorType; col
       props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
   }
 `;
-export const ListWrapper = styled.div<{ visible?: boolean }>`
+export const ListWrapper = styled.div<{ visible?: boolean; description?: boolean }>`
   display: flex;
+  margin-top: ${(props): string => (!props.description ? '10px' : '0')};
 `;
 export const IconOrderWrapper = styled.div<{ customColorText?: CustomColorType; color?: ColorType }>`
   display: none;
