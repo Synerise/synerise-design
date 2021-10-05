@@ -373,6 +373,15 @@ const stories = {
     React.useEffect(() => {setOpened(true)}, [typeExpandedContent])
     const [show, setShow] = React.useState(false);
     const [shouldRender, setRender] = React.useState(show);
+    const getTypeButton = (type): string => {
+      if (type === 'neutral') {
+        return 'tertiary';
+      }
+      if (type === 'informative') {
+        return 'tertiary';
+      }
+      return 'tertiary-white';
+    };
 
     React.useEffect(() => {
       if (show) setRender(true);
@@ -420,7 +429,7 @@ const stories = {
           expander={expanderButton}
           expandedContent={expandedContent[typeExpandedContent]}
           button={showButton && <FirstButtonWrapper>
-            <Button type={type === 'neutral' ? 'tertiary': 'tertiary-white'} mode="label">
+            <Button type={getTypeButton(type)} mode="label">
               Button
             </Button>
           </FirstButtonWrapper>}
