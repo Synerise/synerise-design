@@ -122,6 +122,7 @@ const apps = [...Array(20)].map((_, i) => ({
   icon: <ApiM />,
   groupId: 'APPS',
 }));
+
 export const CONTEXT_CLIENT_ITEMS = [
   {
     name: 'Pricelist 02',
@@ -193,6 +194,17 @@ export const CONTEXT_CLIENT_ITEMS = [
     groupId: 'RECENT',
     groupName: 'Activity',
   },
+  ...attributes,
+  ...expressions,
+  ...aggregates,
+  ...apps,
+  ...tags,
+  ...segmentations,
+  ...clientEvents,
+  ...integrations,
+];
+
+export const FLAT_LIST_ITEMS = [
   ...attributes,
   ...expressions,
   ...aggregates,

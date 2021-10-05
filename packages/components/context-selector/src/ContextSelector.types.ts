@@ -49,8 +49,13 @@ export type ContextProps = {
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
-  onClickOutsideEvents?: HandledEventsType [];
+  onClickOutsideEvents?: HandledEventsType[];
   onClickOutside?: () => void;
+  onSearch?: (query: string) => void;
+  onFetchData?: () => void;
+  onOpen?: () => void;
+  hasMoreItems?: boolean;
+  type?: 'default' | 'attribute' | 'event';
 };
 
 export type ContextDropdownProps = {
@@ -65,8 +70,12 @@ export type ContextDropdownProps = {
   loading?: boolean;
   menuItemHeight?: 'large' | 'default';
   dropdownWrapperStyles?: CSSProperties;
-  onClickOutsideEvents?: HandledEventsType [];
+  onClickOutsideEvents?: HandledEventsType[];
   onClickOutside?: () => void;
+  onSearch?: (query: string) => void;
+  onFetchData?: () => void;
+  hasMoreItems?: boolean;
+  style?: React.CSSProperties;
 };
 
 export type ContextSelectorDropdownItemProps = {
@@ -78,4 +87,5 @@ export type ContextSelectorDropdownItemProps = {
   selected?: boolean;
   className: string;
   menuItemHeight?: 'large' | 'default';
+  style?: React.CSSProperties;
 };
