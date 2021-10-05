@@ -35,8 +35,12 @@ const ParameterInput: React.FC<InputProps> = ({
 
   React.useEffect(() => {
     setDropdownVisible(!!opened);
-    if (opened) onParamsClick && onParamsClick();
-  }, [opened, onParamsClick]);
+  }, [opened]);
+
+  React.useEffect(() => {
+    onParamsClick && onParamsClick();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Dropdown
