@@ -5,6 +5,12 @@ import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
 import { COLORS_TABS } from './CardTab/ColorsTabs';
 
+const SORTABLE_CONFIG = {
+  ghostClass: 'sortable-card-ghost-element',
+  className: 'sortable-card',
+  animation: 150,
+  group: 'column-manager',
+};
 const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
     onChangeOrder &&
@@ -25,7 +31,12 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable className="ds-card-tags-sortable" list={children} setList={handleChangeOrder}>
+          <ReactSortable
+            {...SORTABLE_CONFIG}
+            className="ds-card-tags-sortable"
+            list={children}
+            setList={handleChangeOrder}
+          >
             {renderChildren()}
           </ReactSortable>
         </div>
