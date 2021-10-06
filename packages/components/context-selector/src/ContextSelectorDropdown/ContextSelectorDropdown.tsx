@@ -9,7 +9,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { v4 as uuid } from 'uuid';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import * as S from '../ContextSelector.styles';
 import { ContextDropdownProps, ContextGroup, ContextItem, ContextItemsInSubGroup } from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
@@ -67,6 +67,17 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     onClickOutsideEvents
   );
 
+  const clearSearch = React.useCallback(() => {
+    setSearchQuery('');
+  }, []);
+
+  const hideDropdown = React.useCallback(() => {
+    setDropdownVisible(false);
+  }, []);
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const groupByGroupName = React.useCallback(
     activeItems => {
       const groupedItems = activeItems.reduce((result: {}, item: ContextItem) => {
@@ -87,7 +98,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
           const resultItem = item.isGroup
             ? {
                 className: classNames,
-                key: `${item.name}-${item.id}`,
                 item,
                 searchQuery,
                 select: handleOnSetGroup,
@@ -95,10 +105,9 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               }
             : {
                 className: classNames,
-                key: `${item.name}-${item.id}-${item.groupId}`,
                 item,
                 searchQuery,
-                hideDropdown: (): void => setDropdownVisible(false),
+                hideDropdown,
                 select: setSelected,
                 selected: Boolean(value) && item.id === value?.id,
                 menuItemHeight,
@@ -108,7 +117,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       });
       return resultItems;
     },
-    [activeGroup, classNames, searchQuery, setSelected, value, setDropdownVisible, handleOnSetGroup, menuItemHeight]
+    [activeGroup, classNames, searchQuery, handleOnSetGroup, menuItemHeight, hideDropdown, setSelected, value]
   );
 
   const currentTabItems = React.useMemo((): ContextGroup | undefined => {
@@ -140,25 +149,43 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   //     });
   // }, [items, searchQuery, classNames, setSelected, value, menuItemHeight, onSearch, setDropdownVisible]);
 
-  const activeItems = React.useMemo(() => {
-    if (!onSearch && searchQuery) {
-      return items
-        .filter((item: ContextItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
-        .map((item: ContextItem) => ({
-          className: classNames,
-          key: `${item.name}-${item.id}-${item.groupId}`,
-          item,
-          searchQuery,
-          clearSearch: (): void => {
-            setSearchQuery('');
+  const searchResults = React.useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    return items.reduce((result, item) => {
+      const matching = !searchQuery || item.name.toLowerCase().includes(searchQuery.toLowerCase());
+      if (matching) {
+        return [
+          ...result,
+          {
+            className: classNames,
+            item,
+            searchQuery,
+            clearSearch,
+            hideDropdown,
+            select: setSelected,
+            selected: Boolean(value) && item.id === value?.id,
+            menuItemHeight,
           },
-          hideDropdown: (): void => setDropdownVisible(false),
-          select: setSelected,
-          selected: Boolean(value) && item.id === value?.id,
-          menuItemHeight,
-        }));
+        ];
+      }
+      return [...result];
+    }, []);
+  }, [classNames, clearSearch, hideDropdown, items, menuItemHeight, searchQuery, setSelected, value]);
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const hasSubgroups = React.useMemo(() => Boolean(currentTabItems?.subGroups), [currentTabItems]);
+
+  const activeItems = React.useMemo((): [] => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    if (!onSearch && searchQuery) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return searchResults;
     }
-    const hasSubgroups = Boolean(currentTabItems?.subGroups);
     if (hasSubgroups && !activeGroup) {
       const subGroups = currentTabItems?.subGroups
         ? currentTabItems?.subGroups?.map(group => ({
@@ -176,34 +203,39 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         return prev;
       }, []);
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return groupByGroupName([...subGroups, ...subItems]);
     }
 
     if (activeGroup) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return groupByGroupName(items?.filter((item: ContextItem) => activeGroup && item.groupId === activeGroup.id));
     }
 
     if (activeTab && groups && groups[activeTab]) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return groupByGroupName(
         items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     return groupByGroupName(items);
   }, [
     activeGroup,
     activeTab,
-    classNames,
     currentTabItems,
     groupByGroupName,
     groups,
+    hasSubgroups,
     items,
-    menuItemHeight,
     onSearch,
     searchQuery,
-    setDropdownVisible,
-    setSelected,
-    value,
+    searchResults,
   ]);
 
   // const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
@@ -270,6 +302,13 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     [loading, texts]
   );
 
+  const handleScroll = ({ currentTarget }: React.SyntheticEvent<HTMLElement>): void => {
+    const { scrollTop } = currentTarget;
+    if (listRef.current !== null) {
+      listRef.current.scrollTo(scrollTop);
+    }
+  };
+
   const RenderRow = ({ index, style }: ListChildComponentProps): React.ReactNode => {
     const item = activeItems[index];
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -329,18 +368,18 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         {activeItems?.length ? (
           <Scrollbar
             absolute
-            maxHeight={300}
             style={{ padding: 8 }}
             loading={loading}
             hasMore={hasMoreItems}
             onYReachEnd={onFetchData}
+            onScroll={handleScroll}
           >
             {/*
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore */}
-            <FixedSizeList
+            <List
               width="100%"
-              height={activeItems.length * 32}
+              height={300}
               itemCount={activeItems.length}
               itemSize={32}
               style={listStyle}
@@ -350,7 +389,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore */}
               {RenderRow}
-            </FixedSizeList>
+            </List>
           </Scrollbar>
         ) : (
           getNoResultContainer

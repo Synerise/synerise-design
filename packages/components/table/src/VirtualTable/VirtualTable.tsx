@@ -217,8 +217,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       if (column.width) {
         return {
           ...column,
-          width:  calculatePixels(column.width),
-        }
+          width: calculatePixels(column.width),
+        };
       }
 
       return {
