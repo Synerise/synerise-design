@@ -98,7 +98,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   }
 `;
 
-export const CardTabTag = styled.div<{ draggable?: boolean }>`
+export const CardTabTag = styled.div<{}>`
   ${macro.h200}
   color: ${({ theme }): string => theme.palette.white};
   display: flex;
