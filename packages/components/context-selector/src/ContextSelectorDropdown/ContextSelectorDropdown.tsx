@@ -372,6 +372,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
             loading={loading}
             hasMore={hasMoreItems}
             onYReachEnd={onFetchData}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
             onScroll={handleScroll}
           >
             {/*
