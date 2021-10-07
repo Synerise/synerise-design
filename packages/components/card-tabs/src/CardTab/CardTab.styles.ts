@@ -177,7 +177,14 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   }
   ${CardDot} {
     background-color: ${({ theme, active, color, edited }): string =>
-      getColor(active && !edited, theme.palette.white, theme.palette[`${color}`])};
+      getColor(active && !edited, 'transparent', theme.palette[`${color}`])};
+  }
+  ${CardDotPrefix} {
+    height: ${({ active, edited }): string => (active && !edited ? '12px' : '24px')};
+    width: ${({ active, edited }): string => (active && !edited ? '12px' : '24px')};
+    border-width: ${({ active, edited }): string => (active && !edited ? '2px' : '0px')};
+    border-color: ${({ theme, active, edited }): string => (active && !edited ? theme.palette.white : 'none')};
+    border-style: solid;
   }
 
   &:hover {
