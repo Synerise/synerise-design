@@ -26,6 +26,9 @@ export const NavbarDescription = styled.div`
 export const AdditionalNode = styled.div`
   display: flex;
   align-items: center;
+  .ds-button:not(:last-child) {
+    margin-right: 8px;
+  }
 `;
 
 export const NavbarDivider = styled.div`
