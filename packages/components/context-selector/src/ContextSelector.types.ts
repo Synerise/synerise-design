@@ -89,3 +89,21 @@ export type ContextSelectorDropdownItemProps = {
   menuItemHeight?: 'large' | 'default';
   style?: React.CSSProperties;
 };
+
+export type ListItem = {
+  className: string;
+  item: ContextItem | ContextGroup;
+  searchQuery: string;
+  select: (item: ContextItem | ContextGroup) => void;
+  menuItemHeight?: 'large' | 'default';
+  selected?: boolean;
+  clearSearch?: () => void;
+  hideDropdown?: () => void;
+};
+
+export type ListTitle = {
+  title?: string;
+  type?: string;
+};
+
+export type DropdownItemProps = ListTitle | ListItem;

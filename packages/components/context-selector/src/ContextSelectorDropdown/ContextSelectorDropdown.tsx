@@ -9,12 +9,24 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { v4 as uuid } from 'uuid';
-import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
+import { FixedSizeList, FixedSizeList as List } from 'react-window';
 import * as S from '../ContextSelector.styles';
-import { ContextDropdownProps, ContextGroup, ContextItem, ContextItemsInSubGroup } from '../ContextSelector.types';
+import {
+  ContextDropdownProps,
+  ContextGroup,
+  ContextItem,
+  ContextItemsInSubGroup,
+  DropdownItemProps,
+  ListItem,
+  ListTitle,
+} from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
+
+function isListTitle(element: DropdownItemProps): element is ListTitle {
+  return (element as ListTitle).title !== undefined;
+}
 
 const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   texts,
@@ -73,20 +85,17 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   const hideDropdown = React.useCallback(() => {
     setDropdownVisible(false);
-  }, []);
+  }, [setDropdownVisible]);
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const groupByGroupName = React.useCallback(
-    activeItems => {
+    (activeItems): DropdownItemProps[] => {
       const groupedItems = activeItems.reduce((result: {}, item: ContextItem) => {
         const res = result;
         const groupName = item.groupName || NO_GROUP_NAME;
         res[groupName] = (result[groupName] || []).concat(item);
         return res;
       }, {});
-      const resultItems: React.ReactNode[] = [];
+      const resultItems: DropdownItemProps[] = [];
       Object.keys(groupedItems).forEach((key: string) => {
         if (key !== NO_GROUP_NAME && !activeGroup) {
           resultItems.push({
@@ -126,33 +135,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     });
   }, [groups, activeTab]);
 
-  // const filteredItems = React.useMemo(() => {
-  //   return items
-  //     ?.filter((item: ContextItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
-  //     .map((item: ContextItem) => {
-  //       return (
-  //         <ContextSelectorDropdownItem
-  //           className={classNames}
-  //           key={item.name + item.id + item.groupId}
-  //           item={item}
-  //           searchQuery={searchQuery}
-  //           clearSearch={(): void => {
-  //             setSearchQuery('');
-  //             onSearch && onSearch('');
-  //           }}
-  //           hideDropdown={(): void => setDropdownVisible(false)}
-  //           select={setSelected}
-  //           selected={Boolean(value) && item.id === value?.id}
-  //           menuItemHeight={menuItemHeight}
-  //         />
-  //       );
-  //     });
-  // }, [items, searchQuery, classNames, setSelected, value, menuItemHeight, onSearch, setDropdownVisible]);
-
   const searchResults = React.useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    return items.reduce((result, item) => {
+    return items.reduce((result: ListItem[], item) => {
       const matching = !searchQuery || item.name.toLowerCase().includes(searchQuery.toLowerCase());
       if (matching) {
         return [
@@ -173,17 +157,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     }, []);
   }, [classNames, clearSearch, hideDropdown, items, menuItemHeight, searchQuery, setSelected, value]);
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const hasSubgroups = React.useMemo(() => Boolean(currentTabItems?.subGroups), [currentTabItems]);
 
-  const activeItems = React.useMemo((): [] => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
+  const activeItems = React.useMemo((): DropdownItemProps[] => {
     if (!onSearch && searchQuery) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       return searchResults;
     }
     if (hasSubgroups && !activeGroup) {
@@ -203,27 +180,19 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         return prev;
       }, []);
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       return groupByGroupName([...subGroups, ...subItems]);
     }
 
     if (activeGroup) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       return groupByGroupName(items?.filter((item: ContextItem) => activeGroup && item.groupId === activeGroup.id));
     }
 
     if (activeTab && groups && groups[activeTab]) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       return groupByGroupName(
         items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     return groupByGroupName(items);
   }, [
     activeGroup,
@@ -237,44 +206,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     searchQuery,
     searchResults,
   ]);
-
-  // const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
-  //   if (!onSearch && searchQuery) {
-  //     return filteredItems;
-  //   }
-  //   const hasSubgroups = Boolean(currentTabItems?.subGroups);
-  //   if (hasSubgroups && !activeGroup) {
-  //     const subGroups = currentTabItems?.subGroups
-  //       ? currentTabItems?.subGroups?.map(group => ({
-  //           ...group,
-  //           isGroup: true,
-  //         }))
-  //       : [];
-  //     const subItems = items?.reduce((prev: ContextItemsInSubGroup[], curr: ContextItem) => {
-  //       if (curr.groupId === currentTabItems?.id) {
-  //         prev.push({
-  //           ...curr,
-  //           isGroup: false,
-  //         });
-  //       }
-  //       return prev;
-  //     }, []);
-  //
-  //     return groupByGroupName([...subGroups, ...subItems]);
-  //   }
-  //
-  //   if (activeGroup) {
-  //     return groupByGroupName(items?.filter((item: ContextItem) => activeGroup && item.groupId === activeGroup.id));
-  //   }
-  //
-  //   if (activeTab && groups && groups[activeTab]) {
-  //     return groupByGroupName(
-  //       items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
-  //     );
-  //   }
-  //
-  //   return groupByGroupName(items);
-  // }, [onSearch, searchQuery, currentTabItems, activeGroup, activeTab, groups, groupByGroupName, items, filteredItems]);
 
   const handleSearch = React.useCallback(
     val => {
@@ -302,26 +233,11 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     [loading, texts]
   );
 
-  const handleScroll = ({ currentTarget }: React.SyntheticEvent<HTMLElement>): void => {
+  const handleScroll = ({ currentTarget }: React.UIEvent): void => {
     const { scrollTop } = currentTarget;
     if (listRef.current !== null) {
       listRef.current.scrollTo(scrollTop);
     }
-  };
-
-  const RenderRow = ({ index, style }: ListChildComponentProps): React.ReactNode => {
-    const item = activeItems[index];
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    return item && item?.type && item?.type === 'title' ? (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      <S.Title style={style}>{item?.title}</S.Title>
-    ) : (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      <ContextSelectorDropdownItem style={style} {...item} />
-    );
   };
 
   return (
@@ -372,13 +288,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
             loading={loading}
             hasMore={hasMoreItems}
             onYReachEnd={onFetchData}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
             onScroll={handleScroll}
           >
             {/*
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore */}
+            // @ts-ignore */}
             <List
               width="100%"
               height={300}
@@ -387,10 +300,15 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               style={listStyle}
               ref={listRef}
             >
-              {/*
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore */}
-              {RenderRow}
+              {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
+              {({ index, style }) => {
+                const item = activeItems[index];
+                return item && isListTitle(item) ? (
+                  <S.Title style={style}>{item.title}</S.Title>
+                ) : (
+                  <ContextSelectorDropdownItem style={style} {...item} />
+                );
+              }}
             </List>
           </Scrollbar>
         ) : (
