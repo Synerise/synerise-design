@@ -21,6 +21,7 @@ import * as S from './Condition.style';
 
 const DEFAULT_FIELD = '';
 const DEFAULT_CONDITION = '';
+const DEFAULT_STEP = '';
 const OPERATOR = 'operator';
 const PARAMETER = 'parameter';
 const FACTOR = 'factor';
@@ -71,6 +72,7 @@ const Condition: React.FC<ConditionProps> = ({
     [texts, formatMessage]
   );
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
+  const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
   const prevSteps = usePrevious(steps);
 
@@ -111,6 +113,7 @@ const Condition: React.FC<ConditionProps> = ({
           }
         });
       }
+
       autoClearCondition &&
         step.conditions.forEach((condition: StepConditions) => {
           condition.factor && condition.factor.onChangeValue(undefined);
@@ -118,6 +121,7 @@ const Condition: React.FC<ConditionProps> = ({
           condition.parameter && condition.parameter.onChangeValue(undefined);
         });
       setCurrentConditionId(step.conditions[0].id);
+      setCurrentStepId(step.id);
       if (step.conditions[0].parameter) {
         setCurrentField(PARAMETER);
       } else if (step.conditions[0].operator) {
@@ -130,6 +134,7 @@ const Condition: React.FC<ConditionProps> = ({
   const selectSubject = React.useCallback(
     (value, step: ConditionStep): void => {
       clearConditionRow(step);
+      setCurrentStepId(step.id);
       step.subject && step.subject.onSelectItem(value);
     },
     [clearConditionRow]
@@ -138,18 +143,20 @@ const Condition: React.FC<ConditionProps> = ({
   const selectContext = React.useCallback(
     (value, step: ConditionStep): void => {
       clearConditionRow(step);
+      setCurrentStepId(step.id);
       step.context && step.context.onSelectItem(value);
     },
     [clearConditionRow]
   );
 
   const selectParameter = React.useCallback(
-    (condition: StepConditions, value): void => {
+    (step: ConditionStep, condition: StepConditions, value): void => {
       if (condition.id && condition.parameter) {
         autoClearCondition && condition.operator && condition.operator.onChange(undefined);
         autoClearCondition && condition.factor && condition.factor.onChangeValue(undefined);
         condition.parameter.onChangeValue(value);
         setCurrentConditionId(condition.id);
+        setCurrentStepId(step.id);
         setCurrentField(OPERATOR);
       }
     },
@@ -157,11 +164,12 @@ const Condition: React.FC<ConditionProps> = ({
   );
 
   const selectOperator = React.useCallback(
-    (condition: StepConditions, value): void => {
+    (step: ConditionStep, condition: StepConditions, value): void => {
       if (condition.id && condition.operator) {
         autoClearCondition && condition.factor && condition.factor.onChangeValue(undefined);
         condition.operator.onChange(value);
         setCurrentConditionId(condition.id);
+        setCurrentStepId(step.id);
         setCurrentField(FACTOR);
       }
     },
@@ -170,12 +178,14 @@ const Condition: React.FC<ConditionProps> = ({
 
   const setStepConditionFactorType = React.useCallback((step, condition, factorType): void => {
     setCurrentConditionId(condition.id);
+    setCurrentStepId(step.id);
     setCurrentField(FACTOR);
     condition.factor && condition.factor.setSelectedFactorType(factorType);
   }, []);
 
   const setStepConditionFactorValue = React.useCallback((step, condition, value) => {
     setCurrentField(DEFAULT_FIELD);
+    setCurrentStepId(step.id);
     condition.factor && condition.factor.onChangeValue(value);
   }, []);
 
@@ -241,8 +251,12 @@ const Condition: React.FC<ConditionProps> = ({
                           {condition.parameter && (
                             <Factors
                               {...condition.parameter}
-                              onChangeValue={(value): void => selectParameter(condition, value)}
-                              opened={condition.id === currentConditionId && currentField === PARAMETER}
+                              onChangeValue={(value): void => selectParameter(step, condition, value)}
+                              opened={
+                                step.id === currentStepId &&
+                                condition.id === currentConditionId &&
+                                currentField === PARAMETER
+                              }
                             />
                           )}
                         </S.ConditionWrapper>
@@ -250,8 +264,12 @@ const Condition: React.FC<ConditionProps> = ({
                           <S.ConditionWrapper>
                             <Operators
                               {...condition.operator}
-                              onChange={(value): void => selectOperator(condition, value)}
-                              opened={condition.id === currentConditionId && currentField === OPERATOR}
+                              onChange={(value): void => selectOperator(step, condition, value)}
+                              opened={
+                                step.id === currentStepId &&
+                                condition.id === currentConditionId &&
+                                currentField === OPERATOR
+                              }
                             />
                           </S.ConditionWrapper>
                         )}
@@ -265,7 +283,11 @@ const Condition: React.FC<ConditionProps> = ({
                                 }
                                 onChangeValue={(value): void => setStepConditionFactorValue(step, condition, value)}
                                 factorKey={condition.id}
-                                opened={condition.id === currentConditionId && currentField === FACTOR}
+                                opened={
+                                  step.id === currentStepId &&
+                                  condition.id === currentConditionId &&
+                                  currentField === FACTOR
+                                }
                               />
                             )}
                           </S.ConditionWrapper>
