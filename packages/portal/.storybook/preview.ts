@@ -13,6 +13,23 @@ import {withKnobs} from '@storybook/addon-knobs';
 //         page: DocsPage
 //     }
 // });
+// export const decorators = [
+//   (Story) => (
+//     <div style={{ background: '#fff' }}>
+//       <Story />
+//     </div>
+//   ),
+// ];
+
+
+// export const decorators = [
+//   (Story) => (
+//     <div style={{ background: 'red' }}>
+//       Story()
+//     </div>
+//   )
+// ];
+
 
 export const parameters = {
   layout:'centered',

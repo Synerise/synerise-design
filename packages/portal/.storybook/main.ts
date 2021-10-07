@@ -13,8 +13,10 @@ module.exports = {
                 sourceLoaderOptions: null,
             },
         },
-        '@storybook/addon-controls',
+        '@storybook/addon-knobs',
+        // '@storybook/addon-controls',
         '@storybook/addon-links',
+        '@storybook/addon-backgrounds',
     ],
     // stories:['../stories/**/*.stories.tsx','../stories/**/*.mdx']
     stories:['../stories/**/*.stories.@(tsx|mdx)']
