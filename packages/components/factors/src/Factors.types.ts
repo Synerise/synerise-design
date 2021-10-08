@@ -158,6 +158,8 @@ export type ParameterDropdownProps = {
   items?: ParameterItem[];
   texts: FactorsTexts;
   loading?: boolean;
+  onFetchData?: () => void;
+  hasMoreItems?: boolean;
 };
 
 export type FormulaModalProps = {

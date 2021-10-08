@@ -9,9 +9,10 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { v4 as uuid } from 'uuid';
 import Loader from '@synerise/ds-loader';
+import { FixedSizeList, FixedSizeList as List } from 'react-window';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
-import ParameterDropdownItem from './ParameterDropdownItem';
+import ParameterDropdownItem, { DropdownItem } from './ParameterDropdownItem';
 
 const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   setSelected,
@@ -20,7 +21,11 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   items,
   setDropdownVisible,
   loading,
+  onFetchData,
+  hasMoreItems,
 }) => {
+  const listRef = React.createRef<FixedSizeList>();
+  const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
     return defaultIndex || 0;
@@ -46,23 +51,28 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     });
   }, [groups, activeTab]);
 
+  const handleClearSearch = React.useCallback(() => {
+    setSearchQuery('');
+  }, []);
+
+  const handleHideDropdown = React.useCallback(() => {
+    setDropdownVisible(false);
+  }, [setDropdownVisible]);
+
   const filteredItems = React.useMemo(() => {
     return items
       ?.filter((item: ParameterItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
       .map((item: ParameterItem) => {
-        return (
-          <ParameterDropdownItem
-            className={classNames}
-            key={item.name + item.id}
-            item={item}
-            searchQuery={searchQuery}
-            clearSearch={(): void => setSearchQuery('')}
-            hideDropdown={(): void => setDropdownVisible(false)}
-            select={setSelected}
-          />
-        );
+        return {
+          className: classNames,
+          item,
+          searchQuery,
+          clearSearch: handleClearSearch,
+          hideDropdown: handleHideDropdown,
+          select: setSelected,
+        };
       });
-  }, [items, searchQuery, setDropdownVisible, setSelected, classNames]);
+  }, [items, searchQuery, classNames, handleClearSearch, handleHideDropdown, setSelected]);
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -71,60 +81,48 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     const hasSubgroups = Boolean(currentTabItems?.subGroups);
     if (hasSubgroups && !activeGroup) {
       return currentTabItems?.subGroups?.map((subGroup: ParameterGroup) => {
-        return (
-          <ParameterDropdownItem
-            className={classNames}
-            key={subGroup.name + subGroup.id}
-            item={subGroup}
-            searchQuery={searchQuery}
-            select={setActiveGroup}
-          />
-        );
+        return {
+          className: classNames,
+          item: subGroup,
+          searchQuery,
+          select: setActiveGroup,
+        };
       });
     }
     if (activeGroup) {
       return items
         ?.filter((item: ParameterItem) => item.groupId === activeGroup.id)
         .map((item: ParameterItem) => {
-          return (
-            <ParameterDropdownItem
-              className={classNames}
-              key={item.name + item.id}
-              item={item}
-              searchQuery={searchQuery}
-              hideDropdown={(): void => setDropdownVisible(false)}
-              select={setSelected}
-            />
-          );
+          return {
+            className: classNames,
+            item,
+            searchQuery,
+            hideDropdown: handleHideDropdown,
+            select: setSelected,
+          };
         });
     }
     if (groups) {
       return items
         ?.filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
         .map((item: ParameterItem) => {
-          return (
-            <ParameterDropdownItem
-              className={classNames}
-              key={item.name + item.id}
-              item={item}
-              searchQuery={searchQuery}
-              hideDropdown={(): void => setDropdownVisible(false)}
-              select={setSelected}
-            />
-          );
+          return {
+            className: classNames,
+            item,
+            searchQuery,
+            hideDropdown: handleHideDropdown,
+            select: setSelected,
+          };
         });
     }
     return items?.map((item: ParameterItem) => {
-      return (
-        <ParameterDropdownItem
-          className={classNames}
-          key={item.name + item.id}
-          item={item}
-          searchQuery={searchQuery}
-          hideDropdown={(): void => setDropdownVisible(false)}
-          select={setSelected}
-        />
-      );
+      return {
+        className: classNames,
+        item,
+        searchQuery,
+        hideDropdown: handleHideDropdown,
+        select: setSelected,
+      };
     });
   }, [
     currentTabItems,
@@ -165,6 +163,13 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     [loading, texts]
   );
 
+  const handleScroll = ({ currentTarget }: React.UIEvent): void => {
+    const { scrollTop } = currentTarget;
+    if (listRef.current !== null) {
+      listRef.current.scrollTo(scrollTop);
+    }
+  };
+
   return (
     <Dropdown.Wrapper
       style={{ width: '300px' }}
@@ -201,11 +206,32 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
       <S.ItemsList>
-        <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
-          {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          currentItems.length ? currentItems : getNoResultContainer}
-        </Scrollbar>
+        {currentItems?.length ? (
+          <Scrollbar
+            absolute
+            style={{ padding: 8 }}
+            loading={loading}
+            hasMore={hasMoreItems}
+            onYReachEnd={onFetchData}
+            onScroll={handleScroll}
+          >
+            {/*
+            // @ts-ignore */}
+            <List
+              width="100%"
+              height={300}
+              itemCount={currentItems.length}
+              itemSize={32}
+              style={listStyle}
+              ref={listRef}
+            >
+              {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
+              {({ index, style }) => <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />}
+            </List>
+          </Scrollbar>
+        ) : (
+          getNoResultContainer
+        )}
       </S.ItemsList>
     </Dropdown.Wrapper>
   );

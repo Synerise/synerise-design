@@ -262,7 +262,7 @@ const stories = {
               selectedItem: step.subject.selectedItem,
               items: CONTEXT_ITEMS,
               groups: CONTEXT_GROUPS,
-              loading: boolean('Loading context content', true),
+              loading: boolean('Loading context content', false),
             },
             conditions: step.conditions.map(condition => ({
               id: condition.id,
@@ -284,7 +284,7 @@ const stories = {
                 },
                 withoutTypeSelector: true,
                 texts: FACTORS_TEXTS,
-                loading: boolean('Loading parameters content', true),
+                loading: boolean('Loading parameters content', false),
               },
               operator: {
                 onChange: value => setOperatorValue(step.id, condition.id, value),
