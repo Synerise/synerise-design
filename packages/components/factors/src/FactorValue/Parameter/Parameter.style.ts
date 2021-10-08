@@ -28,3 +28,11 @@ export const Value = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
 `;
+
+export const LoaderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 0;
+`;

@@ -24,6 +24,11 @@ const ContextSelector: React.FC<ContextProps> = ({
   dropdownWrapperStyles,
   onClickOutsideEvents,
   onClickOutside,
+  onSearch,
+  hasMoreItems,
+  onFetchData,
+  onOpen,
+  type,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -50,12 +55,14 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [selectedItem]);
 
   const triggerColor = React.useMemo(() => {
-    return selectedItem ? 'green' : 'blue';
-  }, [selectedItem]);
+    if (!selectedItem) return 'blue';
+    return type === 'event' ? 'cyan' : 'green';
+  }, [selectedItem, type]);
 
   const handleClick = React.useCallback(() => {
+    onOpen && onOpen();
     setDropdownVisible(true);
-  }, []);
+  }, [onOpen]);
 
   const triggerButton = React.useMemo(() => {
     const { buttonLabel } = texts;
@@ -96,6 +103,9 @@ const ContextSelector: React.FC<ContextProps> = ({
           dropdownWrapperStyles={dropdownWrapperStyles}
           onClickOutsideEvents={onClickOutsideEvents}
           onClickOutside={onClickOutside}
+          onSearch={onSearch}
+          hasMoreItems={hasMoreItems}
+          onFetchData={onFetchData}
         />
       }
     >

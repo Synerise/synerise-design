@@ -74,54 +74,55 @@ export const CONTEXT_CLIENT_GROUPS = [
   },
 ];
 
-const segmentations = [...Array(20)].map((_, i) => ({
+const segmentations = [...Array(2000)].map((_, i) => ({
   name: `Segmentation ${i}`,
   id: `segmentation_${i}`,
   icon: <SegmentM />,
   groupId: 'SEGMENTATIONS',
 }));
-const tags = [...Array(20)].map((_, i) => ({
+const tags = [...Array(2000)].map((_, i) => ({
   name: `Tag ${i}`,
   id: `tag_${i}`,
   icon: <TagM />,
   groupId: 'TAGS',
 }));
-const attributes = [...Array(20)].map((_, i) => ({
+const attributes = [...Array(2000)].map((_, i) => ({
   name: `Attribute ${i}`,
   id: `attribute_${i}`,
   icon: <VarTypeStringM />,
   groupId: 'ATTRIBUTES',
 }));
-const expressions = [...Array(20)].map((_, i) => ({
+const expressions = [...Array(2000)].map((_, i) => ({
   name: `Expression ${i}`,
   id: `expression_${i}`,
   icon: <ExpressionM />,
   groupId: 'EXPRESSIONS',
 }));
-const aggregates = [...Array(20)].map((_, i) => ({
+const aggregates = [...Array(2000)].map((_, i) => ({
   name: `Aggregate ${i}`,
   id: `aggregate_${i}`,
   icon: <AggregateM />,
   groupId: 'AGGREGATES',
 }));
-const clientEvents = [...Array(20)].map((_, i) => ({
+const clientEvents = [...Array(2000)].map((_, i) => ({
   name: `Client event ${i}`,
   id: `client_event_${i}`,
   icon: <NotificationsM />,
   groupId: 'CLIENT_EVENTS',
 }));
-const integrations = [...Array(20)].map((_, i) => ({
+const integrations = [...Array(2000)].map((_, i) => ({
   name: `Integration ${i}`,
   id: `integration_${i}`,
   icon: <NotificationsM />,
   groupId: 'INTEGRATIONS',
 }));
-const apps = [...Array(20)].map((_, i) => ({
+const apps = [...Array(2000)].map((_, i) => ({
   name: `App ${i}`,
   id: `app_${i}`,
   icon: <ApiM />,
   groupId: 'APPS',
 }));
+
 export const CONTEXT_CLIENT_ITEMS = [
   {
     name: 'Pricelist 02',
@@ -193,6 +194,17 @@ export const CONTEXT_CLIENT_ITEMS = [
     groupId: 'RECENT',
     groupName: 'Activity',
   },
+  ...attributes,
+  ...expressions,
+  ...aggregates,
+  ...apps,
+  ...tags,
+  ...segmentations,
+  ...clientEvents,
+  ...integrations,
+];
+
+export const FLAT_LIST_ITEMS = [
   ...attributes,
   ...expressions,
   ...aggregates,

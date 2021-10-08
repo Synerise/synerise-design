@@ -41,7 +41,8 @@
     "@synerise/ds-scrollbar": "^0.3.16",
     "@synerise/ds-tabs": "^0.11.70",
     "@synerise/ds-utils": "^0.18.1",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "react-window": "1.8.5"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

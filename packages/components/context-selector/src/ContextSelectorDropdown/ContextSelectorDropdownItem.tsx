@@ -13,15 +13,21 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
   select,
   selected,
   className,
-  menuItemHeight
+  menuItemHeight,
+  style,
 }) => {
   return (
     <Menu.Item
+      style={style}
       className={className}
       key={item.name + item.id}
-      prefixel={item.useCustomIcon? item.icon : <Icon component={item.icon} />}
+      prefixel={item.useCustomIcon ? item.icon : <Icon component={item.icon} />}
       highlight={searchQuery}
-      suffixel={item?.customSuffix ? item.customSuffix : selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+      suffixel={
+        item?.customSuffix
+          ? item.customSuffix
+          : selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />
+      }
       onClick={(): void => {
         clearSearch && clearSearch();
         hideDropdown && hideDropdown();
