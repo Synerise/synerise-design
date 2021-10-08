@@ -155,7 +155,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
 
   const getNoResultContainer = React.useMemo(
     () => <Result noSearchResults type="no-results" description={texts.parameter.noResults} />,
-    [loading, texts]
+    [texts]
   );
 
   const handleScroll = ({ currentTarget }: React.UIEvent): void => {
