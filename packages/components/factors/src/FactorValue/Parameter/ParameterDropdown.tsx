@@ -102,7 +102,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
           };
         });
     }
-    if (groups) {
+    if (activeTab && groups && groups[activeTab]) {
       return items
         ?.filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
         .map((item: ParameterItem) => {
@@ -125,16 +125,16 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       };
     });
   }, [
-    currentTabItems,
-    items,
-    groups,
-    activeGroup,
     searchQuery,
-    activeTab,
+    currentTabItems,
+    activeGroup,
+    groups,
+    items,
     filteredItems,
-    setDropdownVisible,
-    setSelected,
     classNames,
+    handleHideDropdown,
+    setSelected,
+    activeTab,
   ]);
 
   const handleSearch = React.useCallback(
@@ -154,12 +154,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   }, [groups]);
 
   const getNoResultContainer = React.useMemo(
-    () =>
-      loading ? (
-        <Loader label={texts.parameter.loadingParameter} labelPosition="bottom" />
-      ) : (
-        <Result noSearchResults type="no-results" description={texts.parameter.noResults} />
-      ),
+    () => <Result noSearchResults type="no-results" description={texts.parameter.noResults} />,
     [loading, texts]
   );
 
@@ -205,34 +200,42 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         </S.TabsWrapper>
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
-      <S.ItemsList>
-        {currentItems?.length ? (
-          <Scrollbar
-            absolute
-            style={{ padding: 8 }}
-            loading={loading}
-            hasMore={hasMoreItems}
-            onYReachEnd={onFetchData}
-            onScroll={handleScroll}
-          >
-            {/*
-            // @ts-ignore */}
-            <List
-              width="100%"
-              height={300}
-              itemCount={currentItems.length}
-              itemSize={32}
-              style={listStyle}
-              ref={listRef}
+      {loading ? (
+        <S.LoaderWrapper>
+          <Loader label={texts.parameter.loadingParameter} labelPosition="bottom" />
+        </S.LoaderWrapper>
+      ) : (
+        <S.ItemsList>
+          {currentItems?.length ? (
+            <Scrollbar
+              absolute
+              style={{ padding: 8 }}
+              loading={loading}
+              hasMore={hasMoreItems}
+              onYReachEnd={onFetchData}
+              onScroll={handleScroll}
             >
-              {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-              {({ index, style }) => <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />}
-            </List>
-          </Scrollbar>
-        ) : (
-          getNoResultContainer
-        )}
-      </S.ItemsList>
+              {/*
+            // @ts-ignore */}
+              <List
+                width="100%"
+                height={300}
+                itemCount={currentItems.length}
+                itemSize={32}
+                style={listStyle}
+                ref={listRef}
+              >
+                {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
+                {({ index, style }) => (
+                  <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />
+                )}
+              </List>
+            </Scrollbar>
+          ) : (
+            getNoResultContainer
+          )}
+        </S.ItemsList>
+      )}
     </Dropdown.Wrapper>
   );
 };

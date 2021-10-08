@@ -224,13 +224,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   }, [groups]);
 
   const getNoResultContainer = React.useMemo(
-    () =>
-      loading ? (
-        <Loader label={texts.loadingResults} labelPosition="bottom" />
-      ) : (
-        <Result noSearchResults type="no-results" description={texts.noResults} />
-      ),
-    [loading, texts]
+    () => <Result noSearchResults type="no-results" description={texts.noResults} />,
+    [texts]
   );
 
   const handleScroll = ({ currentTarget }: React.UIEvent): void => {
@@ -280,41 +275,48 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       {activeGroup && !searchQuery && (
         <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />
       )}
-      <S.ItemsList>
-        {activeItems?.length ? (
-          <Scrollbar
-            absolute
-            style={{ padding: 8 }}
-            loading={loading}
-            hasMore={hasMoreItems}
-            onYReachEnd={onFetchData}
-            onScroll={handleScroll}
-          >
-            {/*
-            // @ts-ignore */}
-            <List
-              width="100%"
-              height={300}
-              itemCount={activeItems.length}
-              itemSize={32}
-              style={listStyle}
-              ref={listRef}
+
+      {loading ? (
+        <S.LoaderWrapper>
+          <Loader label={texts.loadingResults} labelPosition="bottom" />
+        </S.LoaderWrapper>
+      ) : (
+        <S.ItemsList>
+          {activeItems?.length ? (
+            <Scrollbar
+              absolute
+              style={{ padding: 8 }}
+              loading={loading}
+              hasMore={hasMoreItems}
+              onYReachEnd={onFetchData}
+              onScroll={handleScroll}
             >
-              {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-              {({ index, style }) => {
-                const item = activeItems[index];
-                return item && isListTitle(item) ? (
-                  <S.Title style={style}>{item.title}</S.Title>
-                ) : (
-                  <ContextSelectorDropdownItem style={style} {...item} />
-                );
-              }}
-            </List>
-          </Scrollbar>
-        ) : (
-          getNoResultContainer
-        )}
-      </S.ItemsList>
+              {/*
+            // @ts-ignore */}
+              <List
+                width="100%"
+                height={300}
+                itemCount={activeItems.length}
+                itemSize={32}
+                style={listStyle}
+                ref={listRef}
+              >
+                {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
+                {({ index, style }) => {
+                  const item = activeItems[index];
+                  return item && isListTitle(item) ? (
+                    <S.Title style={style}>{item.title}</S.Title>
+                  ) : (
+                    <ContextSelectorDropdownItem style={style} {...item} />
+                  );
+                }}
+              </List>
+            </Scrollbar>
+          ) : (
+            getNoResultContainer
+          )}
+        </S.ItemsList>
+      )}
     </Dropdown.Wrapper>
   );
 };
