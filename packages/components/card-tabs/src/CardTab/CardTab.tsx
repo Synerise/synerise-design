@@ -2,6 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
@@ -127,7 +128,9 @@ const CardTab: React.FC<CardTabProps> = ({
             data-testid="card-tab-edit-input"
           />
         ) : (
-          <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
+          <Tooltip title={name}>
+            <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
+          </Tooltip>
         )}
       </S.CardTabLabel>
       {showCardActions() && (

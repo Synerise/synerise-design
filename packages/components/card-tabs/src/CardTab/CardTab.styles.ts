@@ -123,8 +123,8 @@ export const CardDot = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
 `;
 
@@ -176,8 +176,10 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
       getColor(active && !edited, theme.palette[`${color}`], theme.palette.white)};
   }
   ${CardDot} {
-    background-color: ${({ theme, active, color, edited }): string =>
-      getColor(active && !edited, 'transparent', theme.palette[`${color}`])};
+    background-color: ${({ theme, active, color, edited, invalid }): string => {
+      if (active && invalid) return theme.palette[`${color}`];
+      return getColor(active && !edited, 'transparent', theme.palette[`${color}`]);
+    }};
   }
   ${CardDotPrefix} {
     height: ${({ active, edited }): string => (active && !edited ? '12px' : '24px')};
