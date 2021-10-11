@@ -243,11 +243,17 @@ const stories = {
           addStep={addStep}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
           minConditionsLength={0}
+          onChangeSubject={setStepSubject}
+          onChangeContext={setStepSubject}
+          onChangeParameter={setStepConditionParameter}
+          onChangeOperator={setOperatorValue}
+          onChangeFactorValue={setStepConditionFactorValue}
+          onChangeFactorType={setStepConditionFactorType}
           steps={store.state.steps.map(step => ({
             id: step.id,
             stepName: boolean('Show step name', true) && step.stepName,
             subject: !withContextAsSubject && {
-              onSelectItem: item => setStepSubject(step.id, item),
+              // onSelectItem: item => setStepSubject(step.id, item),
               type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
               placeholder: text('Set subject placeholder', 'Choose event'),
               showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
@@ -258,7 +264,7 @@ const stories = {
             },
             context: withContextAsSubject && {
               texts: CONTEXT_TEXTS,
-              onSelectItem: item => setStepSubject(step.id, item),
+              // onSelectItem: item => setStepSubject(step.id, item),
               selectedItem: step.subject.selectedItem,
               items: CONTEXT_ITEMS,
               groups: CONTEXT_GROUPS,
@@ -271,7 +277,7 @@ const stories = {
                 selectedFactorType: 'parameter',
                 defaultFactorType: 'parameter',
                 setSelectedFactorType: () => {},
-                onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
+                // onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
                 onParamsClick: () => {
                   console.log('params click');
                 },
@@ -287,7 +293,7 @@ const stories = {
                 loading: boolean('Loading parameters content', false),
               },
               operator: {
-                onChange: value => setOperatorValue(step.id, condition.id, value),
+                // onChange: value => setOperatorValue(step.id, condition.id, value),
                 value: condition.operator.value,
                 items: OPERATORS_ITEMS,
                 groups: OPERATORS_GROUPS,
@@ -296,8 +302,8 @@ const stories = {
               factor: {
                 selectedFactorType: condition.factor.selectedFactorType,
                 defaultFactorType: 'text',
-                setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
-                onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
+                // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
+                // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
                 textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
                 autocompleteText: {
                   options: ['First name', 'Last name', 'City', 'Age', 'Points'],

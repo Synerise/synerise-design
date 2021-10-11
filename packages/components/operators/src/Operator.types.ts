@@ -30,7 +30,7 @@ export type OperatorsGroup = {
 
 export type OperatorsProps = {
   value?: OperatorsItem | undefined;
-  onChange: (item: OperatorsItem | OperatorsGroup | undefined) => void;
+  onChange: (item: OperatorsItem | undefined) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
   texts?: Partial<OperatorTexts>;

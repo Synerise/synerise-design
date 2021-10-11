@@ -8,7 +8,15 @@ import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 
-const ParameterInput: React.FC<InputProps> = ({ value, onChange, onParamsClick, parameters, texts, opened }) => {
+const ParameterInput: React.FC<InputProps> = ({
+  value,
+  onChange,
+  onParamsClick,
+  parameters,
+  texts,
+  opened,
+  preventAutoloadData,
+}) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const { buttonIcon, buttonLabel, loading, ...restParameters } = parameters;
@@ -30,7 +38,7 @@ const ParameterInput: React.FC<InputProps> = ({ value, onChange, onParamsClick, 
   }, [opened]);
 
   React.useEffect(() => {
-    onParamsClick && onParamsClick();
+    !preventAutoloadData && onParamsClick && onParamsClick();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

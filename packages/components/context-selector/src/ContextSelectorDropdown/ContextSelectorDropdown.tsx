@@ -57,7 +57,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
-  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  // const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
   const classNames = React.useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -240,10 +240,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
       onKeyDown={(e): void => {
-        setSearchInputFocus(false);
+        // setSearchInputFocus(false);
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
-            setSearchInputFocus(true);
+            // setSearchInputFocus(true);
           });
       }}
     >
@@ -255,7 +255,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         }}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
-        autofocus={!searchQuery || searchInputCanBeFocused}
+        // autofocus={!searchQuery || searchInputCanBeFocused}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (

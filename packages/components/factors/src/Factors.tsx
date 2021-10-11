@@ -75,6 +75,7 @@ const Factors: React.FC<FactorsProps> = ({
   opened,
   loading,
   factorKey,
+  preventAutoloadData,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -152,6 +153,7 @@ const Factors: React.FC<FactorsProps> = ({
         opened={opened}
         loading={loading}
         factorKey={factorKey}
+        preventAutoloadData={preventAutoloadData}
       />
     </S.Group>
   );

@@ -18,6 +18,7 @@ export type ParameterValueType = {
   icon: string;
   name: string;
   id: React.ReactText;
+  groupId?: React.ReactText;
 };
 
 export type ParameterGroup = {
@@ -31,7 +32,7 @@ export type ParameterGroup = {
 export type ParameterItem = {
   id: React.ReactText;
   name: string;
-  groupId?: React.ReactText;
+  groupId: React.ReactText;
   icon?: React.ReactNode;
 };
 
@@ -102,6 +103,7 @@ export type FactorsProps = {
   texts?: Partial<FactorsTexts>;
   opened?: boolean;
   loading?: boolean;
+  preventAutoloadData?: boolean;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -126,6 +128,7 @@ export type FactorValueProps = Pick<
   | 'opened'
   | 'loading'
   | 'factorKey'
+  | 'preventAutoloadData'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -141,6 +144,7 @@ export type InputProps = Pick<
   onParamsClick?: () => void;
   formulaEditor?: React.ReactNode;
   loading?: boolean;
+  preventAutoloadData?: boolean;
 };
 
 export type TextModalProps = {

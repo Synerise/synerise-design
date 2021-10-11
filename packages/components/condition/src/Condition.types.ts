@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
-import { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
-import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
-import { ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
+import { SubjectItem, SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
+import { FactorsProps, FactorType, FactorValueType } from '@synerise/ds-factors/dist/Factors.types';
+import { OperatorsItem, OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
+import { ContextGroup, ContextItem, ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
 
 export type StepConditions = {
   id: React.ReactText;
-  parameter?: FactorsProps;
-  operator?: OperatorsProps;
-  factor?: FactorsProps;
+  parameter?: Omit<FactorsProps, 'onChangeValue'>;
+  operator?: Omit<OperatorsProps, 'onChange'>;
+  factor?: Omit<FactorsProps, 'onChangeValue' | 'setSelectedFactorType'>;
 };
 
 export type ConditionStep = {
   id: React.ReactText;
-  subject?: SubjectProps;
-  context?: ContextProps;
+  subject?: Omit<SubjectProps, 'onSelectItem'>;
+  context?: Omit<ContextProps, 'onSelectItem'>;
   stepName?: string;
   conditions: StepConditions[];
 };
@@ -43,4 +43,18 @@ export type ConditionProps = {
   texts?: Partial<ConditionTexts>;
   minConditionsLength?: number;
   autoClearCondition?: boolean;
+  onChangeContext: (stepId: React.ReactText, value: ContextItem | ContextGroup | undefined) => void;
+  onChangeSubject: (stepId: React.ReactText, value: SubjectItem | undefined) => void;
+  onChangeParameter: (
+    stepId: React.ReactText,
+    conditionId: React.ReactText,
+    value: FactorValueType | undefined
+  ) => void;
+  onChangeOperator: (stepId: React.ReactText, conditionId: React.ReactText, value: OperatorsItem | undefined) => void;
+  onChangeFactorValue: (
+    stepId: React.ReactText,
+    conditionId: React.ReactText,
+    value: FactorValueType | undefined
+  ) => void;
+  onChangeFactorType: (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType | undefined) => void;
 };
