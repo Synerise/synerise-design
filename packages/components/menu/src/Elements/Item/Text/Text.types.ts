@@ -17,6 +17,7 @@ export interface BasicItemProps {
   copyHint?: string | React.ReactNode;
   copyValue?: string;
   copyTooltip?: string | React.ReactNode;
+  hideAfterClick?: number;
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;

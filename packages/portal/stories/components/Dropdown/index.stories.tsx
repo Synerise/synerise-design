@@ -10,6 +10,7 @@ import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon/dist/icons';
 import Default from './examples/Default';
+import Cruds from './examples/Cruds';
 import { BottomAction } from '@synerise/ds-dropdown/dist/elements/BottomAction/BottomAction.styles';
 import Advanced from './examples/advanced';
 
@@ -125,6 +126,7 @@ const stories = {
     children: <Button>Click</Button>,
   },
   default: Default,
+  cruds:Cruds,
   example1: Example1,
   withSearch: WithSearch,
   withTabs: withTabs,

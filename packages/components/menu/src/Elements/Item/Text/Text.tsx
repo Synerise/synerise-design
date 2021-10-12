@@ -27,6 +27,7 @@ const Text: React.FC<BasicItemProps> = ({
   copyHint,
   copyValue,
   copyTooltip,
+  hideAfterClick,
   highlight,
   style,
   prefixVisibilityTrigger,
@@ -109,9 +110,8 @@ const Text: React.FC<BasicItemProps> = ({
       size={size}
       {...rest}
       className={className}
-
     >
-      <Tooltip type="default" trigger="click" title={copyTooltip}>
+      <Tooltip type="default" trigger="click" title={copyTooltip} hideAfterClick={hideAfterClick}>
         <S.Inner>
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (

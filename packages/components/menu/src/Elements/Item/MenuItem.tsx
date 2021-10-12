@@ -28,6 +28,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     onClick,
     menuItemKey,
     onTitleClick,
+    hideAfterClick,
     ...rest
   } = props;
   if (subMenu) {
@@ -97,6 +98,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
           onClick={onClick || NOOP}
+          hideAfterClick={hideAfterClick}
           {...rest}
         >
           {text || children}
