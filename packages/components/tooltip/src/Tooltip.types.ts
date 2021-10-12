@@ -26,6 +26,7 @@ export default interface TooltipExtendedProps {
   tutorialAutoplay?: boolean;
   tutorialAutoplaySpeed?: number;
   offset?: 'default' | 'small';
+  hideAfterClick?: number;
   button?: {
     label?: string | React.ReactNode;
     buttonIcon?: React.ReactNode;
