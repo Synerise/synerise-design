@@ -42,12 +42,16 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
 
   const groupByGroupName = React.useCallback(
     activeItems => {
-      const groupedItems = activeItems.reduce((result: {}, item: OperatorsItem) => {
-        const res = result;
+      const itemsNumber = activeItems.length;
+      const groupedItems = {};
+
+      for (let i = 0; i < itemsNumber; i += 1) {
+        const item = activeItems[i];
         const groupName = item.groupName || NO_GROUP_NAME;
-        res[groupName] = (result[groupName] || []).concat(item);
-        return res;
-      }, {});
+        const group = groupedItems[groupName] || [];
+        group.push(item);
+        groupedItems[groupName] = group;
+      }
 
       const resultItems: React.ReactNode[] = [];
       Object.keys(groupedItems).forEach((key: string) => {

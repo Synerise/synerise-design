@@ -35,7 +35,6 @@ export type ConditionProps = {
   steps: ConditionStep[];
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
-  updateStepName?: (stepId: React.ReactText, value: string) => void;
   removeStep?: (stepId: React.ReactText) => void;
   duplicateStep?: (stepId: React.ReactText) => void;
   addStep?: () => void;
@@ -57,4 +56,5 @@ export type ConditionProps = {
     value: FactorValueType | undefined
   ) => void;
   onChangeFactorType: (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType | undefined) => void;
+  onUpdateStepName?: (stepId: React.ReactText, value: string) => void;
 };

@@ -8,6 +8,6 @@ export type StepHeaderProps = {
   stepId: React.ReactText;
   removeStep: ConditionProps['removeStep'];
   duplicateStep: ConditionProps['duplicateStep'];
-  updateStepName: ConditionProps['updateStepName'];
+  updateStepName: ConditionProps['onUpdateStepName'];
   draggableEnabled: boolean;
 };

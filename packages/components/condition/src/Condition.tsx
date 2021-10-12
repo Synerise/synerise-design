@@ -11,7 +11,6 @@ import { NOOP } from '@synerise/ds-utils';
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
 import * as S from './Condition.style';
-import { useTraceUpdate } from '@synerise/ds-utils/dist/useTraceUpdate';
 
 const DEFAULT_FIELD = '';
 const DEFAULT_CONDITION = '';
@@ -32,7 +31,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
     steps,
     addCondition,
     removeCondition,
-    updateStepName,
     texts,
     duplicateStep,
     removeStep,
@@ -46,8 +44,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     onChangeOperator,
     onChangeFactorType,
     onChangeFactorValue,
+    onUpdateStepName,
   } = props;
-  useTraceUpdate(props);
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
@@ -199,7 +197,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 selectParameter={selectParameter}
                 selectContext={selectContext}
                 selectSubject={selectSubject}
-                updateStepName={updateStepName}
+                updateStepName={onUpdateStepName}
                 duplicateStep={duplicateStep}
                 removeStep={removeStep}
                 minConditionsLength={minConditionsLength}
@@ -243,7 +241,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     steps,
     text.addStep,
     texts,
-    updateStepName,
+    onUpdateStepName,
   ]);
 };
 

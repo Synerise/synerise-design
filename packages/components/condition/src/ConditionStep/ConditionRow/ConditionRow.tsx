@@ -35,7 +35,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
     <S.ConditionRow key={`condition-row-${conditionId}`}>
       <S.ConditionConnections
         first={index === 0}
-        last={index + 1 === conditionsNumber && !addCondition && stepType !== 'event'}
+        last={(index + 1 === conditionsNumber && !addCondition) || stepType !== 'event'}
       />
       <S.ConditionWrapper>
         {conditionParameter && (

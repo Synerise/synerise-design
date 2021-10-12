@@ -56,7 +56,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [texts, formatMessage]
   );
 
-  const renderHeader = React.useMemo(
+  const stepHeader = React.useMemo(
     () => (
       <StepHeader
         index={index}
@@ -72,7 +72,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName]
   );
 
-  const renderAddConditionButton = React.useMemo(
+  const addConditionButton = React.useMemo(
     () =>
       addCondition &&
       step.context?.type === 'event' && (
@@ -133,8 +133,8 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
 
   return (
     <S.Step key={step.id} withStepName={step.stepName !== undefined} data-dropLabel={text.dropLabel}>
-      {renderHeader}
-      <S.StepConditions>
+      {step.stepName && stepHeader}
+      <S.StepConditions withoutStepName={!step.stepName}>
         <S.Subject>
           {step.subject && <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step.id)} />}
           {step.context && (
@@ -143,7 +143,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         </S.Subject>
         <S.ConditionRows>
           {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
-          {renderAddConditionButton}
+          {addConditionButton}
         </S.ConditionRows>
       </S.StepConditions>
     </S.Step>

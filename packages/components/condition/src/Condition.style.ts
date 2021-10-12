@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 
-export const StepConditions = styled.div`
+export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-top: ${props => (props.withoutStepName ? '22px' : '0')};
 `;
 
 export const StepName = styled.div`
