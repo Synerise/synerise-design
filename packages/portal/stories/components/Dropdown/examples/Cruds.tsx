@@ -3,7 +3,7 @@ import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select,number } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
 import Icon from '@synerise/ds-icon';
 import {
@@ -26,7 +26,7 @@ const Default: React.FC = () => {
         copyValue: 'Fake ID',
         copyable: true,
         prefixel: <Icon component={<CopyClipboardM />}/>, 
-        hideAfterClick:3000},
+        hideAfterClick:number("Time to hide tooltip(ms)",3000)},
     ];
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const footer = boolean('Set footer', false);
@@ -44,7 +44,7 @@ const Default: React.FC = () => {
         placement="bottomLeft"
         overlay={
           <Dropdown.Wrapper
-            style={{ width: '220px' }}
+            style={{ width: '200px' }}
             onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
             ref={ref}
           >

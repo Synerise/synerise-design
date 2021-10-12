@@ -28,7 +28,7 @@ import { DropdownWrapper } from '@synerise/ds-sidebar-object/dist/Elements/Heade
 import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean,number } from '@storybook/addon-knobs';
 import Checkbox from '@synerise/ds-checkbox/dist';
 
 export const TEXT_PLACEHOLDER = 'Option';
