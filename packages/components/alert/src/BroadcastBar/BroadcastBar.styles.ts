@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import * as React from 'react';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Button from '@synerise/ds-button';
 import { ColorType } from './BroadcastBar.types';
 
 type InsertShapeStyles = {
@@ -51,8 +52,22 @@ export const IconCloseWrapper = styled.div<{ color?: ColorType }>`
     fill: ${(props): string => getColorIcon(props)};
   }
 `;
-export const ButtonWrapper = styled.div`
-  padding: 6px 8px 0 8px;
+export const ButtonWrapper = styled.div<{ color?: ColorType }>`
+  margin: 6px 8px;
+  border-radius: 3px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.2);
+`;
+export const BroadcastButton = styled(Button)<{ color?: ColorType }>`
+  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+  &&& :hover {
+    color: ${(props): string =>
+      props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white} !important;
+  }
+`;
+
+export const ButtonCloseWrapper = styled.div`
+  margin: 6px 8px;
   display: flex;
 `;
 export const Wrapper = styled.div<{ color?: ColorType }>`
@@ -64,7 +79,6 @@ export const Container = styled.div<{
 }>`
   width: 100%;
   background-color: ${(props): string => getColorBackground(props)};
-  box-shadow: ${(props): string => (props.color ? `0px 16px 32px 5px ${props.theme.palette[`grey-200`]}` : 'none')};
 `;
 export const WrapperSectionMessage = styled.div<{ color?: ColorType }>`
   font-size: 13px;
@@ -74,8 +88,10 @@ export const WrapperSectionMessage = styled.div<{ color?: ColorType }>`
 `;
 
 export const AlertMessage = styled.span<{ color?: ColorType; emphasis?: string | React.ReactNode }>`
-  font-size: 14px;
+  font-size: 13px;
   padding-right: 3px;
+  line-height: 1.39;
+  margin-top: 1px;
   font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
   max-width: 400px;
   overflow: hidden;
@@ -85,6 +101,8 @@ export const AlertMessage = styled.span<{ color?: ColorType; emphasis?: string |
 
 export const AlertDescription = styled.span<{ color?: ColorType }>`
   display: flex;
+  max-width: 700px;
+  white-space: normal;
   font-size: 13px;
   line-height: 1.39;
   font-weight: 500;

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { CloseM, WarningFillM, Check3M, ErrorFillM } from '@synerise/ds-icon/dist/icons';
-import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import * as S from './BroadcastBar.styles';
 import { BroadcastBarTypes, Props } from './BroadcastBar.types';
@@ -59,21 +58,21 @@ const BroadcastBar: React.FC<Props> = ({
             <Icon component={renderIcon} />
           </S.IconWrapper>
           {renderMessage}
-          <S.ButtonWrapper>
+          <S.ButtonWrapper color={color}>
             {button && (
-              <Button type={color === 'yellow' ? 'tertiary' : 'tertiary-white'} mode="label">
+              <S.BroadcastButton color={color} type={color === 'yellow' ? 'tertiary' : 'tertiary-white'} mode="label">
                 {textButton}
-              </Button>
+              </S.BroadcastButton>
             )}
           </S.ButtonWrapper>
         </S.AllContent>
-        <S.ButtonWrapper color={color}>
+        <S.ButtonCloseWrapper color={color}>
           {withClose && (
             <S.IconCloseWrapper onClick={onCloseClick} color={color}>
               <Icon component={<CloseM />} />
             </S.IconCloseWrapper>
           )}
-        </S.ButtonWrapper>
+        </S.ButtonCloseWrapper>
       </S.WrapperSectionMessage>
     </S.Container>
   );
