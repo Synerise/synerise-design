@@ -68,6 +68,9 @@ const Toast: React.FC<Props> = ({
     if (ICONS[type]) return ICONS[type];
     return DEFAULT_ICON;
   }, [icon, type]);
+  const expandContent = React.useCallback(() => {
+    onExpand && onExpand(!expanded);
+  }, [onExpand, expanded]);
 
   return (
     <S.Container
@@ -89,7 +92,7 @@ const Toast: React.FC<Props> = ({
         <S.ButtonWrapper>
           {expander && (
             <S.IconExpanderWrapper
-              onClick={(): void => onExpand && onExpand(!expanded)}
+              onClick={expandContent}
               expanded={expanded}
               customColorText={customColorText}
               color={color}

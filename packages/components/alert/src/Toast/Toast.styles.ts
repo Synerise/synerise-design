@@ -11,44 +11,42 @@ type InsertShapeStyles = {
   expander?: React.ReactNode | boolean;
   withClose?: React.ReactNode | boolean;
 } & ThemeProps;
+
 const getColorIcon = (props: InsertShapeStyles): string => {
-  if (props.colorIcon === 'white') {
-    return props.theme.palette.white;
+  switch (props.colorIcon) {
+    case 'white':
+      return props.theme.palette.white;
+    case 'grey':
+      return props.theme.palette['grey-600'];
+    case 'black':
+      return props.theme.palette['grey-800'];
+    default:
+      return props.theme.palette['blue-600'];
   }
-  if (props.colorIcon === 'grey') {
-    return props.theme.palette['grey-600'];
-  }
-  if (props.colorIcon === 'black') {
-    return props.theme.palette['grey-800'];
-  }
-  return props.theme.palette['blue-600'];
 };
 const getColorText = (props: InsertShapeStyles): string => {
-  if (props.color === 'red') {
-    return props.theme.palette.white;
+  switch (props.color) {
+    case 'red':
+      return props.theme.palette.white;
+    case 'green':
+      return props.theme.palette.white;
+    case 'yellow':
+      return props.theme.palette['grey-800'];
+    default:
+      return props.theme.palette['grey-600'];
   }
-  if (props.color === 'green') {
-    return props.theme.palette.white;
-  }
-  if (props.color === 'grey') {
-    return props.theme.palette['grey-600'];
-  }
-  if (props.color === 'yellow') {
-    return props.theme.palette['grey-800'];
-  }
-  return props.theme.palette['grey-600'];
 };
 const getColorBackground = (props: InsertShapeStyles): string => {
-  if (props.color === 'grey') {
-    return props.theme.palette.white;
+  switch (props.color) {
+    case 'grey':
+      return props.theme.palette.white;
+    case 'blue':
+      return props.theme.palette['blue-050'];
+    case 'red':
+      return props.theme.palette['red-500'];
+    default:
+      return props.theme.palette[`${props.color}-600`];
   }
-  if (props.color === 'blue') {
-    return props.theme.palette['blue-050'];
-  }
-  if (props.color === 'red') {
-    return props.theme.palette['red-500'];
-  }
-  return props.theme.palette[`${props.color}-600`];
 };
 const getWidth = (props: InsertShapeStyles): string => {
   if (props.expandedContent || (props.expander && props.withClose)) {
