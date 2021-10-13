@@ -18,7 +18,6 @@ export type CustomColorType =
   | 'violet';
 export type ColorType = 'grey' | 'red' | 'green' | 'yellow' | 'blue';
 export type ColorIconType = 'white' | 'grey' | 'black' | 'yellow' | 'blue';
-export type ModeType = 'background' | 'background-outline' | 'outline' | 'clear';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   message?: React.ReactNode;
@@ -28,7 +27,6 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   customColorIcon?: CustomColorType;
   color?: ColorType;
   colorIcon?: ColorIconType;
-  mode?: ModeType;
   expander?: boolean | React.ReactNode;
   expandedContent?: React.ReactNode;
   withClose?: React.ReactNode;
@@ -36,8 +34,6 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   button?: React.ReactNode;
   expanded?: boolean;
   onExpand?: (isExpanded: boolean) => void;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   onCloseClick?: () => void;
-  visible?: React.ReactNode | boolean;
   show?: boolean;
 }

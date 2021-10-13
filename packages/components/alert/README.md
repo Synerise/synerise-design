@@ -95,3 +95,25 @@ import Alert from '@synerise/ds-alert'
 | withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
 | iconAlert       | prop to set custom icon                                                                                                | `boolean`                   | -          |
 | hoverButton     | prop to set hover state button                                                                                         | `boolean`                   | -          |
+
+
+### Alert.Toast
+
+| Property        | Description                                                                                                            | Type                        | Default    | 
+| ----            | ---                                                                                                                    | ---                         | ---        | 
+| type            | Type of Alert styles, options: `success`, `info`, `warning`, `error`                                                   | `string`                    | `warning`  | 
+| message         | Message of Icon Alert                                                                                                  | `React.ReactNode`           | -          | 
+| button          | prop to set button                                                                                                     | `React.ReactNode`           | -          |
+| expanded        | prop to set show expanded content                                                                                      | `boolean`                   | -          |
+| onExpand        | prop on click to show content                                                                                          | `isExpanded:boolean => void`| -          |
+| customColor     | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`                    | -          |
+| customColorIcon | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`                    | -          |
+| color           | type of colors,options: `red`, `green`,`yellow`,`grey`,`blue`                                                          | `string`                    | -          |
+| colorIcon       | type of colors,options: `white`, `black`,`yellow`,`grey`,`blue`                                                        | `string`                    | -          |
+| customColorText | type of colors,options:`red`, `blue`, `green`,`yellow`,`grey`,`purple`,`violet`, `cyan`,`fern`,`orange`, `mars`,`pink` | `string`                    | -          |
+| withClose       | prop to show close button                                                                                              | `React.ReactNode`           | -          |
+| customIcon      | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
+| expander        | prop to set expanded icon                                                                                              | `React.ReactNode`           | -          |
+| expanderContent | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
+| onCloseClick    | Callback when Toast is closed                                                                                          | `(e: MouseEvent) => void`   | -          |
+| show            | prop to show Toast                                                                                                     | `boolean`                   | -          |
