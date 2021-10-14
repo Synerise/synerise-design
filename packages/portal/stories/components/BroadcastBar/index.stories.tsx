@@ -114,6 +114,7 @@ const stories = {
   withEmphasis: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
     const withEmphasis = text('withEmphasis', 'There was a problem with your request.');
+    const warningMessage = text('Title', 'Sorry!');
     return (
       <div
         style={{
@@ -126,6 +127,7 @@ const stories = {
         }}>
         <BroadcastBar
           withEmphasis={withEmphasis}
+          text={warningMessage}
           type={type}
           color={additionalAlertMapper[type].color}
         />
@@ -135,6 +137,7 @@ const stories = {
   withLink: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
     const withLink = text('withLink', 'Please reset this screen');
+    const warningMessage = text('Title', 'Sorry!');
     return (
       <div
         style={{
@@ -147,6 +150,7 @@ const stories = {
         }}>
         <BroadcastBar
           withLink={withLink}
+          text={warningMessage}
           type={type}
           color={additionalAlertMapper[type].color}
         />
@@ -233,6 +237,7 @@ Playground: () => {
   const showButton = boolean('Set button', false);
   const withClose = boolean('Set close button', false);
   const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
+  const warningMessage = text('Title', 'Sorry!');
   const description = text('Description', 'Sorry! There was a problem with your request.');
   const showDescription = boolean('Set description', true);
   const withEmphasis = text('withEmphasis', 'There was a problem with your request.');
@@ -256,6 +261,7 @@ Playground: () => {
         textButton='Button'
         button={showButton}
         type={type}
+        text={warningMessage}
         color={additionalAlertMapper[type].color}
         withClose={withClose}
       />

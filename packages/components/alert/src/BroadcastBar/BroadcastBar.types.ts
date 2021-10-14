@@ -19,4 +19,5 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   onCloseClick?: () => void;
   customIcon?: React.ReactElement;
   textButton?: string;
+  text?: string;
 }

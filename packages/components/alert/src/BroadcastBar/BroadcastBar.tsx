@@ -25,6 +25,7 @@ const BroadcastBar: React.FC<Props> = ({
   withClose,
   textButton,
   onCloseClick,
+  text,
 }: Props) => {
   const renderMessage = React.useMemo(() => {
     return (
@@ -33,13 +34,13 @@ const BroadcastBar: React.FC<Props> = ({
           {description && !withEmphasis && <S.AlertDescription color={color}>{description}</S.AlertDescription>}
           {withLink && !withEmphasis && !description && (
             <S.LinkWrapper color={color}>
-              <S.WrapperText>Sorry!</S.WrapperText>
+              <S.WrapperText>{text}</S.WrapperText>
               <S.Link>{withLink}</S.Link>
             </S.LinkWrapper>
           )}
           {withEmphasis && (
             <S.EmphasisWrapper color={color}>
-              <S.WrapperText emphasis={withEmphasis}>Sorry!</S.WrapperText>
+              <S.WrapperText emphasis={withEmphasis}>{text}</S.WrapperText>
               {withEmphasis}
             </S.EmphasisWrapper>
           )}
