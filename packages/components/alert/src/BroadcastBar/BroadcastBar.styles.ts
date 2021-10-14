@@ -105,7 +105,7 @@ export const EmphasisWrapper = styled.span<{ color?: ColorType }>`
   margin-top: 1px;
   color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
 `;
-export const WrapperText = styled.p<{ emphasis?: boolean }>`
+export const WrapperText = styled.p<{ emphasis?: boolean | React.ReactNode }>`
   display: inline;
   font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
   margin-right: 3px;
