@@ -30,14 +30,19 @@ const BroadcastBar: React.FC<Props> = ({
     return (
       <S.AlertContent color={color} withLink={withLink}>
         <S.Text color={color}>
-          {message && (
-            <S.AlertMessage emphasis={withEmphasis} color={color}>
-              {message}
-            </S.AlertMessage>
-          )}
           {description && !withEmphasis && <S.AlertDescription color={color}>{description}</S.AlertDescription>}
-          {withLink && !withEmphasis && !description && <S.LinkWrapper color={color}>{withLink}</S.LinkWrapper>}
-          {withEmphasis && <S.EmphasisWrapper color={color}>{withEmphasis}</S.EmphasisWrapper>}
+          {withLink && !withEmphasis && !description && (
+            <S.LinkWrapper color={color}>
+              <S.WrapperText>Sorry!</S.WrapperText>
+              <S.Link>{withLink}</S.Link>
+            </S.LinkWrapper>
+          )}
+          {withEmphasis && (
+            <S.EmphasisWrapper color={color}>
+              <S.WrapperText emphasis={withEmphasis}>Sorry!</S.WrapperText>
+              {withEmphasis}
+            </S.EmphasisWrapper>
+          )}
         </S.Text>
       </S.AlertContent>
     );

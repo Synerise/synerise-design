@@ -2,7 +2,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import * as React from 'react';
 import {
   Add3M, AngleDownS, BookM,
-  Check3M, HelpM, NotificationsActiveM,
+  Check3M, ErrorFillM, HelpM, NotificationsActiveM,
   WarningFillM,
 } from '@synerise/ds-icon/dist/icons';
 import Alert from '@synerise/ds-alert';
@@ -64,14 +64,13 @@ const backgroundColors = {
 const additionalAlertMapper = {
   success: {color:'green',icon: <Check3M />},
   warning: {color:'yellow',icon: <WarningFillM />},
-  negative: {color:'red',icon: <WarningFillM />},
+  negative: {color:'red',icon: <ErrorFillM />},
 
 };
 const stories = {
   default: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const description = text('Description', 'There was a problem with your request.');
-    const message = text('Message', 'Sorry!');
+    const description = text('Description', 'Sorry! There was a problem with your request.');
     return (
       <div
         style={{
@@ -84,7 +83,6 @@ const stories = {
         }}>
         <BroadcastBar
           description={description}
-          message={message}
           type={type}
           color={additionalAlertMapper[type].color}
         />
@@ -93,8 +91,7 @@ const stories = {
   },
   withClose: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const description = text('Description', 'There was a problem with your request.');
-    const message = text('Message', 'Sorry!');
+    const description = text('Description', 'Sorry! There was a problem with your request.');
     return (
       <div
         style={{
@@ -107,7 +104,6 @@ const stories = {
         }}>
         <BroadcastBar
           description={description}
-          message={message}
           type={type}
           color={additionalAlertMapper[type].color}
           withClose={true}
@@ -117,8 +113,6 @@ const stories = {
   },
   withEmphasis: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const description = text('Description', 'There was a problem with your request.');
-    const message = text('Message', 'Sorry!');
     const withEmphasis = text('withEmphasis', 'There was a problem with your request.');
     return (
       <div
@@ -131,8 +125,6 @@ const stories = {
           height: '100%',
         }}>
         <BroadcastBar
-          description={description}
-          message={message}
           withEmphasis={withEmphasis}
           type={type}
           color={additionalAlertMapper[type].color}
@@ -142,7 +134,6 @@ const stories = {
   },
   withLink: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const message = text('Message', 'Sorry!');
     const withLink = text('withLink', 'Please reset this screen');
     return (
       <div
@@ -155,7 +146,6 @@ const stories = {
           height: '100%',
         }}>
         <BroadcastBar
-          message={message}
           withLink={withLink}
           type={type}
           color={additionalAlertMapper[type].color}
@@ -165,8 +155,7 @@ const stories = {
   },
   withActions: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const description = text('Description', 'There was a problem with your request.');
-    const message = text('Message', 'Sorry!');
+    const description = text('Description', 'Sorry! There was a problem with your request.');
     return (
       <div
         style={{
@@ -179,7 +168,6 @@ const stories = {
         }}>
         <BroadcastBar
           description={description}
-          message={message}
           type={type}
           color={additionalAlertMapper[type].color}
           withClose={true}
@@ -191,8 +179,7 @@ const stories = {
   },
   withNavbar: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
-    const description = text('Description', 'There was a problem with your request.');
-    const message = text('Message', 'Sorry!');
+    const description = text('Description', 'Sorry! There was a problem with your request.');
     const suffixType = select('Set suffix type', addonType, addonType.avatar);
     const colorAll = select('Background color', backgroundColors, '#0b68ff');
     const hasButton = boolean('Set button', true);
@@ -203,7 +190,6 @@ const stories = {
         <AnimateHeight className="Toast-animation" duration={400} height={close ? 'auto' : 0}>
         <BroadcastBar
           description={description}
-          message={message}
           type={type}
           color={additionalAlertMapper[type].color}
           withClose={true}
@@ -246,10 +232,9 @@ const stories = {
 Playground: () => {
   const showButton = boolean('Set button', false);
   const withClose = boolean('Set close button', false);
-  const type = select('Set type', SECTION_COLOR_TYPES, 'negative');
-  const description = text('Description', 'There was a problem with your request.');
+  const type = select('Set type', SECTION_COLOR_TYPES, 'warning');
+  const description = text('Description', 'Sorry! There was a problem with your request.');
   const showDescription = boolean('Set description', true);
-  const message = text('Message', 'Sorry!');
   const withEmphasis = text('withEmphasis', 'There was a problem with your request.');
   const showEmphasis = boolean('Set emphasis', false);
   const withLink = text('withLink', 'Please reset this screen');
@@ -266,7 +251,6 @@ Playground: () => {
       }}>
       <BroadcastBar
         description={showDescription && description}
-        message={message}
         withEmphasis={ showEmphasis && withEmphasis}
         withLink={showLink && withLink}
         textButton='Button'

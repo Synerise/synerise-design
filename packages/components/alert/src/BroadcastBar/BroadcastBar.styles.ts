@@ -87,21 +87,9 @@ export const WrapperSectionMessage = styled.div<{ color?: ColorType }>`
   justify-content: space-between;
 `;
 
-export const AlertMessage = styled.span<{ color?: ColorType; emphasis?: string | React.ReactNode }>`
-  font-size: 13px;
-  padding-right: 3px;
-  line-height: 1.39;
-  margin-top: 1px;
-  font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
-  max-width: 400px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
-`;
-
 export const AlertDescription = styled.span<{ color?: ColorType }>`
   display: flex;
-  max-width: 700px;
+  max-width: 800px;
   white-space: normal;
   font-size: 13px;
   line-height: 1.39;
@@ -110,30 +98,28 @@ export const AlertDescription = styled.span<{ color?: ColorType }>`
   color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
 `;
 export const EmphasisWrapper = styled.span<{ color?: ColorType }>`
-  display: flex;
   font-size: 13px;
+  max-width: 800px;
   line-height: 1.39;
   font-weight: 500;
   margin-top: 1px;
   color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
 `;
+export const WrapperText = styled.p<{ emphasis?: boolean }>`
+  display: inline;
+  font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
+  margin-right: 3px;
+  text-decoration: none;
+`;
 export const LinkWrapper = styled.span<{ color?: ColorType }>`
-  display: flex;
   font-size: 13px;
   line-height: 1.5;
+  max-width: 800px;
   font-weight: 500;
   margin-top: 1px;
   color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
-  text-decoration: underline;
-  cursor: pointer;
 `;
-
-export const AlertShowMore = styled.span<{ color?: ColorType }>`
-  display: flex;
-  font-size: 13px;
-  font-weight: 500;
-  color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
+export const Link = styled.span`
   text-decoration: underline;
   cursor: pointer;
-  margin-top: 6px;
 `;
