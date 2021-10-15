@@ -83,24 +83,26 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
     });
   }, [groups, activeTab]);
 
-  const filteredItems = React.useMemo(() => {
-    return items
-      ?.filter((item: OperatorsItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
-      .map((item: OperatorsItem) => {
-        return (
-          <OperatorsDropdownItem
-            className={classNames}
-            key={item.name + item.id}
-            item={item}
-            searchQuery={searchQuery}
-            clearSearch={(): void => setSearchQuery('')}
-            hideDropdown={(): void => setDropdownVisible(false)}
-            select={setSelected}
-            selected={Boolean(value) && item.id === value?.id}
-          />
-        );
-      });
-  }, [items, searchQuery, setDropdownVisible, setSelected, value, classNames]);
+  const filteredItems = React.useMemo(
+    () =>
+      items
+        .filter((item: OperatorsItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+        .map((item: OperatorsItem) => {
+          return (
+            <OperatorsDropdownItem
+              className={classNames}
+              key={item.name + item.groupId}
+              item={item}
+              searchQuery={searchQuery}
+              clearSearch={(): void => setSearchQuery('')}
+              hideDropdown={(): void => setDropdownVisible(false)}
+              select={setSelected}
+              selected={Boolean(value) && item.id === value?.id}
+            />
+          );
+        }),
+    [items, searchQuery, setDropdownVisible, setSelected, value, classNames]
+  );
 
   const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
     if (searchQuery) {
@@ -157,7 +159,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
 
   return (
     <Dropdown.Wrapper
-      style={{ width: '300px' }}
+      style={{ width: '300px', zIndex: 9999999 }}
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
@@ -174,6 +176,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && (
