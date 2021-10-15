@@ -39,10 +39,12 @@ const ParameterInput: React.FC<InputProps> = ({
       setDropdownVisible(true);
       onParamsClick && onParamsClick();
     }
+    // eslint-disable-next-line
   }, [opened]);
 
   React.useEffect(() => {
     !preventAutoloadData && onParamsClick && onParamsClick();
+    // eslint-disable-next-line
   }, []);
 
   return (

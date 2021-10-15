@@ -59,6 +59,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     opened,
     loading,
     onParamsClick,
+    preventAutoloadData,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;

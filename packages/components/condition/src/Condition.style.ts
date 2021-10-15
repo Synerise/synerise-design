@@ -6,7 +6,7 @@ export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top: ${props => (props.withoutStepName ? '22px' : '0')};
+  margin-top: ${(props): string => (props.withoutStepName ? '22px' : '0')};
 `;
 
 export const StepName = styled.div`

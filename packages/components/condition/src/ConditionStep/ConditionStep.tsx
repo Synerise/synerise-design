@@ -121,6 +121,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       currentConditionId,
       currentField,
       currentStepId,
+      maxConditionsLength,
       minConditionsLength,
       removeCondition,
       selectOperator,
