@@ -3,6 +3,8 @@ import * as React from 'react';
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon/dist/icons';
 import { NOOP } from '@synerise/ds-utils';
+import { debounce } from 'lodash';
+
 import * as S from '../../Condition.style';
 
 import * as T from './StepHeader.types';
@@ -12,25 +14,39 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   stepName,
   stepId,
   texts,
-  updateStepName,
+  updateStepName = NOOP,
   duplicateStep,
   removeStep,
   index,
   draggableEnabled,
 }) => {
+  const onChangeNameDebounce = React.useCallback(debounce(updateStepName, 300), [updateStepName]);
+  const [localName, setLocalName] = React.useState(stepName);
+
+  React.useEffect(() => {
+    setLocalName(stepName);
+  }, [stepName]);
+
+  const handleChangeName = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setLocalName(event.target.value);
+      onChangeNameDebounce(stepId, event.target.value);
+    },
+    [onChangeNameDebounce, stepId]
+  );
+
   return (
     <S.StepHeader>
-      {stepName !== undefined && (
+      {updateStepName && (
         <S.StepName>
           {`${index + 1}.`}{' '}
           <InlineEdit
             size="small"
             input={{
-              value: stepName,
+              value: localName,
               name: `condition-step-name-${stepId}`,
               placeholder: texts.stepNamePlaceholder,
-              onChange: (event: React.ChangeEvent<HTMLInputElement>): void =>
-                updateStepName && updateStepName(stepId, event.target.value),
+              onChange: handleChangeName,
             }}
           />
         </S.StepName>

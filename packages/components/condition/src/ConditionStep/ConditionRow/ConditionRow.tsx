@@ -13,12 +13,12 @@ import * as T from './ConditionRow.types';
 export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   index,
   conditionId,
-  addCondition,
   conditionParameter,
   conditionOperator,
   conditionFactor,
   removeCondition,
-  minConditionLength = 1,
+  minConditionLength,
+  maxConditionLength,
   conditionsNumber,
   stepId,
   currentStepId,
@@ -29,13 +29,14 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   setStepConditionFactorType,
   setStepConditionFactorValue,
   texts,
-  stepType,
 }) => {
   return (
-    <S.ConditionRow key={`condition-row-${conditionId}`}>
+    <S.ConditionRow key={`condition-row-${conditionId}`} index={index}>
       <S.ConditionConnections
         first={index === 0}
-        last={(index + 1 === conditionsNumber && !addCondition) || stepType !== 'event'}
+        last={Boolean(
+          index + 1 === conditionsNumber && maxConditionLength !== undefined && conditionsNumber === maxConditionLength
+        )}
       />
       <S.ConditionWrapper>
         {conditionParameter && (
@@ -55,7 +56,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
           />
         </S.ConditionWrapper>
       )}
-      {conditionOperator.value && (
+      {conditionOperator?.value && (
         <S.ConditionWrapper>
           {conditionFactor && (
             <Factors

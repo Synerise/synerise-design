@@ -99,18 +99,27 @@ import Condition from '@synerise/ds-condition'
 
 ## API
 
-| Property           | Description                                                         | Type                                                               | Default |
-| ---                | ---                                                                 | ---                                                                | ---     |
-| addCondition       | Callback called when user adds new row of conditions                | (stepId: React.ReactText) => void                                  | -       |
-| removeCondition    | Callback called when user clicks on remove row of condtions         | (stepId: React.ReactText, conditionRowId: React.ReactText) => void | -       |
-| steps              | Array contains all steps of condition                               | ConditionStep[]                                                    | -       |
-| texts              | Translations object                                                 | Texts                                                              | -       |
-| updateStepName     | Callback called when user change the name of step                   | (stepId: React.ReactText, value: string) => void                   | -       |
-| addStep            | Callback called when user clicks on add step button                 | () => void                                                         | -       |
-| duplicateStep      | Callback called when user clicks on duplicate step button           | (stepId: React.ReactText) => void                                  | -       |
-| removeStep         | Callback called when user clicks on remove step button              | (stepId: React.ReactText) => void                                  | -       |
-| onChangeOrder      | Callback called when user change order of steps                     | (order: ConditionStep[]) => void                                   | -       |
-| autoClearCondition | Automatically fires clearing values of dependent elements           | Boolean                                                            | false   |
+| Property            | Description                                                   | Type                                                                                              | Default |
+| ---                 | ---                                                           | ---                                                                                               | ---     |
+| addCondition        | Callback called when user adds new row of conditions          | (stepId: React.ReactText) => void                                                                 | -       |
+| removeCondition     | Callback called when user clicks on remove row of condtions   | (stepId: React.ReactText, conditionRowId: React.ReactText) => void                                | -       |
+| steps               | Array contains all steps of condition                         | ConditionStep[]                                                                                   | -       |
+| texts               | Translations object                                           | Texts                                                                                             | -       |
+| updateStepName      | Callback called when user change the name of step             | (stepId: React.ReactText, value: string) => void                                                  | -       |
+| addStep             | Callback called when user clicks on add step button           | () => void                                                                                        | -       |
+| duplicateStep       | Callback called when user clicks on duplicate step button     | (stepId: React.ReactText) => void                                                                 | -       |
+| removeStep          | Callback called when user clicks on remove step button        | (stepId: React.ReactText) => void                                                                 | -       |
+| onChangeOrder       | Callback called when user change order of steps               | (order: ConditionStep[]) => void                                                                  | -       |
+| autoClearCondition  | Automatically fires clearing values of dependent elements     | Boolean                                                                                           | false   |
+| minConditionsLength | Minimal length of conditions in step                          | number                                                                                            | -       |
+| maxConditionsLength | Maximal length of conditions in step                          | number \ undefined                                                                                | -       |
+| onChangeContext     | Callback called when user change value of step context        | (stepId: React.ReactText, value: ContextItem \ ContextGroup \ undefined) => void                  | -       |
+| onChangeSubject     | Callback called when user change value of step subject        | (stepId: React.ReactText, value: SubjectItem \ undefined) => void                                 | -       |
+| onChangeParameter   | Callback called when user change value of condition parameter | (stepId: React.ReactText, conditionId: React.ReactText, value: ParameterValue)                    | -       |
+| onChangeOperator    | Callback called when user change value of condition operator  | (stepId: React.ReactText, conditionId: React.ReactText, value: OperatorsItem \ undefined) => void | -       |
+| onChangeFactorValue | Callback called when user change value of condition factor    | (stepId: React.ReactText, conditionId: React.ReactText, value: OperatorsType \ undefined) => void | -       |
+| onChangeFactorType  | Callback called when user change type of condition factor     | (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType \ undefined) => void    | -       |
+| onUpdateStepName    | Callback called when user change the name of step condition   | (stepId: React.ReactText, value: string) => void                                                  | -       |
 
 ### ConditionStep
 

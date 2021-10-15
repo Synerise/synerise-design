@@ -19,6 +19,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   removeStep,
   duplicateStep,
   minConditionsLength = 1,
+  maxConditionsLength,
   draggableEnabled,
   selectSubject,
   selectContext,
@@ -75,7 +76,8 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   const addConditionButton = React.useMemo(
     () =>
       addCondition &&
-      step.context?.type === 'event' && (
+      maxConditionsLength &&
+      step.conditions.length < maxConditionsLength && (
         <AddCondition
           texts={text}
           stepId={step.id}
@@ -85,7 +87,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           selectedContext={Boolean(step.context?.selectedItem)}
         />
       ),
-    [addCondition, step.conditions.length, step.context, step.id, step.subject, text]
+    [addCondition, maxConditionsLength, step.conditions.length, step.context, step.id, step.subject, text]
   );
 
   const renderConditionRow = React.useCallback(
@@ -100,6 +102,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         conditionFactor={condition.factor}
         removeCondition={removeCondition}
         minConditionLength={minConditionsLength}
+        maxConditionLength={maxConditionsLength}
         conditionsNumber={step.conditions.length}
         stepId={step.id}
         currentStepId={currentStepId}
@@ -132,9 +135,9 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   );
 
   return (
-    <S.Step key={step.id} withStepName={step.stepName !== undefined} data-dropLabel={text.dropLabel}>
-      {step.stepName && stepHeader}
-      <S.StepConditions withoutStepName={!step.stepName}>
+    <S.Step key={step.id} data-dropLabel={text.dropLabel}>
+      {updateStepName && stepHeader}
+      <S.StepConditions withoutStepName={updateStepName === undefined}>
         <S.Subject>
           {step.subject && <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step.id)} />}
           {step.context && (

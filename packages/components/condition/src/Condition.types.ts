@@ -40,7 +40,8 @@ export type ConditionProps = {
   addStep?: () => void;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
-  minConditionsLength?: number;
+  minConditionsLength: number;
+  maxConditionsLength?: number | undefined;
   autoClearCondition?: boolean;
   onChangeContext: (stepId: React.ReactText, value: ContextItem | ContextGroup | undefined) => void;
   onChangeSubject: (stepId: React.ReactText, value: SubjectItem | undefined) => void;

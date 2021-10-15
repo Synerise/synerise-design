@@ -14,7 +14,8 @@ export type ConditionStepProps = {
   removeStep?: (stepId: React.ReactText) => void;
   duplicateStep?: (stepId: React.ReactText) => void;
   texts?: Partial<ConditionTexts>;
-  minConditionsLength?: number;
+  minConditionsLength: number;
+  maxConditionsLength: number | undefined;
   draggableEnabled?: boolean;
   selectSubject: (value: SubjectItem, stepId: React.ReactText) => void;
   selectContext: (value: ContextItem | ContextGroup | undefined, stepId: React.ReactText) => void;

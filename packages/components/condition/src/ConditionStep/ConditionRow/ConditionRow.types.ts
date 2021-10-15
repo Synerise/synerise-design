@@ -12,6 +12,7 @@ export type ConditionRowProps = {
   conditionFactor: FactorsProps;
   removeCondition: ConditionProps['removeCondition'];
   minConditionLength: ConditionProps['minConditionsLength'];
+  maxConditionLength: ConditionProps['maxConditionsLength'];
   conditionsNumber: number;
   stepId: React.ReactText;
   currentStepId: React.ReactText;

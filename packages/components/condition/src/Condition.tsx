@@ -6,7 +6,7 @@ import { Add3M } from '@synerise/ds-icon/dist/icons';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { NOOP } from '@synerise/ds-utils';
-// import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
+import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
@@ -37,6 +37,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     addStep,
     onChangeOrder,
     minConditionsLength = 1,
+    maxConditionsLength,
     autoClearCondition,
     onChangeContext,
     onChangeSubject,
@@ -57,34 +58,33 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
-  // const prevSteps = usePrevious(steps);
+  const prevSteps = usePrevious(steps);
 
-  // React.useEffect(() => {
-  //   const newConditionId =
-  //     prevSteps &&
-  //     steps &&
-  //     steps.reduce((id: string | number | undefined, step: T.ConditionStep) => {
-  //       let result = id;
-  //       const conditions = step.conditions.map((condition: T.StepConditions) => ({
-  //         id: condition.id,
-  //         value: condition.parameter?.value,
-  //       }));
-  //       const oldStep = prevSteps.find((prevStep: T.ConditionStep) => prevStep.id === step.id);
-  //       if (oldStep) {
-  //         const oldConditions = oldStep.conditions.map((condition: T.StepConditions) => condition.id);
-  //         const newCondition = conditions.find(condition => oldConditions.indexOf(condition.id) === -1);
-  //         result = newCondition && !newCondition.value ? newCondition.id : result;
-  //       } else {
-  //         result = step.conditions[0]?.id;
-  //       }
-  //
-  //       return result;
-  //     }, undefined);
-  //   if (newConditionId && newConditionId !== currentConditionId) {
-  //     setCurrentConditionId(newConditionId);
-  //     setCurrentField(PARAMETER);
-  //   }
-  // }, [currentConditionId, currentField, prevSteps, steps]);
+  React.useEffect(() => {
+    const newConditionId =
+      prevSteps &&
+      steps &&
+      steps.reduce((id: string | number | undefined, step: T.ConditionStep) => {
+        let result = id;
+        const conditions = step.conditions.map((condition: T.StepConditions) => ({
+          id: condition.id,
+          value: condition.parameter?.value,
+        }));
+        const oldStep = prevSteps.find((prevStep: T.ConditionStep) => prevStep.id === step.id);
+        if (oldStep) {
+          const oldConditions = oldStep.conditions.map((condition: T.StepConditions) => condition.id);
+          const newCondition = conditions.find(condition => oldConditions.indexOf(condition.id) === -1);
+          result = newCondition && !newCondition.value ? newCondition.id : result;
+        } else {
+          result = step.conditions[0]?.id;
+        }
+
+        return result;
+      }, undefined);
+    if (newConditionId && newConditionId !== currentConditionId) {
+      setCurrentConditionId(newConditionId);
+    }
+  }, [currentConditionId, currentField, prevSteps, steps]);
 
   const clearConditionRow = React.useCallback(
     stepId => {
@@ -117,8 +117,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const selectSubject = React.useCallback(
     (value, stepId: React.ReactText): void => {
-      // clearConditionRow(stepId);
-      // setCurrentStepId(stepId);
+      clearConditionRow(stepId);
+      setCurrentStepId(stepId);
       onChangeSubject && onChangeSubject(stepId, value);
     },
     [clearConditionRow, onChangeSubject]
@@ -126,8 +126,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const selectContext = React.useCallback(
     (value, stepId: React.ReactText): void => {
-      // clearConditionRow(stepId);
-      // setCurrentStepId(stepId);
+      clearConditionRow(stepId);
+      setCurrentStepId(stepId);
       onChangeContext && onChangeContext(stepId, value);
     },
     [clearConditionRow, onChangeContext]
@@ -136,12 +136,12 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const selectParameter = React.useCallback(
     (stepId: React.ReactText, conditionId: React.ReactText, value): void => {
       if (conditionId && onChangeParameter) {
-        // autoClearCondition && onChangeOperator && onChangeOperator(stepId, conditionId, undefined);
-        // autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
+        autoClearCondition && onChangeOperator && onChangeOperator(stepId, conditionId, undefined);
+        autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
         onChangeParameter(stepId, conditionId, value);
-        // setCurrentConditionId(conditionId);
-        // setCurrentStepId(stepId);
-        // setCurrentField(OPERATOR);
+        setCurrentConditionId(conditionId);
+        setCurrentStepId(stepId);
+        setCurrentField(OPERATOR);
       }
     },
     [autoClearCondition, onChangeFactorValue, onChangeOperator, onChangeParameter]
@@ -150,11 +150,11 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const selectOperator = React.useCallback(
     (stepId: React.ReactText, conditionId: React.ReactText, value): void => {
       if (conditionId && onChangeOperator) {
-        // autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
+        autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
         onChangeOperator(stepId, conditionId, value);
-        // setCurrentConditionId(conditionId);
-        // setCurrentStepId(stepId);
-        // setCurrentField(FACTOR);
+        setCurrentConditionId(conditionId);
+        setCurrentStepId(stepId);
+        setCurrentField(FACTOR);
       }
     },
     [autoClearCondition, onChangeFactorValue, onChangeOperator]
@@ -162,9 +162,9 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const setStepConditionFactorType = React.useCallback(
     (stepId, conditionId, factorType): void => {
-      // setCurrentConditionId(conditionId);
-      // setCurrentStepId(stepId);
-      // setCurrentField(FACTOR);
+      setCurrentConditionId(conditionId);
+      setCurrentStepId(stepId);
+      setCurrentField(FACTOR);
       onChangeFactorType && onChangeFactorType(stepId, conditionId, factorType);
     },
     [onChangeFactorType]
@@ -172,8 +172,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const setStepConditionFactorValue = React.useCallback(
     (stepId, conditionId, value) => {
-      // setCurrentField(DEFAULT_FIELD);
-      // setCurrentStepId(stepId);
+      setCurrentField(DEFAULT_FIELD);
+      setCurrentStepId(stepId);
       onChangeFactorValue && onChangeFactorValue(stepId, conditionId, value);
     },
     [onChangeFactorValue]
@@ -201,6 +201,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 duplicateStep={duplicateStep}
                 removeStep={removeStep}
                 minConditionsLength={minConditionsLength}
+                maxConditionsLength={maxConditionsLength}
                 setStepConditionFactorType={setStepConditionFactorType}
                 setStepConditionFactorValue={setStepConditionFactorValue}
                 currentConditionId={currentConditionId}
