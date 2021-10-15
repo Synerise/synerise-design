@@ -242,10 +242,12 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         removeTooltip: 'Remove',
         moveTooltip: 'Move',
       }}
+      minConditionsLength={1}
+      maxConditionsLength={10}
       autoClearCondition
       addCondition={addStepCondition}
       removeCondition={removeStepCondition}
-      updateStepName={updateStepName}
+      onUpdateStepName={updateStepName}
       removeStep={removeStep}
       duplicateStep={duplicateStep}
       addStep={addStep}
@@ -310,7 +312,6 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             },
             texts: FACTORS_TEXTS,
           },
-          minConditionsLength: 1,
         })),
       }))}
     />
