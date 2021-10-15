@@ -9,6 +9,7 @@ export interface SearchBarProps {
   value: string;
   iconLeft?: React.ReactNode;
   autofocus?: boolean;
+  autofocusDelay?: number;
   disabled?: boolean;
   borderRadius?: boolean | undefined;
   handleInputRef?: (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
