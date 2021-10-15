@@ -65,7 +65,6 @@ export const BroadcastButton = styled(Button)<{ color?: ColorType }>`
       props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white} !important;
   }
 `;
-
 export const ButtonCloseWrapper = styled.div`
   margin: 6px 8px;
   display: flex;
@@ -105,11 +104,10 @@ export const EmphasisWrapper = styled.span<{ color?: ColorType }>`
   margin-top: 1px;
   color: ${(props): string => (props.color === 'yellow' ? props.theme.palette['grey-800'] : props.theme.palette.white)};
 `;
-export const WrapperText = styled.p<{ emphasis?: boolean | React.ReactNode }>`
-  display: inline;
+export const WrapperText = styled.span<{ emphasis?: boolean | React.ReactNode }>`
   font-weight: ${(props): string => (props.emphasis ? '400' : '500')};
   margin-right: 3px;
-  text-decoration: none;
+  max-width: 800px;
 `;
 export const LinkWrapper = styled.span<{ color?: ColorType }>`
   font-size: 13px;
@@ -122,4 +120,5 @@ export const LinkWrapper = styled.span<{ color?: ColorType }>`
 export const Link = styled.span`
   text-decoration: underline;
   cursor: pointer;
+  max-width: 800px;
 `;

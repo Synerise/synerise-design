@@ -9,18 +9,15 @@ const ICONS: Record<BroadcastBarTypes, React.ReactNode> = {
   warning: <WarningFillM />,
   negative: <ErrorFillM />,
 };
-
 const DEFAULT_ICON = <WarningFillM />;
 
 const BroadcastBar: React.FC<Props> = ({
   icon,
   type,
-  message,
   description,
   button,
   withEmphasis,
   withLink,
-  unorderedList,
   color,
   withClose,
   textButton,
@@ -47,7 +44,7 @@ const BroadcastBar: React.FC<Props> = ({
         </S.Text>
       </S.AlertContent>
     );
-  }, [message, description, withEmphasis, withLink, unorderedList, color]);
+  }, [description, withEmphasis, withLink, text, color]);
 
   const renderIcon = React.useMemo(() => {
     if (icon) return icon;

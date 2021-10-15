@@ -5,7 +5,6 @@ export type BroadcastBarTypes = 'success' | 'warning' | 'negative';
 export type ColorType = 'red' | 'green' | 'yellow';
 
 export interface Props extends Omit<AlertProps, 'type' | 'message'> {
-  message?: React.ReactNode;
   type: string | BroadcastBarTypes;
   color?: ColorType;
   showMoreLabel?: React.ReactNode;
@@ -14,10 +13,9 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   moreButtons?: boolean | React.ReactNode;
   withEmphasis?: React.ReactNode;
   withLink?: React.ReactNode;
-  unorderedList?: React.ReactNode;
   withClose?: React.ReactNode;
   onCloseClick?: () => void;
   customIcon?: React.ReactElement;
   textButton?: string;
-  text?: string;
+  text?: string | React.ReactNode;
 }
