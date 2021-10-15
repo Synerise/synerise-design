@@ -45,7 +45,10 @@ const stories = {
         matching={matching}
         onChangeMatching={setMatching}
         name={name}
-        onChangeName={setName}
+        onChangeName={name => {
+          console.log('handleChange stories', name);
+          setName(name);
+        }}
         onDuplicate={action('duplicate')}
         onDelete={action('delete')}
         texts={{

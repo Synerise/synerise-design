@@ -9,27 +9,23 @@ import {
   DEFAULT_STEP,
   PARAMETER_GROUPS,
   PARAMETER_ITEMS,
-  SUBJECT_ITEMS,
 } from './data/index.data';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
-import { SUBJECT_TEXTS } from '../Subject/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
-
-import { action } from '@storybook/addon-actions';
 
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
-    const setStepSubject = (stepId, item) => {
+    const setStepContext = (stepId, item) => {
       store.set({
         steps: store.state.steps.map(s => {
           if (s.id === stepId) {
             return {
               ...s,
-              subject: {
-                ...s.subject,
+              context: {
+                ...s.context,
                 selectedItem: item,
               },
             };
@@ -206,8 +202,6 @@ const stories = {
       store.set({ steps: newOrder });
     };
 
-    const withContextAsSubject = boolean('Use contextSelector as subject', false);
-
     return (
       <div
         style={{
@@ -235,39 +229,30 @@ const stories = {
             moveTooltip: 'Move',
           }}
           autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
-          addCondition={boolean('Enable add new condition row', true) && addStepCondition}
+          addCondition={addStepCondition}
           removeCondition={removeStepCondition}
-          updateStepName={updateStepName}
+          onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
           removeStep={removeStep}
           duplicateStep={duplicateStep}
           addStep={addStep}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
           minConditionsLength={0}
-          onChangeSubject={setStepSubject}
-          onChangeContext={setStepSubject}
+          maxConditionsLength={5}
+          onChangeContext={setStepContext}
+          onChangeSubject={setStepContext}
           onChangeParameter={setStepConditionParameter}
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
           steps={store.state.steps.map(step => ({
             id: step.id,
-            stepName: boolean('Show step name', true) && step.stepName,
-            subject: !withContextAsSubject && {
-              // onSelectItem: item => setStepSubject(step.id, item),
-              type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
-              placeholder: text('Set subject placeholder', 'Choose event'),
-              showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
-              iconPlaceholder: step.subject.iconPlaceholder,
-              selectedItem: step.subject.selectedItem,
-              items: SUBJECT_ITEMS,
-              texts: SUBJECT_TEXTS,
-            },
-            context: withContextAsSubject && {
+            stepName: step.stepName,
+            context: {
               texts: CONTEXT_TEXTS,
-              // onSelectItem: item => setStepSubject(step.id, item),
-              selectedItem: step.subject.selectedItem,
+              selectedItem: step.context.selectedItem,
               items: CONTEXT_ITEMS,
               groups: CONTEXT_GROUPS,
+              type: step.context.type,
               loading: boolean('Loading context content', false),
             },
             conditions: step.conditions.map(condition => ({
@@ -277,7 +262,6 @@ const stories = {
                 selectedFactorType: 'parameter',
                 defaultFactorType: 'parameter',
                 setSelectedFactorType: () => {},
-                // onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
                 onParamsClick: () => {
                   console.log('params click');
                 },
@@ -293,7 +277,6 @@ const stories = {
                 loading: boolean('Loading parameters content', false),
               },
               operator: {
-                // onChange: value => setOperatorValue(step.id, condition.id, value),
                 value: condition.operator.value,
                 items: OPERATORS_ITEMS,
                 groups: OPERATORS_GROUPS,
@@ -302,8 +285,6 @@ const stories = {
               factor: {
                 selectedFactorType: condition.factor.selectedFactorType,
                 defaultFactorType: 'text',
-                // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
-                // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
                 textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
                 autocompleteText: {
                   options: ['First name', 'Last name', 'City', 'Age', 'Points'],

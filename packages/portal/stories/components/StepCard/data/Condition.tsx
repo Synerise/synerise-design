@@ -1,13 +1,10 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { boolean, select } from '@storybook/addon-knobs';
 import {
   DEFAULT_CONDITION_ROW,
   DEFAULT_STEP,
   PARAMETER_GROUPS,
   PARAMETER_ITEMS,
-  SUBJECT_ITEMS,
 } from '../../Condition/data/index.data';
-import { SUBJECT_TEXTS } from '../../Subject/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../../ContextSelector/data/index.data';
 import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import { FACTORS_TEXTS } from '../../Factors/data/index.data';
@@ -23,15 +20,15 @@ type ConditionExampleProps = {
 };
 
 export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onChange }) => {
-  const setStepSubject = React.useCallback(
+  const setStepContext = React.useCallback(
     (stepId, item) => {
       onChange(
         steps.map(s => {
           if (s.id === stepId) {
             return {
               ...s,
-              subject: {
-                ...s.subject,
+              context: {
+                ...s.context,
                 selectedItem: item,
               },
             };
@@ -232,7 +229,6 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
     onChange(newOrder);
   };
 
-  const withContextAsSubject = boolean('Use contextSelector as subject', false);
   return (
     <Condition
       texts={{
@@ -247,30 +243,26 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         moveTooltip: 'Move',
       }}
       autoClearCondition
-      addCondition={boolean('Enable add new condition row', true) && addStepCondition}
+      addCondition={addStepCondition}
       removeCondition={removeStepCondition}
       updateStepName={updateStepName}
       removeStep={removeStep}
       duplicateStep={duplicateStep}
       addStep={addStep}
       onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
+      onChangeContext={setStepContext}
+      onChangeSubject={setStepContext}
+      onChangeParameter={setStepConditionParameter}
+      onChangeOperator={setOperatorValue}
+      onChangeFactorValue={setStepConditionFactorValue}
+      onChangeFactorType={setStepConditionFactorType}
       steps={steps.map(step => ({
         id: step.id,
         stepName: boolean('Show step name', true) && step.stepName,
-        subject: !withContextAsSubject && {
-          onSelectItem: item => setStepSubject(step.id, item),
-          type: select('Choose subject type', ['parameter', 'event', 'context'], 'parameter'),
-          placeholder: text('Set subject placeholder', 'Choose event'),
-          showPreview: boolean('Subject with preview', true) && action('ShowPreview'),
-          iconPlaceholder: step.subject.iconPlaceholder,
-          selectedItem: step.subject.selectedItem,
-          items: SUBJECT_ITEMS,
-          texts: SUBJECT_TEXTS,
-        },
-        context: withContextAsSubject && {
+        context: {
           texts: CONTEXT_TEXTS,
-          onSelectItem: item => setStepSubject(step.id, item),
-          selectedItem: step.subject.selectedItem,
+          // onSelectItem: item => setStepSubject(step.id, item),
+          selectedItem: step.context.selectedItem,
           items: CONTEXT_ITEMS,
           groups: CONTEXT_GROUPS,
         },
@@ -280,8 +272,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             availableFactorTypes: ['parameter'],
             selectedFactorType: 'parameter',
             defaultFactorType: 'parameter',
-            setSelectedFactorType: () => {},
-            onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
+            // setSelectedFactorType: () => {},
+            // onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
             value: condition.parameter.value,
             parameters: {
               buttonLabel: 'Parameter',
@@ -293,7 +285,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             texts: FACTORS_TEXTS,
           },
           operator: {
-            onChange: value => setOperatorValue(step.id, condition.id, value),
+            // onChange: value => setOperatorValue(step.id, condition.id, value),
             value: condition.operator.value,
             items: OPERATORS_ITEMS,
             groups: OPERATORS_GROUPS,
@@ -302,8 +294,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
           factor: {
             selectedFactorType: condition.factor.selectedFactorType,
             defaultFactorType: 'text',
-            setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
-            onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
+            // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
+            // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
             textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
             autocompleteText: {
               options: ['First name', 'Last name', 'City', 'Age', 'Points'],
@@ -318,6 +310,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             },
             texts: FACTORS_TEXTS,
           },
+          minConditionsLength: 1,
         })),
       }))}
     />
