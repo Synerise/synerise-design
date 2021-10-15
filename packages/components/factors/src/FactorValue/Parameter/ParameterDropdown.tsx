@@ -35,7 +35,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ParameterGroup | undefined>(undefined);
-  // const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
 
   const classNames = React.useMemo(() => {
     return `ds-parameter-item ds-parameter-item-${uuid()}`;
@@ -170,11 +170,11 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       style={{ width: '300px' }}
       ref={overlayRef}
       onKeyDown={(e): void => {
-        // setSearchInputFocus(false);
+        setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
-            // setSearchInputFocus(true);
+            setSearchInputFocus(true);
           });
       }}
     >
@@ -183,7 +183,8 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
         onClearInput={(): void => handleSearch('')}
         placeholder={texts.parameter.searchPlaceholder}
         value={searchQuery}
-        // autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (
