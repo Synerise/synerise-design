@@ -4,6 +4,7 @@ import Icon from '@synerise/ds-icon';
 import { AngleDownS, Add3M } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextItem, ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
@@ -86,32 +87,35 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
 
   return (
-    <Dropdown
-      trigger={trigger}
-      visible={dropdownVisible}
-      overlay={
-        <ContextSelectorDropdown
-          value={selectedItem}
-          setDropdownVisible={setDropdownVisible}
-          setSelected={handleChange}
-          onSetGroup={handleOnSetGroup}
-          groups={groups}
-          items={items}
-          texts={texts}
-          visible={dropdownVisible}
-          loading={loading}
-          menuItemHeight={menuItemHeight}
-          dropdownWrapperStyles={dropdownWrapperStyles}
-          onClickOutsideEvents={onClickOutsideEvents}
-          onClickOutside={onClickOutside}
-          onSearch={onSearch}
-          hasMoreItems={hasMoreItems}
-          onFetchData={onFetchData}
-        />
-      }
-    >
-      {customTriggerComponent ?? triggerButton}
-    </Dropdown>
+    <div data-popup-container>
+      <Dropdown
+        getPopupContainer={getPopupContainer}
+        trigger={trigger}
+        visible={dropdownVisible}
+        overlay={
+          <ContextSelectorDropdown
+            value={selectedItem}
+            setDropdownVisible={setDropdownVisible}
+            setSelected={handleChange}
+            onSetGroup={handleOnSetGroup}
+            groups={groups}
+            items={items}
+            texts={texts}
+            visible={dropdownVisible}
+            loading={loading}
+            menuItemHeight={menuItemHeight}
+            dropdownWrapperStyles={dropdownWrapperStyles}
+            onClickOutsideEvents={onClickOutsideEvents}
+            onClickOutside={onClickOutside}
+            onSearch={onSearch}
+            hasMoreItems={hasMoreItems}
+            onFetchData={onFetchData}
+          />
+        }
+      >
+        {customTriggerComponent ?? triggerButton}
+      </Dropdown>
+    </div>
   );
 };
 export default ContextSelector;

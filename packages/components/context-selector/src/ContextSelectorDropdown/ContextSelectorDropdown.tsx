@@ -20,7 +20,6 @@ import {
   ListTitle,
 } from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
-// import { useTraceUpdate } from '@synerise/ds-utils/dist/useTraceUpdate';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
 
@@ -28,27 +27,24 @@ function isListTitle(element: DropdownItemProps): element is ListTitle {
   return (element as ListTitle).title !== undefined;
 }
 
-const ContextSelectorDropdown: React.FC<ContextDropdownProps> = props => {
-  // useTraceUpdate(props);
-
-  const {
-    texts,
-    setSelected,
-    onSetGroup,
-    groups,
-    items,
-    setDropdownVisible,
-    value,
-    visible,
-    loading,
-    menuItemHeight,
-    dropdownWrapperStyles,
-    onClickOutsideEvents,
-    onClickOutside,
-    onSearch,
-    onFetchData,
-    hasMoreItems,
-  } = props;
+const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
+  texts,
+  setSelected,
+  onSetGroup,
+  groups,
+  items,
+  setDropdownVisible,
+  value,
+  visible,
+  loading,
+  menuItemHeight,
+  dropdownWrapperStyles,
+  onClickOutsideEvents,
+  onClickOutside,
+  onSearch,
+  onFetchData,
+  hasMoreItems,
+}) => {
   const listRef = React.createRef<FixedSizeList>();
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
@@ -60,7 +56,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = props => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
-  // const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
   const classNames = React.useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -248,10 +244,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = props => {
       style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
       onKeyDown={(e): void => {
-        // setSearchInputFocus(false);
+        setSearchInputFocus(false);
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
-            // setSearchInputFocus(true);
+            setSearchInputFocus(true);
           });
       }}
     >
@@ -263,7 +259,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = props => {
         }}
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
-        // autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (
