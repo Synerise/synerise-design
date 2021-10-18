@@ -2,6 +2,7 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
+import Tooltip from '@synerise/ds-tooltip';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
@@ -27,6 +28,7 @@ const CardTab: React.FC<CardTabProps> = ({
   onRemoveTab,
   texts,
   color = 'yellow',
+  colorDot,
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
@@ -109,7 +111,7 @@ const CardTab: React.FC<CardTabProps> = ({
       data-id={id}
       data-testid="card-tab-container"
     >
-      <CardTabPrefix draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
+      <CardTabPrefix colorDot={colorDot} draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
       <S.CardTabLabel data-testid="card-tab-label" invalidName={Boolean(invalidName) && !invalid}>
         {edited ? (
           <InlineEdit
@@ -126,7 +128,9 @@ const CardTab: React.FC<CardTabProps> = ({
             data-testid="card-tab-edit-input"
           />
         ) : (
-          <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
+          <Tooltip title={name}>
+            <S.CardTabName data-testid="card-tab-name">{name}</S.CardTabName>
+          </Tooltip>
         )}
       </S.CardTabLabel>
       {showCardActions() && (
@@ -138,7 +142,11 @@ const CardTab: React.FC<CardTabProps> = ({
           texts={getTexts}
         />
       )}
-      {suffixIcon && <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />}
+      {suffixIcon && (
+        <S.CardSuffixWrapper>
+          <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />
+        </S.CardSuffixWrapper>
+      )}
     </S.CardTabContainer>
   );
 };

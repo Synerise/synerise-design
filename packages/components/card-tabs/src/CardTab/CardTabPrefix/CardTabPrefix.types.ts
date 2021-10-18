@@ -6,4 +6,5 @@ export interface Props {
   draggable?: boolean;
   tag?: string;
   prefixIcon?: React.ReactNode;
+  colorDot?: React.ReactNode;
 }

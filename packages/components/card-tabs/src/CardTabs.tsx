@@ -3,7 +3,14 @@ import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
+import { COLORS_TABS } from './CardTab/ColorsTabs';
 
+const SORTABLE_CONFIG = {
+  ghostClass: 'sortable-card-ghost-element',
+  className: 'sortable-card',
+  animation: 150,
+  group: 'column-manager',
+};
 const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
     onChangeOrder &&
@@ -13,18 +20,29 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
         }))
       );
   };
+  const renderChildren = (): JSX.Element[] => {
+    return React.Children.map(children, (child, i) => {
+      const colorTabs = React.cloneElement(child, { color: COLORS_TABS[i % COLORS_TABS.length] });
+      return colorTabs;
+    });
+  };
 
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable className="ds-card-tags-sortable" list={children} setList={handleChangeOrder}>
-            {children}
+          <ReactSortable
+            {...SORTABLE_CONFIG}
+            className="ds-card-tags-sortable"
+            list={children}
+            setList={handleChangeOrder}
+          >
+            {renderChildren()}
           </ReactSortable>
         </div>
       ) : (
         <div className="ds-card-tags-sortable" data-testid="card-tabs-static">
-          {children}
+          {renderChildren()}
         </div>
       )}
       {onAddTab && (

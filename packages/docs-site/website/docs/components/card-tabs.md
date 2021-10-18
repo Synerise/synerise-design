@@ -99,6 +99,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | onChangeName   | Callback fired when the edit name input blur                                    | (id: number, newName: string)                                                                          | -        |
 | texts          | Translations of CrudButtons tooltips                                            | CardTabTexts                                                                                           | -        |
 | color          | Color of CardTab                                                                | `red`/ `green`/ `grey`/ `yellow`/ `blue`/ `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple`/ `violet` | `yellow` |
+| colorDot       | single color dot                                                                | React.ReactNode                                                                                        | -        |
 
 #### CardTabTexts
 
