@@ -117,3 +117,17 @@ import Alert from '@synerise/ds-alert'
 | expanderContent | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
 | onCloseClick    | Callback when Toast is closed                                                                                          | `(e: MouseEvent) => void`   | -          |
 | show            | prop to show Toast                                                                                                     | `boolean`                   | -          |
+
+### Alert.BroadcastBar
+
+| Property        | Description                                                                                                            | Type                        | Default    | 
+| ----            | ---                                                                                                                    | ---                         | ---        | 
+| type            | Type of Alert styles, options: `success`, `warning`, `negative`                                                        | `string`                    | `warning`  | 
+| color           | type of colors,options: `red`, `green`,`yellow`                                                                        | `string`                    | -          |
+| onCloseClick    | prop to close broadcastBar                                                                                             | `void`                      | -          |
+| withEmphasis    | prop to show bolder text                                                                                               | `React.ReactNode`           | -          |
+| withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
+| withClose       | prop to set closeIcon                                                                                                  | `React.ReactNode`           | -          |
+| button          | prop to set button                                                                                                     | `boolean`                   | -          |
+| textButton      | string of button                                                                                                       | `string`                    | -          |
+| text            | string of withEmphasis or withLink                                                                                     | `string`                    | -          |
