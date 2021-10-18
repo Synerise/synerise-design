@@ -2,7 +2,6 @@ import * as React from 'react';
 import Icon from '@synerise/ds-icon';
 import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';
@@ -20,18 +19,27 @@ const SearchBar: React.FC<SearchBarProps> = ({
   disabled,
   borderRadius,
   handleInputRef,
+  autofocusDelay,
 }) => {
-  const [isFocused, setFocus] = useState(false);
-  const [inputRef, setInputRef] = useState<
+  const [isFocused, setFocus] = React.useState(false);
+  const [inputRef, setInputRef] = React.useState<
     React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
   >();
 
   React.useEffect(() => {
     if (inputRef) {
       handleInputRef && handleInputRef(inputRef);
-      autofocus && inputRef.current && inputRef.current.focus({ preventScroll: true });
+      if (autofocus) {
+        if (autofocusDelay) {
+          setTimeout(() => {
+            inputRef.current && inputRef.current.focus({ preventScroll: true });
+          }, 50);
+        } else {
+          inputRef.current && inputRef.current.focus({ preventScroll: true });
+        }
+      }
     }
-  }, [autofocus, handleInputRef, inputRef]);
+  }, [autofocus, autofocusDelay, handleInputRef, inputRef]);
 
   return (
     <S.SearchBarWrapper

@@ -11,13 +11,18 @@ type PossibleEvent = { [Type in HandledEventsType]: HTMLElementEventMap[Type] }[
 type Handler = (event: PossibleEvent) => void;
 const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
-const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: Handler | null, customEventsTypes?: HandledEventsType[]): void => {
+const useOnClickOutside = (
+  ref: RefObject<HTMLElement>,
+  handler: Handler | null,
+  customEventsTypes?: HandledEventsType[]
+): void => {
   const handlerRef = useRef(handler);
   const events = customEventsTypes || defaultEvents;
 
   useEffect(() => {
     handlerRef.current = handler;
   });
+
   useEffect(() => {
     if (!handler) {
       return (): null => null;

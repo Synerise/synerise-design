@@ -17,7 +17,6 @@ import {
   ContextItem,
   ContextItemsInSubGroup,
   DropdownItemProps,
-  ListItem,
   ListTitle,
 } from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
@@ -87,14 +86,25 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     setDropdownVisible(false);
   }, [setDropdownVisible]);
 
+  const currentTabItems = React.useMemo((): ContextGroup | undefined => {
+    return groups?.find((group: ContextGroup, index: number) => {
+      return activeTab === index;
+    });
+  }, [groups, activeTab]);
+
   const groupByGroupName = React.useCallback(
     (activeItems): DropdownItemProps[] => {
-      const groupedItems = activeItems.reduce((result: {}, item: ContextItem) => {
-        const res = result;
+      const itemsNumber = activeItems.length;
+      const groupedItems = {};
+
+      for (let i = 0; i < itemsNumber; i += 1) {
+        const item = activeItems[i];
         const groupName = item.groupName || NO_GROUP_NAME;
-        res[groupName] = (result[groupName] || []).concat(item);
-        return res;
-      }, {});
+        const group = groupedItems[groupName] || [];
+        group.push(item);
+        groupedItems[groupName] = group;
+      }
+
       const resultItems: DropdownItemProps[] = [];
       Object.keys(groupedItems).forEach((key: string) => {
         if (key !== NO_GROUP_NAME && !activeGroup) {
@@ -129,32 +139,27 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     [activeGroup, classNames, searchQuery, handleOnSetGroup, menuItemHeight, hideDropdown, setSelected, value]
   );
 
-  const currentTabItems = React.useMemo((): ContextGroup | undefined => {
-    return groups?.find((group: ContextGroup, index: number) => {
-      return activeTab === index;
-    });
-  }, [groups, activeTab]);
-
   const searchResults = React.useMemo(() => {
-    return items.reduce((result: ListItem[], item) => {
+    const result = [];
+    const itemsNumber = items.length;
+    for (let i = 0; i < itemsNumber; i += 1) {
+      const item = items[i];
       const matching = !searchQuery || item.name.toLowerCase().includes(searchQuery.toLowerCase());
       if (matching) {
-        return [
-          ...result,
-          {
-            className: classNames,
-            item,
-            searchQuery,
-            clearSearch,
-            hideDropdown,
-            select: setSelected,
-            selected: Boolean(value) && item.id === value?.id,
-            menuItemHeight,
-          },
-        ];
+        result.push({
+          className: classNames,
+          item,
+          searchQuery,
+          clearSearch,
+          hideDropdown,
+          select: setSelected,
+          selected: Boolean(value) && item.id === value?.id,
+          menuItemHeight,
+        });
       }
-      return [...result];
-    }, []);
+    }
+
+    return result;
   }, [classNames, clearSearch, hideDropdown, items, menuItemHeight, searchQuery, setSelected, value]);
 
   const hasSubgroups = React.useMemo(() => Boolean(currentTabItems?.subGroups), [currentTabItems]);
@@ -192,7 +197,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
       );
     }
-
     return groupByGroupName(items);
   }, [
     activeGroup,
@@ -256,6 +260,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         placeholder={texts.searchPlaceholder}
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
+        autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (

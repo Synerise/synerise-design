@@ -43,6 +43,7 @@
     "random-hash": "^4.0.1",
     "react-sortable-hoc": "^1.11.0",
     "react-sortablejs": "^6.0.0",
+    "simplebar-react": "^2.3.3",
     "tree-model": "^1.0.7"
   },
   "peerDependencies": {

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 
-export const StepConditions = styled.div`
+export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-top: ${(props): string => (props.withoutStepName ? '22px' : '0')};
 `;
 
 export const StepName = styled.div`
@@ -51,14 +52,14 @@ export const StepHeader = styled.div`
   justify-content: space-between;
 `;
 
-export const Step = styled.div<{ withStepName: boolean }>`
+export const Step = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${(props): string => (props.withStepName ? '0 0 36px' : '0 0 24px 0')};
+  padding: 0 0 24px 0;
   border-top: 1px dotted ${(props): string => props.theme.palette['grey-300']};
-  
+  position: relative;
   &:first-of-type {
     border-top: 0;
     &.steps-list-ghost-element {
@@ -159,13 +160,14 @@ export const ConditionRows = styled.div`
   flex-direction: column;
 `;
 
-export const ConditionRow = styled.div`
+export const ConditionRow = styled.div<{ index: number }>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   padding-bottom: 16px;
   min-width: 780px;
+  z-index: ${(props): number => 10000 - props.index};
 
   ${ConditionWrapper} {
     margin-right: 8px;

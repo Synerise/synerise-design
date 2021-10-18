@@ -6,7 +6,8 @@ import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
 import CheckS from '@synerise/ds-icon/dist/icons/CheckS';
 import Scrollbar from '@synerise/ds-scrollbar';
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
+
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import Dropdown from '@synerise/ds-dropdown';
@@ -28,7 +29,18 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearch, onChange, onLoadMore, children, dropdownMaxHeight = 320, debounceTimeout = 1500, data }) => {
+const Advanced: React.FC<Props> = ({
+  value,
+  visible,
+  onVisibilityChange,
+  onSearch,
+  onChange,
+  onLoadMore,
+  children,
+  dropdownMaxHeight = 320,
+  debounceTimeout = 1500,
+  data,
+}) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const searchDebounce = React.useRef(debounce(onSearch, debounceTimeout)).current;
 
@@ -47,16 +59,16 @@ const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearc
     const scrollTop = e.target.scrollTop;
     const max = e.target.scrollHeight - e.target.clientHeight;
 
-    if (scrollTop >= (max - 20)) {
+    if (scrollTop >= max - 20) {
       onLoadMore();
     }
-  }
+  };
 
   return (
     <Dropdown
       visible={visible}
       onVisibleChange={onVisibilityChange}
-      overlay={(
+      overlay={
         <>
           <Dropdown.SearchInput
             onSearchChange={onSearchChange}
@@ -66,7 +78,9 @@ const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearc
             iconLeft={<Icon component={<SearchM />} color="#6a7580" />}
           />
 
-          {data?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
+          {data?.length === 0 ? (
+            <Result type="no-results" noSearchResults description={'No results'} />
+          ) : (
             <Scrollbar maxHeight={dropdownMaxHeight} onScroll={onMenuScroll}>
               <Menu
                 asDropdownMenu
@@ -80,13 +94,9 @@ const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearc
                     type="select"
                     key={item.id}
                     onClick={() => onChange(item)}
-                    prefixel={<Icon component={<FileM />}/>}
+                    prefixel={<Icon component={<FileM />} />}
                     suffixel={
-                      item.id === value ? (
-                        <Icon color={theme.palette['green-600']} component={<CheckS />} />
-                      ) : (
-                        undefined
-                      )
+                      item.id === value ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : undefined
                     }
                   >
                     {(item as any).text}
@@ -94,16 +104,14 @@ const Advanced: React.FC<Props> = ({ value, visible, onVisibilityChange, onSearc
                 ))}
               </Menu>
             </Scrollbar>
-          }
+          )}
         </>
-      )}
+      }
     >
       {children}
     </Dropdown>
   );
 };
-
-
 
 export default () => {
   const generateData = () => {
@@ -111,7 +119,7 @@ export default () => {
       id: `test_${Math.ceil(Math.random() * 1000) + '_' + index}`,
       text: `Test_${index}`,
     }));
-  }
+  };
 
   const [data, setData] = React.useState<any[]>(generateData());
   const [value, setValue] = React.useState<string | null>(null);
@@ -129,11 +137,7 @@ export default () => {
     setDropdownVisible(false);
   };
 
-  const onLoadMore = () =>
-    setData([
-      ...data,
-      ...generateData(),
-    ]);
+  const onLoadMore = () => setData([...data, ...generateData()]);
 
   const filteredData = query.length > 1 ? data.filter(d => d.text.toLowerCase().includes(query.toLowerCase())) : data;
 
@@ -147,9 +151,7 @@ export default () => {
       onLoadMore={onLoadMore}
       onVisibilityChange={setDropdownVisible}
     >
-      <Button onClick={() => setDropdownVisible(!dropdownVisible)}>
-        {value || 'Set value'}
-      </Button>
+      <Button onClick={() => setDropdownVisible(!dropdownVisible)}>{value || 'Set value'}</Button>
     </Advanced>
   );
-}
+};

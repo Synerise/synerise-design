@@ -4250,6 +4250,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@juggle/resize-observer@^3.3.1":
+  version "3.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
+  integrity sha1-tQp4FwnIHhBwEAQhQ0DyVHWhcaA=
+
 "@lerna/add@3.20.0":
   version "3.20.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.20.0.tgz#bea7edf36fc93fb72ec34cb9ba854c48d4abf309"
@@ -22939,6 +22944,14 @@ simplebar-react@^1.0.0-alpha.6:
     prop-types "^15.6.1"
     simplebar "^4.2.3"
 
+simplebar-react@^2.3.3:
+  version "2.3.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar-react/-/simplebar-react-2.3.3.tgz#938c5e6a0ecc68eba9a953097d62e26338d008ce"
+  integrity sha1-k4xeag7MaOupqVMJfWLiYzjQCM4=
+  dependencies:
+    prop-types "^15.6.1"
+    simplebar "^5.3.3"
+
 simplebar@^4.2.3:
   version "4.2.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar/-/simplebar-4.2.3.tgz#dac40aced299c17928329eab3d5e6e795fafc10c"
@@ -22950,6 +22963,18 @@ simplebar@^4.2.3:
     lodash.memoize "^4.1.2"
     lodash.throttle "^4.1.1"
     resize-observer-polyfill "^1.5.1"
+
+simplebar@^5.3.3:
+  version "5.3.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar/-/simplebar-5.3.6.tgz#d9383576a09a6fd09e19543f8e9906a3e87c3896"
+  integrity sha1-2Tg1dqCab9CeGVQ/jpkGo+h8OJY=
+  dependencies:
+    "@juggle/resize-observer" "^3.3.1"
+    can-use-dom "^0.1.0"
+    core-js "^3.0.1"
+    lodash.debounce "^4.0.8"
+    lodash.memoize "^4.1.2"
+    lodash.throttle "^4.1.1"
 
 sisteransi@^1.0.4, sisteransi@^1.0.5:
   version "1.0.5"

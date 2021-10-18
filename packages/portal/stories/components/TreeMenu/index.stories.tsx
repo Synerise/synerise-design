@@ -1,4 +1,6 @@
 import * as React from 'react';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 import TreeMenu from '@synerise/ds-treemenu';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -17,7 +19,7 @@ const wrapperStyles: React.CSSProperties = {
 };
 
 const getContainer = (): HTMLElement => {
-  return document.querySelector('.scrollbar-container') || document.body;
+  return document.querySelector('.scroll-wrapper') || document.body;
 };
 
 const stories = {
@@ -36,8 +38,8 @@ const stories = {
     return (
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
-          <S.LayoutSidebar opened>
-            <Scrollbar absolute>
+          <S.LayoutSidebar opened className="scroll-wrapper">
+            <SimpleBar autohide={true} style={{ height: '100vh' }}>
               <div style={{ padding: '24px' }}>
                 <TreeMenu
                   getContainer={getContainer}
@@ -51,7 +53,7 @@ const stories = {
                   onChange={handleChange}
                 />
               </div>
-            </Scrollbar>
+            </SimpleBar>
           </S.LayoutSidebar>
         </S.LayoutSidebarWrapper>
       </div>

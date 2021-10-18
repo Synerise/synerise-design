@@ -17,6 +17,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   opened,
   loading,
   factorKey,
+  preventAutoloadData,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent = selectedFactor.input;
@@ -39,6 +40,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         opened={opened}
         loading={loading}
         onParamsClick={onParamsClick}
+        preventAutoloadData={preventAutoloadData}
       />
     );
   }, [
@@ -57,6 +59,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     opened,
     loading,
     onParamsClick,
+    preventAutoloadData,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;

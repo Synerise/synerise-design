@@ -5,6 +5,8 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { Input } from '@synerise/ds-input';
 import { useState } from 'react';
+import { debounce } from 'lodash';
+
 import { InputProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
@@ -22,12 +24,18 @@ const TextInput: React.FC<InputProps> = ({
   const [inputRef, setInputRef] = useState<
     React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
   >();
+  const [localValue, setLocalValue] = React.useState(value);
+  const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
 
   React.useEffect(() => {
     if (inputRef?.current && opened) {
       inputRef.current.focus();
     }
   }, [inputRef, opened]);
+
+  React.useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
 
   const SuffixIcon = React.useMemo(() => {
     return factorType === 'text' && textType === 'expansible' ? (
@@ -39,14 +47,25 @@ const TextInput: React.FC<InputProps> = ({
 
   const handleChange = React.useCallback(
     event => {
-      onChange(event.target.value);
+      setLocalValue(event.target.value);
+      onChangeDebounce(event.target.value);
     },
-    [onChange]
+    [onChangeDebounce]
   );
 
   const handleApply = React.useCallback(
     val => {
       setOpenExpanseEditor(false);
+      onChangeDebounce.cancel();
+      setLocalValue(val);
+      onChangeDebounce(val);
+    },
+    [onChangeDebounce]
+  );
+
+  const handleAutocomplete = React.useCallback(
+    val => {
+      setLocalValue(val);
       onChange(val);
     },
     [onChange]
@@ -54,17 +73,19 @@ const TextInput: React.FC<InputProps> = ({
 
   const autocompleteOptions = React.useMemo(() => {
     return (
-      (value &&
+      (localValue &&
         autocompleteText &&
-        autocompleteText.options.filter(option => option.toLowerCase().includes((value as string).toLowerCase()))) ||
+        autocompleteText.options.filter(option =>
+          option.toLowerCase().includes((localValue as string).toLowerCase())
+        )) ||
       []
     );
-  }, [value, autocompleteText]);
+  }, [localValue, autocompleteText]);
 
   return (
     <>
       {factorType === 'text' && textType === 'autocomplete' && autocompleteText ? (
-        <Autocomplete placeholder={texts.valuePlaceholder} value={value as string} onChange={onChange}>
+        <Autocomplete placeholder={texts.valuePlaceholder} value={localValue as string} onChange={handleAutocomplete}>
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
               {option}
@@ -77,7 +98,7 @@ const TextInput: React.FC<InputProps> = ({
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
             suffix={SuffixIcon}
-            value={value as string}
+            value={localValue as string}
             onChange={handleChange}
           />
         </S.InputWrapper>
@@ -85,7 +106,7 @@ const TextInput: React.FC<InputProps> = ({
       <TextModal
         visible={openExpanseEditor}
         onCancel={(): void => setOpenExpanseEditor(false)}
-        value={value as string}
+        value={localValue as string}
         onApply={handleApply}
         texts={texts}
       />
