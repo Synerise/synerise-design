@@ -98,7 +98,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   }
 `;
 
-export const CardTabTag = styled.div<{}>`
+export const CardTabTag = styled.div`
   ${macro.h200}
   color: ${({ theme }): string => theme.palette.white};
   display: flex;
@@ -214,14 +214,14 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     }
     ${CardTabPrefix} {
       svg {
-        color: ${({ theme }): string => theme.palette['grey-600']} !important;
-        fill: ${({ theme }): string => theme.palette['grey-600']} !important;
+        color: ${({ theme }): string => theme.palette['grey-600']};
+        fill: ${({ theme }): string => theme.palette['grey-600']};
       }
     }
     ${CardDragPrefix} {
       display: flex;
       svg {
-        color: ${({ theme }): string => theme.palette['grey-600']} !important;
+        color: ${({ theme }): string => theme.palette['grey-600']};
         fill: ${({ theme }): string => theme.palette['grey-600']} !important;
       }
     }
@@ -231,8 +231,8 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     ${CardIconPrefix} {
       display: none;
       svg {
-        color: ${({ theme }): string => theme.palette['grey-600']} !important;
-        fill: ${({ theme }): string => theme.palette['grey-600']} !important;
+        color: ${({ theme }): string => theme.palette['grey-600']};
+        fill: ${({ theme }): string => theme.palette['grey-600']};
       }
     }
     .ds-card-tabs__suffix-icon {
