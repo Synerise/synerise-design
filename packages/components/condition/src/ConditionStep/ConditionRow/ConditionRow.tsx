@@ -17,6 +17,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   conditionOperator,
   conditionFactor,
   removeCondition,
+  addCondition,
   minConditionLength,
   maxConditionLength,
   conditionsNumber,
@@ -35,7 +36,10 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
       <S.ConditionConnections
         first={index === 0}
         last={Boolean(
-          index + 1 === conditionsNumber && maxConditionLength !== undefined && conditionsNumber === maxConditionLength
+          addCondition &&
+            index + 1 === conditionsNumber &&
+            maxConditionLength !== undefined &&
+            conditionsNumber === maxConditionLength
         )}
       />
       <S.ConditionWrapper>

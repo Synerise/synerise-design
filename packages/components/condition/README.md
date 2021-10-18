@@ -25,12 +25,19 @@ import Condition from '@synerise/ds-condition'
     addCondition={() => {}}
     removeCondition={(stepId, conditionId) => {}}
     updateStepName={(stepId, name) => {}}
+    minConditionsLength={1}
+    maxConditionsLength={1}
+    onChangeContext={(stepId, contextItem) => {}}
+    onChangeSubject={(stepId, subjectItem) => {}}
+    onChangeParameter={(stepId, conditionId, value) => {}}
+    onChangeOperator={(stepId, conditionId, operator) => {}}
+    onChangeFactorValue={(stepId, conditionId, factorValue) => {}
+    onChangeFactorType={(stepId, conditionId, factorType) => {}
     steps={
       [{
         id: 1,
         stepName: 'Step #1',
         subject: {
-          onSelectItem: (item) => setStepSubject(step.id, item),
           type: 'event',
           placeholder: 'Choose event',
           showPreview: false,
@@ -41,7 +48,6 @@ import Condition from '@synerise/ds-condition'
         },
         context: {
           texts: CONTEXT_TEXTS,
-          onSelectItem: item => setStepSubject(step.id, item),
           selectedItem: step.subject.selectedItem,
           items: CONTEXT_ITEMS,
           groups: CONTEXT_GROUPS,
@@ -53,7 +59,6 @@ import Condition from '@synerise/ds-condition'
             selectedFactorType: 'parameter',
             defaultFactorType: 'parameter',
             setSelectedFactorType: () => {},
-            onChangeValue: (value) => {},
             value: undefined,
             parameters: {
               buttonLabel: 'Parameter',
@@ -65,7 +70,6 @@ import Condition from '@synerise/ds-condition'
             texts: FACTORS_TEXTS,
           },
           operator: {
-            onChange: (value) => {},
             value: value,
             items: OPERATORS_ITEMS,
             groups: OPERATORS_GROUPS,
@@ -74,8 +78,6 @@ import Condition from '@synerise/ds-condition'
           factor: {
             selectedFactorType: 'text',
             defaultFactorType: 'text',
-            setSelectedFactorType: (factorType) => {},
-            onChangeValue: (value) => {},
             textType: 'default',
             value: condition.factor.value,
             formulaEditor: <div>Formula editor</div>,

@@ -73,10 +73,10 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName]
   );
 
-  const addConditionButton = React.useMemo(
-    () =>
+  const addConditionButton = React.useMemo(() => {
+    return (
       addCondition &&
-      maxConditionsLength &&
+      maxConditionsLength !== undefined &&
       step.conditions.length < maxConditionsLength && (
         <AddCondition
           texts={text}
@@ -86,9 +86,9 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           selectedSubject={Boolean(step.subject?.selectedItem)}
           selectedContext={Boolean(step.context?.selectedItem)}
         />
-      ),
-    [addCondition, maxConditionsLength, step.conditions.length, step.context, step.id, step.subject, text]
-  );
+      )
+    );
+  }, [addCondition, maxConditionsLength, step.conditions.length, step.context, step.id, step.subject, text]);
 
   const renderConditionRow = React.useCallback(
     (condition, conditionIndex) => (

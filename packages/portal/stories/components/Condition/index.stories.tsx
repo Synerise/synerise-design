@@ -229,7 +229,7 @@ const stories = {
             moveTooltip: 'Move',
           }}
           autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
-          addCondition={addStepCondition}
+          addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
           removeStep={removeStep}
