@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.77...@synerise/ds-navbar@0.5.0) (2021-10-19)
+
+
+### Features
+
+* **navbar:** add extra margin to button elements ([55a73cf](https://github.com/Synerise/synerise-design/commit/55a73cf9122a83d4c888925ea37f05562bf6570a))
+* **navbar:** addalert notification suffix ([127a980](https://github.com/Synerise/synerise-design/commit/127a980410f99b876c4eafc9e44f8804281eea33))
+
+
+
+
+
 ## [0.4.77](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.4.76...@synerise/ds-navbar@0.4.77) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-navbar

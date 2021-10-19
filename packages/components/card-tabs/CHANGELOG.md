@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.75](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.74...@synerise/ds-card-tabs@0.8.75) (2021-10-19)
+
+
+### Bug Fixes
+
+* **card-tabs:** add colorDot and fix props ([e8a9577](https://github.com/Synerise/synerise-design/commit/e8a9577e7f07a4aa05d0e1bb139fb1a07e967b53))
+* **card-tabs:** add colorDot and fix props ([e779c6a](https://github.com/Synerise/synerise-design/commit/e779c6a433bbd7755171afc42a63e8e3410e8a82))
+* **card-tabs:** add ghost color when is draggable ([87b7239](https://github.com/Synerise/synerise-design/commit/87b7239628b0ddd6643e59a1a887f829e2d654d7))
+* **card-tabs:** fix color active state dotand add tooltip ([9f69e73](https://github.com/Synerise/synerise-design/commit/9f69e73e05bd4b446c6ab23ba2e01f72fba4d6ca))
+* **card-tabs:** fix color dot ([596af8c](https://github.com/Synerise/synerise-design/commit/596af8c7e4c6e64ac187e61ee50f81bbff9de581))
+* **card-tabs:** fix knobs and styles in inline edit ([ae7bb6a](https://github.com/Synerise/synerise-design/commit/ae7bb6a82a88845bb540603cc580db2111a785c3))
+* **card-tabs:** fix styles ([f81193a](https://github.com/Synerise/synerise-design/commit/f81193a5ce6b4a06a7905f8f9da7ea94a6f08061))
+* **card-tabs:** update documantation ([37c2f87](https://github.com/Synerise/synerise-design/commit/37c2f87a6fcffdee2f89263be007f2ba9d9d5868))
+
+
+
+
+
 ## [0.8.74](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.8.73...@synerise/ds-card-tabs@0.8.74) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

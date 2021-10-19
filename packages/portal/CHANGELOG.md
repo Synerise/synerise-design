@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.139.0](https://github.com/synerise/synerise-design/compare/portal@0.138.0...portal@0.139.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **alert:** add props to set duration of close toast ([03f0f50](https://github.com/synerise/synerise-design/commit/03f0f502f633986a26bd4691624767de41f56e14))
+* **alert:** add props to set duration of close toast ([2be2b9a](https://github.com/synerise/synerise-design/commit/2be2b9afbeacdcb114659f42c7bb8ac231c8f98c))
+* **alert:** fix button and padding ([0152d97](https://github.com/synerise/synerise-design/commit/0152d973610af603ed7e59ab6c66de4f1d064a9f))
+* **alert:** fix button and padding ([f4f8ab4](https://github.com/synerise/synerise-design/commit/f4f8ab48b937338e989af2e68cd9e1f01e31b3e4))
+* **alert:** fix component ([210baa2](https://github.com/synerise/synerise-design/commit/210baa238e131bf4b2ca430e451479ea25c88f9b))
+* **alert:** fix component ([fb7b928](https://github.com/synerise/synerise-design/commit/fb7b92844fe958cddc10bbe01fa1e3f3378471d6))
+* **alert:** fix props ([ab9b3f1](https://github.com/synerise/synerise-design/commit/ab9b3f1350d4349cd86c6fcb0eca2a2b4fdb92de))
+* **alert:** fix props ([d262657](https://github.com/synerise/synerise-design/commit/d262657b8f66ef31cdc0b9abde6b6321048b050a))
+* **alert:** fix styles and add props ([0d829d2](https://github.com/synerise/synerise-design/commit/0d829d26111780ee006cd26c3c5dc76962ae8c99))
+* **alert:** fix styles and add props ([b555b8a](https://github.com/synerise/synerise-design/commit/b555b8af547c632fca82d8024514561f20636dd6))
+* **alert:** new component broadcast-bar ([0525d34](https://github.com/synerise/synerise-design/commit/0525d345c2aefc097db832b8fd2693dca3902ea5))
+* **alert:** new component Toast ([f1ed36b](https://github.com/synerise/synerise-design/commit/f1ed36b88d98ef81e487eb6b8418ea6bb4be6a3d))
+* **alert:** new component Toast ([665f9dc](https://github.com/synerise/synerise-design/commit/665f9dcc2ea5812ef7ef3a5fa4fafd6590c78ecb))
+* **card-tabs:** add colorDot and fix props ([e779c6a](https://github.com/synerise/synerise-design/commit/e779c6a433bbd7755171afc42a63e8e3410e8a82))
+* **card-tabs:** add colorDot and fix props ([82d8b91](https://github.com/synerise/synerise-design/commit/82d8b91e10e8bd393c53aacb45e7156ce77457db))
+* **card-tabs:** fix knobs and styles in inline edit ([ae7bb6a](https://github.com/synerise/synerise-design/commit/ae7bb6a82a88845bb540603cc580db2111a785c3))
+* **card-tabs:** fix knobs and styles in inline edit ([7eea4a2](https://github.com/synerise/synerise-design/commit/7eea4a2743daa396111a2d4bce8576183cd6c6ab))
+* **card-tabs:** fix single card-tabs to be draggable ([88721cf](https://github.com/synerise/synerise-design/commit/88721cfc0de3060af49ed18921ef882f7c765cd0))
+* **card-tabs:** fix single card-tabs to be draggable ([9aa7c99](https://github.com/synerise/synerise-design/commit/9aa7c9926b3b203ba2f16285071c7a333f6f7bff))
+* **code-snippet:** fix styles and change structure ([51fce52](https://github.com/synerise/synerise-design/commit/51fce520b33c531428e3f64ed42b3a6641fc43e7))
+* **code-snippet:** fix styles and change structure ([041643d](https://github.com/synerise/synerise-design/commit/041643d6643ac901fa6a499756b91bf02c8c4116))
+
+
+### Features
+
+* **code-snippet:** add new component code-snippet ([d797539](https://github.com/synerise/synerise-design/commit/d797539ff42a7ccdecee7f8ae3e033a3d787e847))
+* **code-snippet:** add new component code-snippet ([5cbd721](https://github.com/synerise/synerise-design/commit/5cbd721e67a30136cd8d4e26fb97c66a498ae511))
+* **code-snippet:** add own style files to codeTypes ([8b33a9d](https://github.com/synerise/synerise-design/commit/8b33a9d1caa8021c3d7530b6c57cc8420e1cae4c))
+* **code-snippet:** add own style files to codeTypes ([eb8a9a7](https://github.com/synerise/synerise-design/commit/eb8a9a70f92ba504e5559a67ac87720f9c1f3de3))
+* **navbar:** addalert notification suffix ([127a980](https://github.com/synerise/synerise-design/commit/127a980410f99b876c4eafc9e44f8804281eea33))
+* **navbar:** addalert notification suffix ([afc0397](https://github.com/synerise/synerise-design/commit/afc0397b17c5167d9fce3875e27fd5f05700ca2e))
+* **tags:** add extra prop asPill ([bc21290](https://github.com/synerise/synerise-design/commit/bc21290803c06a0b9dbb274d1a5a9598db07fe13))
+* **tags:** add extra prop asPill ([fcc9b56](https://github.com/synerise/synerise-design/commit/fcc9b565c75907f737eca5574b6bd9b3cfdb9c32))
+
+
+
+
+
 # [0.138.0](https://github.com/synerise/synerise-design/compare/portal@0.137.0...portal@0.138.0) (2021-10-19)
 
 

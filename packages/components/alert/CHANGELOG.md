@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.22...@synerise/ds-alert@0.3.23) (2021-10-19)
+
+
+### Bug Fixes
+
+* **alert:** fix button and padding ([0152d97](https://github.com/Synerise/synerise-design/commit/0152d973610af603ed7e59ab6c66de4f1d064a9f))
+* **alert:** fix button and padding ([f4f8ab4](https://github.com/Synerise/synerise-design/commit/f4f8ab48b937338e989af2e68cd9e1f01e31b3e4))
+* **alert:** fix component ([210baa2](https://github.com/Synerise/synerise-design/commit/210baa238e131bf4b2ca430e451479ea25c88f9b))
+* **alert:** fix component ([fb7b928](https://github.com/Synerise/synerise-design/commit/fb7b92844fe958cddc10bbe01fa1e3f3378471d6))
+* **alert:** fix padding of textDescription ([0689a5c](https://github.com/Synerise/synerise-design/commit/0689a5c2bd270ef193778605fa2943261663e5f4))
+* **alert:** fix padding of textDescription ([bdce3ed](https://github.com/Synerise/synerise-design/commit/bdce3ed176e0775836cd37a3e31438cf9e9aeef8))
+* **alert:** fix prop ([37cf9e2](https://github.com/Synerise/synerise-design/commit/37cf9e20fc6a859ae2a2f8fe3dc1abb9b83d584f))
+* **alert:** fix prop ([8cd3a2a](https://github.com/Synerise/synerise-design/commit/8cd3a2a9a34f47be88f54f0ba01d09952947a459))
+* **alert:** fix props ([ab9b3f1](https://github.com/Synerise/synerise-design/commit/ab9b3f1350d4349cd86c6fcb0eca2a2b4fdb92de))
+* **alert:** fix props ([d262657](https://github.com/Synerise/synerise-design/commit/d262657b8f66ef31cdc0b9abde6b6321048b050a))
+* **alert:** fix styles and add props ([0d829d2](https://github.com/Synerise/synerise-design/commit/0d829d26111780ee006cd26c3c5dc76962ae8c99))
+* **alert:** fix styles and add props ([b555b8a](https://github.com/Synerise/synerise-design/commit/b555b8af547c632fca82d8024514561f20636dd6))
+* **alert:** fix styles of toast ([65c8a2b](https://github.com/Synerise/synerise-design/commit/65c8a2b963ec671e365967dffa364922f4b95d79))
+* **alert:** fix styles of toast ([c76c197](https://github.com/Synerise/synerise-design/commit/c76c197c79bcb1fc69b08f65cb69096521a4c440))
+* **alert:** new component broadcast-bar ([0525d34](https://github.com/Synerise/synerise-design/commit/0525d345c2aefc097db832b8fd2693dca3902ea5))
+* **alert:** new component Toast ([f1ed36b](https://github.com/Synerise/synerise-design/commit/f1ed36b88d98ef81e487eb6b8418ea6bb4be6a3d))
+* **alert:** new component Toast ([665f9dc](https://github.com/Synerise/synerise-design/commit/665f9dcc2ea5812ef7ef3a5fa4fafd6590c78ecb))
+* **alert:** update documentation ([3fa6258](https://github.com/Synerise/synerise-design/commit/3fa62584962af09ae0593ed7853043946b749618))
+* **alert:** update documentation ([0aaff46](https://github.com/Synerise/synerise-design/commit/0aaff46cc8f7c5043648920dd788c579e63ea0d0))
+
+
+
+
+
 ## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.3.21...@synerise/ds-alert@0.3.22) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-alert

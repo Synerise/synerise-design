@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.68](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.2.67...@synerise/ds-icon-picker@0.2.68) (2021-10-19)
+
+**Note:** Version bump only for package @synerise/ds-icon-picker
+
+
+
+
+
 ## [0.2.67](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.2.66...@synerise/ds-icon-picker@0.2.67) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker

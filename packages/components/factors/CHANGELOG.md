@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.8.0...@synerise/ds-factors@0.8.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **condition:** fixes add condition button ([2a06856](https://github.com/Synerise/synerise-design/commit/2a06856cf8759db1459467f95fcd4dd12af53e1c))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.36...@synerise/ds-factors@0.8.0) (2021-10-19)
 
 
