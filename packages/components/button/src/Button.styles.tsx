@@ -167,6 +167,14 @@ export const AntdButton = styled(
       }
     };
     
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.mode !== 'single-icon' &&
+      css`
+        &.ant-btn:not(.ds-expander):not(.ds-button-creator) {
+          min-width: 54px;
+        }
+      `}
+
     &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator),
     &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator){
       &:active{

@@ -8,4 +8,5 @@ export type NavbarProps = {
   children?: React.ReactNode;
   actions?: React.ReactNode;
   additionalNodes?: React.ReactNode[];
+  alertNotification?: React.ReactNode;
 };

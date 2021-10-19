@@ -17,9 +17,5 @@ export const StatusTag = styled(Tag)<{ type: string }>`
     transition: opacity 0.25s;
     color: ${typeColor};
     border-color: ${typeColor};
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 `;

@@ -26,6 +26,9 @@ export const NavbarDescription = styled.div`
 export const AdditionalNode = styled.div`
   display: flex;
   align-items: center;
+  .ds-button:not(:last-child) {
+    margin-right: 8px;
+  }
 `;
 
 export const NavbarDivider = styled.div`
@@ -53,5 +56,19 @@ export const NavbarActionsWrapper = styled.div`
 
   > * {
     margin: 0 4px;
+  }
+`;
+export const NavbarAlertNotification = styled.div`
+  display: flex;
+  align-items: center;
+  .ds-button {
+    margin-left: 12px;
+  }
+  .ds-inline-alert svg {
+    color: ${(props): string => props.theme.palette.white};
+    fill: ${(props): string => props.theme.palette.white};
+  }
+  .ds-inline-alert > span {
+    color: ${(props): string => props.theme.palette.white};
   }
 `;

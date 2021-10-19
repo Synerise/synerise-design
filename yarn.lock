@@ -6254,7 +6254,7 @@
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
 
-"@synerise/ds-icon@^0.44.0":
+"@synerise/ds-icon@^0.44.0", "@synerise/ds-icon@^0.44.8":
   version "0.44.11"
   resolved "https://registry.npmjs.org/@synerise/ds-icon/-/ds-icon-0.44.11.tgz#791106b37c12270a6fedf8953388428c3e590605"
   integrity sha512-/jBhFV20S/M+RdcLXd3XhGhTvYCOsUmqXkBelCGZfRmQitu5zMk1hrB2KxWEynaCuFol+7ygw3NL5KkfguEedw==
@@ -7661,6 +7661,11 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
+
+animate.css@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+  integrity sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==
 
 ansi-align@^3.0.0:
   version "3.0.0"
@@ -13661,6 +13666,11 @@ highlight.js@^10.1.1, highlight.js@~10.6.0:
   version "10.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight.js/-/highlight.js-10.6.0.tgz#0073aa71d566906965ba6e1b7be7b2682f5e18b6"
   integrity sha1-AHOqcdVmkGllum4be+eyaC9eGLY=
+
+highlight.js@^11.2.0:
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.2.0.tgz#a7e3b8c1fdc4f0538b93b2dc2ddd53a40c6ab0f0"
+  integrity sha512-JOySjtOEcyG8s4MLR2MNbLUyaXqUunmSnL2kdV/KuGJOmHZuAR5xC54Ko7goAXBWNhf09Vy3B+U7vR62UZ/0iw==
 
 highlight.js@~9.13.0:
   version "9.13.1"
@@ -21252,6 +21262,13 @@ react-loadable@^5.5.0:
   dependencies:
     prop-types "^15.5.0"
 
+react-mount-animation@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-mount-animation/-/react-mount-animation-0.0.9.tgz#f78cf3147fe21ac233d517c9a4fa84a93742846c"
+  integrity sha512-4CR+vtLDzhAyDGcns+9C7V1l7IMQIAn5sjznV0WCR1LJs9pMwm6FGAmLC73VOXVHU9kc1KJPxezcclIbpWw9RQ==
+  dependencies:
+    react "^17.0.1"
+
 react-onclickoutside@^6.9.0:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz#a54bc317ae8cf6131a5d78acea55a11067f37a1f"
@@ -21650,6 +21667,14 @@ react@^16.10.2, react@^16.6.0, react@^16.8.3:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+react@^17.0.1:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 read-cmd-shim@^1.0.1:
   version "1.0.5"

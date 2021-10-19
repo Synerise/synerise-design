@@ -22,6 +22,7 @@ const Tag: React.FC<Props> = ({
   prefixel,
   suffixel,
   texts,
+  asPill,
 }: Props) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -63,6 +64,7 @@ const Tag: React.FC<Props> = ({
       suffixel={!!suffixel}
       hasImage={!!image}
       iconHover={iconHover}
+      asPill={asPill}
     >
       <S.Content iconHover={iconHover}>
         {image && isDefaultType && <img src={image} alt="" />}
