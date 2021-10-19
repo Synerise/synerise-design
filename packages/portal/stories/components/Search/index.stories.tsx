@@ -8,7 +8,7 @@ import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import DebouncedInput from './DebouncedInput';
-import { debounce } from 'debounce';
+import { debounce } from 'lodash';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>

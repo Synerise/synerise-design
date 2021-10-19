@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.40.11...@synerise/ds-table@0.41.0) (2021-10-19)
+
+
+### Features
+
+* **context-selector:** adds virtualization ([9dba88c](https://github.com/synerise/synerise-design/commit/9dba88c9598a7a22977a06dba1813f687f714161))
+
+
+
+
+
 ## [0.40.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.40.10...@synerise/ds-table@0.40.11) (2021-09-21)
 
 **Note:** Version bump only for package @synerise/ds-table

@@ -8,6 +8,7 @@ export { default as doubleClickListener } from './doubleClickListener/doubleClic
 export { default as useResize } from './useResize/useResize';
 export { default as useBreakpoint } from './useBreakpoint/useBreakpoint';
 export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
+export * from './useTraceUpdate';
 export * from './getPopupContainer';
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const NOOP = (): void => {};

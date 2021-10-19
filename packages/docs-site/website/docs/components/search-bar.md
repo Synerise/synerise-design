@@ -39,3 +39,4 @@ import SearchBar from '@synerise/ds-search-bar'
 | onClearInput   | Callback when user press clear button               | () => void               | -       |
 | placeholder    | Placeholder                              | string / React.ReactNode | -       |
 | value          | The input content value                  | string                   | -       |
+| autofocusDelay | Delay (ms) of the focus on search input  | number                   | 0 |

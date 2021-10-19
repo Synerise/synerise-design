@@ -13,13 +13,15 @@ export const LogicWrapper = styled.div`
   margin-top: 24px;
 `;
 
-export const ExpressionWrapper = styled.div`
+export const ExpressionWrapper = styled.div<{ index: number }>`
   width: 100%;
   margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: ${(props): number => 1000 - props.index};
   &.sortable-chosen {
     cursor: grabbing;
     width: 100%;

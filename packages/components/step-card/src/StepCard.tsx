@@ -4,6 +4,8 @@ import InlineEdit from '@synerise/ds-inline-edit';
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon/dist/icons';
 import { useIntl } from 'react-intl';
+import { debounce } from 'lodash';
+
 import * as S from './StepCard.styles';
 import { StepCardProps } from './StepCard.types';
 
@@ -22,6 +24,8 @@ const StepCard: React.FC<StepCardProps> = ({
   texts,
 }) => {
   const { formatMessage } = useIntl();
+  const [nameValue, setNameValue] = React.useState(name);
+  const onChangeNameDebounce = React.useCallback(debounce(onChangeName, 300), [onChangeName]);
   const text = React.useMemo(
     () => ({
       matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
@@ -35,6 +39,11 @@ const StepCard: React.FC<StepCardProps> = ({
     [formatMessage, texts]
   );
 
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setNameValue(event.target.value);
+    onChangeNameDebounce(event.target.value);
+  };
+
   return (
     <S.Container>
       <S.Header>
@@ -47,10 +56,10 @@ const StepCard: React.FC<StepCardProps> = ({
           <InlineEdit
             input={{
               name: 'name-of-input',
-              value: name,
+              value: nameValue,
               maxLength: 120,
               placeholder: text.namePlaceholder,
-              onChange: (event: React.ChangeEvent<HTMLInputElement>): void => onChangeName(event.target.value),
+              onChange: handleChangeName,
             }}
           />
         </S.LeftSide>
