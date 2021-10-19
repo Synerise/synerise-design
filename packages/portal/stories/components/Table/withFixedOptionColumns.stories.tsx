@@ -54,7 +54,7 @@ const stories = {
       <Table
         title={text('Table title', 'Fixed columns')}
         dataSource={dataSource}
-        columns={renderWithIconInHeaders(COLUMNS_WITH_FIXED, boolean('Set icons in headers', false))}
+        columns={renderWithIconInHeaders(COLUMNS_WITH_FIXED as any, boolean('Set icons in headers', false))}
         scroll={{ x: 1200 }}
         loading={boolean('Set loading state', false)}
         roundedHeader={boolean('Rounded header', false)}

@@ -20,16 +20,26 @@ import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
-import Badge from '@synerise/ds-badge';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
 import { Counter} from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
+import Dropdown from '@synerise/ds-dropdown';
+// @ts-ignore
 import anonymImage from '../../Avatar/av-anonym-004.png';
 import Skeleton from '@synerise/ds-skeleton';
 import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
-import randomDate from '../../../utils/randomDate';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
+import Menu from '@synerise/ds-menu';
 
+
+const data = [
+  { text: 'Preview' },
+  { text: 'Edit' },
+  { text: 'Duplicate' },
+  { type: 'divider' },
+  { text: 'Delete', type: 'danger' },
+];
 
 export const RELATIONS = [
   {
@@ -376,6 +386,7 @@ export const COLUMNS_WITH_AVATARS = [
             >
             </Avatar>
           }
+         title='Test'
         />
       );
     },
@@ -534,7 +545,7 @@ export const COLUMNS_WITH_SKELETON = [
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
           avatar={
-            <SkeletonAvatar size='M' shape={false}  />
+            <SkeletonAvatar size='M' />
           }
           title={<div style={{width: '150px'}}>
             <Skeleton numberOfSkeletons={1} size='M'  />
@@ -698,9 +709,20 @@ export const COLUMNS_WITH_FIXED = [
     iconTooltip: { component: <InfoFillS /> },
     render: button => {
       return (
-        <Button type="ghost" mode="single-icon">
-          <Icon component={<OptionHorizontalM/>} />
-        </Button>
+        <Dropdown
+          overlay={
+            <Dropdown.Wrapper
+              style={{ width: '220px' }}
+              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            >
+              <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button type="ghost" mode="single-icon">
+            <Icon component={<OptionHorizontalM/>} />
+          </Button>
+        </Dropdown>
       );
     },
   },
