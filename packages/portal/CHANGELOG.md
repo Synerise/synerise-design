@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.138.0](https://github.com/synerise/synerise-design/compare/portal@0.137.0...portal@0.138.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **condition:** performance improvements ([c3f54cf](https://github.com/synerise/synerise-design/commit/c3f54cffcf2cfcb58da8686b88800fffed5e26ce))
+
+
+### Features
+
+* **context-selector:** adds infinitescroll and virtualization ([dc8592e](https://github.com/synerise/synerise-design/commit/dc8592e42c161502c44527cbb4a80a25670e95a9))
+* **context-selector:** adds virtualization ([9dba88c](https://github.com/synerise/synerise-design/commit/9dba88c9598a7a22977a06dba1813f687f714161))
+* **context-selector:** optimization improvements ([28feae6](https://github.com/synerise/synerise-design/commit/28feae6ebc0e07c37c6c83f5197e80ea7c59347f))
+* **context-selector:** update example in storybook ([1997229](https://github.com/synerise/synerise-design/commit/19972291b641ce3e0ddc6ba5a641f4413224f97b))
+* **docs:** update stories ([d1b95c0](https://github.com/synerise/synerise-design/commit/d1b95c04637df73b092728203ffd7fd973c20e64))
+* **factors:** adds infinite scroll & virtualization ([1d7b818](https://github.com/synerise/synerise-design/commit/1d7b818ae087e2bf10285d0db5c47d13fe2d5ec7))
+
+
+
+
+
 # [0.137.0](https://github.com/synerise/synerise-design/compare/portal@0.136.0...portal@0.137.0) (2021-09-30)
 
 

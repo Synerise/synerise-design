@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.36...@synerise/ds-factors@0.8.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **condition:** performance improvements ([c3f54cf](https://github.com/Synerise/synerise-design/commit/c3f54cffcf2cfcb58da8686b88800fffed5e26ce))
+
+
+### Features
+
+* **context-selector:** update styles ([5bdc277](https://github.com/Synerise/synerise-design/commit/5bdc277644da1f6eae9fe1d4aa9da7379bed389f))
+* **factors:** adds infinite scroll & virtualization ([1d7b818](https://github.com/Synerise/synerise-design/commit/1d7b818ae087e2bf10285d0db5c47d13fe2d5ec7))
+* **factors:** performance improvements ([71ac49b](https://github.com/Synerise/synerise-design/commit/71ac49b111fb2f6d51d65ae3bbd1a02d514bedf2))
+* **factors:** update hook deps ([191ef85](https://github.com/Synerise/synerise-design/commit/191ef85e944808d882183da339eb8245d671dbe5))
+* **factors:** update package.json ([9cfbda1](https://github.com/Synerise/synerise-design/commit/9cfbda1b134af86c1a96384b38dffda519955fc8))
+
+
+
+
+
 ## [0.7.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.7.35...@synerise/ds-factors@0.7.36) (2021-10-05)
 
 

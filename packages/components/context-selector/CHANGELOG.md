@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.6.4...@synerise/ds-context-selector@0.7.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **condition:** performance improvements ([c3f54cf](https://github.com/Synerise/synerise-design/commit/c3f54cffcf2cfcb58da8686b88800fffed5e26ce))
+
+
+### Features
+
+* **context-selector:** adds infinitescroll and virtualization ([dc8592e](https://github.com/Synerise/synerise-design/commit/dc8592e42c161502c44527cbb4a80a25670e95a9))
+* **context-selector:** adds new types, updates readme ([375df69](https://github.com/Synerise/synerise-design/commit/375df69b583948d362fed0f0917870fd9c96f156))
+* **context-selector:** adds virtualization ([7f00e48](https://github.com/Synerise/synerise-design/commit/7f00e48fba72f2f5e5557e92a821b6ea1f23f495))
+* **context-selector:** adds virtualization ([9dba88c](https://github.com/Synerise/synerise-design/commit/9dba88c9598a7a22977a06dba1813f687f714161))
+* **context-selector:** optimization improvements ([28feae6](https://github.com/Synerise/synerise-design/commit/28feae6ebc0e07c37c6c83f5197e80ea7c59347f))
+* **context-selector:** performance improvements ([a1c1fb8](https://github.com/Synerise/synerise-design/commit/a1c1fb834e2c5464cbfd2852da77f9ace3667908))
+* **context-selector:** update styles ([5bdc277](https://github.com/Synerise/synerise-design/commit/5bdc277644da1f6eae9fe1d4aa9da7379bed389f))
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.6.3...@synerise/ds-context-selector@0.6.4) (2021-09-21)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

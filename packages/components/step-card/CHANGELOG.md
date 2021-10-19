@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.2.32...@synerise/ds-step-card@0.3.0) (2021-10-19)
+
+
+### Features
+
+* **step-card:** performance improvements ([dc1e6de](https://github.com/Synerise/synerise-design/commit/dc1e6de4e0609796451a4ecf1d1f51ee0a0f8bb2))
+
+
+
+
+
 ## [0.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.2.31...@synerise/ds-step-card@0.2.32) (2021-09-30)
 
 **Note:** Version bump only for package @synerise/ds-step-card

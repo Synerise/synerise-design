@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.4.29...@synerise/ds-operators@0.5.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **condition:** performance improvements ([c3f54cf](https://github.com/Synerise/synerise-design/commit/c3f54cffcf2cfcb58da8686b88800fffed5e26ce))
+
+
+### Features
+
+* **context-selector:** optimization improvements ([28feae6](https://github.com/Synerise/synerise-design/commit/28feae6ebc0e07c37c6c83f5197e80ea7c59347f))
+* **operators:** performance improvemnts ([d39d2d5](https://github.com/Synerise/synerise-design/commit/d39d2d5e1cd50cac0a0aee6fc14c451a2f10835b))
+
+
+
+
+
 ## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.4.28...@synerise/ds-operators@0.4.29) (2021-09-21)
 
 **Note:** Version bump only for package @synerise/ds-operators
