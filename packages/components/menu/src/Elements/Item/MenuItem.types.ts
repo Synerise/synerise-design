@@ -23,6 +23,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   copyHint?: string | React.ReactNode;
   copyValue?: string;
   copyTooltip?: string | React.ReactNode;
+  timeToHideTooltip?: number;
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger;
   prefixVisibilityTrigger?: VisibilityTrigger;
