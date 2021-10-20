@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon/dist/icons';
+import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 // eslint-disable-next-line import/no-named-default

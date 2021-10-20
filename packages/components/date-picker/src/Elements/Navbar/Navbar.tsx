@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { AngleLeftS, AngleRightS, DoubleAngleLeftS, DoubleAngleRightS } from '@synerise/ds-icon/dist/icons';
+import { AngleLeftS, AngleRightS, DoubleAngleLeftS, DoubleAngleRightS } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
 import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';

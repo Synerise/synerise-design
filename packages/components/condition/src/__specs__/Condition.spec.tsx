@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import {
   FACTORS_TEXTS,

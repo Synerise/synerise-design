@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { CloseS } from '@synerise/ds-icon/dist/icons';
+import Icon, { CloseS }  from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip'
 import * as S from '../InputMultivalue.styles';
 import { Props } from './Value.types';

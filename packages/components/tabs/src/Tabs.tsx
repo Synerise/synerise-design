@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
+import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 import { useResize } from '@synerise/ds-utils';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';

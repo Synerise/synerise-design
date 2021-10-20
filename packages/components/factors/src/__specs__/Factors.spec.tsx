@@ -1,4 +1,4 @@
-import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { VarTypeStringM } from '@synerise/ds-icon';
 import Factors from './../Factors';
 import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';

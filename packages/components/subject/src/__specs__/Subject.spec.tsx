@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import { SubjectProps } from '../Subject.types';
 import Subject from '../Subject';
 import { fireEvent } from '@testing-library/react';

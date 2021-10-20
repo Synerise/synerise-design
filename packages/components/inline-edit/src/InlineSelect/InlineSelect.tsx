@@ -1,9 +1,8 @@
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import { toCamelCase } from '@synerise/ds-utils';
-import Icon from '@synerise/ds-icon';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import * as S from './InlineSelect.style';
 import { attachWidthWatcher } from '../utils';
 import SelectDropdown from './SelectDropdown/SelectDropdown';

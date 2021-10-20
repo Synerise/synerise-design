@@ -1,4 +1,4 @@
-import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon/dist/icons';
+import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const CONTEXT_TEXTS = {

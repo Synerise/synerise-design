@@ -1,6 +1,6 @@
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import FileM from '@synerise/ds-icon';
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import ManageableList from '../ManageableList';

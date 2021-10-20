@@ -1,7 +1,7 @@
 import Modal from '@synerise/ds-modal/dist/Modal';
 import * as React from 'react';
 import Select from '@synerise/ds-select';
-import { InfoFillS, Add3M } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, Add3M } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

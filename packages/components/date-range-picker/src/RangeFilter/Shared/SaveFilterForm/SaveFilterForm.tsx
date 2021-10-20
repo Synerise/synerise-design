@@ -2,7 +2,7 @@ import * as React from 'react';
 import Button from '@synerise/ds-button';
 import { RawInput } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
-import { CheckM, CloseM } from '@synerise/ds-icon/dist/icons';
+import { CheckM, CloseM } from '@synerise/ds-icon';
 import { useIntl } from 'react-intl';
 import { SaveFilterFormProps } from './SaveFilterForm.types';
 import * as S from './SaveFilterForm.styles';

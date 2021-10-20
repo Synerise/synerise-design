@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './style/index.less';
-import { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon/dist/icons';
+import { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
 import * as S from './Alert.styles';
 import { AlertSubComponents, AlertType, Props } from './Alert.types';

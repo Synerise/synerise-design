@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon';
 import { IntlShape, useIntl } from 'react-intl';
 import { Title } from '@synerise/ds-typography';
 import Tooltip from '@synerise/ds-tooltip';
-import Icon from '@synerise/ds-icon';
 import Radio from '@synerise/ds-radio';
 import ButtonGroup from '@synerise/ds-button-group';
 import Button from '@synerise/ds-button';

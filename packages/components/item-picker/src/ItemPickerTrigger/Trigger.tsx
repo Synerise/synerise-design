@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon/dist/icons';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Icon from '@synerise/ds-icon';
+import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
 import Popconfirm from '@synerise/ds-popconfirm';

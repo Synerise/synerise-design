@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { FullScreenM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { FullScreenM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { Input } from '@synerise/ds-input';

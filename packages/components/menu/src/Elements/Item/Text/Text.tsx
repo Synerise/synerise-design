@@ -6,7 +6,7 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { CheckS, AngleRightS } from '@synerise/ds-icon/dist/icons';
+import { CheckS, AngleRightS } from '@synerise/ds-icon';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
 import { AddonRenderer, BasicItemProps } from './Text.types';

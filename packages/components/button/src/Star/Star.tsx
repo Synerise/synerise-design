@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { StarM, StarFillM } from '@synerise/ds-icon/dist/icons';
+import { StarM, StarFillM } from '@synerise/ds-icon';
 import Button from '../Button';
 import * as S from './Star.styles';
 import { StarButtonProps } from './Star.types';

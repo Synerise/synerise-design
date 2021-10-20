@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InlineEdit from '@synerise/ds-inline-edit';
-import { Add2M, Add3M, CloseS, DragHandleM } from '@synerise/ds-icon/dist/icons';
+import { Add2M, Add3M, CloseS, DragHandleM } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

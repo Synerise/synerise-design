@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
+
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import InlineEdit from '@synerise/ds-inline-edit';
 import Cruds from '@synerise/ds-cruds';
-import { DragHandleM } from '@synerise/ds-icon/dist/icons';
-import { useIntl } from 'react-intl';
+import { DragHandleM } from '@synerise/ds-icon';
+import { NOOP } from '@synerise/ds-utils';
+
 import * as S from './StepCard.styles';
 import { StepCardProps } from './StepCard.types';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 
 const StepCard: React.FC<StepCardProps> = ({
   children,

@@ -1,8 +1,7 @@
 import Dropdown from '@synerise/ds-dropdown';
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';

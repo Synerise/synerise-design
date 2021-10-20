@@ -2,12 +2,9 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { AddM, InfoFillS, FileUploadL } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import AddM from '@synerise/ds-icon/dist/icons/AddM';
-import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
-import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';

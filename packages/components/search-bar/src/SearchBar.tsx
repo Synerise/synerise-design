@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import Close3M from '@synerise/ds-icon/dist/icons/Close3M';
+import Icon, { Close3M } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useState } from 'react';
 import Tooltip from '@synerise/ds-tooltip';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS } from '@synerise/ds-icon';
 import * as S from './Expander.styles';
 import { ExpanderProps, ExpanderSize } from './Expander.types';
 

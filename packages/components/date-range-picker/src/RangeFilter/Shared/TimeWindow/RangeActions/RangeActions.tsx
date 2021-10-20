@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import { ArrowDownCircleM, CloseM, DuplicateM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { ArrowDownCircleM, CloseM, DuplicateM, OptionHorizontalM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

@@ -2,7 +2,7 @@ import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvid
 import * as React from 'react';
 import Cruds from '../Cruds';
 import { fireEvent } from '@testing-library/react';
-import { Settings2S } from '@synerise/ds-icon/dist/icons';
+import { Settings2S } from '@synerise/ds-icon';
 
 const ICON = {
   add: '.add-s',

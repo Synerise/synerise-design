@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
-import Icon from '@synerise/ds-icon/dist/Icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
 import { FormattedMessage } from 'react-intl';
+import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import ListItem from '../ListItem/ListItem';
 import { FilterElement, FilterItem } from '../IconPicker.types';
 import { ListProps } from './List.types';

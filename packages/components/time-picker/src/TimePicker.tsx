@@ -1,10 +1,9 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import { ClockM, Close3S } from '@synerise/ds-icon/dist/icons';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';

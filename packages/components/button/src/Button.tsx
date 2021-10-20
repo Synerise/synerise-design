@@ -3,7 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
 import Icon from '@synerise/ds-icon';
-import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
+import { SpinnerM } from '@synerise/ds-icon';
 import * as S from './Button.styles';
 import { Props } from './Button.types';
 

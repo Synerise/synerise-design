@@ -1,6 +1,6 @@
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon';
-import { CopyClipboardM } from '@synerise/ds-icon/dist/icons';
+import { CopyClipboardM } from '@synerise/ds-icon';
 import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
 import { useIntl } from 'react-intl';

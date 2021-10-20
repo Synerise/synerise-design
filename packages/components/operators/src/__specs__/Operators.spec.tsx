@@ -1,11 +1,14 @@
-import Operators from './../Operators';
 import * as React from 'react';
-import { OperatorsProps } from '../Operator.types';
-import { OPERATORS_TEXTS, OPERATORS_ITEMS, OPERATORS_GROUPS } from './data/Operators.data';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
-import { VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
+
+import { VarTypeNumberM } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
+
+import Operators from './../Operators';
+
+import { OperatorsProps } from '../Operator.types';
+import { OPERATORS_TEXTS, OPERATORS_ITEMS, OPERATORS_GROUPS } from './data/Operators.data';
 
 const DEFAULT_PROPS: OperatorsProps = {
   texts: OPERATORS_TEXTS,

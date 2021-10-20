@@ -2,11 +2,8 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { InfoFillS, Add3M} from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
-
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
 import Button from '@synerise/ds-button';
 
 import * as S from './ItemUploader.styles';

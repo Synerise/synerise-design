@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import OptionHorizontalM from '@synerise/ds-icon/dist/icons/OptionHorizontalM';
+import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 
 import { ItemRollElement } from '../ItemsRoll.types';
 

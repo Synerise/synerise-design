@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Popconfirm from '@synerise/ds-popconfirm';
-import Icon from '@synerise/ds-icon';
-import { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import Icon, { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon';
+
 import * as S from '../ItemsRoll.styles';
 import { ShowLessButtonProps, ShowMoreButtonProps, FooterProps } from './Footer.types';
 

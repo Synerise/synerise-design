@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon from '@synerise/ds-icon';
-import { AngleDownS, TrashS } from '@synerise/ds-icon/dist/icons';
+import { AngleDownS, TrashS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { FilterDropdownProps } from './FilterDropdown.types';
 import * as S from './FilterDropdown.styles';

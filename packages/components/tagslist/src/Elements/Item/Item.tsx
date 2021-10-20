@@ -2,7 +2,7 @@ import * as React from 'react';
 import Highlighter from 'react-highlight-words';
 
 import Checkbox from '@synerise/ds-checkbox';
-import { TagM, TagStarredM } from '@synerise/ds-icon/dist/icons';
+import { TagM, TagStarredM } from '@synerise/ds-icon';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
 
