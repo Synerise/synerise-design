@@ -35,6 +35,7 @@ Tooltip UI Component
 | tutorials             | steps of tutorial                                                                                      | Tutorials[]                                                                                                                                         | -                          |
 | type                  | type of tooltip                                                                                        | `default` / `icon` / `simpleLarge` / `tutorial` / `avatar` / `button`                                                                               | `default`                  |
 | visible               | Whether the floating tooltip card is visible or not                                                    | boolean                                                                                                                                             | `false`                    |
+| timeToHideAfterClick  | time after which tooltip disappears [ms] (value 0 inactivate this functionality)                       | number                                                                                                                                              | 0                          |
 
 ### ButtonSettings
 
