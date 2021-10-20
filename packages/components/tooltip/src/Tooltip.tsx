@@ -29,11 +29,15 @@ const Tooltip: React.FC<TooltipProps> = ({
   tutorials,
   tutorialAutoplay = false,
   tutorialAutoplaySpeed = 5000,
+  timeToHideAfterClick = 0,
   offset = 'default',
   children,
   button,
   ...props
 }) => {
+  const [isVisible, setIsVisible] = React.useState(false);
+  const timeoutClickRef = React.useRef<null | number>(null);
+
   const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: React.ReactNode): React.ReactNode | undefined => {
     if (tooltipType !== 'icon') return null;
     if (tooltipIcon && icon) return icon;
@@ -107,6 +111,33 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
+  React.useEffect(() => {
+    return (): void => {
+      timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
+    };
+  }, []);
+
+  const handleOnClickHideDelay = (visible: boolean): void => {
+    if (!visible) {
+      timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+      timeoutClickRef.current = setTimeout(() => {
+        setIsVisible(false);
+      }, timeToHideAfterClick);
+    }
+  };
+
+  /* eslint-disable-next-line react/destructuring-assignment */
+  const handleHideAfterClick = props.trigger === 'click' &&
+    timeToHideAfterClick && {
+      visible: isVisible,
+      onVisibleChange: (visible: boolean): void => {
+        handleOnClickHideDelay(visible);
+      },
+    };
+
   return titleExists ? (
     <AntdTooltip
       overlayClassName={offsetClassName}
@@ -114,6 +145,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       title={tooltipComponent}
       align={{ offset: [0, 0] }}
       getPopupContainer={getPopupContainer}
+      {...handleHideAfterClick}
       {...props}
     >
       {children}
