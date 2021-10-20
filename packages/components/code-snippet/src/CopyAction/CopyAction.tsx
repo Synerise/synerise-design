@@ -12,22 +12,33 @@ const CopyAction: React.FC<CopyActionProps> = ({
   onClick,
   icon,
   iconSize,
+  timeToHideTooltip = 3000,
 }) => {
   const [hideHoverTooltip, setHideHoverTooltip] = React.useState(false);
   const iconRef = React.useRef<HTMLDivElement>(null);
+  const timeoutClickRef = React.useRef<null | number>(null);
+
+  React.useEffect(() => {
+    return (): void => {
+      timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
+    };
+  }, []);
 
   useOnClickOutside(iconRef, () => {
     if (hideHoverTooltip) {
       setHideHoverTooltip(false);
+      timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
     }
   });
   const handleIconClickTooltip = (): void => {
-    if (!hideHoverTooltip) {
-      setHideHoverTooltip(true);
-    }
+    timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
+    setHideHoverTooltip(true);
+    timeoutClickRef.current = setTimeout(() => {
+      setHideHoverTooltip(false);
+    }, 3000);
   };
   return (
-    <Tooltip title={tooltipTitleClick} trigger="click" visible={hideHoverTooltip}>
+    <Tooltip title={tooltipTitleClick} trigger="click" timeToHideAfterClick={timeToHideTooltip}>
       <Tooltip title={tooltipTitleHover} overlayStyle={hideHoverTooltip ? { display: 'none' } : undefined}>
         <S.IconWrapper
           ref={iconRef}
