@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import { IconContainer } from '@synerise/ds-icon';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 import { IconTooltipCell } from '@synerise/ds-table/dist/Cell';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
