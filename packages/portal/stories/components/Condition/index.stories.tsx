@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Condition from '@synerise/ds-condition';
 import { withState } from '@dump247/storybook-state';
-import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { VarTypeStringM } from '@synerise/ds-icon';
 import {
   DEFAULT_CONDITION_ROW,
   DEFAULT_STATE,

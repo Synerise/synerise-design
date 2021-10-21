@@ -2,8 +2,8 @@ import * as React from 'react';
 import Button from '@synerise/ds-button';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Badge from '@synerise/ds-badge';
-import { CloseS, FilterM } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
+import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
+
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

@@ -1,4 +1,4 @@
-import { NotificationsM } from '@synerise/ds-icon/dist/icons';
+import { NotificationsM } from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const SUBJECT_TEXTS = {

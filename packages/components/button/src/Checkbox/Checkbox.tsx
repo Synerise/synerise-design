@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon';
+import Icon, { CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon';
+
 import Button from '../Button';
 import * as S from './Checkbox.styles';
 import { CheckboxButtonProps, ButtonCheckboxIconProps } from './Checkbox.types';

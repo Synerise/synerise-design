@@ -1,9 +1,6 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import Icon from '@synerise/ds-icon';
-import CheckS from '@synerise/ds-icon/dist/icons/CheckS';
+import Icon, { CheckS, Close3S, Check3S} from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Close3S from '@synerise/ds-icon/dist/icons/Close3S';
-import Check3S from '@synerise/ds-icon/dist/icons/Check3S';
 import OrderedList from '@synerise/ds-ordered-list';
 import * as React from 'react';
 import OrderedListSkeleton from '@synerise/ds-skeleton/dist/OrderedListSkeleton/OrderedListSkeleton';

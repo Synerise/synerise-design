@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { CloseS } from '@synerise/ds-icon';
+import Icon, { CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Icon from '@synerise/ds-icon';
+
 import Tooltip from '@synerise/ds-tooltip';
 import { ColumnType } from '../../ColumnManagerItem/ColumManagerItem.types';
 import * as S from './RangesForm.styles';

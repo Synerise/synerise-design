@@ -9,8 +9,7 @@ import Status from '@synerise/ds-status';
 import { StatusProps } from '@synerise/ds-status/dist/Status.types';
 import { SelectValue } from 'antd/es/select';
 import styled from 'styled-components';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 const decorator = storyFn => <div style={{ width: '314px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { UserM, UserS } from '@synerise/ds-icon';
+import Icon, { UserM, UserS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Icon from '@synerise/ds-icon';
+
 import Badge from '@synerise/ds-badge';
 
 import Avatar from '../Avatar';

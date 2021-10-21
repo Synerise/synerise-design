@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
-import CheckS from '@synerise/ds-icon/dist/icons/CheckS';
+import Icon, { FileM, SearchM, CheckS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 import debounce from 'lodash/debounce';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

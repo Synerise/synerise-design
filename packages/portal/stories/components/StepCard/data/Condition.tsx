@@ -9,7 +9,7 @@ import {
 } from '../../Condition/data/index.data';
 import { SUBJECT_TEXTS } from '../../Subject/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../../ContextSelector/data/index.data';
-import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_TEXTS } from '../../Factors/data/index.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../../Operators/data/index.data';
 import * as React from 'react';

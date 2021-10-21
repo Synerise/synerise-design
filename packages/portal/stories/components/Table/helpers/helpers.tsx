@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
+import { IconProps } from '@synerise/ds-icon/dist/Icon';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 import { IconTooltipCell } from '@synerise/ds-table/dist/Cell';
-import { NotificationsM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export type Column = {

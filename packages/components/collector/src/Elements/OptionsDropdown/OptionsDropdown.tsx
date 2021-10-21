@@ -2,8 +2,8 @@ import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
 import Menu from '@synerise/ds-menu';
-import { Add3M } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
+import Icon, { Add3M } from '@synerise/ds-icon';
+
 import Divider from '@synerise/ds-divider';
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';
@@ -11,8 +11,7 @@ import NavigationHint from '../NavigationHint/NavigationHint';
 import { CollectorValue } from '../../Collector.types';
 
 const gerRowHeight = (size?: string): number => {
-  if(size === 'large')
-    return 50;
+  if (size === 'large') return 50;
   return 32;
 };
 
@@ -74,7 +73,9 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
                 visibleRows={6}
                 onItemClick={onSelect}
                 itemRender={(val: CollectorValue): React.ReactElement => (
-                  <Menu.Item size={dropdownItemHeight} key={`${val}`}>{val[lookupKey]}</Menu.Item>
+                  <Menu.Item size={dropdownItemHeight} key={`${val}`}>
+                    {val[lookupKey]}
+                  </Menu.Item>
                 )}
                 rowHeight={gerRowHeight(dropdownItemHeight)}
                 width={width}

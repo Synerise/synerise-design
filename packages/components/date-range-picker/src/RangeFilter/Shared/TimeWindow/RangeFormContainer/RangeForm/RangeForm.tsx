@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select from '@synerise/ds-select';
-import Icon from '@synerise/ds-icon';
-import { CloseS } from '@synerise/ds-icon';
+import Icon, { CloseS } from '@synerise/ds-icon';
+
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import TimePicker from '@synerise/ds-time-picker';
 import { DateLimitMode, RangeFormProps } from './RangeForm.types';

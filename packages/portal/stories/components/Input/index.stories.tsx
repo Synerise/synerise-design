@@ -9,14 +9,12 @@ import {
   RawMaskedInput,
 } from '@synerise/ds-input';
 
-import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import * as S from '../Select/stories.styles';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { LaptopM, SearchM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';

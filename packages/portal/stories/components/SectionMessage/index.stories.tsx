@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {
+import Icon, {
   Check3M,
   CheckS, DuplicateS,
   HelpFillM,
@@ -7,7 +7,7 @@ import {
   UpdateDataM,
   UserUpM,
   WarningFillM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import Alert from '@synerise/ds-alert';
@@ -17,7 +17,6 @@ import Button from '@synerise/ds-button';
 import * as S from '../Card/stories.styles';
 import ModalProxy from '@synerise/ds-modal';
 import { sizes } from '../Modal/index.stories';
-import Icon from '@synerise/ds-icon';
 import UnorderedList from '@synerise/ds-unordered-list';
 import Tooltip from '@synerise/ds-tooltip';
 import {

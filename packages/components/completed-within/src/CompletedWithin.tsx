@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ClockM, Close3S } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
+import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';

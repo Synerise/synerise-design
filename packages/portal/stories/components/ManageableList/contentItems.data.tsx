@@ -1,4 +1,4 @@
-import FolderM from '@synerise/ds-icon/dist/icons/FolderM';
+import { FolderM } from '@synerise/ds-icon';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import * as React from 'react';

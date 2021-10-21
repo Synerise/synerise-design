@@ -2,8 +2,8 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
-import Icon from '@synerise/ds-icon';
-import { SpinnerM } from '@synerise/ds-icon';
+import Icon, { SpinnerM } from '@synerise/ds-icon';
+
 import * as S from './Button.styles';
 import { Props } from './Button.types';
 
@@ -47,10 +47,10 @@ const Button: React.FC<Props> = ({
     }
   };
   const classNameString = React.useMemo((): string => {
-    const modeStringifed = !mode ? "" : mode;
-    const classNameStringifed = !className ? "" : className;
-    return `ds-button ${modeStringifed} ${classNameStringifed}`
-  },[mode, className]);
+    const modeStringifed = !mode ? '' : mode;
+    const classNameStringifed = !className ? '' : className;
+    return `ds-button ${modeStringifed} ${classNameStringifed}`;
+  }, [mode, className]);
   return (
     <S.AntdButton
       justifyContent={justifyContent}

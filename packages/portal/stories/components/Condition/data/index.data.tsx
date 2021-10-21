@@ -1,4 +1,4 @@
-import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 

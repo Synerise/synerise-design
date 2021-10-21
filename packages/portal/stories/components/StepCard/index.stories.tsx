@@ -5,7 +5,7 @@ import { boolean } from '@storybook/addon-knobs';
 import CompletedWithin from '@synerise/ds-completed-within';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { dateRangePickerTexts } from './data/stepCard.data';
-import { CalendarM } from '@synerise/ds-icon/dist/icons';
+import { CalendarM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUtils/format';

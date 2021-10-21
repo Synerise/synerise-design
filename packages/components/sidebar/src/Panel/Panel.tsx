@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { XYCoord } from 'dnd-core';
-import Icon from '@synerise/ds-icon';
+import Icon, { DragHandleM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { DragHandleM } from '@synerise/ds-icon';
+
 import { PanelProps } from '../Sidebar.types';
 import { SidebarContext } from '../Sidebar.context';
 import * as S from '../Sidebar.styles';

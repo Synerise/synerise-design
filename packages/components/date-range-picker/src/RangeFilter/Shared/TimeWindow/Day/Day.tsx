@@ -6,8 +6,8 @@ import dayjs from 'dayjs';
 // @ts-ignore
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Button from '@synerise/ds-button';
-import { CheckS, Close3S } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
+
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 import { DayProps } from './Day.types';

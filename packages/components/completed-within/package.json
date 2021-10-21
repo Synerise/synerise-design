@@ -34,7 +34,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.13.62",
     "@synerise/ds-dropdown": "^0.16.19",
-    "@synerise/ds-icon": "^0.34.0",
+    "@synerise/ds-icon": "^0.44.11",
     "@synerise/ds-input-number": "^0.3.45",
     "@synerise/ds-select": "^0.13.37",
     "@synerise/ds-tooltip": "^0.9.6"

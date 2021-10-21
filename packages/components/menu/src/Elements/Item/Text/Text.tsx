@@ -3,10 +3,9 @@ import classNames from 'classnames';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
 import { escapeRegEx } from '@synerise/ds-utils';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import { CheckS, AngleRightS } from '@synerise/ds-icon';
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
 import { AddonRenderer, BasicItemProps } from './Text.types';
@@ -109,7 +108,6 @@ const Text: React.FC<BasicItemProps> = ({
       size={size}
       {...rest}
       className={className}
-
     >
       <Tooltip type="default" trigger="click" title={copyTooltip}>
         <S.Inner>

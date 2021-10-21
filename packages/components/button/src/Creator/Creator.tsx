@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { AddM } from '@synerise/ds-icon';
+import Icon, { AddM } from '@synerise/ds-icon';
+
 import * as S from './Creator.styles';
 import { CreatorProps } from './Creator.types';
-
 
 const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block, status }) => {
   const [pressed, setPressed] = React.useState(false);

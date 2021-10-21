@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import Factors from '@synerise/ds-factors';
 import { withState } from '@dump247/storybook-state';
-import { boolean, object, select, text } from '@storybook/addon-knobs';
-import { VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { boolean, object, select } from '@storybook/addon-knobs';
+import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
 
 const DEFAULT_STATE = {

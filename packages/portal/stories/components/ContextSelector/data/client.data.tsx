@@ -8,7 +8,7 @@ import {
   TagM,
   VarTypeNumberM,
   VarTypeStringM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const CONTEXT_CLIENT_GROUPS = [

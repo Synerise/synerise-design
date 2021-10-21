@@ -3,11 +3,10 @@ import { injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { CalendarM, ClockM } from '@synerise/ds-icon';
-import Icon from '@synerise/ds-icon';
+import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
+
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
-
 
 const Footer: React.FC<Props> = ({
   text,

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
+
 import { Title } from '@synerise/ds-typography';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { TextTriggerProps } from './TextTrigger.types';

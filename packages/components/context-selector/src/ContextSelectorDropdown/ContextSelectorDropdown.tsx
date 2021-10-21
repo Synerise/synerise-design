@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import { SearchM } from '@synerise/ds-icon';
+import Icon, { SearchM } from '@synerise/ds-icon';
+
 import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
@@ -192,7 +192,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
             setSearchInputFocus(true);
           });
       }}
-
     >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}

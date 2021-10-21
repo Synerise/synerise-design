@@ -1,8 +1,7 @@
 import * as React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { BorderLessInput, InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import Icon from '@synerise/ds-icon';
-import { StarFillM, StarFillS, StarM, StarS } from '@synerise/ds-icon/dist/icons';
+import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => <div style={{ width: '314px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;

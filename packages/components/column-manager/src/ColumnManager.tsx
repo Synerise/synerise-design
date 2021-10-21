@@ -3,9 +3,9 @@ import { injectIntl } from 'react-intl';
 import Typography from 'antd/lib/typography';
 import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
+import Icon, { CloseM, FolderM, SearchM } from '@synerise/ds-icon';
 import ItemFilter from '@synerise/ds-item-filter';
-import { CloseM, FolderM, SearchM } from '@synerise/ds-icon';
+
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
