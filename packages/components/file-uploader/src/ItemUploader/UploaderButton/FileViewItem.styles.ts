@@ -1,6 +1,6 @@
 import styled, { keyframes, SimpleInterpolation } from 'styled-components';
-import {  Label } from '@synerise/ds-typography';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { Label } from '@synerise/ds-typography';
+import { IconContainer } from '@synerise/ds-icon';
 import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 
 export const PreviewImage = styled.div`
@@ -126,9 +126,9 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
     }
 
     ${(props): SimpleInterpolation =>
-  props.removable &&
-  !props.disabled &&
-  `
+      props.removable &&
+      !props.disabled &&
+      `
       ${RemoveButtonWrapper} {
         display: block;
       }
@@ -157,15 +157,15 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
   }
 
   ${(props): SimpleInterpolation =>
-  props.disabled &&
-  `
+    props.disabled &&
+    `
     background-color: ${props.theme.palette['grey-100']};
     opacity: 0.4;
   `};
 
   ${(props): SimpleInterpolation =>
-  props.error &&
-  `
+    props.error &&
+    `
     && {
       padding-right: 7px;
       border: 1px solid ${props.theme.palette['red-600']};
@@ -176,11 +176,10 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
     }
   `};
   ${(props): SimpleInterpolation =>
-  props.progress &&
-  `
+    props.progress &&
+    `
     && {
       padding-right: 7px;
     }
   `};
-
 `;

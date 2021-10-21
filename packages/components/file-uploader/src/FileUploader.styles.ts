@@ -1,7 +1,7 @@
 import styled, { SimpleInterpolation, css } from 'styled-components';
 import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 export const Container = styled.div`
   width: 100%;
@@ -50,7 +50,7 @@ export const DropAreaButton = styled.button<{
   filesLength: number;
   hidden: boolean;
 }>`
-  display: ${(props): string => props.hidden ? 'none': 'flex' };
+  display: ${(props): string => (props.hidden ? 'none' : 'flex')};
   align-items: center;
   border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
   padding: 11px 12px;
@@ -62,7 +62,8 @@ export const DropAreaButton = styled.button<{
   transition: height 0.03s;
 
   ${(props): SimpleInterpolation =>
-    props.mode === 'multi-large' && props.filesLength === 0 &&
+    props.mode === 'multi-large' &&
+    props.filesLength === 0 &&
     `
       height: 160px;
       flex-direction: column;
@@ -112,7 +113,7 @@ export const DropAreaButton = styled.button<{
 
   &:disabled {
     background-color: ${(props): string => props.theme.palette['grey-050']};
-     ${LargeDropAreaLabel} {
+    ${LargeDropAreaLabel} {
       color: ${(props): string => props.theme.palette['grey-400']};
     }
   }

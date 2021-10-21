@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 export const Header = styled.div<{ withBorderTop?: boolean }>`
   background: #ffffff;

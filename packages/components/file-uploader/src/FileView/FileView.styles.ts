@@ -1,6 +1,6 @@
 import styled, { SimpleInterpolation } from 'styled-components';
 import Typography, { Label } from '@synerise/ds-typography';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
 
 export const PreviewImage = styled.div`
@@ -190,8 +190,8 @@ export const FileViewContainer = styled.button<{
     border-color: ${(props): string => props.theme.palette['blue-500']};
     background-color: ${(props): string => props.theme.palette['grey-050']};
     ${(props): SimpleInterpolation =>
-  props.pressed &&
-  `
+      props.pressed &&
+      `
       ${CheckButtonWrapper} {
         display: none;
       }
