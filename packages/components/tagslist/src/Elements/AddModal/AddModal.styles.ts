@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import Icon from '@synerise/ds-icon';
+import { IconProps } from '@synerise/ds-icon/dist/Icon';
 import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
-
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
 
 export const AddItemLayout = styled.div`
   display: flex;
