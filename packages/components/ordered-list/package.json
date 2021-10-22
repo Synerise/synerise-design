@@ -27,6 +27,7 @@
   "dependencies": {
     "@synerise/ds-icon": "^0.38.2",
     "@synerise/ds-input": "^0.17.43",
+    "@synerise/ds-skeleton": "^0.1.7",
     "@synerise/ds-utils": "^0.11.16"
   },
   "peerDependencies": {
