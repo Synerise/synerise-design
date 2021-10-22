@@ -13,17 +13,20 @@ const withSelection = () => {
     ...defaultProps,
   } as object;
   const [isSelected, setSelected] = React.useState<boolean>(false);
+  const clickEvent = (condition:boolean) => condition && {
+    onClick:() => {
+      setSelected(!isSelected);
+    }
+  }
   const renderSuffix = (
-    <div>{isSelected ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : 'select'}</div>
+    <div {...clickEvent(!defaultProps.clickable)}>{isSelected ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : 'select'}</div>
   );
   return (
     <div style={{ background: 'rgba(0,0,0,0)', width: '200px', borderRadius: '3px', overflow: 'hidden' }}>
       <Menu selectable={false}>
         <Menu.Item
-          onClick={() => {
-            setSelected(!isSelected);
-          }}
           type={!isSelected ? 'select' : undefined}
+          {...clickEvent(defaultProps.clickable)}
           {...props}
           suffixel={renderSuffix}
         />

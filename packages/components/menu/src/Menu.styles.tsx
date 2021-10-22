@@ -11,6 +11,7 @@ type SubMenuProps = {
   prefixel?: React.ReactNode;
   title: string | React.ReactNode;
   tabIndex?: number;
+  clickable?: boolean | undefined;
 };
 
 const overflowStyles = css`
@@ -142,6 +143,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
             line-height: 1.39;
             font-weight: normal;
             color: ${props.theme.palette['grey-500']};
+            ${!props.clickable && 'cursor:default'};
           }
         `}
     }
@@ -157,14 +159,18 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     
     &.ant-menu-item-selected {
       background:inherit;
-      .ant-menu-submenu-title {
+      ${(props): FlattenSimpleInterpolation | false =>
+        !!props.clickable &&
+        css`
+        .ant-menu-submenu-title {
           &:focus,
           &:active {
-            background: ${(props): string => props.theme.palette['grey-050']};
+            background: ${props.theme.palette['grey-050']};
             &::before {
-            color: ${(props): string => props.theme.palette['grey-600']};
+            color: ${props.theme.palette['grey-600']};
           }
         }
+        `};
         & > .ds-menu-prefix {
         svg {
           fill: ${(props): string => props.theme.palette['blue-600']};
@@ -181,6 +187,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     
     ${(props): string | false =>
       !props.disabled &&
+      !!props.clickable &&
       `
     &:focus {
        > .ant-menu-submenu-title{
@@ -198,10 +205,18 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       &:not(:hover) {
         color: ${(props): string => props.theme.palette['grey-700']};
       }
-      background:${(props): string => props.theme.palette['blue-050']};
+      ${(props): string | false =>
+        !!props.clickable &&
+        `
+          background: ${props.theme.palette['blue-050']};
+        `};
       .ds-menu-content-wrapper {
-      color: ${(props): string => props.theme.palette['blue-600']};
-      background: ${(props): string => props.theme.palette['blue-050']};
+        ${(props): string | false =>
+          !!props.clickable &&
+          `
+            color: ${props.theme.palette['blue-600']};
+            background: ${props.theme.palette['blue-050']};
+          `};
         .ds-menu-prefix {
           svg {
             fill: ${(props): string => props.theme.palette['blue-600']};

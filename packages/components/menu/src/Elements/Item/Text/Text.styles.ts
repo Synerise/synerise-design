@@ -13,9 +13,10 @@ type WrapperProps = {
   ordered?: boolean;
   size?: 'default' | 'large';
   active?: boolean;
+  clickable?: boolean;
 };
 
-enum ItemSize  {
+enum ItemSize {
   DEFAULT = 'default',
   LARGE = 'large',
 }
@@ -48,7 +49,7 @@ export const Inner = styled.div`
   display: flex;
 `;
 
-export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean }>`
+export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolean; clickable?: boolean }>`
   display: flex;
   ${(props): FlattenSimpleInterpolation => (props.visible ? visibleElementStyle() : hiddenElementStyle())};
   transition: opacity ${TRANSITION_FN};
@@ -58,6 +59,7 @@ export const PrefixelWrapper = styled.div<{ disabled?: boolean; visible?: boolea
   margin-right: 12px;
   align-items: center;
   ${(props): string | false => !!props.disabled && `svg {fill: ${props.theme.palette['grey-600']}};`}
+  ${(props): string | false => !props.clickable && !props.disabled && '.ds-icon svg{ cursor:pointer; }'}
 `;
 
 const disableOrdering = (): FlattenSimpleInterpolation => css`
@@ -90,7 +92,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     ${(props): string | FlattenSimpleInterpolation => (props.ordered ? '' : disableOrdering())};
     color: ${(props): string => props.theme.palette['grey-700']};
     opacity: ${(props): string => (props.disabled ? '0.4' : '1')};
-    cursor: ${(props): string => (props.disabled ? 'not-allowed' : 'pointer')};
+    cursor: ${(props): string =>
+      // eslint-disable-next-line no-nested-ternary
+      props.disabled ? 'not-allowed' : props.clickable ? 'pointer' : 'default'};
     padding-right: 12px;
     font-weight: 500;
     border-radius: 3px;
@@ -111,25 +115,30 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }`
         : ''}
 
-    ${(props): undefined | FlattenSimpleInterpolation => props.size &&  applySizeStyles(props)}
+    ${(props): undefined | FlattenSimpleInterpolation => props.size && applySizeStyles(props)}
     &.ant-menu-item-only-child {
       margin-bottom: 0px;
     }
     &.ant-menu-item-selected {
-      background: ${(props): string => props.theme.palette['blue-050']};
-      color: ${(props): string => props.theme.palette['blue-600']};
+      background:transparent;
+      ${(props): FlattenSimpleInterpolation | false =>
+        !!props.clickable &&
+        css`
+          background: ${props.theme.palette['blue-050']};
+          color: ${props.theme.palette['blue-600']};
+          &::before {
+            color: ${props.theme.palette['blue-600']};
+          }
+          &:focus,
+          &:active {
+            background: ${props.theme.palette['grey-050']};
+            &::before {
+              color: ${props.theme.palette['grey-600']};
+            }
+          }
+        `}
       .ds-menu-prefix > .ds-icon > svg {
         fill: ${(props): string => props.theme.palette['blue-600']};
-      }
-      &::before {
-        color: ${(props): string => props.theme.palette['blue-600']};
-      }
-      &:focus,
-      &:active {
-        background: ${(props): string => props.theme.palette['grey-050']};
-        &::before {
-          color: ${(props): string => props.theme.palette['grey-600']};
-        }
       }
 
       &::after {
@@ -139,6 +148,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     &.ant-menu-item-disabled,
     &.ant-menu-submenu-disabled {
       color: ${(props): string => props.theme.palette['grey-600']} !important;
+      ${(props): string | false => !props.clickable && `background: ${props.theme.palette.white};`}
     }
     & .ds-menu-prefix > * > .ant-avatar::after {
       content: '';
@@ -163,10 +173,13 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
-        !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
+        !props.disabled && !!props.clickable && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
       color: ${(props): string => props.theme.palette['grey-700']};
-      background: ${(props): string =>
-        props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
+      ${(props): string | false =>
+        !!props.clickable &&
+        `
+        background: ${props.description ? props.theme.palette.white : props.theme.palette['grey-050']};
+        `}
       ${PrefixelWrapper} > .ds-icon > svg {
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
@@ -177,7 +190,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       css`
         &:focus:active,
         &:active {
-          background: ${props.theme.palette['grey-100']};
+          ${props.clickable && `background: ${props.theme.palette['grey-100']};`}
           && {
             color: ${props.theme.palette['blue-600']};
 
@@ -190,11 +203,16 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         }
       `}
     
-    &:active {
-      && {
-        background: ${(props): string => props.theme.palette['blue-050']};
+    ${(props): string | false =>
+      !!props.clickable &&
+      !props.disabled &&
+      `
+      &:active {
+        && {
+      background: ${props.theme.palette['blue-050']};
+        }
       }
-    }
+      `}
 
     & {
       .ds-icon {
@@ -213,7 +231,8 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }
 
     &:focus {
-      color: ${(props): string => (props.description ? `${props.theme.palette['blue-600']} !important` : 'inherit')};
+      color: ${(props): string =>
+        props.description && props.clickable ? `${props.theme.palette['blue-600']} !important` : 'inherit'};
       ${ArrowRight} {
         opacity: 1;
         svg {
@@ -294,7 +313,7 @@ export const Description = styled.div`
   width: 100%;
 `;
 
-export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }>`
+export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean; clickable?: boolean }>`
   justify-content: flex-end;
   display: flex;
   transition: opacity ${TRANSITION_FN};
@@ -308,6 +327,7 @@ export const SuffixWraper = styled.div<{ disabled?: boolean; visible?: boolean }
   svg {
     margin-right: -4px;
   }
+  ${(props): string | false => !props.clickable && !props.disabled && 'cursor:pointer;'}
 `;
 
 export const ContentWrapper = styled.div`

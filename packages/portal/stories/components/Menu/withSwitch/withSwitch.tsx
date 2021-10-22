@@ -8,10 +8,13 @@ const withSwitch = () => {
   const prefixel = (
     <ExtendedAntdSwitchComponent id={'toggle'} checked={isChecked} onChange={() => setChecked(!isChecked)} />
   );
+  const clickEvent = defaultProps.clickable && {
+    onClick: () => setChecked(!isChecked),
+  }
   const props = {
     dataSource: attachKnobsToDataSource(simpleText),
     prefixel,
-    onClick: () => setChecked(!isChecked),
+    ...clickEvent,
     ...defaultProps,
   } as object;
   return decorator(props);

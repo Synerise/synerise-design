@@ -5,9 +5,9 @@ import Text from '../Text/Text';
 import { ContentWrapper, PrefixelWrapper } from '../Text/Text.styles';
 
 // eslint-disable-next-line import/prefer-default-export
-export const DangerItem = styled(({ children, disabled, ...rest }) => (
+export const DangerItem = styled(({ children, disabled, clickable, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Text disabled={disabled} {...rest}>
+  <Text disabled={disabled} clickable={clickable} {...rest}>
     {children}
   </Text>
 ))`
@@ -47,12 +47,13 @@ export const DangerItem = styled(({ children, disabled, ...rest }) => (
         ${PrefixelWrapper} > ${IconContainer} > svg {
           fill: ${props.theme.palette['red-600']} !important;
         }
-        background: ${props.theme.palette['red-050']} !important;
+        ${props.clickable && `background: ${props.theme.palette['red-050']} !important;`}
       `}
     }
     &:focus:active {
       ${(props): string | false =>
         !props.disabled &&
+        props.clickable &&
         `
         background: ${props.theme.palette['red-100']} !important;
       `}
