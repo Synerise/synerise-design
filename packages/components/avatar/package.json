@@ -34,6 +34,7 @@
   "dependencies": {
     "@synerise/ds-badge": "^0.4.81",
     "@synerise/ds-icon": "^0.45.0",
+    "@synerise/ds-skeleton": "^0.1.7",
     "@synerise/ds-status": "^0.2.67",
     "@synerise/ds-tooltip": "^0.10.53"
   },
