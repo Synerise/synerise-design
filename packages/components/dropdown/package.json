@@ -35,7 +35,8 @@
     "@synerise/ds-divider": "^0.4.74",
     "@synerise/ds-icon": "^0.45.0",
     "@synerise/ds-input": "^0.17.43",
-    "@synerise/ds-search-bar": "^0.4.0"
+    "@synerise/ds-search-bar": "^0.4.0",
+    "@synerise/ds-skeleton": "^0.1.7"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
