@@ -31,7 +31,9 @@
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "@synerise/ds-divider": "^0.4.74"
+  },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 < 17.0.0"
