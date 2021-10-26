@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Icon from '@synerise/ds-icon';
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import Icon, { IconProps } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 
