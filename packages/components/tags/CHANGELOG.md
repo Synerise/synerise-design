@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.3.67...@synerise/ds-tags@0.5.0) (2021-10-26)
+
+
+### Bug Fixes
+
+* **tags:** change use asPill prop in styles ([3daa6ca](https://github.com/Synerise/synerise-design/commit/3daa6ca67ea620ea5417933a571c7b74095cdaeb))
+
+
+### Features
+
+* **tags:** add extra prop asPill ([bc21290](https://github.com/Synerise/synerise-design/commit/bc21290803c06a0b9dbb274d1a5a9598db07fe13))
+
+
+
+
+
 # [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.3.67...@synerise/ds-tags@0.4.0) (2021-10-19)
 
 
