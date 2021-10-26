@@ -1,4 +1,4 @@
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import { IconProps } from '@synerise/ds-icon';
 
 export interface Props {
   label: string;

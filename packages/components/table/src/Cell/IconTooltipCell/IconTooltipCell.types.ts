@@ -1,4 +1,4 @@
-import { IconProps } from '@synerise/ds-icon/dist/Icon';
+import { IconProps } from '@synerise/ds-icon';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export interface Props {
