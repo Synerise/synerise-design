@@ -15,17 +15,14 @@ const testUserImage = {
   avatar: 'http://image.com/image.jpg',
 };
 
-const firstAndLast = 'JD';
-
 describe('UserAvatar', () => {
   test('should render', () => {
     const { container } = renderWithProvider(<UserAvatar />);
-    const svg = container.querySelector('user-m');
-    expect(svg).toBeTruthy();
+    expect(container.getElementsByClassName('user-m').length).toBe(1);
   });
   test('should render with user data', () => {
     const userAvatar = renderWithProvider(<UserAvatar user={testUser} />);
-    const nameFirstLetters = userAvatar.getByText(firstAndLast);
+    const nameFirstLetters = userAvatar.getByText(testUser.firstName.charAt(0) + testUser.lastName.charAt(0));
     expect(nameFirstLetters).toBeTruthy();
   });
   test('should render with user data and avatar', () => {
