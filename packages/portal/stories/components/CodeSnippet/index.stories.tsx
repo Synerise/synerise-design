@@ -22,6 +22,7 @@ const getPropsMulti = () => ({
   labelBeforeExpanded:text('Label before expand', 'Show more'),
   labelAfterExpanded:text('Label after expand', 'Show less'),
   wrap:boolean('Wrap text',false),
+  timeToHideTooltip:number("Time to hide tooltip(ms)",3000),
   onCopy:action('onCopy action'),
   onExpand:action('onExpand action'),
 });

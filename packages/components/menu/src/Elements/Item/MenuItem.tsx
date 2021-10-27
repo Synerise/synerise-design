@@ -24,6 +24,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     children,
     type,
     indentLevel,
+    timeToHideTooltip,
     onItemHover,
     onClick,
     menuItemKey,
@@ -94,6 +95,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           danger={danger}
           description={description}
+          timeToHideTooltip={timeToHideTooltip}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
           onClick={onClick || NOOP}

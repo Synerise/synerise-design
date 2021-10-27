@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text, number } from '@storybook/addon-knobs';
 import Menu from '@synerise/ds-menu';
 import {
   DESCRIPTION_PLACEHOLDER,
@@ -76,6 +76,7 @@ export const attachKnobsToDataSource = data =>
     text: text('Set text', TEXT_PLACEHOLDER),
     disabled: boolean('Set disabled', false),
     ...(item.description && { description: text('Set description', DESCRIPTION_PLACEHOLDER) }),
+    ...(item.copyable && { timeToHideTooltip: number("Time to hide tooltip(ms)",3000)})
   }));
 
 const stories = {

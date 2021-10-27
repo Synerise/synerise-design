@@ -27,4 +27,5 @@ export interface BasicItemProps {
   key?: React.ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
+  timeToHideTooltip?: number;
 }
