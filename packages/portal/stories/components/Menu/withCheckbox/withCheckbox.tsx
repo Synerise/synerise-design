@@ -12,13 +12,16 @@ import Checkbox from '@synerise/ds-checkbox/dist';
 const withCheckbox = () => {
   const defaultProps = getDefaultProps();
   const [isChecked, setChecked] = React.useState(false);
+  const clickEvent = defaultProps.clickable && {
+    onClick: () => setChecked(!isChecked),
+  }
   const props = {
     dataSource: attachKnobsToDataSource(withCheckBox),
     suffixel: getSuffixElement(),
     suffixVisibilityTrigger: getSuffixTrigger(),
     prefixel: <Checkbox checked={isChecked} onChange={() => setChecked(!isChecked)} />,
-    onClick: () => setChecked(!isChecked),
     selectable: false,
+    ...clickEvent,
     ...defaultProps,
   };
   return decorator(props);

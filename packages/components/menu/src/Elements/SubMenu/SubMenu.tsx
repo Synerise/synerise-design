@@ -34,6 +34,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
       prefixVisibilityTrigger,
       size,
       description,
+      clickable,
       ...rest
     } = this.props;
     const { uuidKey } = this.state;
@@ -46,6 +47,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
             suffixel={suffixel}
             onClick={onTitleClick}
             disabled={disabled}
+            clickable={clickable}
             suffixVisibilityTrigger={suffixVisibilityTrigger}
             prefixVisibilityTrigger={prefixVisibilityTrigger}
             size={size}
@@ -74,6 +76,7 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
               prefixel={subItem.prefixel}
               suffixel={subItem.suffixel}
               disabled={subItem.disabled}
+              clickable={subItem.clickable}
               text={subItem.text}
               danger={subItem.danger}
               subMenu={subItem.subMenu}

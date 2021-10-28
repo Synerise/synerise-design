@@ -48,6 +48,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 prefixVisibilityTrigger={item.prefixVisibilityTrigger}
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 menuItemKey={item.key || `${item.text}${index}`}
+                clickable={item.clickable}
                 {...rest}
                 {...item}
               />
@@ -72,6 +73,7 @@ class Menu extends React.Component<AntdMenuProps> {
                 type={item.type}
                 key={item.key || `${item.text}${index}`} // eslint-disable-line react/no-array-index-key
                 menuItemKey={item.key || `${item.text}${index}`}
+                clickable={item.clickable}
                 {...rest}
                 {...item}
               />

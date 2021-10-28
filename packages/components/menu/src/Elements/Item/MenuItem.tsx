@@ -17,6 +17,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     suffixel,
     ordered,
     disabled,
+    clickable,
     danger,
     text,
     description,
@@ -37,6 +38,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         suffixel={suffixel}
         ordered={ordered}
         disabled={disabled}
+        clickable={clickable}
         danger={danger}
         text={text}
         description={description}
@@ -58,6 +60,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           prefixel={prefixel}
           suffixel={suffixel}
           disabled={disabled}
+          clickable={clickable}
           description={description}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
@@ -74,6 +77,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           prefixel={prefixel}
           suffixel={suffixel}
           disabled={disabled}
+          clickable={clickable}
           description={description}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
@@ -92,6 +96,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           prefixel={prefixel}
           suffixel={suffixel}
           disabled={disabled}
+          clickable={clickable}
           danger={danger}
           description={description}
           indentLevel={indentLevel || 0}
