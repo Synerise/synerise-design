@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-pagination",
-  "version": "0.6.92-alpha.1",
+  "version": "0.6.92-alpha.2",
   "description": "Pagination UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.13.63-alpha.1",
-    "@synerise/ds-icon": "^0.44.12-alpha.1"
+    "@synerise/ds-button": "^0.13.63-alpha.2",
+    "@synerise/ds-icon": "^0.44.12-alpha.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
