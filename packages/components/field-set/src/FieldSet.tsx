@@ -5,7 +5,7 @@ import { FieldSetProps } from './FieldSet.types';
 
 const FieldSet: React.FC<FieldSetProps> = ({ prefix, title, description, component, button }) => {
   return (
-    <S.ContainerWrapper>
+    <S.ContainerWrapper className="ds-field-set">
       <S.HeaderWrapper>
         <S.ButtonWrapper>{prefix}</S.ButtonWrapper>
         <S.FieldSetTitle description={description}>
