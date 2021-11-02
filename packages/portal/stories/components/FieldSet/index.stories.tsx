@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import FieldSet from '@synerise/ds-field-set';
-import { text } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import Expander from '@synerise/ds-button/dist/Expander/Expander';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
+import Checkbox from '@synerise/ds-checkbox/dist';
 
 
 
@@ -33,8 +34,33 @@ const stories = {
   withSwitch: () => {
     const title = text('Title', 'Advanced option');
     const description = text('Description', 'This section is for avanced users only');
+    const [checked, setChecked] = React.useState(true);
     return (
-      <FieldSet title={title} description={description} prefix={<Switch/>}  />
+      <FieldSet title={title} description={description} prefix={<Switch onChange={setChecked} defaultChecked={true} checked={checked}/>} component={ checked &&
+        <Checkbox.Group onChange={values => console.log('Checked values', values)}>
+          <Checkbox
+            disabled={boolean('Disabled', false)}
+            hasError={boolean('Has error', false)}
+            indeterminate={boolean('Set indeterminate state of checkbox', false)}
+            description="Deliver your campaign to a large list in batches to prevent website-crushing click flods"
+            errorText={text('Set error message', '')}
+            value="A"
+          >
+            Batch delivery
+          </Checkbox>
+          <Checkbox
+            disabled={boolean('Disabled', false)}
+            hasError={boolean('Has error', false)}
+            indeterminate={boolean('Set indeterminate state of checkbox', false)}
+            description="A control group is a defined percentage of your audience who
+            won’t receive this campaign so you can better understand performance"
+            errorText={text('Set error message', '')}
+            value="B"
+          >
+            Enable a control group
+          </Checkbox>
+        </Checkbox.Group>
+      }  />
     )
   },
 };

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Title = styled.div<{ description?: boolean | React.ReactNode }>`
   display: flex;
   line-height: 16px;
-  padding-bottom: 8px;
+  padding-bottom: ${(props): string => (props.description ? '8px' : '14px')};
+  max-width: 800px;
   font-size: 16px;
   font-weight: 500;
   word-wrap: break-word;
@@ -39,7 +40,7 @@ export const ComponentWrapper = styled.div`
 export const Description = styled.div<{ description?: boolean | React.ReactNode }>`
   display: flex;
   line-height: 16px;
-  padding-bottom: ${(props): string => (props.description ? '8px' : '0')};
+  padding-bottom: ${(props): string => (props.description ? '16px' : '0')};
   font-size: 12px;
   word-wrap: break-word;
   text-align: center;

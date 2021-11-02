@@ -293,7 +293,7 @@ const stories = {
         prefix={showPrefix && additionalPrefixMapper[type]}
         component={
             <div style={{width: '700px'}}>
-              <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={numberFormatter} />;
+              <OrderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={numberFormatter} />
             </div>
         }
         button={
@@ -346,7 +346,7 @@ const stories = {
         prefix={showPrefix && additionalPrefixMapper[type]}
         component={
             <div style={{width: '700px'}}>
-              <UnorderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={discFormatter} />;
+              <UnorderedList text={renderLabel(label && getLabel(hasLabel))} data={data} indexFormatter={discFormatter} />
             </div>
         }
         button={
