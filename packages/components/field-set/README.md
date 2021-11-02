@@ -26,5 +26,11 @@ import FieldSet from '@synerise/ds-field-set'
 
 ## API
 
-| Property | Description | Type | Default |
-| --- | --- | --- | --- |
+| Property         | Description                  | Type                      | Default     |
+| ---------------- | ---------------------------- | ------------------------- | ----------- |
+| component        | prop to set component        | React.ReactNode           | -           |
+| title            | text of title                | string                    | -           |
+| description      | text of the description      | string                    | -           |
+| prefix           | prop to set prefix item      | React.ReactNode           | -           |
+| button           | prop to set button           | React.ReactNode           | -           |
+
