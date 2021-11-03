@@ -62,15 +62,19 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
       )}
       {conditionOperator?.value && (
         <S.ConditionWrapper>
-          {conditionFactor && (
-            <Factors
-              {...conditionFactor}
-              setSelectedFactorType={(factorType): void => setStepConditionFactorType(stepId, conditionId, factorType)}
-              onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
-              factorKey={conditionId}
-              opened={stepId === currentStepId && conditionId === currentConditionId && currentField === FACTOR}
-            />
-          )}
+          <>
+            {conditionFactor?.withCustomFactor || (
+              <Factors
+                {...conditionFactor}
+                setSelectedFactorType={(factorType): void =>
+                  setStepConditionFactorType(stepId, conditionId, factorType)
+                }
+                onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
+                factorKey={conditionId}
+                opened={stepId === currentStepId && conditionId === currentConditionId && currentField === FACTOR}
+              />
+            )}
+          </>
         </S.ConditionWrapper>
       )}
       {removeCondition && conditionsNumber > minConditionLength && (

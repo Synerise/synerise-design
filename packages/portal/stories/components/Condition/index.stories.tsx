@@ -291,6 +291,7 @@ const stories = {
                 },
                 value: condition.factor.value,
                 formulaEditor: <div>Formula editor</div>,
+                withCustomFactor: boolean('With custom factor component', false) && <span>Custom factor component</span>,
                 parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,

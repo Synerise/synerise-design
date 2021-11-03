@@ -37,7 +37,7 @@ export const ComponentWrapper = styled.div`
   padding: 16px 4px;
 `;
 
-export const Description = styled.div<{ description?: boolean  }>`
+export const Description = styled.div<{ description?: boolean }>`
   display: flex;
   line-height: 16px;
   padding-bottom: ${(props): string => (props.description ? '16px' : '0')};
