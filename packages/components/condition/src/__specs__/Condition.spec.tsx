@@ -13,7 +13,6 @@ import {
 } from './data/index.data';
 import Condition from '../Condition';
 import { fireEvent } from '@testing-library/react';
-import { debounce } from 'lodash';
 
 import { ConditionProps, ConditionStep, StepConditions } from '../Condition.types';
 
@@ -568,5 +567,71 @@ describe('Condition component', () => {
 
     expect(getByText('Parameter label')).toBeTruthy();
     expect(queryByDisplayValue('factor value')).toBeTruthy();
+  });
+
+  test('rendering custom factor component', () => {
+    const { getByText, queryByDisplayValue, debug } = renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: [
+          {
+            ...DEFAULT_STEP,
+            id: 'test-id',
+            conditions: [
+              {
+                id: 'test-id',
+                parameter: {
+                  availableFactorTypes: ['parameter'],
+                  selectedFactorType: 'parameter',
+                  defaultFactorType: 'parameter',
+                  value: 'parameter value',
+                  parameters: {
+                    buttonLabel: 'Parameter label',
+                    buttonIcon: <VarTypeStringM />,
+                    groups: PARAMETER_GROUPS,
+                    items: PARAMETER_ITEMS,
+                  },
+                  withoutTypeSelector: true,
+                  texts: FACTORS_TEXTS,
+                },
+                operator: {
+                  items: [],
+                  groups: [],
+                  value: {
+                    group: 'groupId',
+                    groupId: 'groupId',
+                    icon: <span>i</span>,
+                    id: 'id',
+                    logic: 'logic',
+                    name: 'Operator name',
+                    value: 'operator value',
+                  },
+                },
+                factor: {
+                  selectedFactorType: 'text',
+                  defaultFactorType: 'text',
+                  textType: 'default',
+                  withCustomFactor: <span>With custom factor</span>,
+                  autocompleteText: {
+                    options: ['option'],
+                  },
+                  value: 'factor value',
+                  parameters: {
+                    buttonLabel: 'Factor label',
+                    buttonIcon: <span>i</span>,
+                    groups: [],
+                    items: [],
+                  },
+                  texts: undefined,
+                },
+              },
+            ],
+          },
+        ],
+      })
+    );
+
+    expect(getByText('With custom factor')).toBeTruthy();
+    expect(queryByDisplayValue('Factor label')).toBeFalsy();
+    expect(queryByDisplayValue('factor value')).toBeFalsy();
   });
 });

@@ -104,6 +104,7 @@ export type FactorsProps = {
   opened?: boolean;
   loading?: boolean;
   preventAutoloadData?: boolean;
+  withCustomFactor?: React.ReactNode;
 };
 
 export type FactorTypeSelectorProps = Pick<
