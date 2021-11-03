@@ -8,9 +8,9 @@ const FieldSet: React.FC<FieldSetProps> = ({ prefix, title, description, compone
     <S.ContainerWrapper className="ds-field-set">
       <S.HeaderWrapper>
         <S.ButtonWrapper>{prefix}</S.ButtonWrapper>
-        <S.FieldSetTitle description={description}>
-          <S.Title description={description}>{title}</S.Title>
-          <S.Description description={description}>{description}</S.Description>
+        <S.FieldSetTitle description={Boolean(description)}>
+          <S.Title description={Boolean(description)}>{title}</S.Title>
+          <S.Description description={Boolean(description)}>{description}</S.Description>
         </S.FieldSetTitle>
       </S.HeaderWrapper>
       <Divider />

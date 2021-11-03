@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Title = styled.div<{ description?: boolean | React.ReactNode }>`
+export const Title = styled.div<{ description?: boolean }>`
   display: flex;
   line-height: 16px;
   padding-bottom: ${(props): string => (props.description ? '8px' : '14px')};
@@ -23,12 +23,12 @@ export const ActionButton = styled.div`
   padding; 8px;
   
 `;
-export const ExpanderWrapper = styled.div<{ description?: boolean | React.ReactNode }>`
+export const ExpanderWrapper = styled.div<{ description?: boolean }>`
   display: flex;
   align-items: ${(props): string => (props.description ? '' : 'center')};
   margin: 0 16px 8px 0;
 `;
-export const FieldSetTitle = styled.div<{ description?: boolean | React.ReactNode }>`
+export const FieldSetTitle = styled.div<{ description?: boolean }>`
   display: ${(props): string => (props.description ? '' : 'flex')};
   align-items: ${(props): string => (props.description ? '' : 'center')};
 `;
@@ -37,7 +37,7 @@ export const ComponentWrapper = styled.div`
   padding: 16px 4px;
 `;
 
-export const Description = styled.div<{ description?: boolean | React.ReactNode }>`
+export const Description = styled.div<{ description?: boolean  }>`
   display: flex;
   line-height: 16px;
   padding-bottom: ${(props): string => (props.description ? '16px' : '0')};
