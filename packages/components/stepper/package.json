@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-stepper",
-  "version": "0.2.49-alpha.5",
+  "version": "0.2.49-alpha.6",
   "description": "Stepper UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,9 +32,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.44.12-alpha.5",
-    "@synerise/ds-tooltip": "^0.10.49-alpha.5",
-    "@synerise/ds-typography": "^0.11.9-alpha.2",
+    "@synerise/ds-icon": "^0.44.12-alpha.6",
+    "@synerise/ds-tooltip": "^0.10.49-alpha.6",
+    "@synerise/ds-typography": "^0.11.9-alpha.3",
     "react-animate-height": "^2.0.23"
   },
   "peerDependencies": {
