@@ -11060,13 +11060,8 @@ doctrine@^3.0.0:
 
 docusaurus-plugin-sass@^0.2.1:
   version "0.2.1"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/docusaurus-plugin-sass/-/docusaurus-plugin-sass-0.2.1.tgz#673c6b6ac00b581e8fb0baab22f2b3766735aafc"
-  integrity sha512-cRugbRWnKLjFPQTo1k2cyn/AANYkXAPHv+DaLs7bkOfOofEgTSrMdpNidt3oZ0ltQcjUUbvmSRRjH9R1ifdRMA==
-=======
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/docusaurus-plugin-sass/-/docusaurus-plugin-sass-0.2.1.tgz#673c6b6ac00b581e8fb0baab22f2b3766735aafc"
   integrity sha1-ZzxrasALWB6PsLqrIvKzdmc1qvw=
->>>>>>> master
   dependencies:
     sass-loader "^10.1.1"
 
@@ -17688,13 +17683,8 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
 
 neo-async@^2.6.2:
   version "2.6.2"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
-  integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
-=======
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha1-tKr7k+OustgXTKU88WOrfXMIMF8=
->>>>>>> master
 
 nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   version "2.1.0"
@@ -22510,13 +22500,8 @@ sass-loader@8.0.2:
 
 sass-loader@^10.1.1:
   version "10.2.0"
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-10.2.0.tgz#3d64c1590f911013b3fa48a0b22a83d5e1494716"
-  integrity sha512-kUceLzC1gIHz0zNJPpqRsJyisWatGYNFRmv2CKZK2/ngMJgLqxTbXwe/hJ85luyvZkgqU3VlJ33UVF2T/0g6mw==
-=======
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/sass-loader/-/sass-loader-10.2.0.tgz#3d64c1590f911013b3fa48a0b22a83d5e1494716"
   integrity sha1-PWTBWQ+REBOz+kigsiqD1eFJRxY=
->>>>>>> master
   dependencies:
     klona "^2.0.4"
     loader-utils "^2.0.0"
@@ -22524,7 +22509,6 @@ sass-loader@^10.1.1:
     schema-utils "^3.0.0"
     semver "^7.3.2"
 
-<<<<<<< HEAD
 sass@^1.43.4:
   version "1.43.4"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.43.4.tgz#68c7d6a1b004bef49af0d9caf750e9b252105d1f"
@@ -22532,8 +22516,6 @@ sass@^1.43.4:
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
-=======
->>>>>>> master
 sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
