@@ -42,9 +42,10 @@ const decorator = storyFn => (
     {storyFn()}
   </div>
 );
-const req = require.context('@synerise/ds-icon/dist/icons', false, /index.js/);
+const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
 const iconsRaw = req(req.keys()[0]);
 const iconsNames = Object.keys(iconsRaw);
+
 const getDefaultProps = () => ({
   customIcon: boolean('Set custom symbol', false),
 });

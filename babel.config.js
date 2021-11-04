@@ -32,6 +32,7 @@ module.exports = api => {
         '@babel/preset-env',
         {
           modules: false,
+          loose: true,
         },
       ],
       '@babel/preset-typescript',
