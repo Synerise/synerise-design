@@ -84,6 +84,7 @@ import Operators from '@synerise/ds-operators'
 | opened   | Whether if dropdown should opens from outside of component | boolean                                                    | false     |
 | texts    | Translations object                                        | OperatorTexts                                              | -         |
 | value    | Selected operator                                          | OperatorsItem \ undefined                                  | undefined |
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;             | -       |
 
 ### OperatorsGroup
 

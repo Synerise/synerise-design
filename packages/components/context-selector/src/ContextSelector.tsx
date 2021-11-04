@@ -4,6 +4,7 @@ import Icon from '@synerise/ds-icon';
 import { AngleDownS, Add3M } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextItem, ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
@@ -88,7 +89,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   return (
     <div data-popup-container>
       <Dropdown
-        getPopupContainer={(): HTMLElement => document.body}
+        getPopupContainer={getPopupContainer}
         trigger={trigger}
         visible={dropdownVisible}
         overlay={

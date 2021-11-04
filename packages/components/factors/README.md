@@ -113,6 +113,7 @@ import Factors from '@synerise/ds-factors'
 | unavailableFactorTypes | Array of excluded factor types                                                            | FactorType[]                     | -         | 
 | value                  | Value                                                                                     | FactorValueType                  | -         | 
 | withoutTypeSelector    | Whether if hide factor type selector                                                      | boolean                          | -         | 
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;             | -       |
 
 ### FactorType
 

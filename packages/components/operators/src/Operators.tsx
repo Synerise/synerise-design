@@ -5,11 +5,20 @@ import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
 
-const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, texts, opened }) => {
+const Operators: React.FC<OperatorsProps> = ({
+  value,
+  onChange,
+  groups,
+  items,
+  texts,
+  opened,
+  getPopupContainerOverride,
+}) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const text = React.useMemo(
@@ -38,7 +47,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={(): HTMLElement => document.body}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <OperatorsDropdown
             value={value}
@@ -51,7 +60,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
         }
       >
         <Tooltip
-          getPopupContainer={(): HTMLElement => document.body}
+          getPopupContainer={getPopupContainerOverride || getPopupContainer}
           title={(value as OperatorsItem)?.name || ''}
           trigger={['hover']}
         >

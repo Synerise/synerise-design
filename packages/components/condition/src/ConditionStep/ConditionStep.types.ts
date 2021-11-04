@@ -3,11 +3,12 @@ import { FactorType, FactorValueType } from '@synerise/ds-factors/dist/Factors.t
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector/dist/ContextSelector.types';
 import { SubjectItem } from '@synerise/ds-subject/dist/Subject.types';
 import { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators/dist/Operator.types';
-import { ConditionStep, ConditionTexts } from '../Condition.types';
+import { ConditionStep, ConditionTexts, ConditionProps } from '../Condition.types';
 
 export type ConditionStepProps = {
   index: number;
   step: ConditionStep;
+  getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   updateStepName?: (stepId: React.ReactText, value: string) => void;

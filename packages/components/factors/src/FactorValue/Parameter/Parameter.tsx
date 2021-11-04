@@ -4,6 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
+import { getPopupContainer } from '@synerise/ds-utils';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
@@ -16,6 +17,7 @@ const ParameterInput: React.FC<InputProps> = ({
   texts,
   opened,
   preventAutoloadData,
+  getPopupContainerOverride,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -50,7 +52,7 @@ const ParameterInput: React.FC<InputProps> = ({
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={(): HTMLElement => document.body}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <ParameterDropdown
             setDropdownVisible={setDropdownVisible}
@@ -62,7 +64,7 @@ const ParameterInput: React.FC<InputProps> = ({
         }
       >
         <Tooltip
-          getPopupContainer={(): HTMLElement => document.body}
+          getPopupContainer={getPopupContainerOverride || getPopupContainer}
           title={(value as ParameterValueType)?.name || ''}
           trigger={['hover']}
         >

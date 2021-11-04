@@ -35,6 +35,7 @@ export type OperatorsProps = {
   items: OperatorsItem[];
   texts?: Partial<OperatorTexts>;
   opened?: boolean;
+  getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
 };
 
 export type OperatorsDropdownProps = {
