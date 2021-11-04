@@ -4,7 +4,6 @@ import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Tooltip from '@synerise/ds-tooltip';
-import { getPopupContainer } from '@synerise/ds-utils';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
@@ -51,7 +50,7 @@ const ParameterInput: React.FC<InputProps> = ({
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={(): HTMLElement => document.body}
         overlay={
           <ParameterDropdown
             setDropdownVisible={setDropdownVisible}
@@ -62,7 +61,11 @@ const ParameterInput: React.FC<InputProps> = ({
           />
         }
       >
-        <Tooltip title={(value as ParameterValueType)?.name || ''} trigger={['hover']}>
+        <Tooltip
+          getPopupContainer={(): HTMLElement => document.body}
+          title={(value as ParameterValueType)?.name || ''}
+          trigger={['hover']}
+        >
           <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
             <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
             <Value>{(value as ParameterValueType)?.name || buttonLabel}</Value>

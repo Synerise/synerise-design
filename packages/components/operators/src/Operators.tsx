@@ -5,7 +5,6 @@ import Icon from '@synerise/ds-icon';
 import { AngleDownS } from '@synerise/ds-icon/dist/icons';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
-import { getPopupContainer } from '@synerise/ds-utils';
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
@@ -39,7 +38,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={(): HTMLElement => document.body}
         overlay={
           <OperatorsDropdown
             value={value}
@@ -51,7 +50,11 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
           />
         }
       >
-        <Tooltip title={(value as OperatorsItem)?.name || ''} trigger={['hover']}>
+        <Tooltip
+          getPopupContainer={(): HTMLElement => document.body}
+          title={(value as OperatorsItem)?.name || ''}
+          trigger={['hover']}
+        >
           <Button
             type="secondary"
             mode={value ? 'two-icons' : 'label-icon'}
