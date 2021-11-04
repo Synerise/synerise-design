@@ -7053,6 +7053,13 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-button@^0.13.16", "@synerise/ds-button@^0.13.28":
+  version "0.13.67"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.13.67.tgz#747550c88b93fcaa90e4c76e670215d27ad32355"
+  integrity sha512-AUzU/Dg6Vu7Ez+Yl1nuCasxB1EoJTiiYsj2G6gFkBL/+YcBoYPFD0PxfI/uKAlGlusFcPhSryylqQ8c5DeMHrQ==
+  dependencies:
+    "@synerise/ds-icon" "^0.45.0"
+
 "@synerise/ds-button@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.14.0.tgz#637c12c6536a88f8bdd904bb3da6a6b092a58417"
@@ -7060,10 +7067,22 @@
   dependencies:
     "@synerise/ds-icon" "^0.45.1"
 
+"@synerise/ds-button@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-button/-/ds-button-0.15.0.tgz#49d09c7e655d98b105f5c505c24a4e236b400c52"
+  integrity sha512-ndsS9ujWTjBVRPN3YfWXCrG0YguKrkoefPvaX7IJ+BZhg+iEO8Ot6DNoOBakmpaBxiR4S1EYUvaUCMu5CAnitA==
+  dependencies:
+    "@synerise/ds-icon" "^0.45.2"
+
 "@synerise/ds-divider@^0.3.14":
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.3.14.tgz#704f5e0edec6d9d7540c48ba451befef40660ca0"
   integrity sha512-QGX4QinvKhGLKuQu+S6ftTUsW3kgoQJM0cKm9wtkMIiwvRyNd37k6Q9PoVk3Kh+UdSq/jB/l8kmL1Dhm84XL4w==
+
+"@synerise/ds-divider@^0.4.41":
+  version "0.4.74"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-divider/-/ds-divider-0.4.74.tgz#21e0a260442377e905e19a933b6bea241f27c5b9"
+  integrity sha512-0rZgr34wIoZvoda5mppS7EUV2HgkpRJmlbUhywNWhGkP/QHvACpb6XyGnTcloQ4cYp8YBYKyIFTekrpek0b6eA==
 
 "@synerise/ds-dropdown@^0.10.10":
   version "0.10.21"
@@ -7103,6 +7122,16 @@
   version "0.39.0"
   resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.39.0.tgz#4b021e9bcf0d6cc837e39a72945b115841c1b970"
   integrity sha512-67RAaYDswgtjJlSOYk0V7wbBFE2VTssBcuLUz+kDk8yi4Uv7TrRixgQpUjdt6SCIrW7IUgvWewAg7InJsXpvgA==
+
+"@synerise/ds-icon@^0.44.0":
+  version "0.44.11"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.44.11.tgz#791106b37c12270a6fedf8953388428c3e590605"
+  integrity sha512-/jBhFV20S/M+RdcLXd3XhGhTvYCOsUmqXkBelCGZfRmQitu5zMk1hrB2KxWEynaCuFol+7ygw3NL5KkfguEedw==
+
+"@synerise/ds-icon@^0.45.0", "@synerise/ds-icon@^0.45.2":
+  version "0.45.2"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.45.2.tgz#acea4dd8b88eb8d8beb5ebc34f8c7782daffe32d"
+  integrity sha512-t8Rh8IxKaq2xTyuWrebJNvLiM50a9HZXbWoyGFrNyrQT88heeW/aWtaKKc99N1I0n+uvxBzFhLp7nNEGmFxrmA==
 
 "@synerise/ds-icon@^0.45.1":
   version "0.45.1"
@@ -7178,6 +7207,14 @@
     "@synerise/ds-button" "^0.13.28"
     "@synerise/ds-input" "^0.16.21"
     "@synerise/ds-typography" "^0.10.2"
+
+"@synerise/ds-tooltip@^0.10.16":
+  version "0.10.55"
+  resolved "https://registry.yarnpkg.com/@synerise/ds-tooltip/-/ds-tooltip-0.10.55.tgz#eeada990f0d346b6ecb2a91fc64be609b756db5e"
+  integrity sha512-BaevwdaadbZ/7227RrXZjMB3YOs/5inMDJmD6x23GvQM3cumY4G1FzpQPsOFdp3dGBOaLnqkxQsMFInfsS2oOQ==
+  dependencies:
+    "@synerise/ds-button" "^0.15.0"
+    "@synerise/ds-icon" "^0.45.2"
 
 "@synerise/ds-tooltip@^0.10.54":
   version "0.10.54"
@@ -10245,6 +10282,21 @@ cheerio@^1.0.0-rc.3:
     lodash "^4.15.0"
     parse5 "^3.0.1"
 
+"chokidar@>=2.0.0 <4.0.0", chokidar@^3.4.0:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
+  integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
+  dependencies:
+    anymatch "~3.1.2"
+    braces "~3.0.2"
+    glob-parent "~5.1.2"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 chokidar@^2.0.2, chokidar@^2.0.4, chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -10278,21 +10330,6 @@ chokidar@^3.3.0:
     readdirp "~3.3.0"
   optionalDependencies:
     fsevents "~2.1.2"
-
-chokidar@^3.4.0:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
-  integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
-  dependencies:
-    anymatch "~3.1.2"
-    braces "~3.0.2"
-    glob-parent "~5.1.2"
-    is-binary-path "~2.1.0"
-    is-glob "~4.0.1"
-    normalize-path "~3.0.0"
-    readdirp "~3.6.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
 
 chokidar@^3.4.1:
   version "3.4.2"
@@ -11540,6 +11577,13 @@ dargs@^4.0.1:
   integrity sha1-A6nbtLXC8Tm/FK5T8LiipqhvThc=
   dependencies:
     number-is-nan "^1.0.0"
+
+dart-sass@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/dart-sass/-/dart-sass-1.25.0.tgz#e00c0348118916e9d81cb485297184c131af1dad"
+  integrity sha512-syNOAstJXAmvD3RifcDk3fiPMyYE2fY8so6w9gf2/wNlKpG0zyH+oiXubEYVOy1WAWkzOc72pbAxwx+3OU4JJA==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
 
 dashdash@^1.12.0:
   version "1.14.1"
