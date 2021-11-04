@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.10.2...@synerise/ds-condition@0.11.0) (2021-11-04)
+
+
+### Features
+
+* **condition:** add custom factor component ([d1205bc](https://github.com/Synerise/synerise-design/commit/d1205bce20f4154e7596bcd33ad127557bc0ad99))
+
+
+
+
+
 ## [0.10.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.10.0...@synerise/ds-condition@0.10.2) (2021-10-26)
 
 
