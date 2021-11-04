@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.12.1-alpha.1",
+  "version": "0.12.1-alpha.2",
   "scripts": {
     "postinstall": "node ../../../scripts/docs/componentmd.js",
     "docs-watch": "npm run postinstall && node ../../../scripts/docs/watch.js",
@@ -22,11 +22,11 @@
     "@docusaurus/preset-classic": "^2.0.0-alpha.48",
     "classnames": "^2.2.6",
     "docusaurus-plugin-sass": "^0.2.1",
-    "sass": "^1.43.4",
     "global": "4.4.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "sass": "^1.43.4"
   }
 }
