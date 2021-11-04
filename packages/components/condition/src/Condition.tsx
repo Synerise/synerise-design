@@ -246,6 +246,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     currentField,
     removeCondition,
     addCondition,
+    getPopupContainerOverride,
   ]);
 };
 

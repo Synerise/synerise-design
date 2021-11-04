@@ -119,6 +119,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       />
     ),
     [
+      getPopupContainerOverride,
       addCondition,
       currentConditionId,
       currentField,
