@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.54...@synerise/ds-date-range-picker@0.10.0) (2021-10-26)
+
+
+### Features
+
+* **date-range-picker:** update definition of lifetime relative value ([1eb4fd4](https://github.com/Synerise/synerise-design/commit/1eb4fd4d4ca82be50937d94b29d606a453209da0))
+
+
+
+
+
+## [0.9.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.54...@synerise/ds-date-range-picker@0.9.55) (2021-10-19)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
 ## [0.9.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.9.53...@synerise/ds-date-range-picker@0.9.54) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

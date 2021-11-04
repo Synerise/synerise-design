@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.15.0...docs@0.16.0) (2021-11-04)
+
+
+### Features
+
+* **condition:** add custom factor component ([d1205bc](https://gitlab.synerise.com/Frontend/synerise-design/commit/d1205bce20f4154e7596bcd33ad127557bc0ad99))
+
+
+
+
+
+# [0.15.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.13.3...docs@0.15.0) (2021-10-26)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix styles ([f81193a](https://gitlab.synerise.com/Frontend/synerise-design/commit/f81193a5ce6b4a06a7905f8f9da7ea94a6f08061))
+
+
+### Features
+
+* **docs:** change left box into getting started ([594912f](https://gitlab.synerise.com/Frontend/synerise-design/commit/594912f805c645c2985ea8debcba9dbc42f64272))
+* **navbar:** adddocs ([0b7bbd7](https://gitlab.synerise.com/Frontend/synerise-design/commit/0b7bbd74ae113401e2dedbe0c175460e4ca42620))
+
+
+
+
+
+# [0.14.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.13.3...docs@0.14.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix styles ([f81193a](https://gitlab.synerise.com/Frontend/synerise-design/commit/f81193a5ce6b4a06a7905f8f9da7ea94a6f08061))
+
+
+### Features
+
+* **docs:** change left box into getting started ([594912f](https://gitlab.synerise.com/Frontend/synerise-design/commit/594912f805c645c2985ea8debcba9dbc42f64272))
+* **navbar:** adddocs ([0b7bbd7](https://gitlab.synerise.com/Frontend/synerise-design/commit/0b7bbd74ae113401e2dedbe0c175460e4ca42620))
+
+
+
+
+
 ## [0.13.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.13.2...docs@0.13.3) (2021-10-19)
 
 

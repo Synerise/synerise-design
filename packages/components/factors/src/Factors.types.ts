@@ -15,7 +15,7 @@ export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = {
   type: string;
-  icon: string;
+  icon: React.ReactNode;
   name: string;
   id: React.ReactText;
   groupId?: React.ReactText;

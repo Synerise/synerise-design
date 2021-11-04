@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-unordered-list",
-  "version": "0.1.45",
+  "version": "0.1.47",
   "description": "UnorderedList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.45.0",
-    "@synerise/ds-input": "^0.17.43"
+    "@synerise/ds-icon": "^0.45.2",
+    "@synerise/ds-input": "^0.17.45"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

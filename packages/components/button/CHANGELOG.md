@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.67...@synerise/ds-button@0.15.0) (2021-10-26)
+
+
+### Features
+
+* **button:** add button min width ([bd8c410](https://github.com/synerise/synerise-design/commit/bd8c410f73cc2779cfe0596d6e866b374ec4a06b))
+
+
+
+
+
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.67...@synerise/ds-button@0.14.0) (2021-10-19)
+
+
+### Features
+
+* **button:** add button min width ([bd8c410](https://github.com/synerise/synerise-design/commit/bd8c410f73cc2779cfe0596d6e866b374ec4a06b))
+
+
+
+
+
 ## [0.13.67](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.13.66...@synerise/ds-button@0.13.67) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-button

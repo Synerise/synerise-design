@@ -77,8 +77,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   const addConditionButton = React.useMemo(() => {
     return (
       addCondition &&
-      maxConditionsLength !== undefined &&
-      step.conditions.length < maxConditionsLength && (
+      (maxConditionsLength === undefined || step.conditions.length < maxConditionsLength) && (
         <AddCondition
           texts={text}
           stepId={step.id}

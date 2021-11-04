@@ -1,4 +1,4 @@
-import { RelativeDateRange, RelativeUnits } from './date.types';
+import { AbsoluteDateRange, RelativeDateRange, RelativeUnits } from './date.types';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
@@ -197,12 +197,14 @@ export const RELATIVE_PRESETS: RelativeDateRange[] = [
     offset: { type: YEARS, value: 1 },
     duration: { type: YEARS, value: 1 },
   },
+];
+
+export const ABSOLUTE_PRESETS: AbsoluteDateRange[] = [
   {
     key: 'ALL_TIME',
     translationKey: 'allTime',
-    type: RELATIVE,
-    offset: { type: SECONDS, value: 1 },
-    duration: { type: YEARS, value: 100 },
+    type: ABSOLUTE,
+    future: false,
   },
 ];
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.7.51...@synerise/ds-item-picker@0.7.53) (2021-10-26)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
+## [0.7.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.7.51...@synerise/ds-item-picker@0.7.52) (2021-10-19)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
 ## [0.7.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.7.50...@synerise/ds-item-picker@0.7.51) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

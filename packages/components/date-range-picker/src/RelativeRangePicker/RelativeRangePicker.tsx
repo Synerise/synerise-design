@@ -23,7 +23,7 @@ import { CUSTOM_RANGE_KEY } from '../constants';
 
 class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentProps, State> {
   static defaultProps: Partial<Props> = {
-    ranges: CONST.RELATIVE_PRESETS,
+    ranges: [...CONST.RELATIVE_PRESETS, ...CONST.ABSOLUTE_PRESETS],
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
     showCustomRange: true,
@@ -48,6 +48,15 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     const currentRange = value && value.type === CONST.RELATIVE ? getRelativePresetForRange(value) : DEFAULT_RANGE;
     state.currentRange = currentRange as RelativeDateRange;
     state.groupedRanges = ranges;
+    if (state.groupedRanges) {
+      if (!relativeModes?.includes('PAST')) {
+        state.groupedRanges = state.groupedRanges.filter(preset => preset.future);
+      }
+      if (!relativeModes?.includes('FUTURE')) {
+        state.groupedRanges = state.groupedRanges.filter(preset => !preset.future);
+      }
+    }
+
     if (
       future !== prevState.future ||
       past !== prevState.past ||
