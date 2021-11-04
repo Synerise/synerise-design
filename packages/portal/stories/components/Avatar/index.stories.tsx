@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { text, select, boolean, object } from '@storybook/addon-knobs';
+import { text, select, boolean } from '@storybook/addon-knobs';
 import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
-import Icon from '@synerise/ds-icon';
+import Icon, { MailM, Thunder2M, UserCircleM } from '@synerise/ds-icon';
 import theme from "@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme";
-import MailM from "@synerise/ds-icon/dist/icons/MailM";
-import { Thunder2M, UserCircleM } from "@synerise/ds-icon/dist/icons";
 import { action } from '@storybook/addon-actions';
 
 import { sizes, shapes, backgroundColorHue, backgroundColors, iconColors, image as anonymImage } from './constants';
