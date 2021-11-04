@@ -20,6 +20,7 @@ export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   onTitleClick?: () => void;
   checked?: boolean;
   size?: 'default' | 'large';
+  clickable?: boolean;
 }
 export interface SubMenuState {
   uuidKey: string;

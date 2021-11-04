@@ -1,22 +1,22 @@
 import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, submenu, suffixType } from '../dataset';
-import { getDefaultProps } from '../index.stories';
 
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
-import { useOnClickOutside } from '@synerise/ds-utils';
 
 const withSubmenu = () => {
-  const defaultProps = getDefaultProps();
+  const disabled = boolean('Set disabled', false);
   const prefixKnob = select('Set prefix type', [prefixType.singleIcon, prefixType.none], prefixType.none);
   const suffixKnob = select('Set suffix type', [suffixType.none, suffixType.delete, suffixType.check], suffixType.none);
   const orderedChildren = boolean('Set children ordered', true);
   const orderedParents = boolean('Set parents ordered', true);
+  const clickableChildren = boolean('Set children clickable', true);
   const props = {
     dataSource: [
       {
         text: 'Parent 1',
         key: 'Parent 1',
+        clickable: true,
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
         ordered: orderedParents,
@@ -27,6 +27,7 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
           {
             text: 'Child 2',
@@ -34,6 +35,7 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
           {
             text: 'Child 3',
@@ -41,12 +43,14 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
         ],
       },
       {
         text: 'Parent 2',
         key: 'Parent 2',
+        clickable: true,
         suffixel: renderSuffix(suffixKnob),
         prefixel: renderPrefixIcon(prefixKnob),
         ordered: orderedParents,
@@ -57,6 +61,7 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
           {
             text: 'Child 2',
@@ -64,6 +69,7 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
           {
             text: 'Child 3',
@@ -71,6 +77,7 @@ const withSubmenu = () => {
             suffixel: renderSuffix(suffixKnob),
             prefixel: renderPrefixIcon(prefixKnob),
             ordered: orderedChildren,
+            clickable: clickableChildren,
           },
         ],
       },
@@ -95,7 +102,7 @@ const withSubmenu = () => {
   );
   return (
     <div style={{ width: '200px' }}>
-      <Menu {...defaultProps} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} ordered />
+      <Menu disabled={disabled} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} ordered />
     </div>
   );
 };

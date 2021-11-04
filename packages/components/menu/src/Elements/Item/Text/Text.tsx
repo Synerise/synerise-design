@@ -35,6 +35,7 @@ const Text: React.FC<BasicItemProps> = ({
   indentLevel,
   ordered,
   checked,
+  clickable,
   size = 'default',
   ...rest
 }) => {
@@ -107,6 +108,7 @@ const Text: React.FC<BasicItemProps> = ({
       style={style}
       indentLevel={Number(indentLevel)}
       ordered={ordered}
+      clickable={clickable}
       size={size}
       {...rest}
       className={className}
@@ -115,7 +117,12 @@ const Text: React.FC<BasicItemProps> = ({
         <S.Inner>
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (
-              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
+              <S.PrefixelWrapper
+                className="ds-menu-prefix"
+                visible={shouldRenderPrefix}
+                disabled={disabled}
+                clickable={clickable}
+              >
                 {renderPrefixElement(hovered)}
               </S.PrefixelWrapper>
             )}
@@ -130,7 +137,7 @@ const Text: React.FC<BasicItemProps> = ({
             )}
             <S.ContentDivider />
             {(!!suffixElement || !!checked) && (
-              <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
+              <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled} clickable={clickable}>
                 {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
                 {suffixElement}
               </S.SuffixWraper>

@@ -26,6 +26,7 @@ export interface BasicItemProps {
   ordered?: boolean;
   key?: React.ReactText;
   checked?: boolean;
+  clickable?: boolean;
   size?: 'default' | 'large';
   timeToHideTooltip?: number;
 }

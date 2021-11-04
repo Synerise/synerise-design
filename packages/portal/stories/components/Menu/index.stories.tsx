@@ -68,6 +68,7 @@ export const getSuffixTrigger = () => {
 
 export const getDefaultProps = () => ({
   disabled: boolean('Set disabled', false),
+  clickable: boolean('Set clickable', true),
 });
 
 export const attachKnobsToDataSource = data =>
@@ -75,6 +76,7 @@ export const attachKnobsToDataSource = data =>
     ...item,
     text: text('Set text', TEXT_PLACEHOLDER),
     disabled: boolean('Set disabled', false),
+    clickable: boolean('Set clickable', true),
     ...(item.description && { description: text('Set description', DESCRIPTION_PLACEHOLDER) }),
     ...(item.copyable && { timeToHideTooltip: number("Time to hide tooltip(ms)",3000)})
   }));

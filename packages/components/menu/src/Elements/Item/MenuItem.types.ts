@@ -34,4 +34,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   menuItemKey?: React.ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
+  clickable?: boolean;
 }
