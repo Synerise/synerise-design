@@ -173,7 +173,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
-        !props.disabled && props.clickable && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
+        !props.disabled && !!props.clickable && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
       color: ${(props): string => props.theme.palette['grey-700']};
       ${(props): string | false =>
         !!props.clickable &&
