@@ -142,9 +142,19 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       {updateStepName && stepHeader}
       <S.StepConditions withoutStepName={updateStepName === undefined}>
         <S.Subject>
-          {step.subject && <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step.id)} />}
+          {step.subject && (
+            <Subject
+              {...step.subject}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onSelectItem={(value): void => selectSubject(value, step.id)}
+            />
+          )}
           {step.context && (
-            <ContextSelector {...step.context} onSelectItem={(value): void => selectContext(value, step.id)} />
+            <ContextSelector
+              {...step.context}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onSelectItem={(value): void => selectContext(value, step.id)}
+            />
           )}
         </S.Subject>
         <S.ConditionRows>

@@ -15,6 +15,7 @@ const Subject: React.FC<SubjectProps> = ({
   onSelectItem,
   onShowPreview,
   type = 'parameter',
+  getPopupContainerOverride,
   texts,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -27,6 +28,7 @@ const Subject: React.FC<SubjectProps> = ({
     <S.Subject>
       <Dropdown
         visible={dropdownVisible}
+        getPopupContainer={getPopupContainerOverride}
         overlay={
           <SubjectList
             texts={texts}

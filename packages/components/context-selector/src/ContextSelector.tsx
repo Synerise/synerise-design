@@ -29,6 +29,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   hasMoreItems,
   onFetchData,
   onOpen,
+  getPopupContainerOverride,
   type,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -89,7 +90,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   return (
     <div data-popup-container>
       <Dropdown
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         trigger={trigger}
         visible={dropdownVisible}
         overlay={
