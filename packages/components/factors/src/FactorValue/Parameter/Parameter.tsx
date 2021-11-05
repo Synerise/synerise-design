@@ -17,6 +17,7 @@ const ParameterInput: React.FC<InputProps> = ({
   texts,
   opened,
   preventAutoloadData,
+  getPopupContainerOverride,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -51,7 +52,7 @@ const ParameterInput: React.FC<InputProps> = ({
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <ParameterDropdown
             setDropdownVisible={setDropdownVisible}
@@ -62,7 +63,11 @@ const ParameterInput: React.FC<InputProps> = ({
           />
         }
       >
-        <Tooltip title={(value as ParameterValueType)?.name || ''} trigger={['hover']}>
+        <Tooltip
+          getPopupContainer={getPopupContainerOverride || getPopupContainer}
+          title={(value as ParameterValueType)?.name || ''}
+          trigger={['hover']}
+        >
           <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
             <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
             <Value>{(value as ParameterValueType)?.name || buttonLabel}</Value>

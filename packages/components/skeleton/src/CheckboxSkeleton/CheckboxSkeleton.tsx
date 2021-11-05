@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Checkbox from '@synerise/ds-checkbox/dist';
 import { v4 as uuid } from 'uuid';
+import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxSkeletonProps } from './CheckboxSkeleton.types';
 import * as S from './CheckboxSkeleton.styles';
 

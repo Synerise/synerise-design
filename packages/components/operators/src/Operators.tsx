@@ -10,7 +10,15 @@ import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
 
-const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, texts, opened }) => {
+const Operators: React.FC<OperatorsProps> = ({
+  value,
+  onChange,
+  groups,
+  items,
+  texts,
+  opened,
+  getPopupContainerOverride,
+}) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const text = React.useMemo(
@@ -39,7 +47,7 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <OperatorsDropdown
             value={value}
@@ -51,7 +59,11 @@ const Operators: React.FC<OperatorsProps> = ({ value, onChange, groups, items, t
           />
         }
       >
-        <Tooltip title={(value as OperatorsItem)?.name || ''} trigger={['hover']}>
+        <Tooltip
+          getPopupContainer={getPopupContainerOverride || getPopupContainer}
+          title={(value as OperatorsItem)?.name || ''}
+          trigger={['hover']}
+        >
           <Button
             type="secondary"
             mode={value ? 'two-icons' : 'label-icon'}

@@ -27,6 +27,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   selectParameter,
   setStepConditionFactorType,
   setStepConditionFactorValue,
+  getPopupContainerOverride,
   currentStepId,
   currentConditionId,
   currentField,
@@ -109,6 +110,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         currentField={currentField}
         selectParameter={selectParameter}
         selectOperator={selectOperator}
+        getPopupContainerOverride={getPopupContainerOverride}
         setStepConditionFactorType={setStepConditionFactorType}
         setStepConditionFactorValue={setStepConditionFactorValue}
         texts={text}
@@ -116,6 +118,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       />
     ),
     [
+      getPopupContainerOverride,
       addCondition,
       currentConditionId,
       currentField,

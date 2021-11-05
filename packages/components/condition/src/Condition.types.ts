@@ -33,6 +33,7 @@ export type ConditionTexts = {
 
 export type ConditionProps = {
   steps: ConditionStep[];
+  getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   removeStep?: (stepId: React.ReactText) => void;

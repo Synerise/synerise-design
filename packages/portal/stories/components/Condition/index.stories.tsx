@@ -228,6 +228,7 @@ const stories = {
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
+          getPopupContainerOverride={(): HTMLElement => document.body}
           autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import {
   COLUMNS_WITH_SKELETON,
@@ -65,7 +65,7 @@ const getSkeletonDefaultProps = () => ({
 const stories = {
   withSkeleton: () => ({
     ...getSkeletonDefaultProps(),
-    columns: renderWithIconInHeaders(COLUMNS_WITH_SKELETON as Column[], false),
+    columns: renderWithIconInHeaders(COLUMNS_WITH_SKELETON as unknown as Column[], false),
   }),
 };
 

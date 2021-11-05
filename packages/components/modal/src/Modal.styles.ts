@@ -26,7 +26,10 @@ export const Title = styled(Typography.Title)`
 `;
 
 export const Description = styled.div`
+  font-size: 13px;
   font-weight: normal;
+  line-height: 18px;
+  color: ${(props): string => props.theme.palette['grey-600']};
   display: block;
   padding: 12px 0 0;
   margin: 14px 0 0;
