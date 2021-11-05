@@ -7,4 +7,5 @@ export type CopyActionProps = {
   onClick: () => void;
   icon: React.ReactNode;
   iconSize?: number;
+  timeToHideTooltip?: number;
 };

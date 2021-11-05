@@ -85,6 +85,7 @@ export type FactorsProps = {
   availableFactorTypes?: FactorType[];
   selectedFactorType: FactorType;
   defaultFactorType: FactorType;
+  getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   textType?: 'autocomplete' | 'expansible' | 'default' | string;
@@ -130,6 +131,7 @@ export type FactorValueProps = Pick<
   | 'loading'
   | 'factorKey'
   | 'preventAutoloadData'
+  | 'getPopupContainerOverride'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -137,7 +139,13 @@ export type FactorValueProps = Pick<
 
 export type InputProps = Pick<
   FactorsProps,
-  'value' | 'parameters' | 'autocompleteText' | 'withoutTypeSelector' | 'textType' | 'opened'
+  | 'value'
+  | 'parameters'
+  | 'autocompleteText'
+  | 'withoutTypeSelector'
+  | 'textType'
+  | 'opened'
+  | 'getPopupContainerOverride'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

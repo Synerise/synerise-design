@@ -22,6 +22,7 @@ export type ConditionRowProps = {
   selectOperator: ConditionProps['onChangeOperator'];
   setStepConditionFactorType: ConditionProps['onChangeFactorType'];
   setStepConditionFactorValue: ConditionProps['onChangeFactorValue'];
+  getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
 };

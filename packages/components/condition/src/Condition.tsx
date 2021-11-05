@@ -46,6 +46,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     onChangeFactorType,
     onChangeFactorValue,
     onUpdateStepName,
+    getPopupContainerOverride,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -192,6 +193,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 step={step}
                 texts={texts}
                 index={index}
+                getPopupContainerOverride={getPopupContainerOverride}
                 draggableEnabled={draggableEnabled}
                 selectOperator={selectOperator}
                 selectParameter={selectParameter}
@@ -244,6 +246,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     currentField,
     removeCondition,
     addCondition,
+    getPopupContainerOverride,
   ]);
 };
 
