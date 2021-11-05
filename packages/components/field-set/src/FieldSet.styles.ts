@@ -34,7 +34,7 @@ export const FieldSetTitle = styled.div<{ description?: boolean }>`
 `;
 export const ComponentWrapper = styled.div`
   display: flex;
-  padding: 16px 4px;
+  padding: 16px 0px;
 `;
 
 export const Description = styled.div<{ description?: boolean  }>`
