@@ -18,6 +18,7 @@ const Operators: React.FC<OperatorsProps> = ({
   texts,
   opened,
   getPopupContainerOverride,
+  onActivate,
 }) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -43,10 +44,20 @@ const Operators: React.FC<OperatorsProps> = ({
     }
   }, [opened]);
 
+  const handleClick = React.useCallback(() => {
+    setDropdownVisible(true);
+    onActivate && onActivate();
+  }, [setDropdownVisible, onActivate]);
+
+  const onDropdownVisibilityChange = React.useCallback((newValue: boolean) => newValue && onActivate && onActivate(), [
+    onActivate,
+  ]);
+
   return (
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
+        onVisibleChange={onDropdownVisibilityChange}
         getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <OperatorsDropdown
@@ -64,11 +75,7 @@ const Operators: React.FC<OperatorsProps> = ({
           title={(value as OperatorsItem)?.name || ''}
           trigger={['hover']}
         >
-          <Button
-            type="secondary"
-            mode={value ? 'two-icons' : 'label-icon'}
-            onClick={(): void => setDropdownVisible(true)}
-          >
+          <Button type="secondary" mode={value ? 'two-icons' : 'label-icon'} onClick={handleClick}>
             {value && <Icon component={(value as OperatorsItem).icon} />}
             <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
             <Icon component={<AngleDownS />} />

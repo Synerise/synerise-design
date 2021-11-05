@@ -16,6 +16,7 @@ const Subject: React.FC<SubjectProps> = ({
   onShowPreview,
   type = 'parameter',
   getPopupContainerOverride,
+  onActivate,
   texts,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -24,11 +25,16 @@ const Subject: React.FC<SubjectProps> = ({
     return type && ['event', 'context'].indexOf(type) >= 0 ? 'cyan' : 'green';
   }, [type]);
 
+  const onDropdownVisibilityChange = React.useCallback((value: boolean) => value && onActivate && onActivate(), [
+    onActivate,
+  ]);
+
   return (
     <S.Subject>
       <Dropdown
         visible={dropdownVisible}
         getPopupContainer={getPopupContainerOverride}
+        onVisibleChange={onDropdownVisibilityChange}
         overlay={
           <SubjectList
             texts={texts}

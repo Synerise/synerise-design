@@ -167,7 +167,6 @@ export const ConditionRow = styled.div<{ index: number }>`
   justify-content: flex-start;
   padding-bottom: 16px;
   min-width: 780px;
-  z-index: ${(props): number => 10000 - props.index};
 
   ${ConditionWrapper} {
     margin-right: 8px;
