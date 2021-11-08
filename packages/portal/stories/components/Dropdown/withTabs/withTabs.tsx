@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
+import Icon, { SearchM, BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
-import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon/dist/icons';
 import * as S from './withTabs.styles';
 import { boolean, select } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';

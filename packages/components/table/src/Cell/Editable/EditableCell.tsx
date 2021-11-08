@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { EditNolineS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+
+import Icon, { EditNolineS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
 import { ChangeEvent } from 'react';
 import * as S from './EditableCell.styles';

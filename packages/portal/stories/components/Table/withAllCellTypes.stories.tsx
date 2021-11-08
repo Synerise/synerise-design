@@ -3,20 +3,18 @@ import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
-import { AddM, MailM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
 import { TagShape } from '@synerise/ds-tags';
 import {
   COLUMNS,
   COLUMNS_WITH_AVATARS,
   COLUMNS_WITH_ICONS,
   COLUMNS_WITH_LABELS,
-  COLUMNS_WITH_SKELETON,
   COLUMNS_WITH_STATUSES,
   COLUMNS_WITH_TRIGGERS,
   RELATIONS,
 } from './content/withAllCellTypes.data';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
+import Icon, { AddM, MailM } from '@synerise/ds-icon';
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;

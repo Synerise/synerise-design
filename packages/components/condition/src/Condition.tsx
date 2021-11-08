@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useIntl } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 
-import { Add3M } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { Add3M } from '@synerise/ds-icon';
+
 import Button from '@synerise/ds-button';
 import { NOOP } from '@synerise/ds-utils';
 import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';

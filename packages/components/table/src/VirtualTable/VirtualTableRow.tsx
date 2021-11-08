@@ -25,8 +25,8 @@ interface Props<T> {
 const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], column: DSColumnType<T>): boolean =>
   !!columns.find((c): boolean => c.key === column.key && !!c.sortOrder);
 
-const calculateToPixelsIfDefined = (value: string | number | undefined | null):  number | undefined | null =>
-  value ? calculatePixels(value) : value as number;
+const calculateToPixelsIfDefined = (value: string | number | undefined | null): number | undefined | null =>
+  value ? calculatePixels(value) : (value as number);
 class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
   render(): React.ReactNode {
     const { index, style, data } = this.props;

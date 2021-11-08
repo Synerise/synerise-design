@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 
-import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import Icon, { FileM } from '@synerise/ds-icon';
 
 import List from '@synerise/ds-list';
 import Checkbox from '@synerise/ds-checkbox';

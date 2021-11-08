@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {
+import Icon, {
   CloseM,
   WarningFillM,
   UserAddM,
@@ -7,9 +7,8 @@ import {
   HelpFillM,
   UserUpM,
   UpdateDataM, NotificationsReceiveM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
 import * as S from './SectionMessage.styles';
 import { Props,AlertTypes } from './SectionMessage.types';
 

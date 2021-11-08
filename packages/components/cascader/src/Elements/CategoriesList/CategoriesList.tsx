@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS } from '@synerise/ds-icon';
 import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
 import { hasNestedCategories } from '../../utlis';

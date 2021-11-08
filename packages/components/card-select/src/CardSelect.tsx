@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withTheme } from 'styled-components';
-import Icon from '@synerise/ds-icon';
-import Check3M from '@synerise/ds-icon/dist/icons/Check3M';
+import Icon, { Check3M } from '@synerise/ds-icon';
+
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './CardSelect.styles';
 import { CardSelectProps } from './CardSelect.types';

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withTheme } from 'styled-components';
-import {
+
+import Icon, {
   CheckS,
   CircleShapeM,
   OptionHorizontalM,
@@ -8,8 +9,7 @@ import {
   EditM,
   DuplicateM,
   TrashM,
-} from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+} from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
 import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
@@ -17,10 +17,12 @@ import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Menu from '@synerise/ds-menu';
-import * as S from '../ContentItem/ContentItem.styles';
-import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
+
 import ItemName from '../ItemName/ItemName';
 import ItemMeta from '../ItemMeta/ItemMeta';
+
+import * as S from '../ContentItem/ContentItem.styles';
+import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
 import { FilterItemProps } from './FilterItem.types';
 
 const FilterItem: React.FC<FilterItemProps> = ({

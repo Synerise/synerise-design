@@ -1,8 +1,7 @@
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Popconfirm from '@synerise/ds-popconfirm';
-import Icon from '@synerise/ds-icon';
-import { CloseM, WarningFillM } from '@synerise/ds-icon/dist/icons';
+import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Alert from '@synerise/ds-alert';

@@ -1,4 +1,4 @@
-import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const FACTORS_TEXTS = {

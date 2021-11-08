@@ -1,12 +1,11 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
-import {
+import { select, text } from '@storybook/addon-knobs';
+import Icon, {
   Check3M, DuplicateS,
   InfoFillM,
   WarningFillM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
-import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import UnorderedList from '@synerise/ds-unordered-list';
 import Alert from '@synerise/ds-alert';

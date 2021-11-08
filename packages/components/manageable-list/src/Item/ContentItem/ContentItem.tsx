@@ -1,17 +1,18 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import DragHandleM from '@synerise/ds-icon/dist/icons/DragHandleM';
-import Button from '@synerise/ds-button';
-import { withTheme } from 'styled-components';
-import Dropdown from '@synerise/ds-dropdown';
-import { AngleBottomS, AngleTopS, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
 import AnimateHeight from 'react-animate-height';
+import { withTheme } from 'styled-components';
+
+import Icon, { DragHandleM, AngleBottomS, AngleTopS, OptionHorizontalM } from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
+import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
-import * as S from './ContentItem.styles';
+
 import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
-import { ContentItemProps } from './ContentItem.types';
 import ItemMeta from '../ItemMeta/ItemMeta';
+
+import { ContentItemProps } from './ContentItem.types';
+import * as S from './ContentItem.styles';
 
 const ContentItem: React.FC<ContentItemProps> = ({
   onRemove,

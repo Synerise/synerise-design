@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export const TabLabel = styled.span`
@@ -210,7 +210,7 @@ export const DefaultSuffixWrapper = styled.div`
   font-size: 13px;
   line-height: 10px;
   text-align: center;
- && .ant-badge-count {
-padding: 0 0 0 3px;
-}
+  && .ant-badge-count {
+    padding: 0 0 0 3px;
+  }
 `;

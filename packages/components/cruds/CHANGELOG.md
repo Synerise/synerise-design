@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.2.49...@synerise/ds-cruds@0.2.50) (2021-11-05)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
 ## [0.2.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.2.47...@synerise/ds-cruds@0.2.49) (2021-10-26)
 
 **Note:** Version bump only for package @synerise/ds-cruds

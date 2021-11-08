@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import { AlertSize, FontSize } from './AlertInfo.types';
 
 const FONT_SIZE_DEFAULT = 14;

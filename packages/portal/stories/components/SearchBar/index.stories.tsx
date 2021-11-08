@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import SearchBar from '@synerise/ds-search-bar';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
-import Icon from '@synerise/ds-icon';
+import Icon, { SearchM } from '@synerise/ds-icon';
 import { boolean, text } from '@storybook/addon-knobs';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 

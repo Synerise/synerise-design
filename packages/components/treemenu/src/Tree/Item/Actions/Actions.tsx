@@ -1,8 +1,7 @@
 import React, { MouseEvent } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import {
+import Icon, {
   EditM,
   DuplicateM,
   CopyClipboardM,
@@ -13,7 +12,7 @@ import {
   ShowCheckM,
   ShowBlockM,
   InfoFillS,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 import { MenuInfo } from 'rc-menu/lib/interface';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

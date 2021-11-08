@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
+import Icon, { CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

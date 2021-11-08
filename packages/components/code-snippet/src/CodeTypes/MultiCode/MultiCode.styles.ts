@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Button from '@synerise/ds-button';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import {
   CodeSnippetWrapperSingle,
   BlockCodeWrapperSingle,

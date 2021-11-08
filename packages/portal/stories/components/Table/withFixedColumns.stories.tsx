@@ -6,9 +6,8 @@ import Table from '@synerise/ds-table';
 import { COLUMNS } from './content/withFixedColumns.data';
 import { withState } from '@dump247/storybook-state';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AddM } from '@synerise/ds-icon/dist/icons';
-import { Column, renderWithIconInHeaders } from './helpers/helpers';
+import Icon, { AddM } from '@synerise/ds-icon';
+import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 

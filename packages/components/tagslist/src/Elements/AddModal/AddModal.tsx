@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import Icon from '@synerise/ds-icon';
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import Icon, { Settings2M, InfoFillS, SearchM, Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import Menu from '@synerise/ds-menu';
 import SearchBar from '@synerise/ds-search-bar';
@@ -10,7 +9,6 @@ import CheckboxTristate from '@synerise/ds-checkbox-tristate';
 import Loader from '@synerise/ds-loader';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { Settings2M, InfoFillS, SearchM } from '@synerise/ds-icon/dist/icons';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';

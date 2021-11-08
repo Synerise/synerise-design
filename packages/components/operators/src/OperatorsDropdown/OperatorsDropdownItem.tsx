@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
+
+import Icon, { CheckS } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
+
 import { OperatorsGroup, OperatorsItem } from '../Operator.types';
 
 interface Props {

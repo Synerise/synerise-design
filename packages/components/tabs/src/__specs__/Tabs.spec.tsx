@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Tabs from '../Tabs';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
+import { SearchM } from '@synerise/ds-icon';
 
 const tabs = [
   {

@@ -1,9 +1,6 @@
-import Icon from '@synerise/ds-icon';
-import { WarningFillM, InfoFillM, Check3M, HelpFillM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
-import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
-import UpdateDataM from '@synerise/ds-icon/dist/icons/UpdateDataM';
-import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
+import Icon, { UserCheckM, UpdateDataM, WarningFillM, InfoFillM, Check3M, HelpFillM, NotificationsReceiveM } from '@synerise/ds-icon';
+
 import * as S from './AlertSemanticColor.styles';
 import { AlertType, Props } from './AlertSemanticColor.types';
 

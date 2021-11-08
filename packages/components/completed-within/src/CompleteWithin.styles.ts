@@ -1,6 +1,6 @@
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
 import Button from '@synerise/ds-button';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 export const TriggerButton = styled(Button)`
   transition: padding 0s;

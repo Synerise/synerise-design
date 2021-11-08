@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.77](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.4.72-alpha.3...@synerise/ds-drawer@0.4.77) (2021-11-05)
+
+**Note:** Version bump only for package @synerise/ds-drawer
+
+
+
+
+
 ## [0.4.76](https://github.com/Synerise/synerise-design/compare/@synerise/ds-drawer@0.4.75...@synerise/ds-drawer@0.4.76) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-drawer

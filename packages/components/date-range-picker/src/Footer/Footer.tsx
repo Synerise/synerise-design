@@ -3,8 +3,7 @@ import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { ArrowRightS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 import fnsFormat from '../dateUtils/format';

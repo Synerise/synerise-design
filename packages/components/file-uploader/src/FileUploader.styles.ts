@@ -1,7 +1,7 @@
 import styled, { SimpleInterpolation, css } from 'styled-components';
 import Typography, { Label as TypographyLabel } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import { hexToRgba } from '@synerise/ds-utils';
 
 export const Container = styled.div`

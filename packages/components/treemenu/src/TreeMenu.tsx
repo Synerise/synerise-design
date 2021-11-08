@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
-import { FolderAddM } from '@synerise/ds-icon/dist/icons';
+import { FolderAddM } from '@synerise/ds-icon';
 import TreeModel from 'tree-model';
 import { v4 as uuid } from 'uuid';
 import AddModal from './AddModal';

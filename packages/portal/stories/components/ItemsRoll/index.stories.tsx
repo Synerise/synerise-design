@@ -3,7 +3,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ItemsRoll from '@synerise/ds-items-roll';
-import { Add3M, SaveM } from '@synerise/ds-icon/dist/icons';
+import { Add3M, SaveM } from '@synerise/ds-icon';
 
 import {
   ACTIONS,
