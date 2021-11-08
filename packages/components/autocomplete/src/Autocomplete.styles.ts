@@ -13,6 +13,9 @@ export const ErrorWrapper = styled.div`
 export const DescWrapper = styled.div`
   margin: 8px 0px 0px 0px;
 `;
+export const LoaderWrapper = styled.div`
+  margin-right: 10px;
+`;
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
   transition: ease-in-out all 0.2s;
