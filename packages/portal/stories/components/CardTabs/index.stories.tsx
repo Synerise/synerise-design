@@ -7,7 +7,7 @@ import CardTab from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
 import { prefixType }  from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
-import { ShowM, OptionHorizontalM } from '@synerise/ds-icon/dist/icons';
+import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
 
 

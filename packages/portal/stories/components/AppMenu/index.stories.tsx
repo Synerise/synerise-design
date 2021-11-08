@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import AppMenu from '@synerise/ds-app-menu';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   AnalyticsColorM,
   AnalyticsGreyM,
   AssetsColorM,
@@ -24,7 +23,7 @@ import {
   AiSearchGreyM,
   PredictionsA,
   PredictionsN
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 const stories = {
   default: () => ({

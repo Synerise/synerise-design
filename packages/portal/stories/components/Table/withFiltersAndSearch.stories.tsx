@@ -3,8 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import faker from 'faker';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   AddM,
   DuplicateM,
   EditM,
@@ -17,7 +16,8 @@ import {
   VarTypeDateM,
   VarTypeListM,
   VarTypeNumberM,
-} from '@synerise/ds-icon/dist/icons';
+  VarTypeStringM
+} from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
@@ -32,7 +32,6 @@ import ModalProxy from '@synerise/ds-modal';
 import { COLUMNS, EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAndSearch.data';
 import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 import Search from '@synerise/ds-search';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

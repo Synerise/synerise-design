@@ -1,8 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 
-import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { AngleRightS, AddS, WarningFillM, ShowRemoveM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleRightS, AddS, WarningFillM, ShowRemoveM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { NOOP } from '@synerise/ds-utils';
 import { SortableElement } from 'react-sortable-hoc';

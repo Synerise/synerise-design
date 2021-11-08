@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.16.11-alpha.3...@synerise/ds-utils@0.20.0) (2021-11-05)
+
+
+### Bug Fixes
+
+* **condition:** performance improvements ([c3f54cf](https://github.com/synerise/synerise-design/commit/c3f54cffcf2cfcb58da8686b88800fffed5e26ce))
+
+
+### Features
+
+* **utils:** adds onClick event to onClickOutside ([3ac8e54](https://github.com/synerise/synerise-design/commit/3ac8e54546fbf07a98f184415b00bf9a3a1263f6))
+
+
+
+
+
 # [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.18.1...@synerise/ds-utils@0.19.0) (2021-10-19)
 
 

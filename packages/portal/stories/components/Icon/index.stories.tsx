@@ -2,13 +2,13 @@ import * as React from 'react';
 import { text, number, boolean, select } from '@storybook/addon-knobs';
 import Icon from '@synerise/ds-icon';
 
-const req = require.context('@synerise/ds-icon/dist/icons', false, /index.js/);
+const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
 const iconsRaw = req(req.keys()[0]);
 const iconsNames = Object.keys(iconsRaw);
 
-const additionalIconsReq = require.context('@synerise/ds-icon/dist/icons/additional', false, /index.js/);
-const lIconsReq = require.context('@synerise/ds-icon/dist/icons/L', false, /index.js/);
-const xlIconsReq = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
+const additionalIconsReq = require.context('@synerise/ds-icon/dist/esm/icons/additional', false, /index.js/);
+const lIconsReq = require.context('@synerise/ds-icon/dist/esm/icons/L', false, /index.js/);
+const xlIconsReq = require.context('@synerise/ds-icon/dist/esm/icons/XL', false, /index.js/);
 const additionalIconsRaw = additionalIconsReq(additionalIconsReq.keys()[0]);
 const lIconsRaw = lIconsReq(lIconsReq.keys()[0]);
 const xlIconsRaw = xlIconsReq(xlIconsReq.keys()[0]);

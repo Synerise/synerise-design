@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ClockM, Close3S } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import { useIntl } from 'react-intl';
+import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
-import { useIntl } from 'react-intl';
-import { CompletedWithinProps, Period } from './CompletedWithin.types';
 import Settings from './Settings/Settings';
+import { CompletedWithinProps, Period } from './CompletedWithin.types';
 import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];

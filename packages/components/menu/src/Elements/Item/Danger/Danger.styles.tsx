@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as React from 'react';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import Text from '../Text/Text';
 import { ContentWrapper, PrefixelWrapper } from '../Text/Text.styles';
 

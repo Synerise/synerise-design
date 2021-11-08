@@ -2,15 +2,14 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntPagination, { PaginationProps } from 'antd/lib/pagination';
-import Icon from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import {
+import Icon, {
   AngleLeftS,
   AngleRightS,
   DoubleAngleLeftS,
   DoubleAngleRightS,
   OptionHorizontalM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 const ITEM_RENDER_TYPE = {
   prev: 'prev',

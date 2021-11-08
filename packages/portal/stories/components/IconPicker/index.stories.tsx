@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import IconPicker from '@synerise/ds-icon-picker';
 import Button from '@synerise/ds-button/dist/Button';
-import Icon from '@synerise/ds-icon/dist/Icon';
-import {
+import Icon, {
   Add3M,
   ArrowDownCircleM,
   ArrowLdCircleM,
@@ -30,8 +29,8 @@ import {
   ArrowUpS,
   ArrowUpCircleM,
   ArrowUpM,
-} from '@synerise/ds-icon/dist/icons';
-import Avatar, { UserAvatar } from '@synerise/ds-avatar/dist/Avatar';
+} from '@synerise/ds-icon';
+import Avatar from '@synerise/ds-avatar/dist/Avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import avatar1 from '../../assets/avatars/av-anonym-001.png';

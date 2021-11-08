@@ -2,20 +2,19 @@ import * as React from 'react';
 import Alert from '@synerise/ds-alert';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import {
+import Icon, {
   Add3M,
   AppleFillM,
   ArrowUpCircleM, Check3M,
   DollarCircleM, HelpFillM, InfoFillM,
   RefreshM, WarningFillM,
-} from '@synerise/ds-icon/dist/icons';
+  UpdateDataM,
+  NotificationsReceiveM,
+  UserCheckM
+} from '@synerise/ds-icon/';
 import AlertInfo from '@synerise/ds-alert/dist/AlertInfo/AlertInfo';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
 import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSemanticColor';
-import UserCheckM from '@synerise/ds-icon/dist/icons/UserCheckM';
-import NotificationsReceiveM from '@synerise/ds-icon/dist/icons/NotificationsReceiveM';
-import UpdateDataM from '@synerise/ds-icon/dist/icons/UpdateDataM';
 
 const decorator = storyFn => (
   <div

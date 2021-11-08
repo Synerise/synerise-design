@@ -2,8 +2,7 @@ import * as React from 'react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS, DragHandleM, PauseM, PlayM, ShowM, StopM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS, DragHandleM, PauseM, PlayM, ShowM, StopM } from '@synerise/ds-icon';
 
 const buttonSizes = {
   large: 'large',

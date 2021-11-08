@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon/dist/icons';
+import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
 import generateHash from 'random-hash';
 import { Props } from './ShowLessOrMore.types';
 import * as S from './ShowLessOrMore.styles';

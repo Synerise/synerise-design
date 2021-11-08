@@ -3,8 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { SortableHandle, SortableElement, SortableElementProps } from 'react-sortable-hoc';
 import { Node } from 'tree-model';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Icon from '@synerise/ds-icon';
-import { DragHandleM, FileM } from '@synerise/ds-icon/dist/icons';
+import Icon, { DragHandleM, FileM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 
 import { ItemProps } from './Item.types';

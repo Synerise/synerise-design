@@ -1,8 +1,5 @@
 import * as React from 'react';
-import EditS from '@synerise/ds-icon/dist/icons/EditS';
-import DuplicateS from '@synerise/ds-icon/dist/icons/DuplicateS';
-import CloseS from '@synerise/ds-icon/dist/icons/CloseS';
-import Icon from '@synerise/ds-icon';
+import Icon, { EditS, DuplicateS, CloseS } from '@synerise/ds-icon';
 import { withTheme } from 'styled-components';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './ItemActions.styles';

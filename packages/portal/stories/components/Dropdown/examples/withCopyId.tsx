@@ -5,14 +5,13 @@ import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import { boolean, select,number } from '@storybook/addon-knobs';
 import { renderFooter, typesFooter } from '../index.stories';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
     CopyClipboardM,
     DuplicateM,
     EditM,
     FolderM,
     TrashM,
-  } from '@synerise/ds-icon/dist/icons';
+  } from '@synerise/ds-icon';
   
 const WithCopyID: React.FC = () => {
     const data = [

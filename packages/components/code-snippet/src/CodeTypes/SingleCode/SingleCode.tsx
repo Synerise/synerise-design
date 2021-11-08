@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
-import { DuplicateS } from '@synerise/ds-icon/dist/icons';
+import { DuplicateS } from '@synerise/ds-icon';
 
 import CopyAction from '../../CopyAction/CopyAction';
 import * as S from './SingleCode.styles';

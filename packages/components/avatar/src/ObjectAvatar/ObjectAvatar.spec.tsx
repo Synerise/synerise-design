@@ -16,16 +16,19 @@ const testObjectImage = {
 };
 
 describe('ObjectAvatar', () => {
-  test('should match snapshot', () => {
-    const objectAvatar = renderWithProvider(<ObjectAvatar />);
-    expect(objectAvatar).toMatchSnapshot();
+  test('should render', () => {
+    const { container, debug } = renderWithProvider(<ObjectAvatar />);
+    debug();
+    expect(container.getElementsByClassName('mail-m').length).toBe(1);
   });
-  test('should match snapshot with object data', () => {
+  test('should render with object data', () => {
     const objectAvatar = renderWithProvider(<ObjectAvatar object={testObject} />);
-    expect(objectAvatar).toMatchSnapshot();
+    const firstLetters = objectAvatar.getByText(testObject.name.charAt(0));
+    expect(firstLetters).toBeTruthy();
   });
-  test('should match snapshot with object data and avatar', () => {
+  test('should render with object data and avatar', () => {
     const objectAvatar = renderWithProvider(<ObjectAvatar object={testObjectImage} />);
-    expect(objectAvatar).toMatchSnapshot();
+    const img = objectAvatar.getByRole('img');
+    expect(img).toHaveAttribute('src', testObjectImage.avatar);
   });
 });

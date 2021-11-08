@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import Icon from '@synerise/ds-icon';
+import Icon, { IconProps } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 
-import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 import ButtonGroup from '@synerise/ds-button-group';
 
 export const AddItemLayout = styled.div`

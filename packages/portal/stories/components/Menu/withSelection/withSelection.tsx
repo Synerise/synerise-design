@@ -1,8 +1,7 @@
-import { boolean, text } from '@storybook/addon-knobs';
+import { text } from '@storybook/addon-knobs';
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
 import Menu from '@synerise/ds-menu';
 import { getDefaultProps } from '../index.stories';
 

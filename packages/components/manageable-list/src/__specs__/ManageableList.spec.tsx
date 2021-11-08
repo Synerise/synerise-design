@@ -1,9 +1,11 @@
 import * as React from 'react';
-import ManageableList from '../ManageableList';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
 import { IntlProvider } from 'react-intl';
+import { fireEvent } from '@testing-library/react';
+
+import { FileM } from '@synerise/ds-icon';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
+import ManageableList from '../ManageableList';
 
 const DEFAULT_ITEMS: any = [
   {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import find from 'ramda/src/find';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS, CheckS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

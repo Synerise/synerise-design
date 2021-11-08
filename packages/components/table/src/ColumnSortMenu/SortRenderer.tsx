@@ -1,9 +1,8 @@
 import { partial } from 'lodash';
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
+import Icon, { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon/dist/icons';
 import { DSColumnType } from '../Table.types';
 import { TableLocaleContext } from '../utils/locale';
 import * as S from './SortRender.styles';

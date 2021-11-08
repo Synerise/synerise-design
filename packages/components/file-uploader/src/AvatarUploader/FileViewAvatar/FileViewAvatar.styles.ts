@@ -1,6 +1,6 @@
 import styled, { keyframes, SimpleInterpolation } from 'styled-components';
 import { Description, Label } from '@synerise/ds-typography';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import { Loader } from '@synerise/ds-loader/dist/Loader.styles';
 
 export const PreviewImage = styled.div`
@@ -230,5 +230,4 @@ export const FileView = styled.button<{ disabled?: boolean; error?: boolean; rem
       padding-right: 7px;
     }
   `};
-
 `;

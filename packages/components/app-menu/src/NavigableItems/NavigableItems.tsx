@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import AngleDownS from '@synerise/ds-icon/dist/icons/AngleDownS';
-import AngleUpS from '@synerise/ds-icon/dist/icons/AngleUpS';
+import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 
 import * as S from './NavigableItems.styles';
 import * as ItemStyles from '../Item/Item.styles';

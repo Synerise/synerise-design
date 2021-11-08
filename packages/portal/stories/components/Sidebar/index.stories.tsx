@@ -3,8 +3,7 @@ import * as React from 'react';
 import Sidebar from '@synerise/ds-sidebar';
 import { withState } from '@dump247/storybook-state';
 import Block from '@synerise/ds-block';
-import Icon from '@synerise/ds-icon';
-import { EditM } from '@synerise/ds-icon/dist/icons';
+import Icon, { EditM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import SidebarWithButton from '@synerise/ds-sidebar/dist/SidebarWithButton/SidebarWithButton';
 

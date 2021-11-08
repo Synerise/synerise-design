@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
-import Icon from '@synerise/ds-icon';
+import Icon, { IconProps } from '@synerise/ds-icon';
 import Popconfirm from '@synerise/ds-popconfirm';
-import { IconProps } from '@synerise/ds-icon/dist/Icon.types';
 
 export const ActionsWrapper = styled.div`
   && {

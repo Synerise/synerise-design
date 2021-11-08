@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { NoData } from '@synerise/ds-icon/dist/icons/L';
-import Icon from '@synerise/ds-icon';
+import Icon, { NoData } from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
 import * as S from './Placeholder.styles';
 import { PlaceholderType } from './Placeholder.types';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS, Add3M } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS, Add3M } from '@synerise/ds-icon';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
 import { getPopupContainer } from '@synerise/ds-utils';

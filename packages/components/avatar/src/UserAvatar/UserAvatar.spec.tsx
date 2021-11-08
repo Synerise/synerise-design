@@ -16,16 +16,18 @@ const testUserImage = {
 };
 
 describe('UserAvatar', () => {
-  test('should match snapshot', () => {
-    const userAvatar = renderWithProvider(<UserAvatar />);
-    expect(userAvatar).toMatchSnapshot();
+  test('should render', () => {
+    const { container } = renderWithProvider(<UserAvatar />);
+    expect(container.getElementsByClassName('user-m').length).toBe(1);
   });
-  test('should match snapshot with user data', () => {
+  test('should render with user data', () => {
     const userAvatar = renderWithProvider(<UserAvatar user={testUser} />);
-    expect(userAvatar).toMatchSnapshot();
+    const nameFirstLetters = userAvatar.getByText(testUser.firstName.charAt(0) + testUser.lastName.charAt(0));
+    expect(nameFirstLetters).toBeTruthy();
   });
-  test('should match snapshot with user data and avatar', () => {
+  test('should render with user data and avatar', () => {
     const userAvatar = renderWithProvider(<UserAvatar user={testUserImage} />);
-    expect(userAvatar).toMatchSnapshot();
+    const img = userAvatar.getByRole('img');
+    expect(img).toHaveAttribute('src', testUserImage.avatar);
   });
 });

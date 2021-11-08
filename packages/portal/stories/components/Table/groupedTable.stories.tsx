@@ -5,8 +5,7 @@ import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
 import * as React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   AddM,
   EditM,
   FileDownloadM,
@@ -17,8 +16,9 @@ import {
   VarTypeBooleanM,
   VarTypeDateM,
   VarTypeListM,
+  VarTypeStringM,
   VarTypeNumberM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
 import * as moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
@@ -27,7 +27,6 @@ import Search from '@synerise/ds-search/dist/Search';
 import { FilterElement } from '@synerise/ds-search/dist/Search.types';
 import Menu from '@synerise/ds-menu';
 import Divider from '@synerise/ds-divider';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
