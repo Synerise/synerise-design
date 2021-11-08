@@ -217,7 +217,7 @@ const stories = {
   }),
   loadingIndicator: () => ({
     style: { width: '100%' },
-    notFoundContent: <div><Loader label='Loading...'/></div>,
+    notFoundContent: <div style={{padding: '40px'}}><Loader label='Loading...'/></div>,
     placeholder: 'Loading Indicator',
 
   }),
