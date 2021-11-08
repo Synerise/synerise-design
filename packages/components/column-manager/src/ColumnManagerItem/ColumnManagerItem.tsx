@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {
+import Icon, {
   CheckS,
   DividerM,
   DragHandleM,
@@ -12,8 +12,7 @@ import {
   VarTypeListM,
   VarTypeNumberM,
   VarTypeStringM,
-} from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+} from '@synerise/ds-icon';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';

@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.10.30"
+    "@synerise/ds-checkbox": "^0.10.31"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -8,7 +8,7 @@
       "npmClient": "yarn"
     },
     "version": {
-      "allowBranch": ["master"],
+      "allowBranch": ["master", "beta/*"],
       "message": "build: publish"
     }
   }

@@ -2,8 +2,7 @@ import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   AddM,
   DuplicateM,
   EditM,
@@ -16,7 +15,8 @@ import {
   VarTypeDateM,
   VarTypeListM,
   VarTypeNumberM,
-} from '@synerise/ds-icon/dist/icons';
+  VarTypeStringM,
+} from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
@@ -33,7 +33,6 @@ import { COLUMNS, EMPTY_VIEW, CATEGORIES, VIEWS } from './content/withFiltersAnd
 import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { renderWithIconInHeaders } from './helpers/helpers';
@@ -286,7 +285,7 @@ const stories = {
 
     return (
       <>
-        <Table  
+        <Table
           title={text('Table title', 'Empty table')}
           dataSource={filteredDataSource()}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}

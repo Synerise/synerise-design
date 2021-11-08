@@ -4,8 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AddM, MailM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AddM, MailM } from '@synerise/ds-icon';
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
 import {
   COLUMNS_WITH_FIXED,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon/dist/icons';
+import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon';
 import * as S from './style/Factors.style';
 import { FactorsProps } from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';

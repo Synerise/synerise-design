@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import * as React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 type WrapperProps = {
   disabled?: boolean;
@@ -15,7 +15,7 @@ type WrapperProps = {
   active?: boolean;
 };
 
-enum ItemSize  {
+enum ItemSize {
   DEFAULT = 'default',
   LARGE = 'large',
 }
@@ -111,7 +111,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     }`
         : ''}
 
-    ${(props): undefined | FlattenSimpleInterpolation => props.size &&  applySizeStyles(props)}
+    ${(props): undefined | FlattenSimpleInterpolation => props.size && applySizeStyles(props)}
     &.ant-menu-item-only-child {
       margin-bottom: 0px;
     }

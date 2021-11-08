@@ -97,7 +97,7 @@ In order to use the color in the code, you need to perform the following steps:
 
 See example below:
 
-```static
+```ts
 const RedText = styled.div`
   color: ${(props): string => props.theme.palette["red-600"]};
 `;

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import AutosizeInput from 'react-input-autosize';
 import Tooltip from '@synerise/ds-tooltip';
-import Icon from '@synerise/ds-icon';
-import { EditS } from '@synerise/ds-icon/dist/icons';
+import Icon, { EditS } from '@synerise/ds-icon';
 import { toCamelCase } from '@synerise/ds-utils';
 import * as S from './InlineEdit.styles';
 import { attachWidthWatcher } from './utils';
@@ -39,7 +38,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         setScrolled(false);
       }
     }
-  },[inputRef])
+  }, [inputRef]);
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,10 +52,9 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       input.onBlur && input.onBlur(e);
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
-      inputRef.current.input && inputRef.current.input.scrollTo({left:0})
+      inputRef.current.input && inputRef.current.input.scrollTo({ left: 0 });
     },
-      [input,inputRef]
-
+    [input, inputRef]
   );
 
   const handleKeyPress = React.useCallback(
@@ -119,7 +117,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
           <S.IconWrapper onClick={handleFocusInput} size={size}>
-            <Icon component={<EditS/>} size={24} />
+            <Icon component={<EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}

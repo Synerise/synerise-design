@@ -4,11 +4,10 @@ import TagsList, { AddModal, DEFAULT_STEP, DEFAULT_ITEMS_VISIBLE } from '@syneri
 import { TagsListActions, TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';
 import Menu from '@synerise/ds-menu';
 import { boolean, number } from '@storybook/addon-knobs';
-import { ADD_TAGS, FOLDERS, MIDDLE_MENU_ITEMS, TOP_MENU_ITEMS, TEXTS } from './dataset';
+import { ADD_TAGS, FOLDERS, TOP_MENU_ITEMS, TEXTS } from './dataset';
 import Scrollbar from '@synerise/ds-scrollbar';
-import Icon from '@synerise/ds-icon';
 import message from '@synerise/ds-message';
-import { StarFillM, StarM, TagM } from '@synerise/ds-icon/dist/icons';
+import Icon, { StarFillM, StarM, TagM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '@synerise/ds-layout/dist/Layout.styles';
 

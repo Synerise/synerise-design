@@ -2,8 +2,7 @@ import * as React from 'react';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   CheckS,
   CloseS,
   CopyClipboardM,
@@ -17,7 +16,7 @@ import {
   TrashM,
   UserS,
   WarningFillS,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';

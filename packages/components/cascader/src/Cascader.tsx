@@ -2,8 +2,7 @@ import * as React from 'react';
 import { CascaderProps, Category, Path } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
-import Icon from '@synerise/ds-icon';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
+import Icon, { SearchM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { useResize } from '@synerise/ds-utils';
 import * as S from './Cascader.styles';
@@ -22,7 +21,7 @@ const Cascader: React.FC<CascaderProps> = ({
   searchInputPlaceholder,
   onCategorySelect,
   categorySuffix,
-  maxHeight ,
+  maxHeight,
   contentStyles,
   selectedCategoriesIds,
 }) => {
@@ -43,7 +42,8 @@ const Cascader: React.FC<CascaderProps> = ({
 
   const categoriesMaxHeight = maxHeight
     ? Math.floor((maxHeight - Number(categoriesContainer?.current?.offsetTop)) / CATEGORY_ITEM_HEIGHT) *
-      CATEGORY_ITEM_HEIGHT + VERTICAL_PADDING_OFFSET
+        CATEGORY_ITEM_HEIGHT +
+      VERTICAL_PADDING_OFFSET
     : undefined;
   const calculateVisibleRows = React.useMemo(() => {
     return Math.floor((height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT);
@@ -157,8 +157,8 @@ const Cascader: React.FC<CascaderProps> = ({
                 paths={filteredPaths}
                 highlight={searchQuery}
                 onBreadCrumbClick={(breadcrumb: Path): void => {
-                  const selectedCategory =  searchCategoryWithId(rootCategory,breadcrumb?.id)
-                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category)
+                  const selectedCategory = searchCategoryWithId(rootCategory, breadcrumb?.id);
+                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category);
                 }}
                 scrollTop={scrollTop}
               />

@@ -2,17 +2,13 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
-import Icon from '@synerise/ds-icon';
+import Icon, { AddM, InfoFillS, FileUploadL } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import AddM from '@synerise/ds-icon/dist/icons/AddM';
-import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
 
-import FileUploadL from '@synerise/ds-icon/dist/icons/FileUploadL';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
 import { FileViewTexts } from './FileView/FileView.types';
-
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -114,53 +110,53 @@ const FileUploader: React.FC<FileUploaderProps> = ({
           )}
         </S.Label>
       )}
-        <>
+      <>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <S.DropAreaContainer {...getRootProps()} canUploadMore={mode !== 'single' && files.length > 0}>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <input {...getInputProps()} data-testid="droparea-input" />
+          <input {...getInputProps()} data-testid="droparea-input" />
 
-            <S.DropAreaButton
-              type="button"
-              hidden={!(mode !== 'single' && (filesAmount ? files.length < filesAmount : true) || files.length === 0)}
-              mode={mode}
-              disabled={disabled}
-              isDropping={isDragActive}
-              hasError={hasError}
-              onMouseDown={(): void => setPressed(true)}
-              onMouseUp={(): void => setPressed(false)}
-              pressed={pressed}
-              data-testid="droparea"
-              filesLength={files.length}
-            >
-              {mode === 'multi-large' && files.length === 0 ? (
-                <>
-                  <Icon component={<FileUploadL />} size={48} />
-                  <S.LargeDropAreaLabel>{texts.buttonLabelLarge}</S.LargeDropAreaLabel>
-                  <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
-                </>
-              ) : (
-                <>
-                  <Icon component={<AddM />} size={24} />
-                  <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
-                </>
-              )}
-            </S.DropAreaButton>
-          </S.DropAreaContainer>
-        </>
+          <S.DropAreaButton
+            type="button"
+            hidden={!((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0)}
+            mode={mode}
+            disabled={disabled}
+            isDropping={isDragActive}
+            hasError={hasError}
+            onMouseDown={(): void => setPressed(true)}
+            onMouseUp={(): void => setPressed(false)}
+            pressed={pressed}
+            data-testid="droparea"
+            filesLength={files.length}
+          >
+            {mode === 'multi-large' && files.length === 0 ? (
+              <>
+                <Icon component={<FileUploadL />} size={48} />
+                <S.LargeDropAreaLabel>{texts.buttonLabelLarge}</S.LargeDropAreaLabel>
+                <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
+              </>
+            ) : (
+              <>
+                <Icon component={<AddM />} size={24} />
+                <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+              </>
+            )}
+          </S.DropAreaButton>
+        </S.DropAreaContainer>
+      </>
       {files.length > 0 &&
-      files.map((file, index) => (
-        <FileView
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          texts={texts as FileViewTexts}
-          removable={removable}
-          onRemove={(): void => onRemove && onRemove(file.file, index)}
-          data={file}
-          retry={retry}
-          retryButtonProps={{...getRootProps()}}
-        />
-      ))}
+        files.map((file, index) => (
+          <FileView
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            texts={texts as FileViewTexts}
+            removable={removable}
+            onRemove={(): void => onRemove && onRemove(file.file, index)}
+            data={file}
+            retry={retry}
+            retryButtonProps={{ ...getRootProps() }}
+          />
+        ))}
       {hasError &&
         errors &&
         errors.map((errorText, index) => (

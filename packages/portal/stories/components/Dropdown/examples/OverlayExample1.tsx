@@ -2,10 +2,7 @@ import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 
 
-import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
-import ArrowRightCircleM from '@synerise/ds-icon/dist/icons/ArrowRightCircleM';
+import Icon, { FileM, SearchM, ArrowRightCircleM } from '@synerise/ds-icon';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';

@@ -16,5 +16,4 @@ export type OptionsDropdownProps = {
   lookupKey: string;
   customContent?: React.ReactNode;
   dropdownItemHeight?: 'large';
-
 };

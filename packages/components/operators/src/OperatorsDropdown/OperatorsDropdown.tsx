@@ -1,16 +1,17 @@
 import * as React from 'react';
+import { v4 as uuid } from 'uuid';
+
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
+import Icon, { SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { v4 as uuid } from 'uuid';
+
+import OperatorsDropdownItem from './OperatorsDropdownItem';
 import * as S from '../Operators.style';
 import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
-import OperatorsDropdownItem from './OperatorsDropdownItem';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
 

@@ -1,18 +1,18 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
+
 import Tooltip from '@synerise/ds-tooltip';
-import { RepeatM, FileTypeTextM, Close3M, FileM } from '@synerise/ds-icon/dist/icons';
+import Icon, { RepeatM, FileTypeTextM, Close3M, FileM } from '@synerise/ds-icon';
+
 import * as S from './FileViewItem.styles';
 import { FileViewAvatarProps } from '../../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 
-
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml','text/csv'];
+const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'text/csv'];
 const mapperOfIcons = {
   'image/png': <FileTypeTextM />,
   'image/gif': <FileTypeTextM />,
   'image/jpeg': <FileTypeTextM />,
   'image/svg+xml': <FileTypeTextM />,
-  'text/csv' : <FileTypeTextM/>,
+  'text/csv': <FileTypeTextM />,
 };
 
 const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable }) => {
@@ -27,8 +27,8 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
   };
 
   return (
-      <S.FileViewContainer>
-        <Tooltip overlayStyle={{maxWidth: '350px'}} title={file.name}>
+    <S.FileViewContainer>
+      <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
         <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
           {previewableMimeTypes.indexOf(file.type) > -1 ? (
             <S.PreviewImage>
@@ -69,8 +69,8 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
             </S.RemoveButtonWrapper>
           )}
         </S.FileView>
-        </Tooltip>
-      </S.FileViewContainer>
+      </Tooltip>
+    </S.FileViewContainer>
   );
 };
 

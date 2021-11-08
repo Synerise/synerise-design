@@ -2,7 +2,7 @@ import {
   BooleanM,
   CalendarM,
   HashM, ListM, TextM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const OPERATORS_TEXTS = {

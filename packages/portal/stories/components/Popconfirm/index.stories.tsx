@@ -4,8 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Popconfirm from '@synerise/ds-popconfirm';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { WarningFillM } from '@synerise/ds-icon/dist/icons';
+import Icon, { WarningFillM } from '@synerise/ds-icon';
 
 const decorator = storyFn => <div style={{ padding: 40 }}>{storyFn()}</div>;
 

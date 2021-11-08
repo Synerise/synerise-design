@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import { SubjectTriggerProps } from '../Subject.types';
 
 const SubjectTrigger: React.FC<SubjectTriggerProps> = ({

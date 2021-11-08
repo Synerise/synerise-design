@@ -1,8 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { Close3S } from '@synerise/ds-icon/dist/icons';
+import Icon, { Close3S } from '@synerise/ds-icon';
 import { RenderResult } from '@testing-library/react';
 import { OrderedListItem } from '../Ordered-list.types';
 import OrderedList from '../Ordered-list';

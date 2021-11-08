@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Message = styled.div``;

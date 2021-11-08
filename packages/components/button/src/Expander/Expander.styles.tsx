@@ -1,7 +1,7 @@
 import styled, { keyframes, css, FlattenSimpleInterpolation, Keyframes } from 'styled-components';
 import * as React from 'react';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import Button from '../Button';
 
 export type ExpanderProps = {

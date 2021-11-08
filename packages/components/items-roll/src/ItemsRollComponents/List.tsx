@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { FixedSizeList } from 'react-window';
-import Icon from '@synerise/ds-icon';
-import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
+
+import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
+
+import ItemElement from './ListItem';
+import ItemRenderer from './VirtualizedListItem';
 
 import * as S from '../ItemsRoll.styles';
 import { ItemRollElement } from '../ItemsRoll.types';
-import ItemElement from './ListItem';
-import ItemRenderer from './VirtualizedListItem';
 import { ListProps } from './List.types';
 
 export const itemsInGroup = (group: string, items: ItemRollElement[]): ItemRollElement[] =>

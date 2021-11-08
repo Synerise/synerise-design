@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Table from '../index';
-import { fireEvent, getByRole, getAllByRole, getAllByTestId, waitFor } from '@testing-library/react';
-import { Grid2M } from '@synerise/ds-icon/dist/icons';
+import { fireEvent, getByRole, getAllByTestId } from '@testing-library/react';
+import { Grid2M } from '@synerise/ds-icon';
 
 const props = {
   dataSource: [

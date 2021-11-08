@@ -2,9 +2,8 @@ import * as React from 'react';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
-import Avatar, { UserAvatar } from '@synerise/ds-avatar';
-import { InfoFillS, InfoM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import { UserAvatar } from '@synerise/ds-avatar';
+import Icon, { InfoFillS, InfoM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import Status from '@synerise/ds-status';

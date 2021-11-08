@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon/dist/icons';
+import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon';
 import { TagsListItem, TagsListTexts, TagVisibility } from '@synerise/ds-tagslist/dist/TagsList.types';
 
 export const TOP_MENU_ITEMS: { icon: React.ReactNode; text: string }[] = [

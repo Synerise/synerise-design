@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { Add2M } from '@synerise/ds-icon/dist/icons';
+import Icon, { Add2M } from '@synerise/ds-icon';
 import * as S from '../../Condition.style';
 import * as T from './AddCondition.types';
 

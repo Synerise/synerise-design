@@ -5,12 +5,10 @@ import { boolean, select, text} from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 
-
-
-const reqL = require.context('@synerise/ds-icon/dist/icons/L', false, /index.js/);
+const reqL = require.context('@synerise/ds-icon/dist/esm/icons/L', false, /index.js/);
 const iconsRawL = reqL(reqL.keys()[0]);
 const iconsNamesL = Object.keys(iconsRawL);
-const reqXl = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
+const reqXl = require.context('@synerise/ds-icon/dist/esm/icons/XL', false, /index.js/);
 const iconsRawXl = reqXl(reqXl.keys()[0]);
 const iconsNamesXl = Object.keys(iconsRawXl);
 const iconSizes = {

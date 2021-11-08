@@ -4,16 +4,13 @@ import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
-import Icon from '@synerise/ds-icon/';
-import {
+import Icon, {
   AngleDownS,
   ArrowRightCircleM,
-  CheckS,
   HelpM,
   MailM,
-  MailS,
   OptionHorizontalM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { ObjectAvatar } from '@synerise/ds-avatar';

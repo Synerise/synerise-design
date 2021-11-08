@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import { EditS } from '@synerise/ds-icon/dist/icons';
+import Icon, { EditS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { Label } from '@synerise/ds-input';
 import { useOnClickOutside } from '@synerise/ds-utils';

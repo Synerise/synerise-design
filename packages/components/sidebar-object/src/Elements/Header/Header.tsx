@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Drawer from '@synerise/ds-drawer';
-import Icon from '@synerise/ds-icon';
 import Typography from 'antd/lib/typography';
 import Button from '@synerise/ds-button';
-import {
+import Icon, {
   AngleDownM,
   AngleUpM,
   CloseM,
@@ -13,7 +12,7 @@ import {
   FolderM,
   OptionHorizontalM,
   TrashM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';

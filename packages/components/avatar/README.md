@@ -95,8 +95,7 @@ We can present avatars as a single entity or in a group.
 ### Avatar icons
 
 ```
-import Icon from "@synerise/ds-icon";
-import { FileM} from "@synerise/ds-icon/dist/icons";
+import Icon, { FileM } from "@synerise/ds-icon";
 <div style={{ 'display': 'flex', 'justifyContent': 'space-between' }}>
     <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="square" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>
     <Avatar tooltip={{name: 'Jan Janowski', email: 'jj@test.pl'}} shape="cirlce" size="medium" backgroundColor="blue" backgroundColorHue="600">JJ</Avatar>

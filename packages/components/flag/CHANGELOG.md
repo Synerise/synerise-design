@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.19-alpha.3...@synerise/ds-flag@0.2.20) (2021-11-05)
+
+**Note:** Version bump only for package @synerise/ds-flag
+
+
+
+
+
 ## [0.2.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.2.18...@synerise/ds-flag@0.2.19) (2021-09-21)
 
 **Note:** Version bump only for package @synerise/ds-flag

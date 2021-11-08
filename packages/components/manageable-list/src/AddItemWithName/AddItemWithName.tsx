@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Input } from '@synerise/ds-input';
-import Icon from '@synerise/ds-icon';
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import Icon, { Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import * as S from './AddItemWithName.styles';
 import { Props } from './AddItemWithName.types';

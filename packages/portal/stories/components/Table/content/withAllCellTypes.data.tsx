@@ -1,6 +1,6 @@
 import { TableCell } from '@synerise/ds-table';
 import { action } from '@storybook/addon-actions';
-import {
+import Icon, {
   InfoFillS,
   LockM,
   VarTypeStringM,
@@ -8,12 +8,11 @@ import {
   VarTypeListM,
   UserM,
   SettingsM, OptionHorizontalM, VarTypeNumberM, VarTypeDateM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
-import Icon from '@synerise/ds-icon';
-import Avatar, { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';

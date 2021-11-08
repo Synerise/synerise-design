@@ -2,18 +2,15 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
-import Icon from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import InfoFillS from '@synerise/ds-icon/dist/icons/InfoFillS';
-
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import Icon, { InfoFillS, Add3M, FileTypePictureL } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import FileTypePictureL from '@synerise/ds-icon/dist/icons/L/FileTypePictureL';
+
 import FileViewAvatar from './FileViewAvatar/FileViewAvatar';
+
 import * as S from './AvatarUploader.styles';
 import { FileViewAvatarTexts } from './FileViewAvatar/FileViewAvatar.types';
-import { FileUploaderProps,FileContent } from '../FileUploader.types';
-
+import { FileUploaderProps, FileContent } from '../FileUploader.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
@@ -113,16 +110,16 @@ const AvatarUploader: React.FC<FileUploaderProps> = ({
         </S.Label>
       )}
       {files.length > 0 &&
-      files.map((file, index) => (
-        <FileViewAvatar
-          key={file.file.lastModified}
-          texts={texts as FileViewAvatarTexts}
-          removable={removable}
-          onRemove={(): void => onRemove && onRemove(file.file, index)}
-          data={file}
-          description={description}
-        />
-      ))}
+        files.map((file, index) => (
+          <FileViewAvatar
+            key={file.file.lastModified}
+            texts={texts as FileViewAvatarTexts}
+            removable={removable}
+            onRemove={(): void => onRemove && onRemove(file.file, index)}
+            data={file}
+            description={description}
+          />
+        ))}
       {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
         <S.UploaderContainer>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -142,9 +139,9 @@ const AvatarUploader: React.FC<FileUploaderProps> = ({
               data-testid="drop-area"
               filesLength={files.length}
             >
-                <>
-                  <Icon component={<FileTypePictureL />} size={48} />
-                </>
+              <>
+                <Icon component={<FileTypePictureL />} size={48} />
+              </>
             </S.DropAreaButton>
           </S.DropAreaContainer>
         </S.UploaderContainer>
@@ -152,12 +149,12 @@ const AvatarUploader: React.FC<FileUploaderProps> = ({
       <div>
         {((mode !== 'single' && (filesAmount ? files.length < filesAmount : true)) || files.length === 0) && (
           <>
-      <Button {...getRootProps()} disabled={disabled} type='secondary' mode='icon-label'>
-        <Icon  component={<Add3M/>} size={24} />
-        Add file
-      </Button>
-      {description && <S.Description hasError={hasError}>{description}</S.Description>}
-      </>
+            <Button {...getRootProps()} disabled={disabled} type="secondary" mode="icon-label">
+              <Icon component={<Add3M />} size={24} />
+              Add file
+            </Button>
+            {description && <S.Description hasError={hasError}>{description}</S.Description>}
+          </>
         )}
       </div>
     </S.Container>

@@ -1,11 +1,6 @@
 import * as React from 'react';
 
-import Icon from '@synerise/ds-icon';
-import WarningM from '@synerise/ds-icon/dist/icons/WarningM';
-import CheckM from '@synerise/ds-icon/dist/icons/CheckM';
-import HourglassM from '@synerise/ds-icon/dist/icons/HourglassM';
-import SearchNoResultsM from '@synerise/ds-icon/dist/icons/SearchNoResultsM';
-import InfoM from '@synerise/ds-icon/dist/icons/InfoM';
+import Icon, { WarningM, CheckM, HourglassM, SearchNoResultsM, InfoM } from '@synerise/ds-icon';
 
 import * as S from './Result.styles';
 import { ResultProps } from './Result.types';
