@@ -28,7 +28,9 @@ const ContextSelector: React.FC<ContextProps> = ({
   onSearch,
   hasMoreItems,
   onFetchData,
+  onActivate,
   onOpen,
+  getPopupContainerOverride,
   type,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -86,10 +88,15 @@ const ContextSelector: React.FC<ContextProps> = ({
     );
   }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
 
+  const onDropdownVisibilityChange = React.useCallback((value: boolean) => value && onActivate && onActivate(), [
+    onActivate,
+  ]);
+
   return (
     <div data-popup-container>
       <Dropdown
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
+        onVisibleChange={onDropdownVisibilityChange}
         trigger={trigger}
         visible={dropdownVisible}
         overlay={

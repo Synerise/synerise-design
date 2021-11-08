@@ -8,6 +8,8 @@ import { ConditionStep, ConditionTexts, ConditionProps } from '../Condition.type
 export type ConditionStepProps = {
   index: number;
   step: ConditionStep;
+  hasPriority?: boolean;
+  onStepActivate?: (stepid: React.ReactText) => void;
   getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   addCondition?: (stepId: React.ReactText) => void;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
