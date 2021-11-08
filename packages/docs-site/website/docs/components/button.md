@@ -42,8 +42,8 @@ yarn add @synerise/ds-button
 ## Usage
 
 ```
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
+
 <div>
     <Button mode="split" type="custom-color" color="green">
         Click
