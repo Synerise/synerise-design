@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import Collector from '@synerise/ds-collector';
 import { boolean, text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
-import { InfoFillS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 

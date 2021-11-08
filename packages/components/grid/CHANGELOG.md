@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@0.2.38-alpha.3...@synerise/ds-grid@0.2.43) (2021-11-05)
+
+**Note:** Version bump only for package @synerise/ds-grid
+
+
+
+
+
 ## [0.2.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-grid@0.2.41...@synerise/ds-grid@0.2.42) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-grid

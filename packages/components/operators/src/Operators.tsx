@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
+
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import { getPopupContainer } from '@synerise/ds-utils';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
-import { getPopupContainer } from '@synerise/ds-utils';
+
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
@@ -58,7 +59,7 @@ const Operators: React.FC<OperatorsProps> = ({
       <Dropdown
         visible={dropdownVisible}
         onVisibleChange={onDropdownVisibilityChange}
-        getPopupContainer={getPopupContainerOverride || getPopupContainer}
+        getPopupContainer={getPopupContainerOverride}
         overlay={
           <OperatorsDropdown
             value={value}

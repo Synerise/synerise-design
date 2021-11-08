@@ -11,12 +11,28 @@ module.exports = api => {
     babelrcRoots: ['.', ...packages],
     ignore,
 
+    env: {
+      cjs: {
+        presets: [
+          [
+            '@babel/env',
+            {
+              targets: {
+                node: 6,
+              },
+              useBuiltIns: 'usage',
+            },
+          ],
+        ],
+      },
+    },
     presets: [
       '@babel/preset-react',
       [
         '@babel/preset-env',
         {
           modules: false,
+          loose: true,
         },
       ],
       '@babel/preset-typescript',
@@ -25,7 +41,7 @@ module.exports = api => {
     plugins: [
       'babel-plugin-styled-components',
       '@babel/plugin-proposal-object-rest-spread',
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      '@babel/plugin-proposal-class-properties',
       [
         'transform-rename-import',
         {

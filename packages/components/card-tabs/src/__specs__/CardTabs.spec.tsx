@@ -4,7 +4,7 @@ import {range} from 'lodash';
 import CardTabs from '../CardTabs';
 import CardTab from '../CardTab/CardTab';
 import { fireEvent } from '@testing-library/react';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import { FileM } from '@synerise/ds-icon';
 import { CardTabsItem } from '../CardTabs.types';
 import { prefixType } from '../CardTab/CardTab.types';
 

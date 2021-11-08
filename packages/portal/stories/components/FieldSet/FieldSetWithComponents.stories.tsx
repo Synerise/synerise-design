@@ -4,8 +4,7 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import FieldSet from '@synerise/ds-field-set';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import AddS from '@synerise/ds-icon/dist/icons/AddS';
+import Icon, { AddS, CheckS } from '@synerise/ds-icon';
 import * as React from 'react';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import { action } from '@storybook/addon-actions';
@@ -16,7 +15,6 @@ import OrderedList from '@synerise/ds-ordered-list';
 import UnorderedList from '@synerise/ds-unordered-list';
 import ModalProxy from '@synerise/ds-modal';
 import Card, { CardBadge } from '@synerise/ds-card';
-import { CheckS } from '@synerise/ds-icon/dist/icons';
 import { CardProps } from '@synerise/ds-card/dist/Card/Card.types';
 import * as S from '../Card/stories.styles';
 

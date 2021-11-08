@@ -2,8 +2,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TreeTable } from '@synerise/ds-table';
-import Icon from '@synerise/ds-icon';
-import {
+import Icon, {
   AddM,
   ChildRowLeftDownM,
   EditM,
@@ -12,7 +11,7 @@ import {
   TrashM,
   VarTypeBooleanM,
   VarTypeStringM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';

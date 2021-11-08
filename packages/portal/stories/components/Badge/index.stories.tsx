@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { text, select, number, boolean, object } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
-import Icon from '@synerise/ds-icon';
-import FileM from '@synerise/ds-icon/dist/icons/FileM';
+import Icon, { FileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 

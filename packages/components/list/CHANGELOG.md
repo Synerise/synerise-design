@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.53-alpha.3...@synerise/ds-list@0.5.61) (2021-11-05)
+
+
+### Bug Fixes
+
+* **list:** enable event methods like preventDefault on Click ([9929291](https://github.com/Synerise/synerise-design/commit/992929170597c007f304dce85dc07abffdf5fdfa))
+* **list:** event type handling ([674c223](https://github.com/Synerise/synerise-design/commit/674c2238bf507c6dff1a1488f66be4d578e646da))
+
+
+
+
+
 ## [0.5.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.5.59...@synerise/ds-list@0.5.60) (2021-10-19)
 
 **Note:** Version bump only for package @synerise/ds-list

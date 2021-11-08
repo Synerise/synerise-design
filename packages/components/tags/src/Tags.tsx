@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
-import { Add3M, SearchM, SettingsM } from '@synerise/ds-icon/dist/icons';
+import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import { Props } from './Tags.types';
 import * as S from './Tags.styles';

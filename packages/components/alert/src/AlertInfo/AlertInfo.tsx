@@ -1,9 +1,7 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import CheckL from '@synerise/ds-icon/dist/icons/L/CheckL';
-import WarningL from '@synerise/ds-icon/dist/icons/L/WarningL';
-import WarningXl from '@synerise/ds-icon/dist/icons/XL/WarningXl';
-import CheckXl from '@synerise/ds-icon/dist/icons/XL/CheckXl';
+
+import Icon, { CheckL, WarningL, WarningXl, CheckXl } from '@synerise/ds-icon';
+
 import { AlertInfoProps, AlertSize } from './AlertInfo.types';
 import * as S from './AlertInfo.styles';
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { AngleLeftS, AngleRightS, DoubleAngleLeftS, DoubleAngleRightS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { AngleLeftS, AngleRightS, DoubleAngleLeftS, DoubleAngleRightS } from '@synerise/ds-icon';
+
 import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';
 
@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             <Icon component={<AngleLeftS />} />
           </S.NavButton>
         ) : (
-          <S.ArrowPlaceholder className="arrow-placeholder short-prev"/>
+          <S.ArrowPlaceholder className="arrow-placeholder short-prev" />
         )}
       </S.ArrowContainer>
       <S.Text>{onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}</S.Text>

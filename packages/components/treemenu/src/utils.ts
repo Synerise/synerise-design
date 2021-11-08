@@ -11,7 +11,7 @@ import {
   SwitchM,
   TextAreaM,
   TransformM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import { TreeData, TreeNode } from './TreeMenu.types';
 
 /**

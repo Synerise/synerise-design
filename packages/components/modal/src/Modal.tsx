@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import Modal from 'antd/lib/modal';
-import Icon from '@synerise/ds-icon';
-import CloseM from '@synerise/ds-icon/dist/icons/CloseM';
+import Icon, { CloseM } from '@synerise/ds-icon';
 
 import Button from '@synerise/ds-button';
 import '@synerise/ds-core/dist/js/style';

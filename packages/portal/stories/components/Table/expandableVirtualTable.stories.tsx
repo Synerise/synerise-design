@@ -2,15 +2,13 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
-import Icon from '@synerise/ds-icon';
-import { EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
+import Icon, { VarTypeStringM, EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandable.data';
 import ModalProxy from '@synerise/ds-modal';
 import { renderWithIconInHeaders } from './helpers/helpers';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { CONTEXT_TEXTS, CONTEXT_ITEMS, CONTEXT_GROUPS } from './data/index.data';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { ApiM } from '@synerise/ds-icon/dist/icons';
+import { ApiM } from '@synerise/ds-icon';
 import ContextSelector from '../ContextSelector';
 import { ContextProps } from './../ContextSelector.types';
 

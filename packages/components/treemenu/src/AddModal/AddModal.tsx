@@ -1,12 +1,10 @@
 import * as React from 'react';
 
-import Icon from '@synerise/ds-icon';
-import Add3M from '@synerise/ds-icon/dist/icons/Add3M';
+import Icon, { Add3M, SearchM, FileM, PasteClipboardM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import SearchBar from '@synerise/ds-search-bar';
 import Loader from '@synerise/ds-loader';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { SearchM, FileM, PasteClipboardM } from '@synerise/ds-icon/dist/icons';
 
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';

@@ -1,8 +1,7 @@
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
-import Icon from '@synerise/ds-icon';
-import { Add3M, AngleDownS, BookM, HelpM, NotificationsActiveM } from '@synerise/ds-icon/dist/icons';
+import Icon, { Add3M, AngleDownS, BookM, HelpM, NotificationsActiveM } from '@synerise/ds-icon';
 import Navbar from '@synerise/ds-navbar';
 import * as React from 'react';
 

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { CloseS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
 import { RenderResult } from '@testing-library/react';
+
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';
 import { MenuItemProps } from '../Elements/Item/MenuItem.types';

@@ -4,7 +4,6 @@ import { IconProps } from './Icon.types';
 
 const Icon: React.FC<IconProps> = props => {
   const { color, name, size, stroke, onClick, component, className, style, ...rest } = props;
-
   return (
     <S.IconContainer
       className={`ds-icon ${className || ''}`}

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import AnimateHeight from 'react-animate-height';
 import * as copy from 'copy-to-clipboard';
-import Icon from '@synerise/ds-icon';
-import { DuplicateS, ArrowDownCircleM } from '@synerise/ds-icon/dist/icons';
+import Icon, { DuplicateS, ArrowDownCircleM } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import { CodeSnippetProps } from '../../CodeSnippet.types';

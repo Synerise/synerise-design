@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 export const EditableCell = styled.div`
   display: flex;

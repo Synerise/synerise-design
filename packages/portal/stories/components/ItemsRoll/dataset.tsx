@@ -1,16 +1,14 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
-import Icon from '@synerise/ds-icon';
-import {
-  CloseS,
+import Icon, {
   FileTypeTableM,
   FileDownloadM,
   UserM,
   ExpressionM,
   AggregateM,
   ParamsBadgeM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import { text } from '@storybook/addon-knobs';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { action } from '@storybook/addon-actions';

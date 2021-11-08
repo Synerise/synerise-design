@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { KeyboardEnterM, KeyboardKeysM } from '@synerise/ds-icon/dist/icons';
+import Icon, { KeyboardEnterM, KeyboardKeysM } from '@synerise/ds-icon';
 import { NavigationHintProps } from './NavigationHint.types';
 import * as S from '../../Collector.styles';
 

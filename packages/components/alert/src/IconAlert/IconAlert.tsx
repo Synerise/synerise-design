@@ -1,6 +1,5 @@
-import { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon/dist/icons';
+import Icon, { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon';
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
 import { IconAlertProps, IconAlertType } from './IconAlert.types';
 import * as S from './IconAlert.styles';
 

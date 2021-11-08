@@ -2,8 +2,8 @@ import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
 import Menu from '@synerise/ds-menu';
-import { Add3M } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { Add3M } from '@synerise/ds-icon';
+
 import Divider from '@synerise/ds-divider';
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';

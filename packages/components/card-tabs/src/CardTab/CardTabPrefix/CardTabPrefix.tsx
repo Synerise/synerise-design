@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import DragHandleM from '@synerise/ds-icon/dist/icons/DragHandleM';
+import Icon, { DragHandleM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../CardTab.styles';
 import { prefixType } from '../CardTab.types';

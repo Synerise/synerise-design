@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import Icon from '@synerise/ds-icon';
+import Icon, { EditM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { NOOP } from '@synerise/ds-utils';
-import EditM from '@synerise/ds-icon/dist/icons/EditM';
 
 import Extras from '../Extras';
 import { HeaderProps } from './Header.types';

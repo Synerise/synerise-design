@@ -122,7 +122,6 @@ export const DropdownWrapper = styled.div`
 export const CustomContentWrapper = styled.div`
   position: absolute;
   z-index: 99;
-
 `;
 export const DropdownContent = styled.div<{ visible?: boolean }>`
   background: ${(props): string => props.theme.palette.white};

@@ -1,7 +1,8 @@
 import * as React from 'react';
+
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import Icon from '@synerise/ds-icon/dist/Icon';
-import { InfoFillS } from '@synerise/ds-icon/dist/icons';
+import Icon, { InfoFillS } from '@synerise/ds-icon';
+
 import * as S from './Header.styles';
 import { HeaderProps } from './Header.types';
 

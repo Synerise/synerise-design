@@ -6,4 +6,4 @@ export type ButtonPanelProps = {
   disabled: boolean;
   showCancel: boolean;
   texts: CollectorTexts;
-} & Pick<CollectorProps, 'addButtonProps' | 'cancelButtonProps'>
+} & Pick<CollectorProps, 'addButtonProps' | 'cancelButtonProps'>;

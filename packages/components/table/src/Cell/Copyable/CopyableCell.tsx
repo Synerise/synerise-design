@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { CopyClipboardM } from '@synerise/ds-icon/dist/icons';
 import * as copy from 'copy-to-clipboard';
-import Icon from '@synerise/ds-icon';
+
+import Icon, { CopyClipboardM }  from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Copyable.styles';
 import { Props } from './Copyable.types';

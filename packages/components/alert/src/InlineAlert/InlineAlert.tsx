@@ -1,6 +1,5 @@
-import { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon/dist/icons';
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
+import Icon, { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon';
 import { InlineAlertProps, InlineAlertType } from './InlineAlert.types';
 import * as S from './InlineAlert.styles';
 

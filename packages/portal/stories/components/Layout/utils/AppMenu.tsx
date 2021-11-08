@@ -1,5 +1,5 @@
 import AppMenu from '@synerise/ds-app-menu';
-import {
+import Icon, {
   Add3M, AiSearchColorM, AiSearchGreyM,
   AnalyticsColorM,
   AnalyticsGreyM, AssetsColorM, AssetsGreyM,
@@ -15,8 +15,7 @@ import {
   DashboardGreyM,
   SettingsColorM,
   SettingsGreyM,
-} from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+} from '@synerise/ds-icon';
 import * as React from 'react';
 
 const LayoutAppMenu = (props) => (

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
+import Icon, { HomeM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import { HomeM } from '@synerise/ds-icon/dist/icons';
 import Divider from '@synerise/ds-divider';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../Cascader.styles';

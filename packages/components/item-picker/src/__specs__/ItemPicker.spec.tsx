@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
-import Icon from '@synerise/ds-icon';
-import { LaptopM, MobileM, UserM } from '@synerise/ds-icon/dist/icons';
+import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 import ItemPicker from '../ItemPicker';

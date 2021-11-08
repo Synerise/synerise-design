@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { AntdButton as StyledButtonContainer } from '@synerise/ds-button/dist/Button.styles';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import * as T from '@synerise/ds-typography';
 
 export const MainPanel = styled.div`

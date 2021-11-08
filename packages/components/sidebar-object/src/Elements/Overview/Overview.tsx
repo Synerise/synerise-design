@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import * as S from '../Header/Header.style';
 import DropdownOverlay from '../DropdownOverlay/DropdownOverlay';
 import Content from '../Content/Content';

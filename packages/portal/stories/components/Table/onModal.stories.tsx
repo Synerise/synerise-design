@@ -7,9 +7,8 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Modal from '@synerise/ds-modal';
-import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AddM, InfoFillS, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import Button from '@synerise/ds-button'
+import Icon, { AddM, InfoFillS, VarTypeStringM } from '@synerise/ds-icon';
 import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;

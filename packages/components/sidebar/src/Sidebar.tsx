@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './style/index.less';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import Icon from '@synerise/ds-icon';
-import { AngleDownS, AngleUpS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import update from 'immutability-helper';

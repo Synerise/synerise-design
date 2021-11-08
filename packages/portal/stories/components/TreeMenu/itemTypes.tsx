@@ -9,7 +9,7 @@ import {
   SelectMenuM,
   FileUploadM,
   ButtonM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 import { ItemProps } from '@synerise/ds-treemenu/dist/Elements/Item/Item.types';
 

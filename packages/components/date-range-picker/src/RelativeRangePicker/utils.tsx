@@ -1,6 +1,6 @@
 import set from 'ramda/src/set';
 import lensPath from 'ramda/src/lensPath';
-import { ArrowRightM, ArrowLeftM, SinceArrowRightM } from '@synerise/ds-icon/dist/icons';
+import { ArrowRightM, ArrowLeftM, SinceArrowRightM } from '@synerise/ds-icon';
 import * as React from 'react';
 import { DateRange, RelativeDateRange } from '../date.types';
 import * as CONST from '../constants';

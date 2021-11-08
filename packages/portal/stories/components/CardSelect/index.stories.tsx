@@ -2,7 +2,7 @@ import * as React from 'react';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import CardSelect from '@synerise/ds-card-select';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { AbTestXl, ChartPieL } from '@synerise/ds-icon/dist/icons/additional';
+import { AbTestXl, ChartPieL } from '@synerise/ds-icon';
 import CardSelectGroup from '@synerise/ds-card-select/dist/CardSelectGroup/CardSelectGroup';
 
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import filesize from 'filesize.js';
-import Icon from '@synerise/ds-icon';
+
 import ProgressBar from '@synerise/ds-progress-bar';
 import Tooltip from '@synerise/ds-tooltip';
-import {
+import Icon, {
   RepeatM,
   WarningFillM,
   FileTypeImage,
@@ -19,7 +19,7 @@ import {
   FileTypeMp3,
   FileTypeXls,
   FileTypePptx
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';

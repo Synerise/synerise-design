@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button/dist/Button';
-import Icon from '@synerise/ds-icon';
-import AngleDownS from '@synerise/ds-icon/dist/icons/AngleDownS';
+import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
