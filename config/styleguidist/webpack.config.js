@@ -14,6 +14,7 @@ module.exports = {
                   '@babel/preset-env',
                   {
                     modules: false,
+                    loose: true
                   },
                 ],
                 '@babel/preset-typescript',
@@ -21,7 +22,7 @@ module.exports = {
               plugins: [
                 'babel-plugin-styled-components',
                 '@babel/plugin-proposal-object-rest-spread',
-                '@babel/plugin-proposal-class-properties',
+                ['@babel/plugin-proposal-class-properties', { loose: true}],
                 [
                   'transform-rename-import',
                   {
