@@ -1,9 +1,7 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import Icon from '@synerise/ds-icon';
-import SpinnerM from '@synerise/ds-icon/dist/icons/SpinnerM';
-import { AngleLeftS, AngleRightS } from '@synerise/ds-icon/dist/icons';
+import Icon, { AngleLeftS, AngleRightS, SpinnerM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { useIntl } from 'react-intl';
 import Skeleton from '@synerise/ds-skeleton';
@@ -47,7 +45,7 @@ function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
     hideColumnNames,
     renderSelectionTitle,
     hideTitlePart,
-    disableColumnNamesLineBreak
+    disableColumnNamesLineBreak,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);

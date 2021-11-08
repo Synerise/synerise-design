@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { LaptopM, MobileM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { LaptopM, MobileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';

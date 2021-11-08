@@ -1,8 +1,7 @@
 import React from 'react';
 import { MenuProps } from 'antd/lib/menu';
 
-import { CheckS, ShowM, ShowCheckM, HideM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS, ShowM, ShowCheckM, HideM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { NOOP } from '@synerise/ds-utils';
 

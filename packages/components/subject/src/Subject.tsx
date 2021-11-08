@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import { ShowM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { ShowM } from '@synerise/ds-icon';
 import SubjectTrigger from './SubjectTrigger/SubjectTrigger';
 import { SubjectProps } from './Subject.types';
 import * as S from './Subject.style';

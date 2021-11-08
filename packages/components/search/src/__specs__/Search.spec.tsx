@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/dom';
 import Menu from '@synerise/ds-menu';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
+import { VarTypeStringM } from '@synerise/ds-icon';
 
 import Search from './../Search';
 

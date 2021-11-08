@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
+
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
-import { useIntl } from 'react-intl';
-import Icon from '@synerise/ds-icon';
-import { HashM } from '@synerise/ds-icon/dist/icons';
-import { FormatPickerProps } from './FomartPicker.types';
+import Icon, { HashM } from '@synerise/ds-icon';
+
 import FormatSettings from './FormatSettings/FormatSettings';
 import { valueFormatter } from './utils/valueFormatter';
+
+import { FormatPickerProps } from './FomartPicker.types';
 
 const FormatPicker: React.FC<FormatPickerProps> = ({
   onUseSeparatorChange,

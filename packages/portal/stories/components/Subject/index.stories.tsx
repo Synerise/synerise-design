@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Subject from '@synerise/ds-subject';
-import { AggregateM, NotificationsM, VarTypeStringM, WebhookM } from '@synerise/ds-icon/dist/icons';
+import { AggregateM, NotificationsM, VarTypeStringM, WebhookM } from '@synerise/ds-icon';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';

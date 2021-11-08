@@ -2,7 +2,7 @@ import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import PageHeader from '../index';
-import { HelpM } from '@synerise/ds-icon/dist/icons';
+import { HelpM } from '@synerise/ds-icon';
 import userEvent from '@testing-library/user-event';
 
 describe('PageHeader', () => {

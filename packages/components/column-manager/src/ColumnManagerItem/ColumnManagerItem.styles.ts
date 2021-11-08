@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import Icon from '@synerise/ds-icon';
+import Icon, { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
 
 export const DragHandler = styled(Icon)`
   position: absolute;

@@ -1,5 +1,5 @@
 import randomDate from '../../../utils/randomDate';
-import { InfoFillS, VarTypeBooleanM, VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, VarTypeBooleanM, VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const COLUMNS = [

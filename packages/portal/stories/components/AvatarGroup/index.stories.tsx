@@ -4,8 +4,7 @@ import AvatarGroup from '@synerise/ds-avatar-group';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { DataSource } from '@synerise/ds-avatar-group/dist/AvatarGroup.types';
 import Menu from '@synerise/ds-menu';
-import { LockM, UserRemoveM } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
 import { action } from '@storybook/addon-actions';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 

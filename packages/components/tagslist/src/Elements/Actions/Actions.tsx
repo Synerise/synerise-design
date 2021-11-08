@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Icon from '@synerise/ds-icon';
+import Icon, { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon/dist/icons';
 import { NOOP } from '@synerise/ds-utils';
 import { MenuProps } from 'antd/lib/menu';
 import { TagVisibility, TagsListItem } from '../../TagsList.types';

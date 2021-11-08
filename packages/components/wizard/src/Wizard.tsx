@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Layout from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header/dist/PageHeader';
-import { ArrowLeftCircleM } from '@synerise/ds-icon/dist/icons';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
+import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import { useIntl } from 'react-intl';
 import * as S from './Wizard.styles';
 import { WizardProps, WizardSubComponent } from './Wizard.types';

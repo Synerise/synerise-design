@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { Close3S, FolderM } from '@synerise/ds-icon/dist/icons';
+import Icon, { Close3S, FolderM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './FilterTrigger.styles';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 import { hexToRgba } from '@synerise/ds-utils';
 
 import Button from '../Button';

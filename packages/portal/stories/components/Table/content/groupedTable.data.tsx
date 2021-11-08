@@ -1,6 +1,6 @@
 import randomDate from '../../../utils/randomDate';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
-import { InfoFillS, VarTypeDateM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon/dist/icons';
+import { InfoFillS, VarTypeDateM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import * as React from 'react';
 
 export const COLUMNS = [

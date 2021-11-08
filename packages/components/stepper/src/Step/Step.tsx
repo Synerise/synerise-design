@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CheckS, WarningFillS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
+
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 import AnimateHeight from 'react-animate-height';

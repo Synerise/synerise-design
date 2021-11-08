@@ -24,8 +24,7 @@ yarn add @synerise/ds-icon
 ## Usage
 
 ```
-import Icon from '@synerise/ds-layout'
-import AngleLeftM from '@synerise/ds-icon/dist/icons/AngleLeftM';
+import Icon, { AngleLeftM } from '@synerise/ds-icon'
 
 <Icon component={<AngleLeftM />
       color={'red'}

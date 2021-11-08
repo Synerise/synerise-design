@@ -1,7 +1,7 @@
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
 import Button from '@synerise/ds-button';
 import ButtonGroup from '@synerise/ds-button-group';
-import { IconContainer } from '@synerise/ds-icon/dist/Icon.styles';
+import { IconContainer } from '@synerise/ds-icon';
 
 export const FilterButtonGroup = styled(ButtonGroup)`
   .ant-btn-group {

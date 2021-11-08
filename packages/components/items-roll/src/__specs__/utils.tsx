@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon/dist/icons';
+import Icon, { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon';
 
 import { ItemRollElement, ItemsRollProps } from '../ItemsRoll.types';
 

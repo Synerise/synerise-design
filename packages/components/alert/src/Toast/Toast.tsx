@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { CloseM, WarningFillM, Check3M, HelpFillM, InfoFillM, AngleDownS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { CloseM, WarningFillM, Check3M, HelpFillM, InfoFillM, AngleDownS } from '@synerise/ds-icon';
+
 import * as S from './Toast.styles';
 import { Props, ToastType } from './Toast.types';
 

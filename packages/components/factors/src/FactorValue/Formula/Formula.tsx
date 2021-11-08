@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import { EditS } from '@synerise/ds-icon/dist/icons';
-import Icon from '@synerise/ds-icon';
+import Icon, { EditS } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 import { FormulaValueType, InputProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';

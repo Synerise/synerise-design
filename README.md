@@ -28,7 +28,7 @@ yarn add @synerise/ds-button
 
 ```jsx
 import { DSProvider } from '@synerise/ds-core';
-import Button from '@synerise/ds-button'
+import Button from '@synerise/ds-button';
 
 <DSProvider>
     <Button>Click Me!</Button>

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StarFillM, StarM } from '@synerise/ds-icon/dist/icons';
+
 import { withTheme } from 'styled-components';
-import Icon from '@synerise/ds-icon';
+import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './StarCell.styles';
 import { Props } from './StarCell.types';

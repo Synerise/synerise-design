@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import Divider from '@synerise/ds-divider';
-import Icon from '@synerise/ds-icon';
-import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
+import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 
 import * as S from './BackAction.styles';
 import { Props } from './BackAction.types';

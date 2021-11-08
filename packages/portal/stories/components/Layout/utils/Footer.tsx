@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Footer from '@synerise/ds-footer';
 import Button from '@synerise/ds-button';
-import Icon from '@synerise/ds-icon';
-import { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon';
 
 export default () => (
   <Footer style={{marginTop: '16px'}}>

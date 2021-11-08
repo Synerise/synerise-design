@@ -2,8 +2,7 @@ import faker from 'faker';
 import Badge from '@synerise/ds-badge';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
 import * as React from 'react';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
-import { VarTypeListM, VarTypeNumberM } from '@synerise/ds-icon/dist/icons';
+import { VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 
 import { image } from '../Avatar/constants';
 

@@ -2,13 +2,11 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
-import Icon from '@synerise/ds-icon';
-import { AddM, EditM, FileDownloadM, InfoFillS, TrashM } from '@synerise/ds-icon/dist/icons';
+import Icon, { AddM, EditM, FileDownloadM, InfoFillS, TrashM, VarTypeStringM } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandableWithContainer.data';
-import VarTypeStringM from '@synerise/ds-icon/dist/icons/VarTypeStringM';
 import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;

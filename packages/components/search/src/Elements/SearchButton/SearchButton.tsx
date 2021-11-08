@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon/dist/Icon';
+import Icon, { SearchM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import SearchM from '@synerise/ds-icon/dist/icons/SearchM';
+
 import * as S from "../../Search.styles";
 import { SearchButtonProps } from './SearchButton.types';
 

@@ -10,7 +10,7 @@ import {
   HashM,
   ListM,
   TextM,
-} from '@synerise/ds-icon/dist/icons';
+} from '@synerise/ds-icon';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({
   id: index,

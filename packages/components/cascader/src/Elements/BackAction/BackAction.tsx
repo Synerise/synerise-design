@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '@synerise/ds-icon';
-import ArrowLeftM from '@synerise/ds-icon/dist/icons/ArrowLeftM';
+import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import * as S from './BackAction.styles';
 import { DividerContainer } from '../../Cascader.styles';

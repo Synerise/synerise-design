@@ -60,7 +60,7 @@ const listExample = (
     renderItem={item => <List.Item>{item.text}</List.Item>}
   />
 );
-const req = require.context('@synerise/ds-icon/dist/icons/XL', false, /index.js/);
+const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
 const iconsRaw = req(req.keys()[0]);
 const iconsNames = Object.keys(iconsRaw);
 
