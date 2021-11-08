@@ -58,7 +58,7 @@ const ParameterInput: React.FC<InputProps> = ({
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainerOverride || getPopupContainer}
+        getPopupContainer={getPopupContainer}
         onVisibleChange={onDropdownVisibilityChange}
         overlay={
           <ParameterDropdown

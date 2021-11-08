@@ -132,7 +132,10 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         currentField={currentField}
         selectParameter={selectParameter}
         selectOperator={selectOperator}
-        getPopupContainerOverride={getPopupContainerOverride}
+        getPopupContainerOverride={
+          getPopupContainerOverride ||
+          ((): HTMLElement => document.querySelector(`#condition-step-${step.id}`) || document.body)
+        }
         setStepConditionFactorType={setStepConditionFactorType}
         setStepConditionFactorValue={setStepConditionFactorValue}
         texts={text}
@@ -161,7 +164,12 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   );
 
   return (
-    <S.Step key={step.id} data-dropLabel={text.dropLabel} style={hasPriority ? { zIndex: 10001 } : undefined}>
+    <S.Step
+      key={step.id}
+      id={`condition-step-${step.id}`}
+      data-dropLabel={text.dropLabel}
+      style={hasPriority ? { zIndex: 10001 } : undefined}
+    >
       {updateStepName && stepHeader}
       <S.StepConditions withoutStepName={updateStepName === undefined}>
         <S.Subject>
