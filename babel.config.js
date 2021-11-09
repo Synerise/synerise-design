@@ -10,7 +10,10 @@ module.exports = api => {
   return {
     babelrcRoots: ['.', ...packages],
     ignore,
-
+    assumptions: {
+      "privateFieldsAsProperties": true,
+      "setPublicClassFields": true
+    },
     env: {
       cjs: {
         presets: [
@@ -32,7 +35,6 @@ module.exports = api => {
         '@babel/preset-env',
         {
           modules: false,
-          loose: true,
         },
       ],
       '@babel/preset-typescript',
@@ -41,7 +43,7 @@ module.exports = api => {
     plugins: [
       'babel-plugin-styled-components',
       '@babel/plugin-proposal-object-rest-spread',
-      ['@babel/plugin-proposal-class-properties', { loose: true}],
+      '@babel/plugin-proposal-class-properties',
       [
         'transform-rename-import',
         {
