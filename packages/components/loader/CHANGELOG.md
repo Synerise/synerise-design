@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.32...@synerise/ds-loader@0.2.0) (2021-11-09)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
 ## [0.1.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.1.28-alpha.3...@synerise/ds-loader@0.1.33) (2021-11-05)
 
 **Note:** Version bump only for package @synerise/ds-loader
