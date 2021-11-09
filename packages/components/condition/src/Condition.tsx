@@ -59,6 +59,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
+  const [priorityStepId, setPriorityStepId] = React.useState<React.ReactText | null>(null);
   const prevSteps = usePrevious(steps);
 
   React.useEffect(() => {
@@ -193,6 +194,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 step={step}
                 texts={texts}
                 index={index}
+                hasPriority={step.id === priorityStepId}
+                onStepActivate={setPriorityStepId}
                 getPopupContainerOverride={getPopupContainerOverride}
                 draggableEnabled={draggableEnabled}
                 selectOperator={selectOperator}
@@ -225,6 +228,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     );
   }, [
     steps,
+    priorityStepId,
+    setPriorityStepId,
     onChangeOrder,
     addStep,
     text.addStep,

@@ -11,6 +11,8 @@ import * as S from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import RangePickerInput from '@synerise/ds-date-range-picker/dist/RangePickerInput/RangePickerInput';
 import { Description } from '@synerise/ds-typography';
+import Loader from '@synerise/ds-loader';
+
 
 const decorator = storyFn => <div style={{ padding: '20px', width: '322px' }}>{storyFn()}</div>;
 
@@ -212,6 +214,13 @@ const stories = {
     style: { width: '100%' },
     notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
   }),
+  loadingIndicator: () => ({
+    style: { width: '100%' },
+    notFoundContent: <div style={{padding: '40px'}}><Loader label='Loading...'/></div>,
+    placeholder: 'Loading Indicator',
+
+  }),
+
 };
 
 export default {

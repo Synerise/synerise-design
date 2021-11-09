@@ -18,32 +18,45 @@ import Icon, {
   FileTypeHtml,
   FileTypeMp3,
   FileTypeXls,
-  FileTypePptx
+  FileTypePptx,
 } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 
-const previewableMimeTypes = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml','text/plain','text/html','video/quicktime', 'application/pdf', 'application/zip', 'audio/mpeg', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'text/csv'];
+const previewableMimeTypes = [
+  'image/png',
+  'image/gif',
+  'image/jpeg',
+  'image/svg+xml',
+  'text/plain',
+  'text/html',
+  'video/quicktime',
+  'application/pdf',
+  'application/zip',
+  'audio/mpeg',
+  'application/vnd.ms-excel',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  'text/csv',
+];
 const mapperOfIcons = {
   'image/png': <FileTypeImage />,
   'image/gif': <FileTypePdf />,
   'image/jpeg': <FileTypeImage />,
   'image/svg+xml': <FileTypeSvg />,
-  'application/pdf' : <FileTypePdf />,
-  'application/zip' : <FileTypeZip />,
-  'text/plain' : <FileTypeTxt />,
-  'text/html' : <FileTypeHtml />,
-  'video/quicktime' : <FileTypeVideo />,
-  'audio/mpeg' : <FileTypeMp3 />,
-  'application/vnd.ms-excel': <FileTypeXls/>,
-  'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx/>,
-  'text/csv' : <FileTypeTxt/>
+  'application/pdf': <FileTypePdf />,
+  'application/zip': <FileTypeZip />,
+  'text/plain': <FileTypeTxt />,
+  'text/html': <FileTypeHtml />,
+  'video/quicktime': <FileTypeVideo />,
+  'audio/mpeg': <FileTypeMp3 />,
+  'application/vnd.ms-excel': <FileTypeXls />,
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation': <FileTypePptx />,
+  'text/csv': <FileTypeTxt />,
 };
 
-const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry,retryButtonProps }) => {
-
+const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry, retryButtonProps }) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
   const { disabled, error, file, progress, success } = data;
@@ -56,7 +69,15 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
     setPressed(false);
   };
   return (
-    <S.FileViewContainer success={success} pressed={pressed} progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
+    <S.FileViewContainer
+      success={success}
+      pressed={pressed}
+      progress={hasProgress}
+      disabled={disabled}
+      error={hasError}
+      removable={removable}
+      type="button"
+    >
       {previewableMimeTypes.indexOf(file.type) > -1 ? (
         <S.PreviewImage>
           <Icon component={mapperOfIcons[file.type]} size={40} />
@@ -73,13 +94,13 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
             <S.Name>
               {file.name} <S.FileWeight>{texts.fileWeight}</S.FileWeight>
             </S.Name>
-            <div style={{display: 'flex'}}>
-            <ProgressBar amount={100} percent={texts.percent} />
-            <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
-              <Tooltip title={texts.removeTooltip}>
-                <Icon component={<Close3M />} size={20} />
-              </Tooltip>
-            </S.RemoveWrapper>
+            <div style={{ display: 'flex' }}>
+              <ProgressBar amount={100} percent={texts.percent} />
+              <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
+                <Tooltip title={texts.removeTooltip}>
+                  <Icon component={<Close3M />} size={20} />
+                </Tooltip>
+              </S.RemoveWrapper>
             </div>
           </>
         ) : (
@@ -97,9 +118,16 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
         )}
       </S.Info>
       {error && retry && !hasProgress && (
-        <Button onClick={(event): void=> {onRemove && onRemove();
-        if (retryButtonProps?.onClick) {
-        retryButtonProps.onClick(event)}}} mode="icon-label" type="ghost-primary">
+        <Button
+          onClick={(event): void => {
+            onRemove && onRemove();
+            if (retryButtonProps?.onClick) {
+              retryButtonProps.onClick(event);
+            }
+          }}
+          mode="icon-label"
+          type="ghost-primary"
+        >
           <Icon component={<RepeatM />} />
           {texts.retryLabel}
         </Button>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
-import Icon, { InfoFillS, Add3M} from '@synerise/ds-icon';
+import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
 

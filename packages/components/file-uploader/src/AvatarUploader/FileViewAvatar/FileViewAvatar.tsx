@@ -11,7 +11,7 @@ const mapperOfIcons = {
   'image/gif': <FileTypeImageM />,
   'image/jpeg': <FileTypeImageM />,
   'image/svg+xml': <FileTypeImageM />,
-  'text/csv' : <FileTypeImageM/>
+  'text/csv': <FileTypeImageM />,
 };
 
 const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable, description }) => {
@@ -33,7 +33,7 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
 
   return (
     <S.FileAvatarContainer>
-      <S.AvatarContainer  removable={removable} disabled={disabled} source={fileSource}>
+      <S.AvatarContainer removable={removable} disabled={disabled} source={fileSource}>
         {removable && !disabled && !error && !hasProgress && (
           <S.RemoveWrapper
             onClick={handleRemoveAvatar}
@@ -41,54 +41,54 @@ const FileViewAvatar: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, 
             pressed={pressed}
             data-testid="file-view-avatar-remove"
           >
-            <Tooltip align={{offset:[0,8] }} title={texts.removeTooltip}>
+            <Tooltip align={{ offset: [0, 8] }} title={texts.removeTooltip}>
               <Icon component={<Close3M />} size={24} />
             </Tooltip>
           </S.RemoveWrapper>
         )}
       </S.AvatarContainer>
       <S.FileViewContainer>
-        <Tooltip overlayStyle={{maxWidth: '350px'}} title={file.name}>
-        <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
-          {previewableMimeTypes.indexOf(file.type) > -1 ? (
-            <S.PreviewImage>
-              <Icon component={mapperOfIcons[file.type]} size={24} />
-            </S.PreviewImage>
-          ) : (
-            <S.PlaceholderImage>
-              <Icon component={<FileM />} size={24} />
-            </S.PlaceholderImage>
-          )}
-          <S.Info>
-            <>
-              <S.Name>{file.name}</S.Name>
-            </>
-          </S.Info>
-          {hasProgress && (
-            <S.LoaderIcon>
-              <S.SmallLoader color="blue" size="S" />
-            </S.LoaderIcon>
-          )}
-          {error && (
-            <Tooltip title={texts.retryTooltip}>
-              <S.RepeatIcon>
-                <Icon component={<RepeatM />} />
-              </S.RepeatIcon>
-            </Tooltip>
-          )}
-          {removable && !disabled && !error && !hasProgress && (
-            <S.RemoveButtonWrapper
-              onClick={handleRemove}
-              onMouseDown={(): void => removeButtonSetPressed(true)}
-              pressed={removeButtonPressed}
-              data-testid="fileview-remove"
-            >
-              <Tooltip title={texts.removeTooltip}>
-                <Icon component={<Close3M />} size={16} />
+        <Tooltip overlayStyle={{ maxWidth: '350px' }} title={file.name}>
+          <S.FileView progress={hasProgress} disabled={disabled} error={hasError} removable={removable} type="button">
+            {previewableMimeTypes.indexOf(file.type) > -1 ? (
+              <S.PreviewImage>
+                <Icon component={mapperOfIcons[file.type]} size={24} />
+              </S.PreviewImage>
+            ) : (
+              <S.PlaceholderImage>
+                <Icon component={<FileM />} size={24} />
+              </S.PlaceholderImage>
+            )}
+            <S.Info>
+              <>
+                <S.Name>{file.name}</S.Name>
+              </>
+            </S.Info>
+            {hasProgress && (
+              <S.LoaderIcon>
+                <S.SmallLoader color="blue" size="S" />
+              </S.LoaderIcon>
+            )}
+            {error && (
+              <Tooltip title={texts.retryTooltip}>
+                <S.RepeatIcon>
+                  <Icon component={<RepeatM />} />
+                </S.RepeatIcon>
               </Tooltip>
-            </S.RemoveButtonWrapper>
-          )}
-        </S.FileView>
+            )}
+            {removable && !disabled && !error && !hasProgress && (
+              <S.RemoveButtonWrapper
+                onClick={handleRemove}
+                onMouseDown={(): void => removeButtonSetPressed(true)}
+                pressed={removeButtonPressed}
+                data-testid="fileview-remove"
+              >
+                <Tooltip title={texts.removeTooltip}>
+                  <Icon component={<Close3M />} size={16} />
+                </Tooltip>
+              </S.RemoveButtonWrapper>
+            )}
+          </S.FileView>
         </Tooltip>
         <S.DescriptionUploader>{description}</S.DescriptionUploader>
       </S.FileViewContainer>

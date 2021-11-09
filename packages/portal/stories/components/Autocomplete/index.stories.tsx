@@ -3,6 +3,8 @@ import { text, boolean } from '@storybook/addon-knobs';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
+import Loader from '@synerise/ds-loader';
+import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
 
 const dataSource = ['First position', 'Second position'];
 const renderLabel = (text:string)=>{
@@ -15,6 +17,7 @@ const AutocompleteWithState: React.FC = () => {
   const description = text('Description','Description');
   const errorMessage = text('Error Text', 'Error' );
   const hasError = boolean('Set validation state',false);
+  const loading = boolean('Set loading indicator',false);
   const placeholder = text('Placeholder', 'Placeholder')
   const [isFocus, setFocus] = React.useState(false)
 
@@ -81,11 +84,12 @@ const AutocompleteWithState: React.FC = () => {
       description={description}
       value={value === 'undefined' ? '' : value}
     >
-      {results.map(result => (
+      {!loading && results.map(result => (
         <Autocomplete.Option key={result}>
           <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
         </Autocomplete.Option>
       ))}
+      {loading && <Autocomplete.Option><LoaderWrapper><Loader label='Loading...'/></LoaderWrapper> </Autocomplete.Option>}
     </Autocomplete>
   );
 };

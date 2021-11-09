@@ -28,6 +28,8 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   setStepConditionFactorType,
   setStepConditionFactorValue,
   getPopupContainerOverride,
+  onStepActivate,
+  hasPriority,
   currentStepId,
   currentConditionId,
   currentField,
@@ -58,6 +60,16 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [texts, formatMessage]
   );
 
+  const onActivate = onStepActivate ? (): void => onStepActivate(step.id) : undefined;
+
+  const onAddCondition = React.useCallback(
+    (stepId: React.ReactText) => {
+      addCondition && addCondition(stepId);
+      onActivate && onActivate();
+    },
+    [addCondition, onActivate]
+  );
+
   const stepHeader = React.useMemo(
     () => (
       <StepHeader
@@ -81,14 +93,23 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         <AddCondition
           texts={text}
           stepId={step.id}
-          addCondition={addCondition}
+          addCondition={onAddCondition}
           conditionsNumber={step.conditions.length}
           selectedSubject={Boolean(step.subject?.selectedItem)}
           selectedContext={Boolean(step.context?.selectedItem)}
         />
       )
     );
-  }, [addCondition, maxConditionsLength, step.conditions.length, step.context, step.id, step.subject, text]);
+  }, [
+    addCondition,
+    onAddCondition,
+    maxConditionsLength,
+    step.conditions.length,
+    step.context,
+    step.id,
+    step.subject,
+    text,
+  ]);
 
   const renderConditionRow = React.useCallback(
     (condition, conditionIndex) => (
@@ -104,13 +125,17 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         minConditionLength={minConditionsLength}
         maxConditionLength={maxConditionsLength}
         conditionsNumber={step.conditions.length}
+        onActivate={onActivate}
         stepId={step.id}
         currentStepId={currentStepId}
         currentConditionId={currentConditionId}
         currentField={currentField}
         selectParameter={selectParameter}
         selectOperator={selectOperator}
-        getPopupContainerOverride={getPopupContainerOverride}
+        getPopupContainerOverride={
+          getPopupContainerOverride ||
+          ((): HTMLElement => document.querySelector(`#condition-step-${step.id}`) || document.body)
+        }
         setStepConditionFactorType={setStepConditionFactorType}
         setStepConditionFactorValue={setStepConditionFactorValue}
         texts={text}
@@ -134,17 +159,35 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       step.context,
       step.id,
       text,
+      onActivate,
     ]
   );
 
   return (
-    <S.Step key={step.id} data-dropLabel={text.dropLabel}>
+    <S.Step
+      key={step.id}
+      id={`condition-step-${step.id}`}
+      data-dropLabel={text.dropLabel}
+      style={hasPriority ? { zIndex: 10001 } : undefined}
+    >
       {updateStepName && stepHeader}
       <S.StepConditions withoutStepName={updateStepName === undefined}>
         <S.Subject>
-          {step.subject && <Subject {...step.subject} onSelectItem={(value): void => selectSubject(value, step.id)} />}
+          {step.subject && (
+            <Subject
+              {...step.subject}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onActivate={onActivate}
+              onSelectItem={(value): void => selectSubject(value, step.id)}
+            />
+          )}
           {step.context && (
-            <ContextSelector {...step.context} onSelectItem={(value): void => selectContext(value, step.id)} />
+            <ContextSelector
+              {...step.context}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onActivate={onActivate}
+              onSelectItem={(value): void => selectContext(value, step.id)}
+            />
           )}
         </S.Subject>
         <S.ConditionRows>
