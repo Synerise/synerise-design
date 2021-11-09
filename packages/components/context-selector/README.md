@@ -84,24 +84,25 @@ import ContextSelector from '@synerise/ds-context-selector'
 
 ## API
 
-| Property               | Description                                                   | Type                                                   | Default   | 
-| ---                    | ---                                                           | ---                                                    | ---       | 
-| groups                 | Groups of items                                               | ContextGroup[]                                         | []        | 
-| items                  | Array of items                                                | ContextItem[]                                          | []        | 
-| onSelectItem           | Callback called when user selects item                        | (item: ContextItem \ ContextGroup \ undefined) => void | -         | 
-| opened                 | Whether if dropdown should opens from outside of component    | boolean                                                | false     | 
-| texts                  | Translations object                                           | ContextSelectorTexts                                   | -         | 
-| selectedItem           | Selected item                                                 | ContextItem \ undefined                                | undefined | 
-| addMode                | If true trigger doesn't change style when value is set        | ContextItem \ undefined                                | undefined | 
-| customTriggerComponent | Add custom trigger                                            | React.ReactNode                                        | undefined | 
-| trigger                | Add custom trigger to modal                                   | 'click' \ 'hover' \ 'contextMenu'                      | 'click    | 
-| menuItemHeight         | Set component Menu.Item height                                | 'large' \ 'default'                                    | -         | 
-| dropdownWrapperStyles  | Apply custom styles to dropdown wrapper                       | CSSProperties \ undefined                              | -         | 
-| onClickOutsideEvents   | Overwrite default events for document listener                | HandledEventsType[] \ undefined                        | -         | 
-| onClickOutside         | Callback called when user click outside dropdown              | () => void \ undefined                                 | -         | 
-| onSearch               | Callback called when user enter any char in search input      | (query: string) => void                                | -         |
-| onFetchData            | Callback called when user scrolls to the end of dropdown list | () => void                                             | -         | 
-| hasMoreItems           | Whether if onFetchData should be called                       | boolean                                                | -         | 
+| Property                  | Description                                                   | Type                                                   | Default   | 
+| ---                       | ---                                                           | ---                                                    | ---       | 
+| groups                    | Groups of items                                               | ContextGroup[]                                         | []        | 
+| items                     | Array of items                                                | ContextItem[]                                          | []        | 
+| onSelectItem              | Callback called when user selects item                        | (item: ContextItem \ ContextGroup \ undefined) => void | -         | 
+| opened                    | Whether if dropdown should opens from outside of component    | boolean                                                | false     | 
+| texts                     | Translations object                                           | ContextSelectorTexts                                   | -         | 
+| selectedItem              | Selected item                                                 | ContextItem \ undefined                                | undefined | 
+| addMode                   | If true trigger doesn't change style when value is set        | ContextItem \ undefined                                | undefined | 
+| customTriggerComponent    | Add custom trigger                                            | React.ReactNode                                        | undefined | 
+| trigger                   | Add custom trigger to modal                                   | 'click' \ 'hover' \ 'contextMenu'                      | 'click    | 
+| menuItemHeight            | Set component Menu.Item height                                | 'large' \ 'default'                                    | -         | 
+| dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                       | CSSProperties \ undefined                              | -         | 
+| onClickOutsideEvents      | Overwrite default events for document listener                | HandledEventsType[] \ undefined                        | -         | 
+| onClickOutside            | Callback called when user click outside dropdown              | () => void \ undefined                                 | -         | 
+| onSearch                  | Callback called when user enter any char in search input      | (query: string) => void                                | -         |
+| onFetchData               | Callback called when user scrolls to the end of dropdown list | () => void                                             | -         | 
+| hasMoreItems              | Whether if onFetchData should be called                       | boolean                                                | -         | 
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;          | -       |
 
 
 ### ContextGroup

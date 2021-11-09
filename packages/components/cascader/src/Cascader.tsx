@@ -21,7 +21,7 @@ const Cascader: React.FC<CascaderProps> = ({
   searchInputPlaceholder,
   onCategorySelect,
   categorySuffix,
-  maxHeight ,
+  maxHeight,
   contentStyles,
   selectedCategoriesIds,
 }) => {
@@ -42,7 +42,8 @@ const Cascader: React.FC<CascaderProps> = ({
 
   const categoriesMaxHeight = maxHeight
     ? Math.floor((maxHeight - Number(categoriesContainer?.current?.offsetTop)) / CATEGORY_ITEM_HEIGHT) *
-      CATEGORY_ITEM_HEIGHT + VERTICAL_PADDING_OFFSET
+        CATEGORY_ITEM_HEIGHT +
+      VERTICAL_PADDING_OFFSET
     : undefined;
   const calculateVisibleRows = React.useMemo(() => {
     return Math.floor((height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT);
@@ -156,8 +157,8 @@ const Cascader: React.FC<CascaderProps> = ({
                 paths={filteredPaths}
                 highlight={searchQuery}
                 onBreadCrumbClick={(breadcrumb: Path): void => {
-                  const selectedCategory =  searchCategoryWithId(rootCategory,breadcrumb?.id)
-                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category)
+                  const selectedCategory = searchCategoryWithId(rootCategory, breadcrumb?.id);
+                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category);
                 }}
                 scrollTop={scrollTop}
               />

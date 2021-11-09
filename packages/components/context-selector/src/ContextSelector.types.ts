@@ -37,10 +37,12 @@ export type ContextGroup = {
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
   selectedItem?: ContextItem | undefined;
+  onActivate?: () => void;
   onSelectItem: (item: ContextItem | ContextGroup | undefined) => void;
   groups: ContextGroup[];
   items: ContextItem[];
   texts: ContextTexts;
+  getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onSetGroup?: (item: ContextItem | ContextGroup | undefined) => void;
   opened?: boolean;
   addMode?: boolean;

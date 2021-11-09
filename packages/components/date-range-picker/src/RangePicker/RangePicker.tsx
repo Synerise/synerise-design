@@ -12,7 +12,7 @@ import {
 } from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker.styles';
 import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPicker';
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
-import Icon, {  CalendarM, ClockM } from '@synerise/ds-icon';
+import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
 import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { legacyParse } from '@date-fns/upgrade/v2';

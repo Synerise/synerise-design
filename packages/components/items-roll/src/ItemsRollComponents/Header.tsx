@@ -44,7 +44,8 @@ const Header: React.FC<HeaderProps> = ({
           ) : (
             ChangeSelectionButton
           ))}
-        {!hideSearch && <S.SearchWrapper>
+        {!hideSearch && (
+          <S.SearchWrapper>
             <SearchInput
               clearTooltip={allTexts.searchClearTooltipLabel}
               onClear={onSearchClear || NOOP}
@@ -54,8 +55,8 @@ const Header: React.FC<HeaderProps> = ({
               closeOnClickOutside
             />
           </S.SearchWrapper>
-        }
-        { customSidebarActions }
+        )}
+        {customSidebarActions}
         {actions && <Extras actions={actions} />}
       </S.HeaderRight>
     </S.ContainerSpaceBetween>

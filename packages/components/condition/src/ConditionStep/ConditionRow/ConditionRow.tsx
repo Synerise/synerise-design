@@ -29,6 +29,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   setStepConditionFactorType,
   setStepConditionFactorValue,
   getPopupContainerOverride,
+  onActivate,
   texts,
 }) => {
   return (
@@ -47,6 +48,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
           <Factors
             {...conditionParameter}
             getPopupContainerOverride={getPopupContainerOverride}
+            onActivate={onActivate}
             onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
             opened={stepId === currentStepId && conditionId === currentConditionId && currentField === PARAMETER}
           />
@@ -57,6 +59,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
           <Operators
             {...conditionOperator}
             getPopupContainerOverride={getPopupContainerOverride}
+            onActivate={onActivate}
             onChange={(value): void => selectOperator(stepId, conditionId, value)}
             opened={stepId === currentStepId && conditionId === currentConditionId && currentField === OPERATOR}
           />
@@ -69,6 +72,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               <Factors
                 {...conditionFactor}
                 getPopupContainerOverride={getPopupContainerOverride}
+                onActivate={onActivate}
                 setSelectedFactorType={(factorType): void =>
                   setStepConditionFactorType(stepId, conditionId, factorType)
                 }

@@ -6,25 +6,44 @@ import Icon, {
   Check3M,
   HelpFillM,
   UserUpM,
-  UpdateDataM, NotificationsReceiveM,
+  UpdateDataM,
+  NotificationsReceiveM,
 } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import * as S from './SectionMessage.styles';
-import { Props,AlertTypes } from './SectionMessage.types';
+import { Props, AlertTypes } from './SectionMessage.types';
 
 const ICONS: Record<AlertTypes, React.ReactNode> = {
   positive: <Check3M />,
   notice: <WarningFillM />,
   negative: <WarningFillM />,
   neutral: <HelpFillM />,
-  supply: <UserUpM/>,
-  service:<UpdateDataM/>,
-  entity: <NotificationsReceiveM/>,
+  supply: <UserUpM />,
+  service: <UpdateDataM />,
+  entity: <NotificationsReceiveM />,
 };
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const SectionMessage: React.FC<Props> = ({icon, type, message, description, showMoreLabel, onShowMore, newClient, moreButtons, withEmphasis, withLink, unorderedList, color, withClose, customColor, customColorIcon, customIcon,textButton}: Props) => {
+const SectionMessage: React.FC<Props> = ({
+  icon,
+  type,
+  message,
+  description,
+  showMoreLabel,
+  onShowMore,
+  newClient,
+  moreButtons,
+  withEmphasis,
+  withLink,
+  unorderedList,
+  color,
+  withClose,
+  customColor,
+  customColorIcon,
+  customIcon,
+  textButton,
+}: Props) => {
   const renderMessage = React.useMemo(() => {
     return (
       <S.AlertContent withLink={withLink}>
@@ -36,9 +55,7 @@ const SectionMessage: React.FC<Props> = ({icon, type, message, description, show
         </S.Text>
         {onShowMore && showMoreLabel && <S.AlertShowMore onClick={onShowMore}>{showMoreLabel}</S.AlertShowMore>}
         {moreButtons}
-        {unorderedList && !moreButtons && (
-         unorderedList
-        )}
+        {unorderedList && !moreButtons && unorderedList}
       </S.AlertContent>
     );
   }, [message, description, showMoreLabel, onShowMore, moreButtons, withEmphasis, withLink, unorderedList]);
@@ -54,9 +71,7 @@ const SectionMessage: React.FC<Props> = ({icon, type, message, description, show
       <S.WrapperSectionMessage>
         <S.AllContent>
           <S.IconWrapper color={color} customColorIcon={customColorIcon}>
-            {customIcon || (
-            <Icon component={renderIcon} />
-            )}
+            {customIcon || <Icon component={renderIcon} />}
           </S.IconWrapper>
           {renderMessage}
         </S.AllContent>
