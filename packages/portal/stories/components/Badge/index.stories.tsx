@@ -12,6 +12,21 @@ import { statuses } from './constants';
 const decorator = storyFn => (
   <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
 );
+const CUSTOM_COLORS = [
+  '',
+  'blue',
+  'grey',
+  'red',
+  'green',
+  'yellow',
+  'pink',
+  'mars',
+  'orange',
+  'fern',
+  'cyan',
+  'purple',
+  'violet',
+];
 
 const stories = {
   standalone: () => {
@@ -200,8 +215,7 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
-
+      <Badge customColor={select('Set custom color status', CUSTOM_COLORS, '')} status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
     </>
   ),
   flagWithLabel: () => (

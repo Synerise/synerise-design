@@ -37,7 +37,7 @@ export const beforeElementAnimation = keyframes`
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 export default styled(
-  ({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, ...rest }) => (
+  ({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, customColor, ...rest }) => (
     <Badge {...rest} />
   )
 )`
@@ -68,15 +68,24 @@ export default styled(
   ${(props): FlattenSimpleInterpolation | false =>
     css`
       ${
-        props.status === 'active' &&
+        props.status === 'active' && !props.customColor &&
         css`
           .ant-badge-status-active {
             background-color: ${props.theme.palette['green-600']};
           }
         `
       }
+      ${
+      props.customColor  &&
+      css`
+          .ant-badge-dot,
+          .ant-badge-status-dot {
+            background-color: ${props.theme.palette[`${props.customColor}-600`]};
+          }
+        `
+    }
         ${
-          props.status === 'inactive' &&
+          props.status === 'inactive' && !props.customColor &&
           css`
             .ant-badge-status-inactive {
               background-color: ${props.theme.palette['grey-400']};
@@ -84,7 +93,7 @@ export default styled(
           `
         }
       ${
-        props.status === 'blocked' &&
+        props.status === 'blocked' && !props.customColor &&
         css`
           .ant-badge-status-blocked {
             background-color: ${props.theme.palette['red-600']};
@@ -92,7 +101,7 @@ export default styled(
         `
       }
         ${
-          props.status === 'processing' &&
+          props.status === 'processing' && !props.customColor &&
           css`
             .ant-badge-status-processing {
               background-color: ${props.theme.palette['blue-600']};
