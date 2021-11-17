@@ -38,8 +38,8 @@ const stories = {
     return (
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
-          <S.LayoutSidebar opened className="scroll-wrapper">
-            <SimpleBar autohide={true} style={{ height: '100vh' }}>
+          <S.LayoutSidebar opened>
+            <SimpleBar scrollableNodeProps={{className: "scroll-wrapper"}} autohide={true} style={{ height: '100vh' }}>
               <div style={{ padding: '24px' }}>
                 <TreeMenu
                   getContainer={getContainer}
@@ -53,7 +53,7 @@ const stories = {
                   onChange={handleChange}
                 />
               </div>
-            </SimpleBar>
+              </SimpleBar>
           </S.LayoutSidebar>
         </S.LayoutSidebarWrapper>
       </div>

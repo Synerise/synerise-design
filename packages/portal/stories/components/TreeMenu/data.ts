@@ -1,8 +1,9 @@
+import type { TreeData } from './../../../../components/treemenu/src/Tree/Tree.types';
 import { v4 as uuid } from 'uuid';
 
 export function generateItems(amount: number, start = 1) {
-  const items = [];
-  for (let i = start; i <= amount + start; i += 1) {
+  const items: TreeData[] = [];
+  for (let i = start; i < amount + start; i += 1) {
     const id = uuid();
     items.push({
       id,
@@ -10,7 +11,7 @@ export function generateItems(amount: number, start = 1) {
       name: `Option ${i}`,
       type: 'folder',
       hidden: false,
-    });
+    } as TreeData);
   }
   return items;
 }
@@ -19,7 +20,7 @@ const id1 = uuid();
 const id2 = uuid();
 const id3 = uuid();
 
-export const dataSource = [
+export const dataSource: TreeData[] = [
   {
     id: id1,
     key: id1,
@@ -45,5 +46,5 @@ export const dataSource = [
       ...generateItems(5, 200),
     ],
   },
-  ...generateItems(1, 10),
+  ...generateItems(5, 10),
 ];
