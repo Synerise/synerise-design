@@ -11,7 +11,7 @@ type PossibleEvent = { [Type in HandledEventsType]: HTMLElementEventMap[Type] }[
 type Handler = (event: PossibleEvent) => void;
 const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
-const useOnClickOutside = (
+export const useOnClickOutside = (
   ref: RefObject<HTMLElement>,
   handler: Handler | null,
   customEventsTypes?: HandledEventsType[]
@@ -43,5 +43,3 @@ const useOnClickOutside = (
     };
   }, [handler, ref, events]);
 };
-
-export default useOnClickOutside;
