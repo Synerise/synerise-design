@@ -8,10 +8,6 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              assumptions: {
-                "privateFieldsAsProperties": true,
-                "setPublicClassFields": true
-              },
               presets: [
                 '@babel/preset-react',
                 [
