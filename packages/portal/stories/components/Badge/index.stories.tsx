@@ -8,7 +8,9 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import { shapes as avatarShape, sizes as avatarSize } from '../Avatar/constants';
 import { statuses } from './constants';
+import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
+const COLORS: (keyof ThemePropsVars['palette'])[] = Object.keys(this.theme)
 const decorator = storyFn => (
   <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
 );
@@ -215,7 +217,7 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge customColor={select('Set custom color status', CUSTOM_COLORS, '')} status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
+      <Badge customColor={select('Set custom color status', COLORS, '')} status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
     </>
   ),
   flagWithLabel: () => (
