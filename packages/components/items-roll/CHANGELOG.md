@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.5.3...@synerise/ds-items-roll@0.5.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* **core:** fix exporting types ([65531bf](https://github.com/Synerise/synerise-design/commit/65531bf5da1915f8f2c8f856ccd2318375c6a2c3))
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.5.2...@synerise/ds-items-roll@0.5.3) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-items-roll
