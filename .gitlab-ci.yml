@@ -122,3 +122,14 @@ k8s-deploy-branch-release:
     CURRENT_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   only:
     - dev
+
+chromatic_publish:
+  stage: deploy
+  only:
+    refs:
+      - merge_requests
+    variables:
+      - $CHROMATIC_PROJECT_TOKEN
+  script:
+    - test ! -e packages/portal/storybook-static && (yarn install && yarn build; cd packages/portal; yarn build-docs --quiet)
+    - (cd packages/portal; npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
