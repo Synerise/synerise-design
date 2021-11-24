@@ -11,7 +11,9 @@ import { statuses } from './constants';
 
 
 const decorator = storyFn => (
-  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
+  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>
+    {storyFn()}
+  </div>
 );
 const CUSTOM_COLORS = [
   '',
@@ -49,7 +51,7 @@ const stories = {
             overflowCount={number('OverflowCount', 99)}
             showZero={boolean('ShowZero', false)}
             title={text('Title', 'text')}
-            style={ {
+            style={{
               margin: '0 6px 0 11px',
             }}
           />
@@ -203,7 +205,7 @@ const stories = {
   }),
   statusWithAvatar: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')}  >
+      <Badge status={select('Status', statuses, 'active')}>
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
           shape={select('Avatar shape', avatarShape, 'circle')}
@@ -221,12 +223,17 @@ const stories = {
   ),
   flagWithLabel: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} text={text('Text', 'Success')} pulsing={boolean('Set Pulsing', true)}  flag={true} />
+      <Badge
+        status={select('Status', statuses, 'active')}
+        text={text('Text', 'Success')}
+        pulsing={boolean('Set Pulsing', true)}
+        flag={true}
+      />
     </>
   ),
   flagWithElement: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <div
           style={{
             width: '48px',
@@ -240,14 +247,14 @@ const stories = {
   ),
   flagWithIcon: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
     </>
   ),
   flagWithAvatar: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
           shape={select('Avatar shape', avatarShape, 'square')}
@@ -260,7 +267,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Badge',
+  name: 'Components/Badge',
   decorator,
   stories,
   Component: Badge,

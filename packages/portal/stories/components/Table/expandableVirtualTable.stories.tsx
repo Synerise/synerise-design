@@ -2,13 +2,24 @@ import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell, VirtualTable } from '@synerise/ds-table';
-import Icon, { VarTypeStringM, EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM } from '@synerise/ds-icon';
+import Icon, {
+  VarTypeStringM,
+  EditM,
+  FileDownloadM,
+  InfoFillS,
+  TrashM,
+  VarTypeNumberM,
+  MailM,
+} from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
 import { dataSource } from './content/expandable.data';
 import ModalProxy from '@synerise/ds-modal';
 import { renderWithIconInHeaders } from './helpers/helpers';
+import Badge from '@synerise/ds-badge';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -19,6 +30,7 @@ const stories = {
     starredRowKeys: [],
   })(({ store }) => {
     const { expandedRows, selectedRows } = store.state;
+    console.log(theme);
     const handleExpandRow = (key: number): void => {
       if (expandedRows.indexOf(key) < 0) {
         store.set({ expandedRows: [...expandedRows, key] });
@@ -39,6 +51,24 @@ const stories = {
           key: 'name',
           icon: { component: <VarTypeStringM /> },
           iconTooltip: { component: <InfoFillS /> },
+          render: name => {
+            return (
+              <TableCell.AvatarLabelCell
+                avatarAction={action('Avatar Action')}
+                avatar={
+                  <ObjectAvatar
+                    badgeStatus="active"
+                    size="medium"
+                    iconComponent={<Icon component={<MailM />} color="red" />}
+                  />
+                }
+                title={name}
+              />
+            );
+          },
+          childRender: name => {
+            return <TableCell.StatusLabelCell status={'active'} label={name} />;
+          },
         },
         {
           title: 'Age',
@@ -46,6 +76,12 @@ const stories = {
           key: 'age',
           icon: { component: <VarTypeNumberM /> },
           iconTooltip: { component: <InfoFillS /> },
+          render: (age, record) => {
+            return <Badge count={age} overflowCount={99} title={record.name}></Badge>;
+          },
+          childRender: age => {
+            return age;
+          },
         },
         {
           dataIndex: 'children',
@@ -84,7 +120,7 @@ const stories = {
           title={text('Table title', 'Expandable virtual table')}
           scroll={{ y: 600 }}
           initialWidth={792}
-          cellHeight={50}
+          cellHeight={72}
           dataSource={dataSource}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
@@ -102,12 +138,14 @@ const stories = {
             selectedRowKeys: selectedRows,
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
           }}
-          rowStar={boolean('Enable row star', undefined) && {
-            starredRowKeys: store.state.starredRowKeys,
-            onChange: (starredRowKeys): void => {
-              store.set({ starredRowKeys });
+          rowStar={
+            boolean('Enable row star', undefined) && {
+              starredRowKeys: store.state.starredRowKeys,
+              onChange: (starredRowKeys): void => {
+                store.set({ starredRowKeys });
+              },
             }
-          }}
+          }
           onSearch={console.log}
           itemsMenu={
             <ItemsMenu>

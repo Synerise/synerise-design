@@ -9,6 +9,7 @@ export type ThemePropsVars = {
   palette: { [key: string]: string };
   variable: (name: string) => string | null;
   space: number[];
+  colorsOrder: string[];
   breakpoints: string[];
 };
 
@@ -17,11 +18,36 @@ export type ThemeProps = SCThemeProps<ThemePropsVars>;
 const getBreakpoints = (): string[] =>
   [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(item => `${item}px`);
 
+const colorsOrder = [
+  'blue-600',
+  'green-600',
+  'mars-600',
+  'purple-600',
+  'cyan-600',
+  'yellow-600',
+  'violet-600',
+  'blue-700',
+  'green-700',
+  'mars-700',
+  'purple-700',
+  'cyan-700',
+  'yellow-700',
+  'violet-700',
+  'blue-500',
+  'green-500',
+  'mars-500',
+  'purple-500',
+  'cyan-500',
+  'yellow-500',
+  'violet-500',
+].map(color => vars.colors[color]);
+
 const theme: ThemePropsVars = {
   variables: vars.variables,
   palette: vars.colors,
   breakpoints: getBreakpoints(),
   space: [0, 8, 12, 16, 24, 32, 48, 64],
+  colorsOrder,
   variable: function variable(name: string): string | null {
     return name ? this.variables[name.slice(1)] : null;
   },

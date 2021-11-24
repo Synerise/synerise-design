@@ -27,7 +27,15 @@ const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], co
 
 const calculateToPixelsIfDefined = (value: string | number | undefined | null): number | undefined | null =>
   value ? calculatePixels(value) : (value as number);
-class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
+
+class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
+  renderColumn = (column: any, rowData: T, index: number): React.ReactNode => {
+    if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
+      return column.childRender(rowData[column.dataIndex], rowData, index);
+    }
+    return column.render ? column.render(rowData[column.dataIndex], rowData, index) : rowData[column.dataIndex];
+  };
+
   render(): React.ReactNode {
     const { index, style, data } = this.props;
     const { mergedColumns, onRowClick, selection, dataSource, cellHeight, infiniteScroll, defaultTableProps } = data;
@@ -64,7 +72,7 @@ class VirtualTableRow<T> extends React.PureComponent<Props<T>> {
                 width={column.width}
                 maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
               >
-                {column.render ? column.render(rowData[column.dataIndex], rowData) : rowData[column.dataIndex]}
+                {this.renderColumn(column, rowData, columnIndex)}
               </S.ColWrapper>
             );
           })}
