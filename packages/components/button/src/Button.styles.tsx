@@ -170,7 +170,7 @@ export const AntdButton = styled(
     ${(props): FlattenSimpleInterpolation | false =>
       props.mode !== 'single-icon' &&
       css`
-        &.ant-btn:not(.ds-expander):not(.ds-button-creator) {
+        &.ant-btn:not(.ds-expander):not(.ds-button-creator):not(.btn-search) {
           min-width: 54px;
         }
       `}
