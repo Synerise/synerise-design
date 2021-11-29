@@ -22,6 +22,18 @@ const getContainer = (): HTMLElement => {
   return document.querySelector('.scroll-wrapper') || document.body;
 };
 
+function Wrapper({children, ...props}) {
+  if (boolean('Use react-SimpleBar', false)) {
+    return <SimpleBar scrollableNodeProps={{className: "scroll-wrapper"}} autohide={true} style={{ height: '100vh' }}>
+      {children}
+    </SimpleBar>
+  } else {
+    return <div className="scroll-wrapper" style={{ height: '300px', overflowY: 'auto' }}>
+      {children}
+    </div>
+  }
+}
+
 const stories = {
   customItems: () => {
     const [data, setData] = React.useState<TreeData[]>(JSON.parse(JSON.stringify(dataSource)));
@@ -39,7 +51,7 @@ const stories = {
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
           <S.LayoutSidebar opened>
-            <SimpleBar scrollableNodeProps={{className: "scroll-wrapper"}} autohide={true} style={{ height: '100vh' }}>
+            <Wrapper>
               <div style={{ padding: '24px' }}>
                 <TreeMenu
                   getContainer={getContainer}
@@ -53,7 +65,7 @@ const stories = {
                   onChange={handleChange}
                 />
               </div>
-              </SimpleBar>
+            </Wrapper>
           </S.LayoutSidebar>
         </S.LayoutSidebarWrapper>
       </div>
