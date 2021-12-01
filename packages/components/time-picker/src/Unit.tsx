@@ -26,6 +26,15 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   const unitContainerRef = React.useRef<HTMLDivElement>(null);
 
   const [containerHeight, setContainerHeight] = React.useState<number>(300);
+  const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
+  React.useEffect(() => {
+    if (isFirstRender) {
+      setFirstRender(false);
+      if (unitContainerRef.current) {
+        setContainerHeight(unitContainerRef.current.offsetHeight);
+      }
+    }
+  }, [isFirstRender, unitContainerRef]);
 
   React.useEffect(() => {
     console.log('unit.options', unit, options);
@@ -48,12 +57,12 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   React.useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
-      const scrollBehaviour = !containerHeight ? 'auto' : 'smooth';
+      const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
       unitContainerRef?.current &&
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
-  }, [selectedCellRef, unitContainerRef, forceUpdate, containerHeight]);
+  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
   return (
     <S.Unit
       data-testid={`ds-time-picker-unit-${unit}`}
