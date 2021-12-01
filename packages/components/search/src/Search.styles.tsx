@@ -23,6 +23,7 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   position: relative;
   direction: rtl;
   overflow-x: hidden;
+  overflow-y: hidden;
   height: 32px;
 `;
 
