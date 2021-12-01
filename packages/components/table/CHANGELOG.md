@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.4...@synerise/ds-table@0.42.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* **table:** searchbox specific styling in grouped-table ([a3779e1](https://github.com/synerise/synerise-design/commit/a3779e1b23204092c60bcd95e0a9311504d0e37d))
+* **table:** specify btn-search no min-width for grouped-table ([1726da4](https://github.com/synerise/synerise-design/commit/1726da4bd64aed4d0775929fa6fd2f7dbdde2c1f))
+
+
+
+
+
 ## [0.42.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.3...@synerise/ds-table@0.42.4) (2021-11-23)
 
 **Note:** Version bump only for package @synerise/ds-table

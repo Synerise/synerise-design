@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-treemenu",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Treemenu UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,7 @@
     "@synerise/ds-input": "^0.18.2",
     "@synerise/ds-menu": "^0.11.2",
     "@synerise/ds-result": "^0.6.2",
-    "@synerise/ds-search": "^0.6.4",
+    "@synerise/ds-search": "^0.6.6",
     "@synerise/ds-utils": "^0.19.0",
     "array-move": "^3.0.1",
     "random-hash": "^4.0.1",
