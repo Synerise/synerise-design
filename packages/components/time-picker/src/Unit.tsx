@@ -45,7 +45,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     console.dir(options);
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
-  }, [options]);
+  }, [options, unit]);
 
   const scrollHandler = React.useCallback(() => {
     if (!!unitContainerRef && !!unitContainerRef.current) {
