@@ -24,17 +24,13 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   const [forceUpdate, setForceUpdate] = React.useState<boolean>(false);
   const selectedCellRef = React.useRef<HTMLButtonElement>(null);
   const unitContainerRef = React.useRef<HTMLDivElement>(null);
-  const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
+
   const [containerHeight, setContainerHeight] = React.useState<number>(300);
 
   React.useEffect(() => {
-    if (isFirstRender) {
-      setFirstRender(false);
-      if (unitContainerRef.current) {
-        setContainerHeight(unitContainerRef.current.offsetHeight);
-      }
-    }
-  }, [isFirstRender, unitContainerRef]);
+    console.log('unit.options', unit, options);
+    console.dir(options);
+  }, [options]);
 
   const scrollHandler = React.useCallback(() => {
     if (!!unitContainerRef && !!unitContainerRef.current) {
@@ -52,12 +48,12 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   React.useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
-      const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
+      const scrollBehaviour = !containerHeight ? 'auto' : 'smooth';
       unitContainerRef?.current &&
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
-  }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
+  }, [selectedCellRef, unitContainerRef, forceUpdate, containerHeight]);
   return (
     <S.Unit
       data-testid={`ds-time-picker-unit-${unit}`}
