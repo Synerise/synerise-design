@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { GroupedTableTh } from './GroupTableHeader.styles';
 import { Props } from './GroupTableHeader.types';
 
 function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {
@@ -12,7 +13,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
     [sortColumn]
   );
   return (
-    <tr>
+    <GroupedTableTh>
       {header.children.map(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (child: any): React.ReactNode => {
@@ -32,7 +33,7 @@ function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColu
           );
         }
       )}
-    </tr>
+    </GroupedTableTh>
   );
 }
 
