@@ -25,6 +25,10 @@ export const SearchInputWrapper = styled.div<{ width?: number }>`
   overflow-x: hidden;
   overflow-y: hidden;
   height: 32px;
+  /* fixes groupedTable story view */
+  .ds-button.btn-search {
+    min-width: unset;
+  }
 `;
 
 export const SearchWrapper = styled.div<{ width?: number; inputOpen?: boolean }>`
