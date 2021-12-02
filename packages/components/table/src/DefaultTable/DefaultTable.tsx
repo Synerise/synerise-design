@@ -92,7 +92,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
   }, []);
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
-  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi)(column));
+  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi, onSort)(column));
   const decoratedComponents =
     components &&
     Object.entries(components)

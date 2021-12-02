@@ -306,7 +306,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             ...currentRow.children.map((child: T, index: number) => ({
               ...child,
               [EXPANDED_ROW_PROPERTY]: true,
-              childIndex: index,
+              index,
             })),
           ];
         }
@@ -332,6 +332,8 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           scroll={scrollValue}
           className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
           // Remove columns which cause header columns indent
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           columns={mergedColumns.slice(columnsSliceStartIndex)}
           pagination={false}
           components={{

@@ -57,14 +57,14 @@ export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[]
         ? {
             ...state,
             [String(column.key)]: {
-              sortOrder: toSortOrder(column.defaultSortOrder),
+              sortOrder: toSortOrder(column.defaultSortOrder) || toSortOrder(column.sortOrder),
               multiple: column.sorter.multiple || false,
             },
           }
         : {
             ...state,
             [String(column.key)]: {
-              sortOrder: toSortOrder(column.defaultSortOrder),
+              sortOrder: toSortOrder(column.defaultSortOrder) || toSortOrder(column.sortOrder),
               multiple: false,
             },
           },
@@ -155,6 +155,16 @@ const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (sta
   return merge(payload.columns, state);
 };
 
+const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (state, action) => {
+  const { payload } = action;
+  const result = {
+    ...state,
+    ...payload.columns,
+  };
+
+  return result;
+};
+
 const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
   const { type } = action;
 
@@ -179,7 +189,18 @@ const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, a
 export const useSortState = (initialState: ColumnsSortState = {}, onSort: OnSortFn | undefined): SortStateAPI => {
   const [columnsSortState, dispatch] = React.useReducer(sortReducer, initialState);
 
-  const getColumnSortOrder: SortStateAPI['getColumnSortOrder'] = key => columnsSortState[key]?.sortOrder;
+  const getColumnSortOrder: SortStateAPI['getColumnSortOrder'] = key => {
+    return columnsSortState[key]?.sortOrder;
+  };
+
+  const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
+    dispatch({
+      type: 'updateColumns',
+      payload: {
+        columns,
+      },
+    });
+  };
 
   const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
     dispatch({
