@@ -1,5 +1,6 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
+import { range } from 'lodash';
 
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
@@ -49,19 +50,19 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: use12HourClock ? [...Array(13).keys()] : [...Array(24).keys()],
+      options: use12HourClock ? range(12 + 1) : range(24),
       disabled: disabledHours,
       insertSeperator: true,
     },
     {
       unit: 'minute',
-      options: [...Array(60).keys()],
+      options: range(60),
       disabled: disabledMinutes,
       insertSeperator: true,
     },
     {
       unit: 'second',
-      options: [...Array(60).keys()],
+      options: range(60),
       disabled: disabledSeconds,
       insertSeperator: !!use12HourClock,
     },
