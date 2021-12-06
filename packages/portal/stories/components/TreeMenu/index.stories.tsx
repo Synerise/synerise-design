@@ -5,9 +5,9 @@ import 'simplebar/dist/simplebar.min.css';
 import TreeMenu from '@synerise/ds-treemenu';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from '@synerise/ds-layout/dist/Layout.styles';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
-import { dataSource } from './data';
+import { dataSource, buildDataSource } from './data';
 import itemTypes from './itemTypes';
 import { TreeData, TreeNode } from '@synerise/ds-treemenu/dist/TreeMenu.types';
 
@@ -23,12 +23,13 @@ const getContainer = (): HTMLElement => {
 };
 
 function Wrapper({children, ...props}) {
-  if (boolean('Use react-SimpleBar', false)) {
-    return <SimpleBar scrollableNodeProps={{className: "scroll-wrapper"}} autohide={true} style={{ height: '100vh' }}>
+  const height = text('TreeMenu height (px or vh)', '99vh');
+  if (boolean('Use react-simplebar (or div with overflow - see source code)', true)) {
+    return <SimpleBar scrollableNodeProps={{className: "scroll-wrapper"}} autohide={true} style={{ height: height }}>
       {children}
     </SimpleBar>
   } else {
-    return <div className="scroll-wrapper" style={{ height: '300px', overflowY: 'auto' }}>
+    return <div className="scroll-wrapper" style={{ height: height, overflowY: 'auto' }}>
       {children}
     </div>
   }
@@ -37,6 +38,10 @@ function Wrapper({children, ...props}) {
 const stories = {
   customItems: () => {
     const [data, setData] = React.useState<TreeData[]>(JSON.parse(JSON.stringify(dataSource)));
+    const numberOfElements = number('Number of child elements', 10)
+    React.useEffect(() => {
+      setData(buildDataSource(numberOfElements))
+    }, [numberOfElements])
     const [expandedKeys, setExpandedKeys] = React.useState<React.Key[]>([]);
 
     const handleExpandToggle = (expandedKeys: React.Key[]) => {

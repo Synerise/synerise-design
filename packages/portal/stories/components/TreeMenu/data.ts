@@ -20,14 +20,14 @@ const id1 = uuid();
 const id2 = uuid();
 const id3 = uuid();
 
-export const dataSource: TreeData[] = [
+export const buildDataSource = (numberOfElements = 5, offset = 1): TreeData[] => [
   {
     id: id1,
     key: id1,
     name: 'With children',
     type: 'folder',
     hidden: false,
-    children: [...generateItems(5, 100)],
+    children: [...generateItems(numberOfElements, 100)],
   },
   {
     id: id2,
@@ -41,10 +41,12 @@ export const dataSource: TreeData[] = [
         key: id3,
         name: 'Subchildren',
         type: 'folder',
-        children: [...generateItems(5, 2001)],
+        children: [...generateItems(numberOfElements, 2001)],
       },
-      ...generateItems(5, 200),
+      ...generateItems(numberOfElements, 200),
     ],
   },
-  ...generateItems(5, 10),
+  ...generateItems(numberOfElements, offset),
 ];
+
+export const dataSource = buildDataSource(5, 10);
