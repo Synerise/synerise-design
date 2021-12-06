@@ -29,7 +29,6 @@ export const LayoutHeader = styled.div`
     display: block;
     width: 100%;
   }
-  flex: 1 1 auto;
   z-index: 1;
   box-shadow: 0 2px 6px ${(props): string => hexToRgba(props.theme.palette['grey-400'], 0.12)};
   border-bottom: 1px solid ${(props): string => props.theme.palette['grey-200']};
