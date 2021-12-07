@@ -75,7 +75,7 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
 
             return 0;
           })
-        : category.items,
+        : category.items || [],
     };
   }, [categories, activeTab, selectedItemId]);
 
