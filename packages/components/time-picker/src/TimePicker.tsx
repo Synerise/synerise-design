@@ -20,11 +20,7 @@ const defaultTime = dayjs()
   .minute(0)
   .second(0)
   .toDate();
-// const initialNewValueKeys = {
-// 'newValue 1': false,
-// 'newValue 2': false,
-// 'newValue 3': false,
-// };
+
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
   placeholder,
@@ -54,14 +50,14 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(defaultTime || value);
   const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
-  // const [active, setActive] = React.useState([initialNewValueKeys]);
-  // const updateActiveKeys = (values: boolean, key: string): void => {
-  // const newActiveKeys = { ...active, [key]: values };
-  // setActive(newActiveKeys);
-  // };
   console.log('lokalny', localValue, value, defaultTime);
   React.useEffect(() => {
     setLocalValue(value);
+  }, [value]);
+  React.useEffect(() => {
+    if (dayjs().hour !== undefined && dayjs().minute !== undefined && dayjs().second !== undefined) {
+      setLocalValue(value);
+    }
   }, [value]);
 
   const unitConfig: UnitConfig[] = [
@@ -97,10 +93,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
     console.log(localValue);
   };
 
-  const handleChange = (unit: dayjs.UnitType, newValue: number): void => {
-    // if (localValue === undefined ) {
-    // return setLocalValue(dayjs().hour(0 || newValue).minute(0).second(0).toDate());
-    // }
+  const handleChange = (unit: dayjs.UnitType, newValue: number, index: number): void => {
+    if (index === 0) dayjs().hour(newValue);
+    if (index === 1) dayjs().minute(newValue);
+    if (index === 2) dayjs().second(newValue);
     if (!onChange) {
       return;
     }
