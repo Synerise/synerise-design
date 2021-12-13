@@ -36,17 +36,6 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     }
   }, [isFirstRender, unitContainerRef]);
 
-  React.useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    console.log('unit.options', unit, options);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    console.dir(options);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-  }, [options, unit]);
-
   const scrollHandler = React.useCallback(() => {
     if (!!unitContainerRef && !!unitContainerRef.current) {
       const pixelsScrolled = unitContainerRef.current.scrollTop;
