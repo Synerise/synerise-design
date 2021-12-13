@@ -50,7 +50,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
   const [localValue, setLocalValue] = React.useState<Date | undefined>(defaultTime || value);
   const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
-  console.log('lokalny', localValue, value, defaultTime);
   React.useEffect(() => {
     setLocalValue(value);
   }, [value]);
@@ -90,7 +89,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);
     !visible && onChange && onChange(localValue as Date, getTimeString(localValue as Date));
-    console.log(localValue);
   };
 
   const handleChange = (unit: dayjs.UnitType, newValue: number, index: number): void => {
@@ -136,7 +134,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
+          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue, index)} />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
