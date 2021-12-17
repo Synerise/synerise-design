@@ -15,11 +15,6 @@ export const CLOCK_MODES = {
   AM: 'AM',
   PM: 'PM',
 };
-const defaultTime = dayjs()
-  .hour(0)
-  .minute(0)
-  .second(0)
-  .toDate();
 
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
@@ -48,16 +43,23 @@ const TimePicker: React.FC<TimePickerProps> = ({
   intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
-  const [localValue, setLocalValue] = React.useState<Date | undefined>(defaultTime || value);
+  const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
   const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
+  const [hour, setHour] = React.useState<number | undefined>(undefined);
+  const [minute, setMinute] = React.useState<number | undefined>(undefined);
+  const [second, setSecond] = React.useState<number | undefined>(undefined);
+  const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   React.useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
-  React.useEffect(() => {
-    if (dayjs().hour !== undefined && dayjs().minute !== undefined && dayjs().second !== undefined) {
-      setLocalValue(value);
+    if (hour !== undefined && minute !== undefined && second !== undefined) {
+      const newDate = dayjs()
+        .hour(hour)
+        .minute(minute)
+        .second(second)
+        .toDate();
+      setLocalValue(newDate);
+      onChange && onChange(newDate as Date, getTimeString(newDate as Date));
     }
-  }, [value]);
+  }, [hour, minute, second]);
 
   const unitConfig: UnitConfig[] = [
     {
@@ -85,29 +87,21 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
   }, [units, unitConfig]);
 
-  const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);
     !visible && onChange && onChange(localValue as Date, getTimeString(localValue as Date));
   };
 
-  const handleChange = (unit: dayjs.UnitType, newValue: number, index: number): void => {
-    if (index === 0) dayjs().hour(newValue);
-    if (index === 1) dayjs().minute(newValue);
-    if (index === 2) dayjs().second(newValue);
-    if (!onChange) {
-      return;
+  const handleChange = (unit: dayjs.UnitType, newValue: number): void => {
+    if (unit === 'hour') {
+      setHour(newValue);
     }
-    let newDateObject = dayjs(localValue).set(unit, newValue);
-    const res = defaultUnits.filter(u => unitsToRender.find(val => val.unit !== u));
-    if (res.length !== defaultUnits.length) {
-      res.forEach(u => {
-        newDateObject = dayjs(newDateObject).set(u, 0);
-      });
+    if (unit === 'minute') {
+      setMinute(newValue);
     }
-    const newDate = newDateObject.toDate();
-    setLocalValue(newDate);
-    onChange && onChange(newDate as Date, getTimeString(newDate as Date));
+    if (unit === 'second') {
+      setSecond(newValue);
+    }
   };
 
   const renderClockSwitch = (): React.ReactNode => {
@@ -134,7 +128,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue, index)} />
+          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
@@ -145,9 +139,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const dateString = localValue && getTimeString(localValue);
 
   const clear = React.useCallback(() => {
-    setLocalValue(defaultTime);
+    setLocalValue(undefined);
     setOpen(false);
     onChange && onChange(undefined, '');
+    setHour(undefined);
+    setMinute(undefined);
+    setSecond(undefined);
   }, [setOpen, setLocalValue, onChange]);
 
   const timePickerIcon = React.useMemo(() => {
@@ -166,8 +163,16 @@ const TimePicker: React.FC<TimePickerProps> = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = React.useMemo((): string => {
+    if (hour !== undefined || minute !== undefined || second !== undefined) {
+      return dayjs()
+        .hour(hour || 0)
+        .minute(minute || 0)
+        .second(second || 0)
+        .format('HH:mm:ss');
+    }
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl]);
+  }, [placeholder, intl, hour, minute, second]);
+
   if (raw) {
     return overlay;
   }
