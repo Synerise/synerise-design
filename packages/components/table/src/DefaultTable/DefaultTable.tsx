@@ -42,7 +42,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
           selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
         }
 
-        selectedKeys = [...new Set(selectedKeys)];
+        selectedKeys = Array.from(new Set(selectedKeys));
         if (dataSource) {
           dataSource.forEach(row => {
             const dataRowKey = getRowKey(row);
@@ -62,7 +62,6 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
             }
           });
         }
-
         onChange(selectedKeys, selectedRows);
       }
     },

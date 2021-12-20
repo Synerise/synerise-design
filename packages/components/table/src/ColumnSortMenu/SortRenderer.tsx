@@ -40,6 +40,8 @@ export const CommonRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper style={{ width: 220 }}>
               <Menu
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(String(key)));
@@ -61,7 +63,13 @@ export const CommonRenderer = <T extends unknown>({
                   {locale.columnSortDescend}
                 </Menu.Item>
                 {!!columnSortOrder && (
-                  <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
+                  <Menu.Item
+                    key="null"
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-ignore
+                    type="danger"
+                    prefixel={<Icon component={<Close2M />} />}
+                  >
                     {locale.columnSortClear}
                   </Menu.Item>
                 )}
@@ -106,6 +114,8 @@ export const StringRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper style={{ width: 170 }}>
               <Menu
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
                   onSortOrderChange(toSortOrder(String(key)));
@@ -127,7 +137,13 @@ export const StringRenderer = <T extends unknown>({
                   {locale.columnSortZa}
                 </Menu.Item>
                 {!!columnSortOrder && (
-                  <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
+                  <Menu.Item
+                    key="null"
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-ignore
+                    type="danger"
+                    prefixel={<Icon component={<Close2M />} />}
+                  >
                     {locale.columnSortClear}
                   </Menu.Item>
                 )}
