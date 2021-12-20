@@ -44,7 +44,6 @@ const stories = {
     };
 
     const handleSelectRow = selectedRowKeys => {
-      console.log(selectedRowKeys);
       store.set({ selectedRows: selectedRowKeys });
     };
 
