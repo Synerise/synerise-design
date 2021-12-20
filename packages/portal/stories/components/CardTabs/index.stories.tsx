@@ -181,7 +181,7 @@ const stories = {
               }}
               invalid={invalid}
               invalidName={invalidName}
-              draggable={true}
+              draggable={boolean('Draggable card tabs', true)}
             />
           ))}
         </CardTabs>
