@@ -59,7 +59,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       setLocalValue(newDate);
       onChange && onChange(newDate as Date, getTimeString(newDate as Date));
     }
-  }, [hour, minute, second]);
+  }, [hour, minute, second, onChange]);
 
   const unitConfig: UnitConfig[] = [
     {
