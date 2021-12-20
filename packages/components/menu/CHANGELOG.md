@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.11.2...@synerise/ds-menu@0.11.3) (2021-12-20)
+
+
+### Bug Fixes
+
+* **table:** fixes returned data by on change selection function ([151e195](https://github.com/Synerise/synerise-design/commit/151e195b8bb6d37f9fdede12aaa569b56ba97e82))
+
+
+
+
+
 ## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.11.1...@synerise/ds-menu@0.11.2) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-menu

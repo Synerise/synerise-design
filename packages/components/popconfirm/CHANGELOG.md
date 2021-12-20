@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.8.2...@synerise/ds-popconfirm@0.8.3) (2021-12-20)
+
+
+### Bug Fixes
+
+* **popconfirm:** shows popconfirm based on visible prop ([132c9d2](https://github.com/Synerise/synerise-design/commit/132c9d274cfcfddd7830bb7c791917d0bdc29ad4))
+
+
+
+
+
 ## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.8.1...@synerise/ds-popconfirm@0.8.2) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

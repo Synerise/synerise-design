@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.6...@synerise/ds-search@0.6.7) (2021-12-20)
+
+
+### Bug Fixes
+
+* **search:** fixes size of search button size ([1837c9c](https://github.com/Synerise/synerise-design/commit/1837c9c0c47cbbc0c01a68c03316a365833bcb21))
+
+
+
+
+
 ## [0.6.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.4...@synerise/ds-search@0.6.6) (2021-12-01)
 
 

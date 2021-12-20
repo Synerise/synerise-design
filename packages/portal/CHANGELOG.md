@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.142.4](https://github.com/synerise/synerise-design/compare/portal@0.142.3...portal@0.142.4) (2021-12-20)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix tag visiblity on hover when cards are not draggable ([fdd85dc](https://github.com/synerise/synerise-design/commit/fdd85dc464fdd819cf8bd0f0ee33f59ee84e2852))
+* **card-tabs:** sets draggable prop of CardTab based on onChangeOrder ([88c5c3f](https://github.com/synerise/synerise-design/commit/88c5c3f08e3ae5289bd33599820aed65f78164c7))
+* **layout:** removes unnecessary overflow: hidden from LayoutHeader; ([ce69de1](https://github.com/synerise/synerise-design/commit/ce69de1aebc8298496abb4057e4746a73b1cdd44))
+* **table:** fixes first arg of onSelectionChange handler ([2321d6a](https://github.com/synerise/synerise-design/commit/2321d6a9548f93b48c20eaceeda758c0d625a13c))
+* **table:** fixes returned data by on change selection function ([b1f1e9f](https://github.com/synerise/synerise-design/commit/b1f1e9fa9fbd0d218ce57d8d66574b049ec89b7c))
+
+
+
+
+
 ## [0.142.3](https://github.com/synerise/synerise-design/compare/portal@0.142.2...portal@0.142.3) (2021-11-22)
 
 **Note:** Version bump only for package portal

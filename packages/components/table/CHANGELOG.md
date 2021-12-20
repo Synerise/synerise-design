@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.5...@synerise/ds-table@0.42.6) (2021-12-20)
+
+
+### Bug Fixes
+
+* **table:** fixes first arg of onSelectionChange handler ([6321efc](https://github.com/synerise/synerise-design/commit/6321efc3e8a49e5184e274583791bb5ccb35e774))
+* **table:** fixes returned data by on change selection function ([151e195](https://github.com/synerise/synerise-design/commit/151e195b8bb6d37f9fdede12aaa569b56ba97e82))
+
+
+
+
+
 ## [0.42.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.4...@synerise/ds-table@0.42.5) (2021-12-01)
 
 
