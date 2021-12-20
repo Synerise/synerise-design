@@ -49,6 +49,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const [minute, setMinute] = React.useState<number | undefined>(undefined);
   const [second, setSecond] = React.useState<number | undefined>(undefined);
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   React.useEffect(() => {
     if (hour !== undefined && minute !== undefined && second !== undefined) {
       const newDate = dayjs()
@@ -59,7 +61,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       setLocalValue(newDate);
       onChange && onChange(newDate as Date, getTimeString(newDate as Date));
     }
-  }, [hour, minute, second, onChange, getTimeString]);
+  }, [hour, minute, second]);
 
   const unitConfig: UnitConfig[] = [
     {
