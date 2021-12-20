@@ -63,7 +63,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     }
     // eslint-disable-next-line
     // @ts-ignore
-  }, [hour, minute, second]);
+  }, [hour, minute, second]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const unitConfig: UnitConfig[] = [
     {
