@@ -61,6 +61,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
       setLocalValue(newDate);
       onChange && onChange(newDate as Date, getTimeString(newDate as Date));
     }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
   }, [hour, minute, second]);
 
   const unitConfig: UnitConfig[] = [
