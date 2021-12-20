@@ -187,7 +187,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
                       selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
                     }
 
-                    selectedRows = [...new Set(selectedRows)];
+                    selectedRows = Array.from(new Set(selectedRows));
 
                     onChange &&
                       onChange(
