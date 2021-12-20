@@ -47,7 +47,7 @@ const stories = {
 
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
-        <CardTabs onChangeOrder={handleChangeOrder}>
+        <CardTabs onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}>
           <CardTab
             id={1}
             index={1}
@@ -72,7 +72,6 @@ const stories = {
             }}
             invalid={invalid}
             invalidName={invalidName}
-            draggable={boolean('Draggable card tabs', true)}
           />
         </CardTabs>
       </div>
@@ -156,7 +155,11 @@ const stories = {
 
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
-        <CardTabs maxTabsCount={maxTabCount} onChangeOrder={handleChangeOrder} onAddTab={handleAddItem}>
+        <CardTabs
+          maxTabsCount={maxTabCount}
+          onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
+          onAddTab={handleAddItem}
+        >
           {store.state.items.map(item => (
             <CardTab
               id={item.id}
@@ -181,7 +184,6 @@ const stories = {
               }}
               invalid={invalid}
               invalidName={invalidName}
-              draggable={boolean('Draggable card tabs', true)}
             />
           ))}
         </CardTabs>
