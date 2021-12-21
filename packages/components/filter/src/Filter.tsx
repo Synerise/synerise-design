@@ -99,7 +99,6 @@ const Filter: React.FC<FilterProps> = ({
         <S.ExpressionWrapper
           key={expression.id}
           data-dropLabel={text.dropMeHere}
-          data-fucked="true"
           index={index}
           style={expression.id === activeExpressionId ? { zIndex: 10001 } : undefined}
           onClick={() => setActiveExpressionId(expression.id)}
