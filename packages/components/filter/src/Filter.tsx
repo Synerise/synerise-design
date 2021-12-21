@@ -101,7 +101,7 @@ const Filter: React.FC<FilterProps> = ({
           data-dropLabel={text.dropMeHere}
           index={index}
           style={expression.id === activeExpressionId ? { zIndex: 10001 } : undefined}
-          onClick={() => setActiveExpressionId(expression.id)}
+          onClick={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression)} />
           {expression.logic && index + 1 < expressions.length && (
