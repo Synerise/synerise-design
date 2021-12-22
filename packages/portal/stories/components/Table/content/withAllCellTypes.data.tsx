@@ -117,6 +117,7 @@ const iconSizes = {
   Large: 'L',
 };
 const colorOptions = {
+  '': '',
   blue: 'blue',
   grey: 'grey',
   red: 'red',
@@ -320,7 +321,7 @@ export const COLUMNS_WITH_STATUSES = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
-    render: status => <TableCell.StatusLabelCell status={status} label={status} />,
+    render: status => <TableCell.StatusLabelCell customColor={select('Set custom color status', colorOptions, '')} status={status} label={status} />,
   },
   {
     title: 'Tag',

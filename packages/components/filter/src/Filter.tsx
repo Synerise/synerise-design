@@ -36,6 +36,8 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
 }) => {
+  const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
+
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
@@ -94,7 +96,13 @@ const Filter: React.FC<FilterProps> = ({
       const Component = component[expression.type];
       const LogicComponent = expression.logic && component[expression.logic.type];
       return (
-        <S.ExpressionWrapper key={expression.id} data-dropLabel={text.dropMeHere} index={index}>
+        <S.ExpressionWrapper
+          key={expression.id}
+          data-dropLabel={text.dropMeHere}
+          index={index}
+          style={expression.id === activeExpressionId ? { zIndex: 10001 } : undefined}
+          onClick={(): void => setActiveExpressionId(expression.id)}
+        >
           <Component {...expression.data} {...componentProps(expression)} />
           {expression.logic && index + 1 < expressions.length && (
             <S.LogicWrapper>
@@ -104,7 +112,7 @@ const Filter: React.FC<FilterProps> = ({
         </S.ExpressionWrapper>
       );
     },
-    [componentProps, expressions.length, text]
+    [componentProps, expressions.length, activeExpressionId, text]
   );
 
   return (
