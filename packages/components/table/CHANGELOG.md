@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.6...@synerise/ds-table@0.42.7) (2021-12-22)
+
+
+### Bug Fixes
+
+* **table:** add customColor prop to badge status ([81a6c89](https://github.com/synerise/synerise-design/commit/81a6c89fc5d777ca6ec17c0d36267cd81eec9db3))
+* **table:** update dependencies ([cb6ba1b](https://github.com/synerise/synerise-design/commit/cb6ba1bd84f1100b011d7f9565d1e0248137acbe))
+
+
+
+
+
 ## [0.42.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.5...@synerise/ds-table@0.42.6) (2021-12-20)
 
 

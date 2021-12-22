@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.4.6...@synerise/ds-filter@0.4.7) (2021-12-22)
+
+
+### Bug Fixes
+
+* **filter:** order of filters ([c46c1a4](https://github.com/Synerise/synerise-design/commit/c46c1a4cbcff55062eaabaf3029b5100ab0611d8))
+* **filter:** order of filters ([ff61e54](https://github.com/Synerise/synerise-design/commit/ff61e5440fa3cd8ca9eb2393ddff74aef8dda2a7))
+* **filter:** order of filters ([fda10ef](https://github.com/Synerise/synerise-design/commit/fda10ef448a34735cbf5e8164b3ef872a5bdeb9c))
+
+
+
+
+
 ## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.4.5...@synerise/ds-filter@0.4.6) (2021-12-20)
 
 **Note:** Version bump only for package @synerise/ds-filter

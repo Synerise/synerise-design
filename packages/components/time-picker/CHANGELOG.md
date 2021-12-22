@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.4...@synerise/ds-time-picker@0.6.5) (2021-12-22)
+
+
+### Bug Fixes
+
+* **time-picker:** _.range, because [...array] transpiles to [].concat ([c475433](https://github.com/Synerise/synerise-design/commit/c475433cfcac69b54c0ce2fa3c812cab3f947c9c))
+* **time-picker:** update component ([2fb6363](https://github.com/Synerise/synerise-design/commit/2fb6363641f149135118b7b656c5e548925aeae0))
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.3...@synerise/ds-time-picker@0.6.4) (2021-11-23)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

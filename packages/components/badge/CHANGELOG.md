@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.5.4...@synerise/ds-badge@0.5.5) (2021-12-22)
+
+
+### Bug Fixes
+
+* **badge:** add customColor prop ([60c12d1](https://github.com/Synerise/synerise-design/commit/60c12d1592072dab0e71bcafe50943d934a82103))
+
+
+
+
+
 ## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.5.3...@synerise/ds-badge@0.5.4) (2021-11-23)
 
 **Note:** Version bump only for package @synerise/ds-badge
