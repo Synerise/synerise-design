@@ -12,10 +12,16 @@ import { DSColumnType, DSTableProps, RowType } from '../Table.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns } = props;
-  const sortStateApi = useSortState(columnsToSortState(columns));
+  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns, onSort } = props;
+  const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
   const starColumn = getRowStarColumn(props);
+
+  React.useEffect(() => {
+    if (columns !== undefined && columns.length !== 0) {
+      sortStateApi.updateColumnsData(columnsToSortState(columns));
+    }
+  }, [columns]);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -131,6 +137,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         ),
       }}
       title={title}
+      showSorterTooltip={false}
       components={{
         body: {
           row: RenderRow,
