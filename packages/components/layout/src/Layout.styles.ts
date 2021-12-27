@@ -58,6 +58,7 @@ export const LayoutBody = styled.div`
 export const LayoutMain = styled.div`
   flex: 1;
   position: relative;
+  max-width: 100%;
   ${mediaQuery.to.small`min-width: 704px;`};
 `;
 
