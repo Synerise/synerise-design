@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { groupBy } from 'lodash';
+import { groupBy, merge } from 'lodash';
 import { DSColumnType, OnSortFn } from '../Table.types';
 
 export type ColumnSortOrder = 'descend' | 'ascend' | null;
@@ -152,12 +152,7 @@ const setMultipleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state
 
 const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (state, action) => {
   const { payload } = action;
-  const result = {
-    ...state,
-    ...payload.columns,
-  };
-
-  return result;
+  return merge(payload.columns, state);
 };
 
 const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
@@ -196,7 +191,6 @@ export const useSortState = (initialState: ColumnsSortState = {}, onSort: OnSort
   };
 
   const setColumnSortOrder: SortStateAPI['setColumnSortOrder'] = (key, sortOrder) => {
-    console.log(key, sortOrder);
     if (columnsSortState[key]?.sortOrder !== sortOrder && columnsSortState[key]?.multiple === false) {
       dispatch({
         type: 'setSingleOrder',

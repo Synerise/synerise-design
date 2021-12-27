@@ -97,7 +97,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     display: flex;
     align-items: center;
     margin: 0;
-    height: auto;
     transition: background-color ${TRANSITION_FN};
     padding-left: ${(props): string => (props.prefixel ? '8' : '12')}px;
     ${Inner} {
@@ -160,7 +159,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     & .ds-tag {
       margin: 0;
     }
-    
+
     &:focus:not(:active) {
       box-shadow: ${(props): string | false =>
         !props.disabled && `inset 0 0 0 2px ${props.theme.palette['blue-600']} `};
@@ -171,7 +170,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         fill: ${(props): string => props.theme.palette['grey-700']};
       }
     }
-    
+
     ${(props): FlattenSimpleInterpolation | false =>
       !props.disabled &&
       css`
@@ -189,7 +188,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
           }
         }
       `}
-    
+
     &:active {
       && {
         background: ${(props): string => props.theme.palette['blue-050']};
