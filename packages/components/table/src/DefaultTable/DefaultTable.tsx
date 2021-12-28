@@ -23,7 +23,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     if (!isEqual(previousColumns, columns)) {
       sortStateApi.updateColumnsData(columnsToSortState(columns));
     }
-  }, [columns, previousColumns]);
+  }, [columns, previousColumns, sortStateApi]);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
