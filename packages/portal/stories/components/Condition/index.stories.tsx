@@ -14,9 +14,24 @@ import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
+import { ConditionProps, ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
+
+export const defaultTransforms = {
+  transformCondition: (condition: ConditionProps): ConditionProps => conditionProps,
+  transformStep: (step: ConditionStep): ConditionStep => step,
+  props: {
+    defaultDropdownVisibility: false,
+  },
+}
+export type transformsType = typeof defaultTransforms
 
 const stories = {
-  default: withState(DEFAULT_STATE)(({ store }) => {
+  default: withState(DEFAULT_STATE)(({store, ...context}) => {
+    const {
+      transformCondition,
+      transformStep,
+      props: { defaultDropdownVisibility },
+    } = Object.assign({}, defaultTransforms, context) as any
     const setStepContext = (stepId, item) => {
       store.set({
         steps: store.state.steps.map(s => {
@@ -228,7 +243,7 @@ const stories = {
             moveTooltip: 'Move',
           }}
           getPopupContainerOverride={(): HTMLElement => document.body}
-          autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
+          autoClearCondition={(boolean('Enable autoclear condition elements', true))}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
@@ -244,7 +259,7 @@ const stories = {
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
-          steps={store.state.steps.map(step => ({
+          steps={store.state.steps.map(step => transformStep({
             id: step.id,
             stepName: step.stepName,
             context: {
@@ -254,8 +269,9 @@ const stories = {
               groups: CONTEXT_GROUPS,
               type: step.context.type,
               loading: boolean('Loading context content', false),
+              defaultDropdownVisibility: defaultDropdownVisibility,
             },
-            conditions: step.conditions.map(condition => ({
+            conditions: step.conditions.map(condition => transformCondition({
               id: condition.id,
               parameter: {
                 availableFactorTypes: ['parameter'],

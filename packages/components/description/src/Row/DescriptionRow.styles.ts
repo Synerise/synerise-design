@@ -60,6 +60,15 @@ export const Copyable = styled.div`
   }
 `;
 
+export const CopyableWrapper = styled.div`
+  &:hover {
+    ${Copyable} {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+`;
+
 export const RowWrapper = styled.div<{ copyable: boolean }>`
   width: 100%;
   ${Copyable} {

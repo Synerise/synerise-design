@@ -72,7 +72,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   useOnClickOutside(
     overlayRef,
     () => {
-      onClickOutside && onClickOutside();
+      if (onClickOutside && onClickOutside()) return;
       setDropdownVisible(false);
     },
     onClickOutsideEvents

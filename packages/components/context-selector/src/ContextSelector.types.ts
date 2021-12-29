@@ -1,3 +1,4 @@
+import { MenuItemProps } from '@synerise/ds-menu/src/Elements/Item/MenuItem.types';
 import * as React from 'react';
 import { CSSProperties } from 'react';
 import { HandledEventsType } from '@synerise/ds-utils';
@@ -19,6 +20,9 @@ export type ContextItem = {
   groupName?: string;
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
+  tooltipProps?: MenuItemProps['tooltipProps'];
+  popoverProps?: MenuItemProps['tooltipProps'];
+  renderInformationCard?: MenuItemProps['renderInformationCard'];
 };
 
 export type ContextGroup = {
@@ -36,6 +40,7 @@ export type ContextGroup = {
 
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
+  defaultDropdownVisibility?: boolean;
   selectedItem?: ContextItem | undefined;
   onActivate?: () => void;
   onSelectItem: (item: ContextItem | ContextGroup | undefined) => void;
@@ -101,6 +106,7 @@ export type ListItem = {
   selected?: boolean;
   clearSearch?: () => void;
   hideDropdown?: () => void;
+  tooltipProps?: MenuItemProps['tooltipProps'];
 };
 
 export type ListTitle = {

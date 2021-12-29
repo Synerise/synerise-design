@@ -1,6 +1,7 @@
 import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
-import { VisibilityTrigger } from 'Menu.types';
+import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { VisibilityTrigger } from "../../Menu.types";
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
 
 export enum ItemType {
@@ -34,4 +35,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   menuItemKey?: React.ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
+  tooltipProps?: TooltipProps;
+  popoverProps?: TooltipProps;
+  renderInformationCard?: () => JSX.Element;
 }

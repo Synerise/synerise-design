@@ -1,3 +1,4 @@
+import { ContextItem } from '@synerise/ds-context-selector/src/ContextSelector.types';
 import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon';
 import * as React from 'react';
 
@@ -35,7 +36,7 @@ export const CONTEXT_GROUPS = [
   },
 ];
 
-export const CONTEXT_ITEMS = [
+export const CONTEXT_ITEMS: ContextItem[] = [
   {
     name: 'Schema builder app',
     id: 'SCHEMA_BUILDER_APP',

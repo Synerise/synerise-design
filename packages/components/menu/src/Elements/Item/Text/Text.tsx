@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import * as React from 'react';
 import classNames from 'classnames';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { escapeRegEx } from '@synerise/ds-utils';
-import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
+import { Popover } from 'antd';
 import Tooltip from '@synerise/ds-tooltip';
+import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
+import { escapeRegEx } from '@synerise/ds-utils';
 
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
@@ -13,6 +15,35 @@ import { AddonRenderer, BasicItemProps } from './Text.types';
 const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): React.ReactNode => {
   return addon instanceof Function ? addon(...params) : addon;
 };
+
+function MaybePopover({ popoverProps = {}, renderPopover, children }: any = {}): JSX.Element {
+  const zIndexGreaterThanDropdown = 991050 + 1;
+  const cancelBubblingEvent = React.useCallback(
+    () => (ev: Event): void => {
+      ev.stopPropagation();
+    },
+    []
+  );
+  if (renderPopover) {
+    // div's onKeyDown is used to counteract to ContextSelectorDropdown's onKeyDown
+    return (
+      <div onKeyDown={cancelBubblingEvent}>
+        <Popover
+          defaultVisible={false}
+          placement="right"
+          content={renderPopover()}
+          mouseEnterDelay={0.2}
+          overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}
+          {...popoverProps}
+          overlayInnerStyle={{ paddingBottom: '10px' }}
+        >
+          {children}
+        </Popover>
+      </div>
+    );
+  }
+  return <>{children}</>;
+}
 
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -33,12 +64,15 @@ const Text: React.FC<BasicItemProps> = ({
   suffixVisibilityTrigger,
   indentLevel,
   ordered,
+  onClick,
   checked,
+  tooltipProps,
+  popoverProps,
+  renderInformationCard = (): JSX.Element => <>{tooltipProps?.description}</>,
   size = 'default',
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
-  const [clicked, setClicked] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
   const showSuffixOnHover = suffixVisibilityTrigger === VisibilityTrigger.HOVER;
   const showPrefixOnHover = prefixVisibilityTrigger === VisibilityTrigger.HOVER;
@@ -85,59 +119,74 @@ const Text: React.FC<BasicItemProps> = ({
   const className = React.useMemo<string>(() => {
     return classNames('ds-menu-item', rest.className, size);
   }, [rest.className, size]);
+
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <S.Wrapper
-      onMouseOver={(): void => {
-        setHovered(true);
-      }}
-      onMouseLeave={(): void => {
-        setHovered(false);
-      }}
-      onMouseDown={(): void => {
-        setClicked(!clicked);
-        canCopyToClipboard && copyValue && copy(copyValue);
-      }}
-      disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
-      description={description}
-      style={style}
-      indentLevel={Number(indentLevel)}
-      ordered={ordered}
-      size={size}
-      {...rest}
-      className={className}
-    >
-      <Tooltip type="default" trigger="click" title={copyTooltip} timeToHideAfterClick={timeToHideTooltip}>
-        <S.Inner>
-          <S.ContentWrapper className="ds-menu-content-wrapper">
-            {shouldRenderPrefix && (
-              <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
-                {renderPrefixElement(hovered)}
-              </S.PrefixelWrapper>
-            )}
-            <S.Content className="ds-menu-content" highlight={!!highlight}>
-              {canCopyToClipboard && hovered ? copyHint : renderChildren()}
-              {!!description && <S.Description>{description}</S.Description>}
-            </S.Content>
-            {parent && (
-              <S.ArrowRight disabled={disabled}>
-                <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
-              </S.ArrowRight>
-            )}
-            <S.ContentDivider />
-            {(!!suffixElement || !!checked) && (
-              <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
-                {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
-                {suffixElement}
-              </S.SuffixWraper>
-            )}
-          </S.ContentWrapper>
-        </S.Inner>
-      </Tooltip>
-    </S.Wrapper>
+    <MaybePopover popoverProps={popoverProps} renderPopover={renderInformationCard}>
+      {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+      }
+      <S.Wrapper
+        {...(tooltipProps
+          ? {}
+          : {
+              onMouseOver: (): void => {
+                setHovered(true);
+              },
+              onMouseLeave: (): void => {
+                setHovered(false);
+              },
+              onMouseDown: (): void => {
+                canCopyToClipboard && copyValue && copy(copyValue);
+              },
+            })}
+        disabled={disabled}
+        tabIndex={disabled ? -1 : 0}
+        description={description}
+        style={style}
+        indentLevel={Number(indentLevel)}
+        ordered={ordered}
+        size={size}
+        onClick={onClick}
+        {...rest}
+        className={className}
+      >
+        <Tooltip
+          type="default"
+          trigger="click"
+          title={copyTooltip}
+          timeToHideAfterClick={timeToHideTooltip}
+          {...tooltipProps}
+        >
+          <S.Inner>
+            <S.ContentWrapper className="ds-menu-content-wrapper">
+              {shouldRenderPrefix && (
+                <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
+                  {renderPrefixElement(hovered)}
+                </S.PrefixelWrapper>
+              )}
+              <S.Content className="ds-menu-content" highlight={!!highlight}>
+                {canCopyToClipboard && hovered ? copyHint : renderChildren()}
+                {!!description && <S.Description>{description}</S.Description>}
+              </S.Content>
+              {parent && (
+                <S.ArrowRight disabled={disabled}>
+                  <Icon component={<AngleRightS />} color={theme.palette['grey-600']} />
+                </S.ArrowRight>
+              )}
+              <S.ContentDivider />
+              {(!!suffixElement || !!checked) && (
+                <S.SuffixWraper visible={shouldRenderSuffix} disabled={disabled}>
+                  {!!checked && <Icon component={<CheckS />} color={theme.palette[`green-600`]} />}
+                  {suffixElement}
+                </S.SuffixWraper>
+              )}
+            </S.ContentWrapper>
+          </S.Inner>
+        </Tooltip>
+      </S.Wrapper>
+    </MaybePopover>
   );
 };
 
