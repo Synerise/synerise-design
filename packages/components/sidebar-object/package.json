@@ -35,6 +35,7 @@
     "@synerise/ds-button": "^0.16.3",
     "@synerise/ds-description": "^0.3.5",
     "@synerise/ds-dropdown": "^0.17.5",
+    "@synerise/ds-icon": "^0.46.2",
     "@synerise/ds-inline-edit": "^0.5.7",
     "@synerise/ds-subtle-form": "^0.8.5",
     "@synerise/ds-tabs": "^0.12.6"

@@ -33,6 +33,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.16.3",
+    "@synerise/ds-icon": "^0.46.2",
     "@synerise/ds-input": "^0.18.3",
     "@synerise/ds-search": "^0.6.8",
     "classnames": "^2.2.6"
