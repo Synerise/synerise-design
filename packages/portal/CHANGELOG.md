@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.143.1](https://github.com/synerise/synerise-design/compare/portal@0.143.0...portal@0.143.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://github.com/synerise/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+
+
+
+
+
 # [0.143.0](https://github.com/synerise/synerise-design/compare/portal@0.142.4...portal@0.143.0) (2021-12-22)
 
 

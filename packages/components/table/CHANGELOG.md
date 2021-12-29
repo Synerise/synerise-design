@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.7...@synerise/ds-table@0.42.8) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting ([8042c70](https://github.com/synerise/synerise-design/commit/8042c70e131be15ad8cb30e771d0c5b695647b8d))
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://github.com/synerise/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+* **table:** fixes styles of sorting columns ([0d50c75](https://github.com/synerise/synerise-design/commit/0d50c75b06dd7b81f7820745a1a85b2690f6bce8))
+
+
+
+
+
 ## [0.42.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.6...@synerise/ds-table@0.42.7) (2021-12-22)
 
 

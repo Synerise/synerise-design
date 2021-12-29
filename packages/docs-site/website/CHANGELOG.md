@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.3...docs@0.17.4) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://gitlab.synerise.com/Frontend/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+
+
+
+
+
 ## [0.17.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.2...docs@0.17.3) (2021-12-20)
 
 **Note:** Version bump only for package docs
