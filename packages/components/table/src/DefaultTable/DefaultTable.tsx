@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { compact } from 'lodash';
+import { compact, isEqual } from 'lodash';
 import Table from 'antd/lib/table';
 import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
+import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 import useRowStar from '../hooks/useRowStar';
@@ -12,10 +13,17 @@ import { DSColumnType, DSTableProps, RowType } from '../Table.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
-  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns } = props;
-  const sortStateApi = useSortState(columnsToSortState(columns));
+  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns, onSort } = props;
+  const previousColumns = usePrevious(columns);
+  const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
   const starColumn = getRowStarColumn(props);
+
+  React.useEffect(() => {
+    if (!isEqual(previousColumns, columns)) {
+      sortStateApi.updateColumnsData(columnsToSortState(columns));
+    }
+  }, [columns, previousColumns, sortStateApi]);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -131,6 +139,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         ),
       }}
       title={title}
+      showSorterTooltip={false}
       components={{
         body: {
           row: RenderRow,
