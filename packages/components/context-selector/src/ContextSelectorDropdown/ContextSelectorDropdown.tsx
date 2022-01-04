@@ -221,7 +221,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   React.useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     listRef.current?.resetAfterIndex(0, false);
-  }, [activeItems]);
+  }, [activeItems, listRef]);
 
   const handleSearch = React.useCallback(
     val => {
