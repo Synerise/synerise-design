@@ -34,6 +34,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   currentConditionId,
   currentField,
 }) => {
+  const [activeConditionId, setActiveConditionId] = React.useState<string | null>(null);
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
@@ -111,10 +112,16 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     text,
   ]);
 
+  const handleActivation = (conditionId: string): (() => void) => (): void => {
+    setActiveConditionId(conditionId);
+    onActivate && onActivate();
+  };
+
   const renderConditionRow = React.useCallback(
     (condition, conditionIndex) => (
       <ConditionRow
         key={`step-${step.id}-condition-${condition.id}`}
+        hasPriority={hasPriority && activeConditionId === condition.id}
         index={conditionIndex}
         conditionId={condition.id}
         addCondition={addCondition}
@@ -125,7 +132,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         minConditionLength={minConditionsLength}
         maxConditionLength={maxConditionsLength}
         conditionsNumber={step.conditions.length}
-        onActivate={onActivate}
+        onActivate={handleActivation(condition.id)}
         stepId={step.id}
         currentStepId={currentStepId}
         currentConditionId={currentConditionId}
