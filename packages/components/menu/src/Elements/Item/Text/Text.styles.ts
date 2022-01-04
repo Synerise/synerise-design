@@ -2,6 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import * as React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { IconContainer } from '@synerise/ds-icon';
+import { ItemSize } from "../MenuItem.types";
 
 type WrapperProps = {
   disabled?: boolean;
@@ -15,10 +16,6 @@ type WrapperProps = {
   active?: boolean;
 };
 
-enum ItemSize {
-  DEFAULT = 'default',
-  LARGE = 'large',
-}
 const INDENT_LEVEL_STEP = 16;
 
 const TRANSITION_FN = '0.2s ease-out';

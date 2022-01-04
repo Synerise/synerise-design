@@ -9,6 +9,12 @@ export enum ItemType {
   DANGER = 'danger',
   DIVIDER = 'divider',
 }
+
+export enum ItemSize {
+  DEFAULT = 'default',
+  LARGE = 'large',
+}
+
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   key?: React.ReactText;
   text?: string | React.ReactNode;

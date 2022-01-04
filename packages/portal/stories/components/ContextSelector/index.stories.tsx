@@ -4,7 +4,7 @@ import ContextSelector from '@synerise/ds-context-selector';
 import { withState } from '@dump247/storybook-state';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS, FLAT_LIST_ITEMS } from './data/client.data';
-// import { FixedSizeList } from 'react-window';
+import { ItemSize } from '@synerise/ds-menu';
 
 const DEFAULT_STATE = {
   value: undefined,
@@ -23,6 +23,22 @@ const stories = {
         selectedItem={store.state.value}
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
+      />
+    );
+  }),
+  largeItems: withState(DEFAULT_STATE)(({ store }) => {
+    const setValue = value => {
+      store.set({ value });
+    };
+
+    return (
+      <ContextSelector
+        texts={CONTEXT_TEXTS}
+        onSelectItem={setValue}
+        selectedItem={store.state.value}
+        items={CONTEXT_ITEMS}
+        groups={CONTEXT_GROUPS}
+        menuItemHeight={ItemSize.LARGE}
       />
     );
   }),
