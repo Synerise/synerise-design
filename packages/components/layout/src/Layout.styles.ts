@@ -128,6 +128,7 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
 
 type LayoutSidebarProps = {
   opened: boolean;
+  openedWidth: number;
 };
 
 export const LayoutSidebar = styled.div<LayoutSidebarProps>`
@@ -139,20 +140,23 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   height: 100%;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   transition: all 0.3s ease-in-out;
-  width: 320px;
+  width: ${(props): string => `${props.openedWidth}px`};
   max-width: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
-  ${mediaQuery.from.medium`flex: 0 1 320px; width: 320px;`};
-  ${mediaQuery.from.medium`max-width: ${(props: LayoutSidebarProps): string => (props.opened ? '320px' : '0px')};`}
+  ${mediaQuery.from.medium`flex: 0 1 ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`}; width: ${(
+    props: LayoutSidebarProps
+  ): string => `${props.openedWidth}px;`}`};
+  ${mediaQuery.from.medium`max-width: ${(props: LayoutSidebarProps): string =>
+    props.opened ? `${props.openedWidth}px` : '0px'};`};
   ${mediaQuery.from.medium`
     &.slide-enter {
       max-width: 0;
     }
     &.slide-enter.slide-enter-active {
-      max-width: 320px;
+      max-width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
     }
     &.slide-leave {
-      max-width: 320px;
+      max-width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
     }
     &.slide-leave.slide-leave-active {
       max-width: 0;
@@ -162,12 +166,12 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
     position: absolute;
     top: 0;
     left: 0;
-    width: 320px
+    width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
   `}
   }
 `;
 
-type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean };
+type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean; openedWidth: number };
 
 export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   position: relative;
@@ -177,7 +181,7 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   left: ${(props): string => (props.right ? 'auto' : '0')};
   right: ${(props): string => (props.right ? '0' : 'auto')};
   z-index: 10;
-  
+
   &:hover {
     ${SidebarButton} {
       background-color: ${(props): string => props.theme.palette['grey-600']};
@@ -190,12 +194,12 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
 
     }
   }
-  
+
   ${mediaQuery.to.medium`position: absolute;`};
-  ${mediaQuery.to.medium`width: 320px;`};
+  ${mediaQuery.to.medium`width: ${(props: LayoutSidebarWrapperProps): string => `${props.openedWidth}px`};`};
   ${mediaQuery.to.medium`transform: ${(props: LayoutSidebarWrapperProps): string =>
-    props.right ? 'translateX(320px)' : 'translateX(-320px)'}`};
-  
+    props.right ? `translateX(${props.openedWidth}px)` : `translateX(-${props.openedWidth}px)`}`};
+
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
     css`
