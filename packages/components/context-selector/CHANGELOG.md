@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.7...@synerise/ds-context-selector@0.9.0) (2022-01-04)
+
+
+### Features
+
+* **context-selector:** adds menuItemHeight prop ([373dfc4](https://github.com/Synerise/synerise-design/commit/373dfc4e510fd4c21222d541579923ff6c96cab4))
+
+
+
+
+
 ## [0.8.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.6...@synerise/ds-context-selector@0.8.7) (2021-12-29)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

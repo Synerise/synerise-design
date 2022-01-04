@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.144.0](https://github.com/synerise/synerise-design/compare/portal@0.143.1...portal@0.144.0) (2022-01-04)
+
+
+### Features
+
+* **context-selector:** adds menuItemHeight prop ([373dfc4](https://github.com/synerise/synerise-design/commit/373dfc4e510fd4c21222d541579923ff6c96cab4))
+* **manageable-list:** adds additional actions ([f744494](https://github.com/synerise/synerise-design/commit/f744494d6cc903b6cabbfaf223b539cccfef1a68))
+
+
+
+
+
 ## [0.143.1](https://github.com/synerise/synerise-design/compare/portal@0.143.0...portal@0.143.1) (2021-12-29)
 
 

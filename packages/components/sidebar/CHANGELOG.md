@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.3.7...@synerise/ds-sidebar@0.3.8) (2022-01-04)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
 ## [0.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.3.6...@synerise/ds-sidebar@0.3.7) (2021-12-29)
 
 **Note:** Version bump only for package @synerise/ds-sidebar

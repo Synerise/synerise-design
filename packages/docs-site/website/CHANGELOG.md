@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.4...docs@0.18.0) (2022-01-04)
+
+
+### Features
+
+* **layout:** adds custom width of sidebars ([cfd7a37](https://gitlab.synerise.com/Frontend/synerise-design/commit/cfd7a37e870d09e3a470f5bb113c58fd6fe413f8))
+* **manageable-list:** update docs ([0ee8ada](https://gitlab.synerise.com/Frontend/synerise-design/commit/0ee8adadb88ecc9fbfe324d147c068720cde7856))
+
+
+
+
+
 ## [0.17.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.3...docs@0.17.4) (2021-12-29)
 
 

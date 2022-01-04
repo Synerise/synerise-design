@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.11.5...@synerise/ds-menu@0.11.6) (2022-01-04)
+
+
+### Bug Fixes
+
+* **menu:** fix typing of menu items ([4ccd48c](https://github.com/Synerise/synerise-design/commit/4ccd48c490e0c16beed209bb36122144555bf899))
+
+
+
+
+
 ## [0.11.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.11.4...@synerise/ds-menu@0.11.5) (2021-12-29)
 
 

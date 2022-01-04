@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.4...@synerise/ds-layout@0.9.0) (2022-01-04)
+
+
+### Features
+
+* **layout:** adds custom width of sidebars ([cfd7a37](https://github.com/synerise/synerise-design/commit/cfd7a37e870d09e3a470f5bb113c58fd6fe413f8))
+
+
+
+
+
 ## [0.8.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.3...@synerise/ds-layout@0.8.4) (2021-12-29)
 
 
