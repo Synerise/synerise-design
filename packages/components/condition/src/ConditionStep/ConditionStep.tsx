@@ -112,43 +112,45 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     text,
   ]);
 
-  const handleActivation = (conditionId: string): (() => void) => (): void => {
-    setActiveConditionId(conditionId);
-    onActivate && onActivate();
-  };
-
   const renderConditionRow = React.useCallback(
-    (condition, conditionIndex) => (
-      <ConditionRow
-        key={`step-${step.id}-condition-${condition.id}`}
-        hasPriority={hasPriority && activeConditionId === condition.id}
-        index={conditionIndex}
-        conditionId={condition.id}
-        addCondition={addCondition}
-        conditionParameter={condition.parameter}
-        conditionOperator={condition.operator}
-        conditionFactor={condition.factor}
-        removeCondition={removeCondition}
-        minConditionLength={minConditionsLength}
-        maxConditionLength={maxConditionsLength}
-        conditionsNumber={step.conditions.length}
-        onActivate={handleActivation(condition.id)}
-        stepId={step.id}
-        currentStepId={currentStepId}
-        currentConditionId={currentConditionId}
-        currentField={currentField}
-        selectParameter={selectParameter}
-        selectOperator={selectOperator}
-        getPopupContainerOverride={
-          getPopupContainerOverride ||
-          ((): HTMLElement => document.querySelector(`#condition-step-${step.id}`) || document.body)
-        }
-        setStepConditionFactorType={setStepConditionFactorType}
-        setStepConditionFactorValue={setStepConditionFactorValue}
-        texts={text}
-        stepType={step.context?.type}
-      />
-    ),
+    (condition, conditionIndex) => {
+      const handleActivation = (conditionId: string): (() => void) => (): void => {
+        setActiveConditionId(conditionId);
+        onActivate && onActivate();
+      };
+
+      return (
+        <ConditionRow
+          key={`step-${step.id}-condition-${condition.id}`}
+          hasPriority={hasPriority && activeConditionId === condition.id}
+          index={conditionIndex}
+          conditionId={condition.id}
+          addCondition={addCondition}
+          conditionParameter={condition.parameter}
+          conditionOperator={condition.operator}
+          conditionFactor={condition.factor}
+          removeCondition={removeCondition}
+          minConditionLength={minConditionsLength}
+          maxConditionLength={maxConditionsLength}
+          conditionsNumber={step.conditions.length}
+          onActivate={handleActivation(condition.id)}
+          stepId={step.id}
+          currentStepId={currentStepId}
+          currentConditionId={currentConditionId}
+          currentField={currentField}
+          selectParameter={selectParameter}
+          selectOperator={selectOperator}
+          getPopupContainerOverride={
+            getPopupContainerOverride ||
+            ((): HTMLElement => document.querySelector(`#condition-step-${step.id}`) || document.body)
+          }
+          setStepConditionFactorType={setStepConditionFactorType}
+          setStepConditionFactorValue={setStepConditionFactorValue}
+          texts={text}
+          stepType={step.context?.type}
+        />
+      );
+    },
     [
       getPopupContainerOverride,
       addCondition,
@@ -166,7 +168,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       step.context,
       step.id,
       text,
-      handleActivation,
+      onActivate,
       activeConditionId,
       hasPriority,
     ]
