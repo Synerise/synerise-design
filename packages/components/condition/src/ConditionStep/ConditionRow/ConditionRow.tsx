@@ -30,10 +30,15 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   setStepConditionFactorValue,
   getPopupContainerOverride,
   onActivate,
+  hasPriority,
   texts,
 }) => {
   return (
-    <S.ConditionRow key={`condition-row-${conditionId}`} index={index}>
+    <S.ConditionRow
+      style={hasPriority ? { zIndex: 10001 } : undefined}
+      key={`condition-row-${conditionId}`}
+      index={index}
+    >
       <S.ConditionConnections
         first={index === 0}
         last={Boolean(
