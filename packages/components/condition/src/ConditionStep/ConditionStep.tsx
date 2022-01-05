@@ -167,6 +167,9 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       step.id,
       text,
       onActivate,
+      handleActivation,
+      activeConditionId,
+      hasPriority,
     ]
   );
 
