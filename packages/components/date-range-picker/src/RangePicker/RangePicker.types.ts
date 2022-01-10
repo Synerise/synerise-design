@@ -13,6 +13,8 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   forceAdjacentMonths?: boolean;
   showCustomRange?: boolean;
+  resetOnThirdClick?: boolean;
+  startAlwaysOnTheLeft?: boolean;
 }
 
 export interface State {
