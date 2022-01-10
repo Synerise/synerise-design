@@ -23,7 +23,7 @@ import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
 import ADD from '../dateUtils/add';
-import { AbsoluteDateRange, DateFilter, NullableDateLimit, RelativeDateRange } from '../date.types';
+import { AbsoluteDateRange, DateFilter, RelativeDateRange } from '../date.types';
 import { Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
@@ -32,10 +32,7 @@ import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
 const NOOP = (): void => {};
 const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
 
-function replaceRange(
-  value: Omit<AbsoluteDateRange, 'type'> | RelativeDateRange,
-  day: Date
-): { from?: NullableDateLimit; to?: NullableDateLimit } {
+function replaceRange(value: AbsoluteDateRange | RelativeDateRange, day: Date): Omit<AbsoluteDateRange, 'type'> {
   let { from, to } = value;
   // arguments to DateUtils functions are casted to Date because function arguments require Date
   if (!from) {
