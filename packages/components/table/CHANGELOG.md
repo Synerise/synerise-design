@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.8...@synerise/ds-table@0.42.9) (2022-01-04)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.42.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.7...@synerise/ds-table@0.42.8) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting ([8042c70](https://github.com/synerise/synerise-design/commit/8042c70e131be15ad8cb30e771d0c5b695647b8d))
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://github.com/synerise/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+* **table:** fixes styles of sorting columns ([0d50c75](https://github.com/synerise/synerise-design/commit/0d50c75b06dd7b81f7820745a1a85b2690f6bce8))
+
+
+
+
+
+## [0.42.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.6...@synerise/ds-table@0.42.7) (2021-12-22)
+
+
+### Bug Fixes
+
+* **table:** add customColor prop to badge status ([81a6c89](https://github.com/synerise/synerise-design/commit/81a6c89fc5d777ca6ec17c0d36267cd81eec9db3))
+* **table:** update dependencies ([cb6ba1b](https://github.com/synerise/synerise-design/commit/cb6ba1bd84f1100b011d7f9565d1e0248137acbe))
+
+
+
+
+
+## [0.42.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.5...@synerise/ds-table@0.42.6) (2021-12-20)
+
+
+### Bug Fixes
+
+* **table:** fixes first arg of onSelectionChange handler ([6321efc](https://github.com/synerise/synerise-design/commit/6321efc3e8a49e5184e274583791bb5ccb35e774))
+* **table:** fixes returned data by on change selection function ([151e195](https://github.com/synerise/synerise-design/commit/151e195b8bb6d37f9fdede12aaa569b56ba97e82))
+
+
+
+
+
+## [0.42.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.4...@synerise/ds-table@0.42.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* **table:** searchbox specific styling in grouped-table ([a3779e1](https://github.com/synerise/synerise-design/commit/a3779e1b23204092c60bcd95e0a9311504d0e37d))
+* **table:** specify btn-search no min-width for grouped-table ([1726da4](https://github.com/synerise/synerise-design/commit/1726da4bd64aed4d0775929fa6fd2f7dbdde2c1f))
+
+
+
+
+
+## [0.42.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.3...@synerise/ds-table@0.42.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.42.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.2...@synerise/ds-table@0.42.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.42.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.42.1...@synerise/ds-table@0.42.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-table

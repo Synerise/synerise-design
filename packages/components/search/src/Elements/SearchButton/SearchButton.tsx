@@ -21,7 +21,12 @@ const SearchButton: React.FC<SearchButtonProps> = ({
       clickable={clickable}
       onClick={onClick}
     >
-      <Button type="ghost" className={inputOpen ? 'btn-search-open' : 'btn-search'} data-testid="btn">
+      <Button
+        mode="single-icon"
+        type="ghost"
+        className={inputOpen ? 'btn-search-open' : 'btn-search'}
+        data-testid="btn"
+      >
         <Icon component={<SearchM />} />
       </Button>
     </S.SearchButton>

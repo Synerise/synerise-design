@@ -41,6 +41,7 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
   expandedIds,
   texts,
   changeOrderByButtons = false,
+  additionalActions,
 }) => {
   const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
@@ -104,11 +105,10 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
     return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
   }, [allItemsVisible, maxToShowItems, itemsToRender]);
 
-  const buttonLabel = React.useMemo(() => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel), [
-    allItemsVisible,
-    itemTexts.showLessLabel,
-    itemTexts.showMoreLabel,
-  ]);
+  const buttonLabel = React.useMemo(
+    () => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel),
+    [allItemsVisible, itemTexts.showLessLabel, itemTexts.showMoreLabel]
+  );
 
   const buttonLabelDiff = React.useMemo(
     () =>
@@ -183,6 +183,7 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
           searchQuery={searchQuery}
           hideExpander={expanderDisabled}
           expanded={!!stateExpandedIds && stateExpandedIds.includes(item.id)}
+          additionalActions={additionalActions}
         />
       );
     },
@@ -205,6 +206,7 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
       searchQuery,
       expanderDisabled,
       stateExpandedIds,
+      additionalActions,
     ]
   );
 

@@ -25,6 +25,7 @@ const Item: React.FC<Props> = ({
   onMoveTop,
   isFirst,
   isLast,
+  additionalActions,
 }) => {
   switch (listType) {
     case ListType.CONTENT:
@@ -73,6 +74,7 @@ const Item: React.FC<Props> = ({
           onUpdate={onUpdate}
           onRemove={onRemove}
           texts={texts}
+          additionalActions={additionalActions}
         />
       );
   }

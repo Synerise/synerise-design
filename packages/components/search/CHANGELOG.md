@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.9...@synerise/ds-search@0.6.10) (2022-01-04)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.6.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.8...@synerise/ds-search@0.6.9) (2021-12-29)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.6.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.7...@synerise/ds-search@0.6.8) (2021-12-22)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.6.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.6...@synerise/ds-search@0.6.7) (2021-12-20)
+
+
+### Bug Fixes
+
+* **search:** fixes size of search button size ([1837c9c](https://github.com/Synerise/synerise-design/commit/1837c9c0c47cbbc0c01a68c03316a365833bcb21))
+
+
+
+
+
+## [0.6.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.4...@synerise/ds-search@0.6.6) (2021-12-01)
+
+
+### Bug Fixes
+
+* **search:** hide y-scrollbar ([9fea52d](https://github.com/Synerise/synerise-design/commit/9fea52d1df4fef232a339fca6b0f54634f0215a8))
+* **table:** searchbox specific styling in grouped-table ([a3779e1](https://github.com/Synerise/synerise-design/commit/a3779e1b23204092c60bcd95e0a9311504d0e37d))
+* **table:** searchbox styling ([d62c371](https://github.com/Synerise/synerise-design/commit/d62c371f4b53d4197c9570b804a0ad97f4c55d9e))
+
+
+
+
+
+## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.3...@synerise/ds-search@0.6.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.2...@synerise/ds-search@0.6.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.6.1...@synerise/ds-search@0.6.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-search

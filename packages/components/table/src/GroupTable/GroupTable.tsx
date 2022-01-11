@@ -9,22 +9,24 @@ import '../style/index.less';
 import { getColumnsWithActiveSorting, sortDataSourceRows } from '../ColumnSortMenu/groupedColumnsSort';
 import { GroupType } from './GroupTable.types';
 
-const addActiveColumnClass = <T extends unknown>(activeColumn?: string) => (column: DSColumnType<T>): DSColumnType<T> =>
-  column.key === activeColumn
-    ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ds-table-active-column' }) }
-    : column;
+const addActiveColumnClass =
+  <T extends unknown>(activeColumn?: string) =>
+  (column: DSColumnType<T>): DSColumnType<T> =>
+    column.key === activeColumn
+      ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ds-table-active-column' }) }
+      : column;
 
 const clearDefaultColumnSortOrder = <T extends unknown>(column: DSColumnType<T>): DSColumnType<T> => ({
   ...column,
   sortOrder: null,
 });
 
-const addSortClassByState = <T extends unknown>(sortStateApi: SortStateAPI) => (
-  column: DSColumnType<T>
-): DSColumnType<T> =>
-  sortStateApi.getColumnSortOrder(String(column.key))
-    ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ant-table-column-sort' }) }
-    : column;
+const addSortClassByState =
+  <T extends unknown>(sortStateApi: SortStateAPI) =>
+  (column: DSColumnType<T>): DSColumnType<T> =>
+    sortStateApi.getColumnSortOrder(String(column.key))
+      ? { ...column, onHeaderCell: (): React.HTMLAttributes<HTMLElement> => ({ className: 'ant-table-column-sort' }) }
+      : column;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function GroupTable<T extends GroupType<T>>(
@@ -44,11 +46,12 @@ function GroupTable<T extends GroupType<T>>(
     addItem,
     hideGroupExpander,
     initialGroupsCollapsed,
+    onSort,
   } = props;
   const [expandedGroups, setExpandedGroups] = React.useState<React.ReactText[]>(
     initialGroupsCollapsed || !dataSource ? [] : dataSource.map(group => group.key)
   );
-  const sortStateApi = useSortState(columnsToSortState(columns));
+  const sortStateApi = useSortState(columnsToSortState(columns), onSort);
 
   const [data, setData] = React.useState<T[]>(dataSource || []);
 

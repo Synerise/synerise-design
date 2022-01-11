@@ -20,12 +20,13 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
         }))
       );
   };
-  const renderChildren = (): JSX.Element[] => {
-    return React.Children.map(children, (child, i) => {
-      const colorTabs = React.cloneElement(child, { color: COLORS_TABS[i % COLORS_TABS.length] });
-      return colorTabs;
-    });
-  };
+  const renderChildren = (): JSX.Element[] =>
+    React.Children.map(children, (child, i) =>
+      React.cloneElement(child, {
+        color: COLORS_TABS[i % COLORS_TABS.length],
+        draggable: Boolean(onChangeOrder) || child.props.draggable,
+      })
+    );
 
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
