@@ -58,7 +58,6 @@ const value = {
 | showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                        |
 | validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
 | value                | Value of the picker                                                 | DateRange            | new Date()                                                    |
-| resetOnThirdClick    | Enable to cancel selected dates to set new one                      | boolean              | `false`                                                       |
 | startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
 
 ### DateRange

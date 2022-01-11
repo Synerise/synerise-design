@@ -144,10 +144,12 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
+    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
     const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
     selectedRangeStart.click();
     const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
     selectedRangeEnd.click();
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
   });
 
   it('should change format when showTime is false', async () => {
@@ -165,9 +167,11 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
+    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
     const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
     selectedRangeStart.click();
     const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
     selectedRangeEnd.click();
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
   });
 });
