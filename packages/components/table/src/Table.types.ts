@@ -5,6 +5,7 @@ import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { RowStar } from './hooks/useRowStar.types';
 import { SortRender } from './ColumnSortMenu/TitleWithSort';
+import { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
@@ -101,6 +102,9 @@ type DSTableComponentsType<T> = AntTableComponentsType<T> & {
   ) => React.ReactNode;
 };
 
+export type SingleColumnSort = { columnKey: string; order: ColumnSortOrder };
+export type OnSortFn = (singleColumnSort: SingleColumnSort, sortState: ColumnsSortState) => void;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
   title?: string | React.ReactNode;
@@ -126,4 +130,5 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
   hideTitlePart?: boolean;
   disableColumnNamesLineBreak?: boolean;
+  onSort?: OnSortFn;
 }

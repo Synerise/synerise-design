@@ -56,6 +56,7 @@ const setupStateApi = (sortState: SortStateAPI['columnsSortState']): SortStateAP
   columnsSortState: sortState,
   getColumnSortOrder: jest.fn().mockImplementation((key: string) => sortState[key].sortOrder),
   setColumnSortOrder: jest.fn(),
+  updateColumnsData: jest.fn(),
 });
 
 describe('getColumnsWithActiveSorting', () => {

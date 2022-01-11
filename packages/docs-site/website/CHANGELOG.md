@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.4...docs@0.18.0) (2022-01-04)
+
+
+### Features
+
+* **layout:** adds custom width of sidebars ([cfd7a37](https://gitlab.synerise.com/Frontend/synerise-design/commit/cfd7a37e870d09e3a470f5bb113c58fd6fe413f8))
+* **manageable-list:** update docs ([0ee8ada](https://gitlab.synerise.com/Frontend/synerise-design/commit/0ee8adadb88ecc9fbfe324d147c068720cde7856))
+
+
+
+
+
+## [0.17.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.3...docs@0.17.4) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://gitlab.synerise.com/Frontend/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+
+
+
+
+
+## [0.17.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.2...docs@0.17.3) (2021-12-20)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.17.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.17.1...docs@0.17.2) (2021-11-22)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 ## [0.17.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.16.1...docs@0.17.1) (2021-11-09)
 
 **Note:** Version bump only for package docs

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.16.2...@synerise/ds-button@0.16.3) (2021-12-22)
+
+
+### Bug Fixes
+
+* **button:** fix width of the search button ([71aefef](https://github.com/synerise/synerise-design/commit/71aefef45295565fd8b6ce7b67d7ef88fa5cf9d6))
+
+
+
+
+
+## [0.16.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.16.1...@synerise/ds-button@0.16.2) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.16.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.15.0...@synerise/ds-button@0.16.1) (2021-11-09)
 
 **Note:** Version bump only for package @synerise/ds-button

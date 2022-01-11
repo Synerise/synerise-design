@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.4...@synerise/ds-skeleton@0.2.5) (2021-12-29)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
+## [0.2.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.3...@synerise/ds-skeleton@0.2.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
+## [0.2.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.2...@synerise/ds-skeleton@0.2.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
 ## [0.2.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.1...@synerise/ds-skeleton@0.2.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-skeleton
