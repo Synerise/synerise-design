@@ -2,9 +2,10 @@ import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Layout.styles';
 import { LayoutProps } from './Layout.types';
+
+const DEFAULT_SIDEBAR_WIDTH = 320;
 
 const Layout: React.FC<LayoutProps> = ({
   header,
@@ -14,25 +15,11 @@ const Layout: React.FC<LayoutProps> = ({
   className,
   styles,
   subheader,
-  leftOpened,
-  rightOpened,
   fullPage = false,
-  leftOpenedWidth = 320,
-  rightOpenedWidth = 320,
+  sidebarAnimationDisabled,
 }) => {
-  const previousLeftOpened = usePrevious(leftOpened);
-  const previousRightOpened = usePrevious(rightOpened);
-  const [leftSidebarOpened, setLeftSidebarOpened] = React.useState(Boolean(leftOpened));
-  const [rightSidebarOpened, setRightSidebarOpened] = React.useState(Boolean(rightOpened));
-
-  React.useEffect(() => {
-    if (leftOpened !== previousLeftOpened) {
-      setLeftSidebarOpened(Boolean(leftOpened));
-    }
-    if (rightOpened !== previousRightOpened) {
-      setRightSidebarOpened(Boolean(rightOpened));
-    }
-  }, [leftOpened, rightOpened, previousLeftOpened, previousRightOpened]);
+  const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
+  const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
 
   return (
     <S.LayoutContainer className={`ds-layout ${className || ''}`}>
@@ -41,22 +28,27 @@ const Layout: React.FC<LayoutProps> = ({
         <S.LayoutBody>
           <>
             {left ? (
-              <S.LayoutSidebarWrapper opened={leftSidebarOpened} openedWidth={leftOpenedWidth}>
+              <S.LayoutSidebarWrapper
+                opened={!!left?.opened}
+                openedWidth={leftSidebarWidth}
+                animationDisabled={!!sidebarAnimationDisabled}
+              >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar"
                   style={styles && styles.left}
-                  opened={leftSidebarOpened}
-                  openedWidth={leftOpenedWidth}
+                  opened={!!left.opened}
+                  openedWidth={leftSidebarWidth}
+                  animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute>
-                    <S.LayoutSidebarInner style={styles && styles.leftInner}>{left}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
                 <S.SidebarButton
                   withSubheader={Boolean(subheader)}
-                  onClick={(): void => setLeftSidebarOpened(!leftSidebarOpened)}
-                  opened={leftSidebarOpened}
-                  bothOpened={leftSidebarOpened && rightSidebarOpened}
+                  onClick={(): void => left?.onChange(!left?.opened)}
+                  opened={!!left?.opened}
+                  bothOpened={left?.opened && right?.opened}
                 >
                   <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
                   <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
@@ -64,7 +56,15 @@ const Layout: React.FC<LayoutProps> = ({
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
-          <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
+          <S.LayoutMain
+            className="ds-layout__main"
+            data-popup-container
+            style={styles && styles.main}
+            leftOpened={!!left?.opened}
+            rightOpened={!!right?.opened}
+            leftSidebarWidth={leftSidebarWidth}
+            rightSidebarWidth={rightSidebarWidth}
+          >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
             <Scrollbar absolute>
               <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
@@ -74,23 +74,29 @@ const Layout: React.FC<LayoutProps> = ({
           </S.LayoutMain>
           <>
             {right ? (
-              <S.LayoutSidebarWrapper opened={rightSidebarOpened} right openedWidth={leftOpenedWidth}>
+              <S.LayoutSidebarWrapper
+                opened={!!right?.opened}
+                right
+                openedWidth={rightSidebarWidth}
+                animationDisabled={!!sidebarAnimationDisabled}
+              >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar ds-layout__sidebar--right"
                   style={styles && styles.right}
-                  opened={rightSidebarOpened}
-                  openedWidth={rightOpenedWidth}
+                  opened={!!right?.opened}
+                  openedWidth={rightSidebarWidth}
+                  animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute>
-                    <S.LayoutSidebarInner style={styles && styles.rightInner}>{right}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
                 <S.SidebarButton
                   withSubheader={Boolean(subheader)}
-                  onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}
+                  onClick={(): void => right?.onChange(!right?.opened)}
                   right
-                  opened={rightSidebarOpened}
-                  bothOpened={leftSidebarOpened && rightSidebarOpened}
+                  opened={!!right?.opened}
+                  bothOpened={left?.opened && right?.opened}
                 >
                   <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
                   <S.CloseIcon component={<CloseS />} color={theme.palette.white} />

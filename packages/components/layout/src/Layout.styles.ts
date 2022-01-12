@@ -55,10 +55,15 @@ export const LayoutBody = styled.div`
   ${mediaQuery.to.small`min-width: 704px;`};
 `;
 
-export const LayoutMain = styled.div`
-  flex: 1;
+export const LayoutMain = styled.div<{
+  leftOpened: boolean;
+  rightOpened: boolean;
+  leftSidebarWidth: number;
+  rightSidebarWidth: number;
+}>`
   position: relative;
   max-width: 100%;
+  width: 100%;
   ${mediaQuery.to.small`min-width: 704px;`};
 `;
 
@@ -94,12 +99,12 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
   display: flex;
   opacity: 1;
   visibility: visible;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
   z-index: 1;
   ${mediaQuery.to.medium`display: flex; opacity: 1; visibility: visible`};
 
   ${ArrowIcon} {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
   }
   ${mediaQuery.to.medium`${(props: SidebarButtonProps): string | undefined | false =>
     props.right && props.opened && 'left: -44px'}`};
@@ -129,9 +134,17 @@ export const SidebarButton = styled.button<SidebarButtonProps>`
 type LayoutSidebarProps = {
   opened: boolean;
   openedWidth: number;
+  animationDisabled: boolean;
 };
 
 export const LayoutSidebar = styled.div<LayoutSidebarProps>`
+  ${(props): FlattenSimpleInterpolation | false =>
+    !props.animationDisabled &&
+    css`
+      will-change: width;
+      transform-style: preserve-3d;
+      transition: max-width 0.3s ease;
+    `};
   position: relative;
   z-index: 10;
   overflow-y: auto;
@@ -139,7 +152,6 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   background-color: #fff;
   height: 100%;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
-  transition: all 0.3s ease-in-out;
   width: ${(props): string => `${props.openedWidth}px`};
   max-width: 100%;
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
@@ -171,17 +183,23 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   }
 `;
 
-type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean; openedWidth: number };
+type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean; openedWidth: number; animationDisabled: boolean };
 
 export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   position: relative;
   overflow: visible;
   height: 100%;
-  transition: transform .3s ease-in-out;
+
   left: ${(props): string => (props.right ? 'auto' : '0')};
   right: ${(props): string => (props.right ? '0' : 'auto')};
   z-index: 10;
-
+  ${(props): FlattenSimpleInterpolation | false =>
+    !props.animationDisabled &&
+    css`
+      will-change: width, transform;
+      transform-style: preserve-3d;
+      transition: width 0.3s ease, transform 0.3s ease;
+    `};
   &:hover {
     ${SidebarButton} {
       background-color: ${(props): string => props.theme.palette['grey-600']};
