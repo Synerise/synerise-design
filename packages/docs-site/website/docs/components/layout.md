@@ -22,10 +22,8 @@ import Layout from '@synerise/ds-layout'
 
 <Layout
     header={<HeaderComponent />}
-    left={<LeftSidebarComponent>}
-    right={RightSidebarComponent}
-    leftOpened=true
-    rightOpened=true
+    left={{content: <LeftSidebarComponent />, opened: true, onChange: () => {}}}
+    right={{content: <RightSidebarComponent />, opened: false, onChange: () => {}}}
     className={layoutClass}
 >
     <Content />
