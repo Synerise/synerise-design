@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.145.0](https://github.com/synerise/synerise-design/compare/portal@0.144.0...portal@0.145.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* **docs:** fixes storybook example of layout ([325c487](https://github.com/synerise/synerise-design/commit/325c4873f033ba9c9db5440a7a1e4efd4c00738f))
+
+
+
+
+
 # [0.144.0](https://github.com/synerise/synerise-design/compare/portal@0.143.1...portal@0.144.0) (2022-01-04)
 
 
