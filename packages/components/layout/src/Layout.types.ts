@@ -9,17 +9,21 @@ export interface Style<T> {
   rightInner?: T;
 }
 
+export type SidebarProps = {
+  content: React.ReactNode;
+  opened: boolean;
+  onChange: (isOpened: boolean) => void;
+  width?: number;
+};
+
 export type LayoutProps = {
   header?: React.ReactNode;
   subheader?: React.ReactNode;
-  left?: React.ReactNode;
-  right?: React.ReactNode;
+  left?: SidebarProps;
+  right?: SidebarProps;
   children: React.ReactNode;
   className?: string;
   styles?: Style<React.CSSProperties>;
-  leftOpened?: boolean;
-  rightOpened?: boolean;
   fullPage?: boolean;
-  leftOpenedWidth?: number;
-  rightOpenedWidth?: number;
+  sidebarAnimationDisabled?: boolean;
 };

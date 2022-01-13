@@ -22,10 +22,8 @@ import Layout from '@synerise/ds-layout'
 
 <Layout
     header={<HeaderComponent />}
-    left={<LeftSidebarComponent>}
-    right={RightSidebarComponent}
-    leftOpened=true
-    rightOpened=true
+    left={{content: <LeftSidebarComponent />, opened: true, onChange: () => {}}}
+    right={{content: <RightSidebarComponent />, opened: false, onChange: () => {}}}
     className={layoutClass}
 >
     <Content />
@@ -38,8 +36,8 @@ import Layout from '@synerise/ds-layout'
 | ---------        | ---------------------------------------- | --------------- | ------- |
 | header           | Set top header content page              | React.ReactNode |         |
 | subheader        | Set subheader content page               | React.ReactNode |         |
-| left             | Set left content page                    | React.ReactNode |         |
-| right            | Set right content page                   | React.ReactNode |         |
+| left             | Configuration of left sidebar            | SidebarProps    |         |
+| right            | Configuration of right sidebar           | SidebarProps    |         |
 | children         | The layout elements passed to the parent | React.ReactNode |         |
 | className        | Layout's className                       | string          |         |
 | styles           | Custom layout styles                     | LayoutStyles    |         |
@@ -47,6 +45,15 @@ import Layout from '@synerise/ds-layout'
 | rightOpened      | Whether right sidebar is opened          | boolean         | false   |
 | leftOpenedWidth  | Width of opened left sidebar             | number          | 320     |
 | rightOpenedWidth | Width of opened right sidebar            | number          | 320     |
+
+### SidebarProps
+
+| Property  | Description                                        | Type                        | Default |
+| --------- | ----------------------------------------           | ---------------             | ------- |
+| opened    | Wheter sidebar is opened                           | boolean                     | false   |
+| onChange  | Callback fired when user clicks the sidebar button | (isOpened: boolean) => void | -       |
+| content   | Content of sidebar                                 | React.ReactNode             | -       |
+| width     | Width of opened sidebar                            | number                      | 320     |
 
 
 ### LayoutStyles
