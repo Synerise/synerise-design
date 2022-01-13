@@ -30,6 +30,8 @@ const stories = {
   bothSidebar: () => {
     const [leftOpened, setLeftOpened] = React.useState(false);
     const [rightOpened, setRightOpened] = React.useState(false);
+    const [searchQuery, setSearchQuery] = React.useState('');
+
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
@@ -101,10 +103,10 @@ const stories = {
                   onSort={action('handleSort')}
                   searchComponent={
                     <SearchInput
-                      onClear={action('clear')}
+                      onClear={() => setSearchQuery('')}
                       clearTooltip={'Clear'}
-                      onChange={action('Change')}
-                      value={'abcd'}
+                      onChange={setSearchQuery}
+                      value={searchQuery}
                       placeholder={'Search...'}
                     />
                   }
