@@ -74,7 +74,10 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
             disabled={isDisabled}
             onClick={(): void => {
               onSelect(option);
-              setForceUpdate(!forceUpdate);
+              setTimeout(() => {
+                // timeout is required to make sure that the ref is updated
+                setForceUpdate(!forceUpdate);
+              }, 50);
             }}
             active={isSelected}
             ref={isSelected ? selectedCellRef : null}

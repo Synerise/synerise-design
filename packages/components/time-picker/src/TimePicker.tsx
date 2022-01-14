@@ -68,7 +68,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: use12HourClock ? range(12 + 1) : range(24),
+      options: use12HourClock ? range(12) : range(24),
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -132,7 +132,18 @@ const TimePicker: React.FC<TimePickerProps> = ({
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
+          <Unit
+            {...u}
+            value={
+              localValue ||
+              dayjs()
+                .hour((hour as number) || 0)
+                .minute((minute as number) || 0)
+                .second((second as number) || 0)
+                .toDate()
+            }
+            onSelect={(newValue): void => handleChange(u.unit, newValue)}
+          />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
