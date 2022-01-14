@@ -6,6 +6,7 @@ import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { useMemo } from 'react';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
@@ -126,24 +127,22 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
-
+  const timeValue = useMemo(
+    () =>
+      localValue ||
+      dayjs()
+        .hour((hour as number) || 0)
+        .minute((minute as number) || 0)
+        .second((second as number) || 0)
+        .toDate(),
+    [localValue, hour, minute, second]
+  );
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit
-            {...u}
-            value={
-              localValue ||
-              dayjs()
-                .hour((hour as number) || 0)
-                .minute((minute as number) || 0)
-                .second((second as number) || 0)
-                .toDate()
-            }
-            onSelect={(newValue): void => handleChange(u.unit, newValue)}
-          />
+          <Unit {...u} value={timeValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
