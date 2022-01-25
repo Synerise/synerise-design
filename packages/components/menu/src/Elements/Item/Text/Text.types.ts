@@ -30,6 +30,6 @@ export interface BasicItemProps {
   size?: 'default' | 'large';
   timeToHideTooltip?: number;
   tooltipProps?: MenuItemProps['tooltipProps'];
-  hoverTooltipProps?: MenuItemProps['tooltipProps'];
+  hoverTooltipProps?: MenuItemProps['hoverTooltipProps'];
   renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
 }

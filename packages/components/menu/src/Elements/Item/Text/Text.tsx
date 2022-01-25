@@ -38,7 +38,7 @@ function WithHoverTooltip({ hoverTooltipProps = {}, renderHoverTooltip, children
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
       <Trigger
-        defaultVisible={false}
+        defaultVisible={hoverTooltipProps?.defaultVisible ?? false}
         placement="right"
         action={['click', 'hover']}
         popupAlign={{

@@ -45,6 +45,6 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   checked?: boolean;
   size?: 'default' | 'large';
   tooltipProps?: TooltipProps;
-  hoverTooltipProps?: TooltipProps & { ref?: React.LegacyRef<TriggerHandle> };
+  hoverTooltipProps?: TriggerProps & { ref?: React.LegacyRef<TriggerHandle> };
   renderHoverTooltip?: () => JSX.Element;
 }
