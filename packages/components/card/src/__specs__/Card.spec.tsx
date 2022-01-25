@@ -83,4 +83,14 @@ describe('Card', () => {
     // ASSERT
     expect(getByTestId(TEST_ID)).toBeTruthy();
   });
+
+  it('should allow custom card badge', () => {
+    const { container } = renderWithProvider(
+      <Card
+        withHeader
+        badgeSlot={<div className="badge-slot" style={{ marginRight: '16px' }}>Badge</div>}
+      />
+    )
+    expect(container.querySelector('.badge-slot')).toBeTruthy();
+  })
 });
