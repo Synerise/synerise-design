@@ -5,6 +5,7 @@ import Icon, { AngleRightS, AddS, WarningFillM, ShowRemoveM } from '@synerise/ds
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { NOOP } from '@synerise/ds-utils';
 import { SortableElement } from 'react-sortable-hoc';
+import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 
 import Popconfirm from '@synerise/ds-popconfirm';
 import Actions from './Actions';
@@ -208,7 +209,7 @@ const ItemContainer: React.FC<ItemProps> = ({
           prefixel={prefixel}
           suffixel={suffixel}
           selectedKeys={[itemKey]}
-          suffixVisibilityTrigger={selected || editMode ? undefined : 'hover'}
+          suffixVisibilityTrigger={selected || editMode ? undefined : VisibilityTrigger.HOVER}
           {...props}
         >
           {editMode ? (

@@ -5,6 +5,7 @@ import Icon, { AngleRightS, FolderM, AddS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { NOOP } from '@synerise/ds-utils';
 
+import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 import AddModal from '../../../AddModal';
 import Actions from '../../../Tree/Item/Actions';
 
@@ -148,7 +149,7 @@ const Folder: React.FC<FolderProps> = ({
       onClick={handleExpandToggle}
       prefixel={prefixel}
       suffixel={suffixel}
-      suffixVisibilityTrigger="hover"
+      suffixVisibilityTrigger={VisibilityTrigger.HOVER}
       {...props}
     >
       {editMode ? (

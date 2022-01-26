@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Icon from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
+import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 import { ItemProps } from '../Item.types';
 
 import { validateItemName } from '../../../utils';
@@ -87,7 +88,7 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
   return (
     <S.Item
       suffixel={suffixel}
-      suffixVisibilityTrigger="hover"
+      suffixVisibilityTrigger={VisibilityTrigger.HOVER}
       prefixel={
         <>
           <Icon />
