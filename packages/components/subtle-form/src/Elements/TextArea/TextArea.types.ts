@@ -11,6 +11,7 @@ export type SubtleTextAreaProps = {
   error?: boolean;
   errorText?: string | React.ReactNode;
   textAreaProps?: TextAreaProps;
+  hideLabel?: boolean;
 } & SubtleFieldProps;
 
 export type TextareaAutosize = {
