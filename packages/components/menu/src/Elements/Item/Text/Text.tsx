@@ -18,7 +18,12 @@ const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Paramete
   return addon instanceof Function ? addon(...params) : addon;
 };
 
-function MaybePopover({ popoverProps = {}, renderPopover, children }: any = {}): JSX.Element {
+type MaybePopoverProps = React.PropsWithChildren<{
+  popoverProps: BasicItemProps['popoverProps'];
+  renderPopover: BasicItemProps['renderInformationCard'];
+}>;
+
+function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverProps): JSX.Element {
   const zIndexGreaterThanDropdown = 991050 + 1;
   const cancelBubblingEvent = React.useCallback(
     () => (ev: Event): void => {

@@ -7,7 +7,7 @@ import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Card from '@synerise/ds-card';
 import SubtleForm from '@synerise/ds-subtle-form';
 import Tooltip from '@synerise/ds-tooltip';
-import { tooltipTypes } from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { TooltipProps, tooltipTypes } from '@synerise/ds-tooltip/dist/Tooltip.types';
 import Copy from '@synerise/ds-description/dist/Row/Copy';
 import { InlineAlertType } from '@synerise/ds-alert/dist/InlineAlert/InlineAlert.types';
 import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
@@ -217,10 +217,14 @@ export function getInitials(name: string): string {
   return name.substring(0, hasTokens ? 1 : 2) + (hasTokens ? name.charAt(name.lastIndexOf(' ') + 1) : '');
 }
 
+type InitialsProps = React.PropsWithChildren<{
+  name?: string;
+}>;
+
 /**
  * Wrapper for obtaining an avatar based on initials
  */
-export function Initials({ name, children }: { name?: string; children?: any }): JSX.Element {
+export function Initials({ name, children }: InitialsProps): JSX.Element {
   return (
     <Badge>
       <Avatar size="medium" shape="circle" backgroundColor="blue">
@@ -230,17 +234,20 @@ export function Initials({ name, children }: { name?: string; children?: any }):
   );
 }
 
+type DescriptionFieldProps = SubtleTextAreaProps & {
+  extraInformation?: React.ReactNode;
+};
+
 /**
  * Returns default information card's description section.
  */
 function DescriptionField({
   extraInformation = undefined,
-  descriptionHook,
   error,
   disabled,
   ...props
-}: Record<string, any> & SubtleTextAreaProps): JSX.Element {
-  const [description, setDescription] = descriptionHook ?? React.useState<string>();
+}: DescriptionFieldProps): JSX.Element {
+  const [description, setDescription] = React.useState<string>();
   return (
     <div>
       {extraInformation}
@@ -274,7 +281,7 @@ function withTooltip(
   actionButtonText: string,
   actionButtonTooltipText: string,
   tooltipType: tooltipTypes,
-  props?: any
+  props?: Omit<TooltipProps, 'tooltipTypes'>
 ): JSX.Element {
   // type is related to ds-tooltip's: shouldRenderDescription (it makes use of description prop only if tooltip type!=='default')
   return (
