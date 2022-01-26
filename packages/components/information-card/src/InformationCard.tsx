@@ -154,7 +154,12 @@ const InformationCard: React.FC<InformationCardProps> = ({
       </S.Flex>
     </RowWrapper>
   );
-  const anyChildrenToRender = (typeof children === 'function' && children(descriptionConfig)) || children;
+  function renderChildren(renderChild: InformationCardProps['children']): JSX.Element | React.ReactNode {
+    if (typeof renderChild === 'function') {
+      return renderChild(descriptionConfig);
+    }
+    return renderChild;
+  }
   return (
     <S.InfoCardWrapper aria-label="information card">
       <Card
@@ -174,7 +179,7 @@ const InformationCard: React.FC<InformationCardProps> = ({
         lively={false}
         withHeader
       >
-        {anyChildrenToRender ||
+        {renderChildren(children) ||
           (descriptionConfig !== null && (
             <DescriptionField extraInformation={notice || <></>} {...descriptionConfig} />
           ))}
