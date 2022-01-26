@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import * as React from 'react';
 import classNames from 'classnames';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -7,6 +8,7 @@ import { Popover } from 'antd';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
+import { MenuItemProps as RcMenuItemProps } from 'rc-menu';
 
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
@@ -70,6 +72,7 @@ const Text: React.FC<BasicItemProps> = ({
   popoverProps,
   renderInformationCard = (): JSX.Element => <>{tooltipProps?.description}</>,
   size = 'default',
+  onItemHover,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -122,15 +125,10 @@ const Text: React.FC<BasicItemProps> = ({
 
   return (
     <MaybePopover popoverProps={popoverProps} renderPopover={renderInformationCard}>
-      {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      }
       <S.Wrapper
         {...(tooltipProps
           ? {}
-          : {
+          : ({
               onMouseOver: (): void => {
                 setHovered(true);
               },
@@ -140,7 +138,8 @@ const Text: React.FC<BasicItemProps> = ({
               onMouseDown: (): void => {
                 canCopyToClipboard && copyValue && copy(copyValue);
               },
-            })}
+              onItemHover,
+            } as Partial<RcMenuItemProps>))}
         disabled={disabled}
         tabIndex={disabled ? -1 : 0}
         description={description}
