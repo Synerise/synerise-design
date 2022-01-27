@@ -3,7 +3,7 @@ import * as React from 'react';
 export type SidebarProps = {
   children: React.ReactNode;
   order?: string[];
-  onChangeOrder?: (order: string[] | string) => void;
+  onChangeOrder?: (order: Order) => void;
   defaultActiveKey?: string[];
 };
 
@@ -13,9 +13,17 @@ export type PanelProps = {
   id: string;
 };
 
+export type DraggablePanelProps = {
+  id: string;
+  order?: Order;
+  context?: SidebarContextType;
+};
+
 export type SidebarContextType = {
-  order: string[] | string;
+  order: Order;
   setOrder: (dragIndex: number, hoverIndex: number) => void;
 };
+
+export type Order = string[] | string;
 
 export type CompareFnType = (a: React.ReactElement<PanelProps>, b: React.ReactElement<PanelProps>) => number;
