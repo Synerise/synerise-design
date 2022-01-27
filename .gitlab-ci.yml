@@ -143,11 +143,8 @@ chromatic_publish_merge_to_dest_branch:
     variables:
       - $CHROMATIC_PROJECT_TOKEN
       - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-      - $AUTHOR_NAME
-      - $AUTHOR_EMAIL
   allow_failure: true
   script:
-    - git config user.name "$AUTHOR_NAME"; git config user.email "$AUTHOR_EMAIL"
-    - git checkout HEAD~0; git merge origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
+    - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
     - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
