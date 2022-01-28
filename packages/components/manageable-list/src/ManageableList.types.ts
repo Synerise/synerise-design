@@ -13,6 +13,13 @@ export enum ListType {
   FILTER = 'filter',
 }
 
+export type AdditionalAction = {
+  icon: React.ReactNode;
+  color?: string;
+  onClick: (item: ItemProps) => void;
+  tooltip: string;
+};
+
 export interface ManageableListProps<T extends object> {
   className?: string;
   maxToShowItems: number;
@@ -37,6 +44,7 @@ export interface ManageableListProps<T extends object> {
   expansionBehaviour?: string;
   expandedIds?: React.ReactText[];
   changeOrderByButtons?: boolean;
+  additionalActions?: AdditionalAction[];
 }
 export type Texts = {
   addItemLabel?: string | React.ReactNode;

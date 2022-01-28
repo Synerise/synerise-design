@@ -20,4 +20,6 @@ export type LayoutProps = {
   leftOpened?: boolean;
   rightOpened?: boolean;
   fullPage?: boolean;
+  leftOpenedWidth?: number;
+  rightOpenedWidth?: number;
 };

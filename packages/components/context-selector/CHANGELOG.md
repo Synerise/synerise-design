@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.7...@synerise/ds-context-selector@0.9.0) (2022-01-04)
+
+
+### Features
+
+* **context-selector:** adds menuItemHeight prop ([373dfc4](https://github.com/Synerise/synerise-design/commit/373dfc4e510fd4c21222d541579923ff6c96cab4))
+
+
+
+
+
+## [0.8.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.6...@synerise/ds-context-selector@0.8.7) (2021-12-29)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.8.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.5...@synerise/ds-context-selector@0.8.6) (2021-12-22)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.8.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.4...@synerise/ds-context-selector@0.8.5) (2021-12-20)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.3...@synerise/ds-context-selector@0.8.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.2...@synerise/ds-context-selector@0.8.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
 ## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.1...@synerise/ds-context-selector@0.8.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

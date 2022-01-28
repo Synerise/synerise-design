@@ -1,19 +1,21 @@
 import * as React from 'react';
 import Icon, { EditS, DuplicateS, CloseS } from '@synerise/ds-icon';
-import { withTheme } from 'styled-components';
 import Tooltip from '@synerise/ds-tooltip';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './ItemActions.styles';
 import { ItemActionsProps } from './ItemActions.types';
 
+const DEFAULT_COLOR = theme.palette['grey-500'];
+
 const ItemActions: React.FC<ItemActionsProps> = ({
   item,
-  theme,
   duplicateAction,
   duplicateActionTooltip,
   editAction,
   editActionTooltip,
   removeAction,
   removeActionTooltip,
+  additionalActions,
 }): React.ReactElement => {
   const handleDuplicate = React.useCallback(
     (event: React.MouseEvent) => {
@@ -49,31 +51,43 @@ const ItemActions: React.FC<ItemActionsProps> = ({
       handleClick: (event: React.MouseEvent) => void,
       testId: string,
       tooltip: string | React.ReactNode
-    ): React.ReactNode =>
-      condition && (
-        <Tooltip type="default" trigger="hover" title={tooltip}>
-          <div data-testid={testId}>
-            <Icon component={icon} size={24} color={color} onClick={handleClick} />
-          </div>
-        </Tooltip>
-      ),
+    ): React.ReactNode => {
+      return (
+        condition && (
+          <Tooltip type="default" trigger="hover" title={tooltip}>
+            <div data-testid={testId}>
+              <Icon component={icon} size={24} color={color} onClick={handleClick} />
+            </div>
+          </Tooltip>
+        )
+      );
+    },
     []
   );
+  const renderAdditionalActions = React.useMemo(() => {
+    return (
+      additionalActions &&
+      additionalActions.map((action, index) =>
+        renderIcon(
+          true,
+          action.icon,
+          action.color || DEFAULT_COLOR,
+          () => action.onClick(item),
+          `additional-action-${index}`,
+          action.tooltip
+        )
+      )
+    );
+  }, [additionalActions, item, renderIcon]);
 
   return (
     <S.ItemActionsWrapper>
-      {renderIcon(
-        Boolean(item.canUpdate),
-        <EditS />,
-        theme.palette['grey-500'],
-        handleEdit,
-        'list-item-edit',
-        editActionTooltip
-      )}
+      {additionalActions && renderAdditionalActions}
+      {renderIcon(Boolean(item.canUpdate), <EditS />, DEFAULT_COLOR, handleEdit, 'list-item-edit', editActionTooltip)}
       {renderIcon(
         Boolean(item.canDuplicate),
         <DuplicateS />,
-        theme.palette['grey-500'],
+        DEFAULT_COLOR,
         handleDuplicate,
         'list-item-duplicate',
         duplicateActionTooltip
@@ -90,4 +104,4 @@ const ItemActions: React.FC<ItemActionsProps> = ({
   );
 };
 
-export default withTheme(ItemActions);
+export default ItemActions;

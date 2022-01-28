@@ -27,12 +27,15 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
     );
   };
 
-  const compareByPositionOfKey: CompareFnType = (a, b) => {
-    if (!isDragDrop) {
-      return 1;
-    }
-    return order.indexOf(a.props.id) > order.indexOf(b.props.id) ? 1 : -1;
-  };
+  const compareByPositionOfKey: CompareFnType = React.useCallback(
+    (a, b) => {
+      if (!isDragDrop) {
+        return 1;
+      }
+      return order.indexOf(a.props.id) > order.indexOf(b.props.id) ? 1 : -1;
+    },
+    [isDragDrop, order]
+  );
 
   const changeOrder: (dragIndex: number, hoverIndex: number) => void = (dragIndex, hoverIndex) => {
     const dragItemBlock = order[dragIndex];
@@ -46,22 +49,29 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
     onChangeOrder && onChangeOrder(orderedItems);
   };
 
-  return (
+  const collapseContent = React.useMemo(
+    () => (
+      <S.AntdCollapse
+        className={isDragDrop ? 'is-drag-drop' : ''}
+        defaultActiveKey={defaultActiveKey && defaultActiveKey.map(el => `.${el}`)}
+        expandIconPosition="right"
+        expandIcon={(panelProps): React.ReactElement => {
+          const checkActive = panelProps.isActive;
+          return isActive(checkActive);
+        }}
+      >
+        {(React.Children.toArray(children) as React.ReactElement<PanelProps>[]).sort(compareByPositionOfKey)}
+      </S.AntdCollapse>
+    ),
+    [isDragDrop, defaultActiveKey, children, compareByPositionOfKey]
+  );
+
+  return isDragDrop ? (
     <DndProvider backend={HTML5Backend}>
-      <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>
-        <S.AntdCollapse
-          className={isDragDrop ? 'is-drag-drop' : ''}
-          defaultActiveKey={defaultActiveKey && defaultActiveKey.map(el => `.${el}`)}
-          expandIcon={(panelProps): React.ReactElement => {
-            const checkActive = panelProps.isActive;
-            return isActive(checkActive);
-          }}
-          expandIconPosition="right"
-        >
-          {(React.Children.toArray(children) as React.ReactElement<PanelProps>[]).sort(compareByPositionOfKey)}
-        </S.AntdCollapse>
-      </SidebarContext.Provider>
+      <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>{collapseContent}</SidebarContext.Provider>
     </DndProvider>
+  ) : (
+    collapseContent
   );
 };
 

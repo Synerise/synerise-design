@@ -6,7 +6,7 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { Props } from './SimpleItem.types';
 
-const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts }) => {
+const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions }) => {
   const [editMode, setEditMode] = React.useState(false);
 
   const updateName = React.useCallback(
@@ -38,6 +38,7 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts
             editActionTooltip={texts?.itemActionRenameTooltip || undefined}
             duplicateActionTooltip={texts?.itemActionDuplicateTooltip || undefined}
             removeActionTooltip={texts?.itemActionDeleteTooltip || undefined}
+            additionalActions={additionalActions}
           />
         }
       >

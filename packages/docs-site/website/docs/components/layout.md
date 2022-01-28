@@ -34,15 +34,20 @@ import Layout from '@synerise/ds-layout'
 
 ## API
 
-| Property  | Description                              | Type            | Default |
-| --------- | ---------------------------------------- | --------------- | ------- |
-| header    | Set top header content page              | React.ReactNode |         |
-| subheader | Set subheader content page               | React.ReactNode |         |
-| left      | Set left content page                    | React.ReactNode |         |
-| right     | Set right content page                   | React.ReactNode |         |
-| children  | The layout elements passed to the parent | React.ReactNode |         |
-| className | Layout's className                       | string          |         |
-| styles    | Custom layout styles                     | LayoutStyles    |         |
+| Property         | Description                              | Type            | Default |
+| ---------        | ---------------------------------------- | --------------- | ------- |
+| header           | Set top header content page              | React.ReactNode |         |
+| subheader        | Set subheader content page               | React.ReactNode |         |
+| left             | Set left content page                    | React.ReactNode |         |
+| right            | Set right content page                   | React.ReactNode |         |
+| children         | The layout elements passed to the parent | React.ReactNode |         |
+| className        | Layout's className                       | string          |         |
+| styles           | Custom layout styles                     | LayoutStyles    |         |
+| leftOpened       | Whether left sidebar is opened           | boolean         | false   |
+| rightOpened      | Whether right sidebar is opened          | boolean         | false   |
+| leftOpenedWidth  | Width of opened left sidebar             | number          | 320     |
+| rightOpenedWidth | Width of opened right sidebar            | number          | 320     |
+
 
 ### LayoutStyles
 

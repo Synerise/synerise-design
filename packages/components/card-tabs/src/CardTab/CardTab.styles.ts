@@ -210,7 +210,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     ${CardTabTag} {
       background-color: ${({ theme, color }): string => theme.palette[`${color}`]};
       color: ${({ theme }): string => theme.palette.white};
-      display: none;
+      display: ${(props): string => (props.draggable ? 'none' : 'flex')};
     }
     ${CardTabPrefix} {
       svg {

@@ -102,6 +102,7 @@ const CardTab: React.FC<CardTabProps> = ({
       invalid={Boolean(invalid)}
       invalidName={Boolean(invalidName) && !invalid}
       disabled={!active && Boolean(disabled)}
+      draggable={draggable}
       color={color}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}

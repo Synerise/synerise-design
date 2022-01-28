@@ -77,6 +77,10 @@ export const Right = styled.div`
     margin-left: 8px;
     min-width: 32px;
   }
+
+  &&& .ds-button.btn-search {
+    min-width: unset;
+  }
 `;
 
 export const Icon = styled.div`

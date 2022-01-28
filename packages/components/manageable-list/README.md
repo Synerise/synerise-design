@@ -48,8 +48,8 @@ ManageableList UI Component
 | changeOrderDisabled  | Disable change of order                                                                              | boolean                                | `false`   | 
 | greyBackground       | Change background color of list and list items                                                       | boolean                                | `false`   | 
 | texts                | Texts on buttons, confirms and popups                                                                | Texts                                  | -         | 
-| searchQuery          | Search query used to highlight list item name                                                        | string                                 | -         | 
-
+| searchQuery          | Search query used to highlight list item name                                                        | string                                 | -         |
+| additionalActions    | Additional actions for single list item                                                              | AdditionalAction[]                     | -         |
 
 ### Texts
 
@@ -83,3 +83,14 @@ ManageableList UI Component
 | tag          | Tag (ds-tags), available only for content list type | Tag             | -       |
 | icon         | Icon (ds-icon)                                      | Icon            | -       |
 | content      | Content rendered in content type list               | React.ReactNode | -       |
+
+
+#### AdditionalAction
+
+| Property     | Description                                         | Type                      | Default  |
+| ------------ | --------------------------------------------------- | ---------------           | -------  |
+| tooltip      | Name of action visible on tooltip                   | string                    | -        |
+| icon         | ds-icon component visible on item                   | React.ReactNode           | -        |
+| onClick      | Callback triggered when user clicks on icon         | (item: ItemProps) => void | -        |
+| color        | color of icon                                       | string                    | grey-500 |
+
