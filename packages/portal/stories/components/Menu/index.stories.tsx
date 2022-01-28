@@ -24,6 +24,8 @@ import withCopyable from './withCopyable/withCopyable';
 import withoutHover from './withoutHover/withoutHover';
 import withMenuItemAsChild from './withMenuItemAsChild/withMenuItemAsChild';
 import withIndent from './withIndent/withIndent';
+import withInformationCard from './withInformationCard/withInformationCard';
+
 import withHighlighting from './withHighlighting/withHighlighting';
 import withBreadcrumb from './withBreadcrumb/withBreadcrumb';
 import withSelection from './withSelection/withSelection';
@@ -95,6 +97,7 @@ const stories = {
   withoutHover,
   withMenuItemAsChild,
   withIndent,
+  withInformationCard,
   withHighlighting,
   withBreadcrumb,
   withSelection,
