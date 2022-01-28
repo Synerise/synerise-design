@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { groupBy } from 'lodash';
-import { DSColumnType } from '../Table.types';
+import { groupBy, merge } from 'lodash';
+import { DSColumnType, OnSortFn } from '../Table.types';
 
 export type ColumnSortOrder = 'descend' | 'ascend' | null;
 
-interface ColumnsSortState {
+export interface ColumnsSortState {
   [key: string]: {
     sortOrder: ColumnSortOrder;
     multiple: number | false;
@@ -15,6 +15,7 @@ export interface SortStateAPI {
   columnsSortState: ColumnsSortState;
   getColumnSortOrder: (key: string) => ColumnSortOrder;
   setColumnSortOrder: (key: string, sort: ColumnSortOrder) => void;
+  updateColumnsData: (columns: ColumnsSortState) => void;
 }
 
 export const toSortOrder = (value: string | null | undefined): ColumnSortOrder => {
@@ -71,16 +72,27 @@ export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[]
   );
 };
 
-type ColumnSortAction = {
+type SetOrderAction = {
   type: 'setSingleOrder' | 'setMultipleOrder';
   payload: {
     key: string;
     sortOrder: ColumnSortOrder;
+    onSort: OnSortFn | undefined;
   };
 };
 
-const setSingleOrder: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
+type UpdateColumnsAction = {
+  type: 'updateColumns';
+  payload: {
+    columns: ColumnsSortState;
+  };
+};
+
+type ColumnSortAction = SetOrderAction | UpdateColumnsAction;
+
+const setSingleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state, action) => {
   const { payload } = action;
+  const { onSort } = payload;
   const clearedSortState = Object.entries(state).reduce<ColumnsSortState>(
     (newState, [currKey, currValue]) => ({
       ...newState,
@@ -92,17 +104,22 @@ const setSingleOrder: React.Reducer<ColumnsSortState, ColumnSortAction> = (state
     {}
   );
 
-  return {
+  const newState = {
     ...clearedSortState,
     [payload.key]: {
       ...state[payload.key],
       sortOrder: payload.sortOrder,
     },
   };
+
+  onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
+
+  return newState;
 };
 
-const setMultipleOrder: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
+const setMultipleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state, action) => {
   const { payload } = action;
+  const { onSort } = payload;
   const clearedSortState = Object.entries(state).reduce<ColumnsSortState>(
     (newState, [currKey, currValue]) =>
       currValue.multiple === false
@@ -120,13 +137,22 @@ const setMultipleOrder: React.Reducer<ColumnsSortState, ColumnSortAction> = (sta
     {}
   );
 
-  return {
+  const newState = {
     ...clearedSortState,
     [payload.key]: {
       ...state[payload.key],
       sortOrder: payload.sortOrder,
     },
   };
+
+  onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
+
+  return newState;
+};
+
+const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (state, action) => {
+  const { payload } = action;
+  return merge(payload.columns, state);
 };
 
 const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
@@ -134,18 +160,35 @@ const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, a
 
   switch (type) {
     case 'setSingleOrder':
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return setSingleOrder(state, action);
     case 'setMultipleOrder':
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       return setMultipleOrder(state, action);
+    case 'updateColumns':
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
+      return updateColumns(state, action);
     default:
       return state;
   }
 };
 
-export const useSortState = (initialState: ColumnsSortState = {}): SortStateAPI => {
+export const useSortState = (initialState: ColumnsSortState = {}, onSort: OnSortFn | undefined): SortStateAPI => {
   const [columnsSortState, dispatch] = React.useReducer(sortReducer, initialState);
 
   const getColumnSortOrder: SortStateAPI['getColumnSortOrder'] = key => columnsSortState[key]?.sortOrder;
+
+  const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
+    dispatch({
+      type: 'updateColumns',
+      payload: {
+        columns,
+      },
+    });
+  };
 
   const setColumnSortOrder: SortStateAPI['setColumnSortOrder'] = (key, sortOrder) => {
     if (columnsSortState[key]?.sortOrder !== sortOrder && columnsSortState[key]?.multiple === false) {
@@ -154,6 +197,7 @@ export const useSortState = (initialState: ColumnsSortState = {}): SortStateAPI 
         payload: {
           key,
           sortOrder,
+          onSort,
         },
       });
     }
@@ -164,6 +208,7 @@ export const useSortState = (initialState: ColumnsSortState = {}): SortStateAPI 
         payload: {
           key,
           sortOrder,
+          onSort,
         },
       });
     }
@@ -171,6 +216,7 @@ export const useSortState = (initialState: ColumnsSortState = {}): SortStateAPI 
 
   return {
     columnsSortState,
+    updateColumnsData,
     getColumnSortOrder,
     setColumnSortOrder,
   };

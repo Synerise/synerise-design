@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.4...@synerise/ds-utils@0.21.5) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting ([8042c70](https://github.com/synerise/synerise-design/commit/8042c70e131be15ad8cb30e771d0c5b695647b8d))
+
+
+
+
+
+## [0.21.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.3...@synerise/ds-utils@0.21.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* **core:** fix exporting types ([65531bf](https://github.com/synerise/synerise-design/commit/65531bf5da1915f8f2c8f856ccd2318375c6a2c3))
+
+
+
+
+
+## [0.21.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.2...@synerise/ds-utils@0.21.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-utils
+
+
+
+
+
 ## [0.21.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.1...@synerise/ds-utils@0.21.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-utils

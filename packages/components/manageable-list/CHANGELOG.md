@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.8...@synerise/ds-manageable-list@0.22.0) (2022-01-04)
+
+
+### Features
+
+* **manageable-list:** adds additional actions ([f744494](https://github.com/Synerise/synerise-design/commit/f744494d6cc903b6cabbfaf223b539cccfef1a68))
+
+
+
+
+
+## [0.21.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.7...@synerise/ds-manageable-list@0.21.8) (2021-12-29)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.21.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.6...@synerise/ds-manageable-list@0.21.7) (2021-12-22)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.21.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.5...@synerise/ds-manageable-list@0.21.6) (2021-12-20)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.21.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.4...@synerise/ds-manageable-list@0.21.5) (2021-12-01)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.21.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.3...@synerise/ds-manageable-list@0.21.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.21.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.2...@synerise/ds-manageable-list@0.21.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.21.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.1...@synerise/ds-manageable-list@0.21.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

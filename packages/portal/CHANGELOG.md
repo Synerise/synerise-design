@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.144.0](https://github.com/synerise/synerise-design/compare/portal@0.143.1...portal@0.144.0) (2022-01-04)
+
+
+### Features
+
+* **context-selector:** adds menuItemHeight prop ([373dfc4](https://github.com/synerise/synerise-design/commit/373dfc4e510fd4c21222d541579923ff6c96cab4))
+* **manageable-list:** adds additional actions ([f744494](https://github.com/synerise/synerise-design/commit/f744494d6cc903b6cabbfaf223b539cccfef1a68))
+
+
+
+
+
+## [0.143.1](https://github.com/synerise/synerise-design/compare/portal@0.143.0...portal@0.143.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* **table:** fixes sorting, adds missing dependencies ([4d3a1d8](https://github.com/synerise/synerise-design/commit/4d3a1d802cfef12a8cd7e2647e33965c9cfb838d))
+
+
+
+
+
+# [0.143.0](https://github.com/synerise/synerise-design/compare/portal@0.142.4...portal@0.143.0) (2021-12-22)
+
+
+### Bug Fixes
+
+* **autocomplete:** add knobs to show loading indicator ([5dd2251](https://github.com/synerise/synerise-design/commit/5dd2251041e99406575a7441e6c710561e3babfa))
+* **badge:** add customColor prop ([60c12d1](https://github.com/synerise/synerise-design/commit/60c12d1592072dab0e71bcafe50943d934a82103))
+* **badge:** change typing of colors ([ca6d549](https://github.com/synerise/synerise-design/commit/ca6d54942f2884d098b68983c552db28c5f306d3))
+* **badge:** fix knobs custom color ([16f49cb](https://github.com/synerise/synerise-design/commit/16f49cb88d66ede71438b25912b94ecb10115cf8))
+* **field-set:** fix text and description ([8d4a00c](https://github.com/synerise/synerise-design/commit/8d4a00ce188d9926a2660907fd2fbdb890b512b8))
+* **select:** add new component loading indicator ([307a6ca](https://github.com/synerise/synerise-design/commit/307a6ca6c0f4da41691c82bb57626afcb8de5624))
+* **select:** fix padding ([c755718](https://github.com/synerise/synerise-design/commit/c7557186cb12cd724c7cf06ec0c4ec6b589c8c6a))
+* **table:** add customColor prop to badge status ([81a6c89](https://github.com/synerise/synerise-design/commit/81a6c89fc5d777ca6ec17c0d36267cd81eec9db3))
+* add getPopupContainerOverride support to Subject and ContextSelector ([1af5349](https://github.com/synerise/synerise-design/commit/1af5349c893c6d7bfd41726ddaa99b6490a7bbb2))
+
+
+### Features
+
+* add getPopupContainerOverride prop to Condition and its children ([e7018ea](https://github.com/synerise/synerise-design/commit/e7018eac2a18f30d0d31d77d08471aec81a0aca2))
+* **code-snippet:** add hide tooltip after given time in copy action ([40d4207](https://github.com/synerise/synerise-design/commit/40d42070147f66adab88d910bc9cf10eefa2cc9c))
+* **condition:** add custom factor prop ([9c14435](https://github.com/synerise/synerise-design/commit/9c1443584e7103c4992bef2ed4d52299c6a596ab))
+* **dropdown:** add withCopyID stories ([59a5101](https://github.com/synerise/synerise-design/commit/59a5101d1825bc376c82dc54af2644942d2c22de))
+* **field-set:** new component field set ([a1520c4](https://github.com/synerise/synerise-design/commit/a1520c4ece9e7233b44bc856651f4e7907b77cd8))
+* **menu:** add prop to hide tooltip after given time in copy element ([7efdf78](https://github.com/synerise/synerise-design/commit/7efdf78fbea1f114f96173423d37b1d7a642609c))
+
+
+
+
+
+## [0.142.4](https://github.com/synerise/synerise-design/compare/portal@0.142.3...portal@0.142.4) (2021-12-20)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix tag visiblity on hover when cards are not draggable ([fdd85dc](https://github.com/synerise/synerise-design/commit/fdd85dc464fdd819cf8bd0f0ee33f59ee84e2852))
+* **card-tabs:** sets draggable prop of CardTab based on onChangeOrder ([88c5c3f](https://github.com/synerise/synerise-design/commit/88c5c3f08e3ae5289bd33599820aed65f78164c7))
+* **layout:** removes unnecessary overflow: hidden from LayoutHeader; ([ce69de1](https://github.com/synerise/synerise-design/commit/ce69de1aebc8298496abb4057e4746a73b1cdd44))
+* **table:** fixes first arg of onSelectionChange handler ([2321d6a](https://github.com/synerise/synerise-design/commit/2321d6a9548f93b48c20eaceeda758c0d625a13c))
+* **table:** fixes returned data by on change selection function ([b1f1e9f](https://github.com/synerise/synerise-design/commit/b1f1e9fa9fbd0d218ce57d8d66574b049ec89b7c))
+
+
+
+
+
+## [0.142.3](https://github.com/synerise/synerise-design/compare/portal@0.142.2...portal@0.142.3) (2021-11-22)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.142.2](https://github.com/synerise/synerise-design/compare/portal@0.142.1...portal@0.142.2) (2021-11-22)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
 ## [0.142.1](https://github.com/synerise/synerise-design/compare/portal@0.141.1...portal@0.142.1) (2021-11-09)
 
 **Note:** Version bump only for package portal

@@ -4,16 +4,12 @@ import { XYCoord } from 'dnd-core';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-import { PanelProps } from '../Sidebar.types';
+import { PanelProps, DraggablePanelProps } from '../Sidebar.types';
 import { SidebarContext } from '../Sidebar.context';
 import * as S from '../Sidebar.styles';
 
-export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) => {
+const DraggablePanel: React.FC<DraggablePanelProps> = ({ id, context, order, children }) => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const context = React.useContext(SidebarContext);
-  const { order } = context || {};
-
-  const isDragDrop = context && !!order;
   const index = order ? order.indexOf(id) : 0;
 
   const [, drop] = useDrop({
@@ -63,6 +59,18 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
 
   return (
     <S.PanelWrapper ref={ref} style={{ opacity: isDragging ? '0' : '1' }}>
+      {children}
+    </S.PanelWrapper>
+  );
+};
+
+export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) => {
+  const context = React.useContext(SidebarContext);
+  const { order } = context || {};
+  const isDragDrop = context && !!order;
+
+  const panelContent = React.useMemo(
+    () => (
       <S.AntdPanel
         header={
           <S.SidebarHeader>
@@ -79,7 +87,16 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
       >
         <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
       </S.AntdPanel>
-    </S.PanelWrapper>
+    ),
+    [header, isDragDrop, id, props, children]
+  );
+
+  return isDragDrop ? (
+    <DraggablePanel id={id} order={order} context={context}>
+      {panelContent}
+    </DraggablePanel>
+  ) : (
+    panelContent
   );
 };
 

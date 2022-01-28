@@ -7,7 +7,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Modal from '@synerise/ds-modal';
-import Button from '@synerise/ds-button'
+import Button from '@synerise/ds-button';
 import Icon, { AddM, InfoFillS, VarTypeStringM } from '@synerise/ds-icon';
 import { renderWithIconInHeaders } from './helpers/helpers';
 
@@ -98,12 +98,14 @@ const stories = {
               ],
               limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }}
-            rowStar={boolean('Enable row star', undefined) && {
-              starredRowKeys: store.state.starredRowKeys,
-              onChange: (starredRowKeys): void => {
-                store.set({ starredRowKeys });
+            rowStar={
+              boolean('Enable row star', undefined) && {
+                starredRowKeys: store.state.starredRowKeys,
+                onChange: (starredRowKeys): void => {
+                  store.set({ starredRowKeys });
+                },
               }
-            }}
+            }
             onRowClick={record => {
               store.state.selectedRows.indexOf(record.key) >= 0 ||
               (boolean('Show selection limit', false) &&

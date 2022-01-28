@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AdditionalAction } from 'ManageableList.types';
 
 export type Props = {
   item: ItemProps;
@@ -22,6 +23,7 @@ export type Props = {
   onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
   hideExpander?: boolean;
   expanded?: boolean;
+  additionalActions?: AdditionalAction[];
 };
 
 export type ItemProps<T extends object = {}> = T & {

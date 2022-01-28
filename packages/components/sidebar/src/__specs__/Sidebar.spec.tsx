@@ -69,7 +69,7 @@ describe('Sidebar', () => {
   });
 
 
-  it('should render order', () => {
+  it('should render order in draggable mode', () => {
     // ARRANGE
     const { getByText, container } = renderWithProvider(
       <Sidebar order={[ ID_3, ID_2, ID_1,]}>
@@ -94,6 +94,6 @@ describe('Sidebar', () => {
     expect(container.querySelectorAll('.ant-collapse-header')[0].textContent).toEqual(HEADER_3);
     expect(container.querySelectorAll('.ant-collapse-header')[1].textContent).toEqual(HEADER_2);
     expect(container.querySelectorAll('.ant-collapse-header')[2].textContent).toEqual(HEADER_1);
+    expect(container.querySelector('.ant-collapse.is-drag-drop')).toBeTruthy();
   });
-
 });
