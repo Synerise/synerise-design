@@ -12,7 +12,7 @@ import Icon, {
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import { Tag } from '@synerise/ds-tags';
-import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
+import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
