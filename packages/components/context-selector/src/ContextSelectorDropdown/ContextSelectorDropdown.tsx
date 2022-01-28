@@ -9,7 +9,9 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { v4 as uuid } from 'uuid';
-import { FixedSizeList, FixedSizeList as List } from 'react-window';
+import { VariableSizeList, VariableSizeList as List } from 'react-window';
+
+import { ItemSize } from '@synerise/ds-menu';
 import * as S from '../ContextSelector.styles';
 import {
   ContextDropdownProps,
@@ -22,6 +24,11 @@ import {
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
 
 const NO_GROUP_NAME = 'NO_GROUP_NAME';
+const ITEM_SIZE = {
+  [ItemSize.LARGE]: 50,
+  [ItemSize.DEFAULT]: 32,
+  title: 32,
+};
 
 function isListTitle(element: DropdownItemProps): element is ListTitle {
   return (element as ListTitle).title !== undefined;
@@ -45,7 +52,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   onFetchData,
   hasMoreItems,
 }) => {
-  const listRef = React.createRef<FixedSizeList>();
+  const listRef = React.createRef<VariableSizeList>();
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -211,6 +218,11 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     searchResults,
   ]);
 
+  React.useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    listRef.current?.resetAfterIndex(0, false);
+  }, [activeItems, listRef]);
+
   const handleSearch = React.useCallback(
     val => {
       setSearchQuery(val);
@@ -237,6 +249,12 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     if (listRef.current !== null) {
       listRef.current.scrollTo(scrollTop);
     }
+  };
+
+  const getItemSize = (index: number): number => {
+    const item = activeItems[index];
+    if (isListTitle(item)) return ITEM_SIZE.title;
+    return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[ItemSize.DEFAULT];
   };
 
   return (
@@ -302,7 +320,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
                 width="100%"
                 height={300}
                 itemCount={activeItems.length}
-                itemSize={32}
+                itemSize={getItemSize}
                 style={listStyle}
                 ref={listRef}
               >

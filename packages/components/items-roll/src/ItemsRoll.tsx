@@ -3,9 +3,7 @@ import { injectIntl } from 'react-intl';
 
 import { Footer, Header, List } from './ItemsRollComponents';
 import * as S from './ItemsRoll.styles';
-import { ItemsRollProps, ItemRollElement } from './ItemsRoll.types';
-
-export { ItemsRollProps, ItemRollElement };
+import { ItemsRollProps } from './ItemsRoll.types';
 
 const ItemsRoll: React.FC<ItemsRollProps> = ({
   actions,

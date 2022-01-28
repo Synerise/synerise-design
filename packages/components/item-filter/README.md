@@ -49,7 +49,6 @@ import ItemFilter from '@synerise/ds-item-filter'
 | editItem       | Specify a callback that will be called when a user change name of list item     | (`{ id: string, name: string }`) => void | -         |
 | duplicateItem  | Specify a callback that will be called when a user duplicates list item         | (`{ id: string }`) => void               | -         |
 | selectItem     | Specify a callback that will be called when a user select list item             | (`{ id: string }`) => void               | -         |
-| items          | Array of list items                                                             | Item[]                                   | []        |
 | categories     | Array of categories                                                             | Category[]                               | []        |
 | selectedItemId | Id of selected item                                                             | string                                   | undefined |
 | texts          | Object contains texts for buttons, title, confirms etc.                         | Texts                                    | -         |

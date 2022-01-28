@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.4...@synerise/ds-layout@0.9.0) (2022-01-04)
+
+
+### Features
+
+* **layout:** adds custom width of sidebars ([cfd7a37](https://github.com/synerise/synerise-design/commit/cfd7a37e870d09e3a470f5bb113c58fd6fe413f8))
+
+
+
+
+
+## [0.8.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.3...@synerise/ds-layout@0.8.4) (2021-12-29)
+
+
+### Bug Fixes
+
+* **layout:** fixes layout styles ([24323d3](https://github.com/synerise/synerise-design/commit/24323d3832822db2dc76f80a26f860f76ac62cc4))
+
+
+
+
+
+## [0.8.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.2...@synerise/ds-layout@0.8.3) (2021-12-20)
+
+
+### Bug Fixes
+
+* **layout:** fixes LayoutHeader height ([53c7bc3](https://github.com/synerise/synerise-design/commit/53c7bc3cf8cb72b2da5d370948a36e1d97cb751f))
+* **layout:** removes unnecessary overflow: hidden from LayoutHeader; ([ce69de1](https://github.com/synerise/synerise-design/commit/ce69de1aebc8298496abb4057e4746a73b1cdd44))
+* **table:** fixes returned data by on change selection function ([151e195](https://github.com/synerise/synerise-design/commit/151e195b8bb6d37f9fdede12aaa569b56ba97e82))
+
+
+
+
+
+## [0.8.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.8.1...@synerise/ds-layout@0.8.2) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
 ## [0.8.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.7.44...@synerise/ds-layout@0.8.1) (2021-11-09)
 
 **Note:** Version bump only for package @synerise/ds-layout

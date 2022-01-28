@@ -2,6 +2,7 @@ import { MenuItemProps } from '@synerise/ds-menu/src/Elements/Item/MenuItem.type
 import * as React from 'react';
 import { CSSProperties } from 'react';
 import { HandledEventsType } from '@synerise/ds-utils';
+import { ItemSize } from '@synerise/ds-menu';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -54,7 +55,7 @@ export type ContextProps = {
   loading?: boolean;
   customTriggerComponent?: React.ReactNode;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
-  menuItemHeight?: 'large' | 'default';
+  menuItemHeight?: ItemSize;
   dropdownWrapperStyles?: CSSProperties;
   onClickOutsideEvents?: HandledEventsType[];
   onClickOutside?: () => void;
@@ -75,7 +76,7 @@ export type ContextDropdownProps = {
   onSetGroup?: (val: ContextItem | ContextGroup) => void;
   visible?: boolean;
   loading?: boolean;
-  menuItemHeight?: 'large' | 'default';
+  menuItemHeight?: ItemSize;
   dropdownWrapperStyles?: CSSProperties;
   onClickOutsideEvents?: HandledEventsType[];
   onClickOutside?: () => void;
@@ -93,7 +94,7 @@ export type ContextSelectorDropdownItemProps = {
   select: (item: ContextItem | ContextGroup) => void;
   selected?: boolean;
   className: string;
-  menuItemHeight?: 'large' | 'default';
+  menuItemHeight?: ItemSize;
   style?: React.CSSProperties;
 };
 
@@ -102,7 +103,7 @@ export type ListItem = {
   item: ContextItem | ContextGroup;
   searchQuery: string;
   select: (item: ContextItem | ContextGroup) => void;
-  menuItemHeight?: 'large' | 'default';
+  menuItemHeight?: ItemSize;
   selected?: boolean;
   clearSearch?: () => void;
   hideDropdown?: () => void;

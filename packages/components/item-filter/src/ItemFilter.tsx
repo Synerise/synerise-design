@@ -75,7 +75,7 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
 
             return 0;
           })
-        : category.items,
+        : category.items || [],
     };
   }, [categories, activeTab, selectedItemId]);
 
@@ -88,6 +88,8 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
         onUpdate={editItem}
         onRemove={removeItem}
         onDuplicate={duplicateItem}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
         item={item}
         selected={item.id === selectedItemId}
         searchQuery={search?.value}

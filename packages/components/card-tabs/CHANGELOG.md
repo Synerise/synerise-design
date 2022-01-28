@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.8...@synerise/ds-card-tabs@0.9.9) (2022-01-04)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.9.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.7...@synerise/ds-card-tabs@0.9.8) (2021-12-29)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.9.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.6...@synerise/ds-card-tabs@0.9.7) (2021-12-22)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.5...@synerise/ds-card-tabs@0.9.6) (2021-12-20)
+
+
+### Bug Fixes
+
+* **card-tabs:** fix tag visiblity on hover when cards are not draggable ([fdd85dc](https://github.com/Synerise/synerise-design/commit/fdd85dc464fdd819cf8bd0f0ee33f59ee84e2852))
+* **card-tabs:** sets draggable prop of CardTab based on onChangeOrder ([88c5c3f](https://github.com/Synerise/synerise-design/commit/88c5c3f08e3ae5289bd33599820aed65f78164c7))
+
+
+
+
+
+## [0.9.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.4...@synerise/ds-card-tabs@0.9.5) (2021-12-01)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.9.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.3...@synerise/ds-card-tabs@0.9.4) (2021-11-23)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.2...@synerise/ds-card-tabs@0.9.3) (2021-11-22)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
 ## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.9.1...@synerise/ds-card-tabs@0.9.2) (2021-11-16)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Icon, { WarningM, CheckM, HourglassM, SearchNoResultsM, InfoM } from '@synerise/ds-icon';
+import Icon, { WarningM, CheckM, HourglassM, InformationNoSearchResultL, InfoM } from '@synerise/ds-icon';
 
 import * as S from './Result.styles';
 import { ResultProps } from './Result.types';
@@ -32,9 +32,8 @@ const mapTypeToStatus = {
     background: 'grey-100',
   },
   'no-results': {
-    IconComponent: SearchNoResultsM,
+    IconComponent: InformationNoSearchResultL,
     iconColor: 'grey-600',
-    background: 'grey-100',
   },
 };
 
@@ -55,7 +54,7 @@ const Result: React.FC<ResultProps> = ({
         <S.ResultIconContainer>
           {customIcon || (
             <S.StatusIconContainer {...iconContainerStyles}>
-              <Icon component={<IconComponent />} size={24} />
+              <Icon component={<IconComponent />} size={mapTypeToStatus['no-results'] ? 48 : 24} />
             </S.StatusIconContainer>
           )}
         </S.ResultIconContainer>

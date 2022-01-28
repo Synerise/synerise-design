@@ -44,6 +44,12 @@ const Popconfirm: PopconfirmType = ({
     setVisible(false);
   });
 
+  React.useEffect(() => {
+    if (!visible && antdProps.visible) {
+      setVisible(antdProps.visible);
+    }
+  }, [visible, antdProps.visible]);
+
   return (
     <S.AntdPopconfirm
       {...antdProps}

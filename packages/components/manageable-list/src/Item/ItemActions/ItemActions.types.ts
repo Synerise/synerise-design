@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AdditionalAction } from 'ManageableList.types';
 import { ItemProps } from '../Item.types';
 
 export type ItemActionsProps = {
@@ -9,5 +10,5 @@ export type ItemActionsProps = {
   editActionTooltip?: string | React.ReactNode;
   duplicateAction?: (duplicateParams: { id: React.ReactText }) => void;
   duplicateActionTooltip?: string | React.ReactNode;
-  theme: { [k: string]: string };
+  additionalActions?: AdditionalAction[];
 };
