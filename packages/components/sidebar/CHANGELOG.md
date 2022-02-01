@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.1...@synerise/ds-sidebar@0.4.2) (2022-02-01)
+
+
+### Bug Fixes
+
+* **sidebar:** merge draggable fix into master ([f5926f7](https://github.com/Synerise/synerise-design/commit/f5926f7f5b22246fecef54ce8f19c835549c8f45))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.0...@synerise/ds-sidebar@0.4.1) (2022-01-17)
 
 **Note:** Version bump only for package @synerise/ds-sidebar
