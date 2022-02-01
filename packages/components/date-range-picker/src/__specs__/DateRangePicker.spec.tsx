@@ -17,6 +17,8 @@ const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
 const APPLY_BUTTON_SELECTOR = '.ds-date-range-picker-footer  button';
 
+const displayDateContainerClass = 'ds-date-range-picker-value';
+
 export const RANGES: RelativeDateRange[] = [
   {
     key: 'MY_RANGE',
@@ -142,14 +144,19 @@ describe('DateRangePicker', () => {
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
+        footerProps={{
+          displayDateContainerClass,
+        }}
       />
     );
-    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
-    const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
-    selectedRangeStart.click();
-    const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
-    selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
+    const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
+    const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
+    findDayCell(1).click();
+    findDayCell(1).click();
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00 – Oct 1, 2018, 23:59');
+    findDayCell(2).click();
+    findDayCell(12).click();
+    expect(valueWrapper.textContent).toBe('Oct 2, 2018, 00:00 – Oct 12, 2018, 23:59');
   });
 
   it('should change format when showTime is false', async () => {
@@ -165,13 +172,15 @@ describe('DateRangePicker', () => {
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
+        footerProps={{
+          displayDateContainerClass,
+        }}
       />
     );
-    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
-    const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
-    selectedRangeStart.click();
-    const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
-    selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
+    const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
+    const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
+    findDayCell(2).click();
+    findDayCell(14).click();
+    expect(valueWrapper.textContent).toBe('Oct 2, 2018 – Oct 14, 2018');
   });
 });

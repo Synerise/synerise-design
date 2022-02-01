@@ -18,7 +18,7 @@ import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { legacyParse } from '@date-fns/upgrade/v2';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
-import { fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
+import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
 import * as S from './RangePicker.styles';
 import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
@@ -96,7 +96,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     e.preventDefault();
     const { value, onChange } = this.props;
     if (modifiers.disabled) return;
-    const { from, to } = replaceRange(value, day);
+    let { from, to } = replaceRange(value, day);
+    from = from ? fnsStartOfDay(from as Date) : from;
+    to = to ? fnsEndOfDay(to as Date) : to;
     onChange && onChange({ type: ABSOLUTE, from, to });
   };
 

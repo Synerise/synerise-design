@@ -4,13 +4,19 @@ import { PopoverProps } from 'antd/lib/popover';
 import { DateFilter, DateRange, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
+import { Props as FooterProps } from './Footer/Footer.types';
 
 export interface Props extends WrappedComponentProps {
+  /**
+   * overwrite default container's class. Default value is `ds-date-range-picker`.
+   */
+  containerClass?: string;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
   format?: string;
   forceAdjacentMonths?: boolean;
   forceAbsolute?: boolean;
+  footerProps?: Partial<FooterProps>;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;

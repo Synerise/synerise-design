@@ -190,6 +190,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       savedFilters,
       onFilterSave,
       intl,
+      containerClass = 'ds-date-range-picker',
+      footerProps,
     } = this.props;
     const { value, mode } = this.state;
     const { from, to, key } = value;
@@ -212,7 +214,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
 
     return (
-      <Container className="ds-date-range-picker">
+      <Container className={containerClass}>
         <RangePicker
           value={value}
           onChange={this.handleRangeChange}
@@ -245,6 +247,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           value={value}
           showTime={showTime}
           format={format}
+          {...footerProps}
         />
       </Container>
     );
