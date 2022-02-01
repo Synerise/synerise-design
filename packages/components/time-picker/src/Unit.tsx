@@ -53,7 +53,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
-      unitContainerRef?.current &&
+      unitContainerRef?.current?.scrollTo?.call &&
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
