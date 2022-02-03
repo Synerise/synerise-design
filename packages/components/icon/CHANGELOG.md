@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.0...@synerise/ds-icon@0.47.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* **icon:** fix exports path in ds-icon component ([039c562](https://github.com/Synerise/synerise-design/commit/039c562f54ac433605d6adbce9d12275217324ab))
+
+
+
+
+
 # [0.47.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.46.2...@synerise/ds-icon@0.47.0) (2022-01-17)
 
 
