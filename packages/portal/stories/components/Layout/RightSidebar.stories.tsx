@@ -16,6 +16,7 @@ const stories = {
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
           header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          renderRightSidebarControls={boolean('Render right sidebar controls', true)}
           right={{
             content: <S.Placeholder></S.Placeholder>,
             opened: rightOpened,

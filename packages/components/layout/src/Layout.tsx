@@ -17,9 +17,19 @@ const Layout: React.FC<LayoutProps> = ({
   subheader,
   fullPage = false,
   sidebarAnimationDisabled,
+  renderLeftSidebarControls = false,
+  renderRightSidebarControls = false,
 }) => {
   const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
   const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
+  const showLeftSidebar = React.useMemo(
+    () => left?.opened || !renderLeftSidebarControls,
+    [left, renderLeftSidebarControls]
+  );
+  const showRightSidebar = React.useMemo(
+    () => right?.opened || !renderRightSidebarControls,
+    [right, renderRightSidebarControls]
+  );
 
   return (
     <S.LayoutContainer className={`ds-layout ${className || ''}`}>
@@ -29,14 +39,14 @@ const Layout: React.FC<LayoutProps> = ({
           <>
             {left ? (
               <S.LayoutSidebarWrapper
-                opened={!!left?.opened}
+                opened={showLeftSidebar}
                 openedWidth={leftSidebarWidth}
                 animationDisabled={!!sidebarAnimationDisabled}
               >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar"
                   style={styles && styles.left}
-                  opened={!!left.opened}
+                  opened={showLeftSidebar}
                   openedWidth={leftSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
@@ -44,15 +54,18 @@ const Layout: React.FC<LayoutProps> = ({
                     <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                <S.SidebarButton
-                  withSubheader={Boolean(subheader)}
-                  onClick={(): void => left?.onChange(!left?.opened)}
-                  opened={!!left?.opened}
-                  bothOpened={left?.opened && right?.opened}
-                >
-                  <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
-                  <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
-                </S.SidebarButton>
+                {(typeof renderLeftSidebarControls === 'function' && renderLeftSidebarControls()) ||
+                  (renderLeftSidebarControls === true && (
+                    <S.SidebarButton
+                      withSubheader={Boolean(subheader)}
+                      onClick={(): void => left?.onChange(!left?.opened)}
+                      opened={!!left?.opened}
+                      bothOpened={left?.opened && right?.opened}
+                    >
+                      <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
+                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                    </S.SidebarButton>
+                  ))}
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
@@ -60,8 +73,8 @@ const Layout: React.FC<LayoutProps> = ({
             className="ds-layout__main"
             data-popup-container
             style={styles && styles.main}
-            leftOpened={!!left?.opened}
-            rightOpened={!!right?.opened}
+            leftOpened={showLeftSidebar}
+            rightOpened={showRightSidebar}
             leftSidebarWidth={leftSidebarWidth}
             rightSidebarWidth={rightSidebarWidth}
           >
@@ -75,7 +88,7 @@ const Layout: React.FC<LayoutProps> = ({
           <>
             {right ? (
               <S.LayoutSidebarWrapper
-                opened={!!right?.opened}
+                opened={showRightSidebar}
                 right
                 openedWidth={rightSidebarWidth}
                 animationDisabled={!!sidebarAnimationDisabled}
@@ -83,7 +96,7 @@ const Layout: React.FC<LayoutProps> = ({
                 <S.LayoutSidebar
                   className="ds-layout__sidebar ds-layout__sidebar--right"
                   style={styles && styles.right}
-                  opened={!!right?.opened}
+                  opened={showRightSidebar}
                   openedWidth={rightSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
@@ -91,16 +104,19 @@ const Layout: React.FC<LayoutProps> = ({
                     <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                <S.SidebarButton
-                  withSubheader={Boolean(subheader)}
-                  onClick={(): void => right?.onChange(!right?.opened)}
-                  right
-                  opened={!!right?.opened}
-                  bothOpened={left?.opened && right?.opened}
-                >
-                  <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
-                  <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
-                </S.SidebarButton>
+                {(typeof renderRightSidebarControls === 'function' && renderRightSidebarControls()) ||
+                  (renderRightSidebarControls === true && (
+                    <S.SidebarButton
+                      withSubheader={Boolean(subheader)}
+                      onClick={(): void => right?.onChange(!right?.opened)}
+                      right
+                      opened={!!right?.opened}
+                      bothOpened={left?.opened && right?.opened}
+                    >
+                      <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
+                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                    </S.SidebarButton>
+                  ))}
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
