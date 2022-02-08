@@ -29,6 +29,8 @@ const stories = {
     return (
       <div style={{ border: '1px dashed gray', height: 440 }}>
         <Layout
+          renderLeftSidebarControls={boolean('Render left sidebar controls', true)}
+          renderRightSidebarControls={boolean('Render right sidebar controls', false)}
           header={
             showHeader && (
               <div>
@@ -40,7 +42,7 @@ const stories = {
             showLeft && {
               content: (
                 <div style={{ padding: 24 }}>
-                  <MultilineContent heading="Layout left sidebar" lines={leftLines} />
+                  <MultilineContent heading="Layout left sidebar (controls visible thus hidden by default)" lines={leftLines} />
                 </div>
               ),
               opened: leftOpened,
@@ -51,7 +53,7 @@ const stories = {
             showRight && {
               content: (
                 <div style={{ padding: 24 }}>
-                  <MultilineContent heading="Layout right sidebar" lines={rightLines} />
+                  <MultilineContent heading="Layout right sidebar (controls hidden by default)" lines={rightLines} />
                 </div>
               ),
               opened: rightOpened,

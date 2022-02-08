@@ -47,4 +47,8 @@ describe('Layout', () => {
     // ASSERT
     expect(getByText(TEXT_TEST)).toBeTruthy();
   });
+
+  it.todo('sidebar controls hidden by default');
+  it.todo('sidebar controls accept true and render controls');
+  it.todo('sidebar controls accept render function');
 });

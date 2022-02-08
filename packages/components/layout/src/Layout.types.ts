@@ -26,4 +26,12 @@ export type LayoutProps = {
   styles?: Style<React.CSSProperties>;
   fullPage?: boolean;
   sidebarAnimationDisabled?: boolean;
+  /**
+   * Left sidebar: render visibility of show/hide button. Accepts function returning `ReactNode` (see source code).
+   */
+  renderLeftSidebarControls?: boolean | (() => React.ReactNode);
+  /**
+   * Right sidebar: render visibility of show/hide button. Accepts function returning `ReactNode` (see source code).
+   */
+  renderRightSidebarControls?: boolean | (() => React.ReactNode);
 };
