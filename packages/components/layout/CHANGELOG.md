@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.10.2...@synerise/ds-layout@0.11.0) (2022-02-10)
+
+
+### Features
+
+* **layout:** render left/right sidebar visibility controls ([cdc317e](https://github.com/synerise/synerise-design/commit/cdc317e75c948ba038f6edfe5945ba75ae797b0c))
+
+
+
+
+
 ## [0.10.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.10.1...@synerise/ds-layout@0.10.2) (2022-02-03)
 
 **Note:** Version bump only for package @synerise/ds-layout

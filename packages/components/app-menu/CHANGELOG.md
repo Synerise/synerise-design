@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.5.5...@synerise/ds-app-menu@0.6.0) (2022-02-10)
+
+
+### Features
+
+* **app-menu:** changed width from 63px to 60px ([9b16af6](https://github.com/Synerise/synerise-design/commit/9b16af6c755eacc59df540252d3cc42e8e0e172d))
+
+
+
+
+
 ## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.5.4...@synerise/ds-app-menu@0.5.5) (2022-02-03)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

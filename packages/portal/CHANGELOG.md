@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.146.0](https://github.com/synerise/synerise-design/compare/portal@0.145.0...portal@0.146.0) (2022-02-10)
+
+
+### Features
+
+* **layout:** render left/right sidebar visibility controls ([cdc317e](https://github.com/synerise/synerise-design/commit/cdc317e75c948ba038f6edfe5945ba75ae797b0c))
+
+
+
+
+
 # [0.145.0](https://github.com/synerise/synerise-design/compare/portal@0.144.0...portal@0.145.0) (2022-01-13)
 
 

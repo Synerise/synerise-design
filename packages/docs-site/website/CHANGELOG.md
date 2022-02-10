@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.19.0...docs@0.20.0) (2022-02-10)
+
+
+### Features
+
+* **layout:** render left/right sidebar visibility controls ([cdc317e](https://gitlab.synerise.com/Frontend/synerise-design/commit/cdc317e75c948ba038f6edfe5945ba75ae797b0c))
+
+
+
+
+
 # [0.19.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.18.0...docs@0.19.0) (2022-01-13)
 
 **Note:** Version bump only for package docs
