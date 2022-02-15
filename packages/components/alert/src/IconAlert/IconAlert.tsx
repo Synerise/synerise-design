@@ -18,6 +18,7 @@ const IconAlert: React.FC<IconAlertProps> = ({
   withEmphasis,
   hoverButton,
   disabled,
+  customIcon,
   ...rest
 }) => {
   const icon = React.useMemo(() => {
@@ -25,7 +26,7 @@ const IconAlert: React.FC<IconAlertProps> = ({
   }, [type]);
   return (
     <S.IconAlertWrapper {...rest} type={type} disabled={disabled} hoverButton={hoverButton} className="ds-inline-alert">
-      {iconAlert && <Icon component={icon} />}
+      {iconAlert && (customIcon || <Icon component={icon} />)}
       {message && (
         <S.Message>
           {message}
