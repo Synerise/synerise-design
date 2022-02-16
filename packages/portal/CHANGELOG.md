@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.146.1](https://github.com/synerise/synerise-design/compare/portal@0.146.0...portal@0.146.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **input:** InputMultivalue add prop onChange ([16fbfcb](https://github.com/synerise/synerise-design/commit/16fbfcbc1be40471b3a1078d9bf5bbe19b9ce9ed))
+
+
+
+
+
 # [0.146.0](https://github.com/synerise/synerise-design/compare/portal@0.145.0...portal@0.146.0) (2022-02-10)
 
 
