@@ -65,6 +65,7 @@ export const LayoutMain = styled.div<{
   max-width: 100%;
   width: 100%;
   ${mediaQuery.to.small`min-width: 704px;`};
+  ${mediaQuery.to.medium`height: 100%;`};
 `;
 
 export const LayoutMainInner = styled.div<{ fullPage: boolean }>`
