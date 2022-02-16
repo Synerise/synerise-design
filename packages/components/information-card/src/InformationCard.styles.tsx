@@ -7,6 +7,8 @@ import {
   Header,
   Title,
 } from '@synerise/ds-card/dist/Card/Card.styles';
+// import Divider from '@synerise/ds-divider';
+// import { DividerProps } from '@synerise/ds-divider/dist/Divider.types';
 
 import styled from 'styled-components';
 
@@ -25,9 +27,9 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
     padding-top: 0px;
     font-weight: 400;
     min-width: 250px;
-  }
-  ${ChildrenContainer} {
-    margin-top: 0px;
+    &.custom-description ${ChildrenContainer} {
+      margin-top: 8px;
+    }
   }
   ${PaddingWrapper} {
     padding-top: 0px;
@@ -58,5 +60,15 @@ export const ExtraInfo = styled.div`
   margin-top: 8px;
   margin-bottom: 1px;
 `;
+
+// export const DividerWithMargin = styled<DividerProps>(Divider)`
+// export const DividerWithMargin = styled(Divider)`
+//   ${(props): string => (props as any).isCustomDescription ? `margin-top: 16px;` : ''}
+//   margin-bottom: 16px;
+// `;
+// export const DividerWithMargin = styled(DividerProps)`
+//   ${(props): string => (props as any).isCustomDescription ? `margin-top: 16px;` : ''}
+//   margin-bottom: 16px;
+// `;
 
 export const TooltipComponentClassName = S.TooltipComponent;

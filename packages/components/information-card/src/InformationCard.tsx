@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text } from '@synerise/ds-typography';
-import Divider from '@synerise/ds-divider';
 import Button from '@synerise/ds-button';
+import Divider from '@synerise/ds-divider';
 import Icon, { ArrowRuCircleM, IconProps, SegmentM } from '@synerise/ds-icon/dist/cjs';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Card from '@synerise/ds-card';
@@ -44,14 +44,6 @@ export type InformationCardProps = {
   actionButton?: boolean | (() => React.ReactNode);
   /**
    * default action button tooltip
-   */
-  actionButtonText?: string;
-  /**
-   * action button tooltip type (title and a scription is needed)
-   */
-  actionButtonTooltipType?: tooltipTypes;
-  /**
-   * additional line (subtitle) in action button's tooltip
    */
   actionButtonTooltipText?: string;
   /**
@@ -120,10 +112,15 @@ export type BadgeData = {
   avatarTooltipText?: string;
 };
 
+function renderChildren(renderChild: InformationCardProps['children'], descriptionConfig: InformationCardProps['descriptionConfig']): JSX.Element | React.ReactNode {
+  if (typeof renderChild === 'function') {
+    return renderChild(descriptionConfig);
+  }
+  return renderChild;
+}
+
 const InformationCard: React.FC<InformationCardProps> = ({
   actionButton,
-  actionButtonText,
-  actionButtonTooltipType,
   actionButtonTooltipText,
   avatarTooltipText,
   children,
@@ -154,12 +151,7 @@ const InformationCard: React.FC<InformationCardProps> = ({
       </S.Flex>
     </RowWrapper>
   );
-  function renderChildren(renderChild: InformationCardProps['children']): JSX.Element | React.ReactNode {
-    if (typeof renderChild === 'function') {
-      return renderChild(descriptionConfig);
-    }
-    return renderChild;
-  }
+  const cachedChildren = React.useMemo(() => renderChildren(children, descriptionConfig), [children, descriptionConfig]);
   return (
     <S.InfoCardWrapper aria-label="information card">
       <Card
@@ -178,8 +170,9 @@ const InformationCard: React.FC<InformationCardProps> = ({
         withoutPadding
         lively={false}
         withHeader
+        className={cachedChildren ? 'custom-description' : ''}
       >
-        {renderChildren(children) ||
+        {cachedChildren ||
           (descriptionConfig !== null && (
             <DescriptionField extraInformation={notice || <></>} {...descriptionConfig} />
           ))}
@@ -189,9 +182,8 @@ const InformationCard: React.FC<InformationCardProps> = ({
               text={footerText}
               {...props}
               actionButton={actionButton}
-              actionButtonText={actionButtonText}
-              actionButtonTooltipType={actionButtonTooltipType}
               actionButtonTooltipText={actionButtonTooltipText}
+              isCustomDescription={cachedChildren !== undefined}
             />
           ))}
       </Card>
@@ -250,9 +242,10 @@ function DescriptionField({
   extraInformation = undefined,
   error,
   disabled,
+  onChange,
   ...props
 }: DescriptionFieldProps): JSX.Element {
-  const [description, setDescription] = React.useState<string>();
+  const [description, setDescription] = React.useState<string>('');
   return (
     <div>
       {extraInformation}
@@ -260,7 +253,11 @@ function DescriptionField({
         minRows={1}
         value={description}
         hideLabel
-        onChange={setDescription}
+        onChange={(v): any => {
+          // debugger;
+          onChange && onChange(v)
+          setDescription(v);
+        }}
         placeholder="placeholer"
         label="Label"
         labelTooltip="label tooltip"
@@ -283,17 +280,14 @@ function DescriptionField({
  */
 function withTooltip(
   Component: React.ReactNode,
-  actionButtonText: string,
   actionButtonTooltipText: string,
-  tooltipType: tooltipTypes,
   props?: Omit<TooltipProps, 'tooltipTypes'>
 ): JSX.Element {
   // type is related to ds-tooltip's: shouldRenderDescription (it makes use of description prop only if tooltip type!=='default')
   return (
     <Tooltip
-      type={actionButtonTooltipText ? tooltipType : 'default'}
-      title={actionButtonText}
-      {...(actionButtonTooltipText && tooltipType === 'header-label' ? { description: actionButtonTooltipText } : {})}
+      type={'default' as tooltipTypes}
+      title={actionButtonTooltipText}
       {...props}
     >
       {Component}
@@ -306,17 +300,16 @@ function withTooltip(
  */
 function Footer({
   actionButton = false,
-  actionButtonText = '',
   actionButtonTooltipText = '',
-  actionButtonTooltipType = 'header-label',
   text = '',
-}: { text: InformationCardProps['footerText'] } & Pick<
+  isCustomDescription,
+}: { text: InformationCardProps['footerText']; isCustomDescription: boolean } & Pick<
   InformationCardProps,
-  'actionButton' | 'actionButtonText' | 'actionButtonTooltipText' | 'actionButtonTooltipType'
+  'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText'
 >): JSX.Element {
   return (
     <>
-      <Divider dashed marginTop={16} marginBottom={16} />
+      <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={16} dashed/>
       <S.Flex style={{ alignItems: 'center' }}>
         <S.FlexGrow1>
           <Text size="xsmall">{text}</Text>
@@ -327,9 +320,7 @@ function Footer({
             <Button color="grey" type="secondary" mode="single-icon">
               <ArrowRuCircleM />
             </Button>,
-            actionButtonText,
-            actionButtonTooltipText,
-            actionButtonTooltipType
+            actionButtonTooltipText
           )) ||
           (typeof actionButton === 'function' && actionButton())}
       </S.Flex>

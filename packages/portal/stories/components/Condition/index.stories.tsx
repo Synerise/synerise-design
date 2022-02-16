@@ -17,11 +17,12 @@ import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector
 import { ConditionProps, ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
 
 export const defaultTransforms = {
-  transformCondition: (condition: ConditionProps): ConditionProps => conditionProps,
+  transformCondition: (condition: ConditionProps): ConditionProps => condition,
   transformStep: (step: ConditionStep): ConditionStep => step,
   props: {
     defaultDropdownVisibility: false,
   },
+  wrap: (el) => el,
 }
 export type transformsType = typeof defaultTransforms
 
@@ -31,6 +32,7 @@ const stories = {
       transformCondition,
       transformStep,
       props: { defaultDropdownVisibility },
+      wrap,
     } = Object.assign({}, defaultTransforms, context) as any
     const setStepContext = (stepId, item) => {
       store.set({
@@ -216,7 +218,7 @@ const stories = {
       store.set({ steps: newOrder });
     };
 
-    return (
+    return wrap(
       <div
         style={{
           padding: 24,

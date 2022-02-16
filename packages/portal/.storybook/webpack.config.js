@@ -21,6 +21,11 @@ module.exports = async ({ config, mode }) => {
     ],
   });
 
+  const styledComponentsConfig = ['babel-plugin-styled-components', {
+    "displayName": true,
+    // https://styled-components.com/docs/tooling#better-debugging
+  }]
+
   config.module.rules.push({
     test: /\.tsx?$/,
     use: [
@@ -30,8 +35,9 @@ module.exports = async ({ config, mode }) => {
           presets: ['babel-preset-react-app'],
           plugins:
             mode === 'PRODUCTION'
-              ? []
+              ? [styledComponentsConfig]
               : [
+                  styledComponentsConfig,
                   [
                     'transform-rename-import',
                     {

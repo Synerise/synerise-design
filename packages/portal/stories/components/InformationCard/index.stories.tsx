@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
+import styled from 'styled-components'
 import Dropdown from '@synerise/ds-dropdown';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
@@ -117,6 +118,19 @@ function WithDropdown() {
   </Dropdown>
 }
 
+const SelectWithoutAnimation = styled.div`
+  .ant-select-dropdown.slide-up-enter.slide-up-enter,
+  .ant-select-dropdown.slide-up-appear.slide-up-appear {
+    -webkit-animation-name: unset;
+    animation-name: unset;
+  }
+  .slide-down.slide-down,
+  .slide-up.slide-up {
+    -webkit-animation-name: unset;
+    animation-name: unset;
+  }
+`;
+
 function WithConditionFilter(): JSX.Element {
   // TODO inline this story
   const storyDef = ConditionStories.stories.default;
@@ -124,21 +138,31 @@ function WithConditionFilter(): JSX.Element {
     props: {
       defaultDropdownVisibility: true,
     },
+    wrap: (el) => {
+      // return <div>{el}</div>;
+      // const SelectWithoutAnimation = styled.div`
+      //   .ant {}
+      // `;
+      return <SelectWithoutAnimation>{el}</SelectWithoutAnimation>;
+    },
     transformStep(step) {
       step.context.onClickOutside = () => {
-        // disables hiding dropdown on otuside menu click
-        return true
+        // used in ContextSelector > ContextSelectorDropdown component
+        // disables hiding dropdown on outside menu click
+        // return true // not needed, because getPopupContainer is set to overlayRef
       }
       step.context.items.forEach((item, idx) => {
         // apply these modifications to each of entries in the menu
         item.renderInformationCard = () => <InformationCardWithKnobs title={item.name} subtitle={item.id} icon={item.icon}/>
         item.popoverProps = {
+          getPopupContainer: null,
+          ...(item.popoverProps || {}),
           placement: 'right',
-          destroyTooltipOnHide: {keepParent: false},
+          // destroyTooltipOnHide: {keepParent: false}, // resets popover state
+          // popupContainer // should be set to dropdown container
         }
       })
-      step.context.items[0].popoverProps.defaultVisible = boolean('By default display first tooltip', true);
-      step.context.items[1].renderInformationCard = () => <textarea></textarea>
+      step.context.items[0].popoverProps.defaultVisible = boolean('By default display first tooltip', false);
       return step
     },
   } as transformsType)
@@ -218,20 +242,16 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
   const footerText = text('Footer text', 'Last changed: 3 weeks ago')
   const preset = {...presets.find(e => e.name === iconSlotType)};
   if (iconSlotType === 'other') {
-    const iconType = select('Icon type', {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6}, 3)
+    const iconType = select('Icon type', {'grey icon': 1, 'red icon': 2}, 2);
     const getTitle = () => text('Title', 'Title');
     const getSubtitle = () => text('Subtitle', 'Subtitle');
     const iconElement = <>Other IconType={iconType}</>
     preset.renderBadge = () => ({
-      1: <SegmentM color="mars"/>,
-      2: <VarTypeStringM/>,
-      3: <Icon color="mars" component={<SegmentM/>}></Icon>,
-      4: <Icon color={theme.palette['mars-'+DEFAULT_COLOR_HUE]} component={<SegmentM/>}></Icon>,
-      5: buildIconBadge({
-        iconElement: <Icon component={<SegmentM/>}/>,
-        iconColor: 'mars',
+      1: buildIconBadge({
+        iconColor: 'grey',
+        iconElement: <VarTypeStringM/>,
       }),
-      6: buildIconBadge({
+      2: buildIconBadge({
         iconColor: 'mars',
         iconElement: <SegmentM/>,
       }),
@@ -239,23 +259,19 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     preset.title = getTitle();
     preset.subtitle = getSubtitle();
   }
-  let actionButtonTooltipType, customActionButtonContent, actionButtonText, actionButtonTooltipText, avatarTooltipText;
+  let  customActionButtonContent, actionButtonText, actionButtonTooltipText, avatarTooltipText;
   if (iconSlotType !== 'empty') {
     avatarTooltipText = text('Icon tooltip text', 'Icon tooltip text');
   }
   let actionButton = boolean('Show action button', true)
   if (actionButton) {
-    customActionButtonContent = boolean('Custom action button content', '')
+    customActionButtonContent = boolean('Custom action button content', '');
   }
   if (actionButton) {
-    actionButtonTooltipType = select('Action button tooltip type', {'Header+label': 'header-label', 'Default': 'default'}, 'default')
     actionButtonText = text('Action button tooltip title text', 'You can set title')
-    if (actionButtonTooltipType !== 'default') {
-      actionButtonTooltipText = text('Action button tooltip desc text', 'You can set description')
-    }
   }
   const descriptionProps = {} as any;
-  const hideDescription = boolean('Hide description', false);
+  let hideDescription;
   const hasCustomDescription = boolean('Has custom description', false);
   let customDescription, usePlainTextArea = false;
   if (hasCustomDescription) {
@@ -265,8 +281,12 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     } else {
       customDescription = text('Description content', 'custom description')
     }
-    descriptionProps.error = boolean('Set validation state as error', false);
-    descriptionProps.disabled = boolean('Disable editing textarea', false);
+  } else {
+    hideDescription = boolean('Hide description', false);
+    if (!hideDescription) {
+      descriptionProps.error = boolean('Set validation state as error', false);
+      descriptionProps.disabled = boolean('Disable editing textarea', false);
+    }
   }
   return <InformationCard
     renderBadge={preset.renderBadge}
@@ -275,7 +295,6 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     subtitle="key.name"
     actionButton={customActionButtonContent ? () => <>Content</> : actionButton}
     actionButtonText={actionButtonText}
-    actionButtonTooltipType={actionButtonTooltipType}
     actionButtonTooltipText={actionButtonTooltipText}
     avatarTooltipText={avatarTooltipText}
     {...preset}
@@ -285,10 +304,12 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     } : {
       descriptionConfig: {
         onChange: action('on change'),
+        ...descriptionProps,
       }
     }}
-    {...hasCustomDescription ? {
-      children: customDescription,
+    {...(hasCustomDescription || hideDescription) ? {
+      // null is used to signalise children to divider in case of hide description
+      children: customDescription || null,
     } : {}}
   />
 }

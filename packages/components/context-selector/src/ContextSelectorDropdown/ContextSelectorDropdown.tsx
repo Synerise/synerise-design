@@ -53,6 +53,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   hasMoreItems,
 }) => {
   const listRef = React.createRef<VariableSizeList>();
+  const listContainer = React.useRef<HTMLElement>();
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -79,7 +80,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   useOnClickOutside(
     overlayRef,
     () => {
-      if (onClickOutside && onClickOutside()) return;
+      if (onClickOutside && onClickOutside()) {
+        // if callback returned non-false value - terminate hiding dropdown
+        return;
+      }
       setDropdownVisible(false);
     },
     onClickOutsideEvents
@@ -327,9 +331,26 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
                 {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
                 {({ index, style }) => {
                   const item = activeItems[index];
-                  return item && isListTitle(item) ? (
-                    <S.Title style={style}>{item.title}</S.Title>
-                  ) : (
+                  if (item && isListTitle(item)) {
+                    return (<S.Title style={style}>{item.title}</S.Title>);
+                  }
+                  // if (listContainer.current) {
+                  //   nonTitleItem.popoverProps.getPopupContainer = () => listContainer.current
+                  // }
+                  if (overlayRef.current && item) {
+                    // This seems to be the only place where we can inject `overlayRef`.
+                    // const nonTitleItem = (item as ContextItem);
+                    const { popoverProps } = (item as unknown as ContextItem);
+                    // if (popoverProps && popoverProps.getPopupContainer === undefined) {
+                    if (popoverProps) {
+                      popoverProps.getPopupContainer = (): HTMLElement => overlayRef.current as HTMLElement;
+                      console.info('set item\'s popover getpopupcontainer to', overlayRef.current)
+                    }
+                  }
+                  return (
+                    // <ContextSelectorDropdownItem style={style} {...item} />
+                    // <ContextSelectorDropdownItem style={style} {...item.buildItemProps(item, listRef)} />
+                    // <ContextSelectorDropdownItem style={style} {...nonTitleItem} />
                     <ContextSelectorDropdownItem style={style} {...item} />
                   );
                 }}

@@ -32,4 +32,5 @@ describe('Information card', () => {
     expect(onChange).toHaveBeenCalled()
     expect(onChange).toHaveBeenCalledWith(userInput);
   })
+  it.todo('if description is hidden - divier has both top and bottom margin 16px');
 });

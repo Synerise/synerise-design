@@ -11,7 +11,7 @@ const Card: React.FC<CardProps> = ({
   raised,
   disabled,
   style,
-  className,
+  className = '',
   lively,
   withHeader,
   title,
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
       raised={raised}
       disabled={disabled}
       style={style}
-      className={`ds-card ${className || ''}`}
+      className={`ds-card ${className}`}
       lively={lively}
       background={background}
     >
