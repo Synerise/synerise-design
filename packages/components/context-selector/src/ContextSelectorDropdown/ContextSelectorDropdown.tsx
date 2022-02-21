@@ -53,7 +53,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   hasMoreItems,
 }) => {
   const listRef = React.createRef<VariableSizeList>();
-  const listContainer = React.useRef<HTMLElement>();
+  // const listContainer = React.useRef<HTMLElement>();
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
