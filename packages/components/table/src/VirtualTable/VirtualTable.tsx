@@ -328,6 +328,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
   };
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
+  const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : props?.scroll;
+
   return (
     <RelativeContainer key="relative-container" ref={containerRef} style={relativeInlineStyle}>
       <ResizeObserver
@@ -337,6 +339,7 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
       >
         <DSTable
           {...props}
+          scroll={scrollValue}
           className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
           // Remove columns which cause header columns indent
           columns={mergedColumns.slice(columnsSliceStartIndex)}
