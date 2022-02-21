@@ -34,22 +34,44 @@ function defaultStory() {
   const iconArray = [<SegmentM color="mars"/>, <VarTypeStringM/>]
   const icon = iconArray[select('Icon type', {'segment': 0, 'icontype-string': 1}, 0)];
   const avatarTooltipText = text('Icon tooltip text', 'Icon tooltip text')
-  return <InformationCard
+  return wrapCardWithMenu(() => <InformationCard
     title={text('Title', 'Title')}
     subtitle="subtitle"
     icon={icon}
     iconColor={iconColor}
     avatarTooltipText={avatarTooltipText}
     descriptionConfig={{onChange: action('on change')}}
-    />
+    />, 'Menu item')
 }
 
 function minimalistic() {
-  return <InformationCard
+  return wrapCardWithMenu(() => <InformationCard
     title={text('Text', 'Name')}
     subtitle={text('Subtitle', 'object.key')}
     renderBadge={null}
-    descriptionConfig={null}/>
+    descriptionConfig={null}/>, 'Menu item (minimalistic info)')
+}
+
+/**
+ *
+ * @param renderCard `() => <InformationCardWithKnobs title={title} subtitle="someElement.key"/>`
+ * @param title
+ */
+function wrapCardWithMenu(renderCard, title) {
+  const data: MenuItemProps[] = [
+    {
+      text: title,
+      popoverProps: {
+        defaultVisible: true,
+      },
+      renderInformationCard: renderCard,
+    }
+  ];
+  return <>
+    <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }}
+      showTextTooltip={true}
+      />
+  </>;
 }
 
 function WithMenu() {
@@ -318,7 +340,7 @@ const stories: Record<string, Story> = {
   default: defaultStory,
   minimalistic,
   customize: () => {
-    return <InformationCardWithKnobs/>
+    return wrapCardWithMenu(() => <InformationCardWithKnobs/>, 'Customized info-card')
   },
   withMenu: WithMenu,
   WithDropdown,
