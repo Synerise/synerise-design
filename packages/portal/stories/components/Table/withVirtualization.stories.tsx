@@ -44,52 +44,55 @@ const columns = [
   },
 ];
 
-const stories = {
-  default: withState({
-    searchValue: '',
-    selectedRows: [],
-    starredRowKeys: [],
-  })(({ store }) => {
-    const filteredDataSource = () => {
-      return !store.state.searchValue
-        ? dataSource
-        : dataSource.filter(record => {
-            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-          });
-    };
+const VirtualizationWithState: React.FC = () => {
+  const [searchValue, setSearchValue] = React.useState<string>('');
+  const [selectedRows, setSelectedRows] = React.useState([]);
+  const [starredRowKeys, setStarredRowKey] = React.useState([]);
 
-    const handleSelectRow = selectedRowKeys => {
-      store.set({ selectedRows: selectedRowKeys });
-    };
+  const filteredDataSource = React.useCallback(() => {
+    return !searchValue
+      ? dataSource
+      : dataSource.filter(record => {
+          return record.name.toLowerCase().includes(searchValue.toLowerCase());
+        });
+  }, [dataSource, searchValue]);
 
-    const selectEven = () => {
-      const evenRows = filteredDataSource()
-        .map(row => row.key)
-        .filter((key, index) => index % 2);
-      store.set({ selectedRows: evenRows });
-    };
+  const handleSelectRow = selectedRowKeys => {
+    setSelectedRows(selectedRowKeys);
+  };
 
-    return (
-      <div style={{ width: 792 }}>
-        <VirtualTable
-          title={text('Table title', 'Virtualized table')}
-          scroll={{ y: 500, x: 0 }}
-          initialWidth={792}
-          dataSource={filteredDataSource()}
-          columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
-          cellHeight={50}
-          rowKey={row => row.key}
-          headerButton={
-            boolean('Show header button', false) && (
-              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-                <Icon component={<AddM />} />
-                {text('Header button label', 'Add row')}
-              </Button>
-            )
-          }
-          selection={boolean('Enable row selection', true) && {
+  const selectEven = React.useCallback(() => {
+    const evenRows = filteredDataSource()
+      .map(row => row.key)
+      .filter((key, index) => index % 2);
+    setSelectedRows(evenRows);
+  }, [filteredDataSource]);
+  const numberOfRows = number('Number of rows (maximum 5000)', filteredDataSource().length, {
+    max: filteredDataSource().length,
+  });
+
+  return (
+    <div style={{ width: 792 }}>
+      <VirtualTable
+        title={text('Table title', 'Virtualized table')}
+        scroll={{ y: 500, x: 0 }}
+        initialWidth={792}
+        dataSource={filteredDataSource().slice(0, numberOfRows) || []}
+        columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
+        cellHeight={50}
+        rowKey={row => row.key}
+        headerButton={
+          boolean('Show header button', false) && (
+            <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+              <Icon component={<AddM />} />
+              {text('Header button label', 'Add row')}
+            </Button>
+          )
+        }
+        selection={
+          boolean('Enable row selection', true) && {
             onChange: handleSelectRow,
-            selectedRowKeys: store.state.selectedRows,
+            selectedRowKeys: selectedRows,
             selections: [
               Table.SELECTION_ALL,
               Table.SELECTION_INVERT,
@@ -100,40 +103,44 @@ const stories = {
               },
             ],
             limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
-          }}
-          rowStar={boolean('Enable row star', undefined) && {
-            starredRowKeys: store.state.starredRowKeys,
-            onChange: (starredRowKeys): void => {
-              store.set({ starredRowKeys });
-            },
-          }}
-          onRowClick={record => {
-            store.state.selectedRows.indexOf(record.key) >= 0 ||
-            store.state.selectedRows.length >= number('Set limit', 5)
-              ? store.set({ selectedRows: store.state.selectedRows.filter(k => k !== record.key) })
-              : store.set({ selectedRows: [...store.state.selectedRows, record.key] });
-          }}
-          searchComponent={
-            <SearchInput
-              placeholder="Search"
-              clearTooltip="Clear"
-              onChange={value => {
-                console.log('value', value);
-                store.set({ searchValue: value });
-              }}
-              value={store.state.searchValue}
-              onClear={() => {
-                console.log('clear');
-                store.set({ searchValue: '' });
-              }}
-              closeOnClickOutside={true}
-              inputProps={{ autoFocus: false }}
-            />
           }
-        />
-      </div>
-    );
-  }),
+        }
+        rowStar={
+          boolean('Enable row star', undefined) && {
+            starredRowKeys: starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              setStarredRowKey(starredRowKeys);
+            },
+          }
+        }
+        onRowClick={record => {
+          selectedRows.indexOf(record.key) >= 0 || selectedRows.length >= number('Set limit', 5)
+            ? setSelectedRows(selectedRows.filter(k => k !== record.key))
+            : setSelectedRows([...selectedRows, record.key]);
+        }}
+        searchComponent={
+          <SearchInput
+            placeholder="Search"
+            clearTooltip="Clear"
+            onChange={value => {
+              console.log('value', value);
+              setSearchValue(value);
+            }}
+            value={searchValue}
+            onClear={() => {
+              console.log('clear');
+              setSearchValue('');
+            }}
+            closeOnClickOutside={true}
+            inputProps={{ autoFocus: false }}
+          />
+        }
+      />
+    </div>
+  );
+};
+const stories = {
+  default: <VirtualizationWithState />,
 };
 
 export default {
