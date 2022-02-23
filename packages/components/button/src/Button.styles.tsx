@@ -217,7 +217,7 @@ export const AntdButton = styled(
         }
       `};
     ${(props): FlattenInterpolation<ThemeProps> | false =>
-      props.type === buttonType[props.type] &&
+      props.type === buttonType[props.type as keyof typeof buttonType] &&
       css`
         &.ant-btn {
           &:not(:disabled) {
@@ -248,7 +248,7 @@ export const AntdButton = styled(
             position: relative;
             &:before {
               content: '';
-              background-color: ${props.type !== splitType[props.type]
+              background-color: ${props.type !== splitType[props.type as keyof typeof splitType]
                 ? `rgba(255, 255, 255, 0.15);`
                 : props.theme.palette['grey-300']};
               top: ${props.size === 'large' ? '-12px' : '-4px'};
