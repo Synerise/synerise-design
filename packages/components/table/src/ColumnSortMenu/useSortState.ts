@@ -25,7 +25,6 @@ export const toSortOrder = (value: string | null | undefined): ColumnSortOrder =
 
   return null;
 };
-
 export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[] = []): ColumnsSortState => {
   if (process.env.NODE_ENV === 'development') {
     const columnsKeys = columns.map((c, i) => {
@@ -155,15 +154,15 @@ const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (sta
   return merge(payload.columns, state);
 };
 
-const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (state, action) => {
-  const { payload } = action;
-  const result = {
-    ...state,
-    ...payload.columns,
-  };
-
-  return result;
-};
+// const updateColumns: React.Reducer<ColumnsSortState, UpdateColumnsAction> = (state, action) => {
+//   const { payload } = action;
+//   const result = {
+//     ...state,
+//     ...payload.columns,
+//   };
+//
+//   return result;
+// };
 
 const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, action) => {
   const { type } = action;
@@ -193,14 +192,14 @@ export const useSortState = (initialState: ColumnsSortState = {}, onSort: OnSort
     return columnsSortState[key]?.sortOrder;
   };
 
-  const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
-    dispatch({
-      type: 'updateColumns',
-      payload: {
-        columns,
-      },
-    });
-  };
+  // const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
+  //   dispatch({
+  //     type: 'updateColumns',
+  //     payload: {
+  //       columns,
+  //     },
+  //   });
+  // };
 
   const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
     dispatch({

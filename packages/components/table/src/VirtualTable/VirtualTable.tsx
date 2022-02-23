@@ -11,13 +11,14 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
-import { RowType, DSTableProps } from '../Table.types';
+import { RowType, DSTableProps, RowSelection } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
 import { useTableLocale } from '../utils/locale';
 import { calculatePixels } from '../utils/calculatePixels';
+import { CreateRowStarColumnProps } from '../hooks/useRowStar.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
@@ -80,21 +81,6 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     onListRefChange && onListRefChange(listRef);
   }, [listRef, onListRefChange]);
 
-  const propsForRowStar = {
-    ...props,
-    rowStar: {
-      ...rowStar,
-      onClick: (e): void => {
-        e.stopPropagation();
-
-        if (typeof rowStar?.onClick === 'function') {
-          rowStar.onClick(e);
-        }
-      },
-    },
-    locale: tableLocale,
-  } as Props<T>;
-  const rowStarColumn = getRowStarColumn(propsForRowStar);
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
@@ -104,6 +90,118 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     [rowKey]
   );
 
+  const propsForRowStar = {
+    ...props,
+    rowStar: {
+      ...rowStar,
+      onClick: (e): void => {
+        e.stopPropagation();
+        if (typeof rowStar?.onClick === 'function') {
+          rowStar.onClick(e);
+        }
+      },
+    },
+    getRowKey,
+    locale: tableLocale,
+  } as CreateRowStarColumnProps;
+
+  const rowStarColumn = getRowStarColumn(propsForRowStar);
+
+  const selectedRecords = React.useMemo(() => {
+    const { selectedRowKeys } = selection as RowSelection<T>;
+    let selectedRows: T[] = [];
+    dataSource &&
+      dataSource.forEach((row: T): void => {
+        if (row.children !== undefined && Array.isArray(row.children)) {
+          row.children.forEach((child: T) => {
+            const k = getRowKey(child);
+            if (k && selectedRowKeys.indexOf(k) >= 0) {
+              selectedRows = [...selectedRows, child];
+            }
+          });
+        } else {
+          const k = getRowKey(row);
+          if (k && selectedRowKeys.indexOf(k) >= 0) {
+            selectedRows = [...selectedRows, row];
+          }
+        }
+      });
+
+    return selectedRows;
+  }, [dataSource, getRowKey, selection]);
+
+  const handleSelectionChange = React.useCallback(
+    (isCheckedNext: boolean, record: T): void => {
+      const { independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+      const recordKey = getRowKey(record);
+      let selectedRows: T[] = selectedRecords;
+
+      if (isCheckedNext) {
+        if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
+          selectedRows = [...selectedRows, ...record.children];
+        } else {
+          selectedRows = [...selectedRows, record];
+        }
+      } else if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
+        const childrenKeys = record.children.map((child: T) => getRowKey(child));
+        selectedRows = selectedRows.filter(child => childrenKeys.indexOf(getRowKey(child)) < 0);
+      } else {
+        selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
+      }
+
+      selectedRows = Array.from(new Set(selectedRows));
+
+      onChange &&
+        onChange(
+          selectedRows.map(selected => getRowKey(selected) as React.ReactText),
+          selectedRows
+        );
+    },
+    [getRowKey, selectedRecords, selection]
+  );
+
+  const renderRowSelection = React.useCallback(
+    (key: string, record: T): React.ReactNode => {
+      const { selectedRowKeys, limit, independentSelectionExpandedRows } = selection as RowSelection<T>;
+      const recordKey = getRowKey(record);
+
+      let isChecked = recordKey !== undefined && selectedRowKeys && selectedRowKeys.indexOf(recordKey) >= 0;
+      let isIndeterminate = false;
+
+      const hasChildren = Array.isArray(record.children);
+      if (hasChildren && !independentSelectionExpandedRows) {
+        const checkedChildren =
+          record.children?.filter((child: T) => {
+            const childKey = getRowKey(child);
+            return childKey && selectedRowKeys.indexOf(childKey) >= 0;
+          }) || [];
+        const allChildrenSelected = !!record.children?.every((child: T) => {
+          const childKey = getRowKey(child);
+          return childKey && selectedRowKeys.indexOf(childKey) >= 0;
+        });
+        isIndeterminate = checkedChildren.length > 0 && checkedChildren.length < (record.children?.length || 0);
+        isChecked = isChecked || allChildrenSelected;
+      }
+      return (
+        recordKey !== undefined && (
+          <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
+            <Button.Checkbox
+              key={`checkbox-${recordKey}`}
+              checked={isChecked}
+              disabled={!isChecked && Boolean(limit !== undefined && limit <= selectedRowKeys.length)}
+              indeterminate={isIndeterminate}
+              onClick={(e): void => {
+                e.stopPropagation();
+              }}
+              onChange={(isCheckedNext): void => handleSelectionChange(isCheckedNext, record)}
+            />
+          </Tooltip>
+        )
+      );
+    },
+    [getRowKey, handleSelectionChange, selection, tableLocale]
+  );
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const virtualColumns = React.useMemo((): any[] => {
     return compact([
@@ -111,89 +209,12 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
         width: 64,
         key: 'key',
         dataIndex: 'key',
-        render: (key: string, record: T): React.ReactNode => {
-          const recordKey = getRowKey(record);
-          const allChildsChecked =
-            Array.isArray(record.children) &&
-            record.children?.filter((child: T) => {
-              const childKey = getRowKey(child);
-              return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
-            }).length === 0;
-          const checkedChilds =
-            record.children?.filter((child: T) => {
-              const childKey = getRowKey(child);
-              return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
-            }) || [];
-          const isIndeterminate =
-            Array.isArray(record.children) &&
-            checkedChilds.length > 0 &&
-            checkedChilds.length < (record.children?.length || 0);
-          const checked =
-            (recordKey !== undefined &&
-              selection.selectedRowKeys &&
-              selection.selectedRowKeys.indexOf(recordKey) >= 0) ||
-            allChildsChecked;
-          return (
-            recordKey !== undefined && (
-              <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
-                <Button.Checkbox
-                  key={`checkbox-${recordKey}`}
-                  checked={checked}
-                  disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
-                  indeterminate={isIndeterminate}
-                  onClick={(e): void => {
-                    e.stopPropagation();
-                  }}
-                  onChange={(isChecked): void => {
-                    const { selectedRowKeys, onChange } = selection;
-                    let selectedRows: T[] = [];
-                    dataSource &&
-                      dataSource.forEach((row: T): void => {
-                        if (row.children !== undefined && Array.isArray(row.children)) {
-                          row.children.forEach((child: T) => {
-                            const k = getRowKey(child);
-                            if (k && selectedRowKeys.indexOf(k) >= 0) {
-                              selectedRows = [...selectedRows, child];
-                            }
-                          });
-                        } else {
-                          const k = getRowKey(row);
-                          if (k && selectedRowKeys.indexOf(k) >= 0) {
-                            selectedRows = [...selectedRows, row];
-                          }
-                        }
-                      });
-                    if (isChecked) {
-                      if (Array.isArray(record.children)) {
-                        selectedRows = [...selectedRows, ...record.children];
-                      } else {
-                        selectedRows = [...selectedRows, record];
-                      }
-                    } else if (Array.isArray(record.children)) {
-                      const childsKeys = record.children.map((child: T) => getRowKey(child));
-                      selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
-                    } else {
-                      selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
-                    }
-
-                    selectedRows = Array.from(new Set(selectedRows));
-
-                    onChange &&
-                      onChange(
-                        selectedRows.map(selected => getRowKey(selected) as React.ReactText),
-                        selectedRows
-                      );
-                  }}
-                />
-              </Tooltip>
-            )
-          );
-        },
+        render: renderRowSelection,
       },
       !!rowStar && rowStarColumn,
       ...columns,
     ]);
-  }, [columns, selection, rowStar, rowStarColumn, getRowKey, dataSource, tableLocale]);
+  }, [selection, renderRowSelection, rowStar, rowStarColumn, columns]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
@@ -273,6 +294,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           itemData={{
             mergedColumns,
             selection,
+            rowStar,
             onRowClick,
             dataSource: data,
             infiniteScroll,

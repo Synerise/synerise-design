@@ -46,7 +46,7 @@ export const CommonRenderer = <T extends unknown>({
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSort && onSort(columnKey, toSortOrder(String(key)));
+                  onSort && onSort({ columnKey, order: columnSortOrder }, sortStateApi.columnsSortState);
                   onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 220 }}
@@ -122,7 +122,7 @@ export const StringRenderer = <T extends unknown>({
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSort && onSort(columnKey, toSortOrder(String(key)));
+                  onSort && onSort({ columnKey, order: columnSortOrder }, sortStateApi.columnsSortState);
                   onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 170 }}

@@ -31,6 +31,7 @@ export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   selections?: SelectionItem[];
   onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
   limit?: number;
+  independentSelectionExpandedRows?: boolean;
 };
 
 export interface Filter {

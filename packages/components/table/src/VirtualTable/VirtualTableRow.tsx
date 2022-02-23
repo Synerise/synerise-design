@@ -6,6 +6,7 @@ import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './VirtualTable';
 import * as S from './VirtualTable.styles';
 import { calculatePixels } from '../utils/calculatePixels';
+import { RowStar } from '../hooks/useRowStar.types';
 
 interface Props<T> {
   data: {
@@ -15,6 +16,7 @@ interface Props<T> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mergedColumns: any[];
     selection?: RowSelection<T>;
+    rowStar?: RowStar<T>;
     onRowClick?: (row: T) => void;
     defaultTableProps?: DSTableProps<T>;
   };
@@ -38,11 +40,11 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
 
   render(): React.ReactNode {
     const { index, style, data } = this.props;
-    const { mergedColumns, onRowClick, selection, dataSource, cellHeight, infiniteScroll, defaultTableProps } = data;
+    const { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps } =
+      data;
     const rowData = dataSource[index];
 
     return (
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
       <>
         <S.RowWrapper
           className={classNames('virtual-table-row', {
@@ -52,6 +54,9 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
           onClick={(): void => onRowClick && onRowClick(rowData)}
         >
           {mergedColumns.map((column, columnIndex) => {
+            const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
+            const firstWithSelectionOrStar = (selection || rowStar) && columnIndex === 1;
+            const firstWithoutSelectionAndStar = columnIndex === 0 && !selection && !rowStar;
             return (
               <S.ColWrapper
                 className={classNames(
@@ -62,7 +67,7 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
                     'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
                     'ds-expanded-row-data':
                       rowData[EXPANDED_ROW_PROPERTY] &&
-                      ((columnIndex === 1 && selection) || (columnIndex === 0 && !selection)),
+                      (firstWithoutSelectionAndStar || firstWithSelectionOrStar || firstWithSelectionAndStar),
                   },
                   isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
                   column.className

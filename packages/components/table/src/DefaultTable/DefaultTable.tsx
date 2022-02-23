@@ -17,13 +17,6 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
-  const starColumn = getRowStarColumn(props);
-
-  React.useEffect(() => {
-    if (!isEqual(previousColumns, columns)) {
-      sortStateApi.updateColumnsData(columnsToSortState(columns));
-    }
-  }, [columns, previousColumns, sortStateApi]);
 
   const getRowKey = React.useCallback(
     (row: T): React.ReactText | undefined => {
@@ -33,6 +26,14 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
     },
     [rowKey]
   );
+
+  const starColumn = getRowStarColumn({ ...props, getRowKey });
+
+  React.useEffect(() => {
+    if (!isEqual(previousColumns, columns)) {
+      sortStateApi.updateColumnsData(columnsToSortState(columns));
+    }
+  }, [columns, previousColumns, sortStateApi]);
 
   const toggleRowSelection = React.useCallback(
     (checked, record) => {
