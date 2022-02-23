@@ -67,107 +67,97 @@ export default styled(
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`
-      ${
-        props.status === 'active' && !props.customColor &&
-        css`
-          .ant-badge-status-active {
-            background-color: ${props.theme.palette['green-600']};
-          }
-        `
-      }
-      ${
-      props.customColor  &&
+      ${props.status === 'active' &&
+      !props.customColor &&
       css`
-          .ant-badge-dot,
-          .ant-badge-status-dot {
-            background-color: ${props.theme.palette[`${props.customColor}-600`]};
-          }
-        `
-    }
-        ${
-          props.status === 'inactive' && !props.customColor &&
-          css`
-            .ant-badge-status-inactive {
-              background-color: ${props.theme.palette['grey-400']};
-            }
-          `
+        .ant-badge-status-active {
+          background-color: ${props.theme.palette['green-600']};
         }
-      ${
-        props.status === 'blocked' && !props.customColor &&
-        css`
-          .ant-badge-status-blocked {
-            background-color: ${props.theme.palette['red-600']};
-          }
-        `
-      }
-        ${
-          props.status === 'processing' && !props.customColor &&
-          css`
-            .ant-badge-status-processing {
-              background-color: ${props.theme.palette['blue-600']};
-            }
-          `
+      `}
+      ${props.customColor &&
+      css`
+        .ant-badge-dot,
+        .ant-badge-status-dot {
+          background-color: ${props.customColor};
         }
-      ${
-        props.outlined &&
-        css`
-          .ant-badge-count {
-            box-shadow: 0 0 0 1px ${props.theme.palette.white};
+      `}
+        ${props.status === 'inactive' &&
+      !props.customColor &&
+      css`
+        .ant-badge-status-inactive {
+          background-color: ${props.theme.palette['grey-400']};
+        }
+      `}
+      ${props.status === 'blocked' &&
+      !props.customColor &&
+      css`
+        .ant-badge-status-blocked {
+          background-color: ${props.theme.palette['red-600']};
+        }
+      `}
+        ${props.status === 'processing' &&
+      !props.customColor &&
+      css`
+        .ant-badge-status-processing {
+          background-color: ${props.theme.palette['blue-600']};
+        }
+      `}
+      ${props.outlined &&
+      css`
+        .ant-badge-count {
+          box-shadow: 0 0 0 1px ${props.theme.palette.white};
+        }
+      `}
+      ${(!!props.flag || !!props.status) &&
+      css`
+        .ant-badge-dot {
+          box-shadow: none;
+          &.ant-badge-status-processing {
+            display: inline-block;
+            position: absolute;
           }
-        `
-      }
-      ${
-        (!!props.flag || !!props.status) &&
-        css`
-          .ant-badge-dot {
-            box-shadow: none;
-            &.ant-badge-status-processing {
-              display: inline-block;
+        }
+        .ant-badge-dot,
+        .ant-badge-status-dot {
+          overflow: visible;
+          border: 2px solid ${props.theme.palette.white};
+          width: 10px;
+          height: 10px;
+          &::before {
+            display: flex;
+            content: ${props.flag ? '""' : 'none'};
+            transform: translate3d(-2px, -2px, 0);
+            ${props.pulsing &&
+            css`
+              animation: ${beforeElementAnimation} 2s infinite;
               position: absolute;
-            }
+              top: 0;
+              left: 0;
+              width: 10px;
+              height: 10px;
+              background-color: inherit;
+              border-radius: 50%;
+            `}
+            transform-origin: center;
           }
-          .ant-badge-dot,
-          .ant-badge-status-dot {
-            overflow: visible;
-            border: 2px solid ${props.theme.palette.white};
-            width: 10px;
-            height: 10px;
-            &::before {
-              display: flex;
-              content: ${props.flag ? '""' : 'none'};
-              transform: translate3d(-2px, -2px, 0);
-              ${props.pulsing &&
-              css`
-                animation: ${beforeElementAnimation} 2s infinite;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 10px;
-                height: 10px;
-                background-color: inherit;
-                border-radius: 50%;
-              `}
-              transform-origin: center;
-            }
-            &::after {
-              display: flex;
-              content: ${props.flag ? '""' : 'none'};
-              transform: translate3d(-5px, -5px, 0);
-              ${props.pulsing &&
-              css`
-                animation: ${afterElementAnimation} 2s infinite;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 16px;
-                height: 16px;
-                background-color: inherit;
-                border-radius: 50%;
-              `}
-              transform-origin: center;
-            }
+          &::after {
+            display: flex;
+            content: ${props.flag ? '""' : 'none'};
+            transform: translate3d(-5px, -5px, 0);
+            ${props.pulsing &&
+            css`
+              animation: ${afterElementAnimation} 2s infinite;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 16px;
+              height: 16px;
+              background-color: inherit;
+              border-radius: 50%;
+            `}
+            transform-origin: center;
           }
-        `
-      };
+        }
+      `};
     `}
 `;
