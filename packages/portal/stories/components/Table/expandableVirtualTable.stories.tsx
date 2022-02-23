@@ -30,7 +30,6 @@ const stories = {
     starredRowKeys: [],
   })(({ store }) => {
     const { expandedRows, selectedRows } = store.state;
-    console.log(theme);
     const handleExpandRow = (key: number): void => {
       if (expandedRows.indexOf(key) < 0) {
         store.set({ expandedRows: [...expandedRows, key] });
@@ -51,24 +50,18 @@ const stories = {
           key: 'name',
           icon: { component: <VarTypeStringM /> },
           iconTooltip: { component: <InfoFillS /> },
-          render: name => {
-            return (
-              <TableCell.AvatarLabelCell
-                avatarAction={action('Avatar Action')}
-                avatar={
-                  <ObjectAvatar
-                    badgeStatus="active"
-                    size="medium"
-                    iconComponent={<Icon component={<MailM />} color="red" />}
-                  />
-                }
-                title={name}
-              />
-            );
-          },
-          childRender: name => {
-            return <TableCell.StatusLabelCell status={'active'} label={name} />;
-          },
+          // render: name => {
+          //   return (
+          //     <TableCell.AvatarLabelCell
+          //       avatarAction={action('Avatar Action')}
+          //       avatar={<ObjectAvatar size="medium" iconComponent={<Icon component={<MailM />} color="red" />} />}
+          //       title={name}
+          //     />
+          //   );
+          // },
+          // childRender: name => {
+          //   return <TableCell.StatusLabelCell status={'active'} label={name} />;
+          // },
         },
         {
           title: 'Age',
@@ -76,12 +69,6 @@ const stories = {
           key: 'age',
           icon: { component: <VarTypeNumberM /> },
           iconTooltip: { component: <InfoFillS /> },
-          render: (age, record) => {
-            return <Badge count={age} overflowCount={99} title={record.name}></Badge>;
-          },
-          childRender: age => {
-            return age;
-          },
         },
         {
           dataIndex: 'children',
@@ -137,9 +124,11 @@ const stories = {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
+            independentSelectionExpandedRows: boolean('Enable independent selection of rows and expanded rows'),
           }}
           rowStar={
             boolean('Enable row star', undefined) && {
+              disableForExpandedRows: boolean('Disable row star in expanded rows', false),
               starredRowKeys: store.state.starredRowKeys,
               onChange: (starredRowKeys): void => {
                 store.set({ starredRowKeys });

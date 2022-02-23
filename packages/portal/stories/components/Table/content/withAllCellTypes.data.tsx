@@ -120,18 +120,18 @@ const iconSizes = {
 };
 const colorOptions = {
   '': '',
-  blue: 'blue',
-  grey: 'grey',
-  red: 'red',
-  green: 'green',
-  yellow: 'yellow',
-  pink: 'pink',
-  mars: 'mars',
-  orange: 'orange',
-  fern: 'fern',
-  cyan: 'cyan',
-  purple: 'purple',
-  violet: 'violet',
+  blue: 'blue-600',
+  grey: 'grey-600',
+  red: 'red-600',
+  green: 'green-600',
+  yellow: 'yellow-600',
+  pink: 'pink-600',
+  mars: 'mars-600',
+  orange: 'orange-600',
+  fern: 'fern-600',
+  cyan: 'cyan-600',
+  purple: 'purple-600',
+  violet: 'violet-600',
 };
 
 export const COLUMNS_WITH_TRIGGERS = [
@@ -321,7 +321,13 @@ export const COLUMNS_WITH_STATUSES = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
-    render: status => <TableCell.StatusLabelCell customColor={select('Set custom color status', colorOptions, '')} status={status} label={status} />,
+    render: status => (
+      <TableCell.StatusLabelCell
+        customColor={select('Set custom color status', colorOptions, '')}
+        status={status}
+        label={status}
+      />
+    ),
   },
   {
     title: 'Tag',

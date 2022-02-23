@@ -2,15 +2,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
-import Icon, {
-  AddM,
-  EditM,
-  FileDownloadM,
-  InfoFillS,
-  TrashM,
-  VarTypeNumberM,
-  VarTypeStringM,
-} from '@synerise/ds-icon';
+import Icon, { AddM, EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
 import * as React from 'react';
@@ -123,14 +115,18 @@ const stories = {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
+            independentSelectionExpandedRows: boolean('Enable independent selection of rows and expanded rows'),
           }
         }
-        rowStar={boolean('Enable row star', undefined) && {
-          starredRowKeys: store.state.starredRowKeys,
-          onChange: (starredRowKeys): void => {
-            store.set({ starredRowKeys });
+        rowStar={
+          boolean('Enable row star', undefined) && {
+            disableForExpandedRows: boolean('Disable row star in expanded rows', false),
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            },
           }
-        }}
+        }
         onSearch={console.log}
         onRow={(record, index: number) => ({
           onClick: event => {
