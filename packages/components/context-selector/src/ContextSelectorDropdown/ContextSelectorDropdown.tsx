@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
@@ -12,6 +13,9 @@ import { v4 as uuid } from 'uuid';
 import { VariableSizeList, VariableSizeList as List } from 'react-window';
 
 import { ItemSize } from '@synerise/ds-menu';
+import type { MenuItemProps } from '@synerise/ds-menu/src/Elements/Item/MenuItem.types';
+import type { MaybePopoverProps } from '@synerise/ds-menu/src/Elements/Item/Text/Text';
+
 import * as S from '../ContextSelector.styles';
 import {
   ContextDropdownProps,
@@ -54,6 +58,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 }) => {
   const listRef = React.createRef<VariableSizeList>();
   // const listContainer = React.useRef<HTMLElement>();
+  const poopoverRef = React.useRef<Record<string, HTMLElement>>({});
   const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = React.useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
@@ -65,6 +70,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  // const [popoverVisibilityCounter, setPopoverVisibilityCounter] = React.useState(0);
   const classNames = React.useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -84,9 +90,19 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         // if callback returned non-false value - terminate hiding dropdown
         return;
       }
+      console.info('setting dropdown visibile to false')
       setDropdownVisible(false);
+      // if (popoverVisibilityCounter === 0) {
+      //   setDropdownVisible(false);
+      // } else {
+      //   setTimeout(() => {
+      //     setDropdownVisible(false);
+      //   }, 3000);
+      // }
     },
-    onClickOutsideEvents
+    onClickOutsideEvents,
+    // [...Object.values(poopoverRef.current)]
+    poopoverRef
   );
 
   const clearSearch = React.useCallback(() => {
@@ -337,20 +353,56 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
                   // if (listContainer.current) {
                   //   nonTitleItem.popoverProps.getPopupContainer = () => listContainer.current
                   // }
+                  console.info('123', item)
                   if (overlayRef.current && item) {
                     // This seems to be the only place where we can inject `overlayRef`.
                     // const nonTitleItem = (item as ContextItem);
-                    const { popoverProps } = (item as unknown as ContextItem);
+                    // const { popoverProps || 'item.popoverProps' } = (item as unknown as ContextItem);
+                    let { popoverProps } = (item as unknown as ContextItem);
+                    popoverProps = popoverProps || item.popoverProps || item.item.popoverProps
                     // if (popoverProps && popoverProps.getPopupContainer === undefined) {
-                    if (popoverProps) {
-                      popoverProps.getPopupContainer = (): HTMLElement => overlayRef.current as HTMLElement;
+                    console.info('456', popoverProps)
+                    if (popoverProps as MenuItemProps as MaybePopoverProps['popoverProps']) {
+                      // popoverProps.getPopupContainer = (): HTMLElement => overlayRef.current as HTMLElement;
                       console.info('set item\'s popover getpopupcontainer to', overlayRef.current)
+                      popoverProps.ref2 = el => {
+                        console.info('setting ref', index, el)
+                        // poopoverRef[index] = el
+                        // poopoverRef.current[index] = el
+                        // eslint-disable-next-line react/no-find-dom-node
+                        const domEl = ReactDOM.findDOMNode(el)
+                        poopoverRef.current[index] = domEl
+                        console.info('current infocard refs', poopoverRef.current, domEl)
+                      }
                     }
                   }
+                  // const contextitem = (item as unknown as ContextItem)
+                  // COUNTING CLICKS
+                  // if ((item.item as ContextItem).popoverProps) {
+                  //   (item.item as ContextItem).popoverProps.onVisibleChange = (isVisible: boolean): void => {
+                  //     console.info('visibility', isVisible)
+                  //     setPopoverVisibilityCounter(c => c + (isVisible ? 1 : -1))
+                  //   }
+                  // }
+                  // COUNTING CLICKS
                   return (
                     // <ContextSelectorDropdownItem style={style} {...item} />
                     // <ContextSelectorDropdownItem style={style} {...item.buildItemProps(item, listRef)} />
                     // <ContextSelectorDropdownItem style={style} {...nonTitleItem} />
+                    // <ContextSelectorDropdownItem style={style} {...{
+                    //   ...item,
+                    //   item: {
+                    //     ...item.item,
+                    //     popoverProps: {
+                    //       ...(item.item as unknown as ContextItem).popoverProps,
+                    //       getPopupContainer: (): HTMLElement => overlayRef.current as HTMLElement,
+                    //     },
+                    //   },
+                    //   popoverProps_off: {
+                    //     ...(item as unknown as ContextItem).popoverProps,
+                    //     getPopupContainer: (): HTMLElement => overlayRef.current as HTMLElement,
+                    //   },
+                    // }} />
                     <ContextSelectorDropdownItem style={style} {...item} />
                   );
                 }}

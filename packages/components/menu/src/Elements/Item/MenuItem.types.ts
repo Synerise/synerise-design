@@ -43,5 +43,5 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   size?: 'default' | 'large';
   tooltipProps?: TooltipProps;
   popoverProps?: TooltipProps;
-  renderInformationCard?: () => JSX.Element;
+  renderInformationCard?: (ref?: any) => JSX.Element;
 }

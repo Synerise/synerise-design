@@ -18,12 +18,15 @@ const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Paramete
   return addon instanceof Function ? addon(...params) : addon;
 };
 
-type MaybePopoverProps = React.PropsWithChildren<{
+export type MaybePopoverProps = React.PropsWithChildren<{
   popoverProps: BasicItemProps['popoverProps'];
   renderPopover: BasicItemProps['renderInformationCard'];
 }>;
 
-function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverProps): JSX.Element {
+// function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverProps): JSX.Element {
+// function MaybePopover({ popoverProps, renderPopover: {ref, ...renderPopover}, children }: MaybePopoverProps): JSX.Element {
+function MaybePopover({ popoverProps: {ref2: ref, ...popoverProps}, renderPopover, children }: MaybePopoverProps): JSX.Element {
+  console.info('maybe popover', {ref, popoverProps, renderPopover})
   const zIndexGreaterThanDropdown = 991050 + 1;
   const cancelBubblingEvent = React.useCallback(
     () => (ev: Event): void => {
@@ -38,7 +41,11 @@ function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverPro
         <Popover
           defaultVisible={false}
           placement="right"
-          content={renderPopover()}
+          // content={renderPopover()}
+          // content={<React.Fragment ref={ref}>{renderPopover()}</React.Fragment>}
+          // content={renderPopover(ref)}
+          content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover()}</div>}
+          // content={renderPopover(ref)} // after adding forwardRef should work
           mouseEnterDelay={0.2}
           overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}
           {...popoverProps}
@@ -75,7 +82,7 @@ const Text: React.FC<BasicItemProps> = ({
   checked,
   tooltipProps,
   popoverProps,
-  renderInformationCard = (): JSX.Element => <>{tooltipProps?.description}</>,
+  renderInformationCard = (ref?: any): JSX.Element => <>{tooltipProps?.description}</>,
   size = 'default',
   onItemHover,
   ...rest

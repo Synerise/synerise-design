@@ -93,6 +93,10 @@ export type InformationCardProps = {
    */
   renderBadge?: Function | null;
   /**
+   * ref to the content of the popover, can be used for referring to the DOM-element for handling events
+   */
+  ref: any;
+  /**
    * Second line. Required prop. Can be copied.
    */
   subtitle: string | React.ReactNode;
@@ -119,7 +123,8 @@ function renderChildren(renderChild: InformationCardProps['children'], descripti
   return renderChild;
 }
 
-const InformationCard: React.FC<InformationCardProps> = ({
+// const InformationCard: React.FC<InformationCardProps> = ({
+const InformationCard: React.FC<InformationCardProps> = React.forwardRef(({
   actionButton,
   actionButtonTooltipText,
   avatarTooltipText,
@@ -135,8 +140,9 @@ const InformationCard: React.FC<InformationCardProps> = ({
   icon: iconElement = <SegmentM />,
   iconColor,
   descriptionConfig,
+  // ref,
   ...props
-}): JSX.Element => {
+}, ref): JSX.Element => {
   const subtitleSlot = (
     <RowWrapper copyable>
       <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>
@@ -153,7 +159,7 @@ const InformationCard: React.FC<InformationCardProps> = ({
   );
   const cachedChildren = React.useMemo(() => renderChildren(children, descriptionConfig), [children, descriptionConfig]);
   return (
-    <S.InfoCardWrapper aria-label="information card">
+    <S.InfoCardWrapper ref={ref} aria-label="information card">
       <Card
         background="white"
         badgeSlot={
@@ -189,7 +195,7 @@ const InformationCard: React.FC<InformationCardProps> = ({
       </Card>
     </S.InfoCardWrapper>
   );
-};
+});
 
 export function buildInitialsBadge(name: string): JSX.Element {
   return <Initials name={name} />;

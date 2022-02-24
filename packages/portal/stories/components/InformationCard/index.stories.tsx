@@ -321,6 +321,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     avatarTooltipText={avatarTooltipText}
     {...preset}
     {...props}
+    ref={props.ref}
     {...hideDescription ? {
       descriptionConfig: null,
     } : {
