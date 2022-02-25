@@ -33,6 +33,8 @@ const stories = {
               tabs={<Tabs tabs={tabs} activeTab={1} handleTabClick={console.log} />}
             />
           }
+          transitionTime={transitionTime}
+          transitionName={transitionName}
         >
           <Grid style={{ paddingTop: 122 }}>
             <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={4} contentWrapper>
