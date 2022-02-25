@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
 import Tooltip from '@synerise/ds-tooltip';
+import './style/index.less';
 import * as S from './Menu.styles';
 
 import SubMenuItem from './Elements/SubMenu/SubMenu';
@@ -15,7 +15,7 @@ class Menu extends React.Component<AntdMenuProps> {
   static Item: typeof MenuItem = MenuItem;
   static Breadcrumb: typeof Breadcrumb = Breadcrumb;
   static Header: typeof Header = Header;
-  static ItemGroup = S.AntdMenu.ItemGroup;
+  static ItemGroup: typeof S.AntdMenu.ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
   static Divider = S.MenuDivider;
 

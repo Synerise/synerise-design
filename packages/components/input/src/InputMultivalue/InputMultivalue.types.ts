@@ -10,5 +10,6 @@ export interface Props {
   disabled?: boolean;
   onBlur?: () => void;
   onFocus?: () => void;
+  onChange?: (values: React.ReactText[]) => void;
   maxLength?: number;
 }

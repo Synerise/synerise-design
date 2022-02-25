@@ -22,7 +22,7 @@ describe('Layout', () => {
   it('should render rightSidebar', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Layout right={RIGHT_SIDEBAR}>
+      <Layout right={{ content: RIGHT_SIDEBAR }}>
         <p>{TEXT_TEST}</p>
       </Layout>
     );
@@ -33,7 +33,7 @@ describe('Layout', () => {
   it('should render leftSidebar', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(
-      <Layout left={LEFT_SIDEBAR}>
+      <Layout left={{ content: LEFT_SIDEBAR }}>
         <p>{TEXT_TEST}</p>
       </Layout>
     );
@@ -47,4 +47,8 @@ describe('Layout', () => {
     // ASSERT
     expect(getByText(TEXT_TEST)).toBeTruthy();
   });
+
+  it.todo('sidebar controls hidden by default');
+  it.todo('sidebar controls accept true and render controls');
+  it.todo('sidebar controls accept render function');
 });

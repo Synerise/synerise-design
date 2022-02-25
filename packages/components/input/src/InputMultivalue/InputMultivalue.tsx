@@ -3,7 +3,6 @@ import * as S from './InputMultivalue.styles';
 import Value from './Elements/Value';
 import { Props } from './InputMultivalue.types';
 
-
 const emptyValue = '';
 const InputMultivalue: React.FC<Props> = props => {
   const {
@@ -12,6 +11,7 @@ const InputMultivalue: React.FC<Props> = props => {
     label,
     description,
     values,
+    onChange,
     onBlur,
     onFocus,
     disabled,
@@ -19,15 +19,19 @@ const InputMultivalue: React.FC<Props> = props => {
     error,
     ...antdProps
   } = props;
-  const showError =  error || !!errorText;
+  const showError = error || !!errorText;
   const [value, setValue] = React.useState(emptyValue);
 
   const [isFocused, setFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [selectedValues, setSelectedValues] = React.useState(values);
+  const handleNewValue = (selected: Props['values']): void => {
+    onChange && onChange(selected);
+    setSelectedValues(selected);
+  };
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      setSelectedValues([...selectedValues, value]);
+      handleNewValue([...selectedValues, value]);
       setValue(emptyValue);
     }
   };
@@ -59,7 +63,7 @@ const InputMultivalue: React.FC<Props> = props => {
             key={`${val}-${index}`}
             onRemoveClick={(): void => {
               const filteredValues = selectedValues.filter(v => v !== val);
-              setSelectedValues(filteredValues);
+              handleNewValue(filteredValues);
             }}
             value={val}
             focused={isFocused}

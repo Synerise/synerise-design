@@ -690,6 +690,9 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
+        onChange={(values) => {
+          action(JSON.stringify({type: 'onChange', values}));
+        }}
       />
     );
   },

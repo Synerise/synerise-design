@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CSSProperties } from 'react';
 import { HandledEventsType } from '@synerise/ds-utils';
 import { ItemSize } from '@synerise/ds-menu';
+import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -59,6 +60,7 @@ export type ContextProps = {
   onOpen?: () => void;
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
+  dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
 };
 
 export type ContextDropdownProps = {

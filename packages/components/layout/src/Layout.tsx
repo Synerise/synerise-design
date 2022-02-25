@@ -6,6 +6,8 @@ import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Layout.styles';
 import { LayoutProps } from './Layout.types';
 
+const DEFAULT_SIDEBAR_WIDTH = 320;
+
 const Layout: React.FC<LayoutProps> = ({
   header,
   left,
@@ -14,25 +16,21 @@ const Layout: React.FC<LayoutProps> = ({
   className,
   styles,
   subheader,
-  leftOpened,
-  rightOpened,
   fullPage = false,
-  leftOpenedWidth = 320,
-  rightOpenedWidth = 320,
+  sidebarAnimationDisabled,
+  renderLeftSidebarControls = false,
+  renderRightSidebarControls = false,
 }) => {
-  const previousLeftOpened = usePrevious(leftOpened);
-  const previousRightOpened = usePrevious(rightOpened);
-  const [leftSidebarOpened, setLeftSidebarOpened] = React.useState(Boolean(leftOpened));
-  const [rightSidebarOpened, setRightSidebarOpened] = React.useState(Boolean(rightOpened));
-
-  React.useEffect(() => {
-    if (leftOpened !== previousLeftOpened) {
-      setLeftSidebarOpened(Boolean(leftOpened));
-    }
-    if (rightOpened !== previousRightOpened) {
-      setRightSidebarOpened(Boolean(rightOpened));
-    }
-  }, [leftOpened, rightOpened, previousLeftOpened, previousRightOpened]);
+  const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
+  const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
+  const showLeftSidebar = React.useMemo(
+    () => left?.opened || !renderLeftSidebarControls,
+    [left, renderLeftSidebarControls]
+  );
+  const showRightSidebar = React.useMemo(
+    () => right?.opened || !renderRightSidebarControls,
+    [right, renderRightSidebarControls]
+  );
 
   return (
     <S.LayoutContainer className={`ds-layout ${className || ''}`}>
@@ -41,30 +39,46 @@ const Layout: React.FC<LayoutProps> = ({
         <S.LayoutBody>
           <>
             {left ? (
-              <S.LayoutSidebarWrapper opened={leftSidebarOpened} openedWidth={leftOpenedWidth}>
+              <S.LayoutSidebarWrapper
+                opened={showLeftSidebar}
+                openedWidth={leftSidebarWidth}
+                animationDisabled={!!sidebarAnimationDisabled}
+              >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar"
                   style={styles && styles.left}
-                  opened={leftSidebarOpened}
-                  openedWidth={leftOpenedWidth}
+                  opened={showLeftSidebar}
+                  openedWidth={leftSidebarWidth}
+                  animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute>
-                    <S.LayoutSidebarInner style={styles && styles.leftInner}>{left}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                <S.SidebarButton
-                  withSubheader={Boolean(subheader)}
-                  onClick={(): void => setLeftSidebarOpened(!leftSidebarOpened)}
-                  opened={leftSidebarOpened}
-                  bothOpened={leftSidebarOpened && rightSidebarOpened}
-                >
-                  <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
-                  <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
-                </S.SidebarButton>
+                {(typeof renderLeftSidebarControls === 'function' && renderLeftSidebarControls()) ||
+                  (renderLeftSidebarControls === true && (
+                    <S.SidebarButton
+                      withSubheader={Boolean(subheader)}
+                      onClick={(): void => left?.onChange(!left?.opened)}
+                      opened={!!left?.opened}
+                      bothOpened={left?.opened && right?.opened}
+                    >
+                      <S.ArrowIcon component={<AngleRightS />} color={theme.palette.white} />
+                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                    </S.SidebarButton>
+                  ))}
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
-          <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
+          <S.LayoutMain
+            className="ds-layout__main"
+            data-popup-container
+            style={styles && styles.main}
+            leftOpened={showLeftSidebar}
+            rightOpened={showRightSidebar}
+            leftSidebarWidth={leftSidebarWidth}
+            rightSidebarWidth={rightSidebarWidth}
+          >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
             <Scrollbar absolute>
               <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
@@ -74,27 +88,36 @@ const Layout: React.FC<LayoutProps> = ({
           </S.LayoutMain>
           <>
             {right ? (
-              <S.LayoutSidebarWrapper opened={rightSidebarOpened} right openedWidth={leftOpenedWidth}>
+              <S.LayoutSidebarWrapper
+                opened={showRightSidebar}
+                right
+                openedWidth={rightSidebarWidth}
+                animationDisabled={!!sidebarAnimationDisabled}
+              >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar ds-layout__sidebar--right"
                   style={styles && styles.right}
-                  opened={rightSidebarOpened}
-                  openedWidth={rightOpenedWidth}
+                  opened={showRightSidebar}
+                  openedWidth={rightSidebarWidth}
+                  animationDisabled={!!sidebarAnimationDisabled}
                 >
                   <Scrollbar absolute>
-                    <S.LayoutSidebarInner style={styles && styles.rightInner}>{right}</S.LayoutSidebarInner>
+                    <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
-                <S.SidebarButton
-                  withSubheader={Boolean(subheader)}
-                  onClick={(): void => setRightSidebarOpened(!rightSidebarOpened)}
-                  right
-                  opened={rightSidebarOpened}
-                  bothOpened={leftSidebarOpened && rightSidebarOpened}
-                >
-                  <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
-                  <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
-                </S.SidebarButton>
+                {(typeof renderRightSidebarControls === 'function' && renderRightSidebarControls()) ||
+                  (renderRightSidebarControls === true && (
+                    <S.SidebarButton
+                      withSubheader={Boolean(subheader)}
+                      onClick={(): void => right?.onChange(!right?.opened)}
+                      right
+                      opened={!!right?.opened}
+                      bothOpened={left?.opened && right?.opened}
+                    >
+                      <S.ArrowIcon component={<AngleLeftS />} color={theme.palette.white} />
+                      <S.CloseIcon component={<CloseS />} color={theme.palette.white} />
+                    </S.SidebarButton>
+                  ))}
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
