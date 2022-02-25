@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.43.4...@synerise/ds-table@0.43.5) (2022-02-25)
+
+
+### Bug Fixes
+
+* **table:** set scroll as undefined with empty data ([b34aa69](https://github.com/synerise/synerise-design/commit/b34aa6959952c49d52fd605c844e6b77be8f69dd))
+
+
+
+
+
 ## [0.43.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.43.3...@synerise/ds-table@0.43.4) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-table

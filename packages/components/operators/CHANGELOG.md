@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.7.3...@synerise/ds-operators@0.7.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
 ## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.7.2...@synerise/ds-operators@0.7.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-operators

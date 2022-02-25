@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.146.2](https://github.com/synerise/synerise-design/compare/portal@0.146.1...portal@0.146.2) (2022-02-25)
+
+
+### Bug Fixes
+
+* **table:** set scroll as undefined with empty data ([b34aa69](https://github.com/synerise/synerise-design/commit/b34aa6959952c49d52fd605c844e6b77be8f69dd))
+
+
+
+
+
 ## [0.146.1](https://github.com/synerise/synerise-design/compare/portal@0.146.0...portal@0.146.1) (2022-02-16)
 
 
