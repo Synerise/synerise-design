@@ -32,6 +32,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   onOpen,
   getPopupContainerOverride,
   type,
+  dropdownProps,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const handleChange = React.useCallback(
@@ -96,6 +97,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   return (
     <div data-popup-container>
       <Dropdown
+        {...dropdownProps}
         getPopupContainer={getPopupContainerOverride || getPopupContainer}
         onVisibleChange={onDropdownVisibilityChange}
         trigger={trigger}

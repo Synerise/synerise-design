@@ -13,7 +13,7 @@ export const ItemLabel = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 24px;
-  max-width: 100%;
+  max-width: 170px;
   user-select: none;
 
   .search-highlight {

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.3...@synerise/ds-manageable-list@0.23.4) (2022-02-16)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.2...@synerise/ds-manageable-list@0.23.3) (2022-02-03)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.1...@synerise/ds-manageable-list@0.23.2) (2022-01-24)
+
+
+### Bug Fixes
+
+* **manageable-list:** add max-width value into manageable-list item ([aedcd28](https://github.com/Synerise/synerise-design/commit/aedcd287d1f9e38dc42596abdc9c8efe97d6ee1f))
+
+
+
+
+
+## [0.23.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.0...@synerise/ds-manageable-list@0.23.1) (2022-01-17)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.22.0...@synerise/ds-manageable-list@0.23.0) (2022-01-13)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 # [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.21.8...@synerise/ds-manageable-list@0.22.0) (2022-01-04)
 
 

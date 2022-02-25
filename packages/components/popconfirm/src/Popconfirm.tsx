@@ -55,7 +55,11 @@ const Popconfirm: PopconfirmType = ({
       {...antdProps}
       visible={visible}
       onVisibleChange={(isVisible: boolean): void => {
-        if (isVisible !== visible) setVisible(isVisible);
+        if (antdProps.onVisibleChange) {
+          antdProps.onVisibleChange(isVisible);
+        } else if (isVisible !== visible) {
+          setVisible(isVisible);
+        }
       }}
       title={
         <S.PopconfirmContent ref={popupRef}>
