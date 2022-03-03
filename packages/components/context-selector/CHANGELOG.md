@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.2...@synerise/ds-context-selector@0.10.3) (2022-02-16)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.1...@synerise/ds-context-selector@0.10.2) (2022-02-03)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.0...@synerise/ds-context-selector@0.10.1) (2022-01-17)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.9.0...@synerise/ds-context-selector@0.10.0) (2022-01-13)
+
+
+### Features
+
+* **context-selector:** allows to override some dropdown props ([fc46516](https://github.com/Synerise/synerise-design/commit/fc46516549872f96c13fe7aded8cbff1c7d5db0d))
+
+
+
+
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.8.7...@synerise/ds-context-selector@0.9.0) (2022-01-04)
 
 

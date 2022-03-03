@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { number, select } from '@storybook/addon-knobs';
 
 import Layout, { Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
@@ -8,23 +7,26 @@ import Card from '@synerise/ds-card';
 import LayoutAppMenu from './utils/AppMenu';
 import LayoutNavbar from './utils/Navbar';
 import * as S from './utils/Layout.styles';
+import { boolean } from '@storybook/addon-knobs';
 
 const stories = {
   rightSidebar: () => {
-    const transitionTime = number('Transition time', 100, { range: true, min: 1, max: 10000, step: 1 });
-    const transitionName = select('Transition name', ['default', 'slide'], 'default');
-
+    const [rightOpened, setRightOpened] = React.useState(false);
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
           header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
-          right={<S.Placeholder></S.Placeholder>}
-          transitionName={transitionName}
-          transitionTime={transitionTime}
+          renderRightSidebarControls={boolean('Render right sidebar controls', true)}
+          right={{
+            content: <S.Placeholder></S.Placeholder>,
+            opened: rightOpened,
+            onChange: setRightOpened,
+          }}
+          sidebarAnimationDisabled={boolean('Disable sidebar animation', false)}
         >
           <Grid>
-            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4} >
-              <Card >
+            <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
+              <Card>
                 <S.Placeholder />
               </Card>
             </Grid.Item>

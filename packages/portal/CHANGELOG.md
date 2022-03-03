@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.146.1](https://github.com/synerise/synerise-design/compare/portal@0.146.0...portal@0.146.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **input:** InputMultivalue add prop onChange ([16fbfcb](https://github.com/synerise/synerise-design/commit/16fbfcbc1be40471b3a1078d9bf5bbe19b9ce9ed))
+
+
+
+
+
+# [0.146.0](https://github.com/synerise/synerise-design/compare/portal@0.145.0...portal@0.146.0) (2022-02-10)
+
+
+### Features
+
+* **layout:** render left/right sidebar visibility controls ([cdc317e](https://github.com/synerise/synerise-design/commit/cdc317e75c948ba038f6edfe5945ba75ae797b0c))
+
+
+
+
+
+# [0.145.0](https://github.com/synerise/synerise-design/compare/portal@0.144.0...portal@0.145.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* **docs:** fixes storybook example of layout ([325c487](https://github.com/synerise/synerise-design/commit/325c4873f033ba9c9db5440a7a1e4efd4c00738f))
+
+
+
+
+
 # [0.144.0](https://github.com/synerise/synerise-design/compare/portal@0.143.1...portal@0.144.0) (2022-01-04)
 
 

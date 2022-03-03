@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { number, select } from '@storybook/addon-knobs';
 
 import Layout, { Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
@@ -24,9 +23,6 @@ const tabs = [
 
 const stories = {
   withContentWrapper: () => {
-    const transitionTime = number('Transition time', 100, { range: true, min: 1, max: 10000, step: 1 });
-    const transitionName = select('Transition name', ['default', 'slide'], 'default');
-
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
@@ -37,8 +33,6 @@ const stories = {
               tabs={<Tabs tabs={tabs} activeTab={1} handleTabClick={console.log} />}
             />
           }
-          transitionTime={transitionTime}
-          transitionName={transitionName}
         >
           <Grid style={{ paddingTop: 122 }}>
             <Grid.Item xxl={16} xl={12} lg={12} md={8} sm={8} xs={4} contentWrapper>
