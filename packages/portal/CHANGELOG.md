@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.147.0](https://github.com/synerise/synerise-design/compare/portal@0.146.2...portal@0.147.0) (2022-03-04)
+
+
+### Features
+
+* **alert:** add customIcon prop to IconAlert ([afa5817](https://github.com/synerise/synerise-design/commit/afa5817d0b8e2ebc80b69337998fb1e3c55a0259))
+
+
+
+
+
 ## [0.146.2](https://github.com/synerise/synerise-design/compare/portal@0.146.1...portal@0.146.2) (2022-02-25)
 
 

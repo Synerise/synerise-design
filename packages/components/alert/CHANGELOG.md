@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.4.7...@synerise/ds-alert@0.5.0) (2022-03-04)
+
+
+### Features
+
+* **alert:** add customIcon prop to IconAlert ([afa5817](https://github.com/Synerise/synerise-design/commit/afa5817d0b8e2ebc80b69337998fb1e3c55a0259))
+* **alert:** add tests to IconAlert ([e3bfe24](https://github.com/Synerise/synerise-design/commit/e3bfe240f322cc36aa8703e715cbd458f7b73649))
+
+
+
+
+
 ## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.4.6...@synerise/ds-alert@0.4.7) (2022-02-25)
 
 **Note:** Version bump only for package @synerise/ds-alert
