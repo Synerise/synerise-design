@@ -95,6 +95,7 @@ import Alert from '@synerise/ds-alert'
 | withLink        | prop to show highlited text                                                                                            | `React.ReactNode`           | -          |
 | iconAlert       | prop to set custom icon                                                                                                | `boolean`                   | -          |
 | hoverButton     | prop to set hover state button                                                                                         | `boolean`                   | -          |
+| customIcon      | prop to set custom icon                                                                                                | `React.ReactNode`           | -          |
 
 
 ### Alert.Toast
