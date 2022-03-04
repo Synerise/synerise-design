@@ -1,6 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import IconAlert from '../IconAlert/IconAlert';
+import Icon, { AnonymousM } from '@synerise/ds-icon';
 
 describe('Alert component', () => {
 
@@ -25,5 +26,18 @@ describe('Alert component', () => {
     // ASSERT
     expect(getByText(message)).toBeTruthy();
     expect(getByText(withLink)).toBeTruthy();
+  });
+
+  it('Should render custom icon', () => {
+    // ARRANGE
+    const message = "Custom icon"
+
+    const { getByText, container } = renderWithProvider(
+      <IconAlert iconAlert={true} type='warning' message={message} customIcon={<Icon component={<AnonymousM/>} />}/>
+    );
+
+    // ASSERT
+    expect(container.querySelector('.anonymous-m')).toBeTruthy();
+    expect(getByText(message)).toBeTruthy();
   });
 })
