@@ -10,4 +10,5 @@ export type IconAlertProps = {
   iconAlert?: boolean;
   hoverButton?: boolean;
   disabled?: boolean;
+  customIcon?: React.ReactNode;
 };

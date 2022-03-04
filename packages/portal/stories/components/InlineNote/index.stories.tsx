@@ -1,11 +1,19 @@
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import * as React from 'react'
 import Alert from '@synerise/ds-alert';
 import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconAlert';
+import Icon from '@synerise/ds-icon';
+
+const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
+const iconsRaw = req(req.keys()[0]);
+const iconsNames = Object.keys(iconsRaw);
 
 const stories = {
   InlineNoteDefault: () => {
     const icon = boolean('Set icon', true);
+    const showCustomIcon = boolean('Show custom icon', false);
+    const customIcon = select('Set custom icon', iconsNames, iconsNames[0]);
+    const IconComp = iconsRaw[customIcon];
     return (
       <div
         style={{
@@ -17,7 +25,7 @@ const stories = {
           height: '100%',
         }}
       >
-        <IconAlert iconAlert={icon} message="Inline warning." />
+        <IconAlert iconAlert={icon} message="Inline warning." customIcon = {showCustomIcon && <Icon component={<IconComp/>}/>}/>
       </div>
     );
   },
