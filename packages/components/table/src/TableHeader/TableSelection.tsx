@@ -31,7 +31,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
       let keys: React.ReactText[] = [];
       let rows: T[] = [];
       dataSource.forEach((record: T) => {
-        if (record.children !== undefined && Array.isArray(record.children)) {
+        if (Array.isArray(record.children)) {
           keys = [...keys, ...record.children.map((child: T) => getRowKey(child) as React.ReactText)];
           rows = [...rows, ...record.children];
         } else {
@@ -52,7 +52,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     if (dataSource && selection) {
       let selected: T[] = [];
       dataSource.forEach((record: T): void => {
-        const hasChilds = record.children !== undefined && Array.isArray(record.children);
+        const hasChilds = Array.isArray(record.children);
         if (hasChilds) {
           record.children &&
             record.children.forEach((child: T) => {
@@ -79,7 +79,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   const allSelected = React.useMemo(() => {
     if (isEmpty) return false;
     const allRecords = dataSource.reduce((count: number, record: T) => {
-      return record.children !== undefined ? count + record.children.length : count + 1;
+      return Array.isArray(record.children) ? count + record.children.length : count + 1;
     }, 0);
     return selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
   }, [dataSource, selection, isEmpty]);
@@ -106,8 +106,9 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
           trigger={['click']}
           overlay={
             <S.SelectionMenu>
-              {selection?.selections.filter(Boolean).map(
-                (selectionMenuElement: Selection | SelectionItem): React.ReactNode => {
+              {selection?.selections
+                .filter(Boolean)
+                .map((selectionMenuElement: Selection | SelectionItem): React.ReactNode => {
                   switch (selectionMenuElement) {
                     case SELECTION_ALL: {
                       return !allSelected ? (
@@ -129,8 +130,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
                       );
                     }
                   }
-                }
-              )}
+                })}
             </S.SelectionMenu>
           }
         >

@@ -219,9 +219,10 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
     const rowWidth = tableWidth || initialWidth;
-    const definedWidth = virtualColumns
-      .filter(({ width }) => width)
-      .reduce((total: number, { width }): number => total + width, 0);
+    const definedWidth = virtualColumns.reduce((total: number, { width }): number => {
+      const widthInPx = calculatePixels(width) || 0;
+      return total + widthInPx;
+    }, 0);
 
     return virtualColumns?.map(column => {
       if (column.width) {

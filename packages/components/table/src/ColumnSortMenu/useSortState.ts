@@ -25,6 +25,7 @@ export const toSortOrder = (value: string | null | undefined): ColumnSortOrder =
 
   return null;
 };
+
 export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[] = []): ColumnsSortState => {
   if (process.env.NODE_ENV === 'development') {
     const columnsKeys = columns.map((c, i) => {
@@ -110,7 +111,6 @@ const setSingleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state, 
       sortOrder: payload.sortOrder,
     },
   };
-
   onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
 
   return newState;
@@ -143,7 +143,6 @@ const setMultipleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state
       sortOrder: payload.sortOrder,
     },
   };
-
   onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
 
   return newState;

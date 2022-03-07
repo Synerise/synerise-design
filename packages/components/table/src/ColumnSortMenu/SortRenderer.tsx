@@ -22,7 +22,6 @@ const handleButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void =
 export const CommonRenderer = <T extends unknown>({
   column,
   sortStateApi,
-  onSort,
 }: SortRendererProps<T>): React.ReactElement => {
   const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
@@ -46,7 +45,6 @@ export const CommonRenderer = <T extends unknown>({
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSort && onSort({ columnKey, order: columnSortOrder }, sortStateApi.columnsSortState);
                   onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 220 }}
@@ -98,7 +96,6 @@ export const CommonRenderer = <T extends unknown>({
 export const StringRenderer = <T extends unknown>({
   column,
   sortStateApi,
-  onSort,
 }: SortRendererProps<T>): React.ReactElement => {
   const { getColumnSortOrder, setColumnSortOrder } = sortStateApi;
   const columnKey = String(column.key);
@@ -122,7 +119,6 @@ export const StringRenderer = <T extends unknown>({
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
-                  onSort && onSort({ columnKey, order: columnSortOrder }, sortStateApi.columnsSortState);
                   onSortOrderChange(toSortOrder(String(key)));
                 }}
                 style={{ width: 170 }}
