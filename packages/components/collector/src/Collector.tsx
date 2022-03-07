@@ -53,6 +53,10 @@ const Collector: React.FC<CollectorProps> = ({
   const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
+  React.useEffect(() => {
+    console.log('updateSelectedValue', selected.length);
+    setSelectedValues(selected);
+  }, [selected]);
   const [filteredSuggestions, setFilteredSuggestions] = React.useState<CollectorValue[]>(suggestions || []);
 
   const filterLookupKey = React.useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
@@ -220,7 +224,7 @@ const Collector: React.FC<CollectorProps> = ({
           focus={isFocused}
         >
           <Values
-            values={selectedValues}
+            values={selected}
             onDeselect={onItemDeselect}
             focused={isFocused}
             disabled={!!disabled}
@@ -272,6 +276,7 @@ const Collector: React.FC<CollectorProps> = ({
           (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
         }
         onSelect={(item): void => {
+          console.log('nic');
           onItemSelect && onItemSelect(item);
           !keepSearchQueryOnSelect && item[filterLookupKey] && setValue(item[filterLookupKey]);
         }}
