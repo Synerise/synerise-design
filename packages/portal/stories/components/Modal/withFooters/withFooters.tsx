@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  sizes } from '../index.stories';
+import { propsWithKnobs, sizes } from '../index.stories';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Switch from '@synerise/ds-switch';
 import Button from '@synerise/ds-button';
@@ -35,10 +35,10 @@ const customFooterProps = (headerType: string, switchEnabled: boolean, setSwitch
             <Button type="secondary">Settings</Button>
           </div>
           <div style={{ display: 'flex' }}>
-            <Button type="ghost">Cancel</Button>
+            <Button type="ghost">{propsWithKnobs().cancelText}</Button>
 
-            <Button type="primary">
-              Apply
+            <Button type="primary" loading={propsWithKnobs().confirmLoading}>
+              {propsWithKnobs().okText}
             </Button>
           </div>
         </div>,
@@ -50,10 +50,10 @@ const customFooterProps = (headerType: string, switchEnabled: boolean, setSwitch
             <Switch onChange={setSwitchEnabled} label={text('Set switch label', 'Show property')} checked={switchEnabled} />
           </div>
           <div style={{ display: 'flex' }}>
-            <Button type="ghost">Cancel</Button>
+            <Button type="ghost">{propsWithKnobs().cancelText}</Button>
 
-            <Button type="primary">
-              Apply
+            <Button type="primary" loading={propsWithKnobs().confirmLoading}>
+              {propsWithKnobs().okText}
             </Button>
           </div>
         </div>,

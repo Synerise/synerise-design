@@ -107,10 +107,10 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
               </div>
 
               <div style={{ display: 'flex' }}>
-                <Button type="ghost">Cancel</Button>
+                <Button type="ghost">{propsWithKnobs().cancelText}</Button>
 
                 <Button type="primary" loading={propsWithKnobs().confirmLoading}>
-                  Apply
+                  {propsWithKnobs().okText}
                 </Button>
               </div>
             </div>

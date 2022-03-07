@@ -3,6 +3,7 @@ import Modal from '@synerise/ds-modal/dist/Modal';
 import Button from '@synerise/ds-button';
 import { propsWithKnobs } from '../index.stories';
 import { withState } from '@dump247/storybook-state';
+import * as S from '@synerise/ds-modal/dist/Modal.styles';
 
 const DEFAULT_STATE = {
   visible: false,
@@ -30,10 +31,10 @@ const defaultStory = withState(DEFAULT_STATE)(({ store }) => {
                 </div>
 
                 <div style={{ display: 'flex' }}>
-                  <Button type="ghost">Cancel</Button>
+                  <Button type="ghost">{propsWithKnobs().cancelText}</Button>
 
                   <Button type="primary" loading={propsWithKnobs().confirmLoading}>
-                    Apply
+                    {propsWithKnobs().okText}
                   </Button>
                 </div>
               </div>

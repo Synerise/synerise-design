@@ -28,7 +28,7 @@ export const propsWithKnobs = () => ({
   title: text('Title text', 'Modal heading'),
   description: text('Description text', 'Modal description'),
   cancelText: text('Cancel text', 'Cancel'),
-  okText: text('OK text', 'OK'),
+  okText: text('OK text', 'Apply'),
   width: number('Width', 600),
   okType: text('OK style type', 'primary'),
   zIndex: number('zIndex', 1),
