@@ -4,20 +4,20 @@ import * as S from '../CardTab.styles';
 import { Props } from './CardTabActions.types';
 
 const CardTabActions: React.FC<Props> = ({
-  changeNameAvailable,
   enterEditNameMode,
   onDuplicateTab,
   onRemoveTab,
   texts,
+  actionsAvailable,
 }) => {
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix">
       <Cruds
-        onEdit={changeNameAvailable ? enterEditNameMode : undefined}
+        onEdit={actionsAvailable?.editName ? enterEditNameMode : undefined}
         editTooltip={texts?.changeNameTooltip}
-        onDuplicate={onDuplicateTab}
+        onDuplicate={actionsAvailable?.duplicate ? onDuplicateTab : undefined}
         duplicateTooltip={texts?.duplicateTooltip}
-        onRemove={onRemoveTab}
+        onRemove={actionsAvailable?.remove ? onRemoveTab : undefined}
         removeTooltip={texts?.removeTooltip}
       />
     </S.CardTabSuffix>

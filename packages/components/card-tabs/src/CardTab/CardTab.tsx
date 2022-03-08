@@ -137,10 +137,14 @@ const CardTab: React.FC<CardTabProps> = ({
       {showCardActions() && (
         <CardTabActions
           enterEditNameMode={handleEditName}
-          changeNameAvailable={Boolean(onChangeName)}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
           texts={getTexts}
+          actionsAvailable={{
+            duplicate: Boolean(onDuplicateTab),
+            editName: Boolean(onChangeName),
+            remove: Boolean(onRemoveTab),
+          }}
         />
       )}
       {suffixIcon && (

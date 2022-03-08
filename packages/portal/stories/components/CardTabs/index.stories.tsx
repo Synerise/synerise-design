@@ -97,6 +97,7 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
+
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -153,6 +154,8 @@ const stories = {
       store.set({ activeTab: id });
     };
 
+    const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
+
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs
@@ -176,7 +179,7 @@ const stories = {
               onSelectTab={handleSelect}
               onChangeName={handleChangeName}
               onRemoveTab={handleRemove}
-              onDuplicateTab={handleDuplicate}
+              onDuplicateTab={isTabsLimitNotExceeded ? handleDuplicate : undefined}
               texts={{
                 changeNameTooltip: 'Rename',
                 removeTooltip: 'Remove',
