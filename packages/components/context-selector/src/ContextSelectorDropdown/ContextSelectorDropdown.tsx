@@ -365,7 +365,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
                     if (popoverProps as MenuItemProps as MaybePopoverProps['popoverProps']) {
                       // popoverProps.getPopupContainer = (): HTMLElement => overlayRef.current as HTMLElement;
                       console.info('set item\'s popover getpopupcontainer to', overlayRef.current)
-                      popoverProps.ref2 = el => {
+                      popoverProps.ref = el => {
                         console.info('setting ref', index, el)
                         // poopoverRef[index] = el
                         // poopoverRef.current[index] = el

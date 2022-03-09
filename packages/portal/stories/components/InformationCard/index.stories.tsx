@@ -149,7 +149,12 @@ function WithDropdown() {
           // renderInformationCard: () => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
           renderInformationCard: () => <InformationCard ref={(ref) => {
             // popoverRef[0] = ref
-            popoverRef.current[0] = ref
+            // popoverRef.current[0] = ref
+            // popoverRef.current[0] = ref.closest('.ant-popover-content')
+            if (ref) {
+              popoverRef.current[0] = ref.closest('.ant-popover-content') || ref
+            }
+            console.info('setting ref to', ref)
           }}
           title="Show" subtitle="someElement.key"/>,
         }]}
