@@ -19,14 +19,21 @@ const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Paramete
 };
 
 export type MaybePopoverProps = React.PropsWithChildren<{
-  popoverProps: BasicItemProps['popoverProps'];
-  renderPopover: BasicItemProps['renderInformationCard'];
+  // popoverProps: BasicItemProps['popoverProps'] & React.RefAttributes<React.ReactNode>;
+  // popoverProps: BasicItemProps['popoverProps'] & React.Ref<React.ReactNode>;
+  popoverProps: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>};
+  // renderPopover: BasicItemProps['renderInformationCard'];
+  // renderPopover: (ref?: any) => JSX.Element;
+  // renderPopover: (ref?: any) => ReturnType<typeof React.forwardRef>;
+  // React.forwardRef<HTMLDivElement, InformationCardProps>
+  // renderPopover: typeof React.forwardRef;
+  // renderPopover: (typeof React.forwardRef<HTMLDivElement, InformationCardProps>);
+  renderPopover: (ref?: any) => JSX.Element;
 }>;
 
 // function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverProps): JSX.Element {
 // function MaybePopover({ popoverProps, renderPopover: {ref, ...renderPopover}, children }: MaybePopoverProps): JSX.Element {
-function MaybePopover({ popoverProps: {ref2: ref, ...popoverProps}, renderPopover, children }: MaybePopoverProps): JSX.Element {
-  console.info('maybe popover', {ref, popoverProps, renderPopover})
+function MaybePopover({ popoverProps: {ref, ...popoverProps} = {}, renderPopover, children }: MaybePopoverProps): JSX.Element {
   const zIndexGreaterThanDropdown = 991050 + 1;
   const cancelBubblingEvent = React.useCallback(
     () => (ev: Event): void => {
@@ -34,6 +41,11 @@ function MaybePopover({ popoverProps: {ref2: ref, ...popoverProps}, renderPopove
     },
     []
   );
+  // const ref2 = React.createRef();
+  React.useEffect(() => {
+    console.log('ref inner', ref, ref?.current)
+    // return () => {}
+  }, [ref])
   if (renderPopover) {
     // div's onKeyDown is used to counteract to ContextSelectorDropdown's onKeyDown
     return (
@@ -44,7 +56,7 @@ function MaybePopover({ popoverProps: {ref2: ref, ...popoverProps}, renderPopove
           // content={renderPopover()}
           // content={<React.Fragment ref={ref}>{renderPopover()}</React.Fragment>}
           // content={renderPopover(ref)}
-          content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover()}</div>}
+          content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover(ref)}</div>}
           // content={renderPopover(ref)} // after adding forwardRef should work
           mouseEnterDelay={0.2}
           overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}

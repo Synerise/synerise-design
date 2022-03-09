@@ -49,7 +49,7 @@ function minimalistic() {
     title={text('Text', 'Name')}
     subtitle={text('Subtitle', 'object.key')}
     renderBadge={null}
-    descriptionConfig={null}/>, 'Menu item (minimalistic info)')
+    descriptionConfig={null}/>, 'Mini info')
 }
 
 /**
@@ -74,14 +74,14 @@ function wrapCardWithMenu(renderCard, title) {
   </>;
 }
 
-function WithMenu() {
+function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
   const data: MenuItemProps[] = [
     {
       text: 'Show',
       popoverProps: {
         defaultVisible: true,
       },
-      renderInformationCard: () => <InformationCardWithKnobs title="Show" subtitle="someElement.key"/>,
+      renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
     },
     {
       text: 'Edit',
@@ -97,7 +97,7 @@ function WithMenu() {
     },
     {
       type: 'divider',
-      renderInformationCard: () => <InformationCardWithKnobs
+      renderInformationCard: () => <InformationCard
         title="Won't be shown"
         subtitle="so far only text elements might contin information-card"/>
     },
@@ -108,7 +108,7 @@ function WithMenu() {
     },
   ];
   return <>
-    <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }}
+    <Menu dataSource={data.map(menuEntryMapper)} asDropdownMenu={true} style={{ width: '100%' }}
       showTextTooltip={true}
       />
   </>;
@@ -117,9 +117,10 @@ function WithMenu() {
 function WithDropdown() {
   const [dropdownVisible, setDropdownVisible] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
+  const popoverRef = React.useRef<Record<string, HTMLElement>>({});
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
-  });
+  }, undefined, popoverRef);
   return <Dropdown
     overlayStyle={{ borderRadius: '3px' }}
     visible={dropdownVisible}
@@ -130,7 +131,42 @@ function WithDropdown() {
         onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
         ref={ref}
       >
-        {WithMenu()}
+        <Menu dataSource={[{
+          text: 'Show',
+          popoverProps: {
+            defaultVisible: true,
+            // here we can also have a ref
+            // ref: null,
+            // ref: React.createRef(),
+            onVisibleChange(isVisible/*, ref*/) {
+              popoverRef.current[0] = isVisible ? ref : null
+              if (!isVisible) {
+                delete popoverRef.current[0]
+              }
+            }
+          },
+          // renderInformationCard: (ref) => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
+          // renderInformationCard: () => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
+          renderInformationCard: () => <InformationCard ref={(ref) => {
+            // popoverRef[0] = ref
+            popoverRef.current[0] = ref
+          }}
+          title="Show" subtitle="someElement.key"/>,
+        }]}
+        asDropdownMenu={true}
+        style={{ width: '100%' }}
+        showTextTooltip={true}
+        />
+        {undefined && WithMenu((e, i) => {
+          if (i === 0 && e.text === 'Show') {
+            return {
+              ...e,
+              // *WithKnobs not used here so that we make sure forwardRef is working
+              // renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
+            }
+          }
+          return e
+        })}
       </Dropdown.Wrapper>
     }
   >

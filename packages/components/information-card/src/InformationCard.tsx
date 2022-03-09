@@ -95,7 +95,7 @@ export type InformationCardProps = {
   /**
    * ref to the content of the popover, can be used for referring to the DOM-element for handling events
    */
-  ref: any;
+  popoverRef: any;
   /**
    * Second line. Required prop. Can be copied.
    */
@@ -124,7 +124,7 @@ function renderChildren(renderChild: InformationCardProps['children'], descripti
 }
 
 // const InformationCard: React.FC<InformationCardProps> = ({
-const InformationCard: React.FC<InformationCardProps> = React.forwardRef(({
+const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(({
   actionButton,
   actionButtonTooltipText,
   avatarTooltipText,
@@ -140,9 +140,14 @@ const InformationCard: React.FC<InformationCardProps> = React.forwardRef(({
   icon: iconElement = <SegmentM />,
   iconColor,
   descriptionConfig,
-  // ref,
+  popoverRef,
   ...props
 }, ref): JSX.Element => {
+  React.useEffect(() => {
+    console.log('ref infocard', ref, ref?.current)//  typeof ref => type Ref<T> = RefCallback<T> | RefObject<T> | null; => 
+    // return () => {}
+  }, [ref])
+  
   const subtitleSlot = (
     <RowWrapper copyable>
       <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>
