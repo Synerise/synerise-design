@@ -21,7 +21,9 @@ const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Paramete
 export type MaybePopoverProps = React.PropsWithChildren<{
   // popoverProps: BasicItemProps['popoverProps'] & React.RefAttributes<React.ReactNode>;
   // popoverProps: BasicItemProps['popoverProps'] & React.Ref<React.ReactNode>;
-  popoverProps: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>};
+  // popoverProps: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>}; // undefined is not assignable to Omit...TooltipPropsWithout title
+  popoverProps?: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>};
+  // popoverProps: Required<BasicItemProps['popoverProps']> & {ref?: React.RefObject<HTMLDivElement>}; // nope, required's too strong
   // renderPopover: BasicItemProps['renderInformationCard'];
   // renderPopover: (ref?: any) => JSX.Element;
   // renderPopover: (ref?: any) => ReturnType<typeof React.forwardRef>;
@@ -94,7 +96,7 @@ const Text: React.FC<BasicItemProps> = ({
   checked,
   tooltipProps,
   popoverProps,
-  renderInformationCard = (ref?: any): JSX.Element => <>{tooltipProps?.description}</>,
+  renderInformationCard = (ref?: any): JSX.Element => <div ref={ref}>{tooltipProps?.description}</div>,
   size = 'default',
   onItemHover,
   ...rest
