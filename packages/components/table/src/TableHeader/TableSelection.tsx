@@ -34,7 +34,8 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
         if (Array.isArray(record.children)) {
           keys = [...keys, ...record.children.map((child: T) => getRowKey(child) as React.ReactText)];
           rows = [...rows, ...record.children];
-        } else {
+        }
+        if (!Array.isArray(record.children) || selection.independentSelectionExpandedRows) {
           const key = getRowKey(record);
           keys = key !== undefined ? [...keys, key] : [...keys];
           rows = [...rows, record];
@@ -52,15 +53,19 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     if (dataSource && selection) {
       let selected: T[] = [];
       dataSource.forEach((record: T): void => {
-        const hasChilds = Array.isArray(record.children);
-        if (hasChilds) {
+        const hasChildren = Array.isArray(record.children);
+        if (hasChildren) {
           record.children &&
             record.children.forEach((child: T) => {
               if (selection?.selectedRowKeys.indexOf(getRowKey(child) as React.ReactText) < 0) {
                 selected = [...selected, child];
               }
             });
-        } else if (selection?.selectedRowKeys.indexOf(getRowKey(record) as React.ReactText) < 0) {
+        }
+        if (
+          selection?.selectedRowKeys.indexOf(getRowKey(record) as React.ReactText) < 0 &&
+          (!hasChildren || selection.independentSelectionExpandedRows)
+        ) {
           selected = [...selected, record];
         }
       });
@@ -79,8 +84,12 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   const allSelected = React.useMemo(() => {
     if (isEmpty) return false;
     const allRecords = dataSource.reduce((count: number, record: T) => {
+      if (selection?.independentSelectionExpandedRows) {
+        return Array.isArray(record.children) ? count + record.children.length + 1 : count + 1;
+      }
       return Array.isArray(record.children) ? count + record.children.length : count + 1;
     }, 0);
+
     return selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
   }, [dataSource, selection, isEmpty]);
 

@@ -17071,6 +17071,11 @@ memoize-one@^4.0.0:
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
   integrity sha1-ojh8WMA//yfKOQwxt2Snmt3z+QY=
 
+memoize-one@^6.0.0:
+  version "6.0.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/memoize-one/-/memoize-one-6.0.0.tgz#b2591b871ed82948aee4727dc6abceeeac8c1045"
+  integrity sha1-slkbhx7YKUiu5HJ9xqvO7qyMEEU=
+
 memoizerific@^1.11.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/memoizerific/-/memoizerific-1.11.3.tgz#7c87a4646444c32d75438570905f2dbd1b1a805a"

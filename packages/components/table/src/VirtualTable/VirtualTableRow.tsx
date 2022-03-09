@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { areEqual } from 'react-window';
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
 import { InfiniteScrollProps } from '../InfiniteScroll/constants';
 import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
@@ -42,6 +43,7 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
     const { index, style, data } = this.props;
     const { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps } =
       data;
+
     const rowData = dataSource[index];
 
     return (
@@ -51,7 +53,10 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
             'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY],
           })}
           style={style}
-          onClick={(): void => onRowClick && onRowClick(rowData)}
+          onClick={(event): void => {
+            event.stopPropagation();
+            onRowClick && onRowClick(rowData);
+          }}
         >
           {mergedColumns.map((column, columnIndex) => {
             const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
@@ -94,4 +99,4 @@ class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
   }
 }
 
-export default VirtualTableRow;
+export default React.memo(VirtualTableRow, areEqual);

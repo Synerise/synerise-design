@@ -17,9 +17,7 @@ import * as React from 'react';
 import { dataSource } from './content/expandable.data';
 import ModalProxy from '@synerise/ds-modal';
 import { renderWithIconInHeaders } from './helpers/helpers';
-import Badge from '@synerise/ds-badge';
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
@@ -50,18 +48,18 @@ const stories = {
           key: 'name',
           icon: { component: <VarTypeStringM /> },
           iconTooltip: { component: <InfoFillS /> },
-          // render: name => {
-          //   return (
-          //     <TableCell.AvatarLabelCell
-          //       avatarAction={action('Avatar Action')}
-          //       avatar={<ObjectAvatar size="medium" iconComponent={<Icon component={<MailM />} color="red" />} />}
-          //       title={name}
-          //     />
-          //   );
-          // },
-          // childRender: name => {
-          //   return <TableCell.StatusLabelCell status={'active'} label={name} />;
-          // },
+          render: name => {
+            return (
+              <TableCell.AvatarLabelCell
+                avatarAction={action('Avatar Action')}
+                avatar={<ObjectAvatar size="medium" iconComponent={<Icon component={<MailM />} color="red" />} />}
+                title={name}
+              />
+            );
+          },
+          childRender: name => {
+            return <TableCell.StatusLabelCell status={'active'} label={name} />;
+          },
         },
         {
           title: 'Age',
