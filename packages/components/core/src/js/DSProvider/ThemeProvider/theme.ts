@@ -18,7 +18,7 @@ export type ThemeProps = SCThemeProps<ThemePropsVars>;
 const getBreakpoints = (): string[] =>
   [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(item => `${item}px`);
 
-const colorsOrder = [
+export const defaultColorsOrder = [
   'blue-600',
   'green-600',
   'mars-600',
@@ -40,7 +40,11 @@ const colorsOrder = [
   'cyan-500',
   'yellow-500',
   'violet-500',
-].map(color => vars.colors[color]);
+] as const;
+
+export type DefaultColor = typeof defaultColorsOrder[number];
+
+const colorsOrder = defaultColorsOrder.map(color => vars.colors[color]);
 
 const theme: ThemePropsVars = {
   variables: vars.variables,
