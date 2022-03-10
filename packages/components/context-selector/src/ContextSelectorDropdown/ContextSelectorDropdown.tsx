@@ -66,11 +66,15 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   }, [groups]);
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
+  // const searchInputRef = React.useRef<HTMLInputElement>(null);
+
+  const [searchInputHandle, setSearchInputHandle] = React.useState<
+    React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
+  >();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
-  // const [popoverVisibilityCounter, setPopoverVisibilityCounter] = React.useState(0);
   const classNames = React.useMemo(() => {
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
@@ -90,19 +94,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         // if callback returned non-false value - terminate hiding dropdown
         return;
       }
-      console.info('setting dropdown visibile to false')
       setDropdownVisible(false);
-      // if (popoverVisibilityCounter === 0) {
-      //   setDropdownVisible(false);
-      // } else {
-      //   setTimeout(() => {
-      //     setDropdownVisible(false);
-      //   }, 3000);
-      // }
     },
     onClickOutsideEvents,
-    // [...Object.values(poopoverRef.current)]
-    poopoverRef
+    ['.ignore-click-outside']
   );
 
   const clearSearch = React.useCallback(() => {
@@ -282,7 +277,16 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
       onKeyDown={(e): void => {
-        setSearchInputFocus(false);
+        if (!overlayRef.current?.contains(e.target as HTMLElement)) {
+          if (process.env.NODE_ENV === 'development') {
+            // eslint-disable-next-line no-console
+            console.info('ignoring onKeyDown as it appeared in another subtree')
+          }
+          // return
+        }
+        if (document?.activeElement === searchInputHandle?.current) {
+          setSearchInputFocus(false);
+        }
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -299,6 +303,9 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
+        // handleInputRef={searchInputRef}
+        // handleInputRef={(e) => searchInputRef.current = e}
+        handleInputRef={(e): void => setSearchInputHandle(e)}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (

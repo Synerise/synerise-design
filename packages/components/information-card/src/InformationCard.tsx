@@ -246,6 +246,9 @@ function DescriptionField({
   onChange,
   ...props
 }: DescriptionFieldProps): JSX.Element {
+  // note: if popover containing this information card will have 
+  // `destroyTooltipOnHide` (or `keepParent`) set to false, then description state hook will be getting reset
+  // https://ant.design/components/popover/#API -> https://ant.design/components/tooltip/#API
   const [description, setDescription] = React.useState<string>('');
   return (
     <div>
@@ -255,7 +258,6 @@ function DescriptionField({
         value={description}
         hideLabel
         onChange={(v): any => {
-          // debugger;
           onChange && onChange(v)
           setDescription(v);
         }}

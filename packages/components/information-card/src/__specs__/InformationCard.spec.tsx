@@ -35,4 +35,5 @@ describe('Information card', () => {
   it.todo('if description is hidden - divier has both top and bottom margin 16px');
   it.todo('click on popoover does not close dropdown');
   it.todo('click on the region to the top from arrow does not close dropdown');
+  it.todo('removing element containing information card should remove infor-card (e.g. esc on modal)');
 });

@@ -121,13 +121,13 @@ function WithDropdown(numberOfElements = 1) {
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   }, undefined, ['.ignore-click-outside']);
-  const defaultMenuEntry = {
+  const buildMenuEntry = (visible) => ({
     text: 'Show',
     popoverProps: {
-      defaultVisible: true,
+      defaultVisible: visible ?? true,
     },
-    renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
-  }
+    renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key" descriptionConfig={{onChange: action('onChange')}}/>,
+  })
   return <Dropdown
     overlayStyle={{ borderRadius: '3px' }}
     visible={dropdownVisible}
@@ -138,7 +138,7 @@ function WithDropdown(numberOfElements = 1) {
         onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
         ref={ref}
       >
-        <Menu dataSource={Array.from(Array(numberOfElements)).map(e => defaultMenuEntry)}
+        <Menu dataSource={Array.from(Array(numberOfElements)).map((e, i) => buildMenuEntry(i === 0))}
           asDropdownMenu={true}
           style={{ width: '100%' }}
           showTextTooltip={true}
@@ -358,7 +358,6 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     avatarTooltipText={avatarTooltipText}
     {...preset}
     {...props}
-    ref={props.ref}
     {...hideDescription ? {
       descriptionConfig: null,
     } : {

@@ -6,6 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';
 import { SearchBarProps } from './SearchBar.types';
 
+/**
+ * @param handleInputRef ref callback to search input, useful for determining whether search input is focus
+ */
 const SearchBar: React.FC<SearchBarProps> = ({
   value,
   className,
