@@ -9,7 +9,7 @@ import Button from '@synerise/ds-button';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
+import { infiniteLoaderItemHeight, InfiniteScrollProps } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType, DSTableProps, RowSelection } from '../Table.types';
@@ -17,65 +17,29 @@ import VirtualTableRow from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import useRowStar from '../hooks/useRowStar';
-import { useTableLocale } from '../utils/locale';
-import { calculatePixels } from '../utils/calculatePixels';
-import { CreateRowStarColumnProps } from '../hooks/useRowStar.types';
+import { useTableLocale, calculatePixels } from '../utils';
+import { CreateRowStarColumnProps, RowStar } from '../hooks/useRowStar.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
+
 const createItemData = memoize(
   (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    mergedColumns,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    selection,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    rowStar,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    onRowClick,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    data,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    infiniteScroll,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    cellHeight,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    defaultTableProps
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
+    mergedColumns: DSColumnType<T>[],
+    selection: RowSelection<T>,
+    rowStar: RowStar<T>,
+    onRowClick: (row: T) => void,
+    data: T,
+    infiniteScroll: InfiniteScrollProps,
+    cellHeight: number,
+    defaultTableProps: DSTableProps<T>
   ): object => ({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     mergedColumns,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     selection,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     rowStar,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     onRowClick,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     dataSource: data,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     infiniteScroll,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     cellHeight,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     defaultTableProps,
   })
 );
@@ -188,7 +152,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       return selectedRows;
     }
     return [];
-  }, [dataSource, selection]);
+  }, [dataSource, getRowKey, selection]);
 
   const handleSelectionChange = React.useCallback(
     (isCheckedNext: boolean, record: T): void => {
@@ -217,7 +181,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           selectedRows
         );
     },
-    [selectedRecords, selection]
+    [getRowKey, selectedRecords, selection]
   );
 
   const renderRowSelection = React.useCallback(
@@ -259,7 +223,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
         )
       );
     },
-    [handleSelectionChange, selection]
+    [getRowKey, handleSelectionChange, selection, tableLocale]
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

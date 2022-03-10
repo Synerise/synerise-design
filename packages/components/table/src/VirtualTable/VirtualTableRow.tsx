@@ -6,8 +6,8 @@ import { InfiniteScrollProps } from '../InfiniteScroll/constants';
 import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './VirtualTable';
 import * as S from './VirtualTable.styles';
-import { calculatePixels } from '../utils/calculatePixels';
 import { RowStar } from '../hooks/useRowStar.types';
+import { getValueFromPath, calculatePixels } from '../utils';
 
 interface Props<T> {
   data: {
@@ -31,12 +31,14 @@ const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], co
 const calculateToPixelsIfDefined = (value: string | number | undefined | null): number | undefined | null =>
   value ? calculatePixels(value) : (value as number);
 
-class VirtualTableRow<T extends any> extends React.PureComponent<Props<T>> {
-  renderColumn = (column: any, rowData: T, index: number): React.ReactNode => {
+class VirtualTableRow<T extends object> extends React.PureComponent<Props<T>> {
+  renderColumn = (column: DSColumnType<T>, rowData: T, index: number): React.ReactNode => {
     if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
-      return column.childRender(rowData[column.dataIndex], rowData, index);
+      return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, index);
     }
-    return column.render ? column.render(rowData[column.dataIndex], rowData, index) : rowData[column.dataIndex];
+    return column.render
+      ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, index)
+      : getValueFromPath(rowData, column.dataIndex);
   };
 
   render(): React.ReactNode {

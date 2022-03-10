@@ -84,7 +84,7 @@ export type Locale = TableLocale & {
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   fixed?: 'left' | 'right';
   sortRender?: SortRender<T>;
-  childRender?: (value: any, row: T, index: number) => React.ReactNode;
+  childRender?: (value: unknown, row: T, index: number) => React.ReactNode;
 };
 
 type AntTableComponentsType<T> = AntTableProps<T>['components'];
