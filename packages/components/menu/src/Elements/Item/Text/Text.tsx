@@ -22,7 +22,8 @@ export type MaybePopoverProps = React.PropsWithChildren<{
   // popoverProps: BasicItemProps['popoverProps'] & React.RefAttributes<React.ReactNode>;
   // popoverProps: BasicItemProps['popoverProps'] & React.Ref<React.ReactNode>;
   // popoverProps: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>}; // undefined is not assignable to Omit...TooltipPropsWithout title
-  popoverProps?: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>};
+  // popoverProps?: BasicItemProps['popoverProps'] & {ref?: React.RefObject<HTMLDivElement>};
+  popoverProps?: BasicItemProps['popoverProps']; // .ignore-click-outside
   // popoverProps: Required<BasicItemProps['popoverProps']> & {ref?: React.RefObject<HTMLDivElement>}; // nope, required's too strong
   // renderPopover: BasicItemProps['renderInformationCard'];
   // renderPopover: (ref?: any) => JSX.Element;
@@ -30,12 +31,14 @@ export type MaybePopoverProps = React.PropsWithChildren<{
   // React.forwardRef<HTMLDivElement, InformationCardProps>
   // renderPopover: typeof React.forwardRef;
   // renderPopover: (typeof React.forwardRef<HTMLDivElement, InformationCardProps>);
-  renderPopover: (ref?: any) => JSX.Element;
+  // renderPopover: (ref?: any) => JSX.Element;
+  // renderPopover: () => JSX.Element; // has to be optional - notice if below
+  renderPopover?: () => JSX.Element;
 }>;
 
 // function MaybePopover({ popoverProps, renderPopover, children }: MaybePopoverProps): JSX.Element {
 // function MaybePopover({ popoverProps, renderPopover: {ref, ...renderPopover}, children }: MaybePopoverProps): JSX.Element {
-function MaybePopover({ popoverProps: {ref, ...popoverProps} = {}, renderPopover, children }: MaybePopoverProps): JSX.Element {
+function MaybePopover({ popoverProps = {}, renderPopover, children }: MaybePopoverProps): JSX.Element {
   const zIndexGreaterThanDropdown = 991050 + 1;
   const cancelBubblingEvent = React.useCallback(
     () => (ev: Event): void => {
@@ -43,11 +46,6 @@ function MaybePopover({ popoverProps: {ref, ...popoverProps} = {}, renderPopover
     },
     []
   );
-  // const ref2 = React.createRef();
-  React.useEffect(() => {
-    console.log('ref inner', ref, ref?.current)
-    // return () => {}
-  }, [ref])
   if (renderPopover) {
     // div's onKeyDown is used to counteract to ContextSelectorDropdown's onKeyDown
     return (
@@ -58,7 +56,9 @@ function MaybePopover({ popoverProps: {ref, ...popoverProps} = {}, renderPopover
           // content={renderPopover()}
           // content={<React.Fragment ref={ref}>{renderPopover()}</React.Fragment>}
           // content={renderPopover(ref)}
-          content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover(ref)}</div>}
+          // content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover(ref)}</div>}
+          content={renderPopover()}
+          overlayClassName='ignore-click-outside'
           // content={renderPopover(ref)} // after adding forwardRef should work
           mouseEnterDelay={0.2}
           overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}

@@ -17,7 +17,7 @@ const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
  * @param ref main ref to a ref
  * @param handler function for handling
  * @param customEventsTypes list of events to handle that are happening outside (optional, pass something else than `undefined` to overwrite default `['mousedown', 'touchstart']`)
- * @param otherRefs list of other refs which will be considered as inner-click (won't trigger the event handler)
+ * @param ignoreSelectors list of classes which, in case it is found that any of parent elements of triggering element has this class - event handler won't be called
  */
 export const useOnClickOutside = (
   ref: RefObject<HTMLElement>,
@@ -26,7 +26,8 @@ export const useOnClickOutside = (
   // otherRefs?: RefObject<HTMLElement>[],
   // otherRefs?: React.MutableRefObject<HTMLElement>,
   // otherRefs?: React.useRef<Record<string, HTMLElement>>,
-  otherRefs?: React.MutableRefObject<Record<string, HTMLElement>>,
+  // otherRefs?: React.MutableRefObject<Record<string, HTMLElement>>,
+  ignoreSelectors?: string[],
 ): void => {
   const handlerRef = useRef(handler);
   const events = customEventsTypes || defaultEvents;
@@ -34,8 +35,6 @@ export const useOnClickOutside = (
   useEffect(() => {
     handlerRef.current = handler;
   });
-
-  // const refsArray = otherRefs && Object.values(otherRefs.current)
 
   useEffect(() => {
     if (!handler) {
@@ -48,12 +47,8 @@ export const useOnClickOutside = (
       if (ref.current.contains(event.target as Node)) {
         return;
       }
-      const refsArray = otherRefs && Object.values(otherRefs.current)
-      console.info('handling click 1', refsArray)
-      // if (refsArray && refsArray.some(someref => someref.current?.contains(event.target as Node))) {
-      if (refsArray && refsArray.some(someref => someref?.contains(event.target as Node))) {
-        console.info('handling click 2')
-        // if at least one of other refs contain clicked element - also terminate processing event
+      if (ignoreSelectors?.some(className => (event.target as HTMLElement)?.closest(className))) {
+        // if any of parent elements contain ignored classes - stop proceeding this event
         return;
       }
       handlerRef.current(event);
@@ -66,5 +61,5 @@ export const useOnClickOutside = (
         document.removeEventListener(event, listener);
       });
     };
-  }, [handler, ref, events, otherRefs]);
+  }, [handler, ref, events, ignoreSelectors]);
 };

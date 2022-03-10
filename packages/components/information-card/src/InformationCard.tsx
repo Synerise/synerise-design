@@ -93,10 +93,6 @@ export type InformationCardProps = {
    */
   renderBadge?: Function | null;
   /**
-   * ref to the content of the popover, can be used for referring to the DOM-element for handling events
-   */
-  popoverRef: any;
-  /**
    * Second line. Required prop. Can be copied.
    */
   subtitle: string | React.ReactNode;
@@ -140,14 +136,8 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>((
   icon: iconElement = <SegmentM />,
   iconColor,
   descriptionConfig,
-  popoverRef,
   ...props
 }, ref): JSX.Element => {
-  React.useEffect(() => {
-    console.log('ref infocard', ref, ref?.current)//  typeof ref => type Ref<T> = RefCallback<T> | RefObject<T> | null; => 
-    // return () => {}
-  }, [ref])
-  
   const subtitleSlot = (
     <RowWrapper copyable>
       <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>

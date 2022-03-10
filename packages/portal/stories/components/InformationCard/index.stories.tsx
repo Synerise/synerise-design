@@ -118,36 +118,15 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
 function WithDropdown(numberOfElements = 1) {
   const [dropdownVisible, setDropdownVisible] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
-  const popoverRef = React.useRef<Record<string, HTMLElement>>({});
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
-  }, undefined, popoverRef);
+  }, undefined, ['.ignore-click-outside']);
   const defaultMenuEntry = {
     text: 'Show',
     popoverProps: {
       defaultVisible: true,
-      // here we can also have a ref
-      // ref: null,
-      // ref: React.createRef(),
-      onVisibleChange(isVisible/*, ref*/) {
-        popoverRef.current[0] = isVisible ? ref : null
-        if (!isVisible) {
-          delete popoverRef.current[0]
-        }
-      }
     },
-    // renderInformationCard: (ref) => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
-    // renderInformationCard: () => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
-    renderInformationCard: () => <InformationCard ref={(ref) => {
-      // popoverRef[0] = ref
-      // popoverRef.current[0] = ref
-      // popoverRef.current[0] = ref.closest('.ant-popover-content')
-      if (ref) {
-        popoverRef.current[0] = ref.closest('.ant-popover-content') || ref
-      }
-      console.info('setting ref to', ref)
-    }}
-    title="Show" subtitle="someElement.key"/>,
+    renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
   }
   return <Dropdown
     overlayStyle={{ borderRadius: '3px' }}
@@ -160,20 +139,10 @@ function WithDropdown(numberOfElements = 1) {
         ref={ref}
       >
         <Menu dataSource={Array.from(Array(numberOfElements)).map(e => defaultMenuEntry)}
-        asDropdownMenu={true}
-        style={{ width: '100%' }}
-        showTextTooltip={true}
+          asDropdownMenu={true}
+          style={{ width: '100%' }}
+          showTextTooltip={true}
         />
-        {undefined && WithMenu((e, i) => {
-          if (i === 0 && e.text === 'Show') {
-            return {
-              ...e,
-              // *WithKnobs not used here so that we make sure forwardRef is working
-              // renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
-            }
-          }
-          return e
-        })}
       </Dropdown.Wrapper>
     }
   >
@@ -250,8 +219,8 @@ function WithModal(): JSX.Element {
     <Modal
       visible={isVisible}
       onCancel={() => setIsVisible(false)}
-      mask={boolean('modal overlay mask', false)}
-      maskClosable={boolean('modal closes on background click', false)}
+      mask={boolean('modal overlay mask', false, 'Modal')}
+      maskClosable={boolean('modal closes on background click', false, 'Modal')}
       >
         {dropdownSlot}
     </Modal>
