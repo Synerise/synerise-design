@@ -67,6 +67,15 @@ export default styled(
   }
   ${(props): FlattenSimpleInterpolation | false =>
     css`
+      ${props.customColor &&
+      css`
+        .ant-badge-dot,
+        .ant-badge-status-dot {
+          background-color: ${props.customColor.indexOf('-') >= 0
+            ? props.theme.palette[props.customColor]
+            : props.theme.palette[`${props.customColor}-600`]};
+        }
+      `}
       ${props.status === 'active' &&
       !props.customColor &&
       css`
@@ -74,14 +83,7 @@ export default styled(
           background-color: ${props.theme.palette['green-600']};
         }
       `}
-      ${props.customColor &&
-      css`
-        .ant-badge-dot,
-        .ant-badge-status-dot {
-          background-color: ${props.customColor};
-        }
-      `}
-        ${props.status === 'inactive' &&
+      ${props.status === 'inactive' &&
       !props.customColor &&
       css`
         .ant-badge-status-inactive {
@@ -95,7 +97,7 @@ export default styled(
           background-color: ${props.theme.palette['red-600']};
         }
       `}
-        ${props.status === 'processing' &&
+      ${props.status === 'processing' &&
       !props.customColor &&
       css`
         .ant-badge-status-processing {

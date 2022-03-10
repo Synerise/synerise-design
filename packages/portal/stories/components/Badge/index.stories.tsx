@@ -3,10 +3,11 @@ import { text, select, number, boolean, object } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Icon, { FileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import { shapes as avatarShape, sizes as avatarSize } from '../Avatar/constants';
 import { statuses } from './constants';
+import { color } from '@synerise/ds-badge/dist/Badge.types';
 
 const decorator = storyFn => (
   <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>
@@ -197,7 +198,10 @@ const stories = {
       </Badge>
     </React.Fragment>
   ),
-  status: () => <Badge status={'success'} customColor={'red'} text={'test'}></Badge>,
+  status: () => {
+    const customColor = select('Select custom color', [undefined, ...defaultColorsOrder, ...color], undefined);
+    return <Badge status={'success'} customColor={customColor} text={'test'}></Badge>;
+  },
   statusWithAvatar: () => (
     <>
       <Badge status={select('Status', statuses, 'active')}>
