@@ -10,6 +10,7 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import InformationCard from '@synerise/ds-information-card';
+import Modal from '@synerise/ds-modal';
 
 import { buildExtraInfo, buildIconBadge, buildInitialsBadge, InformationCardProps } from '@synerise/ds-information-card';
 
@@ -114,13 +115,40 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
   </>;
 }
 
-function WithDropdown() {
+function WithDropdown(numberOfElements = 1) {
   const [dropdownVisible, setDropdownVisible] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
   const popoverRef = React.useRef<Record<string, HTMLElement>>({});
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   }, undefined, popoverRef);
+  const defaultMenuEntry = {
+    text: 'Show',
+    popoverProps: {
+      defaultVisible: true,
+      // here we can also have a ref
+      // ref: null,
+      // ref: React.createRef(),
+      onVisibleChange(isVisible/*, ref*/) {
+        popoverRef.current[0] = isVisible ? ref : null
+        if (!isVisible) {
+          delete popoverRef.current[0]
+        }
+      }
+    },
+    // renderInformationCard: (ref) => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
+    // renderInformationCard: () => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
+    renderInformationCard: () => <InformationCard ref={(ref) => {
+      // popoverRef[0] = ref
+      // popoverRef.current[0] = ref
+      // popoverRef.current[0] = ref.closest('.ant-popover-content')
+      if (ref) {
+        popoverRef.current[0] = ref.closest('.ant-popover-content') || ref
+      }
+      console.info('setting ref to', ref)
+    }}
+    title="Show" subtitle="someElement.key"/>,
+  }
   return <Dropdown
     overlayStyle={{ borderRadius: '3px' }}
     visible={dropdownVisible}
@@ -131,33 +159,7 @@ function WithDropdown() {
         onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
         ref={ref}
       >
-        <Menu dataSource={[{
-          text: 'Show',
-          popoverProps: {
-            defaultVisible: true,
-            // here we can also have a ref
-            // ref: null,
-            // ref: React.createRef(),
-            onVisibleChange(isVisible/*, ref*/) {
-              popoverRef.current[0] = isVisible ? ref : null
-              if (!isVisible) {
-                delete popoverRef.current[0]
-              }
-            }
-          },
-          // renderInformationCard: (ref) => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
-          // renderInformationCard: () => <InformationCard ref={ref} title="Show" subtitle="someElement.key"/>,
-          renderInformationCard: () => <InformationCard ref={(ref) => {
-            // popoverRef[0] = ref
-            // popoverRef.current[0] = ref
-            // popoverRef.current[0] = ref.closest('.ant-popover-content')
-            if (ref) {
-              popoverRef.current[0] = ref.closest('.ant-popover-content') || ref
-            }
-            console.info('setting ref to', ref)
-          }}
-          title="Show" subtitle="someElement.key"/>,
-        }]}
+        <Menu dataSource={Array.from(Array(numberOfElements)).map(e => defaultMenuEntry)}
         asDropdownMenu={true}
         style={{ width: '100%' }}
         showTextTooltip={true}
@@ -214,21 +216,46 @@ function WithConditionFilter(): JSX.Element {
         // disables hiding dropdown on outside menu click
         // return true // not needed, because getPopupContainer is set to overlayRef
       }
-      step.context.items.forEach((item, idx) => {
+      const items = [...step.context.items].map((item, idx) => {
         // apply these modifications to each of entries in the menu
-        item.renderInformationCard = () => <InformationCardWithKnobs title={item.name} subtitle={item.id} icon={item.icon}/>
-        item.popoverProps = {
-          getPopupContainer: null,
-          ...(item.popoverProps || {}),
-          placement: 'right',
-          // destroyTooltipOnHide: {keepParent: false}, // resets popover state
-          // popupContainer // should be set to dropdown container
+        return {
+          ...item,
+          renderInformationCard: () => <InformationCardWithKnobs title={item.name} subtitle={item.id} icon={item.icon}/>,
+          popoverProps: {
+            getPopupContainer: null,
+            ...(item.popoverProps || {}),
+            placement: 'right',
+            // destroyTooltipOnHide: {keepParent: false}, // resets popover state
+            // popupContainer // should be set to dropdown container
+          }
         }
       })
-      step.context.items[0].popoverProps.defaultVisible = boolean('By default display first tooltip', false);
-      return step
+      items[0].popoverProps.defaultVisible = boolean('By default display first tooltip', false);
+      return {
+        ...step,
+        context: {
+          ...step.context,
+          items
+        },
+      }
     },
   } as transformsType)
+}
+
+function WithModal(): JSX.Element {
+  const [isVisible, setIsVisible] = React.useState<boolean>(true)
+  const dropdownSlot = WithDropdown(5)
+  return <>
+    <button onClick={() => setIsVisible(true)}>Show modal</button>
+    <Modal
+      visible={isVisible}
+      onCancel={() => setIsVisible(false)}
+      mask={boolean('modal overlay mask', false)}
+      maskClosable={boolean('modal closes on background click', false)}
+      >
+        {dropdownSlot}
+    </Modal>
+  </>
 }
 
 function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
@@ -387,6 +414,7 @@ const stories: Record<string, Story> = {
   withMenu: WithMenu,
   WithDropdown,
   WithConditionFilter,
+  WithModal,
 };
 
 export default {

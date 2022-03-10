@@ -96,7 +96,7 @@ const Text: React.FC<BasicItemProps> = ({
   checked,
   tooltipProps,
   popoverProps,
-  renderInformationCard = (ref?: any): JSX.Element => <div ref={ref}>{tooltipProps?.description}</div>,
+  renderInformationCard,// = (ref?: any): JSX.Element => <div ref={ref}>{tooltipProps?.description}</div>, // cannot be given as will always render an empty popover
   size = 'default',
   onItemHover,
   ...rest
