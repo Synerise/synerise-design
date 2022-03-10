@@ -12,7 +12,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight, InfiniteScrollProps } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
-import { RowType, DSTableProps, RowSelection } from '../Table.types';
+import { RowType, DSTableProps, RowSelection, DSColumnType } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
@@ -22,16 +22,22 @@ import { CreateRowStarColumnProps, RowStar } from '../hooks/useRowStar.types';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
 
+// based on https://react-window.vercel.app/#/examples/list/memoized-list-items
 const createItemData = memoize(
   (
-    mergedColumns: DSColumnType<T>[],
-    selection: RowSelection<T>,
-    rowStar: RowStar<T>,
-    onRowClick: (row: T) => void,
-    data: T,
-    infiniteScroll: InfiniteScrollProps,
-    cellHeight: number,
-    defaultTableProps: DSTableProps<T>
+    mergedColumns: DSColumnType<unknown>[],
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    selection: RowSelection<any> | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    rowStar: RowStar<any> | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onRowClick: undefined | Function,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any,
+    infiniteScroll: InfiniteScrollProps | undefined,
+    cellHeight: number | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    defaultTableProps: DSTableProps<any> | undefined
   ): object => ({
     mergedColumns,
     selection,
