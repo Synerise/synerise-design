@@ -14,6 +14,8 @@ export const color = [
   'cyan',
   'purple',
   'violet',
+  'white',
+  'transparent',
 ] as const;
 
 export type Color = typeof color[number];
