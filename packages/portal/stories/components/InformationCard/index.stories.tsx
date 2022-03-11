@@ -121,11 +121,12 @@ function WithDropdown(numberOfElements = 1) {
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   }, undefined, ['.ignore-click-outside']);
+  // const popoverProps = React.useMemo(() => ({ defaultVisible: dropdownVisible && (visible ?? true), }), [dropdownVisible])
+  const popoverProps = React.useCallback((visible) => ({ defaultVisible: dropdownVisible && (visible ?? true), }), [dropdownVisible])
   const buildMenuEntry = (visible) => ({
     text: 'Show',
-    popoverProps: {
-      defaultVisible: visible ?? true,
-    },
+    // popoverProps: { defaultVisible: dropdownVisible && (visible ?? true), },
+    popoverProps: popoverProps(visible),
     renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key" descriptionConfig={{onChange: action('onChange')}}/>,
   })
   return <Dropdown
@@ -215,12 +216,12 @@ function WithModal(): JSX.Element {
   const [isVisible, setIsVisible] = React.useState<boolean>(true)
   const dropdownSlot = WithDropdown(5)
   return <>
-    <button onClick={() => setIsVisible(true)}>Show modal</button>
+    <Button onClick={() => setIsVisible(true)}>Show modal</Button>
     <Modal
       visible={isVisible}
       onCancel={() => setIsVisible(false)}
-      mask={boolean('modal overlay mask', false, 'Modal')}
-      maskClosable={boolean('modal closes on background click', false, 'Modal')}
+      mask={boolean('modal overlay mask', true, 'Modal')}
+      maskClosable={boolean('modal closes on background click', true, 'Modal')}
       >
         {dropdownSlot}
     </Modal>
@@ -318,7 +319,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     preset.title = getTitle();
     preset.subtitle = getSubtitle();
   }
-  let  customActionButtonContent, actionButtonText, actionButtonTooltipText, avatarTooltipText;
+  let  customActionButtonContent, actionButtonTooltipText, avatarTooltipText;
   if (iconSlotType !== 'empty') {
     avatarTooltipText = text('Icon tooltip text', 'Icon tooltip text');
   }
@@ -327,7 +328,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     customActionButtonContent = boolean('Custom action button content', '');
   }
   if (actionButton) {
-    actionButtonText = text('Action button tooltip title text', 'You can set title')
+    actionButtonTooltipText = text('Action button tooltip title text', 'You can set title')
   }
   const descriptionProps = {} as any;
   let hideDescription;
@@ -353,7 +354,6 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
     title="Title"
     subtitle="key.name"
     actionButton={customActionButtonContent ? () => <>Content</> : actionButton}
-    actionButtonText={actionButtonText}
     actionButtonTooltipText={actionButtonTooltipText}
     avatarTooltipText={avatarTooltipText}
     {...preset}
@@ -367,7 +367,6 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
       }
     }}
     {...(hasCustomDescription || hideDescription) ? {
-      // null is used to signalise children to divider in case of hide description
       children: customDescription || null,
     } : {}}
   />

@@ -51,7 +51,7 @@ export type InformationCardProps = {
    */
   avatarTooltipText?: string;
   /**
-   * content of the tooltip, by default it's a `SubtleForm.TextArea`
+   * content of the tooltip, it defaults to `SubtleForm.TextArea`
    */
   children?: React.ReactNode | ((props?: SubtleTextAreaProps | null) => React.ReactNode);
   /**
@@ -119,7 +119,6 @@ function renderChildren(renderChild: InformationCardProps['children'], descripti
   return renderChild;
 }
 
-// const InformationCard: React.FC<InformationCardProps> = ({
 const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(({
   actionButton,
   actionButtonTooltipText,
@@ -248,7 +247,6 @@ function DescriptionField({
 }: DescriptionFieldProps): JSX.Element {
   // note: if popover containing this information card will have 
   // `destroyTooltipOnHide` (or `keepParent`) set to false, then description state hook will be getting reset
-  // https://ant.design/components/popover/#API -> https://ant.design/components/tooltip/#API
   const [description, setDescription] = React.useState<string>('');
   return (
     <div>
@@ -257,7 +255,7 @@ function DescriptionField({
         minRows={1}
         value={description}
         hideLabel
-        onChange={(v): any => {
+        onChange={(v): void => {
           onChange && onChange(v)
           setDescription(v);
         }}
@@ -299,7 +297,7 @@ function withTooltip(
 }
 
 /**
- * Renders footer part including handling action button with optional tooltip
+ * Renders footer part including handling action button with an optional tooltip
  */
 function Footer({
   actionButton = false,
