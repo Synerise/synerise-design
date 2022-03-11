@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { propsWithKnobs, sizes } from '../index.stories';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import * as S from './withHeaders.styles';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, SearchM, UserM } from '@synerise/ds-icon';
@@ -123,18 +123,8 @@ const withHeaders = () => {
   const storyProps = {
     size: select('Size', sizes, null),
     visible: boolean('Set open', true),
-    footer: boolean('Show footer', true) ? <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-      <div style={{ width: '100%', display: 'flex' }}>
-        <Button type="secondary">Settings</Button>
-      </div>
-      <div style={{ display: 'flex' }}>
-        <Button type="ghost">{propsWithKnobs().cancelText}</Button>
-
-        <Button type="primary" loading={propsWithKnobs().confirmLoading}>
-          {propsWithKnobs().okText}
-        </Button>
-      </div>
-    </div> : null,
+    withFooter: boolean('Show custom footer', true) ,
+    settingButtonText: text('Set text of button', 'Setting'),
     headerActions: (
       <div>
         <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>

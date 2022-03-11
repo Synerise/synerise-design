@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import * as React from 'react';
 
 const blank = () => (
-  <Modal closable={true} visible={true} size={'small'} footer={null} blank onCancel={action('Cancel')}>
+  <Modal closable={true} visible={true} size={'small'} footer={true} blank onCancel={action('Cancel')}>
     <div style={{ height: 362 }}></div>
   </Modal>
 );

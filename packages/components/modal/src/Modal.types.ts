@@ -8,8 +8,10 @@ export interface Props extends ModalProps {
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
   titleContainerStyle?: React.CSSProperties;
+  settingButtonText?: string;
   texts?: {
     okButton?: string;
     cancelButton?: string;
   };
+  withFooter?: boolean;
 }

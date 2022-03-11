@@ -97,25 +97,9 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
         {...spread}
         visible={store.state.visible}
         onCancel={() => store.set({ visible: false })}
-        footer={
-          spread.removeFooter ? null : !spread.renderCustomFooter ? (
-            undefined
-          ) : (
-            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-              <div style={{ width: '100%', display: 'flex' }}>
-                <Button type="secondary">Settings</Button>
-              </div>
-
-              <div style={{ display: 'flex' }}>
-                <Button type="ghost">{propsWithKnobs().cancelText}</Button>
-
-                <Button type="primary" loading={propsWithKnobs().confirmLoading}>
-                  {propsWithKnobs().okText}
-                </Button>
-              </div>
-            </div>
-          )
-        }
+        withFooter={
+          spread.renderCustomFooter}
+        settingButtonText={spread.settingButton}
         headerActions={
           propsWithKnobs().showHeaderAction && (
             <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>
