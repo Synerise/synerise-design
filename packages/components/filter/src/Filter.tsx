@@ -8,6 +8,7 @@ import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
+import { MatchingWrapper } from './Filter.styles';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'ghost-element',
@@ -57,6 +58,10 @@ const Filter: React.FC<FilterProps> = ({
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
+      },
+      placeholder: {
+        chooseCondition: formatMessage({ id: 'DS.PLACEHOLDER.CHOOSE-CONDITION' }),
+        getPreview: formatMessage({ id: 'DS.PLACEHOLDER.GET-PREVIEW' }),
       },
     }),
     [formatMessage, texts]
@@ -117,14 +122,18 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <S.FilterWrapper>
-      {matching && <Matching {...matching} texts={text.matching} />}
+      {matching && (
+        <MatchingWrapper>
+          <Matching {...matching} texts={text.matching} />
+        </MatchingWrapper>
+      )}
       <>
         {expressions.length > 0 ? (
           <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
             {expressions.map(renderExpression)}
           </ReactSortable>
         ) : (
-          <Placeholder text="Choose type of condition below" />
+          <Placeholder text={text.placeholder.chooseCondition} />
         )}
       </>
       {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}

@@ -150,7 +150,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   justify-content: flex-start;
   padding: 12px;
   width: 180px;
-  height: 48px;
+  height: 40px;
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];
