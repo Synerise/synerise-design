@@ -330,6 +330,9 @@
         "FILTER": {
             "DROP-ME-HERE": "Upuść mnie tutaj",
             "ADD-FILTER": "Dodaj filtr"
+        },
+        "PLACEHOLDER": {
+            "CHOOSE-CONDITION": "Wybierz rodzaj warunku"
         }
     }
 }

@@ -160,7 +160,7 @@ const stories = {
           maxTabsCount={maxTabCount}
           onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
           onAddTab={handleAddItem}
-          onAddTabText={'Add new'}
+          addTabLabel={'Add new'}
         >
           {store.state.items.map(item => (
             <CardTab

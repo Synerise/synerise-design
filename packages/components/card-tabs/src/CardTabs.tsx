@@ -17,7 +17,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   onAddTab,
   maxTabsCount,
   children = [],
-  onAddTabText,
+  addTabLabel,
 }) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
     onChangeOrder &&
@@ -57,7 +57,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
         <span data-testid="card-tabs-add-button">
           <Button.Creator
             disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
-            label={(onAddTabText && onAddTabText) || ''}
+            label={addTabLabel ?? ''}
             onClick={onAddTab}
           />
         </span>
