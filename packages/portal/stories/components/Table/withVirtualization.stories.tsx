@@ -3,7 +3,6 @@ import faker from 'faker';
 import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import { withState } from '@dump247/storybook-state';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';

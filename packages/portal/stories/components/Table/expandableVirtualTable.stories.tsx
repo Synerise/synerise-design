@@ -118,19 +118,26 @@ const stories = {
             boolean('Expand on row click', true) && handleExpandRow(record.key);
           }}
           rowKey={row => row.key}
-          selection={{
-            onChange: handleSelectRow,
-            selectedRowKeys: selectedRows,
-            selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
-            independentSelectionExpandedRows: boolean('Enable independent selection of rows and expanded rows'),
-          }}
-          rowStar={{
-            disableForExpandedRows: boolean('Disable row star in expanded rows', false),
-            starredRowKeys: store.state.starredRowKeys,
-            onChange: (starredRowKeys): void => {
-              store.set({ starredRowKeys });
-            },
-          }}
+          selection={
+            boolean('Enable row selection', false) && {
+              onChange: handleSelectRow,
+              selectedRowKeys: selectedRows,
+              selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
+              independentSelectionExpandedRows: boolean(
+                'Enable independent selection of rows and expanded rows',
+                false
+              ),
+            }
+          }
+          rowStar={
+            boolean('Enable row start', false) && {
+              disableForExpandedRows: boolean('Disable row star in expanded rows', false),
+              starredRowKeys: store.state.starredRowKeys,
+              onChange: (starredRowKeys): void => {
+                store.set({ starredRowKeys });
+              },
+            }
+          }
           onSearch={console.log}
           itemsMenu={
             <ItemsMenu>
