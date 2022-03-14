@@ -87,10 +87,10 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
   &&& {
     width: ${(props): string => {
       if (props.block) return '100%';
-      return props.withLabel ? 'auto' : '48px';
+      return props.withLabel ? 'auto' : '40px';
     }};
     opacity: ${(props): string => (props.disabled ? `0.4` : '1')};
-    height: 48px;
+    height: 40px;
     ${(props): string | false => props.withLabel && !props.block && `min-width: 200px;`}
     padding: 0;
     border-radius: 3px;

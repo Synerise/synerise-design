@@ -85,6 +85,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | index          | Position of tab                                                                 | number                                                                                                 | -        |
 | name           | Name of tab                                                                     | string                                                                                                 | -        |
 | tag            | Single letter (tag) of tab                                                      | string                                                                                                 | -        |
+| addTabLabel    | set text into add tab button                                                    | string                                                                                                 | -        |
 | active         | Flag of active tab                                                              | boolean                                                                                                |`false`   |
 | greyBackground | Change default color of tabs, use when background will be different then white  | boolean                                                                                                |`false`   |
 | prefixIcon     | Icon visible on the left side of the tab                                        | SVG Icon                                                                                               | null     |
