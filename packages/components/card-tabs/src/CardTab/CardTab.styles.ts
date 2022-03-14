@@ -54,7 +54,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   color: ${(props): string => props.theme.palette['grey-600']};
   line-height: 20px;
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
