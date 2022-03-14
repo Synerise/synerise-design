@@ -68,7 +68,7 @@ const stories = {
       pagination={{
         pageSize: 10,
       }}
-      onSort={console.log}
+      onSort={action('onSort')}
     />
   ),
 };

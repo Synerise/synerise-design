@@ -25,7 +25,7 @@ const stories = {
   default: withState({
     expandedRows: [],
     selectedRows: [],
-    starredRowKeys: [],
+    starredRowKeys: ['parent-row-1', 'parent-row-6', 'parent-row-9'],
   })(({ store }) => {
     const { expandedRows, selectedRows } = store.state;
     const handleExpandRow = (key: number): void => {
@@ -124,15 +124,13 @@ const stories = {
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
             independentSelectionExpandedRows: boolean('Enable independent selection of rows and expanded rows'),
           }}
-          rowStar={
-            boolean('Enable row star', undefined) && {
-              disableForExpandedRows: boolean('Disable row star in expanded rows', false),
-              starredRowKeys: store.state.starredRowKeys,
-              onChange: (starredRowKeys): void => {
-                store.set({ starredRowKeys });
-              },
-            }
-          }
+          rowStar={{
+            disableForExpandedRows: boolean('Disable row star in expanded rows', false),
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            },
+          }}
           onSearch={console.log}
           itemsMenu={
             <ItemsMenu>

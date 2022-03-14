@@ -81,6 +81,7 @@ const VirtualizationWithState: React.FC = () => {
         columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
         cellHeight={50}
         rowKey={row => row.key}
+        onSort={action('onSort')}
         headerButton={
           boolean('Show header button', false) && (
             <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

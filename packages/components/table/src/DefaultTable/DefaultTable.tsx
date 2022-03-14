@@ -22,12 +22,14 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
     (row: T): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
       if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
+      return row.key || undefined;
     },
     [rowKey]
   );
 
-  const starColumn = getRowStarColumn({ ...props, getRowKey });
+  const starColumn = React.useMemo(() => {
+    return getRowStarColumn({ ...props, getRowKey });
+  }, [getRowKey, getRowStarColumn, props]);
 
   React.useEffect(() => {
     if (!isEqual(previousColumns, columns)) {

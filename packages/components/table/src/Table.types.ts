@@ -54,6 +54,7 @@ export interface Filter {
 }
 
 export type RowType<T> = {
+  key?: string | number;
   children?: T[];
 };
 
