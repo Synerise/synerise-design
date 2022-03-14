@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.10.4...@synerise/ds-card-tabs@0.11.0) (2022-03-14)
+
+
+### Bug Fixes
+
+* **card-tabs:** add translations & change prop name ([1834111](https://github.com/Synerise/synerise-design/commit/1834111a1809dcd990661f05e6cc09d45d45fb02))
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
 ## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.10.3...@synerise/ds-card-tabs@0.10.4) (2022-02-25)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs
