@@ -21,7 +21,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     (row): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
       if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
+      return row.key || undefined;
     },
     [rowKey]
   );
@@ -32,7 +32,13 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
       let rows: T[] = [];
       dataSource.forEach((record: T) => {
         if (Array.isArray(record.children)) {
-          keys = [...keys, ...record.children.map((child: T) => getRowKey(child) as React.ReactText)];
+          keys = [
+            ...keys,
+            ...record.children.reduce((acc: React.ReactText[], child: T) => {
+              const key = getRowKey(child) as React.ReactText;
+              return key ? [...acc, key] : acc;
+            }, []),
+          ];
           rows = [...rows, ...record.children];
         }
         if (!Array.isArray(record.children) || selection.independentSelectionExpandedRows) {
@@ -49,22 +55,29 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     if (selection) selection.onChange([], []);
   }, [selection]);
 
+  const getSelectableChildren = React.useCallback(
+    (children: T[] | undefined) => {
+      return children ? children.filter((child: T) => getRowKey(child) !== undefined) : [];
+    },
+    [getRowKey]
+  );
+
   const selectInvert = React.useCallback(() => {
     if (dataSource && selection) {
       let selected: T[] = [];
       dataSource.forEach((record: T): void => {
         const hasChildren = Array.isArray(record.children);
-        if (hasChildren) {
-          record.children &&
-            record.children.forEach((child: T) => {
-              if (selection?.selectedRowKeys.indexOf(getRowKey(child) as React.ReactText) < 0) {
-                selected = [...selected, child];
-              }
-            });
+        const selectableChildren = hasChildren ? getSelectableChildren(record.children) : false;
+        if (selectableChildren) {
+          selectableChildren.forEach((child: T) => {
+            if (selection?.selectedRowKeys.indexOf(getRowKey(child) as React.ReactText) < 0) {
+              selected = [...selected, child];
+            }
+          });
         }
         if (
           selection?.selectedRowKeys.indexOf(getRowKey(record) as React.ReactText) < 0 &&
-          (!hasChildren || selection.independentSelectionExpandedRows)
+          (!selectableChildren || selection.independentSelectionExpandedRows)
         ) {
           selected = [...selected, record];
         }
@@ -75,7 +88,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
         selected
       );
     }
-  }, [dataSource, selection, getRowKey]);
+  }, [dataSource, selection, getRowKey, getSelectableChildren]);
 
   const isEmpty = React.useMemo(() => {
     return dataSource.length === 0;
@@ -85,13 +98,13 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     if (isEmpty) return false;
     const allRecords = dataSource.reduce((count: number, record: T) => {
       if (selection?.independentSelectionExpandedRows) {
-        return Array.isArray(record.children) ? count + record.children.length + 1 : count + 1;
+        return Array.isArray(record.children) ? count + getSelectableChildren(record.children).length + 1 : count + 1;
       }
-      return Array.isArray(record.children) ? count + record.children.length : count + 1;
+      return Array.isArray(record.children) ? count + getSelectableChildren(record.children).length : count + 1;
     }, 0);
 
     return selection?.selectedRowKeys && allRecords === selection.selectedRowKeys.length;
-  }, [dataSource, selection, isEmpty]);
+  }, [isEmpty, dataSource, selection, getSelectableChildren]);
 
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>

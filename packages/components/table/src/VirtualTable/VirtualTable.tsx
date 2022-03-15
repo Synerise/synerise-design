@@ -113,7 +113,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     (row: T): React.ReactText | undefined => {
       if (typeof rowKey === 'function') return rowKey(row);
       if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
+      return row.key || undefined;
     },
     [rowKey]
   );

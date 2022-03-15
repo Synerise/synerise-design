@@ -23,7 +23,7 @@ function GroupTableBody<T extends unknown>({
     row => {
       if (typeof rowKey === 'function') return rowKey(row);
       if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
+      return row.key || undefined;
     },
     [rowKey]
   );
@@ -133,22 +133,20 @@ function GroupTableBody<T extends unknown>({
                     />
                   </S.SubRow>
                 )}
-                {columns?.map(
-                  (column, index): React.ReactNode => {
-                    return (
-                      column.dataIndex && (
-                        <S.SubRow
-                          key={index}
-                          selected={column.dataIndex === group.children[0].props.record.column}
-                          sorted={Boolean(column.sortOrder)}
-                        >
-                          {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
-                            rowRecord[column.dataIndex as string]}
-                        </S.SubRow>
-                      )
-                    );
-                  }
-                )}
+                {columns?.map((column, index): React.ReactNode => {
+                  return (
+                    column.dataIndex && (
+                      <S.SubRow
+                        key={index}
+                        selected={column.dataIndex === group.children[0].props.record.column}
+                        sorted={Boolean(column.sortOrder)}
+                      >
+                        {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
+                          rowRecord[column.dataIndex as string]}
+                      </S.SubRow>
+                    )
+                  );
+                })}
               </tr>
             );
           }
