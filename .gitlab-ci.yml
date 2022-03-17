@@ -131,7 +131,7 @@ chromatic_publish:
     variables:
       - $CHROMATIC_PROJECT_TOKEN
   script:
-    - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+    - test ! -e packages/portal/storybook-static && (yarn npx:lerna bootstrap && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
 
 chromatic_publish_merge_to_dest_branch:
@@ -149,5 +149,5 @@ chromatic_publish_merge_to_dest_branch:
   allow_failure: true
   script:
     - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
-    - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+    - test ! -e packages/portal/storybook-static && (yarn npx:lerna bootstrap && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
