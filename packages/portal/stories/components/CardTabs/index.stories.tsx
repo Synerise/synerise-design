@@ -98,6 +98,8 @@ const stories = {
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
 
+    const hideCrudsWhenMatchCondition = boolean('Hide cruds when condition is matched', false)
+
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -156,6 +158,14 @@ const stories = {
 
     const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
 
+    const handleOnDuplicate = () => {
+      if(!hideCrudsWhenMatchCondition)
+        return handleDuplicate
+      if(!isTabsLimitNotExceeded)
+        return undefined
+      return handleDuplicate
+    }
+
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs
@@ -179,7 +189,7 @@ const stories = {
               onSelectTab={handleSelect}
               onChangeName={handleChangeName}
               onRemoveTab={handleRemove}
-              onDuplicateTab={isTabsLimitNotExceeded ? handleDuplicate : undefined}
+              onDuplicateTab={handleOnDuplicate()}
               texts={{
                 changeNameTooltip: 'Rename',
                 removeTooltip: 'Remove',
