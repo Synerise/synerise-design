@@ -10,7 +10,6 @@ export const CardTabsContainer = styled.div`
   width: 100%;
   ${CardTabContainer} {
     margin-right: 12px;
-    margin-bottom: 24px;
   }
   .ds-card-tags-sortable {
     display: flex;

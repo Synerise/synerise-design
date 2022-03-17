@@ -101,7 +101,11 @@ export const Container = styled.div<{
     `}
 `;
 
-export const Header = styled.div<{ onClick?: React.MouseEventHandler; headerBorderBottom?: boolean }>`
+export const Header = styled.div<{
+  onClick?: React.MouseEventHandler;
+  headerBorderBottom?: boolean;
+  defaultHeaderBackgroundColor?: boolean;
+}>`
   padding: 24px 24px 24px 24px;
   display: flex;
   flex-direction: row;
@@ -121,6 +125,11 @@ export const Header = styled.div<{ onClick?: React.MouseEventHandler; headerBord
   &:hover {
     ${(props): string | false => !!props.onClick && `cursor:pointer;`}
   }
+  ${(props): FlattenSimpleInterpolation | false =>
+    !!props.defaultHeaderBackgroundColor &&
+    css`
+      background-color: ${props.theme.palette.white};
+    `}
 `;
 
 export const Title = styled(Typography.Title)<{ fat: boolean; description?: React.ReactNode }>`

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.2...@synerise/ds-core@0.31.3) (2022-03-14)
+
+
+### Bug Fixes
+
+* **card-tabs:** add translations & change prop name ([1834111](https://github.com/synerise/synerise-design/commit/1834111a1809dcd990661f05e6cc09d45d45fb02))
+
+
+
+
+
 ## [0.31.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.1...@synerise/ds-core@0.31.2) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-core

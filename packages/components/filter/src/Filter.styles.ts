@@ -9,13 +9,16 @@ export const FilterWrapper = styled.div`
   width: auto;
 `;
 
+export const MatchingWrapper = styled.div`
+  margin-bottom: 24px;
+`;
+
 export const LogicWrapper = styled.div`
   margin-top: 24px;
 `;
 
 export const ExpressionWrapper = styled.div<{ index: number }>`
   width: 100%;
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;

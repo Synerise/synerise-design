@@ -11,7 +11,14 @@ const SORTABLE_CONFIG = {
   animation: 150,
   group: 'column-manager',
 };
-const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
+const CardTabs: React.FC<CardTabsProps> = ({
+  className,
+  onChangeOrder,
+  onAddTab,
+  maxTabsCount,
+  children = [],
+  addTabLabel,
+}) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
@@ -50,6 +57,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
         <span data-testid="card-tabs-add-button">
           <Button.Creator
             disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
+            label={addTabLabel ?? ''}
             onClick={onAddTab}
           />
         </span>

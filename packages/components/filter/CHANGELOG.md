@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.5.4...@synerise/ds-filter@0.6.0) (2022-03-14)
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
 ## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.5.3...@synerise/ds-filter@0.5.4) (2022-02-25)
 
 **Note:** Version bump only for package @synerise/ds-filter

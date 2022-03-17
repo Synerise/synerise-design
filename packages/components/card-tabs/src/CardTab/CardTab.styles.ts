@@ -54,7 +54,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   color: ${(props): string => props.theme.palette['grey-600']};
   line-height: 20px;
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -150,7 +150,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   justify-content: flex-start;
   padding: 12px;
   width: 180px;
-  height: 48px;
+  height: 40px;
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.5...@synerise/ds-manageable-list@0.23.6) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.23.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.4...@synerise/ds-manageable-list@0.23.5) (2022-02-25)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

@@ -18,6 +18,7 @@ const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
 };
+
 const stories = {
   default: withState({
     name: 'Example',
@@ -172,6 +173,7 @@ const stories = {
           maxTabsCount={maxTabCount}
           onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
           onAddTab={handleAddItem}
+          addTabLabel={'Add new'}
         >
           {store.state.items.map(item => (
             <CardTab
