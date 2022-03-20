@@ -1,11 +1,11 @@
-import R from 'ramda';
+import { path } from 'ramda';
 
 // eslint-disable-next-line import/prefer-default-export
 export const getValueFromPath = (
   object: object,
-  path?: string | number | (string | number)[]
+  valuePath?: string | number | (string | number)[]
 ): string | number | boolean => {
-  if (typeof path === 'string') return object[path];
-  if (Array.isArray(path)) return R.path(path, object) || '';
+  if (typeof valuePath === 'string') return object[valuePath];
+  if (Array.isArray(valuePath)) return path(valuePath, object) || '';
   return '';
 };

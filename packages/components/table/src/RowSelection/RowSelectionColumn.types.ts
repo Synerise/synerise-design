@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { TableProps } from 'rc-table/lib/Table';
 import { DSTableProps } from '../Table.types';
-import * as React from 'react';
 
 export type RowSelectionProps<T> = {
   rowKey: TableProps<T>['rowKey'];
