@@ -20,7 +20,7 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
-import theme, { DefaultColor } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { DefaultColor, defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
@@ -118,21 +118,7 @@ const iconSizes = {
   Medium: 'M',
   Large: 'L',
 };
-const colorOptions: { [k: string]: DefaultColor } = {
-  '': '',
-  blue: 'blue-600',
-  grey: 'grey-600',
-  red: 'red-600',
-  green: 'green-600',
-  yellow: 'yellow-600',
-  pink: 'pink-600',
-  mars: 'mars-600',
-  orange: 'orange-600',
-  fern: 'fern-600',
-  cyan: 'cyan-600',
-  purple: 'purple-600',
-  violet: 'violet-600',
-};
+const colorOptions: DefaultColor[] = defaultColorsOrder;
 
 export const COLUMNS_WITH_TRIGGERS = [
   {
@@ -323,7 +309,7 @@ export const COLUMNS_WITH_STATUSES = [
     tooltip: { title: 'Tooltip', description: 'Description' },
     render: status => (
       <TableCell.StatusLabelCell
-        customColor={select('Set custom color status', colorOptions, '')}
+        customColor={select('Set custom color status', ['', ...colorOptions], '')}
         status={status}
         label={status}
       />
