@@ -6,7 +6,7 @@ import { InfiniteScrollProps } from '../InfiniteScroll/constants';
 import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './VirtualTable';
 import * as S from './VirtualTable.styles';
-import { RowStar } from '../hooks/useRowStar.types';
+import { RowStar } from '../hooks/useRowStar';
 import { getValueFromPath, calculatePixels } from '../utils';
 
 interface Props<T> {
@@ -31,74 +31,82 @@ const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], co
 const calculateToPixelsIfDefined = (value: string | number | undefined | null): number | undefined | null =>
   value ? calculatePixels(value) : (value as number);
 
-class VirtualTableRow<T extends object> extends React.PureComponent<Props<T>> {
-  renderColumn = (column: DSColumnType<T>, rowData: T, index: number): React.ReactNode => {
-    if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
-      return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, index);
-    }
-    return column.render
-      ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, index)
-      : getValueFromPath(rowData, column.dataIndex);
-  };
+function VirtualTableRow<T extends object>({
+  index,
+  style,
+  data: { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps },
+}: Props<T>): React.ReactElement {
+  const renderColumn = React.useCallback(
+    (column: DSColumnType<T>, rowData: T, columnIndex: number): React.ReactNode => {
+      if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
+        return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex);
+      }
+      return column.render
+        ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex)
+        : getValueFromPath(rowData, column.dataIndex);
+    },
+    []
+  );
 
-  render(): React.ReactNode {
-    const { index, style, data } = this.props;
-    const { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps } =
-      data;
+  const rowData = React.useMemo(() => dataSource[index], [dataSource, index]);
 
-    const rowData = dataSource[index];
-
+  const infiniteLoader = React.useMemo(() => {
     return (
-      <>
+      infiniteScroll &&
+      index === dataSource.length - 1 && (
         <S.RowWrapper
-          className={classNames('virtual-table-row', {
-            'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY],
-          })}
-          style={style}
-          onClick={(event): void => {
-            event.stopPropagation();
-            onRowClick && onRowClick(rowData);
-          }}
+          style={{ ...style, top: `${Number(style.top) + cellHeight}px`, height: '64px', padding: '16px 24px' }}
         >
-          {mergedColumns.map((column, columnIndex) => {
-            const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
-            const firstWithSelectionOrStar = (selection || rowStar) && columnIndex === 1;
-            const firstWithoutSelectionAndStar = columnIndex === 0 && !selection && !rowStar;
-            return (
-              <S.ColWrapper
-                className={classNames(
-                  'virtual-table-cell',
-                  {
-                    'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
-                    'ant-table-selection-column': columnIndex === 0 && selection,
-                    'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
-                    'ds-expanded-row-data':
-                      rowData[EXPANDED_ROW_PROPERTY] &&
-                      (firstWithoutSelectionAndStar || firstWithSelectionOrStar || firstWithSelectionAndStar),
-                  },
-                  isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
-                  column.className
-                )}
-                key={`row-${index}-column-${column.dataIndex || column.key}`}
-                minWidth={calculateToPixelsIfDefined(column?.minWidth)}
-                width={column.width}
-                maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
-              >
-                {this.renderColumn(column, rowData, columnIndex)}
-              </S.ColWrapper>
-            );
-          })}
+          <InfiniteLoaderItem infiniteScroll={infiniteScroll} />
         </S.RowWrapper>
-        {infiniteScroll && index === dataSource.length - 1 && (
-          <S.RowWrapper
-            style={{ ...style, top: `${Number(style.top) + cellHeight}px`, height: '64px', padding: '16px 24px' }}
-          >
-            <InfiniteLoaderItem infiniteScroll={infiniteScroll} />
-          </S.RowWrapper>
-        )}
-      </>
+      )
     );
-  }
+  }, [cellHeight, dataSource.length, index, infiniteScroll, style]);
+
+  return (
+    <>
+      <S.RowWrapper
+        className={classNames('virtual-table-row', {
+          'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY],
+        })}
+        style={style}
+        onClick={(event): void => {
+          event.stopPropagation();
+          onRowClick && onRowClick(rowData);
+        }}
+      >
+        {mergedColumns.map((column, columnIndex) => {
+          const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
+          const firstWithSelectionOrStar = (selection || rowStar) && columnIndex === 1;
+          const firstWithoutSelectionAndStar = columnIndex === 0 && !selection && !rowStar;
+          return (
+            <S.ColWrapper
+              className={classNames(
+                'virtual-table-cell',
+                {
+                  'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
+                  'ant-table-selection-column': columnIndex === 0 && selection,
+                  'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
+                  'ds-expanded-row-data':
+                    rowData[EXPANDED_ROW_PROPERTY] &&
+                    (firstWithoutSelectionAndStar || firstWithSelectionOrStar || firstWithSelectionAndStar),
+                },
+                isColumnSortingActive<T>(defaultTableProps?.columns || [], column) && 'ant-table-column-sort',
+                column.className
+              )}
+              key={`row-${index}-column-${column.dataIndex || column.key}`}
+              minWidth={calculateToPixelsIfDefined(column?.minWidth)}
+              width={column.width}
+              maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
+            >
+              {renderColumn(column, rowData, columnIndex)}
+            </S.ColWrapper>
+          );
+        })}
+      </S.RowWrapper>
+      {infiniteLoader}
+    </>
+  );
 }
 
 export default React.memo(VirtualTableRow, areEqual);

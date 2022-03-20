@@ -36,4 +36,4 @@ const AvatarLabel: React.FC<Props> = ({
   );
 };
 
-export default React.memo(AvatarLabel);
+export default AvatarLabel;

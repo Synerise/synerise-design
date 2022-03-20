@@ -3,13 +3,13 @@ import { compact, isEqual } from 'lodash';
 import Table from 'antd/lib/table';
 import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
-import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
-import useRowStar from '../hooks/useRowStar';
 import { DSColumnType, DSTableProps, RowSelection, RowType } from '../Table.types';
+import { useRowKey } from '../hooks/useRowKey';
+import { useRowStar } from '../hooks/useRowStar/useRowStar';
+import { RowSelectionColumn } from '../RowSelection';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
@@ -18,14 +18,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
 
-  const getRowKey = React.useCallback(
-    (row: T): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return row.key || undefined;
-    },
-    [rowKey]
-  );
+  const { getRowKey } = useRowKey(rowKey);
 
   const starColumn = React.useMemo(() => {
     return getRowStarColumn({ ...props, getRowKey });
@@ -98,71 +91,23 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
     return [];
   }, [dataSource, getRowKey, selection]);
 
-  const handleSelectionChange = React.useCallback(
-    (isCheckedNext: boolean, record: T): void => {
-      const { independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
-      const recordKey = getRowKey(record);
-      let selectedRows: T[] = selectedRecords;
-
-      if (isCheckedNext) {
-        if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
-          selectedRows = [...selectedRows, ...record.children];
-        } else {
-          selectedRows = [...selectedRows, record];
-        }
-      } else if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
-        const childrenKeys = record.children.map((child: T) => getRowKey(child));
-        selectedRows = selectedRows.filter(child => childrenKeys.indexOf(getRowKey(child)) < 0);
-      } else {
-        selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
-      }
-
-      selectedRows = Array.from(new Set(selectedRows));
-
-      onChange &&
-        onChange(
-          selectedRows.map(selected => getRowKey(selected) as React.ReactText),
-          selectedRows
-        );
-    },
-    [getRowKey, selectedRecords, selection]
-  );
-
-  const renderSelectionCell = React.useCallback(
-    (checked: boolean, record: T): React.ReactNode => {
-      const { selectedRowKeys, limit, independentSelectionExpandedRows } = selection as RowSelection<T>;
-      let isIndeterminate = false;
-      let isChecked = checked;
-      const hasChildren = record?.children && Array.isArray(record.children);
-
-      if (hasChildren && !independentSelectionExpandedRows) {
-        const checkedChildren =
-          record.children?.filter((child: T) => {
-            const childKey = getRowKey(child);
-            return childKey && selectedRowKeys.indexOf(childKey) >= 0;
-          }) || [];
-        const allChildrenSelected = !!record.children?.every((child: T) => {
-          const childKey = getRowKey(child);
-          return childKey && selectedRowKeys.indexOf(childKey) >= 0;
-        });
-        isIndeterminate = checkedChildren.length > 0 && checkedChildren.length < (record.children?.length || 0);
-        isChecked = checked || allChildrenSelected;
-      }
+  const renderRowSelection = React.useCallback(
+    (key: string, record: T): React.ReactNode => {
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
       return (
-        <Tooltip title={locale?.selectRowTooltip}>
-          <Button.Checkbox
-            checked={isChecked}
-            disabled={!checked && Boolean(limit && limit <= selectedRowKeys.length)}
-            indeterminate={isIndeterminate}
-            onClick={(e): void => {
-              e.stopPropagation();
-            }}
-            onChange={(isCheckedNext): void => handleSelectionChange(isCheckedNext, record)}
-          />
-        </Tooltip>
+        <RowSelectionColumn
+          rowKey={rowKey}
+          record={record}
+          limit={limit}
+          selectedRowKeys={selectedRowKeys}
+          independentSelectionExpandedRows={independentSelectionExpandedRows}
+          onChange={onChange}
+          selectedRecords={selectedRecords}
+          tableLocale={locale}
+        />
       );
     },
-    [getRowKey, handleSelectionChange, locale, selection]
+    [locale, rowKey, selectedRecords, selection]
   );
 
   return (
@@ -208,7 +153,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           ...selection,
           selections: selection?.selections?.filter(Boolean),
           columnWidth: 64,
-          renderCell: renderSelectionCell,
+          renderCell: renderRowSelection,
         }
       }
     />

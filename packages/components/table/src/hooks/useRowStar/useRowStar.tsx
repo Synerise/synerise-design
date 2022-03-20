@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { DSColumnType } from '../Table.types';
+import { DSColumnType } from '../../Table.types';
 import { AnyRecordType, CreateRowStarColumnProps, UseStarredApi } from './useRowStar.types';
 
 const STAR_COL_WIDTH_SINGLE = 64;
@@ -41,7 +41,8 @@ const createRowStarColumn =
       }),
   });
 
-const useRowStar = (initialStarredKeys: string[]): UseStarredApi => {
+// eslint-disable-next-line import/prefer-default-export
+export const useRowStar = (initialStarredKeys: string[]): UseStarredApi => {
   const starredKeys = React.useRef(new Set(initialStarredKeys));
 
   const getStarredRowKeys = (): string[] => Array.from(starredKeys.current);
@@ -73,5 +74,3 @@ const useRowStar = (initialStarredKeys: string[]): UseStarredApi => {
     getRowStarColumn,
   };
 };
-
-export default useRowStar;

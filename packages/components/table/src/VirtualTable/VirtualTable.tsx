@@ -3,52 +3,23 @@ import { FixedSizeList as List, ListOnScrollProps } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { compact } from 'lodash';
-import memoize from 'memoize-one';
 import { useIntl } from 'react-intl';
-import Button from '@synerise/ds-button';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
-import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { infiniteLoaderItemHeight, InfiniteScrollProps } from '../InfiniteScroll/constants';
+import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
-import { RowType, DSTableProps, RowSelection, DSColumnType } from '../Table.types';
+import { RowType, DSTableProps, RowSelection } from '../Table.types';
 import VirtualTableRow from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
-import useRowStar from '../hooks/useRowStar';
 import { useTableLocale, calculatePixels } from '../utils';
-import { CreateRowStarColumnProps, RowStar } from '../hooks/useRowStar.types';
+import { useRowKey } from '../hooks/useRowKey';
+import { useRowStar } from '../hooks/useRowStar/useRowStar';
+import { CreateRowStarColumnProps } from '../hooks/useRowStar/useRowStar.types';
+import { RowSelectionColumn } from '../RowSelection';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
-
-// based on https://react-window.vercel.app/#/examples/list/memoized-list-items
-const createItemData = memoize(
-  (
-    mergedColumns: DSColumnType<unknown>[],
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    selection: RowSelection<any> | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    rowStar: RowStar<any> | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onRowClick: undefined | Function,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: any,
-    infiniteScroll: InfiniteScrollProps | undefined,
-    cellHeight: number | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    defaultTableProps: DSTableProps<any> | undefined
-  ): object => ({
-    mergedColumns,
-    selection,
-    rowStar,
-    onRowClick,
-    dataSource: data,
-    infiniteScroll,
-    cellHeight,
-    defaultTableProps,
-  })
-);
 
 const relativeInlineStyle: React.CSSProperties = { position: 'relative' };
 const CustomScrollbar = (containerRef: React.RefObject<HTMLDivElement>): React.FC =>
@@ -109,14 +80,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     onListRefChange && onListRefChange(listRef);
   }, [listRef, onListRefChange]);
 
-  const getRowKey = React.useCallback(
-    (row: T): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return row.key || undefined;
-    },
-    [rowKey]
-  );
+  const { getRowKey } = useRowKey(rowKey);
 
   const propsForRowStar = {
     ...props,
@@ -160,76 +124,23 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     return [];
   }, [dataSource, getRowKey, selection]);
 
-  const handleSelectionChange = React.useCallback(
-    (isCheckedNext: boolean, record: T): void => {
-      const { independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
-      const recordKey = getRowKey(record);
-      let selectedRows: T[] = selectedRecords;
-
-      if (isCheckedNext) {
-        if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
-          selectedRows = [...selectedRows, ...record.children];
-        } else {
-          selectedRows = [...selectedRows, record];
-        }
-      } else if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
-        const childrenKeys = record.children.map((child: T) => getRowKey(child));
-        selectedRows = selectedRows.filter(child => childrenKeys.indexOf(getRowKey(child)) < 0);
-      } else {
-        selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
-      }
-
-      selectedRows = Array.from(new Set(selectedRows));
-
-      onChange &&
-        onChange(
-          selectedRows.map(selected => getRowKey(selected) as React.ReactText),
-          selectedRows
-        );
-    },
-    [getRowKey, selectedRecords, selection]
-  );
-
   const renderRowSelection = React.useCallback(
     (key: string, record: T): React.ReactNode => {
-      const { selectedRowKeys, limit, independentSelectionExpandedRows } = selection as RowSelection<T>;
-      const recordKey = getRowKey(record);
-
-      let isChecked = recordKey !== undefined && selectedRowKeys && selectedRowKeys.indexOf(recordKey) >= 0;
-      let isIndeterminate = false;
-
-      const hasChildren = Array.isArray(record.children);
-      if (hasChildren && !independentSelectionExpandedRows) {
-        const checkedChildren =
-          record.children?.filter((child: T) => {
-            const childKey = getRowKey(child);
-            return childKey && selectedRowKeys.indexOf(childKey) >= 0;
-          }) || [];
-        const allChildrenSelected = !!record.children?.every((child: T) => {
-          const childKey = getRowKey(child);
-          return childKey && selectedRowKeys.indexOf(childKey) >= 0;
-        });
-        isIndeterminate = checkedChildren.length > 0 && checkedChildren.length < (record.children?.length || 0);
-        isChecked = isChecked || allChildrenSelected;
-      }
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
       return (
-        recordKey !== undefined && (
-          <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
-            <Button.Checkbox
-              key={`checkbox-${recordKey}`}
-              checked={isChecked}
-              disabled={!isChecked && Boolean(limit !== undefined && limit <= selectedRowKeys.length)}
-              indeterminate={isIndeterminate}
-              onClick={(e): void => {
-                e.stopPropagation();
-              }}
-              onChange={(isCheckedNext): void => handleSelectionChange(isCheckedNext, record)}
-            />
-          </Tooltip>
-        )
+        <RowSelectionColumn
+          rowKey={rowKey}
+          record={record}
+          limit={limit}
+          selectedRowKeys={selectedRowKeys}
+          independentSelectionExpandedRows={independentSelectionExpandedRows}
+          onChange={onChange}
+          selectedRecords={selectedRecords}
+          tableLocale={locale}
+        />
       );
     },
-    [getRowKey, handleSelectionChange, selection, tableLocale]
+    [locale, rowKey, selectedRecords, selection]
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -292,6 +203,25 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const outerElement = React.useMemo(() => CustomScrollbar(containerRef), [containerRef]);
 
+  const createItemData = React.useCallback(
+    (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      defaultTableProps: DSTableProps<any> | undefined
+    ): object => ({
+      mergedColumns,
+      selection,
+      rowStar,
+      onRowClick,
+      dataSource: data,
+      infiniteScroll,
+      cellHeight,
+      defaultTableProps,
+    }),
+    [cellHeight, infiniteScroll, mergedColumns, onRowClick, rowStar, selection]
+  );
+
   const renderBody = React.useCallback(
     (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
       const renderVirtualList = (data: T[]): React.ReactNode => {
@@ -314,20 +244,12 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           }
         };
 
-        const itemData = createItemData(
-          mergedColumns,
-          selection,
-          rowStar,
-          onRowClick,
-          data,
-          infiniteScroll,
-          cellHeight,
-          defaultTableProps
-        );
+        const itemData = createItemData(data, defaultTableProps);
 
         return (
           <List
             ref={listRef}
+            key="virtual-list"
             onScroll={handleListScroll}
             className="virtual-grid"
             height={scroll.y}
@@ -372,19 +294,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       }
       return renderVirtualList(rawData);
     },
-    [
-      cellHeight,
-      expandable,
-      getRowKey,
-      infiniteScroll,
-      listInnerElementType,
-      mergedColumns,
-      onRowClick,
-      outerElement,
-      rowStar,
-      scroll.y,
-      selection,
-    ]
+    [cellHeight, createItemData, expandable, getRowKey, infiniteScroll, listInnerElementType, outerElement, scroll.y]
   );
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);

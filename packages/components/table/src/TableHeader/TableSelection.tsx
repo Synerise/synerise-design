@@ -8,6 +8,7 @@ import * as S from '../Table.styles';
 import { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
 import { Props } from './TableSelection.types';
+import { useRowKey } from '../hooks/useRowKey';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -17,14 +18,7 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   rowKey,
   locale,
 }: Props<T>): React.ReactElement | null {
-  const getRowKey = React.useCallback(
-    (row): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return row.key || undefined;
-    },
-    [rowKey]
-  );
+  const { getRowKey } = useRowKey(rowKey);
 
   const selectAll = React.useCallback(() => {
     if (dataSource && selection) {

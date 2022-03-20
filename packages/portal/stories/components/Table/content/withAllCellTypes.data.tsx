@@ -20,7 +20,7 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { DefaultColor } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
@@ -118,7 +118,7 @@ const iconSizes = {
   Medium: 'M',
   Large: 'L',
 };
-const colorOptions = {
+const colorOptions: { [k: string]: DefaultColor } = {
   '': '',
   blue: 'blue-600',
   grey: 'grey-600',
@@ -144,7 +144,7 @@ export const COLUMNS_WITH_TRIGGERS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: select => (
-      <Select getPopupContainer={() => document.querySelector('.ds-table')} value={select.value}>
+      <Select value={select.value}>
         {select.options.map((option: string) => (
           <Select.Option value={option}>{option}</Select.Option>
         ))}

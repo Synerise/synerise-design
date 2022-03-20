@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
-import { RowStar } from './hooks/useRowStar.types';
+import { RowStar } from './hooks/useRowStar';
 import { SortRender } from './ColumnSortMenu/TitleWithSort';
 import { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
 

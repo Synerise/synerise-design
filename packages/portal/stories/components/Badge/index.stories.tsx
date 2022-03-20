@@ -123,18 +123,18 @@ const stories = {
                 },
               }}
             />
+            <Badge
+              count={number('Count', 1)}
+              overflowCount={number('OverflowCount', 99)}
+              outlined={isOutline}
+              backgroundColor={'transparent'}
+              textColor={'white'}
+              style={{
+                margin: '0 11px 0 4px',
+                alignItems: 'center',
+              }}
+            />
           </div>
-          <Badge
-            count={number('Count', 1)}
-            overflowCount={number('OverflowCount', 99)}
-            outlined={isOutline}
-            backgroundColor={'transparent'}
-            textColor={'white'}
-            style={{
-              margin: '0 11px 0 4px',
-              alignItems: 'center',
-            }}
-          />
           <br />
         </div>
       </React.Fragment>

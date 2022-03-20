@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ColumnType } from 'antd/lib/table';
-import { DSTableProps, DSColumnType } from '../Table.types';
+import { DSTableProps, DSColumnType } from '../../Table.types';
 
 export interface RowStar<T> {
   className?: string;

@@ -26,22 +26,22 @@ const getSortRenderer = <T extends unknown>(
   }
 };
 
-export const columnWithSortButtons = (sortStateApi: SortStateAPI, onSort?: OnSortFn) => <T extends unknown>(
-  column: DSColumnType<T>
-): DSColumnType<T> => {
-  const sortRenderer = getSortRenderer<T>(column.sortRender, onSort);
+export const columnWithSortButtons =
+  (sortStateApi: SortStateAPI, onSort?: OnSortFn) =>
+  <T extends unknown>(column: DSColumnType<T>): DSColumnType<T> => {
+    const sortRenderer = getSortRenderer<T>(column.sortRender, onSort);
 
-  return column.sorter
-    ? {
-        ...column,
-        sortOrder: column.key ? sortStateApi.getColumnSortOrder(String(column.key)) : null,
-        // onHeaderCell: (): React.HTMLAttributes<HTMLTableHeaderCellElement> =>
-        //   ({ 'data-popup-container': true } as React.HTMLAttributes<HTMLTableHeaderCellElement>),
-        title: (titleProps: ColumnTitleProps<T>): React.ReactElement => (
-          <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} titleProps={titleProps} />
-        ),
-      }
-    : column;
-};
+    return column.sorter
+      ? {
+          ...column,
+          sortOrder: column.key ? sortStateApi.getColumnSortOrder(String(column.key)) : null,
+          onHeaderCell: (): React.HTMLAttributes<HTMLTableHeaderCellElement> =>
+            ({ 'data-popup-container': true } as React.HTMLAttributes<HTMLTableHeaderCellElement>),
+          title: (titleProps: ColumnTitleProps<T>): React.ReactElement => (
+            <TitleWithSort column={column} sortRender={sortRenderer(sortStateApi, column)} titleProps={titleProps} />
+          ),
+        }
+      : column;
+  };
 
 export default { columnWithSortButtons };
