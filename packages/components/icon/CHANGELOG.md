@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.2...@synerise/ds-icon@0.48.0) (2022-03-21)
+
+
+### Features
+
+* **icon:** add new icon - ShowL ([f398407](https://github.com/Synerise/synerise-design/commit/f398407fe8e0fa19e8f98d61e983151c516b1857))
+
+
+
+
+
 ## [0.47.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.1...@synerise/ds-icon@0.47.2) (2022-02-25)
 
 **Note:** Version bump only for package @synerise/ds-icon
