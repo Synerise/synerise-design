@@ -18,11 +18,21 @@ export type CollectorProps = {
   keepSearchQueryOnSelect?: boolean;
   label?: React.ReactNode | string;
   lookupConfig?: LookupConfig;
+  /**
+   * invoked every time user inputs a single character in the search field
+   */
   onSearchValueChange?: (value: string) => void;
   onConfirm?: (values: CollectorValue[]) => void;
   onCancel?: () => void;
   onItemDeselect?: (item: CollectorValue) => void;
+  /**
+   * transformed of clicked value to an object which will be sent as selected value.
+   * This value is being passed to onItemSelect call. If function returns value - onItemSelect will not be called.
+   */
   onItemAdd?: (itemName: React.ReactText) => CollectorValue;
+  /**
+   * can send selected value to the parent component if `onItemAdd` returned non-falsy value
+   */
   onItemSelect: (item: CollectorValue) => void;
   renderItem?: (value: CollectorValue) => JSX.Element;
   showNavigationHints?: boolean;

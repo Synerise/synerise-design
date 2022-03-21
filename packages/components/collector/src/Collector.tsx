@@ -34,6 +34,7 @@ const Collector: React.FC<CollectorProps> = ({
   lookupConfig,
   onItemAdd,
   onItemDeselect,
+  //  FIXME: (consider) disallow user to append text if just selected
   onItemSelect,
   dropdownContent,
   disableButtonPanel,
@@ -49,7 +50,11 @@ const Collector: React.FC<CollectorProps> = ({
   const [isFocused, setFocused] = React.useState<boolean>(false);
   const [showGradient, setShowGradient] = React.useState<boolean>(false);
   const [scrollLeft, setScrollLeft] = React.useState<number>(0);
+  // FIXME: if we have doulbe exec of onSearchValueChange and setValue, then we should also react to searchValue chance from outside of the component
   const [value, setValue] = React.useState<string>(searchValue || '');
+  // FIXME: replace useState to something more reactive (dependant on `selector`)
+  // selectedValues = React.useMemo(() => {return selectedValuesList}, [selector])
+  // Disadvantge: two simulatanous states of selected items (selectedValues used for rendering, onItemSelect for updating parent element)
   const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
@@ -81,6 +86,7 @@ const Collector: React.FC<CollectorProps> = ({
     },
     [suggestions, selectedValues, filterLookupKey]
   );
+  // FIXME: if possible get rid of this useEFfect (or at least simplify it)
   React.useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
     setFilteredSuggestions(suggestions || []);
@@ -90,6 +96,7 @@ const Collector: React.FC<CollectorProps> = ({
 
   React.useEffect(() => {
     if (searchValue !== undefined && searchValue !== null) {
+      // FIXME: improve naming (value is just for searching, selectedvalue is in fact value of the (multi-)input-field
       setValue(searchValue as string);
     }
   }, [searchValue]);
@@ -141,6 +148,7 @@ const Collector: React.FC<CollectorProps> = ({
     }
   };
 
+  // FIXME: should reset only the newly selected values
   const onCancelCallback = React.useCallback((): void => {
     clear();
     onCancel && onCancel();
@@ -237,6 +245,7 @@ const Collector: React.FC<CollectorProps> = ({
             onChange={
               !disableSearch
                 ? (e): void => {
+                    // FIXME: two useStates hold the same value?
                     onSearchValueChange && onSearchValueChange(e.target.value);
                     setValue(e.target.value);
                     if (!enableCustomFilteringSuggestions) filterSuggestions(e.target.value);
@@ -253,6 +262,7 @@ const Collector: React.FC<CollectorProps> = ({
         {!disableButtonPanel && (
           <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
             <ButtonPanel
+              // TODO: consider renaming this to reset
               onCancel={onCancelCallback}
               onConfirm={onConfirmCallback}
               disabled={!!disabled}

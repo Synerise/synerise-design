@@ -26,6 +26,10 @@ import Collector from '@synerise/ds-collector'
   />
 ```
 
+# Known issues
+
+`<=v0.5.3`: if `selected` is overwritten from outside, selecting new value might overwrite it.
+
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-collector--default"></iframe>

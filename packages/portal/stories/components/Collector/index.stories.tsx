@@ -5,6 +5,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import {action} from "@storybook/addon-actions";
 
 const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;
 const getSuggestions = () => {
@@ -57,13 +58,26 @@ const stories = {
         disabled={boolean('Set disabled', false)}
         description={text('Set description', 'Description')}
         errorText={text('Set error text', '')}
-        suggestions={getSuggestions().filter(suggestion => !selected.includes(suggestion))}
+        // FIXME: encapsulate this logic, see `withTemplates` w portal-ui-bridge/automations
+        suggestions={getSuggestions().filter(suggestion => {
+          // console.info('suggestion handler', getSuggestions(), suggestion)
+          if (selected.includes(suggestion)) {
+            return false;
+          }
+          if (selected.find(item => item.text === suggestion.text)) {
+              // do not display this entry if there's an object with the same text property
+              return false;
+          }
+          return true
+        })}
         fixedHeight={boolean('Set fixed height', false)}
         onItemAdd={value => ({
           text: value,
         })}
         onItemSelect={item => {
           console.log('onItemSelect');
+          // onItemSelect={action('onItemSelect')} // => action() returns handler
+          action('onItemSelect')(item);
           if (!selected.find(i => i.text === item.text)) {
             setSelected([...selected, item]);
           }
@@ -81,6 +95,7 @@ const stories = {
           toNavigate: 'to navigate',
         }}
         onConfirm={() => setSelected(selected)}
+        onSearchValueChange={action('onSearchValueChange')}
       />
     );
   },

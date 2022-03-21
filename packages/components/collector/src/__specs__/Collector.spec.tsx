@@ -137,4 +137,18 @@ describe('Collector', () => {
     cancelButton.click();
     expect(onCancelFn).toBeCalledTimes(1);
   });
+
+  it.todo('should render initially selected options (note that when !allowMultipleValues` selected will be always initially [], should respect selected values from the e.g. API')
+  it('should take into consideration suggestions prop with filtered results based on `selected` when rendering suggestions', () => {
+      const availableEntries = [{text: 'Option A1'}, {text: 'Option A2'}]
+      const selected = [{text: 'Option A1'}]
+      // note includes won't work here
+      console.assert(availableEntries.find(selected), 'wrong test setup')
+      const suggestions = React.useMemo(() => {
+          return availableEntries.filter(... selected ...)
+      })
+      const {component} = renderWithProvider(<Collector selected={} suggestions={suggestions}>
+      </Collector>)
+      expect(component.querySelector('.suggestions')).notToContainChild(selected[0])
+  })
 });
