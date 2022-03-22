@@ -57,6 +57,8 @@ Table UI Component
 | onSort                      | Callback executed when sorter is changed                                                                                                                                                                                      | (sortedColumn: {columnKey: string; order: `descend` \ `ascend` \ null}, sortState: [key: string]: { sortOrder: `descend` \ `ascend` \ null; multiple: number \ false;}) => void | -                                                                                  | 
 | getPopupContainer           | the render container of dropdowns in table                                                                                                                                                                                    | (triggerNode) => HTMLElement                                                                                                                                                    | `() => TableHtmlElement`                                                           | 
 | renderSelectionTitle        | Function to render a custom title in table header when some items are selected                                                                                                                                                | ({selection: RowSelection, filters:Filter[] }) => React.ReactNode                                                                                                               | -                                                                                  | 
+| rowStar                     | Configuration of row starring                                                                                                                                                                                                 | RowStar                                                                                                                                                                         | -                                                                                  | 
+
  
 ### VirtualTable
 
@@ -87,13 +89,25 @@ This type of table requires a specific type of dataSource which has to contain a
 
 #### RowSelection
 
-| Property        | Description                                      | Type                                                            | Default |
-| --------------- | ------------------------------------------------ | --------------------------------------------------------------- | ------- |
-| fixed           | Whether to show selection column as fixed or not | boolean                                                         | -       |
-| selectedRowKeys | Array of selected row keys                       | React.ReactText                                                 | []      |
-| selections      | Selections options available in table title      | SelectionItem[]                                                 | -       |
-| onChange        | Callback executed when selection changes         | (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void | -       |
-| limit           | Max length of selection rows array               | number                                                          | -       |
+| Property                         | Description                                          | Type                                                            | Default |
+| ---------------                  | ------------------------------------------------     | --------------------------------------------------------------- | ------- |
+| fixed                            | Whether to show selection column as fixed or not     | boolean                                                         | -       |
+| selectedRowKeys                  | Array of selected row keys                           | React.ReactText                                                 | []      |
+| selections                       | Selections options available in table title          | SelectionItem[]                                                 | -       |
+| onChange                         | Callback executed when selection changes             | (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void | -       |
+| limit                            | Max length of selection rows array                   | number                                                          | -       |
+| independentSelectionExpandedRows | Allows to select parent and child rows independently | boolean                                                         | -       |
+
+#### RowStar
+
+| Property               | Description                                            | Type                                                                       | Default |
+| ---------------        | ------------------------------------------------       | ---------------------------------------------------------------            | ------- |
+| className              | Classname of star component                            | string                                                                     | -       |
+| starredRowKeys         | Array of keys of starred rows                          | string[]                                                                   | -       |
+| renderCell             | Overrides render method                                | ColumnType<T>['render']                                                    | -       |
+| onClick                | Callback called when user clicks on star component     | (e: React.MouseEvent<HTMLElement, MouseEvent>) => void                     | -       |
+| onChange               | Callback called when user change starred status of row | (starredRowKeys: string[], starredKey: string, isStarred: boolean) => void | -       |
+| disableForExpandedRows | Hides star components on child rows                    | boolean                                                                    | -       |
 
 #### SelectionItem
 
