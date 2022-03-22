@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.1...@synerise/ds-card-tabs@0.11.2) (2022-03-22)
+
+
+### Bug Fixes
+
+* **card-tabs:** set addTabLabel optionally ([58de9d4](https://github.com/Synerise/synerise-design/commit/58de9d483fdde5360052fcac4a824cfd480b50f5))
+
+
+
+
+
 ## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.0...@synerise/ds-card-tabs@0.11.1) (2022-03-21)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs
