@@ -3,7 +3,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import { DSColumnType } from '../Table.types';
+import { DSColumnType, OnSortFn } from '../Table.types';
 import { TableLocaleContext } from '../utils/locale';
 import * as S from './SortRender.styles';
 import { SortStateAPI, toSortOrder } from './useSortState';
@@ -12,6 +12,7 @@ import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
 interface SortRendererProps<T> {
   sortStateApi: SortStateAPI;
   column: DSColumnType<T>;
+  onSort?: OnSortFn;
 }
 
 const handleButtonClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {

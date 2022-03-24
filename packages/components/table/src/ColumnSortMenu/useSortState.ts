@@ -57,14 +57,14 @@ export const columnsToSortState = <T extends unknown>(columns: DSColumnType<T>[]
         ? {
             ...state,
             [String(column.key)]: {
-              sortOrder: toSortOrder(column.defaultSortOrder),
+              sortOrder: toSortOrder(column.sortOrder) || toSortOrder(column.defaultSortOrder),
               multiple: column.sorter.multiple || false,
             },
           }
         : {
             ...state,
             [String(column.key)]: {
-              sortOrder: toSortOrder(column.defaultSortOrder),
+              sortOrder: toSortOrder(column.sortOrder) || toSortOrder(column.defaultSortOrder),
               multiple: false,
             },
           },
@@ -111,7 +111,6 @@ const setSingleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state, 
       sortOrder: payload.sortOrder,
     },
   };
-
   onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
 
   return newState;
@@ -144,7 +143,6 @@ const setMultipleOrder: React.Reducer<ColumnsSortState, SetOrderAction> = (state
       sortOrder: payload.sortOrder,
     },
   };
-
   onSort && onSort({ columnKey: payload.key, order: payload.sortOrder }, newState);
 
   return newState;
@@ -179,7 +177,9 @@ const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, a
 export const useSortState = (initialState: ColumnsSortState = {}, onSort: OnSortFn | undefined): SortStateAPI => {
   const [columnsSortState, dispatch] = React.useReducer(sortReducer, initialState);
 
-  const getColumnSortOrder: SortStateAPI['getColumnSortOrder'] = key => columnsSortState[key]?.sortOrder;
+  const getColumnSortOrder: SortStateAPI['getColumnSortOrder'] = key => {
+    return columnsSortState[key]?.sortOrder;
+  };
 
   const updateColumnsData: SortStateAPI['updateColumnsData'] = (columns: ColumnsSortState) => {
     dispatch({

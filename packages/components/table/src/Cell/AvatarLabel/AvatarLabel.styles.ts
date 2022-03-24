@@ -1,9 +1,10 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-export const AvatarLabel = styled.div`
-  display: flex;
+export const AvatarLabel = styled.div<{ onClick?: () => void }>`
+  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  cursor: ${(props): string => (props.onClick !== undefined ? 'pointer' : 'default')};
 `;
 
 export const Avatar = styled.div<{ clickable: boolean }>`
