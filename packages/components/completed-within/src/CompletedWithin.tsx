@@ -11,7 +11,14 @@ import * as S from './CompleteWithin.styles';
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
 const DEFAULT_PERIOD = 'DAYS';
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods }) => {
+const CompletedWithin: React.FC<CompletedWithinProps> = ({
+  value,
+  onSetValue,
+  text,
+  periods,
+  placeholder,
+  tooltip,
+}) => {
   const intl = useIntl();
 
   const texts = React.useMemo(
@@ -62,18 +69,17 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   }, [onSetValue]);
 
   const triggerMode = React.useMemo(() => {
-    if (!hasValue) return 'single-icon';
-    return 'icon-label';
-  }, [hasValue]);
+    if (hasValue || placeholder) return 'icon-label';
+    return 'single-icon';
+  }, [hasValue, placeholder]);
 
   const triggerLabel = React.useMemo(() => {
-    return (
-      hasValue &&
-      `${texts.completedLabel} ${value.value} ${
-        getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
-      }`
-    );
-  }, [getPeriods, hasValue, texts, value]);
+    return hasValue
+      ? `${texts.completedLabel} ${value.value} ${
+          getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
+        }`
+      : placeholder;
+  }, [getPeriods, hasValue, texts, value, placeholder]);
 
   return (
     <S.CompletedWithinWrapper withValue={hasValue}>
@@ -91,10 +97,12 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
         onVisibleChange={handleVisibleChange}
         placement="topLeft"
       >
-        <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
-          <Icon component={<ClockM />} />
-          {triggerLabel}
-        </S.TriggerButton>
+        <Tooltip description={tooltip} type="largeSimple" trigger={tooltip ? 'hover' : undefined}>
+          <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
+            <Icon component={<ClockM />} />
+            {triggerLabel}
+          </S.TriggerButton>
+        </Tooltip>
       </Dropdown>
       {hasValue && (
         <Tooltip title={texts.clear}>
