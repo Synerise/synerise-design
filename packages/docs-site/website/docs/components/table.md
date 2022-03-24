@@ -104,7 +104,7 @@ This type of table requires a specific type of dataSource which has to contain a
 | ---------------        | ------------------------------------------------       | ---------------------------------------------------------------            | ------- |
 | className              | Classname of star component                            | string                                                                     | -       |
 | starredRowKeys         | Array of keys of starred rows                          | string[]                                                                   | -       |
-| renderCell             | Overrides render method                                | ColumnType<T>['render']                                                    | -       |
+| renderCell             | Overrides render method                                | `ColumnType<T>['render']`                                                       | -       |
 | onClick                | Callback called when user clicks on star component     | (e: React.MouseEvent<HTMLElement, MouseEvent>) => void                     | -       |
 | onChange               | Callback called when user change starred status of row | (starredRowKeys: string[], starredKey: string, isStarred: boolean) => void | -       |
 | disableForExpandedRows | Hides star components on child rows                    | boolean                                                                    | -       |
