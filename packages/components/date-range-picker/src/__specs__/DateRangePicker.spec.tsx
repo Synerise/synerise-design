@@ -174,4 +174,23 @@ describe('DateRangePicker', () => {
     selectedRangeEnd.click();
     expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
   });
+  it('should display custom color for arrow popup', async () => {
+    const onApply = jest.fn();
+    const { container } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+        arrowColor={true}
+      />
+    );
+    const popoverWrapper = container.querySelector('.ant-popover-placement-top') as HTMLElement;
+    expect(popoverWrapper).toBe('.ant-popover-placement-top');
+  });
+
 });

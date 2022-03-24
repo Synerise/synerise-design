@@ -29,6 +29,7 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
+  arrowColor: boolean;
 }
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
@@ -40,10 +41,9 @@ export interface State {
 }
 export type Texts = {
   [k in Translations]: string | React.ReactNode;
-} &
-  {
-    [k in TranslationsPlaceholders]: string;
-  };
+} & {
+  [k in TranslationsPlaceholders]: string;
+};
 
 export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime';
 export type Translations =
