@@ -237,7 +237,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         addFirstConditionRowButton: 'where',
         addConditionRowButton: 'and where',
         dropLabel: 'Drop me here',
-        addStep: 'Add funnel step',
+        addStep: 'And then...',
         duplicateTooltip: 'Duplicate',
         removeTooltip: 'Remove',
         moveTooltip: 'Move',
@@ -260,7 +260,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       onChangeFactorType={setStepConditionFactorType}
       steps={steps.map(step => ({
         id: step.id,
-        stepName: boolean('Show step name', true) && step.stepName,
+        stepName: boolean('Show step name', true) ? step.stepName : undefined,
         context: {
           texts: CONTEXT_TEXTS,
           // onSelectItem: item => setStepSubject(step.id, item),
