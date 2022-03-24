@@ -300,10 +300,15 @@
         },
         "MATCHING": {
             "MATCHING": "matching",
-            "NOT-MATCHING": "not matching"
+            "NOT-MATCHING": "not matching",
+            "PERFORMED": "Performed",
+            "NOT-PERFORMED": "Not performed",
+            "HAVE": "Have",
+            "NOT-HAVE": "Not have"
         },
         "STEP-CARD": {
             "NAME-PLACEHOLDER": "Name",
+            "CONDITION-TYPE": "event",
             "MOVE": "Move",
             "DELETE": "Delete",
             "DUPLICATE": "Duplicate"
@@ -321,7 +326,7 @@
             "REMOVE-CONDITION-ROW-TOOLTIP": "Delete",
             "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
             "ADD-CONDITION-ROW-BUTTON": "Add condition",
-            "ADD-STEP": "Add step",
+            "ADD-STEP": "And then...",
             "DROP-LABEL": "Drop me here",
             "MOVE-TOOLTIP": "Move",
             "DUPLICATE-TOOLTIP": "Duplicate",
