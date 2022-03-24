@@ -16,6 +16,7 @@ const SORTABLE_CONFIG = {
   handle: '.step-card-drag-handler',
   animation: 200,
   forceFallback: true,
+  filter: '.ds-matching-toggle, .ds-cruds',
 };
 
 const component = {
