@@ -36,30 +36,25 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   );
 
   return (
-    <S.StepHeader>
-      {updateStepName && (
-        <S.StepName>
-          {`${index + 1}.`}{' '}
-          <InlineEdit
-            size="small"
-            input={{
-              value: localName,
-              name: `condition-step-name-${stepId}`,
-              placeholder: texts.stepNamePlaceholder,
-              onChange: handleChangeName,
-            }}
-          />
-        </S.StepName>
-      )}
-      <S.StepCruds>
-        {draggableEnabled && (
-          <Cruds.CustomAction
-            icon={<DragHandleM />}
-            title={texts.moveTooltip}
-            onClick={NOOP}
-            className="step-drag-handler"
-          />
+    <S.StepHeader className="step-drag-handler">
+      <S.LeftSide>
+        {draggableEnabled && <S.DragIcon component={<DragHandleM />} />}
+        {updateStepName && (
+          <S.StepName className="ds-condition-step-name">
+            {`${index + 1}`}{' '}
+            <InlineEdit
+              size="small"
+              input={{
+                value: localName,
+                name: `condition-step-name-${stepId}`,
+                placeholder: texts.stepNamePlaceholder,
+                onChange: handleChangeName,
+              }}
+            />
+          </S.StepName>
         )}
+      </S.LeftSide>
+      <S.StepCruds>
         <Cruds
           onDuplicate={duplicateStep ? (): void => duplicateStep(stepId) : undefined}
           onDelete={removeStep ? (): void => removeStep(stepId) : undefined}

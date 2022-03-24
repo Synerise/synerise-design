@@ -22,6 +22,7 @@ const SORTABLE_CONFIG = {
   ghostClass: 'steps-list-ghost-element',
   className: 'steps-list',
   handle: '.step-drag-handler',
+  filter: '.ds-condition-step-name, .ds-cruds',
   animation: 150,
   forceFallback: true,
 };
@@ -219,10 +220,12 @@ const Condition: React.FC<T.ConditionProps> = props => {
           })}
         </ReactSortable>
         {addStep && (
-          <Button type="ghost-primary" mode="icon-label" onClick={addStep}>
-            <Icon component={<Add3M />} />
-            {text.addStep}
-          </Button>
+          <S.AddStepButton>
+            <Button type="ghost" mode="icon-label" onClick={addStep}>
+              <Icon component={<Add3M />} />
+              {text.addStep}
+            </Button>
+          </S.AddStepButton>
         )}
       </S.Condition>
     );

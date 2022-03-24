@@ -222,7 +222,7 @@ const stories = {
             addFirstConditionRowButton: 'where',
             addConditionRowButton: 'and where',
             dropLabel: 'Drop me here',
-            addStep: 'Add funnel step',
+            addStep: 'And then...',
             duplicateTooltip: 'Duplicate',
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
@@ -291,7 +291,9 @@ const stories = {
                 },
                 value: condition.factor.value,
                 formulaEditor: <div>Formula editor</div>,
-                withCustomFactor: boolean('With custom factor component', false) && <span>Custom factor component</span>,
+                withCustomFactor: boolean('With custom factor component', false) && (
+                  <span>Custom factor component</span>
+                ),
                 parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,
