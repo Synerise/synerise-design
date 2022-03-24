@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.149.0](https://github.com/synerise/synerise-design/compare/portal@0.148.0...portal@0.149.0) (2022-03-24)
+
+
+### Bug Fixes
+
+* **layout:** remove unused properties ([709de02](https://github.com/synerise/synerise-design/commit/709de0220531ce92d3267b739f6352d0315eb550))
+
+
+### Features
+
+* **badge:** backward compatibility for customColor props ([89954fb](https://github.com/synerise/synerise-design/commit/89954fb3bc9b2763e3be480b77e3a7b75668750b))
+* **table:** improve sorting for universal-list ([f189dae](https://github.com/synerise/synerise-design/commit/f189daedea1f401dd1fb6dfd52acf41fa59413f0))
+* **table:** improvements for universal-list ([b1a1db1](https://github.com/synerise/synerise-design/commit/b1a1db11b72333f6b9bdd4468b73bc45b627cef0))
+* **table:** improves selection and memoization of virtual rows ([5dfe104](https://github.com/synerise/synerise-design/commit/5dfe10474358c310e2d5b2ae7ea93d8f35fb72be))
+* **table:** updates row selections (move to separate component), fixes from CR ([6afa8da](https://github.com/synerise/synerise-design/commit/6afa8da9758433520dbfd304ad5170bfc7d33b5d))
+* **table:** updates stories ([940b4fc](https://github.com/synerise/synerise-design/commit/940b4fce36c4af94443c29962eb1859ebd959075))
+* **table:** updates tests, stories ([94e98c2](https://github.com/synerise/synerise-design/commit/94e98c248b9f9c51e0ada0a32a2d9addf84f950a))
+* **table:** uses ramda instead of lodash in getValueFromPath util ([146921e](https://github.com/synerise/synerise-design/commit/146921ecb29cc2ab72ad0ad8aa8c103e69135e88))
+
+
+
+
+
 # [0.148.0](https://github.com/synerise/synerise-design/compare/portal@0.147.0...portal@0.148.0) (2022-03-14)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.3...@synerise/ds-core@0.32.0) (2022-03-24)
+
+
+### Features
+
+* **core:** exports type of default colors order ([12a761c](https://github.com/synerise/synerise-design/commit/12a761cd344353f4ebf212360b7c1d9d0afdc2d3))
+* **table:** improvements for universal-list ([b1a1db1](https://github.com/synerise/synerise-design/commit/b1a1db11b72333f6b9bdd4468b73bc45b627cef0))
+
+
+
+
+
 ## [0.31.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.2...@synerise/ds-core@0.31.3) (2022-03-14)
 
 

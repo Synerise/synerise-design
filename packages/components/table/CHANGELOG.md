@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.43.8...@synerise/ds-table@0.44.0) (2022-03-24)
+
+
+### Bug Fixes
+
+* **table:** fixes ts errors ([cbe64a4](https://github.com/synerise/synerise-design/commit/cbe64a40ed400f399dbf38198d4ef9c571f395c6))
+* row selection for independent child selection ([a3e593f](https://github.com/synerise/synerise-design/commit/a3e593fdd2db22f122befcc840c9d1be1dba1778))
+* **table:** fixes types ([9167846](https://github.com/synerise/synerise-design/commit/916784613c845937b3aff542f3ed6782cda420ee))
+
+
+### Features
+
+* **table:** adds independet selection of rows nad subrows ([80414e2](https://github.com/synerise/synerise-design/commit/80414e2e948f9c760adf4345a27704b0ffbcd25c))
+* **table:** improve sorting for universal-list ([f189dae](https://github.com/synerise/synerise-design/commit/f189daedea1f401dd1fb6dfd52acf41fa59413f0))
+* **table:** improvements for universal-list ([b1a1db1](https://github.com/synerise/synerise-design/commit/b1a1db11b72333f6b9bdd4468b73bc45b627cef0))
+* **table:** improves selection and memoization of virtual rows ([5dfe104](https://github.com/synerise/synerise-design/commit/5dfe10474358c310e2d5b2ae7ea93d8f35fb72be))
+* **table:** improves sorting, selection, and calculating columns width ([d762780](https://github.com/synerise/synerise-design/commit/d7627800cf99a02125dcecae596cbd21f4c21e83))
+* **table:** updates documentation of table component ([fb545e1](https://github.com/synerise/synerise-design/commit/fb545e181849d83c4ecf348f65f426d458395519))
+* **table:** updates row selections (move to separate component), fixes from CR ([6afa8da](https://github.com/synerise/synerise-design/commit/6afa8da9758433520dbfd304ad5170bfc7d33b5d))
+* **table:** updates tests, stories ([94e98c2](https://github.com/synerise/synerise-design/commit/94e98c248b9f9c51e0ada0a32a2d9addf84f950a))
+* **table:** uses ramda instead of lodash in getValueFromPath util ([146921e](https://github.com/synerise/synerise-design/commit/146921ecb29cc2ab72ad0ad8aa8c103e69135e88))
+
+
+
+
+
 ## [0.43.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.43.7...@synerise/ds-table@0.43.8) (2022-03-21)
 
 **Note:** Version bump only for package @synerise/ds-table

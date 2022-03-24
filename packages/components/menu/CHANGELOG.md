@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.12.5...@synerise/ds-menu@0.13.0) (2022-03-24)
+
+
+### Features
+
+* **table:** improves selection and memoization of virtual rows ([5dfe104](https://github.com/Synerise/synerise-design/commit/5dfe10474358c310e2d5b2ae7ea93d8f35fb72be))
+
+
+
+
+
 ## [0.12.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.12.4...@synerise/ds-menu@0.12.5) (2022-03-21)
 
 **Note:** Version bump only for package @synerise/ds-menu

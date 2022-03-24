@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.20.1...docs@0.21.0) (2022-03-24)
+
+
+### Features
+
+* **badge:** updates docs ([cd52270](https://gitlab.synerise.com/Frontend/synerise-design/commit/cd5227092cfa43486bb077972613004e87ab4e1b))
+* **table:** improve sorting for universal-list ([f189dae](https://gitlab.synerise.com/Frontend/synerise-design/commit/f189daedea1f401dd1fb6dfd52acf41fa59413f0))
+
+
+
+
+
 ## [0.20.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.20.0...docs@0.20.1) (2022-03-14)
 
 **Note:** Version bump only for package docs
