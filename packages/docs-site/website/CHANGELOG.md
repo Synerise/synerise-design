@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.21.0...docs@0.21.1) (2022-03-24)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 # [0.21.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.20.1...docs@0.21.0) (2022-03-24)
 
 
