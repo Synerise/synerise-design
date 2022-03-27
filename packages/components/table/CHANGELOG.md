@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.1...@synerise/ds-table@0.44.2) (2022-03-27)
+
+
+### Bug Fixes
+
+* **table:** fixes sorter dropdown position ([2b0ede8](https://github.com/synerise/synerise-design/commit/2b0ede8ed2436cc4f6e6b5830b15cdbf14590f63))
+
+
+
+
+
 ## [0.44.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.0...@synerise/ds-table@0.44.1) (2022-03-24)
 
 **Note:** Version bump only for package @synerise/ds-table
