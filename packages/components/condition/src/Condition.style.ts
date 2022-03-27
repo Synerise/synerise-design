@@ -246,5 +246,5 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
 `;
 
 export const AddStepButton = styled.div`
-  margin-left: 24px;
+  margin: 12px 24px 0;
 `;

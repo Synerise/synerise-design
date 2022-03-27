@@ -29,12 +29,14 @@ import CompletedWithin from '@synerise/ds-completed-within'
 
 ## API
 
-| Property   | Description                                                                  | Type                         | Default                                |
-| ---        | ---                                                                          | ---                          | ---                                    |
-| text       | Custom labels and tooltips                                                   | CompletedWithinTexts         | -                                      |
-| value      | Selected value                                                               | PeriodValue                  | { value: undefined, period: 'YEARS'} |
-| onSetValue | Function called when user has closed the settings with set value, and period | (value: PeriodValue) => void | -                                      |
-| periods    | Custom list of periods                                                       | CustomPeriod[]               | -                                      |
+| Property    | Description                                                                  | Type                         | Default                              |
+| ---         | ---                                                                          | ---                          | ---                                  |
+| text        | Custom labels and tooltips                                                   | CompletedWithinTexts         | -                                    |
+| value       | Selected value                                                               | PeriodValue                  | { value: undefined, period: 'YEARS'} |
+| onSetValue  | Function called when user has closed the settings with set value, and period | (value: PeriodValue) => void | -                                    |
+| periods     | Custom list of periods                                                       | CustomPeriod[]               | -                                    |
+| placeholder | Trigger button label                                                         | string                       | -                                    |
+| tooltip     | Tooltip description                                                          | string                       | -                                    |
 
 ### CompletedWithinTexts
 

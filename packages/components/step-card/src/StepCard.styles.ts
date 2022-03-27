@@ -35,7 +35,7 @@ export const Header = styled.div`
   padding: 22px 0;
   margin: 0 24px 0 0;
   width: 100%;
-  max-width: calc(100% - 48px);
+  max-width: calc(100% - 24px);
   position: relative;
   cursor: grab;
   &:hover {
