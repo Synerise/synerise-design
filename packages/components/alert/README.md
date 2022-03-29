@@ -13,7 +13,7 @@ yarn add @synerise/ds-alert
 ```
 
 ## Usage
-```
+```jsx
 import Alert from '@synerise/ds-alert'
 
 <Alert 
@@ -26,6 +26,38 @@ import Alert from '@synerise/ds-alert'
     onShowMore={() => {}}
 />
 
+```
+
+### notifications api usage
+
+#### Simple (`ant`-based)
+
+```jsx
+import notification from '@ant/notification'
+
+notification.open({message: 'Message content', duration 4.5})
+```
+
+#### A `synerise-design`-styled notification
+```jsx
+import Notification from '@ds-alert/Notification'
+import notification from '@ant/notification'
+
+notification.open({message: <Notification>'Message content'</Notification>, duration: 4.5})
+```
+
+#### Differently positioned notification
+
+`antd-notification` is mounted in `docuemnt.body` by default. In order to style using scoped css -
+`getContainer` has to be a `styled-components`-scoped element, this is done in `mountInstance`, see source code for more.
+
+```jsx
+import open from '@ds-alert/Notification'
+
+const [api, contextHolder] = notification.useNotification();
+open({message: Message content, duration: 4.5}, api, contextHolder))
+
+console.log('@synerise/ds-alert notifications get mounted in this container', document.querySelector('.popup-container'))
 ```
 
 ## Demo
