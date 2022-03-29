@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { notification } from 'antd';
 import { NotificationInstance } from 'antd/lib/notification';
-import { Text } from '@synerise/ds-typography';
 import type { ArgsProps, NotificationApi } from 'antd/es/notification';
 
 import 'antd/lib/notification/style/index.less';
@@ -11,12 +10,14 @@ import Icon, { UserAddM, CloseM } from '@synerise/ds-icon';
 
 import * as S from './Notification.styles';
 
-export const defaultNotificationProps = {
-  label: undefined as string | undefined,
-  type: 'info' as keyof NotificationInstance | undefined,
-  onButtonClick: undefined as unknown as undefined | ((ev: React.MouseEvent<HTMLElement, MouseEvent>) => void),
-};
-export type NotificationProps = Partial<ArgsProps> & Partial<typeof defaultNotificationProps>;
+export type NotificationProps = {
+  label?: string;
+  type?: keyof NotificationInstance;
+  onButtonClick?: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  closeIconClassName?: string;
+  placement: ArgsProps['placement'] | 'bottom';
+} & Partial<Omit<ArgsProps, 'placement'>>;
+
 type NotificationApiHook = ReturnType<NotificationApi['useNotification']>;
 type ApiHook = NotificationApiHook[0];
 type ContextHolder = NotificationApiHook[1];
@@ -27,21 +28,11 @@ export function Notification({
   onButtonClick,
   onClose,
   icon,
+  closeIconClassName = 'ds-close-icon',
 }: NotificationProps & { children?: JSX.Element | React.ReactNode | React.ReactNode[] }): JSX.Element {
-  const maybeCloseClick = React.useCallback(
-    () =>
-      (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-        const isClickedElementChildOfCloseIcon = (ev.target as HTMLElement).closest('.ds-close-icon');
-        const isThisCloseIcon = ev?.currentTarget?.getAttribute('class')?.split(' ').indexOf('ds-close-icon') !== -1;
-        if (isClickedElementChildOfCloseIcon || isThisCloseIcon) {
-          onClose && onClose();
-        }
-      },
-    [onClose]
-  );
   return (
     <S.NotificationsContainer>
-      <S.FlexGrow>{(typeof children === 'string' && <Text size="small">{children}</Text>) || children}</S.FlexGrow>
+      <S.TextLabel>{children}</S.TextLabel>
       {(label || onClose) && (
         <S.Shrink>
           {label && (
@@ -51,26 +42,13 @@ export function Notification({
             </Button>
           )}
           {onClose && (
-            <Button className="ds-close-icon" type="ghost" onClick={maybeCloseClick}>
+            <Button className={closeIconClassName} type="ghost" onClick={onClose}>
               <Icon component={<CloseM />} />
             </Button>
           )}
         </S.Shrink>
       )}
     </S.NotificationsContainer>
-  );
-}
-
-export function buildInstance(contextHolder?: ContextHolder, overwritePositioning = true): JSX.Element {
-  return (
-    <S.NotificationsWrapper>
-      {(overwritePositioning && (
-        <div key="popupcontainer" id="popup-container" style={{ position: 'absolute', right: '0px', bottom: '0px' }}>
-          {contextHolder}
-        </div>
-      )) ||
-        contextHolder}
-    </S.NotificationsWrapper>
   );
 }
 
@@ -90,12 +68,12 @@ export function mountInstance(
   element.setAttribute('class', className);
   const cont = getContainer();
   cont.appendChild(element);
-  const jsxEl = buildInstance(contextHolder);
+  const jsxEl = <S.NotificationsWrapper>{contextHolder}</S.NotificationsWrapper>;
   ReactDOM.render(jsxEl, element);
   const cleanUpFunction = (): void => {
     cont.removeChild(element);
   };
-  return [element.querySelector('div,.NotificationsWrapper'), cleanUpFunction];
+  return [element, cleanUpFunction];
 }
 
 export function notificationOpen(
@@ -106,31 +84,39 @@ export function notificationOpen(
     icon,
     onClick,
     onClose,
+    closeIconClassName = 'ds-close-icon',
+    placement = 'bottom',
     ...props
-  }: NotificationProps = {} as NotificationProps,
+  }: NotificationProps,
   notificationApi?: ApiHook,
   contextHolder?: ContextHolder
 ): void {
-  const api = notificationApi || notification; // fallback if no api given
+  const api = notificationApi || notification;
   // TODO: check if context is actually available
-  let el: HTMLElement | null = document.body.querySelector(`.${className} div`);
+  let el: HTMLElement | null = document.body.querySelector(`.${className}`);
+  if (!el) {
+    [el] = mountInstance(contextHolder, { className });
+  }
+  const getContainer: ArgsProps['getContainer'] = (): HTMLElement =>
+    el?.querySelector('div>div,.NotificationsBottomPlacementWrapper>.NotificationsWrapper') as HTMLElement;
+
+  /** a workaround for handling close clicks,
+   * since there's no way for injecting other element triggering onClose listener.
+   * It is set as a listener for all the clicks
+   * and fires onClose when close-icon was clicked */
   const maybeCloseClick = (ev: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-    if (
-      (ev.target as HTMLElement).closest('.ds-close-icon') ||
-      ev?.currentTarget?.getAttribute('class')?.split(' ').indexOf('ds-close-icon') !== -1
-    ) {
+    const isClickedElementChildOfCloseIcon = (ev.target as HTMLElement).closest(`.${closeIconClassName}`);
+    const isThisCloseIcon = ev?.currentTarget?.classList.contains(`${closeIconClassName}`);
+    if (isClickedElementChildOfCloseIcon || isThisCloseIcon) {
       return onClose && onClose();
     }
     return onClick && onClick();
   };
-  if (!el) {
-    [el] = mountInstance(contextHolder, { className });
-  }
   return api.open({
     message,
     type,
-    placement: 'bottomRight',
-    getContainer: () => el as HTMLElement,
+    placement: placement as ArgsProps['placement'],
+    getContainer,
     icon,
     onClick: maybeCloseClick as ArgsProps['onClick'],
     bottom: 16,

@@ -5,7 +5,8 @@ import {notification} from 'antd';
 import rcNotificationsApi from "antd/es/notification";
 import Button from '@synerise/ds-button';
 import {Notification, notificationOpen} from "@synerise/ds-alert";
-import Icon, {UserAddM, AddM} from "@synerise/ds-icon";
+import Icon, {UserAddM, AddM, ShowM} from "@synerise/ds-icon";
+import { Text } from '@synerise/ds-typography';
 
 const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
 export const iconsRaw = req(req.keys()[0]);
@@ -18,13 +19,16 @@ const icons = Object.assign({}, ...iconsNames.map(e => {
 
 const SomeIcon = iconsRaw['Add3M'];
 const name2icon = {
+    'ShowM': <Icon component={<ShowM />} />,
     'User': <Icon component={<UserAddM />} />,
     'Add': <Icon component={<AddM />} />,
     'Add3m': <Icon component={<SomeIcon/>}/>,
     'None': undefined,
     ...icons,
-}
-const iconOptions = Object.assign({}, ...Object.keys(name2icon).map(e => ({[e]: e})))
+} as const;
+const iconOptions = Object.assign({}, ...Object.keys(name2icon).map(e => ({[e]: e})));
+const defaultIcon: keyof typeof name2icon = 'ShowM';
+
 const stories = {
     default: () => {
         const message = text('Message', 'Message');
@@ -39,36 +43,53 @@ const stories = {
             </Button>
         </div>
     },
-    customize: () => {
+    customize: function(): React.ReactNode {
         const [api, contextHolder] = notification.useNotification();
         const showClose = boolean('Show close', false)
         const isActionButton = boolean('Action button', true)
-        const message = text('Message', 'Message')
+        const message = text('Message', 'sample')
         const duration = number('duration', 3)
         let iconName: keyof typeof name2icon = 'none';
+        let label = ''
         if (isActionButton) {
-            iconName = select('Icon', iconOptions, 'user')
+            iconName = select('Icon', iconOptions, defaultIcon)
+            label = text('Button text', 'Show preview');
         }
+        const placement = select('Placement', {
+            'bottom': 'bottom',
+            'bottomRight': 'bottomRight',
+            'bottomLeft': 'bottomLeft',
+            'topLeft': 'topLeft',
+            'topRight': 'topRight'}, 'bottom');
+        React.useEffect(() => {
+            if (boolean('Destroy notification container on placement change', false)) {
+              rcNotificationsApi.destroy();
+            }
+        }, [placement])
         return (<div>
             {contextHolder}
             <Button type="primary" onClick={() => notificationOpen({
-                message: boolean('is a styled message?', true) ? <Notification
-                    label={isActionButton && text('Button text', 'Load more')}
+                message: boolean('Styled message', true) ? <Notification
+                    label={isActionButton && label}
                     icon={name2icon[iconName]}
                     onClick={action('onClick Notification')}
-                    onClose={showClose ? action('onClose Notification') : undefined}
-                   >{message || new Date().toLocaleString()}</Notification> : message,
+                    onClose={showClose ? () => {
+                        action('onClose Notification')();
+                        // FIXME: pass noticeKey and change to .close when antd is upgraded
+                        rcNotificationsApi.destroy();
+                    } : undefined}
+                >{message === 'sample' && "You've changed conditions" || message || <Text>new Date().toLocaleString()</Text>}</Notification> : "Some special characters <>'&.",
                 duration,
-                ...showClose ? {onClose: () => {
-                    action('onClose')();
-                    // FIXME: pass noticeKey and change to .close when antd is upgraded
-                    rcNotificationsApi.destroy();
-                }} : {},
+                onClose: action('onClose notification\'s api'),
                 onClick: action('onClick notification\'s api'),
+                placement,
             }, api, contextHolder)}>
                 Show notification
             </Button>
         </div>)
+    },
+    notification: {
+      children: text('Message', 'You have changed conditions'),
     },
 }
 

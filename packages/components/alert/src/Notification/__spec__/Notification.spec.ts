@@ -19,4 +19,11 @@ describe('notification', () => {
   it.todo('first ant-notification-hook-handler has margin-top 0px, the other ones have 8px');
   it.todo('.ant-notification > div should have transparent background');
   it.todo('close button and action button can be shown separately (even exclusively)');
+  it.todo("Notification's message can accept special characters \"&'");
+  it.todo('placement bottom applies .ant-notification-bottom class to the container');
+  it.todo('sending notification with another placement handles it correctly');
+  it.todo('getContainer should always point at NotificationsWrapper element');
+  it.todo(
+    '.ant-notification-bottom should be properly styled even if e.g. .ant-notification-topLeft was added first (`.ant-notification{, }.ant-notification-bottom`)'
+  );
 });
