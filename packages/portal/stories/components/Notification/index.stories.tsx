@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {boolean, number, select, text} from '@storybook/addon-knobs';
-import {action} from '@storybook/addon-actions';
 import {notification} from 'antd';
 import rcNotificationsApi from "antd/es/notification";
+import {boolean, number, select, text} from '@storybook/addon-knobs';
+import {action} from '@storybook/addon-actions';
+
 import Button from '@synerise/ds-button';
 import {Notification, notificationOpen} from "@synerise/ds-alert";
 import Icon, {UserAddM, AddM, ShowM} from "@synerise/ds-icon";
@@ -50,10 +51,10 @@ const stories = {
         const message = text('Message', 'sample')
         const duration = number('duration', 3)
         let iconName: keyof typeof name2icon = 'none';
-        let label = ''
+        let buttonText = ''
         if (isActionButton) {
             iconName = select('Icon', iconOptions, defaultIcon)
-            label = text('Button text', 'Show preview');
+            buttonText = text('Button text', 'Show preview');
         }
         const placement = select('Placement', {
             'bottom': 'bottom',
@@ -70,7 +71,7 @@ const stories = {
             {contextHolder}
             <Button type="primary" onClick={() => notificationOpen({
                 message: boolean('Styled message', true) ? <Notification
-                    label={isActionButton && label}
+                    buttonText={isActionButton && buttonText}
                     icon={name2icon[iconName]}
                     onClick={action('onClick Notification')}
                     onClose={showClose ? () => {

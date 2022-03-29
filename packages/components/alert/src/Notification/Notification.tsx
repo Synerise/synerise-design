@@ -11,10 +11,17 @@ import Icon, { UserAddM, CloseM } from '@synerise/ds-icon';
 import * as S from './Notification.styles';
 
 export type NotificationProps = {
-  label?: string;
+  /** content of the notification */
+  children?: JSX.Element | React.ReactNode | React.ReactNode[];
+  /** text displayed on the button */
+  buttonText?: string;
+  /** type of the notification, `"info" | "success"`, see `antd/notification`, `info` by default */
   type?: keyof NotificationInstance;
+  /** handler for clicking on the button, note button is rendered only if `buttonText` is provided */
   onButtonClick?: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  /** close icon class */
   closeIconClassName?: string;
+  /** where to position notification, `"{top,bottom}{Left,Right}" | "bottom"` */
   placement: ArgsProps['placement'] | 'bottom';
 } & Partial<Omit<ArgsProps, 'placement'>>;
 
@@ -23,22 +30,22 @@ type ApiHook = NotificationApiHook[0];
 type ContextHolder = NotificationApiHook[1];
 
 export function Notification({
-  label,
+  buttonText,
   children = undefined,
   onButtonClick,
   onClose,
   icon,
   closeIconClassName = 'ds-close-icon',
-}: NotificationProps & { children?: JSX.Element | React.ReactNode | React.ReactNode[] }): JSX.Element {
+}: NotificationProps): JSX.Element {
   return (
     <S.NotificationsContainer>
       <S.TextLabel>{children}</S.TextLabel>
-      {(label || onClose) && (
+      {(buttonText || onClose) && (
         <S.Shrink>
-          {label && (
+          {buttonText && (
             <Button type="primary" mode="icon-label" color="blue" onClick={onButtonClick}>
               {icon || (icon !== null && <Icon component={<UserAddM />} />)}
-              {label}
+              {buttonText}
             </Button>
           )}
           {onClose && (
