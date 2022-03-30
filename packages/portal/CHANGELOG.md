@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.150.0](https://github.com/synerise/synerise-design/compare/portal@0.149.0...portal@0.150.0) (2022-03-30)
+
+
+### Features
+
+* **alert:** add Notification component, stories, test todos ([eeb09d8](https://github.com/synerise/synerise-design/commit/eeb09d857938100058e6c3112082014acdb67d6c))
+* **alert:** add the remaining placements, code cleanup, storybook fixes ([c469574](https://github.com/synerise/synerise-design/commit/c469574c2fa5135d956127a5bc35601808285569))
+
+
+
+
+
 # [0.149.0](https://github.com/synerise/synerise-design/compare/portal@0.148.0...portal@0.149.0) (2022-03-24)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.2...@synerise/ds-alert@0.6.0) (2022-03-30)
+
+
+### Features
+
+* **alert:** add Notification component, stories, test todos ([eeb09d8](https://github.com/Synerise/synerise-design/commit/eeb09d857938100058e6c3112082014acdb67d6c))
+* **alert:** add the remaining placements, code cleanup, storybook fixes ([c469574](https://github.com/Synerise/synerise-design/commit/c469574c2fa5135d956127a5bc35601808285569))
+
+
+
+
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.1...@synerise/ds-alert@0.5.2) (2022-03-21)
 
 **Note:** Version bump only for package @synerise/ds-alert
