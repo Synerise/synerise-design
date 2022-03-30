@@ -164,3 +164,16 @@ console.log('@synerise/ds-alert notifications get mounted in this container', do
 | button          | prop to set button                                                                                                     | `boolean`                   | -          |
 | textButton      | string of button                                                                                                       | `string`                    | -          |
 | text            | string of withEmphasis or withLink                                                                                     | `string`                    | -          |
+
+
+### Alert.Notification
+| Property            | Description                                                                                       | Type                                                          | Default         |
+|---------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-----------------|
+| children            | Content of the notification                                                                       | string\/React.ReactNode\/JSX.Element                          | JSX.Element     |
+| type                | type of the notification, `"info"/"success"`, see `antd-notification`, `info` by default          | keyof NotificationInstance                                    | "info"          |
+| placement           | where to position the notification                                                                | 'bottomLeft' 'bottomRight' 'topLeft' 'topRight' 'bottom'      | "bottom"        |
+| onClose?            | Handler for clicking on the close button (close button is rendered only if this prop is provided) | () => void                                                    | -               |
+| buttonText?         | Text on the action button                                                                         | string                                                        | -               |
+| onButtonClick?      | Handler for `onClick` on the action button                                                        | () => void                                                    | -               |
+| icon?               | Icon on the action button                                                                         | DSIcon                                                        | -               |
+| closeIconClassName? | Class of the close icon name                                                                      | string                                                        | "ds-close-icon" |
