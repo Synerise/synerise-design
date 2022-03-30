@@ -18,6 +18,31 @@ const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
 };
+const CUSTOM_COLORS = [
+  'blue',
+  'grey',
+  'red',
+  'green',
+  'yellow',
+  'pink',
+  'mars',
+  'orange',
+  'fern',
+  'cyan',
+  'purple',
+  'violet',
+];
+const HUE_COLORS = [
+  '100',
+  '200',
+  '300',
+  '400',
+  '500',
+  '600',
+  '700',
+  '800',
+  '900',
+];
 
 const stories = {
   default: withState({
@@ -34,6 +59,9 @@ const stories = {
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
+    const setCustomColor = boolean('Set custom color', false);
+    const selectCustomColor = setCustomColor ? select('Pick custom color', CUSTOM_COLORS, 'blue') : undefined;
+    const selectHueColor = setCustomColor ? select('Pick hue color', HUE_COLORS, '600') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         name,
@@ -56,7 +84,7 @@ const stories = {
             tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
             active={isActive}
             greyBackground={!bg}
-            color={'blue-600'}
+            color={setCustomColor ?`${selectCustomColor}-${selectHueColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
             suffixIcon={suffixType[setSuffix]}
@@ -98,6 +126,9 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
+    const setCustomColor = boolean('Set custom color', false);
+    const selectCustomColor = setCustomColor ? select('Pick custom color', CUSTOM_COLORS, 'blue') : undefined;
+    const selectHueColor = setCustomColor ? select('Pick hue color', HUE_COLORS, '600') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -168,7 +199,7 @@ const stories = {
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={item.color}
+              color={ setCustomColor ?`${selectCustomColor}-${selectHueColor}` : item.color}
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
-import { COLORS_TABS } from './CardTab/ColorsTabs';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
@@ -30,7 +30,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   const renderChildren = (): JSX.Element[] =>
     React.Children.map(children, (child, i) =>
       React.cloneElement(child, {
-        color: COLORS_TABS[i % COLORS_TABS.length],
+        ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
         draggable: Boolean(onChangeOrder) || child.props.draggable,
       })
     );
