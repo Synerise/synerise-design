@@ -56,7 +56,6 @@ const stories = {
           onChangeMatching={setMatching}
           name={name}
           onChangeName={name => {
-            console.log('handleChange stories', name);
             setName(name);
           }}
           onDuplicate={action('duplicate')}
@@ -77,10 +76,6 @@ const stories = {
                   value={completedWithinValue}
                   onSetValue={setCompletedWithinValue}
                   placeholder={text('Completed within placeholder', 'Completed within')}
-                  tooltip={text(
-                    'Completed within tooltip',
-                    'Filter by time elapsed between completing the first and last step in the funnel.'
-                  )}
                 />
                 <DateRangePicker
                   onApply={setRangeValue}

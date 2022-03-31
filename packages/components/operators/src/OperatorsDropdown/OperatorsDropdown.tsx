@@ -23,16 +23,19 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
   setDropdownVisible,
   value,
 }) => {
-  const defaultTab = React.useMemo(() => {
-    const defaultIndex = groups?.findIndex((group: OperatorsGroup) => group.defaultGroup);
-    return defaultIndex || 0;
-  }, [groups]);
-
   const overlayRef = React.useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
+  const [activeTab, setActiveTab] = React.useState<number>(0);
   const [activeGroup, setActiveGroup] = React.useState<OperatorsGroup | undefined>(undefined);
   const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+
+  React.useEffect(() => {
+    const defaultIndex = groups?.findIndex(
+      (group: OperatorsGroup) => group.defaultGroup || (value && group.id === value.groupId)
+    );
+    setActiveTab(defaultIndex === -1 ? 0 : defaultIndex);
+  }, [value?.groupId]);
+
   const classNames = React.useMemo(() => {
     return `ds-operator-item ds-operator-item-${uuid()}`;
   }, []);
@@ -195,13 +198,15 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       )}
       <S.ItemsList>
         <Scrollbar absolute maxHeight={300} style={{ padding: 8 }}>
-          {// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          currentItems.length ? (
-            currentItems
-          ) : (
-            <Result noSearchResults type="no-results" description={texts.noResults} />
-          )}
+          {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
+            currentItems.length ? (
+              currentItems
+            ) : (
+              <Result noSearchResults type="no-results" description={texts.noResults} />
+            )
+          }
         </Scrollbar>
       </S.ItemsList>
     </Dropdown.Wrapper>

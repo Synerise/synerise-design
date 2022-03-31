@@ -90,7 +90,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
 
   const onDropdownVisibilityChange = React.useCallback(
-    (value: boolean) => value && onActivate && onActivate(),
+    (value: boolean) => value && onActivate && onActivate(''),
     [onActivate]
   );
 

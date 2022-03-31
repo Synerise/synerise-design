@@ -7,7 +7,7 @@ export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top: ${(props): string => (props.withoutStepName ? '22px' : '0')};
+  margin-top: 0;
 `;
 
 export const StepName = styled.div`
@@ -38,6 +38,16 @@ export const Condition = styled.div`
   }
 `;
 
+export const ConditionStepWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const And = styled.div``;
+
 export const DragIcon = styled(Icon)`
   opacity: 0;
   visibility: hidden;
@@ -62,14 +72,14 @@ export const LeftSide = styled.div`
   position: relative;
 `;
 
-export const StepHeader = styled.div`
+export const StepHeader = styled.div<{ draggable: boolean }>`
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
-  cursor: grab;
+  cursor: ${(props): string => (props.draggable ? 'grab' : 'default')};
 `;
 
 export const Step = styled.div`

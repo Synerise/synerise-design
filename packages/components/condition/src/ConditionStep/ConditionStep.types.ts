@@ -37,4 +37,5 @@ export type ConditionStepProps = {
   currentStepId: React.ReactText;
   currentConditionId: React.ReactText;
   currentField: React.ReactText;
+  setCurrentField: (field: string) => void;
 };

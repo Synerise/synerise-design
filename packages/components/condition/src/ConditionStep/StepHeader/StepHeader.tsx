@@ -36,7 +36,7 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   );
 
   return (
-    <S.StepHeader className="step-drag-handler">
+    <S.StepHeader className="step-drag-handler" draggable={draggableEnabled}>
       <S.LeftSide>
         {draggableEnabled && <S.DragIcon component={<DragHandleM />} />}
         {updateStepName && (

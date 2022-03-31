@@ -4,6 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
+import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
 import { FACTOR, OPERATOR, PARAMETER } from '../../Condition';
 import * as S from '../../Condition.style';
 import * as T from './ConditionRow.types';
@@ -53,31 +54,33 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
           <Factors
             {...conditionParameter}
             getPopupContainerOverride={getPopupContainerOverride}
-            onActivate={onActivate}
+            onActivate={(): void => onActivate && onActivate(PARAMETER)}
             onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
             opened={stepId === currentStepId && conditionId === currentConditionId && currentField === PARAMETER}
           />
         )}
       </S.ConditionWrapper>
-      {(!conditionParameter || conditionParameter?.value) && conditionOperator && (
-        <S.ConditionWrapper>
-          <Operators
-            {...conditionOperator}
-            getPopupContainerOverride={getPopupContainerOverride}
-            onActivate={onActivate}
-            onChange={(value): void => selectOperator(stepId, conditionId, value)}
-            opened={stepId === currentStepId && conditionId === currentConditionId && currentField === OPERATOR}
-          />
-        </S.ConditionWrapper>
-      )}
-      {conditionOperator?.value && (
+      {(!conditionParameter ||
+        (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
+        conditionOperator && (
+          <S.ConditionWrapper>
+            <Operators
+              {...conditionOperator}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onActivate={(): void => onActivate && onActivate(OPERATOR)}
+              onChange={(value): void => selectOperator(stepId, conditionId, value)}
+              opened={stepId === currentStepId && conditionId === currentConditionId && currentField === OPERATOR}
+            />
+          </S.ConditionWrapper>
+        )}
+      {conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null && (
         <S.ConditionWrapper>
           <>
             {conditionFactor?.withCustomFactor || (
               <Factors
                 {...conditionFactor}
                 getPopupContainerOverride={getPopupContainerOverride}
-                onActivate={onActivate}
+                onActivate={(): void => onActivate && onActivate(FACTOR)}
                 setSelectedFactorType={(factorType): void =>
                   setStepConditionFactorType(stepId, conditionId, factorType)
                 }

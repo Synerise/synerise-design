@@ -41,6 +41,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
       to: undefined,
     },
   },
+  expressionType: 'event', // or 'attribute'
   expressionSteps: [DEFAULT_STEP(subject)],
 });
 
@@ -192,7 +193,6 @@ const stories = {
               value={expression.footer.completedWithinValue}
               onSetValue={handleCompletedWithin}
               placeholder="Completed within"
-              tooltip={'Filter by time elapsed between completing the first and last step in the funnel.'}
             />
           )}
           {expression?.footer?.dateRange && (

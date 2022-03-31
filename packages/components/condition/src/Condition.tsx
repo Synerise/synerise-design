@@ -52,7 +52,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
-      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'Add step' }),
+      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
       ...texts,
     }),
     [texts, formatMessage]
@@ -193,7 +193,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
               <ConditionStep
                 key={`step-id-${step.id}`}
                 step={step}
-                texts={texts}
+                texts={text}
                 index={index}
                 hasPriority={step.id === priorityStepId}
                 onStepActivate={setPriorityStepId}
@@ -215,6 +215,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 currentField={currentField}
                 removeCondition={removeCondition}
                 addCondition={addCondition}
+                setCurrentField={setCurrentField}
               />
             );
           })}
@@ -235,8 +236,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     setPriorityStepId,
     onChangeOrder,
     addStep,
-    text.addStep,
-    texts,
+    text,
     draggableEnabled,
     selectOperator,
     selectParameter,
