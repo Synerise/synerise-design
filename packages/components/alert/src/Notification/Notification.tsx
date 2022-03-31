@@ -77,13 +77,13 @@ export function Notification({
 export function mountInstance(
   contextHolder?: ContextHolder,
   { getContainer = (): HTMLElement => document.body, className = 'popup-container' } = {}
-): [HTMLElement | null, Function] {
+): [Promise<HTMLElement>, HTMLElement, () => void] {
   const element = document.createElement('div');
   element.setAttribute('class', className);
   const cont = getContainer();
   cont.appendChild(element);
   const jsxEl = <S.NotificationsWrapper>{contextHolder}</S.NotificationsWrapper>;
-  const renderPromsie = new Promise(resolve => {
+  const renderPromsie = new Promise<HTMLElement>(resolve => {
     ReactDOM.render(jsxEl, element, () => resolve(element));
   });
   const cleanUpFunction = (): void => {
@@ -128,7 +128,7 @@ export async function notificationOpen(
   }: NotificationProps,
   notificationApi?: ApiHook,
   contextHolder?: ContextHolder
-): void {
+): Promise<void> {
   const api = notificationApi || notification;
   // TODO: check if context is actually available
   let el: HTMLElement | null = document.body.querySelector(`.${className}`);

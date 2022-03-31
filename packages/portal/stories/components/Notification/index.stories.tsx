@@ -102,7 +102,7 @@ const stories = {
         }, [])
         React.useLayoutEffect(() => {
           if (seconds % 2 == 0) {
-            showNotification(`Elasped ${seconds} seconds.`, api, contextHolder);
+            showNotification(`Elapsed ${seconds} seconds.`, api, contextHolder);
           }
         }, [seconds])
         return <div>{contextHolder}<span>Seconds: {seconds}</span></div>
