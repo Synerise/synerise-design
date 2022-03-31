@@ -88,6 +88,25 @@ const stories = {
             </Button>
         </div>)
     },
+    triggeredFromOutside: () => {
+        const [api, contextHolder] = notificationsApi.useNotification();
+        const showNotification = (msg, api, contextHolder) => {
+            notificationOpen({
+                message: <Notification>{msg}</Notification>
+            }, api, contextHolder);
+        }
+        const [seconds, setSeconds] = React.useState<number>(0);
+        React.useEffect(() => {
+          const hndId = window.setInterval(() => setSeconds(s => s + 1), 1000)
+          return () => window.clearInterval(hndId);
+        }, [])
+        React.useLayoutEffect(() => {
+          if (seconds % 2 == 0) {
+            showNotification(`Elasped ${seconds} seconds.`, api, contextHolder);
+          }
+        }, [seconds])
+        return <div>{contextHolder}<span>Seconds: {seconds}</span></div>
+    },
     notification: {
       children: text('Message', 'You have changed conditions'),
     },

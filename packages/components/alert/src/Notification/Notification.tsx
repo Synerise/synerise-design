@@ -114,7 +114,7 @@ export function mountInstance(
  *    ReactDOM.render(<App/>, document.querySelector('#app'));
  * ```
  */
-export function notificationOpen(
+export async function notificationOpen(
   {
     type = 'info',
     className = 'popup-container',
@@ -132,9 +132,13 @@ export function notificationOpen(
   const api = notificationApi || notification;
   // TODO: check if context is actually available
   let el: HTMLElement | null = document.body.querySelector(`.${className}`);
+  let containerPromise;
   if (!el) {
-    [el] = mountInstance(contextHolder, { className });
+    [containerPromise, el] = mountInstance(contextHolder, { className });
   }
+
+  await containerPromise;
+
   const getContainer: ArgsProps['getContainer'] = (): HTMLElement =>
     el?.querySelector('div>div,.NotificationsBottomPlacementWrapper>.NotificationsWrapper') as HTMLElement;
 
