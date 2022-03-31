@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.6.0...@synerise/ds-alert@0.6.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* **alert:** exporting NotificationProps typing ([985c994](https://github.com/Synerise/synerise-design/commit/985c994a516f0323e2903afddf9ca4bea33a594c))
+
+
+
+
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.2...@synerise/ds-alert@0.6.0) (2022-03-30)
 
 
