@@ -113,6 +113,7 @@ const Filter: React.FC<FilterProps> = ({
       return props[expression.type];
     },
     [
+      getContextTypeTexts,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
@@ -120,7 +121,7 @@ const Filter: React.FC<FilterProps> = ({
       onDuplicateStep,
       renderStepContent,
       renderStepFooter,
-      text,
+      text.step,
     ]
   );
 

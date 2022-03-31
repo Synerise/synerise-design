@@ -34,7 +34,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
       (group: OperatorsGroup) => group.defaultGroup || (value && group.id === value.groupId)
     );
     setActiveTab(defaultIndex === -1 ? 0 : defaultIndex);
-  }, [value?.groupId]);
+  }, [groups, value]);
 
   const classNames = React.useMemo(() => {
     return `ds-operator-item ds-operator-item-${uuid()}`;
