@@ -11,14 +11,7 @@ import * as S from './CompleteWithin.styles';
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
 const DEFAULT_PERIOD = 'DAYS';
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({
-  value,
-  onSetValue,
-  text,
-  periods,
-  placeholder,
-  tooltip,
-}) => {
+const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods, placeholder }) => {
   const intl = useIntl();
 
   const texts = React.useMemo(
@@ -86,7 +79,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
       <Dropdown
         overlay={
           <Settings
-            value={{ value: Number(innerValue), period: innerPeriod }}
+            value={{ value: innerValue !== undefined ? Number(innerValue) : 0, period: innerPeriod }}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
             text={texts}
@@ -97,12 +90,10 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
         onVisibleChange={handleVisibleChange}
         placement="topLeft"
       >
-        <Tooltip description={tooltip} type="largeSimple" trigger={tooltip ? 'hover' : undefined}>
-          <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
-            <Icon component={<ClockM />} />
-            {triggerLabel}
-          </S.TriggerButton>
-        </Tooltip>
+        <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
+          <Icon component={<ClockM />} />
+          {triggerLabel}
+        </S.TriggerButton>
       </Dropdown>
       {hasValue && (
         <Tooltip title={texts.clear}>

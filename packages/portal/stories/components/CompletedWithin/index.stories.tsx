@@ -27,11 +27,6 @@ const stories = {
         value={store.state.value}
         onSetValue={handleSetValue}
         placeholder={boolean('With placeholder', false) ? text('Placeholder', 'Completed within') : undefined}
-        tooltip={
-          boolean('With tooltip', false)
-            ? text('Tooltip', 'Filter by time elapsed between completing the first and last step in the funnel.')
-            : undefined
-        }
       />
     );
   }),
