@@ -28,22 +28,31 @@ import Alert from '@synerise/ds-alert'
 
 ```
 
-### notifications api usage
+### Notifications
 
-#### Simple (`ant`-based)
+Notifications API offer three things:
+
+  * `<Notification/>` component for styled content,
+  * `notificationApi.useNotification()` for building a tunnel for the the right ContextApi (notifications use both `React.createPortal` plus they are mounted in container mounted in `document.body` for making it possible to position them correctly),
+    * *Pro-users*: change `getContainer` for sending notifications in other scrollable sections (`@synerise/ds-modal`, `@synerise/ds-section`).
+  * and `notificationOpen` for scheduling showing notificaitons.
+
+#### The simplest notification call
 
 ```jsx
-import notification from '@ant/notification'
+import notificationApi from '@synerise/ds-alert'
 
-notification.open({message: 'Message content', duration 4.5})
+notification.open({message: 'Message content'});
 ```
 
-#### A `synerise-design`-styled notification
+#### Styled notification
 ```jsx
-import Notification from '@ds-alert/Notification'
-import notification from '@ant/notification'
+import { Notification, notificationApi} from '@synerise/ds-alert'
 
-notification.open({message: <Notification>'Message content'</Notification>, duration: 4.5})
+notificationApi.open({
+  duration: 4.5,
+  message: <Notification>Message content</Notification>
+});
 ```
 
 #### Differently positioned notification
@@ -52,13 +61,20 @@ notification.open({message: <Notification>'Message content'</Notification>, dura
 `getContainer` has to be a `styled-components`-scoped element, this is done in `mountInstance`, see source code for more.
 
 ```jsx
-import open from '@ds-alert/Notification'
+import { Notification, notificationApi, notificationOpen } from '@synerise/ds-alert';
 
-const [api, contextHolder] = notification.useNotification();
-open({message: Message content, duration: 4.5}, api, contextHolder))
-
-console.log('@synerise/ds-alert notifications get mounted in this container', document.querySelector('.popup-container'))
+const [api, contextHolder] = notificationApi.useNotification();
+notificationOpen({
+  message: <Notification>You have new message.</Notification>,
+  placement: 'topLeft'
+}, api, contextHolder);
 ```
+
+### Usage recommendations
+
+It is recommended to call `notificationOpen` from `React.useEffect`.
+Of course you can mount styled `<Notification/>` component by yourself,
+but then you need to manage its rendering lifecycle.
 
 ## Demo
 
