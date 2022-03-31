@@ -5,9 +5,7 @@ export const NotificationsContainer = styled.div`
   background-color: ${(props): string => (props?.theme || theme).palette?.['grey-800']};
   color: white;
   min-width: 588px;
-  padding: 8px;
-  padding-left: 16px;
-  padding-right: 8px;
+  padding: 8px 8px 8px 16px;
   display: flex;
   align-items: center;
   width: 100px;
@@ -25,16 +23,15 @@ export const TextLabel = styled.div`
 
 export const NotificationsWrapper = styled.div`
   & .ant-notification-bottom .ant-notification-hook-holder {
-    margin: 0px; // make sure it's 0 as this component might be empty
-    margin-top: 0px;
+    margin: 0;
 
     &:not(:first-child) {
       margin-top: 8px; // TODO: if placement bottom*, for placement top - should be the opposite
     }
   }
   & .ant-notification.ant-notification-bottom {
-    right: 0px;
-    left: 0px;
+    right: 0;
+    left: 0;
     margin: 0 auto;
     width: 588px;
     bottom: 8px;
@@ -46,7 +43,7 @@ export const NotificationsWrapper = styled.div`
     width: 588px;
   }
   & .ant-notification-notice {
-    padding: 0px;
+    padding: 0;
     background-color: transparent;
     margin: unset;
   }
