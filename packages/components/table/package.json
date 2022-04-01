@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-table",
-  "version": "0.44.4",
+  "version": "0.44.5",
   "description": "Table UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "^0.6.1",
+    "@synerise/ds-alert": "^0.7.0",
     "@synerise/ds-button": "^0.17.2",
     "@synerise/ds-button-group": "^0.6.9",
     "@synerise/ds-checkbox": "^0.11.8",

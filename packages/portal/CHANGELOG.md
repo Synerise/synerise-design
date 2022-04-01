@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.151.0](https://github.com/synerise/synerise-design/compare/portal@0.150.0...portal@0.151.0) (2022-04-01)
+
+
+### Bug Fixes
+
+* **alert:** linter Promise, async function returns Promise<void> ([5c1e54d](https://github.com/synerise/synerise-design/commit/5c1e54d52a0897345cd88609adcbdcdcf5fd85bf))
+
+
+### Features
+
+* **alert:** notificationOpen to use Promise interface ([531b813](https://github.com/synerise/synerise-design/commit/531b81318370f97d29c13d14510e602b861e20f4))
+
+
+
+
+
 # [0.150.0](https://github.com/synerise/synerise-design/compare/portal@0.149.0...portal@0.150.0) (2022-03-30)
 
 
