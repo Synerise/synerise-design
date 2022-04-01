@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {notification} from 'antd';
 import rcNotificationsApi from "antd/es/notification";
 import {boolean, number, select, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';
 
 import Button from '@synerise/ds-button';
-import {Notification, notificationOpen} from "@synerise/ds-alert";
+import {notificationsApi, Notification, notificationOpen} from "@synerise/ds-alert";
 import Icon, {UserAddM, AddM, ShowM} from "@synerise/ds-icon";
 import { Text } from '@synerise/ds-typography';
 
@@ -33,7 +32,7 @@ const defaultIcon: keyof typeof name2icon = 'ShowM';
 const stories = {
     default: () => {
         const message = text('Message', 'Message');
-        const [api, contextHolder] = notification.useNotification();
+        const [api, contextHolder] = notificationsApi.useNotification();
         return <div>
             {contextHolder}
             <Button type="primary" onClick={() => notificationOpen({
@@ -45,7 +44,7 @@ const stories = {
         </div>
     },
     customize: function(): React.ReactNode {
-        const [api, contextHolder] = notification.useNotification();
+        const [api, contextHolder] = notificationsApi.useNotification();
         const showClose = boolean('Show close', false)
         const isActionButton = boolean('Action button', true)
         const message = text('Message', 'sample')
@@ -88,6 +87,25 @@ const stories = {
                 Show notification
             </Button>
         </div>)
+    },
+    triggeredFromOutside: () => {
+        const [api, contextHolder] = notificationsApi.useNotification();
+        const showNotification = (msg, api, contextHolder) => {
+            notificationOpen({
+                message: <Notification>{msg}</Notification>
+            }, api, contextHolder);
+        }
+        const [seconds, setSeconds] = React.useState<number>(0);
+        React.useEffect(() => {
+          const hndId = window.setInterval(() => setSeconds(s => s + 1), 1000)
+          return () => window.clearInterval(hndId);
+        }, [])
+        React.useLayoutEffect(() => {
+          if (seconds % 2 == 0) {
+            showNotification(`Elapsed ${seconds} seconds.`, api, contextHolder);
+          }
+        }, [seconds])
+        return <div>{contextHolder}<span>Seconds: {seconds}</span></div>
     },
     notification: {
       children: text('Message', 'You have changed conditions'),

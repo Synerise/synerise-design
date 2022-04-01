@@ -10,6 +10,9 @@ import Icon, { UserAddM, CloseM } from '@synerise/ds-icon';
 
 import * as S from './Notification.styles';
 
+/**
+ * Typings for using better autocompletion for defining an argument for `notificationOpen`'s message property.
+ */
 export type NotificationProps = {
   /** content of the notification */
   children?: JSX.Element | React.ReactNode | React.ReactNode[];
@@ -22,13 +25,17 @@ export type NotificationProps = {
   /** close icon class */
   closeIconClassName?: string;
   /** where to position notification, `"{top,bottom}{Left,Right}" | "bottom"` */
-  placement: ArgsProps['placement'] | 'bottom';
+  placement?: ArgsProps['placement'] | 'bottom';
 } & Partial<Omit<ArgsProps, 'placement'>>;
 
 type NotificationApiHook = ReturnType<NotificationApi['useNotification']>;
 type ApiHook = NotificationApiHook[0];
 type ContextHolder = NotificationApiHook[1];
 
+/**
+ * Component with the content of the notification.
+ * Note that in order to show notification you need to use `notificationOpen`
+ */
 export function Notification({
   buttonText,
   children = undefined,
@@ -70,20 +77,44 @@ export function Notification({
 export function mountInstance(
   contextHolder?: ContextHolder,
   { getContainer = (): HTMLElement => document.body, className = 'popup-container' } = {}
-): [HTMLElement | null, Function] {
+): [Promise<HTMLElement>, HTMLElement, () => void] {
   const element = document.createElement('div');
   element.setAttribute('class', className);
   const cont = getContainer();
   cont.appendChild(element);
   const jsxEl = <S.NotificationsWrapper>{contextHolder}</S.NotificationsWrapper>;
-  ReactDOM.render(jsxEl, element);
+  const renderPromsie = new Promise<HTMLElement>(resolve => {
+    ReactDOM.render(jsxEl, element, () => resolve(element));
+  });
   const cleanUpFunction = (): void => {
     cont.removeChild(element);
   };
-  return [element, cleanUpFunction];
+  return [renderPromsie, element, cleanUpFunction];
 }
 
-export function notificationOpen(
+/**
+ * Function for showing new notifications.
+ * It requires proper context to be injected (see `notificationApi.useNotification`)
+ * and `message` prop in its first argument.
+ * Below you will find an example usage.
+ * Please remember that it is on you to provide contextHolder in the right place.
+ * ```
+ *   import { notificationApi, Notification, notificationOpen } from '@synerise/ds-alert';
+ *   const [api, contextHolder] = notificationApi.useNotification();
+ *
+ *   function App() {
+ *     return (<div id="app">
+ *       {contextHolder}
+ *       <button onClick={() => notificationOpen({
+ *         message: <Notification>You have been notified.</Notification>
+ *       })}>
+ *         Show notification
+ *       </button>);
+ *
+ *    ReactDOM.render(<App/>, document.querySelector('#app'));
+ * ```
+ */
+export async function notificationOpen(
   {
     type = 'info',
     className = 'popup-container',
@@ -97,13 +128,17 @@ export function notificationOpen(
   }: NotificationProps,
   notificationApi?: ApiHook,
   contextHolder?: ContextHolder
-): void {
+): Promise<void> {
   const api = notificationApi || notification;
   // TODO: check if context is actually available
   let el: HTMLElement | null = document.body.querySelector(`.${className}`);
+  let containerPromise;
   if (!el) {
-    [el] = mountInstance(contextHolder, { className });
+    [containerPromise, el] = mountInstance(contextHolder, { className });
   }
+
+  await containerPromise;
+
   const getContainer: ArgsProps['getContainer'] = (): HTMLElement =>
     el?.querySelector('div>div,.NotificationsBottomPlacementWrapper>.NotificationsWrapper') as HTMLElement;
 

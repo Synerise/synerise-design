@@ -26,4 +26,6 @@ describe('notification', () => {
   it.todo(
     '.ant-notification-bottom should be properly styled even if e.g. .ant-notification-topLeft was added first (`.ant-notification{, }.ant-notification-bottom`)'
   );
+  it.todo('notificationOpen works with useEffect');
+  it.todo('if running from useEffect handle it so works, do not force used to rely on useLayoutEffect');
 });
