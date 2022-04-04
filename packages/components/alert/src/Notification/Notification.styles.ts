@@ -50,7 +50,7 @@ export const NotificationsWrapper = styled.div`
   & .ant-notification-notice {
     background-color: transparent;
     width: 588px;
-    border-radius: 3px;
+    border-radius: 6px;
     box-shadow: 0 16px 32px 0 ${(props): string => (props?.theme || theme).palette?.['grey-900']}1a,
       0 8px 16px 0 ${(props): string => (props?.theme || theme).palette?.['grey-900']}1a;
   }
