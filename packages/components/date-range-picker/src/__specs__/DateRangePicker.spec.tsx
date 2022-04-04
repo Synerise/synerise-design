@@ -6,6 +6,7 @@ import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { waitFor } from '@testing-library/react';
+import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -192,6 +193,7 @@ describe('DateRangePicker', () => {
     );
     const popoverWrapper = container.querySelector('.ant-popover-placement-top') as HTMLElement;
     expect(popoverWrapper).toBe('.ant-popover-placement-top');
+    expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 
 });
