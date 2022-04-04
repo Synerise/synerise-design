@@ -25,5 +25,4 @@ export type CompletedWithinProps = {
   onSetValue: (value: PeriodValue) => void;
   periods?: CustomPeriod[];
   placeholder?: string | undefined;
-  tooltip?: string | React.ReactNode;
 };
