@@ -186,6 +186,7 @@ describe('DateRangePicker', () => {
         value={ABSOLUTE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
+        popoverProps={{ placement: 'top' }}
         arrowColor={true}
       />
     );

@@ -31,13 +31,13 @@ export const PickerWrapper = styled.div<{ arrowColor?: boolean }>`
   }
   .ant-popover.ds-date-range-popover.ant-popover-placement-topRight > .ant-popover-content > .ant-popover-arrow {
     background-color: ${(props): string =>
-      props.arrowColor ? props.theme.palette['grey-100'] : props.theme.palette.white};
+      props.arrowColor ? props.theme.palette['grey-050'] : props.theme.palette.white};
     border-style: none;
     border-width: 0;
   }
   .ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow {
     background-color: ${(props): string =>
-      props.arrowColor ? props.theme.palette['grey-100'] : props.theme.palette.white};
+      props.arrowColor ? props.theme.palette['grey-050'] : props.theme.palette.white};
     border-style: none;
     border-width: 0;
   }

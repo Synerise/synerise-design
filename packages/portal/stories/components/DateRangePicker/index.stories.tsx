@@ -83,6 +83,7 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
+    const showArrowColor = boolean('Set grey arrow ', false);
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
       FUTURE: boolean('Set relative future mode', true),
@@ -95,6 +96,7 @@ const stories = {
     };
     const showRelativePicker = boolean('Set relative filter', true);
     return (
+      <div style={{marginTop: showArrowColor ? '600px' : '0px'}}>
       <DateRangePicker
         onApply={action('OnApply')}
         showTime={showTime}
@@ -104,9 +106,11 @@ const stories = {
         showRelativePicker={showRelativePicker}
         texts={texts}
         popoverProps={{ placement: 'bottomLeft' }}
+        arrowColor={showArrowColor}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
+      </div>
     );
   },
   withDateFilter: () => {
