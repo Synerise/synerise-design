@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Popover } from 'antd';
+import { CustomColorArrow } from './DateRangePicker.types';
 
 export const Container = styled.div`
   width: 636px;
@@ -17,7 +18,7 @@ export const PopoverWrapper = styled(Popover)``;
 export const Addon = styled.div<{ last?: boolean }>`
   ${(props): string | false => !props.last && `border-bottom: 1px solid ${props.theme.palette['grey-200']};`}
 `;
-export const PickerWrapper = styled.div<{ arrowColor?: boolean }>`
+export const PickerWrapper = styled.div<{ arrowColor?: CustomColorArrow }>`
   position: relative;
   .ant-popover.ds-date-range-popover.ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow {
     background-color: ${(props): string => props.theme.palette.white};
@@ -31,13 +32,13 @@ export const PickerWrapper = styled.div<{ arrowColor?: boolean }>`
   }
   .ant-popover.ds-date-range-popover.ant-popover-placement-topRight > .ant-popover-content > .ant-popover-arrow {
     background-color: ${(props): string =>
-      props.arrowColor ? props.theme.palette['grey-050'] : props.theme.palette.white};
+      props.arrowColor ? props.theme.palette[`${props.arrowColor}-050`] : props.theme.palette.white};
     border-style: none;
     border-width: 0;
   }
   .ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow {
     background-color: ${(props): string =>
-      props.arrowColor ? props.theme.palette['grey-050'] : props.theme.palette.white};
+      props.arrowColor ? props.theme.palette[`${props.arrowColor}-050`] : props.theme.palette.white};
     border-style: none;
     border-width: 0;
   }

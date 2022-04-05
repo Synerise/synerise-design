@@ -5,6 +5,19 @@ import { DateFilter, DateRange, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
+export type CustomColorArrow =
+  | 'blue'
+  | 'grey'
+  | 'red'
+  | 'green'
+  | 'yellow'
+  | 'pink'
+  | 'mars'
+  | 'orange'
+  | 'fern'
+  | 'cyan'
+  | 'purple'
+  | 'violet';
 export interface Props extends WrappedComponentProps {
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
@@ -29,7 +42,7 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
-  arrowColor: boolean;
+  arrowColor: CustomColorArrow;
 }
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
@@ -16,6 +16,10 @@ const decorator = storyFn => (
     <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
+const CUSTOM_COLORS = [
+  '',
+  'grey',
+];
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
@@ -83,7 +87,7 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
-    const showArrowColor = boolean('Set grey arrow ', false);
+    const showArrowColor = select('Set custom color', CUSTOM_COLORS, '');
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
       FUTURE: boolean('Set relative future mode', true),
@@ -96,7 +100,6 @@ const stories = {
     };
     const showRelativePicker = boolean('Set relative filter', true);
     return (
-      <div style={{marginTop: showArrowColor ? '600px' : '0px'}}>
       <DateRangePicker
         onApply={action('OnApply')}
         showTime={showTime}
@@ -105,12 +108,11 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{ placement: showArrowColor ? 'topLeft' : 'bottomLeft' }}
+        popoverProps={{ placement: showArrowColor === 'grey' ? 'topLeft' : 'bottomLeft' }}
         arrowColor={showArrowColor}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
-      </div>
     );
   },
   withDateFilter: () => {
