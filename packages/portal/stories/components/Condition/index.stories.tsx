@@ -222,13 +222,13 @@ const stories = {
             addFirstConditionRowButton: 'where',
             addConditionRowButton: 'and where',
             dropLabel: 'Drop me here',
-            addStep: 'Add funnel step',
+            addStep: 'And then...',
             duplicateTooltip: 'Duplicate',
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
           getPopupContainerOverride={(): HTMLElement => document.body}
-          autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
+          autoClearCondition={boolean('Enable autoclear condition elements', true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
@@ -283,6 +283,8 @@ const stories = {
                 texts: OPERATORS_TEXTS,
               },
               factor: {
+                // @ts-ignore availableFactors is just sample data
+                availableFactorTypes: condition.operator?.value?.availableFactors || null,
                 selectedFactorType: condition.factor.selectedFactorType,
                 defaultFactorType: 'text',
                 textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
@@ -291,7 +293,9 @@ const stories = {
                 },
                 value: condition.factor.value,
                 formulaEditor: <div>Formula editor</div>,
-                withCustomFactor: boolean('With custom factor component', false) && <span>Custom factor component</span>,
+                withCustomFactor: boolean('With custom factor component', false) && (
+                  <span>Custom factor component</span>
+                ),
                 parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,

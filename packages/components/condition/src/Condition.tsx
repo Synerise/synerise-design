@@ -22,6 +22,7 @@ const SORTABLE_CONFIG = {
   ghostClass: 'steps-list-ghost-element',
   className: 'steps-list',
   handle: '.step-drag-handler',
+  filter: '.ds-condition-step-name, .ds-cruds',
   animation: 150,
   forceFallback: true,
 };
@@ -51,7 +52,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
-      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'Add step' }),
+      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
       ...texts,
     }),
     [texts, formatMessage]
@@ -185,14 +186,14 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   return React.useMemo(() => {
     return (
-      <S.Condition className="ds-conditions">
+      <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
           {steps.map((step, index) => {
             return (
               <ConditionStep
                 key={`step-id-${step.id}`}
                 step={step}
-                texts={texts}
+                texts={text}
                 index={index}
                 hasPriority={step.id === priorityStepId}
                 onStepActivate={setPriorityStepId}
@@ -214,15 +215,18 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 currentField={currentField}
                 removeCondition={removeCondition}
                 addCondition={addCondition}
+                setCurrentField={setCurrentField}
               />
             );
           })}
         </ReactSortable>
         {addStep && (
-          <Button type="ghost-primary" mode="icon-label" onClick={addStep}>
-            <Icon component={<Add3M />} />
-            {text.addStep}
-          </Button>
+          <S.AddStepButton>
+            <Button type="ghost" mode="icon-label" onClick={addStep}>
+              <Icon component={<Add3M />} />
+              {text.addStep}
+            </Button>
+          </S.AddStepButton>
         )}
       </S.Condition>
     );
@@ -232,8 +236,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     setPriorityStepId,
     onChangeOrder,
     addStep,
-    text.addStep,
-    texts,
+    text,
     draggableEnabled,
     selectOperator,
     selectParameter,

@@ -42,7 +42,6 @@ describe('StepCard', () => {
     expect(queryByText(TEXTS.notMatching)).toBeFalsy();
     expect(getByText(FOOTER_CONTENT)).toBeTruthy();
     expect(getByText(CONTENT)).toBeTruthy();
-    expect(getByText(STEP_CARD_NAME)).toBeTruthy();
   });
   it('Should call duplicate callback', () => {
     // ARRANGE

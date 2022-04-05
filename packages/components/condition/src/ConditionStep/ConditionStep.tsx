@@ -33,6 +33,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   currentStepId,
   currentConditionId,
   currentField,
+  setCurrentField,
 }) => {
   const [activeConditionId, setActiveConditionId] = React.useState<string | null>(null);
   const { formatMessage } = useIntl();
@@ -114,10 +115,13 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
 
   const renderConditionRow = React.useCallback(
     (condition, conditionIndex) => {
-      const handleActivation = (conditionId: string): (() => void) => (): void => {
-        setActiveConditionId(conditionId);
-        onActivate && onActivate();
-      };
+      const handleActivation =
+        (conditionId: string): ((field: string) => void) =>
+        (fieldType: string): void => {
+          setActiveConditionId(conditionId);
+          onActivate && onActivate();
+          setCurrentField && setCurrentField(fieldType);
+        };
 
       return (
         <ConditionRow
@@ -152,25 +156,26 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       );
     },
     [
-      getPopupContainerOverride,
-      addCondition,
-      currentConditionId,
-      currentField,
-      currentStepId,
-      maxConditionsLength,
-      minConditionsLength,
-      removeCondition,
-      selectOperator,
-      selectParameter,
-      setStepConditionFactorType,
-      setStepConditionFactorValue,
+      step.id,
       step.conditions.length,
       step.context,
-      step.id,
+      hasPriority,
+      activeConditionId,
+      addCondition,
+      removeCondition,
+      minConditionsLength,
+      maxConditionsLength,
+      currentStepId,
+      currentConditionId,
+      currentField,
+      selectParameter,
+      selectOperator,
+      getPopupContainerOverride,
+      setStepConditionFactorType,
+      setStepConditionFactorValue,
       text,
       onActivate,
-      activeConditionId,
-      hasPriority,
+      setCurrentField,
     ]
   );
 

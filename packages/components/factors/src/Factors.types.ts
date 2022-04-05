@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
+import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -9,6 +11,7 @@ export const ALL_FACTOR_TYPES = [
   'formula',
   'array',
   'date',
+  'dateRange',
 ] as const;
 export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
 export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText };
@@ -43,7 +46,8 @@ export type FactorValueType =
   | undefined
   | DynamicKeyValueType
   | FormulaValueType
-  | ParameterValueType;
+  | ParameterValueType
+  | Partial<DateFilter>;
 
 export type SelectedFactorType = {
   name: string;
@@ -52,6 +56,7 @@ export type SelectedFactorType = {
 };
 
 export type FactorsTexts = {
+  dateRangePicker: DateRangeTexts;
   datePicker: {
     apply: string;
     clearTooltip: string;

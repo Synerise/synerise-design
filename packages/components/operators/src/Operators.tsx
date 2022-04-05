@@ -50,16 +50,17 @@ const Operators: React.FC<OperatorsProps> = ({
     onActivate && onActivate();
   }, [setDropdownVisible, onActivate]);
 
-  const onDropdownVisibilityChange = React.useCallback((newValue: boolean) => newValue && onActivate && onActivate(), [
-    onActivate,
-  ]);
+  const onDropdownVisibilityChange = React.useCallback(
+    (newValue: boolean) => newValue && onActivate && onActivate(),
+    [onActivate]
+  );
 
   return (
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
         onVisibleChange={onDropdownVisibilityChange}
-        getPopupContainer={getPopupContainerOverride}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <OperatorsDropdown
             value={value}

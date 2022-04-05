@@ -37,8 +37,8 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [onParamsClick, onActivate]);
 
   React.useEffect(() => {
+    setDropdownVisible(Boolean(opened));
     if (opened) {
-      setDropdownVisible(true);
       onParamsClick && onParamsClick();
     }
     // eslint-disable-next-line
@@ -49,9 +49,10 @@ const ParameterInput: React.FC<InputProps> = ({
     // eslint-disable-next-line
   }, []);
 
-  const onDropdownVisibilityChange = React.useCallback((newValue: boolean) => newValue && onActivate && onActivate(), [
-    onActivate,
-  ]);
+  const onDropdownVisibilityChange = React.useCallback(
+    (newValue: boolean) => newValue && onActivate && onActivate(),
+    [onActivate]
+  );
 
   return (
     <div data-popup-container>

@@ -14,6 +14,7 @@ type StepType = {
   id: string;
   data: Partial<StepCardProps>;
   logic?: LogicType;
+  expressionType?: 'attribute' | 'event';
 };
 
 export type Expression = LogicType | StepType;

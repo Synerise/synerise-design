@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import StepCard from '@synerise/ds-step-card';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import CompletedWithin from '@synerise/ds-completed-within';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { dateRangePickerTexts } from './data/stepCard.data';
@@ -11,6 +11,7 @@ import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUt
 import { ConditionExample } from './data/Condition';
 import { DEFAULT_STEP } from '../Condition/data/index.data';
 import { action } from '@storybook/addon-actions';
+import Tooltip from '@synerise/ds-tooltip';
 
 const stories = {
   default: () => {
@@ -23,9 +24,18 @@ const stories = {
     const dateRangePickerTrigger = React.useMemo(() => {
       if (!rangeValue) {
         return (
-          <Button type="tertiary" mode="single-icon">
-            <Icon component={<CalendarM />} />
-          </Button>
+          <Tooltip
+            type="largeSimple"
+            description={text(
+              'Tooltip description',
+              'The main time filter analyzes the occurrence of events or assignment of attributes within a defined date range.'
+            )}
+          >
+            <Button type="tertiary" mode="icon-label">
+              <Icon component={<CalendarM />} />
+              {text('Date range picker placeholder', 'In date range')}
+            </Button>
+          </Tooltip>
         );
       } else {
         return (
@@ -40,40 +50,46 @@ const stories = {
     }, [rangeValue]);
 
     return (
-      <StepCard
-        matching={matching}
-        onChangeMatching={setMatching}
-        name={name}
-        onChangeName={name => {
-          console.log('handleChange stories', name);
-          setName(name);
-        }}
-        onDuplicate={action('duplicate')}
-        onDelete={action('delete')}
-        texts={{
-          matching: 'Matching',
-          notMatching: 'Not matching',
-          namePlaceholder: 'Unnamed',
-          moveTooltip: 'Move',
-          deleteTooltip: 'Delete',
-          duplicateTooltip: 'Duplicate',
-        }}
-        footer={
-          boolean('Show footer', true) && (
-            <>
-              <CompletedWithin value={completedWithinValue} onSetValue={setCompletedWithinValue} />
-              <DateRangePicker
-                onApply={setRangeValue}
-                texts={dateRangePickerTexts}
-                value={rangeValue}
-                popoverTrigger={dateRangePickerTrigger}
-              />
-            </>
-          )
-        }
-      >
-        <ConditionExample steps={steps} onChange={setSteps} />
-      </StepCard>
+      <div style={{ width: '80%' }}>
+        <StepCard
+          matching={matching}
+          onChangeMatching={setMatching}
+          name={name}
+          onChangeName={name => {
+            setName(name);
+          }}
+          onDuplicate={action('duplicate')}
+          onDelete={action('delete')}
+          texts={{
+            matching: 'Performed',
+            notMatching: 'Not performed',
+            conditionType: 'event',
+            namePlaceholder: 'Unnamed',
+            moveTooltip: 'Move',
+            deleteTooltip: 'Delete',
+            duplicateTooltip: 'Duplicate',
+          }}
+          footer={
+            boolean('Show footer', true) && (
+              <>
+                <CompletedWithin
+                  value={completedWithinValue}
+                  onSetValue={setCompletedWithinValue}
+                  placeholder={text('Completed within placeholder', 'Completed within')}
+                />
+                <DateRangePicker
+                  onApply={setRangeValue}
+                  texts={dateRangePickerTexts}
+                  value={rangeValue}
+                  popoverTrigger={dateRangePickerTrigger}
+                />
+              </>
+            )
+          }
+        >
+          <ConditionExample steps={steps} onChange={setSteps} />
+        </StepCard>
+      </div>
     );
   },
 };

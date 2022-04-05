@@ -6,7 +6,7 @@ import { ConditionProps, ConditionTexts } from '../../Condition.types';
 export type ConditionRowProps = {
   index: number;
   hasPriority?: boolean;
-  onActivate?: () => void;
+  onActivate?: (fieldType: string) => void;
   conditionId: React.ReactText;
   addCondition: ConditionProps['addCondition'];
   conditionParameter: FactorsProps;

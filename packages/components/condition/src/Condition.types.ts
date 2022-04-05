@@ -59,4 +59,5 @@ export type ConditionProps = {
   ) => void;
   onChangeFactorType: (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType | undefined) => void;
   onUpdateStepName?: (stepId: React.ReactText, value: string) => void;
+  type?: 'attribute' | 'event';
 };

@@ -237,7 +237,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         addFirstConditionRowButton: 'where',
         addConditionRowButton: 'and where',
         dropLabel: 'Drop me here',
-        addStep: 'Add funnel step',
+        addStep: 'And then...',
         duplicateTooltip: 'Duplicate',
         removeTooltip: 'Remove',
         moveTooltip: 'Move',
@@ -247,7 +247,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       autoClearCondition
       addCondition={addStepCondition}
       removeCondition={removeStepCondition}
-      onUpdateStepName={updateStepName}
+      onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
       removeStep={removeStep}
       duplicateStep={duplicateStep}
       addStep={addStep}
@@ -260,7 +260,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       onChangeFactorType={setStepConditionFactorType}
       steps={steps.map(step => ({
         id: step.id,
-        stepName: boolean('Show step name', true) && step.stepName,
+        stepName: step.stepName,
         context: {
           texts: CONTEXT_TEXTS,
           // onSelectItem: item => setStepSubject(step.id, item),
@@ -294,6 +294,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             texts: OPERATORS_TEXTS,
           },
           factor: {
+            // @ts-ignore availableFactors is just sample data
+            availableFactorTypes: condition.operator?.value?.availableFactors || null,
             selectedFactorType: condition.factor.selectedFactorType,
             defaultFactorType: 'text',
             // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),

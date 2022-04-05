@@ -16,6 +16,7 @@ const SORTABLE_CONFIG = {
   handle: '.step-card-drag-handler',
   animation: 200,
   forceFallback: true,
+  filter: '.ds-matching-toggle, .ds-cruds',
 };
 
 const component = {
@@ -66,8 +67,32 @@ const Filter: React.FC<FilterProps> = ({
     }),
     [formatMessage, texts]
   );
+
+  const getContextTypeTexts = React.useCallback(
+    expression => {
+      const contextType = expression.expressionType;
+      return {
+        matching:
+          contextType === 'attribute'
+            ? formatMessage({ id: 'DS.MATCHING.HAVE', defaultMessage: 'Have' })
+            : formatMessage({ id: 'DS.MATCHING.PERFORMED', defaultMessage: 'Performed' }),
+        notMatching:
+          contextType === 'attribute'
+            ? formatMessage({ id: 'DS.MATCHING.NOT-HAVE', defaultMessage: 'Not have' })
+            : formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED', defaultMessage: 'Not performed' }),
+        conditionType:
+          contextType === 'attribute'
+            ? formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.ATTRIBUTE', defaultMessage: 'attribute' })
+            : formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.EVENT', defaultMessage: 'event' }),
+      };
+    },
+    [formatMessage]
+  );
+
   const componentProps = React.useCallback(
     (expression: Expression) => {
+      const contextTypeTexts = getContextTypeTexts(expression);
+
       const props = {
         LOGIC: {
           onChange: (value: LogicOperatorValue): void => onChangeLogic(expression.id, value),
@@ -79,12 +104,16 @@ const Filter: React.FC<FilterProps> = ({
           onDuplicate: (): void => onDuplicateStep(expression.id),
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression),
-          texts: text.step,
+          texts: {
+            ...text.step,
+            ...contextTypeTexts,
+          },
         },
       };
       return props[expression.type];
     },
     [
+      getContextTypeTexts,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
@@ -92,7 +121,7 @@ const Filter: React.FC<FilterProps> = ({
       onDuplicateStep,
       renderStepContent,
       renderStepFooter,
-      text,
+      text.step,
     ]
   );
 

@@ -97,36 +97,6 @@ describe('Filter component', () => {
     expect(onAdd).toBeCalled();
   });
 
-  it('Should render with expression (without footer and content)', () => {
-    // ARRANGE
-    const onChangeLogic = jest.fn();
-    const onChangeOrder = jest.fn();
-    const onChangeStepMatching = jest.fn();
-    const onDuplicateStep = jest.fn();
-    const onDeleteStep = jest.fn();
-    const onChangeStepName = jest.fn();
-    const handleChangeMatching = jest.fn();
-    const { getByText } = renderWithProvider(
-      <Filter
-        expressions={[DEFAULT_EXPRESSION]}
-        onChangeLogic={onChangeLogic}
-        onChangeOrder={onChangeOrder}
-        onChangeStepMatching={onChangeStepMatching}
-        onChangeStepName={onChangeStepName}
-        onDeleteStep={onDeleteStep}
-        onDuplicateStep={onDuplicateStep}
-        matching={{
-          onChange: handleChangeMatching,
-          matching: true,
-        }}
-        texts={DEFAULT_TEXTS}
-      />
-    );
-
-    // ASSERT
-    expect(getByText(DEFAULT_EXPRESSION.data.name)).toBeTruthy();
-  });
-
   it('Should render with expression with footer and content', () => {
     // ARRANGE
     const onChangeLogic = jest.fn();
