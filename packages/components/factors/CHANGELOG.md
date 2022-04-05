@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.11.9...@synerise/ds-factors@0.12.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* fix eslint errors ([7cce9b9](https://github.com/Synerise/synerise-design/commit/7cce9b94f8dea533b3c36a0f0cfd5145d4737166))
+
+
+### Features
+
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
 ## [0.11.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.11.8...@synerise/ds-factors@0.11.9) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-factors

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.4...@synerise/ds-logic@0.7.0) (2022-04-05)
+
+
+### Features
+
+* **logic:** removes dropdown, now value is changing by clicking on it like Logic.Matching ([711abcf](https://github.com/Synerise/synerise-design/commit/711abcf35191b8376418242b23ad6f7680ab52e1))
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.3...@synerise/ds-logic@0.6.4) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-logic

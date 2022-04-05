@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.7.9...@synerise/ds-operators@0.8.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* **operators:** fixes scrolling operator dropdown with page ([78fd630](https://github.com/Synerise/synerise-design/commit/78fd63003cc4aa7a651b4a4e766bc4d1b5b292d3))
+* fix eslint errors ([7cce9b9](https://github.com/Synerise/synerise-design/commit/7cce9b94f8dea533b3c36a0f0cfd5145d4737166))
+
+
+### Features
+
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
 ## [0.7.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.7.8...@synerise/ds-operators@0.7.9) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-operators

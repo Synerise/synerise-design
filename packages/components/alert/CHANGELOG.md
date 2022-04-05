@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.0...@synerise/ds-alert@0.7.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* **alert:** Notification's notice border-radius ([1017519](https://github.com/Synerise/synerise-design/commit/1017519504de355667618737075adaf5b5bcb426))
+
+
+
+
+
 # [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.6.1...@synerise/ds-alert@0.7.0) (2022-04-01)
 
 

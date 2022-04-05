@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.152.0](https://github.com/synerise/synerise-design/compare/portal@0.151.0...portal@0.152.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* **condition:** styles of StepHeader, hiding step name in stories ([9924476](https://github.com/synerise/synerise-design/commit/9924476909449c5a11db7f784ba3a30008f48120))
+
+
+### Features
+
+* **completed-within:** adds placeholder nad tooltip props ([22976de](https://github.com/synerise/synerise-design/commit/22976deac9012e1654b86ad745da7207e664ad88))
+* **completed-within:** adds placeholder prop ([6aa6e91](https://github.com/synerise/synerise-design/commit/6aa6e91cb9fae233d6c2e1cf447fd91082c67686))
+* **condition:** updates styles, allows to dragging by header, not only icon ([4c070eb](https://github.com/synerise/synerise-design/commit/4c070ebaa5c3779733acea5cdff06d06842719b0))
+* **filter:** fixes bugs ([b862ddd](https://github.com/synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+* **filter:** updates styles ([a826761](https://github.com/synerise/synerise-design/commit/a826761de845a47f8436d22a7307f2c03bb197e0))
+* **step-card:** removes title, updates styles ([8d0555f](https://github.com/synerise/synerise-design/commit/8d0555fe60152f00b315479ae4a5a84f475d8a99))
+
+
+
+
+
 # [0.151.0](https://github.com/synerise/synerise-design/compare/portal@0.150.0...portal@0.151.0) (2022-04-01)
 
 

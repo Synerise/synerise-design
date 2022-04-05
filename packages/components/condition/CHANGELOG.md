@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.13.10...@synerise/ds-condition@0.14.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* **condition:** styles of StepHeader, hiding step name in stories ([9924476](https://github.com/Synerise/synerise-design/commit/9924476909449c5a11db7f784ba3a30008f48120))
+
+
+### Features
+
+* **condition:** updates styles, allows to dragging by header, not only icon ([4c070eb](https://github.com/Synerise/synerise-design/commit/4c070ebaa5c3779733acea5cdff06d06842719b0))
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
 ## [0.13.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.13.9...@synerise/ds-condition@0.13.10) (2022-03-31)
 
 **Note:** Version bump only for package @synerise/ds-condition

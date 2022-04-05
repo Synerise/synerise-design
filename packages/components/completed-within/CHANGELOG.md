@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.15...@synerise/ds-completed-within@0.4.0) (2022-04-05)
+
+
+### Features
+
+* **completed-within:** adds placeholder nad tooltip props ([22976de](https://github.com/Synerise/synerise-design/commit/22976deac9012e1654b86ad745da7207e664ad88))
+* **completed-within:** adds placeholder prop ([6aa6e91](https://github.com/Synerise/synerise-design/commit/6aa6e91cb9fae233d6c2e1cf447fd91082c67686))
+
+
+
+
+
 ## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.14...@synerise/ds-completed-within@0.3.15) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-completed-within
