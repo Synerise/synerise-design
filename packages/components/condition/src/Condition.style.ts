@@ -8,6 +8,8 @@ export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 0;
+  padding: 0 24px;
+  width: 100%;
 `;
 
 export const StepName = styled.div`
@@ -21,6 +23,7 @@ export const StepName = styled.div`
   white-space: pre-wrap;
   &&& input {
     margin-top: 2px;
+    cursor: default;
   }
 `;
 
@@ -79,6 +82,7 @@ export const StepHeader = styled.div<{ draggable: boolean }>`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
+  padding: 12px 24px 0;
   cursor: ${(props): string => (props.draggable ? 'grab' : 'default')};
 `;
 
@@ -87,7 +91,7 @@ export const Step = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 12px 24px ;
+  padding: 0 0 12px;
   position: relative;
   &:first-of-type {
     &.steps-list-ghost-element {

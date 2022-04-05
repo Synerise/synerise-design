@@ -14,13 +14,13 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   stepName,
   stepId,
   texts,
-  updateStepName = NOOP,
+  updateStepName,
   duplicateStep,
   removeStep,
   index,
   draggableEnabled,
 }) => {
-  const onChangeNameDebounce = React.useCallback(debounce(updateStepName, 300), [updateStepName]);
+  const onChangeNameDebounce = React.useCallback(debounce(updateStepName || NOOP, 300), [updateStepName]);
   const [localName, setLocalName] = React.useState(stepName);
 
   React.useEffect(() => {

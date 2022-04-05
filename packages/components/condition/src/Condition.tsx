@@ -186,7 +186,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   return React.useMemo(() => {
     return (
-      <S.Condition className="ds-conditions">
+      <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
           {steps.map((step, index) => {
             return (

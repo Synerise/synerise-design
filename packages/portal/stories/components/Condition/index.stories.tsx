@@ -228,7 +228,7 @@ const stories = {
             moveTooltip: 'Move',
           }}
           getPopupContainerOverride={(): HTMLElement => document.body}
-          autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
+          autoClearCondition={boolean('Enable autoclear condition elements', true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
@@ -283,6 +283,8 @@ const stories = {
                 texts: OPERATORS_TEXTS,
               },
               factor: {
+                // @ts-ignore availableFactors is just sample data
+                availableFactorTypes: condition.operator?.value?.availableFactors || null,
                 selectedFactorType: condition.factor.selectedFactorType,
                 defaultFactorType: 'text',
                 textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
