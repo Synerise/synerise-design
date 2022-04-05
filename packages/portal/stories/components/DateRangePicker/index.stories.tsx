@@ -105,7 +105,7 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{ placement: 'bottomLeft' }}
+        popoverProps={{ placement: showArrowColor ? 'topLeft' : 'bottomLeft' }}
         arrowColor={showArrowColor}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
