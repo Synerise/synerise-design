@@ -62,7 +62,7 @@ const CardTab: React.FC<CardTabProps> = ({
         onChangeName && onChangeName(id, nameValue);
       }
     };
-  }, [setEditedName]);
+  }, [setEditedName, id]);
 
   const handleEditNameBlur = React.useCallback((): void => {
     setEdited(false);
