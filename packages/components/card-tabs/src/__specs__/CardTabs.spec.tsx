@@ -202,4 +202,22 @@ describe('Card Tabs', () => {
     // ASSERT
     expect(firstTab.getAttribute('disabled')).toBe("");
   });
+
+  it('should not render remove button', () => {
+    const onRemoveTab = undefined;
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onRemoveTab={onRemoveTab} />) }
+    </CardTabs>);
+    const suffix = container.querySelector('.ds-cruds .remove');
+    expect(suffix).toBeFalsy();
+  });
+
+  it('should not render duplicate button', () => {
+    const onDuplicate = undefined;
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onDuplicateTab={onDuplicate} />) }
+    </CardTabs>);
+    const suffix = container.querySelector('.ds-cruds .duplicate');
+    expect(suffix).toBeFalsy();
+  });
 });

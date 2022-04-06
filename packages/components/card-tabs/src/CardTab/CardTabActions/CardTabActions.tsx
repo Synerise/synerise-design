@@ -3,21 +3,15 @@ import Cruds from '@synerise/ds-cruds';
 import * as S from '../CardTab.styles';
 import { Props } from './CardTabActions.types';
 
-const CardTabActions: React.FC<Props> = ({
-  enterEditNameMode,
-  onDuplicateTab,
-  onRemoveTab,
-  texts,
-  actionsAvailable,
-}) => {
+const CardTabActions: React.FC<Props> = ({ onChangeName, enterEditNameMode, onDuplicateTab, onRemoveTab, texts }) => {
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix">
       <Cruds
-        onEdit={actionsAvailable?.editName ? enterEditNameMode : undefined}
+        onEdit={onChangeName ?? enterEditNameMode}
         editTooltip={texts?.changeNameTooltip}
-        onDuplicate={actionsAvailable?.duplicate ? onDuplicateTab : undefined}
+        onDuplicate={onDuplicateTab}
         duplicateTooltip={texts?.duplicateTooltip}
-        onRemove={actionsAvailable?.remove ? onRemoveTab : undefined}
+        onRemove={onRemoveTab}
         removeTooltip={texts?.removeTooltip}
       />
     </S.CardTabSuffix>

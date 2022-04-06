@@ -64,8 +64,8 @@ const stories = {
             prefix={prefix}
             onSelectTab={handleSelect}
             onChangeName={handleChangeName}
-            onRemoveTab={action('Remove tab')}
-            onDuplicateTab={action('Duplicate')}
+            onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
+            onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
               changeNameTooltip: text('Set rename tooltip', 'Rename'),
               removeTooltip: text('Set remove tooltip', 'Remove'),
