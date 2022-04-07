@@ -51,36 +51,43 @@ const CardTab: React.FC<CardTabProps> = ({
     [setEdited]
   );
 
-  const handleChangeName = React.useCallback(
-    (event?: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChangeName = React.useMemo(() => {
+    if (onChangeName === undefined) {
+      return undefined;
+    }
+    return (event?: React.ChangeEvent<HTMLInputElement>): void => {
       if (event) {
-        const { value } = event.target;
-        setEditedName(value);
+        const { value: nameValue } = event.target;
+        setEditedName(nameValue);
+        onChangeName && onChangeName(id, nameValue);
       }
-    },
-    [setEditedName]
-  );
+    };
+  }, [setEditedName, id]);
 
   const handleEditNameBlur = React.useCallback((): void => {
     setEdited(false);
     onChangeName && onChangeName(id, editedName);
   }, [onChangeName, id, editedName]);
 
-  const handleDuplicate = React.useCallback(
-    (event?: React.MouseEvent<HTMLElement>): void => {
-      !!event && event.stopPropagation();
+  const handleDuplicate = React.useMemo(() => {
+    if (onDuplicateTab === undefined) {
+      return undefined;
+    }
+    return (event?: React.MouseEvent<HTMLElement>): void => {
+      event && event.stopPropagation();
       onDuplicateTab && onDuplicateTab(id);
-    },
-    [id, onDuplicateTab]
-  );
+    };
+  }, [id, onDuplicateTab]);
 
-  const handleRemove = React.useCallback(
-    (event?: React.MouseEvent<HTMLElement>): void => {
-      !!event && event.stopPropagation();
+  const handleRemove = React.useMemo(() => {
+    if (onRemoveTab === undefined) {
+      return undefined;
+    }
+    return (event?: React.MouseEvent<HTMLElement>): void => {
+      event && event.stopPropagation();
       onRemoveTab && onRemoveTab(id);
-    },
-    [id, onRemoveTab]
-  );
+    };
+  }, [id, onRemoveTab]);
 
   const handleSelect = React.useCallback(
     (event: React.MouseEvent<HTMLElement>): void => {
@@ -124,7 +131,7 @@ const CardTab: React.FC<CardTabProps> = ({
               value: editedName,
               name: `ds-card-tab-input-${id}`,
               onBlur: handleEditNameBlur,
-              onChange: handleChangeName,
+              onChange: handleChangeName || ((): void => undefined),
             }}
             data-testid="card-tab-edit-input"
           />
@@ -136,8 +143,7 @@ const CardTab: React.FC<CardTabProps> = ({
       </S.CardTabLabel>
       {showCardActions() && (
         <CardTabActions
-          enterEditNameMode={handleEditName}
-          changeNameAvailable={Boolean(onChangeName)}
+          onChangeName={handleEditName}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
           texts={getTexts}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import StepCard from '@synerise/ds-step-card';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, number } from '@storybook/addon-knobs';
 import CompletedWithin from '@synerise/ds-completed-within';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { dateRangePickerTexts } from './data/stepCard.data';
@@ -58,8 +58,8 @@ const stories = {
           onChangeName={name => {
             setName(name);
           }}
-          onDuplicate={action('duplicate')}
-          onDelete={action('delete')}
+          onDuplicate={boolean('Duplicate button visible', false) ? action('duplicate') : undefined}
+          onDelete={boolean('Delete button visible', false) ? action('delete') : undefined}
           texts={{
             matching: 'Performed',
             notMatching: 'Not performed',
