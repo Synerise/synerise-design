@@ -192,7 +192,6 @@ describe('DateRangePicker', () => {
       />
     );
     const popoverWrapper = container.querySelector('.ant-popover-placement-topLeft') as HTMLElement;
-    expect(popoverWrapper).toBe('.ant-popover-placement-topLeft');
     expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 
