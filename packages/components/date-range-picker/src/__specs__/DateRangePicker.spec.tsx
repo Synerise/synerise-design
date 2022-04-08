@@ -191,7 +191,7 @@ describe('DateRangePicker', () => {
         arrowColorBottom={'grey'}
       />
     );
-    const popoverWrapper = container.querySelector('.ant-popover-placement-topLeft') as HTMLElement;
+    const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;
     expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 
