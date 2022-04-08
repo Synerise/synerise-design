@@ -42,7 +42,10 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
-  arrowColor: CustomColorArrow;
+  arrowColorLeft: CustomColorArrow;
+  arrowColorRight: CustomColorArrow;
+  arrowColorTop: CustomColorArrow;
+  arrowColorBottom: CustomColorArrow;
 }
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';

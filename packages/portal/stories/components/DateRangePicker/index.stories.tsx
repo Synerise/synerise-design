@@ -19,6 +19,17 @@ const decorator = storyFn => (
 const CUSTOM_COLORS = [
   '',
   'grey',
+  'blue',
+];
+const POPOVER_PLACEMENT = [
+  'topLeft' ,
+  'topRight' ,
+  'bottomLeft' ,
+  'bottomRight' ,
+  'leftTop' ,
+  'leftBottom' ,
+  'rightTop' ,
+  'rightBottom' ,
 ];
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
@@ -87,7 +98,12 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
-    const showArrowColor = select('Set custom color', CUSTOM_COLORS, '');
+    const setCustomArrowColor = boolean('Set custom arrow color', true);
+    const setPlacement = select('Set placement of popover', POPOVER_PLACEMENT, 'bottomLeft');
+    const arrowColorLeft = select('Set custom color arrow left', CUSTOM_COLORS, '');
+    const arrowColorRight = select('Set custom color arrow right', CUSTOM_COLORS, '');
+    const arrowColorBottom = select('Set custom color arrow bottom', CUSTOM_COLORS, '');
+    const arrowColorTop = select('Set custom color arrow top', CUSTOM_COLORS, '');
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
       FUTURE: boolean('Set relative future mode', true),
@@ -108,8 +124,11 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{ placement: showArrowColor === 'grey' ? 'topLeft' : 'bottomLeft' }}
-        arrowColor={showArrowColor}
+        popoverProps={{ placement: setPlacement}}
+        arrowColorLeft={setCustomArrowColor && arrowColorLeft}
+        arrowColorRight={setCustomArrowColor && arrowColorRight}
+        arrowColorBottom={setCustomArrowColor && arrowColorBottom}
+        arrowColorTop={setCustomArrowColor && arrowColorTop}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />

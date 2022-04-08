@@ -187,12 +187,12 @@ describe('DateRangePicker', () => {
         value={ABSOLUTE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
-        popoverProps={{ placement: 'top' }}
-        arrowColor={true}
+        popoverProps={{ placement: 'topLeft' }}
+        arrowColorBottom={'grey'}
       />
     );
-    const popoverWrapper = container.querySelector('.ant-popover-placement-top') as HTMLElement;
-    expect(popoverWrapper).toBe('.ant-popover-placement-top');
+    const popoverWrapper = container.querySelector('.ant-popover-placement-topLeft') as HTMLElement;
+    expect(popoverWrapper).toBe('.ant-popover-placement-topLeft');
     expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 
