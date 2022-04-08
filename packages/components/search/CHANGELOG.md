@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.7.10...@synerise/ds-search@0.8.0) (2022-04-08)
+
+
+### Features
+
+* **card-tabs:** disable duplication when limit exceeded (cardTab) ([e83cedb](https://github.com/Synerise/synerise-design/commit/e83cedb0f8a975fce5dd7c181d3811715ac66a9f))
+
+
+
+
+
 ## [0.7.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.7.9...@synerise/ds-search@0.7.10) (2022-04-05)
 
 **Note:** Version bump only for package @synerise/ds-search

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.6...@synerise/ds-card-tabs@0.12.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* **step-card:** hide top duplicate and delete action buttons ([9c7bd51](https://github.com/Synerise/synerise-design/commit/9c7bd51c687ebad7c0474b25cb07e6a5ea478783))
+
+
+### Features
+
+* **card-tabs:** disable duplication when limit exceeded (cardTab) ([e83cedb](https://github.com/Synerise/synerise-design/commit/e83cedb0f8a975fce5dd7c181d3811715ac66a9f))
+* **card-tabs:** onDuplicate, onRemove accept undefined; stories, tests ([6cfd41d](https://github.com/Synerise/synerise-design/commit/6cfd41dd6db00a81428d92d024a060cc37c32239))
+
+
+
+
+
 ## [0.11.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.5...@synerise/ds-card-tabs@0.11.6) (2022-04-05)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs
