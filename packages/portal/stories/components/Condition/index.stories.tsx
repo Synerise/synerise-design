@@ -27,6 +27,7 @@ const stories = {
                 ...s.context,
                 selectedItem: item,
               },
+              conditions: s.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : s.conditions,
             };
           }
           return s;
@@ -147,6 +148,7 @@ const stories = {
           return step;
         }),
       });
+      return newCondition.id;
     };
 
     const removeStepCondition = (stepId: React.ReactText, conditionId: React.ReactText) => {
@@ -192,9 +194,11 @@ const stories = {
     };
 
     const addStep = () => {
+      const newStep = DEFAULT_STEP();
       store.set({
-        steps: [...store.state.steps, DEFAULT_STEP()],
+        steps: [...store.state.steps, newStep],
       });
+      return newStep.id;
     };
 
     const onChangeOrder = newOrder => {

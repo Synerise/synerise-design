@@ -34,6 +34,8 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   hasPriority,
   texts,
 }) => {
+  console.log('current Field', currentConditionId, currentStepId, currentField);
+
   return (
     <S.ConditionRow
       style={hasPriority ? { zIndex: 10001 } : undefined}
@@ -56,7 +58,12 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
             getPopupContainerOverride={getPopupContainerOverride}
             onActivate={(): void => onActivate && onActivate(PARAMETER)}
             onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
-            opened={stepId === currentStepId && conditionId === currentConditionId && currentField === PARAMETER}
+            opened={
+              hasPriority &&
+              stepId === currentStepId &&
+              conditionId === currentConditionId &&
+              currentField === PARAMETER
+            }
           />
         )}
       </S.ConditionWrapper>
@@ -69,12 +76,17 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={(): void => onActivate && onActivate(OPERATOR)}
               onChange={(value): void => selectOperator(stepId, conditionId, value)}
-              opened={stepId === currentStepId && conditionId === currentConditionId && currentField === OPERATOR}
+              opened={
+                hasPriority &&
+                stepId === currentStepId &&
+                conditionId === currentConditionId &&
+                currentField === OPERATOR
+              }
             />
           </S.ConditionWrapper>
         )}
       {conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null && (
-        <S.ConditionWrapper>
+        <S.ConditionWrapper fullWidth>
           <>
             {conditionFactor?.withCustomFactor || (
               <Factors
@@ -86,7 +98,12 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 }
                 onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
                 factorKey={conditionId}
-                opened={stepId === currentStepId && conditionId === currentConditionId && currentField === FACTOR}
+                opened={
+                  hasPriority &&
+                  stepId === currentStepId &&
+                  conditionId === currentConditionId &&
+                  currentField === FACTOR
+                }
               />
             )}
           </>

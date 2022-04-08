@@ -173,7 +173,7 @@ export const Step = styled.div`
 }
 `;
 
-export const ConditionWrapper = styled.div``;
+export const ConditionWrapper = styled.div<{ fullWidth?: boolean }>``;
 
 export const Subject = styled.div``;
 

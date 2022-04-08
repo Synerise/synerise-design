@@ -40,15 +40,16 @@ const Operators: React.FC<OperatorsProps> = ({
   );
 
   React.useEffect(() => {
+    setDropdownVisible(Boolean(opened));
     if (opened) {
-      setDropdownVisible(true);
+      onActivate && onActivate();
     }
-  }, [opened]);
+  }, [onActivate, opened]);
 
   const handleClick = React.useCallback(() => {
-    setDropdownVisible(true);
     onActivate && onActivate();
-  }, [setDropdownVisible, onActivate]);
+    setDropdownVisible(true);
+  }, [onActivate]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (newValue: boolean) => newValue && onActivate && onActivate(),

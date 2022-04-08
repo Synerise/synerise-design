@@ -23,6 +23,7 @@ export type SubjectProps = {
     searchPlaceholder: string;
     noResults: string;
   };
+  opened?: boolean;
 };
 
 export type SubjectListProps = Pick<SubjectProps, 'items' | 'onSelectItem' | 'texts'> & { hideDropdown: () => void };

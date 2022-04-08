@@ -37,9 +37,11 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [onParamsClick, onActivate]);
 
   React.useEffect(() => {
+    console.log('parameter test', opened, dropdownVisible);
     setDropdownVisible(Boolean(opened));
     if (opened) {
       onParamsClick && onParamsClick();
+      onActivate && onActivate();
     }
     // eslint-disable-next-line
   }, [opened]);
@@ -50,7 +52,10 @@ const ParameterInput: React.FC<InputProps> = ({
   }, []);
 
   const onDropdownVisibilityChange = React.useCallback(
-    (newValue: boolean) => newValue && onActivate && onActivate(),
+    (newValue: boolean) => {
+      newValue && onActivate && onActivate();
+      !newValue && setDropdownVisible(false);
+    },
     [onActivate]
   );
 
@@ -58,7 +63,7 @@ const ParameterInput: React.FC<InputProps> = ({
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         onVisibleChange={onDropdownVisibilityChange}
         overlay={
           <ParameterDropdown

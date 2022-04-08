@@ -18,6 +18,7 @@ const DEFAULT_STEP = '';
 export const OPERATOR = 'operator';
 export const PARAMETER = 'parameter';
 export const FACTOR = 'factor';
+export const SUBJECT = 'subject';
 const SORTABLE_CONFIG = {
   ghostClass: 'steps-list-ghost-element',
   className: 'steps-list',
@@ -60,7 +61,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
-  const [priorityStepId, setPriorityStepId] = React.useState<React.ReactText | null>(null);
   const prevSteps = usePrevious(steps);
 
   React.useEffect(() => {
@@ -122,6 +122,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     (value, stepId: React.ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
+      setCurrentField(PARAMETER);
       onChangeSubject && onChangeSubject(stepId, value);
     },
     [clearConditionRow, onChangeSubject]
@@ -131,6 +132,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     (value, stepId: React.ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
+      setCurrentField(PARAMETER);
       onChangeContext && onChangeContext(stepId, value);
     },
     [clearConditionRow, onChangeContext]
@@ -184,19 +186,45 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
 
+  const handleAddStep = React.useCallback(() => {
+    const newStepId = addStep ? addStep() : undefined;
+    console.log('new step id', newStepId);
+    if (newStepId) {
+      setCurrentStepId(newStepId);
+      setCurrentField(SUBJECT);
+    }
+  }, [addStep]);
+
+  const handleAddCondtion = React.useCallback(
+    stepId => {
+      const newConditionId = addCondition ? addCondition(stepId) : undefined;
+      if (newConditionId) {
+        setCurrentConditionId(newConditionId);
+        setCurrentStepId(stepId);
+        setCurrentField(PARAMETER);
+      }
+    },
+    [addCondition]
+  );
+
   return React.useMemo(() => {
     return (
       <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
           {steps.map((step, index) => {
+            console.log('current state', {
+              stepId: step.id,
+              currentConditionId,
+              currentStepId,
+              currentField,
+            });
             return (
               <ConditionStep
                 key={`step-id-${step.id}`}
                 step={step}
                 texts={text}
                 index={index}
-                hasPriority={step.id === priorityStepId}
-                onStepActivate={setPriorityStepId}
+                hasPriority={step.id === currentStepId}
                 getPopupContainerOverride={getPopupContainerOverride}
                 draggableEnabled={draggableEnabled}
                 selectOperator={selectOperator}
@@ -214,15 +242,17 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 currentStepId={currentStepId}
                 currentField={currentField}
                 removeCondition={removeCondition}
-                addCondition={addCondition}
+                addCondition={handleAddCondtion}
                 setCurrentField={setCurrentField}
+                setCurrentCondition={setCurrentConditionId}
+                setCurrentStep={setCurrentStepId}
               />
             );
           })}
         </ReactSortable>
         {addStep && (
           <S.AddStepButton>
-            <Button type="ghost" mode="icon-label" onClick={addStep}>
+            <Button type="ghost" mode="icon-label" onClick={handleAddStep}>
               <Icon component={<Add3M />} />
               {text.addStep}
             </Button>
@@ -232,11 +262,14 @@ const Condition: React.FC<T.ConditionProps> = props => {
     );
   }, [
     steps,
-    priorityStepId,
-    setPriorityStepId,
     onChangeOrder,
     addStep,
+    handleAddStep,
     text,
+    currentConditionId,
+    currentStepId,
+    currentField,
+    getPopupContainerOverride,
     draggableEnabled,
     selectOperator,
     selectParameter,
@@ -249,12 +282,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     maxConditionsLength,
     setStepConditionFactorType,
     setStepConditionFactorValue,
-    currentConditionId,
-    currentStepId,
-    currentField,
     removeCondition,
     addCondition,
-    getPopupContainerOverride,
   ]);
 };
 
