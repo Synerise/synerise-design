@@ -27,8 +27,18 @@ const decorator = storyFn => (
 );
 const CUSTOM_COLORS = [
   '',
-  'grey',
   'blue',
+  'grey',
+  'red',
+  'green',
+  'yellow',
+  'pink',
+  'mars',
+  'orange',
+  'fern',
+  'cyan',
+  'purple',
+  'violet',
 ];
 const POPOVER_PLACEMENT = {
   topLeft: 'topLeft',
@@ -40,16 +50,7 @@ const POPOVER_PLACEMENT = {
   rightTop: 'rightTop',
   rightBottom: 'rightBottom',
 };
-const additionalMapper = {
-  topLeft: 'green',
-  topRight: 'yellow',
-  bottomLeft: 'red',
-  bottomRight: 'blue',
-  leftTop: 'grey',
-  leftBottom: 'violet',
-  rightTop: 'purple',
-  rightBottom: 'cyan',
-};
+
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
@@ -118,6 +119,18 @@ const stories = {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
+    const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
+    const bottomPlacementOfPopover = select('Top arrow color', CUSTOM_COLORS, 'grey')
+    const additionalMapper = {
+      topLeft: topPlacementOfPopover,
+      topRight: topPlacementOfPopover,
+      bottomLeft: bottomPlacementOfPopover,
+      bottomRight:bottomPlacementOfPopover,
+      leftTop: topPlacementOfPopover,
+      leftBottom: bottomPlacementOfPopover,
+      rightTop: topPlacementOfPopover,
+      rightBottom: bottomPlacementOfPopover,
+    };
     const setPlacement = select('Set placement of popover', POPOVER_PLACEMENT, 'bottomLeft');
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
