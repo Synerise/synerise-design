@@ -68,6 +68,6 @@ const value = {
 | type       | String key for identifying the range type      | 'ABSOLUTE' / 'RELATIVE' / 'SINCE'     | -       |
 | duration   | Duration of the relative range                 | {type: RelativeUnit, duration:number} | -       |
 | offset     | Offset of the relative range from today's date | {type: RelativeUnit, duration:number} | -       |
-| arrowColor | Custom color arrow of popover when is footer   | boolean                               | `false` |
+| arrowColor | Custom color arrow of popover when is footer   | AdditionalMapper[]                    | -       |
 
 `RelativeUnit = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS'`
