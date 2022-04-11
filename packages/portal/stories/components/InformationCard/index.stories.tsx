@@ -54,6 +54,8 @@ function minimalistic() {
 }
 
 /**
+ * Returns case of a information card wrapped with ds-menu structure.
+ * Helper for testing, pass popover content in `renderCard` prop.
  *
  * @param renderCard `() => <InformationCardWithKnobs title={title} subtitle="someElement.key"/>`
  * @param title
