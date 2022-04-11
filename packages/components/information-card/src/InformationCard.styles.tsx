@@ -23,6 +23,7 @@ export const FlexGrow1 = styled.div`
 
 export const InfoCardWrapper = styled.div<{ footerText?: string }>`
   ${CardContainer} {
+    background-color: white;
     margin-bottom: 1px;
     padding-top: 0px;
     font-weight: 400;
@@ -30,6 +31,9 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
     &.custom-description ${ChildrenContainer} {
       margin-top: 8px;
     }
+    padding: 16px 16px 8px 16px;
+    border-radius: 3px;
+    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1); // gray-900
   }
   ${PaddingWrapper} {
     padding-top: 0px;

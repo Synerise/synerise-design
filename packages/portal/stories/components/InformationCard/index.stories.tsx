@@ -65,7 +65,8 @@ function wrapCardWithMenu(renderCard, title) {
     {
       text: title,
       popoverProps: {
-        defaultVisible: true,
+        defaultVisible: true, // ant-popover
+        defaultPopupVisible: true, // rc-tooltip
       },
       renderInformationCard: renderCard,
     }
@@ -82,7 +83,8 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
     {
       text: 'Show',
       popoverProps: {
-        defaultVisible: true,
+        defaultVisible: true, // ant-popover
+        defaultPopupVisible: true, // rc-tooltip
       },
       renderInformationCard: () => <InformationCard title="Show" subtitle="someElement.key"/>,
     },

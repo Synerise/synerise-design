@@ -4,7 +4,8 @@ import * as React from 'react';
 import classNames from 'classnames';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { Popover } from 'antd';
+// import { Popover } from 'antd';
+import Trigger from 'rc-trigger';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -50,23 +51,29 @@ function MaybePopover({ popoverProps = {}, renderPopover, children }: MaybePopov
     // div's onKeyDown is used to counteract to ContextSelectorDropdown's onKeyDown
     return (
       <div onKeyDown={cancelBubblingEvent}>
-        <Popover
+        <Trigger
           defaultVisible={false}
           placement="right"
+          action={['click', 'hover']}
+          popupAlign={{
+            points: ['cl', 'cr'],
+            offset: [4, 0],
+          }}
           // content={renderPopover()}
           // content={<React.Fragment ref={ref}>{renderPopover()}</React.Fragment>}
           // content={renderPopover(ref)}
           // content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover(ref)}</div>}
-          content={renderPopover()}
-          overlayClassName='ignore-click-outside'
+          // content={renderPopover()}
+          popup={renderPopover()}
+          overlayClassName='ignore-click-outside ds-hide-arrow'
           // content={renderPopover(ref)} // after adding forwardRef should work
           mouseEnterDelay={0.2}
           overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}
           {...popoverProps}
-          overlayInnerStyle={{ paddingBottom: '10px' }}
+          // overlayInnerStyle={{ paddingBottom: '10px' }}
         >
-          {children}
-        </Popover>
+          {children as any}
+        </Trigger>
       </div>
     );
   }

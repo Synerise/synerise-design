@@ -17,6 +17,7 @@ import Badge from '@synerise/ds-badge';
 import Alert from '@synerise/ds-alert';
 
 import * as S from './InformationCard.styles';
+import 'rc-trigger/assets/index.less'
 
 /**
  * custom builder for badgeSlots with icon
