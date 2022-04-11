@@ -188,7 +188,7 @@ describe('DateRangePicker', () => {
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
         popoverProps={{ placement: 'topLeft' }}
-        arrowColorBottom={'grey'}
+        arrowColor={{ topLeft: 'grey' }}
       />
     );
     const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;

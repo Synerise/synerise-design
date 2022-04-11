@@ -19,10 +19,7 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverTrigger,
     forceAdjacentMonths,
     disableDefaultTexts,
-    arrowColorLeft,
-    arrowColorRight,
-    arrowColorTop,
-    arrowColorBottom,
+    arrowColor,
     popoverProps = {},
   } = props;
   const intl = useIntl();
@@ -68,12 +65,7 @@ const DateRangePicker: React.FC<Props> = props => {
     ...(popupVisible === false && { visible: false }),
   };
   return (
-    <S.PickerWrapper
-      arrowColorLeft={arrowColorLeft}
-      arrowColorRight={arrowColorRight}
-      arrowColorTop={arrowColorTop}
-      arrowColorBottom={arrowColorBottom}
-    >
+    <S.PickerWrapper arrowColor={arrowColor}>
       <S.PopoverWrapper
         content={
           <RawDateRangePicker

@@ -18,6 +18,16 @@ export type CustomColorArrow =
   | 'cyan'
   | 'purple'
   | 'violet';
+export type AdditionalMapper = {
+  topLeft: CustomColorArrow;
+  topRight: CustomColorArrow;
+  bottomLeft: CustomColorArrow;
+  bottomRight: CustomColorArrow;
+  leftTop: CustomColorArrow;
+  leftBottom: CustomColorArrow;
+  rightTop: CustomColorArrow;
+  rightBottom: CustomColorArrow;
+};
 export interface Props extends WrappedComponentProps {
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
@@ -42,10 +52,7 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
-  arrowColorLeft: CustomColorArrow;
-  arrowColorRight: CustomColorArrow;
-  arrowColorTop: CustomColorArrow;
-  arrowColorBottom: CustomColorArrow;
+  arrowColor: AdditionalMapper;
 }
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
