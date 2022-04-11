@@ -176,6 +176,7 @@ function WithConditionFilter(): JSX.Element {
   return storyDef({
     props: {
       defaultDropdownVisibility: true,
+      defaultPopupVisible: true,
     },
     wrap: (el) => {
       // return <div>{el}</div>;
@@ -204,7 +205,7 @@ function WithConditionFilter(): JSX.Element {
           }
         }
       })
-      items[0].popoverProps.defaultVisible = boolean('By default display first tooltip', false);
+      items[0].popoverProps.defaultPopupVisible = boolean('By default display first tooltip', false);
       return {
         ...step,
         context: {

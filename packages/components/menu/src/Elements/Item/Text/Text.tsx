@@ -65,10 +65,11 @@ function MaybePopover({ popoverProps = {}, renderPopover, children }: MaybePopov
           // content={<div className='MaybePopoverWrapper' ref={ref}>{renderPopover(ref)}</div>}
           // content={renderPopover()}
           popup={renderPopover()}
-          overlayClassName='ignore-click-outside ds-hide-arrow'
+          popupClassName='ignore-click-outside ds-hide-arrow'
           // content={renderPopover(ref)} // after adding forwardRef should work
           mouseEnterDelay={0.2}
           overlayStyle={{ zIndex: zIndexGreaterThanDropdown }}
+          zIndex={zIndexGreaterThanDropdown}
           {...popoverProps}
           // overlayInnerStyle={{ paddingBottom: '10px' }}
         >
