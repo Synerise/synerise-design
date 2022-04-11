@@ -138,12 +138,12 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>((
   descriptionConfig,
   ...props
 }, ref): JSX.Element => {
-  const subtitleSlot = (
+  const copyableSlot = content => (
     <RowWrapper copyable>
       <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>
-        <span>{subtitle}</span>
+        <span>{content}</span>
         <Copy
-          copyValue={(subtitle as unknown) as string}
+          copyValue={(content as unknown) as string}
           texts={{
             copyTooltip: copyTooltip ?? 'Copy to clipboard',
             copiedTooltip: copiedTooltip ?? 'Copied',
@@ -164,8 +164,8 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>((
             </div>
           )
         }
-        title={title}
-        description={subtitle ? subtitleSlot : <></>}
+        title={title ? copyableSlot(title) : <></>}
+        description={subtitle ? copyableSlot(subtitle) : <></>}
         headerSideChildren={undefined}
         compactHeader={false}
         withoutPadding
@@ -178,7 +178,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>((
             <DescriptionField extraInformation={notice || <></>} {...descriptionConfig} />
           ))}
         {(renderFooter && renderFooter()) ||
-          (footerText && (
+          ((footerText || actionButton) && (
             <Footer
               text={footerText}
               {...props}
@@ -311,11 +311,12 @@ function Footer({
 >): JSX.Element {
   return (
     <>
-      <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={16} dashed/>
+      <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={8} dashed/>
       <S.Flex style={{ alignItems: 'center' }}>
         <S.FlexGrow1>
-          <Text size="xsmall">{text}</Text>
+          {text && <Text size="xsmall">{text}</Text>}
         </S.FlexGrow1>
+        <S.ActionButtonContainer>
         {(actionButton &&
           actionButton === true &&
           withTooltip(
@@ -325,6 +326,7 @@ function Footer({
             actionButtonTooltipText
           )) ||
           (typeof actionButton === 'function' && actionButton())}
+        </S.ActionButtonContainer>
       </S.Flex>
     </>
   );

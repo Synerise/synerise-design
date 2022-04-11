@@ -83,6 +83,8 @@ describe('Information card', () => {
   it.todo('click on the region to the top from arrow does not close dropdown');
   it.todo('removing element containing information card should remove information-card (e.g. esc on modal)');
   it.todo('closing container does not remove clickoutside listener for parent (FIXME)');
+  it.todo('InfoCardWrapper span toHaveStyle font-size: 14px');
+  it.todo('actionButton can be shown without footer text');
 });
 
 // packages/portal/stories/components/information-card

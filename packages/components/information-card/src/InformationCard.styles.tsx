@@ -13,13 +13,19 @@ import {
 import styled from 'styled-components';
 
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
+import { AntdButton } from "@synerise/ds-button/dist/Button.styles";
 
 export const Flex = styled.div`
   display: flex;
 `;
+
 export const FlexGrow1 = styled.div`
   flex-grow: 1;
 `;
+
+export const ActionButtonContainer = styled.div`
+  margin-right: 4px;
+`
 
 export const InfoCardWrapper = styled.div<{ footerText?: string }>`
   ${CardContainer} {
@@ -31,7 +37,7 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
     &.custom-description ${ChildrenContainer} {
       margin-top: 8px;
     }
-    padding: 16px 16px 8px 16px;
+    padding: 16px 16px 8px 16px; // right is 16px as divider ends there
     border-radius: 3px;
     box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1); // gray-900
   }
@@ -51,6 +57,11 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
   }
   ${Title}${Title} {
     margin-bottom: 0px;
+    font-size: 14px;
+  }
+  ${AntdButton} {
+    width: 32px;
+    height: 32px;
   }
   .ds-button {
     background: transparent;
