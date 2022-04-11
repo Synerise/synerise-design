@@ -249,7 +249,7 @@ function DescriptionField({
   // `destroyTooltipOnHide` (or `keepParent`) set to false, then description state hook will be getting reset
   const [description, setDescription] = React.useState<string>('');
   return (
-    <div>
+    <div className="information-card-description">
       {extraInformation}
       <SubtleForm.TextArea
         minRows={1}

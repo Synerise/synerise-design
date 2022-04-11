@@ -34,7 +34,16 @@ describe('Information card', () => {
     expect(onChange).toHaveBeenCalled()
     expect(onChange).toHaveBeenCalledWith(userInput);
   })
-  it.todo('if children is set to null - do not display description section (also no divider, see `descriptionConfig`)')
+  it('if children is set to null - do not display description section (also no divider, see `descriptionConfig`)', () => {
+    const { getByText, container } = renderWithProvider(
+      <InformationCard title={sampleTitle} subtitle={sampleSubtitle} descriptionConfig={null}></InformationCard>
+    );
+
+    // ASSERT
+    expect(getByText(sampleTitle)).toBeTruthy();
+    expect(getByText(sampleSubtitle)).toBeTruthy();
+    expect(container.querySelector('.information-card-description')).toBeFalsy();
+  })
   it.todo('if description is hidden - divier has both top and bottom margin 16px');
   it.todo('click on popoover does not close dropdown');
   it.todo('click on the region to the top from arrow does not close dropdown');
