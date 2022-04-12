@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.8.0...@synerise/ds-operators@0.8.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* fix filter dropdowns ([eaab107](https://github.com/Synerise/synerise-design/commit/eaab107b6dca7401a17c2e36806febd11edc677b))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.7.9...@synerise/ds-operators@0.8.0) (2022-04-05)
 
 

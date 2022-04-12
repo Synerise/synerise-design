@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.14.1...@synerise/ds-condition@0.14.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* fix filter dropdowns ([eaab107](https://github.com/Synerise/synerise-design/commit/eaab107b6dca7401a17c2e36806febd11edc677b))
+
+
+
+
+
 ## [0.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.14.0...@synerise/ds-condition@0.14.1) (2022-04-08)
 
 **Note:** Version bump only for package @synerise/ds-condition
