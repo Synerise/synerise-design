@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.1...@synerise/ds-card-tabs@0.12.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **condition:** rules-of-hooks dependencies ([10e573e](https://github.com/Synerise/synerise-design/commit/10e573e018ca7e2f69f3f317f35d51eace89ded8))
+
+
+
+
+
 ## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.0...@synerise/ds-card-tabs@0.12.1) (2022-04-12)
 
 
