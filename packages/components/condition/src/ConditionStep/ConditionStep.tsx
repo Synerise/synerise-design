@@ -7,6 +7,7 @@ import * as T from './ConditionStep.types';
 import { StepHeader } from './StepHeader';
 import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
+import { SUBJECT } from '../Condition';
 
 // eslint-disable-next-line import/prefer-default-export
 export const ConditionStep: React.FC<T.ConditionStepProps> = ({
@@ -28,14 +29,14 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   setStepConditionFactorType,
   setStepConditionFactorValue,
   getPopupContainerOverride,
-  onStepActivate,
   hasPriority,
   currentStepId,
   currentConditionId,
   currentField,
   setCurrentField,
+  setCurrentCondition,
+  setCurrentStep,
 }) => {
-  const [activeConditionId, setActiveConditionId] = React.useState<string | null>(null);
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
@@ -62,7 +63,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [texts, formatMessage]
   );
 
-  const onActivate = onStepActivate ? (): void => onStepActivate(step.id) : undefined;
+  const onActivate = setCurrentStep ? (): void => setCurrentStep(step.id) : undefined;
 
   const onAddCondition = React.useCallback(
     (stepId: React.ReactText) => {
@@ -118,15 +119,16 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       const handleActivation =
         (conditionId: string): ((field: string) => void) =>
         (fieldType: string): void => {
-          setActiveConditionId(conditionId);
           onActivate && onActivate();
           setCurrentField && setCurrentField(fieldType);
+          setCurrentCondition && setCurrentCondition(conditionId);
+          setCurrentStep && setCurrentStep(step.id);
         };
 
       return (
         <ConditionRow
           key={`step-${step.id}-condition-${condition.id}`}
-          hasPriority={hasPriority && activeConditionId === condition.id}
+          hasPriority={hasPriority && currentConditionId === condition.id}
           index={conditionIndex}
           conditionId={condition.id}
           addCondition={addCondition}
@@ -160,13 +162,12 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       step.conditions.length,
       step.context,
       hasPriority,
-      activeConditionId,
+      currentConditionId,
       addCondition,
       removeCondition,
       minConditionsLength,
       maxConditionsLength,
       currentStepId,
-      currentConditionId,
       currentField,
       selectParameter,
       selectOperator,
@@ -176,6 +177,8 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       text,
       onActivate,
       setCurrentField,
+      setCurrentCondition,
+      setCurrentStep,
     ]
   );
 
@@ -194,6 +197,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
               {...step.subject}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={onActivate}
+              opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectSubject(value, step.id)}
             />
           )}
@@ -202,6 +206,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
               {...step.context}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={onActivate}
+              opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectContext(value, step.id)}
             />
           )}

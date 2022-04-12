@@ -17,6 +17,7 @@ const Subject: React.FC<SubjectProps> = ({
   getPopupContainerOverride,
   onActivate,
   texts,
+  opened,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
 
@@ -28,6 +29,10 @@ const Subject: React.FC<SubjectProps> = ({
     (value: boolean) => value && onActivate && onActivate(''),
     [onActivate]
   );
+
+  React.useEffect(() => {
+    setDropdownVisible(Boolean(opened));
+  }, [opened]);
 
   return (
     <S.Subject>

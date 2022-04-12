@@ -8,7 +8,7 @@ export type ConditionRowProps = {
   hasPriority?: boolean;
   onActivate?: (fieldType: string) => void;
   conditionId: React.ReactText;
-  addCondition: ConditionProps['addCondition'];
+  addCondition?: (stepId: React.ReactText) => void;
   conditionParameter: FactorsProps;
   conditionOperator: OperatorsProps;
   conditionFactor: FactorsProps;

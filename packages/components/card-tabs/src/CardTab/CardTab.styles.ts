@@ -134,7 +134,7 @@ export const CardTabPrefix = styled.div`
   justify-content: center;
   width: 24px;
   height: 24px;
-  margin-right: 12px;
+  margin-right: 16px;
 `;
 export const CardDragPrefix = styled.div`
   display: none;

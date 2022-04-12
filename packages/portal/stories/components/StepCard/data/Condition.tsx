@@ -31,6 +31,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
                 ...s.context,
                 selectedItem: item,
               },
+              conditions: s.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : s.conditions,
             };
           }
           return s;
@@ -167,6 +168,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
           return step;
         })
       );
+      return newCondition.id;
     },
     [onChange, steps]
   );
@@ -222,7 +224,9 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
   );
 
   const addStep = React.useCallback(() => {
-    onChange([...steps, DEFAULT_STEP()]);
+    const newStep = DEFAULT_STEP();
+    onChange([...steps, newStep]);
+    return newStep.id;
   }, [onChange, steps]);
 
   const onChangeOrder = newOrder => {
