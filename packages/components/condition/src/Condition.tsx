@@ -264,6 +264,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     currentField,
     getPopupContainerOverride,
     draggableEnabled,
+    handleAddCondtion,
     selectOperator,
     selectParameter,
     selectContext,
@@ -276,7 +277,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
     setStepConditionFactorType,
     setStepConditionFactorValue,
     removeCondition,
-    addCondition,
   ]);
 };
 
