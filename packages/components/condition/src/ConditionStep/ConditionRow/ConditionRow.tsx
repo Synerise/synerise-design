@@ -34,8 +34,6 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   hasPriority,
   texts,
 }) => {
-  console.log('current Field', currentConditionId, currentStepId, currentField);
-
   return (
     <S.ConditionRow
       style={hasPriority ? { zIndex: 10001 } : undefined}

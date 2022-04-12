@@ -37,7 +37,6 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [onParamsClick, onActivate]);
 
   React.useEffect(() => {
-    console.log('parameter test', opened, dropdownVisible);
     setDropdownVisible(Boolean(opened));
     if (opened) {
       onParamsClick && onParamsClick();

@@ -188,7 +188,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const handleAddStep = React.useCallback(() => {
     const newStepId = addStep ? addStep() : undefined;
-    console.log('new step id', newStepId);
     if (newStepId) {
       setCurrentStepId(newStepId);
       setCurrentField(SUBJECT);
@@ -212,12 +211,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
       <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
           {steps.map((step, index) => {
-            console.log('current state', {
-              stepId: step.id,
-              currentConditionId,
-              currentStepId,
-              currentField,
-            });
             return (
               <ConditionStep
                 key={`step-id-${step.id}`}
