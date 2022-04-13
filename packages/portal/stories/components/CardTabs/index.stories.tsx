@@ -127,7 +127,6 @@ const stories = {
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
     const setCustomColor = boolean('Set custom color', false);
-    const selectCustomColor = setCustomColor ? select('Pick custom color', CUSTOM_COLORS, 'blue') : undefined;
     const selectHueColor = setCustomColor ? select('Pick hue color', HUE_COLORS, '600') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
@@ -145,6 +144,18 @@ const stories = {
     const handleRemove = id => {
       store.set({
         items: store.state.items.filter(item => item.id !== id),
+      });
+    };
+    const customColorTag = (id) => {
+      store.set({
+        items: store.state.items.map(item => {
+          return item.id === id
+            ? {
+              ...item,
+              name: name,
+            }
+            : item;
+        }),
       });
     };
 
@@ -193,13 +204,13 @@ const stories = {
           onAddTab={handleAddItem}
           addTabLabel={'Add new'}
         >
-          {store.state.items.map(item => (
+          {store.state.items.map((item,i) => (
             <CardTab
               id={item.id}
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={ setCustomColor ?`${selectCustomColor}-${selectHueColor}` : item.color}
+              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, CUSTOM_COLORS, 'blue')}-${selectHueColor}`: item.color}
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
