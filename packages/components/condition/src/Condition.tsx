@@ -194,17 +194,19 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [addStep]);
 
-  const handleAddCondtion = React.useCallback(
-    stepId => {
+  const handleAddCondtion = React.useMemo(() => {
+    if (!addCondition) {
+      return undefined;
+    }
+    return (stepId: React.ReactText): void => {
       const newConditionId = addCondition ? addCondition(stepId) : undefined;
       if (newConditionId) {
         setCurrentConditionId(newConditionId);
         setCurrentStepId(stepId);
         setCurrentField(PARAMETER);
       }
-    },
-    [addCondition]
-  );
+    };
+  }, [addCondition]);
 
   return React.useMemo(() => {
     return (
