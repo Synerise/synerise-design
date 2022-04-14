@@ -96,11 +96,11 @@ export type InformationCardProps = {
   /**
    * Second line. Required prop. Can be copied.
    */
-  subtitle: string | React.ReactNode;
+  subtitle: string;
   /**
-   * First line in the information-card (bolded)
+   * Title of the information-card. Can be copied.
    */
-  title: string | React.ReactNode;
+  title: string;
 };
 
 export type BadgeData = {
