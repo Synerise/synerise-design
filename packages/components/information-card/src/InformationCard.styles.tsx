@@ -21,10 +21,12 @@ export const Flex = styled.div`
 
 export const FlexGrow1 = styled.div`
   flex-grow: 1;
+  margin-top: 16px;
+  margin-bottom: 8px;
 `;
 
 export const ActionButtonContainer = styled.div`
-  margin-right: 4px;
+  margin: 8px 0px 8px 0px;
 `
 
 export const InfoCardWrapper = styled.div<{ footerText?: string }>`
@@ -46,6 +48,7 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
   }
   ${Header} {
     padding: 0px 0px 1px 0px;
+    margin-bottom: 8px; // TBD maybe 4?
   }
   ${IconContainer} {
     align-self: center;

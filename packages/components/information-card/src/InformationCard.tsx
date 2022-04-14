@@ -138,12 +138,12 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>((
   descriptionConfig,
   ...props
 }, ref): JSX.Element => {
-  const copyableSlot = content => (
+  const copyableSlot = (content: string) => (
     <RowWrapper copyable>
       <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>
         <span>{content}</span>
         <Copy
-          copyValue={(content as unknown) as string}
+          copyValue={content}
           texts={{
             copyTooltip: copyTooltip ?? 'Copy to clipboard',
             copiedTooltip: copiedTooltip ?? 'Copied',
@@ -311,7 +311,7 @@ function Footer({
 >): JSX.Element {
   return (
     <>
-      <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={8} dashed/>
+      <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={0} dashed/>
       <S.Flex style={{ alignItems: 'center' }}>
         <S.FlexGrow1>
           {text && <Text size="xsmall">{text}</Text>}
