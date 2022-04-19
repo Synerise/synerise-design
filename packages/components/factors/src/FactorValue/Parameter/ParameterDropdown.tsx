@@ -218,6 +218,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
               {/*
             // @ts-ignore */}
               <List
+                className="ds-factors-parameter-list"
                 width="100%"
                 height={300}
                 itemCount={currentItems.length}
