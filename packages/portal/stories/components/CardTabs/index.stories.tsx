@@ -184,7 +184,7 @@ const stories = {
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, defaultColorsOrder, 'blue-500')}`: item.color}
+              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, defaultColorsOrder, `${defaultColorsOrder[i + 1 % defaultColorsOrder.length]}`)}`: item.color}
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
