@@ -9,6 +9,7 @@ import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
 import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const suffixType = {
   singleIcon: <OptionHorizontalM />,
@@ -18,31 +19,6 @@ const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
 };
-const CUSTOM_COLORS = [
-  'blue',
-  'grey',
-  'red',
-  'green',
-  'yellow',
-  'pink',
-  'mars',
-  'orange',
-  'fern',
-  'cyan',
-  'purple',
-  'violet',
-];
-const HUE_COLORS = [
-  '100',
-  '200',
-  '300',
-  '400',
-  '500',
-  '600',
-  '700',
-  '800',
-  '900',
-];
 
 const stories = {
   default: withState({
@@ -60,8 +36,7 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
     const setCustomColor = boolean('Set custom color', false);
-    const selectCustomColor = setCustomColor ? select('Pick custom color', CUSTOM_COLORS, 'blue') : undefined;
-    const selectHueColor = setCustomColor ? select('Pick hue color', HUE_COLORS, '600') : undefined;
+    const selectCustomColor = setCustomColor ? select('Pick custom color',defaultColorsOrder, 'blue-500') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         name,
@@ -84,7 +59,7 @@ const stories = {
             tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
             active={isActive}
             greyBackground={!bg}
-            color={setCustomColor ?`${selectCustomColor}-${selectHueColor}` : undefined}
+            color={setCustomColor ?`${selectCustomColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
             suffixIcon={suffixType[setSuffix]}
@@ -127,7 +102,6 @@ const stories = {
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
     const setCustomColor = boolean('Set custom color', false);
-    const selectHueColor = setCustomColor ? select('Pick hue color', HUE_COLORS, '600') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -210,7 +184,7 @@ const stories = {
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, CUSTOM_COLORS, 'blue')}-${selectHueColor}`: item.color}
+              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, defaultColorsOrder, 'blue-500')}`: item.color}
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
