@@ -155,24 +155,6 @@ export const CONTEXT_ITEMS = [
     groupId: 'CAMPAIGNS',
   },
   {
-    name: 'Catalog 3',
-    id: 'catalog_3',
-    icon: <ApiM />,
-    groupId: 'CAMPAIGNS',
-  },
-  {
-    name: 'Catalog 4',
-    id: 'catalog_4',
-    icon: <ApiM />,
-    groupId: 'CAMPAIGNS',
-  },
-  {
-    name: 'Catalog 5',
-    id: 'catalog_5',
-    icon: <ApiM />,
-    groupId: 'CAMPAIGNS',
-  },
-  {
     name: 'Business profile',
     id: '1234-1234-1234-1235',
     icon: <ApiM />,

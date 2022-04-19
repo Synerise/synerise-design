@@ -11,6 +11,11 @@ export const ContentPlaceholder = styled.div`
 
 export const ItemsList = styled(Menu)`
   width: 100%;
+
+  .ds-context-selector-list {
+    height: auto !important;
+    max-height: 300px;
+  }
 `;
 
 export const SearchResult = styled.span`
