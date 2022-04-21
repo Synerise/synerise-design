@@ -1,6 +1,8 @@
-import { MenuProps } from 'antd/lib/menu';
 import * as React from 'react';
-import { VisibilityTrigger } from 'Menu.types';
+import { MenuProps } from 'antd/lib/menu';
+import type { TriggerProps } from 'rc-trigger';
+import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { VisibilityTrigger } from '../../Menu.types';
 import { SubMenuProps } from '../SubMenu/SubMenu.types';
 
 export enum ItemType {
@@ -14,6 +16,8 @@ export enum ItemSize {
   DEFAULT = 'default',
   LARGE = 'large',
 }
+
+export type TriggerHandle = React.Component<TriggerProps> & { getPopupDomNode: () => HTMLElement };
 
 export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
   key?: React.ReactText;
@@ -40,4 +44,7 @@ export interface MenuItemProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   menuItemKey?: React.ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
+  tooltipProps?: TooltipProps;
+  hoverTooltipProps?: TooltipProps & { ref?: React.LegacyRef<TriggerHandle> };
+  renderHoverTooltip?: () => JSX.Element;
 }

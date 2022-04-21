@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MenuProps } from 'antd/lib/menu';
+import { MenuItemProps } from '../MenuItem.types';
 
 export type AddonRenderer = (hovered: boolean) => React.ReactNode;
 
@@ -28,4 +29,7 @@ export interface BasicItemProps {
   checked?: boolean;
   size?: 'default' | 'large';
   timeToHideTooltip?: number;
+  tooltipProps?: MenuItemProps['tooltipProps'];
+  hoverTooltipProps?: MenuItemProps['tooltipProps'];
+  renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
 }

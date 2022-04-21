@@ -33,6 +33,7 @@ import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
 import withTag from './withTag/withTag';
 import withSkeleton from './withSkeleton/withSkeleton';
+import withTooltip from "./withTooltip/withTooltip";
 
 export const decorator = props => {
   const { dataSource, ...rest } = props;
@@ -100,6 +101,7 @@ const stories = {
   withSelection,
   withFlag,
   withTag,
+  withTooltip,
   withUserInfo,
   withSkeleton,
 };
