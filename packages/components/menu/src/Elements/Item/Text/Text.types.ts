@@ -21,8 +21,8 @@ export interface BasicItemProps {
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: 'default' | 'hover';
-  prefixVisibilityTrigger?: 'default' | 'hover';
+  suffixVisibilityTrigger?: MenuItemProps['suffixVisibilityTrigger'];
+  prefixVisibilityTrigger?: MenuItemProps['prefixVisibilityTrigger'];
   indentLevel?: number;
   ordered?: boolean;
   key?: React.ReactText;
