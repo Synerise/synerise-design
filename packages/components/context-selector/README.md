@@ -84,28 +84,29 @@ import ContextSelector from '@synerise/ds-context-selector'
 
 ## API
 
-| Property                  | Description                                                     | Type                                                                                     | Default          | 
 | ---                       | ---                                                             | ---                                                                                      | ---              | 
-| groups                    | Groups of items                                                 | ContextGroup[]                                                                           | []               | 
-| items                     | Array of items                                                  | ContextItem[]                                                                            | []               | 
-| menuItemHeight            | Size of single menu item                                        | ItemSize.LARGE \ ItemSize.DEFAULT                                                        | ItemSize.DEFAULT | 
-| onSelectItem              | Callback called when user selects item                          | (item: ContextItem \ ContextGroup \ undefined) => void                                   | -                | 
-| opened                    | Whether if dropdown should opens from outside of component      | boolean                                                                                  | false            | 
-| texts                     | Translations object                                             | ContextSelectorTexts                                                                     | -                | 
-| selectedItem              | Selected item                                                   | ContextItem \ undefined                                                                  | undefined        | 
 | addMode                   | If true trigger doesn't change style when value is set          | ContextItem \ undefined                                                                  | undefined        | 
 | customTriggerComponent    | Add custom trigger                                              | React.ReactNode                                                                          | undefined        | 
-| trigger                   | Add custom trigger to modal                                     | 'click' \ 'hover' \ 'contextMenu'                                                        | 'click           | 
-| menuItemHeight            | Set component Menu.Item height                                  | 'large' \ 'default'                                                                      | -                | 
-| dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                         | CSSProperties \ undefined                                                                | -                | 
-| onClickOutsideEvents      | Overwrite default events for document listener                  | HandledEventsType[] \ undefined                                                          | -                | 
-| onClickOutside            | Callback called when user click outside dropdown                | () => void \ undefined                                                                   | -                | 
-| onSearch                  | Callback called when user enter any char in search input        | (query: string) => void                                                                  | -                | 
-| onFetchData               | Callback called when user scrolls to the end of dropdown list   | () => void                                                                               | -                | 
-| hasMoreItems              | Whether if onFetchData should be called                         | boolean                                                                                  | -                | 
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns       | (trigger: HTMLElement \ null) => HTMLElement;                                            | -                | 
 | dropdownProps             | Limited part of props for dropdown on ContextSelector component | Omit<DropdownProps, 'trigger' 'getPopupContainer' 'onVisibleChange' 'visible' 'overlay'> | -                | 
-
+| dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                         | CSSProperties \ undefined                                                                | -                | 
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns       | (trigger: HTMLElement \ null) => HTMLElement;                                            | -                | 
+| groups                    | Groups of items                                                 | ContextGroup[]                                                                           | []               | 
+| hasMoreItems              | Whether if onFetchData should be called                         | boolean                                                                                  | -                | 
+| items                     | Array of items                                                  | ContextItem[]                                                                            | []               | 
+| menuItemHeight            | Set component Menu.Item height                                  | 'large' \ 'default'                                                                      | -                | 
+| menuItemHeight            | Size of single menu item                                        | ItemSize.LARGE \ ItemSize.DEFAULT                                                        | ItemSize.DEFAULT | 
+| onActivate                | Callback called when user opens dropdown                        | (fieldType: string) => void                                                              | -                | 
+| onClickOutside            | Callback called when user click outside dropdown                | () => void \ undefined                                                                   | -                | 
+| onClickOutsideEvents      | Overwrite default events for document listener                  | HandledEventsType[] \ undefined                                                          | -                | 
+| onDeactivate              | Callback called when user closes dropdown                       | () => void                                                                               | -                | 
+| onFetchData               | Callback called when user scrolls to the end of dropdown list   | () => void                                                                               | -                | 
+| onSearch                  | Callback called when user enter any char in search input        | (query: string) => void                                                                  | -                | 
+| onSelectItem              | Callback called when user selects item                          | (item: ContextItem \ ContextGroup \ undefined) => void                                   | -                | 
+| opened                    | Whether if dropdown should opens from outside of component      | boolean                                                                                  | false            | 
+| Property                  | Description                                                     | Type                                                                                     | Default          | 
+| selectedItem              | Selected item                                                   | ContextItem \ undefined                                                                  | undefined        | 
+| texts                     | Translations object                                             | ContextSelectorTexts                                                                     | -                | 
+| trigger                   | Add custom trigger to modal                                     | 'click' \ 'hover' \ 'contextMenu'                                                        | 'click           | 
 
 
 ### ContextGroup
