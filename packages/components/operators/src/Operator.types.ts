@@ -31,6 +31,7 @@ export type OperatorsGroup = {
 export type OperatorsProps = {
   value?: OperatorsItem | undefined;
   onActivate?: () => void;
+  onDeactivate?: () => void;
   onChange: (item: OperatorsItem | undefined) => void;
   groups: OperatorsGroup[];
   items: OperatorsItem[];
