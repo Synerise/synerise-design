@@ -36,9 +36,9 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   );
 
   return (
-    <S.StepHeader className="step-drag-handler" draggable={draggableEnabled}>
+    <S.StepHeader draggable={draggableEnabled}>
       <S.LeftSide>
-        {draggableEnabled && <S.DragIcon component={<DragHandleM />} />}
+        {draggableEnabled && <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />}
         {updateStepName && (
           <S.StepName className="ds-condition-step-name">
             {`${index + 1}`}{' '}

@@ -33,9 +33,12 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   onActivate,
   hasPriority,
   texts,
+  stepType,
+  onDeactivate,
 }) => {
   return (
     <S.ConditionRow
+      stepType={stepType}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       key={`condition-row-${conditionId}`}
       index={index}
@@ -55,6 +58,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
             {...conditionParameter}
             getPopupContainerOverride={getPopupContainerOverride}
             onActivate={(): void => onActivate && onActivate(PARAMETER)}
+            onDeactivate={onDeactivate}
             onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
             opened={
               hasPriority &&
@@ -73,6 +77,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               {...conditionOperator}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={(): void => onActivate && onActivate(OPERATOR)}
+              onDeactivate={onDeactivate}
               onChange={(value): void => selectOperator(stepId, conditionId, value)}
               opened={
                 hasPriority &&
@@ -91,6 +96,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 {...conditionFactor}
                 getPopupContainerOverride={getPopupContainerOverride}
                 onActivate={(): void => onActivate && onActivate(FACTOR)}
+                onDeactivate={onDeactivate}
                 setSelectedFactorType={(factorType): void =>
                   setStepConditionFactorType(stepId, conditionId, factorType)
                 }

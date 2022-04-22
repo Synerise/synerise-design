@@ -37,6 +37,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     duplicateStep,
     removeStep,
     addStep,
+    renderAddStep,
     onChangeOrder,
     minConditionsLength = 1,
     maxConditionsLength,
@@ -49,11 +50,13 @@ const Condition: React.FC<T.ConditionProps> = props => {
     onChangeFactorValue,
     onUpdateStepName,
     getPopupContainerOverride,
+    showSuffix,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
       addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
+      conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
       ...texts,
     }),
     [texts, formatMessage]
@@ -194,7 +197,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [addStep]);
 
-  const handleAddCondtion = React.useMemo(() => {
+  const handleAddCondition = React.useMemo(() => {
     if (!addCondition) {
       return undefined;
     }
@@ -207,6 +210,12 @@ const Condition: React.FC<T.ConditionProps> = props => {
       }
     };
   }, [addCondition]);
+
+  const handleClearActiveCondition = React.useCallback(() => {
+    setCurrentConditionId(DEFAULT_CONDITION);
+    setCurrentStepId(DEFAULT_STEP);
+    setCurrentField(DEFAULT_FIELD);
+  }, []);
 
   return React.useMemo(() => {
     return (
@@ -237,10 +246,12 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 currentStepId={currentStepId}
                 currentField={currentField}
                 removeCondition={removeCondition}
-                addCondition={handleAddCondtion}
+                addCondition={handleAddCondition}
                 setCurrentField={setCurrentField}
                 setCurrentCondition={setCurrentConditionId}
                 setCurrentStep={setCurrentStepId}
+                onDeactivate={handleClearActiveCondition}
+                showSuffix={showSuffix}
               />
             );
           })}
@@ -253,6 +264,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
             </Button>
           </S.AddStepButton>
         )}
+        {renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
       </S.Condition>
     );
   }, [
@@ -261,12 +273,10 @@ const Condition: React.FC<T.ConditionProps> = props => {
     addStep,
     handleAddStep,
     text,
-    currentConditionId,
+    renderAddStep,
     currentStepId,
-    currentField,
     getPopupContainerOverride,
     draggableEnabled,
-    handleAddCondtion,
     selectOperator,
     selectParameter,
     selectContext,
@@ -278,7 +288,10 @@ const Condition: React.FC<T.ConditionProps> = props => {
     maxConditionsLength,
     setStepConditionFactorType,
     setStepConditionFactorValue,
+    currentConditionId,
+    currentField,
     removeCondition,
+    handleAddCondition,
   ]);
 };
 

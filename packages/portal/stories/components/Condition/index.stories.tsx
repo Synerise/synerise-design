@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Condition from '@synerise/ds-condition';
 import { withState } from '@dump247/storybook-state';
-import { VarTypeStringM } from '@synerise/ds-icon';
+import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';
 import {
   DEFAULT_CONDITION_ROW,
   DEFAULT_STATE,
@@ -14,6 +14,9 @@ import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
+import Button from '@synerise/ds-button';
+import ContextSelector from '@synerise/ds-context-selector';
+import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
@@ -201,8 +204,38 @@ const stories = {
       return newStep.id;
     };
 
+    const addCustomStep = selectedItem => {
+      const newStep = DEFAULT_STEP();
+      store.set({
+        steps: [...store.state.steps, { ...newStep, context: { ...newStep.context, selectedItem } }],
+      });
+      store.set({ openedAddStep: false });
+    };
+
     const onChangeOrder = newOrder => {
       store.set({ steps: newOrder });
+    };
+
+    const renderCustomAddStep = () => {
+      return (
+        <ContextSelector
+          texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
+          items={CONTEXT_CLIENT_ITEMS}
+          groups={CONTEXT_CLIENT_GROUPS}
+          addMode={true}
+          onSelectItem={addCustomStep}
+          selectedItem={undefined}
+          loading={false}
+          opened={store.state.openedAddStep}
+          onClickOutside={() => store.set({ openedAddStep: false })}
+          customTriggerComponent={
+            <Button type="ghost" mode="icon-label" onClick={() => store.set({ openedAddStep: true })}>
+              <Icon component={<Add3M />} />
+              and then...
+            </Button>
+          }
+        />
+      );
     };
 
     return (
@@ -238,7 +271,8 @@ const stories = {
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
           removeStep={removeStep}
           duplicateStep={duplicateStep}
-          addStep={addStep}
+          addStep={boolean('Enable default add step', false) ? addStep : undefined}
+          renderAddStep={boolean('Enable custom add step', true) ? renderCustomAddStep : undefined}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
           minConditionsLength={0}
           maxConditionsLength={5}
@@ -248,6 +282,7 @@ const stories = {
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
+          showSuffix={boolean('Display and suffix', true)}
           steps={store.state.steps.map(step => ({
             id: step.id,
             stepName: step.stepName,

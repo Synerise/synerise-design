@@ -1,6 +1,27 @@
-import styled from 'styled-components';
+import styled, { FlattenInterpolation, css } from 'styled-components';
 import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 import Icon from '@synerise/ds-icon';
+import Cruds from '@synerise/ds-cruds';
+import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ConditionRowProps } from './ConditionStep/ConditionRow';
+
+export const DragIcon = styled(Icon)`
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: -24px;
+  cursor: grab;
+`;
+
+export const StepConditionCruds = styled(Cruds)`
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 11111;
+`;
 
 export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   display: flex;
@@ -10,6 +31,11 @@ export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   margin-top: 0;
   padding: 0 24px;
   width: 100%;
+
+  ${DragIcon} {
+    left: 0;
+    top: 16px;
+  }
 `;
 
 export const StepName = styled.div`
@@ -49,14 +75,8 @@ export const ConditionStepWrapper = styled.div`
   width: 100%;
 `;
 
-export const And = styled.div``;
-
-export const DragIcon = styled(Icon)`
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: -24px;
+export const And = styled.div`
+  display: contents;
 `;
 
 export const StepCruds = styled.div`
@@ -75,24 +95,68 @@ export const LeftSide = styled.div`
   position: relative;
 `;
 
-export const StepHeader = styled.div<{ draggable: boolean }>`
+export const StepHeader = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
-  padding: 12px 24px 0;
-  cursor: ${(props): string => (props.draggable ? 'grab' : 'default')};
+  padding: 0 24px;
 `;
 
-export const Step = styled.div`
+export const DraggedLabel = styled.span`
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 18px;
+  color: ${(props): string => props.theme.palette['grey-600']};
+  font-size: 13px;
+`;
+
+export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefined }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 0 0 12px;
+  padding: 12px 0 12px;
   position: relative;
+
+  ${(props): false | FlattenInterpolation<ThemeProps> =>
+    Boolean(props.showSuffix) &&
+    css`
+      &:after {
+        display: none;
+        width: 100%;
+        padding: 18px 0 18px 24px;
+        bottom: -18px;
+        content: attr(data-conditionSuffix);
+        background-color: ${props.theme.palette.white};
+        position: relative;
+        font-size: 16px;
+        font-weight: 500;
+        color: #3f4c5b;
+      }
+
+      &:first-child:not(:last-child) {
+        &:after {
+          display: flex;
+        }
+      }
+
+      &:not(:last-child) {
+        &:after {
+          display: flex;
+        }
+      }
+    `}
+
+  
   &:first-of-type {
     &.steps-list-ghost-element {
       &:after {
@@ -100,10 +164,14 @@ export const Step = styled.div`
       }
     }
   }
-  
+  background-color: ${(props): string => (props.active ? props.theme.palette['grey-050'] : 'transparent')};
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-050']};
     ${StepCruds} {
+      opacity: 1;
+      visibility: visible;
+    }
+    ${StepConditionCruds} {
       opacity: 1;
       visibility: visible;
     }
@@ -123,9 +191,15 @@ export const Step = styled.div`
     justify-content: center;
     padding: 0 20px;
     box-shadow: 0 16px 32px 0 #23293619;
+    
+    &:after {
+      display: none;
+    }
+    
     ${StepHeader} {
       align-items: center;
-      }
+    }
+    
     ${StepName} {
       margin: 0;
       ${IconWrapper} {
@@ -135,6 +209,10 @@ export const Step = styled.div`
 
     ${StepConditions} {
       display: none;
+    }
+    
+    ${DraggedLabel}{
+      display: flex;
     }
   }
   &.steps-list-ghost-element {
@@ -150,21 +228,16 @@ export const Step = styled.div`
     height: 50px;
     box-shadow: none;
     position: relative;
-    margin: 24px 0;
-    &:after {
-      content: '';
-      position: absolute;
-      top: -24px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      border-bottom: 1px dotted ${(props): string => props.theme.palette['grey-300']};
-    }
+    // margin: 24px 0;
+    
     &:before {
       content: attr(data-dropLabel);
       text-align: center;
       position: relative;
       color: ${(props): string => props.theme.palette['blue-600']};
+    }
+    ${DraggedLabel} {
+      display: none;
     }
     * {
       display: none;
@@ -197,12 +270,12 @@ export const ConditionRows = styled.div`
   flex-direction: column;
 `;
 
-export const ConditionRow = styled.div<{ index: number }>`
+export const ConditionRow = styled.div<{ index: number; stepType: ConditionRowProps['stepType'] }>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-bottom: 16px;
+  padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
   min-width: 780px;
   z-index: ${(props): number => 10000 - props.index};
 
