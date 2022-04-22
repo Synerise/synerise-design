@@ -21,21 +21,28 @@
     "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0 --ignore-pattern dist",
     "prepublish": "npm run build",
-    "types": "tsc --noEmit",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
   },
   "sideEffects": [
     "dist/style/*",
     "*.less"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {"@synerise/ds-card":"*"},
+  "dependencies": {
+    "@synerise/ds-alert": "^0.4.4",
+    "@synerise/ds-avatar": "^0.14.7",
+    "@synerise/ds-card": "^0.10.1",
+    "@synerise/ds-description": "^0.3.7",
+    "@synerise/ds-subtle-form": "*",
+    "@synerise/ds-typography": "^0.12.2"
+  },
   "peerDependencies": {
-    "@synerise/ds-core": "*",
+    "@synerise/ds-core": "^0.31.2",
     "react": ">=16.9.0 < 17.0.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

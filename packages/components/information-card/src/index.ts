@@ -1,1 +1,1 @@
-export { default } from './InformationCard';
+export { default, buildExtraInfo, buildIconBadge, buildInitialsBadge, InformationCardProps } from './InformationCard';
