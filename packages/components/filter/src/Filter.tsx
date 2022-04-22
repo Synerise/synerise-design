@@ -54,6 +54,12 @@ const Filter: React.FC<FilterProps> = ({
       step: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
         notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
+        have: formatMessage({ id: 'DS.MATCHING.HAVE', defaultMessage: 'Have' }),
+        performed: formatMessage({ id: 'DS.MATCHING.PERFORMED', defaultMessage: 'Performed' }),
+        notHave: formatMessage({ id: 'DS.MATCHING.NOT-HAVE', defaultMessage: 'Does not have' }),
+        notPerformed: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED', defaultMessage: 'Have not performed' }),
+        attribute: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.ATTRIBUTE', defaultMessage: 'attribute' }),
+        event: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.EVENT', defaultMessage: 'event' }),
         namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
         moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
@@ -72,21 +78,12 @@ const Filter: React.FC<FilterProps> = ({
     expression => {
       const contextType = expression.expressionType;
       return {
-        matching:
-          contextType === 'attribute'
-            ? formatMessage({ id: 'DS.MATCHING.HAVE', defaultMessage: 'Have' })
-            : formatMessage({ id: 'DS.MATCHING.PERFORMED', defaultMessage: 'Performed' }),
-        notMatching:
-          contextType === 'attribute'
-            ? formatMessage({ id: 'DS.MATCHING.NOT-HAVE', defaultMessage: 'Not have' })
-            : formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED', defaultMessage: 'Not performed' }),
-        conditionType:
-          contextType === 'attribute'
-            ? formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.ATTRIBUTE', defaultMessage: 'attribute' })
-            : formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.EVENT', defaultMessage: 'event' }),
+        matching: contextType === 'attribute' ? text.step.have : text.step.performed,
+        notMatching: contextType === 'attribute' ? text.step.notHave : text.step.notPerformed,
+        conditionType: contextType === 'attribute' ? text.step.attribute : text.step.event,
       };
     },
-    [formatMessage]
+    [text]
   );
 
   const componentProps = React.useCallback(

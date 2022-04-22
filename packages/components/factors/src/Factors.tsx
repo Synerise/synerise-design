@@ -83,6 +83,7 @@ const Factors: React.FC<FactorsProps> = ({
   factorKey,
   preventAutoloadData,
   onActivate,
+  onDeactivate,
   getPopupContainerOverride,
 }) => {
   const { formatMessage } = useIntl();
@@ -233,6 +234,7 @@ const Factors: React.FC<FactorsProps> = ({
         preventAutoloadData={preventAutoloadData}
         getPopupContainerOverride={getPopupContainerOverride}
         onActivate={onActivate}
+        onDeactivate={onDeactivate}
       />
     </S.Group>
   );

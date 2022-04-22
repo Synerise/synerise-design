@@ -5,7 +5,14 @@ import { debounce } from 'lodash';
 import { DynamicKeyValueType, InputProps } from '../../Factors.types';
 import * as S from './DynamicKey.style';
 
-const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false, texts, opened }) => {
+const DynamicKey: React.FC<InputProps> = ({
+  value,
+  onChange,
+  withoutTypeSelector = false,
+  texts,
+  opened,
+  onDeactivate,
+}) => {
   const [localValue, setLocalValue] = React.useState<DynamicKeyValueType>({
     key: (value as DynamicKeyValueType).key,
     value: (value as DynamicKeyValueType).value,
@@ -30,6 +37,7 @@ const DynamicKey: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector
         name="key"
         onChange={handleChange}
         autoFocus={opened}
+        onBlur={onDeactivate}
       />
       <RawInput
         placeholder={texts.dynamicKey.valuePlaceholder}

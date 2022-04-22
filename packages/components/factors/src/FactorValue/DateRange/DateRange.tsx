@@ -4,7 +4,7 @@ import { DateFilter, DateRange } from '@synerise/ds-date-range-picker/dist/date.
 import { useIntl } from 'react-intl';
 import { InputProps } from '../../Factors.types';
 
-const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts }) => {
+const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeactivate }) => {
   const intl = useIntl();
 
   const changeHandler = React.useCallback(
@@ -12,6 +12,15 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts }) => {
       onChange(date);
     },
     [onChange]
+  );
+
+  const handleVisibleChange = React.useCallback(
+    visible => {
+      if (!visible) {
+        onDeactivate && onDeactivate();
+      }
+    },
+    [onDeactivate]
   );
 
   return (
@@ -27,6 +36,7 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts }) => {
       showRelativePicker
       popoverProps={{
         placement: 'bottomLeft',
+        onVisibleChange: handleVisibleChange,
       }}
     />
   );

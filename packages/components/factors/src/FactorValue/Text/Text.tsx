@@ -18,11 +18,11 @@ const TextInput: React.FC<InputProps> = ({
   autocompleteText,
   factorType,
   opened,
+  onDeactivate,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
-  const [inputRef, setInputRef] = useState<
-    React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
-  >();
+  const [inputRef, setInputRef] =
+    useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
   const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
 
@@ -99,6 +99,7 @@ const TextInput: React.FC<InputProps> = ({
             suffix={SuffixIcon}
             value={localValue as string}
             onChange={handleChange}
+            onBlur={onDeactivate}
           />
         </S.InputWrapper>
       )}

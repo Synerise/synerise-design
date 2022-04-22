@@ -20,13 +20,12 @@ const FactorValue: React.FC<FactorValueProps> = ({
   preventAutoloadData,
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
 }) => {
   const inputType = React.useMemo(() => {
-    const InputComponent = selectedFactor.input;
+    const InputComponent: React.ElementType = selectedFactor.input;
 
     return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
       <InputComponent
         key={`${factorKey}-${selectedFactor.name}`}
         value={value}
@@ -45,6 +44,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         preventAutoloadData={preventAutoloadData}
         getPopupContainerOverride={getPopupContainerOverride}
         onActivate={onActivate}
+        onDeactivate={onDeactivate}
       />
     );
   }, [
@@ -64,8 +64,9 @@ const FactorValue: React.FC<FactorValueProps> = ({
     loading,
     onParamsClick,
     preventAutoloadData,
-    onActivate,
     getPopupContainerOverride,
+    onActivate,
+    onDeactivate,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;
