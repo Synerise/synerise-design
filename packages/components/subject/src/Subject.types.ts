@@ -12,6 +12,7 @@ export type SubjectItem = {
 export type SubjectProps = {
   onShowPreview?: () => void;
   onActivate?: (fieldType: string) => void;
+  onDeactivate?: () => void;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   placeholder: string | React.ReactNode;
   iconPlaceholder: React.ReactNode;
