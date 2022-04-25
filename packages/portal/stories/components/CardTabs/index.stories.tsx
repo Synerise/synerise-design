@@ -83,6 +83,11 @@ const stories = {
       id: i,
       name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
       tag: String.fromCharCode(65 + i).toUpperCase(),
+      itemData: {
+        age: i * 10,
+        name: `Name ${String.fromCharCode(65 + i).toUpperCase()}`,
+        city: `City ${String.fromCharCode(65 + i).toUpperCase()}`,
+      },
     })),
     activeTab: 0,
     nextId: 3,
@@ -141,6 +146,11 @@ const stories = {
             id: store.state.nextId,
             name: `Variant ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
             tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
+            itemData: {
+              age: store.state.nextId * 10,
+              name: `Name ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
+              city: `City ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
+            },
           },
         ],
         nextId: store.state.nextId + 1,
@@ -181,7 +191,13 @@ const stories = {
               onSelectTab={handleSelect}
               onChangeName={handleChangeName}
               onRemoveTab={handleRemove}
-              onDuplicateTab={boolean('Enable not displaying duplicate-card button if reached cards limit', true) ? (isTabsLimitNotExceeded ? handleDuplicate : undefined) : handleDuplicate}
+              onDuplicateTab={
+                boolean('Enable not displaying duplicate-card button if reached cards limit', true)
+                  ? isTabsLimitNotExceeded
+                    ? handleDuplicate
+                    : undefined
+                  : handleDuplicate
+              }
               texts={{
                 changeNameTooltip: 'Rename',
                 removeTooltip: 'Remove',
@@ -189,6 +205,7 @@ const stories = {
               }}
               invalid={invalid}
               invalidName={invalidName}
+              itemData={item.itemData}
             />
           ))}
         </CardTabs>

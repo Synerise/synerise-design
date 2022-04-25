@@ -29,6 +29,7 @@ const CardTab: React.FC<CardTabProps> = ({
   texts,
   color = 'yellow',
   colorDot,
+  itemData,
 }) => {
   const [edited, setEdited] = React.useState(false);
   const [editedName, setEditedName] = React.useState(name);
@@ -118,6 +119,7 @@ const CardTab: React.FC<CardTabProps> = ({
       greyBackground={!!greyBackground}
       data-id={id}
       data-testid="card-tab-container"
+      itemData={itemData}
     >
       <CardTabPrefix colorDot={colorDot} draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
       <S.CardTabLabel data-testid="card-tab-label" invalidName={Boolean(invalidName) && !invalid}>

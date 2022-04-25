@@ -11,6 +11,7 @@ type CardTabContainerProps = {
   disabled: boolean;
   edited: boolean;
   draggable?: boolean;
+  itemData?: unknown;
 };
 
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
