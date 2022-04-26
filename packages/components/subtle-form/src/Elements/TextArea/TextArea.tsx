@@ -28,7 +28,6 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   error,
   errorText,
   textAreaProps,
-  hideLabel,
   ...rest
 }) => {
   const [active, setActive] = React.useState<boolean>(false);
@@ -85,7 +84,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
   }, []);
   return (
     <S.Subtle className="ds-subtle-form">
-      {!hideLabel && (
+      {label && (
         <S.ContentAbove active={active}>
           <Label label={label} tooltip={labelTooltip} />
         </S.ContentAbove>

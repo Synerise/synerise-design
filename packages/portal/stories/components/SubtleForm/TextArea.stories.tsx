@@ -25,7 +25,6 @@ const TextareaWithKnobs = () => {
   const errorMessage = text('Error Text', 'Error');
   return <SubtleForm.TextArea
     minRows={3}
-    hideLabel={boolean('Hide label', false)}
     value={description}
     onChange={setDescription}
     placeholder={'Description'}
