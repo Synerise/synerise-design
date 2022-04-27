@@ -15,7 +15,7 @@ class Menu extends React.Component<AntdMenuProps> {
   static Item: typeof MenuItem = MenuItem;
   static Breadcrumb: typeof Breadcrumb = Breadcrumb;
   static Header: typeof Header = Header;
-  static ItemGroup = typeof S.AntdMenu.ItemGroup;
+  static ItemGroup = S.AntdMenu.ItemGroup;
   static SubMenu = S.AntdMenu.SubMenu;
   static Divider = S.MenuDivider;
 
