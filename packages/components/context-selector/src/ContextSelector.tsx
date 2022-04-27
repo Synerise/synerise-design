@@ -10,6 +10,7 @@ import { ContextItem, ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
+  defaultDropdownVisibility,
   selectedItem,
   onSelectItem,
   onSetGroup,
@@ -33,7 +34,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   getPopupContainerOverride,
   type,
 }) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   const handleChange = React.useCallback(
     val => {
       setDropdownVisible(false);
