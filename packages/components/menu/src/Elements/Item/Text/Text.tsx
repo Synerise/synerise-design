@@ -23,9 +23,13 @@ export type HoverTooltipProps = React.PropsWithChildren<{
   renderHoverTooltip?: () => JSX.Element;
 }>;
 
-function WithHoverTooltip({ hoverTooltipProps = {}, renderHoverTooltip, children }: HoverTooltipProps): JSX.Element {
+const placement = {
+  right: ['cl', 'cr'],
+};
+
+function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children }: HoverTooltipProps): JSX.Element {
   const dsTheme = useTheme() as ThemePropsVars;
-  const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10) || 991050 + 1;
+  const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
   const cancelBubblingEvent = React.useCallback(
     () =>
       (ev: Event): void => {
@@ -38,17 +42,16 @@ function WithHoverTooltip({ hoverTooltipProps = {}, renderHoverTooltip, children
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
       <Trigger
-        defaultVisible={hoverTooltipProps?.defaultVisible ?? false}
-        placement="right"
+        defaultPopupVisible={hoverTooltipProps?.defaultPopupVisible ?? false}
         action={['click', 'hover']}
         popupAlign={{
-          points: ['cl', 'cr'],
+          points: placement.right,
           offset: [4, 0],
         }}
         popup={renderHoverTooltip && renderHoverTooltip()}
         popupClassName="ignore-click-outside ds-hide-arrow"
         mouseEnterDelay={0.2}
-        overlayStyle={{ zIndex }}
+        popupStyle={{ zIndex }}
         zIndex={zIndex}
         {...hoverTooltipProps}
       >
