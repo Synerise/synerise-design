@@ -335,7 +335,7 @@
             "MOVE-TOOLTIP": "Move",
             "DUPLICATE-TOOLTIP": "Duplicate",
             "REMOVE-TOOLTIP": "Delete",
-            "AND-SUFFIX": "and",
+            "AND-SUFFIX": "and"
         },
         "PLACEHOLDER": {
             "CHOOSE-CONDITION": "Choose type of condition below"
