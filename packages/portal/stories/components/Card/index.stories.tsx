@@ -7,7 +7,7 @@ import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM 
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
 import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
-import { buildIconBadge } from "@synerise/ds-card";
+import { ObjectAvatar } from '@synerise/ds-avatar';
 
 const backgrounds = {
   White: 'white',
@@ -527,23 +527,24 @@ const stories = {
   customBadgeSlot: () => {
     const badgesOptions = {
       'undefined': 'undefined',
-      'simple': 'simple',
       'text': 'text',
+      'icon': 'icon',
     }
     const badges = {
       'undefined': undefined,
       'text': <div>Badge</div>,
-      'simple': <div style={{ marginRight: '16px' }}>{buildIconBadge({
-        iconElement: <SegmentM/>,
-        iconColor: 'mars',
-        avatarTooltipText: text('Avatar tooltip', 'avatar tooltip')
-      })}</div>,
+      'icon': <div style={{ marginRight: '16px' }}>
+        <ObjectAvatar
+          color="mars"
+          iconComponent={<Icon component={<SegmentM/>}/>}
+        />
+      </div>,
     }
     return (<Card
       withHeader
       title="Title"
       description="Description"
-      badgeSlot={badges[select('Badge slot', badgesOptions, 'simple')]}>{
+      badgeSlot={badges[select('Badge slot', badgesOptions, 'icon')]}>{
         text('Card description', 'Description')
       }</Card>)
   }
