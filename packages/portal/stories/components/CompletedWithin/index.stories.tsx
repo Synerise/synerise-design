@@ -3,7 +3,7 @@ import * as React from 'react';
 import CompletedWithin from '@synerise/ds-completed-within';
 import { withState } from '@dump247/storybook-state';
 import { PeriodValue } from '@synerise/ds-completed-within/dist/CompletedWithin.types';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
 const DEFAULT_STATE = {
   value: {
@@ -25,6 +25,7 @@ const stories = {
           periodPlaceholder: 'Interval',
         }}
         value={store.state.value}
+        maxValue={number('Max value', 100)}
         onSetValue={handleSetValue}
         placeholder={boolean('With placeholder', false) ? text('Placeholder', 'Completed within') : undefined}
         tooltip={

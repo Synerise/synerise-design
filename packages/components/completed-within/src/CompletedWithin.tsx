@@ -12,6 +12,7 @@ export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS',
 
 const CompletedWithin: React.FC<CompletedWithinProps> = ({
   value,
+  maxValue,
   onSetValue,
   text,
   periods,
@@ -90,6 +91,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
         overlay={
           <Settings
             value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
+            maxValue={maxValue}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
             text={texts}
