@@ -17,7 +17,7 @@ const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValu
           value={value.value}
           onChange={onValueChange}
           min={0}
-          max={maxValue || Number.MAX_SAFE_INTEGER}
+          max={maxValue ?? Number.MAX_SAFE_INTEGER}
         />
         <Select
           size={'default' as SizeType}

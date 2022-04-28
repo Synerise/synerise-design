@@ -39,7 +39,6 @@ import CompletedWithin from '@synerise/ds-completed-within'
 | placeholder | Trigger button label                                                         | string                       | -                                    |
 | tooltip     | Content of tooltip                                                           | string                       | -                                    |
 
-
 ### CompletedWithinTexts
 
 | Property          | Description                         | Type                         | Default            |
