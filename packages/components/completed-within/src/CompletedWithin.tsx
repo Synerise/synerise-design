@@ -9,9 +9,15 @@ import { CompletedWithinProps, Period } from './CompletedWithin.types';
 import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
-const DEFAULT_PERIOD = 'DAYS';
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods, placeholder }) => {
+const CompletedWithin: React.FC<CompletedWithinProps> = ({
+  value,
+  onSetValue,
+  text,
+  periods,
+  placeholder,
+  tooltip,
+}) => {
   const intl = useIntl();
 
   const texts = React.useMemo(
@@ -42,7 +48,8 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   }, [periods, intl]);
 
   const [innerValue, setInnerValue] = React.useState<string | number | undefined>(value.value);
-  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period || DEFAULT_PERIOD);
+  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
+  const [tooltipVisible, setTooltipVisible] = React.useState(false);
 
   const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
@@ -50,6 +57,9 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
     (visible: boolean) => {
       if (!visible && innerValue && innerPeriod) {
         onSetValue({ value: Number(innerValue), period: innerPeriod });
+      }
+      if (visible) {
+        setTooltipVisible(false);
       }
     },
     [innerPeriod, innerValue, onSetValue]
@@ -79,7 +89,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
       <Dropdown
         overlay={
           <Settings
-            value={{ value: innerValue !== undefined ? Number(innerValue) : 0, period: innerPeriod }}
+            value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
             text={texts}
@@ -90,10 +100,18 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
         onVisibleChange={handleVisibleChange}
         placement="topLeft"
       >
-        <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
-          <Icon component={<ClockM />} />
-          {triggerLabel}
-        </S.TriggerButton>
+        <Tooltip
+          type="largeSimple"
+          description={tooltip}
+          trigger={['hover']}
+          onVisibleChange={setTooltipVisible}
+          visible={tooltipVisible}
+        >
+          <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
+            <Icon component={<ClockM />} />
+            {triggerLabel}
+          </S.TriggerButton>
+        </Tooltip>
       </Dropdown>
       {hasValue && (
         <Tooltip title={texts.clear}>

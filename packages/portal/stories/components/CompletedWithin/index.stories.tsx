@@ -7,7 +7,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 
 const DEFAULT_STATE = {
   value: {
-    value: 0,
+    value: undefined,
     period: undefined,
   },
 };
@@ -27,6 +27,11 @@ const stories = {
         value={store.state.value}
         onSetValue={handleSetValue}
         placeholder={boolean('With placeholder', false) ? text('Placeholder', 'Completed within') : undefined}
+        tooltip={
+          boolean('Show tooltip', true)
+            ? text('Tooltip', 'Filter by time elapsed between completing the first and last step in the funnel.')
+            : undefined
+        }
       />
     );
   }),

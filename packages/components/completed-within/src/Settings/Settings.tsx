@@ -11,7 +11,14 @@ const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValu
   return (
     <S.Settings>
       <InputGroup size="default" label={text.header} resetMargin compact>
-        <InputNumber size="small" raw value={value.value} onChange={onValueChange} min={0} />
+        <InputNumber
+          size="small"
+          raw
+          value={value.value}
+          onChange={onValueChange}
+          min={0}
+          max={Number.MAX_SAFE_INTEGER}
+        />
         <Select
           size={'default' as SizeType}
           value={value.period}
