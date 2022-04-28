@@ -268,7 +268,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
       </S.Condition>
     );
   }, [
-    showSuffix,
     steps,
     onChangeOrder,
     addStep,
@@ -293,6 +292,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     currentField,
     removeCondition,
     handleAddCondition,
+    handleClearActiveCondition,
+    showSuffix,
   ]);
 };
 
