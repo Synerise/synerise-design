@@ -22,7 +22,8 @@ const stories = {
         value={store.state.value}
         items={OPERATORS_ITEMS}
         groups={OPERATORS_GROUPS}
-        onDeactivate={action('deactivate')}
+        onDeactivate={action('onDeactivate')}
+        onActivate={action('onActivate')}
       />
     );
   }),
