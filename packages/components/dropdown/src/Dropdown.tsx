@@ -26,10 +26,9 @@ class Dropdown extends React.Component<DropdownProps> {
     const offsetVertical = topPlacements.find(topPlacement => topPlacement === placement) !== undefined ? -8 : 8;
 
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <AntdDropdown
         getPopupContainer={getPopupContainer}
-        align={{ offset: [0, offsetVertical] }} // STOR-588
+        align={{ offset: [0, offsetVertical] }}
         trigger={['click']}
         {...this.props}
       />
