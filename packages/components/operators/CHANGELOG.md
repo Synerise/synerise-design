@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.8.1...@synerise/ds-operators@0.9.0) (2022-04-29)
+
+
+### Features
+
+* **operators:** adds onDeactivate prop, update Readme.md ([07f6446](https://github.com/Synerise/synerise-design/commit/07f6446ded7253ab994b4df5c0b5da1c2727aa10))
+
+
+
+
+
 ## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.8.0...@synerise/ds-operators@0.8.1) (2022-04-12)
 
 

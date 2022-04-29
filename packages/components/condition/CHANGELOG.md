@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.14.4...@synerise/ds-condition@0.15.0) (2022-04-29)
+
+
+### Features
+
+* **condition:** clearing active step on deactivating inner components ([ad45310](https://github.com/Synerise/synerise-design/commit/ad45310cde108e40b2b88c0a88bf801d679056db))
+
+
+
+
+
 ## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.14.3...@synerise/ds-condition@0.14.4) (2022-04-13)
 
 

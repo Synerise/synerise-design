@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.33.0...@synerise/ds-core@0.34.0) (2022-04-29)
+
+
+### Features
+
+* **condition:** clearing active step on deactivating inner components ([ad45310](https://github.com/synerise/synerise-design/commit/ad45310cde108e40b2b88c0a88bf801d679056db))
+
+
+
+
+
 # [0.33.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.32.1...@synerise/ds-core@0.33.0) (2022-04-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.7.1...@synerise/ds-filter@0.8.0) (2022-04-29)
+
+
+### Features
+
+* **factors:** adds onDeactivate prop, updates Readme.md ([ff85234](https://github.com/Synerise/synerise-design/commit/ff852349a5c77047d6d0642d4b5587dbcc6d24cd))
+
+
+
+
+
 ## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.7.0...@synerise/ds-filter@0.7.1) (2022-04-08)
 
 **Note:** Version bump only for package @synerise/ds-filter

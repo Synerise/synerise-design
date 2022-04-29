@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.11.0...@synerise/ds-context-selector@0.12.0) (2022-04-29)
+
+
+### Features
+
+* **context-selector:** adds default trigger value ([006e307](https://github.com/Synerise/synerise-design/commit/006e3079e8d557c6312c525370c53ad41ddcba9a))
+* **context-selector:** adds onDeactivate prop, updates Readme.md ([ace0ac7](https://github.com/Synerise/synerise-design/commit/ace0ac7f2e6ec9e4adad51dc430af7e7fa4bb097))
+
+
+
+
+
 # [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.10...@synerise/ds-context-selector@0.11.0) (2022-04-05)
 
 

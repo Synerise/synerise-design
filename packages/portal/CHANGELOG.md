@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.154.0](https://github.com/synerise/synerise-design/compare/portal@0.153.1...portal@0.154.0) (2022-04-29)
+
+
+### Bug Fixes
+
+* **dropdown:** fixes vertical position of dropdown for 'top' placements ([2a22c6e](https://github.com/synerise/synerise-design/commit/2a22c6eb5453b568a3df3153f3993e0f045dafdf))
+
+
+### Features
+
+* **card-tabs:** adds itemData prop for addional item data ([08b0cfa](https://github.com/synerise/synerise-design/commit/08b0cfa53e2ae25d76947d79327b52a94434940f))
+* **completed-within:** adds maxValue prop ([cc20e27](https://github.com/synerise/synerise-design/commit/cc20e2788e2840a9d78bd51cb43a1928fb64e958))
+* **completed-within:** adds tooltip for trigger button ([694812e](https://github.com/synerise/synerise-design/commit/694812e9179e79c8f8fa4d12054d2704d7abcab3))
+* **condition:** clearing active step on deactivating inner components ([ad45310](https://github.com/synerise/synerise-design/commit/ad45310cde108e40b2b88c0a88bf801d679056db))
+* **context-selector:** adds default trigger value ([006e307](https://github.com/synerise/synerise-design/commit/006e3079e8d557c6312c525370c53ad41ddcba9a))
+* **context-selector:** adds onDeactivate prop, updates Readme.md ([ace0ac7](https://github.com/synerise/synerise-design/commit/ace0ac7f2e6ec9e4adad51dc430af7e7fa4bb097))
+* **factors:** adds onDeactivate prop, updates Readme.md ([ff85234](https://github.com/synerise/synerise-design/commit/ff852349a5c77047d6d0642d4b5587dbcc6d24cd))
+* **operators:** adds onDeactivate prop, update Readme.md ([07f6446](https://github.com/synerise/synerise-design/commit/07f6446ded7253ab994b4df5c0b5da1c2727aa10))
+* **subject:** adds onDeactivate prop, updates Readme.md ([58f373e](https://github.com/synerise/synerise-design/commit/58f373e81f02d0ea25c95484fe9bdd1d8921c107))
+
+
+
+
+
 ## [0.153.1](https://github.com/synerise/synerise-design/compare/portal@0.153.0...portal@0.153.1) (2022-04-12)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.8.1...@synerise/ds-subject@0.9.0) (2022-04-29)
+
+
+### Features
+
+* **subject:** adds onDeactivate prop, updates Readme.md ([58f373e](https://github.com/Synerise/synerise-design/commit/58f373e81f02d0ea25c95484fe9bdd1d8921c107))
+
+
+
+
+
 ## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.8.0...@synerise/ds-subject@0.8.1) (2022-04-12)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.12.2...@synerise/ds-factors@0.13.0) (2022-04-29)
+
+
+### Features
+
+* **factors:** adds onDeactivate prop, updates Readme.md ([ff85234](https://github.com/Synerise/synerise-design/commit/ff852349a5c77047d6d0642d4b5587dbcc6d24cd))
+* **factors:** adds tests ([8c469e1](https://github.com/Synerise/synerise-design/commit/8c469e164e986f346b591b3a97ed3b6fbab3cdaa))
+
+
+
+
+
 ## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.12.1...@synerise/ds-factors@0.12.2) (2022-04-12)
 
 

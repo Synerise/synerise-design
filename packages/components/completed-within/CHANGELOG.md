@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.4.0...@synerise/ds-completed-within@0.5.0) (2022-04-29)
+
+
+### Features
+
+* **completed-within:** adds maxValue prop ([cc20e27](https://github.com/Synerise/synerise-design/commit/cc20e2788e2840a9d78bd51cb43a1928fb64e958))
+* **completed-within:** adds tooltip for trigger button ([694812e](https://github.com/Synerise/synerise-design/commit/694812e9179e79c8f8fa4d12054d2704d7abcab3))
+* **completed-within:** replace || by ?? in maxValue ([d36c970](https://github.com/Synerise/synerise-design/commit/d36c970832fcc835881a15a0d013b5c5225c4c72))
+
+
+
+
+
 # [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.15...@synerise/ds-completed-within@0.4.0) (2022-04-05)
 
 

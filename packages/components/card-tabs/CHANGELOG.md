@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.2...@synerise/ds-card-tabs@0.13.0) (2022-04-29)
+
+
+### Features
+
+* **card-tabs:** adds itemData prop for addional item data ([08b0cfa](https://github.com/Synerise/synerise-design/commit/08b0cfa53e2ae25d76947d79327b52a94434940f))
+
+
+
+
+
 ## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.1...@synerise/ds-card-tabs@0.12.2) (2022-04-12)
 
 
