@@ -101,6 +101,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | texts          | Translations of CrudButtons tooltips                                            | CardTabTexts                                                                                           | -        |
 | color          | Color of CardTab                                                                | `red`/ `green`/ `grey`/ `yellow`/ `blue`/ `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple`/ `violet` | `yellow` |
 | colorDot       | single color dot                                                                | React.ReactNode                                                                                        | -        |
+| itemData       | Additional item data                                                            | any                                                                                                    | -        |
 
 #### CardTabTexts
 
