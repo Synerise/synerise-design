@@ -7,11 +7,18 @@ import { SettingsProps } from './Settings.types';
 import * as S from './Settings.styles';
 import { Period } from '../CompletedWithin.types';
 
-const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValueChange, periods }) => {
+const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValueChange, periods, maxValue }) => {
   return (
     <S.Settings>
       <InputGroup size="default" label={text.header} resetMargin compact>
-        <InputNumber size="small" raw value={value.value} onChange={onValueChange} min={0} />
+        <InputNumber
+          size="small"
+          raw
+          value={value.value}
+          onChange={onValueChange}
+          min={0}
+          max={maxValue ?? Number.MAX_SAFE_INTEGER}
+        />
         <Select
           size={'default' as SizeType}
           value={value.period}

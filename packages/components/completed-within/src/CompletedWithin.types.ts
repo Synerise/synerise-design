@@ -22,7 +22,9 @@ export type PeriodValue = {
 export type CompletedWithinProps = {
   text?: CompletedWithinTexts;
   value: PeriodValue;
+  maxValue?: PeriodValue['value'];
   onSetValue: (value: PeriodValue) => void;
   periods?: CustomPeriod[];
   placeholder?: string | undefined;
+  tooltip?: string;
 };
