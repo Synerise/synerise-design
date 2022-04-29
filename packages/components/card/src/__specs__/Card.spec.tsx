@@ -88,7 +88,7 @@ describe('Card', () => {
     const { container } = renderWithProvider(
       <Card
         withHeader
-        badgeSlot={<div className="badge-slot" style={{ marginRight: '16px' }}>Badge</div>}
+        renderBadge={() => <div className="badge-slot" style={{ marginRight: '16px' }}>Badge</div>}
       />
     )
     expect(container.querySelector('.badge-slot')).toBeTruthy();

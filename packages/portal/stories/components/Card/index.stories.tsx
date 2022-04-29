@@ -544,7 +544,7 @@ const stories = {
       withHeader
       title="Title"
       description="Description"
-      badgeSlot={badges[select('Badge slot', badgesOptions, 'icon')]}>{
+      renderBadge={() => badges[select('Badge slot', badgesOptions, 'icon')]}>{
         text('Card description', 'Description')
       }</Card>)
   }
