@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.13.0...@synerise/ds-factors@0.13.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **factors:** fixes auto height of parameters dropdown list ([67ced37](https://github.com/Synerise/synerise-design/commit/67ced37b02f9e442721afb274c6a32b5def18a83))
+
+
+
+
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.12.2...@synerise/ds-factors@0.13.0) (2022-04-29)
 
 

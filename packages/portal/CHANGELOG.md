@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.154.1](https://github.com/synerise/synerise-design/compare/portal@0.154.0...portal@0.154.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **context-selector:** fixes auto height of dropdown list ([4a6b1fb](https://github.com/synerise/synerise-design/commit/4a6b1fbddc28ddee46751afacb63617f6d341395))
+
+
+
+
+
 # [0.154.0](https://github.com/synerise/synerise-design/compare/portal@0.153.1...portal@0.154.0) (2022-04-29)
 
 

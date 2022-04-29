@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.0...@synerise/ds-context-selector@0.12.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **context-selector:** fixes auto height of dropdown list ([4a6b1fb](https://github.com/Synerise/synerise-design/commit/4a6b1fbddc28ddee46751afacb63617f6d341395))
+
+
+
+
+
 # [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.11.0...@synerise/ds-context-selector@0.12.0) (2022-04-29)
 
 
