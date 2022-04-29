@@ -35,6 +35,9 @@ const ContextSelector: React.FC<ContextProps> = ({
   type,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
+  React.useEffect(() => {
+    setDropdownVisible(defaultDropdownVisibility ?? false);
+  }, [defaultDropdownVisibility]);
   const handleChange = React.useCallback(
     val => {
       setDropdownVisible(false);

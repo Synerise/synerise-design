@@ -90,6 +90,7 @@ import ContextSelector from '@synerise/ds-context-selector'
 | items                     | Array of items                                                | ContextItem[]                                          | []                    | 
 | menuItemHeight            | Size of single menu item                                      | ItemSize.LARGE \ ItemSize.DEFAULT                      | ItemSize.DEFAULT      | 
 | onSelectItem              | Callback called when user selects item                        | (item: ContextItem \ ContextGroup \ undefined) => void | -                     | 
+| defaultDropdownVisibility | default visibility of dropdown                                | boolean                                                | false                 |
 | opened                    | Whether if dropdown should opens from outside of component    | boolean                                                | false                 | 
 | texts                     | Translations object                                           | ContextSelectorTexts                                   | -                     | 
 | selectedItem              | Selected item                                                 | ContextItem \ undefined                                | undefined             | 
