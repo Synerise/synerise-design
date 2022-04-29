@@ -334,7 +334,8 @@
             "DROP-LABEL": "Drop me here",
             "MOVE-TOOLTIP": "Move",
             "DUPLICATE-TOOLTIP": "Duplicate",
-            "REMOVE-TOOLTIP": "Delete"
+            "REMOVE-TOOLTIP": "Delete",
+            "AND-SUFFIX": "and"
         },
         "PLACEHOLDER": {
             "CHOOSE-CONDITION": "Choose type of condition below"

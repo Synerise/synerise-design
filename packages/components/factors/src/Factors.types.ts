@@ -52,7 +52,7 @@ export type FactorValueType =
 export type SelectedFactorType = {
   name: string;
   icon: React.ReactNode;
-  input: React.ReactNode;
+  input: React.ElementType;
 };
 
 export type FactorsTexts = {
@@ -92,6 +92,7 @@ export type FactorsProps = {
   defaultFactorType: FactorType;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onActivate?: () => void;
+  onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   textType?: 'autocomplete' | 'expansible' | 'default' | string;
@@ -139,6 +140,7 @@ export type FactorValueProps = Pick<
   | 'preventAutoloadData'
   | 'getPopupContainerOverride'
   | 'onActivate'
+  | 'onDeactivate'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -154,6 +156,7 @@ export type InputProps = Pick<
   | 'opened'
   | 'getPopupContainerOverride'
   | 'onActivate'
+  | 'onDeactivate'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

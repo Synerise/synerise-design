@@ -36,23 +36,21 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   );
 
   return (
-    <S.StepHeader className="step-drag-handler" draggable={draggableEnabled}>
+    <S.StepHeader className="ds-condition-step-header" draggable={draggableEnabled}>
       <S.LeftSide>
-        {draggableEnabled && <S.DragIcon component={<DragHandleM />} />}
-        {updateStepName && (
-          <S.StepName className="ds-condition-step-name">
-            {`${index + 1}`}{' '}
-            <InlineEdit
-              size="small"
-              input={{
-                value: localName,
-                name: `condition-step-name-${stepId}`,
-                placeholder: texts.stepNamePlaceholder,
-                onChange: handleChangeName,
-              }}
-            />
-          </S.StepName>
-        )}
+        {draggableEnabled && <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />}
+        <S.StepName className="ds-condition-step-name">
+          {`${index + 1}`}{' '}
+          <InlineEdit
+            size="small"
+            input={{
+              value: localName,
+              name: `condition-step-name-${stepId}`,
+              placeholder: texts.stepNamePlaceholder,
+              onChange: handleChangeName,
+            }}
+          />
+        </S.StepName>
       </S.LeftSide>
       <S.StepCruds>
         <Cruds

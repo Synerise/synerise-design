@@ -20,6 +20,7 @@ const Operators: React.FC<OperatorsProps> = ({
   opened,
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
 }) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -52,8 +53,11 @@ const Operators: React.FC<OperatorsProps> = ({
   }, [onActivate]);
 
   const onDropdownVisibilityChange = React.useCallback(
-    (newValue: boolean) => newValue && onActivate && onActivate(),
-    [onActivate]
+    (newValue: boolean) => {
+      newValue && onActivate && onActivate();
+      !newValue && onDeactivate && onDeactivate();
+    },
+    [onActivate, onDeactivate]
   );
 
   return (

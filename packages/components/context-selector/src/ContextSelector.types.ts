@@ -40,6 +40,7 @@ export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
   selectedItem?: ContextItem | undefined;
   onActivate?: (fieldType: string) => void;
+  onDeactivate?: () => void;
   onSelectItem: (item: ContextItem | ContextGroup | undefined) => void;
   groups: ContextGroup[];
   items: ContextItem[];

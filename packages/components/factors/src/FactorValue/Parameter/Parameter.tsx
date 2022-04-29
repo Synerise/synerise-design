@@ -18,6 +18,7 @@ const ParameterInput: React.FC<InputProps> = ({
   preventAutoloadData,
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -53,9 +54,12 @@ const ParameterInput: React.FC<InputProps> = ({
   const onDropdownVisibilityChange = React.useCallback(
     (newValue: boolean) => {
       newValue && onActivate && onActivate();
-      !newValue && setDropdownVisible(false);
+      if (!newValue) {
+        onDeactivate && onDeactivate();
+        setDropdownVisible(false);
+      }
     },
-    [onActivate]
+    [onActivate, onDeactivate]
   );
 
   return (

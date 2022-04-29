@@ -16,6 +16,7 @@ const Subject: React.FC<SubjectProps> = ({
   type = 'parameter',
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
   texts,
   opened,
 }) => {
@@ -26,8 +27,11 @@ const Subject: React.FC<SubjectProps> = ({
   }, [type]);
 
   const onDropdownVisibilityChange = React.useCallback(
-    (value: boolean) => value && onActivate && onActivate(''),
-    [onActivate]
+    (value: boolean) => {
+      value && onActivate && onActivate('');
+      !value && onDeactivate && onDeactivate();
+    },
+    [onActivate, onDeactivate]
   );
 
   React.useEffect(() => {

@@ -40,4 +40,6 @@ export type ConditionStepProps = {
   setCurrentField: (field: string) => void;
   setCurrentCondition: (conditionId: string) => void;
   setCurrentStep: (stepId: React.ReactText) => void;
+  onDeactivate: () => void;
+  showSuffix?: boolean;
 };

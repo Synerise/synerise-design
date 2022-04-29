@@ -2,6 +2,7 @@ import * as React from 'react';
 import Subject from '@synerise/ds-subject';
 import ContextSelector from '@synerise/ds-context-selector';
 import { useIntl } from 'react-intl';
+import { DragHandleM } from '@synerise/ds-icon';
 import * as S from '../Condition.style';
 import * as T from './ConditionStep.types';
 import { StepHeader } from './StepHeader';
@@ -36,6 +37,8 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   setCurrentField,
   setCurrentCondition,
   setCurrentStep,
+  onDeactivate,
+  showSuffix,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -58,6 +61,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       duplicateTooltip: formatMessage({ id: 'DS.CONDITION.DUPLICATE-TOOLTIP', defaultMessage: 'Duplicate' }),
       removeTooltip: formatMessage({ id: 'DS.CONDITION.REMOVE-TOOLTIP', defaultMessage: 'Delete' }),
       addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'Add step' }),
+      conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
       ...texts,
     }),
     [texts, formatMessage]
@@ -154,6 +158,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           setStepConditionFactorValue={setStepConditionFactorValue}
           texts={text}
           stepType={step.context?.type}
+          onDeactivate={onDeactivate}
         />
       );
     },
@@ -175,6 +180,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       setStepConditionFactorType,
       setStepConditionFactorValue,
       text,
+      onDeactivate,
       onActivate,
       setCurrentField,
       setCurrentCondition,
@@ -187,16 +193,26 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       key={step.id}
       id={`condition-step-${step.id}`}
       data-dropLabel={text.dropLabel}
+      data-conditionSuffix={text.conditionSuffix}
       style={hasPriority ? { zIndex: 10001 } : undefined}
+      active={step.id === currentStepId && currentField !== ''}
+      showSuffix={showSuffix}
     >
+      {!updateStepName && (
+        <S.DraggedLabel>{step.subject?.selectedItem?.name || step.context?.selectedItem?.name}</S.DraggedLabel>
+      )}
       {updateStepName && stepHeader}
       <S.StepConditions withoutStepName={updateStepName === undefined}>
+        {draggableEnabled && !updateStepName && (
+          <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />
+        )}
         <S.Subject>
           {step.subject && (
             <Subject
               {...step.subject}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={onActivate}
+              onDeactivate={onDeactivate}
               opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectSubject(value, step.id)}
             />
@@ -206,6 +222,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
               {...step.context}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={onActivate}
+              onDeactivate={onDeactivate}
               opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectContext(value, step.id)}
             />
@@ -215,6 +232,14 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
           {addConditionButton}
         </S.ConditionRows>
+        {!updateStepName && (
+          <S.StepConditionCruds
+            onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
+            onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
+            duplicateTooltip={text.duplicateTooltip}
+            deleteTooltip={text.removeTooltip}
+          />
+        )}
       </S.StepConditions>
     </S.Step>
   );
