@@ -20,7 +20,6 @@ export const StepConditionCruds = styled(Cruds)`
   right: 24px;
   visibility: hidden;
   opacity: 0;
-  z-index: 11111;
 `;
 
 export const StepConditions = styled.div<{ withoutStepName: boolean }>`
@@ -30,7 +29,7 @@ export const StepConditions = styled.div<{ withoutStepName: boolean }>`
   justify-content: flex-start;
   margin-top: 0;
   padding: 0 24px;
-  width: 100%;
+  width: ${(props): string => (props.withoutStepName ? 'calc(100% - 48px)' : '100%')};
 
   ${DragIcon} {
     left: 0;
@@ -228,7 +227,6 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
     height: 50px;
     box-shadow: none;
     position: relative;
-    // margin: 24px 0;
     
     &:before {
       content: attr(data-dropLabel);
@@ -276,7 +274,6 @@ export const ConditionRow = styled.div<{ index: number; stepType: ConditionRowPr
   align-items: flex-start;
   justify-content: flex-start;
   padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
-  min-width: 780px;
   z-index: ${(props): number => 10000 - props.index};
 
   ${ConditionWrapper} {
