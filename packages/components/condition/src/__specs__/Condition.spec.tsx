@@ -131,6 +131,7 @@ const DEFAULT_PROPS = (): ConditionProps => ({
   minConditionsLength: 1,
   maxConditionsLength: 10,
   addCondition: () => {},
+  renderAddStep: () => undefined,
   removeCondition: () => {},
   onUpdateStepName: () => {},
   removeStep: () => {},
@@ -570,7 +571,7 @@ describe('Condition component', () => {
   });
 
   test('rendering custom factor component', () => {
-    const { getByText, queryByDisplayValue, debug } = renderWithProvider(
+    const { getByText, queryByDisplayValue } = renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -633,5 +634,21 @@ describe('Condition component', () => {
     expect(getByText('With custom factor')).toBeTruthy();
     expect(queryByDisplayValue('Factor label')).toBeFalsy();
     expect(queryByDisplayValue('factor value')).toBeFalsy();
+  });
+  it('should not render step name', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(RENDER_CONDITIONS({ onUpdateStepName: undefined }));
+
+    // ASSERT
+    expect(container.querySelector('.ds-condition-step-header')).toBeNull();
+  });
+  it('should render custom add step component', () => {
+    // ARRANGE
+    const { getByText } = renderWithProvider(
+      RENDER_CONDITIONS({ renderAddStep: () => <span>CUSTOM ADD STEP BUTTON</span> })
+    );
+
+    // ASSERT
+    expect(getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
   });
 });

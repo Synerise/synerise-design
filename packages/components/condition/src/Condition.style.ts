@@ -303,6 +303,7 @@ export const AddConditionRow = styled.div`
 export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean }>`
   display: flex;
   width: 32px;
+  min-width: 32px;
   margin: 0 12px;
   position: relative;
   height: 32px;
