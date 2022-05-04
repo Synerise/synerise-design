@@ -13,5 +13,4 @@ export interface Props extends ModalProps {
     okButton?: string;
     cancelButton?: string;
   };
-  withFooter?: boolean;
 }

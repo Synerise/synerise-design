@@ -32,7 +32,7 @@ const customFooterProps = (headerType: string, switchEnabled: boolean, setSwitch
       return {
         footer: <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
           <div style={{ width: '100%', display: 'flex' }}>
-            <Button type="secondary">Settings</Button>
+            <Button type="secondary">{propsWithKnobs().settingButton}</Button>
           </div>
           <div style={{ display: 'flex' }}>
             <Button type="ghost">{propsWithKnobs().cancelText}</Button>

@@ -21,8 +21,23 @@ const defaultStory = withState(DEFAULT_STATE)(({ store }) => {
           {...spread}
           visible={store.state.visible}
           onCancel={() => store.set({visible: false})}
-          withFooter={spread.renderCustomFooter}
-          settingButtonText={spread.settingButton}
+          footer={ spread.removeFooter ? null : !spread.renderCustomFooter ? (
+            undefined
+          ) : (
+            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+              <div style={{ width: '100%', display: 'flex' }}>
+                <Button type="secondary">{spread.settingButton}</Button>
+              </div>
+
+              <div style={{ display: 'flex' }}>
+                <Button type="ghost">{spread.cancelText}</Button>
+
+                <Button type="primary" loading={propsWithKnobs().confirmLoading}>
+                  {spread.okText}
+                </Button>
+              </div>
+            </div>
+          )}
           headerActions={
             propsWithKnobs().showHeaderAction && (
               <Button type="ghost" onClick={() => window.alert('You just clicked on an additional header button')}>

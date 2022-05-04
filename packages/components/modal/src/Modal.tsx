@@ -45,7 +45,6 @@ class ModalProxy extends React.Component<Props> {
       description,
       size,
       blank,
-      withFooter,
       settingButtonText,
       titleContainerStyle,
       ...antModalProps
@@ -95,27 +94,7 @@ class ModalProxy extends React.Component<Props> {
       </>
     );
     const handleOk = antModalProps.onOk;
-
-    const customFooter = antModalProps.footer || (
-      <S.CustomFooterContainer>
-        <S.SettingButton>
-          <Button type="secondary">{settingButtonText}</Button>
-        </S.SettingButton>
-        <S.ButtonsWrapper>
-          {/* eslint-disable-next-line */}
-          <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
-            {texts && texts.cancelButton}
-          </Button>
-
-          {/* eslint-disable-next-line */}
-          <Button type={antModalProps.okType || 'primary'} onClick={handleOk} {...antModalProps.okButtonProps}>
-            {texts && texts.okButton}
-          </Button>
-        </S.ButtonsWrapper>
-      </S.CustomFooterContainer>
-    );
-
-    const normalFooter = antModalProps.footer || (
+    const footerContainer = antModalProps.footer || (
       <S.FooterContainer>
         {/* eslint-disable-next-line */}
         <Button type="ghost" onClick={antModalProps.onCancel} {...antModalProps.cancelButtonProps}>
@@ -136,7 +115,7 @@ class ModalProxy extends React.Component<Props> {
         width={!size ? undefined : mapSizeToWidth[size]}
         closable={false}
         title={(title || description || blank) && titleContainer}
-        footer={withFooter === true ? customFooter : normalFooter}
+        footer={antModalProps.footer !== null ? footerContainer : null}
       />
     );
   }

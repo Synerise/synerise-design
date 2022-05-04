@@ -50,6 +50,22 @@ const headerWithPrefix = (text: string, prefix: React.ReactNode) => {
     </S.HeaderWrapper>
   );
 };
+const footer = (settingButton: string, cancelText: string, applyButton: string,) => {
+  return (
+  <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+    <div style={{ width: '100%', display: 'flex' }}>
+      <Button type="secondary">{settingButton}</Button>
+    </div>
+    <div style={{ display: 'flex' }}>
+      <Button type="ghost">{cancelText}</Button>
+
+      <Button type="primary">
+        {applyButton}
+      </Button>
+    </div>
+  </div>
+  )
+}
 
 
 
@@ -123,8 +139,7 @@ const withHeaders = () => {
   const storyProps = {
     size: select('Size', sizes, null),
     visible: boolean('Set open', true),
-    withFooter: boolean('Show custom footer', true) ,
-    settingButtonText: text('Set text of button', 'Setting'),
+    footer: boolean('Show footer', true) ? footer(text('Set text of setting button', 'Settings'),text('Set text of cancel button', 'Cancel'),text('Set text of ok button', 'Apply'),) : null,
     headerActions: (
       <div>
         <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>

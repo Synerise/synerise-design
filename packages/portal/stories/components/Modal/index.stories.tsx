@@ -37,7 +37,7 @@ export const propsWithKnobs = () => ({
   onClose: action('onClose CLICK'),
   onOk: action('onOk CLICK'),
   onCancel: action('onCancel CLICK'),
-  settingButton: text('setting button text', 'Setting'),
+  settingButton: text('setting button text', 'Settings'),
   showHeaderAction: boolean('Show example of an additional header button', true),
   renderCustomFooter: boolean('Render custom footer', true),
   removeFooter: boolean('Render without footer', false),
