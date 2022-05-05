@@ -18,6 +18,7 @@ const Card: React.FC<CardProps> = ({
   description,
   compactHeader,
   icon,
+  renderBadge,
   iconColor,
   headerSideChildren,
   onHeaderClick,
@@ -42,11 +43,12 @@ const Card: React.FC<CardProps> = ({
     >
       {withHeader && (
         <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
-          {icon && (
+          {(icon && (
             <S.IconContainer description={description} compact={compactHeader}>
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
-          )}
+          )) ||
+            renderBadge?.()}
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (
