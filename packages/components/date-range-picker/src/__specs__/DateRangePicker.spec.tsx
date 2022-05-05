@@ -6,6 +6,7 @@ import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { waitFor } from '@testing-library/react';
+import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -174,4 +175,24 @@ describe('DateRangePicker', () => {
     selectedRangeEnd.click();
     expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
   });
+  it('should display custom color for arrow popup', async () => {
+    const onApply = jest.fn();
+    const { container } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+        popoverProps={{ placement: 'topLeft' }}
+        arrowColor={{ topLeft: 'grey' }}
+      />
+    );
+    const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;
+    expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
+  });
+
 });

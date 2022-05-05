@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { isEqual } from 'lodash';
-import { Popover } from 'antd';
 import './style/index.less';
 import { useIntl } from 'react-intl';
 import RawDateRangePicker from './RawDateRangePicker';
@@ -20,6 +19,7 @@ const DateRangePicker: React.FC<Props> = props => {
     popoverTrigger,
     forceAdjacentMonths,
     disableDefaultTexts,
+    arrowColor,
     popoverProps = {},
   } = props;
   const intl = useIntl();
@@ -27,11 +27,10 @@ const DateRangePicker: React.FC<Props> = props => {
   const [selectedDate, setSelectedDate] = React.useState(value);
   const [inputActive, setInputActive] = React.useState<boolean>();
 
-  const allTexts = React.useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [
-    texts,
-    disableDefaultTexts,
-    intl,
-  ]);
+  const allTexts = React.useMemo(
+    () => getDefaultTexts(intl, disableDefaultTexts, texts),
+    [texts, disableDefaultTexts, intl]
+  );
   React.useEffect((): void => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
@@ -66,8 +65,8 @@ const DateRangePicker: React.FC<Props> = props => {
     ...(popupVisible === false && { visible: false }),
   };
   return (
-    <S.PickerWrapper>
-      <Popover
+    <S.PickerWrapper arrowColor={arrowColor}>
+      <S.PopoverWrapper
         content={
           <RawDateRangePicker
             {...props}
@@ -99,7 +98,7 @@ const DateRangePicker: React.FC<Props> = props => {
             active={!!inputActive}
           />
         )}
-      </Popover>
+      </S.PopoverWrapper>
     </S.PickerWrapper>
   );
 };
