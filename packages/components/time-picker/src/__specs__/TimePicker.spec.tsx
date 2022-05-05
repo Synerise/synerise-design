@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
+import dayjs from 'dayjs';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import TimePicker from '../index';
-import dayjs from 'dayjs';
 
 describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
@@ -19,7 +19,7 @@ describe('TimePicker', () => {
 
   it('should render opened by default', async () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<TimePicker defaultOpen={true} />);
+    const { getByTestId } = renderWithProvider(<TimePicker defaultOpen />);
 
     // ASSERT
     const overlayContainer = await waitFor(() => getByTestId(OVERLAY_CONTAINER_TESTID));
