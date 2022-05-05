@@ -25,6 +25,13 @@ describe('Subtle Textarea', () => {
     // ASSERT
     expect(getByText(LABEL)).toBeTruthy();
   });
+  it('should not render label container before textarea container if not provided a label', () => {
+    const { container } = renderWithProvider(<SubtleForm.TextArea label="description"/>);
+    const textAreaAsFirstChild = container.querySelector('.ds-subtle-form .ds-subtle-textarea:first-child')
+    expect(textAreaAsFirstChild).toBeFalsy();
+    const { container: containerNoLabel } = renderWithProvider(<SubtleForm.TextArea/>);
+    expect(containerNoLabel.querySelector('.ds-subtle-form .ds-subtle-textarea:first-child')).toBeTruthy();
+  });
   it('should call onChange', async () => {
     // ARRANGE
     const onChange = jest.fn();
