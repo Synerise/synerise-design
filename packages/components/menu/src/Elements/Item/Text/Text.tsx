@@ -1,10 +1,14 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { useTheme } from 'styled-components';
+import theme, { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
-import { escapeRegEx } from '@synerise/ds-utils';
-import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
+import Trigger from 'rc-trigger';
 import Tooltip from '@synerise/ds-tooltip';
+import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
+import { escapeRegEx } from '@synerise/ds-utils';
+import 'rc-trigger/assets/index.less';
+import { HoverEventHandler } from 'rc-menu/lib/interface';
 
 import * as S from './Text.styles';
 import { VisibilityTrigger } from '../../../Menu.types';
@@ -13,6 +17,49 @@ import { AddonRenderer, BasicItemProps } from './Text.types';
 const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): React.ReactNode => {
   return addon instanceof Function ? addon(...params) : addon;
 };
+
+export type HoverTooltipProps = React.PropsWithChildren<{
+  hoverTooltipProps?: BasicItemProps['hoverTooltipProps'];
+  renderHoverTooltip?: () => JSX.Element;
+}>;
+
+const placement = {
+  right: ['cl', 'cr'],
+};
+
+function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children }: HoverTooltipProps): JSX.Element {
+  const dsTheme = useTheme() as ThemePropsVars;
+  const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
+  const cancelBubblingEvent = React.useCallback(
+    () =>
+      (ev: Event): void => {
+        ev.stopPropagation();
+      },
+    []
+  );
+  // onKeyDown is used to disallow propagating key events to tooltip's container element
+  return (
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
+      <Trigger
+        defaultPopupVisible={hoverTooltipProps?.defaultPopupVisible ?? false}
+        action={['click', 'hover']}
+        popupAlign={{
+          points: placement.right,
+          offset: [4, 0],
+        }}
+        popup={renderHoverTooltip && renderHoverTooltip()}
+        popupClassName="ignore-click-outside ds-hide-arrow"
+        mouseEnterDelay={0.2}
+        popupStyle={{ zIndex }}
+        zIndex={zIndex}
+        {...hoverTooltipProps}
+      >
+        {children as React.ReactElement}
+      </Trigger>
+    </div>
+  );
+}
 
 const Text: React.FC<BasicItemProps> = ({
   parent,
@@ -33,8 +80,13 @@ const Text: React.FC<BasicItemProps> = ({
   suffixVisibilityTrigger,
   indentLevel,
   ordered,
+  onClick,
   checked,
+  tooltipProps,
+  hoverTooltipProps,
+  renderHoverTooltip,
   size = 'default',
+  onItemHover,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -85,7 +137,8 @@ const Text: React.FC<BasicItemProps> = ({
   const className = React.useMemo<string>(() => {
     return classNames('ds-menu-item', rest.className, size);
   }, [rest.className, size]);
-  return (
+
+  const element = (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -107,10 +160,18 @@ const Text: React.FC<BasicItemProps> = ({
       indentLevel={Number(indentLevel)}
       ordered={ordered}
       size={size}
+      onClick={onClick}
+      onItemHover={onItemHover as unknown as HoverEventHandler}
       {...rest}
       className={className}
     >
-      <Tooltip type="default" trigger="click" title={copyTooltip} timeToHideAfterClick={timeToHideTooltip}>
+      <Tooltip
+        type="default"
+        trigger="click"
+        title={copyTooltip}
+        timeToHideAfterClick={timeToHideTooltip}
+        {...tooltipProps}
+      >
         <S.Inner>
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (
@@ -139,6 +200,14 @@ const Text: React.FC<BasicItemProps> = ({
       </Tooltip>
     </S.Wrapper>
   );
+  if (renderHoverTooltip) {
+    return (
+      <WithHoverTooltip hoverTooltipProps={hoverTooltipProps} renderHoverTooltip={renderHoverTooltip}>
+        {element}
+      </WithHoverTooltip>
+    );
+  }
+  return element;
 };
 
 export default Text;

@@ -7,7 +7,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';
-import { MenuItemProps } from '../Elements/Item/MenuItem.types';
+import { MenuItemProps, TriggerHandle } from "../Elements/Item/MenuItem.types";
 
 describe('Simple menu', () => {
   const data = [
@@ -253,4 +253,24 @@ describe('Menu item', () => {
     expect(menuItem).toHaveClass('custom-class');
     expect(menuItem).toHaveClass('another-class');
   });
+  it('should show tooltip on hover', () => {
+    type undocumentedMethods = {getPopupDomNode: () => HTMLElement}
+    const ref = React.createRef<TriggerHandle>();
+    const { getByText } = renderWithProvider(<Menu>
+      <Menu.Item
+        type={undefined}
+        onMouseEnter={() => undefined}
+        onMouseLeave={() => undefined}
+        onItemHover={() => undefined}
+        hoverTooltipProps={{
+          ref: ref as (React.RefObject<TriggerHandle> & ((_: HTMLElement) => void)), // TODO find a way to avoid casting to union of ref | function
+          mouseEnterDelay: 0,
+        }}
+        renderHoverTooltip={() => <div>tooltip content</div>}
+      >Menu item</Menu.Item>
+    </Menu>);
+    const element = getByText('Menu item');
+    fireEvent.mouseOver(element);
+    expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
+  })
 });

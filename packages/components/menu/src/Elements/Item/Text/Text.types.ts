@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MenuProps } from 'antd/lib/menu';
+import { MenuItemProps } from '../MenuItem.types';
 
 export type AddonRenderer = (hovered: boolean) => React.ReactNode;
 
@@ -20,12 +21,15 @@ export interface BasicItemProps {
   highlight?: string;
   style?: React.CSSProperties;
   onItemHover?: (e: MouseEvent) => void;
-  suffixVisibilityTrigger?: 'default' | 'hover';
-  prefixVisibilityTrigger?: 'default' | 'hover';
+  suffixVisibilityTrigger?: MenuItemProps['suffixVisibilityTrigger'];
+  prefixVisibilityTrigger?: MenuItemProps['prefixVisibilityTrigger'];
   indentLevel?: number;
   ordered?: boolean;
   key?: React.ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
   timeToHideTooltip?: number;
+  tooltipProps?: MenuItemProps['tooltipProps'];
+  hoverTooltipProps?: MenuItemProps['hoverTooltipProps'];
+  renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
 }
