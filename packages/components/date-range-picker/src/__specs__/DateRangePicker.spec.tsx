@@ -5,8 +5,10 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from "@testing-library/react";
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import DateRangePicker from "../../dist";
+import type { PopoverProps } from 'antd/lib/popover';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -31,6 +33,8 @@ export const RANGES: RelativeDateRange[] = [
 const texts = {
   relativeDateRange: 'Relative Picker',
   myRange: 'myRange',
+  startDatePlaceholder: 'Start date',
+  endDatePlaceholder: 'End date',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -177,22 +181,26 @@ describe('DateRangePicker', () => {
   });
   it('should display custom color for arrow popup', async () => {
     const onApply = jest.fn();
-    const { container } = renderWithProvider(
-      <RawDateRangePicker
+    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement}>();
+    const { container, getByText } = renderWithProvider(
+      <DateRangePicker
+        onApply={() => {}}
         showTime
-        onApply={onApply}
-        showFilter={false}
+        relativeFuture
+        forceAbsolute
         showRelativePicker
-        forceAbsolute={false}
-        value={ABSOLUTE_VALUE as DateRange}
-        relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
-        popoverProps={{ placement: 'topLeft' }}
+        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef} as Partial<PopoverProps> }
         arrowColor={{ topLeft: 'grey' }}
+        forceAdjacentMonths={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
       />
     );
-    const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;
-    expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
+    const element = getByText(texts.startDatePlaceholder);
+    fireEvent.click(element);
+    const popoverWrapper = popoverRef.current.getPopupDomNode() as HTMLElement;
+    const arrowElement = popoverWrapper.querySelector('.ant-popover-content > .ant-popover-arrow');
+    expect(arrowElement).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 
 });
