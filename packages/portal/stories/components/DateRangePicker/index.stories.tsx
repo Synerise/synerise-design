@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
@@ -10,6 +10,8 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
+import Button from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -106,6 +108,56 @@ const stories = {
         popoverProps={{ placement: 'bottomLeft' }}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
+      />
+    );
+  },
+  withCustomTrigger: () => {
+    const value = undefined;
+    const [tooltipVisible, setTooltipVisible] = React.useState(false);
+    const [dateRangeVisible, setDateRangeVisible] = React.useState(false);
+    const showTime = boolean('Set showTime', true);
+    const modesObj = {
+      PAST: boolean('Set relative past mode', true),
+      FUTURE: boolean('Set relative future mode', true),
+      SINCE: boolean('Set relative since mode', true),
+    };
+    const getRelativeModes = (modesObject: object) => {
+      const keys = Object.keys(modesObject);
+      const enabledModes = keys.filter(k => !!modesObject[k]);
+      return enabledModes;
+    };
+    const showRelativePicker = boolean('Set relative filter', true);
+    return (
+      <DateRangePicker
+        onApply={action('OnApply')}
+        showTime={showTime}
+        value={value}
+        relativeFuture
+        forceAbsolute
+        showRelativePicker={showRelativePicker}
+        texts={texts}
+        popoverProps={{ placement: 'bottomLeft' }}
+        forceAdjacentMonths={boolean('Set adjacent months', false)}
+        relativeModes={getRelativeModes(modesObj)}
+        onVisibleChange={visible => {
+          setTooltipVisible(false);
+          setDateRangeVisible(visible);
+        }}
+        popoverTrigger={
+          <Tooltip
+            trigger={['hover']}
+            onVisibleChange={setTooltipVisible}
+            visible={!dateRangeVisible && tooltipVisible}
+            placement={'bottom'}
+            description={text(
+              'Tooltip description',
+              'Date range picker with custom trigger button and tooltip with description'
+            )}
+            type="largeSimple"
+          >
+            <Button>Custom trigger</Button>
+          </Tooltip>
+        }
       />
     );
   },
