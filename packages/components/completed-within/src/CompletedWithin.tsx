@@ -51,20 +51,20 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
   const [innerValue, setInnerValue] = React.useState<string | number | undefined>(value.value);
   const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
   const [tooltipVisible, setTooltipVisible] = React.useState(false);
+  const [settingsVisible, setSettingsVisible] = React.useState(false);
 
   const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
+      setSettingsVisible(visible);
+      setTooltipVisible(false);
       if (!visible && innerValue && innerPeriod) {
         const newValue = maxValue && maxValue < innerValue ? maxValue : innerValue;
         onSetValue({
           value: Number(newValue),
           period: innerPeriod,
         });
-      }
-      if (visible) {
-        setTooltipVisible(false);
       }
     },
     [innerPeriod, innerValue, maxValue, onSetValue]
@@ -111,7 +111,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
           description={tooltip}
           trigger={['hover']}
           onVisibleChange={setTooltipVisible}
-          visible={tooltipVisible}
+          visible={!settingsVisible && tooltipVisible}
         >
           <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
             <Icon component={<ClockM />} />
