@@ -57,13 +57,17 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
       if (!visible && innerValue && innerPeriod) {
-        onSetValue({ value: Number(innerValue), period: innerPeriod });
+        const newValue = maxValue && maxValue < innerValue ? maxValue : innerValue;
+        onSetValue({
+          value: Number(newValue),
+          period: innerPeriod,
+        });
       }
       if (visible) {
         setTooltipVisible(false);
       }
     },
-    [innerPeriod, innerValue, onSetValue]
+    [innerPeriod, innerValue, maxValue, onSetValue]
   );
 
   const handleClear = React.useCallback(() => {
