@@ -179,7 +179,8 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
       visibility: visible;
     }
   }
-  &.sortable-chosen {
+  &.sortable-chosen, 
+  &.sortable-drag{
     cursor: grabbing;
     width: 100%;
     opacity: 1 !important;
@@ -239,6 +240,10 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
     }
     * {
       display: none;
+    }
+    &:after {
+      display: none;
+      content: '';
     }
   }
 }
