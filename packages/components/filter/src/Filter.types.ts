@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.types';
-import { StepCardProps, StepCardTexts } from '@synerise/ds-step-card/src/StepCard.types';
+import { StepCardProps } from '@synerise/ds-step-card/src/StepCard.types';
 import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
 
 type LogicType = {
@@ -33,7 +33,20 @@ export type FilterProps = {
   addFilterComponent?: React.ReactNode;
   texts?: {
     matching?: MatchingTexts;
-    step?: StepCardTexts;
+    step?: {
+      matching?: string;
+      notMatching?: string;
+      have?: string;
+      performed?: string;
+      notHave?: string;
+      notPerformed?: string;
+      attribute?: string;
+      event?: string;
+      namePlaceholder?: string;
+      moveTooltip?: string;
+      deleteTooltip?: string;
+      duplicateTooltip?: string;
+    };
     addFilter?: string;
     dropMeHere?: string;
   };
