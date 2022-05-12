@@ -63,4 +63,5 @@ export type ConditionProps = {
   onUpdateStepName?: (stepId: React.ReactText, value: string) => void;
   type?: 'attribute' | 'event';
   showSuffix?: boolean;
+  hoverDisabled?: boolean;
 };

@@ -118,7 +118,7 @@ export const DraggedLabel = styled.span`
   font-size: 13px;
 `;
 
-export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefined }>`
+export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefined; hoverDisabled?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -165,7 +165,7 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
   }
   background-color: ${(props): string => (props.active ? props.theme.palette['grey-050'] : 'transparent')};
   &:hover {
-    background-color: ${(props): string => props.theme.palette['grey-050']};
+    background-color: ${(props): string => (props.hoverDisabled ? 'transparent' : props.theme.palette['grey-050'])};
     ${StepCruds} {
       opacity: 1;
       visibility: visible;

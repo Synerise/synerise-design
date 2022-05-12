@@ -51,6 +51,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     onUpdateStepName,
     getPopupContainerOverride,
     showSuffix,
+    hoverDisabled,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -252,6 +253,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 setCurrentStep={setCurrentStepId}
                 onDeactivate={handleClearActiveCondition}
                 showSuffix={showSuffix}
+                hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
               />
             );
           })}
@@ -294,6 +296,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     handleAddCondition,
     handleClearActiveCondition,
     showSuffix,
+    hoverDisabled,
   ]);
 };
 

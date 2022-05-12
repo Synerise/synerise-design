@@ -207,7 +207,7 @@ const stories = {
       );
     };
 
-    const renderStepContent = expression => {
+    const renderStepContent = (expression, hoverDisabled) => {
       const handleChangeExpressionSteps = expressionSteps => {
         const expressions = store.state.expressions.map(exp => {
           if (exp.id === expression.id) {
@@ -222,7 +222,13 @@ const stories = {
         store.set({ expressions });
       };
 
-      return <ConditionExample onChange={handleChangeExpressionSteps} steps={expression.expressionSteps} />;
+      return (
+        <ConditionExample
+          onChange={handleChangeExpressionSteps}
+          steps={expression.expressionSteps}
+          hoverDisabled={hoverDisabled}
+        />
+      );
     };
 
     const handleAddStep = subject => {
