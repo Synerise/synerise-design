@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.13.1...@synerise/ds-factors@0.13.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* **factors:** adds changeHandler to onValueChange ([afe05e8](https://github.com/Synerise/synerise-design/commit/afe05e8d568316ca339c975a27bf1b28b0fce237))
+
+
+
+
+
 ## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.13.0...@synerise/ds-factors@0.13.1) (2022-04-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.13...@synerise/ds-date-range-picker@0.12.14) (2022-05-13)
+
+
+### Bug Fixes
+
+* **date-range-picker:**  onVisibleChange prop, example custom trigger ([e6aab36](https://github.com/Synerise/synerise-design/commit/e6aab3666df0bac8b999faa0a9046c244ea2a35f))
+
+
+
+
+
 ## [0.12.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.12...@synerise/ds-date-range-picker@0.12.13) (2022-04-29)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

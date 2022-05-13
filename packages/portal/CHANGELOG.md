@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.154.2](https://github.com/synerise/synerise-design/compare/portal@0.154.1...portal@0.154.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* **condition:** disabling hover effect on nonactive condition in filter ([228f242](https://github.com/synerise/synerise-design/commit/228f242e6ce244c73e9da93adb2c4317cd65ec91))
+* **date-range-picker:**  onVisibleChange prop, example custom trigger ([e6aab36](https://github.com/synerise/synerise-design/commit/e6aab3666df0bac8b999faa0a9046c244ea2a35f))
+
+
+
+
+
 ## [0.154.1](https://github.com/synerise/synerise-design/compare/portal@0.154.0...portal@0.154.1) (2022-04-29)
 
 

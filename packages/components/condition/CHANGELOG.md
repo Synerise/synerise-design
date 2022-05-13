@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.15.1...@synerise/ds-condition@0.16.0) (2022-05-13)
+
+
+### Bug Fixes
+
+* **condition:** disabling hover effect on nonactive condition in filter ([228f242](https://github.com/Synerise/synerise-design/commit/228f242e6ce244c73e9da93adb2c4317cd65ec91))
+* **condition:** fixes styles of dragged condition with opened dropdown ([0449e94](https://github.com/Synerise/synerise-design/commit/0449e948dc598974c81e7f857431c519c5fa2666))
+
+
+### Features
+
+* **condition:** adds defaultOpenedComponent prop ([6b6721d](https://github.com/Synerise/synerise-design/commit/6b6721dbd12be7e744100d303a5d3d7823467c3b))
+
+
+
+
+
 ## [0.15.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.15.0...@synerise/ds-condition@0.15.1) (2022-04-29)
 
 **Note:** Version bump only for package @synerise/ds-condition

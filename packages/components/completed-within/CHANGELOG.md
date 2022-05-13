@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.0...@synerise/ds-completed-within@0.5.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* **completed-within:** fixes clearing tooltip ([b9e0520](https://github.com/Synerise/synerise-design/commit/b9e05208d75069b03e9671981ea061f0e6183c99))
+* **completed-within:** fixes maxValues in btn label ([46c73ad](https://github.com/Synerise/synerise-design/commit/46c73ad326737bd355ba949fcfeceb58b0035d3e))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.4.0...@synerise/ds-completed-within@0.5.0) (2022-04-29)
 
 
