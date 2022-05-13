@@ -13,6 +13,7 @@ export interface Props extends WrappedComponentProps {
   forceAbsolute?: boolean;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
+  onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
   popoverTrigger?: React.ReactNode;
@@ -40,10 +41,9 @@ export interface State {
 }
 export type Texts = {
   [k in Translations]: string | React.ReactNode;
-} &
-  {
-    [k in TranslationsPlaceholders]: string;
-  };
+} & {
+  [k in TranslationsPlaceholders]: string;
+};
 
 export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime';
 export type Translations =

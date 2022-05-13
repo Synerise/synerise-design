@@ -39,6 +39,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   setCurrentStep,
   onDeactivate,
   showSuffix,
+  hoverDisabled,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -196,6 +197,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       data-conditionSuffix={text.conditionSuffix}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       active={step.id === currentStepId && currentField !== ''}
+      hoverDisabled={hoverDisabled}
       showSuffix={showSuffix}
     >
       {!updateStepName && (

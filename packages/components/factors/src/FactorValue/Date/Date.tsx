@@ -22,6 +22,7 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
   return (
     <DatePicker
       onApply={changeHandler}
+      onValueChange={changeHandler}
       value={value as Date}
       showTime
       useStartOfDay

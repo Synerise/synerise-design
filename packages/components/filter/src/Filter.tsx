@@ -6,6 +6,7 @@ import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
+import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
 import { MatchingWrapper } from './Filter.styles';
@@ -38,7 +39,14 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
 }) => {
+  const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (previousExpressions && expressions.length > previousExpressions.length) {
+      setActiveExpressionId(expressions[expressions.length - 1].id);
+    }
+  }, [expressions, previousExpressions]);
 
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -86,6 +94,13 @@ const Filter: React.FC<FilterProps> = ({
     [text]
   );
 
+  const isActive = React.useCallback(
+    expression => {
+      return expression.id === activeExpressionId;
+    },
+    [activeExpressionId]
+  );
+
   const componentProps = React.useCallback(
     (expression: Expression) => {
       const contextTypeTexts = getContextTypeTexts(expression);
@@ -100,7 +115,7 @@ const Filter: React.FC<FilterProps> = ({
           onDelete: (): void => onDeleteStep(expression.id),
           onDuplicate: (): void => onDuplicateStep(expression.id),
           footer: renderStepFooter && renderStepFooter(expression),
-          children: renderStepContent && renderStepContent(expression),
+          children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           texts: {
             ...text.step,
             ...contextTypeTexts,
@@ -110,7 +125,9 @@ const Filter: React.FC<FilterProps> = ({
       return props[expression.type];
     },
     [
+      activeExpressionId,
       getContextTypeTexts,
+      isActive,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
@@ -131,7 +148,7 @@ const Filter: React.FC<FilterProps> = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          style={expression.id === activeExpressionId ? { zIndex: 10001 } : undefined}
+          style={isActive(expression) ? { zIndex: 10001 } : undefined}
           onClick={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression)} />
@@ -143,7 +160,7 @@ const Filter: React.FC<FilterProps> = ({
         </S.ExpressionWrapper>
       );
     },
-    [componentProps, expressions.length, activeExpressionId, text]
+    [text.dropMeHere, isActive, componentProps, expressions.length]
   );
 
   return (

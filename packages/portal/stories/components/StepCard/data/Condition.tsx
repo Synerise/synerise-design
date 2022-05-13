@@ -20,9 +20,10 @@ import Button from '@synerise/ds-button';
 type ConditionExampleProps = {
   steps: ConditionStep[];
   onChange: (steps: ConditionStep[]) => void;
+  hoverDisabled?: boolean;
 };
 
-export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onChange }) => {
+export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onChange, hoverDisabled }) => {
   const [openedAddStep, setOpenedAddStep] = React.useState(false);
   const setStepContext = React.useCallback(
     (stepId, item) => {
@@ -297,6 +298,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       onChangeFactorValue={setStepConditionFactorValue}
       onChangeFactorType={setStepConditionFactorType}
       showSuffix={boolean('Display and suffix', true)}
+      hoverDisabled={hoverDisabled}
       steps={steps.map(step => ({
         id: step.id,
         stepName: step.stepName,
