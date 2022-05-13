@@ -79,8 +79,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
       setCurrentConditionId(steps[0].conditions[0].id);
       setCurrentField(autoOpenedComponent);
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
