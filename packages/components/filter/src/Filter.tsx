@@ -6,6 +6,7 @@ import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
+import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
 import { MatchingWrapper } from './Filter.styles';
@@ -38,7 +39,14 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
 }) => {
+  const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (previousExpressions && expressions.length > previousExpressions.length) {
+      setActiveExpressionId(expressions[expressions.length - 1].id);
+    }
+  }, [expressions, previousExpressions]);
 
   const { formatMessage } = useIntl();
   const text = React.useMemo(

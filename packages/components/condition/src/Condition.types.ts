@@ -64,4 +64,5 @@ export type ConditionProps = {
   type?: 'attribute' | 'event';
   showSuffix?: boolean;
   hoverDisabled?: boolean;
+  autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
 };

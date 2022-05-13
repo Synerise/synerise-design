@@ -52,6 +52,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     getPopupContainerOverride,
     showSuffix,
     hoverDisabled,
+    autoOpenedComponent = DEFAULT_FIELD,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -64,8 +65,21 @@ const Condition: React.FC<T.ConditionProps> = props => {
   );
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
-  const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
+  const [currentField, setCurrentField] = React.useState<string>(autoOpenedComponent);
   const prevSteps = usePrevious(steps);
+
+  React.useEffect(() => {
+    if (
+      autoOpenedComponent &&
+      steps.length &&
+      steps[0].conditions[0].operator &&
+      steps[0].conditions[0].operator.value === undefined
+    ) {
+      setCurrentStepId(steps[0].id);
+      setCurrentConditionId(steps[0].conditions[0].id);
+      setCurrentField(autoOpenedComponent);
+    }
+  }, []);
 
   React.useEffect(() => {
     const newConditionId =
