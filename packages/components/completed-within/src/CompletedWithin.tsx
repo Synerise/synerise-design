@@ -105,6 +105,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
         trigger={['click']}
         onVisibleChange={handleVisibleChange}
         placement="topLeft"
+        overlayStyle={{ maxWidth: '238px', minWidth: '238px' }}
       >
         <Tooltip
           type="largeSimple"
