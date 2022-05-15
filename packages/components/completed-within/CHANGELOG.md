@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.1...@synerise/ds-completed-within@0.5.2) (2022-05-15)
+
+
+### Bug Fixes
+
+* **completed-within:** set max width of dropdown ([49c881e](https://github.com/Synerise/synerise-design/commit/49c881e27b8a2cb22c1770645d987a55d03a05cb))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.0...@synerise/ds-completed-within@0.5.1) (2022-05-13)
 
 
