@@ -10,6 +10,10 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
     [onChange]
   );
 
+  const handleClear = React.useCallback(() => {
+    onChange(undefined);
+  }, [onChange]);
+
   const handleVisibleChange = React.useCallback(
     visible => {
       if (!visible) {
@@ -21,6 +25,7 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
 
   return (
     <DatePicker
+      onClear={handleClear}
       onApply={changeHandler}
       onValueChange={changeHandler}
       value={value as Date}
