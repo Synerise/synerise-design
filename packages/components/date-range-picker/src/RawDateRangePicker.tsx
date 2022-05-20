@@ -3,7 +3,7 @@ import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
-import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS } from './constants';
+import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State, AddonType } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
@@ -17,7 +17,7 @@ import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
 class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
-    ranges: RELATIVE_PRESETS,
+    ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
     showRelativePicker: true,
     validate: (): { valid: boolean } => ({ valid: true }),

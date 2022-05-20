@@ -130,6 +130,7 @@ describe('DateRangePicker', () => {
       { timeout: 50 }
     );
   });
+  it.todo('should render Lifetime option by default in ranges');
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
