@@ -130,4 +130,8 @@ describe('TimePicker', () => {
     // ASSERT
     expect(input.value).toBe('10:24:52');
   });
+
+  it.todo('should read hour minute seconds from initial date value');
+  it.todo('should emit onChange since the first click');
+  it.todo('initial displayed value is in local timezone');
 });

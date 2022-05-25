@@ -1,6 +1,7 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { range } from 'lodash';
+import fnsIsValid from 'date-fns/isValid';
 
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
@@ -49,16 +50,20 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const [hour, setHour] = React.useState<number | undefined>(undefined);
   const [minute, setMinute] = React.useState<number | undefined>(undefined);
   const [second, setSecond] = React.useState<number | undefined>(undefined);
+  React.useEffect(() => {
+    if (value && fnsIsValid(value)) {
+      setHour(dayjs(value).hour());
+      setMinute(dayjs(value).minute());
+      setSecond(dayjs(value).second());
+    }
+  }, [value]);
+
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   // eslint-disable-next-line
   // @ts-ignore
   React.useEffect(() => {
     if (hour !== undefined && minute !== undefined && second !== undefined) {
-      const newDate = dayjs()
-        .hour(hour)
-        .minute(minute)
-        .second(second)
-        .toDate();
+      const newDate = dayjs().hour(hour).minute(minute).second(second).toDate();
       setLocalValue(newDate);
       onChange && onChange(newDate as Date, getTimeString(newDate as Date));
     }
