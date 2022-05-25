@@ -20,7 +20,7 @@ function getInitialState(props: YearPickerProps): YearPickerState {
 
 function getCells(cursor: Date): Cell[] {
   const startYear = getDecadeRange(cursor)[0];
-  return range(0, 10).map((index: number) => {
+  return Array.from(range(0, 10)).map((index: number) => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index);
     return {
       key: date.toISOString(),
