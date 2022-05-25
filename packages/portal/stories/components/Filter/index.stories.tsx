@@ -14,6 +14,8 @@ import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUt
 import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
+import { boolean } from "@storybook/addon-knobs";
+import { DEFAULT_RANGE } from "@synerise/ds-date-range-picker/dist/utils";
 
 const DEFAULT_EXPRESSION = (subject = undefined) => ({
   type: 'STEP',
@@ -37,6 +39,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
     dateRange: {
       from: undefined,
       to: undefined,
+      ...DEFAULT_RANGE,
     },
   },
   expressionSteps: [DEFAULT_STEP(subject)],
@@ -176,6 +179,12 @@ const stories = {
           <Icon component={<CalendarM />} />
         </Button>
       );
+      const isDateFilterOn = boolean('Show filter', false);
+      const [filters, setFilters] = React.useState([]);
+      const dateFilterProps = isDateFilterOn ? {
+        savedFilters: filters,
+        onFilterSave: setFilters
+      } : {};
 
       return (
         <>
@@ -188,6 +197,12 @@ const stories = {
               texts={dateRangePickerTexts}
               value={expression.footer.dateRange}
               popoverTrigger={dateRangePickerTrigger}
+              showRelativePicker={boolean('Set relative filter', true)}
+              relativeModes={['PAST', 'FUTURE', 'SINCE']}
+              showFilter={isDateFilterOn}
+              showTime
+              popoverProps={{ destroyTooltipOnHide: boolean('Destroy tooltip on hide', false, 'DateRangePicker') }}
+              {...dateFilterProps}
             />
           )}
         </>
