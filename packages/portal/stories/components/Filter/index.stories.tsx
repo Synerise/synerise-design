@@ -176,6 +176,12 @@ const stories = {
           <Icon component={<CalendarM />} />
         </Button>
       );
+      const isDateFilterOn = boolean('Show filter', false);
+      const [filters, setFilters] = React.useState([]);
+      const dateFilterProps = isDateFilterOn ? {
+        savedFilters: filters,
+        onFilterSave: setFilters
+      } : {};
 
       return (
         <>
@@ -188,6 +194,12 @@ const stories = {
               texts={dateRangePickerTexts}
               value={expression.footer.dateRange}
               popoverTrigger={dateRangePickerTrigger}
+              showRelativePicker={boolean('Set relative filter', true)}
+              relativeModes={['PAST', 'FUTURE', 'SINCE']}
+              showFilter={isDateFilterOn}
+              showTime
+              popoverProps={{ destroyTooltipOnHide: boolean('Destroy tooltip on hide', false, 'DateRangePicker') }}
+              {...dateFilterProps}
             />
           )}
         </>
