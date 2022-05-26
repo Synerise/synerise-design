@@ -40,7 +40,7 @@ export const getDefaultCustomRange = (currentGroup: string | null): RelativeDate
   to: undefined,
   future: currentGroup === RANGES_MODE.FUTURE,
   offset: { type: 'DAYS', value: 0 },
-  duration: { type: 'DAYS', value: 0 },
+  duration: { type: 'DAYS', value: 30 },
 });
 
 export const isAbsolute = (value: DateRange): boolean => value.type === CONST.ABSOLUTE && !value.from && !value.to;
