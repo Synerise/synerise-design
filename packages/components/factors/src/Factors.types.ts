@@ -84,6 +84,7 @@ export type FactorsTexts = {
 
 export type FactorsProps = {
   factorKey?: React.ReactText;
+  error?: boolean;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -141,6 +142,7 @@ export type FactorValueProps = Pick<
   | 'getPopupContainerOverride'
   | 'onActivate'
   | 'onDeactivate'
+  | 'error'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -157,6 +159,7 @@ export type InputProps = Pick<
   | 'getPopupContainerOverride'
   | 'onActivate'
   | 'onDeactivate'
+  | 'error'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

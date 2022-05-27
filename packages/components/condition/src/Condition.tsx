@@ -66,6 +66,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
   const [currentField, setCurrentField] = React.useState<string>(autoOpenedComponent);
+  const [errorId, setErrorId] = React.useState<string>('');
+
   const prevSteps = usePrevious(steps);
 
   React.useEffect(() => {
@@ -213,12 +215,28 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [addStep]);
 
+  const testPrevValueElement = (): unknown =>
+    steps?.map(step => {
+      return !step.conditions.at(-1)?.factor.value && setErrorId(step.conditions.at(-1)?.id);
+    });
+
   const handleAddCondition = React.useMemo(() => {
+    const lastStep = steps.at(-1);
+    const lastCondition = lastStep.conditions.at(-1);
+
     if (!addCondition) {
       return undefined;
     }
+
     return (stepId: React.ReactText): void => {
-      const newConditionId = addCondition ? addCondition(stepId) : undefined;
+      let newConditionId;
+
+      if ((addCondition && lastCondition?.factor.value) || lastStep?.conditions.length === 0) {
+        newConditionId = addCondition(stepId);
+      }
+
+      testPrevValueElement();
+
       if (newConditionId) {
         setCurrentConditionId(newConditionId);
         setCurrentStepId(stepId);
@@ -269,6 +287,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 onDeactivate={handleClearActiveCondition}
                 showSuffix={showSuffix}
                 hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
+                errorId={errorId}
               />
             );
           })}

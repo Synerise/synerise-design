@@ -21,6 +21,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   getPopupContainerOverride,
   onActivate,
   onDeactivate,
+  error,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent: React.ElementType = selectedFactor.input;
@@ -45,6 +46,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         getPopupContainerOverride={getPopupContainerOverride}
         onActivate={onActivate}
         onDeactivate={onDeactivate}
+        error={error}
       />
     );
   }, [
@@ -67,6 +69,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     getPopupContainerOverride,
     onActivate,
     onDeactivate,
+    error,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;
