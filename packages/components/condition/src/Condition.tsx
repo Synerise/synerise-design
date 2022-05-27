@@ -11,6 +11,7 @@ import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
 import * as S from './Condition.style';
+import { StepConditions } from './Condition.types';
 
 const DEFAULT_FIELD = '';
 const DEFAULT_CONDITION = '';
@@ -215,13 +216,17 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [addStep]);
 
+  const returnLast = React.useCallback(arr => {
+    return arr.at(-1);
+  }, []);
+
   const testPrevValueElement = React.useCallback(() => {
-    return steps?.map(step => !step.conditions.at(-1)?.factor.value && setErrorId(step.conditions.at(-1)?.id));
+    return steps?.map(step => !returnLast(step.conditions)?.factor.value && setErrorId(returnLast(step.conditions).id));
   }, [steps]);
 
   const handleAddCondition = React.useMemo(() => {
-    const lastStep = steps.at(-1);
-    const lastCondition = lastStep.conditions.at(-1);
+    const lastStep = returnLast(steps);
+    const lastCondition = returnLast(lastStep.conditions);
 
     if (!addCondition) {
       return undefined;
