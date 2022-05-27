@@ -40,7 +40,6 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   onDeactivate,
   showSuffix,
   hoverDisabled,
-  error,
   errorId,
 }) => {
   const { formatMessage } = useIntl();
@@ -189,7 +188,6 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       setCurrentField,
       setCurrentCondition,
       setCurrentStep,
-      error,
       errorId,
     ]
   );

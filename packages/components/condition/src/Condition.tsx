@@ -243,7 +243,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
         setCurrentField(PARAMETER);
       }
     };
-  }, [addCondition]);
+  }, [addCondition, steps, testPrevValueElement]);
 
   const handleClearActiveCondition = React.useCallback(() => {
     setCurrentConditionId(DEFAULT_CONDITION);
@@ -331,6 +331,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     handleClearActiveCondition,
     showSuffix,
     hoverDisabled,
+    errorId,
   ]);
 };
 
