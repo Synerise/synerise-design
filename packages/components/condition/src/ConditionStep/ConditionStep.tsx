@@ -40,6 +40,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   onDeactivate,
   showSuffix,
   hoverDisabled,
+  errorId,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -160,6 +161,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           texts={text}
           stepType={step.context?.type}
           onDeactivate={onDeactivate}
+          error={errorId === condition.id && !condition.factor.value && true}
         />
       );
     },
@@ -186,6 +188,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       setCurrentField,
       setCurrentCondition,
       setCurrentStep,
+      errorId,
     ]
   );
 

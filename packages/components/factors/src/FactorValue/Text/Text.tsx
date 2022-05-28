@@ -19,11 +19,13 @@ const TextInput: React.FC<InputProps> = ({
   factorType,
   opened,
   onDeactivate,
+  error,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
   const [inputRef, setInputRef] =
     useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
+  const [localError, setLocalError] = React.useState(false);
   const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
 
   React.useEffect(() => {
@@ -48,6 +50,11 @@ const TextInput: React.FC<InputProps> = ({
     event => {
       setLocalValue(event.target.value);
       onChangeDebounce(event.target.value);
+      if (!event.target.value.length) {
+        setLocalError(true);
+      } else {
+        setLocalError(false);
+      }
     },
     [onChangeDebounce]
   );
@@ -100,6 +107,7 @@ const TextInput: React.FC<InputProps> = ({
             value={localValue as string}
             onChange={handleChange}
             onBlur={onDeactivate}
+            error={localError || error}
           />
         </S.InputWrapper>
       )}

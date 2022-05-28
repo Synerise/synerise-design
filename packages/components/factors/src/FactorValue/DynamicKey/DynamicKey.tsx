@@ -12,11 +12,13 @@ const DynamicKey: React.FC<InputProps> = ({
   texts,
   opened,
   onDeactivate,
+  error,
 }) => {
   const [localValue, setLocalValue] = React.useState<DynamicKeyValueType>({
     key: (value as DynamicKeyValueType).key,
     value: (value as DynamicKeyValueType).value,
   });
+  const [localError, setLocalError] = React.useState(false);
   const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = { ...(value as DynamicKeyValueType) };
@@ -29,6 +31,14 @@ const DynamicKey: React.FC<InputProps> = ({
     setLocalValue(value as DynamicKeyValueType);
   }, [value]);
 
+  React.useEffect(() => {
+    if (localValue) {
+      setLocalError(true);
+    } else {
+      setLocalError(false);
+    }
+  }, [localValue]);
+
   return (
     <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>
       <RawInput
@@ -38,12 +48,14 @@ const DynamicKey: React.FC<InputProps> = ({
         onChange={handleChange}
         autoFocus={opened}
         onBlur={onDeactivate}
+        error={localError || error}
       />
       <RawInput
         placeholder={texts.dynamicKey.valuePlaceholder}
         value={localValue.value}
         name="value"
         onChange={handleChange}
+        error={localError || error}
       />
     </S.DynamicKey>
   );

@@ -85,6 +85,7 @@ const Factors: React.FC<FactorsProps> = ({
   onActivate,
   onDeactivate,
   getPopupContainerOverride,
+  error,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -235,6 +236,7 @@ const Factors: React.FC<FactorsProps> = ({
         getPopupContainerOverride={getPopupContainerOverride}
         onActivate={onActivate}
         onDeactivate={onDeactivate}
+        error={error}
       />
     </S.Group>
   );

@@ -35,6 +35,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   texts,
   stepType,
   onDeactivate,
+  error,
 }) => {
   return (
     <S.ConditionRow
@@ -102,6 +103,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 }
                 onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
                 factorKey={conditionId}
+                error={error}
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&

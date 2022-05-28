@@ -2,7 +2,7 @@ import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { InputProps } from '../../Factors.types';
 
-const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate }) => {
+const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate, error }) => {
   const changeHandler = React.useCallback(
     (date: Date | undefined) => {
       onChange(date);
@@ -32,6 +32,7 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
       disabledSeconds={[]}
       autoFocus={opened}
       onDropdownVisibleChange={handleVisibleChange}
+      error={error}
     />
   );
 };

@@ -5,6 +5,7 @@ import { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type ConditionRowProps = {
   index: number;
+  error?: boolean;
   hasPriority?: boolean;
   onActivate?: (fieldType: string) => void;
   onDeactivate?: () => void;
