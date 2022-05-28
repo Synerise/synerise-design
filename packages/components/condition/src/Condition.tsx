@@ -222,7 +222,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const testPrevValueElement = React.useCallback(() => {
     return steps?.map(step => !returnLast(step.conditions)?.factor.value && setErrorId(returnLast(step.conditions).id));
-  }, [steps]);
+  }, [steps, returnLast]);
 
   const handleAddCondition = React.useMemo(() => {
     const lastStep = returnLast(steps);
@@ -247,7 +247,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
         setCurrentField(PARAMETER);
       }
     };
-  }, [addCondition, steps, testPrevValueElement]);
+  }, [addCondition, steps, testPrevValueElement, returnLast]);
 
   const handleClearActiveCondition = React.useCallback(() => {
     setCurrentConditionId(DEFAULT_CONDITION);
