@@ -11,7 +11,6 @@ import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
 import * as S from './Condition.style';
-import { StepConditions } from './Condition.types';
 
 const DEFAULT_FIELD = '';
 const DEFAULT_CONDITION = '';
