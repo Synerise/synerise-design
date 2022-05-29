@@ -216,7 +216,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
   }, [addStep]);
 
   const returnLast = React.useCallback(arr => {
-    return arr.at(-1);
+    return arr[arr.length - 1];
   }, []);
 
   const testPrevValueElement = React.useCallback(() => {
