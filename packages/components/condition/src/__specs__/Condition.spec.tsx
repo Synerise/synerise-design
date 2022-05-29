@@ -30,7 +30,7 @@ const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditio
   factor: {
     selectedFactorType: '',
     defaultFactorType: 'text',
-    value: '',
+    value: `text-${uuid()}`,
   },
 };
 const DEFAULT_STEP: Partial<ConditionStep> = {
