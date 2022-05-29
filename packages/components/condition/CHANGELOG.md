@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.0...@synerise/ds-condition@0.17.1) (2022-05-29)
+
+
+### Bug Fixes
+
+* **condition:** fix test & returnLast method ([ba67918](https://github.com/Synerise/synerise-design/commit/ba67918f739fb74c99ba19d2dff0f20de6c950cf))
+
+
+
+
+
 # [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.16.0...@synerise/ds-condition@0.17.0) (2022-05-28)
 
 
