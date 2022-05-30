@@ -220,7 +220,9 @@ const Condition: React.FC<T.ConditionProps> = props => {
   }, []);
 
   const testPrevValueElement = React.useCallback(() => {
-    return steps?.map(step => !returnLast(step.conditions)?.factor.value && setErrorId(returnLast(step.conditions).id));
+    return steps?.map(
+      step => !returnLast(step.conditions)?.factor.value && setErrorId(returnLast(step.conditions)?.id)
+    );
   }, [steps, returnLast]);
 
   const handleAddCondition = React.useMemo(() => {
