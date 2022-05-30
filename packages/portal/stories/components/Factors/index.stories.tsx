@@ -16,7 +16,8 @@ const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     const setSelectedFactor = type => store.set({ selectedFactorType: type, value: '' });
     const changeHandler = val => {
-      store.set({ value: val });
+      store.set({ value: val }); 
+      action('onChange')(val);
     };
 
     return (
