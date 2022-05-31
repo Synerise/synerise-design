@@ -30,4 +30,9 @@ describe('UserAvatar', () => {
     const img = userAvatar.getByRole('img');
     expect(img).toHaveAttribute('src', testUserImage.avatar);
   });
+  test('should render with custom color token (including hue)', () => {
+    const { container } = renderWithProvider(<UserAvatar user={testUserImage} backgroundColor="grey-800" />);
+    const avatar = container.querySelector('.ant-avatar');
+    expect(avatar).toHaveStyle('background: rgb(56, 67, 80);');
+  });
 });
