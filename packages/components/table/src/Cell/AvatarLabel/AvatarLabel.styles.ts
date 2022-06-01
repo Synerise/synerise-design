@@ -4,7 +4,7 @@ export const AvatarLabel = styled.div<{ onClick?: () => void }>`
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  cursor: ${(props): string => (props.onClick !== undefined ? 'pointer' : 'default')};
+  ${(props): string => (props.onClick !== undefined ? 'cursor: pointer' : '')};
 `;
 
 export const Avatar = styled.div<{ clickable: boolean }>`
@@ -12,7 +12,7 @@ export const Avatar = styled.div<{ clickable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: ${(props): string => (props.clickable ? 'pointer' : 'default')};
+  ${(props): string => (props.clickable ? 'cursor: pointer' : '')};
 `;
 
 export const Description = styled.div`
