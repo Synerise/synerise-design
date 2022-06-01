@@ -8,7 +8,7 @@ import { Props } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
-import { DateRange } from '../date.types';
+import type { DateRange } from '../date.types';
 
 const RangePickerInput: React.FC<Props> = ({
   value,

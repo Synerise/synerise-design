@@ -143,13 +143,14 @@ const stories = {
       return enabledModes;
     };
     const showRelativePicker = boolean('Set relative filter', true);
+    const forceAbsolute = boolean('Force absolute date on apply', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
         showTime={showTime}
         value={value}
         relativeFuture
-        forceAbsolute
+        forceAbsolute={forceAbsolute}
         showRelativePicker={showRelativePicker}
         texts={texts}
         popoverProps={{ placement: setPlacement}}
