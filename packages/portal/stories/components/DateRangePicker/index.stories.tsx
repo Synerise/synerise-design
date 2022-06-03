@@ -20,6 +20,9 @@ import {
   WarningFillM,
 } from '@synerise/ds-icon';
 
+import { RELATIVE_PRESETS } from "@synerise/ds-date-range-picker/dist/constants";
+import { DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
+
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
     <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
@@ -114,9 +117,19 @@ const texts = {
   pasteRange: 'Paste range',
 };
 
+const optionValues: Record<string, DateRange> = {
+  ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({ [e.key]: e }))),
+}
+
+const buildSelectKnobOptions = (optionValues) => {
+  return Object.assign({}, ...Object.keys(optionValues).map(k => ({ [k]: k })));
+}
+
 const stories = {
   default: () => {
-    const value = undefined;
+    // const value = undefined;
+    const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
+    value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
@@ -143,6 +156,7 @@ const stories = {
       return enabledModes;
     };
     const showRelativePicker = boolean('Set relative filter', true);
+    const showDateFilter = boolean('Show date filter', true);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -151,6 +165,7 @@ const stories = {
         relativeFuture
         forceAbsolute
         showRelativePicker={showRelativePicker}
+        showFilter={showDateFilter}
         texts={texts}
         popoverProps={{ placement: setPlacement}}
         arrowColor={setCustomArrowColor && additionalMapper}
