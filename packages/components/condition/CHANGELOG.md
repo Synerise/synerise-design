@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.3...@synerise/ds-condition@0.17.4) (2022-06-03)
+
+
+### Bug Fixes
+
+* **condition:** validation value ([3e202bc](https://github.com/Synerise/synerise-design/commit/3e202bcbadd18cafc7463dcbe96a6bb9ca2542f3))
+
+
+
+
+
 ## [0.17.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.2...@synerise/ds-condition@0.17.3) (2022-05-31)
 
 
