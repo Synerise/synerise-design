@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.1...@synerise/ds-factors@0.14.2) (2022-05-31)
+
+
+### Bug Fixes
+
+* **factors:** calls onChange callback on clearing input value ([37742e9](https://github.com/Synerise/synerise-design/commit/37742e9d87f526283641be964577c9f4754f463d))
+* **factors:** calls onChange callback on clearing input value ([92a3f80](https://github.com/Synerise/synerise-design/commit/92a3f80cc8d2d3ab2d4f0c5aa9c7be7168edb324))
+
+
+
+
+
 ## [0.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.0...@synerise/ds-factors@0.14.1) (2022-05-30)
 
 

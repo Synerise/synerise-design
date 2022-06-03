@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.2...@synerise/ds-condition@0.17.3) (2022-05-31)
+
+
+### Bug Fixes
+
+* **condition:** fixes testPrev value for empty conditions array ([35a266a](https://github.com/Synerise/synerise-design/commit/35a266a44ea97556fa0d57090dd16d7f0af1da2e))
+
+
+
+
+
 ## [0.17.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.1...@synerise/ds-condition@0.17.2) (2022-05-30)
 
 **Note:** Version bump only for package @synerise/ds-condition

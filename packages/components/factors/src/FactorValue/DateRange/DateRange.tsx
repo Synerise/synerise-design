@@ -27,6 +27,7 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeacti
     <DateRangePicker
       intl={intl}
       onApply={changeHandler}
+      onValueChange={changeHandler}
       showTime
       showFilter
       value={value as DateRange}
