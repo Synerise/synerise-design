@@ -79,8 +79,7 @@ const TextInput: React.FC<InputProps> = ({
 
   const autocompleteOptions = React.useMemo(() => {
     return (
-      (localValue &&
-        autocompleteText &&
+      (autocompleteText &&
         autocompleteText.options.filter(option =>
           option.toLowerCase().includes((localValue as string).toLowerCase())
         )) ||
@@ -89,9 +88,17 @@ const TextInput: React.FC<InputProps> = ({
   }, [localValue, autocompleteText]);
 
   return (
-    <>
-      {factorType === 'text' && textType === 'autocomplete' && autocompleteText ? (
-        <Autocomplete placeholder={texts.valuePlaceholder} value={localValue as string} onChange={handleAutocomplete}>
+    <S.TextWrapper>
+      {factorType === 'text' && textType === 'autocomplete' ? (
+        <Autocomplete
+          placeholder={texts.valuePlaceholder}
+          value={localValue as string}
+          onChange={handleAutocomplete}
+          onBlur={onDeactivate}
+          error={localError || error}
+          handleInputRef={setInputRef}
+          defaultOpen
+        >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
               {option}
@@ -118,7 +125,7 @@ const TextInput: React.FC<InputProps> = ({
         onApply={handleApply}
         texts={texts}
       />
-    </>
+    </S.TextWrapper>
   );
 };
 
