@@ -28,7 +28,6 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         ref={inputRef}
-        defaultOpen
         dropdownClassName="ds-autocomplete-dropdown"
         className={!!errorText || error ? 'error' : undefined}
       />
