@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.2...@synerise/ds-factors@0.14.3) (2022-06-10)
+
+
+### Bug Fixes
+
+* **factors:** fixes using of autocomplete ([dd56cb3](https://github.com/Synerise/synerise-design/commit/dd56cb38a2a7bf022e8f9d12b2e23e6812b2f0b1))
+
+
+
+
+
 ## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.1...@synerise/ds-factors@0.14.2) (2022-05-31)
 
 
