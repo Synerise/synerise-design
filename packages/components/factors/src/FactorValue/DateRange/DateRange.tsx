@@ -39,7 +39,16 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeacti
         placement: 'bottomLeft',
         onVisibleChange: handleVisibleChange,
       }}
-      arrowColor={{ bottomLeft: 'grey' }}
+      arrowColor={{
+        bottomLeft: 'grey',
+        bottomRight: 'grey',
+        topLeft: 'grey',
+        topRight: 'grey',
+        leftTop: 'grey',
+        leftBottom: 'grey',
+        rightTop: 'grey',
+        rightBottom: 'grey',
+      }}
     />
   );
 };
