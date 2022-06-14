@@ -6,7 +6,7 @@ import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { waitFor } from '@testing-library/react';
-import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import DateRangePicker from '../DateRangePicker';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -177,8 +177,8 @@ describe('DateRangePicker', () => {
   });
   it('should display custom color for arrow popup', async () => {
     const onApply = jest.fn();
-    const { container } = renderWithProvider(
-      <RawDateRangePicker
+    const { container, debug } = renderWithProvider(
+      <DateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
@@ -187,12 +187,13 @@ describe('DateRangePicker', () => {
         value={ABSOLUTE_VALUE as DateRange}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
-        popoverProps={{ placement: 'topLeft' }}
+        popoverProps={{ placement: 'topLeft', visible: true }}
         arrowColor={{ topLeft: 'grey' }}
       />
     );
-    const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;
+    const popoverWrapper = container.querySelector(
+      '.ant-popover.ds-date-range-popover > .ant-popover-content > .ant-popover-arrow'
+    ) as HTMLElement;
     expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
-
 });

@@ -53,7 +53,7 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
-  arrowColor: AdditionalMapper;
+  arrowColor?: AdditionalMapper;
 }
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
