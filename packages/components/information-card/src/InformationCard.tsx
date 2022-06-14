@@ -167,7 +167,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       <S.InfoCardWrapper ref={ref} aria-label="information card">
         <Card
           background="white"
-          badgeSlot={
+          renderBadge={(): React.ReactNode =>
             renderBadge !== null && (
               <div style={{ marginRight: '16px' }}>
                 {renderBadge?.call(null) ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
@@ -183,10 +183,9 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
           withHeader
           className={cachedChildren ? 'custom-description' : ''}
         >
-          {cachedChildren ||
-            (descriptionConfig !== null && (
-              <DescriptionField extraInformation={notice || <></>} {...descriptionConfig} />
-            ))}
+          {(cachedChildren || descriptionConfig !== null || notice) && (
+            <DescriptionField extraInformation={notice || <></>} descriptionConfig={descriptionConfig} />
+          )}
           {(renderFooter && renderFooter()) ||
             ((footerText || actionButton) && (
               <Footer
@@ -243,47 +242,45 @@ export function Initials({ name, children }: InitialsProps): JSX.Element {
   );
 }
 
-type DescriptionFieldProps = SubtleTextAreaProps & {
+type DescriptionFieldProps = {
   extraInformation?: React.ReactNode;
+  descriptionConfig?: SubtleTextAreaProps | null;
 };
 
 /**
  * Returns default information card's description section.
  */
-function DescriptionField({
-  extraInformation = undefined,
-  error,
-  disabled,
-  onChange,
-  ...props
-}: DescriptionFieldProps): JSX.Element {
+function DescriptionField({ extraInformation = undefined, descriptionConfig }: DescriptionFieldProps): JSX.Element {
   // note: if popover containing this information card will have
   // `destroyTooltipOnHide` (or `keepParent`) set to false, then description state hook will be getting reset
   const [description, setDescription] = React.useState<string>('');
+
   return (
     <div className="information-card-description">
       {extraInformation}
-      <SubtleForm.TextArea
-        minRows={1}
-        value={description}
-        hideLabel
-        onChange={(v): void => {
-          onChange && onChange(v);
-          setDescription(v);
-        }}
-        placeholder="placeholer"
-        label="Label"
-        labelTooltip="label tooltip"
-        suffixTooltip="Edit"
-        {...props}
-        {...(error
-          ? {
-              error,
-              errorText: (isErr: boolean, text: string): string => (isErr ? text : ''),
-            }
-          : {})}
-        disabled={disabled}
-      />
+      {descriptionConfig && (
+        <SubtleForm.TextArea
+          minRows={1}
+          value={description}
+          // hideLabel
+          onChange={(v): void => {
+            descriptionConfig.onChange && descriptionConfig.onChange(v);
+            setDescription(v);
+          }}
+          placeholder="placeholer"
+          label="Label"
+          labelTooltip="label tooltip"
+          suffixTooltip="Edit"
+          {...descriptionConfig}
+          {...(descriptionConfig.error
+            ? {
+                error: descriptionConfig.error,
+                errorText: (isErr: boolean, text: string): string => (isErr ? text : ''),
+              }
+            : {})}
+          disabled={descriptionConfig.disabled}
+        />
+      )}
     </div>
   );
 }
