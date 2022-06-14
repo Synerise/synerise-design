@@ -3,6 +3,9 @@ image: node:lts
 variables:
   APP: ds-docs
   NODE_OPTIONS: --max-old-space-size=4096
+  DOCKER_TLS_CERTDIR: ""
+  FF_NETWORK_PER_BUILD: "true"
+
 
 cache:
   key: ds

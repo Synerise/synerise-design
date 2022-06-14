@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-dropdown",
-  "version": "0.17.9",
+  "version": "0.17.17",
   "description": "Dropdown UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -32,10 +32,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "^0.5.5",
-    "@synerise/ds-icon": "^0.47.1",
-    "@synerise/ds-input": "^0.18.6",
-    "@synerise/ds-search-bar": "^0.5.7"
+    "@synerise/ds-divider": "^0.5.10",
+    "@synerise/ds-icon": "^0.49.0",
+    "@synerise/ds-input": "^0.18.10",
+    "@synerise/ds-search-bar": "^0.5.11"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

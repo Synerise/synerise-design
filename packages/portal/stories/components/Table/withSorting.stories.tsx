@@ -21,6 +21,7 @@ const stories = {
     <Table
       title={text('Table title', 'Table with sorting')}
       dataSource={fakeData}
+      onChange={console.log}
       columns={[
         {
           key: 'name',
@@ -67,7 +68,7 @@ const stories = {
       pagination={{
         pageSize: 10,
       }}
-      onSort={action('handleSort')}
+      onSort={action('onSort')}
     />
   ),
 };

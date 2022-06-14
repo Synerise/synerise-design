@@ -18,10 +18,12 @@ const DEFAULT_STEP = '';
 export const OPERATOR = 'operator';
 export const PARAMETER = 'parameter';
 export const FACTOR = 'factor';
+export const SUBJECT = 'subject';
 const SORTABLE_CONFIG = {
   ghostClass: 'steps-list-ghost-element',
   className: 'steps-list',
   handle: '.step-drag-handler',
+  filter: '.ds-condition-step-name, .ds-cruds',
   animation: 150,
   forceFallback: true,
 };
@@ -35,6 +37,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     duplicateStep,
     removeStep,
     addStep,
+    renderAddStep,
     onChangeOrder,
     minConditionsLength = 1,
     maxConditionsLength,
@@ -47,20 +50,38 @@ const Condition: React.FC<T.ConditionProps> = props => {
     onChangeFactorValue,
     onUpdateStepName,
     getPopupContainerOverride,
+    showSuffix,
+    hoverDisabled,
+    autoOpenedComponent = DEFAULT_FIELD,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
-      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'Add step' }),
+      addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
+      conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
       ...texts,
     }),
     [texts, formatMessage]
   );
   const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
   const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
-  const [currentField, setCurrentField] = React.useState<string>(DEFAULT_FIELD);
-  const [priorityStepId, setPriorityStepId] = React.useState<React.ReactText | null>(null);
+  const [currentField, setCurrentField] = React.useState<string>(autoOpenedComponent);
+
   const prevSteps = usePrevious(steps);
+
+  React.useEffect(() => {
+    if (
+      autoOpenedComponent &&
+      steps.length &&
+      steps[0].conditions[0].operator &&
+      steps[0].conditions[0].operator.value === undefined
+    ) {
+      setCurrentStepId(steps[0].id);
+      setCurrentConditionId(steps[0].conditions[0].id);
+      setCurrentField(autoOpenedComponent);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     const newConditionId =
@@ -121,6 +142,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     (value, stepId: React.ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
+      setCurrentField(PARAMETER);
       onChangeSubject && onChangeSubject(stepId, value);
     },
     [clearConditionRow, onChangeSubject]
@@ -130,6 +152,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     (value, stepId: React.ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
+      setCurrentField(PARAMETER);
       onChangeContext && onChangeContext(stepId, value);
     },
     [clearConditionRow, onChangeContext]
@@ -183,19 +206,46 @@ const Condition: React.FC<T.ConditionProps> = props => {
 
   const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
 
+  const handleAddStep = React.useCallback(() => {
+    const newStepId = addStep ? addStep() : undefined;
+    if (newStepId) {
+      setCurrentStepId(newStepId);
+      setCurrentField(SUBJECT);
+    }
+  }, [addStep]);
+
+  const handleAddCondition = React.useMemo(() => {
+    if (!addCondition) {
+      return undefined;
+    }
+    return (stepId: React.ReactText): void => {
+      const newConditionId = addCondition ? addCondition(stepId) : undefined;
+      if (newConditionId) {
+        setCurrentConditionId(newConditionId);
+        setCurrentStepId(stepId);
+        setCurrentField(PARAMETER);
+      }
+    };
+  }, [addCondition]);
+
+  const handleClearActiveCondition = React.useCallback(() => {
+    setCurrentConditionId(DEFAULT_CONDITION);
+    setCurrentStepId(DEFAULT_STEP);
+    setCurrentField(DEFAULT_FIELD);
+  }, []);
+
   return React.useMemo(() => {
     return (
-      <S.Condition className="ds-conditions">
+      <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
           {steps.map((step, index) => {
             return (
               <ConditionStep
                 key={`step-id-${step.id}`}
                 step={step}
-                texts={texts}
+                texts={text}
                 index={index}
-                hasPriority={step.id === priorityStepId}
-                onStepActivate={setPriorityStepId}
+                hasPriority={step.id === currentStepId}
                 getPopupContainerOverride={getPopupContainerOverride}
                 draggableEnabled={draggableEnabled}
                 selectOperator={selectOperator}
@@ -213,27 +263,37 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 currentStepId={currentStepId}
                 currentField={currentField}
                 removeCondition={removeCondition}
-                addCondition={addCondition}
+                addCondition={handleAddCondition}
+                setCurrentField={setCurrentField}
+                setCurrentCondition={setCurrentConditionId}
+                setCurrentStep={setCurrentStepId}
+                onDeactivate={handleClearActiveCondition}
+                showSuffix={showSuffix}
+                hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
               />
             );
           })}
         </ReactSortable>
         {addStep && (
-          <Button type="ghost-primary" mode="icon-label" onClick={addStep}>
-            <Icon component={<Add3M />} />
-            {text.addStep}
-          </Button>
+          <S.AddStepButton>
+            <Button type="ghost" mode="icon-label" onClick={handleAddStep}>
+              <Icon component={<Add3M />} />
+              {text.addStep}
+            </Button>
+          </S.AddStepButton>
         )}
+        {renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
       </S.Condition>
     );
   }, [
     steps,
-    priorityStepId,
-    setPriorityStepId,
     onChangeOrder,
     addStep,
-    text.addStep,
-    texts,
+    handleAddStep,
+    text,
+    renderAddStep,
+    currentStepId,
+    getPopupContainerOverride,
     draggableEnabled,
     selectOperator,
     selectParameter,
@@ -247,11 +307,12 @@ const Condition: React.FC<T.ConditionProps> = props => {
     setStepConditionFactorType,
     setStepConditionFactorValue,
     currentConditionId,
-    currentStepId,
     currentField,
     removeCondition,
-    addCondition,
-    getPopupContainerOverride,
+    handleAddCondition,
+    handleClearActiveCondition,
+    showSuffix,
+    hoverDisabled,
   ]);
 };
 

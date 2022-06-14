@@ -93,6 +93,7 @@ yarn add @synerise/ds-card
 | withHeader                        | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
 | withoutPadding                    | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
 | showSideChildrenWhenHeaderHidden  | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
+| defaultHeaderBackgroundColor      | Defines if header should have default white color                                                                     | boolean                                                                      | `false` |
 
 #### CardBadge
 

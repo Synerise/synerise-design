@@ -9,9 +9,16 @@ import { CompletedWithinProps, Period } from './CompletedWithin.types';
 import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
-const DEFAULT_PERIOD = 'DAYS';
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, text, periods }) => {
+const CompletedWithin: React.FC<CompletedWithinProps> = ({
+  value,
+  maxValue,
+  onSetValue,
+  text,
+  periods,
+  placeholder,
+  tooltip,
+}) => {
   const intl = useIntl();
 
   const texts = React.useMemo(
@@ -42,17 +49,25 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   }, [periods, intl]);
 
   const [innerValue, setInnerValue] = React.useState<string | number | undefined>(value.value);
-  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period || DEFAULT_PERIOD);
+  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
+  const [tooltipVisible, setTooltipVisible] = React.useState(false);
+  const [settingsVisible, setSettingsVisible] = React.useState(false);
 
   const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
   const handleVisibleChange = React.useCallback(
     (visible: boolean) => {
+      setSettingsVisible(visible);
+      setTooltipVisible(false);
       if (!visible && innerValue && innerPeriod) {
-        onSetValue({ value: Number(innerValue), period: innerPeriod });
+        const newValue = maxValue && maxValue < innerValue ? maxValue : innerValue;
+        onSetValue({
+          value: Number(newValue),
+          period: innerPeriod,
+        });
       }
     },
-    [innerPeriod, innerValue, onSetValue]
+    [innerPeriod, innerValue, maxValue, onSetValue]
   );
 
   const handleClear = React.useCallback(() => {
@@ -62,25 +77,25 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
   }, [onSetValue]);
 
   const triggerMode = React.useMemo(() => {
-    if (!hasValue) return 'single-icon';
-    return 'icon-label';
-  }, [hasValue]);
+    if (hasValue || placeholder) return 'icon-label';
+    return 'single-icon';
+  }, [hasValue, placeholder]);
 
   const triggerLabel = React.useMemo(() => {
-    return (
-      hasValue &&
-      `${texts.completedLabel} ${value.value} ${
-        getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
-      }`
-    );
-  }, [getPeriods, hasValue, texts, value]);
+    return hasValue
+      ? `${texts.completedLabel} ${value.value} ${
+          getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
+        }`
+      : placeholder;
+  }, [getPeriods, hasValue, texts, value, placeholder]);
 
   return (
     <S.CompletedWithinWrapper withValue={hasValue}>
       <Dropdown
         overlay={
           <Settings
-            value={{ value: Number(innerValue), period: innerPeriod }}
+            value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
+            maxValue={maxValue}
             onValueChange={setInnerValue}
             onPeriodChange={setInnerPeriod}
             text={texts}
@@ -90,11 +105,20 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({ value, onSetValue, te
         trigger={['click']}
         onVisibleChange={handleVisibleChange}
         placement="topLeft"
+        overlayStyle={{ maxWidth: '238px', minWidth: '238px' }}
       >
-        <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
-          <Icon component={<ClockM />} />
-          {triggerLabel}
-        </S.TriggerButton>
+        <Tooltip
+          type="largeSimple"
+          description={tooltip}
+          trigger={['hover']}
+          onVisibleChange={setTooltipVisible}
+          visible={!settingsVisible && tooltipVisible}
+        >
+          <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
+            <Icon component={<ClockM />} />
+            {triggerLabel}
+          </S.TriggerButton>
+        </Tooltip>
       </Dropdown>
       {hasValue && (
         <Tooltip title={texts.clear}>

@@ -6,6 +6,7 @@ import Icon, { AddS } from '@synerise/ds-icon';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import * as S from '../GroupTable.styles';
 import { Props } from './GroupTableBody.types';
+import { useRowKey } from '../../hooks/useRowKey';
 
 function GroupTableBody<T extends unknown>({
   group,
@@ -19,14 +20,7 @@ function GroupTableBody<T extends unknown>({
   activeGroup,
   hideGroupExpander,
 }: Props<T>): JSX.Element {
-  const getRowKey = React.useCallback(
-    row => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
-    },
-    [rowKey]
-  );
+  const { getRowKey } = useRowKey(rowKey);
 
   const allRowKeys = React.useMemo(() => {
     return group.children.length ? group.children[0].props.record.rows.map((row: T) => getRowKey(row)) : [];
@@ -75,7 +69,10 @@ function GroupTableBody<T extends unknown>({
                         );
                         selection.onChange(
                           selectedKeys,
-                          allItems.filter(item => selectedKeys?.indexOf(getRowKey(item)) < 0)
+                          allItems.filter(item => {
+                            const key = getRowKey(item);
+                            return key && selectedKeys?.indexOf(key) < 0;
+                          })
                         );
                       }
                     }}
@@ -119,9 +116,9 @@ function GroupTableBody<T extends unknown>({
                 {selection && (
                   <S.SubRow withBorderLeft>
                     <Checkbox
-                      checked={selection.selectedRowKeys.indexOf(key) >= 0}
+                      checked={key !== undefined && selection.selectedRowKeys.indexOf(key) >= 0}
                       onChange={(event): void => {
-                        if (event.target.checked) {
+                        if (event.target.checked && key !== undefined) {
                           selection.onChange([...selection.selectedRowKeys, key], [...allItems, rowRecord]);
                         } else {
                           selection.onChange(
@@ -133,22 +130,20 @@ function GroupTableBody<T extends unknown>({
                     />
                   </S.SubRow>
                 )}
-                {columns?.map(
-                  (column, index): React.ReactNode => {
-                    return (
-                      column.dataIndex && (
-                        <S.SubRow
-                          key={index}
-                          selected={column.dataIndex === group.children[0].props.record.column}
-                          sorted={Boolean(column.sortOrder)}
-                        >
-                          {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
-                            rowRecord[column.dataIndex as string]}
-                        </S.SubRow>
-                      )
-                    );
-                  }
-                )}
+                {columns?.map((column, index): React.ReactNode => {
+                  return (
+                    column.dataIndex && (
+                      <S.SubRow
+                        key={index}
+                        selected={column.dataIndex === group.children[0].props.record.column}
+                        sorted={Boolean(column.sortOrder)}
+                      >
+                        {(column.render && column.render(rowRecord[column.dataIndex as string], rowRecord, index)) ||
+                          rowRecord[column.dataIndex as string]}
+                      </S.SubRow>
+                    )
+                  );
+                })}
               </tr>
             );
           }

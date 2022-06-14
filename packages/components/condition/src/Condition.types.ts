@@ -29,16 +29,18 @@ export type ConditionTexts = {
   moveTooltip: string;
   duplicateTooltip: string;
   removeTooltip: string;
+  conditionSuffix: string;
 };
 
 export type ConditionProps = {
   steps: ConditionStep[];
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
-  addCondition?: (stepId: React.ReactText) => void;
+  addCondition?: (stepId: React.ReactText) => string | undefined;
+  renderAddStep?: () => React.ReactNode;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   removeStep?: (stepId: React.ReactText) => void;
   duplicateStep?: (stepId: React.ReactText) => void;
-  addStep?: () => void;
+  addStep?: () => string | undefined;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
   minConditionsLength: number;
@@ -59,4 +61,8 @@ export type ConditionProps = {
   ) => void;
   onChangeFactorType: (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType | undefined) => void;
   onUpdateStepName?: (stepId: React.ReactText, value: string) => void;
+  type?: 'attribute' | 'event';
+  showSuffix?: boolean;
+  hoverDisabled?: boolean;
+  autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
 };

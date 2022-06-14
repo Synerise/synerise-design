@@ -323,6 +323,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               {/*
             // @ts-ignore */}
               <List
+                className="ds-context-selector-list"
+                key={`list-${activeGroup}-${activeTab}`}
                 width="100%"
                 height={300}
                 itemCount={activeItems.length}

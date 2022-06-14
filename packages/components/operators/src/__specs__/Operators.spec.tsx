@@ -9,6 +9,7 @@ import Operators from './../Operators';
 
 import { OperatorsProps } from '../Operator.types';
 import { OPERATORS_TEXTS, OPERATORS_ITEMS, OPERATORS_GROUPS } from './data/Operators.data';
+import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: OperatorsProps = {
   texts: OPERATORS_TEXTS,
@@ -17,12 +18,7 @@ const DEFAULT_PROPS: OperatorsProps = {
   items: OPERATORS_ITEMS,
   groups: OPERATORS_GROUPS,
 };
-const RENDER_OPERATORS = (props?: {}) => (
-  <Operators
-    {...DEFAULT_PROPS}
-    {...props}
-  />
-);
+const RENDER_OPERATORS = (props?: {}) => <Operators {...DEFAULT_PROPS} {...props} />;
 
 describe('Operators component', () => {
   test('Should render', () => {
@@ -49,16 +45,40 @@ describe('Operators component', () => {
   });
 
   test('Should show selected value', () => {
-    const { getByText } = renderWithProvider(RENDER_OPERATORS({
-      value: {
-        name: 'Equal',
-        icon: <Icon component={<VarTypeNumberM />} />,
-        groupId: 'NUMBER_ONE',
-        id: '00001'
-      }
-    }));
+    const { getByText } = renderWithProvider(
+      RENDER_OPERATORS({
+        value: {
+          name: 'Equal',
+          icon: <Icon component={<VarTypeNumberM />} />,
+          groupId: 'NUMBER_ONE',
+          id: '00001',
+        },
+      })
+    );
 
     expect(getByText('Equal')).toBeTruthy();
+  });
 
+  test('should call onActivate', () => {
+    // ARRANGE
+    const handleActivate = jest.fn();
+    const { getByText } = renderWithProvider(RENDER_OPERATORS({ onActivate: handleActivate }));
+
+    // ACT
+    userEvent.click(getByText(OPERATORS_TEXTS.buttonLabel));
+
+    // ASSERT
+    expect(handleActivate).toBeCalled();
+  });
+  test('should call onDeactivate', () => {
+    // ARRANGE
+    const handleDeactivate = jest.fn();
+    const { getByText } = renderWithProvider(RENDER_OPERATORS({ onDeactivate: handleDeactivate }));
+
+    // ACT
+    userEvent.click(getByText(OPERATORS_TEXTS.buttonLabel));
+    userEvent.click(document.body);
+
+    expect(handleDeactivate).toBeCalled();
   });
 });

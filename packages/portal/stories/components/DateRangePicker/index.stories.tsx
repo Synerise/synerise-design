@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
@@ -10,15 +10,8 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
-import {
-  Check3M,
-  HelpFillM,
-  InfoFillM,
-  NotificationsReceiveM,
-  UpdateDataM,
-  UserCheckM,
-  WarningFillM,
-} from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -60,58 +53,58 @@ export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
 
 const savedFilters = [];
 const texts = {
-  custom: 'Custom',
-  today: 'Today',
-  yesterday: 'Yesterday',
+  after: 'after',
+  allTime: 'Lifetime',
   apply: 'Apply',
-  endDatePlaceholder: 'End date',
-  startDatePlaceholder: 'Start date',
+  before: 'before',
   clear: 'Clear',
-  now: 'Now',
-  selectDate: 'Select date',
+  clearRange: ' Clear range',
+  copyRange: 'Copy range',
+  custom: 'Custom',
+  days: 'Days',
   emptyDateError: 'Date cannot be empty',
-  last7Days: 'Last 7 days',
-  thisWeek: 'This week',
-  lastWeek: 'Last week',
-  thisMonth: 'This month',
-  lastMonth: 'Last month',
+  endDate: 'End date',
+  endDatePlaceholder: 'End date',
+  filter: 'Date filter',
+  hours: 'Hours',
   last3Months: 'Last 3 months',
   last6Months: 'Last 6 months',
+  last7Days: 'Last 7 days',
+  last: 'Last',
+  lastMonth: 'Last month',
+  lastWeek: 'Last week',
   lastYear: 'Last year',
-  allTime: 'Lifetime',
-  tomorrow: 'Tomorrow',
-  next7Days: 'Next 7 days',
-  nextWeek: 'Next week',
-  nextMonth: 'Next month',
+  minutes: 'Minutes',
+  months: 'Months',
+  more: 'More',
   next3Months: 'Next 3 months',
   next6Months: 'Next 6 months',
-  nextYear: 'Next year',
-  more: 'More',
-  relativeDateRange: 'Relative date range',
-  last: 'Last',
-  before: 'before',
-  after: 'after',
-  since: 'Since',
+  next7Days: 'Next 7 days',
   next: 'Next',
+  nextMonth: 'Next month',
+  nextWeek: 'Next week',
+  nextYear: 'Next year',
+  now: 'Now',
+  pasteRange: 'Paste range',
+  relativeDateRange: 'Relative date range',
+  remove: 'Remove',
+  savedFiltersTrigger: 'Saved filters',
   seconds: 'Seconds',
-  minutes: 'Minutes',
-  hours: 'Hours',
-  days: 'Days',
-  weeks: 'Weeks',
-  months: 'Months',
-  years: 'Years',
+  selectDate: 'Select date',
+  selectTime: 'Select time',
+  since: 'Since',
+  startDate: 'Start date',
+  startDatePlaceholder: 'Start date',
+  thisMonth: 'This month',
+  thisWeek: 'This week',
   timestampLast: 'Last',
   timestampNext: 'Next',
   timestampTill: 'till',
-  filter: 'Date filter',
-  selectTime: 'Select time',
-  startDate: 'Start date',
-  endDate: 'End date',
-  remove: 'Remove',
-  clearRange: ' Clear range',
-  savedFiltersTrigger: 'Saved filters',
-  copyRange: 'Copy range',
-  pasteRange: 'Paste range',
+  today: 'Today',
+  tomorrow: 'Tomorrow',
+  weeks: 'Weeks',
+  years: 'Years',
+  yesterday: 'Yesterday',
 };
 
 const stories = {
@@ -156,6 +149,56 @@ const stories = {
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
+      />
+    );
+  },
+  withCustomTrigger: () => {
+    const value = undefined;
+    const [tooltipVisible, setTooltipVisible] = React.useState(false);
+    const [dateRangeVisible, setDateRangeVisible] = React.useState(false);
+    const showTime = boolean('Set showTime', true);
+    const modesObj = {
+      PAST: boolean('Set relative past mode', true),
+      FUTURE: boolean('Set relative future mode', true),
+      SINCE: boolean('Set relative since mode', true),
+    };
+    const getRelativeModes = (modesObject: object) => {
+      const keys = Object.keys(modesObject);
+      const enabledModes = keys.filter(k => !!modesObject[k]);
+      return enabledModes;
+    };
+    const showRelativePicker = boolean('Set relative filter', true);
+    return (
+      <DateRangePicker
+        onApply={action('OnApply')}
+        showTime={showTime}
+        value={value}
+        relativeFuture
+        forceAbsolute
+        showRelativePicker={showRelativePicker}
+        texts={texts}
+        popoverProps={{ placement: 'bottomLeft' }}
+        forceAdjacentMonths={boolean('Set adjacent months', false)}
+        relativeModes={getRelativeModes(modesObj)}
+        onVisibleChange={visible => {
+          setTooltipVisible(false);
+          setDateRangeVisible(visible);
+        }}
+        popoverTrigger={
+          <Tooltip
+            trigger={['hover']}
+            onVisibleChange={setTooltipVisible}
+            visible={!dateRangeVisible && tooltipVisible}
+            placement={'bottom'}
+            description={text(
+              'Tooltip description',
+              'Date range picker with custom trigger button and tooltip with description'
+            )}
+            type="largeSimple"
+          >
+            <Button>Custom trigger</Button>
+          </Tooltip>
+        }
       />
     );
   },

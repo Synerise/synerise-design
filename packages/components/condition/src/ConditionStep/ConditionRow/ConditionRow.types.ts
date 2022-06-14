@@ -5,10 +5,12 @@ import { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type ConditionRowProps = {
   index: number;
+  error?: boolean;
   hasPriority?: boolean;
-  onActivate?: () => void;
+  onActivate?: (fieldType: string) => void;
+  onDeactivate?: () => void;
   conditionId: React.ReactText;
-  addCondition: ConditionProps['addCondition'];
+  addCondition?: (stepId: React.ReactText) => void;
   conditionParameter: FactorsProps;
   conditionOperator: OperatorsProps;
   conditionFactor: FactorsProps;

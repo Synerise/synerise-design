@@ -36,6 +36,7 @@ export interface Props extends WrappedComponentProps {
   forceAbsolute?: boolean;
   onValueChange?: (value: Partial<DateFilter> | undefined) => void;
   onApply: (value: Partial<DateFilter> | undefined) => void;
+  onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
   popoverTrigger?: React.ReactNode;

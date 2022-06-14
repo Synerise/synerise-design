@@ -3,7 +3,6 @@ import faker from 'faker';
 import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import { withState } from '@dump247/storybook-state';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
@@ -81,6 +80,7 @@ const VirtualizationWithState: React.FC = () => {
         columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
         cellHeight={50}
         rowKey={row => row.key}
+        onSort={action('onSort')}
         headerButton={
           boolean('Show header button', false) && (
             <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>

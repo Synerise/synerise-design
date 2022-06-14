@@ -44,6 +44,7 @@ export type SearchProps<T extends AnyObject, U extends AnyObject> = {
   width?: number;
   hideLabel?: boolean;
   disableInput?: boolean;
+  alwaysExpanded?: boolean;
 };
 
 export type SearchState<T extends AnyObject> = {

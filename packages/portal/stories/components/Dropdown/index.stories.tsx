@@ -5,13 +5,14 @@ import Example1 from './examples/Example1';
 import withTabs from './withTabs/withTabs';
 import WithSearch from './examples/withSearch';
 import WithTextTrigger from './examples/withTextTrigger';
-import skeletonDropdown from './examples/skeletonDropdown'
+import skeletonDropdown from './examples/skeletonDropdown';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon, { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon';
 import Default from './examples/Default';
 import WithCopyID from './examples/withCopyId';
 import { BottomAction } from '@synerise/ds-dropdown/dist/elements/BottomAction/BottomAction.styles';
 import Advanced from './examples/advanced';
+import Placement from './examples/placement';
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '20vh' }}>
@@ -30,10 +31,7 @@ export function renderFooter(suffixElementType: string) {
   switch (suffixElementType) {
     case typesFooter.singleButton:
       return (
-        <Dropdown.BottomAction
-          onClickAction={() => {}}
-          style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto' }}
-        >
+        <Dropdown.BottomAction onClickAction={() => {}} style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto' }}>
           <Button type="ghost" style={{ paddingLeft: '8px', marginBottom: '1px' }}>
             {<Icon component={<Add3M />} size={24} color={theme.palette['grey-500']} />}
             <div style={{ paddingLeft: '4px' }}>Button</div>
@@ -125,14 +123,14 @@ const stories = {
     children: <Button>Click</Button>,
   },
   default: Default,
-  withCopyID:WithCopyID,
+  placement: Placement,
+  withCopyID: WithCopyID,
   example1: Example1,
   withSearch: WithSearch,
   withTabs: withTabs,
   withTextTrigger: WithTextTrigger,
   skeletonDropdown: skeletonDropdown,
   advanced: Advanced,
-
 };
 
 export default {

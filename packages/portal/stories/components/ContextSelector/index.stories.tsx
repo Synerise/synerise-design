@@ -5,7 +5,8 @@ import { withState } from '@dump247/storybook-state';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS, FLAT_LIST_ITEMS } from './data/client.data';
 import { ItemSize } from '@synerise/ds-menu';
-import { boolean } from "@storybook/addon-knobs";
+import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
 
 const DEFAULT_STATE = {
   value: undefined,
@@ -25,6 +26,9 @@ const stories = {
         defaultDropdownVisibility={boolean('Default dropdown visibility', false)}
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
+        onActivate={action('onActivate')}
+        onDeactivate={action('onDeactivate')}
+        loading={boolean('Set loading', false)}
       />
     );
   }),
@@ -42,6 +46,8 @@ const stories = {
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
         menuItemHeight={ItemSize.LARGE}
+        onActivate={action('onActivate')}
+        onDeactivate={action('onDeactivate')}
       />
     );
   }),
@@ -59,6 +65,8 @@ const stories = {
         items={CONTEXT_CLIENT_ITEMS}
         groups={CONTEXT_CLIENT_GROUPS}
         addMode={true}
+        onActivate={action('onActivate')}
+        onDeactivate={action('onDeactivate')}
       />
     );
   }),
@@ -76,6 +84,8 @@ const stories = {
         items={FLAT_LIST_ITEMS}
         groups={[]}
         addMode={true}
+        onActivate={action('onActivate')}
+        onDeactivate={action('onDeactivate')}
       />
     );
   }),

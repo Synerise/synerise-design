@@ -123,6 +123,7 @@ import Condition from '@synerise/ds-condition'
 | onChangeFactorType        | Callback called when user change type of condition factor     | (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType \ undefined) => void    | -       |
 | onUpdateStepName          | Callback called when user change the name of step condition   | (stepId: React.ReactText, value: string) => void                                                  | -       |
 | getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;                                                     | -       |
+| defaultOpenedComponent    | Component which should be opened after render                 | 'subject' \ 'operator' \ 'factor' \ 'parameter' \ 'context'                                       | -       |
 
 ### ConditionStep
 

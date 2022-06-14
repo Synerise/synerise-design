@@ -2,7 +2,7 @@ import { Color, Status } from '@synerise/ds-badge/dist/Badge.types';
 import * as React from 'react';
 
 export type Props = {
-  status: Status;
+  status?: Status;
   label: string | React.ReactNode;
   customColor: Color;
 };

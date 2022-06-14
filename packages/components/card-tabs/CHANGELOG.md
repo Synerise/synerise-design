@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.2...@synerise/ds-card-tabs@0.13.0) (2022-04-29)
+
+
+### Features
+
+* **card-tabs:** adds itemData prop for addional item data ([08b0cfa](https://github.com/Synerise/synerise-design/commit/08b0cfa53e2ae25d76947d79327b52a94434940f))
+
+
+
+
+
+## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.1...@synerise/ds-card-tabs@0.12.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **condition:** rules-of-hooks dependencies ([10e573e](https://github.com/Synerise/synerise-design/commit/10e573e018ca7e2f69f3f317f35d51eace89ded8))
+
+
+
+
+
+## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.12.0...@synerise/ds-card-tabs@0.12.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* fix filter dropdowns ([eaab107](https://github.com/Synerise/synerise-design/commit/eaab107b6dca7401a17c2e36806febd11edc677b))
+
+
+
+
+
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.6...@synerise/ds-card-tabs@0.12.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* **step-card:** hide top duplicate and delete action buttons ([9c7bd51](https://github.com/Synerise/synerise-design/commit/9c7bd51c687ebad7c0474b25cb07e6a5ea478783))
+
+
+### Features
+
+* **card-tabs:** disable duplication when limit exceeded (cardTab) ([e83cedb](https://github.com/Synerise/synerise-design/commit/e83cedb0f8a975fce5dd7c181d3811715ac66a9f))
+* **card-tabs:** onDuplicate, onRemove accept undefined; stories, tests ([6cfd41d](https://github.com/Synerise/synerise-design/commit/6cfd41dd6db00a81428d92d024a060cc37c32239))
+
+
+
+
+
+## [0.11.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.5...@synerise/ds-card-tabs@0.11.6) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.11.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.4...@synerise/ds-card-tabs@0.11.5) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.11.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.3...@synerise/ds-card-tabs@0.11.4) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.11.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.2...@synerise/ds-card-tabs@0.11.3) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.1...@synerise/ds-card-tabs@0.11.2) (2022-03-22)
+
+
+### Bug Fixes
+
+* **card-tabs:** set addTabLabel optionally ([58de9d4](https://github.com/Synerise/synerise-design/commit/58de9d483fdde5360052fcac4a824cfd480b50f5))
+
+
+
+
+
+## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.11.0...@synerise/ds-card-tabs@0.11.1) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.10.4...@synerise/ds-card-tabs@0.11.0) (2022-03-14)
+
+
+### Bug Fixes
+
+* **card-tabs:** add translations & change prop name ([1834111](https://github.com/Synerise/synerise-design/commit/1834111a1809dcd990661f05e6cc09d45d45fb02))
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.10.3...@synerise/ds-card-tabs@0.10.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
 ## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.10.2...@synerise/ds-card-tabs@0.10.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

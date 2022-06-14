@@ -6,8 +6,10 @@ import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
+import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
+import { MatchingWrapper } from './Filter.styles';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'ghost-element',
@@ -15,6 +17,7 @@ const SORTABLE_CONFIG = {
   handle: '.step-card-drag-handler',
   animation: 200,
   forceFallback: true,
+  filter: '.ds-matching-toggle, .ds-cruds',
 };
 
 const component = {
@@ -36,7 +39,14 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
 }) => {
+  const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (previousExpressions && expressions.length > previousExpressions.length) {
+      setActiveExpressionId(expressions[expressions.length - 1].id);
+    }
+  }, [expressions, previousExpressions]);
 
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -52,17 +62,49 @@ const Filter: React.FC<FilterProps> = ({
       step: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
         notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
+        have: formatMessage({ id: 'DS.MATCHING.HAVE', defaultMessage: 'Have' }),
+        performed: formatMessage({ id: 'DS.MATCHING.PERFORMED', defaultMessage: 'Performed' }),
+        notHave: formatMessage({ id: 'DS.MATCHING.NOT-HAVE', defaultMessage: 'Does not have' }),
+        notPerformed: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED', defaultMessage: 'Have not performed' }),
+        attribute: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.ATTRIBUTE', defaultMessage: 'attribute' }),
+        event: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.EVENT', defaultMessage: 'event' }),
         namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
         moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
       },
+      placeholder: {
+        chooseCondition: formatMessage({ id: 'DS.PLACEHOLDER.CHOOSE-CONDITION' }),
+        getPreview: formatMessage({ id: 'DS.PLACEHOLDER.GET-PREVIEW' }),
+      },
     }),
     [formatMessage, texts]
   );
+
+  const getContextTypeTexts = React.useCallback(
+    expression => {
+      const contextType = expression.expressionType;
+      return {
+        matching: contextType === 'attribute' ? text.step.have : text.step.performed,
+        notMatching: contextType === 'attribute' ? text.step.notHave : text.step.notPerformed,
+        conditionType: contextType === 'attribute' ? text.step.attribute : text.step.event,
+      };
+    },
+    [text]
+  );
+
+  const isActive = React.useCallback(
+    expression => {
+      return expression.id === activeExpressionId;
+    },
+    [activeExpressionId]
+  );
+
   const componentProps = React.useCallback(
     (expression: Expression) => {
+      const contextTypeTexts = getContextTypeTexts(expression);
+
       const props = {
         LOGIC: {
           onChange: (value: LogicOperatorValue): void => onChangeLogic(expression.id, value),
@@ -73,13 +115,19 @@ const Filter: React.FC<FilterProps> = ({
           onDelete: (): void => onDeleteStep(expression.id),
           onDuplicate: (): void => onDuplicateStep(expression.id),
           footer: renderStepFooter && renderStepFooter(expression),
-          children: renderStepContent && renderStepContent(expression),
-          texts: text.step,
+          children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
+          texts: {
+            ...text.step,
+            ...contextTypeTexts,
+          },
         },
       };
       return props[expression.type];
     },
     [
+      activeExpressionId,
+      getContextTypeTexts,
+      isActive,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
@@ -87,7 +135,7 @@ const Filter: React.FC<FilterProps> = ({
       onDuplicateStep,
       renderStepContent,
       renderStepFooter,
-      text,
+      text.step,
     ]
   );
 
@@ -100,7 +148,7 @@ const Filter: React.FC<FilterProps> = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          style={expression.id === activeExpressionId ? { zIndex: 10001 } : undefined}
+          style={isActive(expression) ? { zIndex: 10001 } : undefined}
           onClick={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression)} />
@@ -112,19 +160,23 @@ const Filter: React.FC<FilterProps> = ({
         </S.ExpressionWrapper>
       );
     },
-    [componentProps, expressions.length, activeExpressionId, text]
+    [text.dropMeHere, isActive, componentProps, expressions.length]
   );
 
   return (
     <S.FilterWrapper>
-      {matching && <Matching {...matching} texts={text.matching} />}
+      {matching && (
+        <MatchingWrapper>
+          <Matching {...matching} texts={text.matching} />
+        </MatchingWrapper>
+      )}
       <>
         {expressions.length > 0 ? (
           <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
             {expressions.map(renderExpression)}
           </ReactSortable>
         ) : (
-          <Placeholder text="Choose type of condition below" />
+          <Placeholder text={text.placeholder.chooseCondition} />
         )}
       </>
       {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}
