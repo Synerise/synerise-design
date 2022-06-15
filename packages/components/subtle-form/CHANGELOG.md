@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.18...@synerise/ds-subtle-form@0.9.0) (2022-06-15)
+
+
+### Features
+
+* **subtle-form:** hide label prop in textarea ([f89c05d](https://github.com/Synerise/synerise-design/commit/f89c05d08c3f4d4b22bfdb5b74e60f0c58074507))
+* **subtle-form:** textarea - no rendering label if no description ([0933292](https://github.com/Synerise/synerise-design/commit/0933292b7cb5c389c713d8902af95c370cc35039))
+
+
+
+
+
 ## [0.8.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.17...@synerise/ds-subtle-form@0.8.18) (2022-05-13)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

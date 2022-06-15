@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.13.2...@synerise/ds-menu@0.14.0) (2022-06-15)
+
+
+### Bug Fixes
+
+* **menu:** change proxy to ItemGroup, affects also ds-item-roll tests ([0d2f195](https://github.com/Synerise/synerise-design/commit/0d2f195cec34be25a4eeda1cb33eea247b9a7007))
+* **menu:** hover-tooltip props type ([ed12ff6](https://github.com/Synerise/synerise-design/commit/ed12ff6b460f445b28a3801766bb2440121f6f6f))
+* **menu:** VisiblityTrigger typing fix ([e16f279](https://github.com/Synerise/synerise-design/commit/e16f279d9440b1fddfa97f2c6ca04c8a3825a6e3))
+
+
+### Features
+
+* **menu:** add hover tooltip to menu item + test + story ([b931e0b](https://github.com/Synerise/synerise-design/commit/b931e0b277a0a563f7c85310a51593bdd5b99e1e))
+* **menu:** change prop names from popover to rc-trigger ([7ea0eed](https://github.com/Synerise/synerise-design/commit/7ea0eedddc8212c44c61c63e3f2ce4a188935d07))
+
+
+
+
+
 ## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.13.1...@synerise/ds-menu@0.13.2) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-menu

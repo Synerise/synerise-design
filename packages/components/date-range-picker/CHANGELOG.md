@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.14...@synerise/ds-date-range-picker@0.12.15) (2022-06-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add more options to set color arrow ([3890cd1](https://github.com/Synerise/synerise-design/commit/3890cd1dbd39b54fff07bb55ce962170affda984))
+* **date-range-picker:** add prop of arrow to set color when is footer ([19558d6](https://github.com/Synerise/synerise-design/commit/19558d678867db79aa26c71a92acf7cf8b1fc69f))
+* **date-range-picker:** fix arrow ([e56a188](https://github.com/Synerise/synerise-design/commit/e56a188357c897fcb444543f5f6212e1b270b8bc))
+* **date-range-picker:** fix color and add option to show difference ([41ba36d](https://github.com/Synerise/synerise-design/commit/41ba36dd64dc9927ea3e28bfab6e7ff0e56563fa))
+* **date-range-picker:** fix colors of arrow and test ([2aa2d73](https://github.com/Synerise/synerise-design/commit/2aa2d73c1975c1e5bc37347f02f3915be3d2f927))
+* **date-range-picker:** fix colors picking ([b5846eb](https://github.com/Synerise/synerise-design/commit/b5846eb1c7ceaaec9bd2a650a73da248a6cdf56f))
+* **date-range-picker:** fix documentation ([a0ef5e6](https://github.com/Synerise/synerise-design/commit/a0ef5e61d82af5082d36a4cabcb711a33dd55512))
+* **date-range-picker:** fix test ([fb64181](https://github.com/Synerise/synerise-design/commit/fb641811ef4af38f873f369b02c5b7b54f0d8697))
+* **date-range-picker:** fix test ([09ece1f](https://github.com/Synerise/synerise-design/commit/09ece1fc8194adf290c26026a6cda64e535fbdb5))
+* **date-range-picker:** update tests ([3024429](https://github.com/Synerise/synerise-design/commit/3024429050a48b17f1e96d25c8e1d99b37436923))
+
+
+
+
+
 ## [0.12.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.13...@synerise/ds-date-range-picker@0.12.14) (2022-05-13)
 
 

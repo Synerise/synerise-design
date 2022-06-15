@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.3...@synerise/ds-factors@0.14.4) (2022-06-15)
+
+
+### Bug Fixes
+
+* **factors:** adds custom arrow color ([26beb90](https://github.com/Synerise/synerise-design/commit/26beb90854efe80e65b4a0c4ad47bf56eb94a292))
+* **factors:** adds custom arrow color ([1b44050](https://github.com/Synerise/synerise-design/commit/1b4405009975e1e1160b8e8d75dd45182553c18c))
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/Synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+
+
+
 ## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.2...@synerise/ds-factors@0.14.3) (2022-06-10)
 
 
