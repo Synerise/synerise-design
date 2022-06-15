@@ -17,9 +17,25 @@ import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector
 import Button from '@synerise/ds-button';
 import ContextSelector from '@synerise/ds-context-selector';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
+import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
+
+export const defaultTransforms = {
+  transformStep: (step: ConditionStep): ConditionStep => step,
+  props: {
+    defaultDropdownVisibility: false,
+  },
+}
+
+export type Transform = typeof defaultTransforms
 
 const stories = {
-  default: withState(DEFAULT_STATE)(({ store }) => {
+  default: withState(DEFAULT_STATE)(({store, ...context}) => {
+    const {
+      transformStep,
+      props: {
+        defaultDropdownVisibility,
+      },
+    } = Object.assign({}, defaultTransforms, context) as Transform
     const setStepContext = (stepId, item) => {
       store.set({
         steps: store.state.steps.map(s => {
@@ -283,7 +299,7 @@ const stories = {
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
           showSuffix={boolean('Display and suffix', true)}
-          steps={store.state.steps.map(step => ({
+          steps={store.state.steps.map(step => transformStep({
             id: step.id,
             stepName: step.stepName,
             context: {
@@ -293,6 +309,7 @@ const stories = {
               groups: CONTEXT_GROUPS,
               type: step.context.type,
               loading: boolean('Loading context content', false),
+              defaultDropdownVisibility: defaultDropdownVisibility,
             },
             conditions: step.conditions.map(condition => ({
               id: condition.id,
