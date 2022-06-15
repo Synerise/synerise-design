@@ -11,10 +11,19 @@ type PossibleEvent = { [Type in HandledEventsType]: HTMLElementEventMap[Type] }[
 type Handler = (event: PossibleEvent) => void;
 const defaultEvents: HandledEventsType[] = [MOUSEDOWN, TOUCHSTART];
 
+/**
+ * Hook for listening for outside clicks.
+ *
+ * @param ref main component to out of which outside clicks will be detected
+ * @param handler function called on outside click
+ * @param customEventsTypes list of events to handle that are happening outside (optional, pass something else than `undefined` to overwrite default `['mousedown', 'touchstart']`)
+ * @param ignoreSelectors list of selectors/classes which, in case it is found that any of parent elements of triggering element has this class, event `handler` won't be called
+ */
 export const useOnClickOutside = (
   ref: RefObject<HTMLElement>,
   handler: Handler | null,
-  customEventsTypes?: HandledEventsType[]
+  customEventsTypes?: HandledEventsType[],
+  ignoreSelectors?: string[]
 ): void => {
   const handlerRef = useRef(handler);
   const events = customEventsTypes || defaultEvents;
@@ -28,7 +37,14 @@ export const useOnClickOutside = (
       return (): null => null;
     }
     const listener = (event: PossibleEvent): void => {
-      if (!ref.current || !handlerRef.current || ref.current.contains(event.target as Node)) {
+      if (!ref.current || !handlerRef.current) {
+        return;
+      }
+      if (ref.current.contains(event.target as Node)) {
+        return;
+      }
+      if (ignoreSelectors?.some(className => (event.target as HTMLElement)?.closest(className))) {
+        // if any of parent elements contain one of ignored classes - stop proceeding this event
         return;
       }
       handlerRef.current(event);
@@ -41,5 +57,5 @@ export const useOnClickOutside = (
         document.removeEventListener(event, listener);
       });
     };
-  }, [handler, ref, events]);
+  }, [handler, ref, events, ignoreSelectors]);
 };

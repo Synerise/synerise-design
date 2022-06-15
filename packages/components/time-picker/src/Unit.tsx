@@ -24,9 +24,9 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
   const [forceUpdate, setForceUpdate] = React.useState<boolean>(false);
   const selectedCellRef = React.useRef<HTMLButtonElement>(null);
   const unitContainerRef = React.useRef<HTMLDivElement>(null);
-  const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
-  const [containerHeight, setContainerHeight] = React.useState<number>(300);
 
+  const [containerHeight, setContainerHeight] = React.useState<number>(300);
+  const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
   React.useEffect(() => {
     if (isFirstRender) {
       setFirstRender(false);
@@ -53,7 +53,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
-      unitContainerRef?.current &&
+      unitContainerRef?.current?.scrollTo?.call &&
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
@@ -74,7 +74,10 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
             disabled={isDisabled}
             onClick={(): void => {
               onSelect(option);
-              setForceUpdate(!forceUpdate);
+              setTimeout(() => {
+                // timeout is required to make sure that the ref is updated
+                setForceUpdate(!forceUpdate);
+              }, 50);
             }}
             active={isSelected}
             ref={isSelected ? selectedCellRef : null}

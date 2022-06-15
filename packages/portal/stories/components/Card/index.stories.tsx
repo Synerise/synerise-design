@@ -3,10 +3,12 @@ import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
-import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM } from '@synerise/ds-icon';
+import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM } from "@synerise/ds-icon";
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
 import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+
 const backgrounds = {
   White: 'white',
   'White with shadow': 'white-shadow',
@@ -521,6 +523,30 @@ const stories = {
         </Card>
       </div>
     );
+  },
+  customBadgeSlot: () => {
+    const badgesOptions = {
+      'undefined': 'undefined',
+      'text': 'text',
+      'icon': 'icon',
+    }
+    const badges = {
+      'undefined': undefined,
+      'text': <div>Badge</div>,
+      'icon': <div style={{ marginRight: '16px' }}>
+        <ObjectAvatar
+          color="mars"
+          iconComponent={<Icon component={<SegmentM/>}/>}
+        />
+      </div>,
+    }
+    return (<Card
+      withHeader
+      title="Title"
+      description="Description"
+      renderBadge={() => badges[select('Badge slot', badgesOptions, 'icon')]}>{
+        text('Card description', 'Description')
+      }</Card>)
   }
 };
 

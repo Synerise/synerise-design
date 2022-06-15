@@ -15,6 +15,7 @@ export interface CardProps {
   title?: React.ReactNode;
   description?: React.ReactNode;
   icon?: React.ReactNode;
+  renderBadge?: () => React.ReactNode;
   iconColor?: string;
   staticContent?: React.ReactNode;
   headerSideChildren?: React.ReactNode;

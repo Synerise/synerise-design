@@ -6297,6 +6297,42 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-alert@^0.4.4":
+  version "0.4.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-alert/-/ds-alert-0.4.7.tgz#bd8ef22f2049453e955284f172971ea13dc701f2"
+  integrity sha1-vY7yLyBJRT6VUoTxcpceoT3HAfI=
+  dependencies:
+    "@synerise/ds-button" "^0.16.6"
+    "@synerise/ds-icon" "^0.47.2"
+    "@synerise/ds-typography" "^0.12.2"
+    "@synerise/ds-unordered-list" "^0.2.7"
+    animate.css "^4.1.1"
+    react-animate-height "^2.0.23"
+    react-mount-animation "0.0.9"
+
+"@synerise/ds-button@^0.16.6":
+  version "0.16.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-button/-/ds-button-0.16.6.tgz#be5bbf3baca3bf368c6381c3362bedadf3370736"
+  integrity sha1-vlu/O6yjvzaMY4HDNivtrfM3BzY=
+  dependencies:
+    "@synerise/ds-icon" "^0.47.2"
+
+"@synerise/ds-card@^0.10.1":
+  version "0.10.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-card/-/ds-card-0.10.5.tgz#f34503fef24a772b9518e6af52b200e12dd2fd56"
+  integrity sha1-80UD/vJKdyuVGOavUrIA4S3S/VY=
+  dependencies:
+    "@synerise/ds-icon" "^0.47.2"
+    "@synerise/ds-typography" "^0.12.2"
+    "@synerise/ds-utils" "^0.8.31"
+    react-animate-height "^2.0.23"
+    react-visibility-sensor "^5.1.1"
+
+"@synerise/ds-icon@^0.47.2":
+  version "0.47.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.47.2.tgz#9476545f2d0aeb8ac36b5fa49212021d6050bb3e"
+  integrity sha1-lHZUXy0K64rDa1+kkhICHWBQuz4=
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"

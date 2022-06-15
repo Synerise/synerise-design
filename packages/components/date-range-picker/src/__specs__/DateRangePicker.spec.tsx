@@ -6,6 +6,7 @@ import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { waitFor } from '@testing-library/react';
+import DateRangePicker from '../DateRangePicker';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -173,5 +174,26 @@ describe('DateRangePicker', () => {
     const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
     selectedRangeEnd.click();
     expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
+  });
+  it('should display custom color for arrow popup', async () => {
+    const onApply = jest.fn();
+    const { container, debug } = renderWithProvider(
+      <DateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+        popoverProps={{ placement: 'topLeft', visible: true }}
+        arrowColor={{ topLeft: 'grey' }}
+      />
+    );
+    const popoverWrapper = container.querySelector(
+      '.ant-popover.ds-date-range-popover > .ant-popover-content > .ant-popover-arrow'
+    ) as HTMLElement;
+    expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
 });

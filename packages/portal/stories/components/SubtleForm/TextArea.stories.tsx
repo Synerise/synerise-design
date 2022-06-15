@@ -2,8 +2,12 @@ import * as React from 'react';
 
 import SubtleForm from '@synerise/ds-subtle-form';
 import { boolean, number, text } from '@storybook/addon-knobs';
+
 const decorator = storyFn => <div style={{ width: '400px', padding: '16px', background: '#fff' }}>{storyFn()}</div>;
 const renderLabel = (text: string) => {
+  if (!text) {
+    return undefined;
+  }
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 const getErrorText = (error: boolean, errorText: string): string => {
@@ -13,10 +17,30 @@ const getErrorText = (error: boolean, errorText: string): string => {
     return '';
   }
 };
+
+const TextareaWithKnobs = () => {
+  const [description, setDescription] = React.useState<string | undefined>();
+  const validationState = boolean('Set validation state', false);
+  const disabled = boolean('Set disabled', false);
+  const errorMessage = text('Error Text', 'Error');
+  return <SubtleForm.TextArea
+    minRows={3}
+    value={description}
+    onChange={setDescription}
+    placeholder={'Description'}
+    label={renderLabel(text('Description', 'Description'))}
+    labelTooltip={'Description'}
+    suffixTooltip={'Edit'}
+    error={validationState}
+    errorText={getErrorText(validationState, errorMessage)}
+    disabled={disabled}
+  />
+};
+
 const stories = {
-  default: () => {
+  default: TextareaWithKnobs,
+  simpleForm: () => {
     const [city, setCity] = React.useState<string | undefined>();
-    const [description, setDescription] = React.useState<string | undefined>();
     const [name, setName] = React.useState<string | undefined>();
     const validationState = boolean('Set validation state', false);
     const disabled = boolean('Set disabled', false);
@@ -51,18 +75,7 @@ const stories = {
           />
         </div>
         <div style={{ marginBottom: '0px' }}>
-          <SubtleForm.TextArea
-            minRows={3}
-            value={description}
-            onChange={setDescription}
-            placeholder={'Description'}
-            label={renderLabel('Description')}
-            labelTooltip={'Description'}
-            suffixTooltip={'Edit'}
-            error={validationState}
-            errorText={getErrorText(validationState, errorMessage)}
-            disabled={disabled}
-          />
+          <TextareaWithKnobs/>
         </div>
       </div>
     );

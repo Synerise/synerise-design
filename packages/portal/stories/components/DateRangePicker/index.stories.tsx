@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
@@ -18,6 +18,32 @@ const decorator = storyFn => (
     <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
+const CUSTOM_COLORS = [
+  '',
+  'blue',
+  'grey',
+  'red',
+  'green',
+  'yellow',
+  'pink',
+  'mars',
+  'orange',
+  'fern',
+  'cyan',
+  'purple',
+  'violet',
+];
+const POPOVER_PLACEMENT = {
+  topLeft: 'topLeft',
+  topRight: 'topRight',
+  bottomLeft: 'bottomLeft',
+  bottomRight: 'bottomRight',
+  leftTop: 'leftTop',
+  leftBottom: 'leftBottom',
+  rightTop: 'rightTop',
+  rightBottom: 'rightBottom',
+};
+
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
@@ -85,6 +111,20 @@ const stories = {
   default: () => {
     const value = undefined;
     const showTime = boolean('Set showTime', true);
+    const setCustomArrowColor = boolean('Set custom arrow color', false);
+    const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
+    const bottomPlacementOfPopover = select('Top arrow color', CUSTOM_COLORS, 'grey')
+    const additionalMapper = {
+      topLeft: topPlacementOfPopover,
+      topRight: topPlacementOfPopover,
+      bottomLeft: bottomPlacementOfPopover,
+      bottomRight:bottomPlacementOfPopover,
+      leftTop: topPlacementOfPopover,
+      leftBottom: bottomPlacementOfPopover,
+      rightTop: topPlacementOfPopover,
+      rightBottom: bottomPlacementOfPopover,
+    };
+    const setPlacement = select('Set placement of popover', POPOVER_PLACEMENT, 'bottomLeft');
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
       FUTURE: boolean('Set relative future mode', true),
@@ -105,7 +145,8 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{ placement: 'bottomLeft' }}
+        popoverProps={{ placement: setPlacement}}
+        arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
