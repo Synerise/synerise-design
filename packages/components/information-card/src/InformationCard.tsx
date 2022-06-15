@@ -172,6 +172,8 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card">
         <Card
           background="white"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           renderBadge={(): React.ReactNode => {
             return (
               renderBadge !== null && (
