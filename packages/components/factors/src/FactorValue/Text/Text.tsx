@@ -18,12 +18,14 @@ const TextInput: React.FC<InputProps> = ({
   autocompleteText,
   factorType,
   opened,
+  onDeactivate,
+  error,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
-  const [inputRef, setInputRef] = useState<
-    React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>
-  >();
+  const [inputRef, setInputRef] =
+    useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
+  const [localError, setLocalError] = React.useState(false);
   const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
 
   React.useEffect(() => {
@@ -48,6 +50,11 @@ const TextInput: React.FC<InputProps> = ({
     event => {
       setLocalValue(event.target.value);
       onChangeDebounce(event.target.value);
+      if (!event.target.value.length) {
+        setLocalError(true);
+      } else {
+        setLocalError(false);
+      }
     },
     [onChangeDebounce]
   );
@@ -72,8 +79,7 @@ const TextInput: React.FC<InputProps> = ({
 
   const autocompleteOptions = React.useMemo(() => {
     return (
-      (localValue &&
-        autocompleteText &&
+      (autocompleteText &&
         autocompleteText.options.filter(option =>
           option.toLowerCase().includes((localValue as string).toLowerCase())
         )) ||
@@ -82,9 +88,17 @@ const TextInput: React.FC<InputProps> = ({
   }, [localValue, autocompleteText]);
 
   return (
-    <>
-      {factorType === 'text' && textType === 'autocomplete' && autocompleteText ? (
-        <Autocomplete placeholder={texts.valuePlaceholder} value={localValue as string} onChange={handleAutocomplete}>
+    <S.TextWrapper>
+      {factorType === 'text' && textType === 'autocomplete' ? (
+        <Autocomplete
+          placeholder={texts.valuePlaceholder}
+          value={localValue as string}
+          onChange={handleAutocomplete}
+          onBlur={onDeactivate}
+          error={localError || error}
+          handleInputRef={setInputRef}
+          defaultOpen
+        >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
               {option}
@@ -99,6 +113,8 @@ const TextInput: React.FC<InputProps> = ({
             suffix={SuffixIcon}
             value={localValue as string}
             onChange={handleChange}
+            onBlur={onDeactivate}
+            error={localError || error}
           />
         </S.InputWrapper>
       )}
@@ -109,7 +125,7 @@ const TextInput: React.FC<InputProps> = ({
         onApply={handleApply}
         texts={texts}
       />
-    </>
+    </S.TextWrapper>
   );
 };
 

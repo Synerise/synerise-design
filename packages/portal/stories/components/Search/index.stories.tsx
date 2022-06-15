@@ -82,7 +82,7 @@ const stories = {
     const recentTitle = text('Set recent title', 'Recent');
     const recentTooltip = text('Set recent tooltip', 'Recent');
     const recentCount = 3;
-
+    const expandedInput = boolean(' Set search input expanded', true);
     const parametersTitle = text('Set search in title', 'Search in');
     const parametersTooltip = text('Set search in tooltip', 'Search in');
     const parametersCount = number('Set search in count', 6, { min: 1, max: 10 });
@@ -151,6 +151,7 @@ const stories = {
         }}
         value={value}
         disableInput={boolean('Disable input when property has been choosen', false) && Boolean(parameterValue)}
+        alwaysExpanded={expandedInput}
       />
     );
   },

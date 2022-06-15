@@ -18,6 +18,7 @@ const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
 };
+
 const stories = {
   default: withState({
     name: 'Example',
@@ -63,8 +64,8 @@ const stories = {
             prefix={prefix}
             onSelectTab={handleSelect}
             onChangeName={handleChangeName}
-            onRemoveTab={action('Remove tab')}
-            onDuplicateTab={action('Duplicate')}
+            onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
+            onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
               changeNameTooltip: text('Set rename tooltip', 'Rename'),
               removeTooltip: text('Set remove tooltip', 'Remove'),
@@ -82,6 +83,11 @@ const stories = {
       id: i,
       name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
       tag: String.fromCharCode(65 + i).toUpperCase(),
+      itemData: {
+        age: i * 10,
+        name: `Name ${String.fromCharCode(65 + i).toUpperCase()}`,
+        city: `City ${String.fromCharCode(65 + i).toUpperCase()}`,
+      },
     })),
     activeTab: 0,
     nextId: 3,
@@ -97,6 +103,7 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
+
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -139,6 +146,11 @@ const stories = {
             id: store.state.nextId,
             name: `Variant ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
             tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
+            itemData: {
+              age: store.state.nextId * 10,
+              name: `Name ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
+              city: `City ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
+            },
           },
         ],
         nextId: store.state.nextId + 1,
@@ -153,12 +165,15 @@ const stories = {
       store.set({ activeTab: id });
     };
 
+    const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
+
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs
           maxTabsCount={maxTabCount}
           onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
           onAddTab={handleAddItem}
+          addTabLabel={'Add new'}
         >
           {store.state.items.map(item => (
             <CardTab
@@ -176,7 +191,13 @@ const stories = {
               onSelectTab={handleSelect}
               onChangeName={handleChangeName}
               onRemoveTab={handleRemove}
-              onDuplicateTab={handleDuplicate}
+              onDuplicateTab={
+                boolean('Enable not displaying duplicate-card button if reached cards limit', true)
+                  ? isTabsLimitNotExceeded
+                    ? handleDuplicate
+                    : undefined
+                  : handleDuplicate
+              }
               texts={{
                 changeNameTooltip: 'Rename',
                 removeTooltip: 'Remove',
@@ -184,6 +205,7 @@ const stories = {
               }}
               invalid={invalid}
               invalidName={invalidName}
+              itemData={item.itemData}
             />
           ))}
         </CardTabs>

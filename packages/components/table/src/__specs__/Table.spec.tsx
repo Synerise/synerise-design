@@ -343,13 +343,13 @@ describe('Table', () => {
       const starButtons = getAllByTestId('ds-table-star-button');
 
       fireEvent.click(starButtons[1]);
-      expect(onChangeSpy).toHaveBeenCalledWith(['4', '2']);
+      expect(onChangeSpy).toHaveBeenCalledWith(['4', '2'], '2', true);
 
       fireEvent.click(starButtons[3]);
-      expect(onChangeSpy).toHaveBeenCalledWith(['2']);
+      expect(onChangeSpy).toHaveBeenCalledWith(['2'], '4', false);
 
       fireEvent.click(starButtons[1]);
-      expect(onChangeSpy).toHaveBeenCalledWith([]);
+      expect(onChangeSpy).toHaveBeenCalledWith([], '2', false);
     });
   });
 });

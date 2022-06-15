@@ -3,15 +3,16 @@ import { text, select, number, boolean, object } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Icon, { FileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import { shapes as avatarShape, sizes as avatarSize } from '../Avatar/constants';
 import { statuses } from './constants';
-
-
+import { color } from '@synerise/ds-badge/dist/Badge.types';
 
 const decorator = storyFn => (
-  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>{storyFn()}</div>
+  <div style={{ display: 'flex', width: '192px', height: '34px', alignItems: 'center', justifyContent: 'center' }}>
+    {storyFn()}
+  </div>
 );
 const CUSTOM_COLORS = [
   '',
@@ -49,7 +50,7 @@ const stories = {
             overflowCount={number('OverflowCount', 99)}
             showZero={boolean('ShowZero', false)}
             title={text('Title', 'text')}
-            style={ {
+            style={{
               margin: '0 6px 0 11px',
             }}
           />
@@ -122,18 +123,18 @@ const stories = {
                 },
               }}
             />
+            <Badge
+              count={number('Count', 1)}
+              overflowCount={number('OverflowCount', 99)}
+              outlined={isOutline}
+              backgroundColor={'transparent'}
+              textColor={'white'}
+              style={{
+                margin: '0 11px 0 4px',
+                alignItems: 'center',
+              }}
+            />
           </div>
-          <Badge
-            count={number('Count', 1)}
-            overflowCount={number('OverflowCount', 99)}
-            outlined={isOutline}
-            backgroundColor={'transparent'}
-            textColor={'white'}
-            style={{
-              margin: '0 11px 0 4px',
-              alignItems: 'center',
-            }}
-          />
           <br />
         </div>
       </React.Fragment>
@@ -197,13 +198,13 @@ const stories = {
       </Badge>
     </React.Fragment>
   ),
-  status: () => ({
-    status: select('Status', statuses, 'active'),
-    text: text('Text', 'Success'),
-  }),
+  status: () => {
+    const customColor = select('Select custom color', [undefined, ...defaultColorsOrder, ...color], undefined);
+    return <Badge status={'success'} customColor={customColor} text={'test'}></Badge>;
+  },
   statusWithAvatar: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')}  >
+      <Badge status={select('Status', statuses, 'active')}>
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
           shape={select('Avatar shape', avatarShape, 'circle')}
@@ -216,17 +217,27 @@ const stories = {
 
   flagDefault: () => (
     <>
-      <Badge customColor={select('Set custom color status', CUSTOM_COLORS, '')} status={select('Status', statuses, 'active')} flag={true} pulsing={boolean('Set Pulsing', true)} />
+      <Badge
+        customColor={select('Set custom color status', CUSTOM_COLORS, '')}
+        status={select('Status', statuses, 'active')}
+        flag={true}
+        pulsing={boolean('Set Pulsing', true)}
+      />
     </>
   ),
   flagWithLabel: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} text={text('Text', 'Success')} pulsing={boolean('Set Pulsing', true)}  flag={true} />
+      <Badge
+        status={select('Status', statuses, 'active')}
+        text={text('Text', 'Success')}
+        pulsing={boolean('Set Pulsing', true)}
+        flag={true}
+      />
     </>
   ),
   flagWithElement: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <div
           style={{
             width: '48px',
@@ -240,14 +251,14 @@ const stories = {
   ),
   flagWithIcon: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <Icon color={text('IconColor', '#6a7580')} size={number('IconSize', 24)} component={<FileM />} />
       </Badge>
     </>
   ),
   flagWithAvatar: () => (
     <>
-      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)}  flag={true}>
+      <Badge status={select('Status', statuses, 'active')} pulsing={boolean('Set Pulsing', true)} flag={true}>
         <Avatar
           size={select('Avatar size', avatarSize, 'extraLarge')}
           shape={select('Avatar shape', avatarShape, 'square')}
@@ -260,7 +271,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Badge',
+  name: 'Components/Badge',
   decorator,
   stories,
   Component: Badge,

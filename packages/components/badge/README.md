@@ -71,9 +71,9 @@ import Badge from '@synerise/ds-badge'
 
 | Property           | Description                                                        | Type                                                                                                 | Default |
 | ------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ------- |
-| backgroundColor    | Customize the badge color                                          | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -       |
+| backgroundColor    | Customize the badge color                                          | Color                                                                                                | -       |
 | backgroundColorHue | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
-| color              | Customize the badge dot color                                      | string                                                                                               | -       |
+| customColor        | Customize the badge dot color                                      | `red`                                                                                                | -       |
 | count              | Number to show in the badge counter                                | ReactNode                                                                                            |         |
 | dot                | Display a red dot instead of a counter                             | boolean                                                                                              | `false` |
 | flag               | Show the badge as a flag                                           | boolean                                                                                              | `false` |
@@ -88,3 +88,8 @@ import Badge from '@synerise/ds-badge'
 | textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
 | title              | Text shown when a cursor is hovered over the badge                 | string                                                                                               | count   |
 
+### Color
+
+| Values                                                                                                                                                                                                                                                                                                                                                                                                      | 
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
+| `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` / `blue-600` / `green-600` / `mars-600` / `purple-600` / `cyan-600` / `yellow-600` / `violet-600` / `blue-700` / `green-700` / `mars-700` / `purple-700` / `cyan-700` / `yellow-700` / `violet-700` / `blue-500` / `green-500` / `mars-500` / `purple-500` / `cyan-500` / `yellow-500` / `violet-500`  | 

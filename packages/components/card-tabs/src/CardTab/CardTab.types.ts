@@ -48,4 +48,5 @@ export interface CardTabProps {
   onDuplicateTab?: (id: number) => void;
   onRemoveTab?: (id: number) => void;
   texts?: CardTabTexts;
+  itemData?: unknown;
 }

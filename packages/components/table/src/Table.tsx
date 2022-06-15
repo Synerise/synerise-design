@@ -22,7 +22,7 @@ const ITEM_RENDER_TYPE = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DSTable<T extends any>(props: DSTableProps<T>): React.ReactElement {
+function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
   const intl = useIntl();
   const {
     title,

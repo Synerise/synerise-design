@@ -76,15 +76,17 @@ import Operators from '@synerise/ds-operators'
 
 ## API
 
-| Property | Description                                                                    | Type                                                       | Default   |
-| ---      | ---                                                                            | ---                                                        | ---       |
-| groups   | Groups of operators                                                            | OperatorsGroup[]                                           | []        |
-| items    | Array of operators                                                             | OperatorsItem[]                                            | []        |
-| onChange | Callback called when user selects operator                                     | (item: OperatorsItem \ OperatorsGroup \ undefined) => void | -         |
-| opened   | Whether if dropdown should opens from outside of component                     | boolean                                                    | false     |
-| texts    | Translations object                                                            | OperatorTexts                                              | -         |
-| value    | Selected operator                                                              | OperatorsItem \ undefined                                  | undefined |
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;              | -       |
+| Property                  | Description                                                | Type                                                       | Default   |
+| ---                       | ---                                                        | ---                                                        | ---       | 
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \ null) => HTMLElement;              | -         | 
+| groups                    | Groups of operators                                        | OperatorsGroup[]                                           | []        | 
+| items                     | Array of operators                                         | OperatorsItem[]                                            | []        | 
+| onActivate                | Callback called when user opens dropdown                   | (fieldType: string) => void                                | -         | 
+| onChange                  | Callback called when user selects operator                 | (item: OperatorsItem \ OperatorsGroup \ undefined) => void | -         | 
+| onDeactivate              | Callback called when user closes dropdown                  | () => void                                                 | -         | 
+| opened                    | Whether if dropdown should opens from outside of component | boolean                                                    | false     |  
+| texts                     | Translations object                                        | OperatorTexts                                              | -         | 
+| value                     | Selected operator                                          | OperatorsItem \ undefined                                  | undefined | 
 
 ### OperatorsGroup
 

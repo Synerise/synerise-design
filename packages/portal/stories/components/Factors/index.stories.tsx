@@ -5,6 +5,7 @@ import { withState } from '@dump247/storybook-state';
 import { boolean, object, select } from '@storybook/addon-knobs';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
+import { action } from '@storybook/addon-actions';
 
 const DEFAULT_STATE = {
   selectedFactorType: undefined,
@@ -15,7 +16,8 @@ const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     const setSelectedFactor = type => store.set({ selectedFactorType: type, value: '' });
     const changeHandler = val => {
-      store.set({ value: val });
+      store.set({ value: val }); 
+      action('onChange')(val);
     };
 
     return (
@@ -42,6 +44,7 @@ const stories = {
         withoutTypeSelector={boolean('Hide type selector', false)}
         formulaEditor={<div>Formula editor</div>}
         texts={FACTORS_TEXTS}
+        onDeactivate={action('onDeactivate')}
       />
     );
   }),

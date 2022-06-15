@@ -4,6 +4,7 @@ import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import { SubjectProps } from '../Subject.types';
 import Subject from '../Subject';
 import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 export const SUBJECT_TEXTS = {
   searchPlaceholder: 'Search',
@@ -155,5 +156,28 @@ describe('Subject component', () => {
     // ASSERT
     expect(container.querySelector('.ant-dropdown-hidden')).toBeTruthy();
     expect(getByText(SUBJECT_ITEMS[3].name)).toBeTruthy();
+  });
+
+  test('should call onActivate', () => {
+    // ARRANGE
+    const handleActivate = jest.fn();
+    const { getByText } = renderWithProvider(RENDER_SUBJECT({ onActivate: handleActivate }));
+
+    // ACT
+    userEvent.click(getByText('Choose event'));
+
+    // ASSERT
+    expect(handleActivate).toBeCalled();
+  });
+  test('should call onDeactivate', () => {
+    // ARRANGE
+    const handleDeactivate = jest.fn();
+    const { getByText } = renderWithProvider(RENDER_SUBJECT({ onDeactivate: handleDeactivate }));
+
+    // ACT
+    userEvent.click(getByText('Choose event'));
+    userEvent.click(document.body);
+
+    expect(handleDeactivate).toBeCalled();
   });
 });

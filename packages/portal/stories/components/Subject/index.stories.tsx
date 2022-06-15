@@ -38,6 +38,8 @@ const stories = {
         }
         selectedItem={store.state.selected}
         items={SUBJECT_ITEMS}
+        onActivate={action('onActivate')}
+        onDeactivate={action('onDeactivate')}
       />
     );
   }),

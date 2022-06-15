@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-footer",
-  "version": "0.2.8",
+  "version": "0.2.16",
   "description": "Footer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,8 +32,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.16.5",
-    "@synerise/ds-utils": "^0.21.5"
+    "@synerise/ds-button": "^0.17.2",
+    "@synerise/ds-utils": "^0.21.10"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

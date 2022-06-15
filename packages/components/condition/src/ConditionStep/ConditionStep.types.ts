@@ -37,4 +37,10 @@ export type ConditionStepProps = {
   currentStepId: React.ReactText;
   currentConditionId: React.ReactText;
   currentField: React.ReactText;
+  setCurrentField: (field: string) => void;
+  setCurrentCondition: (conditionId: string) => void;
+  setCurrentStep: (stepId: React.ReactText) => void;
+  onDeactivate: () => void;
+  showSuffix?: boolean;
+  hoverDisabled?: boolean;
 };

@@ -10,6 +10,7 @@ export interface CardProps {
   children?: React.ReactNode;
   style?: React.CSSProperties;
   withHeader?: boolean;
+  defaultHeaderBackgroundColor?: boolean;
   compactHeader?: boolean;
   title?: React.ReactNode;
   description?: React.ReactNode;

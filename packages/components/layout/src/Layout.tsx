@@ -3,11 +3,11 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Layout.styles';
-import { LayoutProps } from './Layout.types';
+import * as T from './Layout.types';
 
 const DEFAULT_SIDEBAR_WIDTH = 320;
 
-const Layout: React.FC<LayoutProps> = ({
+const Layout: React.FC<T.LayoutProps> = ({
   header,
   left,
   right,

@@ -7,7 +7,10 @@ import Icon, {
   VarTypeBooleanM,
   VarTypeListM,
   UserM,
-  SettingsM, OptionHorizontalM, VarTypeNumberM, VarTypeDateM,
+  SettingsM,
+  OptionHorizontalM,
+  VarTypeNumberM,
+  VarTypeDateM,
 } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
@@ -17,11 +20,11 @@ import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { DefaultColor, defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import ProgressBar from '@synerise/ds-progress-bar';
-import { Counter} from '../../Loader/index.stories';
+import { Counter } from '../../Loader/index.stories';
 import Loader from '@synerise/ds-loader';
 import Dropdown from '@synerise/ds-dropdown';
 // @ts-ignore
@@ -30,7 +33,6 @@ import Skeleton from '@synerise/ds-skeleton';
 import SkeletonAvatar from '@synerise/ds-skeleton/dist/SkeletonAvatar/SkeletonAvatar';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
-
 
 const data = [
   { text: 'Preview' },
@@ -116,21 +118,7 @@ const iconSizes = {
   Medium: 'M',
   Large: 'L',
 };
-const colorOptions = {
-  '': '',
-  blue: 'blue',
-  grey: 'grey',
-  red: 'red',
-  green: 'green',
-  yellow: 'yellow',
-  pink: 'pink',
-  mars: 'mars',
-  orange: 'orange',
-  fern: 'fern',
-  cyan: 'cyan',
-  purple: 'purple',
-  violet: 'violet',
-};
+const colorOptions: DefaultColor[] = defaultColorsOrder;
 
 export const COLUMNS_WITH_TRIGGERS = [
   {
@@ -142,7 +130,7 @@ export const COLUMNS_WITH_TRIGGERS = [
     icon: { component: <VarTypeListM /> },
     iconTooltip: { component: <InfoFillS /> },
     render: select => (
-      <Select getPopupContainer={()=>document.querySelector(".ds-table")} value={select.value}>
+      <Select value={select.value}>
         {select.options.map((option: string) => (
           <Select.Option value={option}>{option}</Select.Option>
         ))}
@@ -207,7 +195,6 @@ export const COLUMNS_WITH_TRIGGERS = [
     render: checked => <Checkbox withoutPadding checked={checked} />,
   },
   {
-
     render: () => (
       <TableCell.ActionCell>
         <Button onClick={action('click')} type="secondary" mode="split">
@@ -296,7 +283,6 @@ export const COLUMNS_WITH_ICONS = [
     },
   },
 
-
   {
     key: 'icon-with-label',
     title: 'Icon with label',
@@ -321,7 +307,13 @@ export const COLUMNS_WITH_STATUSES = [
     ellipsis: true,
     icon: { component: <VarTypeBooleanM /> },
     tooltip: { title: 'Tooltip', description: 'Description' },
-    render: status => <TableCell.StatusLabelCell customColor={select('Set custom color status', colorOptions, '')} status={status} label={status} />,
+    render: status => (
+      <TableCell.StatusLabelCell
+        customColor={select('Set custom color status', ['', ...colorOptions], '')}
+        status={status}
+        label={status}
+      />
+    ),
   },
   {
     title: 'Tag',
@@ -377,16 +369,8 @@ export const COLUMNS_WITH_AVATARS = [
     render: avatar => {
       return (
         <TableCell.AvatarLabelCell
-          avatar={
-            <Avatar
-              backgroundColor="red"
-              backgroundColorHue="050"
-              src={anonymImage}
-              size="small"
-            >
-            </Avatar>
-          }
-         title='Test'
+          avatar={<Avatar backgroundColor="red" backgroundColorHue="050" src={anonymImage} size="small"></Avatar>}
+          title="Test"
         />
       );
     },
@@ -454,34 +438,21 @@ export const COLUMNS_WITH_AVATARS = [
       const loadingText = text('Loading', 'Loading...');
 
       const getPercent = (): number | React.ReactNode | null => {
-          return (
-            <div style={{ display: 'flex' }}>
-              <Counter/>
-            </div>
-          );
+        return (
+          <div style={{ display: 'flex' }}>
+            <Counter />
+          </div>
+        );
       };
       return (
         <TableCell.AvatarLabelCell
-          avatar={
-            <ObjectAvatar
-              badgeStatus="active"
-              iconComponent={<Icon component={avatar.icon} color="red" />}
-            />
-          }
+          avatar={<ObjectAvatar badgeStatus="active" iconComponent={<Icon component={avatar.icon} color="red" />} />}
           title={avatar.titleLarg}
           loader={
-            <div style={{ display: 'flex', width: '100px', alignItems: 'center', margin: '-1px 0 -3px 0'}}>
+            <div style={{ display: 'flex', width: '100px', alignItems: 'center', margin: '-1px 0 -3px 0' }}>
+              <div>{avatar.labelLoader}</div>
               <div>
-                {avatar.labelLoader}
-              </div>
-              <div>
-                <Loader
-                  percentFormatter={getPercent}
-                  size='S'
-                  color='blue'
-                  label={loadingText}
-                  labelPosition='right'
-                />
+                <Loader percentFormatter={getPercent} size="S" color="blue" label={loadingText} labelPosition="right" />
               </div>
             </div>
           }
@@ -517,9 +488,11 @@ export const COLUMNS_WITH_AVATARS = [
 ];
 export const COLUMNS_WITH_SKELETON = [
   {
-    title: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M' />
-    </div>,
+    title: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
     dataIndex: 'skeleton',
     key: 'skeleton',
     width: 100,
@@ -530,9 +503,11 @@ export const COLUMNS_WITH_SKELETON = [
     render: skeleton => <Checkbox withoutPadding checked={null} />,
   },
   {
-    title: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M' />
-    </div>,
+    title: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
     dataIndex: 'skeleton',
     key: 'skeleton',
     width: 254,
@@ -544,39 +519,22 @@ export const COLUMNS_WITH_SKELETON = [
       return (
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
-          avatar={
-            <SkeletonAvatar size='M' />
+          avatar={<SkeletonAvatar size="M" />}
+          title={
+            <div style={{ width: '150px' }}>
+              <Skeleton numberOfSkeletons={1} size="M" />
+            </div>
           }
-          title={<div style={{width: '150px'}}>
-            <Skeleton numberOfSkeletons={1} size='M'  />
-          </div>}
         />
       );
     },
   },
   {
-    title: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M' />
-    </div>,
-    dataIndex: 'skeleton',
-    key: 'skeleton-desc',
-    width: 254,
-    textWrap: 'word-break',
-    ellipsis: true,
-    icon: { component: <VarTypeListM /> },
-    iconTooltip: { component: <InfoFillS /> },
-    render: skeleton  => {
-      return (
-        <div style={{width: '150px'}}>
-          <Skeleton numberOfSkeletons={1} size='M'  />
-        </div>
-      );
-    },
-  },
-  {
-    title: <div style={{width: '66px'}}>
-      <Skeleton numberOfSkeletons={1} width='M' />
-    </div>,
+    title: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
     width: 254,
@@ -586,8 +544,29 @@ export const COLUMNS_WITH_SKELETON = [
     iconTooltip: { component: <InfoFillS /> },
     render: skeleton => {
       return (
-        <div style={{width: '150px'}}>
-          <Skeleton numberOfSkeletons={1} size='M'  />
+        <div style={{ width: '150px' }}>
+          <Skeleton numberOfSkeletons={1} size="M" />
+        </div>
+      );
+    },
+  },
+  {
+    title: (
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" />
+      </div>
+    ),
+    dataIndex: 'skeleton',
+    key: 'skeleton-desc',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: skeleton => {
+      return (
+        <div style={{ width: '150px' }}>
+          <Skeleton numberOfSkeletons={1} size="M" />
         </div>
       );
     },
@@ -605,24 +584,19 @@ export const COLUMNS_WITH_FIXED = [
     iconTooltip: { component: <InfoFillS /> },
     render: (avatar, record) => {
       const userDataGroup = 'User data';
-      const user = boolean('Show user data', true, userDataGroup) ? {
-        tooltip: boolean('Show tooltip', true, userDataGroup) ? undefined : false,
-        firstName: record.name,
-        lastName: record.lastName,
-        email: `${record.name}.${record.lastName}@synerise.com`,
-        avatar: boolean('Avatar', false, userDataGroup) ? anonymImage : undefined
-      } : {};
+      const user = boolean('Show user data', true, userDataGroup)
+        ? {
+            tooltip: boolean('Show tooltip', true, userDataGroup) ? undefined : false,
+            firstName: record.name,
+            lastName: record.lastName,
+            email: `${record.name}.${record.lastName}@synerise.com`,
+            avatar: boolean('Avatar', false, userDataGroup) ? anonymImage : undefined,
+          }
+        : {};
       return (
         <TableCell.AvatarLabelCell
           avatarAction={action('Avatar Action')}
-          avatar={
-            <UserAvatar
-              user={user}
-              badgeStatus="active"
-              size="medium"
-              backgroundColor={record.color}
-            />
-          }
+          avatar={<UserAvatar user={user} badgeStatus="active" size="medium" backgroundColor={record.color} />}
           title={`${record.name} ${record.lastName}`}
         />
       );
@@ -634,13 +608,9 @@ export const COLUMNS_WITH_FIXED = [
     ellipsis: true,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render:(record) =>{
-      return(
-        <div>
-          {`${record.name}.${record.lastName}@synerise.com`}
-        </div>
-      )
-    }
+    render: record => {
+      return <div>{`${record.name}.${record.lastName}@synerise.com`}</div>;
+    },
   },
   {
     title: 'Phone',
@@ -670,8 +640,8 @@ export const COLUMNS_WITH_FIXED = [
     width: 100,
     visible: true,
     type: 'number',
-    icon: { component: <VarTypeNumberM/>},
-    iconTooltip: { component: <InfoFillS/>},
+    icon: { component: <VarTypeNumberM /> },
+    iconTooltip: { component: <InfoFillS /> },
   },
   {
     title: 'Last activity',
@@ -680,9 +650,8 @@ export const COLUMNS_WITH_FIXED = [
     type: 'date',
     width: 254,
     visible: true,
-    icon: { component: <VarTypeDateM/>},
-    iconTooltip: { component: <InfoFillS/>},
-
+    icon: { component: <VarTypeDateM /> },
+    iconTooltip: { component: <InfoFillS /> },
   },
   {
     title: 'Status',
@@ -696,9 +665,11 @@ export const COLUMNS_WITH_FIXED = [
     render: status => <TableCell.StatusLabelCell status={status} label={status} />,
   },
   {
-    title: <Button type="ghost" mode="single-icon">
-      <Icon component={<SettingsM/>} />
-    </Button>,
+    title: (
+      <Button type="ghost" mode="single-icon">
+        <Icon component={<SettingsM />} />
+      </Button>
+    ),
     dataIndex: 'skeleton',
     key: 'skeleton-desc',
     width: 50,
@@ -720,7 +691,7 @@ export const COLUMNS_WITH_FIXED = [
           }
         >
           <Button type="ghost" mode="single-icon">
-            <Icon component={<OptionHorizontalM/>} />
+            <Icon component={<OptionHorizontalM />} />
           </Button>
         </Dropdown>
       );

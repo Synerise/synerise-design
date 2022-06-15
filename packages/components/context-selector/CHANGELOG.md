@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.0...@synerise/ds-context-selector@0.12.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **context-selector:** fixes auto height of dropdown list ([4a6b1fb](https://github.com/Synerise/synerise-design/commit/4a6b1fbddc28ddee46751afacb63617f6d341395))
+
+
+
+
+
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.11.0...@synerise/ds-context-selector@0.12.0) (2022-04-29)
+
+
+### Features
+
+* **context-selector:** adds default trigger value ([006e307](https://github.com/Synerise/synerise-design/commit/006e3079e8d557c6312c525370c53ad41ddcba9a))
+* **context-selector:** adds onDeactivate prop, updates Readme.md ([ace0ac7](https://github.com/Synerise/synerise-design/commit/ace0ac7f2e6ec9e4adad51dc430af7e7fa4bb097))
+
+
+
+
+
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.10...@synerise/ds-context-selector@0.11.0) (2022-04-05)
+
+
+### Features
+
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
+## [0.10.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.9...@synerise/ds-context-selector@0.10.10) (2022-03-31)
+
+
+### Bug Fixes
+
+* **context-selector:** pass activeGroup of currently listed entries ([a657b2f](https://github.com/Synerise/synerise-design/commit/a657b2fec51d103dacada03a14aa8db675d77553))
+
+
+
+
+
+## [0.10.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.8...@synerise/ds-context-selector@0.10.9) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.7...@synerise/ds-context-selector@0.10.8) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.6...@synerise/ds-context-selector@0.10.7) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.5...@synerise/ds-context-selector@0.10.6) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.10.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.4...@synerise/ds-context-selector@0.10.5) (2022-03-14)
+
+
+### Bug Fixes
+
+* **context-selector:** make sure react handles entries list separately ([56d2584](https://github.com/Synerise/synerise-design/commit/56d2584466ccc160457b1557501abd801b2f20bd))
+
+
+
+
+
+## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.3...@synerise/ds-context-selector@0.10.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
 ## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.10.2...@synerise/ds-context-selector@0.10.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

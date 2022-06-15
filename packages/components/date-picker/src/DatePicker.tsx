@@ -32,6 +32,11 @@ const DatePicker: React.FC<Props> = ({
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
   });
+
+  React.useEffect(() => {
+    setSelectedDate(value);
+  }, [value]);
+
   const onValueChangeCallback = React.useCallback(
     (val: Date | undefined): void => {
       onValueChange && onValueChange(val);

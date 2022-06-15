@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.0...@synerise/ds-alert@0.7.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* **alert:** Notification's notice border-radius ([1017519](https://github.com/Synerise/synerise-design/commit/1017519504de355667618737075adaf5b5bcb426))
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.6.1...@synerise/ds-alert@0.7.0) (2022-04-01)
+
+
+### Bug Fixes
+
+* **alert:** linter Promise, async function returns Promise<void> ([5c1e54d](https://github.com/Synerise/synerise-design/commit/5c1e54d52a0897345cd88609adcbdcdcf5fd85bf))
+
+
+### Features
+
+* **alert:** notificationOpen to use Promise interface ([531b813](https://github.com/Synerise/synerise-design/commit/531b81318370f97d29c13d14510e602b861e20f4))
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.6.0...@synerise/ds-alert@0.6.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* **alert:** exporting NotificationProps typing ([985c994](https://github.com/Synerise/synerise-design/commit/985c994a516f0323e2903afddf9ca4bea33a594c))
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.2...@synerise/ds-alert@0.6.0) (2022-03-30)
+
+
+### Features
+
+* **alert:** add Notification component, stories, test todos ([eeb09d8](https://github.com/Synerise/synerise-design/commit/eeb09d857938100058e6c3112082014acdb67d6c))
+* **alert:** add the remaining placements, code cleanup, storybook fixes ([c469574](https://github.com/Synerise/synerise-design/commit/c469574c2fa5135d956127a5bc35601808285569))
+
+
+
+
+
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.1...@synerise/ds-alert@0.5.2) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.5.0...@synerise/ds-alert@0.5.1) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.4.7...@synerise/ds-alert@0.5.0) (2022-03-04)
+
+
+### Features
+
+* **alert:** add customIcon prop to IconAlert ([afa5817](https://github.com/Synerise/synerise-design/commit/afa5817d0b8e2ebc80b69337998fb1e3c55a0259))
+* **alert:** add tests to IconAlert ([e3bfe24](https://github.com/Synerise/synerise-design/commit/e3bfe240f322cc36aa8703e715cbd458f7b73649))
+
+
+
+
+
+## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.4.6...@synerise/ds-alert@0.4.7) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
 ## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.4.5...@synerise/ds-alert@0.4.6) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-alert

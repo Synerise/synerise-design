@@ -11,6 +11,8 @@ import TextTrigger from './elements/TextTrigger/TextTrigger';
 
 export type DropdownProps = AntDropDownProps;
 
+const topPlacements = ['topLeft', 'topRight', 'topCenter'];
+
 class Dropdown extends React.Component<DropdownProps> {
   static Wrapper: typeof Wrapper = Wrapper;
   static SearchInput: typeof SearchBar = SearchBar;
@@ -20,11 +22,13 @@ class Dropdown extends React.Component<DropdownProps> {
   static TextTrigger: typeof TextTrigger = TextTrigger;
 
   render(): React.ReactNode {
+    const { placement } = this.props;
+    const offsetVertical = topPlacements.find(topPlacement => topPlacement === placement) !== undefined ? -8 : 8;
+
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
       <AntdDropdown
         getPopupContainer={getPopupContainer}
-        align={{ offset: [0, 8] }} // STOR-588
+        align={{ offset: [0, offsetVertical] }}
         trigger={['click']}
         {...this.props}
       />

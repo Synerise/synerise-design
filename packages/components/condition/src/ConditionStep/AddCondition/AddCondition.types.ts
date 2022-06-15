@@ -1,7 +1,8 @@
-import { ConditionProps, ConditionTexts } from '../../Condition.types';
+import * as React from 'react';
+import { ConditionTexts } from '../../Condition.types';
 
 export type AddConditionProps = {
-  addCondition: ConditionProps['addCondition'];
+  addCondition: (stepId: React.ReactText) => void;
   stepId: React.ReactText;
   conditionsNumber: number;
   texts: Partial<ConditionTexts>;

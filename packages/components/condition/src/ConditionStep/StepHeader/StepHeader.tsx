@@ -14,13 +14,13 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   stepName,
   stepId,
   texts,
-  updateStepName = NOOP,
+  updateStepName,
   duplicateStep,
   removeStep,
   index,
   draggableEnabled,
 }) => {
-  const onChangeNameDebounce = React.useCallback(debounce(updateStepName, 300), [updateStepName]);
+  const onChangeNameDebounce = React.useCallback(debounce(updateStepName || NOOP, 300), [updateStepName]);
   const [localName, setLocalName] = React.useState(stepName);
 
   React.useEffect(() => {
@@ -36,10 +36,11 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   );
 
   return (
-    <S.StepHeader>
-      {updateStepName && (
-        <S.StepName>
-          {`${index + 1}.`}{' '}
+    <S.StepHeader className="ds-condition-step-header" draggable={draggableEnabled}>
+      <S.LeftSide>
+        {draggableEnabled && <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />}
+        <S.StepName className="ds-condition-step-name">
+          {`${index + 1}`}{' '}
           <InlineEdit
             size="small"
             input={{
@@ -50,16 +51,8 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
             }}
           />
         </S.StepName>
-      )}
+      </S.LeftSide>
       <S.StepCruds>
-        {draggableEnabled && (
-          <Cruds.CustomAction
-            icon={<DragHandleM />}
-            title={texts.moveTooltip}
-            onClick={NOOP}
-            className="step-drag-handler"
-          />
-        )}
         <Cruds
           onDuplicate={duplicateStep ? (): void => duplicateStep(stepId) : undefined}
           onDelete={removeStep ? (): void => removeStep(stepId) : undefined}
