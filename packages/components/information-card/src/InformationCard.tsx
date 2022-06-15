@@ -54,6 +54,10 @@ export type InformationCardProps = {
    */
   actionButton?: boolean | (() => React.ReactNode);
   /**
+   * default action button callback methodd
+   */
+  actionButtonCallback?: () => void;
+  /**
    * default action button tooltip
    */
   actionButtonTooltipText?: string;
@@ -128,6 +132,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
     {
       actionButton,
       actionButtonTooltipText,
+      actionButtonCallback,
       avatarTooltipText,
       children,
       copyTooltip,
@@ -164,16 +169,18 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       [children, descriptionConfig]
     );
     return (
-      <S.InfoCardWrapper ref={ref} aria-label="information card">
+      <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card">
         <Card
           background="white"
-          renderBadge={(): React.ReactNode =>
-            renderBadge !== null && (
-              <div style={{ marginRight: '16px' }}>
-                {renderBadge?.call(null) ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
-              </div>
-            )
-          }
+          renderBadge={(): React.ReactNode => {
+            return (
+              renderBadge !== null && (
+                <div style={{ marginRight: '16px' }}>
+                  {renderBadge?.call(null) ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
+                </div>
+              )
+            );
+          }}
           title={title ? copyableSlot(title) : <></>}
           description={subtitle ? copyableSlot(subtitle) : <></>}
           headerSideChildren={undefined}
@@ -192,6 +199,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
                 text={footerText}
                 {...props}
                 actionButton={actionButton}
+                actionButtonCallback={actionButtonCallback}
                 actionButtonTooltipText={actionButtonTooltipText}
                 isCustomDescription={cachedChildren !== undefined}
               />
@@ -306,12 +314,13 @@ function withTooltip(
  */
 function Footer({
   actionButton = false,
+  actionButtonCallback,
   actionButtonTooltipText = '',
   text = '',
   isCustomDescription,
 }: { text: InformationCardProps['footerText']; isCustomDescription: boolean } & Pick<
   InformationCardProps,
-  'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText'
+  'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText' | 'actionButtonCallback'
 >): JSX.Element {
   return (
     <>
@@ -322,7 +331,7 @@ function Footer({
           {(actionButton &&
             actionButton === true &&
             withTooltip(
-              <Button color="grey" type="secondary" mode="single-icon">
+              <Button color="grey" type="secondary" mode="single-icon" onClick={actionButtonCallback}>
                 <ArrowRuCircleM />
               </Button>,
               actionButtonTooltipText

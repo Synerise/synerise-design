@@ -53,7 +53,7 @@ const Card: React.FC<CardProps> = ({
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )) ||
-            renderBadge?.()}
+            (renderBadge && renderBadge())}
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (
