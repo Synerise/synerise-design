@@ -37,6 +37,7 @@ export type ParameterItem = {
   name: string;
   groupId: React.ReactText;
   icon?: React.ReactNode;
+  disabled?: boolean;
 };
 
 export type FactorValueType =
