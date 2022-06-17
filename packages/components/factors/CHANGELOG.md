@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.4...@synerise/ds-factors@0.14.5) (2022-06-17)
+
+
+### Bug Fixes
+
+* **factors:** disabled factor options ([1f805b8](https://github.com/Synerise/synerise-design/commit/1f805b8152c24a669d32e8a3b43f844e75e21db8))
+* **factors:** fixes welders-3765 ([1e1e8f4](https://github.com/Synerise/synerise-design/commit/1e1e8f41d2c36a59e8b1f86a34def74c5f3f457d))
+
+
+
+
+
 ## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.3...@synerise/ds-factors@0.14.4) (2022-06-15)
 
 
