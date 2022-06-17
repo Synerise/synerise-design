@@ -6317,17 +6317,6 @@
   dependencies:
     "@synerise/ds-icon" "^0.47.2"
 
-"@synerise/ds-card@^0.10.1":
-  version "0.10.5"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-card/-/ds-card-0.10.5.tgz#f34503fef24a772b9518e6af52b200e12dd2fd56"
-  integrity sha1-80UD/vJKdyuVGOavUrIA4S3S/VY=
-  dependencies:
-    "@synerise/ds-icon" "^0.47.2"
-    "@synerise/ds-typography" "^0.12.2"
-    "@synerise/ds-utils" "^0.8.31"
-    react-animate-height "^2.0.23"
-    react-visibility-sensor "^5.1.1"
-
 "@synerise/ds-icon@^0.47.2":
   version "0.47.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.47.2.tgz#9476545f2d0aeb8ac36b5fa49212021d6050bb3e"
