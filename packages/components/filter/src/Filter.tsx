@@ -77,6 +77,7 @@ const Filter: React.FC<FilterProps> = ({
       placeholder: {
         chooseCondition: formatMessage({ id: 'DS.PLACEHOLDER.CHOOSE-CONDITION' }),
         getPreview: formatMessage({ id: 'DS.PLACEHOLDER.GET-PREVIEW' }),
+        ...texts?.placeholder,
       },
     }),
     [formatMessage, texts]

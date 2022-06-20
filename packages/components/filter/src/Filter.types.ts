@@ -47,6 +47,10 @@ export type FilterProps = {
       deleteTooltip?: string;
       duplicateTooltip?: string;
     };
+    placeholder?: {
+      chooseCondition?: string;
+      getPreview?: string;
+    };
     addFilter?: string;
     dropMeHere?: string;
   };
