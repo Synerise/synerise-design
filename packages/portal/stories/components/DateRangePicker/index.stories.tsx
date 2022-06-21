@@ -127,7 +127,6 @@ const buildSelectKnobOptions = (optionValues) => {
 
 const stories = {
   default: () => {
-    // const value = undefined;
     const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
     value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
@@ -163,11 +162,11 @@ const stories = {
         showTime={showTime}
         value={value}
         relativeFuture
-        forceAbsolute
+        forceAbsolute={boolean('Force absolute date in onChange', false)}
         showRelativePicker={showRelativePicker}
         showFilter={showDateFilter}
         texts={texts}
-        popoverProps={{ placement: setPlacement}}
+        popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}

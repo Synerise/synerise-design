@@ -38,10 +38,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
-    const { mode } = this.state;
-    if (value.type === RELATIVE && mode === MODES.TIME) {
-      this.handleSwitchMode();
-    }
   }
 
   handleFilterCancel = (): void => {
@@ -59,8 +55,12 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
 
     const { onValueChange } = this.props;
-    const { value } = this.state;
+    const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
+    if (newValue.type === 'RELATIVE' && mode === MODES.TIME) {
+      // clicked on RangeButtons and was selecting time
+      this.setState({ mode: MODES.DATE });
+    }
     this.setState({ value: { ...newValue, key: range?.key, translationKey: range?.translationKey } });
     onValueChange && onValueChange(newValue);
   };
@@ -211,7 +211,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           disabledDate={disabledDate}
           onSwitchMode={this.handleSwitchMode}
           dateOnly={!showTime}
-          canSwitchMode={isValid && value.type === ABSOLUTE}
+          canSwitchMode={isValid}
           texts={texts}
           forceAdjacentMonths={forceAdjacentMonths}
           intl={intl}
