@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.2...@synerise/ds-filter@0.10.0) (2022-06-21)
+
+
+### Features
+
+* **filter:** adds logicOptions prop ([74b41c7](https://github.com/Synerise/synerise-design/commit/74b41c7858b6920528aef4ba4c0826833aeaac58))
+
+
+
+
+
 ## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.1...@synerise/ds-filter@0.9.2) (2022-06-20)
 
 
