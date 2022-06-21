@@ -38,6 +38,7 @@ const Filter: React.FC<FilterProps> = ({
   renderStepContent,
   addFilterComponent,
   texts,
+  logicOptions,
 }) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
@@ -109,6 +110,7 @@ const Filter: React.FC<FilterProps> = ({
       const props = {
         LOGIC: {
           onChange: (value: LogicOperatorValue): void => onChangeLogic(expression.id, value),
+          options: logicOptions,
         },
         STEP: {
           onChangeMatching: (value: boolean): void => onChangeStepMatching(expression.id, value),
@@ -129,6 +131,7 @@ const Filter: React.FC<FilterProps> = ({
       activeExpressionId,
       getContextTypeTexts,
       isActive,
+      logicOptions,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
