@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { injectIntl } from 'react-intl';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
+import { RawDateRangePicker } from "@synerise/ds-date-range-picker";
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
@@ -19,6 +21,7 @@ import {
   UserCheckM,
   WarningFillM,
 } from '@synerise/ds-icon';
+import { ABSOLUTE_PRESETS } from "@synerise/ds-date-range-picker/dist/constants";
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -160,6 +163,17 @@ const stories = {
         relativeModes={getRelativeModes(modesObj)}
       />
     );
+  },
+  lifetimeByDefault: () => {
+    const value = ABSOLUTE_PRESETS.find(e => e.key === 'ALL_TIME')
+    const DateRangePicker = injectIntl(RawDateRangePicker);
+    return (<DateRangePicker
+      showRelativePicker
+      relativeModes={['PAST', 'FUTURE', 'SINCE']}
+      texts={texts}
+      value={value}
+      onApply={action('OnApply')}
+    />);
   },
   withDateFilter: () => {
     const value = undefined;

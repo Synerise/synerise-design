@@ -15,7 +15,7 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
-class RawDateRangePicker extends React.PureComponent<Props, State> {
+export class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
     ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
@@ -180,17 +180,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
   };
 
   render(): JSX.Element {
-    const {
-      showTime,
-      format,
-      disabledDate,
-      validate,
-      forceAdjacentMonths,
-      texts,
-      savedFilters,
-      onFilterSave,
-      intl,
-    } = this.props;
+    const { showTime, format, disabledDate, validate, forceAdjacentMonths, texts, savedFilters, onFilterSave, intl } =
+      this.props;
     const { value, mode } = this.state;
     const { from, to, key } = value;
     const addons = this.getAddons();
