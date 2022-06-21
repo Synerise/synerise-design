@@ -117,6 +117,7 @@ const texts = {
 const stories = {
   default: () => {
     const value = undefined;
+    // TODO add initial lifetime option
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
