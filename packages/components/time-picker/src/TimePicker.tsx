@@ -1,13 +1,11 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { range } from 'lodash';
-import fnsIsValid from 'date-fns/isValid';
 
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { useMemo } from 'react';
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
@@ -45,32 +43,11 @@ const TimePicker: React.FC<TimePickerProps> = ({
   intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
-  const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
   const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
-  const [hour, setHour] = React.useState<number | undefined>(undefined);
-  const [minute, setMinute] = React.useState<number | undefined>(undefined);
-  const [second, setSecond] = React.useState<number | undefined>(undefined);
-  React.useEffect(() => {
-    if (value && fnsIsValid(value)) {
-      setHour(dayjs(value).hour());
-      setMinute(dayjs(value).minute());
-      setSecond(dayjs(value).second());
-    }
-  }, [value]);
 
   const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   // eslint-disable-next-line
   // @ts-ignore
-  React.useEffect(() => {
-    if (hour !== undefined && minute !== undefined && second !== undefined) {
-      const newDate = dayjs().hour(hour).minute(minute).second(second).toDate();
-      setLocalValue(newDate);
-      onChange && onChange(newDate as Date, getTimeString(newDate as Date));
-    }
-    // eslint-disable-next-line
-    // @ts-ignore
-  }, [hour, minute, second]); // eslint-disable-line react-hooks/exhaustive-deps
-
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
@@ -99,19 +76,18 @@ const TimePicker: React.FC<TimePickerProps> = ({
 
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);
-    !visible && onChange && onChange(localValue as Date, getTimeString(localValue as Date));
+    !visible && onChange && onChange(value as Date, getTimeString(value as Date));
   };
-
   const handleChange = (unit: dayjs.UnitType, newValue: number): void => {
-    if (unit === 'hour') {
-      setHour(newValue);
+    const wasUndefined = value === undefined;
+    let dateBuilder = dayjs(value);
+    dateBuilder = dateBuilder[unit](newValue);
+    if (wasUndefined) {
+      // set remaining time fields to 0, HH:00:00, 00:mm:00, 00:00:ss
+      unitConfig.filter(u => u.unit !== unit).forEach(unitDef => (dateBuilder = dateBuilder[unitDef.unit](0)));
     }
-    if (unit === 'minute') {
-      setMinute(newValue);
-    }
-    if (unit === 'second') {
-      setSecond(newValue);
-    }
+    const newDate = dateBuilder.toDate();
+    onChange && onChange(newDate as Date, getTimeString(newDate as Date));
   };
 
   const renderClockSwitch = (): React.ReactNode => {
@@ -132,22 +108,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
-  const timeValue = useMemo(
-    () =>
-      localValue ||
-      dayjs()
-        .hour((hour as number) || 0)
-        .minute((minute as number) || 0)
-        .second((second as number) || 0)
-        .toDate(),
-    [localValue, hour, minute, second]
-  );
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={timeValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
+          <Unit {...u} value={value} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
@@ -155,16 +121,13 @@ const TimePicker: React.FC<TimePickerProps> = ({
     </S.OverlayContainer>
   );
 
+  const localValue = value;
   const dateString = localValue && getTimeString(localValue);
 
   const clear = React.useCallback(() => {
-    setLocalValue(undefined);
     setOpen(false);
     onChange && onChange(undefined, '');
-    setHour(undefined);
-    setMinute(undefined);
-    setSecond(undefined);
-  }, [setOpen, setLocalValue, onChange]);
+  }, [setOpen, onChange]);
 
   const timePickerIcon = React.useMemo(() => {
     return (alwaysOpen || open) && dateString ? (
@@ -182,15 +145,11 @@ const TimePicker: React.FC<TimePickerProps> = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = React.useMemo((): string => {
-    if (hour !== undefined || minute !== undefined || second !== undefined) {
-      return dayjs()
-        .hour(hour || 0)
-        .minute(minute || 0)
-        .second(second || 0)
-        .format('HH:mm:ss');
+    if (value) {
+      return dayjs(value).format('HH:mm:ss');
     }
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl, hour, minute, second]);
+  }, [placeholder, intl, value]);
 
   if (raw) {
     return overlay;

@@ -114,7 +114,7 @@ describe('TimePicker', () => {
     });
   });
 
-  it('should render with value', async () => {
+  it('should render with value as placeholder', async () => {
     // scrollTo doesn't exist in the JSDOM, so we mock it by attaching the empty function to all the elements.
     Element.prototype.scrollTo = jest.fn();
     // ARRANGE
@@ -125,7 +125,7 @@ describe('TimePicker', () => {
         value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()}
       />
     );
-    const input = getByPlaceholderText('Select time') as HTMLInputElement;
+    const input = getByPlaceholderText('10:24:52') as HTMLInputElement;
 
     // ASSERT
     expect(input.value).toBe('10:24:52');
@@ -134,4 +134,7 @@ describe('TimePicker', () => {
   it.todo('should read hour minute seconds from initial date value');
   it.todo('should emit onChange since the first click');
   it.todo('initial displayed value is in local timezone');
+  it.todo('should return date with only changed time after selecting new time');
+  it.todo('should display clear button for partially selected time');
+  it.todo('should have default value of undefined');
 });
