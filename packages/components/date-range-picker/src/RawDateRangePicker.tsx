@@ -15,7 +15,7 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
-class RawDateRangePicker extends React.PureComponent<Props, State> {
+export class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
     ranges: RELATIVE_PRESETS,
     relativePast: true,
