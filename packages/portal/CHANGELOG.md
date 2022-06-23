@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.156.0](https://github.com/synerise/synerise-design/compare/portal@0.155.0...portal@0.156.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** applying primary class to selected buttons ([cf1fd45](https://github.com/synerise/synerise-design/commit/cf1fd45a65dd2bf724c7907f203d04e06ac2c856))
+* **date-range-picker:** fix switching mode (componentDidUpdate) ([6d59489](https://github.com/synerise/synerise-design/commit/6d594899bf338930951da5ff78123402491d29e1))
+* **date-range-picker:** handle custom relative date range ([d456923](https://github.com/synerise/synerise-design/commit/d456923259ecd75246897665e5de4f07d9a689b5))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** interaction: switch modes, onChange value type ([a3e1329](https://github.com/synerise/synerise-design/commit/a3e132927b42934d5a9ea61712b855d38f2e6561))
+* **date-range-picker:** lifetime date-range-picker story ([f3cb1a6](https://github.com/synerise/synerise-design/commit/f3cb1a66d3619da42226baebd56d66610964db7c))
+* **date-range-picker:** show saving filters if passed proper props ([2e870b2](https://github.com/synerise/synerise-design/commit/2e870b2eefbea9b7d66dbcb887e54ae291f1c619))
+* **filter:** default dateRange expression value ([0be9b7a](https://github.com/synerise/synerise-design/commit/0be9b7add5f5353e44aa87362e1918813f72c07b))
+
+
+### Features
+
+* **date-range-picker:** ALL_TIME as a const, expose CONST ([7d3d98e](https://github.com/synerise/synerise-design/commit/7d3d98e9711141079c6f1e0f6101e559c5ef6faf))
+
+
+
+
+
 # [0.155.0](https://github.com/synerise/synerise-design/compare/portal@0.154.3...portal@0.155.0) (2022-06-15)
 
 
