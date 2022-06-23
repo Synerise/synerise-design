@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
+import fnsIsValid from 'date-fns/isValid';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS } from './constants';
@@ -55,6 +56,9 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
 
   handleRangeChange = (range?: DateRange): void => {
     if (!range) {
+      return;
+    }
+    if (range.from && !fnsIsValid(range?.from)) {
       return;
     }
 

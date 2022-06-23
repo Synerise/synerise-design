@@ -202,5 +202,13 @@ describe('DateRangePicker', () => {
     const arrowElement = popoverWrapper.querySelector('.ant-popover-content > .ant-popover-arrow');
     expect(arrowElement).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
   });
-
+  it.todo('date-fns format function wrapper skips execution for invalid date');
+  it.todo('handleRangeChange does not propagate invalid date range')''
+  it.todo('getSideState is able to parse Invalid Date (for months)');
+  it.todo('normalizeRange properly forwards Invalid Date');
+  it.todo('RangePickerInput getModifiers are able to handle invalid date range')''
+  it.todo('RangePickerInput.getText accepts Invalid Date');
+  it.todo('date range picker relative addon internals is able to handle invalid ranges');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
 });

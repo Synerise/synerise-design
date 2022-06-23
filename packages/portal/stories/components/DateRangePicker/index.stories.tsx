@@ -19,6 +19,13 @@ import {
   UserCheckM,
   WarningFillM,
 } from '@synerise/ds-icon';
+import {
+  ABSOLUTE,
+  RELATIVE,
+  RELATIVE_PRESETS,
+} from "@synerise/ds-date-range-picker/dist/constants";
+import * as CONST from "@synerise/ds-date-range-picker/dist/constants";
+import { DateFilter, DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -114,9 +121,39 @@ const texts = {
   pasteRange: 'Paste range',
 };
 
+const optionValues: Record<string, DateRange> = {
+  ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({[e.key]: e}))),
+  'undefined': undefined,
+  'invalid': {
+    type: ABSOLUTE,
+    from: new Date('invalid date'),
+  },
+  'invalid-relative': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.YEARS, value: 3000000 },
+    duration: { type: CONST.DAYS, value: 1 },
+  },
+  'first-week-2022-utc': {
+    type: ABSOLUTE,
+    from: new Date('Jan 1, 2022 00:00 UTC'),
+    to: new Date('Jan 7, 2022 23:59:59 UTC'),
+  },
+  'first-week-2022-gmt1': {
+    type: ABSOLUTE,
+    from: new Date('Jan 1, 2022 00:00 GMT+1'),
+    to: new Date('Jan 7, 2022 23:59:59 GMT+1'),
+  },
+}
+
+const buildSelectKnobOptions = (optionValues) => {
+  return Object.assign({}, ...Object.keys(optionValues).map(k => ({ [k]: k })));
+}
+
 const stories = {
   default: () => {
-    const value = undefined;
+    const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
+    value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
@@ -152,7 +189,7 @@ const stories = {
         forceAbsolute
         showRelativePicker={showRelativePicker}
         texts={texts}
-        popoverProps={{ placement: setPlacement}}
+        popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
