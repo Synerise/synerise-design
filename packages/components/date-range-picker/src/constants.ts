@@ -18,7 +18,7 @@ export const range = (start: number, end: number): number[] => {
     return [];
   }
   const size = end - start;
-  return [...Array(size).keys()].map(i => i + start);
+  return Array.from(Array(size).keys()).map(i => i + start);
 };
 export const CUSTOM_RANGE_KEY = 'custom';
 export const DURATION_MODIFIERS = {

@@ -126,6 +126,7 @@ const texts = {
 
 const optionValues: Record<string, DateRange> = {
   ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({[e.key]: e}))),
+  ...Object.assign({}, ...ABSOLUTE_PRESETS.map(e => ({ [e.key]: e }))),
   'undefined': undefined,
   'invalid': {
     type: ABSOLUTE,

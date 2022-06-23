@@ -39,10 +39,6 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
-    const { mode } = this.state;
-    if (!value?.to && !value?.from && mode !== MODES.DATE) {
-      this.handleSwitchMode();
-    }
   }
 
   handleFilterCancel = (): void => {
@@ -63,8 +59,12 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
 
     const { onValueChange } = this.props;
-    const { value } = this.state;
+    const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
+    if (newValue.type === 'RELATIVE' && mode === MODES.TIME) {
+      // clicked on RangeButtons and was selecting time
+      this.setState({ mode: MODES.DATE });
+    }
     this.setState({ value: { ...newValue, key: range?.key, translationKey: range?.translationKey } });
     onValueChange && onValueChange(newValue);
   };
