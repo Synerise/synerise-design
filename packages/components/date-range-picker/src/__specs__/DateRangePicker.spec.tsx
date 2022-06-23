@@ -159,6 +159,7 @@ describe('DateRangePicker', () => {
     expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
   });
 
+  it.todo('should set to last 30 days if relative-date-range custom range');
   it('should change format when showTime is false', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(

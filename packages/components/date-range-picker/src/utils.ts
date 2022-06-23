@@ -108,5 +108,5 @@ export const DEFAULT_RANGE = normalizeRange({
   from: undefined,
   type: 'RELATIVE',
   offset: { value: 0, type: 'DAYS' },
-  duration: { value: 1, type: 'DAYS' },
+  duration: { value: 30, type: 'DAYS' },
 });
