@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { injectIntl } from 'react-intl';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
+import { RawDateRangePicker } from "@synerise/ds-date-range-picker";
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
@@ -10,6 +12,23 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
+import {
+  Check3M,
+  HelpFillM,
+  InfoFillM,
+  NotificationsReceiveM,
+  UpdateDataM,
+  UserCheckM,
+  WarningFillM,
+} from '@synerise/ds-icon';
+import {
+  ABSOLUTE,
+  RELATIVE,
+  RELATIVE_PRESETS,
+  ABSOLUTE_PRESETS,
+} from "@synerise/ds-date-range-picker/dist/constants";
+import { CONST } from "@synerise/ds-date-range-picker";
+import { DateFilter, DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -107,9 +126,40 @@ const texts = {
   yesterday: 'Yesterday',
 };
 
+const optionValues: Record<string, DateRange> = {
+  ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({[e.key]: e}))),
+  ...Object.assign({}, ...ABSOLUTE_PRESETS.map(e => ({ [e.key]: e }))),
+  'undefined': undefined,
+  'invalid': {
+    type: ABSOLUTE,
+    from: new Date('invalid date'),
+  },
+  'invalid-relative': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.YEARS, value: 3000000 },
+    duration: { type: CONST.DAYS, value: 1 },
+  },
+  'first-week-2022-utc': {
+    type: ABSOLUTE,
+    from: new Date('Jan 1, 2022 00:00 UTC'),
+    to: new Date('Jan 7, 2022 23:59:59 UTC'),
+  },
+  'first-week-2022-gmt1': {
+    type: ABSOLUTE,
+    from: new Date('Jan 1, 2022 00:00 GMT+1'),
+    to: new Date('Jan 7, 2022 23:59:59 GMT+1'),
+  },
+}
+
+const buildSelectKnobOptions = (optionValues) => {
+  return Object.assign({}, ...Object.keys(optionValues).map(k => ({ [k]: k })));
+}
+
 const stories = {
   default: () => {
-    const value = undefined;
+    const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
+    value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
@@ -135,22 +185,36 @@ const stories = {
       const enabledModes = keys.filter(k => !!modesObject[k]);
       return enabledModes;
     };
+    const forceAbsolute = boolean('Force absolute date on apply', false);
     const showRelativePicker = boolean('Set relative filter', true);
+    const showFilter = boolean('Show relative date-hours-filter', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
         showTime={showTime}
         value={value}
         relativeFuture
-        forceAbsolute
+        forceAbsolute={forceAbsolute}
         showRelativePicker={showRelativePicker}
+        showFilter={showFilter}
         texts={texts}
-        popoverProps={{ placement: setPlacement}}
+        popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
     );
+  },
+  lifetimeByDefault: () => {
+    const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME)
+    const DateRangePicker = injectIntl(RawDateRangePicker);
+    return (<DateRangePicker
+      showRelativePicker
+      relativeModes={['PAST', 'FUTURE', 'SINCE']}
+      texts={texts}
+      value={value}
+      onApply={action('OnApply')}
+    />);
   },
   withCustomTrigger: () => {
     const value = undefined;
