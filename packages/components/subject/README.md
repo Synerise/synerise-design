@@ -49,18 +49,19 @@ import Subject from '@synerise/ds-subject'
 
 ## API
 
-| Property                  | Description                                                | Type                                          | Default     | 
 | ---------                 | ------                                                     | ------                                        | -----       | 
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement | null) => HTMLElement; | -           |
 | iconPlaceholder           | Icon for empty selected item                               | React.ReactNode                               | -           | 
 | items                     | Array of available subjects                                | SubjectItem[]                                 | []          | 
-| placeholder               | Placeholder for empty selected item                        | string \ React.ReactNode;                     | -           | 
-| selectedItem?             | Selected item                                              | SubjectItem \ undefined;                      | `undefined` | 
+| onActivate                | Callback called when user opens dropdown                   | (fieldType: string) => void                   | -           |
+| onDeactivate              | Callback called when user closes dropdown                  | () => void                                    | -           |
 | onSelectItem              | Callback called when user select new subject               | ( SubjectItem) => void;                       | -           | 
 | onShowPreview             | Callback called when user clicks on Show Preview button    | () => void \ undefined                        | -           | 
+| placeholder               | Placeholder for empty selected item                        | string \ React.ReactNode;                     | -           | 
+| Property                  | Description                                                | Type                                          | Default     | 
+| selectedItem?             | Selected item                                              | SubjectItem \ undefined;                      | `undefined` | 
 | texts                     | Object with translations                                   | TEXTS                                         | -           | 
 | type?                     | Type of subject `parameter` \ `context` \ `event`          | SubjectType                                   | `parameter` | 
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement | null) => HTMLElement; | -           |
-
 
  
 

@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, getClosest, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
@@ -81,9 +81,11 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   useOnClickOutside(
     overlayRef,
-    () => {
-      onClickOutside && onClickOutside();
-      setDropdownVisible(false);
+    event => {
+      if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
+        onClickOutside && onClickOutside();
+        setDropdownVisible(false);
+      }
     },
     onClickOutsideEvents
   );
@@ -323,6 +325,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               {/*
             // @ts-ignore */}
               <List
+                className="ds-context-selector-list"
+                key={`list-${activeGroup}-${activeTab}`}
                 width="100%"
                 height={300}
                 itemCount={activeItems.length}

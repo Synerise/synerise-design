@@ -6,6 +6,7 @@ import { withState } from '@dump247/storybook-state';
 import { ConditionExample } from '../StepCard/data/Condition';
 import { DEFAULT_STEP } from '../Condition/data/index.data';
 import CompletedWithin from '@synerise/ds-completed-within';
+import Tooltip from '@synerise/ds-tooltip';
 import { dateRangePickerTexts } from '../StepCard/data/stepCard.data';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import Button from '@synerise/ds-button';
@@ -14,6 +15,7 @@ import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUt
 import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { boolean } from "@storybook/addon-knobs";
 import { DEFAULT_RANGE } from "@synerise/ds-date-range-picker/dist/utils";
 
@@ -42,6 +44,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
       ...DEFAULT_RANGE,
     },
   },
+  expressionType: 'event', // or 'attribute'
   expressionSteps: [DEFAULT_STEP(subject)],
 });
 
@@ -168,9 +171,15 @@ const stories = {
       };
 
       const dateRangePickerTrigger = !expression?.footer?.dateRange?.from ? (
-        <Button type="tertiary" mode="single-icon">
-          <Icon component={<CalendarM />} />
-        </Button>
+        <Tooltip
+          description="Filter by time elapsed between completing the first and last step in the funnel."
+          type={'largeSimple'}
+        >
+          <Button type="tertiary" mode="icon-label">
+            <Icon component={<CalendarM />} />
+            In date range
+          </Button>
+        </Tooltip>
       ) : (
         <Button type="tertiary" mode="label-icon">
           {fnsFormat(expression.footer.dateRange.from, 'MMM D, YYYY')}
@@ -189,7 +198,11 @@ const stories = {
       return (
         <>
           {expression?.footer?.completedWithinValue && (
-            <CompletedWithin value={expression.footer.completedWithinValue} onSetValue={handleCompletedWithin} />
+            <CompletedWithin
+              value={expression.footer.completedWithinValue}
+              onSetValue={handleCompletedWithin}
+              placeholder="Completed within"
+            />
           )}
           {expression?.footer?.dateRange && (
             <DateRangePicker
@@ -209,7 +222,7 @@ const stories = {
       );
     };
 
-    const renderStepContent = expression => {
+    const renderStepContent = (expression, hoverDisabled) => {
       const handleChangeExpressionSteps = expressionSteps => {
         const expressions = store.state.expressions.map(exp => {
           if (exp.id === expression.id) {
@@ -224,7 +237,13 @@ const stories = {
         store.set({ expressions });
       };
 
-      return <ConditionExample onChange={handleChangeExpressionSteps} steps={expression.expressionSteps} />;
+      return (
+        <ConditionExample
+          onChange={handleChangeExpressionSteps}
+          steps={expression.expressionSteps}
+          hoverDisabled={hoverDisabled}
+        />
+      );
     };
 
     const handleAddStep = subject => {
@@ -251,6 +270,7 @@ const stories = {
           position: 'absolute',
           top: '0',
           left: '0',
+          backgroundColor: theme.palette['grey-050'],
         }}
       >
         <Filter
@@ -280,8 +300,9 @@ const stories = {
           }}
           texts={{
             step: {
-              matching: 'Matching',
-              notMatching: 'Not matching',
+              matching: 'Performed',
+              notMatching: 'Not performed',
+              conditionType: 'event',
               namePlaceholder: 'Unnamed',
               moveTooltip: 'Move',
               deleteTooltip: 'Delete',

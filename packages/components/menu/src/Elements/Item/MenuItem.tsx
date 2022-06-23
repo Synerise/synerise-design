@@ -44,7 +44,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         indentLevel={indentLevel || 0}
         subMenu={subMenu}
         onItemHover={onItemHover || NOOP}
-        onClick={onClick || NOOP}
+        onClick={(menuInfo): void => {
+          menuInfo.domEvent.stopPropagation();
+          onClick && onClick(menuInfo);
+        }}
         menuItemKey={menuItemKey}
         onTitleClick={onTitleClick}
         {...rest}
@@ -62,7 +65,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           description={description}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
-          onClick={onClick || NOOP}
+          onClick={(menuInfo): void => {
+            menuInfo.domEvent.stopPropagation();
+            onClick && onClick(menuInfo);
+          }}
           {...rest}
         >
           {text || children}
@@ -78,7 +84,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           description={description}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
-          onClick={onClick || NOOP}
+          onClick={(menuInfo): void => {
+            menuInfo.domEvent.stopPropagation();
+            onClick && onClick(menuInfo);
+          }}
           {...rest}
         >
           {text || children}
@@ -98,7 +107,10 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           timeToHideTooltip={timeToHideTooltip}
           indentLevel={indentLevel || 0}
           onItemHover={onItemHover || NOOP}
-          onClick={onClick || NOOP}
+          onClick={(menuInfo): void => {
+            menuInfo.domEvent.stopPropagation();
+            onClick && onClick(menuInfo);
+          }}
           {...rest}
         >
           {text || children}

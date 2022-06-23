@@ -7,7 +7,7 @@ import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { fireEvent, waitFor } from "@testing-library/react";
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
-import DateRangePicker from "../../dist";
+import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
 
 const ABSOLUTE_VALUE = {

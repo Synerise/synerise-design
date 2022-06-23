@@ -14,6 +14,7 @@ const Card: React.FC<CardProps> = ({
   className,
   lively,
   withHeader,
+  defaultHeaderBackgroundColor,
   title,
   description,
   compactHeader,
@@ -42,13 +43,17 @@ const Card: React.FC<CardProps> = ({
       background={background}
     >
       {withHeader && (
-        <S.Header onClick={onHeaderClick} headerBorderBottom={headerBorderBottom}>
+        <S.Header
+          onClick={onHeaderClick}
+          headerBorderBottom={headerBorderBottom}
+          defaultHeaderBackgroundColor={defaultHeaderBackgroundColor}
+        >
           {(icon && (
             <S.IconContainer description={description} compact={compactHeader}>
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )) ||
-            renderBadge?.()}
+            (renderBadge && renderBadge())}
 
           <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
             {title && (

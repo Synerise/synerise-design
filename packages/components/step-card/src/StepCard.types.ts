@@ -3,6 +3,7 @@ import * as React from 'react';
 export type StepCardTexts = {
   matching: string;
   notMatching: string;
+  conditionType: string;
   namePlaceholder: string;
   moveTooltip: string;
   deleteTooltip: string;

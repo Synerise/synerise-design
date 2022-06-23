@@ -14,6 +14,7 @@ export const TriggerButton = styled(Button)`
   &&& {
     display: inline-flex;
     border-radius: 3px 0 0 3px;
+    min-width: 32px;
     &:focus {
       .btn-focus {
         box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['grey-300']};

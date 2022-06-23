@@ -74,7 +74,7 @@ yarn add @synerise/ds-card
 | --------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
 | background                        | Background of Card container                                                                                          | `white` / `white-shadow` / `grey` / `grey-shadow` / `outline`                | `white` |
 | children                          | Defines if the button casts a shadow when the cursor is hovered over                                                  | React.ReactNode                                                              | -       |
-| renderBadge                         | Custom slot content for badge icon                                                                                    | React.ReactNode?                                                             | -       |
+| renderBadge                       | Custom slot content for badge icon                                                                                    | React.ReactNode?                                                             | -       |
 | className                         | Defines the class name of the container                                                                               | string                                                                       | -       |
 | compactHeader                     | Set as `true`, displays the description next to the header. Set as `false`, displays the description below the header | boolean                                                                      | -       |
 | description                       | Defines the content of the card description (in the header)                                                           | React.ReactNode                                                              | string  |
@@ -93,6 +93,7 @@ yarn add @synerise/ds-card
 | withHeader                        | Defines if the header is shown                                                                                        | boolean                                                                      | -       |
 | withoutPadding                    | Reset padding of ContentContainer                                                                                     | boolean                                                                      | `false` |
 | showSideChildrenWhenHeaderHidden  | Show headerSideChildren on the bottom when header is scrolled out of view                                             | boolean                                                                      | `false` |
+| defaultHeaderBackgroundColor      | Defines if header should have default white color                                                                     | boolean                                                                      | `false` |
 
 #### CardBadge
 

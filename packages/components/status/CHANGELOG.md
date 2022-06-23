@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.16...@synerise/ds-status@0.5.17) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.15...@synerise/ds-status@0.5.16) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.14...@synerise/ds-status@0.5.15) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.13...@synerise/ds-status@0.5.14) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.12...@synerise/ds-status@0.5.13) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.11...@synerise/ds-status@0.5.12) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.10...@synerise/ds-status@0.5.11) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.9...@synerise/ds-status@0.5.10) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
 ## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.8...@synerise/ds-status@0.5.9) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-status

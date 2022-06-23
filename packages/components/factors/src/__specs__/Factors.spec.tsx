@@ -5,6 +5,7 @@ import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.dat
 import * as React from 'react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: FactorsProps = {
   selectedFactorType: '',
@@ -14,27 +15,26 @@ const DEFAULT_PROPS: FactorsProps = {
   textType: 'default',
   defaultFactorType: 'text',
   autocompleteText: {
-    options: ['First name', 'Last name', 'City']
+    options: ['First name', 'Last name', 'City'],
   },
   unavailableFactorTypes: [],
   parameters: {
     buttonLabel: 'Parameter',
     buttonIcon: <VarTypeStringM />,
     groups: FACTORS_GROUPS,
-    items: FACTORS_ITEMS
+    items: FACTORS_ITEMS,
   },
   withoutTypeSelector: false,
   formulaEditor: <div>Formula editor</div>,
-  texts: FACTORS_TEXTS
+  texts: FACTORS_TEXTS,
+};
 
-}
-
-const RENDER_FACTORS = (props?: {}) => (<Factors {...DEFAULT_PROPS} {...props} />);
+const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
 describe('Factors component', () => {
   test('Should render', () => {
     // ASSERT
-    const {container} = renderWithProvider(RENDER_FACTORS());
+    const { container } = renderWithProvider(RENDER_FACTORS());
 
     // ASSERT
     expect(container.querySelector('.ds-factors')).toBeTruthy();
@@ -43,7 +43,7 @@ describe('Factors component', () => {
 
   test('Should render with default type and placeholder', () => {
     // ARRANGE
-    const {container, getByPlaceholderText} = renderWithProvider(RENDER_FACTORS());
+    const { container, getByPlaceholderText } = renderWithProvider(RENDER_FACTORS());
 
     // ASSERT
     expect(container.querySelector(`.ds-factors-${DEFAULT_PROPS.defaultFactorType}`)).toBeTruthy();
@@ -52,8 +52,8 @@ describe('Factors component', () => {
 
   test('Should render with value', () => {
     // ARRANGE
-    const VALUE = "DISPLAY_VALUE";
-    const {getByDisplayValue} = renderWithProvider(RENDER_FACTORS({value: VALUE}));
+    const VALUE = 'DISPLAY_VALUE';
+    const { getByDisplayValue } = renderWithProvider(RENDER_FACTORS({ value: VALUE }));
 
     // ASSERT
     expect(getByDisplayValue(VALUE)).toBeTruthy();
@@ -61,7 +61,7 @@ describe('Factors component', () => {
 
   test('Should render without change factor type button', () => {
     // ARRANGE
-    const {container} = renderWithProvider(RENDER_FACTORS({withoutTypeSelector: true}));
+    const { container } = renderWithProvider(RENDER_FACTORS({ withoutTypeSelector: true }));
 
     // ASSERT
     expect(container.querySelector('.ds-factors-type-selector')).toBeFalsy();
@@ -69,7 +69,7 @@ describe('Factors component', () => {
 
   test('Should display list of available factor types', () => {
     // ARRANGE
-    const {container, queryByText} = renderWithProvider(RENDER_FACTORS());
+    const { container, queryByText } = renderWithProvider(RENDER_FACTORS());
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
@@ -88,7 +88,9 @@ describe('Factors component', () => {
 
   test('Should display list of factor types, without excluded ones', () => {
     // ARRANGE
-    const {container, queryByText} = renderWithProvider(RENDER_FACTORS({unavailableFactorTypes: ['number', 'formula']}));
+    const { container, queryByText } = renderWithProvider(
+      RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] })
+    );
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
@@ -108,7 +110,7 @@ describe('Factors component', () => {
   test('Should change selected factor type', () => {
     // ARRANGE
     const selectFactorType = jest.fn();
-    const {container, queryByText} = renderWithProvider(RENDER_FACTORS({ setSelectedFactorType: selectFactorType }));
+    const { container, queryByText } = renderWithProvider(RENDER_FACTORS({ setSelectedFactorType: selectFactorType }));
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     // ACT
@@ -118,5 +120,45 @@ describe('Factors component', () => {
 
     // ASSERT
     expect(selectFactorType).toBeCalledWith('number');
+  });
+
+  test('should call onActivate on Parameter factor', () => {
+    // ARRANGE
+    const handleActivate = jest.fn();
+    const { getByText } = renderWithProvider(
+      RENDER_FACTORS({ selectedFactorType: 'parameter', onActivate: handleActivate })
+    );
+
+    // ACT
+    userEvent.click(getByText('Parameter'));
+
+    // ASSERT
+    expect(handleActivate).toBeCalled();
+  });
+  test('should call onDeactivate Parameter factor', () => {
+    // ARRANGE
+    const handleDeactivate = jest.fn();
+    const { getByText } = renderWithProvider(
+      RENDER_FACTORS({ selectedFactorType: 'parameter', onDeactivate: handleDeactivate })
+    );
+
+    // ACT
+    userEvent.click(getByText('Parameter'));
+    userEvent.click(document.body);
+
+    expect(handleDeactivate).toBeCalled();
+  });
+  test('should call onDeactivate Text factor', () => {
+    // ARRANGE
+    const handleDeactivate = jest.fn();
+    const { getByPlaceholderText } = renderWithProvider(
+      RENDER_FACTORS({ selectedFactorType: 'text', onDeactivate: handleDeactivate })
+    );
+
+    // ACT
+    fireEvent.focus(getByPlaceholderText('Value'));
+    fireEvent.blur(getByPlaceholderText('Value'));
+
+    expect(handleDeactivate).toBeCalled();
   });
 });

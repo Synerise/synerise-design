@@ -97,12 +97,13 @@ import ContextSelector from '@synerise/ds-context-selector'
 | addMode                   | If true trigger doesn't change style when value is set        | ContextItem \ undefined                                | undefined             | 
 | customTriggerComponent    | Add custom trigger                                            | React.ReactNode                                        | undefined             | 
 | trigger                   | Add custom trigger to modal                                   | 'click' \ 'hover' \ 'contextMenu'                      | 'click                | 
-| menuItemHeight            | Set component Menu.Item height                                | 'large' \ 'default'                                    | -                     | 
 | dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                       | CSSProperties \ undefined                              | -                     | 
 | onClickOutsideEvents      | Overwrite default events for document listener                | HandledEventsType[] \ undefined                        | -                     | 
 | onClickOutside            | Callback called when user click outside dropdown              | () => void \ undefined                                 | -                     | 
 | onSearch                  | Callback called when user enter any char in search input      | (query: string) => void                                | -                     | 
 | onFetchData               | Callback called when user scrolls to the end of dropdown list | () => void                                             | -                     | 
+| onActivate                | Callback called when user opens dropdown                        | (fieldType: string) => void                                                              | -                | 
+| onDeactivate              | Callback called when user closes dropdown                       | () => void                                                                               | -                | 
 | hasMoreItems              | Whether if onFetchData should be called                       | boolean                                                | -                     | 
 | getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement                                  | null) => HTMLElement; | - |
 | dropdownProps             | Limited part of props for dropdown on ContextSelector component | Omit<DropdownProps, 'trigger' 'getPopupContainer' 'onVisibleChange' 'visible' 'overlay'> | -                | 

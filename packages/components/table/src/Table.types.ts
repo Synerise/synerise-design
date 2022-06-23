@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
-import { RowStar } from './hooks/useRowStar.types';
+import { RowStar } from './hooks/useRowStar';
 import { SortRender } from './ColumnSortMenu/TitleWithSort';
 import { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
 
@@ -31,6 +31,7 @@ export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   selections?: SelectionItem[];
   onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
   limit?: number;
+  independentSelectionExpandedRows?: boolean;
 };
 
 export interface Filter {
@@ -53,6 +54,7 @@ export interface Filter {
 }
 
 export type RowType<T> = {
+  key?: string | number;
   children?: T[];
 };
 
@@ -81,8 +83,9 @@ export type Locale = TableLocale & {
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
-  fixed?: 'left' | 'right' | string;
+  fixed?: 'left' | 'right';
   sortRender?: SortRender<T>;
+  childRender?: (value: unknown, row: T, index: number) => React.ReactNode;
 };
 
 type AntTableComponentsType<T> = AntTableProps<T>['components'];

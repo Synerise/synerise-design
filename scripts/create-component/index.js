@@ -44,7 +44,7 @@ async function main() {
     {
       type: 'input',
       name: 'name',
-      message: 'Component Name',
+      message: 'Component Name (kabab-case)',
       validate: name => (name.length > 0 ? true : 'invalid name'),
     },
     {

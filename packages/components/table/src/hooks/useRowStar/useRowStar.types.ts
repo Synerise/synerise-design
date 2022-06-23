@@ -1,12 +1,14 @@
+import * as React from 'react';
 import { ColumnType } from 'antd/lib/table';
-import { DSTableProps, DSColumnType } from '../Table.types';
+import { DSTableProps, DSColumnType } from '../../Table.types';
 
 export interface RowStar<T> {
   className?: string;
   starredRowKeys: string[];
   renderCell?: ColumnType<T>['render'];
   onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  onChange?: (starredRowKeys: string[]) => void;
+  onChange?: (starredRowKeys: string[], starredKey: string, isStarred: boolean) => void;
+  disableForExpandedRows?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,5 +18,9 @@ export interface UseStarredApi {
   getStarredKeys: () => string[];
   isStarred: (key: string) => boolean;
   toggleStarred: (key: string) => string[];
-  getRowStarColumn: (dsTableProps: DSTableProps<AnyRecordType>) => DSColumnType<AnyRecordType>;
+  getRowStarColumn: (dsTableProps: CreateRowStarColumnProps) => DSColumnType<AnyRecordType>;
 }
+
+export type CreateRowStarColumnProps = DSTableProps<AnyRecordType> & {
+  getRowKey: (row: AnyRecordType) => React.ReactText | undefined;
+};
