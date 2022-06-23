@@ -8,6 +8,7 @@ import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
+import * as CONST from '../constants';
 
 const Footer: React.FC<Props> = ({
   canApply,
@@ -26,7 +27,7 @@ const Footer: React.FC<Props> = ({
 }) => {
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
   const ChosenRange = React.useMemo(() => {
-    if (value?.key === 'ALL_TIME') {
+    if (value?.key === CONST.ALL_TIME) {
       return (
         <S.ChosenRange className="ds-date-range-picker-value">
           {value.translationKey ? texts[value.translationKey] ?? value.translationKey : value?.key}

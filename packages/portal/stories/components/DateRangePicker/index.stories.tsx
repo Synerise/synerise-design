@@ -27,7 +27,7 @@ import {
   RELATIVE_PRESETS,
   ABSOLUTE_PRESETS,
 } from "@synerise/ds-date-range-picker/dist/constants";
-import * as CONST from "@synerise/ds-date-range-picker/dist/constants";
+import { CONST } from "@synerise/ds-date-range-picker";
 import { DateFilter, DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
@@ -206,7 +206,7 @@ const stories = {
     );
   },
   lifetimeByDefault: () => {
-    const value = ABSOLUTE_PRESETS.find(e => e.key === 'ALL_TIME')
+    const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME)
     const DateRangePicker = injectIntl(RawDateRangePicker);
     return (<DateRangePicker
       showRelativePicker
