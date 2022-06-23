@@ -51,7 +51,7 @@ const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, m
         onClick={(): void => setDropVisible(true)}
         disabled={!modes || !modes?.length || modes.length === 1}
       >
-        {!!currentGroup && <Icon component={[RANGES_ICON[currentGroup]]} />}
+        {!!currentGroup && <Icon key={currentGroup} component={[RANGES_ICON[currentGroup]]} />}
       </S.ModeDropdownTrigger>
       {overlay}
     </S.DropdownContainer>
