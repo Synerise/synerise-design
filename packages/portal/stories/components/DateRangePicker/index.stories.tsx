@@ -180,6 +180,7 @@ const stories = {
       return enabledModes;
     };
     const showRelativePicker = boolean('Set relative filter', true);
+    const showFilter = boolean('Show relative date-hours-filter', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -188,6 +189,7 @@ const stories = {
         relativeFuture
         forceAbsolute
         showRelativePicker={showRelativePicker}
+        showFilter={showFilter}
         texts={texts}
         popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
         arrowColor={setCustomArrowColor && additionalMapper}

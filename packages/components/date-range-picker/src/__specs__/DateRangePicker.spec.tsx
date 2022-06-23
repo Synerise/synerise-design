@@ -92,6 +92,7 @@ describe('DateRangePicker', () => {
     const onApplyParameter = onApply.mock.calls[0][0];
     expect(onApplyParameter['type']).toBe(ABSOLUTE);
   });
+  it.todo('relative date-filter addon should render saving filters only if saving setter function is provided');
   it('should not convert date to absolute by default', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
