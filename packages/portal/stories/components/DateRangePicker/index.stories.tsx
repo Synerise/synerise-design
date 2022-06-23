@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { injectIntl } from 'react-intl';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
+import { RawDateRangePicker } from "@synerise/ds-date-range-picker";
 import { boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
@@ -23,6 +25,7 @@ import {
   ABSOLUTE,
   RELATIVE,
   RELATIVE_PRESETS,
+  ABSOLUTE_PRESETS,
 } from "@synerise/ds-date-range-picker/dist/constants";
 import * as CONST from "@synerise/ds-date-range-picker/dist/constants";
 import { DateFilter, DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
@@ -179,6 +182,7 @@ const stories = {
       const enabledModes = keys.filter(k => !!modesObject[k]);
       return enabledModes;
     };
+    const forceAbsolute = boolean('Force absolute date on apply', false);
     const showRelativePicker = boolean('Set relative filter', true);
     const showFilter = boolean('Show relative date-hours-filter', false);
     return (
@@ -187,7 +191,7 @@ const stories = {
         showTime={showTime}
         value={value}
         relativeFuture
-        forceAbsolute
+        forceAbsolute={forceAbsolute}
         showRelativePicker={showRelativePicker}
         showFilter={showFilter}
         texts={texts}
@@ -197,6 +201,17 @@ const stories = {
         relativeModes={getRelativeModes(modesObj)}
       />
     );
+  },
+  lifetimeByDefault: () => {
+    const value = ABSOLUTE_PRESETS.find(e => e.key === 'ALL_TIME')
+    const DateRangePicker = injectIntl(RawDateRangePicker);
+    return (<DateRangePicker
+      showRelativePicker
+      relativeModes={['PAST', 'FUTURE', 'SINCE']}
+      texts={texts}
+      value={value}
+      onApply={action('OnApply')}
+    />);
   },
   withDateFilter: () => {
     const value = undefined;

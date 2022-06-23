@@ -135,6 +135,7 @@ describe('DateRangePicker', () => {
       { timeout: 50 }
     );
   });
+  it.todo('should render Lifetime option by default in ranges');
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -212,4 +213,5 @@ describe('DateRangePicker', () => {
   it.todo('date range picker relative addon internals is able to handle invalid ranges');
   it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
   it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
+  it.todo('should properly set primary class in RangeButtons for currentRange');
 });
