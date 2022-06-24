@@ -215,4 +215,6 @@ describe('DateRangePicker', () => {
   it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
   it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
   it.todo('should properly set primary class in RangeButtons for currentRange');
+  it.todo('should disable select time if selected ALL_TIME');
+  it.todo('should switch to MODES.DATE if was in selecting time and selected ALL_TIME');
 });
