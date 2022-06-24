@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.15...@synerise/ds-date-range-picker@0.13.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** applying primary class to selected buttons ([cf1fd45](https://github.com/Synerise/synerise-design/commit/cf1fd45a65dd2bf724c7907f203d04e06ac2c856))
+* **date-range-picker:** babel array iteration fix ([15a0375](https://github.com/Synerise/synerise-design/commit/15a0375f7bdafa2856cad0f14616b60f9d1ad598))
+* **date-range-picker:** default relative custom date-range to 30 days ([a159680](https://github.com/Synerise/synerise-design/commit/a1596807d31f53739304bbc7d793a0bd911e5ed1))
+* **date-range-picker:** fix switching mode (componentDidUpdate) ([6d59489](https://github.com/Synerise/synerise-design/commit/6d594899bf338930951da5ff78123402491d29e1))
+* **date-range-picker:** handle custom relative date range ([d456923](https://github.com/Synerise/synerise-design/commit/d456923259ecd75246897665e5de4f07d9a689b5))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/Synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** interaction: switch modes, onChange value type ([a3e1329](https://github.com/Synerise/synerise-design/commit/a3e132927b42934d5a9ea61712b855d38f2e6561))
+* **date-range-picker:** lifetime date-range-picker story ([f3cb1a6](https://github.com/Synerise/synerise-design/commit/f3cb1a66d3619da42226baebd56d66610964db7c))
+* **date-range-picker:** make sure lodash.range is an array ([f51b1c4](https://github.com/Synerise/synerise-design/commit/f51b1c4fb8aae85d73257e6631595a2828dba0cc))
+* **date-range-picker:** render popover in arrow-color test ([68090f5](https://github.com/Synerise/synerise-design/commit/68090f575da90ef0d788321b1c5a1b83cd4170cd))
+* **date-range-picker:** show last/next in relative-date-filter addon ([6e409cf](https://github.com/Synerise/synerise-design/commit/6e409cff94058181bc41c74d900d6f6794fd4cbc))
+* **date-range-picker:** show saving filters if passed proper props ([2e870b2](https://github.com/Synerise/synerise-design/commit/2e870b2eefbea9b7d66dbcb887e54ae291f1c619))
+
+
+### Features
+
+* **date-range-picker:** ALL_TIME as a const, expose CONST ([7d3d98e](https://github.com/Synerise/synerise-design/commit/7d3d98e9711141079c6f1e0f6101e559c5ef6faf))
+* **date-range-picker:** include Lifetime option in stories by default ([e84ae70](https://github.com/Synerise/synerise-design/commit/e84ae709e7c74e25d23c12ff41cb7c0daf8f858e))
+
+
+
+
+
+## [0.12.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.14...@synerise/ds-date-range-picker@0.12.15) (2022-06-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add more options to set color arrow ([3890cd1](https://github.com/Synerise/synerise-design/commit/3890cd1dbd39b54fff07bb55ce962170affda984))
+* **date-range-picker:** add prop of arrow to set color when is footer ([19558d6](https://github.com/Synerise/synerise-design/commit/19558d678867db79aa26c71a92acf7cf8b1fc69f))
+* **date-range-picker:** fix arrow ([e56a188](https://github.com/Synerise/synerise-design/commit/e56a188357c897fcb444543f5f6212e1b270b8bc))
+* **date-range-picker:** fix color and add option to show difference ([41ba36d](https://github.com/Synerise/synerise-design/commit/41ba36dd64dc9927ea3e28bfab6e7ff0e56563fa))
+* **date-range-picker:** fix colors of arrow and test ([2aa2d73](https://github.com/Synerise/synerise-design/commit/2aa2d73c1975c1e5bc37347f02f3915be3d2f927))
+* **date-range-picker:** fix colors picking ([b5846eb](https://github.com/Synerise/synerise-design/commit/b5846eb1c7ceaaec9bd2a650a73da248a6cdf56f))
+* **date-range-picker:** fix documentation ([a0ef5e6](https://github.com/Synerise/synerise-design/commit/a0ef5e61d82af5082d36a4cabcb711a33dd55512))
+* **date-range-picker:** fix test ([fb64181](https://github.com/Synerise/synerise-design/commit/fb641811ef4af38f873f369b02c5b7b54f0d8697))
+* **date-range-picker:** fix test ([09ece1f](https://github.com/Synerise/synerise-design/commit/09ece1fc8194adf290c26026a6cda64e535fbdb5))
+* **date-range-picker:** update tests ([3024429](https://github.com/Synerise/synerise-design/commit/3024429050a48b17f1e96d25c8e1d99b37436923))
+
+
+
+
+
 ## [0.12.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.13...@synerise/ds-date-range-picker@0.12.14) (2022-05-13)
 
 

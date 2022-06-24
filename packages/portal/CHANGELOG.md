@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.156.0](https://github.com/synerise/synerise-design/compare/portal@0.155.0...portal@0.156.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** applying primary class to selected buttons ([cf1fd45](https://github.com/synerise/synerise-design/commit/cf1fd45a65dd2bf724c7907f203d04e06ac2c856))
+* **date-range-picker:** fix switching mode (componentDidUpdate) ([6d59489](https://github.com/synerise/synerise-design/commit/6d594899bf338930951da5ff78123402491d29e1))
+* **date-range-picker:** handle custom relative date range ([d456923](https://github.com/synerise/synerise-design/commit/d456923259ecd75246897665e5de4f07d9a689b5))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** interaction: switch modes, onChange value type ([a3e1329](https://github.com/synerise/synerise-design/commit/a3e132927b42934d5a9ea61712b855d38f2e6561))
+* **date-range-picker:** lifetime date-range-picker story ([f3cb1a6](https://github.com/synerise/synerise-design/commit/f3cb1a66d3619da42226baebd56d66610964db7c))
+* **date-range-picker:** show saving filters if passed proper props ([2e870b2](https://github.com/synerise/synerise-design/commit/2e870b2eefbea9b7d66dbcb887e54ae291f1c619))
+* **filter:** default dateRange expression value ([0be9b7a](https://github.com/synerise/synerise-design/commit/0be9b7add5f5353e44aa87362e1918813f72c07b))
+
+
+### Features
+
+* **date-range-picker:** ALL_TIME as a const, expose CONST ([7d3d98e](https://github.com/synerise/synerise-design/commit/7d3d98e9711141079c6f1e0f6101e559c5ef6faf))
+
+
+
+
+
+# [0.155.0](https://github.com/synerise/synerise-design/compare/portal@0.154.3...portal@0.155.0) (2022-06-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add more options to set color arrow ([3890cd1](https://github.com/synerise/synerise-design/commit/3890cd1dbd39b54fff07bb55ce962170affda984))
+* **date-range-picker:** fix arrow ([e56a188](https://github.com/synerise/synerise-design/commit/e56a188357c897fcb444543f5f6212e1b270b8bc))
+* **date-range-picker:** fix arrow ([af80bb8](https://github.com/synerise/synerise-design/commit/af80bb82e8d5d3c66c2bd0c686ae11f55eb85633))
+* **date-range-picker:** fix color and add option to show difference ([41ba36d](https://github.com/synerise/synerise-design/commit/41ba36dd64dc9927ea3e28bfab6e7ff0e56563fa))
+* **date-range-picker:** fix colors of arrow and test ([2aa2d73](https://github.com/synerise/synerise-design/commit/2aa2d73c1975c1e5bc37347f02f3915be3d2f927))
+* **date-range-picker:** fix colors picking ([b5846eb](https://github.com/synerise/synerise-design/commit/b5846eb1c7ceaaec9bd2a650a73da248a6cdf56f))
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+### Features
+
+* **card:** add badgeSlot prop ([7a84088](https://github.com/synerise/synerise-design/commit/7a84088790b91958a85bd8ea0eafb295267886da))
+* **card:** add ObjectAvatar with icon as custom badge slot ([9af962a](https://github.com/synerise/synerise-design/commit/9af962af5fd8e3bae4d7994ae7570bb2f99ca19b))
+* **information-card:** create information-card component ([ee3ad8b](https://github.com/synerise/synerise-design/commit/ee3ad8bdc8ec793250415d1e25b78ed3504e33d4))
+* **information-card:** info-card component, stories, initial tests ([f5ff3f0](https://github.com/synerise/synerise-design/commit/f5ff3f0c4435da14aba0db96a33b11f50146e6a3))
+* **menu:** add hover tooltip to menu item + test + story ([b931e0b](https://github.com/synerise/synerise-design/commit/b931e0b277a0a563f7c85310a51593bdd5b99e1e))
+* **subtle-form:** hide label prop in textarea ([f89c05d](https://github.com/synerise/synerise-design/commit/f89c05d08c3f4d4b22bfdb5b74e60f0c58074507))
+* **subtle-form:** textarea - no rendering label if no description ([0933292](https://github.com/synerise/synerise-design/commit/0933292b7cb5c389c713d8902af95c370cc35039))
+
+
+
+
+
 ## [0.154.3](https://github.com/synerise/synerise-design/compare/portal@0.154.2...portal@0.154.3) (2022-05-31)
 
 **Note:** Version bump only for package portal

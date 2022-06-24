@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.1...@synerise/ds-context-selector@0.12.2) (2022-06-15)
+
+
+### Bug Fixes
+
+* **context-selector:** focus only if dropdown active (nested elements) ([d365962](https://github.com/Synerise/synerise-design/commit/d36596265af7a3ccef7da0c779c4d26e9b545958))
+* **context-selector:** pass all dropdown-item props to child Menu.Item ([4b8dc8e](https://github.com/Synerise/synerise-design/commit/4b8dc8ec7520f09e78018365fac7c87b0dde4578))
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/Synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+
+
+
 ## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.0...@synerise/ds-context-selector@0.12.1) (2022-04-29)
 
 
