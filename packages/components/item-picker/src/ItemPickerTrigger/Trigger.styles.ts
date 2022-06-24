@@ -50,7 +50,7 @@ export const Prefix = styled.div`
   justify-content: center;
 `;
 
-export const Placeholder = styled.div`
+export const Placeholder = styled.div<{ size: ItemPickerSize }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,7 +65,8 @@ export const Placeholder = styled.div`
     }
   }
   &:hover {
-    color: ${(props): string => props.theme.palette['grey-600']};
+    color: ${(props): string =>
+      props.size === 'large' ? props.theme.palette['grey-600'] : props.theme.palette['grey-500']};
     ${Prefix} {
       svg {
         fill: ${(props): string => props.theme.palette['grey-600']};

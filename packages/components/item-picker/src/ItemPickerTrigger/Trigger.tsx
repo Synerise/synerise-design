@@ -120,7 +120,7 @@ const Trigger: React.FC<Props> = ({
             {renderChangeButton}
           </>
         ) : (
-          <S.Placeholder>
+          <S.Placeholder size={size}>
             {placeholderIcon && (
               <S.Prefix data-testid="placeholder-icon">
                 <Icon component={placeholderIcon} />
