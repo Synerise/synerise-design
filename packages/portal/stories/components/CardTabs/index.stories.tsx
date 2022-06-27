@@ -3,7 +3,7 @@ import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import CardTab from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
+import { CardTab } from '@synerise/ds-card-tabs';
 import { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
@@ -167,13 +167,17 @@ const stories = {
 
     const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
 
+    const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
+    const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
+    const addTabLabel = text('Add new card label', 'Add new');
+
     return (
-      <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
+      <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px', ...additionalStyle }}>
         <CardTabs
           maxTabsCount={maxTabCount}
           onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
           onAddTab={handleAddItem}
-          addTabLabel={'Add new'}
+          addTabLabel={addTabLabel}
         >
           {store.state.items.map(item => (
             <CardTab
