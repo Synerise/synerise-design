@@ -42,6 +42,7 @@ export const CONTEXT_ITEMS = [
     icon: <ApiM />,
     groupId: 'RECENT',
     groupName: 'Internal apps',
+    disabled: true,
   },
   {
     name: 'Unnamed schema',
@@ -49,6 +50,7 @@ export const CONTEXT_ITEMS = [
     icon: <FormM />,
     groupId: 'RECENT',
     groupName: 'Internal apps',
+    disabled: true,
   },
   {
     name: 'Catalogs',
@@ -56,6 +58,7 @@ export const CONTEXT_ITEMS = [
     icon: <ApiM />,
     groupId: 'RECENT',
     groupName: 'Internal apps',
+    disabled: true,
   },
   {
     name: 'Business profile',
