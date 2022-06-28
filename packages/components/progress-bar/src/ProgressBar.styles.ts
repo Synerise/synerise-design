@@ -48,7 +48,7 @@ export const AntdProgressBar = styled(Progress)<ProgressProps>`
     .ant-progress-bg:first-child {
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px;
-      border-right: 2px solid ${(props): string => props.theme.palette.white};
+      border-right: ${(props): string => (props.maxPercent ? `0px` : `2px solid ${props.theme.palette.white}`)};
     }
   }
 `;

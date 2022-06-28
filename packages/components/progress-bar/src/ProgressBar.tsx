@@ -10,6 +10,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
     strokeColor: '#76dc25',
     showLabel: false,
     description: '',
+    maxPercent: true,
   };
 
   render(): React.ReactNode {
@@ -26,7 +27,15 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
       thick,
       labelFormatter,
       containerStyles,
+      maxPercent,
     } = this.props;
+    const maxBorderWidth = (): boolean | undefined => {
+      if (percent >= 99) {
+        return maxPercent;
+      }
+      return false;
+    };
+
     return (
       <S.Container
         className={`${className || ''} progress-bar-container`}
@@ -44,6 +53,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
           ))}
         <S.AntdProgressBar
           percent={percent}
+          maxPercent={maxBorderWidth()}
           type={type}
           thick={thick}
           status={status}

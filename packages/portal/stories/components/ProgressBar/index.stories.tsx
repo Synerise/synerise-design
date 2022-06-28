@@ -41,6 +41,7 @@ const stories = {
       <ProgressBar
         amount={60}
         percent={60}
+        maxPercent
         showLabel={false}
         strokeColor={colors}
         containerStyles={{ display: 'flex', flexDirection: 'row' }}
@@ -54,6 +55,7 @@ const stories = {
       <ProgressBar
         thick={isThick}
         showLabel={true}
+        maxPercent
         containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
         labelFormatter={(amount, percent) => (
           <div style={{ padding: isThick ? '7px 0px 0px 8px' : '8px 0 0 8px' }}>{percent}%</div>
@@ -65,15 +67,17 @@ const stories = {
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    return <ProgressBar amount={60} percent={60} showLabel={true} strokeColor={colors}></ProgressBar>;
+    return <ProgressBar amount={60} percent={60} maxPercent showLabel={true} strokeColor={colors}></ProgressBar>;
   },
 
   soloBarWithLabelAndDescription: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    const setPercentage = number('Set percentage', 60,{ min: 0, max: 100 })
     return (
       <ProgressBar
-        amount={60}
-        percent={60}
+        amount={setPercentage}
+        percent={setPercentage}
+        maxPercent
         showLabel={true}
         description="Description"
         strokeColor={colors}
