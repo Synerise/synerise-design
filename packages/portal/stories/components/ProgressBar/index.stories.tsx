@@ -37,11 +37,11 @@ const decorator = storyFn => (
 const stories = {
   soloBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
+    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
     return (
       <ProgressBar
         amount={60}
-        percent={60}
-        maxPercent
+        percent={percentValue}
         showLabel={false}
         strokeColor={colors}
         containerStyles={{ display: 'flex', flexDirection: 'row' }}
@@ -51,33 +51,33 @@ const stories = {
   soloSmallBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     const isThick = boolean('Set thick', false);
+    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
     return (
       <ProgressBar
         thick={isThick}
         showLabel={true}
-        maxPercent
         containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
         labelFormatter={(amount, percent) => (
           <div style={{ padding: isThick ? '7px 0px 0px 8px' : '8px 0 0 8px' }}>{percent}%</div>
         )}
-        percent={60}
+        percent={percentValue}
         strokeColor={colors}
       ></ProgressBar>
     );
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    return <ProgressBar amount={60} percent={60} maxPercent showLabel={true} strokeColor={colors}></ProgressBar>;
+    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
+    return <ProgressBar amount={60} percent={percentValue} maxPercent showLabel={true} strokeColor={colors}></ProgressBar>;
   },
 
   soloBarWithLabelAndDescription: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    const setPercentage = number('Set percentage', 60,{ min: 0, max: 100 })
+    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
     return (
       <ProgressBar
-        amount={setPercentage}
-        percent={setPercentage}
-        maxPercent
+        amount={percentValue}
+        percent={percentValue}
         showLabel={true}
         description="Description"
         strokeColor={colors}
