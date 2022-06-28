@@ -30,7 +30,7 @@ class ProgressBar extends React.PureComponent<ProgressProps> {
       maxPercent,
     } = this.props;
     const maxBorderWidth = (): boolean | undefined => {
-      if (percent >= 99) {
+      if (percent === 100) {
         return maxPercent;
       }
       return false;
