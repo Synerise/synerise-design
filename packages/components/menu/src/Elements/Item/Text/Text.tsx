@@ -164,6 +164,7 @@ const Text: React.FC<BasicItemProps> = ({
       onClick={onClick}
       onItemHover={onItemHover as unknown as HoverEventHandler}
       {...rest}
+      data-name={typeof children === 'string' ? children : undefined}
       className={className}
     >
       <Tooltip

@@ -307,5 +307,25 @@ describe('Menu item', () => {
     const element = getByText('Menu item');
     fireEvent.mouseOver(element);
     expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
-  })
+  });
+  it('should have data-name attribute with children as value', () => {
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item>Hello</Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
+    expect(menuItem).toHaveAttribute('data-name', 'Hello');
+  });
+  it('should have data-name attribute with undefined as value', () => {
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item>
+          <span>Hello</span>
+        </Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
+    expect(menuItem).not.toHaveAttribute('data-name');
+  });
 });
