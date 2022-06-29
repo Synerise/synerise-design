@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.15...@synerise/ds-date-range-picker@0.13.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** applying primary class to selected buttons ([cf1fd45](https://github.com/Synerise/synerise-design/commit/cf1fd45a65dd2bf724c7907f203d04e06ac2c856))
+* **date-range-picker:** babel array iteration fix ([15a0375](https://github.com/Synerise/synerise-design/commit/15a0375f7bdafa2856cad0f14616b60f9d1ad598))
+* **date-range-picker:** default relative custom date-range to 30 days ([a159680](https://github.com/Synerise/synerise-design/commit/a1596807d31f53739304bbc7d793a0bd911e5ed1))
+* **date-range-picker:** fix switching mode (componentDidUpdate) ([6d59489](https://github.com/Synerise/synerise-design/commit/6d594899bf338930951da5ff78123402491d29e1))
+* **date-range-picker:** handle custom relative date range ([d456923](https://github.com/Synerise/synerise-design/commit/d456923259ecd75246897665e5de4f07d9a689b5))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/Synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** interaction: switch modes, onChange value type ([a3e1329](https://github.com/Synerise/synerise-design/commit/a3e132927b42934d5a9ea61712b855d38f2e6561))
+* **date-range-picker:** lifetime date-range-picker story ([f3cb1a6](https://github.com/Synerise/synerise-design/commit/f3cb1a66d3619da42226baebd56d66610964db7c))
+* **date-range-picker:** make sure lodash.range is an array ([f51b1c4](https://github.com/Synerise/synerise-design/commit/f51b1c4fb8aae85d73257e6631595a2828dba0cc))
+* **date-range-picker:** render popover in arrow-color test ([68090f5](https://github.com/Synerise/synerise-design/commit/68090f575da90ef0d788321b1c5a1b83cd4170cd))
+* **date-range-picker:** show last/next in relative-date-filter addon ([6e409cf](https://github.com/Synerise/synerise-design/commit/6e409cff94058181bc41c74d900d6f6794fd4cbc))
+* **date-range-picker:** show saving filters if passed proper props ([2e870b2](https://github.com/Synerise/synerise-design/commit/2e870b2eefbea9b7d66dbcb887e54ae291f1c619))
+
+
+### Features
+
+* **date-range-picker:** ALL_TIME as a const, expose CONST ([7d3d98e](https://github.com/Synerise/synerise-design/commit/7d3d98e9711141079c6f1e0f6101e559c5ef6faf))
+* **date-range-picker:** include Lifetime option in stories by default ([e84ae70](https://github.com/Synerise/synerise-design/commit/e84ae709e7c74e25d23c12ff41cb7c0daf8f858e))
+
+
+
+
+
 ## [0.12.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.12.14...@synerise/ds-date-range-picker@0.12.15) (2022-06-15)
 
 

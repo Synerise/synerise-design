@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.18...@synerise/ds-time-picker@0.6.19) (2022-06-23)
+
+
+### Bug Fixes
+
+* **time-picker:** load initial values into the internal state ([7905253](https://github.com/Synerise/synerise-design/commit/7905253a7cf2e3bcbf4ca3ac1efb02fe72bc0aaf))
+* **time-picker:** simplify selecting time ([6ee5050](https://github.com/Synerise/synerise-design/commit/6ee50508f4fee04cefd70c11dd9c0625cbe01092))
+
+
+
+
+
 ## [0.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.17...@synerise/ds-time-picker@0.6.18) (2022-06-15)
 
 

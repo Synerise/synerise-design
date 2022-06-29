@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.6.19...@synerise/ds-date-picker@0.6.20) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-picker:** NODE_ENV=production babel optimization fix ([57c5936](https://github.com/Synerise/synerise-design/commit/57c5936f58741853d663de54e6dc3e970a06f45b))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/Synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** make sure lodash.range is an array ([f51b1c4](https://github.com/Synerise/synerise-design/commit/f51b1c4fb8aae85d73257e6631595a2828dba0cc))
+
+
+
+
+
 ## [0.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.6.18...@synerise/ds-date-picker@0.6.19) (2022-06-15)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

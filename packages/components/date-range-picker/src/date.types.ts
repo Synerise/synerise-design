@@ -2,6 +2,26 @@ import * as React from 'react';
 
 export type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
 
+export type RangeKey =
+  | 'TODAY'
+  | 'YESTERDAY'
+  | 'TOMORROW'
+  | 'LAST_WEEK'
+  | 'THIS_WEEK'
+  | 'NEXT_WEEK'
+  | 'LAST_7_DAYS'
+  | 'NEXT_7_DAYS'
+  | 'LAST_MONTH'
+  | 'THIS_MONTH'
+  | 'NEXT_MONTH'
+  | 'LAST_3_MONTHS'
+  | 'NEXT_3_MONTHS'
+  | 'LAST_6_MONTHS'
+  | 'NEXT_6_MONTHS'
+  | 'LAST_YEAR'
+  | 'NEXT_YEAR'
+  | 'ALL_TIME';
+
 export type NullableDateLimit = null | string | Date;
 
 export interface DateFilter {
@@ -18,8 +38,9 @@ export interface DateFilter {
     value: number;
   };
 }
+
 export interface DateRangeBase {
-  key?: string;
+  key?: RangeKey | string;
   future?: boolean;
   filter?: DateFilter;
   translationKey?: string;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
+import fnsIsValid from 'date-fns/isValid';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 // eslint-disable-next-line import/no-named-default
@@ -8,7 +9,7 @@ import { Props } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
-import { DateRange } from '../date.types';
+import type { DateRange } from '../date.types';
 
 const RangePickerInput: React.FC<Props> = ({
   value,
@@ -52,7 +53,7 @@ const RangePickerInput: React.FC<Props> = ({
 
   const getText = React.useCallback(
     (dateToDisplay): string => {
-      if (!dateToDisplay) return '';
+      if (!dateToDisplay || !fnsIsValid(dateToDisplay)) return '';
       let dateValue = dateToDisplay;
       if (typeof dateToDisplay === 'string') dateValue = new Date(dateToDisplay);
       return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');

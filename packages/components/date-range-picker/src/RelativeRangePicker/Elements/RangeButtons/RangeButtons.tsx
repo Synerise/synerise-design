@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as S from '../../RelativeRangePicker.styles';
-import * as CONST from '../../../constants';
 import { Props } from './RangeButtons.types';
-import { isAbsolute } from '../../utils';
 
-const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, texts, onChange }: Props) => {
+const RangeButtons: React.FC<Props> = ({ ranges, currentRange, texts, onChange }: Props) => {
   return (
     <>
       {ranges.map(range => (
@@ -13,12 +11,7 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, value, texts, onC
           onClick={(): void => {
             onChange && onChange(range);
           }}
-          type={
-            (currentRange && currentRange.key === range.key && value.type === CONST.RELATIVE) ||
-            (isAbsolute(currentRange) && range.key !== 'ALL_TIME')
-              ? 'primary'
-              : 'tertiary'
-          }
+          type={currentRange && currentRange.key === range.key ? 'primary' : 'tertiary'}
         >
           {range.translationKey ? texts[range.translationKey] : texts?.custom}
         </S.Range>

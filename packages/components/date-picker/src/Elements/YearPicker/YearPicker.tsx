@@ -8,7 +8,7 @@ import GridPicker from '../GridPicker/GridPicker';
 import Navbar from '../Navbar/Navbar';
 import { YearPickerProps, YearPickerState } from './YearPicker.types';
 import { Cell } from '../GridPicker/GridPicker.types';
-import { getDecadeRange, range } from '../../utils';
+import { getDecadeRange } from '../../utils';
 import { fnsAddYears, fnsSetYear, fnsIsSameYear } from '../../fns';
 
 function getInitialState(props: YearPickerProps): YearPickerState {
@@ -20,7 +20,7 @@ function getInitialState(props: YearPickerProps): YearPickerState {
 
 function getCells(cursor: Date): Cell[] {
   const startYear = getDecadeRange(cursor)[0];
-  return range(0, 10).map((index: number) => {
+  return Array.from(Array(10)).map((_, index: number) => {
     const date = fnsAddYears(fnsSetYear(cursor, startYear), index);
     return {
       key: date.toISOString(),
