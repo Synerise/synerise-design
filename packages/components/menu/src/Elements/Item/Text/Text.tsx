@@ -21,13 +21,14 @@ const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Paramete
 export type HoverTooltipProps = React.PropsWithChildren<{
   hoverTooltipProps?: BasicItemProps['hoverTooltipProps'];
   renderHoverTooltip?: () => JSX.Element;
+  style?: React.CSSProperties;
 }>;
 
 const placement = {
   right: ['cl', 'cr'],
 };
 
-function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children }: HoverTooltipProps): JSX.Element {
+function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, style }: HoverTooltipProps): JSX.Element {
   const dsTheme = useTheme() as ThemePropsVars;
   const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
   const cancelBubblingEvent = React.useCallback(
@@ -55,7 +56,7 @@ function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children }: H
         zIndex={zIndex}
         {...hoverTooltipProps}
       >
-        {children as React.ReactElement}
+        <div style={style}>{children as React.ReactElement}</div>
       </Trigger>
     </div>
   );
@@ -156,13 +157,14 @@ const Text: React.FC<BasicItemProps> = ({
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
       description={description}
-      style={style}
+      style={renderHoverTooltip ? undefined : style}
       indentLevel={Number(indentLevel)}
       ordered={ordered}
       size={size}
       onClick={onClick}
       onItemHover={onItemHover as unknown as HoverEventHandler}
       {...rest}
+      data-name={typeof children === 'string' ? children : undefined}
       className={className}
     >
       <Tooltip
@@ -202,7 +204,7 @@ const Text: React.FC<BasicItemProps> = ({
   );
   if (renderHoverTooltip) {
     return (
-      <WithHoverTooltip hoverTooltipProps={hoverTooltipProps} renderHoverTooltip={renderHoverTooltip}>
+      <WithHoverTooltip hoverTooltipProps={hoverTooltipProps} renderHoverTooltip={renderHoverTooltip} style={style}>
         {element}
       </WithHoverTooltip>
     );
