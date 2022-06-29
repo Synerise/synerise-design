@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, select, } from '@storybook/addon-knobs';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 import Slider from '@synerise/ds-slider';
 import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
@@ -103,6 +104,13 @@ console.log(tracksColor)
 const WrapperMultiMode = (props: any) => {
   const [value, setValue] = React.useState(0);
   const [rangeValue, setRangeValue] = React.useState(sliderValues);
+  const numberOfRanges = Math.min(number('Number of ranges', sliderValues.length), defaultColorsOrder.length);
+  React.useEffect(() => {
+    const ranges = Array.from(Array(numberOfRanges + 1)).map((e, i) => {
+      return 100/numberOfRanges * i;
+    })
+    setRangeValue(ranges);
+  }, [numberOfRanges])
   return (
     <Slider {...props} value={props.range ? rangeValue : value} onChange={props.range ? setRangeValue : setValue} />
   );
@@ -178,7 +186,7 @@ const stories = {
       useColorPalette={true}
       thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
-      tracksColorMap={tracksColorMap}
+      tracksColorMap={boolean('Use other colors than default', false) ? tracksColorMap : undefined}
     />
   ),
   multiValuesRanges: () => (
@@ -186,7 +194,7 @@ const stories = {
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
-      tracksColorMap={tracksColorMap}
+      tracksColorMap={boolean('Use other colors than default', false) ? tracksColorMap : undefined}
     />
   ),
 };

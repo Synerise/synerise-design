@@ -1,14 +1,18 @@
 import * as React from 'react';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import './style/index.less';
 import * as S from './Slider.styles';
-import { Props, SliderTypes } from './Slider.types';
+import { ColorMapProps, Props, SliderTypes } from './Slider.types';
 import Allocation from './Allocation/Allocation';
 
 const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
 const couldBeInverted = (value: number | number[], inverted: boolean): boolean =>
   inverted && (typeof value === 'number' || value.length < 3);
+
+const mapToColor = (_: any, idx: number): Record<number, string> => ({ [idx]: defaultColorsOrder[idx] as string });
+const buildDefaultTracksColorMap = (): ColorMapProps => Object.assign({}, ...defaultColorsOrder.map(mapToColor));
 
 const Slider: React.FC<Props> = props => {
   const {
@@ -16,7 +20,7 @@ const Slider: React.FC<Props> = props => {
     label,
     inverted,
     getTooltipPopupContainer,
-    tracksColorMap,
+    tracksColorMap = buildDefaultTracksColorMap(),
     type,
     thickness,
     description,
