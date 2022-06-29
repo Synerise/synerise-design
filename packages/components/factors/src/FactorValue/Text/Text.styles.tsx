@@ -22,3 +22,5 @@ export const InputWrapper = styled.div`
     }
   }
 `;
+
+export const TextWrapper = styled.div``;

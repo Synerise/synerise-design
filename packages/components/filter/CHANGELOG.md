@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.2...@synerise/ds-filter@0.10.0) (2022-06-21)
+
+
+### Features
+
+* **filter:** adds logicOptions prop ([74b41c7](https://github.com/Synerise/synerise-design/commit/74b41c7858b6920528aef4ba4c0826833aeaac58))
+
+
+
+
+
+## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.1...@synerise/ds-filter@0.9.2) (2022-06-20)
+
+
+### Bug Fixes
+
+* **filter:** adds ability to override default translation ([ea9d27c](https://github.com/Synerise/synerise-design/commit/ea9d27c018678539a5b835273b8110175334d51b))
+* **filter:** update text prop types ([663e4f9](https://github.com/Synerise/synerise-design/commit/663e4f9ecd327e5414f8424d43711dc2c3f0c563))
+
+
+
+
+
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.0...@synerise/ds-filter@0.9.1) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.8.0...@synerise/ds-filter@0.9.0) (2022-05-13)
 
 

@@ -15,6 +15,7 @@ export const CLOCK_MODES = {
   AM: 'AM',
   PM: 'PM',
 };
+
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
   placeholder,
@@ -42,15 +43,15 @@ const TimePicker: React.FC<TimePickerProps> = ({
   intl,
 }) => {
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
-  const [localValue, setLocalValue] = React.useState<Date | undefined>(value);
   const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
-  React.useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
+
+  const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
+  // eslint-disable-next-line
+  // @ts-ignore
   const unitConfig: UnitConfig[] = [
     {
       unit: 'hour',
-      options: use12HourClock ? range(12 + 1) : range(24),
+      options: use12HourClock ? range(12) : range(24),
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -73,25 +74,19 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
   }, [units, unitConfig]);
 
-  const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);
-    !visible && onChange && onChange(localValue as Date, getTimeString(localValue as Date));
+    !visible && onChange && onChange(value as Date, getTimeString(value as Date));
   };
-
   const handleChange = (unit: dayjs.UnitType, newValue: number): void => {
-    if (!onChange) {
-      return;
+    const wasUndefined = value === undefined;
+    let dateBuilder = dayjs(value);
+    dateBuilder = dateBuilder[unit](newValue);
+    if (wasUndefined) {
+      // set remaining time fields to 0, HH:00:00, 00:mm:00, 00:00:ss
+      unitConfig.filter(u => u.unit !== unit).forEach(unitDef => (dateBuilder = dateBuilder[unitDef.unit](0)));
     }
-    let newDateObject = dayjs(localValue || undefined).set(unit, newValue);
-    const res = defaultUnits.filter(u => unitsToRender.find(val => val.unit !== u));
-    if (res.length !== defaultUnits.length) {
-      res.forEach(u => {
-        newDateObject = dayjs(newDateObject).set(u, 0);
-      });
-    }
-    const newDate = newDateObject.toDate();
-    setLocalValue(newDate);
+    const newDate = dateBuilder.toDate();
     onChange && onChange(newDate as Date, getTimeString(newDate as Date));
   };
 
@@ -113,13 +108,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
-
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={localValue} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
+          <Unit {...u} value={value} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
           {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
@@ -127,13 +121,13 @@ const TimePicker: React.FC<TimePickerProps> = ({
     </S.OverlayContainer>
   );
 
+  const localValue = value;
   const dateString = localValue && getTimeString(localValue);
 
   const clear = React.useCallback(() => {
-    setLocalValue(undefined);
     setOpen(false);
     onChange && onChange(undefined, '');
-  }, [setOpen, setLocalValue, onChange]);
+  }, [setOpen, onChange]);
 
   const timePickerIcon = React.useMemo(() => {
     return (alwaysOpen || open) && dateString ? (
@@ -151,8 +145,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = React.useMemo((): string => {
+    if (value) {
+      return dayjs(value).format('HH:mm:ss');
+    }
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl]);
+  }, [placeholder, intl, value]);
+
   if (raw) {
     return overlay;
   }

@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.5...@synerise/ds-factors@0.14.6) (2022-06-23)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.14.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.4...@synerise/ds-factors@0.14.5) (2022-06-17)
+
+
+### Bug Fixes
+
+* **factors:** disabled factor options ([1f805b8](https://github.com/Synerise/synerise-design/commit/1f805b8152c24a669d32e8a3b43f844e75e21db8))
+* **factors:** fixes welders-3765 ([1e1e8f4](https://github.com/Synerise/synerise-design/commit/1e1e8f41d2c36a59e8b1f86a34def74c5f3f457d))
+
+
+
+
+
+## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.3...@synerise/ds-factors@0.14.4) (2022-06-15)
+
+
+### Bug Fixes
+
+* **factors:** adds custom arrow color ([26beb90](https://github.com/Synerise/synerise-design/commit/26beb90854efe80e65b4a0c4ad47bf56eb94a292))
+* **factors:** adds custom arrow color ([1b44050](https://github.com/Synerise/synerise-design/commit/1b4405009975e1e1160b8e8d75dd45182553c18c))
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/Synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+
+
+
+## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.2...@synerise/ds-factors@0.14.3) (2022-06-10)
+
+
+### Bug Fixes
+
+* **factors:** fixes using of autocomplete ([dd56cb3](https://github.com/Synerise/synerise-design/commit/dd56cb38a2a7bf022e8f9d12b2e23e6812b2f0b1))
+
+
+
+
+
 ## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.1...@synerise/ds-factors@0.14.2) (2022-05-31)
 
 

@@ -25,7 +25,11 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
     } else {
       elementToFocusOn = document.querySelector(`.${focusableItemClass}`) as HTMLElement;
     }
-    !elementToFocusOn ? fallback() : elementToFocusOn.focus();
+    if (elementToFocusOn) {
+      elementToFocusOn.focus();
+    } else {
+      fallback();
+    }
     return;
   }
 
@@ -39,7 +43,11 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
           ? prevSibling
           : (focusableElements[activeElementIndex - 1] as HTMLElement);
     }
-    !elementToFocusOn ? fallback() : elementToFocusOn.focus();
+    if (elementToFocusOn) {
+      elementToFocusOn.focus();
+    } else {
+      fallback();
+    }
     return;
   }
 

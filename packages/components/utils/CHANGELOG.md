@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.10...@synerise/ds-utils@0.22.0) (2022-06-15)
+
+
+### Features
+
+* **utils:** outside click other ignored elements (useful for nesting) ([0ac399d](https://github.com/synerise/synerise-design/commit/0ac399dcd64cbff0158b5b1902ff34efa8aefb3d))
+
+
+
+
+
 ## [0.21.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.21.9...@synerise/ds-utils@0.21.10) (2022-04-29)
 
 **Note:** Version bump only for package @synerise/ds-utils

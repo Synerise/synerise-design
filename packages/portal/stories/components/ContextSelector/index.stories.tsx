@@ -23,6 +23,7 @@ const stories = {
         texts={CONTEXT_TEXTS}
         onSelectItem={setValue}
         selectedItem={store.state.value}
+        defaultDropdownVisibility={boolean('Default dropdown visibility', false)}
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
         onActivate={action('onActivate')}
@@ -40,6 +41,7 @@ const stories = {
       <ContextSelector
         texts={CONTEXT_TEXTS}
         onSelectItem={setValue}
+        defaultDropdownVisibility={boolean('Default dropdown visibility', false)}
         selectedItem={store.state.value}
         items={CONTEXT_ITEMS}
         groups={CONTEXT_GROUPS}
@@ -58,6 +60,7 @@ const stories = {
       <ContextSelector
         texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
         onSelectItem={setValue}
+        defaultDropdownVisibility={boolean('Default dropdown visibility', false)}
         selectedItem={store.state.value}
         items={CONTEXT_CLIENT_ITEMS}
         groups={CONTEXT_CLIENT_GROUPS}
@@ -76,6 +79,7 @@ const stories = {
       <ContextSelector
         texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
         onSelectItem={setValue}
+        defaultDropdownVisibility={boolean('Default dropdown visibility', false)}
         selectedItem={store.state.value}
         items={FLAT_LIST_ITEMS}
         groups={[]}

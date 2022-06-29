@@ -5,7 +5,10 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from "@testing-library/react";
+import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import DateRangePicker from '../DateRangePicker';
+import type { PopoverProps } from 'antd/lib/popover';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -30,6 +33,8 @@ export const RANGES: RelativeDateRange[] = [
 const texts = {
   relativeDateRange: 'Relative Picker',
   myRange: 'myRange',
+  startDatePlaceholder: 'Start date',
+  endDatePlaceholder: 'End date',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -87,6 +92,7 @@ describe('DateRangePicker', () => {
     const onApplyParameter = onApply.mock.calls[0][0];
     expect(onApplyParameter['type']).toBe(ABSOLUTE);
   });
+  it.todo('relative date-filter addon should render saving filters only if saving setter function is provided');
   it('should not convert date to absolute by default', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -129,6 +135,7 @@ describe('DateRangePicker', () => {
       { timeout: 50 }
     );
   });
+  it.todo('should render Lifetime option by default in ranges');
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -152,6 +159,7 @@ describe('DateRangePicker', () => {
     expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
   });
 
+  it.todo('should set to last 30 days if relative-date-range custom range');
   it('should change format when showTime is false', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -174,4 +182,37 @@ describe('DateRangePicker', () => {
     selectedRangeEnd.click();
     expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
   });
+  it('should display custom color for arrow popup', async () => {
+    const onApply = jest.fn();
+    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement}>();
+    const { container, getByText } = renderWithProvider(
+      <DateRangePicker
+        onApply={() => {}}
+        showTime
+        relativeFuture
+        forceAbsolute
+        showRelativePicker
+        texts={texts}
+        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef} as Partial<PopoverProps> }
+        arrowColor={{ topLeft: 'grey' }}
+        forceAdjacentMonths={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+      />
+    );
+    const element = getByText(texts.startDatePlaceholder);
+    fireEvent.click(element);
+    const popoverWrapper = popoverRef.current.getPopupDomNode() as HTMLElement;
+    const arrowElement = popoverWrapper.querySelector('.ant-popover-content > .ant-popover-arrow');
+    expect(arrowElement).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
+  });
+  it.todo('date-fns format function wrapper skips execution for invalid date');
+  it.todo('handleRangeChange does not propagate invalid date range');
+  it.todo('getSideState is able to parse Invalid Date (for months)');
+  it.todo('normalizeRange properly forwards Invalid Date');
+  it.todo('RangePickerInput getModifiers are able to handle invalid date range');
+  it.todo('RangePickerInput.getText accepts Invalid Date');
+  it.todo('date range picker relative addon internals is able to handle invalid ranges');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
+  it.todo('should properly set primary class in RangeButtons for currentRange');
 });

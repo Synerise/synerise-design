@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Scrollbar from '@synerise/ds-scrollbar';
@@ -40,8 +40,10 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     return `ds-parameter-item ds-parameter-item-${uuid()}`;
   }, []);
 
-  useOnClickOutside(overlayRef, () => {
-    setDropdownVisible(false);
+  useOnClickOutside(overlayRef, event => {
+    if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
+      setDropdownVisible(false);
+    }
   });
 
   const currentTabItems = React.useMemo((): ParameterGroup | undefined => {

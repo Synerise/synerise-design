@@ -3,6 +3,7 @@ import { legacyParse } from '@date-fns/upgrade/v2';
 import { Modifiers } from 'react-day-picker';
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
+import fnsIsValid from 'date-fns/isValid';
 import { State } from './RangePicker.types';
 import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth } from '../fns';
 import { TIME_OPTIONS } from '../constants';
@@ -34,20 +35,20 @@ export const getDisabledTimeOptions = (
 };
 
 export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): State => {
-  const from = fnsStartOfMonth(value.from ? legacyParse(value.from) : new Date());
-  let to = fnsStartOfMonth(value.to ? legacyParse(value.to) : new Date());
+  const from = fnsStartOfMonth(fnsIsValid(value.from) ? legacyParse(value.from) : new Date());
+  let to = fnsStartOfMonth(fnsIsValid(value.to) ? legacyParse(value.to) : new Date());
   if (fnsIsSameMonth(from, to)) {
     to = ADD.MONTHS(to, 1);
   }
   return {
     left: {
       month: from,
-      monthTitle: format(legacyParse(from), 'MMM yyyy'),
+      monthTitle: fnsIsValid(from) ? format(legacyParse(from), 'MMM yyyy') : '',
       mode: 'date',
     },
     right: {
       month: forceAdjacentMonths ? ADD.MONTHS(from, 1) : to,
-      monthTitle: format(legacyParse(to), 'MMM yyyy'),
+      monthTitle: fnsIsValid(to) ? format(legacyParse(to), 'MMM yyyy') : '',
       mode: 'date',
     },
   };
