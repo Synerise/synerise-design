@@ -16,6 +16,7 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
   menuItemHeight,
   style,
 }) => {
+  const { id, icon: _, ...itemProps } = item;
   return (
     <Menu.Item
       style={style}
@@ -35,6 +36,7 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
       }}
       size={menuItemHeight}
       description={item.description}
+      {...itemProps}
     >
       {item.name}
     </Menu.Item>

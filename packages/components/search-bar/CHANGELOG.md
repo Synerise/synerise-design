@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.11...@synerise/ds-search-bar@0.6.0) (2022-06-15)
+
+
+### Features
+
+* **information-card:** info-card component, stories, initial tests ([f5ff3f0](https://github.com/Synerise/synerise-design/commit/f5ff3f0c4435da14aba0db96a33b11f50146e6a3))
+
+
+
+
+
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.10...@synerise/ds-search-bar@0.5.11) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.9...@synerise/ds-search-bar@0.5.10) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.8...@synerise/ds-search-bar@0.5.9) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.7...@synerise/ds-search-bar@0.5.8) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
 ## [0.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.5.6...@synerise/ds-search-bar@0.5.7) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DateUtils, RangeModifier, DayModifiers } from 'react-day-picker';
 import fnsIsSameDay from 'date-fns/isSameDay';
+import fnsIsValid from 'date-fns/isValid';
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
@@ -181,8 +182,11 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     const { value, disabledDate, forceAdjacentMonths } = this.props;
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
-    const modifiers = getModifiers(from, to, enteredTo);
-    const selectedDays = [from, { from, to } as DateFilter];
+    const modifiers = getModifiers(fnsIsValid(from) ? from : null, fnsIsValid(to) ? to : null, enteredTo);
+    const selectedDays =
+      fnsIsValid(from) && fnsIsValid(to)
+        ? [from, { from, to } as DateFilter]
+        : [undefined, { from: undefined, to: undefined }];
     const parsedLeft = legacyParse(left.month);
     const parsedRight = legacyParse(right.month);
     const adjacentMonths = forceAdjacentMonths || fnsIsSameMonth(ADD.MONTHS(parsedLeft, 1), parsedRight);

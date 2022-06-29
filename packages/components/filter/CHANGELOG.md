@@ -3,6 +3,140 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.2...@synerise/ds-filter@0.10.0) (2022-06-21)
+
+
+### Features
+
+* **filter:** adds logicOptions prop ([74b41c7](https://github.com/Synerise/synerise-design/commit/74b41c7858b6920528aef4ba4c0826833aeaac58))
+
+
+
+
+
+## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.1...@synerise/ds-filter@0.9.2) (2022-06-20)
+
+
+### Bug Fixes
+
+* **filter:** adds ability to override default translation ([ea9d27c](https://github.com/Synerise/synerise-design/commit/ea9d27c018678539a5b835273b8110175334d51b))
+* **filter:** update text prop types ([663e4f9](https://github.com/Synerise/synerise-design/commit/663e4f9ecd327e5414f8424d43711dc2c3f0c563))
+
+
+
+
+
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.9.0...@synerise/ds-filter@0.9.1) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.8.0...@synerise/ds-filter@0.9.0) (2022-05-13)
+
+
+### Bug Fixes
+
+* **condition:** disabling hover effect on nonactive condition in filter ([228f242](https://github.com/Synerise/synerise-design/commit/228f242e6ce244c73e9da93adb2c4317cd65ec91))
+
+
+### Features
+
+* **condition:** adds defaultOpenedComponent prop ([6b6721d](https://github.com/Synerise/synerise-design/commit/6b6721dbd12be7e744100d303a5d3d7823467c3b))
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.7.1...@synerise/ds-filter@0.8.0) (2022-04-29)
+
+
+### Features
+
+* **factors:** adds onDeactivate prop, updates Readme.md ([ff85234](https://github.com/Synerise/synerise-design/commit/ff852349a5c77047d6d0642d4b5587dbcc6d24cd))
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.7.0...@synerise/ds-filter@0.7.1) (2022-04-08)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.6.4...@synerise/ds-filter@0.7.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* fix eslint errors ([7cce9b9](https://github.com/Synerise/synerise-design/commit/7cce9b94f8dea533b3c36a0f0cfd5145d4737166))
+
+
+### Features
+
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+* **filter:** updates styles ([a826761](https://github.com/Synerise/synerise-design/commit/a826761de845a47f8436d22a7307f2c03bb197e0))
+
+
+
+
+
+## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.6.3...@synerise/ds-filter@0.6.4) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.6.2...@synerise/ds-filter@0.6.3) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.6.1...@synerise/ds-filter@0.6.2) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.6.0...@synerise/ds-filter@0.6.1) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.5.4...@synerise/ds-filter@0.6.0) (2022-03-14)
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.5.3...@synerise/ds-filter@0.5.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.5.2...@synerise/ds-filter@0.5.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-filter

@@ -10,6 +10,7 @@ import { ContextItem, ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
+  defaultDropdownVisibility,
   selectedItem,
   onSelectItem,
   onSetGroup,
@@ -20,7 +21,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   addMode,
   loading,
   customTriggerComponent,
-  trigger,
+  trigger = ['click'],
   menuItemHeight,
   dropdownWrapperStyles,
   onClickOutsideEvents,
@@ -29,12 +30,16 @@ const ContextSelector: React.FC<ContextProps> = ({
   hasMoreItems,
   onFetchData,
   onActivate,
+  onDeactivate,
   onOpen,
   getPopupContainerOverride,
   type,
   dropdownProps,
 }) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
+  React.useEffect(() => {
+    setDropdownVisible(defaultDropdownVisibility ?? false);
+  }, [defaultDropdownVisibility]);
   const handleChange = React.useCallback(
     val => {
       setDropdownVisible(false);
@@ -90,8 +95,16 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
 
   const onDropdownVisibilityChange = React.useCallback(
-    (value: boolean) => value && onActivate && onActivate(),
-    [onActivate]
+    (value: boolean) => {
+      if (value) {
+        onActivate && onActivate('');
+        setDropdownVisible(true);
+      } else {
+        onDeactivate && onDeactivate();
+        setDropdownVisible(false);
+      }
+    },
+    [onActivate, onDeactivate]
   );
 
   return (

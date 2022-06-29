@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.17...@synerise/ds-description@0.3.18) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.16...@synerise/ds-description@0.3.17) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.15...@synerise/ds-description@0.3.16) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.14...@synerise/ds-description@0.3.15) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.13...@synerise/ds-description@0.3.14) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.12...@synerise/ds-description@0.3.13) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.11...@synerise/ds-description@0.3.12) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.10...@synerise/ds-description@0.3.11) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
+## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.9...@synerise/ds-description@0.3.10) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-description
+
+
+
+
+
 ## [0.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.3.8...@synerise/ds-description@0.3.9) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-description

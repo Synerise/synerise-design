@@ -115,6 +115,7 @@ return (
 | textLookupConfig        | config of keys for lookup in parameters, recent and suggestions datasets               | { parameters: string; recent: string; suggestions: string}               | -       |
 | value                   | The input content value                                                                | string                                                                   | -       |
 | width                   | Width of the search input when expanded                                                | number                                                                   | -       |
+| alwaysExpanded          | Enable expanded input on Search component with dropdown                                | boolean / undefined                                                      | -       |
 
 ### DataSetProps
 

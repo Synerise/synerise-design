@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.3...@synerise/ds-badge@0.6.4) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.2...@synerise/ds-badge@0.6.3) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.1...@synerise/ds-badge@0.6.2) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.0...@synerise/ds-badge@0.6.1) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.5.7...@synerise/ds-badge@0.6.0) (2022-03-24)
+
+
+### Features
+
+* **badge:** allows to use customColor as string ([30febbc](https://github.com/Synerise/synerise-design/commit/30febbc13293cd2936cdf6946a2bc4d289059f60))
+* **badge:** backward compatibility for customColor props ([89954fb](https://github.com/Synerise/synerise-design/commit/89954fb3bc9b2763e3be480b77e3a7b75668750b))
+* **badge:** updates types ([2f4bba3](https://github.com/Synerise/synerise-design/commit/2f4bba3fae451ac49b8c3345332e428bd077f4ce))
+
+
+
+
+
+## [0.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.5.6...@synerise/ds-badge@0.5.7) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.5.5...@synerise/ds-badge@0.5.6) (2021-12-29)
 
 **Note:** Version bump only for package @synerise/ds-badge

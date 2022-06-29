@@ -16,7 +16,7 @@ import Icon, {
   VarTypeDateM,
   VarTypeListM,
   VarTypeNumberM,
-  VarTypeStringM
+  VarTypeStringM,
 } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
@@ -202,7 +202,7 @@ const getSuggestions = value => {
 const stories = {
   default: withState({
     selectedRows: [],
-    starredRowKeys: [],
+    starredRowKeys: ['2', '3', '6'],
     categories: CATEGORIES,
     savedViews: VIEWS,
     columns: COLUMNS,
@@ -294,8 +294,6 @@ const stories = {
     const toggleItemFilterVisible = (): void => {
       store.set({ itemFilterVisible: !store.state.itemFilterVisible });
     };
-
-
 
     const selectedView = () => {
       let allItems = [];
@@ -405,12 +403,14 @@ const stories = {
               limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }
           }
-          rowStar={boolean('Enable row star', undefined) && {
-            starredRowKeys: store.state.starredRowKeys,
-            onChange: (starredRowKeys): void => {
-              store.set({ starredRowKeys });
+          rowStar={
+            boolean('Enable row star', undefined) && {
+              starredRowKeys: store.state.starredRowKeys,
+              onChange: (starredRowKeys): void => {
+                store.set({ starredRowKeys });
+              },
             }
-          }}
+          }
           itemsMenu={
             <ItemsMenu>
               <Button onClick={action('Export')} type="secondary" mode="icon-label">

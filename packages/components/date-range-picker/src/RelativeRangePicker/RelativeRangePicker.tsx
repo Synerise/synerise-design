@@ -45,7 +45,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   static getDerivedStateFromProps(nextProps: Props, prevState: State): State {
     const { ranges, value, future, past, relativeModes } = nextProps;
     const state = prevState;
-    const currentRange = value && value.type === CONST.RELATIVE ? getRelativePresetForRange(value) : DEFAULT_RANGE;
+    const currentRange = getRelativePresetForRange(value);
     state.currentRange = currentRange as RelativeDateRange;
     state.groupedRanges = ranges;
     if (state.groupedRanges) {
@@ -157,7 +157,8 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   render(): React.ReactNode {
     const { texts, value, showCustomRange } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
-    const isCustomValue = !value?.key || !currentRange?.key;
+    const isCustomValue =
+      currentRange.type === 'RELATIVE' && (currentRange.key === 'CUSTOM' || !value?.key || !currentRange?.key);
     const visibleRanges = groupedRanges ? groupedRanges.slice(0, 3) : [];
     const hiddenRanges = groupedRanges ? groupedRanges.slice(3) : [];
     if (!currentGroup) return null;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.types';
-import { StepCardProps, StepCardTexts } from '@synerise/ds-step-card/src/StepCard.types';
+import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.types';
+import { StepCardProps } from '@synerise/ds-step-card/src/StepCard.types';
 import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
 
 type LogicType = {
@@ -14,6 +14,7 @@ type StepType = {
   id: string;
   data: Partial<StepCardProps>;
   logic?: LogicType;
+  expressionType?: 'attribute' | 'event';
 };
 
 export type Expression = LogicType | StepType;
@@ -28,11 +29,29 @@ export type FilterProps = {
   onDeleteStep: (id: string) => void;
   onDuplicateStep: (id: string) => void;
   renderStepFooter?: (expression: Expression) => React.ReactNode;
-  renderStepContent?: (expression: Expression) => React.ReactNode;
+  renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
   addFilterComponent?: React.ReactNode;
+  logicOptions?: LogicOperator[];
   texts?: {
     matching?: MatchingTexts;
-    step?: StepCardTexts;
+    step?: {
+      matching?: string;
+      notMatching?: string;
+      have?: string;
+      performed?: string;
+      notHave?: string;
+      notPerformed?: string;
+      attribute?: string;
+      event?: string;
+      namePlaceholder?: string;
+      moveTooltip?: string;
+      deleteTooltip?: string;
+      duplicateTooltip?: string;
+    };
+    placeholder?: {
+      chooseCondition?: string;
+      getPreview?: string;
+    };
     addFilter?: string;
     dropMeHere?: string;
   };

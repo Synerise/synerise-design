@@ -18,6 +18,7 @@ const ParameterInput: React.FC<InputProps> = ({
   preventAutoloadData,
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -37,9 +38,10 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [onParamsClick, onActivate]);
 
   React.useEffect(() => {
+    setDropdownVisible(Boolean(opened));
     if (opened) {
-      setDropdownVisible(true);
       onParamsClick && onParamsClick();
+      onActivate && onActivate();
     }
     // eslint-disable-next-line
   }, [opened]);
@@ -49,15 +51,22 @@ const ParameterInput: React.FC<InputProps> = ({
     // eslint-disable-next-line
   }, []);
 
-  const onDropdownVisibilityChange = React.useCallback((newValue: boolean) => newValue && onActivate && onActivate(), [
-    onActivate,
-  ]);
+  const onDropdownVisibilityChange = React.useCallback(
+    (newValue: boolean) => {
+      newValue && onActivate && onActivate();
+      if (!newValue) {
+        onDeactivate && onDeactivate();
+        setDropdownVisible(false);
+      }
+    },
+    [onActivate, onDeactivate]
+  );
 
   return (
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
-        getPopupContainer={getPopupContainer}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         onVisibleChange={onDropdownVisibilityChange}
         overlay={
           <ParameterDropdown

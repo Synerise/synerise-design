@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys, getClosest, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
@@ -60,6 +60,9 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   }, [groups]);
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
+
+  const [searchInputHandle, setSearchInputHandle] =
+    React.useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
@@ -78,9 +81,11 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   useOnClickOutside(
     overlayRef,
-    () => {
-      onClickOutside && onClickOutside();
-      setDropdownVisible(false);
+    event => {
+      if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
+        onClickOutside && onClickOutside();
+        setDropdownVisible(false);
+      }
     },
     onClickOutsideEvents
   );
@@ -262,7 +267,9 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       style={{ width: '300px', ...dropdownWrapperStyles }}
       ref={overlayRef}
       onKeyDown={(e): void => {
-        setSearchInputFocus(false);
+        if (document?.activeElement === searchInputHandle?.current) {
+          setSearchInputFocus(false);
+        }
         searchQuery &&
           focusWithArrowKeys(e, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
@@ -279,6 +286,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
         autofocusDelay={50}
+        handleInputRef={(e): void => setSearchInputHandle(e)}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
       {searchQuery === '' && getTabs.length > 1 && (
@@ -317,6 +325,8 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
               {/*
             // @ts-ignore */}
               <List
+                className="ds-context-selector-list"
+                key={`list-${activeGroup}-${activeTab}`}
                 width="100%"
                 height={300}
                 itemCount={activeItems.length}

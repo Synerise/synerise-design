@@ -11,6 +11,7 @@ import FormulaInput from './FactorValue/Formula/Formula';
 import TextInput from './FactorValue/Text/Text';
 import ParameterInput from './FactorValue/Parameter/Parameter';
 import NumberInput from './FactorValue/Number/NumberInput';
+import DateRangeInput from './FactorValue/DateRange/DateRange';
 
 export const factorTypes = {
   text: {
@@ -53,6 +54,11 @@ export const factorTypes = {
     name: 'Date',
     input: DateInput,
   },
+  dateRange: {
+    icon: <Calendar2M />,
+    name: 'Date range',
+    input: DateRangeInput,
+  },
 };
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -77,11 +83,82 @@ const Factors: React.FC<FactorsProps> = ({
   factorKey,
   preventAutoloadData,
   onActivate,
+  onDeactivate,
   getPopupContainerOverride,
+  error,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
     () => ({
+      dateRangePicker: {
+        after: formatMessage({ id: `DS.DATE-RANGE-PICKER.AFTER`, defaultMessage: 'after' }),
+        allTime: formatMessage({ id: `DS.DATE-RANGE-PICKER.ALL-TIME`, defaultMessage: 'Lifetime' }),
+        apply: formatMessage({ id: `DS.DATE-RANGE-PICKER.APPLY`, defaultMessage: 'Apply' }),
+        before: formatMessage({ id: `DS.DATE-RANGE-PICKER.BEFORE`, defaultMessage: 'before' }),
+        clear: formatMessage({ id: `DS.DATE-RANGE-PICKER.CLEAR`, defaultMessage: 'Clear' }),
+        clearRange: formatMessage({ id: `DS.DATE-RANGE-PICKER.CLEAR-RANGE`, defaultMessage: ' Clear range' }),
+        copyRange: formatMessage({ id: `DS.DATE-RANGE-PICKER.COPY-RANGE`, defaultMessage: 'Copy range' }),
+        custom: formatMessage({ id: `DS.DATE-RANGE-PICKER.CUSTOM`, defaultMessage: 'Custom' }),
+        days: formatMessage({ id: `DS.DATE-RANGE-PICKER.DAYS`, defaultMessage: 'Days' }),
+        emptyDateError: formatMessage({
+          id: `DS.DATE-RANGE-PICKER.EMPTY-DATE-ERROR`,
+          defaultMessage: 'Date cannot be empty',
+        }),
+        endDate: formatMessage({ id: `DS.DATE-RANGE-PICKER.END-DATE`, defaultMessage: 'End date' }),
+        endDatePlaceholder: formatMessage({
+          id: `DS.DATE-RANGE-PICKER.END-DATE-PLACEHOLDER`,
+          defaultMessage: 'End date',
+        }),
+        filter: formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER`, defaultMessage: 'Date filter' }),
+        hours: formatMessage({ id: `DS.DATE-RANGE-PICKER.HOURS`, defaultMessage: 'Hours' }),
+        last3Months: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-3-MONTHS`, defaultMessage: 'Last 3 months' }),
+        last6Months: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-6-MONTHS`, defaultMessage: 'Last 6 months' }),
+        last7Days: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-7-DAYS`, defaultMessage: 'Last 7 days' }),
+        last: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST`, defaultMessage: 'Last' }),
+        lastMonth: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-MONTH`, defaultMessage: 'Last month' }),
+        lastWeek: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-WEEK`, defaultMessage: 'Last week' }),
+        lastYear: formatMessage({ id: `DS.DATE-RANGE-PICKER.LAST-YEAR`, defaultMessage: 'Last year' }),
+        minutes: formatMessage({ id: `DS.DATE-RANGE-PICKER.MINUTES`, defaultMessage: 'Minutes' }),
+        months: formatMessage({ id: `DS.DATE-RANGE-PICKER.MONTHS`, defaultMessage: 'Months' }),
+        more: formatMessage({ id: `DS.DATE-RANGE-PICKER.MORE`, defaultMessage: 'More' }),
+        next3Months: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-3-MONTHS`, defaultMessage: 'Next 3 months' }),
+        next6Months: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-6-MONTHS`, defaultMessage: 'Next 6 months' }),
+        next7Days: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-7-DAYS`, defaultMessage: 'Next 7 days' }),
+        next: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT`, defaultMessage: 'Next' }),
+        nextMonth: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-MONTH`, defaultMessage: 'Next month' }),
+        nextWeek: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-WEEK`, defaultMessage: 'Next week' }),
+        nextYear: formatMessage({ id: `DS.DATE-RANGE-PICKER.NEXT-YEAR`, defaultMessage: 'Next year' }),
+        now: formatMessage({ id: `DS.DATE-RANGE-PICKER.NOW`, defaultMessage: 'Now' }),
+        pasteRange: formatMessage({ id: `DS.DATE-RANGE-PICKER.PASTE-RANGE`, defaultMessage: 'Paste range' }),
+        relativeDateRange: formatMessage({
+          id: `DS.DATE-RANGE-PICKER.RELATIVE-DATE-RANGE`,
+          defaultMessage: 'Relative date range',
+        }),
+        remove: formatMessage({ id: `DS.DATE-RANGE-PICKER.REMOVE`, defaultMessage: 'Remove' }),
+        savedFiltersTrigger: formatMessage({
+          id: `DS.DATE-RANGE-PICKER.SAVED-FILTERS`,
+          defaultMessage: 'Saved filters',
+        }),
+        seconds: formatMessage({ id: `DS.DATE-RANGE-PICKER.SECONDS`, defaultMessage: 'Seconds' }),
+        selectDate: formatMessage({ id: `DS.DATE-RANGE-PICKER.SELECT-DATE`, defaultMessage: 'Select date' }),
+        selectTime: formatMessage({ id: `DS.DATE-RANGE-PICKER.SELECT-TIME`, defaultMessage: 'Select time' }),
+        since: formatMessage({ id: `DS.DATE-RANGE-PICKER.SINCE`, defaultMessage: 'Since' }),
+        startDate: formatMessage({ id: `DS.DATE-RANGE-PICKER.START-DATE`, defaultMessage: 'Start date' }),
+        startDatePlaceholder: formatMessage({
+          id: `DS.DATE-RANGE-PICKER.START-DATE-PLACEHOLDER`,
+          defaultMessage: 'Start date',
+        }),
+        thisMonth: formatMessage({ id: `DS.DATE-RANGE-PICKER.THIS-MONTH`, defaultMessage: 'This month' }),
+        thisWeek: formatMessage({ id: `DS.DATE-RANGE-PICKER.THIS-WEEK`, defaultMessage: 'This week' }),
+        timestampLast: formatMessage({ id: `DS.DATE-RANGE-PICKER.TIMESTAMP-LAST`, defaultMessage: 'Last' }),
+        timestampNext: formatMessage({ id: `DS.DATE-RANGE-PICKER.TIMESTAMP-NEXT`, defaultMessage: 'Next' }),
+        timestampTill: formatMessage({ id: `DS.DATE-RANGE-PICKER.TIMESTAMP-TILL`, defaultMessage: 'till' }),
+        today: formatMessage({ id: `DS.DATE-RANGE-PICKER.TODAY`, defaultMessage: 'Today' }),
+        tomorrow: formatMessage({ id: `DS.DATE-RANGE-PICKER.TOMORROW`, defaultMessage: 'Tomorrow' }),
+        weeks: formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKS`, defaultMessage: 'Weeks' }),
+        years: formatMessage({ id: `DS.DATE-RANGE-PICKER.YEARS`, defaultMessage: 'Years' }),
+        yesterday: formatMessage({ id: `DS.DATE-RANGE-PICKER.YESTERDAY`, defaultMessage: 'Yesterday' }),
+      },
       datePicker: {
         apply: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.APPLY', defaultMessage: 'Apply' }),
         clearTooltip: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.CLEAR_TOOLTIP', defaultMessage: 'Clear' }),
@@ -158,6 +235,8 @@ const Factors: React.FC<FactorsProps> = ({
         preventAutoloadData={preventAutoloadData}
         getPopupContainerOverride={getPopupContainerOverride}
         onActivate={onActivate}
+        onDeactivate={onDeactivate}
+        error={error}
       />
     </S.Group>
   );

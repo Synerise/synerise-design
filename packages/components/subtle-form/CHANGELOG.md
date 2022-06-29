@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.0...@synerise/ds-subtle-form@0.9.1) (2022-06-23)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.18...@synerise/ds-subtle-form@0.9.0) (2022-06-15)
+
+
+### Features
+
+* **subtle-form:** hide label prop in textarea ([f89c05d](https://github.com/Synerise/synerise-design/commit/f89c05d08c3f4d4b22bfdb5b74e60f0c58074507))
+* **subtle-form:** textarea - no rendering label if no description ([0933292](https://github.com/Synerise/synerise-design/commit/0933292b7cb5c389c713d8902af95c370cc35039))
+
+
+
+
+
+## [0.8.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.17...@synerise/ds-subtle-form@0.8.18) (2022-05-13)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.16...@synerise/ds-subtle-form@0.8.17) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.15...@synerise/ds-subtle-form@0.8.16) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.14...@synerise/ds-subtle-form@0.8.15) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.13...@synerise/ds-subtle-form@0.8.14) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.12...@synerise/ds-subtle-form@0.8.13) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.11...@synerise/ds-subtle-form@0.8.12) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.10...@synerise/ds-subtle-form@0.8.11) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.8.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.9...@synerise/ds-subtle-form@0.8.10) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
 ## [0.8.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.8.8...@synerise/ds-subtle-form@0.8.9) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

@@ -22,8 +22,10 @@ const ParameterDropdownItem: React.FC<DropdownItem> = ({
   className,
   style,
 }) => {
+  const { id, icon: _, ...itemProps } = item;
   return (
     <Menu.Item
+      {...itemProps}
       style={style}
       className={className}
       key={item.name + item.id}

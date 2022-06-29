@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
 import { useIntl } from 'react-intl';
+import { Title } from '@synerise/ds-typography';
 import { LogicProps, LogicSubComponents } from './Logic.types';
 import * as S from './Logic.style';
 import Matching from './Matching/Matching';
@@ -10,12 +9,6 @@ const DEFAULT_OPTIONS = ['AND', 'OR'];
 
 const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onChange }) => {
   const intl = useIntl();
-  const [optionsVisible, setOptionsVisible] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(ref, () => {
-    setOptionsVisible(false);
-  });
 
   const operators = React.useMemo(() => {
     if (options !== undefined && options.length) {
@@ -27,29 +20,11 @@ const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onCh
     }));
   }, [options, intl]);
 
-  const getOptions = React.useMemo(() => {
-    return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      <S.Wrapper ref={ref}>
-        <S.LogicMenu asDropdownMenu>
-          {operators.map(operator => (
-            <S.MenuItem
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
-              key={operator}
-              checked={operator.value === value}
-              onClick={(): void => {
-                setOptionsVisible(false);
-                onChange(operator.value);
-              }}
-            >
-              {operator.label}
-            </S.MenuItem>
-          ))}
-        </S.LogicMenu>
-      </S.Wrapper>
-    );
+  const handleNextLogic = React.useCallback(() => {
+    const currentOperatorIndex = operators.findIndex(operator => operator.value === value);
+    const nextOperatorIndex = currentOperatorIndex + 1 >= operators.length ? 0 : currentOperatorIndex + 1;
+
+    onChange(operators[nextOperatorIndex].value);
   }, [onChange, operators, value]);
 
   const renderValue = React.useMemo(() => {
@@ -57,11 +32,11 @@ const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onCh
   }, [operators, value]);
 
   return (
-    <Dropdown overlay={getOptions} visible={optionsVisible}>
-      <S.Logic className="ds-logic">
-        <Dropdown.TextTrigger value={renderValue} size={4} onClick={(): void => setOptionsVisible(!optionsVisible)} />
-      </S.Logic>
-    </Dropdown>
+    <S.Logic className="ds-logic" onClick={handleNextLogic}>
+      <Title withoutMargin level={4}>
+        {renderValue}
+      </Title>
+    </S.Logic>
   );
 };
 

@@ -20,6 +20,7 @@ const DateRangePicker: React.FC<Props> = props => {
     forceAdjacentMonths,
     disableDefaultTexts,
     arrowColor,
+    onVisibleChange,
     popoverProps = {},
   } = props;
   const intl = useIntl();
@@ -84,6 +85,7 @@ const DateRangePicker: React.FC<Props> = props => {
         overlayClassName="ds-date-range-popover"
         onVisibleChange={(visibility: boolean): void => {
           setInputActive(visibility);
+          onVisibleChange && onVisibleChange(visibility);
         }}
         {...popoverProps}
         {...conditionalVisibilityProps}

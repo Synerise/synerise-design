@@ -22,7 +22,7 @@ const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange
 
   const getToggle = React.useMemo(() => {
     return (
-      <S.Toggle onClick={handleClick} matching={matching}>
+      <S.Toggle onClick={handleClick} matching={matching} className="ds-matching-toggle">
         {matching ? text.matching : text.notMatching}
       </S.Toggle>
     );

@@ -4,6 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
+import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
 import { FACTOR, OPERATOR, PARAMETER } from '../../Condition';
 import * as S from '../../Condition.style';
 import * as T from './ConditionRow.types';
@@ -32,9 +33,13 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   onActivate,
   hasPriority,
   texts,
+  stepType,
+  onDeactivate,
+  error,
 }) => {
   return (
     <S.ConditionRow
+      stepType={stepType}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       key={`condition-row-${conditionId}`}
       index={index}
@@ -53,37 +58,58 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
           <Factors
             {...conditionParameter}
             getPopupContainerOverride={getPopupContainerOverride}
-            onActivate={onActivate}
+            onActivate={(): void => onActivate && onActivate(PARAMETER)}
+            onDeactivate={onDeactivate}
             onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
-            opened={stepId === currentStepId && conditionId === currentConditionId && currentField === PARAMETER}
+            opened={
+              hasPriority &&
+              stepId === currentStepId &&
+              conditionId === currentConditionId &&
+              currentField === PARAMETER
+            }
           />
         )}
       </S.ConditionWrapper>
-      {(!conditionParameter || conditionParameter?.value) && conditionOperator && (
-        <S.ConditionWrapper>
-          <Operators
-            {...conditionOperator}
-            getPopupContainerOverride={getPopupContainerOverride}
-            onActivate={onActivate}
-            onChange={(value): void => selectOperator(stepId, conditionId, value)}
-            opened={stepId === currentStepId && conditionId === currentConditionId && currentField === OPERATOR}
-          />
-        </S.ConditionWrapper>
-      )}
-      {conditionOperator?.value && (
-        <S.ConditionWrapper>
+      {(!conditionParameter ||
+        (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
+        conditionOperator && (
+          <S.ConditionWrapper>
+            <Operators
+              {...conditionOperator}
+              getPopupContainerOverride={getPopupContainerOverride}
+              onActivate={(): void => onActivate && onActivate(OPERATOR)}
+              onDeactivate={onDeactivate}
+              onChange={(value): void => selectOperator(stepId, conditionId, value)}
+              opened={
+                hasPriority &&
+                stepId === currentStepId &&
+                conditionId === currentConditionId &&
+                currentField === OPERATOR
+              }
+            />
+          </S.ConditionWrapper>
+        )}
+      {conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null && (
+        <S.ConditionWrapper fullWidth>
           <>
             {conditionFactor?.withCustomFactor || (
               <Factors
                 {...conditionFactor}
                 getPopupContainerOverride={getPopupContainerOverride}
-                onActivate={onActivate}
+                onActivate={(): void => onActivate && onActivate(FACTOR)}
+                onDeactivate={onDeactivate}
                 setSelectedFactorType={(factorType): void =>
                   setStepConditionFactorType(stepId, conditionId, factorType)
                 }
                 onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
                 factorKey={conditionId}
-                opened={stepId === currentStepId && conditionId === currentConditionId && currentField === FACTOR}
+                error={error}
+                opened={
+                  hasPriority &&
+                  stepId === currentStepId &&
+                  conditionId === currentConditionId &&
+                  currentField === FACTOR
+                }
               />
             )}
           </>
