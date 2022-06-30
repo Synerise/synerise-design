@@ -1,6 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Props } from '../Slider.types';
 import { AntdSlider } from '../Slider.styles';
+import { buildDefaultTracksColorMap } from '../Slider';
 
 export const indexMap = {
   '0': 'cyan-600',
@@ -23,16 +24,24 @@ export const AllocationSlider = styled(AntdSlider)<Props>`
     display: none;
   }
   && .ant-slider-mark-text:last-of-type {
-  padding-right: 0;
+    padding-right: 0;
   }
   && .ant-slider-mark-text {
-  user-select: none;
+    user-select: none;
   }
 `;
 
 export const Mark = styled.div`
   text-align: center;
 `;
+
+const getColor = <GeneralProps>(props: GeneralProps | any, defaultColor = 'grey-800'): string => {
+  const colors = buildDefaultTracksColorMap();
+  if (props.isCustomColor) {
+    return props.getColor(props.index);
+  }
+  return props.theme.palette[(colors || indexMap)[props.index] || defaultColor];
+};
 
 export const MarkLetter = styled.div<{ index: number | string }>`
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
@@ -45,7 +54,7 @@ export const MarkLetter = styled.div<{ index: number | string }>`
   color: white;
   top: -70px;
 
-  background-color: ${(props): string => props.theme.palette[indexMap[props.index] || 'grey-400']};
+  background-color: ${(props): string => getColor(props, 'grey-400')};
 `;
 
 export const MarkValue = styled.div`
@@ -60,10 +69,15 @@ export const MarkTooltipWrapper = styled.div`
   min-width: 14px;
 `;
 
-export const Track = styled.div<{ width: number; index: number }>`
+export const Track = styled.div<{
+  width: number;
+  index: number;
+  isCustomColor: boolean;
+  getColor: (index: number) => string;
+}>`
   width: ${(props): number => props.width}%;
   height: 6px;
-  background-color: ${(props): string => props.theme.palette[indexMap[props.index]]};
+  background-color: ${(props): string => getColor(props)};
   border-radius: ${(props): string => props.theme.palette['@border-radius-base']};
   z-index: ${(props): number => props.index};
 `;

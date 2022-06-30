@@ -37,6 +37,7 @@ const allocationVariants: AllocationVariant[] = [
   { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
 ];
 const customColorOptions = {
+  'undefined': undefined,
   red: 'red-600',
   green: 'green-600',
   yellow: 'yellow-600',
@@ -63,15 +64,19 @@ const tracksColorMap = {
 
 const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
 
-const Wrapper = (props: any) => {
+const Wrapper = (props: SliderProps) => {
   const [value, setValue] = React.useState(50);
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
   const hasMarks = boolean('Set scale', false);
   const maxMark = number('Max', 100);
   const descriptionMessage = renderDescription(text('Description', 'Description'));
   const hasDescription = boolean('Set Description', false);
+  const isOtherColor = boolean('Use other colors than default', false);
   const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
-  const color = select('Set color', customColorOptions, customColorOptions.green);
+  const tracksColors = React.useMemo(() => {
+    return props.tracksColorMap || tracksColor;
+  }, [tracksColor, props.tracksColorMap]);
+  const color = isOtherColor ? select('Set color', customColorOptions, customColorOptions.undefined) : undefined;
   const getDescription = (hasDescription: boolean): string | React.ReactNode => {
     if (hasDescription) {
       return descriptionMessage;
@@ -80,7 +85,7 @@ const Wrapper = (props: any) => {
     }
   };
   React.useEffect(() => {
-    setTracksColor({ ...tracksColor, '0': color });
+    setTracksColor({ ...tracksColor, ...color !== customColorOptions.undefined ? {'0': color} : {} });
   },[color]);
   const mark = {
     0: '0',
@@ -96,18 +101,18 @@ console.log(tracksColor)
       value={props.range ? rangeValue : value}
       onChange={props.range ? setRangeValue : setValue}
       hideMinAndMaxMarks={true}
-      tracksColorMap={tracksColor}
+      tracksColorMap={isOtherColor ? tracksColors : undefined}
     />
   );
 };
 
-const WrapperMultiMode = (props: any) => {
+const WrapperMultiMode = (props: SliderProps) => {
   const [value, setValue] = React.useState(0);
   const [rangeValue, setRangeValue] = React.useState(sliderValues);
   const numberOfRanges = Math.min(number('Number of ranges', sliderValues.length), defaultColorsOrder.length);
   React.useEffect(() => {
     const ranges = Array.from(Array(numberOfRanges + 1)).map((e, i) => {
-      return 100/numberOfRanges * i;
+      return 100 / numberOfRanges * i;
     })
     setRangeValue(ranges);
   }, [numberOfRanges])
@@ -184,7 +189,7 @@ const stories = {
       getTooltipPopupContainer={container => container}
       tooltipPlacement='bottom'
       useColorPalette={true}
-      thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
+      thickness={select('Set bar thickness', sizeTypes, sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
       tracksColorMap={boolean('Use other colors than default', false) ? tracksColorMap : undefined}
     />

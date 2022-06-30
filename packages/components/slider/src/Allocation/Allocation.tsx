@@ -3,7 +3,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
 import { DescriptionWrapper, Description } from '../Slider.styles';
 import * as S from './Allocation.styles';
-import { Props } from '../Slider.types';
+import { SliderProps } from '../Slider.types';
 import {
   countAllocation,
   isLowerOrUpperBound,
@@ -13,20 +13,15 @@ import {
 } from './utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
-const Allocation: React.FC<Props> = ({
+const Allocation: React.FC<SliderProps> = ({
   allocationConfig,
   tracksColorMap,
   description,
   tipFormatter,
   ...rest
-}: Props) => {
-  const {
-    variants,
-    onAllocationChange,
-    controlGroupEnabled,
-    controlGroupLabel,
-    controlGroupTooltip,
-  } = allocationConfig as AllocationConfig;
+}: SliderProps) => {
+  const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
+    allocationConfig as AllocationConfig;
   const [allocations, setAllocations] = React.useState(countAllocation(variants, controlGroupEnabled));
   const intl = useIntl();
 

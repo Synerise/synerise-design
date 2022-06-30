@@ -12,7 +12,7 @@ const couldBeInverted = (value: number | number[], inverted: boolean): boolean =
   inverted && (typeof value === 'number' || value.length < 3);
 
 const mapToColor = (_: any, idx: number): Record<number, string> => ({ [idx]: defaultColorsOrder[idx] as string });
-const buildDefaultTracksColorMap = (): ColorMapProps => Object.assign({}, ...defaultColorsOrder.map(mapToColor));
+export const buildDefaultTracksColorMap = (): ColorMapProps => Object.assign({}, ...defaultColorsOrder.map(mapToColor));
 
 const Slider: React.FC<Props> = props => {
   const {
