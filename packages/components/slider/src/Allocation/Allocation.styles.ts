@@ -72,8 +72,8 @@ export const MarkTooltipWrapper = styled.div`
 export const Track = styled.div<{
   width: number;
   index: number;
-  isCustomColor: boolean;
-  getColor: (index: number) => string;
+  isCustomColor?: boolean;
+  getColor?: (index: number) => string;
 }>`
   width: ${(props): number => props.width}%;
   height: 6px;
