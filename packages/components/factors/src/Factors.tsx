@@ -188,6 +188,20 @@ const Factors: React.FC<FactorsProps> = ({
       modalApply: formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),
       modalCancel: formatMessage({ id: 'DS.FACTORS.MODAL_CANCEL', defaultMessage: 'Cancel' }),
       modalTitle: formatMessage({ id: 'DS.FACTORS.MODAL_TITLE', defaultMessage: 'Value' }),
+      factorTypes: {
+        text: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.TEXT', defaultMessage: 'Text' }),
+        number: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.NUMBER', defaultMessage: 'Number' }),
+        parameter: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.PARAMETER', defaultMessage: 'Parameter' }),
+        contextParameter: formatMessage({
+          id: 'DS.FACTORS.FACTOR_TYPES.CONTEXT_PARAMETER',
+          defaultMessage: 'Context parameter',
+        }),
+        dynamicKey: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DYNAMIC_KEY', defaultMessage: 'Dynamic key' }),
+        formula: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.FORMULA', defaultMessage: 'Formula' }),
+        array: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.ARRAY', defaultMessage: 'Array' }),
+        date: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE', defaultMessage: 'Date' }),
+        dateRange: formatMessage({ id: 'DS.FACTORS.FACTOR_TYPES.DATE_RANGE', defaultMessage: 'Date range' }),
+      },
       ...texts,
     }),
     [texts, formatMessage]
@@ -210,6 +224,7 @@ const Factors: React.FC<FactorsProps> = ({
     >
       {!withoutTypeSelector && setSelectedFactorType && (
         <FactorTypeSelector
+          texts={text.factorTypes}
           selectedFactorType={factorType}
           setSelectedFactorType={setSelectedFactorType}
           selectedFactor={selectedFactor}
