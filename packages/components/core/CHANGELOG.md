@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.0...@synerise/ds-core@0.34.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* **factors:** fixes factor types i18n ([5963bcf](https://github.com/synerise/synerise-design/commit/5963bcfdf070c152e02868144996160f438f36a1))
+
+
+
+
+
 # [0.34.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.33.0...@synerise/ds-core@0.34.0) (2022-04-29)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.7...@synerise/ds-factors@0.14.8) (2022-07-06)
+
+
+### Bug Fixes
+
+* **factors:** fixes factor types i18n ([8f501a3](https://github.com/Synerise/synerise-design/commit/8f501a36b7c7fdce4224c93f81d64f68fb691269))
+* **factors:** fixes factor types i18n ([5963bcf](https://github.com/Synerise/synerise-design/commit/5963bcfdf070c152e02868144996160f438f36a1))
+
+
+
+
+
 ## [0.14.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.6...@synerise/ds-factors@0.14.7) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-factors
