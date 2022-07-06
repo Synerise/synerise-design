@@ -14,6 +14,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   unavailableFactorTypes,
   availableFactorTypes,
   selectedFactor,
+  texts,
 }) => {
   const typesList = React.useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
@@ -29,13 +30,13 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
         suffixel={type === selectedFactorType ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : ''}
         onClick={(): void => setSelectedFactorType(type)}
       >
-        {factorTypes[type].name}
+        {texts[type]}
       </Menu.Item>
     ));
-  }, [unavailableFactorTypes, availableFactorTypes, selectedFactorType, setSelectedFactorType]);
+  }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
   return (
-    <Tooltip title={selectedFactor.name} trigger={['hover']}>
+    <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>
       <Dropdown overlay={<S.FactorTypeList>{typesList}</S.FactorTypeList>} trigger={['click']}>
         <S.TriggerButton mode="single-icon" className="ds-factors-type-selector">
           <Icon component={selectedFactor.icon} />

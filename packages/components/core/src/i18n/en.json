@@ -27,6 +27,17 @@
             "DYNAMIC_KEY": {
                 "VALUE_PLACEHOLDER": "Value",
                 "KEY_PLACEHOLDER": "Key"
+            },
+            "FACTOR_TYPES": {
+                "TEXT": "Text",
+                "NUMBER": "Number",
+                "ARRAY": "Array",
+                "PARAMETER": "Parameter",
+                "CONTEXT_PARAMETER": "Context parameter",
+                "DATE": "Date",
+                "DATE_RANGE": "Date range",
+                "DYNAMIC_KEY": "Dynamic key",
+                "FORMULA": "Formula"
             }
         },
         "OPERATORS": {
