@@ -22,8 +22,6 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
       list = [...list].filter(type => unavailableFactorTypes.indexOf(type) < 0);
     }
 
-    console.log(texts);
-
     return (list as FactorType[]).map((type: FactorType) => (
       <Menu.Item
         className="ds-factor-type"
