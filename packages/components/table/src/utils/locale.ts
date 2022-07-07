@@ -39,6 +39,18 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
     id: 'DS.TABLE.INFINITE_SCROLL.BACK_TO_TOP',
     defaultMessage: 'Back to top',
   }),
+  unselectAll: intl.formatMessage({
+    id: 'DS.TABLE.UNSELECT_ALL',
+    defaultMessage: 'Unselect all',
+  }),
+  selectAll: intl.formatMessage({
+    id: 'DS.TABLE.SELECT_ALL',
+    defaultMessage: 'Select all',
+  }),
+  selectInvert: intl.formatMessage({
+    id: 'DS.TABLE.SELECT_INVERT',
+    defaultMessage: 'Invert selection',
+  }),
 });
 
 export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>
