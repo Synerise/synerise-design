@@ -7,6 +7,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
   line-height: 1.38;
   font-weight: normal;
   text-align: inherit;
+  word-break: break-all;
 `;
 
 const titlesWithPadding = ['icon', 'tutorial', 'button', 'header-label'];
