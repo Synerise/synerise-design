@@ -34,7 +34,7 @@ export const propsWithKnobs = () => ({
   zIndex: number('zIndex', 1),
   closable: boolean('(x) button is visible on top right', true),
   confirmLoading: boolean('Loading visual effect', false),
-  ...boolean('Clickable OK, Close buttons', false) ? {
+  ...boolean('Enabled buttons: OK, Close', false) ? {
     onClose: action('onClose CLICK'),
     onOk: action('onOk CLICK')
   }: {},

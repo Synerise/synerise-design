@@ -8,6 +8,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
+import { buildModalFooter } from "@synerise/ds-modal";
 
 const HeaderTypes = {
   DEFAULT: 'DEFAULT',
@@ -50,24 +51,16 @@ const headerWithPrefix = (text: string, prefix: React.ReactNode) => {
     </S.HeaderWrapper>
   );
 };
+
 const footer = (settingButton: string, cancelText: string, applyButton: string,) => {
-  return (
-  <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-    <div style={{ width: '100%', display: 'flex' }}>
+  return buildModalFooter({
+    okText: applyButton,
+    cancelText: cancelText,
+    prefix: (<div style={{ width: '100%', display: 'flex' }}>
       <Button type="secondary">{settingButton}</Button>
-    </div>
-    <div style={{ display: 'flex' }}>
-      <Button type="ghost">{cancelText}</Button>
-
-      <Button type="primary">
-        {applyButton}
-      </Button>
-    </div>
-  </div>
-  )
+    </div>),
+  });
 }
-
-
 
 const headerWithTabs = (text: string) => {
   const [activeTab, setActiveTab] = React.useState(0);

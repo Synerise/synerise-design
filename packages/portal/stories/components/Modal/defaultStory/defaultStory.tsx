@@ -13,6 +13,7 @@ const defaultStory = withState(DEFAULT_STATE)(({ store }) => {
     const spread = propsWithKnobs();
     const buildFooter = () => buildModalFooter({
       ...(spread as any),
+      okButtonProps: {loading: propsWithKnobs().confirmLoading},
       prefix: <div style={{ width: '100%', display: 'flex' }}>
         <Button type="secondary">{spread.settingButton}</Button>
       </div>})
