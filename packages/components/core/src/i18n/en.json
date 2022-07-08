@@ -152,7 +152,10 @@
                 "NO_MORE_DATA": "There are no more items to load",
                 "LOADING": "Loading more items",
                 "BACK_TO_TOP": "Back to top"
-            }
+            },
+            "SELECT_ALL": "Select all",
+            "UNSELECT_ALL": "Unselect all",
+            "SELECT_INVERT": "Invert selection"
         },
         "ICON-PICKER": {
             "NO-RESULTS": "No results"

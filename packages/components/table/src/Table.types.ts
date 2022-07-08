@@ -80,6 +80,7 @@ export type Locale = TableLocale & {
   infiniteScrollNoMoreData?: string;
   infiniteScrollLoading?: string;
   infiniteScrollBackToTop?: string;
+  unselectAll?: string;
 };
 
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
