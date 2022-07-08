@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.11...@synerise/ds-table@0.44.12) (2022-07-08)
+
+
+### Bug Fixes
+
+* **table:** fixes i18n in row selection component ([0e73b64](https://github.com/synerise/synerise-design/commit/0e73b644740c444b0115d2a6da040874883650fb))
+* **table:** fixes i18n in row selection component ([8aadd57](https://github.com/synerise/synerise-design/commit/8aadd575b41f32e2fbc0c715f6492ba660c4b08a))
+
+
+
+
+
 ## [0.44.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.10...@synerise/ds-table@0.44.11) (2022-07-06)
 
 **Note:** Version bump only for package @synerise/ds-table

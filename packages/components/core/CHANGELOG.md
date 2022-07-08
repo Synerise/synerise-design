@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.1...@synerise/ds-core@0.34.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* **table:** fixes i18n in row selection component ([0e73b64](https://github.com/synerise/synerise-design/commit/0e73b644740c444b0115d2a6da040874883650fb))
+
+
+
+
+
 ## [0.34.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.0...@synerise/ds-core@0.34.1) (2022-07-06)
 
 
