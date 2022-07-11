@@ -35,6 +35,7 @@ const texts = {
   myRange: 'myRange',
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
+  today: 'Today',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -214,6 +215,49 @@ describe('DateRangePicker', () => {
   it.todo('date range picker relative addon internals is able to handle invalid ranges');
   it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
   it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
-  it.todo('should omit non-absolute properties if emitting an absolute date-range value');
+  it.only('should omit non-absolute properties if emitting an absolute date-range value', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    const dayButton = container.querySelector('.DayPicker-Body .DayPicker-Day');
+    fireEvent.click(dayButton);
+    fireEvent.click(dayButton);
+    const applyButton = container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().from).toBeDefined();
+    expect(getLastCallParams().to).toBeDefined();
+    expect(getLastCallParams().offset).not.toBeDefined();
+    expect(getLastCallParams().duration).not.toBeDefined();
+    expect(getLastCallParams().future).not.toBeDefined();
+    const expander = container.querySelector('.addon-wrapper .ds-expander');
+    expect(expander).toBeTruthy();
+    fireEvent.click(expander);
+    fireEvent.click(getByText(texts['today']));
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().from).not.toBeDefined();
+    expect(getLastCallParams().to).not.toBeDefined();
+    expect(getLastCallParams().offset).toBeDefined();
+    expect(getLastCallParams().duration).toBeDefined();
+    expect(getLastCallParams().future).toBeDefined();
+    // set the date once again to an absolute (expect no relative date props)
+    fireEvent.click(dayButton);
+    fireEvent.click(dayButton);
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().offset).not.toBeDefined();
+    expect(getLastCallParams().duration).not.toBeDefined();
+    expect(getLastCallParams().future).not.toBeDefined();
+  });
   it.todo('should properly set primary class in RangeButtons for currentRange');
 });
