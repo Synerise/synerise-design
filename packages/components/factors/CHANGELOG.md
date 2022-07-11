@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.9...@synerise/ds-factors@0.14.10) (2022-07-11)
+
+
+### Bug Fixes
+
+* **factors:** hide date dropdown when others are open ([a1e47fd](https://github.com/Synerise/synerise-design/commit/a1e47fdbd85e7cba404e945eb23a7c9c9abc987e))
+
+
+
+
+
 ## [0.14.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.8...@synerise/ds-factors@0.14.9) (2022-07-08)
 
 **Note:** Version bump only for package @synerise/ds-factors
