@@ -39,6 +39,14 @@ const VIEWPORTS = {
       height: '1024px'
     }
   },
+  xsm: {
+    name: '588 - XSM',
+    type: 'mobile',
+    styles: {
+      width: '588px',
+      height: '1024px'
+    }
+  },
   xs: {
     name: '320 - XS',
     type: 'mobile',

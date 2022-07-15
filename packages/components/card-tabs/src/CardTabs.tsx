@@ -56,6 +56,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
       {onAddTab && (
         <span data-testid="card-tabs-add-button">
           <Button.Creator
+            block
             disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
             label={addTabLabel ?? ''}
             onClick={onAddTab}

@@ -151,6 +151,9 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   justify-content: flex-start;
   padding: 12px;
   width: 180px;
+  @media (max-width: 588px) {
+    max-width: 145px;
+  }
   height: 40px;
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
