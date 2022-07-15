@@ -7,4 +7,5 @@ export interface ProgressProps extends AntProgressProps {
   thick?: boolean;
   labelFormatter?: (amount?: string | number, percent?: string | number) => React.ReactNode;
   containerStyles?: React.CSSProperties;
+  maxPercent?: boolean;
 }
