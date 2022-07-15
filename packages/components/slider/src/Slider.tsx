@@ -11,8 +11,11 @@ const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelecto
 const couldBeInverted = (value: number | number[], inverted: boolean): boolean =>
   inverted && (typeof value === 'number' || value.length < 3);
 
-const mapToColor = (_: any, idx: number): Record<number, string> => ({ [idx]: defaultColorsOrder[idx] as string });
-export const buildDefaultTracksColorMap = (): ColorMapProps => Object.assign({}, ...defaultColorsOrder.map(mapToColor));
+const mapToColor = (_: string | object, idx: number): Record<number, string> => ({
+  [idx]: defaultColorsOrder[idx] as string,
+});
+export const buildDefaultTracksColorMap = (): ColorMapProps =>
+  Object.assign({} as Record<number, string>, ...defaultColorsOrder.map(mapToColor));
 
 const Slider: React.FC<Props> = props => {
   const {
