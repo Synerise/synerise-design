@@ -19,3 +19,10 @@ export type AllocationMark = {
   value: string;
   view: number;
 };
+
+export type TrackProps = {
+  width: number;
+  index: number;
+  isCustomColor?: boolean;
+  getColor?: (index: number) => string;
+};
