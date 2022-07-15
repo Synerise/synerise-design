@@ -1,7 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-components';
 import { Props } from '../Slider.types';
 import { AntdSlider } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
+import { TrackProps } from './Allocation.types';
 
 export const indexMap = {
   '0': 'cyan-600',
@@ -35,10 +36,10 @@ export const Mark = styled.div`
   text-align: center;
 `;
 
-const getColor = <GeneralProps>(props: GeneralProps | any, defaultColor = 'grey-800'): string => {
+const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800'): string => {
   const colors = buildDefaultTracksColorMap();
   if (props.isCustomColor) {
-    return props.getColor(props.index);
+    return (props.getColor && props.getColor(props.index)) || defaultColor;
   }
   return props.theme.palette[(colors || indexMap)[props.index] || defaultColor];
 };
@@ -54,7 +55,7 @@ export const MarkLetter = styled.div<{ index: number | string }>`
   color: white;
   top: -70px;
 
-  background-color: ${(props): string => getColor(props, 'grey-400')};
+  background-color: ${(props): string => getColor(props as StyledProps<TrackProps>, 'grey-400')};
 `;
 
 export const MarkValue = styled.div`
@@ -69,12 +70,7 @@ export const MarkTooltipWrapper = styled.div`
   min-width: 14px;
 `;
 
-export const Track = styled.div<{
-  width: number;
-  index: number;
-  isCustomColor?: boolean;
-  getColor?: (index: number) => string;
-}>`
+export const Track = styled.div<TrackProps>`
   width: ${(props): number => props.width}%;
   height: 6px;
   background-color: ${(props): string => getColor(props)};
