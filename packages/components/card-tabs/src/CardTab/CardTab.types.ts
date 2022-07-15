@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
+import { DefaultColor } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 export enum prefixType {
   TAG,
@@ -34,7 +35,7 @@ export interface CardTabProps {
   tag: string;
   prefix: prefixType;
   colorDot: React.ReactNode;
-  color?: Color;
+  color?: Color | DefaultColor | string;
   active?: boolean;
   draggable?: boolean;
   prefixIcon?: React.ReactNode;
