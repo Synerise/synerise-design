@@ -7,6 +7,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps>`
   line-height: 1.38;
   font-weight: normal;
   text-align: inherit;
+  word-break: break-all;
 `;
 
 const titlesWithPadding = ['icon', 'tutorial', 'button', 'header-label'];
@@ -20,7 +21,8 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
   align-items: center;
   justify-content: flex-start;
   text-align: inherit;
-  word-break: break-word ${IconContainer} {
+  word-break: break-all;
+  ${IconContainer} {
     align-self: flex-start;
   }
 `;
@@ -37,6 +39,7 @@ export const TooltipButton = styled.div`
 
 export const TooltipContent = styled.div`
   padding: 16px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -53,6 +56,7 @@ export const TooltipStatus = styled.div<Omit<TooltipExtendedProps, 'type'> & { t
 export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
+  width: 100%;
   color: ${(props): string => props.theme.palette['grey-200']};
   padding: 16px;
   text-align: left;
@@ -78,17 +82,17 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
       padding: 3px 8px;
     `}
     ${(props): SimpleInterpolation =>
-      props.tooltipType === 'header-label' &&
-      css`
-        padding: 13px 16px 16px;
-      `}
+    props.tooltipType === 'header-label' &&
+    css`
+      padding: 13px 16px 16px;
+    `}
     ${(props): SimpleInterpolation =>
-      props.tooltipType === 'status' &&
-      css`
-        padding: 6px 25px 10px 21px;
-        text-align: center;
-        align-items: center;
-      `}
+    props.tooltipType === 'status' &&
+    css`
+      padding: 6px 25px 10px 21px;
+      text-align: center;
+      align-items: center;
+    `}
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'avatar' &&
     css`
