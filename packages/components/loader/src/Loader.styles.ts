@@ -25,12 +25,13 @@ const mapElementsPosition = {
   bottom: 'column',
 };
 
-export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
+export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; size?: 'S' | 'M' | 'L' }>`
   display: flex;
   line-height: 16px;
   max-width: 440px;
   word-wrap: break-word;
   justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : '')};
+  font-size: ${(props): string => (props.size === 'S' ? '11px' : '13px')};
   text-align: center;
 `;
 export const HeaderWrapper = styled.div<{ fontSize?: 'small' | 'medium' }>`
