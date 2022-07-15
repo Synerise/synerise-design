@@ -103,4 +103,6 @@ describe('Modal', () => {
     // ASSERT
     expect(getByTestId(HEADER_ACTION_BUTTON_TEST_ID)).toBeTruthy();
   });
+
+  it.todo('footer is rendered by default using ds-button');
 });
