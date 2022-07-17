@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-form",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "Form UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-divider": "^0.5.13",
+    "@synerise/ds-divider": "^0.5.14",
     "@synerise/ds-typography": "^0.12.2"
   },
   "peerDependencies": {
@@ -40,6 +40,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.22.2"
+    "@synerise/ds-utils": "^0.22.3"
   }
 }

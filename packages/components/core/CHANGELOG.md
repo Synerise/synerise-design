@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.2...@synerise/ds-core@0.35.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+
+
+
+
+
 ## [0.34.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.1...@synerise/ds-core@0.34.2) (2022-07-08)
 
 

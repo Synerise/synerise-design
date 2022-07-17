@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.6.6...@synerise/ds-step-card@0.7.0) (2022-07-17)
+
+
+### Features
+
+* **step-card:** adds additional translation ([38f69c1](https://github.com/Synerise/synerise-design/commit/38f69c14e433451e7eef88d4f130df297bf4fcfb))
+
+
+
+
+
 ## [0.6.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.6.5...@synerise/ds-step-card@0.6.6) (2022-07-08)
 
 **Note:** Version bump only for package @synerise/ds-step-card

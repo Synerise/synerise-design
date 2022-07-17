@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.0...@synerise/ds-logic@0.7.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* **logic:** fixes styles of toggle part of matching component ([36698dd](https://github.com/Synerise/synerise-design/commit/36698dd68e1ab930eebd766dacadefccbda1d82b))
+
+
+
+
+
 # [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.4...@synerise/ds-logic@0.7.0) (2022-04-05)
 
 

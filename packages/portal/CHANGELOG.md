@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.157.0](https://github.com/synerise/synerise-design/compare/portal@0.156.1...portal@0.157.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+* **step-card:** adds additional translation ([38f69c1](https://github.com/synerise/synerise-design/commit/38f69c14e433451e7eef88d4f130df297bf4fcfb))
+
+
+
+
+
 ## [0.156.1](https://github.com/synerise/synerise-design/compare/portal@0.156.0...portal@0.156.1) (2022-06-29)
 
 **Note:** Version bump only for package portal
