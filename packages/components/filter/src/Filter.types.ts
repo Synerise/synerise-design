@@ -43,6 +43,8 @@ export type FilterProps = {
       notPerformed?: string;
       attribute?: string;
       event?: string;
+      notAttribute?: string;
+      notEvent?: string;
       namePlaceholder?: string;
       moveTooltip?: string;
       deleteTooltip?: string;

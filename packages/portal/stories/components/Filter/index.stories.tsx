@@ -16,8 +16,8 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { boolean } from "@storybook/addon-knobs";
-import { DEFAULT_RANGE } from "@synerise/ds-date-range-picker/dist/utils";
+import { boolean } from '@storybook/addon-knobs';
+import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
 
 const DEFAULT_EXPRESSION = (subject = undefined) => ({
   type: 'STEP',
@@ -190,10 +190,12 @@ const stories = {
       );
       const isDateFilterOn = boolean('Show filter', false);
       const [filters, setFilters] = React.useState([]);
-      const dateFilterProps = isDateFilterOn ? {
-        savedFilters: filters,
-        onFilterSave: setFilters
-      } : {};
+      const dateFilterProps = isDateFilterOn
+        ? {
+            savedFilters: filters,
+            onFilterSave: setFilters,
+          }
+        : {};
 
       return (
         <>
@@ -300,9 +302,14 @@ const stories = {
           }}
           texts={{
             step: {
+              attribute: 'attribute',
+              event: 'event',
+              notEvent: 'not event',
+              notAttribute: 'not attribute',
               matching: 'Performed',
               notMatching: 'Not performed',
               conditionType: 'event',
+              notConditionType: 'not event',
               namePlaceholder: 'Unnamed',
               moveTooltip: 'Move',
               deleteTooltip: 'Delete',
