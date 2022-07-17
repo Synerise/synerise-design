@@ -20,6 +20,7 @@ export const Toggle = styled.span<{ matching: boolean }>`
   color: ${(props): string => props.theme.palette[`blue-600`]};
   transition: color 0.1s ease-in-out;
   position: relative;
+  display: inline-flex;
   &:after {
     position: absolute;
     bottom: -2px;
