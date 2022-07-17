@@ -321,12 +321,15 @@
             "NOT-HAVE": "Not have",
             "EXPRESSION-TYPE": {
                 "ATTRIBUTE": "attribute",
-                "EVENT": "event"
+                "EVENT": "event",
+                "NOT_ATTRIBUTE": "attribute",
+                "NOT_EVENT": "event"
             }
         },
         "STEP-CARD": {
             "NAME-PLACEHOLDER": "Name",
             "CONDITION-TYPE": "event",
+            "NOT-CONDITION-TYPE": "not event",
             "MOVE": "Move",
             "DELETE": "Delete",
             "DUPLICATE": "Duplicate"
