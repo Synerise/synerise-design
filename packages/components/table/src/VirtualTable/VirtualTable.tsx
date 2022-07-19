@@ -256,11 +256,13 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             itemCount={data.length}
             itemSize={cellHeight}
             width="100%"
+            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+            // @ts-ignore
             itemData={itemData}
             itemKey={(index): string => {
               return String(getRowKey(data[index]));
             }}
-            outerElementType={outerElement}
+            // outerElementType={outerElement}
             overscanCount={1}
             innerElementType={infiniteScroll && listInnerElementType}
           >

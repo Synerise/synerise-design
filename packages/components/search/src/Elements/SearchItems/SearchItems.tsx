@@ -84,6 +84,7 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
         <List
           height={getHeight()}
           itemCount={data.length}
+          overscanCount={5}
           itemData={{
             highlight,
             itemRender,

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ScrollBarProps } from 'react-perfect-scrollbar';
 
 export type ScrollbarProps = {
   absolute?: boolean;
@@ -11,5 +10,5 @@ export type ScrollbarProps = {
   style?: React.CSSProperties;
   fetchData?: () => void;
   onScroll?: (e: React.UIEvent) => void;
-  onYReachEnd?: ScrollBarProps['onYReachEnd'];
+  onYReachEnd?: () => void;
 };

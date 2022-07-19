@@ -6756,6 +6756,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-window@^1.8.5":
+  version "1.8.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-window/-/react-window-1.8.5.tgz#285fcc5cea703eef78d90f499e1457e9b5c02fc1"
+  integrity sha1-KF/MXOpwPu942Q9JnhRX6bXAL8E=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "16.9.25"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.25.tgz#6ae2159b40138c792058a23c3c04fd3db49e929e"
@@ -21500,10 +21507,10 @@ react-window@1.8.5, react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react-window@^1.8.6:
-  version "1.8.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-window/-/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
-  integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
+react-window@^1.8.7:
+  version "1.8.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-window/-/react-window-1.8.7.tgz#5e9fd0d23f48f432d7022cdb327219353a15f0d4"
+  integrity sha1-Xp/Q0j9I9DLXAizbMnIZNToV8NQ=
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
