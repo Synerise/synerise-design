@@ -1,36 +1,34 @@
 import * as React from 'react';
-// import { ReactSortable } from 'react-sortablejs';
-// import Logic from '@synerise/ds-logic';
+import { ReactSortable } from 'react-sortablejs';
+import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
-// import StepCard from '@synerise/ds-step-card';
+import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { useIntl } from 'react-intl';
 import { usePrevious } from '@synerise/ds-utils';
-import { SortEnd, SortEvent } from 'react-sortable-hoc';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
 import { MatchingWrapper } from './Filter.styles';
-import { SortableList } from './SortableList';
-//
-// const SORTABLE_CONFIG = {
-//   ghostClass: 'ghost-element',
-//   className: 'sortable-list',
-//   handle: '.step-card-drag-handler',
-//   animation: 200,
-//   forceFallback: true,
-//   filter: '.ds-matching-toggle, .ds-cruds',
-// };
-//
-// const component = {
-//   LOGIC: Logic,
-//   STEP: StepCard,
-// };
+
+const SORTABLE_CONFIG = {
+  ghostClass: 'ghost-element',
+  className: 'sortable-list',
+  handle: '.step-card-drag-handler',
+  animation: 200,
+  forceFallback: true,
+  filter: '.ds-matching-toggle, .ds-cruds',
+};
+
+const component = {
+  LOGIC: Logic,
+  STEP: StepCard,
+};
 
 const Filter: React.FC<FilterProps> = ({
   expressions,
   matching,
-  // onChangeOrder,
+  onChangeOrder,
   onChangeLogic,
   onChangeStepMatching,
   onChangeStepName,
@@ -147,34 +145,30 @@ const Filter: React.FC<FilterProps> = ({
       text.step,
     ]
   );
-  //
-  // const renderExpression = React.useCallback(
-  //   (expression, index) => {
-  //     const Component = component[expression.type];
-  //     const LogicComponent = expression.logic && component[expression.logic.type];
-  //     return (
-  //       <S.ExpressionWrapper
-  //         key={expression.id}
-  //         data-dropLabel={text.dropMeHere}
-  //         index={index}
-  //         style={isActive(expression) ? { zIndex: 10001 } : undefined}
-  //         onClick={(): void => setActiveExpressionId(expression.id)}
-  //       >
-  //         <Component {...expression.data} {...componentProps(expression)} />
-  //         {expression.logic && index + 1 < expressions.length && (
-  //           <S.LogicWrapper>
-  //             <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} />
-  //           </S.LogicWrapper>
-  //         )}
-  //       </S.ExpressionWrapper>
-  //     );
-  //   },
-  //   [text.dropMeHere, isActive, componentProps, expressions.length]
-  // );
 
-  const handleSortEnd = React.useCallback((sort: SortEnd, event: SortEvent) => {
-    console.log(sort, event);
-  }, []);
+  const renderExpression = React.useCallback(
+    (expression, index) => {
+      const Component = component[expression.type];
+      const LogicComponent = expression.logic && component[expression.logic.type];
+      return (
+        <S.ExpressionWrapper
+          key={expression.id}
+          data-dropLabel={text.dropMeHere}
+          index={index}
+          style={isActive(expression) ? { zIndex: 10001 } : undefined}
+          onClick={(): void => setActiveExpressionId(expression.id)}
+        >
+          <Component {...expression.data} {...componentProps(expression)} />
+          {expression.logic && index + 1 < expressions.length && (
+            <S.LogicWrapper>
+              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} />
+            </S.LogicWrapper>
+          )}
+        </S.ExpressionWrapper>
+      );
+    },
+    [text.dropMeHere, isActive, componentProps, expressions.length]
+  );
 
   return (
     <S.FilterWrapper>
@@ -185,14 +179,9 @@ const Filter: React.FC<FilterProps> = ({
       )}
       <>
         {expressions.length > 0 ? (
-          <SortableList
-            expressions={expressions}
-            onSortEnd={handleSortEnd}
-            componentProps={componentProps}
-            isActive={isActive}
-            setActiveExpressionId={setActiveExpressionId}
-            text={text}
-          />
+          <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
+            {expressions.map(renderExpression)}
+          </ReactSortable>
         ) : (
           <Placeholder text={text.placeholder.chooseCondition} />
         )}

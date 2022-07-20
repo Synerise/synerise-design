@@ -18,7 +18,6 @@ import ContextSelector from '@synerise/ds-context-selector';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { boolean } from '@storybook/addon-knobs';
 import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
-import Scrollbar from '@synerise/ds-scrollbar';
 import Layout from '@synerise/ds-layout';
 
 const DEFAULT_EXPRESSION = (subject = undefined) => ({
@@ -277,7 +276,7 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        <Layout>
+        <Layout mainSidebarWithDnd={true}>
           <Filter
             expressions={store.state.expressions}
             addFilterComponent={

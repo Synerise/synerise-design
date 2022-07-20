@@ -262,7 +262,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             itemKey={(index): string => {
               return String(getRowKey(data[index]));
             }}
-            // outerElementType={outerElement}
+            outerElementType={outerElement}
             overscanCount={1}
             innerElementType={infiniteScroll && listInnerElementType}
           >
