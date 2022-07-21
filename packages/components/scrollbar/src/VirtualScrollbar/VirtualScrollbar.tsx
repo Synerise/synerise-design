@@ -47,7 +47,7 @@ export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
         options={{ minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
       >
-        <S.ScrollbarContent className={classes} style={{ maxHeight }}>
+        <S.ScrollbarContent className={classes} style={{ maxHeight }} data-testid="virtual-scrollbar">
           <S.ScrollbarWrapper absolute={absolute} loading={loading} style={style}>
             {children}
           </S.ScrollbarWrapper>

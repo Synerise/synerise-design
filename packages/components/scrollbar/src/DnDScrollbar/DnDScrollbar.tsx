@@ -104,17 +104,20 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     [fetchData, hasMore, onScroll, onYReachEnd]
   );
 
-  const handleResize = React.useCallback((trackSize: number): void => {
-    if (contentRef.current !== null) {
-      const { clientHeight: clientHeightContent, scrollHeight: scrollHeightContent } = contentRef.current;
-      if (clientHeightContent === scrollHeightContent) {
-        setThumbHeight(0);
-      } else {
-        setThumbHeight(Math.max((clientHeightContent / scrollHeightContent) * trackSize, 48));
-        handleThumbPosition();
+  const handleResize = React.useCallback(
+    (trackSize: number): void => {
+      if (contentRef.current !== null) {
+        const { clientHeight: clientHeightContent, scrollHeight: scrollHeightContent } = contentRef.current;
+        if (clientHeightContent === scrollHeightContent) {
+          setThumbHeight(0);
+        } else {
+          setThumbHeight(Math.max((clientHeightContent / scrollHeightContent) * trackSize, 48));
+          handleThumbPosition();
+        }
       }
-    }
-  }, []);
+    },
+    [handleThumbPosition]
+  );
 
   React.useEffect(() => {
     if (contentRef.current !== null && scrollTrackRef.current !== null && wrapperRef.current !== null) {
@@ -149,7 +152,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
   }, [handleThumbMousemove, handleThumbMouseup]);
 
   return (
-    <S.ScrollbarContainer className="dnd-scrollbar">
+    <S.ScrollbarContainer data-testid="dnd-scrollbar">
       <S.ScrollbarContent ref={contentRef} {...props} style={{ maxHeight }} onScroll={handleScroll}>
         <S.ScrollbarWrapper ref={wrapperRef} loading={loading} absolute={absolute}>
           {children}
