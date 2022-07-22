@@ -28,7 +28,7 @@ describe('Scrollbar', () => {
 
     // ARRANGE
     const { getByTestId } = renderWithProvider(
-      <Scrollbar maxHeight={MAX_HEIGHT} classes="test" withDnD>
+      <Scrollbar maxHeight={MAX_HEIGHT} classes="test" withDnd>
         {TEXT}
       </Scrollbar>
     );

@@ -11,5 +11,5 @@ export type ScrollbarProps = {
   fetchData?: () => void;
   onScroll?: (e: React.UIEvent) => void;
   onYReachEnd?: () => void;
-  withDnD?: boolean;
+  withDnd?: boolean;
 };
