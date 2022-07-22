@@ -82,7 +82,7 @@ const Layout: React.FC<T.LayoutProps> = ({
             rightSidebarWidth={rightSidebarWidth}
           >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
-            <Scrollbar absolute withDnD={mainSidebarWithDnd}>
+            <Scrollbar absolute withDnd={mainSidebarWithDnd}>
               <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
                 {children}
               </S.LayoutMainInner>
