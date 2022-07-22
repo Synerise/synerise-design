@@ -486,6 +486,35 @@ export const COLUMNS_WITH_AVATARS = [
     },
   },
 ];
+export const COLUMNS_WITH_AVATARS_LINK = [
+  {
+    title: 'Avatar M with label',
+    dataIndex: 'avatar',
+    key: 'avatar-m',
+    width: 254,
+    textWrap: 'word-break',
+    ellipsis: true,
+    icon: { component: <VarTypeListM /> },
+    iconTooltip: { component: <InfoFillS /> },
+    render: avatar => {
+      return (
+        <a href='#'>
+          <TableCell.AvatarLabelCell
+            avatar={
+              <ObjectAvatar
+                badgeStatus="active"
+                size="medium"
+                iconComponent={<Icon component={avatar.icon} color="red" />}
+              />
+            }
+            title={avatar.titleLarg}
+            labels={avatar.label}
+          />
+        </a>
+      );
+    },
+  },
+];
 export const COLUMNS_WITH_SKELETON = [
   {
     title: (
