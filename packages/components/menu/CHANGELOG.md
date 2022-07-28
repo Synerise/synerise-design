@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.14.0...@synerise/ds-menu@0.15.0) (2022-06-29)
+
+
+### Features
+
+* **menu:** adds data-name attribute for the UI tests ([7722c84](https://github.com/Synerise/synerise-design/commit/7722c8461f4852ad44602f92269f3c54704c59bf))
+* **menu:** enables hover tooltip on disabled menu-item ([1d36a08](https://github.com/Synerise/synerise-design/commit/1d36a08950b5f08ad9cfd1ea54bb7823a2e47ad2))
+
+
+
+
+
 # [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.13.2...@synerise/ds-menu@0.14.0) (2022-06-15)
 
 

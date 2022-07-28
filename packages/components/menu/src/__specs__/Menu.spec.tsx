@@ -7,7 +7,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';
-import { MenuItemProps, TriggerHandle } from "../Elements/Item/MenuItem.types";
+import { MenuItemProps, TriggerHandle } from '../Elements/Item/MenuItem.types';
 
 describe('Simple menu', () => {
   const data = [
@@ -234,43 +234,98 @@ describe('Menu with copyable items', () => {
 
 describe('Menu item', () => {
   it('should apply classes according to size', () => {
-    const {container} = renderWithProvider(<Menu>
-      <Menu.Item className="custom-class another-class" size="large">Hello</Menu.Item>
-    </Menu>)
-    const menuItem = container.querySelector("li")
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item className="custom-class another-class" size="large">
+          Hello
+        </Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
     expect(menuItem).toHaveClass('large');
     expect(menuItem).toHaveClass('ds-menu-item');
     expect(menuItem).toHaveClass('custom-class');
     expect(menuItem).toHaveClass('another-class');
   });
   it('should apply default class when size is not provided', () => {
-    const {container} = renderWithProvider(<Menu>
-      <Menu.Item className="custom-class another-class">Hello</Menu.Item>
-    </Menu>)
-    const menuItem = container.querySelector("li")
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item className="custom-class another-class">Hello</Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
     expect(menuItem).toHaveClass('default');
     expect(menuItem).toHaveClass('ds-menu-item');
     expect(menuItem).toHaveClass('custom-class');
     expect(menuItem).toHaveClass('another-class');
   });
   it('should show tooltip on hover', () => {
-    type undocumentedMethods = {getPopupDomNode: () => HTMLElement}
+    type undocumentedMethods = { getPopupDomNode: () => HTMLElement };
     const ref = React.createRef<TriggerHandle>();
-    const { getByText } = renderWithProvider(<Menu>
-      <Menu.Item
-        type={undefined}
-        onMouseEnter={() => undefined}
-        onMouseLeave={() => undefined}
-        onItemHover={() => undefined}
-        hoverTooltipProps={{
-          ref: ref as (React.RefObject<TriggerHandle> & ((_: HTMLElement) => void)), // TODO find a way to avoid casting to union of ref | function
-          mouseEnterDelay: 0,
-        }}
-        renderHoverTooltip={() => <div>tooltip content</div>}
-      >Menu item</Menu.Item>
-    </Menu>);
+    const { getByText } = renderWithProvider(
+      <Menu>
+        <Menu.Item
+          type={undefined}
+          onMouseEnter={() => undefined}
+          onMouseLeave={() => undefined}
+          onItemHover={() => undefined}
+          hoverTooltipProps={{
+            ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
+            mouseEnterDelay: 0,
+          }}
+          renderHoverTooltip={() => <div>tooltip content</div>}
+        >
+          Menu item
+        </Menu.Item>
+      </Menu>
+    );
     const element = getByText('Menu item');
     fireEvent.mouseOver(element);
     expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
-  })
+  });
+  it('should show tooltip on hover on disabled item', () => {
+    type undocumentedMethods = { getPopupDomNode: () => HTMLElement };
+    const ref = React.createRef<TriggerHandle>();
+    const { getByText } = renderWithProvider(
+      <Menu>
+        <Menu.Item
+          type={undefined}
+          disabled={true}
+          onMouseEnter={() => undefined}
+          onMouseLeave={() => undefined}
+          onItemHover={() => undefined}
+          hoverTooltipProps={{
+            ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
+            mouseEnterDelay: 0,
+          }}
+          renderHoverTooltip={() => <div>tooltip content</div>}
+        >
+          Menu item
+        </Menu.Item>
+      </Menu>
+    );
+    const element = getByText('Menu item');
+    fireEvent.mouseOver(element);
+    expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
+  });
+  it('should have data-name attribute with children as value', () => {
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item>Hello</Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
+    expect(menuItem).toHaveAttribute('data-name', 'Hello');
+  });
+  it('should have data-name attribute with undefined as value', () => {
+    const { container } = renderWithProvider(
+      <Menu>
+        <Menu.Item>
+          <span>Hello</span>
+        </Menu.Item>
+      </Menu>
+    );
+    const menuItem = container.querySelector('li');
+    expect(menuItem).not.toHaveAttribute('data-name');
+  });
 });
