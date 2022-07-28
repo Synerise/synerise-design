@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.9...@synerise/ds-tooltip@0.11.10) (2022-07-28)
+
+
+### Bug Fixes
+
+* **tooltip:** break to long word to fit in ([acce3f8](https://github.com/synerise/synerise-design/commit/acce3f8be193ee8c3cf4e1c8adb890ea9f8f9090))
+* **tooltip:** break to long word to fit in ([b48369e](https://github.com/synerise/synerise-design/commit/b48369e31ba6bc5b24565bf56ff16481f37c9ea1))
+
+
+
+
+
 ## [0.11.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.8...@synerise/ds-tooltip@0.11.9) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

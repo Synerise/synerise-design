@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.13.4...@synerise/ds-date-range-picker@0.14.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** empty select time if ALL_TIME ([476ac41](https://github.com/Synerise/synerise-design/commit/476ac419a0ab1b1a43349e6b9c6647dceb564430))
+* **date-range-picker:** ensure proper relative-date-range onApply value ([e5a7d3a](https://github.com/Synerise/synerise-design/commit/e5a7d3acf4994e9be1a7f382d957eed70993de0c))
+* **date-range-picker:** fix and refactor tests, (re)add start/end of day ([413151d](https://github.com/Synerise/synerise-design/commit/413151d5f511ec5722c0576f0765ea74857b6b8d))
+* **date-range-picker:** fix prop and tests ([2ecb365](https://github.com/Synerise/synerise-design/commit/2ecb3658019bc67c820f85e759f42ad22417b001))
+* **date-range-picker:** fix selection of new date ([f94d822](https://github.com/Synerise/synerise-design/commit/f94d822f9fc3b78f806b96f98c4e723dac0dd075))
+* **date-range-picker:** fix selection of new date and tests ([07f703a](https://github.com/Synerise/synerise-design/commit/07f703a24ae9d62d6bf24bdc2ee3fb0157681be2))
+* **date-range-picker:** no relative date properties if absolute range ([e0bd9cb](https://github.com/Synerise/synerise-design/commit/e0bd9cb9c7a2a84bcbad1129b21186048482bc71))
+
+
+### Features
+
+* **date-range-picker:** failing test for proper relative-date props ([2746147](https://github.com/Synerise/synerise-design/commit/27461470eccd39a9749b54d1aa508503c8861d98))
+
+
+
+
+
 ## [0.13.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.13.3...@synerise/ds-date-range-picker@0.13.4) (2022-07-17)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

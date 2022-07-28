@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.158.0](https://github.com/synerise/synerise-design/compare/portal@0.157.0...portal@0.158.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **card-tabs:** add option of custom color to pick ([8504ed6](https://github.com/synerise/synerise-design/commit/8504ed6a7a50a75851973ad2062d1a9c65e33489))
+* **card-tabs:** fix color picking in every card tab ([622c605](https://github.com/synerise/synerise-design/commit/622c6053d078ec43401259075b6e73c56b9ae9c6))
+* **card-tabs:** fix pallette of colors to pick ([530b568](https://github.com/synerise/synerise-design/commit/530b56806c58a5e4f571123a5b2b342612a27415))
+* **card-tabs:** fix pallette of colors to pick ([5eabc42](https://github.com/synerise/synerise-design/commit/5eabc422f894a7ca3d4f09f9ab847d1ce6c7bc87))
+* **card-tabs:** width for 3 card tabs and width lte 588px ([e80e56f](https://github.com/synerise/synerise-design/commit/e80e56f6f4ea3d8029f066e02570423f589f0e9e))
+* **modal:** add new option of footers in modal ([61aacf8](https://github.com/synerise/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+* **modal:** fix footer prop with buttons ([0d7b347](https://github.com/synerise/synerise-design/commit/0d7b347947c15be616b34cd963ef68aec8e4b45b))
+* **modal:** fix knobs of buttons to set cancel and ok text ([4db8544](https://github.com/synerise/synerise-design/commit/4db854427af53161dcd5e9fa246304608204e713))
+* **popconfirm:** fix props and knobs to show popconfirm ([ce041d8](https://github.com/synerise/synerise-design/commit/ce041d8efab03392edf77c87947a9dcc6ade04ae))
+* **progress-bar:** fix bar when is over 99% ([cf69288](https://github.com/synerise/synerise-design/commit/cf692889473701ae1bb726f3d28da7cd0d362cd2))
+* **progress-bar:** fix knobs ([e21e2ef](https://github.com/synerise/synerise-design/commit/e21e2ef0265f25f55e84785562e39030b318fd4c))
+* **table:** add new stories of avatarLabel to show fixed cursor ([38014d6](https://github.com/synerise/synerise-design/commit/38014d6c29b92ce6f999d15221636f5b39df65f8))
+
+
+### Features
+
+* **modal:** buildModalFooter helper, missing onOk onCancel -> disabled ([a9d4c32](https://github.com/synerise/synerise-design/commit/a9d4c3288d9e97abe89c33314bc5fbf0b78c66ba))
+* **slider:** use built-in default colors order in slider ([70af044](https://github.com/synerise/synerise-design/commit/70af044d1d8e7dc46e92bf199b70550362e87fb9))
+* **slider:** use default colors order in allocation slider ([fe969fa](https://github.com/synerise/synerise-design/commit/fe969faf16d335d5ed703c2e8f32b43116d3ac01))
+
+
+
+
+
 # [0.157.0](https://github.com/synerise/synerise-design/compare/portal@0.156.1...portal@0.157.0) (2022-07-17)
 
 

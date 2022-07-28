@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.2...docs@0.22.3) (2022-07-28)
+
+
+### Bug Fixes
+
+* **modal:** add new option of footers in modal ([61aacf8](https://gitlab.synerise.com/Frontend/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+
+
+
+
+
 ## [0.22.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.1...docs@0.22.2) (2022-06-15)
 
 **Note:** Version bump only for package docs

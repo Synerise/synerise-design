@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.11.9...@synerise/ds-slider@0.12.0) (2022-07-28)
+
+
+### Features
+
+* **slider:** add TrackProps ([e0fa160](https://github.com/Synerise/synerise-design/commit/e0fa16046eec70d517f55e9370fc3941e0bda9c7))
+* **slider:** SliderProps isCustomColor, getColor optional ([dcb6e6b](https://github.com/Synerise/synerise-design/commit/dcb6e6bf10ab5dee4043b9196dcca13b4cd0c0ae))
+* **slider:** use built-in default colors order in slider ([70af044](https://github.com/Synerise/synerise-design/commit/70af044d1d8e7dc46e92bf199b70550362e87fb9))
+* **slider:** use default colors order in allocation slider ([fe969fa](https://github.com/Synerise/synerise-design/commit/fe969faf16d335d5ed703c2e8f32b43116d3ac01))
+
+
+
+
+
 ## [0.11.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.11.8...@synerise/ds-slider@0.11.9) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-slider
