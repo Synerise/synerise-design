@@ -276,7 +276,7 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        <Layout mainSidebarWithDnd={true}>
+        <Layout mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
           <Filter
             expressions={store.state.expressions}
             addFilterComponent={
