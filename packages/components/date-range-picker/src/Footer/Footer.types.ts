@@ -14,4 +14,5 @@ export type Props = {
   texts: Texts;
   format?: string;
   showTime?: boolean;
+  displayDateContainerClass?: string;
 } & WrappedComponentProps;

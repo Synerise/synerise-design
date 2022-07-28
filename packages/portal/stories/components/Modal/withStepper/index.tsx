@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Modal from '@synerise/ds-modal/dist/Modal';
+import Modal, { buildModalFooter } from "@synerise/ds-modal/dist/Modal";
 import Button from '@synerise/ds-button';
 import { propsWithKnobs } from '../index.stories';
 import { withState } from '@dump247/storybook-state';
@@ -76,6 +76,13 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
   const spread = propsWithKnobs();
   const showTooltip = boolean('Show step tooltip', false);
   const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
+  const buildFooter = () =>
+    buildModalFooter({
+      ...(spread as any),
+      okButtonProps: {loading: propsWithKnobs().confirmLoading},
+      prefix: <div style={{ width: '100%', display: 'flex' }}>
+        <Button type="secondary">{spread.settingButton}</Button>
+      </div>});
   return (
     <div
       style={{
@@ -98,23 +105,7 @@ const withStepper = withState(DEFAULT_STATE)(({ store }) => {
         visible={store.state.visible}
         onCancel={() => store.set({ visible: false })}
         footer={
-          spread.removeFooter ? null : !spread.renderCustomFooter ? (
-            undefined
-          ) : (
-            <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-              <div style={{ width: '100%', display: 'flex' }}>
-                <Button type="secondary">Settings</Button>
-              </div>
-
-              <div style={{ display: 'flex' }}>
-                <Button type="ghost">Cancel</Button>
-
-                <Button type="primary" loading={propsWithKnobs().confirmLoading}>
-                  Apply
-                </Button>
-              </div>
-            </div>
-          )
+          spread.removeFooter ? null : (spread.renderCustomFooter ? buildFooter() : undefined)
         }
         headerActions={
           propsWithKnobs().showHeaderAction && (

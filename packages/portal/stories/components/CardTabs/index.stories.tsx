@@ -3,12 +3,13 @@ import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import CardTab from '@synerise/ds-card-tabs/dist/CardTab/CardTab';
+import { CardTab } from '@synerise/ds-card-tabs';
 import { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
 import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
 const suffixType = {
   singleIcon: <OptionHorizontalM />,
@@ -34,6 +35,8 @@ const stories = {
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
+    const setCustomColor = boolean('Set custom color', false);
+    const selectCustomColor = setCustomColor ? select('Pick custom color',defaultColorsOrder, 'blue-500') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         name,
@@ -56,7 +59,7 @@ const stories = {
             tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
             active={isActive}
             greyBackground={!bg}
-            color={'blue-600'}
+            color={setCustomColor ?`${selectCustomColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
             suffixIcon={suffixType[setSuffix]}
@@ -103,7 +106,7 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
-
+    const setCustomColor = boolean('Set custom color', false);
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -120,6 +123,18 @@ const stories = {
     const handleRemove = id => {
       store.set({
         items: store.state.items.filter(item => item.id !== id),
+      });
+    };
+    const customColorTag = (id) => {
+      store.set({
+        items: store.state.items.map(item => {
+          return item.id === id
+            ? {
+              ...item,
+              name: name,
+            }
+            : item;
+        }),
       });
     };
 
@@ -167,21 +182,25 @@ const stories = {
 
     const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
 
+    const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
+    const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
+    const addTabLabel = text('Add new card label', 'Add new');
+
     return (
-      <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
+      <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px', ...additionalStyle }}>
         <CardTabs
           maxTabsCount={maxTabCount}
           onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}
           onAddTab={handleAddItem}
-          addTabLabel={'Add new'}
+          addTabLabel={addTabLabel}
         >
-          {store.state.items.map(item => (
+          {store.state.items.map((item,i) => (
             <CardTab
               id={item.id}
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={item.color}
+              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, defaultColorsOrder, `${defaultColorsOrder[i + 1 % defaultColorsOrder.length]}`)}`: item.color}
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}

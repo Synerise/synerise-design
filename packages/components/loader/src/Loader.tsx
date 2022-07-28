@@ -6,7 +6,7 @@ const Loader: React.FC<LoaderProps> = ({
   size = 'M',
   label,
   labelPosition = 'right',
-  color = 'blue',
+  color = 'grey',
   percent,
   percentFormatter,
   text,
@@ -19,7 +19,7 @@ const Loader: React.FC<LoaderProps> = ({
         <S.Loader size={size} color={color} />
       </S.Wrapper>
       {text && <S.HeaderWrapper fontSize={fontSize}>{text}</S.HeaderWrapper>}
-      <S.TextWrapper labelPosition={labelPosition}>
+      <S.TextWrapper size={size} labelPosition={labelPosition}>
         {label}
         {percentFormatter && <S.PercentWrapper>{percentFormatter(percent)}</S.PercentWrapper>}
       </S.TextWrapper>

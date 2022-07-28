@@ -11,13 +11,13 @@ type TriggerWrapperProps = {
 };
 
 const getDefaultStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};`;
-  return `border: 1px dashed ${props.theme.palette['grey-300']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};`;
+  return `border: 1px dashed ${props.theme.palette['grey-400']};`;
 };
 
 const getHoverStyles = (props: ThemeProps & TriggerWrapperProps): string => {
-  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-400']};`;
-  return `border: 1px dashed ${props.theme.palette['grey-400']};`;
+  if (props.size === 'small') return `box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-500']};`;
+  return `border: 1px dashed ${props.theme.palette['grey-500']};`;
 };
 
 const getErrorStyles = (props: ThemeProps & TriggerWrapperProps): string => {
@@ -50,7 +50,7 @@ export const Prefix = styled.div`
   justify-content: center;
 `;
 
-export const Placeholder = styled.div`
+export const Placeholder = styled.div<{ size: ItemPickerSize }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,6 +62,16 @@ export const Placeholder = styled.div`
     svg {
       fill: ${(props): string => props.theme.palette['grey-500']};
       color: ${(props): string => props.theme.palette['grey-500']};
+    }
+  }
+  &:hover {
+    color: ${(props): string =>
+      props.size === 'large' ? props.theme.palette['grey-600'] : props.theme.palette['grey-500']};
+    ${Prefix} {
+      svg {
+        fill: ${(props): string => props.theme.palette['grey-600']};
+        color: ${(props): string => props.theme.palette['grey-600']};
+      }
     }
   }
 `;

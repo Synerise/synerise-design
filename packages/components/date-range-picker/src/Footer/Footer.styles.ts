@@ -39,3 +39,16 @@ export const ChosenRange = styled.div`
     fill: ${(props): string => props.theme.palette['grey-400']};
   }
 `;
+/**
+ * This is mainly for unit-tests capabilitiess and WCAG compliancy, it is visible
+ * can be used for em-dashes (APA style) which will be recognized by screen-readers
+ * or in tests in `textContent` JS DOM property.
+ *
+ * Example usage:
+ *
+ *     <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
+ *     <Icon component={<ArrowRightS/>}/>
+ */
+export const InvisibleTextContent = styled.span`
+  display: none;
+`;

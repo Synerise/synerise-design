@@ -66,6 +66,17 @@ export const FooterContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
+export const CustomFooterContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+`;
+export const SettingButton = styled.div`
+  display: flex;
+  width: 100%;
+`;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+`;
 
 // FIXME: Exported variable 'AntdModal' has or is using name 'ModalInterface' from external module (probabli Antd's types issue)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

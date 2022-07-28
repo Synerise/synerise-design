@@ -36,9 +36,8 @@ const getDefaultProps = () => ({
   onConfirm: action('onConfirm Clicked'),
   disabled: boolean('disabled', false),
   placement: select('placement', placements, 'top'),
-  onVisibleChange: action('onVisibilityChange'),
-  mouseEnterDelay: number('mouseEnterDelay', 250),
-  mouseLeaveDelay: number('mouseLeaveDelay', 250),
+  mouseEnterDelay: number('mouseEnterDelay', 0),
+  mouseLeaveDelay: number('mouseLeaveDelay', 0),
   trigger: select('trigger', triggers, 'click'),
 });
 
