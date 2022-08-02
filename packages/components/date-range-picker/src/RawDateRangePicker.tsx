@@ -8,7 +8,7 @@ import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from '.
 import * as CONST from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State, AddonType } from './DateRangePicker.types';
-import { DateFilter, DateRange } from './date.types';
+import {DateFilter, DateRange, RelativeDateRange} from './date.types';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
@@ -204,8 +204,14 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
         </Container>
       );
 
-    const validator = validate ? validate(value) : { valid: true };
-    const isValid = key !== CONST.ALL_TIME && !!(from && to) && validator.valid;
+    const validator = validate ? validate(value) : { valid: true }
+    const isValidAbsolute = !Object.keys(value).includes('key') && Boolean(from && to)
+    function isRelative(dateRange: DateRange): dateRange is RelativeDateRange {
+      const isLegacyCustom = Object.keys(value).includes('key') && (key === undefined)
+      return CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) || isLegacyCustom
+    }
+    const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration)
+    const isValid = (isValidAbsolute || isValidRelative || key === CONST.ALL_TIME) && validator.valid
 
     return (
       <Container className="ds-date-range-picker">
