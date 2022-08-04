@@ -28,93 +28,93 @@ include:
 
 build:
   stage: test
-  except:
-    refs:
-      - tags
+#  except:
+#    refs:
+#      - tags
   tags:
     - vms
   script:
     - yarn --frozen-lockfile
     - yarn lint
-    - yarn build
-    - yarn test:ci
+    - yarn build 2>&1 | grep -v 'react-intl/dist' | grep -v '[React Intl] Missing message'
+    - yarn test:ci 2>&1 | grep -v 'react-intl/dist' | grep -v '[React Intl] Missing message'
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Publisher $GITLAB_USER_EMAIL"
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
-    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
+#    - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
 
-docs_build:
-  image: node:lts
-  stage: test
-  only:
-    refs:
-      - tags
-      - master
-      - dev
-  script:
-    - yarn --frozen-lockfile
-    - yarn build
-    - yarn npx:lerna run postinstall
-    - yarn npx:lerna run build-docs
-    - mv packages/portal/storybook-static/ packages/docs-site/website/build
-    - yarn docs-build
-    - mv docs/dist/ packages/docs-site/website/build/styleguide
-  artifacts:
-    paths:
-      - packages/docs-site/website/build/*
+#docs_build:
+#  image: node:lts
+#  stage: test
+#  only:
+#    refs:
+#      - tags
+#      - master
+#      - dev
+#  script:
+#    - yarn --frozen-lockfile
+#    - yarn build
+#    - yarn npx:lerna run postinstall
+#    - yarn npx:lerna run build-docs
+#    - mv packages/portal/storybook-static/ packages/docs-site/website/build
+#    - yarn docs-build
+#    - mv docs/dist/ packages/docs-site/website/build/styleguide
+#  artifacts:
+#    paths:
+#      - packages/docs-site/website/build/*
 
-docs_deploy:
-  image: docker:stable
-  stage: build
-  needs: ['docs_build']
-  only:
-    refs:
-      - master
-      - dev
-  allow_failure: true
-  script:
-    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
-    - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
-    - cd packages/docs-site
-    - pwd
-    - docker build -t ds-docs .
-    - echo "Push commit image"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
-
-docs_deploy_from_tag:
-  image: docker:stable
-  stage: build
-  needs: ['docs_build']
-  only:
-    refs:
-      - tags
-  allow_failure: true
-  script:
-    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
-    - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
-    - cd packages/docs-site
-    - pwd
-    - docker build -t ds-docs .
-    - echo "Push commit image"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
-
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
+#docs_deploy:
+#  image: docker:stable
+#  stage: build
+#  needs: ['docs_build']
+#  only:
+#    refs:
+#      - master
+#      - dev
+#  allow_failure: true
+#  script:
+#    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
+#    - echo "Sanitized branch name ${SANITY_BRANCH}"
+#    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+#    - cd packages/docs-site
+#    - pwd
+#    - docker build -t ds-docs .
+#    - echo "Push commit image"
+#
+#    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
+#
+#    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+#    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
+#    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
+#
+#docs_deploy_from_tag:
+#  image: docker:stable
+#  stage: build
+#  needs: ['docs_build']
+#  only:
+#    refs:
+#      - tags
+#  allow_failure: true
+#  script:
+#    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
+#    - echo "Sanitized branch name ${SANITY_BRANCH}"
+#    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+#    - cd packages/docs-site
+#    - pwd
+#    - docker build -t ds-docs .
+#    - echo "Push commit image"
+#
+#    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
+#
+#    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
+#    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
+#    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
 k8s-deploy-branch-release:
   extends: .k8s-deploy-branch-stage
