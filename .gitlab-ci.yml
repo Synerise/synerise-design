@@ -36,8 +36,8 @@ build:
   script:
     - yarn --frozen-lockfile
     - yarn lint
-    - yarn build
-    - yarn test:ci
+    - yarn build 2>&1 | grep -v 'react-intl/dist' | grep -v '[React Intl] Missing message'
+    - yarn test:ci 2>&1 | grep -v 'react-intl/dist' | grep -v '[React Intl] Missing message'
     - echo "Tag version $CI_COMMIT_TAG"
     - echo "Commit ref $CI_COMMIT_REF_NAME"
     - echo "Publisher $GITLAB_USER_EMAIL"
