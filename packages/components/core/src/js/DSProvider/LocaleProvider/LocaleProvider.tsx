@@ -57,7 +57,13 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
     });
     return (
       <AntConfigProvider locale={antLocale}>
-        <IntlProvider textComponent="span" locale={code} messages={currentMessages as Messages} timeZone={timeZone}>
+        <IntlProvider
+          textComponent="span"
+          locale={code}
+          messages={currentMessages as Messages}
+          timeZone={timeZone}
+          onError={(): void => undefined}
+        >
           {children}
         </IntlProvider>
       </AntConfigProvider>
