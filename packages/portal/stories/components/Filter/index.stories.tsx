@@ -18,6 +18,7 @@ import ContextSelector from '@synerise/ds-context-selector';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { boolean } from '@storybook/addon-knobs';
 import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
+import Layout from '@synerise/ds-layout';
 
 const DEFAULT_EXPRESSION = (subject = undefined) => ({
   type: 'STEP',
@@ -275,54 +276,51 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        <Filter
-          expressions={store.state.expressions}
-          addFilterComponent={
-            <ContextSelector
-              texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-              onSelectItem={handleAddStep}
-              selectedItem={null}
-              items={CONTEXT_CLIENT_ITEMS}
-              groups={CONTEXT_CLIENT_GROUPS}
-              addMode={true}
-            />
-          }
-          onChangeLogic={handleChangeLogic}
-          onChangeOrder={handleChangeOrder}
-          onChangeStepMatching={handleChangeStepMatching}
-          onChangeStepName={handleChangeStepName}
-          onDeleteStep={handleDeleteStep}
-          onDuplicateStep={handleDuplicateStep}
-          renderStepFooter={renderStepFooter}
-          renderStepContent={renderStepContent}
-          matching={{
-            onChange: handleChangeMatching,
-            matching: store.state.matching,
-            sentence: 'find all items #MATCHING_TOGGLE# this condition',
-          }}
-          texts={{
-            step: {
-              attribute: 'attribute',
-              event: 'event',
-              notEvent: 'not event',
-              notAttribute: 'not attribute',
-              matching: 'Performed',
-              notMatching: 'Not performed',
-              conditionType: 'event',
-              notConditionType: 'not event',
-              namePlaceholder: 'Unnamed',
-              moveTooltip: 'Move',
-              deleteTooltip: 'Delete',
-              duplicateTooltip: 'Duplicate',
-            },
-            matching: {
-              matching: 'matching',
-              notMatching: 'not matching',
-            },
-            addFilter: 'Add filter',
-            dropMeHere: 'Drop me here',
-          }}
-        />
+        <Layout mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
+          <Filter
+            expressions={store.state.expressions}
+            addFilterComponent={
+              <ContextSelector
+                texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
+                onSelectItem={handleAddStep}
+                selectedItem={null}
+                items={CONTEXT_CLIENT_ITEMS}
+                groups={CONTEXT_CLIENT_GROUPS}
+                addMode={true}
+              />
+            }
+            onChangeLogic={handleChangeLogic}
+            onChangeOrder={handleChangeOrder}
+            onChangeStepMatching={handleChangeStepMatching}
+            onChangeStepName={handleChangeStepName}
+            onDeleteStep={handleDeleteStep}
+            onDuplicateStep={handleDuplicateStep}
+            // renderStepFooter={renderStepFooter}
+            renderStepContent={renderStepContent}
+            matching={{
+              onChange: handleChangeMatching,
+              matching: store.state.matching,
+              sentence: 'find all items #MATCHING_TOGGLE# this condition',
+            }}
+            texts={{
+              step: {
+                matching: 'Performed',
+                notMatching: 'Not performed',
+                conditionType: 'event',
+                namePlaceholder: 'Unnamed',
+                moveTooltip: 'Move',
+                deleteTooltip: 'Delete',
+                duplicateTooltip: 'Duplicate',
+              },
+              matching: {
+                matching: 'matching',
+                notMatching: 'not matching',
+              },
+              addFilter: 'Add filter',
+              dropMeHere: 'Drop me here',
+            }}
+          />
+        </Layout>
       </div>
     );
   }),

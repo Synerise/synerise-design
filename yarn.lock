@@ -6330,6 +6330,16 @@
     "@synerise/ds-utils" "^0.11.9"
     uuid "^7.0.2"
 
+"@synerise/ds-step-card@^0.6.3":
+  version "0.6.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-step-card/-/ds-step-card-0.6.6.tgz#a137bf65a8ce7ca3217fbd9d6eeea337d5a75624"
+  integrity sha1-oTe/ZajOfKMhf72dbu6jN9WnViQ=
+  dependencies:
+    "@synerise/ds-cruds" "^0.3.9"
+    "@synerise/ds-icon" "^0.49.0"
+    "@synerise/ds-inline-edit" "^0.6.16"
+    "@synerise/ds-logic" "^0.7.0"
+
 "@synerise/ds-utils@^0.11.16", "@synerise/ds-utils@^0.11.9":
   version "0.11.16"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.11.16.tgz#f01e6ff980d03d7948d2b48048019ab9da3bba24"
@@ -6756,6 +6766,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-window@^1.8.5":
+  version "1.8.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-window/-/react-window-1.8.5.tgz#285fcc5cea703eef78d90f499e1457e9b5c02fc1"
+  integrity sha1-KF/MXOpwPu942Q9JnhRX6bXAL8E=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "16.9.25"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.25.tgz#6ae2159b40138c792058a23c3c04fd3db49e929e"
@@ -6771,6 +6788,11 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/resize-observer-browser@^0.1.7":
+  version "0.1.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/resize-observer-browser/-/resize-observer-browser-0.1.7.tgz#294aaadf24ac6580b8fbd1fe3ab7b59fe85f9ef3"
+  integrity sha1-KUqq3ySsZYC4+9H+Ore1n+hfnvM=
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -21491,10 +21513,10 @@ react-window@1.8.5, react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react-window@^1.8.6:
-  version "1.8.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-window/-/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
-  integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
+react-window@^1.8.7:
+  version "1.8.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-window/-/react-window-1.8.7.tgz#5e9fd0d23f48f432d7022cdb327219353a15f0d4"
+  integrity sha1-Xp/Q0j9I9DLXAizbMnIZNToV8NQ=
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"

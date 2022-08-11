@@ -9,11 +9,11 @@ import * as S from './VirtualTable.styles';
 import { RowStar } from '../hooks/useRowStar';
 import { getValueFromPath, calculatePixels } from '../utils';
 
-interface Props<T> {
+export interface VirtualTableRowProps<T> {
   data: {
     dataSource: T[];
     cellHeight: number;
-    infiniteScroll: InfiniteScrollProps;
+    infiniteScroll: InfiniteScrollProps | undefined;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mergedColumns: any[];
     selection?: RowSelection<T>;
@@ -35,7 +35,7 @@ function VirtualTableRow<T extends object>({
   index,
   style,
   data: { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps },
-}: Props<T>): React.ReactElement {
+}: VirtualTableRowProps<T>): React.ReactElement {
   const renderColumn = React.useCallback(
     (column: DSColumnType<T>, rowData: T, columnIndex: number): React.ReactNode => {
       if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
