@@ -209,6 +209,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       data: any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       defaultTableProps: DSTableProps<any> | undefined
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ): VirtualTableRowProps<any>['data'] => ({
       mergedColumns,
       selection,
