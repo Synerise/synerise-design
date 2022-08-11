@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.11.1...@synerise/ds-filter@0.12.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **filter:** changes dnd library ([96611e3](https://github.com/Synerise/synerise-design/commit/96611e328150757484394aabc0226ecd1b244af0))
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/Synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
 ## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.11.0...@synerise/ds-filter@0.11.1) (2022-07-28)
 
 **Note:** Version bump only for package @synerise/ds-filter

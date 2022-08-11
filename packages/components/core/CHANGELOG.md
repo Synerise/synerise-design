@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.35.0...@synerise/ds-core@0.35.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+
+
+
+
 # [0.35.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.2...@synerise/ds-core@0.35.0) (2022-07-17)
 
 

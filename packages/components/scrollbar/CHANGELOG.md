@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.4.7...@synerise/ds-scrollbar@0.5.0) (2022-08-11)
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/Synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+* **scrollbar:** replace react-perfect-scrollbar by custom ([cd3b312](https://github.com/Synerise/synerise-design/commit/cd3b3121adb3d398f68a48d897db6825ee0cc8c1))
+
+
+
+
+
 ## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.4.6...@synerise/ds-scrollbar@0.4.7) (2022-03-30)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

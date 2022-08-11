@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.14...@synerise/ds-table@0.45.0) (2022-08-11)
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+* **scrollbar:** replace react-perfect-scrollbar by custom ([cd3b312](https://github.com/synerise/synerise-design/commit/cd3b3121adb3d398f68a48d897db6825ee0cc8c1))
+
+
+
+
+
 ## [0.44.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.13...@synerise/ds-table@0.44.14) (2022-07-28)
 
 

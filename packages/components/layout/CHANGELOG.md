@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.10...@synerise/ds-layout@0.13.0) (2022-08-11)
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
 ## [0.12.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.9...@synerise/ds-layout@0.12.10) (2022-07-17)
 
 **Note:** Version bump only for package @synerise/ds-layout

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.159.0](https://github.com/synerise/synerise-design/compare/portal@0.158.0...portal@0.159.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **filter:** changes dnd library ([96611e3](https://github.com/synerise/synerise-design/commit/96611e328150757484394aabc0226ecd1b244af0))
+
+
+### Features
+
+* **filter:** adds knob for withDnd prop in storybook example ([4283b74](https://github.com/synerise/synerise-design/commit/4283b74aae4e5576c2caa668f14826c8c89dcc33))
+* **scrollbar:** adds stories with dnd and virual scrollbars ([14f6d7a](https://github.com/synerise/synerise-design/commit/14f6d7a268d211536839a251ceb49d925993b994))
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
 # [0.158.0](https://github.com/synerise/synerise-design/compare/portal@0.157.0...portal@0.158.0) (2022-07-28)
 
 
