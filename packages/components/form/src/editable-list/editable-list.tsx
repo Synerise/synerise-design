@@ -7,7 +7,7 @@ import Cruds from '@synerise/ds-cruds';
 import { EditListProps } from './editable-list.types';
 import * as S from './editable-list.styles';
 
-const EditableList: React.FC<EditListProps> = ({
+export const EditableList: React.FC<EditListProps> = ({
   leftColumnName,
   rightColumnName,
   autocompleteOptions,

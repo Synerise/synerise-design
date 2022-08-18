@@ -2,7 +2,7 @@ import { text } from '@storybook/addon-knobs';
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import Autocomplete from '@synerise/ds-autocomplete';
-import EditableList from '@synerise/ds-form/dist/Editable-List/editable-list';
+import { EditableList } from '@synerise/ds-form';
 import { escapeRegEx } from '@synerise/ds-utils';
 
 const renderLabel = (text: string) => {
