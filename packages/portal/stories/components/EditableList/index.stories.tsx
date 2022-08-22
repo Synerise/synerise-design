@@ -1,4 +1,4 @@
-import { text } from '@storybook/addon-knobs';
+import {text, object, array, boolean} from '@storybook/addon-knobs';
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import Autocomplete from '@synerise/ds-autocomplete';
@@ -13,6 +13,15 @@ const dataSource = ['Score', 'Season', 'Theme', 'Departament'];
 
 const stories = {
   default: () => {
+    const value = JSON.parse(text('Value', '[{"name": "ParamA", "value": "ValueA"}, {"name": "ParamB", "value": "ValueB"}]').replace(/&quot;/g, '"'))
+    return (<EditableList
+      value={value}
+      onChange={action('onChange')}
+      renderActions={boolean('Render actions', true)}
+      textAddButton={text('Add entry button text', 'Add parameter')}
+    />)
+  },
+  withAutocomplete: () => {
     const [results, setResults] = React.useState<string[]>([]);
     const [value, setValue] = React.useState<string>('');
     const buttonText = text('Button text', 'Add parametr');
@@ -59,10 +68,10 @@ const stories = {
         onSearch={handleSearch}
         leftColumnName={renderLabel(text('Select label', 'Parametr'))}
         rightColumnName={renderLabel(text('Input label', 'Value'))}
-        value={value === 'undefined' ? '' : value}
-        onChange={(value: string) => {
-          action('onChange')(value);
-          setValue(extractContent(value));
+        value={value}
+        onChange={(val: string) => {
+          action('onChange')(val);
+          setValue(val)
           handleSearch(extractContent(value));
         }}
         onRemove={() => {}}
