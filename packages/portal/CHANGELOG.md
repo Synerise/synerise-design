@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.160.0](https://github.com/synerise/synerise-design/compare/portal@0.159.0...portal@0.160.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* **form:** editable-list imports refactor and fix + export in index.ts ([369a6d9](https://github.com/synerise/synerise-design/commit/369a6d9f8c7aa562eb860fcb105b1f2d1c0b2a99))
+* **form:** initial value, renderProps in EditableList ([9f6ffeb](https://github.com/synerise/synerise-design/commit/9f6ffeb40efb8e77f16692c5d2f4c91b4e563536))
+
+
+### Features
+
+* **form:** add new component editable-list ([78f9286](https://github.com/synerise/synerise-design/commit/78f928642885d4268976c5c722861ed694b408de))
+* **form:** add new component editable-list ([35edb08](https://github.com/synerise/synerise-design/commit/35edb08fc02079b04ae828664c618849cedb3525))
+
+
+
+
+
 # [0.159.0](https://github.com/synerise/synerise-design/compare/portal@0.158.0...portal@0.159.0) (2022-08-11)
 
 

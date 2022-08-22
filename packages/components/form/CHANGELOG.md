@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.2.19...@synerise/ds-form@0.3.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* **form:** editable-list imports refactor and fix + export in index.ts ([369a6d9](https://github.com/Synerise/synerise-design/commit/369a6d9f8c7aa562eb860fcb105b1f2d1c0b2a99))
+* **form:** initial value, renderProps in EditableList ([9f6ffeb](https://github.com/Synerise/synerise-design/commit/9f6ffeb40efb8e77f16692c5d2f4c91b4e563536))
+
+
+### Features
+
+* **form:** add new component editable-list ([3f3331c](https://github.com/Synerise/synerise-design/commit/3f3331c6e832f396c7f26123539fe074be35e498))
+* **form:** add new component editable-list ([35edb08](https://github.com/Synerise/synerise-design/commit/35edb08fc02079b04ae828664c618849cedb3525))
+
+
+
+
+
 ## [0.2.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.2.14...@synerise/ds-form@0.2.19) (2022-08-11)
 
 **Note:** Version bump only for package @synerise/ds-form
