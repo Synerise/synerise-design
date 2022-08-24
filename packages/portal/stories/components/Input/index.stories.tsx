@@ -604,7 +604,7 @@ const stories = {
         }}
         value={value}
         expandable
-        icon1={<Icon style={{display: isFocus ? "none" : "flex"}} component={<FullScreenM />} />}
+        icon1={<Icon component={<FullScreenM />} />}
       />
     );
   },
