@@ -9,7 +9,7 @@ import {
   RawMaskedInput,
 } from '@synerise/ds-input';
 
-import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
+import Icon, { FileM, FullScreenM, LaptopM, SearchM } from '@synerise/ds-icon';
 import Select from '@synerise/ds-select';
 import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
@@ -26,6 +26,7 @@ import { getAllElementsFiltered } from '@synerise/ds-search/dist/Elements/utils/
 import SearchBar from '@synerise/ds-search-bar';
 import { SelectValue } from 'antd/es/select';
 import Result from '@synerise/ds-result';
+
 
 const renderWithHighlightedText = (highlight, item): React.ReactNode => {
   if (highlight && typeof item === 'string') {
@@ -557,6 +558,51 @@ const stories = {
         icon1Tooltip={hasIconTooltip && <span>icon1</span>}
         icon2={<Icon component={<FileM />} />}
         icon2Tooltip={hasIconTooltip && <span>icon2</span>}
+      />
+    );
+  },
+  inputExpansible: () => {
+    const [value, setValue] = React.useState<string>('');
+    const hasDescription = boolean('Set Description', false);
+    const descriptionMessage = text('Description', 'Description');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const getDescription = (hasDescription: boolean): string => {
+      if (hasDescription) {
+        return descriptionMessage;
+      } else {
+        return '';
+      }
+    };
+
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
+
+    return (
+      <Input
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={descriptionMessage && getDescription(hasDescription)}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
+        value={value}
+        icon1={<Icon style={{display: isFocus ? "none" : "flex"}} component={<FullScreenM />} />}
       />
     );
   },
