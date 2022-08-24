@@ -100,8 +100,8 @@ const enhancedInput =
             )}
           </S.ContentAbove>
         )}
-        <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
-          {(icon1 || icon2) && (
+        <S.InputWrapper icon1={!isExpanded && Boolean(icon1)} icon2={!isExpanded && Boolean(icon2)}>
+          {((!isExpanded && icon1) || icon2) && (
             <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
               <S.IconsFlexContainer type={type}>
                 <Tooltip title={icon1Tooltip}>
