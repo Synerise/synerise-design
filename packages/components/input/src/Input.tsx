@@ -37,6 +37,7 @@ const enhancedInput =
     prefixel,
     suffixel,
     error,
+    expandable,
     ...antdInputProps
   }): React.ReactElement => {
     const [charCount, setCharCount] = React.useState<number>(0);
@@ -96,7 +97,7 @@ const enhancedInput =
             <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
               <S.IconsFlexContainer type={type}>
                 <Tooltip title={icon1Tooltip}>
-                  <S.IconWrapper onClick={(): void => setIsExpanded(!isExpanded)} className={className}>
+                  <S.IconWrapper onClick={expandable && ((): void => setIsExpanded(!isExpanded))} className={className}>
                     {icon1 &&
                       React.cloneElement(icon1, {
                         className: 'icon icon1',
