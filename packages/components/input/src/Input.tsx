@@ -97,7 +97,7 @@ const enhancedInput =
             <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
               <S.IconsFlexContainer type={type}>
                 <Tooltip title={icon1Tooltip}>
-                  <S.IconWrapper onClick={expandable && ((): void => setIsExpanded(!isExpanded))} className={className}>
+                  <S.IconWrapper onClick={(): void => expandable && setIsExpanded(!isExpanded)} className={className}>
                     {icon1 &&
                       React.cloneElement(icon1, {
                         className: 'icon icon1',
