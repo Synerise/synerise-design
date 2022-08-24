@@ -568,7 +568,6 @@ const stories = {
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const [isExpanded, setIsExpanded] = React.useState(false);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;

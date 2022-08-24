@@ -6,6 +6,7 @@ import './style/index.less';
 import { StyledComponent } from 'styled-components';
 import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Icon, { FullScreenM } from '@synerise/ds-icon';
 import * as S from './Input.styles';
 import Label from './Label/Label';
 import Textarea from './Textarea/Textarea';
@@ -42,8 +43,15 @@ const enhancedInput =
   }): React.ReactElement => {
     const [charCount, setCharCount] = React.useState<number>(0);
     const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
-
-    const Component = isExpanded ? Textarea : WrappedComponent;
+    const Component = isExpanded
+      ? // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+        props => (
+          <TextArea
+            {...props}
+            icon1={<Icon component={<FullScreenM />} onClick={(): void => expandable && setIsExpanded(!isExpanded)} />}
+          />
+        )
+      : WrappedComponent;
     const hasErrorMessage = Boolean(errorText);
     const id = React.useMemo(() => uuid(), []);
 
