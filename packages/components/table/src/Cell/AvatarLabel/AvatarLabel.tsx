@@ -16,11 +16,9 @@ const AvatarLabel: React.FC<Props> = ({
   loader,
 }) => {
   return (
-    <S.AvatarLabel>
+    <S.AvatarLabel onClick={avatarAction}>
       {icon && <S.Icon>{icon}</S.Icon>}
-      <S.Avatar onClick={avatarAction} clickable={Boolean(avatarAction)}>
-        {avatar}
-      </S.Avatar>
+      <S.Avatar clickable={Boolean(avatarAction)}>{avatar}</S.Avatar>
       <S.Description>
         <S.Title ellipsis={Boolean(ellipsis)} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}

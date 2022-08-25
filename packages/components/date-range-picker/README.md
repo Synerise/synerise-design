@@ -58,17 +58,17 @@ const value = {
 | showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                       |
 | validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
 | value                | Value of the picker                                                 | DateRange            | new Date()                                                    |
+| startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
+| onVisibleChange      | Callback executed when popover with dateRangePicker changes its visibility | (visible: boolean) => void | -                                                |
 
 ### DateRange
 
-| Property   | Description                                    | Type                                                                                                           | Default |
-| -----------| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------- |
-| from       | Start date                                     | Date / string                                                                                                  | -       |
-| to         | End date                                       | Date / string                                                                                                  | -       |
-| type       | String key for identifying the range type      | 'ABSOLUTE' / 'RELATIVE' / 'SINCE'                                                                              | -       |
-| duration   | Duration of the relative range                 | {type: RelativeUnit, duration:number}                                                                          | -       |
-| offset     | Offset of the relative range from today's date | {type: RelativeUnit, duration:number}                                                                          | -       |
-| arrowColor | Custom color arrow of popover when is footer   | {['bottomLeft' | 'topLeft' | 'anyOtherPlacement']: 'white' | 'grey' | anyPaletteColorToken}                    | -       |
-
+| Property | Description                                    | Type                                  | Default |
+| -------- | ---------------------------------------------- | ------------------------------------- | ------- |
+| from     | Start date                                     | Date / string                         | -       |
+| to       | End date                                       | Date / string                         | -       |
+| type     | String key for identifying the range type      | 'ABSOLUTE' / 'RELATIVE' / 'SINCE'     | -       |
+| duration | Duration of the relative range                 | {type: RelativeUnit, duration:number} | -       |
+| offset   | Offset of the relative range from today's date | {type: RelativeUnit, duration:number} | -       |
 
 `RelativeUnit = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS'`

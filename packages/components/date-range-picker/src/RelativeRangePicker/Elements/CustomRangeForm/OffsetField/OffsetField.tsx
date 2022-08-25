@@ -33,14 +33,14 @@ const OffsetField: React.FC<Props> = ({
           max={CONST.RELATIVE_OFFSET_MAX}
           precision={0}
           step={1}
-          value={offset.value}
+          value={offset?.value}
           onBlur={({ target: { value } }): void => {
             !value && handleOffsetValueChange(0);
           }}
           onChange={handleOffsetValueChange}
         />
         <Select
-          value={offset.type}
+          value={offset?.type}
           onChange={(type): void => handleChange(setOffsetType(type, currentRange))}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
           getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}

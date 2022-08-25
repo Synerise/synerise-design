@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.49.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.49.0...@synerise/ds-icon@0.49.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
+# [0.49.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.48.0...@synerise/ds-icon@0.49.0) (2022-03-30)
+
+
+### Features
+
+* **icon:** add new icon ([af63df0](https://github.com/Synerise/synerise-design/commit/af63df0c1572bac609bb14cfc3df3c9d293ee047))
+
+
+
+
+
+# [0.48.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.2...@synerise/ds-icon@0.48.0) (2022-03-21)
+
+
+### Features
+
+* **icon:** add new icon - ShowL ([f398407](https://github.com/Synerise/synerise-design/commit/f398407fe8e0fa19e8f98d61e983151c516b1857))
+
+
+
+
+
+## [0.47.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.1...@synerise/ds-icon@0.47.2) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
 ## [0.47.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.47.0...@synerise/ds-icon@0.47.1) (2022-02-03)
 
 

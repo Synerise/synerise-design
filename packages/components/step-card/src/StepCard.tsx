@@ -1,20 +1,16 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import { debounce } from 'lodash';
 
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
-import InlineEdit from '@synerise/ds-inline-edit';
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon';
-import { NOOP } from '@synerise/ds-utils';
 
+import { Title } from '@synerise/ds-typography';
 import * as S from './StepCard.styles';
 import { StepCardProps } from './StepCard.types';
 
 const StepCard: React.FC<StepCardProps> = ({
   children,
-  name,
-  onChangeName,
   onDelete,
   onDuplicate,
   footer,
@@ -23,12 +19,12 @@ const StepCard: React.FC<StepCardProps> = ({
   texts,
 }) => {
   const { formatMessage } = useIntl();
-  const [nameValue, setNameValue] = React.useState(name);
-  const onChangeNameDebounce = React.useCallback(debounce(onChangeName, 300), [onChangeName]);
   const text = React.useMemo(
     () => ({
-      matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
-      notMatching: formatMessage({ id: 'DS.MATCHING.NOT-MATCHING' }),
+      matching: formatMessage({ id: 'DS.MATCHING.PERFORMED' }),
+      notMatching: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED' }),
+      conditionType: formatMessage({ id: 'DS.STEP-CARD.CONDITION-TYPE' }),
+      notConditionType: formatMessage({ id: 'DS.STEP-CARD.NOT-CONDITION-TYPE' }),
       namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
       moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
       deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
@@ -38,38 +34,22 @@ const StepCard: React.FC<StepCardProps> = ({
     [formatMessage, texts]
   );
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setNameValue(event.target.value);
-    onChangeNameDebounce(event.target.value);
-  };
-
   return (
     <S.Container>
-      <S.Header>
+      <S.Header className="step-card-drag-handler">
         <S.LeftSide>
+          <S.DragIcon component={<DragHandleM />} />
           <Matching
             matching={matching}
             onChange={onChangeMatching}
             texts={{ matching: text.matching, notMatching: text.notMatching }}
           />
-          <InlineEdit
-            input={{
-              name: 'name-of-input',
-              value: nameValue,
-              maxLength: 120,
-              placeholder: text.namePlaceholder,
-              onChange: handleChangeName,
-            }}
-          />
+          <Title withoutMargin level={4}>
+            {matching ? text.conditionType : text.notConditionType}
+          </Title>
         </S.LeftSide>
         <S.RightSide>
           <S.CrudsWrapper>
-            <Cruds.CustomAction
-              title={text.moveTooltip}
-              onClick={NOOP}
-              icon={<DragHandleM />}
-              className="step-card-drag-handler"
-            />
             <Cruds
               deleteTooltip={text.deleteTooltip}
               onDelete={onDelete}

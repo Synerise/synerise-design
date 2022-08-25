@@ -8,6 +8,7 @@ import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
+import * as CONST from '../constants';
 
 const Footer: React.FC<Props> = ({
   canApply,
@@ -22,23 +23,31 @@ const Footer: React.FC<Props> = ({
   value,
   format,
   showTime,
+  displayDateContainerClass = 'ds-date-range-picker-value',
   ...rest
 }) => {
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  const ChosenRange = React.useMemo(
-    () => (
-      <S.ChosenRange className="ds-date-range-picker-value">
+  const ChosenRange = React.useMemo(() => {
+    if (value?.key === CONST.ALL_TIME) {
+      return (
+        <S.ChosenRange className="ds-date-range-picker-value">
+          {value.translationKey ? texts[value.translationKey] ?? value.translationKey : value?.key}
+        </S.ChosenRange>
+      );
+    }
+    return (
+      <S.ChosenRange className={displayDateContainerClass}>
         {!!value && !!value.from
           ? fnsFormat(getDateFromString(value?.from), footerFormat, intl.locale)
           : texts.startDatePlaceholder}
+        <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
         {!!value && !!value.to
           ? fnsFormat(getDateFromString(value?.to), footerFormat, intl.locale)
           : texts.endDatePlaceholder}
       </S.ChosenRange>
-    ),
-    [value, footerFormat, intl.locale, texts]
-  );
+    );
+  }, [value, footerFormat, intl.locale, texts, displayDateContainerClass]);
   return (
     <S.Container className="ds-date-range-picker-footer" {...rest}>
       {ChosenRange}

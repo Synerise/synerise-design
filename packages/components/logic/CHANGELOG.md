@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.1...@synerise/ds-logic@0.7.6) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.0...@synerise/ds-logic@0.7.1) (2022-07-17)
+
+
+### Bug Fixes
+
+* **logic:** fixes styles of toggle part of matching component ([36698dd](https://github.com/Synerise/synerise-design/commit/36698dd68e1ab930eebd766dacadefccbda1d82b))
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.4...@synerise/ds-logic@0.7.0) (2022-04-05)
+
+
+### Features
+
+* **logic:** removes dropdown, now value is changing by clicking on it like Logic.Matching ([711abcf](https://github.com/Synerise/synerise-design/commit/711abcf35191b8376418242b23ad6f7680ab52e1))
+
+
+
+
+
+## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.3...@synerise/ds-logic@0.6.4) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.2...@synerise/ds-logic@0.6.3) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.1...@synerise/ds-logic@0.6.2) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.6.0...@synerise/ds-logic@0.6.1) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.5.4...@synerise/ds-logic@0.6.0) (2022-03-14)
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.5.3...@synerise/ds-logic@0.5.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
 ## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.5.2...@synerise/ds-logic@0.5.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-logic

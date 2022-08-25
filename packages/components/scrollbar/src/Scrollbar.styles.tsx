@@ -1,20 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-export const ScrollbarContainer = styled.div`
-  position: relative;
-  height: 100%;
-`;
-
-export const ScrollbarContent = styled.div``;
-
-export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boolean }>`
-  padding-right: ${(props): string => (props.absolute ? '' : '11px !important')};
-  & > * {
-    opacity: ${(props): string => (props.loading ? '0.2' : '1')};
-    transition: all 0.25s ease-in-out;
-  }
-`;
-
 const spinnerAnimation = keyframes`
   from {
     transform: rotateZ(0deg);
@@ -42,4 +27,9 @@ export const Loader = styled.div<{ loading?: boolean }>`
     color: ${(props): string => props.theme.palette['blue-600']};
     fill: ${(props): string => props.theme.palette['blue-600']};
   }
+`;
+
+export const ScrollbarContainer = styled.div`
+  position: relative;
+  height: 100%;
 `;

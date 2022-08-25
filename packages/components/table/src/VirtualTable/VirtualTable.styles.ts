@@ -28,16 +28,20 @@ export const RowWrapper = styled.div`
 export const ColWrapper = styled.div<ColWrapperProps>`
   display: table-cell;
   vertical-align: middle;
+
+  width: inherit;
   min-width: ${(props): ReturnType<typeof getColumnMinWidth> => getColumnMinWidth(props)};
   max-width: ${(props): ReturnType<typeof getColumnMaxWidth> => getColumnMaxWidth(props)};
   padding: 0 24px;
 
   &.virtual-table-cell.ant-table-selection-column {
     padding: 0 8px 0 24px;
+    width: auto;
   }
 
   &.virtual-table-cell.ds-table-star-column {
     padding: 0 8px 0 24px;
+    width: auto;
 
     & > button {
       display: flex;

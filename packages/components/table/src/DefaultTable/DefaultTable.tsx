@@ -3,78 +3,32 @@ import { compact, isEqual } from 'lodash';
 import Table from 'antd/lib/table';
 import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
-import Button from '@synerise/ds-button';
-import Tooltip from '@synerise/ds-tooltip';
 import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
-import useRowStar from '../hooks/useRowStar';
-import { DSColumnType, DSTableProps, RowType } from '../Table.types';
+import { DSColumnType, DSTableProps, RowSelection, RowType } from '../Table.types';
+import { useRowKey } from '../hooks/useRowKey';
+import { useRowStar } from '../hooks/useRowStar/useRowStar';
+import { RowSelectionColumn } from '../RowSelection';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
+function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
   const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns, onSort } = props;
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
-  const starColumn = getRowStarColumn(props);
+
+  const { getRowKey } = useRowKey(rowKey);
+
+  const starColumn = React.useMemo(() => {
+    return getRowStarColumn({ ...props, getRowKey });
+  }, [getRowKey, getRowStarColumn, props]);
 
   React.useEffect(() => {
     if (!isEqual(previousColumns, columns)) {
       sortStateApi.updateColumnsData(columnsToSortState(columns));
     }
   }, [columns, previousColumns, sortStateApi]);
-
-  const getRowKey = React.useCallback(
-    (row: T): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
-    },
-    [rowKey]
-  );
-
-  const toggleRowSelection = React.useCallback(
-    (checked, record) => {
-      const key = getRowKey(record);
-      if (selection?.selectedRowKeys && selection.onChange && key !== undefined) {
-        const { onChange, selectedRowKeys } = selection;
-        let selectedKeys = [...selectedRowKeys];
-        const selectedRows: T[] = [];
-        if (record.children !== undefined && Array.isArray(record.children)) {
-          record.children.forEach((child: T): void => {
-            const childKey = getRowKey(child);
-            selectedKeys = checked && childKey ? [...selectedKeys, childKey] : selectedKeys.filter(k => k !== childKey);
-          });
-        } else {
-          selectedKeys = checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(k => k !== key);
-        }
-
-        selectedKeys = Array.from(new Set(selectedKeys));
-        if (dataSource) {
-          dataSource.forEach(row => {
-            const dataRowKey = getRowKey(row);
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-            if (row.children !== undefined && Array.isArray(row.children)) {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-              row.children.forEach((child: T) => {
-                const childKey = getRowKey(child);
-                if (childKey && selectedKeys.indexOf(childKey) >= 0) {
-                  selectedRows.push(child);
-                }
-              });
-            } else if (dataRowKey && selectedKeys.indexOf(dataRowKey) >= 0) {
-              selectedRows.push(row);
-            }
-          });
-        }
-        onChange(selectedKeys, selectedRows);
-      }
-    },
-    [selection, getRowKey, dataSource]
-  );
 
   const RenderRow = React.useCallback((row): JSX.Element => {
     const { children, ...rowProps } = row;
@@ -92,7 +46,7 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
   }, []);
 
   const prependedColumns = compact<DSColumnType<T>>([!!rowStar && starColumn]);
-  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi)(column));
+  const decoratedColumns = columns?.map(column => columnWithSortButtons(sortStateApi, onSort)(column));
   const decoratedComponents =
     components &&
     Object.entries(components)
@@ -111,6 +65,50 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         return [key, value];
       })
       .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
+  const selectedRecords = React.useMemo((): T[] => {
+    if (selection) {
+      const { selectedRowKeys } = selection as RowSelection<T>;
+      let selectedRows: T[] = [];
+      dataSource &&
+        dataSource.forEach((row: T): void => {
+          const key = getRowKey(row);
+          if (key && selectedRowKeys.indexOf(key) >= 0) {
+            selectedRows = [...selectedRows, row];
+          }
+          if (row.children !== undefined && Array.isArray(row.children)) {
+            row.children.forEach((child: T) => {
+              const childKey = getRowKey(child);
+              if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
+                selectedRows = [...selectedRows, child];
+              }
+            });
+          }
+        });
+
+      return selectedRows;
+    }
+    return [];
+  }, [dataSource, getRowKey, selection]);
+
+  const renderRowSelection = React.useCallback(
+    (key: string, record: T): React.ReactNode => {
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+      return (
+        <RowSelectionColumn
+          rowKey={rowKey}
+          record={record}
+          limit={limit}
+          selectedRowKeys={selectedRowKeys}
+          independentSelectionExpandedRows={independentSelectionExpandedRows}
+          onChange={onChange}
+          selectedRecords={selectedRecords}
+          tableLocale={locale}
+        />
+      );
+    },
+    [locale, rowKey, selectedRecords, selection]
+  );
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -138,6 +136,8 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
           />
         ),
       }}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       title={title}
       showSorterTooltip={false}
       components={{
@@ -146,48 +146,14 @@ function DefaultTable<T extends any & RowType<T>>(props: DSTableProps<T>): React
         },
         ...decoratedComponents,
       }}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       rowSelection={
         selection && {
           ...selection,
           selections: selection?.selections?.filter(Boolean),
           columnWidth: 64,
-          renderCell: (checked: boolean, record: T): React.ReactNode => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-            const hasChilds = record.children !== undefined && Array.isArray(record.children);
-            const allChildsChecked =
-              (hasChilds &&
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-                record.children?.filter((child: T) => {
-                  const childKey = getRowKey(child);
-                  return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
-                }).length === 0) ||
-              false;
-            const checkedChilds =
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-              record.children?.filter((child: T) => {
-                const childKey = getRowKey(child);
-                return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
-              }) || [];
-            const isIndeterminate =
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-expect-error: FIXME: Property 'children' does not exist on type 'T'.ts(2339)
-              hasChilds && checkedChilds.length > 0 && checkedChilds.length < record.children.length;
-            return (
-              <Tooltip title={locale?.selectRowTooltip}>
-                <Button.Checkbox
-                  checked={checked || allChildsChecked}
-                  disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
-                  indeterminate={isIndeterminate}
-                  onChange={(isChecked): void => {
-                    toggleRowSelection(isChecked, record);
-                  }}
-                />
-              </Tooltip>
-            );
-          },
+          renderCell: renderRowSelection,
         }
       }
     />

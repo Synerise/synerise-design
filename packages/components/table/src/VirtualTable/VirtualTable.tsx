@@ -4,22 +4,23 @@ import ResizeObserver from 'rc-resize-observer';
 import classNames from 'classnames';
 import { compact } from 'lodash';
 import { useIntl } from 'react-intl';
-import Button from '@synerise/ds-button';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
-import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
-import { RowType, DSTableProps } from '../Table.types';
-import VirtualTableRow from './VirtualTableRow';
+import { RowType, DSTableProps, RowSelection } from '../Table.types';
+import VirtualTableRow, { VirtualTableRowProps } from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
-import useRowStar from '../hooks/useRowStar';
-import { useTableLocale } from '../utils/locale';
-import { calculatePixels } from '../utils/calculatePixels';
+import { useTableLocale, calculatePixels } from '../utils';
+import { useRowKey } from '../hooks/useRowKey';
+import { useRowStar } from '../hooks/useRowStar/useRowStar';
+import { CreateRowStarColumnProps } from '../hooks/useRowStar/useRowStar.types';
+import { RowSelectionColumn } from '../RowSelection';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
+
 const relativeInlineStyle: React.CSSProperties = { position: 'relative' };
 const CustomScrollbar = (containerRef: React.RefObject<HTMLDivElement>): React.FC =>
   React.forwardRef<HTMLElement, React.HTMLAttributes<Element>>(
@@ -48,8 +49,7 @@ const CustomScrollbar = (containerRef: React.RefObject<HTMLDivElement>): React.F
     }
   );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
+function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>
 ): React.ReactElement {
   const {
@@ -80,28 +80,67 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
     onListRefChange && onListRefChange(listRef);
   }, [listRef, onListRefChange]);
 
+  const { getRowKey } = useRowKey(rowKey);
+
   const propsForRowStar = {
     ...props,
     rowStar: {
       ...rowStar,
       onClick: (e): void => {
         e.stopPropagation();
-
         if (typeof rowStar?.onClick === 'function') {
           rowStar.onClick(e);
         }
       },
     },
+    getRowKey,
     locale: tableLocale,
-  } as Props<T>;
+  } as CreateRowStarColumnProps;
+
   const rowStarColumn = getRowStarColumn(propsForRowStar);
-  const getRowKey = React.useCallback(
-    (row: T): React.ReactText | undefined => {
-      if (typeof rowKey === 'function') return rowKey(row);
-      if (typeof rowKey === 'string') return row[rowKey];
-      return undefined;
+
+  const selectedRecords = React.useMemo(() => {
+    if (selection) {
+      const { selectedRowKeys } = selection as RowSelection<T>;
+      let selectedRows: T[] = [];
+      dataSource &&
+        dataSource.forEach((row: T): void => {
+          const key = getRowKey(row);
+          if (key && selectedRowKeys.indexOf(key) >= 0) {
+            selectedRows = [...selectedRows, row];
+          }
+          if (row.children !== undefined && Array.isArray(row.children)) {
+            row.children.forEach((child: T) => {
+              const childKey = getRowKey(child);
+              if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
+                selectedRows = [...selectedRows, child];
+              }
+            });
+          }
+        });
+
+      return selectedRows;
+    }
+    return [];
+  }, [dataSource, getRowKey, selection]);
+
+  const renderRowSelection = React.useCallback(
+    (key: string, record: T): React.ReactNode => {
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+      return (
+        <RowSelectionColumn
+          rowKey={rowKey}
+          record={record}
+          limit={limit}
+          selectedRowKeys={selectedRowKeys}
+          independentSelectionExpandedRows={independentSelectionExpandedRows}
+          onChange={onChange}
+          selectedRecords={selectedRecords}
+          tableLocale={locale}
+        />
+      );
     },
-    [rowKey]
+    [locale, rowKey, selectedRecords, selection]
   );
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -111,107 +150,20 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
         width: 64,
         key: 'key',
         dataIndex: 'key',
-        render: (key: string, record: T): React.ReactNode => {
-          const recordKey = getRowKey(record);
-          const allChildsChecked =
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            Array.isArray(record.children) &&
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            record.children?.filter((child: T) => {
-              const childKey = getRowKey(child);
-              return childKey && selection?.selectedRowKeys.indexOf(childKey) < 0;
-            }).length === 0;
-          const checkedChilds =
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            record.children?.filter((child: T) => {
-              const childKey = getRowKey(child);
-              return childKey && selection?.selectedRowKeys.indexOf(childKey) >= 0;
-            }) || [];
-          const isIndeterminate =
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            Array.isArray(record.children) &&
-            checkedChilds.length > 0 &&
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            checkedChilds.length < (record.children?.length || 0);
-          const checked =
-            (recordKey !== undefined &&
-              selection.selectedRowKeys &&
-              selection.selectedRowKeys.indexOf(recordKey) >= 0) ||
-            allChildsChecked;
-          return (
-            recordKey !== undefined && (
-              <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
-                <Button.Checkbox
-                  key={`checkbox-${recordKey}`}
-                  checked={checked}
-                  disabled={!checked && Boolean(selection.limit && selection.limit <= selection.selectedRowKeys.length)}
-                  indeterminate={isIndeterminate}
-                  onClick={(e): void => {
-                    e.stopPropagation();
-                  }}
-                  onChange={(isChecked): void => {
-                    const { selectedRowKeys, onChange } = selection;
-                    let selectedRows: T[] = [];
-                    dataSource &&
-                      dataSource.forEach((row: T): void => {
-                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                        if (row.children !== undefined && Array.isArray(row.children)) {
-                          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                          row.children.forEach((child: T) => {
-                            const k = getRowKey(child);
-                            if (k && selectedRowKeys.indexOf(k) >= 0) {
-                              selectedRows = [...selectedRows, child];
-                            }
-                          });
-                        } else {
-                          const k = getRowKey(row);
-                          if (k && selectedRowKeys.indexOf(k) >= 0) {
-                            selectedRows = [...selectedRows, row];
-                          }
-                        }
-                      });
-                    if (isChecked) {
-                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                      if (Array.isArray(record.children)) {
-                        // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                        selectedRows = [...selectedRows, ...record.children];
-                      } else {
-                        selectedRows = [...selectedRows, record];
-                      }
-                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                    } else if (Array.isArray(record.children)) {
-                      // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-                      const childsKeys = record.children.map((child: T) => getRowKey(child));
-                      selectedRows = selectedRows.filter(child => childsKeys.indexOf(getRowKey(child)) < 0);
-                    } else {
-                      selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
-                    }
-
-                    selectedRows = Array.from(new Set(selectedRows));
-
-                    onChange &&
-                      onChange(
-                        selectedRows.map(selected => getRowKey(selected) as React.ReactText),
-                        selectedRows
-                      );
-                  }}
-                />
-              </Tooltip>
-            )
-          );
-        },
+        render: renderRowSelection,
       },
       !!rowStar && rowStarColumn,
       ...columns,
     ]);
-  }, [columns, selection, rowStar, rowStarColumn, getRowKey, dataSource, tableLocale]);
+  }, [selection, renderRowSelection, rowStar, rowStarColumn, columns]);
 
   const mergedColumns = React.useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
     const rowWidth = tableWidth || initialWidth;
-    const definedWidth = virtualColumns
-      .filter(({ width }) => width)
-      .reduce((total: number, { width }): number => total + width, 0);
+    const definedWidth = virtualColumns.reduce((total: number, { width }): number => {
+      const widthInPx = calculatePixels(width) || 0;
+      return total + widthInPx;
+    }, 0);
 
     return virtualColumns?.map(column => {
       if (column.width) {
@@ -251,81 +203,100 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
 
   const outerElement = React.useMemo(() => CustomScrollbar(containerRef), [containerRef]);
 
-  const renderBody = (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
-    const renderVirtualList = (data: T[]): React.ReactNode => {
-      const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
+  const createItemData = React.useCallback(
+    (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      defaultTableProps: DSTableProps<any> | undefined
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ): VirtualTableRowProps<any>['data'] => ({
+      mergedColumns,
+      selection,
+      rowStar,
+      onRowClick,
+      dataSource: data,
+      infiniteScroll,
+      cellHeight,
+      defaultTableProps,
+    }),
+    [cellHeight, infiniteScroll, mergedColumns, onRowClick, rowStar, selection]
+  );
 
-      const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps): void => {
-        if (
-          scrollDirection === 'forward' &&
-          scrollOffset >= listHeight &&
-          typeof infiniteScroll?.onScrollEndReach === 'function'
-        ) {
-          infiniteScroll.onScrollEndReach();
-        }
-        if (
-          scrollDirection === 'backward' &&
-          scrollOffset === 0 &&
-          typeof infiniteScroll?.onScrollTopReach === 'function'
-        ) {
-          infiniteScroll.onScrollTopReach();
-        }
+  const renderBody = React.useCallback(
+    (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
+      const renderVirtualList = (data: T[]): React.ReactNode => {
+        const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
+
+        const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps): void => {
+          if (
+            scrollDirection === 'forward' &&
+            scrollOffset >= listHeight &&
+            typeof infiniteScroll?.onScrollEndReach === 'function'
+          ) {
+            infiniteScroll.onScrollEndReach();
+          }
+          if (
+            scrollDirection === 'backward' &&
+            scrollOffset === 0 &&
+            typeof infiniteScroll?.onScrollTopReach === 'function'
+          ) {
+            infiniteScroll.onScrollTopReach();
+          }
+        };
+
+        const itemData = createItemData(data, defaultTableProps);
+
+        return (
+          <List
+            ref={listRef}
+            key="virtual-list"
+            onScroll={handleListScroll}
+            className="virtual-grid"
+            height={scroll.y}
+            itemCount={data.length}
+            itemSize={cellHeight}
+            width="100%"
+            itemData={itemData}
+            itemKey={(index): string => {
+              return String(getRowKey(data[index]));
+            }}
+            outerElementType={outerElement}
+            overscanCount={1}
+            innerElementType={infiniteScroll && listInnerElementType}
+          >
+            {VirtualTableRow}
+          </List>
+        );
       };
 
-      return (
-        <List
-          ref={listRef}
-          onScroll={handleListScroll}
-          className="virtual-grid"
-          height={scroll.y}
-          itemCount={data.length}
-          itemSize={cellHeight}
-          width="100%"
-          itemData={{
-            mergedColumns,
-            selection,
-            onRowClick,
-            dataSource: data,
-            infiniteScroll,
-            cellHeight,
-            defaultTableProps,
-          }}
-          itemKey={(index): string => {
-            return String(getRowKey(data[index]));
-          }}
-          outerElementType={outerElement}
-          overscanCount={1}
-          innerElementType={infiniteScroll && listInnerElementType}
-        >
-          {VirtualTableRow}
-        </List>
-      );
-    };
-
-    if (expandable?.expandedRowKeys?.length) {
-      const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
-        const key = getRowKey(currentRow);
-        if (
-          key !== undefined &&
-          expandable?.expandedRowKeys?.includes(key) &&
-          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-          Array.isArray(currentRow.children) &&
-          // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-          currentRow.children.length
-        ) {
-          return [
-            ...result,
-            currentRow,
-            // @ts-expect-error: Property 'children' does not exist on type 'T'.ts(2339)
-            ...currentRow.children.map((child: T) => ({ ...child, [EXPANDED_ROW_PROPERTY]: true })),
-          ];
-        }
-        return [...result, currentRow];
-      }, []);
-      return renderVirtualList(expandedRows);
-    }
-    return renderVirtualList(rawData);
-  };
+      if (expandable?.expandedRowKeys?.length) {
+        const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
+          const key = getRowKey(currentRow);
+          if (
+            key !== undefined &&
+            expandable?.expandedRowKeys?.includes(key) &&
+            Array.isArray(currentRow.children) &&
+            currentRow.children.length
+          ) {
+            return [
+              ...result,
+              currentRow,
+              ...currentRow.children.map((child: T, index: number) => ({
+                ...child,
+                [EXPANDED_ROW_PROPERTY]: true,
+                index,
+              })),
+            ];
+          }
+          return [...result, currentRow];
+        }, []);
+        return renderVirtualList(expandedRows);
+      }
+      return renderVirtualList(rawData);
+    },
+    [cellHeight, createItemData, expandable, getRowKey, infiniteScroll, listInnerElementType, outerElement, scroll.y]
+  );
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
   const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : props?.scroll;
@@ -342,6 +313,8 @@ function VirtualTable<T extends any & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: b
           scroll={scrollValue}
           className={classNames(className, 'virtual-table', !!infiniteScroll && 'virtual-table-infinite-scroll')}
           // Remove columns which cause header columns indent
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
           columns={mergedColumns.slice(columnsSliceStartIndex)}
           pagination={false}
           components={{

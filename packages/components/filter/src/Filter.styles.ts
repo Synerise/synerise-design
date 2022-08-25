@@ -1,21 +1,24 @@
 import styled from 'styled-components';
-import { Body, Footer } from '@synerise/ds-step-card/dist/StepCard.styles';
+import { Body, DragIcon, Footer } from '@synerise/ds-step-card/dist/StepCard.styles';
 
 export const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  width: auto;
+  width: 100%;
+`;
+
+export const MatchingWrapper = styled.div`
+  margin-bottom: 24px;
 `;
 
 export const LogicWrapper = styled.div`
-  margin-top: 24px;
+  margin: 22px 0;
 `;
 
 export const ExpressionWrapper = styled.div<{ index: number }>`
   width: 100%;
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +35,10 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
     justify-content: center;
     padding: 0;
     box-shadow: 0 16px 32px 0 #23293619;
+    ${DragIcon} {
+      visibility: visible;
+      opacity: 1;
+    }
     ${Body} {
       display: none;
     }
@@ -46,14 +53,14 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
     cursor: grabbing;
     width: 100%;
     background-color: ${(props): string => props.theme.palette['blue-050']};
-    border: 1px dashed ${(props): string => props.theme.palette['blue-300']};
+    border-left: 2px solid ${(props): string => props.theme.palette['blue-600']};
     border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     margin-bottom: 24px;
-    height: 70px;
+    height: 68px;
     box-shadow: none;
     position: relative;
     &:before {

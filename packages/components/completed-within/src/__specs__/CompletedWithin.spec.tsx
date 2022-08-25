@@ -10,6 +10,8 @@ const TEXT = {
   periodPlaceholder: 'Interval',
 };
 
+const PLACEHOLDER = 'Completed within';
+
 describe('Completed within component', () => {
   it('Should render without value', () => {
     // ARRANGE
@@ -20,6 +22,23 @@ describe('Completed within component', () => {
 
     // ASSERT
     expect(container.querySelector('.clock-m')).toBeTruthy();
+  });
+
+  it('Should render with placeholder', () => {
+    // ARRANGE
+    const handleSetValue = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <CompletedWithin
+        text={TEXT}
+        value={{ value: 0, period: undefined }}
+        onSetValue={handleSetValue}
+        placeholder={PLACEHOLDER}
+      />
+    );
+
+    // ASSERT
+    expect(container.querySelector('.clock-m')).toBeTruthy();
+    expect(getByText(PLACEHOLDER)).toBeTruthy();
   });
 
   it('Should render with selected value', () => {

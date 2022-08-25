@@ -156,4 +156,6 @@ describe('Slider', () => {
     // ASSERT
     expect(container.querySelectorAll('.ant-slider-handle').length).toBe(allocationVariants.length - 1);
   });
+  it.todo('Slider defaults range colors to defaultColorsOrder');
+  it.todo('Slider/Allocation defaults range colors to defaultColorsOrder');
 });

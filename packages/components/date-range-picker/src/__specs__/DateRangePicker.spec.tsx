@@ -5,8 +5,10 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from "@testing-library/react";
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import DateRangePicker from '../DateRangePicker';
+import type { PopoverProps } from 'antd/lib/popover';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -17,6 +19,8 @@ const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
 const APPLY_BUTTON_SELECTOR = '.ds-date-range-picker-footer  button';
+
+const displayDateContainerClass = 'ds-date-range-picker-value';
 
 export const RANGES: RelativeDateRange[] = [
   {
@@ -31,6 +35,9 @@ export const RANGES: RelativeDateRange[] = [
 const texts = {
   relativeDateRange: 'Relative Picker',
   myRange: 'myRange',
+  startDatePlaceholder: 'Start date',
+  endDatePlaceholder: 'End date',
+  today: 'Today',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -88,6 +95,7 @@ describe('DateRangePicker', () => {
     const onApplyParameter = onApply.mock.calls[0][0];
     expect(onApplyParameter['type']).toBe(ABSOLUTE);
   });
+  it.todo('relative date-filter addon should render saving filters only if saving setter function is provided');
   it('should not convert date to absolute by default', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -130,6 +138,7 @@ describe('DateRangePicker', () => {
       { timeout: 50 }
     );
   });
+  it.todo('should render Lifetime option by default in ranges');
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -143,16 +152,22 @@ describe('DateRangePicker', () => {
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
+        footerProps={{
+          displayDateContainerClass,
+        }}
       />
     );
-    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
-    const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
-    selectedRangeStart.click();
-    const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
-    selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00Oct 12, 2018, 23:59');
+    const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
+    const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
+    findDayCell(1).click();
+    findDayCell(1).click();
+    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00 – Oct 1, 2018, 23:59');
+    findDayCell(2).click();
+    findDayCell(12).click();
+    expect(valueWrapper.textContent).toBe('Oct 2, 2018, 00:00 – Oct 12, 2018, 23:59');
   });
 
+  it.todo('should set to last 30 days if relative-date-range custom range');
   it('should change format when showTime is false', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -166,33 +181,94 @@ describe('DateRangePicker', () => {
         ranges={RANGES}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
+        footerProps={{
+          displayDateContainerClass,
+        }}
       />
     );
-    const valueWrapper = container.querySelector('.ds-date-range-picker-value') as HTMLElement;
-    const selectedRangeStart = container.querySelector('[data-attr="1"]') as HTMLElement;
-    selectedRangeStart.click();
-    const selectedRangeEnd = container.querySelector('[data-attr="12"]') as HTMLElement;
-    selectedRangeEnd.click();
-    expect(valueWrapper.textContent).toBe('Oct 1, 2018Oct 12, 2018');
+    const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
+    const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
+    findDayCell(2).click();
+    findDayCell(14).click();
+    expect(valueWrapper.textContent).toBe('Oct 2, 2018 – Oct 14, 2018');
   });
   it('should display custom color for arrow popup', async () => {
     const onApply = jest.fn();
-    const { container } = renderWithProvider(
+    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement}>();
+    const { container, getByText } = renderWithProvider(
+      <DateRangePicker
+        onApply={() => {}}
+        showTime
+        relativeFuture
+        forceAbsolute
+        showRelativePicker
+        texts={texts}
+        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef} as Partial<PopoverProps> }
+        arrowColor={{ topLeft: 'grey' }}
+        forceAdjacentMonths={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+      />
+    );
+    const element = getByText(texts.startDatePlaceholder);
+    fireEvent.click(element);
+    const popoverWrapper = popoverRef.current.getPopupDomNode() as HTMLElement;
+    const arrowElement = popoverWrapper.querySelector('.ant-popover-content > .ant-popover-arrow');
+    expect(arrowElement).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
+  });
+  it.todo('date-fns format function wrapper skips execution for invalid date');
+  it.todo('handleRangeChange does not propagate invalid date range');
+  it.todo('getSideState is able to parse Invalid Date (for months)');
+  it.todo('normalizeRange properly forwards Invalid Date');
+  it.todo('RangePickerInput getModifiers are able to handle invalid date range');
+  it.todo('RangePickerInput.getText accepts Invalid Date');
+  it.todo('date range picker relative addon internals is able to handle invalid ranges');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
+  it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
+  it('should omit non-absolute properties if emitting an absolute date-range value', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
         showFilter={false}
         showRelativePicker
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
         forceAbsolute={false}
         value={ABSOLUTE_VALUE as DateRange}
-        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        // @ts-ignore
         texts={texts}
-        popoverProps={{ placement: 'topLeft' }}
-        arrowColor={{ topLeft: 'grey' }}
       />
     );
-    const popoverWrapper = container.querySelector('.ant-popover.ds-date-range-popover.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow') as HTMLElement;
-    expect(popoverWrapper).toHaveStyle(`background-color: ${(props): string => props.theme.palette['grey-050']}`);
+    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
+    fireEvent.click(getDayButton());
+    fireEvent.click(getDayButton());
+    const applyButton = container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().from).toBeDefined();
+    expect(getLastCallParams().to).toBeDefined();
+    expect(getLastCallParams().offset).not.toBeDefined();
+    expect(getLastCallParams().duration).not.toBeDefined();
+    expect(getLastCallParams().future).not.toBeDefined();
+    const expander = container.querySelector('.addon-wrapper .ds-expander');
+    expect(expander).toBeTruthy();
+    fireEvent.click(expander);
+    fireEvent.click(getByText(texts['today']));
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().from).not.toBeDefined();
+    expect(getLastCallParams().to).not.toBeDefined();
+    expect(getLastCallParams().offset).toBeDefined();
+    expect(getLastCallParams().duration).toBeDefined();
+    expect(getLastCallParams().future).toBeDefined();
+    // set the date once again to an absolute (expect no relative date props)
+    fireEvent.click(getDayButton());
+    fireEvent.click(getDayButton());
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().offset).not.toBeDefined();
+    expect(getLastCallParams().duration).not.toBeDefined();
+    expect(getLastCallParams().future).not.toBeDefined();
   });
-
+  it.todo('should properly set primary class in RangeButtons for currentRange');
+  it.todo('should disable select time if selected ALL_TIME');
+  it.todo('should switch to MODES.DATE if was in selecting time and selected ALL_TIME');
 });

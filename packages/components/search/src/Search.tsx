@@ -30,7 +30,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
-      isInputOpen: !!props.value || !!props.parameterValue,
+      isInputOpen: !!props.value || !!props.parameterValue || !!props.alwaysExpanded,
       label: props.parameterValue
         ? props.parameters.find(param => param[props.textLookupConfig.parameters] === props.parameterValue)
         : null,
@@ -123,9 +123,9 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
   // This handler is used for onClickOutside HOC
   handleClickOutside = (): void => {
     const { isInputOpen, label, toggleInputTrigger } = this.state;
-    const { value } = this.props;
+    const { value, alwaysExpanded } = this.props;
 
-    if (isInputOpen && !value && !label) {
+    if (isInputOpen && !value && !label && !alwaysExpanded) {
       this.setState({ toggleInputTrigger: !toggleInputTrigger });
     }
     this.setState({ isListVisible: false, scrollbarScrollTop: 0 });
@@ -314,6 +314,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
       filterLookupKey,
       disableInput,
       inputProps,
+      alwaysExpanded,
     } = this.props;
     const { label, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
 
@@ -328,7 +329,9 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
         onButtonClick={(): void => this.setState({ focusInputTrigger: !focusInputTrigger })}
         onChange={(newValue: string): void => this.handleChange(newValue)}
         onClear={this.handleClearValue}
-        onClick={(): void => this.setState({ isListVisible: true, itemsListWidth: this.getSearchWrapperWidth() })}
+        onClick={(): void => {
+          this.setState({ isListVisible: true, itemsListWidth: this.getSearchWrapperWidth() });
+        }}
         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => this.onKeyDown(e)}
         onToggle={(toggle: boolean): void => {
           this.setState({ isListVisible: toggle, isInputOpen: toggle });
@@ -342,21 +345,16 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
         moveCursorToEnd={moveCursorToEnd}
         disableInput={disableInput}
         inputProps={inputProps}
+        alwaysExpanded={alwaysExpanded}
+        closeOnClickOutside={!alwaysExpanded}
       />
     );
   }
 
   render(): React.ReactElement {
     const { divider, dropdownMaxHeight, width, style } = this.props;
-    const {
-      isInputOpen,
-      label,
-      isListVisible,
-      focusInputTrigger,
-      isResultChosen,
-      filteredParameters,
-      filteredRecent,
-    } = this.state;
+    const { isInputOpen, label, isListVisible, focusInputTrigger, isResultChosen, filteredParameters, filteredRecent } =
+      this.state;
 
     return (
       <S.SearchWrapper

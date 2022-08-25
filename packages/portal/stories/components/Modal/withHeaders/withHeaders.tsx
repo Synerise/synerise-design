@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { sizes } from '../index.stories';
-import { boolean, select } from '@storybook/addon-knobs';
+import { propsWithKnobs, sizes } from '../index.stories';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import * as S from './withHeaders.styles';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, SearchM, UserM } from '@synerise/ds-icon';
@@ -8,6 +8,7 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
+import { buildModalFooter } from "@synerise/ds-modal";
 
 const HeaderTypes = {
   DEFAULT: 'DEFAULT',
@@ -51,20 +52,15 @@ const headerWithPrefix = (text: string, prefix: React.ReactNode) => {
   );
 };
 
-const footer = (
-  <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-    <div style={{ width: '100%', display: 'flex' }}>
-      <Button type="secondary">Settings</Button>
-    </div>
-    <div style={{ display: 'flex' }}>
-      <Button type="ghost">Cancel</Button>
-
-      <Button type="primary">
-        Apply
-      </Button>
-    </div>
-  </div>
-)
+const footer = (settingButton: string, cancelText: string, applyButton: string,) => {
+  return buildModalFooter({
+    okText: applyButton,
+    cancelText: cancelText,
+    prefix: (<div style={{ width: '100%', display: 'flex' }}>
+      <Button type="secondary">{settingButton}</Button>
+    </div>),
+  });
+}
 
 const headerWithTabs = (text: string) => {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -136,7 +132,7 @@ const withHeaders = () => {
   const storyProps = {
     size: select('Size', sizes, null),
     visible: boolean('Set open', true),
-    footer: boolean('Show footer', true) ? footer : null,
+    footer: boolean('Show footer', true) ? footer(text('Set text of setting button', 'Settings'),text('Set text of cancel button', 'Cancel'),text('Set text of ok button', 'Apply'),) : null,
     headerActions: (
       <div>
         <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>

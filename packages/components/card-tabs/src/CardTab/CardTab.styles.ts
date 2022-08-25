@@ -11,6 +11,7 @@ type CardTabContainerProps = {
   disabled: boolean;
   edited: boolean;
   draggable?: boolean;
+  itemData?: unknown;
 };
 
 const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
@@ -54,7 +55,7 @@ export const CardTabLabel = styled.span<{ invalidName: boolean }>`
   color: ${(props): string => props.theme.palette['grey-600']};
   line-height: 20px;
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -134,7 +135,7 @@ export const CardTabPrefix = styled.div`
   justify-content: center;
   width: 24px;
   height: 24px;
-  margin-right: 12px;
+  margin-right: 16px;
 `;
 export const CardDragPrefix = styled.div`
   display: none;
@@ -150,7 +151,10 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   justify-content: flex-start;
   padding: 12px;
   width: 180px;
-  height: 48px;
+  @media (max-width: 588px) {
+    max-width: 145px;
+  }
+  height: 40px;
   user-select: none;
   background-color: ${({ theme, active, invalid, color, greyBackground, edited }): string => {
     if (invalid && active) return theme.palette['red-600'];

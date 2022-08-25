@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as CreatorStyles from '@synerise/ds-button/dist/Creator/Creator.styles';
 import { CardTabContainer } from './CardTab/CardTab.styles';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -10,7 +11,7 @@ export const CardTabsContainer = styled.div`
   width: 100%;
   ${CardTabContainer} {
     margin-right: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .ds-card-tags-sortable {
     display: flex;
@@ -38,6 +39,13 @@ export const CardTabsContainer = styled.div`
     cursor: grabbing;
     * {
       visibility: hidden;
+    }
+  }
+  @media (max-width: 588px) {
+    .ds-button-creator {
+      ${CreatorStyles.CreatorLabel} {
+        display: none;
+      }
     }
   }
 `;

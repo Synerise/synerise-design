@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.12.0...@synerise/ds-card@0.12.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.11.2...@synerise/ds-card@0.12.0) (2022-06-15)
+
+
+### Bug Fixes
+
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/Synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+### Features
+
+* **card:** add badgeSlot prop ([7a84088](https://github.com/Synerise/synerise-design/commit/7a84088790b91958a85bd8ea0eafb295267886da))
+
+
+
+
+
+## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.11.1...@synerise/ds-card@0.11.2) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.11.0...@synerise/ds-card@0.11.1) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.10.5...@synerise/ds-card@0.11.0) (2022-03-14)
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/Synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+## [0.10.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.10.4...@synerise/ds-card@0.10.5) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
 ## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.10.3...@synerise/ds-card@0.10.4) (2022-02-03)
 
 **Note:** Version bump only for package @synerise/ds-card

@@ -3,6 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.15...@synerise/ds-loader@0.2.20) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.14...@synerise/ds-loader@0.2.15) (2022-07-28)
+
+
+### Bug Fixes
+
+* **loader:** fix size of text and color of loader ([b1e214e](https://github.com/Synerise/synerise-design/commit/b1e214e6936385a5741ea1a5c2c442662f819614))
+
+
+
+
+
+## [0.2.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.13...@synerise/ds-loader@0.2.14) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.12...@synerise/ds-loader@0.2.13) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.11...@synerise/ds-loader@0.2.12) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.10...@synerise/ds-loader@0.2.11) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.9...@synerise/ds-loader@0.2.10) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.8...@synerise/ds-loader@0.2.9) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.7...@synerise/ds-loader@0.2.8) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.6...@synerise/ds-loader@0.2.7) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
+## [0.2.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.5...@synerise/ds-loader@0.2.6) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-loader
+
+
+
+
+
 ## [0.2.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.4...@synerise/ds-loader@0.2.5) (2021-12-29)
 
 **Note:** Version bump only for package @synerise/ds-loader

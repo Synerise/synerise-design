@@ -11,7 +11,8 @@ export type SubjectItem = {
 
 export type SubjectProps = {
   onShowPreview?: () => void;
-  onActivate?: () => void;
+  onActivate?: (fieldType: string) => void;
+  onDeactivate?: () => void;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   placeholder: string | React.ReactNode;
   iconPlaceholder: React.ReactNode;
@@ -23,6 +24,7 @@ export type SubjectProps = {
     searchPlaceholder: string;
     noResults: string;
   };
+  opened?: boolean;
 };
 
 export type SubjectListProps = Pick<SubjectProps, 'items' | 'onSelectItem' | 'texts'> & { hideDropdown: () => void };

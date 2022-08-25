@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
+import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -9,8 +11,10 @@ export const ALL_FACTOR_TYPES = [
   'formula',
   'array',
   'date',
+  'dateRange',
 ] as const;
 export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
+export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
 export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText };
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = {
@@ -34,6 +38,7 @@ export type ParameterItem = {
   name: string;
   groupId: React.ReactText;
   icon?: React.ReactNode;
+  disabled?: boolean;
 };
 
 export type FactorValueType =
@@ -43,15 +48,17 @@ export type FactorValueType =
   | undefined
   | DynamicKeyValueType
   | FormulaValueType
-  | ParameterValueType;
+  | ParameterValueType
+  | Partial<DateFilter>;
 
 export type SelectedFactorType = {
   name: string;
   icon: React.ReactNode;
-  input: React.ReactNode;
+  input: React.ElementType;
 };
 
 export type FactorsTexts = {
+  dateRangePicker: DateRangeTexts;
   datePicker: {
     apply: string;
     clearTooltip: string;
@@ -75,10 +82,14 @@ export type FactorsTexts = {
   modalApply: string;
   modalCancel: string;
   modalTitle: string;
+  factorTypes?: {
+    [k in DefinedFactorTypes]: string;
+  };
 };
 
 export type FactorsProps = {
   factorKey?: React.ReactText;
+  error?: boolean;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -87,6 +98,7 @@ export type FactorsProps = {
   defaultFactorType: FactorType;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onActivate?: () => void;
+  onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   textType?: 'autocomplete' | 'expansible' | 'default' | string;
@@ -115,6 +127,9 @@ export type FactorTypeSelectorProps = Pick<
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;
+  texts: {
+    [k in DefinedFactorTypes]: string;
+  };
 };
 
 export type FactorValueProps = Pick<
@@ -134,6 +149,8 @@ export type FactorValueProps = Pick<
   | 'preventAutoloadData'
   | 'getPopupContainerOverride'
   | 'onActivate'
+  | 'onDeactivate'
+  | 'error'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -149,6 +166,8 @@ export type InputProps = Pick<
   | 'opened'
   | 'getPopupContainerOverride'
   | 'onActivate'
+  | 'onDeactivate'
+  | 'error'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

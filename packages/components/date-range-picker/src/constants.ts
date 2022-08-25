@@ -1,4 +1,4 @@
-import { AbsoluteDateRange, RelativeDateRange, RelativeUnits } from './date.types';
+import { AbsoluteDateRange, RelativeDateRange, RelativeUnits, RangeKey } from './date.types';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
@@ -12,13 +12,14 @@ export const RELATIVE = 'RELATIVE';
 export const RELATIVE_OFFSET_MAX = 999999;
 export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_UNITS: RelativeUnits[] = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
+export const ALL_TIME: RangeKey = 'ALL_TIME';
 
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
     return [];
   }
   const size = end - start;
-  return [...Array(size).keys()].map(i => i + start);
+  return Array.from(Array(size).keys()).map(i => i + start);
 };
 export const CUSTOM_RANGE_KEY = 'custom';
 export const DURATION_MODIFIERS = {
@@ -201,7 +202,7 @@ export const RELATIVE_PRESETS: RelativeDateRange[] = [
 
 export const ABSOLUTE_PRESETS: AbsoluteDateRange[] = [
   {
-    key: 'ALL_TIME',
+    key: ALL_TIME,
     translationKey: 'allTime',
     type: ABSOLUTE,
     future: false,

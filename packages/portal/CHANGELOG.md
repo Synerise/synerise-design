@@ -3,6 +3,337 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.160.0](https://github.com/synerise/synerise-design/compare/portal@0.159.0...portal@0.160.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* **form:** editable-list imports refactor and fix + export in index.ts ([369a6d9](https://github.com/synerise/synerise-design/commit/369a6d9f8c7aa562eb860fcb105b1f2d1c0b2a99))
+* **form:** initial value, renderProps in EditableList ([9f6ffeb](https://github.com/synerise/synerise-design/commit/9f6ffeb40efb8e77f16692c5d2f4c91b4e563536))
+
+
+### Features
+
+* **form:** add new component editable-list ([78f9286](https://github.com/synerise/synerise-design/commit/78f928642885d4268976c5c722861ed694b408de))
+* **form:** add new component editable-list ([35edb08](https://github.com/synerise/synerise-design/commit/35edb08fc02079b04ae828664c618849cedb3525))
+
+
+
+
+
+# [0.159.0](https://github.com/synerise/synerise-design/compare/portal@0.158.0...portal@0.159.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **filter:** changes dnd library ([96611e3](https://github.com/synerise/synerise-design/commit/96611e328150757484394aabc0226ecd1b244af0))
+
+
+### Features
+
+* **filter:** adds knob for withDnd prop in storybook example ([4283b74](https://github.com/synerise/synerise-design/commit/4283b74aae4e5576c2caa668f14826c8c89dcc33))
+* **scrollbar:** adds stories with dnd and virual scrollbars ([14f6d7a](https://github.com/synerise/synerise-design/commit/14f6d7a268d211536839a251ceb49d925993b994))
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
+# [0.158.0](https://github.com/synerise/synerise-design/compare/portal@0.157.0...portal@0.158.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **card-tabs:** add option of custom color to pick ([8504ed6](https://github.com/synerise/synerise-design/commit/8504ed6a7a50a75851973ad2062d1a9c65e33489))
+* **card-tabs:** fix color picking in every card tab ([622c605](https://github.com/synerise/synerise-design/commit/622c6053d078ec43401259075b6e73c56b9ae9c6))
+* **card-tabs:** fix pallette of colors to pick ([530b568](https://github.com/synerise/synerise-design/commit/530b56806c58a5e4f571123a5b2b342612a27415))
+* **card-tabs:** fix pallette of colors to pick ([5eabc42](https://github.com/synerise/synerise-design/commit/5eabc422f894a7ca3d4f09f9ab847d1ce6c7bc87))
+* **card-tabs:** width for 3 card tabs and width lte 588px ([e80e56f](https://github.com/synerise/synerise-design/commit/e80e56f6f4ea3d8029f066e02570423f589f0e9e))
+* **modal:** add new option of footers in modal ([61aacf8](https://github.com/synerise/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+* **modal:** fix footer prop with buttons ([0d7b347](https://github.com/synerise/synerise-design/commit/0d7b347947c15be616b34cd963ef68aec8e4b45b))
+* **modal:** fix knobs of buttons to set cancel and ok text ([4db8544](https://github.com/synerise/synerise-design/commit/4db854427af53161dcd5e9fa246304608204e713))
+* **popconfirm:** fix props and knobs to show popconfirm ([ce041d8](https://github.com/synerise/synerise-design/commit/ce041d8efab03392edf77c87947a9dcc6ade04ae))
+* **progress-bar:** fix bar when is over 99% ([cf69288](https://github.com/synerise/synerise-design/commit/cf692889473701ae1bb726f3d28da7cd0d362cd2))
+* **progress-bar:** fix knobs ([e21e2ef](https://github.com/synerise/synerise-design/commit/e21e2ef0265f25f55e84785562e39030b318fd4c))
+* **table:** add new stories of avatarLabel to show fixed cursor ([38014d6](https://github.com/synerise/synerise-design/commit/38014d6c29b92ce6f999d15221636f5b39df65f8))
+
+
+### Features
+
+* **modal:** buildModalFooter helper, missing onOk onCancel -> disabled ([a9d4c32](https://github.com/synerise/synerise-design/commit/a9d4c3288d9e97abe89c33314bc5fbf0b78c66ba))
+* **slider:** use built-in default colors order in slider ([70af044](https://github.com/synerise/synerise-design/commit/70af044d1d8e7dc46e92bf199b70550362e87fb9))
+* **slider:** use default colors order in allocation slider ([fe969fa](https://github.com/synerise/synerise-design/commit/fe969faf16d335d5ed703c2e8f32b43116d3ac01))
+
+
+
+
+
+# [0.157.0](https://github.com/synerise/synerise-design/compare/portal@0.156.1...portal@0.157.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+* **step-card:** adds additional translation ([38f69c1](https://github.com/synerise/synerise-design/commit/38f69c14e433451e7eef88d4f130df297bf4fcfb))
+
+
+
+
+
+## [0.156.1](https://github.com/synerise/synerise-design/compare/portal@0.156.0...portal@0.156.1) (2022-06-29)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+# [0.156.0](https://github.com/synerise/synerise-design/compare/portal@0.155.0...portal@0.156.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** applying primary class to selected buttons ([cf1fd45](https://github.com/synerise/synerise-design/commit/cf1fd45a65dd2bf724c7907f203d04e06ac2c856))
+* **date-range-picker:** fix switching mode (componentDidUpdate) ([6d59489](https://github.com/synerise/synerise-design/commit/6d594899bf338930951da5ff78123402491d29e1))
+* **date-range-picker:** handle custom relative date range ([d456923](https://github.com/synerise/synerise-design/commit/d456923259ecd75246897665e5de4f07d9a689b5))
+* **date-range-picker:** handle Invalid Time ([fc52f67](https://github.com/synerise/synerise-design/commit/fc52f67ef90297ea39e986ce928aaaab277c3e51))
+* **date-range-picker:** interaction: switch modes, onChange value type ([a3e1329](https://github.com/synerise/synerise-design/commit/a3e132927b42934d5a9ea61712b855d38f2e6561))
+* **date-range-picker:** lifetime date-range-picker story ([f3cb1a6](https://github.com/synerise/synerise-design/commit/f3cb1a66d3619da42226baebd56d66610964db7c))
+* **date-range-picker:** show saving filters if passed proper props ([2e870b2](https://github.com/synerise/synerise-design/commit/2e870b2eefbea9b7d66dbcb887e54ae291f1c619))
+* **filter:** default dateRange expression value ([0be9b7a](https://github.com/synerise/synerise-design/commit/0be9b7add5f5353e44aa87362e1918813f72c07b))
+
+
+### Features
+
+* **date-range-picker:** ALL_TIME as a const, expose CONST ([7d3d98e](https://github.com/synerise/synerise-design/commit/7d3d98e9711141079c6f1e0f6101e559c5ef6faf))
+
+
+
+
+
+# [0.155.0](https://github.com/synerise/synerise-design/compare/portal@0.154.3...portal@0.155.0) (2022-06-15)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add more options to set color arrow ([3890cd1](https://github.com/synerise/synerise-design/commit/3890cd1dbd39b54fff07bb55ce962170affda984))
+* **date-range-picker:** fix arrow ([e56a188](https://github.com/synerise/synerise-design/commit/e56a188357c897fcb444543f5f6212e1b270b8bc))
+* **date-range-picker:** fix arrow ([af80bb8](https://github.com/synerise/synerise-design/commit/af80bb82e8d5d3c66c2bd0c686ae11f55eb85633))
+* **date-range-picker:** fix color and add option to show difference ([41ba36d](https://github.com/synerise/synerise-design/commit/41ba36dd64dc9927ea3e28bfab6e7ff0e56563fa))
+* **date-range-picker:** fix colors of arrow and test ([2aa2d73](https://github.com/synerise/synerise-design/commit/2aa2d73c1975c1e5bc37347f02f3915be3d2f927))
+* **date-range-picker:** fix colors picking ([b5846eb](https://github.com/synerise/synerise-design/commit/b5846eb1c7ceaaec9bd2a650a73da248a6cdf56f))
+* **filter:** fixes closing info-card when clicking on it ([91eed3b](https://github.com/synerise/synerise-design/commit/91eed3b7a5392c04ed618c9f7265608d6c39655e))
+
+
+### Features
+
+* **card:** add badgeSlot prop ([7a84088](https://github.com/synerise/synerise-design/commit/7a84088790b91958a85bd8ea0eafb295267886da))
+* **card:** add ObjectAvatar with icon as custom badge slot ([9af962a](https://github.com/synerise/synerise-design/commit/9af962af5fd8e3bae4d7994ae7570bb2f99ca19b))
+* **information-card:** create information-card component ([ee3ad8b](https://github.com/synerise/synerise-design/commit/ee3ad8bdc8ec793250415d1e25b78ed3504e33d4))
+* **information-card:** info-card component, stories, initial tests ([f5ff3f0](https://github.com/synerise/synerise-design/commit/f5ff3f0c4435da14aba0db96a33b11f50146e6a3))
+* **menu:** add hover tooltip to menu item + test + story ([b931e0b](https://github.com/synerise/synerise-design/commit/b931e0b277a0a563f7c85310a51593bdd5b99e1e))
+* **subtle-form:** hide label prop in textarea ([f89c05d](https://github.com/synerise/synerise-design/commit/f89c05d08c3f4d4b22bfdb5b74e60f0c58074507))
+* **subtle-form:** textarea - no rendering label if no description ([0933292](https://github.com/synerise/synerise-design/commit/0933292b7cb5c389c713d8902af95c370cc35039))
+
+
+
+
+
+## [0.154.3](https://github.com/synerise/synerise-design/compare/portal@0.154.2...portal@0.154.3) (2022-05-31)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.154.2](https://github.com/synerise/synerise-design/compare/portal@0.154.1...portal@0.154.2) (2022-05-13)
+
+
+### Bug Fixes
+
+* **condition:** disabling hover effect on nonactive condition in filter ([228f242](https://github.com/synerise/synerise-design/commit/228f242e6ce244c73e9da93adb2c4317cd65ec91))
+* **date-range-picker:**  onVisibleChange prop, example custom trigger ([e6aab36](https://github.com/synerise/synerise-design/commit/e6aab3666df0bac8b999faa0a9046c244ea2a35f))
+
+
+
+
+
+## [0.154.1](https://github.com/synerise/synerise-design/compare/portal@0.154.0...portal@0.154.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **context-selector:** fixes auto height of dropdown list ([4a6b1fb](https://github.com/synerise/synerise-design/commit/4a6b1fbddc28ddee46751afacb63617f6d341395))
+
+
+
+
+
+# [0.154.0](https://github.com/synerise/synerise-design/compare/portal@0.153.1...portal@0.154.0) (2022-04-29)
+
+
+### Bug Fixes
+
+* **dropdown:** fixes vertical position of dropdown for 'top' placements ([2a22c6e](https://github.com/synerise/synerise-design/commit/2a22c6eb5453b568a3df3153f3993e0f045dafdf))
+
+
+### Features
+
+* **card-tabs:** adds itemData prop for addional item data ([08b0cfa](https://github.com/synerise/synerise-design/commit/08b0cfa53e2ae25d76947d79327b52a94434940f))
+* **completed-within:** adds maxValue prop ([cc20e27](https://github.com/synerise/synerise-design/commit/cc20e2788e2840a9d78bd51cb43a1928fb64e958))
+* **completed-within:** adds tooltip for trigger button ([694812e](https://github.com/synerise/synerise-design/commit/694812e9179e79c8f8fa4d12054d2704d7abcab3))
+* **condition:** clearing active step on deactivating inner components ([ad45310](https://github.com/synerise/synerise-design/commit/ad45310cde108e40b2b88c0a88bf801d679056db))
+* **context-selector:** adds default trigger value ([006e307](https://github.com/synerise/synerise-design/commit/006e3079e8d557c6312c525370c53ad41ddcba9a))
+* **context-selector:** adds onDeactivate prop, updates Readme.md ([ace0ac7](https://github.com/synerise/synerise-design/commit/ace0ac7f2e6ec9e4adad51dc430af7e7fa4bb097))
+* **factors:** adds onDeactivate prop, updates Readme.md ([ff85234](https://github.com/synerise/synerise-design/commit/ff852349a5c77047d6d0642d4b5587dbcc6d24cd))
+* **operators:** adds onDeactivate prop, update Readme.md ([07f6446](https://github.com/synerise/synerise-design/commit/07f6446ded7253ab994b4df5c0b5da1c2727aa10))
+* **subject:** adds onDeactivate prop, updates Readme.md ([58f373e](https://github.com/synerise/synerise-design/commit/58f373e81f02d0ea25c95484fe9bdd1d8921c107))
+
+
+
+
+
+## [0.153.1](https://github.com/synerise/synerise-design/compare/portal@0.153.0...portal@0.153.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* fix filter dropdowns ([eaab107](https://github.com/synerise/synerise-design/commit/eaab107b6dca7401a17c2e36806febd11edc677b))
+
+
+
+
+
+# [0.153.0](https://github.com/synerise/synerise-design/compare/portal@0.152.0...portal@0.153.0) (2022-04-08)
+
+
+### Bug Fixes
+
+* **step-card:** hide top duplicate and delete action buttons ([9c7bd51](https://github.com/synerise/synerise-design/commit/9c7bd51c687ebad7c0474b25cb07e6a5ea478783))
+
+
+### Features
+
+* **card-tabs:** disable duplication when limit exceeded (cardTab) ([e83cedb](https://github.com/synerise/synerise-design/commit/e83cedb0f8a975fce5dd7c181d3811715ac66a9f))
+* **card-tabs:** modify story ([d807410](https://github.com/synerise/synerise-design/commit/d8074101b70faa2c4ef2172730926a22dc7ad913))
+* **card-tabs:** onDuplicate, onRemove accept undefined; stories, tests ([6cfd41d](https://github.com/synerise/synerise-design/commit/6cfd41dd6db00a81428d92d024a060cc37c32239))
+
+
+
+
+
+# [0.152.0](https://github.com/synerise/synerise-design/compare/portal@0.151.0...portal@0.152.0) (2022-04-05)
+
+
+### Bug Fixes
+
+* **condition:** styles of StepHeader, hiding step name in stories ([9924476](https://github.com/synerise/synerise-design/commit/9924476909449c5a11db7f784ba3a30008f48120))
+
+
+### Features
+
+* **completed-within:** adds placeholder nad tooltip props ([22976de](https://github.com/synerise/synerise-design/commit/22976deac9012e1654b86ad745da7207e664ad88))
+* **completed-within:** adds placeholder prop ([6aa6e91](https://github.com/synerise/synerise-design/commit/6aa6e91cb9fae233d6c2e1cf447fd91082c67686))
+* **condition:** updates styles, allows to dragging by header, not only icon ([4c070eb](https://github.com/synerise/synerise-design/commit/4c070ebaa5c3779733acea5cdff06d06842719b0))
+* **filter:** fixes bugs ([b862ddd](https://github.com/synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+* **filter:** updates styles ([a826761](https://github.com/synerise/synerise-design/commit/a826761de845a47f8436d22a7307f2c03bb197e0))
+* **step-card:** removes title, updates styles ([8d0555f](https://github.com/synerise/synerise-design/commit/8d0555fe60152f00b315479ae4a5a84f475d8a99))
+
+
+
+
+
+# [0.151.0](https://github.com/synerise/synerise-design/compare/portal@0.150.0...portal@0.151.0) (2022-04-01)
+
+
+### Bug Fixes
+
+* **alert:** linter Promise, async function returns Promise<void> ([5c1e54d](https://github.com/synerise/synerise-design/commit/5c1e54d52a0897345cd88609adcbdcdcf5fd85bf))
+
+
+### Features
+
+* **alert:** notificationOpen to use Promise interface ([531b813](https://github.com/synerise/synerise-design/commit/531b81318370f97d29c13d14510e602b861e20f4))
+
+
+
+
+
+# [0.150.0](https://github.com/synerise/synerise-design/compare/portal@0.149.0...portal@0.150.0) (2022-03-30)
+
+
+### Features
+
+* **alert:** add Notification component, stories, test todos ([eeb09d8](https://github.com/synerise/synerise-design/commit/eeb09d857938100058e6c3112082014acdb67d6c))
+* **alert:** add the remaining placements, code cleanup, storybook fixes ([c469574](https://github.com/synerise/synerise-design/commit/c469574c2fa5135d956127a5bc35601808285569))
+
+
+
+
+
+# [0.149.0](https://github.com/synerise/synerise-design/compare/portal@0.148.0...portal@0.149.0) (2022-03-24)
+
+
+### Bug Fixes
+
+* **layout:** remove unused properties ([709de02](https://github.com/synerise/synerise-design/commit/709de0220531ce92d3267b739f6352d0315eb550))
+
+
+### Features
+
+* **badge:** backward compatibility for customColor props ([89954fb](https://github.com/synerise/synerise-design/commit/89954fb3bc9b2763e3be480b77e3a7b75668750b))
+* **table:** improve sorting for universal-list ([f189dae](https://github.com/synerise/synerise-design/commit/f189daedea1f401dd1fb6dfd52acf41fa59413f0))
+* **table:** improvements for universal-list ([b1a1db1](https://github.com/synerise/synerise-design/commit/b1a1db11b72333f6b9bdd4468b73bc45b627cef0))
+* **table:** improves selection and memoization of virtual rows ([5dfe104](https://github.com/synerise/synerise-design/commit/5dfe10474358c310e2d5b2ae7ea93d8f35fb72be))
+* **table:** updates row selections (move to separate component), fixes from CR ([6afa8da](https://github.com/synerise/synerise-design/commit/6afa8da9758433520dbfd304ad5170bfc7d33b5d))
+* **table:** updates stories ([940b4fc](https://github.com/synerise/synerise-design/commit/940b4fce36c4af94443c29962eb1859ebd959075))
+* **table:** updates tests, stories ([94e98c2](https://github.com/synerise/synerise-design/commit/94e98c248b9f9c51e0ada0a32a2d9addf84f950a))
+* **table:** uses ramda instead of lodash in getValueFromPath util ([146921e](https://github.com/synerise/synerise-design/commit/146921ecb29cc2ab72ad0ad8aa8c103e69135e88))
+
+
+
+
+
+# [0.148.0](https://github.com/synerise/synerise-design/compare/portal@0.147.0...portal@0.148.0) (2022-03-14)
+
+
+### Bug Fixes
+
+* **card-tabs:** add translations & change prop name ([1834111](https://github.com/synerise/synerise-design/commit/1834111a1809dcd990661f05e6cc09d45d45fb02))
+* **layout:** remove unused properties ([a9b50c3](https://github.com/synerise/synerise-design/commit/a9b50c3038ec76ca546531b5627b0fc899d2648a))
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+# [0.147.0](https://github.com/synerise/synerise-design/compare/portal@0.146.2...portal@0.147.0) (2022-03-04)
+
+
+### Features
+
+* **alert:** add customIcon prop to IconAlert ([afa5817](https://github.com/synerise/synerise-design/commit/afa5817d0b8e2ebc80b69337998fb1e3c55a0259))
+
+
+
+
+
+## [0.146.2](https://github.com/synerise/synerise-design/compare/portal@0.146.1...portal@0.146.2) (2022-02-25)
+
+
+### Bug Fixes
+
+* **table:** set scroll as undefined with empty data ([b34aa69](https://github.com/synerise/synerise-design/commit/b34aa6959952c49d52fd605c844e6b77be8f69dd))
+
+
+
+
+
 ## [0.146.1](https://github.com/synerise/synerise-design/compare/portal@0.146.0...portal@0.146.1) (2022-02-16)
 
 

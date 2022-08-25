@@ -1,0 +1,47 @@
+{
+  "name": "@synerise/ds-information-card",
+  "version": "0.1.11",
+  "description": "InformationCard UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0 --ignore-pattern dist",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-alert": "^0.4.4",
+    "@synerise/ds-avatar": "^0.14.27",
+    "@synerise/ds-card": "^0.12.5",
+    "@synerise/ds-description": "^0.3.27",
+    "@synerise/ds-subtle-form": "^0.9.10",
+    "@synerise/ds-typography": "^0.12.7"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "^0.31.2",
+    "react": ">=16.9.0 < 17.0.0"
+  }
+}

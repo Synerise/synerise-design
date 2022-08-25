@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.16.0...@synerise/ds-modal@0.16.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.9...@synerise/ds-modal@0.16.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **modal:** add new option of footers in modal ([61aacf8](https://github.com/synerise/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+* **modal:** fix footer prop with buttons ([0d7b347](https://github.com/synerise/synerise-design/commit/0d7b347947c15be616b34cd963ef68aec8e4b45b))
+
+
+### Features
+
+* **modal:** buildModalFooter helper, missing onOk onCancel -> disabled ([a9d4c32](https://github.com/synerise/synerise-design/commit/a9d4c3288d9e97abe89c33314bc5fbf0b78c66ba))
+
+
+
+
+
+## [0.15.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.8...@synerise/ds-modal@0.15.9) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
+## [0.15.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.7...@synerise/ds-modal@0.15.8) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
+## [0.15.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.6...@synerise/ds-modal@0.15.7) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
+## [0.15.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.5...@synerise/ds-modal@0.15.6) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
 ## [0.15.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.15.4...@synerise/ds-modal@0.15.5) (2022-02-03)
 
 **Note:** Version bump only for package @synerise/ds-modal

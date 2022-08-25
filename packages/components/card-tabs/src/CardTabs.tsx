@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
+import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
-import { COLORS_TABS } from './CardTab/ColorsTabs';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
@@ -11,7 +11,14 @@ const SORTABLE_CONFIG = {
   animation: 150,
   group: 'column-manager',
 };
-const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [] }) => {
+const CardTabs: React.FC<CardTabsProps> = ({
+  className,
+  onChangeOrder,
+  onAddTab,
+  maxTabsCount,
+  children = [],
+  addTabLabel,
+}) => {
   const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
@@ -23,7 +30,7 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
   const renderChildren = (): JSX.Element[] =>
     React.Children.map(children, (child, i) =>
       React.cloneElement(child, {
-        color: COLORS_TABS[i % COLORS_TABS.length],
+        ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
         draggable: Boolean(onChangeOrder) || child.props.draggable,
       })
     );
@@ -49,7 +56,9 @@ const CardTabs: React.FC<CardTabsProps> = ({ className, onChangeOrder, onAddTab,
       {onAddTab && (
         <span data-testid="card-tabs-add-button">
           <Button.Creator
+            block
             disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
+            label={addTabLabel ?? ''}
             onClick={onAddTab}
           />
         </span>

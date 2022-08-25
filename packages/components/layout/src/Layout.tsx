@@ -3,11 +3,11 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './Layout.styles';
-import { LayoutProps } from './Layout.types';
+import * as T from './Layout.types';
 
 const DEFAULT_SIDEBAR_WIDTH = 320;
 
-const Layout: React.FC<LayoutProps> = ({
+const Layout: React.FC<T.LayoutProps> = ({
   header,
   left,
   right,
@@ -19,6 +19,9 @@ const Layout: React.FC<LayoutProps> = ({
   sidebarAnimationDisabled,
   renderLeftSidebarControls = false,
   renderRightSidebarControls = false,
+  leftSidebarWithDnd = false,
+  rightSidebarWithDnd = false,
+  mainSidebarWithDnd = false,
 }) => {
   const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
   const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
@@ -50,7 +53,7 @@ const Layout: React.FC<LayoutProps> = ({
                   openedWidth={leftSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
-                  <Scrollbar absolute>
+                  <Scrollbar absolute withDnd={leftSidebarWithDnd}>
                     <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
@@ -79,7 +82,7 @@ const Layout: React.FC<LayoutProps> = ({
             rightSidebarWidth={rightSidebarWidth}
           >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
-            <Scrollbar absolute>
+            <Scrollbar absolute withDnd={mainSidebarWithDnd}>
               <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
                 {children}
               </S.LayoutMainInner>
@@ -100,7 +103,7 @@ const Layout: React.FC<LayoutProps> = ({
                   openedWidth={rightSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
-                  <Scrollbar absolute>
+                  <Scrollbar absolute withDnd={rightSidebarWithDnd}>
                     <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>

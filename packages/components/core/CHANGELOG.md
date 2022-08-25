@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.35.0...@synerise/ds-core@0.35.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+
+
+
+
+# [0.35.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.2...@synerise/ds-core@0.35.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+
+
+
+
+
+## [0.34.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.1...@synerise/ds-core@0.34.2) (2022-07-08)
+
+
+### Bug Fixes
+
+* **table:** fixes i18n in row selection component ([0e73b64](https://github.com/synerise/synerise-design/commit/0e73b644740c444b0115d2a6da040874883650fb))
+
+
+
+
+
+## [0.34.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.34.0...@synerise/ds-core@0.34.1) (2022-07-06)
+
+
+### Bug Fixes
+
+* **factors:** fixes factor types i18n ([5963bcf](https://github.com/synerise/synerise-design/commit/5963bcfdf070c152e02868144996160f438f36a1))
+
+
+
+
+
+# [0.34.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.33.0...@synerise/ds-core@0.34.0) (2022-04-29)
+
+
+### Features
+
+* **condition:** clearing active step on deactivating inner components ([ad45310](https://github.com/synerise/synerise-design/commit/ad45310cde108e40b2b88c0a88bf801d679056db))
+
+
+
+
+
+# [0.33.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.32.1...@synerise/ds-core@0.33.0) (2022-04-05)
+
+
+### Features
+
+* **core:** updates defaults translations ([0ded217](https://github.com/synerise/synerise-design/commit/0ded217c927aa1eb7d03b0be92b2994a87c197da))
+* **filter:** fixes bugs ([b862ddd](https://github.com/synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
+## [0.32.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.32.0...@synerise/ds-core@0.32.1) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-core
+
+
+
+
+
+# [0.32.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.3...@synerise/ds-core@0.32.0) (2022-03-24)
+
+
+### Features
+
+* **core:** exports type of default colors order ([12a761c](https://github.com/synerise/synerise-design/commit/12a761cd344353f4ebf212360b7c1d9d0afdc2d3))
+* **table:** improvements for universal-list ([b1a1db1](https://github.com/synerise/synerise-design/commit/b1a1db11b72333f6b9bdd4468b73bc45b627cef0))
+
+
+
+
+
+## [0.31.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.2...@synerise/ds-core@0.31.3) (2022-03-14)
+
+
+### Bug Fixes
+
+* **card-tabs:** add translations & change prop name ([1834111](https://github.com/synerise/synerise-design/commit/1834111a1809dcd990661f05e6cc09d45d45fb02))
+
+
+
+
+
 ## [0.31.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.31.1...@synerise/ds-core@0.31.2) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-core

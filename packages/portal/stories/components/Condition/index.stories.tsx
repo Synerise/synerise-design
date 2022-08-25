@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Condition from '@synerise/ds-condition';
 import { withState } from '@dump247/storybook-state';
-import { VarTypeStringM } from '@synerise/ds-icon';
+import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';
 import {
   DEFAULT_CONDITION_ROW,
   DEFAULT_STATE,
@@ -14,9 +14,28 @@ import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
+import Button from '@synerise/ds-button';
+import ContextSelector from '@synerise/ds-context-selector';
+import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
+import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
+
+export const defaultTransforms = {
+  transformStep: (step: ConditionStep): ConditionStep => step,
+  props: {
+    defaultDropdownVisibility: false,
+  },
+}
+
+export type Transform = typeof defaultTransforms
 
 const stories = {
-  default: withState(DEFAULT_STATE)(({ store }) => {
+  default: withState(DEFAULT_STATE)(({store, ...context}) => {
+    const {
+      transformStep,
+      props: {
+        defaultDropdownVisibility,
+      },
+    } = Object.assign({}, defaultTransforms, context) as Transform
     const setStepContext = (stepId, item) => {
       store.set({
         steps: store.state.steps.map(s => {
@@ -27,6 +46,7 @@ const stories = {
                 ...s.context,
                 selectedItem: item,
               },
+              conditions: s.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : s.conditions,
             };
           }
           return s;
@@ -147,6 +167,7 @@ const stories = {
           return step;
         }),
       });
+      return newCondition.id;
     };
 
     const removeStepCondition = (stepId: React.ReactText, conditionId: React.ReactText) => {
@@ -192,13 +213,45 @@ const stories = {
     };
 
     const addStep = () => {
+      const newStep = DEFAULT_STEP();
       store.set({
-        steps: [...store.state.steps, DEFAULT_STEP()],
+        steps: [...store.state.steps, newStep],
       });
+      return newStep.id;
+    };
+
+    const addCustomStep = selectedItem => {
+      const newStep = DEFAULT_STEP();
+      store.set({
+        steps: [...store.state.steps, { ...newStep, context: { ...newStep.context, selectedItem } }],
+      });
+      store.set({ openedAddStep: false });
     };
 
     const onChangeOrder = newOrder => {
       store.set({ steps: newOrder });
+    };
+
+    const renderCustomAddStep = () => {
+      return (
+        <ContextSelector
+          texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
+          items={CONTEXT_CLIENT_ITEMS}
+          groups={CONTEXT_CLIENT_GROUPS}
+          addMode={true}
+          onSelectItem={addCustomStep}
+          selectedItem={undefined}
+          loading={false}
+          opened={store.state.openedAddStep}
+          onClickOutside={() => store.set({ openedAddStep: false })}
+          customTriggerComponent={
+            <Button type="ghost" mode="icon-label" onClick={() => store.set({ openedAddStep: true })}>
+              <Icon component={<Add3M />} />
+              and then...
+            </Button>
+          }
+        />
+      );
     };
 
     return (
@@ -222,19 +275,20 @@ const stories = {
             addFirstConditionRowButton: 'where',
             addConditionRowButton: 'and where',
             dropLabel: 'Drop me here',
-            addStep: 'Add funnel step',
+            addStep: 'And then...',
             duplicateTooltip: 'Duplicate',
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
           getPopupContainerOverride={(): HTMLElement => document.body}
-          autoClearCondition={(boolean('Enable autoclear condition elements'), true)}
+          autoClearCondition={boolean('Enable autoclear condition elements', true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
           removeStep={removeStep}
           duplicateStep={duplicateStep}
-          addStep={addStep}
+          addStep={boolean('Enable default add step', false) ? addStep : undefined}
+          renderAddStep={boolean('Enable custom add step', true) ? renderCustomAddStep : undefined}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
           minConditionsLength={0}
           maxConditionsLength={5}
@@ -244,7 +298,8 @@ const stories = {
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
-          steps={store.state.steps.map(step => ({
+          showSuffix={boolean('Display and suffix', true)}
+          steps={store.state.steps.map(step => transformStep({
             id: step.id,
             stepName: step.stepName,
             context: {
@@ -254,6 +309,7 @@ const stories = {
               groups: CONTEXT_GROUPS,
               type: step.context.type,
               loading: boolean('Loading context content', false),
+              defaultDropdownVisibility: defaultDropdownVisibility,
             },
             conditions: step.conditions.map(condition => ({
               id: condition.id,
@@ -283,6 +339,8 @@ const stories = {
                 texts: OPERATORS_TEXTS,
               },
               factor: {
+                // @ts-ignore availableFactors is just sample data
+                availableFactorTypes: condition.operator?.value?.availableFactors || null,
                 selectedFactorType: condition.factor.selectedFactorType,
                 defaultFactorType: 'text',
                 textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
@@ -291,7 +349,9 @@ const stories = {
                 },
                 value: condition.factor.value,
                 formulaEditor: <div>Formula editor</div>,
-                withCustomFactor: boolean('With custom factor component', false) && <span>Custom factor component</span>,
+                withCustomFactor: boolean('With custom factor component', false) && (
+                  <span>Custom factor component</span>
+                ),
                 parameters: {
                   buttonLabel: 'Parameter',
                   buttonIcon: <VarTypeStringM />,

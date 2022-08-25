@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
+import AntdAutoComplete, { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
+import Select from 'antd/lib/select';
 
 export type OverrideProps = {
   className?: string;
@@ -7,6 +8,11 @@ export type OverrideProps = {
   label?: React.ReactNode | string;
   description?: React.ReactNode | string;
   error?: boolean;
+  handleInputRef?: (ref: React.MutableRefObject<Select | undefined>) => void;
 };
+
+export interface StaticComponents {
+  Option: typeof AntdAutoComplete.Option;
+}
 
 export type AutocompleteProps = OverrideProps & OriginalProps;

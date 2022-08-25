@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.4](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.3...docs@0.22.4) (2022-08-11)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.22.3](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.2...docs@0.22.3) (2022-07-28)
+
+
+### Bug Fixes
+
+* **modal:** add new option of footers in modal ([61aacf8](https://gitlab.synerise.com/Frontend/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+
+
+
+
+
+## [0.22.2](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.1...docs@0.22.2) (2022-06-15)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.22.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.0...docs@0.22.1) (2022-04-29)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+# [0.22.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.21.1...docs@0.22.0) (2022-04-08)
+
+
+### Features
+
+* **card-tabs:** modify story ([d807410](https://gitlab.synerise.com/Frontend/synerise-design/commit/d8074101b70faa2c4ef2172730926a22dc7ad913))
+
+
+
+
+
+## [0.21.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.21.0...docs@0.21.1) (2022-03-24)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+# [0.21.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.20.1...docs@0.21.0) (2022-03-24)
+
+
+### Features
+
+* **badge:** updates docs ([cd52270](https://gitlab.synerise.com/Frontend/synerise-design/commit/cd5227092cfa43486bb077972613004e87ab4e1b))
+* **table:** improve sorting for universal-list ([f189dae](https://gitlab.synerise.com/Frontend/synerise-design/commit/f189daedea1f401dd1fb6dfd52acf41fa59413f0))
+
+
+
+
+
+## [0.20.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.20.0...docs@0.20.1) (2022-03-14)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
 # [0.20.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.19.0...docs@0.20.0) (2022-02-10)
 
 

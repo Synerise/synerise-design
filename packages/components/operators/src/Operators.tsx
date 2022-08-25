@@ -20,6 +20,7 @@ const Operators: React.FC<OperatorsProps> = ({
   opened,
   getPopupContainerOverride,
   onActivate,
+  onDeactivate,
 }) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -40,26 +41,31 @@ const Operators: React.FC<OperatorsProps> = ({
   );
 
   React.useEffect(() => {
+    setDropdownVisible(Boolean(opened));
     if (opened) {
-      setDropdownVisible(true);
+      onActivate && onActivate();
     }
-  }, [opened]);
+  }, [onActivate, opened]);
 
   const handleClick = React.useCallback(() => {
-    setDropdownVisible(true);
     onActivate && onActivate();
-  }, [setDropdownVisible, onActivate]);
+    setDropdownVisible(true);
+  }, [onActivate]);
 
-  const onDropdownVisibilityChange = React.useCallback((newValue: boolean) => newValue && onActivate && onActivate(), [
-    onActivate,
-  ]);
+  const onDropdownVisibilityChange = React.useCallback(
+    (newValue: boolean) => {
+      newValue && onActivate && onActivate();
+      !newValue && onDeactivate && onDeactivate();
+    },
+    [onActivate, onDeactivate]
+  );
 
   return (
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
         onVisibleChange={onDropdownVisibilityChange}
-        getPopupContainer={getPopupContainerOverride}
+        getPopupContainer={getPopupContainerOverride || getPopupContainer}
         overlay={
           <OperatorsDropdown
             value={value}

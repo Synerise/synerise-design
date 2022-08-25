@@ -3,6 +3,143 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.6...@synerise/ds-subject@0.9.11) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.5...@synerise/ds-subject@0.9.6) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.4...@synerise/ds-subject@0.9.5) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.3...@synerise/ds-subject@0.9.4) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.2...@synerise/ds-subject@0.9.3) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.1...@synerise/ds-subject@0.9.2) (2022-06-29)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.0...@synerise/ds-subject@0.9.1) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.8.1...@synerise/ds-subject@0.9.0) (2022-04-29)
+
+
+### Features
+
+* **subject:** adds onDeactivate prop, updates Readme.md ([58f373e](https://github.com/Synerise/synerise-design/commit/58f373e81f02d0ea25c95484fe9bdd1d8921c107))
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.8.0...@synerise/ds-subject@0.8.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* fix filter dropdowns ([eaab107](https://github.com/Synerise/synerise-design/commit/eaab107b6dca7401a17c2e36806febd11edc677b))
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.9...@synerise/ds-subject@0.8.0) (2022-04-05)
+
+
+### Features
+
+* **filter:** fixes bugs ([b862ddd](https://github.com/Synerise/synerise-design/commit/b862dddbce1293c2a5381663fc903bb574edd135))
+
+
+
+
+
+## [0.7.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.8...@synerise/ds-subject@0.7.9) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.7.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.7...@synerise/ds-subject@0.7.8) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.6...@synerise/ds-subject@0.7.7) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.7.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.5...@synerise/ds-subject@0.7.6) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.7.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.4...@synerise/ds-subject@0.7.5) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.3...@synerise/ds-subject@0.7.4) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
 ## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.7.2...@synerise/ds-subject@0.7.3) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-subject

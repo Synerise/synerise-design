@@ -3,6 +3,150 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.7...@synerise/ds-completed-within@0.5.12) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.6...@synerise/ds-completed-within@0.5.7) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.5...@synerise/ds-completed-within@0.5.6) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.4...@synerise/ds-completed-within@0.5.5) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.3...@synerise/ds-completed-within@0.5.4) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.2...@synerise/ds-completed-within@0.5.3) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.1...@synerise/ds-completed-within@0.5.2) (2022-05-15)
+
+
+### Bug Fixes
+
+* **completed-within:** set max width of dropdown ([49c881e](https://github.com/Synerise/synerise-design/commit/49c881e27b8a2cb22c1770645d987a55d03a05cb))
+
+
+
+
+
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.0...@synerise/ds-completed-within@0.5.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* **completed-within:** fixes clearing tooltip ([b9e0520](https://github.com/Synerise/synerise-design/commit/b9e05208d75069b03e9671981ea061f0e6183c99))
+* **completed-within:** fixes maxValues in btn label ([46c73ad](https://github.com/Synerise/synerise-design/commit/46c73ad326737bd355ba949fcfeceb58b0035d3e))
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.4.0...@synerise/ds-completed-within@0.5.0) (2022-04-29)
+
+
+### Features
+
+* **completed-within:** adds maxValue prop ([cc20e27](https://github.com/Synerise/synerise-design/commit/cc20e2788e2840a9d78bd51cb43a1928fb64e958))
+* **completed-within:** adds tooltip for trigger button ([694812e](https://github.com/Synerise/synerise-design/commit/694812e9179e79c8f8fa4d12054d2704d7abcab3))
+* **completed-within:** replace || by ?? in maxValue ([d36c970](https://github.com/Synerise/synerise-design/commit/d36c970832fcc835881a15a0d013b5c5225c4c72))
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.15...@synerise/ds-completed-within@0.4.0) (2022-04-05)
+
+
+### Features
+
+* **completed-within:** adds placeholder nad tooltip props ([22976de](https://github.com/Synerise/synerise-design/commit/22976deac9012e1654b86ad745da7207e664ad88))
+* **completed-within:** adds placeholder prop ([6aa6e91](https://github.com/Synerise/synerise-design/commit/6aa6e91cb9fae233d6c2e1cf447fd91082c67686))
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.14...@synerise/ds-completed-within@0.3.15) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.13...@synerise/ds-completed-within@0.3.14) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.12...@synerise/ds-completed-within@0.3.13) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.11...@synerise/ds-completed-within@0.3.12) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.10...@synerise/ds-completed-within@0.3.11) (2022-03-14)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.9...@synerise/ds-completed-within@0.3.10) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
 ## [0.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.3.8...@synerise/ds-completed-within@0.3.9) (2022-02-16)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

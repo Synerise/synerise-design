@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
+import fnsIsValid from 'date-fns/isValid';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
-import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS } from './constants';
+import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
+import * as CONST from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import { Props, State, AddonType } from './DateRangePicker.types';
 import { DateFilter, DateRange } from './date.types';
@@ -15,9 +17,9 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
-class RawDateRangePicker extends React.PureComponent<Props, State> {
+export class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
-    ranges: RELATIVE_PRESETS,
+    ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
     showRelativePicker: true,
     validate: (): { valid: boolean } => ({ valid: true }),
@@ -38,10 +40,6 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (prevProps.value !== value && !value) {
       this.handleRangeChange(value);
     }
-    const { mode } = this.state;
-    if (!value?.to && !value?.from && mode !== MODES.DATE) {
-      this.handleSwitchMode();
-    }
   }
 
   handleFilterCancel = (): void => {
@@ -57,10 +55,17 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
     if (!range) {
       return;
     }
+    if (range.from && !fnsIsValid(range?.from)) {
+      return;
+    }
 
     const { onValueChange } = this.props;
-    const { value } = this.state;
+    const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
+    if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
+      // clicked on RangeButtons and was selecting time
+      this.setState({ mode: MODES.DATE });
+    }
     this.setState({ value: { ...newValue, key: range?.key, translationKey: range?.translationKey } });
     onValueChange && onValueChange(newValue);
   };
@@ -76,7 +81,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
         });
       return;
     }
-    if (value.key === 'ALL_TIME') {
+    if (value.key === CONST.ALL_TIME) {
       onApply && onApply(omitBy(value, isUndefined));
       return;
     }
@@ -190,6 +195,8 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       savedFilters,
       onFilterSave,
       intl,
+      containerClass = 'ds-date-range-picker',
+      footerProps,
     } = this.props;
     const { value, mode } = this.state;
     const { from, to, key } = value;
@@ -209,10 +216,10 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
       );
 
     const validator = validate ? validate(value) : { valid: true };
-    const isValid = (!!(from && to) || key === 'ALL_TIME') && validator.valid;
+    const isValid = key !== CONST.ALL_TIME && !!(from && to) && validator.valid;
 
     return (
-      <Container className="ds-date-range-picker">
+      <Container className={containerClass}>
         <RangePicker
           value={value}
           onChange={this.handleRangeChange}
@@ -245,6 +252,7 @@ class RawDateRangePicker extends React.PureComponent<Props, State> {
           value={value}
           showTime={showTime}
           format={format}
+          {...footerProps}
         />
       </Container>
     );

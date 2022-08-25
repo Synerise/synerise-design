@@ -1,6 +1,9 @@
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
 import { legacyParse } from '@date-fns/upgrade/v2';
+
+import { omit } from 'lodash';
+
 import { IntlShape } from 'react-intl';
 import { DateRange } from './date.types';
 import { ABSOLUTE, CUSTOM_RANGE_KEY, RELATIVE } from './constants';
@@ -34,7 +37,9 @@ export const normalizeRange = (range: DateRange): DateRange => {
   }
   const from = range.from ? legacyParse(range.from) : undefined;
   const to = range.to ? legacyParse(range.to) : undefined;
-  return { ...range, type: ABSOLUTE, from, to };
+  const dropNonAbsolute = (dateRange: DateRange): DateRange => omit(dateRange, ['offset', 'duration']) as DateRange;
+  const absoluteRange = { ...dropNonAbsolute(range), from, to };
+  return absoluteRange;
 };
 const getIntlMessage = (textMessageId: string, intl: IntlShape, areDefaultTextsDisabled?: boolean): string =>
   areDefaultTextsDisabled ? '' : intl.formatMessage({ id: textMessageId });
@@ -108,5 +113,5 @@ export const DEFAULT_RANGE = normalizeRange({
   from: undefined,
   type: 'RELATIVE',
   offset: { value: 0, type: 'DAYS' },
-  duration: { value: 1, type: 'DAYS' },
+  duration: { value: 30, type: 'DAYS' },
 });

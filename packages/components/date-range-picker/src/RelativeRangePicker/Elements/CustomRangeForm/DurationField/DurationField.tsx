@@ -34,7 +34,7 @@ const DurationField: React.FC<Props> = ({
           max={CONST.RELATIVE_DURATION_MAX}
           precision={0}
           step={1}
-          value={duration.value}
+          value={duration?.value}
           onBlur={({ target: { value } }): void => {
             !value && handleDurationValueChange(1);
           }}
@@ -42,7 +42,7 @@ const DurationField: React.FC<Props> = ({
           raw
         />
         <Select
-          value={duration.type}
+          value={duration?.type}
           onChange={(type): void => handleChange(setDurationType(type, currentRange))}
           dropdownAlign={{ points: ['bl', 'tl'], offset: [0, SELECT_DROPDOWN_OFFSET] }}
           getPopupContainer={(node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body)}

@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.10...@synerise/ds-layout@0.13.0) (2022-08-11)
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
+## [0.12.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.9...@synerise/ds-layout@0.12.10) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.8...@synerise/ds-layout@0.12.9) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.7...@synerise/ds-layout@0.12.8) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.6...@synerise/ds-layout@0.12.7) (2022-06-15)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.5...@synerise/ds-layout@0.12.6) (2022-04-29)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.4...@synerise/ds-layout@0.12.5) (2022-04-05)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.3...@synerise/ds-layout@0.12.4) (2022-03-30)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.2...@synerise/ds-layout@0.12.3) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.1...@synerise/ds-layout@0.12.2) (2022-03-24)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.12.0...@synerise/ds-layout@0.12.1) (2022-03-21)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.11.2...@synerise/ds-layout@0.12.0) (2022-03-14)
+
+
+### Features
+
+* **filter:** simple imprv into filter & card & card-tabs component ([206cb9d](https://github.com/synerise/synerise-design/commit/206cb9d8b9ba3687daf1a02862e8dd88698b582f))
+
+
+
+
+
+## [0.11.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.11.1...@synerise/ds-layout@0.11.2) (2022-03-04)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
+## [0.11.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.11.0...@synerise/ds-layout@0.11.1) (2022-02-25)
+
+**Note:** Version bump only for package @synerise/ds-layout
+
+
+
+
+
 # [0.11.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.10.2...@synerise/ds-layout@0.11.0) (2022-02-10)
 
 

@@ -2,9 +2,9 @@ import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import * as React from 'react';
 import { AllocationConfig } from 'Allocation/Allocation.types';
 
-type SliderProps = SliderSingleProps | SliderRangeProps;
+type AntSliderProps = SliderSingleProps | SliderRangeProps;
 
-export type AntdSliderProps = Omit<SliderProps, 'value'>;
+export type AntdSliderProps = Omit<AntSliderProps, 'value'>;
 
 export enum SliderTypes {
   ALLOCATION = 'allocation',
@@ -14,7 +14,7 @@ export declare type ColorMapProps = {
   [key: string]: string;
 };
 
-export interface Props extends AntdSliderProps {
+export interface SliderProps extends AntdSliderProps {
   type?: 'allocation' | 'default';
   allocationConfig?: AllocationConfig;
   label?: React.ReactNode | string;
@@ -28,3 +28,8 @@ export interface Props extends AntdSliderProps {
   hideMinAndMaxMarks?: boolean;
   disabled?: boolean;
 }
+
+/**
+ * @deprecated do not use, use `SliderProps`
+ */
+export type Props = SliderProps;

@@ -4,23 +4,20 @@ import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
-import Icon, { AddM, MailM } from '@synerise/ds-icon';
-import { Column, renderWithIconInHeaders } from './helpers/helpers';
-import {
-  COLUMNS_WITH_FIXED,
-  RELATIONS,
-} from './content/withAllCellTypes.data';
+import Icon, { AddM } from '@synerise/ds-icon';
+import { renderWithIconInHeaders } from './helpers/helpers';
+import { COLUMNS_WITH_FIXED, RELATIONS } from './content/withAllCellTypes.data';
 import { withState } from '@dump247/storybook-state';
 import randomDate from '../../utils/randomDate';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
-  name: faker.random.arrayElement(['John', 'Anita', 'Michelle', 'Wojtek', 'Wiktoria', 'Stefan','Marek','Martyna']),
+  name: faker.random.arrayElement(['John', 'Anita', 'Michelle', 'Wojtek', 'Wiktoria', 'Stefan', 'Marek', 'Martyna']),
   lastName: faker.random.arrayElement(['Kowalczyk', 'Doe', 'Testovi', 'Testinson', 'Testovich']),
   city: faker.random.arrayElement(['Kraków', 'Warszawa', 'Poznań', 'Łódź', 'Wrocław', 'Gdańsk']),
-  phone:faker.random.arrayElement(['571345127', '678990320', '588991567', '666245912', '654666871', '631001372']),
-  color: faker.random.arrayElement(['red', 'blue', 'green', 'yellow', 'orange', 'cyan','purple','violet']),
+  phone: faker.random.arrayElement(['571345127', '678990320', '588991567', '666245912', '654666871', '631001372']),
+  color: faker.random.arrayElement(['red', 'blue', 'green', 'yellow', 'orange', 'cyan', 'purple', 'violet']),
   last_activity: randomDate(),
   active: faker.random.boolean(),
   country: faker.random.arrayElement(['us', 'pl', 'de', 'it', 'es', 'ru']),
@@ -86,12 +83,14 @@ const stories = {
             ],
           }
         }
-        rowStar={boolean('Enable row star', undefined) && {
-          starredRowKeys: store.state.starredRowKeys,
-          onChange: (starredRowKeys): void => {
-            store.set({ starredRowKeys });
+        rowStar={
+          boolean('Enable row star', undefined) && {
+            starredRowKeys: store.state.starredRowKeys,
+            onChange: (starredRowKeys): void => {
+              store.set({ starredRowKeys });
+            },
           }
-        }}
+        }
         onSearch={action('onSearch')}
         cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
       />
