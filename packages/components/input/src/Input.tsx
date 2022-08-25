@@ -43,15 +43,14 @@ const enhancedInput =
   }): React.ReactElement => {
     const [charCount, setCharCount] = React.useState<number>(0);
     const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
+    const Expandable = React.useCallback(() => {
+      expandable && setIsExpanded(!isExpanded);
+    }, [setIsExpanded, isExpanded]);
     const Component: React.FC<Props> = isExpanded
       ? // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-        props => (
-          <TextArea
-            {...props}
-            icon1={<Icon component={<FullScreenM />} onClick={(): void => expandable && setIsExpanded(!isExpanded)} />}
-          />
-        )
+        props => <TextArea {...props} rows={6} icon1={<Icon component={<FullScreenM />} onClick={Expandable} />} />
       : WrappedComponent;
+
     const hasErrorMessage = Boolean(errorText);
     const id = React.useMemo(() => uuid(), []);
 
@@ -105,7 +104,7 @@ const enhancedInput =
             <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
               <S.IconsFlexContainer type={type}>
                 <Tooltip title={icon1Tooltip}>
-                  <S.IconWrapper onClick={(): void => expandable && setIsExpanded(!isExpanded)} className={className}>
+                  <S.IconWrapper onClick={Expandable} className={className}>
                     {icon1 &&
                       React.cloneElement(icon1, {
                         className: 'icon icon1',

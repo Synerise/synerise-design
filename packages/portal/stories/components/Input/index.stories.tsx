@@ -561,7 +561,7 @@ const stories = {
       />
     );
   },
-  inputExpansible: () => {
+  inputExpandable: () => {
     const [value, setValue] = React.useState<string>('');
     const hasDescription = boolean('Set Description', false);
     const descriptionMessage = text('Description', 'Description');
@@ -587,18 +587,17 @@ const stories = {
     return (
       <Input
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
         onBlur={() => {
-          action('I am blurred');
+          action('I am blurred')();
           setFocus(false);
         }}
         onFocus={() => {
-          action('I am focused');
+          action('I am focused')();
           setFocus(true);
         }}
         value={value}

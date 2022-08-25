@@ -87,7 +87,7 @@ export const IconsFlexContainer = styled.div<{ type: string }>`
     `;
   }}
 `;
-export const IconWrapper = styled.div`
+export const IconWrapper = styled.div<{ expandable?: boolean }>`
   .icon:hover {
     svg {
       fill: ${(props): string => props.theme.palette['blue-600']};
