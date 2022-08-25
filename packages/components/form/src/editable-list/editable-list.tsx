@@ -15,7 +15,7 @@ export const EditableList: React.FC<EditListProps> = ({
   onChange,
   textAddButton,
   onSearch,
-  onSetParams,
+  onClickAddRow,
   renderAddButton,
   renderLeftColumn,
   renderRightColumn,
@@ -39,7 +39,7 @@ export const EditableList: React.FC<EditListProps> = ({
       {params?.map((param, id) => (
         // eslint-disable-next-line react/no-array-index-key
         <S.RowWrapper key={id}>
-          {renderLeftColumn?.(id, param) ?? (
+          {renderLeftColumn?.(param, id) ?? (
             <S.AutoCompleteWrapper>
               <Autocomplete
                 style={{ width: 350 }}
@@ -56,7 +56,7 @@ export const EditableList: React.FC<EditListProps> = ({
               </Autocomplete>
             </S.AutoCompleteWrapper>
           )}
-          {renderRightColumn?.(id, param) ?? (
+          {renderRightColumn?.(param, id) ?? (
             <S.InputWrapper>
               <Input
                 value={param.value}
@@ -84,7 +84,7 @@ export const EditableList: React.FC<EditListProps> = ({
       ))}
       {renderAddButton?.() ?? (
         <S.ButtonWrapper>
-          <S.AddButton onClick={onSetParams || onSetParamsDefault} type="ghost-primary">
+          <S.AddButton onClick={onClickAddRow || onSetParamsDefault} type="ghost-primary">
             <S.AddIconWrapper>
               <Icon component={<Add3M />} size={24} color={theme.palette['blue-600']} />
             </S.AddIconWrapper>

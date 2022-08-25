@@ -9,11 +9,11 @@ export type EditListProps = {
   value?: EditableParam[];
   onChange?: (params: EditableParam[]) => void;
   onSearch?: (query: string) => void;
-  onSetParams?: () => void;
+  onClickAddRow?: () => void;
   textAddButton?: string;
   renderAddButton?: (params?: EditableParam[]) => JSX.Element;
-  renderLeftColumn?: (index: number, param?: EditableParam) => JSX.Element;
-  renderRightColumn?: (index: number, param?: EditableParam, ref?: React.ClassAttributes<{}>['ref']) => JSX.Element;
+  renderLeftColumn?: (param?: EditableParam, index?: number) => JSX.Element;
+  renderRightColumn?: (param?: EditableParam, index?: number, ref?: React.ClassAttributes<{}>['ref']) => JSX.Element;
   renderAdditionalColumn?: (row?: EditableParam[]) => JSX.Element;
   renderActions?: boolean | ((param?: EditableParam, idx?: number, params?: EditableParam[]) => JSX.Element);
 };
