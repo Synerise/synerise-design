@@ -46,6 +46,7 @@ Input UI Component
 | tooltipConfig  | Config of tooltip                                                                                                                                                  | [TooltipProps](https://design.synerise.com/docs/components/tooltip#api) | -         |
 | type           | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)(use `Input.TextArea` instead of `type="textarea"`) | string                                                                  | `text`    |
 | value          | The input content value                                                                                                                                            | string                                                                  |           |
+| expandable     | prop that make input change to textarea                                                                                                                            | void                                                                    |           |       
 
 #### MaskedInput
 
