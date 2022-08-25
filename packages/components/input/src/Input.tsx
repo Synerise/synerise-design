@@ -43,7 +43,7 @@ const enhancedInput =
   }): React.ReactElement => {
     const [charCount, setCharCount] = React.useState<number>(0);
     const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
-    const Component = isExpanded
+    const Component: React.FC<Props> = isExpanded
       ? // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
         props => (
           <TextArea
