@@ -15,6 +15,7 @@ export const EditableList: React.FC<EditListProps> = ({
   onChange,
   textAddButton,
   onSearch,
+  onClickAddRow,
   renderAddButton,
   renderLeftColumn,
   renderRightColumn,
@@ -30,12 +31,15 @@ export const EditableList: React.FC<EditListProps> = ({
   React.useEffect(() => {
     setParams(value);
   }, [value]);
+
+  const onSetParamsDefault = (): void => setParams(prevParams => [...(prevParams || []), { name: '', value: '' }]);
+
   return (
     <div>
       {params?.map((param, id) => (
         // eslint-disable-next-line react/no-array-index-key
         <S.RowWrapper key={id}>
-          {renderLeftColumn?.(param) ?? (
+          {renderLeftColumn?.(param, id) ?? (
             <S.AutoCompleteWrapper>
               <Autocomplete
                 style={{ width: 350 }}
@@ -52,7 +56,7 @@ export const EditableList: React.FC<EditListProps> = ({
               </Autocomplete>
             </S.AutoCompleteWrapper>
           )}
-          {renderRightColumn?.(param) ?? (
+          {renderRightColumn?.(param, id) ?? (
             <S.InputWrapper>
               <Input
                 value={param.value}
@@ -80,10 +84,7 @@ export const EditableList: React.FC<EditListProps> = ({
       ))}
       {renderAddButton?.() ?? (
         <S.ButtonWrapper>
-          <S.AddButton
-            onClick={(): void => setParams(prevParams => [...(prevParams || []), { name: '', value: '' }])}
-            type="ghost-primary"
-          >
+          <S.AddButton onClick={onClickAddRow || onSetParamsDefault} type="ghost-primary">
             <S.AddIconWrapper>
               <Icon component={<Add3M />} size={24} color={theme.palette['blue-600']} />
             </S.AddIconWrapper>
