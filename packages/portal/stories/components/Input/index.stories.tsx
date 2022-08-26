@@ -562,7 +562,7 @@ const stories = {
   },
   inputWithAutoResize: () => {
     const [value, setValue] = React.useState<string>('');
-    const autoResize = boolean('Set autoResize', false);
+    const autoResize = boolean('Set autoResize', true);
     const size = knobSelect('Set size', sizes as any, 'default');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
