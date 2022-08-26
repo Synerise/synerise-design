@@ -560,6 +560,54 @@ const stories = {
       />
     );
   },
+  inputWithAutoResize: () => {
+    const [value, setValue] = React.useState<string>('');
+    const autoResize = boolean('Set autoResize', false);
+    const size = knobSelect('Set size', sizes as any, 'default');
+    const hasDescription = boolean('Set Description', true);
+    const descriptionMessage = text('Description', 'Description');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const getDescription = (hasDescription: boolean): string => {
+      if (hasDescription) {
+        return descriptionMessage;
+      } else {
+        return '';
+      }
+    };
+
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
+
+    return (
+      <Input
+        size={size}
+        placeholder={text('Placeholder', 'Placeholder')}
+        label={renderLabel(text('Label', 'Label'))}
+        description={descriptionMessage && getDescription(hasDescription)}
+        errorText={!isFocus && getErrorText(hasError)}
+        error={!isFocus && hasError}
+        disabled={boolean('Disabled', false)}
+        onChange={e => setValue(e.target.value)}
+        onBlur={() => {
+          action('I am blurred');
+          setFocus(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setFocus(true);
+        }}
+        value={value}
+        autoResize={autoResize}
+      />
+    );
+  },
   inputWithPrefixAndSuffix: () => {
     const [value, setValue] = React.useState<string>('');
     const prefixType = select('Set prefix type', addonType, addonType.none);
