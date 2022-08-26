@@ -4,6 +4,7 @@ import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { InputGroup } from '@synerise/ds-input';
 import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
+// import 'antd/lib/input/style/index.css' // this style might be in imported scopes as we use input; not needed here, but worth to mention this
 
 export const Container = styled.div``;
 
@@ -36,7 +37,8 @@ export const CustomForm = styled.div`
 `;
 
 export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
-  && {
+  &&,
+  .ant-input-group.ant-input-group-compact&& {
     display: flex;
     align-items: center;
     .ant-input-number {
