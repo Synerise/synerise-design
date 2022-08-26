@@ -106,6 +106,7 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
+    const autoResize = boolean('Set autoResize', false);
 
     return (
       <Input
@@ -132,6 +133,7 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
+        autoResize={autoResize}
       />
     );
   },
@@ -509,6 +511,7 @@ const stories = {
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
+    const autoResize = boolean('Set autoResize', false);
     const [isFocus, setFocus] = React.useState(false);
     const getCounter = (hasCounter: boolean): number | null => {
       if (hasCounter) {
@@ -557,6 +560,7 @@ const stories = {
         icon1Tooltip={hasIconTooltip && <span>icon1</span>}
         icon2={<Icon component={<FileM />} />}
         icon2Tooltip={hasIconTooltip && <span>icon2</span>}
+        autoResize={autoResize}
       />
     );
   },
@@ -614,6 +618,7 @@ const stories = {
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
     const suffixLabelText = text('Set suffix label text', 'Suffix');
+    const autoResize = boolean('Set autoResize', false);
 
     return (
       <Input
@@ -626,6 +631,7 @@ const stories = {
         value={value}
         prefixel={renderAddonComponent(prefixType, prefixLabelText)}
         suffixel={renderAddonComponent(suffixType, suffixLabelText)}
+        autoResize={autoResize}
       />
     );
   },
