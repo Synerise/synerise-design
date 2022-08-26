@@ -10,7 +10,7 @@ import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import DSTable from '../Table';
 import { RowType, DSTableProps, RowSelection } from '../Table.types';
-import VirtualTableRow from './VirtualTableRow';
+import VirtualTableRow, { VirtualTableRowProps } from './VirtualTableRow';
 import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import { useTableLocale, calculatePixels } from '../utils';
@@ -209,7 +209,8 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       data: any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       defaultTableProps: DSTableProps<any> | undefined
-    ): object => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ): VirtualTableRowProps<any>['data'] => ({
       mergedColumns,
       selection,
       rowStar,

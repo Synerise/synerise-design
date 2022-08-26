@@ -64,6 +64,7 @@ const stories = {
             matching: 'Performed',
             notMatching: 'Not performed',
             conditionType: 'event',
+            notConditionType: 'not event',
             namePlaceholder: 'Unnamed',
             moveTooltip: 'Move',
             deleteTooltip: 'Delete',

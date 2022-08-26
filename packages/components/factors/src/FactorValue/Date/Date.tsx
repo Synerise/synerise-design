@@ -23,6 +23,10 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
     [onDeactivate]
   );
 
+  React.useEffect(() => {
+    onDeactivate && onDeactivate();
+  }, [onDeactivate]);
+
   return (
     <DatePicker
       onClear={handleClear}

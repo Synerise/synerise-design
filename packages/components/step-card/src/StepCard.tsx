@@ -24,6 +24,7 @@ const StepCard: React.FC<StepCardProps> = ({
       matching: formatMessage({ id: 'DS.MATCHING.PERFORMED' }),
       notMatching: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED' }),
       conditionType: formatMessage({ id: 'DS.STEP-CARD.CONDITION-TYPE' }),
+      notConditionType: formatMessage({ id: 'DS.STEP-CARD.NOT-CONDITION-TYPE' }),
       namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
       moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
       deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
@@ -44,7 +45,7 @@ const StepCard: React.FC<StepCardProps> = ({
             texts={{ matching: text.matching, notMatching: text.notMatching }}
           />
           <Title withoutMargin level={4}>
-            {text.conditionType}
+            {matching ? text.conditionType : text.notConditionType}
           </Title>
         </S.LeftSide>
         <S.RightSide>

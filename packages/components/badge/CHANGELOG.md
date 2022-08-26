@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.7...@synerise/ds-badge@0.6.12) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.6...@synerise/ds-badge@0.6.7) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.5...@synerise/ds-badge@0.6.6) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.4...@synerise/ds-badge@0.6.5) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.3...@synerise/ds-badge@0.6.4) (2022-06-15)
 
 **Note:** Version bump only for package @synerise/ds-badge

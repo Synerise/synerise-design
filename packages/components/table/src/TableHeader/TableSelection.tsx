@@ -128,13 +128,13 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
                   switch (selectionMenuElement) {
                     case SELECTION_ALL: {
                       return !allSelected ? (
-                        <Menu.Item onClick={selectAll}>Select all</Menu.Item>
+                        <Menu.Item onClick={selectAll}>{locale?.selectAll}</Menu.Item>
                       ) : (
-                        <Menu.Item onClick={unselectAll}>Unselect all</Menu.Item>
+                        <Menu.Item onClick={unselectAll}>{locale?.unselectAll}</Menu.Item>
                       );
                     }
                     case SELECTION_INVERT: {
-                      return <Menu.Item onClick={selectInvert}>Invert selection</Menu.Item>;
+                      return <Menu.Item onClick={selectInvert}>{locale?.selectInvert}</Menu.Item>;
                     }
                     default: {
                       const sel = selectionMenuElement as Selection;
