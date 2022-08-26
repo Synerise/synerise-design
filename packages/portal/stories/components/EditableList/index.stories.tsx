@@ -19,6 +19,7 @@ const stories = {
       onChange={action('onChange')}
       renderActions={boolean('Render actions', true)}
       textAddButton={text('Add entry button text', 'Add parameter')}
+      onClickAddRow={action('onClickAddRow')}
     />)
   },
   withAutocomplete: () => {
