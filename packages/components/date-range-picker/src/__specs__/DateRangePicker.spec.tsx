@@ -273,4 +273,5 @@ describe('DateRangePicker', () => {
   it.todo('should switch to MODES.DATE if was in selecting time and selected ALL_TIME');
   it.todo('all relative modes (including lifetime) mode make apply button enabled');
   it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
+  it.todo('relative range addon should be formatted accordingly to provided styles even if base styled are imported');
 });

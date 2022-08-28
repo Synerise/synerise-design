@@ -28,9 +28,10 @@ import {
   ABSOLUTE_PRESETS,
 } from "@synerise/ds-date-range-picker/dist/constants";
 import { CONST } from "@synerise/ds-date-range-picker";
-import { DateFilter, DateRange } from "@synerise/ds-date-range-picker/dist/date.types";
+import {DateFilter, DateRange, RelativeDateRange} from "@synerise/ds-date-range-picker/dist/date.types";
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
+import styled from "styled-components";
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -347,6 +348,32 @@ const stories = {
     const disabled = boolean('Set disabled', false);
     const [value, setValue] = React.useState({});
     return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
+  },
+  overwritingBaseStylesCheck: () => {
+    /**
+     * in some circumstances antd default styles overwrite provided display: flex;
+     */
+    const DefaultAntInputStyles = styled.div`
+      .ant-input-group.ant-input-group-compact {
+        // as in 'antd@4.7.0/lib/input/style/index.css:523'
+        display: block;
+      }
+    `
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const value = React.useState<RelativeDateRange>({})
+    return (
+      <DefaultAntInputStyles>
+        <DateRangePicker
+          onApply={action('OnApply')}
+          value={value}
+          relativeFuture
+          showRelativePicker={true}
+          showFilter={true}
+          texts={texts}
+          relativeModes={['PAST', 'FUTURE', 'SINCE']}
+        />
+      </DefaultAntInputStyles>
+    );
   },
 };
 
