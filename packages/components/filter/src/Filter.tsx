@@ -69,6 +69,8 @@ const Filter: React.FC<FilterProps> = ({
         notPerformed: formatMessage({ id: 'DS.MATCHING.NOT-PERFORMED', defaultMessage: 'Have not performed' }),
         attribute: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.ATTRIBUTE', defaultMessage: 'attribute' }),
         event: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.EVENT', defaultMessage: 'event' }),
+        notAttribute: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.NOT_ATTRIBUTE', defaultMessage: 'attribute' }),
+        notEvent: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.NOT_EVENT', defaultMessage: 'event' }),
         namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
         moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
@@ -91,6 +93,7 @@ const Filter: React.FC<FilterProps> = ({
         matching: contextType === 'attribute' ? text.step.have : text.step.performed,
         notMatching: contextType === 'attribute' ? text.step.notHave : text.step.notPerformed,
         conditionType: contextType === 'attribute' ? text.step.attribute : text.step.event,
+        notConditionType: contextType === 'attribute' ? text.step.notAttribute : text.step.notEvent,
       };
     },
     [text]

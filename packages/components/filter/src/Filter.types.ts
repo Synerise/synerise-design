@@ -3,13 +3,13 @@ import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logi
 import { StepCardProps } from '@synerise/ds-step-card/src/StepCard.types';
 import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
 
-type LogicType = {
+export type LogicType = {
   type: 'LOGIC';
   id: string;
   data: Partial<LogicProps>;
 };
 
-type StepType = {
+export type StepType = {
   type: 'STEP';
   id: string;
   data: Partial<StepCardProps>;
@@ -43,6 +43,8 @@ export type FilterProps = {
       notPerformed?: string;
       attribute?: string;
       event?: string;
+      notAttribute?: string;
+      notEvent?: string;
       namePlaceholder?: string;
       moveTooltip?: string;
       deleteTooltip?: string;

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.49.5...@synerise/ds-icon@0.50.0) (2022-08-25)
+
+
+### Features
+
+* **icon:** add AdTempCodeS icon ([0e39d0c](https://github.com/Synerise/synerise-design/commit/0e39d0c2ec73bae00309be4c45ac383168097b36))
+
+
+
+
+
+## [0.49.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.49.0...@synerise/ds-icon@0.49.5) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
 # [0.49.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.48.0...@synerise/ds-icon@0.49.0) (2022-03-30)
 
 

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.12...@synerise/ds-context-selector@0.12.13) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.12.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.7...@synerise/ds-context-selector@0.12.12) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.12.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.6...@synerise/ds-context-selector@0.12.7) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.12.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.5...@synerise/ds-context-selector@0.12.6) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.12.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.4...@synerise/ds-context-selector@0.12.5) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.12.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.3...@synerise/ds-context-selector@0.12.4) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
 ## [0.12.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.2...@synerise/ds-context-selector@0.12.3) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

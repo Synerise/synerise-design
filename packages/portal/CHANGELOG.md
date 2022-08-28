@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.160.0](https://github.com/synerise/synerise-design/compare/portal@0.159.0...portal@0.160.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* **form:** editable-list imports refactor and fix + export in index.ts ([369a6d9](https://github.com/synerise/synerise-design/commit/369a6d9f8c7aa562eb860fcb105b1f2d1c0b2a99))
+* **form:** initial value, renderProps in EditableList ([9f6ffeb](https://github.com/synerise/synerise-design/commit/9f6ffeb40efb8e77f16692c5d2f4c91b4e563536))
+
+
+### Features
+
+* **form:** add new component editable-list ([78f9286](https://github.com/synerise/synerise-design/commit/78f928642885d4268976c5c722861ed694b408de))
+* **form:** add new component editable-list ([35edb08](https://github.com/synerise/synerise-design/commit/35edb08fc02079b04ae828664c618849cedb3525))
+
+
+
+
+
+# [0.159.0](https://github.com/synerise/synerise-design/compare/portal@0.158.0...portal@0.159.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **filter:** changes dnd library ([96611e3](https://github.com/synerise/synerise-design/commit/96611e328150757484394aabc0226ecd1b244af0))
+
+
+### Features
+
+* **filter:** adds knob for withDnd prop in storybook example ([4283b74](https://github.com/synerise/synerise-design/commit/4283b74aae4e5576c2caa668f14826c8c89dcc33))
+* **scrollbar:** adds stories with dnd and virual scrollbars ([14f6d7a](https://github.com/synerise/synerise-design/commit/14f6d7a268d211536839a251ceb49d925993b994))
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
+# [0.158.0](https://github.com/synerise/synerise-design/compare/portal@0.157.0...portal@0.158.0) (2022-07-28)
+
+
+### Bug Fixes
+
+* **card-tabs:** add option of custom color to pick ([8504ed6](https://github.com/synerise/synerise-design/commit/8504ed6a7a50a75851973ad2062d1a9c65e33489))
+* **card-tabs:** fix color picking in every card tab ([622c605](https://github.com/synerise/synerise-design/commit/622c6053d078ec43401259075b6e73c56b9ae9c6))
+* **card-tabs:** fix pallette of colors to pick ([530b568](https://github.com/synerise/synerise-design/commit/530b56806c58a5e4f571123a5b2b342612a27415))
+* **card-tabs:** fix pallette of colors to pick ([5eabc42](https://github.com/synerise/synerise-design/commit/5eabc422f894a7ca3d4f09f9ab847d1ce6c7bc87))
+* **card-tabs:** width for 3 card tabs and width lte 588px ([e80e56f](https://github.com/synerise/synerise-design/commit/e80e56f6f4ea3d8029f066e02570423f589f0e9e))
+* **modal:** add new option of footers in modal ([61aacf8](https://github.com/synerise/synerise-design/commit/61aacf8b256e4a7e17daeecd374bc7029f8b9bdb))
+* **modal:** fix footer prop with buttons ([0d7b347](https://github.com/synerise/synerise-design/commit/0d7b347947c15be616b34cd963ef68aec8e4b45b))
+* **modal:** fix knobs of buttons to set cancel and ok text ([4db8544](https://github.com/synerise/synerise-design/commit/4db854427af53161dcd5e9fa246304608204e713))
+* **popconfirm:** fix props and knobs to show popconfirm ([ce041d8](https://github.com/synerise/synerise-design/commit/ce041d8efab03392edf77c87947a9dcc6ade04ae))
+* **progress-bar:** fix bar when is over 99% ([cf69288](https://github.com/synerise/synerise-design/commit/cf692889473701ae1bb726f3d28da7cd0d362cd2))
+* **progress-bar:** fix knobs ([e21e2ef](https://github.com/synerise/synerise-design/commit/e21e2ef0265f25f55e84785562e39030b318fd4c))
+* **table:** add new stories of avatarLabel to show fixed cursor ([38014d6](https://github.com/synerise/synerise-design/commit/38014d6c29b92ce6f999d15221636f5b39df65f8))
+
+
+### Features
+
+* **modal:** buildModalFooter helper, missing onOk onCancel -> disabled ([a9d4c32](https://github.com/synerise/synerise-design/commit/a9d4c3288d9e97abe89c33314bc5fbf0b78c66ba))
+* **slider:** use built-in default colors order in slider ([70af044](https://github.com/synerise/synerise-design/commit/70af044d1d8e7dc46e92bf199b70550362e87fb9))
+* **slider:** use default colors order in allocation slider ([fe969fa](https://github.com/synerise/synerise-design/commit/fe969faf16d335d5ed703c2e8f32b43116d3ac01))
+
+
+
+
+
+# [0.157.0](https://github.com/synerise/synerise-design/compare/portal@0.156.1...portal@0.157.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+* **step-card:** adds additional translation ([38f69c1](https://github.com/synerise/synerise-design/commit/38f69c14e433451e7eef88d4f130df297bf4fcfb))
+
+
+
+
+
 ## [0.156.1](https://github.com/synerise/synerise-design/compare/portal@0.156.0...portal@0.156.1) (2022-06-29)
 
 **Note:** Version bump only for package portal

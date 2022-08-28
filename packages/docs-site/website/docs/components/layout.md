@@ -32,21 +32,24 @@ import Layout from '@synerise/ds-layout'
 
 ## API
 
-| Property                  | Description                                                      | Type                | Default |
-| ---------                 | ----------------------------------------                         | ---------------     | ------- |
-| header                    | Set top header content page                                      | React.ReactNode     |         |
-| subheader                 | Set subheader content page                                       | React.ReactNode     |         |
-| left                      | Configuration of left sidebar                                    | SidebarProps        |         |
-| right                     | Configuration of right sidebar                                   | SidebarProps        |         |
-| children                  | The layout elements passed to the parent                         | React.ReactNode     |         |
-| className                 | Layout's className                                               | string              |         |
-| styles                    | Custom layout styles                                             | LayoutStyles        |         |
-| leftOpened                | Whether left sidebar is opened                                   | boolean             | false   |
-| rightOpened               | Whether right sidebar is opened                                  | boolean             | false   |
-| leftOpenedWidth           | Width of opened left sidebar                                     | number              | 320     |
-| rightOpenedWidth          | Width of opened right sidebar                                    | number              | 320     |
-| renderLeftSidebarControls | Left sidebar visibility. Accepts function returning `ReactNode`. | boolean or function | false   |
-| renderRightSidebarControls| Right sidebar visibility. Accepts function returning `ReactNode`.| boolean or function | false   |
+| Property                   | Description                                                       | Type                | Default |
+|----------------------------|-------------------------------------------------------------------|---------------------| ------- |
+| header                     | Set top header content page                                       | React.ReactNode     |         |
+| subheader                  | Set subheader content page                                        | React.ReactNode     |         |
+| left                       | Configuration of left sidebar                                     | SidebarProps        |         |
+| right                      | Configuration of right sidebar                                    | SidebarProps        |         |
+| children                   | The layout elements passed to the parent                          | React.ReactNode     |         |
+| className                  | Layout's className                                                | string              |         |
+| styles                     | Custom layout styles                                              | LayoutStyles        |         |
+| leftOpened                 | Whether left sidebar is opened                                    | boolean             | false   |
+| rightOpened                | Whether right sidebar is opened                                   | boolean             | false   |
+| leftOpenedWidth            | Width of opened left sidebar                                      | number              | 320     |
+| rightOpenedWidth           | Width of opened right sidebar                                     | number              | 320     |
+| renderLeftSidebarControls  | Left sidebar visibility. Accepts function returning `ReactNode`.  | boolean or function | false   |
+| renderRightSidebarControls | Right sidebar visibility. Accepts function returning `ReactNode`. | boolean or function | false   |
+| leftSidebarWithDnd         | Set withDnd in left sidebar scrollbar                             | boolean             | false   |
+| mainSidebarWithDnd         | Set withDnd in main sidebar scrollbar                             | boolean             | false   |
+| rightSidebarWithDnd        | Set withDnd in right sidebar scrollbar                            | boolean             | false   |
 
 ### SidebarProps
 

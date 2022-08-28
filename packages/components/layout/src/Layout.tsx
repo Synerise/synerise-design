@@ -19,6 +19,9 @@ const Layout: React.FC<T.LayoutProps> = ({
   sidebarAnimationDisabled,
   renderLeftSidebarControls = false,
   renderRightSidebarControls = false,
+  leftSidebarWithDnd = false,
+  rightSidebarWithDnd = false,
+  mainSidebarWithDnd = false,
 }) => {
   const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
   const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
@@ -50,7 +53,7 @@ const Layout: React.FC<T.LayoutProps> = ({
                   openedWidth={leftSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
-                  <Scrollbar absolute>
+                  <Scrollbar absolute withDnd={leftSidebarWithDnd}>
                     <S.LayoutSidebarInner style={styles && styles.leftInner}>{left?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>
@@ -79,7 +82,7 @@ const Layout: React.FC<T.LayoutProps> = ({
             rightSidebarWidth={rightSidebarWidth}
           >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
-            <Scrollbar absolute>
+            <Scrollbar absolute withDnd={mainSidebarWithDnd}>
               <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
                 {children}
               </S.LayoutMainInner>
@@ -100,7 +103,7 @@ const Layout: React.FC<T.LayoutProps> = ({
                   openedWidth={rightSidebarWidth}
                   animationDisabled={!!sidebarAnimationDisabled}
                 >
-                  <Scrollbar absolute>
+                  <Scrollbar absolute withDnd={rightSidebarWithDnd}>
                     <S.LayoutSidebarInner style={styles && styles.rightInner}>{right?.content}</S.LayoutSidebarInner>
                   </Scrollbar>
                 </S.LayoutSidebar>

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.23...@synerise/ds-treemenu@0.3.24) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.18...@synerise/ds-treemenu@0.3.23) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.17...@synerise/ds-treemenu@0.3.18) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.16...@synerise/ds-treemenu@0.3.17) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.15...@synerise/ds-treemenu@0.3.16) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.14...@synerise/ds-treemenu@0.3.15) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
 ## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.3.13...@synerise/ds-treemenu@0.3.14) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-treemenu

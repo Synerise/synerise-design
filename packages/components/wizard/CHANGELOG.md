@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.25...@synerise/ds-wizard@0.3.26) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
+## [0.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.20...@synerise/ds-wizard@0.3.25) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
+## [0.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.19...@synerise/ds-wizard@0.3.20) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
+## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.18...@synerise/ds-wizard@0.3.19) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.17...@synerise/ds-wizard@0.3.18) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.16...@synerise/ds-wizard@0.3.17) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
 ## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.15...@synerise/ds-wizard@0.3.16) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-wizard

@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.12.0...@synerise/ds-filter@0.12.1) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.11.1...@synerise/ds-filter@0.12.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **filter:** changes dnd library ([96611e3](https://github.com/Synerise/synerise-design/commit/96611e328150757484394aabc0226ecd1b244af0))
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/Synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+
+
+
+
+
+## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.11.0...@synerise/ds-filter@0.11.1) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.10.3...@synerise/ds-filter@0.11.0) (2022-07-17)
+
+
+### Features
+
+* **filter:** adds additional translation ([a00063a](https://github.com/Synerise/synerise-design/commit/a00063a01e4d6d67e1cb6b040f867ecf88f57c14))
+
+
+
+
+
+## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.10.2...@synerise/ds-filter@0.10.3) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.10.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.10.1...@synerise/ds-filter@0.10.2) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
 ## [0.10.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.10.0...@synerise/ds-filter@0.10.1) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-filter

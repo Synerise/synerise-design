@@ -14,6 +14,7 @@ export const ALL_FACTOR_TYPES = [
   'dateRange',
 ] as const;
 export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
+export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
 export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText };
 export type FormulaValueType = { name: string; value: string };
 export type ParameterValueType = {
@@ -81,6 +82,9 @@ export type FactorsTexts = {
   modalApply: string;
   modalCancel: string;
   modalTitle: string;
+  factorTypes?: {
+    [k in DefinedFactorTypes]: string;
+  };
 };
 
 export type FactorsProps = {
@@ -123,6 +127,9 @@ export type FactorTypeSelectorProps = Pick<
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;
+  texts: {
+    [k in DefinedFactorTypes]: string;
+  };
 };
 
 export type FactorValueProps = Pick<

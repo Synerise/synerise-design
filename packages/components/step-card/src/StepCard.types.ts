@@ -4,6 +4,7 @@ export type StepCardTexts = {
   matching: string;
   notMatching: string;
   conditionType: string;
+  notConditionType: string;
   namePlaceholder: string;
   moveTooltip: string;
   deleteTooltip: string;

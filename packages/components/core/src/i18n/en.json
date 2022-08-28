@@ -27,6 +27,17 @@
             "DYNAMIC_KEY": {
                 "VALUE_PLACEHOLDER": "Value",
                 "KEY_PLACEHOLDER": "Key"
+            },
+            "FACTOR_TYPES": {
+                "TEXT": "Text",
+                "NUMBER": "Number",
+                "ARRAY": "Array",
+                "PARAMETER": "Parameter",
+                "CONTEXT_PARAMETER": "Context parameter",
+                "DATE": "Date",
+                "DATE_RANGE": "Date range",
+                "DYNAMIC_KEY": "Dynamic key",
+                "FORMULA": "Formula"
             }
         },
         "OPERATORS": {
@@ -141,7 +152,10 @@
                 "NO_MORE_DATA": "There are no more items to load",
                 "LOADING": "Loading more items",
                 "BACK_TO_TOP": "Back to top"
-            }
+            },
+            "SELECT_ALL": "Select all",
+            "UNSELECT_ALL": "Unselect all",
+            "SELECT_INVERT": "Invert selection"
         },
         "ICON-PICKER": {
             "NO-RESULTS": "No results"
@@ -307,12 +321,15 @@
             "NOT-HAVE": "Not have",
             "EXPRESSION-TYPE": {
                 "ATTRIBUTE": "attribute",
-                "EVENT": "event"
+                "EVENT": "event",
+                "NOT_ATTRIBUTE": "attribute",
+                "NOT_EVENT": "event"
             }
         },
         "STEP-CARD": {
             "NAME-PLACEHOLDER": "Name",
             "CONDITION-TYPE": "event",
+            "NOT-CONDITION-TYPE": "not event",
             "MOVE": "Move",
             "DELETE": "Delete",
             "DUPLICATE": "Duplicate"

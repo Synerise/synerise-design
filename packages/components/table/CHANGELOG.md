@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.45.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.45.0...@synerise/ds-table@0.45.1) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.45.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.14...@synerise/ds-table@0.45.0) (2022-08-11)
+
+
+### Features
+
+* **scrollbar:** creates common interface for old and new scrollbars ([ba9956f](https://github.com/synerise/synerise-design/commit/ba9956f2a89ff9133da6b4c5a931142865e750e8))
+* **scrollbar:** replace react-perfect-scrollbar by custom ([cd3b312](https://github.com/synerise/synerise-design/commit/cd3b3121adb3d398f68a48d897db6825ee0cc8c1))
+
+
+
+
+
+## [0.44.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.13...@synerise/ds-table@0.44.14) (2022-07-28)
+
+
+### Bug Fixes
+
+* **table:** add new stories of avatarLabel to show fixed cursor ([38014d6](https://github.com/synerise/synerise-design/commit/38014d6c29b92ce6f999d15221636f5b39df65f8))
+
+
+
+
+
+## [0.44.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.12...@synerise/ds-table@0.44.13) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.44.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.11...@synerise/ds-table@0.44.12) (2022-07-08)
+
+
+### Bug Fixes
+
+* **table:** fixes i18n in row selection component ([0e73b64](https://github.com/synerise/synerise-design/commit/0e73b644740c444b0115d2a6da040874883650fb))
+* **table:** fixes i18n in row selection component ([8aadd57](https://github.com/synerise/synerise-design/commit/8aadd575b41f32e2fbc0c715f6492ba660c4b08a))
+
+
+
+
+
+## [0.44.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.10...@synerise/ds-table@0.44.11) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 ## [0.44.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.44.9...@synerise/ds-table@0.44.10) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-table

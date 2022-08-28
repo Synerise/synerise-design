@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.2...@synerise/ds-typography@0.12.7) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-typography
+
+
+
+
+
 ## [0.12.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.1...@synerise/ds-typography@0.12.2) (2021-11-22)
 
 **Note:** Version bump only for package @synerise/ds-typography

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.22...@synerise/ds-format-picker@0.3.23) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.17...@synerise/ds-format-picker@0.3.22) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.16...@synerise/ds-format-picker@0.3.17) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.15...@synerise/ds-format-picker@0.3.16) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.14...@synerise/ds-format-picker@0.3.15) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.13...@synerise/ds-format-picker@0.3.14) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
 ## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.12...@synerise/ds-format-picker@0.3.13) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

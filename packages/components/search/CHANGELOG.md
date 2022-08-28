@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.12...@synerise/ds-search@0.8.13) (2022-08-25)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.7...@synerise/ds-search@0.8.12) (2022-08-11)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.8.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.6...@synerise/ds-search@0.8.7) (2022-07-28)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.8.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.5...@synerise/ds-search@0.8.6) (2022-07-17)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.8.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.4...@synerise/ds-search@0.8.5) (2022-07-08)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
+## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.3...@synerise/ds-search@0.8.4) (2022-07-06)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.2...@synerise/ds-search@0.8.3) (2022-06-29)
 
 **Note:** Version bump only for package @synerise/ds-search

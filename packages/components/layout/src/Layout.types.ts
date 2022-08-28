@@ -34,4 +34,7 @@ export type LayoutProps = {
    * Right sidebar: render visibility of show/hide button. Accepts function returning `ReactNode` (see source code).
    */
   renderRightSidebarControls?: boolean | (() => React.ReactNode);
+  leftSidebarWithDnd?: boolean;
+  rightSidebarWithDnd?: boolean;
+  mainSidebarWithDnd?: boolean;
 };

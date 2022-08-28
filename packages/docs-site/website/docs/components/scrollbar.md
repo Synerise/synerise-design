@@ -28,13 +28,14 @@ import Scrollbar from '@synerise/ds-scrollbar'
 
 ## API
 
-| Property  | Description                                                           | Type                     | Default |
-| --------- | --------------------------------------------------------------------- | ------------------------ | ------- |
-| absolute  | Whether the scrollbar is over content                                 | boolean                  | `true`   |
-| children  | Scrolled component                                                    | React.ReactNode / string | -       |
-| classes   | String with optional classes                                          | string                   | -       |
+| Property  | Description                                                          | Type                     | Default |
+|-----------|----------------------------------------------------------------------|--------------------------|---------|
+| absolute  | Whether the scrollbar is over content                                | boolean                  | `true`  |
+| children  | Scrolled component                                                   | React.ReactNode / string | -       |
+| classes   | String with optional classes                                         | string                   | -       |
 | fetchData | Callback called when scrollbar has been scrolled to the end in Y axis | () => void               | -       |
-| hasMore   | Whether the scrollbar can calls fetchData                             | boolean                  | -       |
-| loading   | Whether the scrollbar shows loading icon                              | boolean                  | -       |
-| maxHeight | Optional max-height value                                             | string / number          | -       |
-| style     | Additional styles for scrollbar wrapper                               | React.CSSProperties      | -       |
+| hasMore   | Whether the scrollbar can calls fetchData                            | boolean                  | -       |
+| loading   | Whether the scrollbar shows loading icon                             | boolean                  | -       |
+| maxHeight | Optional max-height value                                            | string / number          | -       |
+| style     | Additional styles for scrollbar wrapper                              | React.CSSProperties      | -       |
+| withDnd   | Whether use DndScrollbar or VirtualScrollbar component               | boolean                  | false   |
