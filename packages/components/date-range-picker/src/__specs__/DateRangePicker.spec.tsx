@@ -271,4 +271,6 @@ describe('DateRangePicker', () => {
   it.todo('should properly set primary class in RangeButtons for currentRange');
   it.todo('should disable select time if selected ALL_TIME');
   it.todo('should switch to MODES.DATE if was in selecting time and selected ALL_TIME');
+  it.todo('all relative modes (including lifetime) mode make apply button enabled');
+  it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
 });
