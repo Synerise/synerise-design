@@ -6,6 +6,10 @@ import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 
+export type AutoResizeProps = {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+};
+
 const errorInputStyle = (props: ThemeProps): string => `
   &&&, && .ant-input {
     border-color: ${props.theme.palette['red-600']};
@@ -13,8 +17,19 @@ const errorInputStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['red-050']};
   }
 `;
+function autoresizeConfObjToCss({ autoResize: ar }: AutoResizeProps): string {
+  if (!ar) return '';
+  if (typeof ar === 'object') {
+    return `max-width: ${ar.maxWidth}; min-width: ${ar.minWidth}`;
+  }
+  return `max-width: 400px; min-width: 150px;`;
+}
 
-export const OuterWrapper = styled.div<{ resetMargin?: boolean; autoResize?: boolean }>`
+export const OuterWrapper = styled.div<
+  {
+    resetMargin?: boolean;
+  } & AutoResizeProps
+>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
@@ -26,8 +41,7 @@ export const OuterWrapper = styled.div<{ resetMargin?: boolean; autoResize?: boo
     }
   }
   input {
-    max-width: ${(props): string => (props.autoResize ? '400px' : '')};
-    min-width: ${(props): string => (props.autoResize ? '150px' : '')};
+    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
   }
 `;
 
