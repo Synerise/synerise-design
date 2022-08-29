@@ -5,7 +5,7 @@ export const RowWrapper = styled.div`
   @media (min-width: 1280px) {
     display: flex;
     padding: 8px 200px 8px 0px;
-    align-items: center;
+    align-items: start;
   }
   padding: 8px 0px 8px 0px;
 `;
@@ -24,7 +24,7 @@ export const AddIconWrapper = styled.div`
 `;
 export const CrudWrapper = styled.div<{ marginWithLabel?: boolean | React.ReactNode }>`
   padding-left: 4px;
-  margin: ${(props): string => (props.marginWithLabel ? '8px 0 0' : '0 0 16px')};
+  margin-top: ${(props): string => (props.marginWithLabel ? '30px' : '4px')};
 `;
 export const InputWrapper = styled.div`
   padding-left: 4px;

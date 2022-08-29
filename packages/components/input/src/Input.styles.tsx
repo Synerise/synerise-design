@@ -14,7 +14,7 @@ const errorInputStyle = (props: ThemeProps): string => `
   }
 `;
 
-export const OuterWrapper = styled.div<{ resetMargin?: boolean }>`
+export const OuterWrapper = styled.div<{ resetMargin?: boolean; autoResize?: boolean }>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
@@ -24,6 +24,10 @@ export const OuterWrapper = styled.div<{ resetMargin?: boolean }>`
         background-color: ${(props): string => props.theme.palette['blue-050']};
       }
     }
+  }
+  input {
+    max-width: ${(props): string => (props.autoResize ? '400px' : '')};
+    min-width: ${(props): string => (props.autoResize ? '150px' : '')};
   }
 `;
 

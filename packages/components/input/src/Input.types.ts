@@ -21,6 +21,7 @@ export interface Props {
   handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
   prefixel?: React.ReactNode;
   suffixel?: React.ReactNode;
+  autoResize?: boolean;
 }
 
 export type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);
