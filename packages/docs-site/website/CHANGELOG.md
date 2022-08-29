@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.6](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.4...docs@0.22.6) (2022-08-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fix apply button active, validation ([eddbdd3](https://gitlab.synerise.com/Frontend/synerise-design/commit/eddbdd3349cc1bc2bcd20da69947c9d572e85923))
+
+
+
+
+
 ## [0.22.5](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.4...docs@0.22.5) (2022-08-29)
 
 
