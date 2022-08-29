@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.160.1](https://github.com/synerise/synerise-design/compare/portal@0.160.0...portal@0.160.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** increase specificity input-group drp-addon ([2d1cb77](https://github.com/synerise/synerise-design/commit/2d1cb7715c56ac2c2add8a3f7658bf17ab29b5a0))
+
+
+
+
+
 # [0.160.0](https://github.com/synerise/synerise-design/compare/portal@0.159.0...portal@0.160.0) (2022-08-22)
 
 

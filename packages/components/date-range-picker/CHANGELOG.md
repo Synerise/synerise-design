@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.14.6...@synerise/ds-date-range-picker@0.14.7) (2022-08-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** increase specificity input-group drp-addon ([2d1cb77](https://github.com/Synerise/synerise-design/commit/2d1cb7715c56ac2c2add8a3f7658bf17ab29b5a0))
+* **ds-date-range-picker:** lifetime ([48e1032](https://github.com/Synerise/synerise-design/commit/48e1032fd102e5050908bf7ebb1293e16d5724cb))
+
+
+
+
+
 ## [0.14.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.14.5...@synerise/ds-date-range-picker@0.14.6) (2022-08-25)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
