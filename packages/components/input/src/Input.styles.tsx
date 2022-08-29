@@ -13,8 +13,22 @@ const errorInputStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['red-050']};
   }
 `;
+function autoresizeConfObjToCss({
+  autoResize: ar,
+}: {
+  autoResize: boolean | { minWidth: string; maxWidth: string };
+}): string {
+  if (!ar) return '';
+  if (typeof ar === 'object') {
+    return `max-width: ${ar.maxWidth}; min-width: ${ar.minWidth}`;
+  }
+  return `max-width: 400px; min-width: 150px;`;
+}
 
-export const OuterWrapper = styled.div<{ resetMargin?: boolean; autoResize?: boolean }>`
+export const OuterWrapper = styled.div<{
+  resetMargin?: boolean;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
@@ -26,8 +40,8 @@ export const OuterWrapper = styled.div<{ resetMargin?: boolean; autoResize?: boo
     }
   }
   input {
-    max-width: ${(props): string => (props.autoResize ? '400px' : '')};
-    min-width: ${(props): string => (props.autoResize ? '150px' : '')};
+    max-width: ${(props): string => autoresizeConfObjToCss(props)};
+    min-width: ${(props): string => autoresizeConfObjToCss(props)};
   }
 `;
 

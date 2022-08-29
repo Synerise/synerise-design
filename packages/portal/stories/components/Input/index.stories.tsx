@@ -133,7 +133,7 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        autoResize={autoResize}
+        autoResize={autoResize && {maxWidth: '400px', minWidth: '150px'}}
       />
     );
   },
@@ -560,7 +560,7 @@ const stories = {
         icon1Tooltip={hasIconTooltip && <span>icon1</span>}
         icon2={<Icon component={<FileM />} />}
         icon2Tooltip={hasIconTooltip && <span>icon2</span>}
-        autoResize={autoResize}
+        autoResize={autoResize && {maxWidth: '400px', minWidth: '150px'}}
       />
     );
   },
@@ -608,7 +608,7 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={autoResize}
+        autoResize={autoResize && {maxWidth: '400px', minWidth: '150px'}}
       />
     );
   },
@@ -631,7 +631,7 @@ const stories = {
         value={value}
         prefixel={renderAddonComponent(prefixType, prefixLabelText)}
         suffixel={renderAddonComponent(suffixType, suffixLabelText)}
-        autoResize={autoResize}
+        autoResize={autoResize && {maxWidth: '400px', minWidth: '150px'}}
       />
     );
   },
