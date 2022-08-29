@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.161.0](https://github.com/synerise/synerise-design/compare/portal@0.160.1...portal@0.161.0) (2022-08-29)
+
+
+### Bug Fixes
+
+* **input:** add knob autoResize ([cf5232d](https://github.com/synerise/synerise-design/commit/cf5232de14cc163fbb8e8c2e90e325dee6249a26))
+* **input:** add new prop autoResize and styles to change width ([ea2a53f](https://github.com/synerise/synerise-design/commit/ea2a53f2f30cd00cb6df159d04b75344e1c7544d))
+* **input:** change knob autoResize from false for true ([dc40c52](https://github.com/synerise/synerise-design/commit/dc40c5223f3ec03988c6878cfc235c6aa9c39998))
+
+
+### Features
+
+* **form:** storybook action handler for  onClickAddRow ([1b58652](https://github.com/synerise/synerise-design/commit/1b5865266d06bb3e3daa614e496d7e0e18751c7b))
+
+
+
+
+
 ## [0.160.1](https://github.com/synerise/synerise-design/compare/portal@0.160.0...portal@0.160.1) (2022-08-29)
 
 

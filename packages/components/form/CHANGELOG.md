@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.3.1...@synerise/ds-form@0.4.0) (2022-08-29)
+
+
+### Features
+
+* **form:** add index for render column functions in EditableList ([54a2699](https://github.com/Synerise/synerise-design/commit/54a26997a4b6d136273da47f20b14ff17939119b))
+
+
+
+
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.3.0...@synerise/ds-form@0.3.1) (2022-08-25)
 
 **Note:** Version bump only for package @synerise/ds-form
