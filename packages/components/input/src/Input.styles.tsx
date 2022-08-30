@@ -17,19 +17,22 @@ const errorInputStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['red-050']};
   }
 `;
-function autoresizeConfObjToCss({ autoResize: ar }: AutoResizeProps): string {
-  if (!ar) return '';
-  if (typeof ar === 'object') {
-    return `max-width: ${ar.maxWidth}; min-width: ${ar.minWidth}`;
+function autoresizeConfObjToCss({
+  autoResize,
+}: {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}): string {
+  if (!autoResize) return '';
+  if (typeof autoResize === 'object') {
+    return `max-width: ${autoResize.maxWidth}; min-width: ${autoResize.minWidth}`;
   }
   return `max-width: 400px; min-width: 150px;`;
 }
 
-export const OuterWrapper = styled.div<
-  {
-    resetMargin?: boolean;
-  } & AutoResizeProps
->`
+export const OuterWrapper = styled.div<{
+  resetMargin?: boolean;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}>`
   margin: ${(props): string => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
