@@ -16,6 +16,7 @@ export const EditableList: React.FC<EditListProps> = ({
   textAddButton,
   onSearch,
   onClickAddRow,
+  onClickDelete,
   renderAddButton,
   renderLeftColumn,
   renderRightColumn,
@@ -71,11 +72,18 @@ export const EditableList: React.FC<EditListProps> = ({
             </S.InputWrapper>
           )}
           {renderAdditionalColumn?.()}
-          {(typeof renderActions === 'function' && renderActions?.(param, id, params)) ||
+          {(typeof renderActions === 'function' && renderActions?.(param, id, params, { onClickDelete })) ||
             (renderActions === true && (
               <S.CrudWrapper marginWithLabel={id === 0 ? leftColumnName : null}>
                 <Cruds
-                  onRemove={(): void => setParams([...params.slice(0, id), ...params.slice(id + 1, params.length)])}
+                  onRemove={(): void => {
+                    const newParams = params ? [...params.slice(0, id), ...params.slice(id + 1, params.length)] : [];
+                    if (onClickDelete) {
+                      onClickDelete(param, id, newParams);
+                    } else {
+                      setParams(newParams);
+                    }
+                  }}
                 />
               </S.CrudWrapper>
             )) ||

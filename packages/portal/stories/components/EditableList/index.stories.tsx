@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { EditableList } from '@synerise/ds-form';
 import { escapeRegEx } from '@synerise/ds-utils';
+import { EditableParam } from '@synerise/ds-form/dist/editable-list/editable-list.types';
 
 const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
@@ -19,12 +20,13 @@ const stories = {
       onChange={action('onChange')}
       renderActions={boolean('Render actions', true)}
       textAddButton={text('Add entry button text', 'Add parameter')}
+      onClickDelete={action('onClickDelete')}
       onClickAddRow={action('onClickAddRow')}
     />)
   },
   withAutocomplete: () => {
     const [results, setResults] = React.useState<string[]>([]);
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = React.useState<EditableParam[]>([]);
     const buttonText = text('Button text', 'Add parametr');
 
     const renderWithHighlightedText = (highlight, item): React.ReactNode => {
@@ -69,15 +71,14 @@ const stories = {
         onSearch={handleSearch}
         leftColumnName={renderLabel(text('Select label', 'Parametr'))}
         rightColumnName={renderLabel(text('Input label', 'Value'))}
+        renderActions={boolean('Render actions', false)}
         value={value}
         onChange={(val: string) => {
           action('onChange')(val);
           setValue(val)
           handleSearch(extractContent(value));
         }}
-        onRemove={() => {}}
-        onClick={() => {}}
-        text={buttonText}
+        textAddButton={text('Add entry button label', 'Add parameter')}
         autocompleteOptions={results.map(result => (
           <Autocomplete.Option key={result}>
             <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
