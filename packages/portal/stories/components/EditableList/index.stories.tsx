@@ -24,7 +24,7 @@ const stories = {
   },
   withAutocomplete: () => {
     const [results, setResults] = React.useState<string[]>([]);
-    const [value, setValue] = React.useState<string[]>([]);
+    const [value, setValue] = React.useState<string>();
     const buttonText = text('Button text', 'Add parametr');
 
     const renderWithHighlightedText = (highlight, item): React.ReactNode => {
@@ -70,14 +70,13 @@ const stories = {
         leftColumnName={renderLabel(text('Select label', 'Parametr'))}
         rightColumnName={renderLabel(text('Input label', 'Value'))}
         value={value}
-        onChange={(val: string[]) => {
-          action('onChange')(val);
-          setValue(val)
+        onChange={(value: string[]) => {
+          action('onChange')(value);
+          setValue(value['']);
           handleSearch(extractContent(value['']));
         }}
-        onRemove={() => {}}
         onClick={() => {}}
-        text={buttonText}
+        textAddButton={buttonText}
         autocompleteOptions={results.map(result => (
           <Autocomplete.Option key={result}>
             <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
