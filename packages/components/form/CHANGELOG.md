@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.4.0...@synerise/ds-form@0.5.0) (2022-08-31)
+
+
+### Features
+
+* **form:** add onClickDelete to editable-list ([95c67a6](https://github.com/Synerise/synerise-design/commit/95c67a693c31d4b60532bd6fc62cdb0f885d8560))
+
+
+
+
+
 # [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.3.1...@synerise/ds-form@0.4.0) (2022-08-29)
 
 
