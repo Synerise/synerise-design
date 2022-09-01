@@ -7,14 +7,14 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
-import { RelativeDateRange } from '../../../date.types';
+import { DateRange, RelativeDateRange } from '../../../date.types';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
 const DROPDOWN_WIDTH = 160;
 const DROPDOWN_PADDING = 8;
 
-export const isLifetime = (range: any): boolean => {
+export const isLifetime = (range: DateRange): boolean => {
   const keys = Object.keys(range);
   return range.type === 'ABSOLUTE' && !keys.includes('from') && !keys.includes('to');
 };
@@ -42,7 +42,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   );
 
   if (!ranges || ranges.length === 0) return null;
-  const mappedRanges = ranges.map(r => valueTransformer(r));
+  const mappedRanges = ranges.map(valueTransformer);
   const transformedCurrentRange = valueTransformer(currentRange);
   const anyOfTransformedRangesMatchesCurrentRange = find(r => isEqual(transformedCurrentRange, r), mappedRanges);
   const containsCurrentRange =

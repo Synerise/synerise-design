@@ -81,7 +81,6 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
     // transformation has to take place here, because `key` property might get omitted by valueTransformer
     const legacyValue = valueTransformer(newValue);
-    console.log(newValue, 'legacyValue', legacyValue);
     this.setState({ value: { ...legacyValue, translationKey: range?.translationKey } });
     onValueChange && onValueChange(legacyValue);
   };
