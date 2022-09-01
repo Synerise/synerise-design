@@ -69,7 +69,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
 
     const { onValueChange, valueTransformer } = this.props;
     const { value, mode } = this.state;
-    const newValue = valueTransformer(normalizeRange({ ...range, filter: value.filter }));
+    const newValue = normalizeRange({ ...range, filter: value.filter });
     if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
       // clicked on RangeButtons and was selecting time
       this.setState({ mode: MODES.DATE });
@@ -78,8 +78,10 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       // for validation, see `isValidAbsolute`, this key shouldn't be present
       newValue.key = range?.key;
     }
-    this.setState({ value: { ...newValue, translationKey: range?.translationKey } });
-    onValueChange && onValueChange(newValue);
+    // transformation has to take place here, because `key` property might get omitted by valueTransformer
+    const legacyValue = valueTransformer(newValue);
+    this.setState({ value: { ...legacyValue, translationKey: range?.translationKey } });
+    onValueChange && onValueChange(legacyValue);
   };
 
   handleApply = (): void => {
