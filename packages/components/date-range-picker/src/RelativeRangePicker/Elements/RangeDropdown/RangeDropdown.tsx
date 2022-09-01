@@ -1,17 +1,25 @@
 import * as React from 'react';
 import find from 'ramda/src/find';
+import { isEqual } from 'lodash';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from '../../RelativeRangePicker.styles';
-import { Props } from './RangeDropdown.types';
+import { RangeDropdownProps } from './RangeDropdown.types';
+import { RelativeDateRange } from '../../../date.types';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
 const DROPDOWN_WIDTH = 160;
 const DROPDOWN_PADDING = 8;
-const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, texts, onChange }: Props) => {
+const RangeDropdown: React.FC<RangeDropdownProps> = ({
+  ranges,
+  currentRange,
+  texts,
+  onChange,
+  valueTransformer = (e: RelativeDateRange | any): RelativeDateRange | any => e,
+}: RangeDropdownProps) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -28,7 +36,12 @@ const RangeDropdown: React.FC<Props> = ({ ranges, currentRange, texts, onChange 
   );
 
   if (!ranges || ranges.length === 0) return null;
-  const containsCurrentRange = currentRange && find(range => range.key === currentRange.key, ranges);
+  const mappedRanges = ranges.map(r => valueTransformer(r));
+  const transformedCurrentRange = valueTransformer(currentRange);
+  const anyOfTransformedRangesMatchesCurrentRange = find(r => isEqual(transformedCurrentRange, r), mappedRanges);
+  const containsCurrentRange =
+    (currentRange && find(range => range.key === currentRange.key, ranges)) ||
+    anyOfTransformedRangesMatchesCurrentRange;
   const overlay = (
     <S.OverlayWrapper visible={dropVisible} ref={overlayRef} width={DROPDOWN_WIDTH}>
       <Scrollbar

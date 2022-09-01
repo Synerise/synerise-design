@@ -1,8 +1,8 @@
 import { IntlShape } from 'react-intl';
 import { DateRange, RelativeDateRange } from '../date.types';
-import { Props as DateRangePickerProps, RelativeMode, Texts } from '../DateRangePicker.types';
+import { DateRangePickerProps, RelativeMode, Texts } from '../DateRangePicker.types';
 
-export type Props = {
+export type RelativeRangePickerProps = {
   ranges?: DateRange[];
   value: DateRange;
   onChange: (range: DateRange | undefined) => void;
@@ -14,7 +14,9 @@ export type Props = {
   relativeModes?: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];
   showCustomRange?: boolean;
+  valueTransformer?: (e: RelativeDateRange | any) => RelativeDateRange | any;
 };
+
 export type State = {
   currentGroup: RelativeMode | null;
   future: boolean;
@@ -24,3 +26,8 @@ export type State = {
   groupedRanges?: DateRange[];
   sinceTimestamp?: Date | undefined;
 };
+
+/**
+ * @deprecated use `RelativeRangePickerProps`
+ */
+export type Props = RelativeRangePickerProps;

@@ -18,7 +18,7 @@ import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilte
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
 export function defaultValueTransformer(value: DateRange): DateRange {
-  if (value.key === 'ALL_TIME') {
+  if (value.key === 'ALL_TIME' || (value.type === 'ABSOLUTE' && value.from === undefined && value.to === undefined)) {
     return { type: 'ABSOLUTE' };
   }
   return value;
@@ -139,6 +139,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       intl,
       rangeUnits,
       showCustomRange,
+      valueTransformer,
     } = this.props;
     const { value, visibleAddonKey } = this.state;
     const addons: AddonType[] = [];
@@ -159,6 +160,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
                 texts={texts}
                 rangeUnits={rangeUnits}
                 showCustomRange={showCustomRange}
+                valueTransformer={valueTransformer}
               />
             }
             expanded={addonKey === visibleAddonKey}

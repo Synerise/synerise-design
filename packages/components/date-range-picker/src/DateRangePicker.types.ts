@@ -29,7 +29,7 @@ export type AdditionalMapper = {
   rightTop: CustomColorArrow;
   rightBottom: CustomColorArrow;
 };
-export interface Props extends WrappedComponentProps {
+export interface DateRangePickerProps extends WrappedComponentProps {
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.
    */
@@ -65,6 +65,11 @@ export interface Props extends WrappedComponentProps {
   valueTransformer: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
 }
+
+/**
+ * @deprecated use `DateRangePickerProps`
+ */
+export type Props = DateRangePickerProps;
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {
