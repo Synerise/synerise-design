@@ -227,6 +227,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
     const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
     const isValid = (isValidAbsolute || isValidRelative || key === CONST.ALL_TIME) && validator.valid;
+    const canSwitchToTimePicker = isValid && key !== CONST.ALL_TIME;
 
     return (
       <Container className={containerClass}>
@@ -237,7 +238,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
           disabledDate={disabledDate}
           onSwitchMode={this.handleSwitchMode}
           dateOnly={!showTime}
-          canSwitchMode={isValid}
+          canSwitchMode={canSwitchToTimePicker}
           texts={texts}
           forceAdjacentMonths={forceAdjacentMonths}
           intl={intl}
