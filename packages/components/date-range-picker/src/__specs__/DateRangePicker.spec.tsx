@@ -280,6 +280,7 @@ describe('DateRangePicker', () => {
   it.todo('transformed Lifetime value can be applied');
   it.todo('lifetime is after transformation is properly displayed in the footer');
   it.todo('onApply emits transformedValue');
+  it.todo('default value is not recognized as lifetime');
   it.todo('ALL_TIME should emit only type: absolute and no other keys'/*, () => {
     const valueFromRelativeDateRangeAddon: DateRange = {
       "key": "ALL_TIME",
