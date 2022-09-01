@@ -59,6 +59,10 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
+  /**
+   * transforms value, by default omits ALL_TIME props
+   */
+  valueTransformer: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
 }
 

@@ -17,12 +17,20 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 
+export function defaultValueTransformer(value: DateRange): DateRange {
+  if (value.key === 'ALL_TIME') {
+    return { type: 'ABSOLUTE' };
+  }
+  return value;
+}
+
 export class RawDateRangePicker extends React.PureComponent<Props, State> {
   static defaultProps = {
     ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
     showRelativePicker: true,
     validate: (): { valid: boolean } => ({ valid: true }),
+    valueTransformer: defaultValueTransformer,
   };
 
   constructor(props: Props) {
@@ -59,9 +67,9 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       return;
     }
 
-    const { onValueChange } = this.props;
+    const { onValueChange, valueTransformer } = this.props;
     const { value, mode } = this.state;
-    const newValue = normalizeRange({ ...range, filter: value.filter });
+    const newValue = valueTransformer(normalizeRange({ ...range, filter: value.filter }));
     if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
       // clicked on RangeButtons and was selecting time
       this.setState({ mode: MODES.DATE });

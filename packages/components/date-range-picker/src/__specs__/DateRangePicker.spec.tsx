@@ -275,4 +275,13 @@ describe('DateRangePicker', () => {
   it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
   it.todo('relative range addon should be formatted accordingly to provided styles even if base styled are imported');
   it.todo('when in ALL_TIME - time picker should be disabled');
+  it.todo('ALL_TIME should emit only type: absolute and no other keys'/*, () => {
+    const valueFromRelativeDateRangeAddon: DateRange = {
+      "key": "ALL_TIME",
+      "translationKey": "allTime",
+      "type": "ABSOLUTE",
+      "future": false
+    }
+    expect(defaultValueTransformer).toDeepEqual({"type": "ABSOLUTE"})
+  }*/);
 });
