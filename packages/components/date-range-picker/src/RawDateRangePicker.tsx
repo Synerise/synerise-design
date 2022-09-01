@@ -16,9 +16,10 @@ import { normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
+import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
 export function defaultValueTransformer(value: DateRange): DateRange {
-  if (value.key === 'ALL_TIME' || (value.type === 'ABSOLUTE' && value.from === undefined && value.to === undefined)) {
+  if (value.key === 'ALL_TIME' || isLifetime(value)) {
     return { type: 'ABSOLUTE' };
   }
   return value;
@@ -80,13 +81,14 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
     // transformation has to take place here, because `key` property might get omitted by valueTransformer
     const legacyValue = valueTransformer(newValue);
+    console.log(newValue, 'legacyValue', legacyValue);
     this.setState({ value: { ...legacyValue, translationKey: range?.translationKey } });
     onValueChange && onValueChange(legacyValue);
   };
 
   handleApply = (): void => {
     const { value } = this.state;
-    const { forceAbsolute, onApply } = this.props;
+    const { forceAbsolute, onApply, valueTransformer } = this.props;
     if (forceAbsolute && value.type === RELATIVE) {
       onApply &&
         onApply({
@@ -101,12 +103,14 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
     }
 
     onApply &&
-      onApply({
-        ...value,
-        from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
-        to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
-        type: value.type,
-      });
+      onApply(
+        valueTransformer({
+          ...value,
+          from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
+          to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
+          type: value.type,
+        } as any)
+      );
   };
 
   handleModalOpenClick = (): void => {
@@ -238,6 +242,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       return CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) || isLegacyCustom;
     }
     const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
+    // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
     const isValid = (isValidAbsolute || isValidRelative || key === CONST.ALL_TIME) && validator.valid;
     const canSwitchToTimePicker = isValid && key !== CONST.ALL_TIME;
 
@@ -264,7 +269,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
           )
         )}
         <Footer
-          canApply={isValid}
+          canApply={isValid || isLifetime(value)}
           onApply={this.handleApply}
           dateOnly={!showTime}
           mode={mode}

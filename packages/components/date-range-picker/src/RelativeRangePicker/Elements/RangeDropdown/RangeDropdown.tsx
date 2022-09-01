@@ -13,6 +13,10 @@ const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
 const DROPDOWN_WIDTH = 160;
 const DROPDOWN_PADDING = 8;
+
+export const isLifetime = (range: any): boolean =>
+  range.type === 'ABSOLUTE' && range.from === undefined && range.to === undefined;
+
 const RangeDropdown: React.FC<RangeDropdownProps> = ({
   ranges,
   currentRange,
