@@ -62,7 +62,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   /**
    * transforms value, by default omits ALL_TIME props
    */
-  valueTransformer: (value: DateRange) => DateRange;
+  valueTransformer?: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
 }
 

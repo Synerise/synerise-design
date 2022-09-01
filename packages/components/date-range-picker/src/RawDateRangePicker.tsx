@@ -80,7 +80,7 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       newValue.key = range?.key;
     }
     // transformation has to take place here, because `key` property might get omitted by valueTransformer
-    const legacyValue = valueTransformer(newValue);
+    const legacyValue = valueTransformer?.(newValue) ?? newValue;
     this.setState({ value: { ...legacyValue, translationKey: range?.translationKey } });
     onValueChange && onValueChange(legacyValue);
   };
@@ -101,15 +101,15 @@ export class RawDateRangePicker extends React.PureComponent<Props, State> {
       return;
     }
 
-    onApply &&
-      onApply(
-        valueTransformer({
-          ...value,
-          from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
-          to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
-          type: value.type,
-        } as any)
-      );
+    if (onApply) {
+      const valueToEmit = {
+        ...value,
+        from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
+        to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
+        type: value.type,
+      } as any;
+      onApply(valueTransformer?.(valueToEmit) ?? valueToEmit);
+    }
   };
 
   handleModalOpenClick = (): void => {
