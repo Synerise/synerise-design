@@ -120,7 +120,7 @@ const stories = {
       },
       placeholder: text('placeholder', 'Please select value...'),
       size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
-      showArrow: boolean('showArrow', false),
+      showArrow: boolean('showArrow', true),
       showSearch: boolean('showSearch', false),
       onChange: action('OnChange'),
       style: { width: '100%' },
@@ -199,6 +199,7 @@ const stories = {
     mode: 'multiple',
     onChange: action('OnChange'),
     placeholder: 'Select options',
+    showArrow: boolean('showArrow', true),
     children: [
       <OptGroup label="Manager">
         <Option value="jack">Jack</Option>
