@@ -11,17 +11,17 @@ const stories = {
       <Radio
         disabled={boolean('disabled', false)}
         description={text('description', 'Description')}
+        title={text('tooltip label', 'Label')}
+        tooltip={boolean('show tooltip', false)}
         value="A"
-      >
-        {text('children', 'Label')}
-      </Radio>
+      />
       <Radio
         disabled={boolean('disabled', false)}
         description={text('description', 'Description')}
+        title={text('tooltip label', 'Label')}
+        tooltip={boolean('show tooltip', false)}
         value="B"
-      >
-        {text('children', 'Label')}
-      </Radio>
+      />
     </Radio.Group>
   ),
   radioButtons: () => (
