@@ -113,17 +113,15 @@ const stories = {
                 disabled={boolean('disabled', false)}
                 description="Deliver your campaign to a large list in batches to prevent website-crushing click flods"
                 value="A"
-              >
-                Batch delivery
-              </Radio>
+                title="Batch delivery"
+              />
               <Radio
                 disabled={boolean('disabled', false)}
                 description="A control group is a defined percentage of your audience who
             won’t receive this campaign so you can better understand performance"
+                title="Enable a control group"
                 value="B"
-              >
-                Enable a control group
-              </Radio>
+              />
             </Radio.Group>
         }
         button={
