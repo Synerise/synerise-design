@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.20](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.19...@synerise/ds-input@0.18.20) (2022-09-05)
+
+
+### Bug Fixes
+
+* **input:** add option to control width of input in stories ([6c67ecc](https://github.com/synerise/synerise-design/commit/6c67ecc3d97c1a60e5bd6e1a4703a71becd88ea1))
+* **input:** fix styles of propa autoResize ([bb38df3](https://github.com/synerise/synerise-design/commit/bb38df33ebf425947d3a2f3df657d7fe044a09bb))
+
+
+
+
+
 ## [0.18.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.18...@synerise/ds-input@0.18.19) (2022-08-31)
 
 **Note:** Version bump only for package @synerise/ds-input

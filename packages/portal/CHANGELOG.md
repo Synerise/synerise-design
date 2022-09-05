@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.163.0](https://github.com/synerise/synerise-design/compare/portal@0.162.0...portal@0.163.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* **form:** fix editable-list withAutocomplete ([8530911](https://github.com/synerise/synerise-design/commit/85309115e2594c758aabdabff8537414a6e8fd1b))
+* **form:** fix editable-list withAutocomplete ([d1468cf](https://github.com/synerise/synerise-design/commit/d1468cf89df5064338afbd7ee8c34d251f5aaf37))
+* **form:** fix editable-list withAutocomplete ([02a440d](https://github.com/synerise/synerise-design/commit/02a440d585886f119542fb8d8e69734f72a0e7b1))
+* **input:** add knobs to control max and min width of input ([e0ea1c5](https://github.com/synerise/synerise-design/commit/e0ea1c5d27366dd9088c67a4cd956573fc3d08f5))
+* **input:** add option to control width of input in stories ([6c67ecc](https://github.com/synerise/synerise-design/commit/6c67ecc3d97c1a60e5bd6e1a4703a71becd88ea1))
+* **select:** add knob to show arrow ([210e97c](https://github.com/synerise/synerise-design/commit/210e97c323c9790f385d31aa87d20178ee6bc244))
+
+
+### Features
+
+* **core:** change i18n in storybook localStorage.setItem('lang', 'pt') ([622c644](https://github.com/synerise/synerise-design/commit/622c6444c229e3909911b1b2f05a797026fd7d51))
+
+
+
+
+
 # [0.162.0](https://github.com/synerise/synerise-design/compare/portal@0.161.0...portal@0.162.0) (2022-08-31)
 
 

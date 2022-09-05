@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.14.10...@synerise/ds-date-range-picker@0.15.0) (2022-09-05)
+
+
+### Features
+
+* **core:** change i18n in storybook localStorage.setItem('lang', 'pt') ([622c644](https://github.com/Synerise/synerise-design/commit/622c6444c229e3909911b1b2f05a797026fd7d51))
+
+
+
+
+
 ## [0.14.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.14.9...@synerise/ds-date-range-picker@0.14.10) (2022-08-31)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

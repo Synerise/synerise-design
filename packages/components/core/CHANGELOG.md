@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.35.5...@synerise/ds-core@0.36.0) (2022-09-05)
+
+
+### Features
+
+* **core:** add Portuguese translations ([5390d61](https://github.com/synerise/synerise-design/commit/5390d616fe1fe98eb51e87b4dc9a323b29b6ff2b))
+* **core:** fixes to pt-lang json ([da20378](https://github.com/synerise/synerise-design/commit/da203783823a4c4ed17c28998a81c3d6b3b7e67e))
+
+
+
+
+
 ## [0.35.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.35.0...@synerise/ds-core@0.35.5) (2022-08-11)
 
 **Note:** Version bump only for package @synerise/ds-core
