@@ -13,6 +13,7 @@ const req = require.context('../stories', true, /\.stories.tsx$/);
 
 const withDSProvider = (storyFn) => React.createElement(DSProvider, {
   code: 'en_GB',
+  locale: localStorage.getItem('lang') ?? 'en_GB',
 } as object, storyFn());
 
 interface storyConfig {
