@@ -6,10 +6,10 @@ import Button from '@synerise/ds-button';
 
 export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
 
-export const PopconfirmContent = styled.div`
+export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: ${({ buttonsAlign }): string => (buttonsAlign === 'left' ? 'flex-start' : 'flex-end')};
   justify-content: flex-start;
   margin: 0px;
 
