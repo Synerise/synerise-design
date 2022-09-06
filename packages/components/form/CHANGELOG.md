@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.2...@synerise/ds-form@0.5.3) (2022-09-06)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
+## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.1...@synerise/ds-form@0.5.2) (2022-09-05)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.0...@synerise/ds-form@0.5.1) (2022-08-31)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.4.0...@synerise/ds-form@0.5.0) (2022-08-31)
+
+
+### Features
+
+* **form:** add onClickDelete to editable-list ([95c67a6](https://github.com/Synerise/synerise-design/commit/95c67a693c31d4b60532bd6fc62cdb0f885d8560))
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.3.1...@synerise/ds-form@0.4.0) (2022-08-29)
+
+
+### Features
+
+* **form:** add index for render column functions in EditableList ([54a2699](https://github.com/Synerise/synerise-design/commit/54a26997a4b6d136273da47f20b14ff17939119b))
+
+
+
+
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.3.0...@synerise/ds-form@0.3.1) (2022-08-25)
 
 **Note:** Version bump only for package @synerise/ds-form

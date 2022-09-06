@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.163.1](https://github.com/synerise/synerise-design/compare/portal@0.163.0...portal@0.163.1) (2022-09-06)
+
+
+### Bug Fixes
+
+* **core:** pass overrided locale only if provided ([2217be4](https://github.com/synerise/synerise-design/commit/2217be4c88b7aa61eba917b7303ba161542aea79))
+
+
+
+
+
+# [0.163.0](https://github.com/synerise/synerise-design/compare/portal@0.162.0...portal@0.163.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* **form:** fix editable-list withAutocomplete ([8530911](https://github.com/synerise/synerise-design/commit/85309115e2594c758aabdabff8537414a6e8fd1b))
+* **form:** fix editable-list withAutocomplete ([d1468cf](https://github.com/synerise/synerise-design/commit/d1468cf89df5064338afbd7ee8c34d251f5aaf37))
+* **form:** fix editable-list withAutocomplete ([02a440d](https://github.com/synerise/synerise-design/commit/02a440d585886f119542fb8d8e69734f72a0e7b1))
+* **input:** add knobs to control max and min width of input ([e0ea1c5](https://github.com/synerise/synerise-design/commit/e0ea1c5d27366dd9088c67a4cd956573fc3d08f5))
+* **input:** add option to control width of input in stories ([6c67ecc](https://github.com/synerise/synerise-design/commit/6c67ecc3d97c1a60e5bd6e1a4703a71becd88ea1))
+* **select:** add knob to show arrow ([210e97c](https://github.com/synerise/synerise-design/commit/210e97c323c9790f385d31aa87d20178ee6bc244))
+
+
+### Features
+
+* **core:** change i18n in storybook localStorage.setItem('lang', 'pt') ([622c644](https://github.com/synerise/synerise-design/commit/622c6444c229e3909911b1b2f05a797026fd7d51))
+
+
+
+
+
+# [0.162.0](https://github.com/synerise/synerise-design/compare/portal@0.161.0...portal@0.162.0) (2022-08-31)
+
+
+### Features
+
+* **form:** add onClickDelete to editable-list ([95c67a6](https://github.com/synerise/synerise-design/commit/95c67a693c31d4b60532bd6fc62cdb0f885d8560))
+
+
+
+
+
+# [0.161.0](https://github.com/synerise/synerise-design/compare/portal@0.160.1...portal@0.161.0) (2022-08-29)
+
+
+### Bug Fixes
+
+* **input:** add knob autoResize ([cf5232d](https://github.com/synerise/synerise-design/commit/cf5232de14cc163fbb8e8c2e90e325dee6249a26))
+* **input:** add new prop autoResize and styles to change width ([ea2a53f](https://github.com/synerise/synerise-design/commit/ea2a53f2f30cd00cb6df159d04b75344e1c7544d))
+* **input:** change knob autoResize from false for true ([dc40c52](https://github.com/synerise/synerise-design/commit/dc40c5223f3ec03988c6878cfc235c6aa9c39998))
+
+
+### Features
+
+* **form:** storybook action handler for  onClickAddRow ([1b58652](https://github.com/synerise/synerise-design/commit/1b5865266d06bb3e3daa614e496d7e0e18751c7b))
+
+
+
+
+
+## [0.160.1](https://github.com/synerise/synerise-design/compare/portal@0.160.0...portal@0.160.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** increase specificity input-group drp-addon ([2d1cb77](https://github.com/synerise/synerise-design/commit/2d1cb7715c56ac2c2add8a3f7658bf17ab29b5a0))
+
+
+
+
+
 # [0.160.0](https://github.com/synerise/synerise-design/compare/portal@0.159.0...portal@0.160.0) (2022-08-22)
 
 

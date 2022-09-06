@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, useIntl } from 'react-intl';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { RawDateRangePicker } from "@synerise/ds-date-range-picker";
@@ -31,6 +31,8 @@ import { CONST } from "@synerise/ds-date-range-picker";
 import {DateFilter, DateRange, RelativeDateRange} from "@synerise/ds-date-range-picker/dist/date.types";
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
+import { utils } from '@synerise/ds-date-range-picker'
+const { getDefaultTexts } = utils;
 import styled from "styled-components";
 
 const decorator = storyFn => (
@@ -158,7 +160,8 @@ const buildSelectKnobOptions = (optionValues) => {
 }
 
 const stories = {
-  default: () => {
+  default: injectIntl(({intl}) => {
+    const intlTexts = boolean('use Intl', false) ? getDefaultTexts(intl) : texts;
     const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
     value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
@@ -198,14 +201,14 @@ const stories = {
         forceAbsolute={forceAbsolute}
         showRelativePicker={showRelativePicker}
         showFilter={showFilter}
-        texts={texts}
+        texts={intlTexts}
         popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
       />
     );
-  },
+  }),
   lifetimeByDefault: () => {
     const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME)
     const DateRangePicker = injectIntl(RawDateRangePicker);

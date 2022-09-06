@@ -6,4 +6,5 @@ describe('editable-list', () => {
     return render
   } */
   );
+  it.todo('onClickDelete is called when removing items (and has removed item and its index)');
 });
