@@ -274,4 +274,20 @@ describe('DateRangePicker', () => {
   it.todo('all relative modes (including lifetime) mode make apply button enabled');
   it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
   it.todo('relative range addon should be formatted accordingly to provided styles even if base styled are imported');
+  it.todo('when in ALL_TIME - time picker should be disabled');
+  it.todo('if time picker is shown - switching to Lifetime switches to MODE.DATE');
+  it.todo('transformed value with valueTransformer is selected in RangesDropdown');
+  it.todo('transformed Lifetime value can be applied');
+  it.todo('lifetime is after transformation is properly displayed in the footer');
+  it.todo('onApply emits transformedValue');
+  it.todo('default value is not recognized as lifetime');
+  it.todo('ALL_TIME should emit only type: absolute and no other keys'/*, () => {
+    const valueFromRelativeDateRangeAddon: DateRange = {
+      "key": "ALL_TIME",
+      "translationKey": "allTime",
+      "type": "ABSOLUTE",
+      "future": false
+    }
+    expect(defaultValueTransformer).toDeepEqual({"type": "ABSOLUTE"})
+  }*/);
 });

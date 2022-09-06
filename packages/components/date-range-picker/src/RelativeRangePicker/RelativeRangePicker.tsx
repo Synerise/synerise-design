@@ -27,6 +27,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
     showCustomRange: true,
+    valueTransformer: (e: RelativeDateRange | any): RelativeDateRange | any => e,
   };
 
   constructor(props: Props) {
@@ -113,8 +114,16 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
 
   renderRangesDropdown = (ranges: DateRange[]): React.ReactNode => {
     const { currentRange } = this.state;
-    const { onChange, texts } = this.props;
-    return <RangeDropdown ranges={ranges} currentRange={currentRange} texts={texts} onChange={onChange} />;
+    const { onChange, texts, valueTransformer } = this.props;
+    return (
+      <RangeDropdown
+        ranges={ranges}
+        currentRange={currentRange}
+        texts={texts}
+        onChange={onChange}
+        valueTransformer={valueTransformer}
+      />
+    );
   };
 
   onOffsetValueChange = (value: string | number | undefined): void => {
