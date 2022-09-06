@@ -6,15 +6,25 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
+import type {DSProviderProps} from "@synerise/ds-core";
 import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
 import VIEWPORTS from './viewports';
 const req = require.context('../stories', true, /\.stories.tsx$/);
 
-const withDSProvider = (storyFn) => React.createElement(DSProvider, {
-  code: 'en_GB',
-  locale: localStorage.getItem('lang') ?? 'en_GB',
-} as object, storyFn());
+const withDSProvider = (storyFn) => {
+  /**
+   * allows overwriting the default language in storybook with localeStorage entry
+   * window.localeStorage.setItem('lang', 'en')
+   */
+  const optionalUserDefinedLocale = localStorage.getItem('lang')
+  const props = {
+    code: 'en_GB',
+    ...optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {},
+  } as DSProviderProps
+  console.info('props', props)
+  return React.createElement(DSProvider, props, storyFn());
+}
 
 interface storyConfig {
   Component: React.FunctionComponent | React.ComponentClass,
