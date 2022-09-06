@@ -6,7 +6,7 @@ import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
-import type {DSProviderProps} from "@synerise/ds-core";
+import type { DSProviderProps } from "@synerise/ds-core";
 import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
 import VIEWPORTS from './viewports';
@@ -22,7 +22,6 @@ const withDSProvider = (storyFn) => {
     code: 'en_GB',
     ...optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {},
   } as DSProviderProps
-  console.info('props', props)
   return React.createElement(DSProvider, props, storyFn());
 }
 
