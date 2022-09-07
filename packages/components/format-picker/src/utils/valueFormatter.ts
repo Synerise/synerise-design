@@ -8,7 +8,24 @@ import { ValueFormatterProps } from './valueFormatter.types';
 
 const CONTAINS_LETTERS = /[^0-9,.]/;
 const DIGITS = /[0-9,.]+/;
-
+const ptConfig = {
+  delimiters: {
+    thousands: ' ',
+    decimal: ',',
+  },
+  abbreviations: {
+    thousand: 'k',
+    million: 'm',
+    billion: 'b',
+    trillion: 't',
+  },
+  ordinal(): string {
+    return 'º';
+  },
+  currency: {
+    symbol: '€',
+  },
+};
 if (numeral.locales.pl === undefined) {
   numeral.register('locale', 'pl', {
     delimiters: {
@@ -44,7 +61,6 @@ if (numeral.locales.es === undefined) {
     ordinal(number: number) {
       const b = number % 10;
       const result = ['mo', 'er', 'do', 'er', 'to', 'to', 'to', 'mo', 'mo', 'no'];
-
       return result[b];
     },
     currency: {
@@ -52,7 +68,32 @@ if (numeral.locales.es === undefined) {
     },
   });
 }
-
+if (numeral.locales.fr === undefined) {
+  numeral.register('locale', 'fr', {
+    delimiters: {
+      thousands: '.',
+      decimal: ',',
+    },
+    abbreviations: {
+      thousand: 'k',
+      million: 'mm',
+      billion: 'b',
+      trillion: 't',
+    },
+    ordinal(number: number) {
+      return number === 1 ? 'er' : 'e';
+    },
+    currency: {
+      symbol: '$',
+    },
+  });
+}
+if (numeral.locales.pt === undefined) {
+  numeral.register('locale', 'pt', ptConfig);
+}
+if (numeral.locales['pt-pt'] === undefined) {
+  numeral.register('locale', 'pt-pt', ptConfig);
+}
 if (numeral.locales['en-gb'] === undefined) {
   numeral.register('locale', 'en-gb', {
     delimiters: {
@@ -80,7 +121,6 @@ if (numeral.locales['en-gb'] === undefined) {
     },
   });
 }
-
 if (numeral.locales['en-us'] === undefined) {
   numeral.register('locale', 'en-us', {
     delimiters: {
@@ -108,28 +148,23 @@ if (numeral.locales['en-us'] === undefined) {
     },
   });
 }
-
 export const appendZeros = (fixedLength: number): string => {
   if (!fixedLength) {
     return '';
   }
   return `.${range(0, fixedLength, 0).join('')}`;
 };
-
 export const chooseSuffix = (compactNumbers: boolean): string => {
   return compactNumbers ? 'a' : '';
 };
-
 export const choosePrefix = (useSeparator: boolean): string => {
   return useSeparator ? '0,0' : '0';
 };
-
 export const getFormattingFormula = (formatting: FormattingValue): string => {
   return `${choosePrefix(formatting.useSeparator)}${appendZeros(formatting.fixedLength)}${chooseSuffix(
     formatting.compactNumbers
   )}`;
 };
-
 export const appendSign = (
   input: string,
   intl: IntlShape,
@@ -153,14 +188,11 @@ export const appendSign = (
       return input;
   }
 };
-
 export const valueFormatter = (props: ValueFormatterProps): string => {
   numeral.locale(props.intl.locale.toLowerCase());
   const formattedValue = numeral(props.value.toFixed(props.formatting.fixedLength)).format(
     getFormattingFormula(props.formatting)
   );
-
   const result = appendSign(formattedValue, props.intl, props.formatting.dataFormat, props.formatting.currency);
-
   return result;
 };
