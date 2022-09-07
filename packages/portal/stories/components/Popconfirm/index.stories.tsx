@@ -27,6 +27,8 @@ const placements = [
 
 const triggers = ['hover', 'focus', 'click', 'contextMenu'] as const;
 
+const buttonsAligns = [undefined, 'left', 'right'] as const;
+
 const getDefaultProps = () => ({
   cancelText: text('cancelText', 'No'),
   okText: text('okText', 'Yes'),
@@ -39,16 +41,14 @@ const getDefaultProps = () => ({
   mouseEnterDelay: number('mouseEnterDelay', 0),
   mouseLeaveDelay: number('mouseLeaveDelay', 0),
   trigger: select('trigger', triggers, 'click'),
+  buttonsAlign: select('buttonsAlign', buttonsAligns, undefined),
 });
 
 const stories = {
   default: () => {
     return (
       <>
-        <Popconfirm
-          {...getDefaultProps()}
-          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
-        >
+        <Popconfirm {...getDefaultProps()} icon={<Icon component={<WarningFillM />} color="#ffc300" />}>
           <Button>Click me</Button>
         </Popconfirm>
       </>
@@ -60,7 +60,7 @@ const stories = {
         <Popconfirm
           {...getDefaultProps()}
           description={text('Set description', 'This is popconfirm modal example with simple body text here')}
-          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+          icon={<Icon component={<WarningFillM />} color="#ffc300" />}
         >
           <Button>Click me</Button>
         </Popconfirm>
@@ -73,10 +73,14 @@ const stories = {
         <Popconfirm
           {...getDefaultProps()}
           description={text('Set description', 'This is popconfirm modal example with simple body text here')}
-          icon={<Icon component={<WarningFillM />} color='#ffc300' />}
+          icon={<Icon component={<WarningFillM />} color="#ffc300" />}
           imagesAutoplay={boolean('Enable autoplay', true)}
           imagesAutoplaySpeed={number('Set speed of autoplay (ms)', 1000)}
-          images={['https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg', 'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg']}
+          images={[
+            'https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg',
+            'https://cdn.pixabay.com/photo/2015/07/05/10/18/tree-832079_960_720.jpg',
+          ]}
         >
           <Button>Click me</Button>
         </Popconfirm>
@@ -86,18 +90,18 @@ const stories = {
   confirmMessage: () => {
     return (
       <Popconfirm.ConfirmMessage
-        title='Copied! Keep it somewhere safe.'
+        title="Copied! Keep it somewhere safe."
         icon={<Icon component={<WarningFillM />} color={'#ffc300'} />}
         displayDuration={number('Set confirm message display time', 2000)}
         placement={select('Placement', placements, 'topLeft')}
-        onClick={(showMessage) => {showMessage()}}
+        onClick={showMessage => {
+          showMessage();
+        }}
       >
-        <Button>
-          Click to show ConfirmMessage!
-        </Button>
+        <Button>Click to show ConfirmMessage!</Button>
       </Popconfirm.ConfirmMessage>
-    )
-  }
+    );
+  },
 };
 
 export default {
