@@ -10,6 +10,7 @@ import Day from '../../../Shared/TimeWindow/Day/Day';
 import * as S from '../../../RangeFilter.styles';
 import { WeeklyProps, WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
 import { TimeWindowTexts } from '../../../Shared/TimeWindow/TimeWindow.types';
 
@@ -77,23 +78,25 @@ const Weekly: React.FC<WeeklyProps> = ({
   }, [value, activeDays, removeEmptyEntries]);
 
   const handleDayTimeChange = React.useCallback(
-    (dayValue: [Date, Date], dayKey: DayKey | DayKey[], guid: string): void => {
+    (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
       const updatedSchedule = value;
+      const [start, end] = dayValue;
+
       if (dayKey instanceof Array) {
         dayKey.forEach(day => {
           updatedSchedule[guid][day] = {
             ...value[guid][day],
             restricted: true,
-            start: dayjs(dayValue[0]).format(DEFAULT_TIME_FORMAT),
-            stop: dayjs(dayValue[1]).format(DEFAULT_TIME_FORMAT),
+            start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
+            stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
           };
         });
       } else {
         updatedSchedule[guid][dayKey] = {
           ...value[guid][dayKey],
           restricted: true,
-          start: dayjs(dayValue[0]).format(DEFAULT_TIME_FORMAT),
-          stop: dayjs(dayValue[1]).format(DEFAULT_TIME_FORMAT),
+          start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
+          stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
         };
       }
 
@@ -297,7 +300,7 @@ const Weekly: React.FC<WeeklyProps> = ({
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
             texts={EMPTY_OBJECT as TimeWindowTexts}
-            onMultipleDayTimeChange={(dates: [Date, Date]): void => handleDayTimeChange(dates, activeDays, guid)}
+            onMultipleDayTimeChange={(dates): void => handleDayTimeChange(dates, activeDays, guid)}
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             getDayLabel={getDayLabel as any}

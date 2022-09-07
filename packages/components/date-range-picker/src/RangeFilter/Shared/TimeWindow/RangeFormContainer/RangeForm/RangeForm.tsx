@@ -65,7 +65,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setStart(date);
-            date && onStartChange(date);
+            onStartChange(date);
           }}
           value={start}
           dropdownProps={{
@@ -82,7 +82,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           clearTooltip={texts?.clear}
           onChange={(date?: Date): void => {
             setEnd(date);
-            date && onEndChange(date);
+            onEndChange(date);
           }}
           value={end}
           dropdownProps={{

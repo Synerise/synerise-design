@@ -8,7 +8,7 @@ import { DEFAULT_RANGE_START, DEFAULT_RANGE_END, DEFAULT_TIME_FORMAT } from '../
 
 const TODAY = new Date();
 
-export const getDateFromDayValue = (dayValue: string, hourTimeFormat?: string): Date => {
+export const getDateFromDayValue = (dayValue?: string, hourTimeFormat?: string): Date => {
   const DAY_FORMAT = `YYYY-MM-DD`;
   const todayToString = dayjs(TODAY).format(DAY_FORMAT);
   const input = `${todayToString}-${dayValue}`;
