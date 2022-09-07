@@ -9,7 +9,7 @@ import { DateLimitMode } from './RangeForm/RangeForm.types';
 import { ActionsTexts } from '../RangeActions/RangeActions.types';
 import { Texts } from '../../../../DateRangePicker.types';
 import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
-import type { RangeFormContainerProps } from './RangeFormContainer.types';
+import type { RangeFormContainerProps, DateValue } from './RangeFormContainer.types';
 
 const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   activeDays,
@@ -63,10 +63,13 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
 
   const onStartChange = React.useCallback(
     (start?: Date): void => {
+      const end = dayValue.stop;
+      const value: DateValue = [start, end ? getDateFromDayValue(end, timeFormat) : undefined];
+
       if (activeDays.length > 1) {
-        onMultipleDayTimeChange([start, getDateFromDayValue(dayValue.stop, timeFormat)]);
+        onMultipleDayTimeChange(value);
       } else {
-        onDayTimeChange([start, getDateFromDayValue(dayValue.stop, timeFormat)], dayKeys as DayKey);
+        onDayTimeChange(value, dayKeys as DayKey);
       }
     },
     [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, dayValue, dayKeys]
@@ -74,10 +77,13 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
 
   const onEndChange = React.useCallback(
     (end?: Date): void => {
+      const {start} = dayValue;
+      const value: DateValue = [start ? getDateFromDayValue(dayValue.start, timeFormat) : undefined, end];
+
       if (activeDays.length > 1) {
-        onMultipleDayTimeChange([getDateFromDayValue(dayValue.start, timeFormat), end]);
+        onMultipleDayTimeChange(value);
       } else {
-        onDayTimeChange([getDateFromDayValue(dayValue.start, timeFormat), end], dayKeys as DayKey);
+        onDayTimeChange(value, dayKeys as DayKey);
       }
     },
     [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, dayValue, dayKeys]

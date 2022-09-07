@@ -15,6 +15,7 @@ import { DailyProps, DailySchedule } from './Daily.types';
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 
 const Daily: React.FC<DailyProps> = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -38,7 +39,7 @@ const Daily: React.FC<DailyProps> = ({
     [valueSelectionMode]
   );
   const handleDayTimeChange = React.useCallback(
-    (dateValueArray: [Date, Date], index: number): void => {
+    (dateValueArray: DateValue, index: number): void => {
       const updatedSchedule = value;
       updatedSchedule[index] = {
         ...value[index],
