@@ -28,7 +28,6 @@ const RangeForm: React.FC<RangeFormProps> = ({
 }) => {
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
-  const areStartAndEndValid = React.useMemo(() => !!start && !!end, [start, end]);
   const getPopupContainer = React.useCallback(
     (node: HTMLElement): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
     []
@@ -71,9 +70,9 @@ const RangeForm: React.FC<RangeFormProps> = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={areStartAndEndValid ? getDisabledTimeOptions(start, 'HOURS', null, end) : []}
-          disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(start, 'MINUTES', null, end) : []}
-          disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(start, 'SECONDS', null, end) : []}
+          disabledHours={getDisabledTimeOptions(start || end, 'HOURS', null, end)}
+          disabledMinutes={getDisabledTimeOptions(start || end, 'MINUTES', null, end)}
+          disabledSeconds={getDisabledTimeOptions(start || end, 'SECONDS', null, end)}
           {...timePickerProps}
         />
         <S.Separator>-</S.Separator>
@@ -88,24 +87,14 @@ const RangeForm: React.FC<RangeFormProps> = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={areStartAndEndValid ? getDisabledTimeOptions(end, 'HOURS', start, null) : []}
-          disabledMinutes={areStartAndEndValid ? getDisabledTimeOptions(end, 'MINUTES', start, null) : []}
-          disabledSeconds={areStartAndEndValid ? getDisabledTimeOptions(end, 'SECONDS', start, null) : []}
+          disabledHours={getDisabledTimeOptions(end || start, 'HOURS', start, null)}
+          disabledMinutes={getDisabledTimeOptions(end || start, 'MINUTES', start, null)}
+          disabledSeconds={getDisabledTimeOptions(end || start, 'SECONDS', start, null)}
           {...timePickerProps}
         />
       </>
     );
-  }, [
-    areStartAndEndValid,
-    start,
-    end,
-    onStartChange,
-    onEndChange,
-    getPopupContainer,
-    texts,
-    timePickerProps,
-    disabled,
-  ]);
+  }, [start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps, disabled]);
   const limitModeSelect = React.useMemo(
     () =>
       valueSelectionModes.length > 1 ? (
