@@ -4,7 +4,6 @@ import Button from '@synerise/ds-button';
 export const RowWrapper = styled.div`
   @media (min-width: 1280px) {
     display: flex;
-    padding: 8px 200px 8px 0px;
     align-items: start;
   }
   padding: 8px 0px 8px 0px;
