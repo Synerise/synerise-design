@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.15.1...@synerise/ds-date-range-picker@0.15.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **date-range-picker:** disable select time when ALL_TIME ([e1537b8](https://github.com/Synerise/synerise-design/commit/e1537b85b791478d27f98b7b70e6022aa599eda2))
+* **date-range-picker:** emitted Lifetime value has only type property ([a29fa2b](https://github.com/Synerise/synerise-design/commit/a29fa2b4c6b1c5535472e61ec71c51d01ccf854e))
+* **date-range-picker:** fix default value ([28bf432](https://github.com/Synerise/synerise-design/commit/28bf432c2e55d44697a348c65ef591f8ce5e06da))
+* **date-range-picker:** fix selecting lifetime in RangesDropdown ([fc5afc6](https://github.com/Synerise/synerise-design/commit/fc5afc60c4149c6c708141daf2c9df86b2fe76e9))
+* **date-range-picker:** make valueTransformer optional, lint fixes ([af71bf5](https://github.com/Synerise/synerise-design/commit/af71bf50f6ce1b698f12f7298793047d5e024296))
+* **date-range-picker:** onApply trasformer, show in footer ([71b4544](https://github.com/Synerise/synerise-design/commit/71b4544282ce7490dc07459202fded683d8befd2))
+* **date-range-picker:** switch to MODE.DATE if lifetime when transformer ([fd56dab](https://github.com/Synerise/synerise-design/commit/fd56dab94f23292d0baca52e6b0cf6550c9e8851))
+* **date-range-picker:** type, del c.log, shorter [].map call ([10e317c](https://github.com/Synerise/synerise-design/commit/10e317c452e0ab8f8d5b4519e4c7b46bd17a7a66))
+
+
+
+
+
 ## [0.15.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.15.0...@synerise/ds-date-range-picker@0.15.1) (2022-09-06)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
