@@ -7,21 +7,31 @@ import Cruds from '@synerise/ds-cruds';
 import { EditListProps, EditableParam } from './editable-list.types';
 import * as S from './editable-list.styles';
 
+const defaultFirstInputProps = {
+  style: { width: 350 },
+};
+
+const defaultSecondInputProps = {
+  style: { width: 300 },
+};
+
 export const EditableList: React.FC<EditListProps> = ({
   leftColumnName,
   rightColumnName,
   autocompleteOptions,
   value,
   onChange,
-  textAddButton,
+  addButtonConfig,
   onSearch,
-  onClickAddRow,
   onClickDelete,
   renderAddButton,
   renderLeftColumn,
   renderRightColumn,
   renderAdditionalColumn,
   renderActions,
+  validation,
+  firstInputProps = defaultFirstInputProps,
+  secondInputProps = defaultSecondInputProps,
 }) => {
   const [params, setParams] = React.useState<EditableParam[] | undefined>([]);
   const paramsWithNewValue = (id: number, name: string, newValue: string): { name: string; value: string }[] => {
@@ -43,7 +53,6 @@ export const EditableList: React.FC<EditListProps> = ({
           {renderLeftColumn?.(param, id) ?? (
             <S.AutoCompleteWrapper>
               <Autocomplete
-                style={{ width: 350 }}
                 onSearch={onSearch}
                 value={param.name}
                 onChange={(paramName: string): void => {
@@ -52,6 +61,9 @@ export const EditableList: React.FC<EditListProps> = ({
                   if (onChange) onChange(newParams);
                 }}
                 label={id === 0 ? leftColumnName : null}
+                error={Boolean(validation?.validateLeftColumn?.(param.name))}
+                errorText={validation?.validateLeftColumn?.(param.name)}
+                {...firstInputProps}
               >
                 {autocompleteOptions}
               </Autocomplete>
@@ -66,8 +78,10 @@ export const EditableList: React.FC<EditListProps> = ({
                   setParams(newParams);
                   if (onChange) onChange(newParams);
                 }}
-                style={{ width: '300px' }}
                 label={id === 0 ? rightColumnName : null}
+                error={Boolean(validation?.validateRightColumn?.(param.value))}
+                errorText={validation?.validateRightColumn?.(param.value)}
+                {...secondInputProps}
               />
             </S.InputWrapper>
           )}
@@ -92,11 +106,15 @@ export const EditableList: React.FC<EditListProps> = ({
       ))}
       {renderAddButton?.() ?? (
         <S.ButtonWrapper>
-          <S.AddButton onClick={onClickAddRow || onSetParamsDefault} type="ghost-primary">
+          <S.AddButton
+            onClick={addButtonConfig?.onClickAddRow || onSetParamsDefault}
+            type="ghost-primary"
+            disabled={addButtonConfig?.disableAddButton}
+          >
             <S.AddIconWrapper>
               <Icon component={<Add3M />} size={24} color={theme.palette['blue-600']} />
             </S.AddIconWrapper>
-            <span>{textAddButton}</span>
+            <span>{addButtonConfig?.textAddButton}</span>
           </S.AddButton>
         </S.ButtonWrapper>
       )}
