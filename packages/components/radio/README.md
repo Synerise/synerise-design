@@ -19,10 +19,12 @@ Radio UI Component
 | -------------- | -------------------------------------------------------------------- | ------- | ------- |
 | autoFocus      | get focus when component mounted                                     | boolean | `false` |
 | checked        | Specifies whether the radio is selected.                             | boolean | -       |
-| description    | radion input description                                             | string  | -       |
+| description    | radio input description                                              | string  | -       |
 | defaultChecked | Specifies the initial state: whether or not the radio is selected.   | boolean | `false` |
 | disabled       | Disable radio                                                        | boolean | `false` |
 | value          | According to value for comparison, to determine whether the selected | any     | -       |
+| label          | radio input label                                                    | string  | -       |
+| tooltip        | to show tooltip of label                                             | boolean | `false` |
 
 #### RadioGroup
 
