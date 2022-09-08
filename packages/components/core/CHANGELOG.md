@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.36.2...@synerise/ds-core@0.36.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* **core:** change export type to _export type_ export ([ef46af6](https://github.com/synerise/synerise-design/commit/ef46af63cf116fd0b38cba06374b0b0bb2ab0a33))
+
+
+
+
+
+## [0.36.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.36.1...@synerise/ds-core@0.36.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **core:** register pt locale, currency formatting ([2b3d1d5](https://github.com/synerise/synerise-design/commit/2b3d1d5e8d22b4158138a2a196c2d828e85594ce))
+
+
+
+
+
 ## [0.36.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.36.0...@synerise/ds-core@0.36.1) (2022-09-06)
 
 

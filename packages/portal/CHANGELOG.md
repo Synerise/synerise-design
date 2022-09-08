@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.163.3](https://github.com/synerise/synerise-design/compare/portal@0.163.1...portal@0.163.3) (2022-09-07)
+
+
+### Bug Fixes
+
+* **core:** remove console.log ([ab61167](https://github.com/synerise/synerise-design/commit/ab61167b223421ca778428e41b7a91b68d33ca1d))
+
+
+
+
+
+## [0.163.2](https://github.com/synerise/synerise-design/compare/portal@0.163.1...portal@0.163.2) (2022-09-07)
+
+
+### Bug Fixes
+
+* **core:** remove console.log ([ab61167](https://github.com/synerise/synerise-design/commit/ab61167b223421ca778428e41b7a91b68d33ca1d))
+
+
+
+
+
 ## [0.163.1](https://github.com/synerise/synerise-design/compare/portal@0.163.0...portal@0.163.1) (2022-09-06)
 
 

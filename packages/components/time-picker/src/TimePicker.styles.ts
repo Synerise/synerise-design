@@ -24,13 +24,11 @@ export const Unit = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 192px;
   overflow-x: hidden;
   overflow-y: scroll;
-  scrollbar-width: none;
 
-  &::-webkit-scrollbar {
-    width: 0;
+  .scrollbar-container {
+    margin-right: -11px;
   }
 `;
 
@@ -54,6 +52,7 @@ export const CellText = styled(Label)`
 
 export const Cell = styled.button<{ active?: boolean }>`
   height: 32px;
+  width: 100%;
   text-align: center;
   display: flex;
   flex-shrink: 0;
@@ -125,9 +124,9 @@ export const TimePickerInput = styled(Input)`
   }
 `;
 
-export const PlaceholderWrapper = styled.div` 
-  width:100%;
-  position:relative;
+export const PlaceholderWrapper = styled.div`
+  width: 100%;
+  position: relative;
 `;
 export const Placeholder = styled.div<{ height: number }>`
   height: ${(props): number => props.height}px;

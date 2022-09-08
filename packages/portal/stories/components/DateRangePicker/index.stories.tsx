@@ -23,8 +23,8 @@ import { utils } from '@synerise/ds-date-range-picker';
 const { getDefaultTexts } = utils;
 
 const decorator = storyFn => (
-  <div style={{ width: '100vw', height: '150vh', position: 'absolute', left: '0', top: '50' }}>
-    <div style={{ width: '100%', height: '100%', position: 'absolute', margin: 'auto' }}>{storyFn()}</div>
+  <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
+    <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
 const CUSTOM_COLORS = [
@@ -343,18 +343,7 @@ const stories = {
   weeklyDateFilter: () => {
     const disabled = boolean('Set disabled', false);
     const [value, setValue] = React.useState({});
-    return (
-      <Weekly
-        timePickerProps={TIME_PICKER_PROPS}
-        valueSelectionMode={['Range']}
-        onChange={v => {
-          setValue(v);
-          console.log(v);
-        }}
-        value={value}
-        disabled={disabled}
-      />
-    );
+    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
   },
   overwritingBaseStylesCheck: () => {
     /**

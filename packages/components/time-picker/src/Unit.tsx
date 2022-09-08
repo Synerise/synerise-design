@@ -2,6 +2,8 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import { debounce } from 'debounce';
 
+import Scrollbar from '@synerise/ds-scrollbar';
+
 import * as S from './TimePicker.styles';
 
 export type UnitConfig = {
@@ -40,6 +42,7 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     if (!!unitContainerRef && !!unitContainerRef.current) {
       const pixelsScrolled = unitContainerRef.current.scrollTop;
       const isScrollBetweenTwoCells = pixelsScrolled % CELL_HEIGHT !== 0;
+
       pixelsScrolled !== 0 &&
         isScrollBetweenTwoCells &&
         unitContainerRef.current.scrollTo({
@@ -53,44 +56,45 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect })
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
+
       unitContainerRef?.current?.scrollTo?.call &&
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
   }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
+
   return (
-    <S.Unit
-      data-testid={`ds-time-picker-unit-${unit}`}
-      ref={unitContainerRef}
-      onScroll={debounce(scrollHandler, DEBOUNCE_DELAY)}
-    >
-      {options.map((option: number) => {
-        const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
-        const isDisabled = disabled && disabled.includes(option);
-        const isSelected = selected === option;
-        return (
-          <S.Cell
-            key={`${unit}-${option}`}
-            disabled={isDisabled}
-            onClick={(): void => {
-              onSelect(option);
-              setTimeout(() => {
-                // timeout is required to make sure that the ref is updated
-                setForceUpdate(!forceUpdate);
-              }, 50);
-            }}
-            active={isSelected}
-            ref={isSelected ? selectedCellRef : null}
-          >
-            <S.CellText>{normalizedStringValue}</S.CellText>
-          </S.Cell>
-        );
-      })}
-      {!!containerHeight && (
-        <S.PlaceholderWrapper>
-          <S.Placeholder height={containerHeight - CELL_HEIGHT} />
-        </S.PlaceholderWrapper>
-      )}
+    <S.Unit data-testid={`ds-time-picker-unit-${unit}`}>
+      <Scrollbar ref={unitContainerRef} onScroll={debounce(scrollHandler, DEBOUNCE_DELAY)} maxHeight={192}>
+        {options.map(option => {
+          const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
+          const isDisabled = disabled && disabled.includes(option);
+          const isSelected = selected === option;
+
+          return (
+            <S.Cell
+              key={`${unit}-${option}`}
+              disabled={isDisabled}
+              onClick={(): void => {
+                onSelect(option);
+                setTimeout(() => {
+                  // timeout is required to make sure that the ref is updated
+                  setForceUpdate(!forceUpdate);
+                }, 50);
+              }}
+              active={isSelected}
+              ref={isSelected ? selectedCellRef : null}
+            >
+              <S.CellText>{normalizedStringValue}</S.CellText>
+            </S.Cell>
+          );
+        })}
+        {!!containerHeight && (
+          <S.PlaceholderWrapper>
+            <S.Placeholder height={containerHeight - CELL_HEIGHT} />
+          </S.PlaceholderWrapper>
+        )}
+      </Scrollbar>
     </S.Unit>
   );
 };
