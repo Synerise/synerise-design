@@ -43,7 +43,9 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabled={disabled}
         clearTooltip={texts?.clear}
         onChange={(date): void => {
-          date && onExactHourSelect(date);
+          onExactHourSelect(date);
+          setStart(date);
+          setEnd(date);
         }}
         value={start}
         dropdownProps={{
@@ -94,7 +96,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
         />
       </>
     );
-  }, [start, end, onStartChange, onEndChange, getPopupContainer, texts, timePickerProps, disabled]);
+  }, [start, end, onStartChange, onEndChange, setStart, setEnd, getPopupContainer, texts, timePickerProps, disabled]);
   const limitModeSelect = React.useMemo(
     () =>
       valueSelectionModes.length > 1 ? (

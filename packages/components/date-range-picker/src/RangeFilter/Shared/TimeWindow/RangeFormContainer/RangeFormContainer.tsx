@@ -77,7 +77,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
 
   const onEndChange = React.useCallback(
     (end?: Date): void => {
-      const {start} = dayValue;
+      const { start } = dayValue;
       const value: DateValue = [start ? getDateFromDayValue(dayValue.start, timeFormat) : undefined, end];
 
       if (activeDays.length > 1) {
@@ -90,7 +90,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   );
 
   const onExactHourSelect = React.useCallback(
-    (value: Date): void => {
+    (value?: Date): void => {
       if (activeDays.length > 1) {
         onMultipleDayTimeChange([value, value]);
       } else {
