@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.9.13...@synerise/ds-popconfirm@0.10.0) (2022-09-08)
+
+
+### Features
+
+* **popconfirm:** add buttonsAlign prop ([d4f14af](https://github.com/Synerise/synerise-design/commit/d4f14af7e6410394ad4ab440384ee973cea080e1))
+
+
+
+
+
 ## [0.9.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.9.12...@synerise/ds-popconfirm@0.9.13) (2022-08-31)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

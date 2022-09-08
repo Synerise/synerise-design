@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.164.0](https://github.com/synerise/synerise-design/compare/portal@0.163.3...portal@0.164.0) (2022-09-08)
+
+
+### Features
+
+* **popconfirm:** add buttonsAlign prop ([d4f14af](https://github.com/synerise/synerise-design/commit/d4f14af7e6410394ad4ab440384ee973cea080e1))
+
+
+
+
+
 ## [0.163.3](https://github.com/synerise/synerise-design/compare/portal@0.163.1...portal@0.163.3) (2022-09-07)
 
 
