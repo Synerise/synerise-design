@@ -22,6 +22,7 @@ const Tag: React.FC<Props> = ({
   suffixel,
   texts,
   asPill,
+  nameWidth,
 }: Props) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -46,6 +47,34 @@ const Tag: React.FC<Props> = ({
     }
     return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
   };
+  const [isShowTooltip, setShowTooltip] = React.useState(false);
+  const handleTooltip = React.useCallback(
+    ref => {
+      if (isShowTooltip) {
+        return (
+          <Tooltip align={isRemovable ? { offset: [8, 4] } : { offset: [0, 4] }} title={name}>
+            <S.TagName ref={ref} className="ds-tag-name" nameWidth={nameWidth}>
+              {name}
+            </S.TagName>
+          </Tooltip>
+        );
+      }
+      return (
+        <S.TagName ref={ref} className="ds-tag-name" nameWidth={nameWidth}>
+          {name}
+        </S.TagName>
+      );
+    },
+    [nameWidth, name, isShowTooltip]
+  );
+  const tagEl = React.useRef<HTMLElement>();
+  React.useLayoutEffect(() => {
+    if (tagEl.current?.getBoundingClientRect().width === nameWidth) {
+      setShowTooltip(true);
+    } else {
+      setShowTooltip(false);
+    }
+  }, [tagEl, nameWidth, name]);
 
   return (
     <S.Tag
@@ -68,7 +97,7 @@ const Tag: React.FC<Props> = ({
       <S.Content iconHover={iconHover}>
         {image && isDefaultType && <img src={image} alt="" />}
         {!!prefixel && renderPrefixel()}
-        <S.TagName>{name}</S.TagName>
+        {handleTooltip(tagEl)}
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
           <Tooltip title={texts?.deleteTooltip || 'Delete'} visible={iconHover}>

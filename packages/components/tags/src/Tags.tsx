@@ -28,6 +28,7 @@ const Tags: React.FC<Props> = ({
   overlayPlacement,
   asPill,
   onManageTagClick,
+  nameWidth,
 }: Props) => {
   const [isAdding, setAddingState] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -163,6 +164,7 @@ const Tags: React.FC<Props> = ({
               disabled={disabled}
               texts={texts}
               asPill={asPill}
+              nameWidth={nameWidth}
               {...tag}
             />
           ))}

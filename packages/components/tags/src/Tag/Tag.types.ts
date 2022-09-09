@@ -16,6 +16,7 @@ export interface Props {
   suffixel?: React.ReactNode | React.ReactText;
   texts?: TagsTexts;
   asPill?: boolean;
+  nameWidth?: number;
 }
 
 export enum TagShape {
