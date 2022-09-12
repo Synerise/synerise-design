@@ -20,6 +20,7 @@ const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused, 
       key={key}
       shrink={hovered}
       onClick={onEditClick}
+      removeIcon={removeIcon}
     >
       <Tooltip
         overlayStyle={{ maxWidth: '400px' }}

@@ -25,6 +25,11 @@ const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
     white-space: nowrap;
   }
 `;
+const contentEditableStyle = (): FlattenSimpleInterpolation => css`
+  && {
+    max-width: calc(100% - 0px);
+  }
+`;
 const disabledStyled = (props: ThemeProps): FlattenSimpleInterpolation => css`
   &:hover,
   &,
@@ -105,7 +110,7 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
 
-export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`
+export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean; removeIcon?: boolean }>`
   display: grid;
   height: 24px;
   & {
@@ -134,12 +139,26 @@ text-overflow: ellipsis;
         display:block;
       }
 `}
+  ${(props): string | false =>
+    !!props.shrink &&
+    !props.removeIcon &&
+    `
+     ${ValueText} {
+       max-width: calc(100% - 0px);
+      }
+      ${IconWrapper} {
+        display:none;
+      }
+`}
+
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-200']};
     color: ${(props): string | false => !props.disabled && props.theme.palette['grey-800']};
     cursor: pointer;
     ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
+    ${(props): FlattenSimpleInterpolation | false =>
+      !!props.shrink && !props.removeIcon && !props.disabled && contentEditableStyle()}
     min-width: 40px;
   }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
