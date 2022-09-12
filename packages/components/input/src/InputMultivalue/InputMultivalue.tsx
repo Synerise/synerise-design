@@ -101,6 +101,7 @@ const InputMultivalue: React.FC<Props> = props => {
                   handleNewValue(filteredValues);
                 }
               }}
+              removeIcon={editingId === -1}
               value={val}
               focused={isFocused}
               onEditClick={(): void => {

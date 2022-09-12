@@ -4,7 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from '../InputMultivalue.styles';
 import { Props } from './Value.types';
 
-const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused, onEditClick }) => {
+const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused, onEditClick, removeIcon }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -32,14 +32,16 @@ const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused, 
           {value}
         </S.ValueText>
       </Tooltip>
-      <S.IconWrapper
-        onClick={(e): void => {
-          onRemoveClick();
-          e.stopPropagation();
-        }}
-      >
-        <Icon className="remove" component={<CloseS />} />
-      </S.IconWrapper>
+      {removeIcon && (
+        <S.IconWrapper
+          onClick={(e): void => {
+            onRemoveClick();
+            e.stopPropagation();
+          }}
+        >
+          <Icon className="remove" component={<CloseS />} />
+        </S.IconWrapper>
+      )}
     </S.ValueWrapper>
   );
 };

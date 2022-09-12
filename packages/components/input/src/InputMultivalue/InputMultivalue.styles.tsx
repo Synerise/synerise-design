@@ -140,6 +140,7 @@ text-overflow: ellipsis;
     color: ${(props): string | false => !props.disabled && props.theme.palette['grey-800']};
     cursor: pointer;
     ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
+    min-width: 40px;
   }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
@@ -148,7 +149,7 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   border: none;
   min-width: 0;
   &:not(:last-child) {
-    padding-right: 8px;
+    padding-right: 4px;
   }
   &:not(:last-child) {
     max-width: 70px;
