@@ -6,4 +6,5 @@ export interface Props {
   onRemoveClick: () => void;
   value: React.ReactText;
   focused?: boolean;
+  onEditClick?: (event?: React.MouseEvent<HTMLElement>) => void;
 }

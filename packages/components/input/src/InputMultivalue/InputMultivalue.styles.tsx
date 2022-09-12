@@ -95,15 +95,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   width: 100%;
   border-radius: 3px;
   display: flex;
-  padding: 2px 12px ;
+  padding: 2px 12px;
   min-height: 32px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   transition: 0.3s all;
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
   ${(props): string => (props.focus && !props.disabled ? focusStyle(props) : '')}
   ${(props): string => (props.error ? errorInputStyle(props) : '')}
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
-  
 `;
 
 export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`
@@ -148,6 +147,12 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   box-shadow: none;
   border: none;
   min-width: 0;
+  &:not(:last-child) {
+    padding-right: 8px;
+  }
+  &:not(:last-child) {
+    max-width: 70px;
+  }
   display: flex;
   flex: 1;
   margin-left: -8px;

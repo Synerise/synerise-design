@@ -17,6 +17,7 @@ const InputMultivalue: React.FC<Props> = props => {
     disabled,
     maxLength,
     error,
+    onBlurHide,
     ...antdProps
   } = props;
   const showError = error || !!errorText;
@@ -24,15 +25,23 @@ const InputMultivalue: React.FC<Props> = props => {
 
   const [isFocused, setFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const [editingId, setEditingId] = React.useState(-1);
   const [selectedValues, setSelectedValues] = React.useState(values);
   const handleNewValue = (selected: Props['values']): void => {
     onChange && onChange(selected);
     setSelectedValues(selected);
   };
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.nativeEvent.code === 'Enter') {
       handleNewValue([...selectedValues, value]);
       setValue(emptyValue);
+    }
+    if (editingId !== -1) {
+      handleNewValue([...selectedValues, value]);
+      setValue(emptyValue);
+    }
+    if (e.key === 'Backspace' && value?.length === 0) {
+      handleNewValue(selectedValues.slice(0, -1));
     }
   };
   return (
@@ -56,35 +65,77 @@ const InputMultivalue: React.FC<Props> = props => {
         focus={isFocused && !disabled}
         disabled={disabled}
       >
-        {selectedValues.map((val, index) => (
-          <Value
-            disabled={disabled}
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${val}-${index}`}
-            onRemoveClick={(): void => {
-              const filteredValues = selectedValues.filter(v => v !== val);
-              handleNewValue(filteredValues);
+        {selectedValues.map((val, index) =>
+          editingId === index ? (
+            <S.BorderLessInput
+              value={value}
+              onChange={(e): void => setValue(e.target.value)}
+              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>): void => {
+                if (e.key === 'Enter') {
+                  const newSelectedValues = selectedValues.map((el, i) => (i === editingId ? value : el));
+                  setSelectedValues(newSelectedValues);
+                  setValue(emptyValue);
+                  setEditingId(-1);
+                }
+              }}
+              ref={inputRef}
+              onBlur={(): void => {
+                onBlur && onBlur();
+                if (inputRef && inputRef.current && inputRef.current !== null) {
+                  inputRef.current.blur();
+                }
+                setFocused(false);
+              }}
+              onFocus={onFocus}
+              disabled={disabled}
+              maxLength={maxLength}
+            />
+          ) : (
+            <Value
+              disabled={disabled}
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${val}-${index}`}
+              onRemoveClick={(): void => {
+                const filteredValues = selectedValues.slice(0, index).concat(selectedValues.slice(index + 1));
+                if (editingId === -1) {
+                  handleNewValue(filteredValues);
+                }
+              }}
+              value={val}
+              focused={isFocused}
+              onEditClick={(): void => {
+                setEditingId(index);
+                if (inputRef && inputRef.current) {
+                  inputRef.current.focus();
+                }
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
+                setValue(val);
+              }}
+            />
+          )
+        )}
+        {editingId === -1 && (
+          <S.BorderLessInput
+            value={value}
+            onChange={(e): void => {
+              return setValue(e.target.value);
             }}
-            value={val}
-            focused={isFocused}
+            onKeyDown={handleKeyDown}
+            ref={inputRef}
+            onBlur={(): void => {
+              onBlur && onBlur();
+              if (inputRef && inputRef.current && inputRef.current !== null) {
+                inputRef.current.blur();
+              }
+              onBlurHide && setValue('');
+              setFocused(false);
+            }}
+            onFocus={onFocus}
+            disabled={disabled}
+            maxLength={maxLength}
           />
-        ))}
-        <S.BorderLessInput
-          value={value}
-          onChange={(e): void => setValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          ref={inputRef}
-          onBlur={(): void => {
-            onBlur && onBlur();
-            if (inputRef && inputRef.current && inputRef.current !== null) {
-              inputRef.current.blur();
-            }
-            setFocused(false);
-          }}
-          onFocus={onFocus}
-          disabled={disabled}
-          maxLength={maxLength}
-        />
+        )}
       </S.InputWrapper>
       {(showError || description) && (
         <S.ContentBelow>
