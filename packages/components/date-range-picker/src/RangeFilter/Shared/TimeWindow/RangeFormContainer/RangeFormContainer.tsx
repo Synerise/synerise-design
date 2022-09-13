@@ -35,7 +35,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   renderSuffix,
   timeFormat,
 }) => {
-  const dayValue = React.useMemo(() => getDayValue(activeDays[0]), [getDayValue, activeDays]);
+  const dayValue = getDayValue(activeDays[0]);
 
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
 
