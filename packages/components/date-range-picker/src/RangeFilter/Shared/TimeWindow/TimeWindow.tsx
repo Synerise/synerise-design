@@ -16,6 +16,7 @@ import RangeFormContainer from './RangeFormContainer/RangeFormContainer';
 import Day from './Day/Day';
 import SelectionHint from '../SelectionHint/SelectionHint';
 import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
@@ -125,7 +126,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     onCheckDay && onCheckDay(dayKey);
   };
 
-  handleDayTimeChange = (value: [Date, Date], dayKey: DayKey): void => {
+  handleDayTimeChange = (value: DateValue, dayKey: DayKey): void => {
     this.handleDayChange(dayKey, {
       restricted: true,
       start: dayjs(value[0]).format(TIME_FORMAT),
@@ -133,7 +134,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     });
   };
 
-  handleMultipleDayTimeChange = (value: [Date, Date]): void => {
+  handleMultipleDayTimeChange = (value: DateValue): void => {
     const { onChange, days } = this.props;
     const { activeDays } = this.state;
     const updatedDays = {};
@@ -226,7 +227,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   getAllKeys = (): DayKey[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
-    if (customDays) keys = [...keys, ...((Object.keys(customDays) as unknown) as number[])];
+    if (customDays) keys = [...keys, ...(Object.keys(customDays) as unknown as number[])];
     return keys;
   };
 

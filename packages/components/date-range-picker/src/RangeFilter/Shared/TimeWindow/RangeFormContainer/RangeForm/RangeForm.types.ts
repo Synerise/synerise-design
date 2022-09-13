@@ -10,9 +10,9 @@ export type RangeFormProps = {
   title?: React.ReactNode;
   startDate: Date | undefined;
   endDate: Date | undefined;
-  onStartChange: (value: Date) => void;
-  onEndChange: (value: Date) => void;
-  onExactHourSelect: (value: Date) => void;
+  onStartChange: (value?: Date) => void;
+  onEndChange: (value?: Date) => void;
+  onExactHourSelect: (value?: Date) => void;
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
 } & WithTranslations &

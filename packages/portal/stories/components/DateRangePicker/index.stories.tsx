@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { injectIntl, useIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
+import styled from 'styled-components';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
-import { RawDateRangePicker } from "@synerise/ds-date-range-picker";
+import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
@@ -12,28 +13,14 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
-import {
-  Check3M,
-  HelpFillM,
-  InfoFillM,
-  NotificationsReceiveM,
-  UpdateDataM,
-  UserCheckM,
-  WarningFillM,
-} from '@synerise/ds-icon';
-import {
-  ABSOLUTE,
-  RELATIVE,
-  RELATIVE_PRESETS,
-  ABSOLUTE_PRESETS,
-} from "@synerise/ds-date-range-picker/dist/constants";
-import { CONST } from "@synerise/ds-date-range-picker";
-import {DateFilter, DateRange, RelativeDateRange} from "@synerise/ds-date-range-picker/dist/date.types";
+import { ABSOLUTE, RELATIVE, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from '@synerise/ds-date-range-picker/dist/constants';
+import { CONST } from '@synerise/ds-date-range-picker';
+import { DateRange, RelativeDateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
-import { utils } from '@synerise/ds-date-range-picker'
+import { utils } from '@synerise/ds-date-range-picker';
+
 const { getDefaultTexts } = utils;
-import styled from "styled-components";
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -65,7 +52,6 @@ const POPOVER_PLACEMENT = {
   rightTop: 'rightTop',
   rightBottom: 'rightBottom',
 };
-
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
@@ -130,10 +116,10 @@ const texts = {
 };
 
 const optionValues: Record<string, DateRange> = {
-  ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({[e.key]: e}))),
+  ...Object.assign({}, ...RELATIVE_PRESETS.map(e => ({ [e.key]: e }))),
   ...Object.assign({}, ...ABSOLUTE_PRESETS.map(e => ({ [e.key]: e }))),
-  'undefined': undefined,
-  'invalid': {
+  undefined: undefined,
+  invalid: {
     type: ABSOLUTE,
     from: new Date('invalid date'),
   },
@@ -153,26 +139,30 @@ const optionValues: Record<string, DateRange> = {
     from: new Date('Jan 1, 2022 00:00 GMT+1'),
     to: new Date('Jan 7, 2022 23:59:59 GMT+1'),
   },
-}
+};
 
-const buildSelectKnobOptions = (optionValues) => {
+const buildSelectKnobOptions = optionValues => {
   return Object.assign({}, ...Object.keys(optionValues).map(k => ({ [k]: k })));
-}
+};
 
 const stories = {
-  default: injectIntl(({intl}) => {
+  default: injectIntl(({ intl }) => {
     const intlTexts = boolean('use Intl', false) ? getDefaultTexts(intl) : texts;
-    const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
+    const value = {
+      ...optionValues[
+        select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')
+      ],
+    };
     value.translationKey = value.translationKey ?? value.key?.toLowerCase();
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
-    const bottomPlacementOfPopover = select('Top arrow color', CUSTOM_COLORS, 'grey')
+    const bottomPlacementOfPopover = select('Top arrow color', CUSTOM_COLORS, 'grey');
     const additionalMapper = {
       topLeft: topPlacementOfPopover,
       topRight: topPlacementOfPopover,
       bottomLeft: bottomPlacementOfPopover,
-      bottomRight:bottomPlacementOfPopover,
+      bottomRight: bottomPlacementOfPopover,
       leftTop: topPlacementOfPopover,
       leftBottom: bottomPlacementOfPopover,
       rightTop: topPlacementOfPopover,
@@ -210,15 +200,17 @@ const stories = {
     );
   }),
   lifetimeByDefault: () => {
-    const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME)
+    const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME);
     const DateRangePicker = injectIntl(RawDateRangePicker);
-    return (<DateRangePicker
-      showRelativePicker
-      relativeModes={['PAST', 'FUTURE', 'SINCE']}
-      texts={texts}
-      value={value}
-      onApply={action('OnApply')}
-    />);
+    return (
+      <DateRangePicker
+        showRelativePicker
+        relativeModes={['PAST', 'FUTURE', 'SINCE']}
+        texts={texts}
+        value={value}
+        onApply={action('OnApply')}
+      />
+    );
   },
   withCustomTrigger: () => {
     const value = undefined;
@@ -361,9 +353,9 @@ const stories = {
         // as in 'antd@4.7.0/lib/input/style/index.css:523'
         display: block;
       }
-    `
+    `;
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const value = React.useState<RelativeDateRange>({})
+    const value = React.useState<RelativeDateRange>({});
     return (
       <DefaultAntInputStyles>
         <DateRangePicker
