@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.165.0](https://github.com/synerise/synerise-design/compare/portal@0.164.0...portal@0.165.0) (2022-09-13)
+
+
+### Bug Fixes
+
+* **time-picker:** fix scroll picker issue ([6ab6f23](https://github.com/synerise/synerise-design/commit/6ab6f23e50cc063494afb22496b286672f29ff35))
+* **time-picker:** fixes for clear and hour select ([a060150](https://github.com/synerise/synerise-design/commit/a0601503a9bfea4930c5b940d6f78e13599555a8))
+
+
+### Features
+
+* **date-picker:** test commit ([477311a](https://github.com/synerise/synerise-design/commit/477311a51baf2561d189585cab03a0d2b168fbd9))
+
+
+
+
+
 # [0.164.0](https://github.com/synerise/synerise-design/compare/portal@0.163.3...portal@0.164.0) (2022-09-08)
 
 

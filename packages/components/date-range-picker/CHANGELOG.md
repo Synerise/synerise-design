@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.15.6...@synerise/ds-date-range-picker@0.16.0) (2022-09-13)
+
+
+### Bug Fixes
+
+* **date-picker:** fix time picker updating ([f47725d](https://github.com/Synerise/synerise-design/commit/f47725da087b0381f6a7578b4e4952d27becaefd))
+* **time-picker:** fix scroll picker issue ([6ab6f23](https://github.com/Synerise/synerise-design/commit/6ab6f23e50cc063494afb22496b286672f29ff35))
+* **time-picker:** fixes for clear and hour select ([a060150](https://github.com/Synerise/synerise-design/commit/a0601503a9bfea4930c5b940d6f78e13599555a8))
+
+
+### Features
+
+* **date-picker:** fix start end valid logic ([171cb59](https://github.com/Synerise/synerise-design/commit/171cb5919a1e9da49fee06dbecd15c925c995808))
+* **date-picker:** proper updating with clear action ([6ac56e4](https://github.com/Synerise/synerise-design/commit/6ac56e4e0b62c5786015a6f5379da0e4c181dda9))
+* **date-picker:** test commit ([477311a](https://github.com/Synerise/synerise-design/commit/477311a51baf2561d189585cab03a0d2b168fbd9))
+
+
+
+
+
 ## [0.15.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.15.5...@synerise/ds-date-range-picker@0.15.6) (2022-09-08)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
