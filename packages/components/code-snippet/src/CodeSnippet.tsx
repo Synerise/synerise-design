@@ -20,6 +20,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   className,
   onExpand,
   onCopy,
+  maxWidth,
 }) => {
   switch (type) {
     case CodeSnippetType.SINGLE_LINE:
@@ -30,6 +31,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
           tooltipTitleClick={tooltipTitleClick}
           className={className}
           onCopy={onCopy}
+          maxWidth={maxWidth}
         >
           {children}
         </SingleCode>
