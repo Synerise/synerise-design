@@ -8,7 +8,19 @@ import { ScrollbarProps } from '../Scrollbar.types';
 // eslint-disable-next-line import/prefer-default-export
 export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
   (
-    { absolute = false, children, classes, hasMore, loading, maxHeight, style, fetchData, onScroll, onYReachEnd },
+    {
+      absolute = false,
+      children,
+      classes,
+      hasMore,
+      loading,
+      maxHeight,
+      style,
+      fetchData,
+      onScroll,
+      onYReachEnd,
+      maxWidth,
+    },
     forwardedRef
   ) => {
     const scrollRef = React.useRef<HTMLElement>();
@@ -47,7 +59,7 @@ export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
         options={{ minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
       >
-        <S.ScrollbarContent className={classes} style={{ maxHeight }} data-testid="virtual-scrollbar">
+        <S.ScrollbarContent className={classes} style={{ maxHeight, maxWidth }} data-testid="virtual-scrollbar">
           <S.ScrollbarWrapper absolute={absolute} loading={loading} style={style}>
             {children}
           </S.ScrollbarWrapper>

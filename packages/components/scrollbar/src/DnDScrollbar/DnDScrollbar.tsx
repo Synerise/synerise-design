@@ -13,6 +13,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
   onYReachEnd,
   fetchData,
   hasMore,
+  maxWidth,
   ...props
 }) => {
   const contentRef = React.useRef<HTMLDivElement>(null);
@@ -153,7 +154,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
 
   return (
     <S.ScrollbarContainer data-testid="dnd-scrollbar">
-      <S.ScrollbarContent ref={contentRef} {...props} style={{ maxHeight }} onScroll={handleScroll}>
+      <S.ScrollbarContent ref={contentRef} {...props} style={{ maxHeight, maxWidth }} onScroll={handleScroll}>
         <S.ScrollbarWrapper ref={wrapperRef} loading={loading} absolute={absolute}>
           {children}
         </S.ScrollbarWrapper>
