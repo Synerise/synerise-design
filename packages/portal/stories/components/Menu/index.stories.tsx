@@ -33,7 +33,7 @@ import * as S from './stories.styles';
 import { v4 as uuid } from 'uuid';
 import withTag from './withTag/withTag';
 import withSkeleton from './withSkeleton/withSkeleton';
-import withTooltip from "./withTooltip/withTooltip";
+import withTooltip from './withTooltip/withTooltip';
 
 export const decorator = props => {
   const { dataSource, ...rest } = props;
@@ -45,7 +45,7 @@ export const decorator = props => {
       <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
         <Menu {...props}>
           {props.dataSource.map(item => (
-            <S.StyledMenuItem {...rest} {...item} key={!!item.key ? item.key :  uuid()} className="ds-menu-item" />
+            <S.StyledMenuItem {...rest} {...item} key={!!item.key ? item.key : uuid()} className="ds-menu-item" />
           ))}
         </Menu>
       </div>
@@ -77,7 +77,7 @@ export const attachKnobsToDataSource = data =>
     text: text('Set text', TEXT_PLACEHOLDER),
     disabled: boolean('Set disabled', false),
     ...(item.description && { description: text('Set description', DESCRIPTION_PLACEHOLDER) }),
-    ...(item.copyable && { timeToHideTooltip: number("Time to hide tooltip(ms)",3000)})
+    ...(item.copyable && { timeToHideTooltip: number('Time to hide tooltip(ms)', 3000) }),
   }));
 
 const stories = {
@@ -107,7 +107,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Menu',
+  name: 'Components/Menu',
   stories,
   Component: Menu,
 };

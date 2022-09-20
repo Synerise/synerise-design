@@ -24,18 +24,16 @@ export const defaultTransforms = {
   props: {
     defaultDropdownVisibility: false,
   },
-}
+};
 
-export type Transform = typeof defaultTransforms
+export type Transform = typeof defaultTransforms;
 
 const stories = {
-  default: withState(DEFAULT_STATE)(({store, ...context}) => {
+  default: withState(DEFAULT_STATE)(({ store, ...context }) => {
     const {
       transformStep,
-      props: {
-        defaultDropdownVisibility,
-      },
-    } = Object.assign({}, defaultTransforms, context) as Transform
+      props: { defaultDropdownVisibility },
+    } = Object.assign({}, defaultTransforms, context) as Transform;
     const setStepContext = (stepId, item) => {
       store.set({
         steps: store.state.steps.map(s => {
@@ -257,7 +255,7 @@ const stories = {
     return (
       <div
         style={{
-          padding: 24,
+          padding: '48px 24px 24px 48px',
           height: '100%',
           width: '100%',
           display: 'flex',
@@ -299,69 +297,71 @@ const stories = {
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
           showSuffix={boolean('Display and suffix', true)}
-          steps={store.state.steps.map(step => transformStep({
-            id: step.id,
-            stepName: step.stepName,
-            context: {
-              texts: CONTEXT_TEXTS,
-              selectedItem: step.context.selectedItem,
-              items: CONTEXT_ITEMS,
-              groups: CONTEXT_GROUPS,
-              type: step.context.type,
-              loading: boolean('Loading context content', false),
-              defaultDropdownVisibility: defaultDropdownVisibility,
-            },
-            conditions: step.conditions.map(condition => ({
-              id: condition.id,
-              parameter: {
-                availableFactorTypes: ['parameter'],
-                selectedFactorType: 'parameter',
-                defaultFactorType: 'parameter',
-                setSelectedFactorType: () => {},
-                onParamsClick: () => {
-                  console.log('params click');
-                },
-                value: condition.parameter.value,
-                parameters: {
-                  buttonLabel: 'Parameter',
-                  buttonIcon: <VarTypeStringM />,
-                  groups: PARAMETER_GROUPS,
-                  items: PARAMETER_ITEMS,
-                },
-                withoutTypeSelector: true,
-                texts: FACTORS_TEXTS,
-                loading: boolean('Loading parameters content', false),
+          steps={store.state.steps.map(step =>
+            transformStep({
+              id: step.id,
+              stepName: step.stepName,
+              context: {
+                texts: CONTEXT_TEXTS,
+                selectedItem: step.context.selectedItem,
+                items: CONTEXT_ITEMS,
+                groups: CONTEXT_GROUPS,
+                type: step.context.type,
+                loading: boolean('Loading context content', false),
+                defaultDropdownVisibility: defaultDropdownVisibility,
               },
-              operator: {
-                value: condition.operator.value,
-                items: OPERATORS_ITEMS,
-                groups: OPERATORS_GROUPS,
-                texts: OPERATORS_TEXTS,
-              },
-              factor: {
-                // @ts-ignore availableFactors is just sample data
-                availableFactorTypes: condition.operator?.value?.availableFactors || null,
-                selectedFactorType: condition.factor.selectedFactorType,
-                defaultFactorType: 'text',
-                textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
-                autocompleteText: {
-                  options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+              conditions: step.conditions.map(condition => ({
+                id: condition.id,
+                parameter: {
+                  availableFactorTypes: ['parameter'],
+                  selectedFactorType: 'parameter',
+                  defaultFactorType: 'parameter',
+                  setSelectedFactorType: () => {},
+                  onParamsClick: () => {
+                    console.log('params click');
+                  },
+                  value: condition.parameter.value,
+                  parameters: {
+                    buttonLabel: 'Parameter',
+                    buttonIcon: <VarTypeStringM />,
+                    groups: PARAMETER_GROUPS,
+                    items: PARAMETER_ITEMS,
+                  },
+                  withoutTypeSelector: true,
+                  texts: FACTORS_TEXTS,
+                  loading: boolean('Loading parameters content', false),
                 },
-                value: condition.factor.value,
-                formulaEditor: <div>Formula editor</div>,
-                withCustomFactor: boolean('With custom factor component', false) && (
-                  <span>Custom factor component</span>
-                ),
-                parameters: {
-                  buttonLabel: 'Parameter',
-                  buttonIcon: <VarTypeStringM />,
-                  groups: PARAMETER_GROUPS,
-                  items: PARAMETER_ITEMS,
+                operator: {
+                  value: condition.operator.value,
+                  items: OPERATORS_ITEMS,
+                  groups: OPERATORS_GROUPS,
+                  texts: OPERATORS_TEXTS,
                 },
-                texts: FACTORS_TEXTS,
-              },
-            })),
-          }))}
+                factor: {
+                  // @ts-ignore availableFactors is just sample data
+                  availableFactorTypes: condition.operator?.value?.availableFactors || null,
+                  selectedFactorType: condition.factor.selectedFactorType,
+                  defaultFactorType: 'text',
+                  textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
+                  autocompleteText: {
+                    options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+                  },
+                  value: condition.factor.value,
+                  formulaEditor: <div>Formula editor</div>,
+                  withCustomFactor: boolean('With custom factor component', false) && (
+                    <span>Custom factor component</span>
+                  ),
+                  parameters: {
+                    buttonLabel: 'Parameter',
+                    buttonIcon: <VarTypeStringM />,
+                    groups: PARAMETER_GROUPS,
+                    items: PARAMETER_ITEMS,
+                  },
+                  texts: FACTORS_TEXTS,
+                },
+              })),
+            })
+          )}
         />
       </div>
     );

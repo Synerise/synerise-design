@@ -1,9 +1,12 @@
 import Dropdown from '@synerise/ds-dropdown';
 import * as React from 'react';
+
 import Button from '@synerise/ds-button';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
-import Tooltip from '@synerise/ds-tooltip';
 import { getPopupContainer } from '@synerise/ds-utils';
+import InformationCard from '@synerise/ds-information-card';
+
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
@@ -24,6 +27,9 @@ const ParameterInput: React.FC<InputProps> = ({
   // @ts-ignore
   const { buttonIcon, buttonLabel, loading, ...restParameters } = parameters;
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
+
+  const parameter = React.useMemo(() => value as ParameterValueType, [value]);
+
   const handleChange = React.useCallback(
     val => {
       onChange(val);
@@ -78,17 +84,40 @@ const ParameterInput: React.FC<InputProps> = ({
           />
         }
       >
-        <Tooltip
-          getPopupContainer={getPopupContainerOverride || getPopupContainer}
-          title={(value as ParameterValueType)?.name || ''}
-          trigger={['hover']}
-        >
-          <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
-            <Icon component={(value as ParameterValueType)?.icon || buttonIcon} />
-            <Value>{(value as ParameterValueType)?.name || buttonLabel}</Value>
-            <Icon component={<AngleDownS />} />
-          </Button>
-        </Tooltip>
+        <Menu
+          asDropdownMenu
+          showTextTooltip
+          asInfoCardContainer
+          dataSource={[
+            {
+              text: (
+                <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
+                  <Icon component={parameter?.icon || buttonIcon} />
+                  <Value>{parameter?.name || buttonLabel}</Value>
+                  <Icon component={<AngleDownS />} />
+                </Button>
+              ),
+              hoverTooltipProps: {
+                popupPlacement: 'top',
+                getPopupContainer: getPopupContainerOverride || getPopupContainer,
+              } as MenuItemProps['hoverTooltipProps'],
+              renderHoverTooltip: parameter
+                ? (): JSX.Element => (
+                    <InformationCard
+                      icon={parameter.icon}
+                      subtitle={parameter.name}
+                      title={parameter.name.replace('_', ' ')}
+                      descriptionConfig={
+                        parameter.description
+                          ? { value: parameter.description as string, disabled: true, label: undefined }
+                          : undefined
+                      }
+                    />
+                  )
+                : undefined,
+            },
+          ]}
+        />
       </Dropdown>
     </div>
   );

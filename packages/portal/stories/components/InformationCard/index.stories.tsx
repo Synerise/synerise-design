@@ -24,7 +24,6 @@ import { default as ConditionStories, Transform } from '../../components/Conditi
 import { Color } from '@synerise/ds-avatar/dist/Avatar.types';
 import type { ConditionStep } from '@synerise/ds-condition';
 import type { ContextItem } from '@synerise/ds-context-selector';
-import condition from '@synerise/ds-condition';
 
 export type Story = () => InformationCardProps | React.ReactNode | object;
 

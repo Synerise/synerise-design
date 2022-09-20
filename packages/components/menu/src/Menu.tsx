@@ -21,6 +21,7 @@ class Menu extends React.Component<AntdMenuProps> {
 
   render(): React.ReactNode {
     const { dataSource, ordered, selectable, children, showTextTooltip, ...rest } = this.props;
+
     return (
       <S.AntdMenu
         ordered={ordered}

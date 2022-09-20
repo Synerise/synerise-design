@@ -39,6 +39,7 @@
     "@synerise/ds-date-range-picker": "^0.16.0",
     "@synerise/ds-dropdown": "^0.17.36",
     "@synerise/ds-icon": "^0.51.0",
+    "@synerise/ds-information-card": "^0.1.21",
     "@synerise/ds-inline-edit": "^0.6.32",
     "@synerise/ds-input": "^0.18.22",
     "@synerise/ds-input-number": "^0.6.23",

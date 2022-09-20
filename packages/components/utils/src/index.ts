@@ -11,6 +11,6 @@ export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export { default as usePrevious } from './usePrevious/usePrevious';
 export * from './useTraceUpdate';
 export * from './getPopupContainer';
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-export const NOOP = (): void => {};
+
+export const NOOP = (): void => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 export type { HandledEventsType } from './useOnClickOutside/useOnClickOutside';

@@ -1,16 +1,18 @@
 import * as React from 'react';
+import 'rc-trigger/assets/index.less';
 import classNames from 'classnames';
 import { useTheme } from 'styled-components';
-import theme, { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as copy from 'copy-to-clipboard';
 import Trigger from 'rc-trigger';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
-import { escapeRegEx } from '@synerise/ds-utils';
-import 'rc-trigger/assets/index.less';
 import { HoverEventHandler } from 'rc-menu/lib/interface';
 
+import Tooltip from '@synerise/ds-tooltip';
+import { escapeRegEx } from '@synerise/ds-utils';
+import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
+import theme, { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+
 import * as S from './Text.styles';
+import { triggerPlacements } from '../../../utils';
 import { VisibilityTrigger } from '../../../Menu.types';
 import { AddonRenderer, BasicItemProps } from './Text.types';
 
@@ -24,13 +26,10 @@ export type HoverTooltipProps = React.PropsWithChildren<{
   style?: React.CSSProperties;
 }>;
 
-const placement = {
-  right: ['cl', 'cr'],
-};
-
 function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, style }: HoverTooltipProps): JSX.Element {
   const dsTheme = useTheme() as ThemePropsVars;
   const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
+
   const cancelBubblingEvent = React.useCallback(
     () =>
       (ev: Event): void => {
@@ -43,12 +42,10 @@ function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, sty
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div onKeyDown={cancelBubblingEvent} onClick={cancelBubblingEvent}>
       <Trigger
+        builtinPlacements={triggerPlacements}
         defaultPopupVisible={hoverTooltipProps?.defaultPopupVisible ?? false}
-        action={['click', 'hover']}
-        popupAlign={{
-          points: placement.right,
-          offset: [4, 0],
-        }}
+        action={hoverTooltipProps?.action || ['click', 'hover']}
+        popupPlacement={hoverTooltipProps?.popupPlacement || 'right'}
         popup={renderHoverTooltip && renderHoverTooltip()}
         popupClassName="ignore-click-outside ds-hide-arrow"
         mouseEnterDelay={0.2}

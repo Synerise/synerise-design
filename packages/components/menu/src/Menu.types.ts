@@ -6,6 +6,7 @@ export interface AntdMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> 
   ordered?: boolean;
   asDropdownMenu?: boolean;
   showTextTooltip?: boolean;
+  asInfoCardContainer?: boolean;
 }
 
 export type MenuDividerProps = {

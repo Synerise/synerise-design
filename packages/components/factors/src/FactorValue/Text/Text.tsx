@@ -80,9 +80,7 @@ const TextInput: React.FC<InputProps> = ({
   const autocompleteOptions = React.useMemo(() => {
     return (
       (autocompleteText &&
-        autocompleteText.options.filter(option =>
-          option.toLowerCase().includes((localValue as string).toLowerCase())
-        )) ||
+        autocompleteText.options.filter(option => option.toLowerCase().includes(String(localValue).toLowerCase()))) ||
       []
     );
   }, [localValue, autocompleteText]);

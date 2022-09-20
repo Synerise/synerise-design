@@ -9,25 +9,21 @@ import { action } from '@storybook/addon-actions';
 import Status from '@synerise/ds-status';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
-const decorator = (storyFn) => (
-  <div style={{ padding: '60px' }}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ padding: '60px' }}>{storyFn()}</div>;
 
 const TUTORIALS = [
   {
     title: 'Tip for you - 1',
-    description: 'You can change profile name later in your profile settings.'
+    description: 'You can change profile name later in your profile settings.',
   },
   {
     title: 'Tip for you - 2',
-    description: 'You can change avatar later in your profile settings.'
+    description: 'You can change avatar later in your profile settings.',
   },
   {
     title: 'Tip for you - 3',
-    description: 'You can change password later in your profile settings.'
-  }
+    description: 'You can change password later in your profile settings.',
+  },
 ];
 
 const props = () => ({
@@ -61,11 +57,7 @@ const tutorialProps = () => ({
 const stories = {
   default: () => (
     <div>
-      <Tooltip
-        {...props()}
-        type="default"
-        title={text('Set tooltip title', 'More than just example text')}
-      >
+      <Tooltip {...props()} type="default" title={text('Set tooltip title', 'More than just example text')}>
         <span>Tooltip will show on mouse enter.</span>
       </Tooltip>
     </div>
@@ -76,7 +68,10 @@ const stories = {
         {...props()}
         type="icon"
         title={text('Set tooltip title', 'More than just example text')}
-        description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
+        description={text(
+          'Set tooltip description',
+          'You can change profile name later in your profile settings. More info'
+        )}
       >
         <Button type="primary">Show more</Button>
       </Tooltip>
@@ -87,10 +82,13 @@ const stories = {
       <Tooltip
         {...props()}
         type="largeSimple"
-        description={text('Set tooltip description', 'You can change profile name later in your profile settings. More info')}
-        offset='small'
+        description={text(
+          'Set tooltip description',
+          'You can change profile name later in your profile settings. More info'
+        )}
+        offset="small"
       >
-        <span style={{display: 'flex'}}>
+        <span style={{ display: 'flex' }}>
           <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
         </span>
       </Tooltip>
@@ -101,12 +99,12 @@ const stories = {
       <Tooltip
         {...props()}
         type="header-label"
-        offset= 'small'
+        offset="small"
         title={text('Set tooltip title', 'Icon tooltip')}
         description={text('Set tooltip description', 'You can change profile name later in your profile settings.')}
       >
-        <span style={{display: 'flex'}}>
-          <Icon component={<InfoFillS />} color={theme.palette['grey-400']}/>
+        <span style={{ display: 'flex' }}>
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
         </span>
       </Tooltip>
     </div>
@@ -115,12 +113,12 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
-        status={<Status type='disabled' label='API'/>}
+        status={<Status type="disabled" label="API" />}
         type="status"
         title={text('Set tooltip title', 'Shovel Import')}
         description={text('Set tooltip description', '2••••00b97')}
       >
-        <span style={{display: 'flex'}}>
+        <span style={{ display: 'flex' }}>
           <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
         </span>
       </Tooltip>
@@ -133,20 +131,15 @@ const stories = {
     const tooltip = {
       title: `${firstName} ${lastName}`,
       description: text('Set email', 'jan.nowak@gmail.com'),
-      ...tooltipProps
+      ...tooltipProps,
     };
     const user = { firstName, lastName };
 
-    return <UserAvatar backgroundColor="blue" user={user} tooltip={tooltip} />
+    return <UserAvatar backgroundColor="blue" user={user} tooltip={tooltip} />;
   },
   tutorial: () => (
     <div>
-      <Tooltip
-        {...props()}
-        {...tutorialProps()}
-        type="tutorial"
-        tutorials={TUTORIALS}
-      >
+      <Tooltip {...props()} {...tutorialProps()} type="tutorial" tutorials={TUTORIALS}>
         <Button type="primary">Show tips</Button>
       </Tooltip>
     </div>
@@ -167,11 +160,11 @@ const stories = {
         <Button type="primary">Show tips</Button>
       </Tooltip>
     </div>
-  )
+  ),
 };
 
 export default {
-name: 'Components/Tooltip',
+  name: 'Components/Tooltip',
   decorator,
   stories,
   Component: Tooltip,
