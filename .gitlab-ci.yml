@@ -3,17 +3,11 @@ image: node:lts
 variables:
   APP: ds-docs
   NODE_OPTIONS: --max-old-space-size=4096
-  DOCKER_TLS_CERTDIR: ""
-  FF_NETWORK_PER_BUILD: "true"
-
 
 cache:
   key: ds
   paths:
     - node_modules/
-
-services:
-  - docker:dind
 
 stages:
   - test
@@ -28,6 +22,10 @@ include:
 
 build:
   stage: test
+  variables:
+    KUBERNETES_CPU_REQUEST: 4
+    KUBERNETES_MEMORY_REQUEST: 16Gi
+    KUBERNETES_MEMORY_LIMIT: 22Gi
   except:
     refs:
       - tags
