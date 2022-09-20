@@ -29,6 +29,7 @@ build:
   except:
     refs:
       - tags
+      - container
   tags:
     - vms
   script:

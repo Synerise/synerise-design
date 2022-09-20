@@ -23,6 +23,7 @@ export type ParameterValueType = {
   name: string;
   id: React.ReactText;
   groupId?: React.ReactText;
+  description?: string;
 };
 
 export type ParameterGroup = {

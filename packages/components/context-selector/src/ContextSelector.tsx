@@ -1,12 +1,15 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Icon, { AngleDownS, Add3M } from '@synerise/ds-icon';
+import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
 
+import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
-import Tooltip from '@synerise/ds-tooltip';
+import InformationCard from '@synerise/ds-information-card';
 import { getPopupContainer } from '@synerise/ds-utils';
+import type { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
-import { ContextItem, ContextProps } from './ContextSelector.types';
+import { ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
@@ -76,23 +79,49 @@ const ContextSelector: React.FC<ContextProps> = ({
 
   const triggerButton = React.useMemo(() => {
     const { buttonLabel } = texts;
+
     return addMode && !selectedItem ? (
       <Button type="primary" mode="icon-label" onClick={handleClick}>
         <Icon component={<Add3M />} />
         {buttonLabel}
       </Button>
     ) : (
-      <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
-        {selectedItem ? <Icon component={selectedItem.icon} /> : null}
-        <ItemWrapper>
-          <Tooltip title={selectedItem ? (selectedItem as ContextItem).name : undefined}>
-            {selectedItem ? (selectedItem as ContextItem).name : buttonLabel}
-          </Tooltip>
-        </ItemWrapper>
-        <Icon component={<AngleDownS />} />
-      </Button>
+      <Menu
+        asDropdownMenu
+        showTextTooltip
+        asInfoCardContainer
+        dataSource={[
+          {
+            text: (
+              <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
+                {selectedItem ? <Icon component={selectedItem.icon} /> : null}
+                <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
+                <Icon component={<AngleDownS />} />
+              </Button>
+            ),
+            hoverTooltipProps: {
+              popupPlacement: 'top',
+              getPopupContainer: getPopupContainerOverride || getPopupContainer,
+            } as MenuItemProps['hoverTooltipProps'],
+            renderHoverTooltip: selectedItem
+              ? (): JSX.Element => (
+                  <InformationCard
+                    icon={selectedItem.icon}
+                    subtitle={selectedItem.name}
+                    title={selectedItem.name.replace('_', ' ')}
+                    descriptionConfig={
+                      selectedItem.description
+                        ? { value: selectedItem.description as string, disabled: true, label: undefined }
+                        : undefined
+                    }
+                  />
+                )
+              : undefined,
+          },
+        ]}
+      />
     );
-  }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem]);
+  }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem, getPopupContainerOverride]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {

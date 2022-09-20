@@ -36,6 +36,7 @@ export const MenuDivider = styled.div`
 export const AntdMenu = styled(Menu)<AntdMenuProps>`
   ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
     Boolean(props.asDropdownMenu) &&
+    !props.asInfoCardContainer &&
     css`
       && {
         padding: 8px;
@@ -94,6 +95,14 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
       margin: 8px 0 8px 0;
     }
   }
+
+  ${(props: AntdMenuProps & ThemeProps): FlattenSimpleInterpolation | false =>
+    Boolean(props.asInfoCardContainer) &&
+    css`
+      &&& li.ds-menu-item {
+        padding: 0 !important;
+      }
+    `}
 `;
 
 export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`

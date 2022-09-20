@@ -110,8 +110,8 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
           handleModeChange(selected);
         }}
         mode={mode}
-        startDate={dayValue?.start ? getDateFromDayValue(dayValue.start as string, timeFormat) : undefined}
-        endDate={dayValue?.stop ? getDateFromDayValue(dayValue.stop as string, timeFormat) : undefined}
+        startDate={dayValue?.start ? getDateFromDayValue(dayValue.start, timeFormat) : undefined}
+        endDate={dayValue?.stop ? getDateFromDayValue(dayValue.stop, timeFormat) : undefined}
         onStartChange={onStartChange}
         onEndChange={onEndChange}
         onExactHourSelect={onExactHourSelect}
