@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.21...@synerise/ds-context-selector@0.13.0) (2022-09-21)
+
+
+### Features
+
+* **menu:** add information card tooltip ([ded0bf1](https://github.com/Synerise/synerise-design/commit/ded0bf1b58e68f7061630810925669cb0fdad560))
+
+
+
+
+
 ## [0.12.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.20...@synerise/ds-context-selector@0.12.21) (2022-09-07)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.30...@synerise/ds-factors@0.15.0) (2022-09-21)
+
+
+### Features
+
+* **menu:** add information card tooltip ([ded0bf1](https://github.com/Synerise/synerise-design/commit/ded0bf1b58e68f7061630810925669cb0fdad560))
+
+
+
+
+
 ## [0.14.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.29...@synerise/ds-factors@0.14.30) (2022-09-13)
 
 **Note:** Version bump only for package @synerise/ds-factors

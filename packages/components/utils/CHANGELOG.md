@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.22.12...@synerise/ds-utils@0.23.0) (2022-09-21)
+
+
+### Features
+
+* **menu:** add information card tooltip ([ded0bf1](https://github.com/synerise/synerise-design/commit/ded0bf1b58e68f7061630810925669cb0fdad560))
+
+
+
+
+
 ## [0.22.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.22.11...@synerise/ds-utils@0.22.12) (2022-09-07)
 
 **Note:** Version bump only for package @synerise/ds-utils
