@@ -29,6 +29,13 @@ const ParameterInput: React.FC<InputProps> = ({
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
 
   const parameter = React.useMemo(() => value as ParameterValueType, [value]);
+  const { parameterIcon, parameterName } = React.useMemo(
+    () => ({
+      parameterIcon: parameter?.icon || buttonIcon,
+      parameterName: parameter?.name || buttonLabel,
+    }),
+    [parameter, buttonIcon, buttonLabel]
+  );
 
   const handleChange = React.useCallback(
     val => {
@@ -92,8 +99,8 @@ const ParameterInput: React.FC<InputProps> = ({
             {
               text: (
                 <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
-                  <Icon component={parameter?.icon || buttonIcon} />
-                  <Value>{parameter?.name || buttonLabel}</Value>
+                  <Icon component={parameterIcon} />
+                  <Value>{parameterName}</Value>
                   <Icon component={<AngleDownS />} />
                 </Button>
               ),
@@ -104,9 +111,9 @@ const ParameterInput: React.FC<InputProps> = ({
               renderHoverTooltip: parameter
                 ? (): JSX.Element => (
                     <InformationCard
-                      icon={parameter.icon}
-                      subtitle={parameter.name}
-                      title={parameter.name.replace('_', ' ')}
+                      icon={parameterIcon}
+                      subtitle={parameterName}
+                      title={parameterName.replace('_', ' ')}
                       descriptionConfig={
                         parameter.description
                           ? { value: parameter.description as string, disabled: true, label: undefined }
