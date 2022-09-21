@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.0...@synerise/ds-factors@0.15.1) (2022-09-21)
+
+
+### Bug Fixes
+
+* **factors:** add autoresize option into input - autoResize prop ([44c35dd](https://github.com/Synerise/synerise-design/commit/44c35dd4523718a806867478d3dea78220c3e8e1))
+
+
+
+
+
 # [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.14.30...@synerise/ds-factors@0.15.0) (2022-09-21)
 
 
