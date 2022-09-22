@@ -20,6 +20,7 @@ const TextInput: React.FC<InputProps> = ({
   opened,
   onDeactivate,
   error,
+  autoResize,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
   const [inputRef, setInputRef] =
@@ -113,7 +114,7 @@ const TextInput: React.FC<InputProps> = ({
             onChange={handleChange}
             onBlur={onDeactivate}
             error={localError || error}
-            autoResize={textType === 'default' ? { minWidth: '144px', maxWidth: '450px' } : false}
+            autoResize={textType === 'default' ? autoResize : false}
           />
         </S.InputWrapper>
       )}
