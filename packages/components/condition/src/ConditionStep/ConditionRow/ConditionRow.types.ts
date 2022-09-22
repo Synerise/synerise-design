@@ -29,4 +29,5 @@ export type ConditionRowProps = {
   getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
 };

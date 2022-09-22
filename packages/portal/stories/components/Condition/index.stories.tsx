@@ -9,7 +9,7 @@ import {
   PARAMETER_GROUPS,
   PARAMETER_ITEMS,
 } from './data/index.data';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
@@ -280,6 +280,7 @@ const stories = {
           }}
           getPopupContainerOverride={(): HTMLElement => document.body}
           autoClearCondition={boolean('Enable autoclear condition elements', true)}
+          autoResize={boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}

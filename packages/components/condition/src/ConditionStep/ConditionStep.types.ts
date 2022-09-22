@@ -43,4 +43,5 @@ export type ConditionStepProps = {
   onDeactivate: () => void;
   showSuffix?: boolean;
   hoverDisabled?: boolean;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
 };

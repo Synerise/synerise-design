@@ -65,4 +65,5 @@ export type ConditionProps = {
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
 };
