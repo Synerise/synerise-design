@@ -113,8 +113,7 @@ const TextInput: React.FC<InputProps> = ({
             onChange={handleChange}
             onBlur={onDeactivate}
             error={localError || error}
-            style={{ minWidth: 144, maxWidth: 450 }}
-            autoResize
+            autoResize={textType === 'default' ? { minWidth: '144px', maxWidth: '450px' } : false}
           />
         </S.InputWrapper>
       )}
