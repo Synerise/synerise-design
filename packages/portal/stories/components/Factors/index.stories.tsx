@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Factors from '@synerise/ds-factors';
 import { withState } from '@dump247/storybook-state';
-import { boolean, object, select } from '@storybook/addon-knobs';
+import { boolean, number, object, select } from '@storybook/addon-knobs';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
 import { action } from '@storybook/addon-actions';
@@ -24,6 +24,7 @@ const stories = {
       <Factors
         selectedFactorType={store.state.selectedFactorType}
         setSelectedFactorType={setSelectedFactor}
+        autoResize={boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined}
         value={store.state.value}
         onChangeValue={changeHandler}
         textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
