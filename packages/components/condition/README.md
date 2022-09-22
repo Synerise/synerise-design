@@ -124,6 +124,8 @@ import Condition from '@synerise/ds-condition'
 | onUpdateStepName          | Callback called when user change the name of step condition   | (stepId: React.ReactText, value: string) => void                                                  | -       |
 | getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;                                                     | -       |
 | defaultOpenedComponent    | Component which should be opened after render                 | 'subject' \ 'operator' \ 'factor' \ 'parameter' \ 'context'                                       | -       |
+| autoResize                | 'resize' width of the input based on width text in input      | boolean                                                                                           | `false`   |
+
 
 ### ConditionStep
 
