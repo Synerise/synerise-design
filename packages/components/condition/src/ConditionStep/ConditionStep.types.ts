@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FactorType, FactorValueType } from '@synerise/ds-factors/dist/Factors.types';
+import { FactorType, FactorValueType, InputProps } from '@synerise/ds-factors/dist/Factors.types';
 import { ContextGroup, ContextItem } from '@synerise/ds-context-selector/dist/ContextSelector.types';
 import { SubjectItem } from '@synerise/ds-subject/dist/Subject.types';
 import { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators/dist/Operator.types';
@@ -43,5 +43,5 @@ export type ConditionStepProps = {
   onDeactivate: () => void;
   showSuffix?: boolean;
   hoverDisabled?: boolean;
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  inputProps: InputProps;
 };

@@ -278,9 +278,9 @@ const stories = {
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
+          inputProps={{autoResize: boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
           getPopupContainerOverride={(): HTMLElement => document.body}
           autoClearCondition={boolean('Enable autoclear condition elements', true)}
-          autoResize={boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
           onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}

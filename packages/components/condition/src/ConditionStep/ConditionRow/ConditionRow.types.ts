@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
+import { FactorsProps, InputProps } from '@synerise/ds-factors/dist/Factors.types';
 import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
 import { ConditionProps, ConditionTexts } from '../../Condition.types';
 
@@ -29,5 +29,5 @@ export type ConditionRowProps = {
   getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  inputProps: InputProps;
 };

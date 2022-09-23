@@ -40,7 +40,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   onDeactivate,
   showSuffix,
   hoverDisabled,
-  autoResize,
+  inputProps,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -138,7 +138,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           index={conditionIndex}
           conditionId={condition.id}
           addCondition={addCondition}
-          autoResize={autoResize}
+          inputProps={inputProps}
           conditionParameter={condition.parameter}
           conditionOperator={condition.operator}
           conditionFactor={condition.factor}
@@ -188,6 +188,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       setCurrentField,
       setCurrentCondition,
       setCurrentStep,
+      inputProps,
     ]
   );
 

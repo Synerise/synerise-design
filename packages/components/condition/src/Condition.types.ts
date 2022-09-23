@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SubjectItem, SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
-import { FactorsProps, FactorType, FactorValueType } from '@synerise/ds-factors/dist/Factors.types';
+import { FactorsProps, FactorType, FactorValueType, InputProps } from '@synerise/ds-factors/dist/Factors.types';
 import { OperatorsItem, OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
 import { ContextGroup, ContextItem, ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
 
@@ -65,5 +65,5 @@ export type ConditionProps = {
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  inputProps: InputProps;
 };
