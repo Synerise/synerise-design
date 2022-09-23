@@ -283,7 +283,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       minConditionsLength={1}
       maxConditionsLength={10}
       autoClearCondition
-      autoResize={boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined}
+      inputProps={{autoResize: boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
       addCondition={addStepCondition}
       removeCondition={removeStepCondition}
       onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
