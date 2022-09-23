@@ -121,6 +121,7 @@ export type FactorsProps = {
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: React.ReactNode;
+  inputProps: InputProps;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -153,7 +154,7 @@ export type FactorValueProps = Pick<
   | 'onActivate'
   | 'onDeactivate'
   | 'error'
-  | 'autoResize'
+  | 'inputProps'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -171,6 +172,7 @@ export type InputProps = Pick<
   | 'onActivate'
   | 'onDeactivate'
   | 'error'
+  | 'inputProps'
   | 'autoResize'
 > & {
   texts: FactorsTexts;

@@ -22,7 +22,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   onActivate,
   onDeactivate,
   error,
-  autoResize,
+  inputProps,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent: React.ElementType = selectedFactor.input;
@@ -39,7 +39,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 && parameters}
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
-        autoResize={autoResize}
+        inputProps={inputProps}
         formulaEditor={formulaEditor}
         opened={opened}
         loading={loading}
@@ -72,6 +72,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     onActivate,
     onDeactivate,
     error,
+    inputProps,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;
