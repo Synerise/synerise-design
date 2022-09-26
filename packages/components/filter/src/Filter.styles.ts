@@ -10,7 +10,19 @@ export const FilterWrapper = styled.div`
 `;
 
 export const MatchingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: flex-end;
   margin-bottom: 24px;
+`;
+
+export const ConditionsLimit = styled.div`
+  margin-left: 16px;
+`;
+
+export const ConditionsLimitResults = styled.span`
+  font-weight: 500;
 `;
 
 export const LogicWrapper = styled.div`
