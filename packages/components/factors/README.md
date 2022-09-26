@@ -116,7 +116,7 @@ import Factors from '@synerise/ds-factors'
 | unavailableFactorTypes    | Array of excluded factor types                                                            | FactorType[]                                  | -         | 
 | value                     | Value                                                                                     | FactorValueType                               | -         | 
 | withoutTypeSelector       | Whether if hide factor type selector                                                      | boolean                                       | -         |
-| autoResize                | 'resize' width of the input based on width of the text in input                           | boolean \ {minWidth: string; maxWidth: string}| `false`   |
+| inputProps                | Array of available props of input                                                         | InputProps                                    | -         |
 
 ### FactorType
 
