@@ -26,6 +26,7 @@ type InsertShapeStyles = {
   preffixel?: boolean;
   suffixel?: boolean;
   hasImage?: boolean;
+  nameWidth?: number;
 } & ThemeProps;
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
@@ -37,6 +38,9 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   }
   if (props.suffixel) {
     return 'calc(100% - 4px)';
+  }
+  if (props.nameWidth) {
+    return 'calc(100% - 8px)';
   }
   return 'calc(100% - 10px)';
 };
