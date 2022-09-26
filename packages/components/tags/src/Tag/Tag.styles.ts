@@ -26,7 +26,7 @@ type InsertShapeStyles = {
   preffixel?: boolean;
   suffixel?: boolean;
   hasImage?: boolean;
-  nameWidth?: number;
+  nameWidthRemove?: boolean;
 } & ThemeProps;
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
@@ -38,9 +38,6 @@ const getWidthOnHover = (props: InsertShapeStyles): string => {
   }
   if (props.suffixel) {
     return 'calc(100% - 4px)';
-  }
-  if (props.nameWidth) {
-    return 'calc(100% - 8px)';
   }
   return 'calc(100% - 10px)';
 };
@@ -70,6 +67,7 @@ const addonStyles = (props: ThemeProps): string => `
 export const TagName = styled.span<{ nameWidth?: number }>`
   display: inline-block;
   max-width: ${(props): string => `${props.nameWidth}px`};
+  padding-right: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -181,6 +179,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
               }
             }
           }
+          padding-right: ${props.nameWidthRemove && '5px'};
         `}
       `;
 
@@ -294,6 +293,7 @@ type TagProps = {
   hasImage?: boolean;
   iconHover?: boolean;
   asPill?: boolean;
+  nameWidthRemove?: boolean;
 } & ThemeProps;
 
 export const Content = styled.div<{ iconHover?: boolean }>`

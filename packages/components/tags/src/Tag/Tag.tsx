@@ -93,6 +93,7 @@ const Tag: React.FC<Props> = ({
       hasImage={!!image}
       iconHover={iconHover}
       asPill={asPill}
+      nameWidthRemove={isShowTooltip}
     >
       <S.Content iconHover={iconHover}>
         {image && isDefaultType && <img src={image} alt="" />}
