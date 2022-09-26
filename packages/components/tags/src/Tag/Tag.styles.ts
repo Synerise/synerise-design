@@ -26,7 +26,7 @@ type InsertShapeStyles = {
   preffixel?: boolean;
   suffixel?: boolean;
   hasImage?: boolean;
-  nameWidthRemove?: boolean;
+  nameWidth?: boolean;
 } & ThemeProps;
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
@@ -179,7 +179,7 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
               }
             }
           }
-          padding-right: ${props.nameWidthRemove && '5px'};
+          padding-right: ${props.nameWidth && '5px'};
         `}
       `;
 
@@ -293,7 +293,7 @@ type TagProps = {
   hasImage?: boolean;
   iconHover?: boolean;
   asPill?: boolean;
-  nameWidthRemove?: boolean;
+  nameWidth?: boolean;
 } & ThemeProps;
 
 export const Content = styled.div<{ iconHover?: boolean }>`
