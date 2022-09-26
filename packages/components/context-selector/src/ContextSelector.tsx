@@ -13,6 +13,7 @@ import { ContextProps } from './ContextSelector.types';
 import { ItemWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
+  disabled,
   defaultDropdownVisibility,
   selectedItem,
   onSelectItem,
@@ -81,10 +82,12 @@ const ContextSelector: React.FC<ContextProps> = ({
     const { buttonLabel } = texts;
 
     return addMode && !selectedItem ? (
-      <Button type="primary" mode="icon-label" onClick={handleClick}>
-        <Icon component={<Add3M />} />
-        {buttonLabel}
-      </Button>
+      <>
+        <Button type="primary" mode="icon-label" onClick={handleClick} disabled={disabled}>
+          <Icon component={<Add3M />} />
+          {buttonLabel}
+        </Button>
+      </>
     ) : (
       <Menu
         asDropdownMenu
@@ -93,7 +96,13 @@ const ContextSelector: React.FC<ContextProps> = ({
         dataSource={[
           {
             text: (
-              <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
+              <Button
+                type="custom-color"
+                color={triggerColor}
+                mode={triggerMode}
+                onClick={handleClick}
+                disabled={disabled}
+              >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
                 <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
                 <Icon component={<AngleDownS />} />
@@ -121,7 +130,7 @@ const ContextSelector: React.FC<ContextProps> = ({
         ]}
       />
     );
-  }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem, getPopupContainerOverride]);
+  }, [texts, addMode, selectedItem, disabled, handleClick, triggerColor, triggerMode, getPopupContainerOverride]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {
