@@ -65,7 +65,7 @@ const stories = {
         ...defaultProps
       } as object;
       return (
-        <div style={ maxWidth ? {maxWidth: '200px'} : null }>
+        <div style={ maxWidth ? {maxWidth: '300px'} : null }>
         <CodeSnippet type={CodeSnippetType.SINGLE_LINE} {...props}/>
       </div>
     );
