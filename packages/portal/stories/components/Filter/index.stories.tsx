@@ -16,7 +16,7 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, number } from '@storybook/addon-knobs';
 import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
 import Layout from '@synerise/ds-layout';
 
@@ -278,6 +278,7 @@ const stories = {
       >
         <Layout mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
           <Filter
+            maxConditionsLimit={number('Set max conditions limit', 3)}
             expressions={store.state.expressions}
             addFilterComponent={
               <ContextSelector
@@ -318,6 +319,7 @@ const stories = {
               },
               addFilter: 'Add filter',
               dropMeHere: 'Drop me here',
+              conditionsLimit: 'Conditions limit',
             }}
           />
         </Layout>

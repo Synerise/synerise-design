@@ -26,6 +26,7 @@ const component = {
 };
 
 const Filter: React.FC<FilterProps> = ({
+  maxConditionsLimit,
   expressions,
   matching,
   onChangeOrder,
@@ -54,6 +55,7 @@ const Filter: React.FC<FilterProps> = ({
     () => ({
       addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
       dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
+      conditionsLimit: formatMessage({ id: 'DS.FILTER.CONDITIONS-LIMIT' }),
       ...texts,
       matching: {
         matching: formatMessage({ id: 'DS.MATCHING.MATCHING' }),
@@ -106,6 +108,11 @@ const Filter: React.FC<FilterProps> = ({
     [activeExpressionId]
   );
 
+  const isLimitExceeded = React.useMemo(
+    () => (maxConditionsLimit ? expressions.length >= maxConditionsLimit : false),
+    [expressions, maxConditionsLimit]
+  );
+
   const componentProps = React.useCallback(
     (expression: Expression) => {
       const contextTypeTexts = getContextTypeTexts(expression);
@@ -119,7 +126,7 @@ const Filter: React.FC<FilterProps> = ({
           onChangeMatching: (value: boolean): void => onChangeStepMatching(expression.id, value),
           onChangeName: (value: string): void => onChangeStepName(expression.id, value),
           onDelete: (): void => onDeleteStep(expression.id),
-          onDuplicate: (): void => onDuplicateStep(expression.id),
+          onDuplicate: !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           texts: {
@@ -134,6 +141,7 @@ const Filter: React.FC<FilterProps> = ({
       activeExpressionId,
       getContextTypeTexts,
       isActive,
+      isLimitExceeded,
       logicOptions,
       onChangeLogic,
       onChangeStepMatching,
@@ -172,11 +180,18 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <S.FilterWrapper>
-      {matching && (
-        <MatchingWrapper>
-          <Matching {...matching} texts={text.matching} />
-        </MatchingWrapper>
-      )}
+      <MatchingWrapper>
+        <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
+        {!!maxConditionsLimit && (
+          <S.ConditionsLimit>
+            {text.conditionsLimit}:{' '}
+            <S.ConditionsLimitResults>
+              {expressions.length}/{maxConditionsLimit}
+            </S.ConditionsLimitResults>
+          </S.ConditionsLimit>
+        )}
+      </MatchingWrapper>
+
       <>
         {expressions.length > 0 ? (
           <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
