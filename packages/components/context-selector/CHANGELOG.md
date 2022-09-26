@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.13.0...@synerise/ds-context-selector@0.14.0) (2022-09-26)
+
+
+### Features
+
+* **filter:** limiting the number of conditions ([6f0d114](https://github.com/Synerise/synerise-design/commit/6f0d114735abc97362b461adc138f7fcadc39456))
+
+
+
+
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.12.21...@synerise/ds-context-selector@0.13.0) (2022-09-21)
 
 
