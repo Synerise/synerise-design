@@ -201,7 +201,11 @@ const Filter: React.FC<FilterProps> = ({
           <Placeholder text={text.placeholder.chooseCondition} />
         )}
       </>
-      {addFilterComponent && <S.AddButtonWrapper>{addFilterComponent}</S.AddButtonWrapper>}
+      {addFilterComponent && (
+        <S.AddButtonWrapper>
+          {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
+        </S.AddButtonWrapper>
+      )}
     </S.FilterWrapper>
   );
 };

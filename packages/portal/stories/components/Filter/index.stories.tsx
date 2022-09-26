@@ -263,8 +263,6 @@ const stories = {
 
     const maxConditionsLimit = number('Set max conditions limit', 0);
 
-    const isConditionsLimitExceeded = maxConditionsLimit ? store.state.expressions.length >= maxConditionsLimit : false;
-
     return (
       <div
         style={{
@@ -284,9 +282,9 @@ const stories = {
           <Filter
             maxConditionsLimit={maxConditionsLimit}
             expressions={store.state.expressions}
-            addFilterComponent={
+            addFilterComponent={({ isLimitExceeded }) => (
               <ContextSelector
-                disabled={isConditionsLimitExceeded}
+                disabled={isLimitExceeded}
                 texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
                 onSelectItem={handleAddStep}
                 selectedItem={null}
@@ -294,7 +292,7 @@ const stories = {
                 groups={CONTEXT_CLIENT_GROUPS}
                 addMode={true}
               />
-            }
+            )}
             onChangeLogic={handleChangeLogic}
             onChangeOrder={handleChangeOrder}
             onChangeStepMatching={handleChangeStepMatching}
