@@ -20,6 +20,7 @@ export type StepType = {
 export type Expression = LogicType | StepType;
 
 export type FilterProps = {
+  maxConditionsLimit?: number;
   expressions: Expression[];
   matching?: MatchingProps;
   onChangeOrder: (newOrder: Expression[]) => void;
