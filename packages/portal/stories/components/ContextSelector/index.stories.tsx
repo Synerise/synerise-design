@@ -29,6 +29,7 @@ const stories = {
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
         loading={boolean('Set loading', false)}
+        disabled={boolean('Set disabled', false)}
       />
     );
   }),
@@ -48,6 +49,7 @@ const stories = {
         menuItemHeight={ItemSize.LARGE}
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
+        disabled={boolean('Set disabled', false)}
       />
     );
   }),
@@ -67,6 +69,7 @@ const stories = {
         addMode={true}
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
+        disabled={boolean('Set disabled', false)}
       />
     );
   }),
@@ -86,6 +89,7 @@ const stories = {
         addMode={true}
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
+        disabled={boolean('Set disabled', false)}
       />
     );
   }),
