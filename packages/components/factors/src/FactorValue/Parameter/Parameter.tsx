@@ -111,6 +111,7 @@ const ParameterInput: React.FC<InputProps> = ({
               renderHoverTooltip: parameter
                 ? (): JSX.Element => (
                     <InformationCard
+                      iconColor="grey"
                       icon={parameterIcon}
                       subtitle={parameterName}
                       title={parameterName.replace('_', ' ')}
