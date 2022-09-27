@@ -67,7 +67,7 @@ const addonStyles = (props: ThemeProps): string => `
 export const TagName = styled.span<{ nameWidth?: number }>`
   display: inline-block;
   max-width: ${(props): string => `${props.nameWidth}px`};
-  padding-right: 5px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
