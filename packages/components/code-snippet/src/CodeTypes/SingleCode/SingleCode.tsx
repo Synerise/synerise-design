@@ -43,20 +43,22 @@ const SingleCode: React.FC<SingleCodeProps> = ({
     ),
     [children, tooltipTitleHover, tooltipTitleClick, onCopy]
   );
-  const renderWithScroll = (): React.ReactNode | boolean => {
-    return <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>;
-  };
+  const withScrollbar = React.useMemo(
+    () =>
+      maxWidth ? (
+        <Scrollbar style={{ whiteSpace: 'nowrap' }} maxWidth={maxWidth}>
+          <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+        </Scrollbar>
+      ) : (
+        <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+      ),
+    [children, fontSize, maxWidth]
+  );
 
   return (
     <S.CodeSnippetWrapperSingle fontSize={fontSize} className={className}>
       <S.ContentIconWrapper>
-        {maxWidth ? (
-          <Scrollbar style={{ whiteSpace: 'nowrap' }} maxWidth={maxWidth}>
-            {renderWithScroll()}
-          </Scrollbar>
-        ) : (
-          <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
-        )}
+        {withScrollbar}
         {iconElement}
       </S.ContentIconWrapper>
     </S.CodeSnippetWrapperSingle>
