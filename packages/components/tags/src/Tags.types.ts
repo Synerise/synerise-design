@@ -37,4 +37,5 @@ export interface Props {
   overlayPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
   asPill?: boolean;
   onManageTagClick?: () => void;
+  nameWidth?: number;
 }

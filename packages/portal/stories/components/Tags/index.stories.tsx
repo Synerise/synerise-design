@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { select, boolean, number } from '@storybook/addon-knobs';
+import { select, boolean, number, text } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
@@ -33,11 +33,13 @@ const stories = {
     const removable = boolean('Ability to remove', true);
     const colors = select('Set custom color', customColorOptions, customColorOptions.grey);
     const disabled = boolean('Disable ', false);
+    const tagName = text('Tag name','Tag name');
+    const nameWidth = number('Name width',190);
 
     const thisTag = [
       {
         id: 0,
-        name: 'Tag name',
+        name: tagName,
         color: colors,
       },
     ];
@@ -45,7 +47,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
+          <Tags nameWidth={nameWidth} tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );

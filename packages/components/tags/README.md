@@ -23,6 +23,7 @@ Tags UI Component
 | removable | show remove button                       | boolean                           | -                      |
 | shape     | shape of the tag                         | TagShape                          | TagShape.DEFAULT_ROUND |
 | textColor | color of tag name label                  | string                            | -                      |
+| nameWidth | width of max tag text                    | number                            | -                      |
 
 ## Tags API (Group of <Tag />)
 

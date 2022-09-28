@@ -26,6 +26,7 @@ type InsertShapeStyles = {
   preffixel?: boolean;
   suffixel?: boolean;
   hasImage?: boolean;
+  nameWidth?: boolean;
 } & ThemeProps;
 
 const getWidthOnHover = (props: InsertShapeStyles): string => {
@@ -63,8 +64,10 @@ const addonStyles = (props: ThemeProps): string => `
   text-align: center;
 `;
 
-export const TagName = styled.span`
-  display: flex;
+export const TagName = styled.span<{ nameWidth?: number }>`
+  display: inline-block;
+  max-width: ${(props): string => `${props.nameWidth}px`};
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,30 +156,31 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         }
 
         ${props.isActionable &&
-          css`
-            &:hover {
-              padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
+        css`
+          &:hover {
+            padding: ${props.removable && props.suffixel && '0 15px 0 0px'};
 
-              ${TagName} {
-                display: inline-block;
-                padding: ${props.removable ? '0 7px 0 12px' : '0'};
-                padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '10px'};
-                width: ${getWidthOnHover(props)};
-              }
-              padding-right: ${!props.suffixel && '5px'};
+            ${TagName} {
+              display: inline-block;
+              padding: ${props.removable ? '0 7px 0 12px' : '0'};
+              padding-left: ${props.removable && props.preffixel && '4px'};
+              padding-right: ${props.removable && props.suffixel && '10px'};
+              width: ${getWidthOnHover(props)};
+            }
+            padding-right: ${!props.suffixel && '5px'};
 
-              ${RemoveButton} {
-                margin-left: 0px;
-                margin-right: ${props.suffixel ? '2px' : '-2px'};
-                .icon {
-                  position: absolute;
-                  left: -3px;
-                  top: -3px;
-                }
+            ${RemoveButton} {
+              margin-left: 0px;
+              margin-right: ${props.suffixel ? '2px' : '-2px'};
+              .icon {
+                position: absolute;
+                left: -3px;
+                top: -3px;
               }
             }
-          `}
+          }
+          padding-right: ${props.nameWidth && '5px'};
+        `}
       `;
 
     case TagShape.DEFAULT_SQUARE:
@@ -195,30 +199,30 @@ const insertShapeStyles = (props: InsertShapeStyles): FlattenSimpleInterpolation
         }
 
         ${props.isActionable &&
-          css`
-            &:hover {
-              padding-right: ${props.removable && props.suffixel && '15px'};
+        css`
+          &:hover {
+            padding-right: ${props.removable && props.suffixel && '15px'};
 
-              ${TagName} {
-                display: inline-block;
-                padding: ${props.removable ? '0 7px 0 12px' : '0'};
-                padding-left: ${props.removable && props.preffixel && '4px'};
-                padding-right: ${props.removable && props.suffixel && '10px'};
-                width: ${getWidthOnHover(props)};
-              }
-              padding-right: ${!props.suffixel && '5px'};
+            ${TagName} {
+              display: inline-block;
+              padding: ${props.removable ? '0 7px 0 12px' : '0'};
+              padding-left: ${props.removable && props.preffixel && '4px'};
+              padding-right: ${props.removable && props.suffixel && '10px'};
+              width: ${getWidthOnHover(props)};
+            }
+            padding-right: ${!props.suffixel && '5px'};
 
-              ${RemoveButton} {
-                margin-left: 0px;
-                margin-right: ${props.suffixel ? '2px' : '-2px'};
-                .icon {
-                  position: absolute;
-                  left: -3px;
-                  top: -3px;
-                }
+            ${RemoveButton} {
+              margin-left: 0px;
+              margin-right: ${props.suffixel ? '2px' : '-2px'};
+              .icon {
+                position: absolute;
+                left: -3px;
+                top: -3px;
               }
             }
-          `}
+          }
+        `}
       `;
 
     case TagShape.SINGLE_CHARACTER_ROUND:
@@ -289,6 +293,7 @@ type TagProps = {
   hasImage?: boolean;
   iconHover?: boolean;
   asPill?: boolean;
+  nameWidth?: boolean;
 } & ThemeProps;
 
 export const Content = styled.div<{ iconHover?: boolean }>`
@@ -339,7 +344,7 @@ export const Tag = styled.div<TagProps>`
   display: inline-flex;
   font-weight: 500;
   overflow: hidden;
-  cursor:default;
+  cursor: default;
 
   ${(props: TagProps): FlattenInterpolation<TagProps> | false =>
     !props.asPill &&
@@ -380,11 +385,11 @@ export const Tag = styled.div<TagProps>`
       }
 
       ${props.isActionable &&
-        css`
-          &:hover:before {
-            filter: ${getFilterColor};
-          }
-        `};
+      css`
+        &:hover:before {
+          filter: ${getFilterColor};
+        }
+      `};
     `}
 
 
@@ -396,9 +401,9 @@ export const Tag = styled.div<TagProps>`
     !!props.isActionable &&
     css`
       &:hover {
-      ${SuffixWrapper},${DefaultSuffixWrapper}{
-      display:none;
-      }
+        ${SuffixWrapper},${DefaultSuffixWrapper} {
+          display: none;
+        }
         ${RemoveButton} {
           position: absolute;
           top: 0;
@@ -413,7 +418,6 @@ export const Tag = styled.div<TagProps>`
   }
   ${SuffixWrapper},${DefaultSuffixWrapper} {
     margin: ${(props): string => (!props.removable && props.suffixel ? '0px -8px 3px 5px' : '0 4px 3px 1px')};
-    
   }
   ${PrefixWrapper},${DefaultPrefixWrapper} {
     margin: ${(props): string => (!props.removable && props.preffixel ? '0px 5px 3px -8px' : '0 1px 3px 4px')};
