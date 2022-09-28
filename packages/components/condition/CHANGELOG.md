@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.36...@synerise/ds-condition@0.17.37) (2022-09-28)
+
+
+### Bug Fixes
+
+* **condition:** add import inputProps from ds-factors types ([c538a7e](https://github.com/Synerise/synerise-design/commit/c538a7e7ea18e345dbd64cd6b98889dee109c361))
+* **condition:** add prop to de-condition and knob ([9c5c95b](https://github.com/Synerise/synerise-design/commit/9c5c95b455b9ef2d56f460b491e49530f47accb3))
+* **condition:** update documantation ([0ae2ee5](https://github.com/Synerise/synerise-design/commit/0ae2ee5a7f05946bfedb8c60b38186e3025782a7))
+* **condition:** update documentation ([7f0dd22](https://github.com/Synerise/synerise-design/commit/7f0dd220f15362b7536daeda79fcdcf5e155636a))
+
+
+
+
+
 ## [0.17.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.35...@synerise/ds-condition@0.17.36) (2022-09-27)
 
 **Note:** Version bump only for package @synerise/ds-condition

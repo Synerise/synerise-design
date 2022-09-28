@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.167.2](https://github.com/synerise/synerise-design/compare/portal@0.167.1...portal@0.167.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **condition:** add import inputProps from ds-factors types ([c538a7e](https://github.com/synerise/synerise-design/commit/c538a7e7ea18e345dbd64cd6b98889dee109c361))
+* **condition:** add prop to de-condition and knob ([9c5c95b](https://github.com/synerise/synerise-design/commit/9c5c95b455b9ef2d56f460b491e49530f47accb3))
+* **factors:** add to factors autoResize prop in stories ([6a40944](https://github.com/synerise/synerise-design/commit/6a409444b5fbd1730a9a9d757b04d483c12f15e6))
+* **factors:** add to factors import with inputProps ([cd0afe2](https://github.com/synerise/synerise-design/commit/cd0afe2dde0606f10fea2e958f88446b54e71786))
+* **step-card:** add prop autoResize in filters ([8e5b357](https://github.com/synerise/synerise-design/commit/8e5b357ecd901e1613244105c6aedcfdece07101))
+* **step-card:** change autoResize to inputProps ([fb4cbf3](https://github.com/synerise/synerise-design/commit/fb4cbf30341eb4c08e05aedd542416cd096ca8e9))
+
+
+
+
+
 ## [0.167.1](https://github.com/synerise/synerise-design/compare/portal@0.167.0...portal@0.167.1) (2022-09-27)
 
 **Note:** Version bump only for package portal

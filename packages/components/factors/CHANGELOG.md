@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.2...@synerise/ds-factors@0.15.3) (2022-09-28)
+
+
+### Bug Fixes
+
+* **avatar:** remove unnecessary icon type check ([3aee1c2](https://github.com/Synerise/synerise-design/commit/3aee1c2b3157ea2c68d8de24d69f444beb3573db))
+* **factors:** add autoresize prop to input in ds-factors ([42d98d7](https://github.com/Synerise/synerise-design/commit/42d98d725faf6b403bfa4926213bf89b812d4d34))
+* **factors:** add prop autoresize to ds-factors ([67367f9](https://github.com/Synerise/synerise-design/commit/67367f924a695b9f48fe40b003fcbe2ebfdae804))
+* **factors:** add to factors import with inputProps ([cd0afe2](https://github.com/Synerise/synerise-design/commit/cd0afe2dde0606f10fea2e958f88446b54e71786))
+* **factors:** update documantation ([13dfe57](https://github.com/Synerise/synerise-design/commit/13dfe572ac98b7ef6332524f954f94e779a5e906))
+* **factors:** update documentation ([63b899e](https://github.com/Synerise/synerise-design/commit/63b899e995b2709e4b3b69bca991441c623f4328))
+* **factors:** update documentation ([1bf778f](https://github.com/Synerise/synerise-design/commit/1bf778f715375f1fcda0416fbfb06670d3d775c6))
+
+
+
+
+
 ## [0.15.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.1...@synerise/ds-factors@0.15.2) (2022-09-27)
 
 **Note:** Version bump only for package @synerise/ds-factors

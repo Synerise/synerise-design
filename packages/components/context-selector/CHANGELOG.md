@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.14.1...@synerise/ds-context-selector@0.14.2) (2022-09-28)
+
+
+### Bug Fixes
+
+* **avatar:** remove unnecessary icon type check ([3aee1c2](https://github.com/Synerise/synerise-design/commit/3aee1c2b3157ea2c68d8de24d69f444beb3573db))
+
+
+
+
+
 ## [0.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.14.0...@synerise/ds-context-selector@0.14.1) (2022-09-27)
 
 **Note:** Version bump only for package @synerise/ds-context-selector
