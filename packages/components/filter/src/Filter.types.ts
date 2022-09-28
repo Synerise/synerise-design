@@ -19,7 +19,12 @@ export type StepType = {
 
 export type Expression = LogicType | StepType;
 
+export type addFilterComponentProps = {
+  isLimitExceeded: boolean;
+};
+
 export type FilterProps = {
+  maxConditionsLimit?: number;
   expressions: Expression[];
   matching?: MatchingProps;
   onChangeOrder: (newOrder: Expression[]) => void;
@@ -30,7 +35,7 @@ export type FilterProps = {
   onDuplicateStep: (id: string) => void;
   renderStepFooter?: (expression: Expression) => React.ReactNode;
   renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
-  addFilterComponent?: React.ReactNode;
+  addFilterComponent?: React.ReactNode | ((arg: addFilterComponentProps) => React.ReactNode);
   logicOptions?: LogicOperator[];
   texts?: {
     matching?: MatchingTexts;

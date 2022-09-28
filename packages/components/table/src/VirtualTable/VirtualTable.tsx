@@ -227,18 +227,19 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     (rawData: T[], meta: unknown, defaultTableProps?: DSTableProps<T>): React.ReactNode => {
       const renderVirtualList = (data: T[]): React.ReactNode => {
         const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
-
         const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps): void => {
+          const roundedOffset = Math.ceil(scrollOffset);
+
           if (
             scrollDirection === 'forward' &&
-            scrollOffset >= listHeight &&
+            roundedOffset >= listHeight &&
             typeof infiniteScroll?.onScrollEndReach === 'function'
           ) {
             infiniteScroll.onScrollEndReach();
           }
           if (
             scrollDirection === 'backward' &&
-            scrollOffset === 0 &&
+            roundedOffset === 0 &&
             typeof infiniteScroll?.onScrollTopReach === 'function'
           ) {
             infiniteScroll.onScrollTopReach();

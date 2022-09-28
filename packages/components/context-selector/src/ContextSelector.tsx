@@ -38,6 +38,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   getPopupContainerOverride,
   type,
   dropdownProps,
+  disabled,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   React.useEffect(() => {
@@ -81,10 +82,12 @@ const ContextSelector: React.FC<ContextProps> = ({
     const { buttonLabel } = texts;
 
     return addMode && !selectedItem ? (
-      <Button type="primary" mode="icon-label" onClick={handleClick}>
-        <Icon component={<Add3M />} />
-        {buttonLabel}
-      </Button>
+      <>
+        <Button disabled={disabled} type="primary" mode="icon-label" onClick={handleClick}>
+          <Icon component={<Add3M />} />
+          {buttonLabel}
+        </Button>
+      </>
     ) : (
       <Menu
         asDropdownMenu
@@ -93,7 +96,13 @@ const ContextSelector: React.FC<ContextProps> = ({
         dataSource={[
           {
             text: (
-              <Button type="custom-color" color={triggerColor} mode={triggerMode} onClick={handleClick}>
+              <Button
+                disabled={disabled}
+                type="custom-color"
+                color={triggerColor}
+                mode={triggerMode}
+                onClick={handleClick}
+              >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
                 <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
                 <Icon component={<AngleDownS />} />
@@ -106,6 +115,7 @@ const ContextSelector: React.FC<ContextProps> = ({
             renderHoverTooltip: selectedItem
               ? (): JSX.Element => (
                   <InformationCard
+                    iconColor="grey"
                     icon={selectedItem.icon}
                     subtitle={selectedItem.name}
                     title={selectedItem.name.replace('_', ' ')}
@@ -121,7 +131,7 @@ const ContextSelector: React.FC<ContextProps> = ({
         ]}
       />
     );
-  }, [addMode, handleClick, texts, triggerColor, triggerMode, selectedItem, getPopupContainerOverride]);
+  }, [texts, addMode, selectedItem, disabled, handleClick, triggerColor, triggerMode, getPopupContainerOverride]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {
