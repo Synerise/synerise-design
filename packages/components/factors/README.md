@@ -116,6 +116,7 @@ import Factors from '@synerise/ds-factors'
 | unavailableFactorTypes    | Array of excluded factor types                                                            | FactorType[]                                  | -         | 
 | value                     | Value                                                                                     | FactorValueType                               | -         | 
 | withoutTypeSelector       | Whether if hide factor type selector                                                      | boolean                                       | -         |
+| inputProps                | Array of available props of input                                                         | InputProps                                    | -         |
 
 ### FactorType
 

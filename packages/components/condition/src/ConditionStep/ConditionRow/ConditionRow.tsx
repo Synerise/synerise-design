@@ -36,6 +36,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   stepType,
   onDeactivate,
   error,
+  inputProps,
 }) => {
   return (
     <S.ConditionRow
@@ -57,6 +58,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
         {conditionParameter && (
           <Factors
             {...conditionParameter}
+            inputProps={inputProps}
             getPopupContainerOverride={getPopupContainerOverride}
             onActivate={(): void => onActivate && onActivate(PARAMETER)}
             onDeactivate={onDeactivate}
@@ -95,6 +97,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
             {conditionFactor?.withCustomFactor || (
               <Factors
                 {...conditionFactor}
+                inputProps={inputProps}
                 getPopupContainerOverride={getPopupContainerOverride}
                 onActivate={(): void => onActivate && onActivate(FACTOR)}
                 onDeactivate={onDeactivate}

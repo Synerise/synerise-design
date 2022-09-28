@@ -20,6 +20,7 @@ const TextInput: React.FC<InputProps> = ({
   opened,
   onDeactivate,
   error,
+  inputProps,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
   const [inputRef, setInputRef] =
@@ -106,6 +107,7 @@ const TextInput: React.FC<InputProps> = ({
       ) : (
         <S.InputWrapper>
           <Input
+            {...inputProps}
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
             suffix={SuffixIcon}
@@ -113,8 +115,6 @@ const TextInput: React.FC<InputProps> = ({
             onChange={handleChange}
             onBlur={onDeactivate}
             error={localError || error}
-            style={{ minWidth: 144, maxWidth: 450 }}
-            autoResize
           />
         </S.InputWrapper>
       )}

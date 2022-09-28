@@ -86,6 +86,7 @@ const Factors: React.FC<FactorsProps> = ({
   onDeactivate,
   getPopupContainerOverride,
   error,
+  inputProps,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -245,6 +246,7 @@ const Factors: React.FC<FactorsProps> = ({
         formulaEditor={formulaEditor}
         texts={text}
         opened={opened}
+        inputProps={inputProps}
         loading={loading}
         factorKey={factorKey}
         preventAutoloadData={preventAutoloadData}

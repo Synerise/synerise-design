@@ -53,6 +53,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     showSuffix,
     hoverDisabled,
     autoOpenedComponent = DEFAULT_FIELD,
+    inputProps,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -270,6 +271,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 onDeactivate={handleClearActiveCondition}
                 showSuffix={showSuffix}
                 hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
+                inputProps={inputProps}
               />
             );
           })}
@@ -313,6 +315,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     handleClearActiveCondition,
     showSuffix,
     hoverDisabled,
+    inputProps,
   ]);
 };
 

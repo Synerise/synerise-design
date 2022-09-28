@@ -103,6 +103,7 @@ export type FactorsProps = {
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   textType?: 'autocomplete' | 'expansible' | 'default' | string;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
   autocompleteText?: {
     options: string[];
   };
@@ -120,6 +121,7 @@ export type FactorsProps = {
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: React.ReactNode;
+  inputProps: InputProps;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -152,6 +154,7 @@ export type FactorValueProps = Pick<
   | 'onActivate'
   | 'onDeactivate'
   | 'error'
+  | 'inputProps'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -169,6 +172,8 @@ export type InputProps = Pick<
   | 'onActivate'
   | 'onDeactivate'
   | 'error'
+  | 'inputProps'
+  | 'autoResize'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;
