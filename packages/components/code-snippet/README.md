@@ -45,3 +45,5 @@ import CodeSnippet from '@synerise/ds-code-snippet'
 | wrap                | Specify whether content is wrap or not                                | boolean              | false                                |
 | onExpand            | An extra function to invoke on button click expand content            | () => void           | -                                    |
 | onCopy              | An extra function to invoke on copy button event                      | () => void           | -                                    |
+| onScroll            | show scroll when text is too long                                     | boolean              | false                                |
+| maxWidth            | prop to set width when scroll is shown                                | number / string      | '200'                                |

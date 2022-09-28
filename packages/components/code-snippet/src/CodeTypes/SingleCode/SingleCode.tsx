@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
 import { DuplicateS } from '@synerise/ds-icon';
+import Scrollbar from '@synerise/ds-scrollbar';
 
 import CopyAction from '../../CopyAction/CopyAction';
 import * as S from './SingleCode.styles';
@@ -14,6 +15,7 @@ export interface SingleCodeProps {
   tooltipTitleClick?: string;
   fontSize?: FontSize;
   onCopy?: () => void;
+  maxWidth?: string | number;
 }
 
 const SingleCode: React.FC<SingleCodeProps> = ({
@@ -23,6 +25,7 @@ const SingleCode: React.FC<SingleCodeProps> = ({
   tooltipTitleClick,
   className,
   onCopy,
+  maxWidth = '100%',
 }) => {
   const iconElement = React.useMemo(
     () => (
@@ -40,11 +43,22 @@ const SingleCode: React.FC<SingleCodeProps> = ({
     ),
     [children, tooltipTitleHover, tooltipTitleClick, onCopy]
   );
+  const withScrollbar = React.useMemo(
+    () =>
+      maxWidth ? (
+        <Scrollbar style={{ whiteSpace: 'nowrap' }} maxWidth={maxWidth}>
+          <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+        </Scrollbar>
+      ) : (
+        <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+      ),
+    [children, fontSize, maxWidth]
+  );
 
   return (
     <S.CodeSnippetWrapperSingle fontSize={fontSize} className={className}>
       <S.ContentIconWrapper>
-        <S.BlockCodeWrapperSingle fontSize={fontSize}>{children}</S.BlockCodeWrapperSingle>
+        {withScrollbar}
         {iconElement}
       </S.ContentIconWrapper>
     </S.CodeSnippetWrapperSingle>

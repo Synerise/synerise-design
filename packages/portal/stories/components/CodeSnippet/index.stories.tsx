@@ -33,6 +33,7 @@ const getPropsSingle = () => ({
   tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
   fontSize: select('Set size', fontSizeOptions, fontSizeOptions.small),
   onCopy:action('onCopy action'),
+  maxWidth: boolean ('use maxWidth',false),
 });
 
 const getPropsInline = () => ({
@@ -59,11 +60,12 @@ const stories = {
     },
     'single-line': () => {
       const defaultProps = getPropsSingle();
+      const maxWidth = boolean ('use maxWidth',false);
       const props = {
         ...defaultProps
       } as object;
       return (
-        <div>
+        <div style={ maxWidth ? {maxWidth: '300px'} : null }>
         <CodeSnippet type={CodeSnippetType.SINGLE_LINE} {...props}/>
       </div>
     );

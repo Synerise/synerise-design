@@ -39,3 +39,4 @@ import Scrollbar from '@synerise/ds-scrollbar'
 | maxHeight | Optional max-height value                                            | string / number          | -       |
 | style     | Additional styles for scrollbar wrapper                              | React.CSSProperties      | -       |
 | withDnd   | Whether use DndScrollbar or VirtualScrollbar component               | boolean                  | false   |
+| maxWidth  | Optional max-width value                                             | string / number          | -       |

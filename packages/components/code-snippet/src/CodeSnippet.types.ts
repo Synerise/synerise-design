@@ -27,4 +27,5 @@ export interface CodeSnippetProps {
   wrap?: boolean;
   onExpand?: () => void;
   onCopy?: () => void;
+  maxWidth?: string | number;
 }

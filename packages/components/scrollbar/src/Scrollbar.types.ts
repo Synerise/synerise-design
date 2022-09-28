@@ -7,6 +7,7 @@ export type ScrollbarProps = {
   hasMore?: boolean;
   loading?: boolean;
   maxHeight?: string | number;
+  maxWidth?: string | number;
   style?: React.CSSProperties;
   fetchData?: () => void;
   onScroll?: (e: React.UIEvent) => void;
