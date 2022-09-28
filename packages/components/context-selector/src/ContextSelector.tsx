@@ -115,7 +115,6 @@ const ContextSelector: React.FC<ContextProps> = ({
             renderHoverTooltip: selectedItem
               ? (): JSX.Element => (
                   <InformationCard
-                    iconColor="grey"
                     icon={selectedItem.icon}
                     subtitle={selectedItem.name}
                     title={selectedItem.name.replace('_', ' ')}

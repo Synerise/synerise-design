@@ -29,7 +29,7 @@ export function getObjectName(name: string | null = '', text = ''): string | nul
 
 export function addIconColor(iconComponent: React.ReactNode, color: string): React.ReactElement {
   let iconElement = iconComponent as React.ReactElement;
-  if (isIconComponent(iconElement?.type) && !iconElement?.props?.color) {
+  if (iconElement && !iconElement?.props?.color) {
     iconElement = React.cloneElement(iconElement, { color });
   }
   return iconElement;
