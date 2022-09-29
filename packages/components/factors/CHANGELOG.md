@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.3...@synerise/ds-factors@0.15.4) (2022-09-29)
+
+
+### Bug Fixes
+
+* **factors:** fix and make prop optional ([d5d4cca](https://github.com/Synerise/synerise-design/commit/d5d4ccab0825318edf8129cd943acb0b904a27d6))
+
+
+
+
+
 ## [0.15.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.2...@synerise/ds-factors@0.15.3) (2022-09-28)
 
 

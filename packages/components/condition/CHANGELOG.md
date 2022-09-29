@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.37...@synerise/ds-condition@0.17.38) (2022-09-29)
+
+
+### Bug Fixes
+
+* **condition:** fix and make prop optional ([4a3ea75](https://github.com/Synerise/synerise-design/commit/4a3ea75713189ebc1090301f7d7a7c074a08c0a4))
+* **condition:** fix and make prop optional ([7cf2518](https://github.com/Synerise/synerise-design/commit/7cf2518fc60f0f54140c6cef132f2b95f07a3633))
+
+
+
+
+
 ## [0.17.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.17.36...@synerise/ds-condition@0.17.37) (2022-09-28)
 
 
