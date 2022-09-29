@@ -65,5 +65,5 @@ export type ConditionProps = {
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
-  inputProps: InputProps;
+  inputProps?: InputProps;
 };
