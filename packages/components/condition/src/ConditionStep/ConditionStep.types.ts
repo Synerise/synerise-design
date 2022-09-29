@@ -43,5 +43,5 @@ export type ConditionStepProps = {
   onDeactivate: () => void;
   showSuffix?: boolean;
   hoverDisabled?: boolean;
-  inputProps: InputProps;
+  inputProps?: InputProps;
 };
