@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.6.24...@synerise/ds-list@0.6.25) (2022-09-29)
+
+
+### Bug Fixes
+
+* **list:** invalid Divider margin ([ad4d08b](https://github.com/Synerise/synerise-design/commit/ad4d08bad334f6fd516b739e0d17b44572f72ba1))
+
+
+
+
+
 ## [0.6.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.6.23...@synerise/ds-list@0.6.24) (2022-09-21)
 
 **Note:** Version bump only for package @synerise/ds-list
