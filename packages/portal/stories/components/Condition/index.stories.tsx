@@ -18,6 +18,7 @@ import Button from '@synerise/ds-button';
 import ContextSelector from '@synerise/ds-context-selector';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
+import { action } from '@storybook/addon-actions';
 
 export const defaultTransforms = {
   transformStep: (step: ConditionStep): ConditionStep => step,
@@ -297,6 +298,7 @@ const stories = {
           onChangeOperator={setOperatorValue}
           onChangeFactorValue={setStepConditionFactorValue}
           onChangeFactorType={setStepConditionFactorType}
+          onDeactivate={action('On deactivate')}
           showSuffix={boolean('Display and suffix', true)}
           steps={store.state.steps.map(step =>
             transformStep({

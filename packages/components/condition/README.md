@@ -102,7 +102,7 @@ import Condition from '@synerise/ds-condition'
 ## API
 
 | Property                  | Description                                                   | Type                                                                                              | Default |
-| ---                       | ---                                                           | ---                                                                                               | ---     |
+|---------------------------|---------------------------------------------------------------|---------------------------------------------------------------------------------------------------| ---     |
 | addCondition              | Callback called when user adds new row of conditions          | (stepId: React.ReactText) => void                                                                 | -       |
 | removeCondition           | Callback called when user clicks on remove row of condtions   | (stepId: React.ReactText, conditionRowId: React.ReactText) => void                                | -       |
 | steps                     | Array contains all steps of condition                         | ConditionStep[]                                                                                   | -       |
@@ -122,7 +122,8 @@ import Condition from '@synerise/ds-condition'
 | onChangeFactorValue       | Callback called when user change value of condition factor    | (stepId: React.ReactText, conditionId: React.ReactText, value: OperatorsType \ undefined) => void | -       |
 | onChangeFactorType        | Callback called when user change type of condition factor     | (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType \ undefined) => void    | -       |
 | onUpdateStepName          | Callback called when user change the name of step condition   | (stepId: React.ReactText, value: string) => void                                                  | -       |
-| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement | null) => HTMLElement;                                                     | -       |
+| onDeactivate              | Callback called when user blur on of the condition inputs     | (stepId: React.ReactText, conditionId: string) => void                                            | -       |
+| getPopupContainerOverride | Popup container function for child tooltips and dropdowns     | (trigger: HTMLElement                                                                             | null) => HTMLElement;                                                     | -       |
 | defaultOpenedComponent    | Component which should be opened after render                 | 'subject' \ 'operator' \ 'factor' \ 'parameter' \ 'context'                                       | -       |
 | inputProps                | group of props from ds-factors types                          | InputProps                                                                                        | -       |
 
