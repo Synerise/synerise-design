@@ -740,6 +740,7 @@ const stories = {
         disabled={boolean('Disabled', false)}
         values={values}
         maxLength={number('Value Length', 10)}
+        onBlurHide={boolean('Reset inputs field value on blur event', false)}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);

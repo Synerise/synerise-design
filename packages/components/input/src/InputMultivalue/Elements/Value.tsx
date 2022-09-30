@@ -4,7 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from '../InputMultivalue.styles';
 import { Props } from './Value.types';
 
-const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }) => {
+const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused, onEditClick, removeIcon }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -19,15 +19,30 @@ const Value: React.FC<Props> = ({ disabled, key, onRemoveClick, value, focused }
       disabled={disabled}
       key={key}
       shrink={hovered}
+      onClick={onEditClick}
+      removeIcon={removeIcon}
     >
-      <Tooltip align={{ offset: [8, 0] }} offset="small" title={value} visible={focused && hovered}>
+      <Tooltip
+        overlayStyle={{ maxWidth: '400px' }}
+        align={{ offset: [8, 0] }}
+        offset="small"
+        title={value}
+        visible={focused && hovered}
+      >
         <S.ValueText shrink={hovered} disabled={disabled}>
           {value}
         </S.ValueText>
       </Tooltip>
-      <S.IconWrapper onClick={onRemoveClick}>
-        <Icon className="remove" component={<CloseS />} />
-      </S.IconWrapper>
+      {removeIcon && (
+        <S.IconWrapper
+          onClick={(e): void => {
+            onRemoveClick();
+            e.stopPropagation();
+          }}
+        >
+          <Icon className="remove" component={<CloseS />} />
+        </S.IconWrapper>
+      )}
     </S.ValueWrapper>
   );
 };

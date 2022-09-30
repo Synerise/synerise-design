@@ -12,4 +12,5 @@ export interface Props {
   onFocus?: () => void;
   onChange?: (values: React.ReactText[]) => void;
   maxLength?: number;
+  onBlurHide?: boolean;
 }

@@ -25,6 +25,11 @@ const contentShrinkStyle = (): FlattenSimpleInterpolation => css`
     white-space: nowrap;
   }
 `;
+const contentEditableStyle = (): FlattenSimpleInterpolation => css`
+  && {
+    max-width: calc(100% - 0px);
+  }
+`;
 const disabledStyled = (props: ThemeProps): FlattenSimpleInterpolation => css`
   &:hover,
   &,
@@ -95,18 +100,17 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   width: 100%;
   border-radius: 3px;
   display: flex;
-  padding: 2px 12px ;
+  padding: 2px 12px;
   min-height: 32px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   transition: 0.3s all;
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
   ${(props): string => (props.focus && !props.disabled ? focusStyle(props) : '')}
   ${(props): string => (props.error ? errorInputStyle(props) : '')}
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
-  
 `;
 
-export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`
+export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean; removeIcon?: boolean }>`
   display: grid;
   height: 24px;
   & {
@@ -135,12 +139,27 @@ text-overflow: ellipsis;
         display:block;
       }
 `}
+  ${(props): string | false =>
+    !!props.shrink &&
+    !props.removeIcon &&
+    `
+     ${ValueText} {
+       max-width: calc(100% - 0px);
+      }
+      ${IconWrapper} {
+        display:none;
+      }
+`}
+
   transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
   &:hover {
     background-color: ${(props): string => props.theme.palette['grey-200']};
     color: ${(props): string | false => !props.disabled && props.theme.palette['grey-800']};
     cursor: pointer;
     ${(props): FlattenSimpleInterpolation | false => !!props.shrink && !props.disabled && contentShrinkStyle()}
+    ${(props): FlattenSimpleInterpolation | false =>
+      !!props.shrink && !props.removeIcon && !props.disabled && contentEditableStyle()}
+    min-width: 40px;
   }
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
 `;
@@ -148,6 +167,12 @@ export const BorderLessInput = styled.input<{ disabled?: boolean }>`
   box-shadow: none;
   border: none;
   min-width: 0;
+  &:not(:last-child) {
+    padding-right: 4px;
+  }
+  &:not(:last-child) {
+    max-width: 70px;
+  }
   display: flex;
   flex: 1;
   margin-left: -8px;
