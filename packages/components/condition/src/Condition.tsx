@@ -54,6 +54,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     hoverDisabled,
     autoOpenedComponent = DEFAULT_FIELD,
     inputProps,
+    onDeactivate,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -230,10 +231,11 @@ const Condition: React.FC<T.ConditionProps> = props => {
   }, [addCondition]);
 
   const handleClearActiveCondition = React.useCallback(() => {
+    onDeactivate && onDeactivate(currentStepId, currentConditionId);
     setCurrentConditionId(DEFAULT_CONDITION);
     setCurrentStepId(DEFAULT_STEP);
     setCurrentField(DEFAULT_FIELD);
-  }, []);
+  }, [currentConditionId, currentStepId, onDeactivate]);
 
   return React.useMemo(() => {
     return (
