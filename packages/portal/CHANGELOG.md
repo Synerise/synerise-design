@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.168.0](https://github.com/synerise/synerise-design/compare/portal@0.167.2...portal@0.168.0) (2022-09-30)
+
+
+### Features
+
+* **condition:** adds onDeactivate prop for condition component ([d8a4365](https://github.com/synerise/synerise-design/commit/d8a43652345b026b8218ba387f1d9cc40ced8cbc))
+
+
+
+
+
 ## [0.167.2](https://github.com/synerise/synerise-design/compare/portal@0.167.1...portal@0.167.2) (2022-09-28)
 
 
