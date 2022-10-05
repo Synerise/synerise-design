@@ -113,9 +113,7 @@ const enhancedInput =
           )}
           <WrappedComponent
             {...antdInputProps}
-            {...(autoResize
-              ? { style: { width: `${antdInputProps.value && antdInputProps.value.toString().length + 1}3px` } }
-              : {})}
+            {...autoResize}
             className={hasErrorMessage || error ? 'error' : undefined}
             addonBefore={
               !!prefixel && (
@@ -153,6 +151,9 @@ export const TextArea = Object.assign(enhancedInput(Textarea, { type: 'textArea'
 export const Input = Object.assign(enhancedInput(S.AntdInput, { type: 'input' }), { displayName: 'Input' });
 export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type: 'input' }), {
   displayName: 'MaskedInput',
+});
+export const AutoResizeInput = Object.assign(enhancedInput(S.AutoResizeInput, { type: 'input' }), {
+  displayName: 'AutoSizeInput',
 });
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';

@@ -7,6 +7,7 @@ import {
   MaskedInput,
   InputMultivalue,
   RawMaskedInput,
+  AutoResizeInput,
 } from '@synerise/ds-input';
 
 import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
@@ -566,7 +567,6 @@ const stories = {
   },
   inputWithAutoResize: () => {
     const [value, setValue] = React.useState<string>('');
-    const autoResize = boolean('Set autoResize', true);
     const size = knobSelect('Set size', sizes as any, 'default');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
@@ -592,7 +592,7 @@ const stories = {
     };
 
     return (
-      <Input
+      <AutoResizeInput
         size={size}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
@@ -610,7 +610,7 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
+        autoResize={{maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },

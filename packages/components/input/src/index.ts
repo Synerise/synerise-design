@@ -10,5 +10,6 @@ export {
   MaskedInput,
   InputMultivalue,
   RawMaskedInput,
+  AutoResizeInput,
 } from './Input';
 export type { EnhancedProps };

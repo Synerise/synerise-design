@@ -1,10 +1,11 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
+import AutosizeInput from 'react-input-autosize';
 
 export type AutoResizeProps = {
   autoResize?: boolean | { minWidth: string; maxWidth: string };
@@ -16,6 +17,17 @@ const errorInputStyle = (props: ThemeProps): string => `
     box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
     background: ${props.theme.palette['red-050']};
   }
+`;
+const errorAutoSizeInputStyle = (props: ThemeProps): string => `
+    border-color: ${props.theme.palette['red-600']};
+    box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+    background: ${props.theme.palette['red-050']};
+`;
+const active = (): FlattenInterpolation<ThemeProps> => css`
+  transition: ease-in-out all 0.2s;
+  box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
+  border: 1px solid ${(props): string => props.theme.palette['blue-600']};
+  background-color: ${(props): string => props.theme.palette['blue-050']};
 `;
 function autoresizeConfObjToCss({
   autoResize,
@@ -37,6 +49,11 @@ export const OuterWrapper = styled.div<{
   &.active {
     && {
       input {
+        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
+        border-color: ${(props): string => props.theme.palette['blue-600']};
+        background-color: ${(props): string => props.theme.palette['blue-050']};
+      }
+      > .autosize-input {
         box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
         border-color: ${(props): string => props.theme.palette['blue-600']};
         background-color: ${(props): string => props.theme.palette['blue-050']};
@@ -184,6 +201,45 @@ export const AntdTextArea = styled(
 
   && {
     color: ${(props): string => props.theme.palette['grey-700']};
+  }
+`;
+export const AutoResizeInput = styled(
+  React.forwardRef<AutosizeInput, { error?: boolean }>(
+    // eslint-disable-next-line
+    ({ error, ...props }) => (
+      // eslint-disable-next-line
+      <AutosizeInput {...props} />
+    )
+  )
+)<{ error?: boolean; autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
+  input {
+    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+    ${(props): string => (props.error ? errorAutoSizeInputStyle(props) : '')};
+    border-radius: 4px;
+    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
+    padding: 6px 12px 6px 13px;
+    color: ${(props): string => props.theme.palette['grey-600']};
+    ::placeholder {
+      line-height: 1.29;
+      color: ${(props): string => props.theme.palette['grey-500']};
+    }
+    &:hover {
+      transition: ease-in-out all 0.2s;
+      border: 1px solid ${(props): string => props.theme.palette['grey-400']};
+      &:disabled {
+        cursor: not-allowed;
+        border: 1px solid ${(props): string => props.theme.palette['grey-300']};
+      }
+    }
+    &.active {
+      ${active()}
+    }
+    &:focus {
+      ${active()}
+      &:hover {
+        ${active()}
+      }
+    }
   }
 `;
 
