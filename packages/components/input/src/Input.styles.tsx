@@ -53,11 +53,6 @@ export const OuterWrapper = styled.div<{
         border-color: ${(props): string => props.theme.palette['blue-600']};
         background-color: ${(props): string => props.theme.palette['blue-050']};
       }
-      > .autosize-input {
-        box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
-        border-color: ${(props): string => props.theme.palette['blue-600']};
-        background-color: ${(props): string => props.theme.palette['blue-050']};
-      }
     }
   }
   input {

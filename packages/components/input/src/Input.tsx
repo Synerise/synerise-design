@@ -153,7 +153,7 @@ export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type
   displayName: 'MaskedInput',
 });
 export const AutoResizeInput = Object.assign(enhancedInput(S.AutoResizeInput, { type: 'input' }), {
-  displayName: 'AutoSizeInput',
+  displayName: 'AutoResizeInput',
 });
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
