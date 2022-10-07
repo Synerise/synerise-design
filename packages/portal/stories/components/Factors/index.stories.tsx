@@ -24,10 +24,10 @@ const stories = {
       <Factors
         selectedFactorType={store.state.selectedFactorType}
         setSelectedFactorType={setSelectedFactor}
-        inputProps={{autoResize: boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
+        inputProps={{autoResize: boolean('Set width of autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
         value={store.state.value}
         onChangeValue={changeHandler}
-        textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
+        textType={select('Select type of text input', ['autocomplete','autoresize', 'expansible', 'default'], 'default')}
         defaultFactorType="text"
         autocompleteText={{
           options: ['First name', 'Last name', 'City', 'Age', 'Points'],
