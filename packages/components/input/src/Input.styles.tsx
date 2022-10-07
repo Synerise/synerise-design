@@ -24,7 +24,7 @@ const errorAutoSizeInputStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['red-050']};
 `;
 const active = (): FlattenInterpolation<ThemeProps> => css`
-  transition: ease-in-out all 0.2s;
+  transition: box-shadow 0.2s ease-in-out;
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
   border: 1px solid ${(props): string => props.theme.palette['blue-600']};
   background-color: ${(props): string => props.theme.palette['blue-050']};
@@ -211,7 +211,6 @@ export const AutoResizeInput = styled(
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
     ${(props): string => (props.error ? errorAutoSizeInputStyle(props) : '')};
     border-radius: 3px;
-    transition: all 0.3s;
     font-size: 13px;
     line-height: 17px;
     ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
@@ -221,7 +220,6 @@ export const AutoResizeInput = styled(
       color: ${(props): string => props.theme.palette['grey-500']};
     }
     &:hover {
-      transition: ease-in-out all 0.2s;
       border: 1px solid ${(props): string => props.theme.palette['grey-400']};
       &:disabled {
         cursor: not-allowed;
