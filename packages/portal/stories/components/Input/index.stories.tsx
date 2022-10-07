@@ -107,9 +107,6 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
-    const autoResize = boolean('Set autoResize', false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
 
     return (
       <Input
@@ -136,7 +133,6 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },
@@ -618,9 +614,6 @@ const stories = {
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
     const suffixLabelText = text('Set suffix label text', 'Suffix');
-    const autoResize = boolean('Set autoResize', false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
 
     return (
       <Input
@@ -633,7 +626,6 @@ const stories = {
         value={value}
         prefixel={renderAddonComponent(prefixType, prefixLabelText)}
         suffixel={renderAddonComponent(suffixType, suffixLabelText)}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },

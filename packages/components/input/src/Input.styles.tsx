@@ -210,12 +210,14 @@ export const AutoResizeInput = styled(
   input {
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
     ${(props): string => (props.error ? errorAutoSizeInputStyle(props) : '')};
-    border-radius: 4px;
+    border-radius: 3px;
+    transition: all 0.3s;
+    font-size: 13px;
+    line-height: 17px;
     ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
-    padding: 6px 12px 6px 13px;
+    padding: 7px 12px 6px;
     color: ${(props): string => props.theme.palette['grey-600']};
     ::placeholder {
-      line-height: 1.29;
       color: ${(props): string => props.theme.palette['grey-500']};
     }
     &:hover {
