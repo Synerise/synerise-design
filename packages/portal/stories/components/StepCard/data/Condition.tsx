@@ -283,7 +283,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       minConditionsLength={1}
       maxConditionsLength={10}
       autoClearCondition
-      inputProps={{autoResize: boolean('Set autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
+      inputProps={{autoResize: boolean('Set width of autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
       addCondition={addStepCondition}
       removeCondition={removeStepCondition}
       onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
@@ -343,7 +343,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             defaultFactorType: 'text',
             // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
             // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-            textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
+            textType: select('Select type of text input', ['autocomplete','autoresize','expansible', 'default'], 'default'),
             autocompleteText: {
               options: ['First name', 'Last name', 'City', 'Age', 'Points'],
             },
