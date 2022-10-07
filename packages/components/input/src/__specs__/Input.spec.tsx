@@ -244,4 +244,5 @@ describe('Input', () => {
       expect(getByText(ICON_PLACEHOLDER_2)).toBeTruthy();
     });
   });
+  it.todo('resize accordingly to the input text width up to given width if prop autoResize')
 });

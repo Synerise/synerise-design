@@ -7,6 +7,7 @@ import {
   MaskedInput,
   InputMultivalue,
   RawMaskedInput,
+  AutoResizeInput,
 } from '@synerise/ds-input';
 
 import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
@@ -106,9 +107,6 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
-    const autoResize = boolean('Set autoResize', false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
 
     return (
       <Input
@@ -135,7 +133,6 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },
@@ -566,8 +563,6 @@ const stories = {
   },
   inputWithAutoResize: () => {
     const [value, setValue] = React.useState<string>('');
-    const autoResize = boolean('Set autoResize', true);
-    const size = knobSelect('Set size', sizes as any, 'default');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
@@ -592,8 +587,7 @@ const stories = {
     };
 
     return (
-      <Input
-        size={size}
+      <AutoResizeInput
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -610,7 +604,7 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
+        autoResize={{maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },
@@ -620,9 +614,6 @@ const stories = {
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.none);
     const suffixLabelText = text('Set suffix label text', 'Suffix');
-    const autoResize = boolean('Set autoResize', false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
 
     return (
       <Input
@@ -635,7 +626,6 @@ const stories = {
         value={value}
         prefixel={renderAddonComponent(prefixType, prefixLabelText)}
         suffixel={renderAddonComponent(suffixType, suffixLabelText)}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },
