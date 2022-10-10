@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
-import { Input } from '@synerise/ds-input';
+import { AutoResizeInput, Input } from '@synerise/ds-input';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 
@@ -85,10 +85,9 @@ const TextInput: React.FC<InputProps> = ({
       []
     );
   }, [localValue, autocompleteText]);
-
-  return (
-    <S.TextWrapper>
-      {factorType === 'text' && textType === 'autocomplete' ? (
+  const renderInput = (typesOfInput: typeof textType, factorsType: typeof factorType): React.ReactNode => {
+    if (typesOfInput === 'autocomplete' && factorsType === 'text') {
+      return (
         <Autocomplete
           placeholder={texts.valuePlaceholder}
           value={localValue as string}
@@ -104,7 +103,10 @@ const TextInput: React.FC<InputProps> = ({
             </Autocomplete.Option>
           ))}
         </Autocomplete>
-      ) : (
+      );
+    }
+    if (typesOfInput === 'default' && factorsType === 'text') {
+      return (
         <S.InputWrapper>
           <Input
             {...inputProps}
@@ -117,7 +119,27 @@ const TextInput: React.FC<InputProps> = ({
             error={localError || error}
           />
         </S.InputWrapper>
-      )}
+      );
+    }
+    if (typesOfInput === 'autoresize' && factorsType === 'text') {
+      return (
+        <AutoResizeInput
+          {...inputProps}
+          handleInputRef={setInputRef}
+          placeholder={texts.valuePlaceholder}
+          value={localValue as string}
+          onChange={handleChange}
+          onBlur={onDeactivate}
+          error={localError || error}
+        />
+      );
+    }
+    return null;
+  };
+
+  return (
+    <S.TextWrapper>
+      {renderInput(textType, factorType)}
       <TextModal
         visible={openExpanseEditor}
         onCancel={(): void => setOpenExpanseEditor(false)}
