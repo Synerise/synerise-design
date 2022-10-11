@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.168.1](https://github.com/synerise/synerise-design/compare/portal@0.168.0...portal@0.168.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* **condition:** fix knob inputProps ([d7c5de1](https://github.com/synerise/synerise-design/commit/d7c5de1f144b6c16dab4d77370ad624958640689))
+* **factors:** add input AutoResize to pick from inputs ([f641612](https://github.com/synerise/synerise-design/commit/f641612ab4e109da277b8618d7b09e1f07505c0c))
+* **input:** add new component input autoresize ([c330c02](https://github.com/synerise/synerise-design/commit/c330c02f67f61352304497e5b0e84b3f95c3e6ee))
+* **input:** fix style of text in input ([28bc966](https://github.com/synerise/synerise-design/commit/28bc966a5c62200bbc4ccdfc6dfdbaecf40a6107))
+* **input:** remove knob size ([9eb9655](https://github.com/synerise/synerise-design/commit/9eb96556dd829e65c7d82b3edbc6a417946db77f))
+
+
+
+
+
 # [0.168.0](https://github.com/synerise/synerise-design/compare/portal@0.167.2...portal@0.168.0) (2022-09-30)
 
 
