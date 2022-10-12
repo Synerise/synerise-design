@@ -62,12 +62,13 @@ const stories = {
         onItemAdd={value => ({
           text: value,
         })}
-        onSelect={item => {
+        onItemSelect={item => {
+          console.log('onItemSelect');
           if (!selected.find(i => i.text === item.text)) {
             setSelected([...selected, item]);
           }
         }}
-        onDeselect={item => {
+        onItemDeselect={item => {
           setSelected(selected.filter(i => i.text !== item.text));
         }}
         onCancel={() => setSelected([])}
@@ -79,8 +80,9 @@ const stories = {
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
-        onConfirm={() => setSelected([])}
-      />
+        onConfirm={() => setSelected(selected)}
+
+  />
     );
   },
 };

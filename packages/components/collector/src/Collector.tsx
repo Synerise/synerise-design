@@ -53,6 +53,10 @@ const Collector: React.FC<CollectorProps> = ({
   const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
+  React.useEffect(() => {
+    setSelectedValues(selected);
+  }, [selected]);
+
   const [filteredSuggestions, setFilteredSuggestions] = React.useState<CollectorValue[]>(suggestions || []);
 
   const filterLookupKey = React.useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
@@ -82,7 +86,7 @@ const Collector: React.FC<CollectorProps> = ({
     setFilteredSuggestions(suggestions || []);
     !searchValue && allowMultipleValues && setValue('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
+  }, [allowMultipleValues, allowCustomValue, selected]);
 
   React.useEffect(() => {
     if (searchValue !== undefined && searchValue !== null) {
@@ -220,7 +224,7 @@ const Collector: React.FC<CollectorProps> = ({
           focus={isFocused}
         >
           <Values
-            values={selectedValues}
+            values={selected}
             onDeselect={onItemDeselect}
             focused={isFocused}
             disabled={!!disabled}
