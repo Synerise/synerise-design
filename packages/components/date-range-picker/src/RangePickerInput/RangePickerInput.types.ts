@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DateFilter, DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 
-export type Props = {
+export type RangePickerInputProps = {
   size?: 'large' | 'default' | 'small';
   format?: string;
   showTime?: boolean;
@@ -25,4 +25,10 @@ export type Props = {
   tooltip?: string | React.ReactNode;
   error?: boolean;
   errorText?: React.ReactNode | string;
+  preferRelativeDesc?: boolean;
 };
+
+/**
+ * @deprecated use `RangePickerInputProps`
+ */
+export type Props = RangePickerInputProps;

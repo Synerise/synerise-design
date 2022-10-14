@@ -2,14 +2,15 @@ import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
-import { Props } from './TimestampRange.types';
+import { TimestampRangeProps as Props } from './TimestampRange.types';
 import ADD from '../../../dateUtils/add';
 import START_OF from '../../../dateUtils/startOf';
 import END_OF from '../../../dateUtils/endOf';
 import DIFFERENCE from '../../../dateUtils/difference';
 import { DURATION_MODIFIERS } from '../../../constants';
-import { RelativeUnits, Duration } from '../../../date.types';
+import { RelativeUnits, Duration, RelativeDateRange } from '../../../date.types';
 import { fnsIsAfter } from '../../../fns';
+import { DEFAULT_RANGE } from '../../../utils';
 
 const TimestampRange: React.FC<Props> = ({
   currentRange,
@@ -17,11 +18,19 @@ const TimestampRange: React.FC<Props> = ({
   handleChange,
   texts,
   onTimestampChange,
+  getValueOnReset = (): RelativeDateRange => ({
+    ...DEFAULT_RANGE,
+    type: 'RELATIVE',
+    offset: { type: 'SINCE', value: new Date() as any as number },
+    duration: { type: 'DAYS', value: 30 },
+  }),
   timestamp,
 }: Props) => {
-  const [durationModifier, setDurationModifier] = React.useState<string>(DURATION_MODIFIERS.LAST);
-  const [durationValue, setDurationValue] = React.useState<number>(currentRange.duration.value);
-  const [durationUnit, setDurationUnit] = React.useState<string>(currentRange.duration.type);
+  const [durationModifier, setDurationModifier] = React.useState<
+    typeof DURATION_MODIFIERS.LAST | typeof DURATION_MODIFIERS.NEXT
+  >(DURATION_MODIFIERS.LAST);
+  const [durationValue, setDurationValue] = React.useState<number>(currentRange?.duration?.value);
+  const [durationUnit, setDurationUnit] = React.useState<string>(currentRange?.duration?.type);
   const [error, setError] = React.useState<boolean>(!timestamp);
 
   React.useEffect(() => {
@@ -33,27 +42,36 @@ const TimestampRange: React.FC<Props> = ({
       const NOW = new Date();
       let rangeStart, newOffset, offsetToTimestamp;
       const future = fnsIsAfter(NOW, date);
-      if (durationModifier === DURATION_MODIFIERS.NEXT) {
+      const isSince = currentGroup === 'SINCE';
+      if (isSince) {
+        offsetToTimestamp = {
+          future: durationModifier === DURATION_MODIFIERS.NEXT,
+          duration: { type: duration.type, value: duration.value },
+          offset: { type: 'SINCE', value: timestamp },
+          key: undefined,
+        };
+      } else if (durationModifier === DURATION_MODIFIERS.NEXT) {
         rangeStart = END_OF[duration.type](ADD[duration.type](date, -Number(future)));
         newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
         offsetToTimestamp = {
+          future: true,
           ...currentRange,
           duration: { type: duration.type, value: duration.value },
           offset: { type: duration.type, value: newOffset - duration.value },
           key: undefined,
         };
-      }
-      if (durationModifier === DURATION_MODIFIERS.LAST) {
+      } else if (durationModifier === DURATION_MODIFIERS.LAST) {
         rangeStart = START_OF[duration.type](ADD[duration.type](date, -Number(future)));
         newOffset = DIFFERENCE[duration.type](NOW, rangeStart);
         offsetToTimestamp = {
+          future: false,
           ...currentRange,
           duration: { type: duration.type, value: duration.value },
           offset: { type: duration.type, value: newOffset },
           key: undefined,
         };
       }
-      offsetToTimestamp && handleChange(offsetToTimestamp);
+      offsetToTimestamp && handleChange(offsetToTimestamp as any); // FIXME
     }
   };
 
@@ -76,7 +94,7 @@ const TimestampRange: React.FC<Props> = ({
             onTimestampChange && onTimestampChange(date);
           }}
           onClear={(): void => {
-            onTimestampChange && onTimestampChange(undefined);
+            onTimestampChange && onTimestampChange(getValueOnReset() as any); // FIXME cannot reselect date after clearing
           }}
           dropdownProps={{
             getPopupContainer: (node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
@@ -114,7 +132,7 @@ const TimestampRange: React.FC<Props> = ({
         unit={durationUnit}
         durationModifier={durationModifier}
         onDurationModifierChange={(modifier): void => {
-          setDurationModifier(modifier);
+          setDurationModifier(modifier as any); // FIXME
         }}
         texts={texts}
       />

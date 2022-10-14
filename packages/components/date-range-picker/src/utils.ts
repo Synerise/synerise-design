@@ -12,9 +12,12 @@ import START_OF from './dateUtils/startOf';
 import END_OF from './dateUtils/endOf';
 import { Texts } from './DateRangePicker.types';
 
+export { START_OF, END_OF };
+
 export const normalizeRange = (range: DateRange): DateRange => {
+  console.log('src/utils.tsx normalizeRange range keys', Object.keys(range || {}), range);
   if (!range || !range.type) {
-    return { type: ABSOLUTE, from: undefined, to: undefined };
+    return { type: ABSOLUTE, from: undefined };
   }
   if (range.type === RELATIVE) {
     const { future, offset, duration } = range;
@@ -22,7 +25,15 @@ export const normalizeRange = (range: DateRange): DateRange => {
     let left;
     let right;
 
-    if (future) {
+    if (offset?.type === 'SINCE') {
+      if (future) {
+        left = offset.value;
+        right = ADD[duration.type](offset.value, duration.value);
+      } else {
+        left = ADD[duration.type](offset.value, -duration.value);
+        right = offset.value;
+      }
+    } else if (future) {
       left = ADD[offset.type](START_OF[offset.type](now), offset.value);
       right = ADD[duration.type](END_OF[duration.type](left), duration.value - 1);
     } else {
@@ -35,10 +46,15 @@ export const normalizeRange = (range: DateRange): DateRange => {
     const normalizedRange = { ...range, type: RELATIVE, from, to, offset, duration, future };
     return normalizedRange as DateRange;
   }
+  const keys = Object.keys(range);
   const from = range.from ? legacyParse(range.from) : undefined;
   const to = range.to ? legacyParse(range.to) : undefined;
-  const dropNonAbsolute = (dateRange: DateRange): DateRange => omit(dateRange, ['offset', 'duration']) as DateRange;
+  const dropNonAbsolute = (dateRange: DateRange): DateRange =>
+    omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
   const absoluteRange = { ...dropNonAbsolute(range), from, to };
+  if (!keys.includes('from') && !keys.includes('to')) {
+    absoluteRange.translationKey = 'allTime';
+  }
   return absoluteRange;
 };
 const getIntlMessage = (textMessageId: string, intl: IntlShape, areDefaultTextsDisabled?: boolean): string =>

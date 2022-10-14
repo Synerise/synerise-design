@@ -14,7 +14,6 @@ const DateRangePicker: React.FC<Props> = props => {
     value,
     onApply,
     showTime,
-    onValueChange,
     texts,
     popoverTrigger,
     forceAdjacentMonths,
@@ -22,6 +21,8 @@ const DateRangePicker: React.FC<Props> = props => {
     arrowColor,
     onVisibleChange,
     popoverProps = {},
+    rangePickerInputProps = {},
+    renderPopoverTrigger = (): void => undefined,
   } = props;
   const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(false);
@@ -45,13 +46,6 @@ const DateRangePicker: React.FC<Props> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const onValueChangeCallback = React.useCallback(
-    (val: Partial<DateFilter> | undefined): void => {
-      onValueChange && onValueChange(val);
-      setSelectedDate(val as DateRange);
-    },
-    [onValueChange]
-  );
   const onApplyCallback = React.useCallback(
     (val: Partial<DateFilter> | undefined): void => {
       onApply && onApply(val);
@@ -73,7 +67,6 @@ const DateRangePicker: React.FC<Props> = props => {
             {...props}
             showTime={showTime}
             onApply={onApplyCallback}
-            onValueChange={onValueChangeCallback}
             value={selectedDate}
             texts={allTexts}
             forceAdjacentMonths={forceAdjacentMonths}
@@ -90,14 +83,15 @@ const DateRangePicker: React.FC<Props> = props => {
         {...popoverProps}
         {...conditionalVisibilityProps}
       >
-        {popoverTrigger || (
+        {popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
           <RangePickerInput
             onClick={(): void => setPopupVisible(undefined)}
             value={selectedDate}
             showTime={showTime}
             texts={allTexts}
-            onChange={onValueChangeCallback}
+            onChange={onApplyCallback}
             active={!!inputActive}
+            {...rangePickerInputProps}
           />
         )}
       </S.PopoverWrapper>

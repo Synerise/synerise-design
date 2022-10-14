@@ -32,6 +32,8 @@ import {DateFilter, DateRange, RelativeDateRange} from "@synerise/ds-date-range-
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import styled from "styled-components";
+import { utils } from '@synerise/ds-date-range-picker';
+
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
@@ -135,6 +137,54 @@ const optionValues: Record<string, DateRange> = {
     type: ABSOLUTE,
     from: new Date('invalid date'),
   },
+  'custom-last-30-days': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.DAYS, value: 1 },
+    duration: { type: CONST.DAYS, value: 30 },
+  },
+  'custom-last-month': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.MONTHS, value: 0 },
+    duration: { type: CONST.MONTHS, value: 1 },
+  },
+  'custom-second-but-last-month': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.MONTHS, value: 1 },
+    duration: { type: CONST.MONTHS, value: 1 },
+  },
+  'custom-next-second-but-first-month': {
+    type: RELATIVE,
+    future: true,
+    offset: { type: CONST.MONTHS, value: 1 },
+    duration: { type: CONST.MONTHS, value: 1 },
+  },
+  'custom-this-week': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.WEEKS, value: 0 },
+    duration: { type: CONST.WEEKS, value: 1 },
+  },
+  'custom-last-week': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.WEEKS, value: 1 },
+    duration: { type: CONST.WEEKS, value: 1 },
+  },
+  'custom-second-but-last-week': {
+    type: RELATIVE,
+    future: false,
+    offset: { type: CONST.WEEKS, value: 2 },
+    duration: { type: CONST.WEEKS, value: 1 },
+  },
+  'custom-next-week': {
+    type: RELATIVE,
+    future: true,
+    offset: { type: CONST.WEEKS, value: 0 },
+    duration: { type: CONST.WEEKS, value: 1 },
+  },
   'invalid-relative': {
     type: RELATIVE,
     future: false,
@@ -151,6 +201,17 @@ const optionValues: Record<string, DateRange> = {
     from: new Date('Jan 1, 2022 00:00 GMT+1'),
     to: new Date('Jan 7, 2022 23:59:59 GMT+1'),
   },
+  'since 2023q1': {
+    type: RELATIVE,
+    duration: {
+      type: 'DAYS',
+      value: 14,
+    },
+    offset: {
+      type: 'SINCE',
+      value: new Date(new Date(2023, 0, 1).getTime() + (new Date(2024, 0, 1).getTime() - new Date(2023, 0, 1).getTime()) * 1 /4),
+    },
+  },
 }
 
 const buildSelectKnobOptions = (optionValues) => {
@@ -158,9 +219,15 @@ const buildSelectKnobOptions = (optionValues) => {
 }
 
 const stories = {
-  default: () => {
-    const value = {...optionValues[select('Initial date (requires enabled destroying on hide)', buildSelectKnobOptions(optionValues), 'undefined')]}
-    value.translationKey = value.translationKey ?? value.key?.toLowerCase();
+  default: injectIntl(({intl}) => {
+    const initialValue = {...optionValues[select('Initial date (requires opening canvas in new window)', buildSelectKnobOptions(optionValues), 'undefined')]}
+    initialValue.translationKey = initialValue.translationKey ?? initialValue.key?.toLowerCase();
+
+    const showValue = boolean('Print current value', false) || undefined;
+    const [value, setValue] = React.useState<DateRange>(initialValue);
+    if (value) {
+      value.translationKey = value.translationKey ?? value.key?.toLowerCase();
+    }
     const showTime = boolean('Set showTime', true);
     const setCustomArrowColor = boolean('Set custom arrow color', false);
     const topPlacementOfPopover = select('Bottom arrow color', CUSTOM_COLORS, 'grey');
@@ -179,7 +246,7 @@ const stories = {
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
       FUTURE: boolean('Set relative future mode', true),
-      SINCE: boolean('Set relative since mode', true),
+      SINCE: boolean('Set relative since mode', false),
     };
     const getRelativeModes = (modesObject: object) => {
       const keys = Object.keys(modesObject);
@@ -189,9 +256,18 @@ const stories = {
     const forceAbsolute = boolean('Force absolute date on apply', false);
     const showRelativePicker = boolean('Set relative filter', true);
     const showFilter = boolean('Show relative date-hours-filter', false);
-    return (
+    const disableAbsoluteTimepickerInRelative = boolean('Disable time-picker for relative dates (so no hidden convertion to an absolute date)', false);
+    const rangePickerInputProps = {
+      preferRelativeDesc: boolean('Prefer descriptive relative dates', false),
+    };
+    const twice = boolean('Render twice', false);
+    const customTrigger = boolean('Custom trigger', false);
+    const datePicker = (<>
       <DateRangePicker
-        onApply={action('OnApply')}
+        onApply={(v)=> {
+          action('OnApply')(v)
+          setValue(v)
+        }}
         showTime={showTime}
         value={value}
         relativeFuture
@@ -203,9 +279,20 @@ const stories = {
         arrowColor={setCustomArrowColor && additionalMapper}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
+        disableAbsoluteTimepickerInRelative={disableAbsoluteTimepickerInRelative}
+        rangePickerInputProps={rangePickerInputProps}
+        {...customTrigger ? {popoverTrigger: <button>{JSON.stringify(value, null, 2)}</button>} : {}}
       />
-    );
-  },
+      {showValue && <pre>{JSON.stringify(value, null, 2)}</pre>}
+    </>);
+    if (twice) {
+      return (<div>
+        {datePicker}
+        {datePicker}
+      </div>);
+    }
+    return datePicker;
+  }),
   lifetimeByDefault: () => {
     const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME)
     const DateRangePicker = injectIntl(RawDateRangePicker);
@@ -216,6 +303,57 @@ const stories = {
       value={value}
       onApply={action('OnApply')}
     />);
+  },
+  relativeDates: () => {
+    const Table = styled.table`
+      td {
+        white-space: nowrap;
+        padding: 4px 12px;
+        text-align: right;
+      }
+      td.opacity {
+        opacity: 0.5;
+      }
+    `;
+    const presets = optionValues;
+    const now = new Date()
+    const dateStr = (date: Date) => {
+      try {
+        return JSON.stringify({
+          utc: date?.toUTCString(),
+          iso: date?.toISOString(),
+          str: date?.toString(),
+          locale: date?.toLocaleString(),
+        }, null, 2)
+      } catch (e) {
+        return e
+      }
+    }
+    return (<>
+      <Table style={{width: '600px'}}>
+        <thead>
+        <tr>
+          <td>relative date range</td>
+          <td></td>
+          <td>value.from</td>
+          <td>value.to</td>
+          <td>ending month of date-range-end</td>
+        </tr>
+        </thead>
+        <tbody>
+        {Object.entries(presets).map(([k, e]) => {
+          const dateRange = utils.normalizeRange(e)
+          return (<tr>
+            <td title={JSON.stringify(e, null, 2)}>{k}</td>
+            <td className="opacity"></td>
+            <td><div title={dateStr(dateRange?.from)}>{dateRange?.from?.toLocaleString()}</div></td>
+            <td><div title={dateStr(dateRange?.to)}>{dateRange?.to?.toLocaleString()}</div></td>
+            <td className="opacity"><div title={dateStr(dateRange?.to)}>{utils.END_OF['MONTHS'](dateRange?.to)?.toLocaleString()}</div></td>
+          </tr>)
+          })}
+        </tbody>
+      </Table>
+    </>)
   },
   withCustomTrigger: () => {
     const value = undefined;

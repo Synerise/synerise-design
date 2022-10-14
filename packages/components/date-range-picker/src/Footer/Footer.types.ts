@@ -8,7 +8,7 @@ export type Props = {
   value?: DateRange;
   canApply?: boolean;
   canSwitchMode?: boolean;
-  onApply?: (date?: Date | undefined) => void;
+  onApply?: (date?: Date | DateRange | undefined) => void;
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;

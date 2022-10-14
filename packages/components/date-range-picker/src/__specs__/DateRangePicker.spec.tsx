@@ -9,6 +9,8 @@ import { fireEvent, waitFor } from "@testing-library/react";
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
+import { isLifetime } from "../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown";
+import { normalizeRange } from "../utils";
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -274,4 +276,52 @@ describe('DateRangePicker', () => {
   it.todo('all relative modes (including lifetime) mode make apply button enabled');
   it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
   it.todo('relative range addon should be formatted accordingly to provided styles even if base styled are imported');
+  it.todo('when in ALL_TIME - time picker should be disabled');
+  it.todo('if time picker is shown - switching to Lifetime switches to MODE.DATE');
+  it.todo('transformed value with valueTransformer is selected in RangesDropdown');
+  it.todo('transformed Lifetime value can be applied');
+  it.todo('lifetime is after transformation is properly displayed in the footer');
+  it.todo('onApply emits transformedValue');
+  it.todo('default value is not recognized as lifetime');
+  it.todo('ALL_TIME should emit only type: absolute and no other keys'/*, () => {
+    const valueFromRelativeDateRangeAddon: DateRange = {
+      "key": "ALL_TIME",
+      "translationKey": "allTime",
+      "type": "ABSOLUTE",
+      "future": false
+    }
+    expect(defaultValueTransformer).toDeepEqual({"type": "ABSOLUTE"})
+  }*/);
+  it.todo('clicking button DATE-PICKER.NOW sets the type to absolute');
+  it.todo('RangePicker is able to render relative dates (decorate with relativeToAbsolute)');
+  it.skip('selecting last x days/months automatically switches to selected date');
+  it.skip('months view, year view highlights selected (even relative) date range');
+  it.skip('clicking NOW when replaces translationKey to `now`');
+  it.skip('from, to are optional (lifetime option does not have them by definition)');
+  it.skip('selecting time when selected relative date-range gets reset to an absolute date-range');
+  it.skip('future is not preserved when switching from relative date to lifetime');
+  it.skip('can click on select-time when lifetime');
+  // it.skip('switch a whole month view at least to the month of the selected date (e.g. when last 3 months)') // TODO
+  it.skip('can clear both relative and absolute dates');
+  it.skip('LAST_MONTH (normalizeRange) returns proper range', /* () => {
+    const date = RELATIVE_PRESETS.find(e => e.key === 'LAST_MONTH')
+    const dateRange = normalizeRange(date)
+    expect(isLifetime(dateRange)).toBeTruthy()
+  } */);
+  it.skip('clicking button calls onApply with the current value');
+  it.skip('custom range properly calculates finishing date (end of the month, if month date, normalizeRange)');
+  it.todo('range gets updated to show selected visible');
+  it.todo('onChange is called only when apply button is clicked');
+  it.todo('right side should not be earlier than left side');
+  it.todo('month is extended to the end of the month if duration is a type of month');
+  it.todo('the default value is distinguishable from lifetime (no from nor to property)');
+  it.todo('LAST_MONTH selects all days in a month');
+  it.todo('LAST_MONTH (with option before n days) not necessarily selects a whole month');
+  it.todo('changing to custom mode should enforce currentRange.type=RELATIVE');
+  it.todo('clearing relative custom SINCE should reset value to non-undefined (and what follows - preserve custom view)');
+  it.todo('SINCE is usnig durationModifier == LAST');
+  it.todo('sinceTimestamp in SINCE is actually emitted');
+  it.todo('date type SINCE can be passed to onApply (isValid)');
+  it.todo('SINCE dateFilter value has future prop indicating whether it is next or last');
+  it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
 });

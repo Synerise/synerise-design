@@ -3,7 +3,7 @@ import { AbsoluteDateRange, RelativeDateRange, RelativeUnits, RangeKey } from '.
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
 export const HOURS = 'HOURS';
-export const DAYS = 'DAYS';
+export const DAYS = 'DAYS' as RelativeUnits;
 export const WEEKS = 'WEEKS';
 export const MONTHS = 'MONTHS';
 export const YEARS = 'YEARS';
@@ -25,7 +25,7 @@ export const CUSTOM_RANGE_KEY = 'custom';
 export const DURATION_MODIFIERS = {
   LAST: 'timestampLast',
   NEXT: 'timestampNext',
-};
+} as const;
 
 export const RELATIVE_PRESETS: RelativeDateRange[] = [
   {

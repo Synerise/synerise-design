@@ -1,6 +1,18 @@
 import * as React from 'react';
+import type startOf from './dateUtils/startOf';
+import type endOf from './dateUtils/endOf';
 
-export type RelativeUnits = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS';
+export type RelativeUnits =
+  | 'SECONDS'
+  | 'MINUTES'
+  | 'HOURS'
+  | 'DAYS'
+  | 'WEEKS'
+  | 'MONTHS'
+  | 'YEARS'
+  | 'SINCE'
+  | keyof typeof startOf
+  | keyof typeof endOf;
 
 export type RangeKey =
   | 'TODAY'

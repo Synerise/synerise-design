@@ -5,6 +5,9 @@ import { DateFilter, DateRange, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Props as FooterProps } from './Footer/Footer.types';
+import { RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
+
+export { DateRange } from './date.types';
 
 export type CustomColorArrow =
   | 'blue'
@@ -29,7 +32,7 @@ export type AdditionalMapper = {
   rightTop: CustomColorArrow;
   rightBottom: CustomColorArrow;
 };
-export interface Props extends WrappedComponentProps {
+export interface DateRangePickerProps extends WrappedComponentProps {
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.
    */
@@ -59,8 +62,20 @@ export interface Props extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
+  /**
+   * transforms value, by default omits ALL_TIME props
+   */
+  valueTransformer?: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
+  disableAbsoluteTimepickerInRelative?: boolean;
+  rangePickerInputProps?: RangePickerInputProps;
+  renderPopoverTrigger?: any;
 }
+
+/**
+ * @deprecated use `DateRangePickerProps`
+ */
+export type Props = DateRangePickerProps;
 
 export type RelativeMode = 'PAST' | 'FUTURE' | 'SINCE';
 export interface State {

@@ -2,7 +2,7 @@ import { WrappedComponentProps } from 'react-intl';
 import { DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 
-export interface Props extends WrappedComponentProps {
+export interface RangePickerProps extends WrappedComponentProps {
   value: DateRange;
   onChange: (value: DateRange) => void;
   mode: string;
@@ -14,7 +14,13 @@ export interface Props extends WrappedComponentProps {
   forceAdjacentMonths?: boolean;
   showCustomRange?: boolean;
   startAlwaysOnTheLeft?: boolean;
+  jumpToStartAndEnd?: boolean;
 }
+
+/**
+ * @deprecated use @{type RangePickerProps}
+ */
+export type Props = RangePickerProps;
 
 export interface State {
   enteredTo?: Date | null;
