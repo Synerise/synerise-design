@@ -15,7 +15,6 @@ import { Texts } from './DateRangePicker.types';
 export { START_OF, END_OF };
 
 export const normalizeRange = (range: DateRange): DateRange => {
-  console.log('src/utils.tsx normalizeRange range keys', Object.keys(range || {}), range);
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined };
   }

@@ -4,5 +4,4 @@ export { default as MonthlyDateFilter } from './RangeFilter/Filters/MonthlyFilte
 export { RawDateRangePicker } from './RawDateRangePicker';
 export * as utils from './utils';
 export * as CONST from './constants';
-export * as utils from './utils';
 export { default } from './DateRangePicker';
