@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import * as S from '../../RelativeRangePicker.styles';

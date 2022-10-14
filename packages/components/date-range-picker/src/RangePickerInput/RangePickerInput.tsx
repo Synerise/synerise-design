@@ -60,7 +60,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
       if (typeof dateToDisplay === 'string') dateValue = new Date(dateToDisplay);
       return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     },
-    [format, showTime, preferRelativeDesc]
+    [format, showTime]
   );
 
   const renderFromDate = React.useCallback(() => {
@@ -104,7 +104,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
         {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
       </>
     );
-  }, [dateRangeValue, renderFromDate, renderEndDate, theme, preferRelativeDesc]);
+  }, [dateRangeValue, renderFromDate, renderEndDate, preferRelativeDesc, texts, value]);
 
   return (
     <>

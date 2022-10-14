@@ -294,22 +294,22 @@ describe('DateRangePicker', () => {
   }*/);
   it.todo('clicking button DATE-PICKER.NOW sets the type to absolute');
   it.todo('RangePicker is able to render relative dates (decorate with relativeToAbsolute)');
-  it.skip('selecting last x days/months automatically switches to selected date');
-  it.skip('months view, year view highlights selected (even relative) date range');
-  it.skip('clicking NOW when replaces translationKey to `now`');
-  it.skip('from, to are optional (lifetime option does not have them by definition)');
-  it.skip('selecting time when selected relative date-range gets reset to an absolute date-range');
-  it.skip('future is not preserved when switching from relative date to lifetime');
-  it.skip('can click on select-time when lifetime');
+  it.todo('selecting last x days/months automatically switches to selected date');
+  it.todo('months view, year view highlights selected (even relative) date range');
+  it.todo('clicking NOW when replaces translationKey to `now`');
+  it.todo('from, to are optional (lifetime option does not have them by definition)');
+  it.todo('selecting time when selected relative date-range gets reset to an absolute date-range');
+  it.todo('future is not preserved when switching from relative date to lifetime');
+  it.todo('can click on select-time when lifetime');
   // it.skip('switch a whole month view at least to the month of the selected date (e.g. when last 3 months)') // TODO
-  it.skip('can clear both relative and absolute dates');
-  it.skip('LAST_MONTH (normalizeRange) returns proper range', /* () => {
+  it.todo('can clear both relative and absolute dates');
+  it.todo('LAST_MONTH (normalizeRange) returns proper range', /* () => {
     const date = RELATIVE_PRESETS.find(e => e.key === 'LAST_MONTH')
     const dateRange = normalizeRange(date)
     expect(isLifetime(dateRange)).toBeTruthy()
   } */);
-  it.skip('clicking button calls onApply with the current value');
-  it.skip('custom range properly calculates finishing date (end of the month, if month date, normalizeRange)');
+  it.todo('clicking button calls onApply with the current value');
+  it.todo('custom range properly calculates finishing date (end of the month, if month date, normalizeRange)');
   it.todo('range gets updated to show selected visible');
   it.todo('onChange is called only when apply button is clicked');
   it.todo('right side should not be earlier than left side');

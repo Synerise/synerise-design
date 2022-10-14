@@ -14,6 +14,7 @@ export type RelativeRangePickerProps = {
   relativeModes?: RelativeMode[];
   rangeUnits: DateRangePickerProps['rangeUnits'];
   showCustomRange?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   valueTransformer?: (e: RelativeDateRange | any) => RelativeDateRange | any;
 };
 

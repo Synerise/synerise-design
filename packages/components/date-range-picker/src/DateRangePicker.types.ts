@@ -69,7 +69,8 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   arrowColor?: AdditionalMapper;
   disableAbsoluteTimepickerInRelative?: boolean;
   rangePickerInputProps?: RangePickerInputProps;
-  renderPopoverTrigger?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  renderPopoverTrigger?: (...args: any) => JSX.Element;
 }
 
 /**

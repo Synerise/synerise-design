@@ -27,7 +27,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
     showCustomRange: true,
-    valueTransformer: (e: RelativeDateRange | any): RelativeDateRange | any => e,
+    valueTransformer: (e: RelativeDateRange | object): RelativeDateRange | object => e,
   };
 
   constructor(props: Props) {
@@ -104,6 +104,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
       ...setFuture(currentGroup === RANGES_MODE.FUTURE || isFuture, value),
       type: 'RELATIVE',
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange(normalizeRange(changes as any));
   };
 
