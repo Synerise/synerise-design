@@ -25,7 +25,7 @@ import { ABSOLUTE, COLUMNS, MODES } from '../constants';
 
 import ADD from '../dateUtils/add';
 import { AbsoluteDateRange, DateFilter, RelativeDateRange } from '../date.types';
-import { Props, State, Side as SideType } from './RangePicker.types';
+import { RangePickerProps as Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
 
@@ -35,7 +35,12 @@ const TOOLTIP_FORMAT = 'MMM d, yyyy, HH:mm';
 
 function replaceRange(value: AbsoluteDateRange | RelativeDateRange, day: Date): Omit<AbsoluteDateRange, 'type'> {
   let { from, to } = value;
-  // arguments to DateUtils functions are casted to Date because function arguments require Date
+  if (from && typeof from === 'object') {
+    from = new Date(from.getTime());
+  }
+  if (to && typeof to === 'object') {
+    to = new Date(to.getTime());
+  }
   if (!from) {
     from = day;
   } else if (from && to && DateUtils.isSameDay(from as Date, to as Date) && DateUtils.isSameDay(day, from as Date)) {
@@ -68,16 +73,33 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
     const { value, forceAdjacentMonths, startAlwaysOnTheLeft } = this.props;
-    const { left } = this.state;
+    const { jumpToStartAndEnd = true } = this.props;
+    const { left, right } = this.state;
     const toDateChanged = !!value?.to && value?.to !== prevProps?.value?.to;
     const fromDateChanged = !!value?.from && value?.from !== prevProps?.value?.from;
+    const startOnLeft = fnsIsSameMonth(legacyParse(value.from), legacyParse(left.month));
+    const endOnLeft = fnsIsSameMonth(legacyParse(value.to), legacyParse(left.month));
     if (
-      (toDateChanged && !fnsIsSameMonth(legacyParse(value.to), legacyParse(left.month))) ||
-      (fromDateChanged && !fnsIsSameMonth(legacyParse(value.from), legacyParse(left.month))) ||
+      (fromDateChanged && !endOnLeft) ||
+      (toDateChanged && !endOnLeft) ||
       forceAdjacentMonths !== prevProps.forceAdjacentMonths
     ) {
       if (startAlwaysOnTheLeft) {
         this.setState(getSidesState(value, forceAdjacentMonths));
+      }
+    }
+    if (jumpToStartAndEnd && (fromDateChanged || toDateChanged)) {
+      const startOnRight = fnsIsSameMonth(legacyParse(value.from), legacyParse(right.month));
+      const isStartVisible = startOnLeft || startOnRight;
+      if (!isStartVisible) {
+        this.setState(getSidesState(value, forceAdjacentMonths));
+        return null;
+      }
+      const endOnRight = fnsIsSameMonth(legacyParse(value.to), legacyParse(right.month));
+      const isEndVisible = endOnLeft || endOnRight;
+      if (!isEndVisible) {
+        this.setState(getSidesState(value, forceAdjacentMonths));
+        return null;
       }
     }
     return null;
@@ -327,7 +349,15 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         <S.PickerFooter>
           <Range
             onClick={(): void => {
-              onChange({ ...value, type: 'ABSOLUTE', to: fnsAddMinutes(new Date(), 1), from: new Date() });
+              const now = new Date();
+              const literallyNow: AbsoluteDateRange = {
+                ...value,
+                translationKey: 'now',
+                type: 'ABSOLUTE',
+                from: now,
+                to: fnsAddMinutes(now, 1),
+              };
+              onChange(literallyNow);
             }}
           >
             {texts.now}

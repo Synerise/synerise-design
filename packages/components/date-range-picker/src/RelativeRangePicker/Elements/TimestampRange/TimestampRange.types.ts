@@ -1,7 +1,7 @@
 import { RelativeDateRange } from '../../../date.types';
 import { RelativeMode, Texts } from '../../../DateRangePicker.types';
 
-export type Props = {
+export type TimestampRangeProps = {
   currentRange: RelativeDateRange;
   currentGroup: string | null;
   handleChange: (value: RelativeDateRange) => void;
@@ -9,4 +9,10 @@ export type Props = {
   onTimestampChange?: (timestamp: Date | undefined) => void;
   timestamp?: Date | undefined;
   texts: Texts;
+  getValueOnReset?: (value?: Date) => RelativeDateRange | Date | undefined;
 };
+
+/**
+ * @deprecated
+ */
+export type Props = TimestampRangeProps;

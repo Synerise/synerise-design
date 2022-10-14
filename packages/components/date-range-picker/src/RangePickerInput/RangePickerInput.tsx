@@ -5,13 +5,14 @@ import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
 // eslint-disable-next-line import/no-named-default
 import { default as fnsFormat } from '../dateUtils/format';
-import { Props } from './RangePickerInput.types';
+import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
 import type { DateRange } from '../date.types';
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
-const RangePickerInput: React.FC<Props> = ({
+const RangePickerInput: React.FC<RangePickerInputProps> = ({
   value,
   format,
   showTime,
@@ -28,7 +29,8 @@ const RangePickerInput: React.FC<Props> = ({
   onBlur,
   error,
   errorText,
-}: Props) => {
+  preferRelativeDesc = false,
+}: RangePickerInputProps) => {
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
   const [hovered, setHovered] = React.useState<boolean>(false);
   const showError = error || !!errorText;
@@ -58,7 +60,7 @@ const RangePickerInput: React.FC<Props> = ({
       if (typeof dateToDisplay === 'string') dateValue = new Date(dateToDisplay);
       return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
     },
-    [format, showTime]
+    [format, showTime, preferRelativeDesc]
   );
 
   const renderFromDate = React.useCallback(() => {
@@ -87,6 +89,23 @@ const RangePickerInput: React.FC<Props> = ({
     );
   }, [dateRangeValue, getText, active, texts, highlight]);
 
+  const placeholder = React.useMemo(() => {
+    if (isLifetime(value as typeof dateRangeValue)) {
+      return <>{texts?.['allTime'] || 'Lifetime'}</>;
+    }
+    return (
+      <>
+        {preferRelativeDesc &&
+          dateRangeValue?.translationKey &&
+          `${texts?.[dateRangeValue.translationKey] || dateRangeValue?.translationKey} (`}
+        {renderFromDate()}
+        <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
+        {renderEndDate()}
+        {preferRelativeDesc && dateRangeValue?.translationKey && value && ')'}
+      </>
+    );
+  }, [dateRangeValue, renderFromDate, renderEndDate, theme, preferRelativeDesc]);
+
   return (
     <>
       {label && <S.Label label={label} tooltip={tooltip} />}
@@ -105,9 +124,7 @@ const RangePickerInput: React.FC<Props> = ({
           tabIndex={disabled ? -1 : 0}
           focus={active && !disabled}
         >
-          {renderFromDate()}
-          <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />
-          {renderEndDate()}
+          {placeholder}
           <S.IconSeparator />
           {hovered && !!value && !!value.to && !!value.from ? (
             <Tooltip title={texts?.clear}>

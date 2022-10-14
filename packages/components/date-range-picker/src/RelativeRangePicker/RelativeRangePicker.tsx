@@ -27,6 +27,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     relativeModes: ['PAST', 'FUTURE'],
     rangeUnits: CONST.RELATIVE_UNITS,
     showCustomRange: true,
+    valueTransformer: (e: RelativeDateRange | any): RelativeDateRange | any => e,
   };
 
   constructor(props: Props) {
@@ -85,23 +86,25 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   handleCustomClick = (): void => {
     const { onChange } = this.props;
     const { currentGroup, currentRange } = this.state;
-    if (currentGroup !== RANGES_MODE.SINCE) {
+    if (currentGroup === RANGES_MODE.SINCE) {
+      onChange({ ...currentRange, type: 'RELATIVE', key: undefined, translationKey: CUSTOM_RANGE_KEY });
+      // FIXME: make currentGroup rely on value rather than state
+    } else {
       const sourceRange = getDefaultCustomRange(currentGroup);
       onChange({ ...sourceRange, key: undefined, translationKey: CUSTOM_RANGE_KEY });
-    } else {
-      onChange({ ...currentRange, key: undefined, translationKey: CUSTOM_RANGE_KEY });
     }
   };
 
   onChange = (value: DateRange): void => {
     const { currentGroup } = this.state;
     const { onChange } = this.props;
-    const isFuture = value.timestamp && fnsIsAfter(value.timestamp, new Date());
+    const isSince = currentGroup === RANGES_MODE.SINCE;
+    const isFuture = isSince ? value.future : value.timestamp && fnsIsAfter(value.timestamp, new Date()); // FIXME since past/future
     const changes = {
       ...setFuture(currentGroup === RANGES_MODE.FUTURE || isFuture, value),
-      key: undefined,
+      type: 'RELATIVE',
     };
-    onChange(normalizeRange(changes));
+    onChange(normalizeRange(changes as any));
   };
 
   renderRanges = (ranges: DateRange[]): React.ReactNode => {
@@ -113,8 +116,16 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
 
   renderRangesDropdown = (ranges: DateRange[]): React.ReactNode => {
     const { currentRange } = this.state;
-    const { onChange, texts } = this.props;
-    return <RangeDropdown ranges={ranges} currentRange={currentRange} texts={texts} onChange={onChange} />;
+    const { onChange, texts, valueTransformer } = this.props;
+    return (
+      <RangeDropdown
+        ranges={ranges}
+        currentRange={currentRange}
+        texts={texts}
+        onChange={onChange}
+        valueTransformer={valueTransformer}
+      />
+    );
   };
 
   onOffsetValueChange = (value: string | number | undefined): void => {
