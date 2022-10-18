@@ -34,9 +34,6 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
 export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
   .ant-select-single.ant-select-show-search {
     .ant-select-selection-search-input {
-      border: 1px solid blue;
-      max-width: ${(props): string => (props.autoResize ? '300px' : '')};
-      min-width: ${(props): string => (props.autoResize ? '150px' : '')};
     }
   }
   .ant-select-dropdown {

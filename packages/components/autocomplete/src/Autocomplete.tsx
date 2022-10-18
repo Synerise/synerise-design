@@ -38,6 +38,8 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         {...(autoResize
           ? {
               style: {
+                minWidth: 150,
+                maxWidth: 300,
                 width: `${antdAutocompleteProps.value && antdAutocompleteProps.value.toString().length + 1}3px`,
               },
             }
