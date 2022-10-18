@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.168.3](https://github.com/synerise/synerise-design/compare/portal@0.168.2...portal@0.168.3) (2022-10-18)
+
+
+### Bug Fixes
+
+* **portal:** date-range-picker intl: texts instead of intlTexts ([eea74ab](https://github.com/synerise/synerise-design/commit/eea74ab15a1fde1f69fd1cefae76fa31c1ebfeed))
+
+
+
+
+
 ## [0.168.2](https://github.com/synerise/synerise-design/compare/portal@0.168.1...portal@0.168.2) (2022-10-14)
 
 
