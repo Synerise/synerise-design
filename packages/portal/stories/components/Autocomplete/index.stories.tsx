@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { text, boolean } from '@storybook/addon-knobs';
+import { text, boolean, number } from '@storybook/addon-knobs';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
@@ -18,8 +18,9 @@ const AutocompleteWithState: React.FC = () => {
   const errorMessage = text('Error Text', 'Error' );
   const hasError = boolean('Set validation state',false);
   const loading = boolean('Set loading indicator',false);
-  const placeholder = text('Placeholder', 'Placeholder')
-  const [isFocus, setFocus] = React.useState(false)
+  const placeholder = text('Placeholder', 'Placeholder');
+  const [isFocus, setFocus] = React.useState(false);
+  const autoResize = boolean('Set autoResize', false);
 
 
   const renderWithHighlightedText = (highlight, item): React.ReactNode => {
@@ -82,6 +83,7 @@ const AutocompleteWithState: React.FC = () => {
         handleSearch(extractContent(value));
       }}
       description={description}
+      autoResize={autoResize}
       value={value === 'undefined' ? '' : value}
     >
       {!loading && results.map(result => (

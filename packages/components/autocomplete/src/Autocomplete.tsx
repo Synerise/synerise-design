@@ -8,7 +8,17 @@ import Select from 'antd/lib/select';
 import * as S from './Autocomplete.styles';
 
 const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
-  const { className, label, description, errorText, disabled, error, handleInputRef } = props;
+  const {
+    className,
+    label,
+    description,
+    errorText,
+    disabled,
+    error,
+    handleInputRef,
+    autoResize,
+    ...antdAutocompleteProps
+  } = props;
   const inputRef = React.useRef<Select | undefined>(undefined);
 
   React.useEffect(() => {
@@ -25,6 +35,13 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
       <AntdAutoComplete
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
+        {...(autoResize
+          ? {
+              style: {
+                width: `${antdAutocompleteProps.value && antdAutocompleteProps.value.toString().length + 1}3px`,
+              },
+            }
+          : {})}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         ref={inputRef}
