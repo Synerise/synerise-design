@@ -568,8 +568,7 @@ const stories = {
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
+    const autoResize = boolean('Set autoResize', false);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -587,7 +586,7 @@ const stories = {
     };
 
     return (
-      <AutoResizeInput
+      <Input
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -604,7 +603,7 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={{maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
+        autoResize={autoResize}
       />
     );
   },

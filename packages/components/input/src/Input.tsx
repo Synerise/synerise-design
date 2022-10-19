@@ -78,6 +78,37 @@ const enhancedInput =
       // @ts-ignore
       inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
     }, [inputRef]);
+
+    const renderInputComponent = (): React.ReactNode => {
+      return (
+        <WrappedComponent
+          {...antdInputProps}
+          autoResize={autoResize}
+          className={hasErrorMessage || error ? 'error' : undefined}
+          addonBefore={
+            !!prefixel && (
+              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {prefixel}
+              </S.AddonWrapper>
+            )
+          }
+          addonAfter={
+            !!suffixel && (
+              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {suffixel}
+              </S.AddonWrapper>
+            )
+          }
+          error={hasErrorMessage || error}
+          onChange={handleChange}
+          value={antdInputProps.value}
+          id={id}
+          ref={inputRef}
+          autoComplete="off"
+        />
+      );
+    };
+
     return (
       <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
         {(label || counterLimit) && (
@@ -111,31 +142,14 @@ const enhancedInput =
               </S.IconsFlexContainer>
             </S.IconsWrapper>
           )}
-          <WrappedComponent
-            {...antdInputProps}
-            {...autoResize}
-            className={hasErrorMessage || error ? 'error' : undefined}
-            addonBefore={
-              !!prefixel && (
-                <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                  {prefixel}
-                </S.AddonWrapper>
-              )
-            }
-            addonAfter={
-              !!suffixel && (
-                <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                  {suffixel}
-                </S.AddonWrapper>
-              )
-            }
-            error={hasErrorMessage || error}
-            onChange={handleChange}
-            value={antdInputProps.value}
-            id={id}
-            ref={inputRef}
-            autoComplete="off"
-          />
+          {autoResize ? (
+            <S.WrapperAutoResize>
+              {renderInputComponent()}
+              <S.AutoResize>{antdInputProps.value}</S.AutoResize>
+            </S.WrapperAutoResize>
+          ) : (
+            renderInputComponent()
+          )}
         </S.InputWrapper>
         {(hasErrorMessage || description) && (
           <S.ContentBelow>
@@ -151,9 +165,6 @@ export const TextArea = Object.assign(enhancedInput(Textarea, { type: 'textArea'
 export const Input = Object.assign(enhancedInput(S.AntdInput, { type: 'input' }), { displayName: 'Input' });
 export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type: 'input' }), {
   displayName: 'MaskedInput',
-});
-export const AutoResizeInput = Object.assign(enhancedInput(S.AutoResizeInput, { type: 'input' }), {
-  displayName: 'AutoResizeInput',
 });
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
