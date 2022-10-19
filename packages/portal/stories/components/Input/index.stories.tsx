@@ -568,7 +568,7 @@ const stories = {
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const autoResize = boolean('Set autoResize', false);
+    const autoResize = boolean('Set autoResize', true);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
