@@ -70,7 +70,6 @@ const AutocompleteWithState: React.FC = () => {
 
   return (
     <Autocomplete
-      style={{ width: 200 }}
       placeholder={placeholder}
       onSearch={handleSearch}
       label={renderLabel(text('Label', 'Label'))}

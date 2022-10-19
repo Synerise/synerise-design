@@ -1,4 +1,5 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
+import { AutoResize, WrapperAutoResize } from '@synerise/ds-input/dist/Input.styles';
 
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
@@ -16,6 +17,8 @@ export const DescWrapper = styled.div`
 export const LoaderWrapper = styled.div`
   margin-right: 10px;
 `;
+export { AutoResize };
+export { WrapperAutoResize };
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
   transition: ease-in-out all 0.2s;
@@ -31,8 +34,14 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
 `;
 
-export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
-  .ant-select-single.ant-select-show-search {
+export const AutocompleteWrapper = styled.div`
+  .ant-select-auto-complete {
+    width: 100%;
+    min-width: 200px;
+    grid-area: 1 / 1;
+    max-width: 300px;
+  }
+  .ant-select-show-search {
     .ant-select-selection-search-input {
     }
   }
@@ -47,6 +56,10 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
           }
         }
       }
+    }
+
+    .ant-select-selector {
+      width: 200px;
     }
 
     &.error {

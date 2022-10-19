@@ -25,6 +25,20 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
+  const renderAutoCompleteComponent = (): React.ReactNode => {
+    return (
+      <AntdAutoComplete
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        ref={inputRef}
+        dropdownClassName="ds-autocomplete-dropdown"
+        className={!!errorText || error ? 'error' : undefined}
+      />
+    );
+  };
+
   return (
     <S.AutocompleteWrapper className={`ds-autocomplete ${className || ''}`}>
       {label && (
@@ -32,24 +46,14 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
           <Label>{label}</Label>
         </S.LabelWrapper>
       )}
-      <AntdAutoComplete
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...props}
-        {...(autoResize
-          ? {
-              style: {
-                minWidth: 150,
-                maxWidth: 300,
-                width: `${antdAutocompleteProps.value && antdAutocompleteProps.value.toString().length + 1}3px`,
-              },
-            }
-          : {})}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        ref={inputRef}
-        dropdownClassName="ds-autocomplete-dropdown"
-        className={!!errorText || error ? 'error' : undefined}
-      />
+      {autoResize ? (
+        <S.WrapperAutoResize>
+          {renderAutoCompleteComponent()}
+          <S.AutoResize>{antdAutocompleteProps.value}</S.AutoResize>
+        </S.WrapperAutoResize>
+      ) : (
+        renderAutoCompleteComponent()
+      )}
       {errorText && (
         <S.ErrorWrapper>
           <ErrorText>{errorText}</ErrorText>
