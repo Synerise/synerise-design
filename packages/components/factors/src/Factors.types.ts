@@ -102,7 +102,7 @@ export type FactorsProps = {
   onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
-  textType?: 'autocomplete' | 'expansible' | 'default' | 'autoresize' | string;
+  textType?: 'autocomplete' | 'expansible' | 'default' | string;
   autoResize?: boolean | { minWidth: string; maxWidth: string };
   autocompleteText?: {
     options: string[];

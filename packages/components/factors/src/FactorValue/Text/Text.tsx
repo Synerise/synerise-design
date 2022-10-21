@@ -2,7 +2,9 @@ import * as React from 'react';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
-import { AutoResizeInput, Input } from '@synerise/ds-input';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import { Input } from '@synerise/ds-input';
 import { useState } from 'react';
 import { debounce } from 'lodash';
 
@@ -73,7 +75,7 @@ const TextInput: React.FC<InputProps> = ({
   const handleAutocomplete = React.useCallback(
     val => {
       setLocalValue(val);
-      onChange(val);
+      onChangeDebounce(val);
     },
     [onChange]
   );
@@ -89,6 +91,7 @@ const TextInput: React.FC<InputProps> = ({
     if (typesOfInput === 'autocomplete' && factorsType === 'text') {
       return (
         <Autocomplete
+          {...inputProps}
           placeholder={texts.valuePlaceholder}
           value={localValue as string}
           onChange={handleAutocomplete}
@@ -112,7 +115,7 @@ const TextInput: React.FC<InputProps> = ({
             {...inputProps}
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
-            suffix={SuffixIcon}
+            icon1={SuffixIcon}
             value={localValue as string}
             onChange={handleChange}
             onBlur={onDeactivate}
@@ -121,20 +124,20 @@ const TextInput: React.FC<InputProps> = ({
         </S.InputWrapper>
       );
     }
-    if (typesOfInput === 'autoresize' && factorsType === 'text') {
-      return (
-        <AutoResizeInput
+    return (
+      <S.InputWrapper>
+        <Input
           {...inputProps}
           handleInputRef={setInputRef}
           placeholder={texts.valuePlaceholder}
+          icon1={SuffixIcon}
           value={localValue as string}
           onChange={handleChange}
           onBlur={onDeactivate}
           error={localError || error}
         />
-      );
-    }
-    return null;
+      </S.InputWrapper>
+    );
   };
 
   return (
