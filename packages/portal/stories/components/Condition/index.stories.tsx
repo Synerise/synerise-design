@@ -345,7 +345,7 @@ const stories = {
                   availableFactorTypes: condition.operator?.value?.availableFactors || null,
                   selectedFactorType: condition.factor.selectedFactorType,
                   defaultFactorType: 'text',
-                  textType: select('Select type of text input', ['autocomplete','autoresize', 'expansible', 'default'], 'default'),
+                  textType: select('Select type of text input', ['autocomplete','expansible', 'default'], 'default'),
                   autocompleteText: {
                     options: ['First name', 'Last name', 'City', 'Age', 'Points'],
                   },
