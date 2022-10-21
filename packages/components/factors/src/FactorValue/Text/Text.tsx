@@ -41,14 +41,6 @@ const TextInput: React.FC<InputProps> = ({
     setLocalValue(value);
   }, [value]);
 
-  const SuffixIcon = React.useMemo(() => {
-    return factorType === 'text' && textType === 'expansible' ? (
-      <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
-        <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />
-      </S.IconWrapper>
-    ) : null;
-  }, [textType, factorType]);
-
   const handleChange = React.useCallback(
     event => {
       setLocalValue(event.target.value);
@@ -75,7 +67,7 @@ const TextInput: React.FC<InputProps> = ({
   const handleAutocomplete = React.useCallback(
     val => {
       setLocalValue(val);
-      onChangeDebounce(val);
+      onChange(val);
     },
     [onChange]
   );
@@ -115,7 +107,6 @@ const TextInput: React.FC<InputProps> = ({
             {...inputProps}
             handleInputRef={setInputRef}
             placeholder={texts.valuePlaceholder}
-            icon1={SuffixIcon}
             value={localValue as string}
             onChange={handleChange}
             onBlur={onDeactivate}
@@ -130,7 +121,11 @@ const TextInput: React.FC<InputProps> = ({
           {...inputProps}
           handleInputRef={setInputRef}
           placeholder={texts.valuePlaceholder}
-          icon1={SuffixIcon}
+          icon1={
+            <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
+              <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />
+            </S.IconWrapper>
+          }
           value={localValue as string}
           onChange={handleChange}
           onBlur={onDeactivate}
