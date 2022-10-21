@@ -60,7 +60,6 @@ export const OuterWrapper = styled.div<{
   input {
     ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
   }
-  }
 `;
 
 export const Wrapper = styled.div`
