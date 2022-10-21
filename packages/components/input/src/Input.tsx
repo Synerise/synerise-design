@@ -143,9 +143,11 @@ const enhancedInput =
             </S.IconsWrapper>
           )}
           {autoResize ? (
-            <S.WrapperAutoResize>
+            <S.WrapperAutoResize autoResize={autoResize}>
               {renderInputComponent()}
-              <S.AutoResize>{antdInputProps.value}</S.AutoResize>
+              <S.AutoResize icon1={icon1} icon2={icon2} suffixel={suffixel} prefixel={prefixel} autoResize={autoResize}>
+                {antdInputProps.value}
+              </S.AutoResize>
             </S.WrapperAutoResize>
           ) : (
             renderInputComponent()
@@ -175,3 +177,5 @@ export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.Rea
 };
 export const RawTextArea = S.AntdTextArea;
 export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';
+export const AutoResize = Object.assign(S.AutoResize);
+export const WrapperAutoResize = Object.assign(S.WrapperAutoResize);
