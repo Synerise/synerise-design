@@ -5,6 +5,9 @@ import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import { AutocompleteProps, StaticComponents } from 'Autocomplete.types';
 import Select from 'antd/lib/select';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import { AutoResize, WrapperAutoResize } from '@synerise/ds-input';
 import * as S from './Autocomplete.styles';
 
 const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
@@ -40,17 +43,17 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
   };
 
   return (
-    <S.AutocompleteWrapper className={`ds-autocomplete ${className || ''}`}>
+    <S.AutocompleteWrapper autoResize={autoResize} className={`ds-autocomplete ${className || ''}`}>
       {label && (
         <S.LabelWrapper>
           <Label>{label}</Label>
         </S.LabelWrapper>
       )}
       {autoResize ? (
-        <S.WrapperAutoResize>
+        <WrapperAutoResize autoResize={autoResize}>
           {renderAutoCompleteComponent()}
-          <S.AutoResize>{antdAutocompleteProps.value}</S.AutoResize>
-        </S.WrapperAutoResize>
+          <AutoResize autoResize={autoResize}>{antdAutocompleteProps.value}</AutoResize>
+        </WrapperAutoResize>
       ) : (
         renderAutoCompleteComponent()
       )}

@@ -1,5 +1,4 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
-import { AutoResize, WrapperAutoResize } from '@synerise/ds-input/dist/Input.styles';
 
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
@@ -17,8 +16,6 @@ export const DescWrapper = styled.div`
 export const LoaderWrapper = styled.div`
   margin-right: 10px;
 `;
-export { AutoResize };
-export { WrapperAutoResize };
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
   transition: ease-in-out all 0.2s;
@@ -33,17 +30,26 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
   background: ${(props): string => props.theme.palette['red-050']};
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
 `;
-
-export const AutocompleteWrapper = styled.div`
-  .ant-select-auto-complete {
-    width: 100%;
-    min-width: 200px;
-    grid-area: 1 / 1;
-    max-width: 300px;
+export type AutoResizeProps = {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+};
+function autoresizeConfObjToCss({
+  autoResize,
+}: {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}): string {
+  if (!autoResize) return '';
+  if (typeof autoResize === 'object') {
+    return `max-width: ${autoResize.maxWidth}; min-width: ${autoResize.minWidth}`;
   }
-  .ant-select-show-search {
-    .ant-select-selection-search-input {
-    }
+  return `max-width: 400px; min-width: 150px;`;
+}
+
+export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
+  .ant-select-auto-complete {
+    width: ${(props): string => (props.autoResize ? '100%' : '200px')};
+    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)};
+    grid-area: 1 / 1;
   }
   .ant-select-dropdown {
     &.ant-select {
@@ -56,10 +62,6 @@ export const AutocompleteWrapper = styled.div`
           }
         }
       }
-    }
-
-    .ant-select-selector {
-      width: 200px;
     }
 
     &.error {
