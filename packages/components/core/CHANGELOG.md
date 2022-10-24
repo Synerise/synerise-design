@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.37.0...@synerise/ds-core@0.38.0) (2022-10-24)
+
+
+### Features
+
+* **date-picker:** fix intl in date pickers ([4e9cbce](https://github.com/synerise/synerise-design/commit/4e9cbceace0e3e794523448120db6a1934242d81))
+
+
+
+
+
 # [0.37.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.36.3...@synerise/ds-core@0.37.0) (2022-10-18)
 
 

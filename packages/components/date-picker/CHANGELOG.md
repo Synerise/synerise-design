@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.6.43...@synerise/ds-date-picker@0.7.0) (2022-10-24)
+
+
+### Features
+
+* **date-picker:** fix intl in date pickers ([4e9cbce](https://github.com/Synerise/synerise-design/commit/4e9cbceace0e3e794523448120db6a1934242d81))
+
+
+
+
+
 ## [0.6.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.6.42...@synerise/ds-date-picker@0.6.43) (2022-10-18)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
