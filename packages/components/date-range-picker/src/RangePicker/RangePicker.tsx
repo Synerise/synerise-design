@@ -3,7 +3,6 @@ import { DateUtils, DayModifiers } from 'react-day-picker';
 import fnsIsSameDay from 'date-fns/isSameDay';
 import fnsIsValid from 'date-fns/isValid';
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
-import MomentLocaleUtils from 'react-day-picker/moment';
 import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
   DayBackground,
@@ -15,6 +14,7 @@ import YearPicker from '@synerise/ds-date-picker/dist/Elements/YearPicker/YearPi
 import DayPicker from '@synerise/ds-date-picker/dist/Elements/DayPicker/DayPicker';
 import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
+import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { legacyParse } from '@date-fns/upgrade/v2';
 
@@ -238,7 +238,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         className={type.toLowerCase()}
         canChangeMonth={false}
         disabledDays={disabledDate}
-        localeUtils={MomentLocaleUtils}
+        localeUtils={localeUtils}
         month={getDateFromString(sideState.month)}
         title={sideState.monthTitle}
         hideLongNext={side === COLUMNS.LEFT && adjacentYears}

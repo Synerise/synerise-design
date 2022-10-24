@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
 import fnsFormat from '../../format';
 
 import Navbar from '../Navbar/Navbar';
@@ -14,11 +15,13 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onShortNext,
   onShortPrev,
 }: TimePickerProps) => {
+  const intl = useIntl();
+
   return (
     <>
       {!!value && (
         <Navbar
-          title={fnsFormat(value, 'iii d, yyyy')}
+          title={fnsFormat(value, 'iii d, yyyy', intl.locale)}
           key="head"
           onShortNext={onShortNext}
           onShortPrev={onShortPrev}

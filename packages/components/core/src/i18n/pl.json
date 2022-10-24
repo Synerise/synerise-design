@@ -238,7 +238,8 @@
       "SELECTED": "Wybrane",
       "MULTIPLE-MODE-HINT": "Użyj klawisza Shift by wybrać wiele.",
       "SAVE-FILTER": "Zapisz filtr",
-      "FILTER-NAME": "Nazwa filtra"
+      "FILTER-NAME": "Nazwa filtra",
+      "SET_TIME_FOR": "Ustaw czas na:"
     },
     "CARD-TAB": {
       "RENAME": "Zmień nazwę",
