@@ -21,6 +21,7 @@ const AutocompleteWithState: React.FC = () => {
   const loading = boolean('Set loading indicator',false);
   const placeholder = text('Placeholder', 'Placeholder');
   const [isFocus, setFocus] = React.useState(false);
+  const autoResize = boolean('Set autoResize', true);
 
   const renderWithHighlightedText = (highlight, item): React.ReactNode => {
     if (highlight && typeof item === 'string') {
@@ -71,6 +72,7 @@ const AutocompleteWithState: React.FC = () => {
     <Autocomplete
       placeholder={placeholder}
       onSearch={handleSearch}
+      autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       label={renderLabel(text('Label', 'Label'))}
       errorText={!isFocus && getErrorText(hasError)}
       error={!isFocus && hasError}
@@ -102,8 +104,6 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const placeholder = text('Placeholder', 'Placeholder');
   const [isFocus, setFocus] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
-  const autoResizeMaxWidth = number('Set autoResize max width', 300);
-  const autoResizeMinWidth = number('Set autoResize min width', 150);
 
 
   React.useEffect(() => {
@@ -160,7 +160,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
       onFocus={()=>{action('I am focused'); setFocus(true)}}
       onChange={onChangeDebounce}
       description={description}
-      autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
+      autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       value={value === 'undefined' ? '' : value}
     >
       {!loading && results.map(result => (
