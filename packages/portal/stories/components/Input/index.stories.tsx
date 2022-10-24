@@ -561,7 +561,7 @@ const stories = {
       />
     );
   },
-  inputAutoResizeInModal: () => {
+  inputAutoresizeInModal: () => {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState<string>('');
     const hasDescription = boolean('Set Description', true);
@@ -569,8 +569,6 @@ const stories = {
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 1000);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
     const autoResize = boolean('Set autoResize', true);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
@@ -593,10 +591,11 @@ const stories = {
         size="small"
         visible={true}
         title={'Title'}
-        bodyStyle={{ padding: 20 }}onCancel={() => setOpen(!open)}
+        bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
         onOk={() => setOpen(open)}
         >
             <Input
+              autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
             placeholder={text('Placeholder', 'Placeholder')}
             label={renderLabel(text('Label', 'Label'))}
             description={descriptionMessage && getDescription(hasDescription)}
@@ -613,21 +612,18 @@ const stories = {
               setFocus(true);
             }}
             value={value}
-            autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
           />
           </Modal>
         </div>
     )
   },
-  inputWithAutoResize: () => {
+  inputWithAutoresize: () => {
     const [value, setValue] = React.useState<string>('');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 300);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
     const autoResize = boolean('Set autoResize', true);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
@@ -647,6 +643,7 @@ const stories = {
 
     return (
       <Input
+        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -663,7 +660,6 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={autoResize && {maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },

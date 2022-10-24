@@ -217,6 +217,7 @@ export const AutoResize = styled.div<AutoResizeProps>`
   max-height: 32px;
   grid-area: 1 / 1;
   visibility: hidden;
+  white-space: pre;
   padding: ${(props): string => getPaddingAutoResize(props)};
   ${(props: AutoResizeProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
 `;
