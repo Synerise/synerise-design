@@ -1,4 +1,6 @@
 import * as React from 'react';
+import MomentLocaleUtils from 'react-day-picker/moment';
+import type { LocaleUtils } from 'react-day-picker/types';
 
 const WEEKDAYS_LONG = {
   en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -7,7 +9,7 @@ const WEEKDAYS_LONG = {
 
 const WEEKDAYS_SHORT = {
   en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  pl: ['N', 'P', 'W', 'Ĺ', 'C', 'P', 'S'],
+  pl: ['Nd', 'Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb'],
 };
 
 const MONTHS = {
@@ -20,35 +22,36 @@ const FIRST_DAY = {
   pl: 1,
 };
 
-function formatDay(d: Date, locale = 'en'): string {
-  return `${WEEKDAYS_LONG[locale][d.getDay()]}, ${d.getDate()} ${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`;
+const DEFAULT_LOCALE = 'en';
+const DEFAULT_FORMAT = 'MMM DD, YYYY';
+
+const getValidLocale = (locale: string): string => (Object.keys(MONTHS).includes(locale) ? locale : DEFAULT_LOCALE);
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function formatDay(d: Date, format: string = DEFAULT_FORMAT, locale = DEFAULT_LOCALE): string {
+  return `${WEEKDAYS_LONG[getValidLocale(locale)][d.getDay()]}, ${d.getDate()} ${
+    MONTHS[getValidLocale(locale)][d.getMonth()]
+  } ${d.getFullYear()}`;
 }
 
-function formatMonthTitle(d: Date, locale = 'en'): string {
-  return `${MONTHS[locale][d.getMonth()]} ${d.getFullYear()}`;
+function formatMonthTitle(d: Date, locale = DEFAULT_LOCALE): string {
+  return `${MONTHS[getValidLocale(locale)][d.getMonth()]} ${d.getFullYear()}`;
 }
 
-function formatWeekdayShort(i: React.ReactText, locale: React.ReactText): string {
-  return WEEKDAYS_SHORT[locale][i];
+function formatWeekdayShort(i: React.ReactText, locale: string = DEFAULT_LOCALE): string {
+  return WEEKDAYS_SHORT[getValidLocale(locale)][i];
 }
 
-function formatWeekdayLong(i: React.ReactText, locale: React.ReactText): string {
-  return WEEKDAYS_SHORT[locale][i];
+function formatWeekdayLong(weekday: number, locale: string = DEFAULT_LOCALE): string {
+  return WEEKDAYS_SHORT[getValidLocale(locale)][weekday];
 }
 
-function getFirstDayOfWeek(locale: React.ReactText): string {
-  return FIRST_DAY[locale];
+function getFirstDayOfWeek(locale: string = DEFAULT_LOCALE): number {
+  return FIRST_DAY[getValidLocale(locale)];
 }
-
-export type LocaleUtils = {
-  formatDay: (d: Date, locale: string) => string;
-  formatMonthTitle: (d: Date, locale: string) => string;
-  formatWeekdayShort: (i: string, locale: string) => string;
-  formatWeekdayLong: (i: string, locale: string) => string;
-  getFirstDayOfWeek: (locale: string) => string;
-};
 
 const localeUtils: LocaleUtils = {
+  ...MomentLocaleUtils,
   formatDay,
   formatMonthTitle,
   formatWeekdayShort,

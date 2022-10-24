@@ -282,7 +282,8 @@
             "FILTER-NAME": "Filter name",
             "IN-WEEK": "week",
             "IN-MONTH": "month",
-            "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries."
+            "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries.",
+            "SET_TIME_FOR": "Set time for:"
         },
         "CARD-TAB": {
             "REMOVE": "Remove",

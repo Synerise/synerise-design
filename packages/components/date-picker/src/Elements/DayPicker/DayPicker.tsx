@@ -1,13 +1,13 @@
 import * as React from 'react';
-import MomentLocaleUtils from 'react-day-picker/moment';
 import { injectIntl } from 'react-intl';
 import fnsFormat from '../../format';
 
 import Navbar from '../Navbar/Navbar';
+import { fnsAddYears, fnsAddMonths } from '../../fns';
+import localeUtils from '../../localeUtils';
+import { DayPickerProps } from './DayPicker.types';
 import { DayPicker } from './DayPicker.styles';
 import * as S from '../Navbar/Navbar.styles';
-import { DayPickerProps } from './DayPicker.types';
-import { fnsAddYears, fnsAddMonths } from '../../fns';
 
 const captionElement = (): null => null;
 
@@ -53,7 +53,7 @@ const Picker: React.FC<DayPickerProps> = props => {
         captionElement={captionElement}
         key="body"
         locale={intl.locale}
-        localeUtils={MomentLocaleUtils}
+        localeUtils={localeUtils}
         modifiers={modifiers}
         {...rest}
       />
