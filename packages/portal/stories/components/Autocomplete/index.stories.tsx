@@ -20,7 +20,7 @@ const AutocompleteWithState: React.FC = () => {
   const hasError = boolean('Set validation state',false);
   const loading = boolean('Set loading indicator',false);
   const placeholder = text('Placeholder', 'Placeholder');
-  const [isFocus, setFocus] = React.useState(false);
+  const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
 
   const renderWithHighlightedText = (highlight, item): React.ReactNode => {
@@ -74,10 +74,10 @@ const AutocompleteWithState: React.FC = () => {
       onSearch={handleSearch}
       autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       label={renderLabel(text('Label', 'Label'))}
-      errorText={!isFocus && getErrorText(hasError)}
-      error={!isFocus && hasError}
-      onBlur={()=>{action ('I am blurred'); setFocus(false)}}
-      onFocus={()=>{action('I am focused'); setFocus(true)}}
+      errorText={!isBlur && getErrorText(hasError)}
+      error={!isBlur && hasError}
+      onBlur={()=>{action ('I am blurred'); setBlur(false)}}
+      onFocus={()=>{action('I am focused'); setBlur(true)}}
       onChange={(value: string) => {
         setValue(extractContent(value));
         handleSearch(extractContent(value));
@@ -102,17 +102,17 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const hasError = boolean('Set validation state',false);
   const loading = boolean('Set loading indicator',false);
   const placeholder = text('Placeholder', 'Placeholder');
-  const [isFocus, setFocus] = React.useState(false);
+  const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
 
 
   React.useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch(`https://jsonplaceholder.typicode.com/todos?q=${value}`)
       .then(jsonData => jsonData.json())
       .then(jsonData => {
         setResults(jsonData)
       })
-  },[]);
+  },[value]);
   const handleSearch = value => {
     let result;
     if (!value || value.indexOf('@') >= 0) {
@@ -154,10 +154,10 @@ const AutocompleteWithAutoResize: React.FC = () => {
       placeholder={placeholder}
       onSearch={handleSearch}
       label={renderLabel(text('Label', 'Label'))}
-      errorText={!isFocus && getErrorText(hasError)}
-      error={!isFocus && hasError}
-      onBlur={()=>{action ('I am blurred'); setFocus(false)}}
-      onFocus={()=>{action('I am focused'); setFocus(true)}}
+      errorText={!isBlur && getErrorText(hasError)}
+      error={!isBlur && hasError}
+      onBlur={()=>{action ('I am blurred'); setBlur(false)}}
+      onFocus={()=>{action('I am focused'); setBlur(true)}}
       onChange={onChangeDebounce}
       description={description}
       autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
