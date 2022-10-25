@@ -14,7 +14,7 @@ const errorInputStyle = (props: ThemeProps): string => `
   }
 `;
 
-export type AutoResizeProps = {
+export type AutoResizeInputProps = {
   autoResize?: boolean | { minWidth: string; maxWidth: string };
   suffixel?: boolean | React.ReactNode;
   prefixel?: boolean | React.ReactNode;
@@ -22,7 +22,7 @@ export type AutoResizeProps = {
   icon2?: boolean | React.ReactNode;
 };
 
-const getPaddingAutoResize = (props: AutoResizeProps): string => {
+const getPaddingAutoResize = (props: AutoResizeInputProps): string => {
   if (props.prefixel || props.suffixel) {
     return '0 43px';
   }
@@ -58,7 +58,7 @@ export const OuterWrapper = styled.div<{
     }
   }
   input {
-    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
+    ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
   }
 `;
 
@@ -211,15 +211,15 @@ export const WrapperAutoResize = styled.div<{
   display: inline-grid;
   align-items: center
   justify-items: start;
-  ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
+  ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
 `;
-export const AutoResize = styled.div<AutoResizeProps>`
+export const AutoResize = styled.div<AutoResizeInputProps>`
   max-height: 32px;
   grid-area: 1 / 1;
   visibility: hidden;
   white-space: pre;
   padding: ${(props): string => getPaddingAutoResize(props)};
-  ${(props: AutoResizeProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
+  ${(props: AutoResizeInputProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
 `;
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
