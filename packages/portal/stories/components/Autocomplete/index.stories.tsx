@@ -142,11 +142,10 @@ const AutocompleteWithAutoResize: React.FC = () => {
   };
 
   const changeHandler = (value: string) => {
-    setValue(extractContent(value));
     handleSearch(extractContent(value));
   }
 
-  const onChangeDebounce = React.useCallback(debounce(changeHandler, 30), [
+  const onChangeDebounce = React.useCallback(debounce(changeHandler, 300), [
     changeHandler
   ]);
 
@@ -159,7 +158,10 @@ const AutocompleteWithAutoResize: React.FC = () => {
       error={!isBlur && hasError}
       onBlur={()=>{action ('I am blurred'); setBlur(false)}}
       onFocus={()=>{action('I am focused'); setBlur(true)}}
-      onChange={onChangeDebounce}
+      onChange={(value: string) => {
+        setValue(extractContent(value));
+        onChangeDebounce(value);
+      }}
       description={description}
       autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       value={value === 'undefined' ? '' : value}
