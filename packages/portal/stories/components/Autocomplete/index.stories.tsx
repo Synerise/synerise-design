@@ -112,7 +112,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
       .then(jsonData => {
         setResults(jsonData)
       })
-  },[value]);
+  },[value,setResults]);
   const handleSearch = value => {
     let result;
     if (!value || value.indexOf('@') >= 0) {
