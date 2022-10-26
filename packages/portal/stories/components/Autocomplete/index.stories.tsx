@@ -21,7 +21,7 @@ const AutocompleteWithState: React.FC = () => {
   const loading = boolean('Set loading indicator',false);
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
-  const autoResize = boolean('Set autoResize', true);
+  const autoResize = boolean('Set autoResize', false);
 
   const renderWithHighlightedText = (highlight, item): React.ReactNode => {
     if (highlight && typeof item === 'string') {
@@ -107,6 +107,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
 
 
   React.useEffect(() => {
+    action('fetch')(value);
     fetch(`https://jsonplaceholder.typicode.com/todos?q=${value}`)
       .then(jsonData => jsonData.json())
       .then(jsonData => {
