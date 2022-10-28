@@ -96,6 +96,7 @@ const AutocompleteWithState: React.FC = () => {
 };
 const AutocompleteWithAutoResize: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
+  const [search, setSearch] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
   const description = text('Description','Description');
   const errorMessage = text('Error Text', 'Error' );
@@ -104,8 +105,6 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
-
-
   React.useEffect(() => {
     action('fetch')(value);
     fetch(`https://jsonplaceholder.typicode.com/todos?q=${value}`)
@@ -115,20 +114,20 @@ const AutocompleteWithAutoResize: React.FC = () => {
       })
   },[value,setResults]);
 
-  const handleSearch = value => {
-    let result;
+  const renderResults = React.useMemo(() => {
     if (!value || value.indexOf('@') >= 0) {
-      result = [];
+       return [search];
     } else {
-      result = results.filter(item => Object.values(item)
+      results.filter(item => Object.values(item)
         .join("")
         .toLowerCase()
         .includes(value.toLowerCase()));
       console.log(value)
-      console.log(result)
+      console.log(results)
     }
-    setResults(result);
-  };
+    return results;
+  }, [results,search]);
+
 
 
   const getErrorText = (hasError: boolean): string => {
@@ -146,9 +145,9 @@ const AutocompleteWithAutoResize: React.FC = () => {
   };
 
   const changeHandler = (value: string) => {
-    handleSearch(extractContent(value));
+    setSearch(extractContent(value));
   }
-  const searchDebounce = React.useRef(debounce( (value: string) => { changeHandler(value)},300)).current;
+  const searchDebounce = React.useRef(debounce( (value: string) => {changeHandler(value)},300)).current;
 
   const onSearchChange = (value: string) => {
     searchDebounce.cancel();
@@ -159,7 +158,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
   return (
     <Autocomplete
       placeholder={placeholder}
-      onSearch={handleSearch}
+      onSearch={renderResults}
       label={renderLabel(text('Label', 'Label'))}
       errorText={!isBlur && getErrorText(hasError)}
       error={!isBlur && hasError}
@@ -170,7 +169,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
       autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       value={value === 'undefined' ? '' : value}
     >
-      {!loading && results.map(result => (
+      {!loading && renderResults.map(result => (
         <Autocomplete.Option value={result.title} key={result.toString()}>
           <span style={{ fontWeight: 400 }}>{JSON.stringify(result.title)}</span>
         </Autocomplete.Option>
