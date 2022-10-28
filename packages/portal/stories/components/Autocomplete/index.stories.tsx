@@ -114,6 +114,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
         setResults(jsonData)
       })
   },[value,setResults]);
+
   const handleSearch = value => {
     let result;
     if (!value || value.indexOf('@') >= 0) {
@@ -123,9 +124,12 @@ const AutocompleteWithAutoResize: React.FC = () => {
         .join("")
         .toLowerCase()
         .includes(value.toLowerCase()));
+      console.log(value)
+      console.log(result)
     }
     setResults(result);
   };
+
 
   const getErrorText = (hasError: boolean): string => {
     if (hasError) {
@@ -144,10 +148,13 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const changeHandler = (value: string) => {
     handleSearch(extractContent(value));
   }
+  const searchDebounce = React.useRef(debounce( (value: string) => { changeHandler(value)},300)).current;
 
-  const onChangeDebounce = React.useCallback(debounce(changeHandler, 300), [
-    changeHandler
-  ]);
+  const onSearchChange = (value: string) => {
+    searchDebounce.cancel();
+    setValue(extractContent(value));
+    searchDebounce(value);
+  };
 
   return (
     <Autocomplete
@@ -158,10 +165,7 @@ const AutocompleteWithAutoResize: React.FC = () => {
       error={!isBlur && hasError}
       onBlur={()=>{action ('I am blurred'); setBlur(false)}}
       onFocus={()=>{action('I am focused'); setBlur(true)}}
-      onChange={(value: string) => {
-        setValue(extractContent(value));
-        onChangeDebounce(value);
-      }}
+      onChange={onSearchChange}
       description={description}
       autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
       value={value === 'undefined' ? '' : value}
