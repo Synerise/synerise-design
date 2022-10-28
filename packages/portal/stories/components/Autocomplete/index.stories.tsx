@@ -105,14 +105,22 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
-  React.useEffect(() => {
-    action('fetch')(value);
+  const fetchData = () => {
     fetch(`https://jsonplaceholder.typicode.com/todos?q=${value}`)
       .then(jsonData => jsonData.json())
       .then(jsonData => {
         setResults(jsonData)
-      })
-  },[value,setResults]);
+      });
+  }
+  const debouncedResults = React.useMemo(() => {
+    return debounce(fetchData, 300);
+  }, [fetchData]);
+
+  React.useEffect(() => {
+    action('fetch')(value);
+    return debouncedResults
+  },[value]);
+
 
   const renderResults = React.useMemo(() => {
     if (!value || value.indexOf('@') >= 0) {
@@ -122,8 +130,6 @@ const AutocompleteWithAutoResize: React.FC = () => {
         .join("")
         .toLowerCase()
         .includes(value.toLowerCase()));
-      console.log(value)
-      console.log(results)
     }
     return results;
   }, [results,search]);
