@@ -32,12 +32,13 @@ const init = () => {
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow') as Backgrounds,
     showSideChildrenWhenHeaderHidden: boolean('Set Footer Active', false),
+    "data-testid": text('data-testid','card-example-testid')
   };
   return { props };
 };
 
 const renderCard = (
-  props: CardProps & { withIcon?: string | boolean },
+  props: CardProps & { withIcon?: string | boolean; content: React.ReactNode },
   hideContentInitial = false,
   onExpansionChange?: (expanded: boolean) => void
 ) => {
