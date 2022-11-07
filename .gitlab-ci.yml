@@ -1,4 +1,4 @@
-image: node:lts
+image: node:14.10.1
 
 variables:
   APP: ds-docs
