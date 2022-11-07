@@ -47,6 +47,7 @@ const renderCard = (
   React.useEffect(() => {
     setHideContent(hideContentInitial);
   }, [hideContentInitial]);
+  
   return (
     <Card
       lively={props.lively}
@@ -67,6 +68,7 @@ const renderCard = (
       background={props.background}
       hideContent={props.hideContent && hideContent}
       showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
+      data-testid={props['data-testid']}
     >
       <div style={{ width: '100%', height: 300 }}>{props.content}</div>
     </Card>
