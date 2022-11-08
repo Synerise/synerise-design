@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.12.7...@synerise/ds-card@0.13.0) (2022-11-08)
+
+
+### Features
+
+* **card:** passing down data-* attributes ([490d298](https://github.com/Synerise/synerise-design/commit/490d298de250fd3f30975d160601c88392b3c054))
+* **card:** support data-* attributes in CardBadge ([4e59200](https://github.com/Synerise/synerise-design/commit/4e592003b7dba56ff92348d0b453f3512d062bce))
+
+
+
+
+
 ## [0.12.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.12.6...@synerise/ds-card@0.12.7) (2022-08-31)
 
 **Note:** Version bump only for package @synerise/ds-card
