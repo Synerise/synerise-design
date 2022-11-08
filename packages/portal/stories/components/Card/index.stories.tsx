@@ -32,12 +32,13 @@ const init = () => {
     content: text('Content', 'Example of card content'),
     background: select('Background style', backgrounds, 'white-shadow') as Backgrounds,
     showSideChildrenWhenHeaderHidden: boolean('Set Footer Active', false),
+    "data-testid": text('data-testid','card-example-testid')
   };
   return { props };
 };
 
 const renderCard = (
-  props: CardProps & { withIcon?: string | boolean },
+  props: CardProps & { withIcon?: string | boolean; content: React.ReactNode },
   hideContentInitial = false,
   onExpansionChange?: (expanded: boolean) => void
 ) => {
@@ -46,6 +47,7 @@ const renderCard = (
   React.useEffect(() => {
     setHideContent(hideContentInitial);
   }, [hideContentInitial]);
+  
   return (
     <Card
       lively={props.lively}
@@ -66,6 +68,7 @@ const renderCard = (
       background={props.background}
       hideContent={props.hideContent && hideContent}
       showSideChildrenWhenHeaderHidden={props.showSideChildrenWhenHeaderHidden}
+      data-testid={props['data-testid']}
     >
       <div style={{ width: '100%', height: 300 }}>{props.content}</div>
     </Card>

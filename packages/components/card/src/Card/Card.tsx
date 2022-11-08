@@ -29,6 +29,7 @@ const Card: React.FC<CardProps> = ({
   hideContent,
   staticContent,
   showSideChildrenWhenHeaderHidden,
+  ...props
 }) => {
   const fatTitle = !description || (description && compactHeader);
   const [headerActionsVisible, setHeaderActionsVisible] = React.useState(false);
@@ -41,6 +42,8 @@ const Card: React.FC<CardProps> = ({
       className={`ds-card ${className || ''}`}
       lively={lively}
       background={background}
+      /** Necessary for passing down data-* attributes */
+      {...props}
     >
       {withHeader && (
         <S.Header
