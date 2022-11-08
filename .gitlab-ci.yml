@@ -45,7 +45,6 @@ build:
     - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
 
 docs_build:
-  image: node:lts
   stage: test
   only:
     refs:
