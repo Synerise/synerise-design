@@ -7,7 +7,6 @@ import {
   MaskedInput,
   InputMultivalue,
   RawMaskedInput,
-  AutoResizeInput,
 } from '@synerise/ds-input';
 
 import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
@@ -27,6 +26,7 @@ import { getAllElementsFiltered } from '@synerise/ds-search/dist/Elements/utils/
 import SearchBar from '@synerise/ds-search-bar';
 import { SelectValue } from 'antd/es/select';
 import Result from '@synerise/ds-result';
+import { Modal } from '../Modal/withHeaders/withHeaders.styles';
 
 const renderWithHighlightedText = (highlight, item): React.ReactNode => {
   if (highlight && typeof item === 'string') {
@@ -561,15 +561,70 @@ const stories = {
       />
     );
   },
-  inputWithAutoResize: () => {
+  inputAutoresizeInModal: () => {
+    const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState<string>('');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = React.useState(false);
-    const autoResizeMaxWidth = number('Set autoResize max width', 400);
-    const autoResizeMinWidth = number('Set autoResize min width', 150);
+    const autoResize = boolean('Set autoResize', true);
+    const getDescription = (hasDescription: boolean): string => {
+      if (hasDescription) {
+        return descriptionMessage;
+      } else {
+        return '';
+      }
+    };
+
+    const getErrorText = (hasError: boolean): string => {
+      if (hasError) {
+        return errorMessage;
+      } else {
+        return '';
+      }
+    };
+    return (
+        <div>
+          <Modal
+        size="small"
+        visible={true}
+        title={'Title'}
+        bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
+        onOk={() => setOpen(open)}
+        >
+            <Input
+              autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+            placeholder={text('Placeholder', 'Placeholder')}
+            label={renderLabel(text('Label', 'Label'))}
+            description={descriptionMessage && getDescription(hasDescription)}
+            errorText={!isFocus && getErrorText(hasError)}
+            error={!isFocus && hasError}
+            disabled={boolean('Disabled', false)}
+            onChange={e => setValue(e.target.value)}
+            onBlur={() => {
+              action('I am blurred');
+              setFocus(false);
+            }}
+            onFocus={() => {
+              action('I am focused');
+              setFocus(true);
+            }}
+            value={value}
+          />
+          </Modal>
+        </div>
+    )
+  },
+  inputWithAutoresize: () => {
+    const [value, setValue] = React.useState<string>('');
+    const hasDescription = boolean('Set Description', true);
+    const descriptionMessage = text('Description', 'Description');
+    const errorMessage = text('Error Text', 'Error');
+    const hasError = boolean('Set validation state', false);
+    const [isFocus, setFocus] = React.useState(false);
+    const autoResize = boolean('Set autoResize', true);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -587,7 +642,8 @@ const stories = {
     };
 
     return (
-      <AutoResizeInput
+      <Input
+        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -604,7 +660,6 @@ const stories = {
           setFocus(true);
         }}
         value={value}
-        autoResize={{maxWidth: `${autoResizeMaxWidth}px`, minWidth: `${autoResizeMinWidth}px`}}
       />
     );
   },

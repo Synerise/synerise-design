@@ -5,23 +5,31 @@ import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import { AutocompleteProps, StaticComponents } from 'Autocomplete.types';
 import Select from 'antd/lib/select';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import { AutoResize, WrapperAutoResize } from '@synerise/ds-input';
 import * as S from './Autocomplete.styles';
 
 const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
-  const { className, label, description, errorText, disabled, error, handleInputRef } = props;
+  const {
+    className,
+    label,
+    description,
+    errorText,
+    disabled,
+    error,
+    handleInputRef,
+    autoResize,
+    ...antdAutocompleteProps
+  } = props;
   const inputRef = React.useRef<Select | undefined>(undefined);
 
   React.useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
-  return (
-    <S.AutocompleteWrapper className={`ds-autocomplete ${className || ''}`}>
-      {label && (
-        <S.LabelWrapper>
-          <Label>{label}</Label>
-        </S.LabelWrapper>
-      )}
+  const renderAutoCompleteComponent = (): React.ReactNode => {
+    return (
       <AntdAutoComplete
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
@@ -31,6 +39,24 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         dropdownClassName="ds-autocomplete-dropdown"
         className={!!errorText || error ? 'error' : undefined}
       />
+    );
+  };
+
+  return (
+    <S.AutocompleteWrapper autoResize={autoResize} className={`ds-autocomplete ${className || ''}`}>
+      {label && (
+        <S.LabelWrapper>
+          <Label>{label}</Label>
+        </S.LabelWrapper>
+      )}
+      {autoResize ? (
+        <WrapperAutoResize autoResize={autoResize}>
+          {renderAutoCompleteComponent()}
+          <AutoResize autoResize={autoResize}>{antdAutocompleteProps.value}</AutoResize>
+        </WrapperAutoResize>
+      ) : (
+        renderAutoCompleteComponent()
+      )}
       {errorText && (
         <S.ErrorWrapper>
           <ErrorText>{errorText}</ErrorText>

@@ -9,6 +9,7 @@ export type OverrideProps = {
   description?: React.ReactNode | string;
   error?: boolean;
   handleInputRef?: (ref: React.MutableRefObject<Select | undefined>) => void;
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
 };
 
 export interface StaticComponents {

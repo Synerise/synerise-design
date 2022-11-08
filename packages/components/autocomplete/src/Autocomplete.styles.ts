@@ -30,8 +30,27 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
   background: ${(props): string => props.theme.palette['red-050']};
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
 `;
+export type AutoResizeProps = {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+};
+function autoresizeConfObjToCss({
+  autoResize,
+}: {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}): string {
+  if (!autoResize) return '';
+  if (typeof autoResize === 'object') {
+    return `max-width: ${autoResize.maxWidth}; min-width: ${autoResize.minWidth}`;
+  }
+  return `max-width: 400px; min-width: 150px;`;
+}
 
-export const AutocompleteWrapper = styled.div`
+export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
+  .ant-select-auto-complete {
+    width: ${(props): string => (props.autoResize ? '100%' : '200px')};
+    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)};
+    grid-area: 1 / 1;
+  }
   .ant-select-dropdown {
     &.ant-select {
       .ant-input {

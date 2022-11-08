@@ -343,7 +343,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             defaultFactorType: 'text',
             // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
             // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-            textType: select('Select type of text input', ['autocomplete','autoresize','expansible', 'default'], 'default'),
+            textType: select('Select type of text input', ['autocomplete','expansible', 'default'], 'default'),
             autocompleteText: {
               options: ['First name', 'Last name', 'City', 'Age', 'Points'],
             },

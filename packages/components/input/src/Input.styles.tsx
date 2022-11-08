@@ -1,15 +1,10 @@
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
-import AutosizeInput from 'react-input-autosize';
-
-export type AutoResizeProps = {
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
-};
 
 const errorInputStyle = (props: ThemeProps): string => `
   &&&, && .ant-input {
@@ -18,17 +13,25 @@ const errorInputStyle = (props: ThemeProps): string => `
     background: ${props.theme.palette['red-050']};
   }
 `;
-const errorAutoSizeInputStyle = (props: ThemeProps): string => `
-    border-color: ${props.theme.palette['red-600']};
-    box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-    background: ${props.theme.palette['red-050']};
-`;
-const active = (): FlattenInterpolation<ThemeProps> => css`
-  transition: box-shadow 0.2s ease-in-out;
-  box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
-  border: 1px solid ${(props): string => props.theme.palette['blue-600']};
-  background-color: ${(props): string => props.theme.palette['blue-050']};
-`;
+
+export type AutoResizeInputProps = {
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  suffixel?: boolean | React.ReactNode;
+  prefixel?: boolean | React.ReactNode;
+  icon1?: boolean | React.ReactNode;
+  icon2?: boolean | React.ReactNode;
+};
+
+const getPaddingAutoResize = (props: AutoResizeInputProps): string => {
+  if (props.prefixel || props.suffixel) {
+    return '0 43px';
+  }
+  if (props.icon1 || props.icon2) {
+    return '0 25px';
+  }
+  return '0 13px';
+};
+
 function autoresizeConfObjToCss({
   autoResize,
 }: {
@@ -40,7 +43,6 @@ function autoresizeConfObjToCss({
   }
   return `max-width: 400px; min-width: 150px;`;
 }
-
 export const OuterWrapper = styled.div<{
   resetMargin?: boolean;
   autoResize?: boolean | { minWidth: string; maxWidth: string };
@@ -56,7 +58,7 @@ export const OuterWrapper = styled.div<{
     }
   }
   input {
-    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
+    ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
   }
 `;
 
@@ -142,6 +144,7 @@ export const AntdInput = styled(
 
   &&& {
     min-height: 32px;
+    grid-area: 1 / 1;
     color: ${(props): string => props.theme.palette['grey-700']};
     z-index: 1;
     &::placeholder {
@@ -198,50 +201,26 @@ export const AntdTextArea = styled(
     color: ${(props): string => props.theme.palette['grey-700']};
   }
 `;
-export const AutoResizeInput = styled(
-  React.forwardRef<AutosizeInput, { error?: boolean }>(
-    // eslint-disable-next-line
-    ({ error, ...props }) => (
-      // eslint-disable-next-line
-      <AutosizeInput {...props} />
-    )
-  )
-)<{ error?: boolean; autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
-  input {
-    border: 1px solid ${(props): string => props.theme.palette['grey-300']};
-    ${(props): string => (props.error ? errorAutoSizeInputStyle(props) : '')};
-    border-radius: 3px;
-    font-size: 13px;
-    line-height: 17px;
-    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)}
-    padding: 7px 12px 6px;
-    color: ${(props): string => props.theme.palette['grey-600']};
-    ::placeholder {
-      color: ${(props): string => props.theme.palette['grey-500']};
-    }
-    &:hover {
-      border: 1px solid ${(props): string => props.theme.palette['grey-400']};
-      &:disabled {
-        cursor: not-allowed;
-        border: 1px solid ${(props): string => props.theme.palette['grey-300']};
-      }
-    }
-    &.active {
-      ${active()}
-    }
-    &:focus {
-      ${active()}
-      &:hover {
-        ${active()}
-      }
-    }
-  }
-`;
 
 export const ContentBelow = styled.div`
   margin-top: 8px;
 `;
-
+export const WrapperAutoResize = styled.div<{
+  autoResize?: boolean | { minWidth: string; maxWidth: string };
+}>`
+  display: inline-grid;
+  align-items: center
+  justify-items: start;
+  ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
+`;
+export const AutoResize = styled.div<AutoResizeInputProps>`
+  max-height: 32px;
+  grid-area: 1 / 1;
+  visibility: hidden;
+  white-space: pre;
+  padding: ${(props): string => getPaddingAutoResize(props)};
+  ${(props: AutoResizeInputProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
+`;
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
   margin-bottom: 4px;
