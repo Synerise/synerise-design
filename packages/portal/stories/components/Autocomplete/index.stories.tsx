@@ -5,20 +5,19 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
 import Loader from '@synerise/ds-loader';
 import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
-import { debounce } from 'lodash';
 
 const dataSource = ['First position', 'Second position'];
-const renderLabel = (text:string)=>{
-  return (<div style={{maxWidth:'200px', textOverflow: 'ellipsis', overflow:'hidden'}}>{text}</div>)
-}
+const renderLabel = (text: string) => {
+  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
+};
 
 const AutocompleteWithState: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
-  const description = text('Description','Description');
-  const errorMessage = text('Error Text', 'Error' );
-  const hasError = boolean('Set validation state',false);
-  const loading = boolean('Set loading indicator',false);
+  const description = text('Description', 'Description');
+  const errorMessage = text('Error Text', 'Error');
+  const hasError = boolean('Set validation state', false);
+  const loading = boolean('Set loading indicator', false);
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', false);
@@ -72,12 +71,25 @@ const AutocompleteWithState: React.FC = () => {
     <Autocomplete
       placeholder={placeholder}
       onSearch={handleSearch}
-      autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+      autoResize={
+        autoResize
+          ? {
+              maxWidth: `${number('Set autoResize max width', 300)}px`,
+              minWidth: `${number('Set autoResize min width', 150)}px`,
+            }
+          : undefined
+      }
       label={renderLabel(text('Label', 'Label'))}
       errorText={!isBlur && getErrorText(hasError)}
       error={!isBlur && hasError}
-      onBlur={()=>{action ('I am blurred'); setBlur(false)}}
-      onFocus={()=>{action('I am focused'); setBlur(true)}}
+      onBlur={() => {
+        action('I am blurred');
+        setBlur(false);
+      }}
+      onFocus={() => {
+        action('I am focused');
+        setBlur(true);
+      }}
       onChange={(value: string) => {
         setValue(extractContent(value));
         handleSearch(extractContent(value));
@@ -85,12 +97,19 @@ const AutocompleteWithState: React.FC = () => {
       description={description}
       value={value === 'undefined' ? '' : value}
     >
-      {!loading && results.map(result => (
-        <Autocomplete.Option key={result}>
-          <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
+      {!loading &&
+        results.map(result => (
+          <Autocomplete.Option key={result}>
+            <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
+          </Autocomplete.Option>
+        ))}
+      {loading && (
+        <Autocomplete.Option>
+          <LoaderWrapper>
+            <Loader label="Loading..." />
+          </LoaderWrapper>{' '}
         </Autocomplete.Option>
-      ))}
-      {loading && <Autocomplete.Option><LoaderWrapper><Loader label='Loading...'/></LoaderWrapper> </Autocomplete.Option>}
+      )}
     </Autocomplete>
   );
 };
@@ -98,10 +117,10 @@ const AutocompleteWithAutoResize: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [search, setSearch] = React.useState<string>('');
   const [results, setResults] = React.useState<string[]>([]);
-  const description = text('Description','Description');
-  const errorMessage = text('Error Text', 'Error' );
-  const hasError = boolean('Set validation state',false);
-  const loading = boolean('Set loading indicator',false);
+  const description = text('Description', 'Description');
+  const errorMessage = text('Error Text', 'Error');
+  const hasError = boolean('Set validation state', false);
+  const loading = boolean('Set loading indicator', false);
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', true);
@@ -118,29 +137,22 @@ const AutocompleteWithAutoResize: React.FC = () => {
   }
   const debounceInput = useDebounce(value);
 
-
   React.useEffect(() => {
     action('fetch')(value);
     fetch(`https://jsonplaceholder.typicode.com/todos?q=${debounceInput}`)
       .then(jsonData => jsonData.json())
       .then(jsonData => {
-        setResults(jsonData)
+        setResults(jsonData);
       });
-  },[debounceInput]);
-
+  }, [debounceInput]);
 
   const renderResults = React.useMemo(() => {
     if (!value || value.indexOf('@') >= 0) {
-       return [search];
+      return [search];
     } else {
-      return results.filter(item => Object.values(item)
-        .join("")
-        .toLowerCase()
-        .includes(value.toLowerCase()));
+      return results.filter(item => Object.values(item).join('').toLowerCase().includes(value.toLowerCase()));
     }
-  }, [results,search]);
-
-
+  }, [results, search]);
 
   const getErrorText = (hasError: boolean): string => {
     if (hasError) {
@@ -163,22 +175,42 @@ const AutocompleteWithAutoResize: React.FC = () => {
       label={renderLabel(text('Label', 'Label'))}
       errorText={!isBlur && getErrorText(hasError)}
       error={!isBlur && hasError}
-      onBlur={()=>{action ('I am blurred'); setBlur(false)}}
-      onFocus={()=>{action('I am focused'); setBlur(true)}}
+      onBlur={() => {
+        action('I am blurred');
+        setBlur(false);
+      }}
+      onFocus={() => {
+        action('I am focused');
+        setBlur(true);
+      }}
       onChange={(value: string) => {
         setSearch(extractContent(value));
         setValue(extractContent(value));
       }}
       description={description}
-      autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+      autoResize={
+        autoResize
+          ? {
+              maxWidth: `${number('Set autoResize max width', 300)}px`,
+              minWidth: `${number('Set autoResize min width', 150)}px`,
+            }
+          : undefined
+      }
       value={value === 'undefined' ? '' : value}
     >
-      {!loading && renderResults.map(result => (
-        <Autocomplete.Option value={result.title} key={result.toString()}>
-          <span style={{ fontWeight: 400 }}>{JSON.stringify(result.title)}</span>
+      {!loading &&
+        renderResults.map(result => (
+          <Autocomplete.Option value={result.title} key={result.toString()}>
+            <span style={{ fontWeight: 400 }}>{JSON.stringify(result.title)}</span>
+          </Autocomplete.Option>
+        ))}
+      {loading && (
+        <Autocomplete.Option>
+          <LoaderWrapper>
+            <Loader label="Loading..." />
+          </LoaderWrapper>{' '}
         </Autocomplete.Option>
-      ))}
-      {loading && <Autocomplete.Option><LoaderWrapper><Loader label='Loading...'/></LoaderWrapper> </Autocomplete.Option>}
+      )}
     </Autocomplete>
   );
 };
@@ -189,7 +221,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Autocomplete',
+  name: 'Components/Autocomplete',
   config: {},
   stories,
   Component: Autocomplete,
