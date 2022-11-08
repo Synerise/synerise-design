@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.25](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.24...@synerise/ds-input@0.18.25) (2022-11-08)
+
+
+### Bug Fixes
+
+* **input:** fix prop autoresize and change his functionality ([f825a8f](https://github.com/synerise/synerise-design/commit/f825a8f3864a1246f31fa52301a3d5d00fbbf884))
+* **input:** fix spacebar in input autoresize ([1a53665](https://github.com/synerise/synerise-design/commit/1a536655ec0cf8195fdbddf1be4e07f227960929))
+* **input:** fix styles ([4a36016](https://github.com/synerise/synerise-design/commit/4a360160004686ecfcb2482180f76f60999865f5))
+* **input:** fix styles ([bf4a026](https://github.com/synerise/synerise-design/commit/bf4a026827594c31524a3b26b91d3aac4a3fef0f))
+* **input:** fix styles and add new story AutoResizeInModal ([27b88fb](https://github.com/synerise/synerise-design/commit/27b88fb48791c74124c266870f83027eb371177d))
+
+
+
+
+
 ## [0.18.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.23...@synerise/ds-input@0.18.24) (2022-10-11)
 
 

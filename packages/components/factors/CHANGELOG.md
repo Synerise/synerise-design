@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.10...@synerise/ds-factors@0.15.11) (2022-11-08)
+
+
+### Bug Fixes
+
+* **factors:** remove AutoResizeInput, add logic to input, Autocomplete ([f105af7](https://github.com/Synerise/synerise-design/commit/f105af7746300b87b9e21d24589467c6f08c39fa))
+* **factors:** remove suffix icon in default input ([f360b51](https://github.com/Synerise/synerise-design/commit/f360b51c1781e681021ee8ea9f0c0930ec26eb2f))
+
+
+
+
+
 ## [0.15.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.9...@synerise/ds-factors@0.15.10) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-factors

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.168.5](https://github.com/synerise/synerise-design/compare/portal@0.168.4...portal@0.168.5) (2022-11-08)
+
+
+### Bug Fixes
+
+* **autocomplete:** add action fetch in useEffect ([0dd525e](https://github.com/synerise/synerise-design/commit/0dd525e2449e83a7374e0d0c36a9d411abe1da02))
+* **autocomplete:** add autoresize to autocomplete ([83d19db](https://github.com/synerise/synerise-design/commit/83d19dbd0d2e764c84ec7a6337c7f7a8b0264e56))
+* **autocomplete:** add useDebounce to request ([e71a36b](https://github.com/synerise/synerise-design/commit/e71a36be9e78b99c6d84e82dc36868af821924be))
+* **autocomplete:** fix cursor to not show at the end ([02b114b](https://github.com/synerise/synerise-design/commit/02b114b27a9a2452f296437642d4848ff712ff45))
+* **autocomplete:** fix debounce ([0b1db92](https://github.com/synerise/synerise-design/commit/0b1db9207514854fe2226c2f479813422bbae582))
+* **autocomplete:** fix debounce and dropdown ([19b6b9f](https://github.com/synerise/synerise-design/commit/19b6b9f73b5ff8b4152ab67a586ffdb2c16e62c4))
+* **autocomplete:** fix spaces in code ([5ad54ce](https://github.com/synerise/synerise-design/commit/5ad54ce2e3078f6c403b4b9f907231397671142e))
+* **autocomplete:** fixes to styles and add new story with AutoResize ([aae1581](https://github.com/synerise/synerise-design/commit/aae15810b4ecab281382f094c203778c99c77f15))
+* **autocomplete:** new prop to control width of autocomplete ([dc60e3b](https://github.com/synerise/synerise-design/commit/dc60e3b774ee6144201a5c5f9c4911fbeb1b0954))
+* **autocomplete:** update debounce ([069c2b0](https://github.com/synerise/synerise-design/commit/069c2b0a9c027c3b4b6a8f43356d2fd41f2d57a1))
+* **autocomplete:** update dependencies in useEffect ([83f329e](https://github.com/synerise/synerise-design/commit/83f329e7726876486fcee328d1b79f07615b9bc7))
+* **autocomplete:** update fetch to upload list every letter typed ([4be0b1f](https://github.com/synerise/synerise-design/commit/4be0b1fd73c2d9de697d2a35a1a1c174b71092db))
+* **autocomplete:** update knobs ([b12f221](https://github.com/synerise/synerise-design/commit/b12f2219915507d945c68d47b1a17aece7b0afe9))
+* **condition:** remove AutoResizeInput, add logic to input, Autocomplete ([87b2a70](https://github.com/synerise/synerise-design/commit/87b2a703faf6ff56d093fa40c7485844825f9b03))
+* **factors:** remove AutoResizeInput, add logic to input, Autocomplete ([f105af7](https://github.com/synerise/synerise-design/commit/f105af7746300b87b9e21d24589467c6f08c39fa))
+* **input:** change knob for true ([ecd796b](https://github.com/synerise/synerise-design/commit/ecd796bd1d3bba17919366d9fbd0fb4842251328))
+* **input:** fix prop autoresize and change his functionality ([f825a8f](https://github.com/synerise/synerise-design/commit/f825a8f3864a1246f31fa52301a3d5d00fbbf884))
+* **input:** fix spacebar in input autoresize ([1a53665](https://github.com/synerise/synerise-design/commit/1a536655ec0cf8195fdbddf1be4e07f227960929))
+* **input:** fix styles and add new story AutoResizeInModal ([27b88fb](https://github.com/synerise/synerise-design/commit/27b88fb48791c74124c266870f83027eb371177d))
+
+
+
+
+
 ## [0.168.4](https://github.com/synerise/synerise-design/compare/portal@0.168.3...portal@0.168.4) (2022-11-08)
 
 **Note:** Version bump only for package portal

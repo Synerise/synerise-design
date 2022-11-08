@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.10](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.9...docs@0.22.10) (2022-11-08)
+
+
+### Bug Fixes
+
+* **autocomplete:** add docs ([d37b667](https://gitlab.synerise.com/Frontend/synerise-design/commit/d37b667365511f86962d03059c6652a15d4c8dda))
+* **autocomplete:** add update in docs ([6cac0c8](https://gitlab.synerise.com/Frontend/synerise-design/commit/6cac0c8ef17f142fe599631d960e0cfccc69c402))
+
+
+
+
+
 ## [0.22.9](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.8...docs@0.22.9) (2022-09-08)
 
 **Note:** Version bump only for package docs

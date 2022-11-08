@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.29...@synerise/ds-autocomplete@0.4.30) (2022-11-08)
+
+
+### Bug Fixes
+
+* **autocomplete:** add autoresize to autocomplete ([83d19db](https://github.com/Synerise/synerise-design/commit/83d19dbd0d2e764c84ec7a6337c7f7a8b0264e56))
+* **autocomplete:** fix width of autocomplete ([2dd5aa3](https://github.com/Synerise/synerise-design/commit/2dd5aa3a6e694b341b17c40fcf2ebd605944fb3a))
+* **autocomplete:** fixes to styles and add new story with AutoResize ([aae1581](https://github.com/Synerise/synerise-design/commit/aae15810b4ecab281382f094c203778c99c77f15))
+* **autocomplete:** new prop to control width of autocomplete ([dc60e3b](https://github.com/Synerise/synerise-design/commit/dc60e3b774ee6144201a5c5f9c4911fbeb1b0954))
+
+
+
+
+
 ## [0.4.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.28...@synerise/ds-autocomplete@0.4.29) (2022-10-24)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete
