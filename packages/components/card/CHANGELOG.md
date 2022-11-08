@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.13.0...@synerise/ds-card@0.13.1) (2022-11-08)
+
+
+### Bug Fixes
+
+* **card:** force ds-card release ([a362eb1](https://github.com/Synerise/synerise-design/commit/a362eb185e51dae934f7289f23dbf69d9fcc0fc3))
+
+
+
+
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.12.7...@synerise/ds-card@0.13.0) (2022-11-08)
 
 
