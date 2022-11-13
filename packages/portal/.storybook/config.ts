@@ -33,6 +33,7 @@ interface storyConfig {
   },
   decorator?: DecoratorFn,
   config?: object,
+  parameters?: object,
   withoutCenter?: boolean,
 }
 
@@ -44,6 +45,7 @@ function loadStories() {
       stories,
       decorator,
       config = {},
+      parameters,
       withoutCenter = false,
     }: storyConfig = req(filename).default;
 
@@ -56,6 +58,10 @@ function loadStories() {
 
       if (!withoutCenter) {
         componentStories.addDecorator(centered);
+      }
+
+      if (parameters) {
+        componentStories.addParameters(parameters)
       }
 
       for (const storyName in stories) {

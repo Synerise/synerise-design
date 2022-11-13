@@ -501,10 +501,18 @@ const stories = {
   },
 };
 
+const url = process.env['REACT_APP_REPO_URL_PREFIX'];
+
 export default {
   name: 'Components/Pickers/DateRangePicker',
   config: {},
   component: DateRangePicker,
   stories,
   decorator,
+  parameters: url === undefined ? {} : {
+    info: {
+      text: `Source code of [the component](${url || ''}ds-date-range-picker@0.18.1/packages/components/date-range-picker/src)
+        and [stories](${url || ''}ds-date-range-picker@0.18.1/packages/portal/stories/components/DateRangePicker).`,
+    },
+  },
 };
