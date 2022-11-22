@@ -20,4 +20,5 @@ export type StepCardProps = {
   onDelete: () => void;
   onDuplicate: () => void;
   texts?: StepCardTexts;
+  isHeaderVisible?: boolean;
 };

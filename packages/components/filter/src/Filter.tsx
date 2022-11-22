@@ -40,6 +40,7 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
   logicOptions,
+  visibilityConfig = { isStepCardHeaderVisible: true },
 }) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
@@ -129,6 +130,7 @@ const Filter: React.FC<FilterProps> = ({
           onDuplicate: !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
+          isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
           texts: {
             ...text.step,
             ...contextTypeTexts,
