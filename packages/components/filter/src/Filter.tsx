@@ -153,6 +153,7 @@ const Filter: React.FC<FilterProps> = ({
       renderStepContent,
       renderStepFooter,
       text.step,
+      visibilityConfig.isStepCardHeaderVisible,
     ]
   );
 
