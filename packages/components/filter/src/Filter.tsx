@@ -183,17 +183,21 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <S.FilterWrapper>
-      <MatchingWrapper>
-        <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
-        {!!maxConditionsLimit && (
-          <S.ConditionsLimit>
-            {text.conditionsLimit}:{' '}
-            <S.ConditionsLimitResults>
-              {expressions.length}/{maxConditionsLimit}
-            </S.ConditionsLimitResults>
-          </S.ConditionsLimit>
-        )}
-      </MatchingWrapper>
+      {texts?.overwritten?.filterTitle ? (
+        <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
+      ) : (
+        <MatchingWrapper>
+          <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
+          {!!maxConditionsLimit && (
+            <S.ConditionsLimit>
+              {text.conditionsLimit}:{' '}
+              <S.ConditionsLimitResults>
+                {expressions.length}/{maxConditionsLimit}
+              </S.ConditionsLimitResults>
+            </S.ConditionsLimit>
+          )}
+        </MatchingWrapper>
+      )}
 
       <>
         {expressions.length > 0 ? (
