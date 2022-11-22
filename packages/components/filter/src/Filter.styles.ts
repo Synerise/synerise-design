@@ -94,3 +94,15 @@ export const AddButtonWrapper = styled.div`
   margin: 24px 0 0;
   width: 100%;
 `;
+
+export const FilterTitle = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: ${(props): string => props.theme.palette['grey-800']};
+  text-align: left;
+  user-select: none;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+`;

@@ -40,6 +40,7 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
   logicOptions,
+  visibilityConfig = { isStepCardHeaderVisible: true },
 }) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
@@ -129,6 +130,7 @@ const Filter: React.FC<FilterProps> = ({
           onDuplicate: !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
+          isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
           texts: {
             ...text.step,
             ...contextTypeTexts,
@@ -151,6 +153,7 @@ const Filter: React.FC<FilterProps> = ({
       renderStepContent,
       renderStepFooter,
       text.step,
+      visibilityConfig.isStepCardHeaderVisible,
     ]
   );
 
@@ -180,17 +183,21 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <S.FilterWrapper>
-      <MatchingWrapper>
-        <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
-        {!!maxConditionsLimit && (
-          <S.ConditionsLimit>
-            {text.conditionsLimit}:{' '}
-            <S.ConditionsLimitResults>
-              {expressions.length}/{maxConditionsLimit}
-            </S.ConditionsLimitResults>
-          </S.ConditionsLimit>
-        )}
-      </MatchingWrapper>
+      {texts?.overwritten?.filterTitle ? (
+        <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
+      ) : (
+        <MatchingWrapper>
+          <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
+          {!!maxConditionsLimit && (
+            <S.ConditionsLimit>
+              {text.conditionsLimit}:{' '}
+              <S.ConditionsLimitResults>
+                {expressions.length}/{maxConditionsLimit}
+              </S.ConditionsLimitResults>
+            </S.ConditionsLimit>
+          )}
+        </MatchingWrapper>
+      )}
 
       <>
         {expressions.length > 0 ? (

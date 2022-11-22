@@ -61,5 +61,11 @@ export type FilterProps = {
     };
     addFilter?: string;
     dropMeHere?: string;
+    overwritten?: {
+      filterTitle?: string;
+    };
+  };
+  visibilityConfig: {
+    isStepCardHeaderVisible?: boolean;
   };
 };

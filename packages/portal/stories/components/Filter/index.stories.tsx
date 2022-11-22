@@ -324,6 +324,9 @@ const stories = {
               dropMeHere: 'Drop me here',
               conditionsLimit: 'Conditions limit',
             }}
+            visibilityConfig={{
+              isStepCardHeaderVisible: boolean('Show step card header', true),
+            }}
           />
         </Layout>
       </div>
