@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.22...@synerise/ds-step-card@0.7.23) (2022-11-23)
+
+
+### Bug Fixes
+
+* **filter:** filter props to hide step card header ([b117415](https://github.com/Synerise/synerise-design/commit/b11741522b60065e905bfac76e926b93f9d26568))
+
+
+
+
+
 ## [0.7.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.21...@synerise/ds-step-card@0.7.22) (2022-11-22)
 
 **Note:** Version bump only for package @synerise/ds-step-card

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.168.6](https://github.com/synerise/synerise-design/compare/portal@0.168.5...portal@0.168.6) (2022-11-23)
+
+
+### Bug Fixes
+
+* **filter:** filter props to hide step card header ([b117415](https://github.com/synerise/synerise-design/commit/b11741522b60065e905bfac76e926b93f9d26568))
+
+
+
+
+
 ## [0.168.5](https://github.com/synerise/synerise-design/compare/portal@0.168.4...portal@0.168.5) (2022-11-08)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.13.0...@synerise/ds-filter@0.13.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* **filter:** add props to dependency array ([3ba9f26](https://github.com/Synerise/synerise-design/commit/3ba9f26547805967bbe74b66df6112fde8c581e3))
+* **filter:** add props to overwrite filter title ([889753a](https://github.com/Synerise/synerise-design/commit/889753a305d6aba7ccf817bc11d6b44b5a06447f))
+* **filter:** filter props to hide step card header ([b117415](https://github.com/Synerise/synerise-design/commit/b11741522b60065e905bfac76e926b93f9d26568))
+
+
+
+
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.12.2...@synerise/ds-filter@0.13.0) (2022-09-26)
 
 
