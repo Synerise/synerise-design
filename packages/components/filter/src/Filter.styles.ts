@@ -102,6 +102,7 @@ export const FilterTitle = styled.div`
   color: ${(props): string => props.theme.palette['grey-800']};
   text-align: left;
   user-select: none;
+  margin-bottom: 24px;
   &:first-letter {
     text-transform: uppercase;
   }

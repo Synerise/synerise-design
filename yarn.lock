@@ -6322,11 +6322,6 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.47.2.tgz#9476545f2d0aeb8ac36b5fa49212021d6050bb3e"
   integrity sha1-lHZUXy0K64rDa1+kkhICHWBQuz4=
 
-"@synerise/ds-icon@^0.49.0":
-  version "0.49.5"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-icon/-/ds-icon-0.49.5.tgz#7a2625b048b1a66077e79b5c9985577b8f3d2655"
-  integrity sha512-ZaPY3z7r7KjL8Ztz3GDPJ6riwCY78+SMy1u4fvNTmO02pke0Xxb8TKk8Q6CNVQrY39gT+NG1M7NIF1kFLd2C/g==
-
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -6335,15 +6330,15 @@
     "@synerise/ds-utils" "^0.11.9"
     uuid "^7.0.2"
 
-"@synerise/ds-step-card@^0.6.3":
-  version "0.6.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-step-card/-/ds-step-card-0.6.6.tgz#a137bf65a8ce7ca3217fbd9d6eeea337d5a75624"
-  integrity sha1-oTe/ZajOfKMhf72dbu6jN9WnViQ=
+"@synerise/ds-step-card@^0.7.23":
+  version "0.7.23"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-step-card/-/ds-step-card-0.7.23.tgz#2ee5c989df7a30d55d2f83ea022080024218c6f2"
+  integrity sha1-LuXJid96MNVdL4PqAiCAAkIYxvI=
   dependencies:
-    "@synerise/ds-cruds" "^0.3.9"
-    "@synerise/ds-icon" "^0.49.0"
-    "@synerise/ds-inline-edit" "^0.6.16"
-    "@synerise/ds-logic" "^0.7.0"
+    "@synerise/ds-cruds" "^0.3.17"
+    "@synerise/ds-icon" "^0.51.0"
+    "@synerise/ds-inline-edit" "^0.6.39"
+    "@synerise/ds-logic" "^0.7.8"
 
 "@synerise/ds-utils@^0.11.16", "@synerise/ds-utils@^0.11.9":
   version "0.11.16"

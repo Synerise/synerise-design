@@ -65,7 +65,7 @@ export type FilterProps = {
       filterTitle?: string;
     };
   };
-  visibilityConfig: {
+  visibilityConfig?: {
     isStepCardHeaderVisible?: boolean;
   };
 };

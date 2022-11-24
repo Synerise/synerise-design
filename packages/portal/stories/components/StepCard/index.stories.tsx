@@ -87,6 +87,7 @@ const stories = {
               </>
             )
           }
+          isHeaderVisible={boolean('Show header', true)}
         >
           <ConditionExample steps={steps} onChange={setSteps} />
         </StepCard>
