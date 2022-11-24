@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.168.7](https://github.com/synerise/synerise-design/compare/portal@0.168.6...portal@0.168.7) (2022-11-24)
+
+
+### Bug Fixes
+
+* **step-card:** add is header visible prop to step card story ([66227e4](https://github.com/synerise/synerise-design/commit/66227e4b16bafef8fde10a5d17d1d7a0a5a29064))
+
+
+
+
+
 ## [0.168.6](https://github.com/synerise/synerise-design/compare/portal@0.168.5...portal@0.168.6) (2022-11-23)
 
 

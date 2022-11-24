@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.13.1...@synerise/ds-filter@0.13.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* **filter:** add bottom margin to filter title ([677a1e4](https://github.com/Synerise/synerise-design/commit/677a1e4052ddc96995fdb2467e62781f0c996207))
+* **filter:** update ds-step-card to 0.7.23 ([fb073ce](https://github.com/Synerise/synerise-design/commit/fb073cec21423244285ebadd28ef900469362299))
+* **step-card:** add is header visible prop to step card story ([66227e4](https://github.com/Synerise/synerise-design/commit/66227e4b16bafef8fde10a5d17d1d7a0a5a29064))
+
+
+
+
+
 ## [0.13.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.13.0...@synerise/ds-filter@0.13.1) (2022-11-23)
 
 
