@@ -45,13 +45,13 @@ export const FontStyleWatcher = styled.div`
   pointer-events: none;
 `;
 
-export const IconWrapper = styled.div<{ size: string } & ThemeProps>`
+export const IconWrapper = styled.div<{ size: string; disabled?: boolean } & ThemeProps>`
+  display: ${(props): string => (props.disabled ? 'none' : 'flex')};
   border-radius: 24px;
   color: ${(props): string => props.theme.palette['grey-600']};
   background: ${(props): string => props.theme.palette['grey-100']};
   margin: 0;
   font-size: 11px;
-  display: flex;
   justify-content: center;
   align-items: center;
   margin-left: ${(props): string => (props.size === 'small' ? '4px' : '8px')};
@@ -72,7 +72,6 @@ export const InPlaceEditableInputContainer = styled.div<InPlaceEditableInputCont
   display: flex;
   max-width: 100%;
   align-items: center;
-  opacity: ${({ disabled }): number => (disabled ? 0.4 : 1)};
   pointer-events: ${({ disabled }): string => (disabled ? 'none' : 'all')};
   ${IconWrapper} {
     svg {
