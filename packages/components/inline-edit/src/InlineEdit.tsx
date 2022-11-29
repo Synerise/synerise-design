@@ -116,7 +116,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
       />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
-          <S.IconWrapper onClick={handleFocusInput} size={size}>
+          <S.IconWrapper disabled={disabled} onClick={handleFocusInput} size={size}>
             <Icon component={<EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
