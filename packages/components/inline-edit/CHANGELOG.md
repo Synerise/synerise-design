@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.39...@synerise/ds-inline-edit@0.6.40) (2022-11-30)
+
+
+### Bug Fixes
+
+* **inline-edit:** fix disabled state and hide icon when disabled ([3906dc9](https://github.com/Synerise/synerise-design/commit/3906dc96a729cfb9dbe00af3422924e49b695a71))
+
+
+
+
+
 ## [0.6.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.38...@synerise/ds-inline-edit@0.6.39) (2022-11-22)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

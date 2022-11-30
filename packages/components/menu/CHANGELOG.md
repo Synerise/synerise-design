@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.16.0...@synerise/ds-menu@0.17.0) (2022-11-30)
+
+
+### Features
+
+* **color-picker:** add ColorPicker component ([ccf736d](https://github.com/Synerise/synerise-design/commit/ccf736d91f143ef22229e66c745ef36bd9d8ac38))
+
+
+
+
+
 # [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.15.8...@synerise/ds-menu@0.16.0) (2022-09-21)
 
 
