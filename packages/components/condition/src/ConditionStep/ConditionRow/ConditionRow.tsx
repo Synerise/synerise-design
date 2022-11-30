@@ -37,6 +37,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   onDeactivate,
   error,
   inputProps,
+  readOnly = false,
 }) => {
   return (
     <S.ConditionRow
@@ -47,13 +48,19 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
     >
       <S.ConditionConnections
         first={index === 0}
-        last={Boolean(
-          addCondition &&
-            index + 1 === conditionsNumber &&
-            maxConditionLength !== undefined &&
-            conditionsNumber === maxConditionLength
-        )}
+        last={
+          readOnly
+            ? Boolean(index + 1 === conditionsNumber)
+            : Boolean(
+                addCondition &&
+                  index + 1 === conditionsNumber &&
+                  maxConditionLength !== undefined &&
+                  conditionsNumber === maxConditionLength
+              )
+        }
+        readOnly={readOnly}
       />
+
       <S.ConditionWrapper>
         {conditionParameter && (
           <Factors
@@ -69,6 +76,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               conditionId === currentConditionId &&
               currentField === PARAMETER
             }
+            readOnly={readOnly}
           />
         )}
       </S.ConditionWrapper>
@@ -88,6 +96,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 conditionId === currentConditionId &&
                 currentField === OPERATOR
               }
+              readOnly={readOnly}
             />
           </S.ConditionWrapper>
         )}
@@ -113,12 +122,13 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                   conditionId === currentConditionId &&
                   currentField === FACTOR
                 }
+                readOnly={readOnly}
               />
             )}
           </>
         </S.ConditionWrapper>
       )}
-      {removeCondition && conditionsNumber > minConditionLength && (
+      {!readOnly && removeCondition && conditionsNumber > minConditionLength && (
         <S.RemoveIconWrapper
           onClick={(): void => removeCondition(stepId, conditionId)}
           className="ds-conditions-remove-row"

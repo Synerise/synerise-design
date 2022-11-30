@@ -27,6 +27,7 @@ export type Props = {
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
+  readOnly?: boolean;
 };
 
 export type State = {

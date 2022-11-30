@@ -15,6 +15,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   availableFactorTypes,
   selectedFactor,
   texts,
+  readOnly,
 }) => {
   const typesList = React.useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
@@ -35,12 +36,18 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
     ));
   }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
+  const trigger = (
+    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector">
+      <Icon component={selectedFactor.icon} />
+    </S.TriggerButton>
+  );
+
+  if (readOnly) return trigger;
+
   return (
     <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>
-      <Dropdown overlay={<S.FactorTypeList>{typesList}</S.FactorTypeList>} trigger={['click']}>
-        <S.TriggerButton mode="single-icon" className="ds-factors-type-selector">
-          <Icon component={selectedFactor.icon} />
-        </S.TriggerButton>
+      <Dropdown overlay={<S.FactorTypeList>{typesList}</S.FactorTypeList>} trigger={['click']} disabled={readOnly}>
+        {trigger}
       </Dropdown>
     </Tooltip>
   );

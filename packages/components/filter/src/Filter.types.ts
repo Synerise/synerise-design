@@ -37,6 +37,7 @@ export type FilterProps = {
   renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
   addFilterComponent?: React.ReactNode | ((arg: addFilterComponentProps) => React.ReactNode);
   logicOptions?: LogicOperator[];
+  readOnly?: boolean;
   texts?: {
     matching?: MatchingTexts;
     step?: {

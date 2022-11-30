@@ -8,4 +8,5 @@ export type MatchingProps = {
   sentence?: string;
   onChange: (matching: boolean) => void;
   texts?: MatchingTexts;
+  readOnly?: boolean;
 };

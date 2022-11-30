@@ -67,4 +67,5 @@ export type ConditionProps = {
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
   inputProps?: InputProps;
   onDeactivate?: (currentStepId: React.ReactText, currentConditionId: React.ReactText) => void;
+  readOnly?: boolean;
 };

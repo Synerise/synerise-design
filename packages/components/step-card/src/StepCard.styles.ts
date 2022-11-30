@@ -50,11 +50,12 @@ export const Header = styled.div`
   }
 `;
 
-export const LeftSide = styled.div`
+export const LeftSide = styled.div<{ readOnly?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  padding-left: ${({ readOnly }): string => (readOnly ? '32px' : '0')};
   > * {
     margin-right: 8px;
   }

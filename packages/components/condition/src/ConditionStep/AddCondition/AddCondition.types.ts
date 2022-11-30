@@ -8,4 +8,5 @@ export type AddConditionProps = {
   texts: Partial<ConditionTexts>;
   selectedSubject: boolean;
   selectedContext: boolean;
+  readOnly?: boolean;
 };

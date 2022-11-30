@@ -6,11 +6,23 @@ import { FormulaValueType, InputProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';
 import * as S from './Formula.styles';
 
-const FormulaInput: React.FC<InputProps> = ({ value, onChange, withoutTypeSelector = false, texts, formulaEditor }) => {
+const FormulaInput: React.FC<InputProps> = ({
+  value,
+  onChange,
+  withoutTypeSelector = false,
+  texts,
+  formulaEditor,
+  readOnly = false,
+}) => {
   const [openFormulaModal, setOpenFormulaModal] = React.useState(false);
-  const mode = React.useMemo(() => {
-    return value ? 'two-icons' : 'label-icon';
-  }, [value]);
+
+  const triggerMode = React.useMemo(() => {
+    if (value) {
+      return readOnly ? 'label-icon' : 'two-icons';
+    }
+
+    return readOnly ? 'simple' : 'label-icon';
+  }, [value, readOnly]);
 
   const activeIcon = React.useMemo(() => {
     return value ? <Badge flag status="active" /> : '';
@@ -28,9 +40,11 @@ const FormulaInput: React.FC<InputProps> = ({ value, onChange, withoutTypeSelect
     [onChange]
   );
 
+  const handleClick = (): void => setOpenFormulaModal(true);
+
   return (
     <S.FormulaButton withoutTypeSelector={withoutTypeSelector}>
-      <Button type="secondary" mode={mode} onClick={(): void => setOpenFormulaModal(true)}>
+      <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleClick : undefined}>
         {activeIcon}
         {label}
         <Icon component={<EditS />} />

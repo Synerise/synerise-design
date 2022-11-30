@@ -19,6 +19,7 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   removeStep,
   index,
   draggableEnabled,
+  readOnly = false,
 }) => {
   const onChangeNameDebounce = React.useCallback(debounce(updateStepName || NOOP, 300), [updateStepName]);
   const [localName, setLocalName] = React.useState(stepName);
@@ -35,31 +36,45 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
     [onChangeNameDebounce, stepId]
   );
 
+  const dragHandleElement = !readOnly && draggableEnabled && (
+    <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />
+  );
+
+  const stepNameElement = readOnly ? (
+    localName
+  ) : (
+    <InlineEdit
+      size="small"
+      input={{
+        value: localName,
+        name: `condition-step-name-${stepId}`,
+        placeholder: texts.stepNamePlaceholder,
+        onChange: handleChangeName,
+      }}
+    />
+  );
+
+  const crudElement = !readOnly && (
+    <S.StepCruds>
+      <Cruds
+        onDuplicate={duplicateStep ? (): void => duplicateStep(stepId) : undefined}
+        onDelete={removeStep ? (): void => removeStep(stepId) : undefined}
+        duplicateTooltip={texts.duplicateTooltip}
+        deleteTooltip={texts.removeTooltip}
+      />
+    </S.StepCruds>
+  );
+
   return (
     <S.StepHeader className="ds-condition-step-header" draggable={draggableEnabled}>
       <S.LeftSide>
-        {draggableEnabled && <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />}
+        {dragHandleElement}
         <S.StepName className="ds-condition-step-name">
-          {`${index + 1}`}{' '}
-          <InlineEdit
-            size="small"
-            input={{
-              value: localName,
-              name: `condition-step-name-${stepId}`,
-              placeholder: texts.stepNamePlaceholder,
-              onChange: handleChangeName,
-            }}
-          />
+          <S.StepIndexWrapper readOnly={readOnly}>{`${index + 1}`}</S.StepIndexWrapper>
+          {stepNameElement}
         </S.StepName>
       </S.LeftSide>
-      <S.StepCruds>
-        <Cruds
-          onDuplicate={duplicateStep ? (): void => duplicateStep(stepId) : undefined}
-          onDelete={removeStep ? (): void => removeStep(stepId) : undefined}
-          duplicateTooltip={texts.duplicateTooltip}
-          deleteTooltip={texts.removeTooltip}
-        />
-      </S.StepCruds>
+      {crudElement}
     </S.StepHeader>
   );
 };

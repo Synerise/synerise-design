@@ -21,4 +21,5 @@ export type StepCardProps = {
   onDuplicate: () => void;
   texts?: StepCardTexts;
   isHeaderVisible?: boolean;
+  readOnly?: boolean;
 };

@@ -23,6 +23,7 @@ const TextInput: React.FC<InputProps> = ({
   onDeactivate,
   error,
   inputProps,
+  readOnly = false,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
   const [inputRef, setInputRef] =
@@ -91,6 +92,7 @@ const TextInput: React.FC<InputProps> = ({
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
+          readOnly={readOnly}
         >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
@@ -111,6 +113,7 @@ const TextInput: React.FC<InputProps> = ({
             onChange={handleChange}
             onBlur={onDeactivate}
             error={localError || error}
+            readOnly={readOnly}
           />
         </S.InputWrapper>
       );
@@ -123,13 +126,14 @@ const TextInput: React.FC<InputProps> = ({
           placeholder={texts.valuePlaceholder}
           icon1={
             <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
-              <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />
+              {!readOnly && <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />}
             </S.IconWrapper>
           }
           value={localValue as string}
           onChange={handleChange}
           onBlur={onDeactivate}
           error={localError || error}
+          readOnly={readOnly}
         />
       </S.InputWrapper>
     );

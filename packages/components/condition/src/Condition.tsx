@@ -55,6 +55,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     autoOpenedComponent = DEFAULT_FIELD,
     inputProps,
     onDeactivate,
+    readOnly = false,
   } = props;
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -274,6 +275,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
                 showSuffix={showSuffix}
                 hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
                 inputProps={inputProps}
+                readOnly={readOnly}
               />
             );
           })}
@@ -286,7 +288,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
             </Button>
           </S.AddStepButton>
         )}
-        {renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
+        {!readOnly && renderAddStep && <S.AddStepButton>{renderAddStep()}</S.AddStepButton>}
       </S.Condition>
     );
   }, [
@@ -318,6 +320,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     showSuffix,
     hoverDisabled,
     inputProps,
+    readOnly,
   ]);
 };
 

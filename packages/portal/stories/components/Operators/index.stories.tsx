@@ -4,6 +4,7 @@ import Operators from '@synerise/ds-operators';
 import { withState } from '@dump247/storybook-state';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from './data/index.data';
 import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
 
 const DEFAULT_STATE = {
   value: '',
@@ -24,6 +25,7 @@ const stories = {
         groups={OPERATORS_GROUPS}
         onDeactivate={action('onDeactivate')}
         onActivate={action('onActivate')}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),

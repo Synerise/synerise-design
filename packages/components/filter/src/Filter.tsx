@@ -41,6 +41,7 @@ const Filter: React.FC<FilterProps> = ({
   texts,
   logicOptions,
   visibilityConfig = { isStepCardHeaderVisible: true },
+  readOnly = false,
 }) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
@@ -166,19 +167,19 @@ const Filter: React.FC<FilterProps> = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          style={isActive(expression) ? { zIndex: 10001 } : undefined}
+          style={!readOnly && isActive(expression) ? { zIndex: 10001 } : undefined}
           onClick={(): void => setActiveExpressionId(expression.id)}
         >
-          <Component {...expression.data} {...componentProps(expression)} />
+          <Component {...expression.data} {...componentProps(expression)} readOnly={readOnly} />
           {expression.logic && index + 1 < expressions.length && (
             <S.LogicWrapper>
-              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} />
+              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} readOnly={readOnly} />
             </S.LogicWrapper>
           )}
         </S.ExpressionWrapper>
       );
     },
-    [text.dropMeHere, isActive, componentProps, expressions.length]
+    [text.dropMeHere, isActive, componentProps, expressions.length, readOnly]
   );
 
   return (
@@ -187,7 +188,7 @@ const Filter: React.FC<FilterProps> = ({
         <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
       ) : (
         <MatchingWrapper>
-          <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
+          <div>{matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}</div>
           {!!maxConditionsLimit && (
             <S.ConditionsLimit>
               {text.conditionsLimit}:{' '}
@@ -208,7 +209,7 @@ const Filter: React.FC<FilterProps> = ({
           <Placeholder text={text.placeholder.chooseCondition} />
         )}
       </>
-      {addFilterComponent && (
+      {addFilterComponent && !readOnly && (
         <S.AddButtonWrapper>
           {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
         </S.AddButtonWrapper>
