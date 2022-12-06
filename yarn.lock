@@ -6330,6 +6330,16 @@
     "@synerise/ds-utils" "^0.11.9"
     uuid "^7.0.2"
 
+"@synerise/ds-step-card@^0.7.23":
+  version "0.7.23"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-step-card/-/ds-step-card-0.7.23.tgz#2ee5c989df7a30d55d2f83ea022080024218c6f2"
+  integrity sha1-LuXJid96MNVdL4PqAiCAAkIYxvI=
+  dependencies:
+    "@synerise/ds-cruds" "^0.3.17"
+    "@synerise/ds-icon" "^0.51.0"
+    "@synerise/ds-inline-edit" "^0.6.39"
+    "@synerise/ds-logic" "^0.7.8"
+
 "@synerise/ds-utils@^0.11.16", "@synerise/ds-utils@^0.11.9":
   version "0.11.16"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.11.16.tgz#f01e6ff980d03d7948d2b48048019ab9da3bba24"
