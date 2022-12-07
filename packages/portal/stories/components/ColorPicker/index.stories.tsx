@@ -7,7 +7,7 @@ const stories = {
   default: () => {
     const [color, setColor] = React.useState("#ffffff");
     const userColor = text('Color', '#ffffff');
-    const setError = boolean('Set error', false)
+    const setError = boolean('Set error', false);
     React.useEffect(() => {
       setColor(userColor)
     }, [userColor]);
