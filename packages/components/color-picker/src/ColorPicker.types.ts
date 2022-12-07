@@ -1,4 +1,4 @@
-import { Props as DsSelectProps } from '@synerise/ds-select/dist/Select.types';
+import type { SelectProps } from '@synerise/ds-select';
 
 export type ColorHookType = {
   color: string;
@@ -16,5 +16,5 @@ export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeh
    */
   infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
   maxSavedColors?: number;
-  selectProps?: Omit<DsSelectProps, 'value' | 'onChange' | 'defaultValue'>;
+  selectProps?: Omit<SelectProps, 'value' | 'onChange' | 'defaultValue'>;
 }
