@@ -1,32 +1,13 @@
 import * as React from 'react';
 import { HexColorPicker as ReactColorful } from 'react-colorful';
 import Select from '@synerise/ds-select';
-import type { SelectProps, SelectValue } from 'antd/lib/select';
 import Button from '@synerise/ds-button';
 import Divider from '@synerise/ds-divider';
 import { Input } from '@synerise/ds-input';
 import Tags, { TagShape } from '@synerise/ds-tags';
 import Icon, { FormulaPlusM } from '@synerise/ds-icon';
 import ColorPickerStyles from './ColorPicker.styles';
-
-export type ColorHookType = {
-  color: string;
-  setColor: (color: string) => void;
-};
-
-export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
-  value?: string;
-  onChange?: (color: string) => void;
-  colors?: string[];
-  onSaveColors?: (colors: string[]) => void;
-  /**
-   * used for inlining implementation of other ways of selecting/showing
-   * color value (select with converting to other color notations)
-   */
-  infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
-  maxSavedColors?: number;
-  selectProps?: Omit<SelectProps<SelectValue>, 'value' | 'onChange' | 'defaultValue'>;
-}
+import { ColorPickerProps } from './ColorPicker.types';
 
 export function ColorPicker({
   value = '#ffffff',

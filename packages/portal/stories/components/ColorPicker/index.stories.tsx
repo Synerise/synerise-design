@@ -6,7 +6,8 @@ import ColorPicker from '@synerise/ds-color-picker';
 const stories = {
   default: () => {
     const [color, setColor] = React.useState("#ffffff");
-    const userColor = text('Color', '#ffffff')
+    const userColor = text('Color', '#ffffff');
+    const setError = boolean('Set error', false);
     React.useEffect(() => {
       setColor(userColor)
     }, [userColor]);
@@ -18,6 +19,9 @@ const stories = {
       }}
       selectProps={{
         defaultOpen: boolean('Popup open by default', true),
+        label: text('Label', 'Label'),
+        description: text('Description', 'Description'),
+        errorText: setError && (text('Error text', 'Error'))
       }}
       {...boolean('Customize max saved colors', true) ? {
         maxSavedColors: number('Max saved colors', 10),
