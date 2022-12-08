@@ -29,7 +29,9 @@ module.exports = async ({ config, mode }) => {
         options: {
           presets: ['babel-preset-react-app'],
           plugins:
-            mode === 'PRODUCTION'
+            [
+              "./.storybook/babel-stories-links",
+            ].concat(mode === 'PRODUCTION'
               ? []
               : [
                   [
@@ -50,7 +52,7 @@ module.exports = async ({ config, mode }) => {
                       ],
                     },
                   ],
-                ],
+                ]),
         },
       },
     ],
