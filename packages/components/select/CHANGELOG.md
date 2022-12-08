@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.28...@synerise/ds-select@0.14.29) (2022-12-08)
+
+
+### Bug Fixes
+
+* **select:** export props from select ([6f9f7fc](https://github.com/synerise/synerise-design/commit/6f9f7fc5717047e82dd5dc9f0b2b6d4847e68e9c))
+
+
+
+
+
 ## [0.14.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.27...@synerise/ds-select@0.14.28) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-select
