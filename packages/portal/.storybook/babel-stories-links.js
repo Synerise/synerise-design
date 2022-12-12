@@ -18,13 +18,13 @@ function getModulePath(filename) {
   if (path === '@synerise/ds-notification') return '@synerise/ds-alert';
   if (path === '@synerise/ds-icon-alert') return '@synerise/ds-alert';
   if (path === '@synerise/ds-tags-list') {
+    return '@synerise/ds-tagslist';
+  }
   if (path === '@synerise/ds-fileuploader') return '@synerise/ds-file-uploader';
   if (path === '@synerise/ds-editable-list') return '@synerise/ds-form';
   if (path === '@synerise/ds-button-star') return '@synerise/ds-button';
   if (path === '@synerise/ds-button-checkbox') return '@synerise/ds-button';
   if (path === '@synerise/ds-accordion-menu') return '@synerise/ds-menu';
-    return '@synerise/ds-tagslist';
-  }
   if (path === '@synerise/ds-toast' || path === '@synerise/ds-section-message' || path === '@synerise/ds-inline-note') {
     // toast has its own stories, but it is implemented in ds-alert.
     // The same is true for section-message and inline-note.
@@ -55,10 +55,10 @@ module.exports = function addLinksToStories(babel) {
       ExportDefaultDeclaration(path, state, opts) {
         const modulePath = getModulePath(state.filename);
         if (modulePath === null) {
-          return {};
+          return;
         }
         if (!(state.filename.includes("stories/") && state.filename.includes("index.stories.tsx"))) {
-          return {};
+          return;
         }
         const containsStoriesProperty = path.node.declaration.properties.find(p => p.key.name === 'stories') !== null
         const pkgImportStatement = getPkgJsonImport(`${modulePath}/`);
