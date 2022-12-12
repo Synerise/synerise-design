@@ -11,7 +11,6 @@ function getModulePath(filename) {
     .replace(/([A-Z])/g, match => '-' + match[0].toLowerCase())
     .replace(/(ds-[^/]*)\/?.*/g, (_, m) => m);
   switch (path) {
-    // case :
     case '@synerise/ds-toolbar-buttons':
       // this component consists of both button and tooltip.
       return null;

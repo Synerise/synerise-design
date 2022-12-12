@@ -4,15 +4,7 @@
   "private": true,
   "repository": "synerise/synerise-design",
   "main": "./src/babel-stories-links.js",
-  "scripts": {
-  },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "browserslist": [
-  ],
-  "dependencies": {
-  },
-  "devDependencies": {
   }
 }
