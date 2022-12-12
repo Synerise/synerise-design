@@ -6,8 +6,11 @@
   Returns `null` if storyfile does not have a single mapped component.
  */
 function getModulePath(filename) {
-  const path = filename.replace(/.*components\//, '@synerise/ds').replace(/([A-Z])/g, match => '-'+match[0].toLowerCase()).replace(/(ds-[^/]*)\/?.*/g, (_, m) => m)
-  switch(path) {
+  const path = filename
+    .replace(/.*components\//, '@synerise/ds')
+    .replace(/([A-Z])/g, match => '-' + match[0].toLowerCase())
+    .replace(/(ds-[^/]*)\/?.*/g, (_, m) => m);
+  switch (path) {
     // case :
     case '@synerise/ds-toolbar-buttons':
       // this component consists of both button and tooltip.
@@ -30,24 +33,22 @@ function getModulePath(filename) {
     case '@synerise/ds-accordion-menu':
       return '@synerise/ds-menu';
     case '@synerise/ds-toast':
-      // Toast has its own stories, but it is implemented in ds-alert.
     case '@synerise/ds-section-message':
-      // The same is true for section-message
     case '@synerise/ds-inline-note':
+      // Toast has its own stories, but it is implemented in ds-alert.
+      // The same is true for section-message
       // and inline-note.
       return '@synerise/ds-alert';
     case '@synerise/ds-broadcast-bar':
       return '@synerise/ds-alert';
     case '@synerise/ds-tree-menu':
       return '@synerise/ds-treemenu';
+    default:
+      return path;
   }
-  return path;
 }
 
 module.exports = function addLinksToStories(babel) {
-  if (!process.env['REACT_APP_REPO_URL_PREFIX'] && !process.env['DS_SRC_DOCS_LINKS']) {
-    return {};
-  }
   const getPkgJsonImport = dir => babel.template.statement.ast(`import pkg from '${dir}package.json';`);
   const paramsDef = babel.template.statement.ast(`
     ({parameters: process.env['REACT_APP_REPO_URL_PREFIX'] === undefined ? {} : {
@@ -63,16 +64,16 @@ module.exports = function addLinksToStories(babel) {
         if (modulePath === null) {
           return;
         }
-        if (!(state.filename.includes("stories/") && state.filename.includes("index.stories.tsx"))) {
+        if (!(state.filename.includes('stories/') && state.filename.includes('index.stories.tsx'))) {
           return;
         }
-        const containsStoriesProperty = path.node.declaration.properties.find(p => p.key.name === 'stories') !== null
+        const containsStoriesProperty = path.node.declaration.properties.find(p => p.key.name === 'stories') !== null;
         const pkgImportStatement = getPkgJsonImport(`${modulePath}/`);
         if (containsStoriesProperty) {
           path.node.declaration.properties.push(paramsDef);
           path.parent.body.unshift(pkgImportStatement);
         }
       },
-    }
-  }
+    },
+  };
 };

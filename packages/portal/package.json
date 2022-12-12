@@ -71,6 +71,7 @@
     "react-docgen-typescript-loader": "3.7.1",
     "react-intl": "3.12.0",
     "style-loader": "1.1.3",
+    "@synerise/portal-plugin-docs-inline-stories-links-to-sources": "^0.0.1",
     "styled-components": "5.0.1"
   },
   "resolutions": {

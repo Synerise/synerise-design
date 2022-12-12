@@ -29,9 +29,12 @@ module.exports = async ({ config, mode }) => {
         options: {
           presets: ['babel-preset-react-app'],
           plugins:
-            [
-              "./.storybook/babel-stories-links",
-            ].concat(mode === 'PRODUCTION'
+            []
+            .concat((process.env['REACT_APP_REPO_URL_PREFIX'] || process.env['BUNDLE_DS_SRC_DOCS_LINKS']) ? [
+              // "./.storybook/babel-stories-links",
+              require('@synerise/portal-plugin-docs-inline-stories-links-to-sources'),
+            ] : [])
+            .concat(mode === 'PRODUCTION'
               ? []
               : [
                   [
@@ -52,7 +55,8 @@ module.exports = async ({ config, mode }) => {
                       ],
                     },
                   ],
-                ]),
+                ]
+            ),
         },
       },
     ],

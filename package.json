@@ -9,6 +9,7 @@
   "workspaces": [
     "packages/components/*",
     "packages/portal",
+    "packages/portal-plugins/*",
     "packages/docs-site/website"
   ],
   "scripts": {
