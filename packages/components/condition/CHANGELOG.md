@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.18.11...@synerise/ds-condition@0.19.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/Synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
 ## [0.18.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.18.10...@synerise/ds-condition@0.18.11) (2022-12-08)
 
 **Note:** Version bump only for package @synerise/ds-condition
