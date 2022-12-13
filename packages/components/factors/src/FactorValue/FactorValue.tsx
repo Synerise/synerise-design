@@ -23,6 +23,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
   onDeactivate,
   error,
   inputProps,
+  readOnly = false,
 }) => {
   const inputType = React.useMemo(() => {
     const InputComponent: React.ElementType = selectedFactor.input;
@@ -49,6 +50,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         onActivate={onActivate}
         onDeactivate={onDeactivate}
         error={error}
+        readOnly={readOnly}
       />
     );
   }, [
@@ -73,6 +75,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     onDeactivate,
     error,
     inputProps,
+    readOnly,
   ]);
 
   return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;

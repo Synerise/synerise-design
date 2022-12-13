@@ -30,4 +30,5 @@ export type ConditionRowProps = {
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
   inputProps?: InputProps;
+  readOnly?: boolean;
 };

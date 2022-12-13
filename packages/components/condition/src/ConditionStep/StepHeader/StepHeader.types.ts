@@ -10,4 +10,5 @@ export type StepHeaderProps = {
   duplicateStep: ConditionProps['duplicateStep'];
   updateStepName: ConditionProps['onUpdateStepName'];
   draggableEnabled: boolean;
+  readOnly?: boolean;
 };

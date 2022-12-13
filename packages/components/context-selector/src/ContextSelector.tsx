@@ -39,6 +39,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   type,
   dropdownProps,
   disabled,
+  readOnly = false,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   React.useEffect(() => {
@@ -65,8 +66,12 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [opened]);
 
   const triggerMode = React.useMemo(() => {
-    return selectedItem ? 'two-icons' : 'label-icon';
-  }, [selectedItem]);
+    if (selectedItem) {
+      return readOnly ? 'icon-label' : 'two-icons';
+    }
+
+    return readOnly ? 'simple' : 'label-icon';
+  }, [selectedItem, readOnly]);
 
   const triggerColor = React.useMemo(() => {
     if (!selectedItem) return 'blue';
@@ -83,7 +88,7 @@ const ContextSelector: React.FC<ContextProps> = ({
 
     return addMode && !selectedItem ? (
       <>
-        <Button disabled={disabled} type="primary" mode="icon-label" onClick={handleClick}>
+        <Button disabled={disabled} type="primary" mode="icon-label" onClick={!readOnly ? handleClick : undefined}>
           <Icon component={<Add3M />} />
           {buttonLabel}
         </Button>
@@ -101,11 +106,11 @@ const ContextSelector: React.FC<ContextProps> = ({
                 type="custom-color"
                 color={triggerColor}
                 mode={triggerMode}
-                onClick={handleClick}
+                onClick={!readOnly ? handleClick : undefined}
               >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
                 <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
-                <Icon component={<AngleDownS />} />
+                {!readOnly && <Icon component={<AngleDownS />} />}
               </Button>
             ),
             hoverTooltipProps: {
@@ -130,7 +135,17 @@ const ContextSelector: React.FC<ContextProps> = ({
         ]}
       />
     );
-  }, [texts, addMode, selectedItem, disabled, handleClick, triggerColor, triggerMode, getPopupContainerOverride]);
+  }, [
+    texts,
+    addMode,
+    selectedItem,
+    disabled,
+    readOnly,
+    handleClick,
+    triggerColor,
+    triggerMode,
+    getPopupContainerOverride,
+  ]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {
@@ -144,6 +159,8 @@ const ContextSelector: React.FC<ContextProps> = ({
     },
     [onActivate, onDeactivate]
   );
+
+  if (readOnly) return <>{customTriggerComponent ?? triggerButton}</>;
 
   return (
     <div data-popup-container>

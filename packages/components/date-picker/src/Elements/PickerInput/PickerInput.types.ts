@@ -11,6 +11,7 @@ export type Props = {
   style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   onClick?: () => void;
   onClear?: () => void;
   clearTooltip?: string | React.ReactNode;

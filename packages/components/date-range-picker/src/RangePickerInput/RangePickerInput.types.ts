@@ -12,6 +12,7 @@ export type RangePickerInputProps = {
   style?: React.CSSProperties;
   placeholder?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onClear?: () => void;
   onFocus?: React.FocusEventHandler;

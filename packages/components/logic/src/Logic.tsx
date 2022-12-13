@@ -7,7 +7,7 @@ import Matching from './Matching/Matching';
 
 const DEFAULT_OPTIONS = ['AND', 'OR'];
 
-const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onChange }) => {
+const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onChange, readOnly = false }) => {
   const intl = useIntl();
 
   const operators = React.useMemo(() => {
@@ -32,7 +32,7 @@ const Logic: React.FC<LogicProps> & LogicSubComponents = ({ value, options, onCh
   }, [operators, value]);
 
   return (
-    <S.Logic className="ds-logic" onClick={handleNextLogic}>
+    <S.Logic className="ds-logic" onClick={!readOnly ? handleNextLogic : undefined} readOnly={readOnly}>
       <Title withoutMargin level={4}>
         {renderValue}
       </Title>

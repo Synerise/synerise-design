@@ -25,6 +25,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   description,
   tooltip,
   disabled,
+  readOnly,
   onFocus,
   onBlur,
   error,
@@ -126,7 +127,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
         >
           {placeholder}
           <S.IconSeparator />
-          {hovered && !!value && !!value.to && !!value.from ? (
+          {!readOnly && hovered && !!value && !!value.to && !!value.from ? (
             <Tooltip title={texts?.clear}>
               <S.ClearIconWrapper>
                 <Icon component={<Close3S />} onClick={handleClear} />

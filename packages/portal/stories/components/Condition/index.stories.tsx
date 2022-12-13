@@ -279,7 +279,14 @@ const stories = {
             removeTooltip: 'Remove',
             moveTooltip: 'Move',
           }}
-          inputProps={{autoResize: boolean('Set width of autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
+          inputProps={{
+            autoResize: boolean('Set width of autoResize', true)
+              ? {
+                  maxWidth: `${number('Set autoResize max width', 450)}px`,
+                  minWidth: `${number('Set autoResize min width', 144)}px`,
+                }
+              : undefined,
+          }}
           getPopupContainerOverride={(): HTMLElement => document.body}
           autoClearCondition={boolean('Enable autoclear condition elements', true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
@@ -345,7 +352,7 @@ const stories = {
                   availableFactorTypes: condition.operator?.value?.availableFactors || null,
                   selectedFactorType: condition.factor.selectedFactorType,
                   defaultFactorType: 'text',
-                  textType: select('Select type of text input', ['autocomplete','expansible', 'default'], 'default'),
+                  textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
                   autocompleteText: {
                     options: ['First name', 'Last name', 'City', 'Age', 'Points'],
                   },
@@ -365,6 +372,7 @@ const stories = {
               })),
             })
           )}
+          readOnly={boolean('Set readOnly', false)}
         />
       </div>
     );

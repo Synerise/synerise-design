@@ -13,6 +13,7 @@ const PickerInput: React.FC<Props> = ({
   autoFocus,
   size,
   disabled,
+  readOnly,
   value,
   format: dateFormat,
   onChange,
@@ -65,7 +66,7 @@ const PickerInput: React.FC<Props> = ({
 
   const iconInput = React.useMemo(
     () =>
-      (hovered || highlight) && !!value && !disabled ? (
+      (hovered || highlight) && !readOnly && !!value ? (
         <S.ClearIconWrapper>
           <Tooltip title={clearTooltip}>
             <Icon component={<Close3S />} onClick={handleIconClick} />
@@ -76,7 +77,7 @@ const PickerInput: React.FC<Props> = ({
           <Icon component={<CalendarM />} />
         </S.DefaultIconWrapper>
       ),
-    [hovered, value, disabled, clearTooltip, handleIconClick, highlight]
+    [hovered, value, readOnly, clearTooltip, handleIconClick, highlight]
   );
   return (
     <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
@@ -90,7 +91,7 @@ const PickerInput: React.FC<Props> = ({
           autoFocus={autoFocus}
           active={!!highlight}
           resetMargin
-          readOnly
+          readOnly={readOnly}
           type="text"
           size={size as SizeType}
           disabled={disabled}

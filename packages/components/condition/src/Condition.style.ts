@@ -52,6 +52,11 @@ export const StepName = styled.div`
   }
 `;
 
+export const StepIndexWrapper = styled.span<{ readOnly?: boolean }>`
+  font-size: 13px;
+  font-weight: ${({ readOnly }): string => (readOnly ? '500' : '400')};
+`;
+
 export const Condition = styled.div`
   padding: 12px 0;
   display: flex;
@@ -305,7 +310,7 @@ export const AddConditionRow = styled.div`
   flex-direction: row;
 `;
 
-export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean }>`
+export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean; readOnly?: boolean }>`
   display: flex;
   width: 32px;
   min-width: 32px;
@@ -323,7 +328,7 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
     background-color: ${(props): string => props.theme.palette['grey-300']};
   }
   &:after {
-    display: ${(props): string => (props.first && props.last ? 'none' : 'flex')};
+    display: ${(props): string => ((props.first && props.last) || (props.last && props.readOnly) ? 'none' : 'flex')};
     position: absolute;
     content: '';
     width: 1px;

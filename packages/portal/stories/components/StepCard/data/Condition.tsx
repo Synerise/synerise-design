@@ -21,9 +21,15 @@ type ConditionExampleProps = {
   steps: ConditionStep[];
   onChange: (steps: ConditionStep[]) => void;
   hoverDisabled?: boolean;
+  readOnly?: boolean;
 };
 
-export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onChange, hoverDisabled }) => {
+export const ConditionExample: React.FC<ConditionExampleProps> = ({
+  steps,
+  onChange,
+  hoverDisabled,
+  readOnly = false,
+}) => {
   const [openedAddStep, setOpenedAddStep] = React.useState(false);
   const setStepContext = React.useCallback(
     (stepId, item) => {
@@ -155,7 +161,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         })
       );
     },
-    [onChange, steps]
+    [onChange, steps, readOnly]
   );
 
   const addStepCondition = React.useCallback(
@@ -244,6 +250,15 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
     onChange(newOrder);
   };
 
+  const handleClick = () => setOpenedAddStep(true);
+
+  const triggerButton = (
+    <Button type="ghost" mode="icon-label" onClick={!readOnly ? handleClick : undefined}>
+      {!readOnly && <Icon component={<Add3M />} />}
+      and then...
+    </Button>
+  );
+
   const renderCustomAddStep = () => {
     return (
       <ContextSelector
@@ -256,12 +271,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
         loading={false}
         opened={openedAddStep}
         onClickOutside={() => setOpenedAddStep(false)}
-        customTriggerComponent={
-          <Button type="ghost" mode="icon-label" onClick={() => setOpenedAddStep(true)}>
-            <Icon component={<Add3M />} />
-            and then...
-          </Button>
-        }
+        readOnly={readOnly}
+        customTriggerComponent={triggerButton}
       />
     );
   };
@@ -283,7 +294,14 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       minConditionsLength={1}
       maxConditionsLength={10}
       autoClearCondition
-      inputProps={{autoResize: boolean('Set width of autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
+      inputProps={{
+        autoResize: boolean('Set width of autoResize', true)
+          ? {
+              maxWidth: `${number('Set autoResize max width', 450)}px`,
+              minWidth: `${number('Set autoResize min width', 144)}px`,
+            }
+          : undefined,
+      }}
       addCondition={addStepCondition}
       removeCondition={removeStepCondition}
       onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
@@ -300,6 +318,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
       onChangeFactorType={setStepConditionFactorType}
       showSuffix={boolean('Display and suffix', true)}
       hoverDisabled={hoverDisabled}
+      readOnly={readOnly}
       steps={steps.map(step => ({
         id: step.id,
         stepName: step.stepName,
@@ -343,7 +362,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
             defaultFactorType: 'text',
             // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
             // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-            textType: select('Select type of text input', ['autocomplete','expansible', 'default'], 'default'),
+            textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
             autocompleteText: {
               options: ['First name', 'Last name', 'City', 'Age', 'Points'],
             },
@@ -355,6 +374,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({ steps, onCha
               groups: PARAMETER_GROUPS,
               items: PARAMETER_ITEMS,
             },
+
             texts: FACTORS_TEXTS,
           },
         })),

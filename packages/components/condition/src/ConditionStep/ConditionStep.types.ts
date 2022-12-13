@@ -44,4 +44,5 @@ export type ConditionStepProps = {
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   inputProps?: InputProps;
+  readOnly?: boolean;
 };

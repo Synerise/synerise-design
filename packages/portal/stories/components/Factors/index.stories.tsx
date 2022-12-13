@@ -16,7 +16,7 @@ const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     const setSelectedFactor = type => store.set({ selectedFactorType: type, value: '' });
     const changeHandler = val => {
-      store.set({ value: val }); 
+      store.set({ value: val });
       action('onChange')(val);
     };
 
@@ -24,7 +24,14 @@ const stories = {
       <Factors
         selectedFactorType={store.state.selectedFactorType}
         setSelectedFactorType={setSelectedFactor}
-        inputProps={{autoResize: boolean('Set width of autoResize', true) ? {maxWidth: `${number('Set autoResize max width', 450)}px`, minWidth: `${number('Set autoResize min width', 144)}px`} : undefined }}
+        inputProps={{
+          autoResize: boolean('Set width of autoResize', true)
+            ? {
+                maxWidth: `${number('Set autoResize max width', 450)}px`,
+                minWidth: `${number('Set autoResize min width', 144)}px`,
+              }
+            : undefined,
+        }}
         value={store.state.value}
         onChangeValue={changeHandler}
         textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
@@ -46,6 +53,7 @@ const stories = {
         formulaEditor={<div>Formula editor</div>}
         texts={FACTORS_TEXTS}
         onDeactivate={action('onDeactivate')}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),

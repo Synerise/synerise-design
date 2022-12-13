@@ -21,6 +21,7 @@ const Operators: React.FC<OperatorsProps> = ({
   getPopupContainerOverride,
   onActivate,
   onDeactivate,
+  readOnly = false,
 }) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -60,36 +61,50 @@ const Operators: React.FC<OperatorsProps> = ({
     [onActivate, onDeactivate]
   );
 
-  return (
-    <div data-popup-container>
-      <Dropdown
-        visible={dropdownVisible}
-        onVisibleChange={onDropdownVisibilityChange}
-        getPopupContainer={getPopupContainerOverride || getPopupContainer}
-        overlay={
-          <OperatorsDropdown
-            value={value}
-            setDropdownVisible={setDropdownVisible}
-            setSelected={handleChange}
-            groups={groups}
-            items={items}
-            texts={text}
-          />
-        }
-      >
-        <Tooltip
-          getPopupContainer={getPopupContainerOverride || getPopupContainer}
-          title={(value as OperatorsItem)?.name || ''}
-          trigger={['hover']}
-        >
-          <Button type="secondary" mode={value ? 'two-icons' : 'label-icon'} onClick={handleClick}>
-            {value && <Icon component={(value as OperatorsItem).icon} />}
-            <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
-            <Icon component={<AngleDownS />} />
-          </Button>
-        </Tooltip>
-      </Dropdown>
-    </div>
+  const triggerMode = React.useMemo(() => {
+    if (value) {
+      return readOnly ? 'icon-label' : 'two-icons';
+    }
+
+    return readOnly ? 'simple' : 'label-icon';
+  }, [value, readOnly]);
+
+  const dropdownTrigger = (
+    <Tooltip
+      getPopupContainer={getPopupContainerOverride || getPopupContainer}
+      title={(value as OperatorsItem)?.name || ''}
+      trigger={['hover']}
+    >
+      <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleClick : undefined}>
+        {value && <Icon component={(value as OperatorsItem).icon} />}
+        <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
+        {!readOnly && <Icon component={<AngleDownS />} />}
+      </Button>
+    </Tooltip>
   );
+
+  const content = readOnly ? (
+    dropdownTrigger
+  ) : (
+    <Dropdown
+      visible={dropdownVisible}
+      onVisibleChange={onDropdownVisibilityChange}
+      getPopupContainer={getPopupContainerOverride || getPopupContainer}
+      overlay={
+        <OperatorsDropdown
+          value={value}
+          setDropdownVisible={setDropdownVisible}
+          setSelected={handleChange}
+          groups={groups}
+          items={items}
+          texts={text}
+        />
+      }
+    >
+      {dropdownTrigger}
+    </Dropdown>
+  );
+
+  return <div data-popup-container>{content}</div>;
 };
 export default Operators;

@@ -37,6 +37,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
    * overwrite default container's class. Default value is `ds-date-range-picker`.
    */
   containerClass?: string;
+  readOnly?: boolean;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
   format?: string;

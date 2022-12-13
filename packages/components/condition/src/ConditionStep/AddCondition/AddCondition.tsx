@@ -12,6 +12,7 @@ export const AddCondition: React.FC<T.AddConditionProps> = ({
   texts,
   selectedSubject,
   selectedContext,
+  readOnly = false,
 }) => {
   return (
     <S.AddConditionRow>
@@ -25,7 +26,7 @@ export const AddCondition: React.FC<T.AddConditionProps> = ({
         disabled={!(selectedSubject || selectedContext)}
       >
         <Icon component={<Add2M />} />
-        {conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
+        {!readOnly && conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
       </Button>
     </S.AddConditionRow>
   );

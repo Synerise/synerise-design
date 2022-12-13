@@ -39,6 +39,7 @@ export type ContextGroup = {
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
   disabled?: boolean;
+  readOnly?: boolean;
   defaultDropdownVisibility?: boolean;
   selectedItem?: ContextItem | undefined;
   onActivate?: (fieldType: string) => void;

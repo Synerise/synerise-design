@@ -225,6 +225,8 @@ const stories = {
       );
     };
 
+    const readOnly = boolean('Set readOnly', false);
+
     const renderStepContent = (expression, hoverDisabled) => {
       const handleChangeExpressionSteps = expressionSteps => {
         const expressions = store.state.expressions.map(exp => {
@@ -245,6 +247,7 @@ const stories = {
           onChange={handleChangeExpressionSteps}
           steps={expression.expressionSteps}
           hoverDisabled={hoverDisabled}
+          readOnly={readOnly}
         />
       );
     };
@@ -305,6 +308,7 @@ const stories = {
               onChange: handleChangeMatching,
               matching: store.state.matching,
               sentence: 'find all items #MATCHING_TOGGLE# this condition',
+              readOnly,
             }}
             texts={{
               step: {
@@ -327,6 +331,7 @@ const stories = {
             visibilityConfig={{
               isStepCardHeaderVisible: boolean('Show step card header', true),
             }}
+            readOnly={readOnly}
           />
         </Layout>
       </div>
