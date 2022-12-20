@@ -32,18 +32,15 @@ export function ColorPicker({
     setColor(colorValue);
     onChange && onChange(colorValue);
   };
-  const getHeightOnDropdown = (): number => {
-    if (errorText && description) {
-      return -40;
+  const heightOfDropdown = React.useCallback(() => {
+    if (errorText || description) {
+      if (errorText && description) {
+        return -40;
+      }
+      return -20;
     }
-    if (errorText) {
-      return -28;
-    }
-    if (description) {
-      return -28;
-    }
-    return 0;
-  };
+    return 4;
+  }, [errorText, description]);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
@@ -124,7 +121,7 @@ export function ColorPicker({
   return (
     <>
       <Dropdown
-        align={{ offset: [0, getHeightOnDropdown()] }}
+        align={{ offset: [0, heightOfDropdown()] }}
         visible={dropdownVisible}
         overlay={dropdown}
         placement="bottomLeft"

@@ -25,7 +25,7 @@ const stories = {
       size={size}
       tooltipText={tooltip}
       isShownSavedColors={setSavedColors}
-      description={text('Description', 'Descirption')}
+      description={text('Description', 'Description')}
       errorText={setError && (text('Error text', 'Error'))}
       onChange={(value) => {
         setColor(value)
