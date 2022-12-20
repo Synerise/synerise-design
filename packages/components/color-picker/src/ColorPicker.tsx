@@ -6,6 +6,8 @@ import Icon, { FormulaPlusM } from '@synerise/ds-icon';
 import { CopyClipboardM } from '@synerise/ds-icon/src';
 import * as copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
+import Dropdown from '@synerise/ds-dropdown';
+import { useOnClickOutside } from '@synerise/ds-utils';
 import { ColorPickerProps } from './ColorPicker.types';
 import ColorPickerStyles from './ColorPicker.styles';
 
@@ -16,18 +18,37 @@ export function ColorPicker({
   onSaveColors,
   infix = (): JSX.Element => <></>,
   placeholder,
-  selectProps,
-  maxSavedColors = 8,
+  inputProps,
+  maxSavedColors = 9,
   tooltipText,
   isShownSavedColors,
   size = 'M',
+  errorText,
+  description,
 }: ColorPickerProps): JSX.Element {
   const [color, setColor] = React.useState(value);
-  const [pressed, setPressed] = React.useState<boolean[]>([]);
+  const [pressed, setPressed] = React.useState<number>(-1);
   const onChangeColor = (colorValue: string): void => {
     setColor(colorValue);
     onChange && onChange(colorValue);
   };
+  const getHeightOnDropdown = (): number => {
+    if (errorText && description) {
+      return -40;
+    }
+    if (errorText) {
+      return -28;
+    }
+    if (description) {
+      return -28;
+    }
+    return 0;
+  };
+  const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => {
+    setDropdownVisible(false);
+  });
   const [savedColors, setSavedColors] = React.useState(colors);
   const hash = '#';
   const saveColor = (): void => {
@@ -37,7 +58,6 @@ export function ColorPicker({
       return colorsArray;
     });
   };
-  const handleSearch = (colorName: string): void => setColor(colorName);
   const swatchSection = (
     <ColorPickerStyles.SwatchSectionWrapper>
       <Tooltip title="Save color swatch">
@@ -56,17 +76,13 @@ export function ColorPicker({
             key: `color-${i}`,
             name: (
               <Tooltip title={colorEntry}>
-                <ColorPickerStyles.TagDot pressed={pressed[i]} />
+                <ColorPickerStyles.TagDot pressed={i === pressed} />
               </Tooltip>
             ),
             color: colorEntry,
             onClick(): void {
               onChangeColor(colorEntry);
-              setPressed(() => {
-                const newPressed = [...pressed];
-                newPressed[i] = !pressed[i];
-                return newPressed;
-              });
+              setPressed(i);
             },
           }))}
           disabled={false}
@@ -75,12 +91,12 @@ export function ColorPicker({
     </ColorPickerStyles.SwatchSectionWrapper>
   );
   const dropdown = (
-    <ColorPickerStyles.Container size={size}>
+    <ColorPickerStyles.Container ref={ref} size={size}>
       <ReactColorful color={color} onChange={onChangeColor} />
       <ColorPickerStyles.PrefixTag height={isShownSavedColors}>
         <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={color} disabled={false} />
       </ColorPickerStyles.PrefixTag>
-      <ColorPickerStyles.SubContainer>
+      <ColorPickerStyles.SubContainer savedColors={isShownSavedColors}>
         <ColorPickerStyles.ColorPickerInput
           value={color.substr(1)}
           prefixel={<ColorPickerStyles.PreffixWrapper>#</ColorPickerStyles.PreffixWrapper>}
@@ -107,23 +123,23 @@ export function ColorPicker({
   );
   return (
     <>
-      <ColorPickerStyles.SelectColorPicker
-        showArrow={false}
-        onSearch={handleSearch}
-        showSearch
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        value={
-          <ColorPickerStyles.ValueWrapper>
-            <ColorPickerStyles.ColorTag shape={TagShape.SINGLE_CHARACTER_ROUND} color={color} disabled={false} />
-            <div>{color}</div>
-          </ColorPickerStyles.ValueWrapper>
-        }
-        dropdownMatchSelectWidth={false}
-        filterOption={false}
-        dropdownRender={(): JSX.Element => dropdown}
-        {...selectProps}
-      />
+      <Dropdown
+        align={{ offset: [0, getHeightOnDropdown()] }}
+        visible={dropdownVisible}
+        overlay={dropdown}
+        placement="bottomLeft"
+      >
+        <ColorPickerStyles.ColorPickerSelect
+          prefix={<ColorPickerStyles.ColorTag shape={TagShape.SINGLE_CHARACTER_ROUND} color={color} disabled={false} />}
+          onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setColor(ev.target.value)}
+          placeholder={placeholder}
+          onClick={(): void => setDropdownVisible(!dropdownVisible)}
+          value={color}
+          description={description}
+          errorText={errorText}
+          {...inputProps}
+        />
+      </Dropdown>
     </>
   );
 }

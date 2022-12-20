@@ -25,19 +25,15 @@ const stories = {
       size={size}
       tooltipText={tooltip}
       isShownSavedColors={setSavedColors}
+      description={text('Description', 'Descirption')}
+      errorText={setError && (text('Error text', 'Error'))}
       onChange={(value) => {
         setColor(value)
         action('onChange')(value)
       }}
-      selectProps={{
-        defaultOpen: boolean('Popup open by default', true),
-        description: text('Description', 'Descirption'),
+      inputProps={{
         label: text('Label', 'Label'),
-        errorText: setError && (text('Error text', 'Error'))
       }}
-      {...boolean('Customize max saved colors', false) ? {
-        maxSavedColors: number('Max saved colors', 9),
-      }: {}}
     />
   },
   minimalistic: () => {

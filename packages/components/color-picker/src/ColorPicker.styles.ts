@@ -2,11 +2,9 @@ import styled from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { TagsStyles, Tag } from '@synerise/ds-tags';
-import Select from '@synerise/ds-select';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
-import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { ColorPickerSize } from './ColorPicker.types';
 
 export const TagDot = styled.div<{ pressed?: boolean }>`
@@ -21,9 +19,10 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   @media (min-width: 200px) {
     min-width: 200px;
     margin: -8px;
+    background-color: ${(props): string => props.theme.palette.white};
   }
   .react-colorful__last-control {
-    margin: 24px 56px 8px 18px;
+    margin: 24px 56px 8px 17px;
     border-radius: 4px;
     height: 8px;
   }
@@ -53,7 +52,8 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     height: 16px;
   }
   .react-colorful {
-    width: 262px;
+    width: 268px;
+    max-width: 268px;
     height: ${(props): string => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
@@ -71,35 +71,16 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     margin-bottom: -8px;
   }
 `;
-const SubContainer = styled.div`
-  padding: 8px 16px 16px;
+const SubContainer = styled.div<{ savedColors?: boolean }>`
+  padding: ${(props): string => (props.savedColors ? '8px 16px 16px' : '8px 16px 0;')};
 `;
 
 export const ColorTag = styled(Tag)`
   width: 16px;
   height: 16px;
-  margin: 7px 8px 0px;
   border: 1px solid ${(props): string => props.theme.palette['grey-300']};
 `;
 
-export const SelectInput = styled(BorderLessInput)`
-  width: 80px;
-`;
-
-export const SelectColorPicker = styled(Select)`
-  .ant-select-single {
-    .ant-select-selector {
-      padding: 0px 12px 0px 0px;
-      .ant-select-selection-search-input {
-        padding-left: 15px;
-      }
-      .ant-select-selection-item {
-        margin-left: -3px;
-      }
-    }
-  }
-  min-width: 100px;
-`;
 export const AddColorButton = styled(Button)`
   &&&.ant-btn {
     width: 16px;
@@ -117,6 +98,20 @@ export const ColorPickerInput = styled(Input)`
     }
   }
 `;
+export const ColorPickerSelect = styled(Input)`
+  .ant-input-affix-wrapper {
+    padding: 4px 4px;
+  }
+  .ant-input-prefix {
+    margin-right: 8px;
+  }
+  &&& .ant-input {
+    padding-right: 4px;
+    box-shadow: none;
+  }
+  width: 100px;
+  max-width: 100px;
+`;
 export const PrefixTag = styled.div<{ height?: boolean }>`
   &&& .ds-tag {
     width: 24px;
@@ -130,7 +125,7 @@ export const PrefixTag = styled.div<{ height?: boolean }>`
   }
   position: absolute;
   right: ${(props): string => (props.height ? '12px' : '12px')};
-  bottom: ${(props): string => (props.height ? '97px' : '65px')};
+  bottom: ${(props): string => (props.height ? '97px' : '48px')};
   z-index: 2;
   cursor: auto;
 `;
@@ -151,7 +146,6 @@ export default {
   SubContainer,
   ColorTag,
   PrefixTag,
-  SelectColorPicker,
   AddColorButton,
   SwatchSectionWrapper,
   PreffixWrapper,
@@ -159,5 +153,5 @@ export default {
   CopyIcon,
   ColorPickerInput,
   TagDot,
-  SelectInput,
+  ColorPickerSelect,
 };
