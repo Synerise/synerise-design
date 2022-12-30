@@ -38,7 +38,7 @@ const addonStyles = (props: ThemeProps): string => `
   line-height: 1.39;
  `;
 
-export const AntdSelect = styled((Select as unknown) as React.ComponentType<Props>)<{
+export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
   size?: string;
   prefixel?: boolean;
   suffixel?: boolean;
@@ -57,6 +57,12 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Prop
     }
     }
   `}
+
+  && {
+    .ant-select-selector {
+      ${(props): FlattenSimpleInterpolation | false => !!props.selectorStyle && css(props.selectorStyle)}
+    }
+
   &&& {
     width: 100%;
     .ant-select-clear {
