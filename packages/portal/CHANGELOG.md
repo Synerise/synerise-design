@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.170.1](https://github.com/synerise/synerise-design/compare/portal@0.170.0...portal@0.170.1) (2023-01-02)
+
+
+### Bug Fixes
+
+* **color-picker:** fix adding dot to tags and typing,copy text ([b33b588](https://github.com/synerise/synerise-design/commit/b33b5882d5d357b745d2b9421c4d30d09c651871))
+* **color-picker:** fix height of dropdown ([0f1d964](https://github.com/synerise/synerise-design/commit/0f1d9647cfd29936c98218f4fd7de9a175dcb3e2))
+* **color-picker:** remove select and add input to pick color ([dd9cd1a](https://github.com/synerise/synerise-design/commit/dd9cd1aba392af05637ee89b51f09ffc59e9c5b7))
+
+
+
+
+
 # [0.170.0](https://github.com/synerise/synerise-design/compare/portal@0.169.1...portal@0.170.0) (2022-12-13)
 
 
