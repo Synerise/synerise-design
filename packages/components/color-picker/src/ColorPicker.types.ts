@@ -1,9 +1,14 @@
-import type { SelectProps } from '@synerise/ds-select';
+import type { InputProps } from '@synerise/ds-input';
 
 export type ColorHookType = {
   color: string;
   setColor: (color: string) => void;
 };
+export enum ColorPickerSize {
+  'S' = 135,
+  'M' = 167,
+  'L' = 199,
+}
 
 export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
   value?: string;
@@ -16,5 +21,10 @@ export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeh
    */
   infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
   maxSavedColors?: number;
-  selectProps?: Omit<SelectProps, 'value' | 'onChange' | 'defaultValue'>;
+  inputProps?: Omit<InputProps, 'value' | 'onChange' | 'defaultValue'>;
+  tooltipText?: string;
+  isShownSavedColors?: boolean;
+  size?: 'S' | 'M' | 'L';
+  errorText?: string;
+  description?: string;
 }
