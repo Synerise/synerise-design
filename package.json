@@ -57,6 +57,7 @@
     ]
   },
   "dependencies": {
+    "@types/node": "13.9.1",
     "antd": "4.7.0",
     "invariant": "^2.2.4",
     "react": "16.13.0",
