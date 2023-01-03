@@ -1,39 +1,49 @@
 import * as React from 'react';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ColorPicker from '@synerise/ds-color-picker';
+
+const ColorPickerSizes = {
+  Small: 'S',
+  Medium: 'M',
+  Large: 'L'
+};
 
 const stories = {
   default: () => {
     const [color, setColor] = React.useState("#ffffff");
+    const size = select('Size of ColorPicker', ColorPickerSizes,'M')
     const userColor = text('Color', '#ffffff');
+    const tooltip = text('Tooltip text', 'Copy to clipboard');
     const setError = boolean('Set error', false);
+    const setSavedColors = boolean('Set saved colors', false);
     React.useEffect(() => {
       setColor(userColor)
     }, [userColor]);
     return <ColorPicker
       value={color}
+      size={size}
+      tooltipText={tooltip}
+      isShownSavedColors={setSavedColors}
+      description={text('Description', 'Description')}
+      errorText={setError && (text('Error text', 'Error'))}
       onChange={(value) => {
-          setColor(value)
-          action('onChange')(value)
+        setColor(value)
+        action('onChange')(value)
       }}
-      selectProps={{
-        defaultOpen: boolean('Popup open by default', true),
+      inputProps={{
         label: text('Label', 'Label'),
-        description: text('Description', 'Description'),
-        errorText: setError && (text('Error text', 'Error'))
       }}
-      {...boolean('Customize max saved colors', true) ? {
-        maxSavedColors: number('Max saved colors', 10),
-      }: {}}
     />
   },
   minimalistic: () => {
-    return <ColorPicker onChange={action('onChange')}/>
+    const tooltip = text('Tooltip text', 'Copy to clipboard')
+    return <ColorPicker tooltipText={tooltip} onChange={action('onChange')}/>
   },
   savedColors: () => {
+    const tooltip = text('Tooltip text', 'Copy to clipboard')
     const [colors, setSavedColors] = React.useState(["#00ffff", '#fff', '#123123']);
-    return <ColorPicker colors={colors} onSaveColors={setSavedColors}/>
+    return <ColorPicker tooltipText={tooltip} colors={colors} onSaveColors={setSavedColors}/>
   },
 };
 
