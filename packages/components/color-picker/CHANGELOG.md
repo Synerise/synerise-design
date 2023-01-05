@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.3...@synerise/ds-color-picker@0.1.4) (2023-01-05)
+
+
+### Bug Fixes
+
+* **color-picker:** change import src to packges's root ([0cac9f4](https://github.com/Synerise/synerise-design/commit/0cac9f4a6fdc99d5dd1c744ece924f5ac3e02bb9))
+
+
+
+
+
 ## [0.1.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.2...@synerise/ds-color-picker@0.1.3) (2023-01-02)
 
 
