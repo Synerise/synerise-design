@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.30...@synerise/ds-select@0.14.31) (2023-01-09)
+
+
+### Bug Fixes
+
+* **select:** add selector style prop to select field ([edac18e](https://github.com/synerise/synerise-design/commit/edac18e6f8befb184df7349aa310e2ab9dab31e6))
+
+
+
+
+
 ## [0.14.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.29...@synerise/ds-select@0.14.30) (2023-01-02)
 
 **Note:** Version bump only for package @synerise/ds-select

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.170.2](https://github.com/synerise/synerise-design/compare/portal@0.170.1...portal@0.170.2) (2023-01-09)
+
+
+### Bug Fixes
+
+* **select:** add selector style prop to select field ([edac18e](https://github.com/synerise/synerise-design/commit/edac18e6f8befb184df7349aa310e2ab9dab31e6))
+* **select:** pipeline bug fix + merge with master ([ba286c7](https://github.com/synerise/synerise-design/commit/ba286c7ed3ea43ca7b134c9113558a00cd286859))
+* **select:** pipeline fix ([e0e4726](https://github.com/synerise/synerise-design/commit/e0e47268518ea082dbc69e1a58ea29c7e750c930))
+
+
+
+
+
 ## [0.170.1](https://github.com/synerise/synerise-design/compare/portal@0.170.0...portal@0.170.1) (2023-01-02)
 
 
