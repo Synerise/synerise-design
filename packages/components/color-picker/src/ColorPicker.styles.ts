@@ -110,7 +110,6 @@ export const ColorPickerSelect = styled(Input)`
     box-shadow: none;
   }
   width: 100px;
-  max-width: 100px;
 `;
 export const PrefixTag = styled.div<{ height?: boolean }>`
   &&& .ds-tag {
