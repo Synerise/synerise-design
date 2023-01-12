@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.5...@synerise/ds-color-picker@0.1.6) (2023-01-12)
+
+
+### Bug Fixes
+
+* **color-picker:** remove max-width ([20ee003](https://github.com/Synerise/synerise-design/commit/20ee003371d8bbbf5405882f6cb166223accb2cd))
+
+
+
+
+
 ## [0.1.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.4...@synerise/ds-color-picker@0.1.5) (2023-01-09)
 
 **Note:** Version bump only for package @synerise/ds-color-picker
