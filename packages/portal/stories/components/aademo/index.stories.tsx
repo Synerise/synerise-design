@@ -3,6 +3,9 @@ import * as React from 'react';
 import { text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions';
 import * as accmenu from '../AccordionMenu/index.stories'
+import * as actarea from '../ActionArea/index.stories'
+import * as dsalert from '../Alert/index.stories'
+import * as dsappmenu from '../AppMenu/index.stories'
 
 export const story = () => {
   return (
@@ -23,6 +26,9 @@ button.args = {
 };
 
 export const accMenu = accmenu.Default
+export const actArea = actarea.default.stories.default
+export const Alert = dsalert.default.stories.default
+export const AppMenu = dsappmenu.default.stories.default
 
 export default {
   name: 'Components/AccordionMenu',
