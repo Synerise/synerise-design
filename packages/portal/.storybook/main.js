@@ -20,6 +20,7 @@ module.exports = {
     storyStoreV7: process.env.NO_STORYSTOREV7 ? false : true,
     previewCsfV3: true,
     // interactionsDebugger: true,
+    babelModeV7: true,
     disableTelemetry: true,
   },
   // /** @type { import('webpack').Compilation } */
@@ -30,6 +31,22 @@ module.exports = {
         fullySpecified: false
       },
     });
+
+    /** @type { import("webpack").RuleSetRule } */
+    const babelLoader = {
+      test: /\.tsx?$/,
+      exclude: /node_modules/, // performance?
+      use: [
+        {
+          loader: 'babel-loader',
+          // exclude: /node_modules/,
+          options: {
+            presets: ['babel-preset-react-app'],
+          }
+        }
+      ]
+    }
+    config.module.rules.push(babelLoader);
     return config;
     /** @type { Array<{original: string | RegExp, replacement: string}> } */
     const replacements = [{

@@ -509,6 +509,9 @@ const stories = {
   },
 };
 
+// export ({default} = stories)
+export const Default = stories.default;
+
 export default {
   name: 'Components/AccordionMenu',
   config: {},
