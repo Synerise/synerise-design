@@ -1,80 +1,28 @@
 {
   "name": "portal",
-  "version": "0.168.7",
-  "private": true,
-  "homepage": "./",
-  "repository": "synerise/synerise-design",
-  "scripts": {
-    "build-docs": "build-storybook",
-    "storybook": "start-storybook -p 9099"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "eslintConfig": {
-    "extends": "react-app"
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-interactions": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
+    "@storybook/react": "^6.5.15",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.3.0"
   },
   "dependencies": {
-    "@use-it/interval": "^1.0.0",
-    "final-form": "4.18.7",
-    "moment": "^2.25.3",
-    "ramda": "0.27.0",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
-    "react-final-form": "6.3.5",
-    "react-scripts": "3.4.0",
-    "uuid": "7.0.2"
+    "@synerise/ds-core": "*",
+    "@synerise/ds-utils": "*",
+    "@synerise/ds-badge": "*",
+    "@synerise/ds-button": "*"
   },
-  "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.7",
-    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
-    "@babel/preset-env": "7.11.0",
-    "@babel/preset-react": "7.8.3",
-    "@dump247/storybook-state": "1.6.1",
-    "@icons/material": "0.4.1",
-    "@storybook/addon-actions": "6.2.9",
-    "@storybook/addon-centered": "5.3.21",
-    "@storybook/addon-info": "5.3.21",
-    "@storybook/addon-knobs": "6.2.9",
-    "@storybook/addon-links": "6.2.9",
-    "@storybook/addon-notes": "5.3.21",
-    "@storybook/addon-viewport": "6.2.9",
-    "@storybook/addons": "6.2.9",
-    "@storybook/react": "6.2.9",
-    "@svgr/webpack": "5.2.0",
-    "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "10.0.1",
-    "@types/jest": "25.1.4",
-    "@types/node": "13.9.1",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.5",
-    "@typescript-eslint/eslint-plugin": "2.24.0",
-    "@typescript-eslint/parser": "2.24.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-transform-rename-import": "2.3.0",
-    "css-loader": "3.4.2",
-    "enzyme-adapter-react-16": "1.15.2",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.10.0",
-    "eslint-config-react-app": "5.2.0",
-    "eslint-config-standard-react": "9.2.0",
-    "eslint-plugin-flowtype": "4.6.0",
-    "eslint-plugin-jest": "23.8.2",
-    "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "2.5.0",
-    "faker": "4.1.0",
-    "less-loader": "5.0.0",
-    "react-docgen-typescript-loader": "3.7.1",
-    "react-intl": "3.12.0",
-    "style-loader": "1.1.3",
-    "styled-components": "5.0.1"
-  },
-  "resolutions": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }

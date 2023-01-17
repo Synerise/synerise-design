@@ -22,6 +22,12 @@ module.exports = {
   },
   // /** @type { import('webpack').Compilation } */
   webpackFinal: async (config /** typeof require('webpack').Compilation */, { configType }) => {
+    config.module.rules.push({
+      test: /\.(js|mjs|jsx)$/,
+      resolve: {
+        fullySpecified: false
+      },
+    });
     return config;
     /** @type { Array<{original: string | RegExp, replacement: string}> } */
     const replacements = [{
