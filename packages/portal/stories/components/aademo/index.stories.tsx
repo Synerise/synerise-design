@@ -16,9 +16,19 @@ import Button from '@synerise/ds-button';
 export const button = () => <Button mode="simple" onClick={action('onclick')}>
   label
 </Button>
+button.args = {
+  variant: 'primary',
+};
 
 export default {
   name: 'Components/AccordionMenu',
   title: 'components',
   config: {},
+  argTypes: {
+    advanced: { control: 'boolean' },
+    variant: {
+      options: ['primary', 'secondary'],
+      control: { type: 'radio' },
+    },
+  }
 };
