@@ -35,7 +35,6 @@ const withDSProvider = (storyFn) => {
     code: 'en_GB',
     ...optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {},
   } // as DSProviderProps
-  // debugger
   return React.createElement(DSProvider, props, storyFn());
 }
 
@@ -61,6 +60,21 @@ function changeObjectToStory(fn, context) {
 export const decorators = [
   changeObjectToStory,
   withDSProvider,
+  function applyDecorator(story, { parameters: { decorator } = {} }) {
+    if (decorator) {
+      // QUIZ: del+1 React.createElement(decorator, {}, story)
+      return React.createElement(decorator, {}, story())
+    }
+    return story();
+  },
+  // function uncenterLayout(story, { parameters: {  withoutCenter } = {}, ...ctx }) {
+  function uncenterLayout(story, ctx) {
+    const { parameters: {  withoutCenter } } = ctx;
+    if (withoutCenter) {
+      ctx.parameters.layout = '';
+    }
+    return story();
+  },
   // (Story) => (
   //   <ThemeProvider theme="default">
   //     <Story />

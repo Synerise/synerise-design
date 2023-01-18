@@ -40,6 +40,10 @@ export default {
   config: {},
   // component: dsautocomplete.default.Component,
   component: dsappmenu.default.Component,
+  parameters: {
+    decorator: ({children}) => <div className="wrapper">{children}</div>,
+    withoutCenter: true,
+  },
   argTypes: {
     advanced: { control: 'boolean' },
     variant: {
