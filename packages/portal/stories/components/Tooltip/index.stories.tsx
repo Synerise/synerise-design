@@ -166,7 +166,7 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
-        renderCustomComponent={() => (
+        render={() => (
           <InformationCard
             asTooltip={true}
             title={'Custom tooltip example'}

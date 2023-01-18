@@ -32,7 +32,7 @@ export default interface TooltipExtendedProps {
     buttonIcon?: React.ReactNode;
     onClick: () => void;
   };
-  renderCustomComponent?: () => React.ReactNode;
+  render?: () => React.ReactNode;
 }
 
 export type TooltipProps = Omit<TooltipPropsWithTitle, 'title'> & TooltipExtendedProps;

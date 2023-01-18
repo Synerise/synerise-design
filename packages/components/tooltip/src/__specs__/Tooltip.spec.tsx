@@ -103,7 +103,7 @@ describe('Tooltip', () => {
       <Tooltip
         mouseEnterDelay={0}
         mouseLeaveDelay={0}
-        renderCustomComponent={(): React.ReactNode => <span id="CUSTOM_TOOLTIP_COMPONENT">{customTooltipTitlte}</span>}
+        render={(): React.ReactNode => <span id="CUSTOM_TOOLTIP_COMPONENT">{customTooltipTitlte}</span>}
       >
         <span data-testid={TEST_ID}>Tooltip will show on mouse enter.</span>
       </Tooltip>
