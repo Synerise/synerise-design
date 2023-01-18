@@ -70,8 +70,8 @@ export const decorators = [
   // function uncenterLayout(story, { parameters: {  withoutCenter } = {}, ...ctx }) {
   function uncenterLayout(story, ctx) {
     const { parameters: {  withoutCenter } } = ctx;
-    if (withoutCenter) {
-      ctx.parameters.layout = '';
+    if (!withoutCenter) {
+      ctx.parameters.layout = 'centered';
     }
     return story();
   },
