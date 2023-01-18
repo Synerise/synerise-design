@@ -36,15 +36,15 @@ Tooltip UI Component
 | type                  | type of tooltip                                                                                        | `default` / `icon` / `simpleLarge` / `tutorial` / `avatar` / `button`                                                                               | `default`                  |
 | visible               | Whether the floating tooltip card is visible or not                                                    | boolean                                                                                                                                             | `false`                    |
 | timeToHideAfterClick  | time after which tooltip disappears [ms] (value 0 inactivate this functionality)                       | number                                                                                                                                              | 0                          |
+| renderCustomComponent | render prop that allows to render custom component as tooltip                                          | () => React.ReactNode                                                                                                                               | -                          |
 
 ### ButtonSettings
 
-| Property              | Description                                 | Type                              | Default                    |
-| --------------------- | ----------------------------------          | ------------------                | -------------------------- |
-| buttonIcon            | Icon of button                              | React.ReactNode                   | -                          |
-| label                 | Label of button                             | React.ReactNode / string          | -                          |
-| onClick               | Callback executed after clicking the button | () => void                        | -                          |
-
+| Property   | Description                                 | Type                     | Default |
+| ---------- | ------------------------------------------- | ------------------------ | ------- |
+| buttonIcon | Icon of button                              | React.ReactNode          | -       |
+| label      | Label of button                             | React.ReactNode / string | -       |
+| onClick    | Callback executed after clicking the button | () => void               | -       |
 
 ### Tutorial
 

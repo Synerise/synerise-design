@@ -166,7 +166,7 @@ const stories = {
     <div>
       <Tooltip
         {...props()}
-        customComponent={
+        renderCustomComponent={() => (
           <InformationCard
             asTooltip={true}
             title={'Custom tooltip example'}
@@ -174,7 +174,7 @@ const stories = {
             icon={<SegmentM />}
             iconColor="red"
           />
-        }
+        )}
       >
         <Button type="primary">Show tips</Button>
       </Tooltip>

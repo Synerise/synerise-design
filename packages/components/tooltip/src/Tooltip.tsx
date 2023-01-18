@@ -32,7 +32,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   offset = 'default',
   children,
   button,
-  customComponent,
+  renderCustomComponent,
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -138,12 +138,12 @@ const Tooltip: React.FC<TooltipProps> = ({
       },
     };
 
-  if (customComponent !== undefined) {
+  if (renderCustomComponent !== undefined) {
     return (
       <AntdTooltip
         overlayClassName={offsetClassName}
         autoAdjustOverflow={false}
-        title={customComponent}
+        title={renderCustomComponent()}
         align={{ offset: [0, 0] }}
         getPopupContainer={getPopupContainer}
         {...handleHideAfterClick}
