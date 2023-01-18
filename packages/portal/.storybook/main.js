@@ -1,7 +1,18 @@
+// import webpackFinal from './webpack.config.js';
+// const webpackFinal = require('./webpack.config.js'); ERR! TypeError: Cannot destructure property 'configType' of 'undefined' as it is undefined. ERR!     at module.exports (@/.storybook/webpack.config.js:1:80)
+// console.info('webpackFinal', webpackFinal)
+// debugger
+
 /** @type { import("@storybook/core-common").StorybookConfig } */
 module.exports = {
+  open: false, // fullOptions
   "core": {
     builder: "webpack5" || require.resolve("@storybook/builder-webpack5"),
+    // getBuilder:(name = config => config.core.builder) => `builder-${name}`
+    // used by
+    // caller: require(''),
+    disableTelemetry: true,
+    // crossOriginIsolated: false,
   },
   "stories": [
     // "../stories/**/*.stories.mdx",
@@ -24,7 +35,14 @@ module.exports = {
     disableTelemetry: true,
   },
   // /** @type { import('webpack').Compilation } */
-  webpackFinal: async (config /** typeof require('webpack').Compilation */, { configType }) => {
+  // webpackFinal: require('./webpack.config.js').default,
+  /* called by require22('@storybook/builder-webpack5/dist/cjs/presets/custom-webpack-preset') loadCustomWebpackConfig */
+  // webpackConfig: (c) => {
+  //   return c
+  // },
+  webpackFinal: (config /** typeof require('webpack').Compilation */, { configType }) => {
+    // require('./webpack.config.js')({config, mode: configType}) // already called by custom-webpack-preset
+    // webpackConfig is deprecated
     config.module.rules.push({
       test: /\.(js|mjs|jsx)$/,
       resolve: {
@@ -32,6 +50,26 @@ module.exports = {
       },
     });
 
+    // config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
+
+    config.module.rules.push({
+      test: /\.less$/,
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            javascriptEnabled: true,
+          },
+        },
+      ],
+    });
+  
     /** @type { import("webpack").RuleSetRule } */
     const babelLoader = {
       test: /\.tsx?$/,
@@ -47,42 +85,6 @@ module.exports = {
       ]
     }
     config.module.rules.push(babelLoader);
-    return config;
-    /** @type { Array<{original: string | RegExp, replacement: string}> } */
-    const replacements = [{
-      original: '@synerise/ds-((?!core|icon)[a-z0-9-]+)(/dist)?(/src)?(.*)',
-      replacement: '@synerise/ds-$1/src$4',
-    }]
-    /** @type { import("babel-loader").StorybookConfig } */
-    const babelLoaderReplacement = {
-      test: /\.tsx?$/,
-      exclude: /node_modules/, // performance?
-      use: [
-        {
-          loader: 'babel-loader',
-          // exclude: /node_modules/,
-          options: {
-            presets: ['babel-preset-react-app'],
-            plugins:
-              // mode === 'PRODUCTION'
-              //   ? [] :
-                [
-                    [
-                      'transform-rename-import',
-                      /** @type { replacements } */
-                      /** @type { typeof replacements } */
-                      /** @type { {replacements: Array<{original: string | object, replacement: string}>} } */
-                      { replacements: /** @type { typeof replacements } */ [{original: 1}] }
-                      || { replacements: replacements }
-                    ]
-                ]
-          },
-        },
-      ],
-    };
-    if (process.env.NODE_ENV === 'development') {
-      // config.module.rules.push(babelLoaderReplacement);
-    }
     return config;
   },
 }

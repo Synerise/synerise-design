@@ -215,7 +215,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/AppMenu',
+  name: 'Components/AppMenu',
   stories,
   Component: AppMenu,
 }
