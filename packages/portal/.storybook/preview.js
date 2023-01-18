@@ -59,8 +59,8 @@ function changeObjectToStory(fn, context) {
 }
 
 export const decorators = [
-  withDSProvider,
   changeObjectToStory,
+  withDSProvider,
   // (Story) => (
   //   <ThemeProvider theme="default">
   //     <Story />
