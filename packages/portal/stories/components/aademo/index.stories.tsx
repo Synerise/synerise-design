@@ -34,7 +34,20 @@ AppMenu.Component = dsappmenu.default.Component
 export const Autocomplete = dsautocomplete.default.stories.default
 Autocomplete.component = dsautocomplete.default.Component
 
-export default {
+// const cc = require('@storybook/csf')
+
+/** @type { import('@storybook/api').Story } */
+/** @type { import('@storybook/csf').ComponentAnnotations } */
+
+import * as ee from '@storybook/csf'
+
+/**
+  * @typedef {import('@storybook/csf').ComponentAnnotations} ComponentAnnotations
+  */
+
+/** @type {ComponentAnnotations} */
+/** @type {ee.ComponentAnnotations} */
+const story2 = {//}; false,{
   name: 'Components/AccordionMenu',
   title: 'components',
   config: {},
@@ -42,7 +55,15 @@ export default {
   component: dsappmenu.default.Component,
   parameters: {
     decorator: ({children}) => <div className="wrapper">{children}</div>,
-    withoutCenter: true,
+    // withoutCenter: true,
+    // layout: 'padded',
+    // info: {
+    //   inline: true,
+    //   text: `
+    //   hello
+    //   `,
+    // },
+    notes: '123',
   },
   argTypes: {
     advanced: { control: 'boolean' },
@@ -52,3 +73,5 @@ export default {
     },
   }
 };
+
+export default story2;
