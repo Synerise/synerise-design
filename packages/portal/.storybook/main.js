@@ -69,6 +69,9 @@ module.exports = {
         },
       ],
     });
+
+    const storiesToCsf3 = require(__dirname + '/decorated-story-to-csf3')
+    console.info('storiesToCsf3', process.cwd(), storiesToCsf3)
   
     /** @type { import("webpack").RuleSetRule } */
     const babelLoader = {
@@ -76,10 +79,11 @@ module.exports = {
       exclude: /node_modules/, // performance?
       use: [
         {
-          loader: 'babel-loader',
+          loader: 'babel-loader' || require('babel-loader'),
           // exclude: /node_modules/,
           options: {
             presets: ['babel-preset-react-app'],
+            plugins: [storiesToCsf3],
           }
         }
       ]

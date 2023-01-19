@@ -7,6 +7,7 @@ import * as actarea from '../ActionArea/index.stories'
 import * as dsalert from '../Alert/index.stories'
 import * as dsappmenu from '../AppMenu/index.stories'
 import * as dsautocomplete from '../Autocomplete/index.stories'
+import * as dsavatar from '../Avatar/index.stories'
 
 export const story = () => {
   return (
@@ -33,6 +34,11 @@ export const AppMenu = dsappmenu.default.stories.default
 AppMenu.Component = dsappmenu.default.Component
 export const Autocomplete = dsautocomplete.default.stories.default
 Autocomplete.component = dsautocomplete.default.Component
+
+export const Avatar = dsavatar.default.stories.custom || require('../Avatar/index.stories').default.stories
+
+import * as dsbadge from '../Badge/index.stories'
+export const Badge = dsbadge.default.stories.status || require('../Badge/index.stories').default.stories
 
 // const cc = require('@storybook/csf')
 
