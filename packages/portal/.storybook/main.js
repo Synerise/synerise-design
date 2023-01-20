@@ -7,18 +7,22 @@
 module.exports = {
   open: false, // fullOptions
   "core": {
-    builder: "webpack5" || require.resolve("@storybook/builder-webpack5"),
+    builder: "webpack5",// || require.resolve("@storybook/builder-webpack5"),
     // getBuilder:(name = config => config.core.builder) => `builder-${name}`
     // used by
     // caller: require(''),
     disableTelemetry: true,
     // crossOriginIsolated: false,
+      options: {
+        lazyCompilation: true,
+        fsCache: true,
+      },
   },
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Badge",
-    "../stories/components/aademo",
+    "../stories/components/Badge",
+    // "../stories/components/aademo",
   ],
   "addons": [
     '@storybook/addon-knobs',
@@ -28,7 +32,8 @@ module.exports = {
   ],
   "framework": "@storybook/react",
   features: {
-    storyStoreV7: process.env.NO_STORYSTOREV7 ? false : true,
+    storyStoreV7: false,
+    // storyStoreV7: process.env.NO_STORYSTOREV7 ? false : true,
     previewCsfV3: true,
     // interactionsDebugger: true,
     babelModeV7: true,
@@ -41,6 +46,7 @@ module.exports = {
   //   return c
   // },
   webpackFinal: (config /** typeof require('webpack').Compilation */, { configType }) => {
+    // config.target = 'node'
     // require('./webpack.config.js')({config, mode: configType}) // already called by custom-webpack-preset
     // webpackConfig is deprecated
     config.module.rules.push({
@@ -70,9 +76,19 @@ module.exports = {
       ],
     });
 
-    const storiesToCsf3 = require(__dirname + '/decorated-story-to-csf3')
-    console.info('storiesToCsf3', process.cwd(), storiesToCsf3)
-  
+    // const storiesToCsf3 = require(__dirname + '/decorated-story-to-csf3')
+    // console.info('storiesToCsf3', process.cwd(), storiesToCsf3)
+ 
+    const babelEnv = [
+      "@babel/preset-env",
+      {
+        // "useBuiltIns": "entry",
+        // "corejs": "3.22",
+        // targets: 'es2019', // https://www.npmjs.com/package/babel-preset-modern-browsers
+        "modules": 'amd',
+      }
+    ]
+
     /** @type { import("webpack").RuleSetRule } */
     const babelLoader = {
       test: /\.tsx?$/,
@@ -82,8 +98,12 @@ module.exports = {
           loader: 'babel-loader' || require('babel-loader'),
           // exclude: /node_modules/,
           options: {
-            presets: ['babel-preset-react-app'],
-            plugins: [storiesToCsf3],
+            presets: [
+              // babelEnv, // changes order of exports (_exports_)
+              'babel-preset-react-app',
+            ],
+            // plugins: [storiesToCsf3],
+            plugins: ['./.storybook/decorated-story-to-csf3'],
           }
         }
       ]

@@ -15,7 +15,11 @@
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
     "babel-preset-react-app": "^10",
+    "webpack": "^5.74",
     "babel-loader": "^8.3.0"
+  },
+  "devdeps": {
+    "@synerise/ds-completed-within": "latest"
   },
   "dependencies": {
     "@synerise/ds-action-area": "latest",
@@ -38,7 +42,6 @@
     "@synerise/ds-collector": "latest",
     "@synerise/ds-color-picker": "latest",
     "@synerise/ds-column-manager": "latest",
-    "@synerise/ds-completed-within": "latest",
     "@synerise/ds-condition": "latest",
     "@synerise/ds-context-selector": "latest",
     "@synerise/ds-core": "latest",

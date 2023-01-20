@@ -72,6 +72,7 @@
     "less": "3.11.1",
     "less-loader": "^5.0.0",
     "less-plugin-clean-css": "1.5.1",
+    "webpack": "^5.74",
     "less-plugin-npm-import": "2.1.0"
   },
   "devDependencies2": {
