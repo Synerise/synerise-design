@@ -15,7 +15,8 @@ module.exports = function convertCustomStoryToCsf3(babel, _, file) {
           return e.key.name
         })
         const getExp = storyName => {
-          return babel.template.statement.ast(`export const ${storyName} = stories['${storyName}']`)
+          const nonConflictingName = name => (name === 'default') ? 'Default' : name;
+          return babel.template.statement.ast(`export const ${nonConflictingName(storyName)} = stories['${storyName}']`)
         }
         storiesNames.forEach((name) => {
           path.parentPath.parentPath.parentPath.parent.program.body.push(getExp(name))

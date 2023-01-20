@@ -423,7 +423,7 @@ const stories = {
       </div>
     );
   },
-  AlertSemanticColor: () => {
+  alertSemanticColor: () => {
     const type = select('Set type', SEMANTIC_COLOR_TYPES, 'positive')
     const showMore = boolean('Set one more', true)
     return (
@@ -452,6 +452,7 @@ const stories = {
 
 export default {
   name: 'Components/Alert',
+  title: 'Components/Alert',
   config: {},
   decorator,
   stories,

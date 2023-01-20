@@ -22,6 +22,7 @@ module.exports = {
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
     "../stories/components/Badge",
+    "../stories/components/Alert",
     // "../stories/components/aademo",
   ],
   "addons": [
