@@ -278,17 +278,3 @@ export default {
   Component: Badge,
   component: Badge,
 };
-
-// export const a11 = stories.dot;
-
-// export var __a_standalone = stories.standalone;
-// export var __bug = () => {debugger}
-// export var __a_dot = stories.dot;
-// export var __a_count = stories.count;
-// export var __a_status = stories.status;
-// export var __a_statusWithAvatar = stories.statusWithAvatar;
-// export var __a_flagDefault = stories.flagDefault;
-// export var __a_flagWithLabel = stories.flagWithLabel;
-// export var __a_flagWithElement = stories.flagWithElement;
-// export var __a_flagWithIcon = stories.flagWithIcon;
-// export var __a_flagWithAvatar = stories.flagWithAvatar;

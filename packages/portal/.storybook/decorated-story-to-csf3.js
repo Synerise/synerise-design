@@ -1,13 +1,8 @@
-const path = require("path");
-
 module.exports = function convertCustomStoryToCsf3(babel, _, file) {
   return {
     visitor: {
       Identifier(path, state, opts) {
         if (path.node.name !== 'stories') return;
-        if (state.filename.includes('Badge/index.stories.tsx')) {
-          // debugger
-        }
         const isVariable = path.parent.type === 'VariableDeclarator'
         if (!isVariable || path.parent.init.type !== 'ObjectExpression') return;
         const storiesNames = path.parent.init.properties.map(e => {
@@ -23,17 +18,17 @@ module.exports = function convertCustomStoryToCsf3(babel, _, file) {
         })
       },
       ExportDefaultDeclaration(path, state) {
-        return;
         if (path.node.declaration.type !== 'ObjectExpression') return;
-        let idx = path.node.declaration.properties.find();
+        const storiesProp = path.node.declaration.properties.find(e => e.key.name === 'stories');
+        if (!storiesProp) return; // this is not a _stories_ file
         const keys = path.node.declaration.properties.map(e => e.key.name)
-        if (!keys.include('title')) {
-          const filename = 'badge'
-          const titleObj = babel.template.statement.ast(`({title: "${filename}"})`)
+        if (!keys.includes('title')) {
+          const nameProp = path.node.declaration.properties.find(e => e.key.name === 'name');
+          const titleObj = babel.template.statement.ast(`({title: ""})`)
+          titleObj.expression.properties[0].value = nameProp.value; // copy property value
           path.node.declaration.properties.push(titleObj.expression.properties[0])
         }
       },
-      Program() {},
     }
   }
 }
