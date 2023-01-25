@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.30...@synerise/ds-autocomplete@0.4.31) (2023-01-25)
+
+
+### Bug Fixes
+
+* **autocomplete:** fix position of autocomplete autoresize when typing ([61c9fad](https://github.com/Synerise/synerise-design/commit/61c9fadf091c801ff846a19f3ec234483c6153aa))
+
+
+
+
+
 ## [0.4.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.29...@synerise/ds-autocomplete@0.4.30) (2022-11-08)
 
 

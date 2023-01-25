@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "0.16.3",
+  "version": "0.16.4",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-autocomplete": "^0.4.30",
+    "@synerise/ds-autocomplete": "^0.4.31",
     "@synerise/ds-badge": "^0.6.19",
     "@synerise/ds-button": "^0.17.11",
     "@synerise/ds-date-picker": "^0.8.2",
