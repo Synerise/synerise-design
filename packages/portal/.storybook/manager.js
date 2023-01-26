@@ -2,7 +2,7 @@ import { addons } from "@storybook/addons";
 // import { themes } from '@storybook/theming';
 import theme from './theme';
 
-import '@storybook/addon-knobs/dist/register';
+// import '@storybook/addon-knobs/dist/register';
 
 addons.setConfig({
   theme,

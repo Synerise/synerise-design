@@ -510,10 +510,14 @@ const stories = {
 };
 
 // export ({default} = stories)
-export const Default = stories.default;
+// export const Default = stories.default;
 
 export default {
   name: 'Components/AccordionMenu',
+  title: 'Components/AccordionMenu',
   config: {},
   stories,
+  component: () => React.createElement('dummy'),
 };
+
+// export const Default = stories['default'];
