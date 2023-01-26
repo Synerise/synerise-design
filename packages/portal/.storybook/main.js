@@ -35,9 +35,9 @@ module.exports = {
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
     // "../stories/components/Badge",
     // "../stories/components/Alert",
-    // "../stories/components/aademo",
-    "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
-  ] || [
+    // "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
+    // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
+  // ] || [
     "../stories/components/AccordionMenu",
     "../stories/components/ActionArea",
     "../stories/components/Alert",
