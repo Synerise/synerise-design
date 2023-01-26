@@ -12,7 +12,7 @@ import * as dsavatar from '../Avatar/index.stories'
 export const story = () => {
   return (
     <div style={{ width: '200px' }}>
-      {text('desc', 'sample story')}
+      {text('desc', 'sample story1')}
     </div>
   );
 }
