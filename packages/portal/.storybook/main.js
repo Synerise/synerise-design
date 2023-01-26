@@ -33,8 +33,8 @@ module.exports = {
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Badge",
-    // "../stories/components/Alert",
+    // "../stories/components/Badge", // first simple (few dependencies) for testing
+    // "../stories/components/Alert", // second simple component (also for testing/benchmarking)
     // "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
     // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
   // ] || [
@@ -57,7 +57,7 @@ module.exports = {
     "../stories/components/Cascader",
     "../stories/components/Checkbox",
     "../stories/components/CheckboxTristate",
-    // "../stories/components/CodeSnippet", // __undefined has been already exported
+    // "../stories/components/CodeSnippet", // problems with importing languages syntax...
     "../stories/components/Collector",
     "../stories/components/ColorPicker",
     "../stories/components/ColumnManager",
@@ -73,10 +73,10 @@ module.exports = {
     "../stories/components/Dropdown",
     "../stories/components/EditableList",
     // "../stories/components/EmptyStates", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons/L' in './packages/portal/stories/components/EmptyStates'
-    // "../stories/components/Factors", requires information-card
+    // "../stories/components/Factors", imports information-card which fails due to ds-icon
     "../stories/components/FieldSet",
     "../stories/components/Fileuploader",
-    // "../stories/components/Filter",
+    // "../stories/components/Filter", // imports failing ds-condition
     "../stories/components/Flag",
     "../stories/components/Footer",
     // "../stories/components/Form", // TypeError: Cannot assign to read only property 'message' of object 'SyntaxError: Missing semicolon. (2:18)
