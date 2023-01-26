@@ -72,8 +72,8 @@ const stories = {
     const defaultProps = getPropsMulti();
     const props = {
       ...defaultProps,
-      children:he.decode(defaultProps.children),
-      languages:['javascript','typescript','json']
+      children: he.decode(defaultProps.children),
+      languages: ['javascript','typescript','json']
     } as object;
     return (
       <div style={{maxWidth:'600px'}}>

@@ -36,8 +36,8 @@ module.exports = {
     // "../stories/components/Badge",
     // "../stories/components/Alert",
     // "../stories/components/aademo",
-    // "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
-  // ] || [
+    "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
+  ] || [
     "../stories/components/AccordionMenu",
     "../stories/components/ActionArea",
     "../stories/components/Alert",
@@ -148,7 +148,7 @@ module.exports = {
       },
     });
 
-    if (1) {
+    if (0) {
       const tmpDir = path.join(require('os').tmpdir(), '.webpack_cache');
       console.info('tempDir', tmpDir)
       config.cache = {
