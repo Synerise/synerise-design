@@ -133,7 +133,7 @@ chromatic_publish:
       - $CHROMATIC_PROJECT_TOKEN
   script:
     - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
-    - (cd packages/portal; npx chromatic ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
+    - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
 
 chromatic_publish_merge_to_dest_branch:
   stage: deploy
@@ -153,4 +153,4 @@ chromatic_publish_merge_to_dest_branch:
     # - sed -i 's#select.esm.js#select.cjs.js#' node_modules/react-select/package.json
     # - sed -i 's#browser.esm.js#browser.cjs.js#' node_modules/react-select/package.json
     - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
-    - (cd packages/portal; npx chromatic ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
+    - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
