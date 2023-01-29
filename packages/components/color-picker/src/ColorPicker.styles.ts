@@ -14,8 +14,10 @@ export const TagDot = styled.div<{ pressed?: boolean }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 50%;
 `;
-const SIZE_DEFAULT = 167;
+const SIZE_DEFAULT = 168;
 const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
+  max-width: 228px;
+
   @media (min-width: 200px) {
     min-width: 200px;
     margin: -8px;
@@ -31,15 +33,15 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     border-radius: 4px 4px 0 0;
     height: 96px;
     .react-colorful__interactive {
-      height: 96px;
+      width: 100%;
+      height: 100%;
     }
   }
   &&& .ds-tag {
     width: 16px;
     height: 16px;
-    margin: 0px 4px 8px;
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
-
+    margin: 0 0 0 4px;
     &:hover {
       ${TagDot} {
         display: flex;
@@ -52,9 +54,9 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     height: 16px;
   }
   .react-colorful {
-    width: 268px;
-    max-width: 268px;
-    height: ${(props): string => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
+    width: 100%;
+    max-width: 228px;
+    height: ${(props): number => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
@@ -72,7 +74,8 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
 `;
 const SubContainer = styled.div<{ savedColors?: boolean }>`
-  padding: ${(props): string => (props.savedColors ? '8px 16px 16px' : '8px 16px 0;')};
+  padding: 8px 16px 16px;
+  margin-bottom: ${(props): string => (props.savedColors ? `0` : `-16px`)};
 `;
 
 export const ColorTag = styled(Tag)`
@@ -85,7 +88,7 @@ export const AddColorButton = styled(Button)`
   &&&.ant-btn {
     width: 16px;
     height: 16px;
-    margin-right: 2px;
+    margin-right: 0;
   }
 `;
 export const CopyIcon = styled(Icon)`
@@ -111,8 +114,9 @@ export const ColorPickerSelect = styled(Input)`
   }
   width: 100px;
 `;
-export const PrefixTag = styled.div<{ height?: boolean }>`
+export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }>`
   &&& .ds-tag {
+    margin: 0;
     width: 24px;
     height: 24px;
     border: 1px solid ${(props): string => props.theme.palette['grey-300']};
@@ -123,8 +127,8 @@ export const PrefixTag = styled.div<{ height?: boolean }>`
     }
   }
   position: absolute;
-  right: ${(props): string => (props.height ? '12px' : '12px')};
-  bottom: ${(props): string => (props.height ? '97px' : '48px')};
+  right: 16px;
+  top: ${(props): number => (ColorPickerSize[props.size as string] || SIZE_DEFAULT) - 25}px;
   z-index: 2;
   cursor: auto;
 `;
@@ -133,7 +137,11 @@ export const SwatchSectionWrapper = styled.div`
   alignitems: center;
 `;
 export const PreffixWrapper = styled.div`
-  padding: 6px 12px;
+  margin: 0px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${(props): string => props.theme.palette['grey-500']};
 `;
 export const ValueWrapper = styled.div`
   display: flex;

@@ -4,10 +4,11 @@ export type ColorHookType = {
   color: string;
   setColor: (color: string) => void;
 };
+
 export enum ColorPickerSize {
-  'S' = 135,
-  'M' = 167,
-  'L' = 199,
+  'S' = 136,
+  'M' = 168,
+  'L' = 200,
 }
 
 export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
