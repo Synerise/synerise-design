@@ -93,6 +93,7 @@ export const AddButtonWrapper = styled.div`
   justify-content: flex-start;
   margin: 24px 0 0;
   width: 100%;
+  position: relative;
 `;
 
 export const FilterTitle = styled.div`
