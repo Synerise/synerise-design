@@ -17,11 +17,13 @@ const stories = {
     const tooltip = text('Tooltip text', 'Copy to clipboard');
     const setError = boolean('Set error', false);
     const setSavedColors = boolean('Set saved colors', false);
+    const maxWidth = number('Set picker modal max width', 228);
     React.useEffect(() => {
       setColor(userColor);
     }, [userColor]);
     return (
       <ColorPicker
+        maxWidth={maxWidth}
         value={color}
         size={size as 'S' | 'M' | 'L' | undefined}
         tooltipText={tooltip}

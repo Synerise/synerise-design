@@ -6,15 +6,15 @@ import Icon, { FormulaPlusM, CopyClipboardM } from '@synerise/ds-icon';
 import * as copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside } from '@synerise/ds-utils';
+import { useOnClickOutside, isValidHexColor, filterAlphanumeric, convert3DigitHexTo6Digit } from '@synerise/ds-utils';
 import { ColorPickerProps } from './ColorPicker.types';
-import ColorPickerStyles, { MAX_WIDTH_PICKER } from './ColorPicker.styles';
+import ColorPickerStyles from './ColorPicker.styles';
 
 const hash = '#';
-const hexColorRegex = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/;
-const alphanumericRegex = /[^a-zA-Z0-9]+/g;
+const DEFAULT_MAX_WIDTH_PICKER = 228;
 
 const ColorPicker = ({
+  maxWidth,
   value = '#ffffff',
   onChange,
   colors = [],
@@ -35,24 +35,6 @@ const ColorPicker = ({
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [savedColors, setSavedColors] = React.useState(colors);
 
-  const isValidHexColor = (hex: string): boolean => hexColorRegex.test(hex);
-  const filterAlphanumeric = (colorValue: string): string => colorValue.replace(alphanumericRegex, '');
-  const convert3DigitHexTo6Digit = React.useCallback(
-    (hexColor: string): string => {
-      const alphaHexColor = filterAlphanumeric(hexColor);
-      if (alphaHexColor.length === 3) {
-        let newAlphaHexColor = '';
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i < color.length; i++) {
-          newAlphaHexColor += alphaHexColor[i] + alphaHexColor[i];
-        }
-        return `#${newAlphaHexColor}`;
-      }
-      return hexColor;
-    },
-    [color.length]
-  );
-
   const onChangeColor = React.useCallback(
     (colorValue: string): void => {
       setColor(colorValue);
@@ -62,7 +44,7 @@ const ColorPicker = ({
         onChange && onChange(c);
       }
     },
-    [convert3DigitHexTo6Digit, onChange]
+    [onChange]
   );
 
   const onBlurHandler = React.useCallback(() => {
@@ -162,8 +144,11 @@ const ColorPicker = ({
 
   return (
     <>
+      {maxWidth && maxWidth >= DEFAULT_MAX_WIDTH_PICKER && (
+        <ColorPickerStyles.ColorPickerModalStyle maxWidth={maxWidth} />
+      )}
       <Dropdown
-        overlayStyle={{ minWidth: `${MAX_WIDTH_PICKER}px` }}
+        overlayClassName="color-picker-overlay"
         align={{ offset: [0, heightOfDropdown()] }}
         visible={dropdownVisible}
         overlay={dropdown}

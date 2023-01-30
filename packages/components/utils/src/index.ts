@@ -1,4 +1,7 @@
 export { default as hexToRgba } from './hexToRgba/hexToRgba';
+export { default as convert3DigitHexTo6Digit } from './convert3DigitHexTo6Digit/convert3DigitHexTo6Digit';
+export { default as isValidHexColor } from './isValidHexColor/isValidHexColor';
+export { default as filterAlphanumeric } from './filterAlphanumeric/filterAlphanumeric';
 export { default as toCamelCase } from './toCamelCase/toCamelCase';
 export { useOnClickOutside } from './useOnClickOutside/useOnClickOutside';
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';

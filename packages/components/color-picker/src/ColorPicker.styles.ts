@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { TagsStyles, Tag } from '@synerise/ds-tags';
@@ -17,11 +17,8 @@ export const TagDot = styled.div<{ pressed?: boolean }>`
 
 const SIZE_DEFAULT = 168;
 
-export const MAX_WIDTH_PICKER = 228;
-
 const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
-  max-width: ${MAX_WIDTH_PICKER}px;
-
+  width: 100%;
   @media (min-width: 200px) {
     min-width: 200px;
     margin: -8px;
@@ -59,7 +56,6 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
   .react-colorful {
     width: 100%;
-    max-width: ${MAX_WIDTH_PICKER}px;
     height: ${(props): number => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
@@ -160,6 +156,13 @@ export const ValueWrapper = styled.div`
   font-size: 12px;
 `;
 
+export const ColorPickerModalStyle = createGlobalStyle<{ maxWidth: number }>`
+.color-picker-overlay {
+  min-width: unset !important;
+  max-width: ${({ maxWidth }): number => maxWidth}px; 
+  width: 100%;
+}`;
+
 export default {
   Container,
   SubContainer,
@@ -173,4 +176,5 @@ export default {
   ColorPickerInput,
   TagDot,
   ColorPickerSelect,
+  ColorPickerModalStyle,
 };

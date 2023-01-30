@@ -12,6 +12,7 @@ export enum ColorPickerSize {
 }
 
 export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
+  maxWidth?: number;
   value?: string;
   onChange?: (color: string) => void;
   colors?: string[];
