@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.3...@synerise/ds-filter@0.14.4) (2023-01-30)
+
+
+### Bug Fixes
+
+* **filter:** add missing deps ([b557155](https://github.com/Synerise/synerise-design/commit/b55715533b7019ee8c68d750471112d273e7a6e5))
+
+
+
+
+
 ## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.2...@synerise/ds-filter@0.14.3) (2023-01-30)
 
 
