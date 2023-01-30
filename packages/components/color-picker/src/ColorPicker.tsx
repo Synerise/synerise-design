@@ -8,7 +8,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import { ColorPickerProps } from './ColorPicker.types';
-import ColorPickerStyles from './ColorPicker.styles';
+import ColorPickerStyles, { MAX_WIDTH_PICKER } from './ColorPicker.styles';
 
 const hash = '#';
 const hexColorRegex = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/;
@@ -163,6 +163,7 @@ const ColorPicker = ({
   return (
     <>
       <Dropdown
+        overlayStyle={{ minWidth: `${MAX_WIDTH_PICKER}px` }}
         align={{ offset: [0, heightOfDropdown()] }}
         visible={dropdownVisible}
         overlay={dropdown}

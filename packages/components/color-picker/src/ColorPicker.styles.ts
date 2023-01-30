@@ -14,9 +14,13 @@ export const TagDot = styled.div<{ pressed?: boolean }>`
   background-color: ${(props): string => props.theme.palette.white};
   border-radius: 50%;
 `;
+
 const SIZE_DEFAULT = 168;
+
+export const MAX_WIDTH_PICKER = 228;
+
 const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
-  max-width: 228px;
+  max-width: ${MAX_WIDTH_PICKER}px;
 
   @media (min-width: 200px) {
     min-width: 200px;
@@ -55,7 +59,7 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   }
   .react-colorful {
     width: 100%;
-    max-width: 228px;
+    max-width: ${MAX_WIDTH_PICKER}px;
     height: ${(props): number => ColorPickerSize[props.size as string] || SIZE_DEFAULT}px;
   }
   .react-colorful__hue-pointer {
@@ -73,6 +77,7 @@ const Container = styled.div<{ size?: 'S' | 'M' | 'L' }>`
     margin-bottom: -8px;
   }
 `;
+
 const SubContainer = styled.div<{ savedColors?: boolean }>`
   padding: 8px 16px 16px;
   margin-bottom: ${(props): string => (props.savedColors ? `0` : `-16px`)};
@@ -91,9 +96,11 @@ export const AddColorButton = styled(Button)`
     margin-right: 0;
   }
 `;
+
 export const CopyIcon = styled(Icon)`
   display: none;
 `;
+
 export const ColorPickerInput = styled(Input)`
   &:hover {
     ${CopyIcon} {
@@ -101,6 +108,7 @@ export const ColorPickerInput = styled(Input)`
     }
   }
 `;
+
 export const ColorPickerSelect = styled(Input)`
   .ant-input-affix-wrapper {
     padding: 4px 4px;
@@ -114,6 +122,7 @@ export const ColorPickerSelect = styled(Input)`
   }
   width: 100px;
 `;
+
 export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }>`
   &&& .ds-tag {
     margin: 0;
@@ -132,10 +141,12 @@ export const PrefixTag = styled.div<{ height?: boolean; size?: 'S' | 'M' | 'L' }
   z-index: 2;
   cursor: auto;
 `;
+
 export const SwatchSectionWrapper = styled.div`
   display: flex;
   alignitems: center;
 `;
+
 export const PreffixWrapper = styled.div`
   margin: 0px 12px;
   overflow: hidden;
@@ -143,6 +154,7 @@ export const PreffixWrapper = styled.div`
   text-overflow: ellipsis;
   color: ${(props): string => props.theme.palette['grey-500']};
 `;
+
 export const ValueWrapper = styled.div`
   display: flex;
   font-size: 12px;
