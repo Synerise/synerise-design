@@ -6,7 +6,8 @@ import Icon, { FormulaPlusM, CopyClipboardM } from '@synerise/ds-icon';
 import * as copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
-import { useOnClickOutside, isValidHexColor, filterAlphanumeric, convert3DigitHexTo6Digit } from '@synerise/ds-utils';
+import { useOnClickOutside } from '@synerise/ds-utils';
+import { isValidHexColor, convert3DigitHexTo6Digit, filterAlphanumeric } from './utils';
 import { ColorPickerProps } from './ColorPicker.types';
 import ColorPickerStyles from './ColorPicker.styles';
 
