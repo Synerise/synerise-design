@@ -184,7 +184,7 @@ const Filter: React.FC<FilterProps> = ({
         </S.ExpressionWrapper>
       );
     },
-    [text.dropMeHere, isActive, componentProps, expressions.length, readOnly]
+    [text.dropMeHere, isActive, componentProps, expressions.length, readOnly, addFilterComponent, isLimitExceeded]
   );
 
   return (
