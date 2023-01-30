@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.2...@synerise/ds-filter@0.14.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* **filter:** dropdown filter issue ([280c35f](https://github.com/Synerise/synerise-design/commit/280c35f3b7ee229eeab2898556d334c050d4c159))
+* **filter:** set conditions prop ([fd0856a](https://github.com/Synerise/synerise-design/commit/fd0856a110fb5884b28269ccec1f9427c877ff58))
+
+
+
+
+
 ## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.1...@synerise/ds-filter@0.14.2) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-filter
