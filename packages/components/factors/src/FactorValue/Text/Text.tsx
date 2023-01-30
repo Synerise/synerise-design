@@ -70,7 +70,7 @@ const TextInput: React.FC<InputProps> = ({
       setLocalValue(val);
       onChangeDebounce(val);
     },
-    [onChange]
+    [onChangeDebounce]
   );
 
   const autocompleteOptions = React.useMemo(() => {
