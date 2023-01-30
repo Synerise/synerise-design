@@ -68,7 +68,7 @@ const TextInput: React.FC<InputProps> = ({
   const handleAutocomplete = React.useCallback(
     val => {
       setLocalValue(val);
-      onChange(val);
+      onChangeDebounce(val);
     },
     [onChange]
   );
