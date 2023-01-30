@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.4...@synerise/ds-filter@0.14.5) (2023-01-30)
+
+
+### Bug Fixes
+
+* **filter:** set button css position ([7e276da](https://github.com/Synerise/synerise-design/commit/7e276da454a5b1e1feec5f85c8f5138f225362a1))
+
+
+
+
+
 ## [0.14.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.3...@synerise/ds-filter@0.14.4) (2023-01-30)
 
 

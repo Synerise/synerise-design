@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.7...@synerise/ds-color-picker@0.1.8) (2023-01-30)
+
+
+### Bug Fixes
+
+* **color-picker:** bugs ([9702cad](https://github.com/Synerise/synerise-design/commit/9702cada1d33b94275681b905cba291684cf7732))
+* **color-picker:** main wrapper for the color-picker component ([6c3ad7e](https://github.com/Synerise/synerise-design/commit/6c3ad7ea4d1b2a4a089a0494126a2f12962588df))
+* **color-picker:** max-width of dropdown overlay ([42d2f60](https://github.com/Synerise/synerise-design/commit/42d2f60a7be3f63d486c8f27029f5602650fe1c7))
+* **color-picker:** utils for colorPicker component ([d78395d](https://github.com/Synerise/synerise-design/commit/d78395d29b366f2a3edf06edc83351865e7bb875))
+
+
+
+
+
 ## [0.1.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.6...@synerise/ds-color-picker@0.1.7) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

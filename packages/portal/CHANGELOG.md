@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.170.3](https://github.com/synerise/synerise-design/compare/portal@0.170.2...portal@0.170.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* **color-picker:** bugs ([9702cad](https://github.com/synerise/synerise-design/commit/9702cada1d33b94275681b905cba291684cf7732))
+* **color-picker:** main wrapper for the color-picker component ([6c3ad7e](https://github.com/synerise/synerise-design/commit/6c3ad7ea4d1b2a4a089a0494126a2f12962588df))
+
+
+
+
+
 ## [0.170.2](https://github.com/synerise/synerise-design/compare/portal@0.170.1...portal@0.170.2) (2023-01-09)
 
 
