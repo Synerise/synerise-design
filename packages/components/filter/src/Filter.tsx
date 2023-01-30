@@ -176,6 +176,11 @@ const Filter: React.FC<FilterProps> = ({
               <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} readOnly={readOnly} />
             </S.LogicWrapper>
           )}
+          {addFilterComponent && !readOnly && (
+            <S.AddButtonWrapper>
+              {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
+            </S.AddButtonWrapper>
+          )}
         </S.ExpressionWrapper>
       );
     },
@@ -209,11 +214,6 @@ const Filter: React.FC<FilterProps> = ({
           <Placeholder text={text.placeholder.chooseCondition} />
         )}
       </>
-      {addFilterComponent && !readOnly && (
-        <S.AddButtonWrapper>
-          {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
-        </S.AddButtonWrapper>
-      )}
     </S.FilterWrapper>
   );
 };
