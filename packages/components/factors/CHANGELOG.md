@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.5...@synerise/ds-factors@0.16.6) (2023-01-30)
+
+
+### Bug Fixes
+
+* **factors:** fix debounce on onChange ([954808d](https://github.com/Synerise/synerise-design/commit/954808daf1498f1c2260eb3d47c38cd9fed2452a))
+
+
+
+
+
 ## [0.16.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.4...@synerise/ds-factors@0.16.5) (2023-01-30)
 
 
