@@ -65,7 +65,7 @@ export type ConditionProps = {
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
-  inputProps?: InputProps;
+  inputProps?: Partial<InputProps>;
   onDeactivate?: (currentStepId: React.ReactText, currentConditionId: React.ReactText) => void;
   readOnly?: boolean;
 };
