@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.6...@synerise/ds-factors@0.16.7) (2023-01-31)
+
+
+### Bug Fixes
+
+* **factors:** add autoResize in FactorValueProps ([85a7c38](https://github.com/Synerise/synerise-design/commit/85a7c384d1784e43f9c8425c15aee100f8c300f9))
+
+
+
+
+
 ## [0.16.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.5...@synerise/ds-factors@0.16.6) (2023-01-30)
 
 

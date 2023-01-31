@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.6...@synerise/ds-condition@0.19.7) (2023-01-31)
+
+
+### Bug Fixes
+
+* **condition:** fix inputProps type to be Partial ([b19b750](https://github.com/Synerise/synerise-design/commit/b19b7509e2a22b1e7bdbb359ba754ce607c08c2e))
+
+
+
+
+
 ## [0.19.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.5...@synerise/ds-condition@0.19.6) (2023-01-30)
 
 **Note:** Version bump only for package @synerise/ds-condition
