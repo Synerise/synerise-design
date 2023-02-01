@@ -18,6 +18,7 @@ import { ColorPickerProps } from './ColorPicker.types';
 import ColorPickerStyles from './ColorPicker.styles';
 
 const DEFAULT_MAX_WIDTH_PICKER = 228;
+const DEFAULT_COLOR = '#ffffff';
 
 const ColorPicker = ({
   maxWidth,
@@ -89,8 +90,9 @@ const ColorPicker = ({
 
   React.useEffect(() => {
     if (!value || !isValidTextColor(value) || !isValidHexColor(value)) {
-      onChangeTextColor('#ffffff');
+      onChangeTextColor(DEFAULT_COLOR);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const heightOfDropdown = React.useCallback(() => {
