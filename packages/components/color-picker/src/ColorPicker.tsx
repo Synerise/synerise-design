@@ -39,31 +39,31 @@ const ColorPicker = ({
   const [colorTextInput, setColorTextInput] = React.useState(value);
   const [colorHexInput, setColorHexInput] = React.useState(value);
 
-  const [validTextColor, setValidTextColor] = React.useState(value);
-  const [validHexColor, setValidHexColor] = React.useState(value);
+  const [lastValidTextColor, setLastValidTextColor] = React.useState(value);
+  const [lastValidHexColor, setLastValidHexColor] = React.useState(value);
 
   const [pressed, setPressed] = React.useState<number>(-1);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [savedColors, setSavedColors] = React.useState(colors);
 
   React.useEffect(() => {
-    if (validHexColor) {
-      onChange && onChange(validHexColor);
+    if (lastValidHexColor) {
+      onChange && onChange(lastValidHexColor);
     }
-  }, [onChange, validHexColor]);
+  }, [onChange, lastValidHexColor]);
 
   const onChangeTextColor = React.useCallback((colorValue: string): void => {
     setColorTextInput(colorValue);
     if (isValidTextColor(colorValue)) {
       const standardizedColor = standardizeColor(colorValue);
-      setValidTextColor(colorValue);
+      setLastValidTextColor(colorValue);
       setColorHexInput(standardizedColor);
-      setValidHexColor(standardizedColor);
+      setLastValidHexColor(standardizedColor);
     } else if (isValidHexColor(colorValue)) {
       const fullHexColor = convert3DigitHexTo6Digit(colorValue);
-      setValidTextColor(fullHexColor);
+      setLastValidTextColor(fullHexColor);
       setColorHexInput(fullHexColor);
-      setValidHexColor(fullHexColor);
+      setLastValidHexColor(fullHexColor);
     }
     setPressed(-1);
   }, []);
@@ -73,16 +73,16 @@ const ColorPicker = ({
     if (isValidHexColor(colorValue)) {
       const fullHexColor = convert3DigitHexTo6Digit(colorValue);
       setColorTextInput(fullHexColor);
-      setValidTextColor(fullHexColor);
-      setValidHexColor(fullHexColor);
+      setLastValidTextColor(fullHexColor);
+      setLastValidHexColor(fullHexColor);
     }
     setPressed(-1);
   }, []);
 
   const onBlurHandler = React.useCallback(() => {
-    setColorTextInput(validTextColor);
-    setColorHexInput(validHexColor);
-  }, [validHexColor, validTextColor]);
+    setColorTextInput(lastValidTextColor);
+    setColorHexInput(lastValidHexColor);
+  }, [lastValidHexColor, lastValidTextColor]);
 
   const onClickHandler = React.useCallback(() => {
     setDropdownVisible(!dropdownVisible);
@@ -112,7 +112,7 @@ const ColorPicker = ({
 
   const saveColor = (): void => {
     setSavedColors(ar => {
-      const colorsArray = (validHexColor ? [validHexColor, ...ar] : ar).slice(0, maxSavedColors);
+      const colorsArray = (lastValidHexColor ? [lastValidHexColor, ...ar] : ar).slice(0, maxSavedColors);
       onSaveColors && onSaveColors(colorsArray);
       return colorsArray;
     });
@@ -152,9 +152,9 @@ const ColorPicker = ({
 
   const dropdown = (
     <ColorPickerStyles.Container ref={ref} size={size}>
-      <ReactColorful color={validHexColor} onChange={onChangeHexColor} />
+      <ReactColorful color={lastValidHexColor} onChange={onChangeHexColor} />
       <ColorPickerStyles.PrefixTag height={isShownSavedColors} size={size}>
-        <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={validHexColor} />
+        <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={lastValidHexColor} />
       </ColorPickerStyles.PrefixTag>
       <ColorPickerStyles.SubContainer savedColors={isShownSavedColors}>
         <ColorPickerStyles.ColorPickerInput
@@ -168,7 +168,7 @@ const ColorPicker = ({
           icon1={
             <ColorPickerStyles.CopyIcon
               onClick={(): void => {
-                validHexColor && copy(validHexColor);
+                lastValidHexColor && copy(lastValidHexColor);
               }}
               component={<CopyClipboardM />}
             />
@@ -201,7 +201,7 @@ const ColorPicker = ({
           prefix={
             <ColorPickerStyles.ColorTag
               shape={TagShape.SINGLE_CHARACTER_ROUND}
-              color={validHexColor}
+              color={lastValidHexColor}
               disabled={false}
               onClick={onClickHandler}
             />
