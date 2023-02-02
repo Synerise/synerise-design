@@ -38,6 +38,8 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         ref={inputRef}
         dropdownClassName="ds-autocomplete-dropdown"
         className={!!errorText || error ? 'error' : undefined}
+        /* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */
+        getPopupContainer={trigger => trigger.parentNode}
       />
     );
   };
