@@ -7,16 +7,22 @@ import * as copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
-import { isValidHexColor, convert3DigitHexTo6Digit, filterAlphanumeric } from './utils';
+import {
+  isValidHexColor,
+  isValidTextColor,
+  convert3DigitHexTo6Digit,
+  filterAlphanumeric,
+  standardizeColor,
+} from './utils';
 import { ColorPickerProps } from './ColorPicker.types';
 import ColorPickerStyles from './ColorPicker.styles';
 
-const hash = '#';
 const DEFAULT_MAX_WIDTH_PICKER = 228;
+const DEFAULT_COLOR = '#ffffff';
 
 const ColorPicker = ({
   maxWidth,
-  value = '#ffffff',
+  value,
   onChange,
   colors = [],
   onSaveColors,
@@ -30,27 +36,64 @@ const ColorPicker = ({
   errorText,
   description,
 }: ColorPickerProps): JSX.Element => {
-  const [color, setColor] = React.useState(value);
-  const [validHexColor, setValidHexColor] = React.useState(value);
+  const [colorTextInput, setColorTextInput] = React.useState(value);
+  const [colorHexInput, setColorHexInput] = React.useState(value);
+
+  const [lastValidTextColor, setLastValidTextColor] = React.useState(value);
+  const [lastValidHexColor, setLastValidHexColor] = React.useState(value);
+
   const [pressed, setPressed] = React.useState<number>(-1);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [savedColors, setSavedColors] = React.useState(colors);
 
-  const onChangeColor = React.useCallback(
-    (colorValue: string): void => {
-      setColor(colorValue);
-      if (isValidHexColor(colorValue)) {
-        const c = convert3DigitHexTo6Digit(colorValue);
-        setValidHexColor(c);
-        onChange && onChange(c);
-      }
-    },
-    [onChange]
-  );
+  React.useEffect(() => {
+    if (lastValidHexColor) {
+      onChange && onChange(lastValidHexColor);
+    }
+  }, [onChange, lastValidHexColor]);
+
+  const onChangeTextColor = React.useCallback((colorValue: string): void => {
+    setColorTextInput(colorValue);
+    if (isValidTextColor(colorValue)) {
+      const standardizedColor = standardizeColor(colorValue);
+      setLastValidTextColor(colorValue);
+      setColorHexInput(standardizedColor);
+      setLastValidHexColor(standardizedColor);
+    } else if (isValidHexColor(colorValue)) {
+      const fullHexColor = convert3DigitHexTo6Digit(colorValue);
+      setLastValidTextColor(fullHexColor);
+      setColorHexInput(fullHexColor);
+      setLastValidHexColor(fullHexColor);
+    }
+    setPressed(-1);
+  }, []);
+
+  const onChangeHexColor = React.useCallback((colorValue: string): void => {
+    setColorHexInput(colorValue);
+    if (isValidHexColor(colorValue)) {
+      const fullHexColor = convert3DigitHexTo6Digit(colorValue);
+      setColorTextInput(fullHexColor);
+      setLastValidTextColor(fullHexColor);
+      setLastValidHexColor(fullHexColor);
+    }
+    setPressed(-1);
+  }, []);
 
   const onBlurHandler = React.useCallback(() => {
-    setColor(validHexColor);
-  }, [validHexColor]);
+    setColorTextInput(lastValidTextColor);
+    setColorHexInput(lastValidHexColor);
+  }, [lastValidHexColor, lastValidTextColor]);
+
+  const onClickHandler = React.useCallback(() => {
+    setDropdownVisible(!dropdownVisible);
+  }, [dropdownVisible]);
+
+  React.useEffect(() => {
+    if (!value || !isValidTextColor(value) || !isValidHexColor(value)) {
+      onChangeTextColor(DEFAULT_COLOR);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const heightOfDropdown = React.useCallback(() => {
     if (errorText || description) {
@@ -61,6 +104,7 @@ const ColorPicker = ({
     }
     return 4;
   }, [errorText, description]);
+
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
@@ -68,7 +112,7 @@ const ColorPicker = ({
 
   const saveColor = (): void => {
     setSavedColors(ar => {
-      const colorsArray = (color ? [color, ...ar] : ar).slice(0, maxSavedColors);
+      const colorsArray = (lastValidHexColor ? [lastValidHexColor, ...ar] : ar).slice(0, maxSavedColors);
       onSaveColors && onSaveColors(colorsArray);
       return colorsArray;
     });
@@ -81,7 +125,7 @@ const ColorPicker = ({
           <Icon size={16} component={<FormulaPlusM />} />
         </ColorPickerStyles.AddColorButton>
       </Tooltip>
-      {infix({ color, setColor: onChangeColor })}
+      {infix({ color: colorTextInput, setColor: onChangeTextColor })}
       {savedColors.length > 0 && (
         <Tags
           tagShape={TagShape.SINGLE_CHARACTER_SQUARE}
@@ -97,11 +141,10 @@ const ColorPicker = ({
             ),
             color: colorEntry,
             onClick(): void {
-              onChangeColor(colorEntry);
+              onChangeHexColor(colorEntry);
               setPressed(i);
             },
           }))}
-          disabled={false}
         />
       )}
     </ColorPickerStyles.SwatchSectionWrapper>
@@ -109,24 +152,23 @@ const ColorPicker = ({
 
   const dropdown = (
     <ColorPickerStyles.Container ref={ref} size={size}>
-      <ReactColorful color={validHexColor} onChange={onChangeColor} />
+      <ReactColorful color={lastValidHexColor} onChange={onChangeHexColor} />
       <ColorPickerStyles.PrefixTag height={isShownSavedColors} size={size}>
-        <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={validHexColor} disabled={false} />
+        <Tag shape={TagShape.SINGLE_CHARACTER_SQUARE} color={lastValidHexColor} />
       </ColorPickerStyles.PrefixTag>
       <ColorPickerStyles.SubContainer savedColors={isShownSavedColors}>
         <ColorPickerStyles.ColorPickerInput
-          value={filterAlphanumeric(color)}
+          value={colorHexInput && filterAlphanumeric(colorHexInput)}
           prefixel={<ColorPickerStyles.PreffixWrapper>#</ColorPickerStyles.PreffixWrapper>}
           onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => {
-            const hexValue = hash + filterAlphanumeric(ev.target.value);
-            onChangeColor(hexValue);
+            onChangeHexColor(`#${ev.target.value}`);
           }}
           onBlur={onBlurHandler}
           placeholder={placeholder}
           icon1={
             <ColorPickerStyles.CopyIcon
               onClick={(): void => {
-                copy(color);
+                lastValidHexColor && copy(lastValidHexColor);
               }}
               component={<CopyClipboardM />}
             />
@@ -159,18 +201,18 @@ const ColorPicker = ({
           prefix={
             <ColorPickerStyles.ColorTag
               shape={TagShape.SINGLE_CHARACTER_ROUND}
-              color={validHexColor}
+              color={lastValidHexColor}
               disabled={false}
-              onClick={(): void => setDropdownVisible(!dropdownVisible)}
+              onClick={onClickHandler}
             />
           }
+          onClick={onClickHandler}
           onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => {
-            const hexValue = hash + filterAlphanumeric(ev.target.value);
-            onChangeColor(hexValue);
+            onChangeTextColor(ev.target.value);
           }}
           onBlur={onBlurHandler}
           placeholder={placeholder}
-          value={color}
+          value={colorTextInput}
           description={description}
           errorText={errorText}
           {...inputProps}
