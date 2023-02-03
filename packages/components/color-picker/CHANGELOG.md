@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.8...@synerise/ds-color-picker@0.2.0) (2023-02-03)
+
+
+### Features
+
+* **color-picker:** color change logic separately for each input ([8eefaf0](https://github.com/Synerise/synerise-design/commit/8eefaf0b5028b4b916110d554f06b025bd2cdf45))
+* **color-picker:** color change logic separately for each input ([54283f7](https://github.com/Synerise/synerise-design/commit/54283f7ab79b0da75ef78e26671a8ad675b04f44))
+* **color-picker:** descriptions of methods and names ([45be774](https://github.com/Synerise/synerise-design/commit/45be774dff8bd50b6b201dbfed0a2d1d09a2b1a8))
+
+
+
+
+
 ## [0.1.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.7...@synerise/ds-color-picker@0.1.8) (2023-01-30)
 
 
