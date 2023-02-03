@@ -17,7 +17,7 @@ module.exports = {
   },
   "framework": "@storybook/react",
   "addons": [
-    // '@storybook/addon-knobs', // addon-knobs/dist/register
+    '@storybook/addon-knobs', // addon-knobs/dist/register
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions"
@@ -149,8 +149,19 @@ module.exports = {
     });
 
     config.resolve.fallback = {
-      // 'highlight.js/lib/languages': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages')
+      // 'highlight.js/lib/languages': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
+      // '@storybook/addon-knobs/dist/register': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
+      // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.esm.js'),
+      'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
     }
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      // xyz$: path.resolve(__dirname, 'path/to/file.js'),
+      // 'react-select/dist/react-select.browser.esm.js': path.resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
+    }
+
+    config.resolve.importsFields = [];
 
     if (0) {
       const tmpDir = path.join(require('os').tmpdir(), '.webpack_cache');

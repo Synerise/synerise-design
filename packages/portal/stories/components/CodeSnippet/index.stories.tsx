@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as he from 'he';
-// import { text, select, boolean, number} from '@storybook/addon-knobs';
-const {
-  text = () => {},
-  select = () => {},
-  boolean = () => true,
-  number = () => {},
-} = {}
+import { text, select, boolean, number} from '@storybook/addon-knobs';
+// const {
+//   text = () => {},
+//   select = () => {},
+//   boolean = () => true,
+//   number = () => {},
+// } = {}
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '@synerise/ds-code-snippet';
 import { CodeSnippetType } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
