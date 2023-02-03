@@ -11,9 +11,11 @@ module.exports = function convertCustomStoryToCsf3(babel, _, file) {
         const storiesNames = path.parent.init.properties.map(e => {
           if (e.key.name == '') {}
           return e.key?.extra?.rawValue || e.key.name
-        }).map(name => name.replace(/[- ]/g, '_'))
+        })//.map(name => name.replace(/[- ]/g, '_'))
         const getExp = storyName => {
-          const nonConflictingName = name => (name === 'default') ? '__default' : `__${name}`;
+          // const nonConflictingName = name => (name === 'default') ? '__default' : `__${name}`;
+          // const nonConflictingName = name => (name === 'default') ? ('__default' : `__${name}`).replace(/[- ]/g, '_');
+          const nonConflictingName = name => ((name === 'default') ? '__default' : `__${name}`).replace(/[- ]/g, '_');
           return babel.template.statement.ast(`export var ${nonConflictingName(storyName)} = stories['${storyName}']`)
         }
         storiesNames.forEach((name) => {

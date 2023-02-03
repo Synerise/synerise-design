@@ -12,13 +12,14 @@ addons.setConfig({
 
 // import { addons } from '@storybook/addons';
 import { STORY_CHANGED } from '@storybook/core-events';
-import { RESET } from '@storybook/addon-knobs';
+// import { RESET } from '@storybook/addon-knobs';
 
 // FIXME: A monkeypatch to work around the broken @storybook/knobs addon.
 // We emit the reset event to the addon if a story is loaded initially.
 // We tinker with the browser url that gets polluted by the addon and clean the storybook api from the polluted data.
 // This should be removed once we migrated to the storybooks controls.
-addons.register('workaround-for-accumulating-knobs-state-in-url', (api) => {
+/*
+if (0) addons.register('workaround-for-accumulating-knobs-state-in-url', (api) => {
   // There is no other way to access the storybook api except by registering an addon 💩
   api.on(STORY_CHANGED, () => {
     const { queryParams, path } = api.getUrlState();
@@ -51,3 +52,4 @@ addons.register('workaround-for-accumulating-knobs-state-in-url', (api) => {
     api.emit(RESET);
   });
 });
+*/

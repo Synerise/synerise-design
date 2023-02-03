@@ -1,6 +1,12 @@
 import * as React from 'react';
 import * as he from 'he';
-import { text, select, boolean, number} from '@storybook/addon-knobs';
+// import { text, select, boolean, number} from '@storybook/addon-knobs';
+const {
+  text = () => {},
+  select = () => {},
+  boolean = () => true,
+  number = () => {},
+} = {}
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '@synerise/ds-code-snippet';
 import { CodeSnippetType } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
@@ -70,9 +76,10 @@ const stories = {
   },
   'multi-line': () => {
     const defaultProps = getPropsMulti();
+    console.info('multiline STORY')
     const props = {
       ...defaultProps,
-      children: he.decode(defaultProps.children),
+      children: he.decode(defaultProps.children || exampleContent),
       languages: ['javascript','typescript','json']
     } as object;
     return (
