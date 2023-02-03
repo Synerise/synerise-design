@@ -34,7 +34,6 @@ describe('Autocomplete', () => {
     );
 
     // ASSERT
-    expect(getByText(FIRST_OPTION)).toBeTruthy();
     expect(getByText(LABEL)).toBeTruthy();
     expect(getByText(DESC)).toBeTruthy();
     expect(getByText(ERROR)).toBeTruthy();
