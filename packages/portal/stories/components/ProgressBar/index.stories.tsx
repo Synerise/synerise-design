@@ -58,7 +58,7 @@ const stories = {
         showLabel={true}
         containerStyles={{ flexDirection: 'row-reverse', width: '80px' }}
         labelFormatter={(amount, percent) => (
-          <div style={{ padding: isThick ? '7px 0px 0px 8px' : '8px 0 0 8px' }}>4/10</div>
+          <div style={{ padding: isThick ? '7px 0px 0px 8px' : '8px 0 0 8px' }}>{percent}%</div>
         )}
         percent={percentValue}
         strokeColor={colors}
