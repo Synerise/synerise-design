@@ -27,6 +27,7 @@
   "dependencies": {
     "faker": "4.1.0",
     "@synerise/ds-core": "latest",
+    "@synerise/ds-alert": "latest",
     "@synerise/ds-skeleton": "latest",
     "@synerise/ds-badge": "latest",
     "@synerise/ds-button": "latest",
