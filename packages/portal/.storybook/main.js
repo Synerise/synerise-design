@@ -36,7 +36,7 @@ module.exports = {
     // "../stories/components/Badge", // first simple (few dependencies) for testing
     // "../stories/components/Alert", // second simple component (also for testing/benchmarking)
     // "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
-    // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
+    "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
     "../stories/components/Button",
     "../stories/components/Alert",
     // "../stories/components/Badge",
@@ -155,7 +155,8 @@ module.exports = {
       // 'highlight.js/lib/languages': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
       // '@storybook/addon-knobs/dist/register': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
       // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.esm.js'),
-      'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
+      // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
+      '@synerise/ds-icon/dist/cjs': require('path').resolve(__dirname, '../../../node_modules/@synerise/ds-icon/dist/cjs'),
     }
 
     config.resolve.alias = {

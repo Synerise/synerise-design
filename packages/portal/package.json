@@ -19,6 +19,7 @@
     "webpack": "^5.74",
     "lerna": "3.20.2",
     "@synerise/ds-utils": "latest",
+    "@synerise/ds-information-card": "latest",
     "babel-loader": "^8.3.0"
   },
   "devdeps": {
@@ -32,6 +33,17 @@
     "@synerise/ds-badge": "latest",
     "@synerise/ds-button": "latest",
     "@synerise/ds-icon": "latest",
+    "@synerise/ds-divider": "latest",
+    
+    "@synerise/ds-condition": "latest",
+      "@synerise/ds-loader": "latest",
+      "@synerise/ds-factors": "latest",
+    "@synerise/ds-result": "latest",
+    "@synerise/ds-context-selector": "latest",
+    "@synerise/ds-menu": "latest",
+    "@synerise/ds-modal": "latest",
+    "@synerise/ds-tabs": "latest",
+
     "@synerise/ds-button-group": "latest",
     "@synerise/ds-typography": "latest",
     "final-form": "4.18.7",

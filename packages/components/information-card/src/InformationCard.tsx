@@ -286,7 +286,7 @@ function DescriptionField({ extraInformation = undefined, descriptionConfig }: D
             ? {
                 error: descriptionConfig.error,
                 errorText: (isErr: boolean, text: string): string => (isErr ? text : ''),
-              }
+              } as any /* FIXME remove any */
             : {})}
           disabled={descriptionConfig.disabled}
         />
@@ -311,6 +311,7 @@ function withTooltip(
   );
 }
 
+const MyText = Text as any; /* FIXME remove any */
 /**
  * Renders footer part including handling action button with an optional tooltip
  */
@@ -324,6 +325,7 @@ function Footer({
   InformationCardProps,
   'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText' | 'actionButtonCallback'
 >): JSX.Element {
+  const Text = MyText;
   return (
     <>
       <Divider marginTop={isCustomDescription ? 16 : 8} marginBottom={0} dashed />

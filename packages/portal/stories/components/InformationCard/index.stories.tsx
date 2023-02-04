@@ -20,10 +20,10 @@ import {
 import Icon, { NotificationsM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 
-import { default as ConditionStories, Transform } from '../../components/Condition/index.stories';
+// import { default as ConditionStories, Transform } from '../../components/Condition/index.stories';
 import { Color } from '@synerise/ds-avatar/dist/Avatar.types';
-import type { ConditionStep } from '@synerise/ds-condition';
-import type { ContextItem } from '@synerise/ds-context-selector';
+// import type { ConditionStep } from '@synerise/ds-condition';
+// import type { ContextItem } from '@synerise/ds-context-selector';
 
 export type Story = () => InformationCardProps | React.ReactNode | object;
 
@@ -197,6 +197,7 @@ function WithDropdown(numberOfElements = 1) {
   );
 }
 
+/*
 function WithConditionFilter(): JSX.Element {
   const storyDef = ConditionStories.stories.default;
   return storyDef({
@@ -241,6 +242,7 @@ function WithConditionFilter(): JSX.Element {
     },
   } as Transform);
 }
+*/
 
 function WithModal(): JSX.Element {
   const [isVisible, setIsVisible] = React.useState<boolean>(true);
@@ -424,7 +426,7 @@ const stories: Record<string, Story> = {
   },
   withMenu: WithMenu,
   WithDropdown,
-  WithConditionFilter,
+  // WithConditionFilter,
   WithModal,
 };
 
