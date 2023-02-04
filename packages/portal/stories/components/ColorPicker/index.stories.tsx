@@ -11,10 +11,13 @@ const ColorPickerSizes = {
 
 const stories = {
   default: () => {
-    const [color, setColor] = React.useState('#ffffff');
+    const [color, setColor] = React.useState('#00ffff');
     const size = select('Size of ColorPicker', ColorPickerSizes, 'M');
-    const userColor = text('Color', '#ffffff');
-    const tooltip = text('Tooltip text', 'Copy to clipboard');
+    const userColor = text('Color', '#00ffff');
+    const tooltip = {
+      copy: text('Tooltip copy text', 'Copy to clipboard'),
+      copied: text('Tooltip copied text', 'Copied!'),
+    };
     const setError = boolean('Set error', false);
     const setSavedColors = boolean('Set saved colors', false);
     const maxWidth = number('Set picker modal max width', 228);
@@ -26,7 +29,7 @@ const stories = {
         maxWidth={maxWidth}
         value={color}
         size={size as 'S' | 'M' | 'L' | undefined}
-        tooltipText={tooltip}
+        tooltip={tooltip}
         isShownSavedColors={setSavedColors}
         description={text('Description', 'Description')}
         errorText={setError ? text('Error text', 'Error') : undefined}
@@ -41,13 +44,19 @@ const stories = {
     );
   },
   minimalistic: () => {
-    const tooltip = text('Tooltip text', 'Copy to clipboard');
-    return <ColorPicker tooltipText={tooltip} onChange={action('onChange')} />;
+    const tooltip = {
+      copy: text('Tooltip copy text', 'Copy to clipboard'),
+      copied: text('Tooltip copied text', 'Copied!'),
+    };
+    return <ColorPicker tooltip={tooltip} onChange={action('onChange')} />;
   },
   savedColors: () => {
-    const tooltip = text('Tooltip text', 'Copy to clipboard');
+    const tooltip = {
+      copy: text('Tooltip copy text', 'Copy to clipboard'),
+      copied: text('Tooltip copied text', 'Copied!'),
+    };
     const [colors, setSavedColors] = React.useState(['#00ffff', '#fff', '#123123']);
-    return <ColorPicker tooltipText={tooltip} colors={colors} onSaveColors={setSavedColors} isShownSavedColors />;
+    return <ColorPicker tooltip={tooltip} colors={colors} onSaveColors={setSavedColors} isShownSavedColors onChange={action('onChange')} />;
   },
 };
 
