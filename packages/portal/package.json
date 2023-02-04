@@ -17,7 +17,14 @@
     "@dump247/storybook-state": "1.6.1",
     "babel-preset-react-app": "^10",
     "webpack": "^5.74",
-    "he": "^1.2.0",
+    "lerna": "3.20.2",
+    "@synerise/ds-core": "latest",
+    "@synerise/ds-utils": "latest",
+    "@synerise/ds-skeleton": "latest",
+    "@synerise/ds-badge": "latest",
+    "@synerise/ds-button": "latest",
+    "@synerise/ds-button-group": "latest",
+    "@synerise/ds-typography": "latest",
     "babel-loader": "^8.3.0"
   },
   "devdeps": {
@@ -27,8 +34,11 @@
     "faker": "4.1.0",
     "final-form": "4.18.7",
     "@use-it/interval": "^1.0.0",
+    "he": "^1.2.0",
     "react-final-form": "6.3.5",
-    "highlight.js": "^11.2.0",
+    "highlight.js": "^11.2.0"
+  },
+  "dependencies2": {
     "@synerise/ds-action-area": "latest",
     "@synerise/ds-alert": "latest",
     "@synerise/ds-app-menu": "latest",
