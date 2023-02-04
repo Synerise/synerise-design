@@ -205,6 +205,7 @@ const ColorPicker = ({
         placement="bottomLeft"
       >
         <ColorPickerStyles.ColorPickerSelect
+          data-testid="color-picker"
           prefix={
             <ColorPickerStyles.ColorTag
               shape={TagShape.SINGLE_CHARACTER_ROUND}
