@@ -10,8 +10,8 @@
     "packages/portal"
   ],
   "workspaces2": [
-    "packages/components/button",
     "packages/components/core",
+    "packages/components/button",
     "packages/components/badge",
     "packages/components/typography",
     "packages/components/information-card",

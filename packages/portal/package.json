@@ -18,13 +18,7 @@
     "babel-preset-react-app": "^10",
     "webpack": "^5.74",
     "lerna": "3.20.2",
-    "@synerise/ds-core": "latest",
     "@synerise/ds-utils": "latest",
-    "@synerise/ds-skeleton": "latest",
-    "@synerise/ds-badge": "latest",
-    "@synerise/ds-button": "latest",
-    "@synerise/ds-button-group": "latest",
-    "@synerise/ds-typography": "latest",
     "babel-loader": "^8.3.0"
   },
   "devdeps": {
@@ -32,6 +26,13 @@
   },
   "dependencies": {
     "faker": "4.1.0",
+    "@synerise/ds-core": "latest",
+    "@synerise/ds-skeleton": "latest",
+    "@synerise/ds-badge": "latest",
+    "@synerise/ds-button": "latest",
+    "@synerise/ds-icon": "latest",
+    "@synerise/ds-button-group": "latest",
+    "@synerise/ds-typography": "latest",
     "final-form": "4.18.7",
     "@use-it/interval": "^1.0.0",
     "he": "^1.2.0",

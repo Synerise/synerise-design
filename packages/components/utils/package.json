@@ -31,6 +31,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-core": "*",
     "latinize": "^0.5.0"
   },
   "peerDependencies": {

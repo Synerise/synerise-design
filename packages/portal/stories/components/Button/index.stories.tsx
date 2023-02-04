@@ -4,7 +4,10 @@ import { action } from '@storybook/addon-actions';
 
 import Icon, { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import markdown from '@/button/README.md';
+// import markdown from '@/button/README.md';
+// import markdown from '@synerise/ds-button/README.md';
+// import markdown from '../../../../components/button/...'; // no readme
+// import markdown from '../../components/Button';
 import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
 import { withState } from '@dump247/storybook-state';
 import ButtonGroup from '@synerise/ds-button-group';
@@ -306,7 +309,7 @@ export default {
   name: 'Components/Button/Button',
   config: {
     notes: {
-      markdown,
+      // markdown,
     },
   },
   stories,

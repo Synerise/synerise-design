@@ -178,7 +178,7 @@ module.exports = {
       }
     }
 
-    config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
+    // config.resolve.alias['@'] = path.resolve(__dirname, '../../components'); // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme' in '/Users/syne0152/synerise-design/node_modules/@synerise/ds-utils/dist/selectColorByLetter'
 
     config.module.rules.push({
       test: /\.less$/,
