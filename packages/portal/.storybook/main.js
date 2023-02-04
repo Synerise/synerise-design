@@ -166,7 +166,7 @@ module.exports = {
 
     // config.resolve.importsFields = [];
 
-    if (0) {
+    if (1) {
       const tmpDir = path.join(require('os').tmpdir(), '.webpack_cache');
       console.info('tempDir', tmpDir)
       config.cache = {

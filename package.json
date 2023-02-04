@@ -7,10 +7,10 @@
     "url": "https://github.com/Synerise/synerise-design.git"
   },
   "workspaces": [
+    "packages/components/core",
     "packages/portal"
   ],
   "workspaces2": [
-    "packages/components/core",
     "packages/components/button",
     "packages/components/badge",
     "packages/components/typography",
@@ -75,6 +75,15 @@
     "react-styleguidist": "^11.0.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.0",
+    "@babel/core": "^7.20.12",
+
+    "babel-jest": "25.1.0",
+    "babel-loader": "^8.3.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "babel-plugin-transform-rename-import": "2.3.0",
+    "typescript": "3.9.9",
+
     "react-intl": "3.12.0",
     "sass": "^1.43.4",
     "style-loader": "^1.1.3",
