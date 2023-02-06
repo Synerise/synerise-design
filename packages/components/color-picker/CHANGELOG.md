@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.2.0...@synerise/ds-color-picker@0.3.0) (2023-02-06)
+
+
+### Features
+
+* **color-picker:** copy tooltip texts object ([929c93e](https://github.com/Synerise/synerise-design/commit/929c93e53e3679e69c44e8ee655b0dbf200ad283))
+* **color-picker:** tests for component and methods ([bafa8c6](https://github.com/Synerise/synerise-design/commit/bafa8c6bbf967983fce4a65dc9bbc71a52a72953))
+
+
+
+
+
 # [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.1.8...@synerise/ds-color-picker@0.2.0) (2023-02-03)
 
 

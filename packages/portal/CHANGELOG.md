@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.171.0](https://github.com/synerise/synerise-design/compare/portal@0.170.3...portal@0.171.0) (2023-02-06)
+
+
+### Features
+
+* **color-picker:** copy tooltip texts object ([929c93e](https://github.com/synerise/synerise-design/commit/929c93e53e3679e69c44e8ee655b0dbf200ad283))
+
+
+
+
+
 ## [0.170.3](https://github.com/synerise/synerise-design/compare/portal@0.170.2...portal@0.170.3) (2023-01-30)
 
 
