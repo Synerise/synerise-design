@@ -24,7 +24,10 @@ export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeh
   infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
   maxSavedColors?: number;
   inputProps?: Omit<InputProps, 'value' | 'onChange' | 'defaultValue'>;
-  tooltipText?: string;
+  tooltip?: {
+    copy: string;
+    copied: string;
+  };
   isShownSavedColors?: boolean;
   size?: 'S' | 'M' | 'L';
   errorText?: string;

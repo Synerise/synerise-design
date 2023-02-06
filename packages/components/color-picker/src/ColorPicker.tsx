@@ -30,7 +30,7 @@ const ColorPicker = ({
   placeholder,
   inputProps,
   maxSavedColors = 9,
-  tooltipText,
+  tooltip,
   isShownSavedColors,
   size = 'M',
   errorText,
@@ -39,57 +39,67 @@ const ColorPicker = ({
   const [colorTextInput, setColorTextInput] = React.useState(value);
   const [colorHexInput, setColorHexInput] = React.useState(value);
 
-  const [lastValidTextColor, setLastValidTextColor] = React.useState(value);
   const [lastValidHexColor, setLastValidHexColor] = React.useState(value);
 
   const [pressed, setPressed] = React.useState<number>(-1);
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
   const [savedColors, setSavedColors] = React.useState(colors);
+  const [tooltipText, setTooltipText] = React.useState(tooltip?.copy);
 
-  React.useEffect(() => {
-    if (lastValidHexColor) {
-      onChange && onChange(lastValidHexColor);
-    }
-  }, [onChange, lastValidHexColor]);
+  const onChangeTextColor = React.useCallback(
+    (colorValue: string): void => {
+      setColorTextInput(colorValue);
+      if (isValidTextColor(colorValue)) {
+        const standardizedColor = standardizeColor(colorValue);
+        setColorHexInput(standardizedColor);
+        setLastValidHexColor(standardizedColor);
+        onChange && onChange(standardizedColor);
+      } else if (isValidHexColor(colorValue)) {
+        const fullHexColor = convert3DigitHexTo6Digit(colorValue);
+        setColorHexInput(fullHexColor);
+        setLastValidHexColor(fullHexColor);
+        onChange && onChange(fullHexColor);
+      }
+      setPressed(-1);
+    },
+    [onChange]
+  );
 
-  const onChangeTextColor = React.useCallback((colorValue: string): void => {
-    setColorTextInput(colorValue);
-    if (isValidTextColor(colorValue)) {
-      const standardizedColor = standardizeColor(colorValue);
-      setLastValidTextColor(colorValue);
-      setColorHexInput(standardizedColor);
-      setLastValidHexColor(standardizedColor);
-    } else if (isValidHexColor(colorValue)) {
-      const fullHexColor = convert3DigitHexTo6Digit(colorValue);
-      setLastValidTextColor(fullHexColor);
-      setColorHexInput(fullHexColor);
-      setLastValidHexColor(fullHexColor);
-    }
-    setPressed(-1);
-  }, []);
-
-  const onChangeHexColor = React.useCallback((colorValue: string): void => {
-    setColorHexInput(colorValue);
-    if (isValidHexColor(colorValue)) {
-      const fullHexColor = convert3DigitHexTo6Digit(colorValue);
-      setColorTextInput(fullHexColor);
-      setLastValidTextColor(fullHexColor);
-      setLastValidHexColor(fullHexColor);
-    }
-    setPressed(-1);
-  }, []);
+  const onChangeHexColor = React.useCallback(
+    (colorValue: string): void => {
+      setColorHexInput(colorValue);
+      if (isValidHexColor(colorValue)) {
+        const fullHexColor = convert3DigitHexTo6Digit(colorValue);
+        setColorTextInput(fullHexColor);
+        setLastValidHexColor(fullHexColor);
+        onChange && onChange(fullHexColor);
+      }
+      setPressed(-1);
+    },
+    [onChange]
+  );
 
   const onBlurHandler = React.useCallback(() => {
-    setColorTextInput(lastValidTextColor);
+    setColorTextInput(lastValidHexColor);
     setColorHexInput(lastValidHexColor);
-  }, [lastValidHexColor, lastValidTextColor]);
+  }, [lastValidHexColor]);
 
   const onClickHandler = React.useCallback(() => {
     setDropdownVisible(!dropdownVisible);
   }, [dropdownVisible]);
 
+  const copyHandler = React.useCallback(() => {
+    lastValidHexColor && copy(lastValidHexColor);
+    setTooltipText(tooltip?.copied);
+    setTimeout(() => {
+      setTooltipText(tooltip?.copy);
+    }, 3000);
+  }, [lastValidHexColor, tooltip]);
+
   React.useEffect(() => {
-    if (!value || !isValidTextColor(value) || !isValidHexColor(value)) {
+    if (value && (isValidHexColor(value) || isValidTextColor(value))) {
+      onChangeTextColor(value);
+    } else {
       onChangeTextColor(DEFAULT_COLOR);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -166,14 +176,11 @@ const ColorPicker = ({
           onBlur={onBlurHandler}
           placeholder={placeholder}
           icon1={
-            <ColorPickerStyles.CopyIcon
-              onClick={(): void => {
-                lastValidHexColor && copy(lastValidHexColor);
-              }}
-              component={<CopyClipboardM />}
-            />
+            tooltipText ? (
+              <ColorPickerStyles.CopyIcon onClick={copyHandler} component={<CopyClipboardM />} />
+            ) : undefined
           }
-          icon1Tooltip={<span>{tooltipText || 'Copy to clipboard'}</span>}
+          icon1Tooltip={tooltipText ? <span>{tooltipText}</span> : undefined}
         />
         {isShownSavedColors && (
           <div>
@@ -198,6 +205,7 @@ const ColorPicker = ({
         placement="bottomLeft"
       >
         <ColorPickerStyles.ColorPickerSelect
+          data-testid="color-picker"
           prefix={
             <ColorPickerStyles.ColorTag
               shape={TagShape.SINGLE_CHARACTER_ROUND}
