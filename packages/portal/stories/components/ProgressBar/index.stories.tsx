@@ -37,7 +37,7 @@ const decorator = storyFn => (
 const stories = {
   soloBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
+    const percentValue = number('Set percentage', 60, { min: 0, max: 100 });
     return (
       <ProgressBar
         amount={60}
@@ -51,7 +51,7 @@ const stories = {
   soloSmallBar: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
     const isThick = boolean('Set thick', false);
-    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
+    const percentValue = number('Set percentage', 60, { min: 0, max: 100 });
     return (
       <ProgressBar
         thick={isThick}
@@ -67,13 +67,15 @@ const stories = {
   },
   soloBarWithLabel: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
-    return <ProgressBar amount={60} percent={percentValue} maxPercent showLabel={true} strokeColor={colors}></ProgressBar>;
+    const percentValue = number('Set percentage', 60, { min: 0, max: 100 });
+    return (
+      <ProgressBar amount={60} percent={percentValue} maxPercent showLabel={true} strokeColor={colors}></ProgressBar>
+    );
   },
 
   soloBarWithLabelAndDescription: () => {
     const colors = select('Set custom color', customColorOptions, customColorOptions.green);
-    const percentValue = number('Set percentage', 60,{ min: 0, max: 100 })
+    const percentValue = number('Set percentage', 60, { min: 0, max: 100 });
     return (
       <ProgressBar
         amount={percentValue}
@@ -116,7 +118,7 @@ const stories = {
           customColorOptions.cyan,
           customColorOptions.red,
           customColorOptions.yellow,
-          customColorOptions.violet
+          customColorOptions.violet,
         ]}
       />
     );

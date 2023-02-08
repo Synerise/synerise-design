@@ -26,8 +26,8 @@ export const ActionButtonContainer = styled.div`
   margin: 8px 0 8px 0;
 `;
 
-export const InfoCardWrapper = styled.div<{ footerText?: string }>`
-  margin-left: 8px;
+export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boolean }>`
+  margin-left: ${(props): string => (props.asTooltip ? '0' : '8px')};
 
   ${CardContainer} {
     background-color: white;
@@ -39,7 +39,7 @@ export const InfoCardWrapper = styled.div<{ footerText?: string }>`
     }
     padding: 16px 16px 8px 16px; // right is 16px as divider ends there
     border-radius: 3px;
-    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1); // gray-900
+    box-shadow: ${(props): string => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
   }
   ${PaddingWrapper} {
     padding-top: 0;
