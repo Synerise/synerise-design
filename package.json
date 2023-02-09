@@ -11,9 +11,11 @@
     "packages/components/button",
     "packages/components/alert",
     "packages/components/information-card",
+    "packages/components/tabs",
     "packages/portal"
   ],
   "workspaces2": [
+    "packages/components/code-snippet",
     "packages/components/badge",
     "packages/components/typography",
     "packages/components/information-card",

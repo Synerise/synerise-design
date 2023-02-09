@@ -4,13 +4,20 @@ import EmptyStates from '@synerise/ds-empty-states';
 import { boolean, select, text} from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
+import * as icons from '@synerise/ds-icon';
 
-const reqL = require.context('@synerise/ds-icon/dist/esm/icons/L', false, /index.js/);
-const iconsRawL = reqL(reqL.keys()[0]);
-const iconsNamesL = Object.keys(iconsRawL);
-const reqXl = require.context('@synerise/ds-icon/dist/esm/icons/XL', false, /index.js/);
-const iconsRawXl = reqXl(reqXl.keys()[0]);
-const iconsNamesXl = Object.keys(iconsRawXl);
+// const reqL = require.context('@synerise/ds-icon/dist/esm/icons/L', false, /index.js/);
+// const iconsRawL = reqL(reqL.keys()[0]);
+// const iconsNamesL = Object.keys(iconsRawL);
+// const reqXl = require.context('@synerise/ds-icon/dist/esm/icons/XL', false, /index.js/);
+// const iconsRawXl = reqXl(reqXl.keys()[0]);
+// const iconsNamesXl = Object.keys(iconsRawXl);
+
+const iconsRawL = icons
+const iconsRawXl = icons
+const iconsNamesL = Object.keys(icons)
+const iconsNamesXl = Object.keys(icons)
+
 const iconSizes = {
   Large: 'small',
   ExtraLarge: 'medium',

@@ -33,21 +33,34 @@ module.exports = {
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Badge", // first simple (few dependencies) for testing
-    // "../stories/components/Alert", // second simple component (also for testing/benchmarking)
-    // "../stories/components/CodeSnippet", // ModuleNotFoundError: Module not found: Error: Package path ./lib/languages is not exported from package /Users/syne0152/synerise-design/node_modules/highlight.js (see exports field in ./node_modules/highlight.js/package.json)
-    "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
+    // "../stories/components/EditableList",
+    // "../stories/components/ColumnManager",
+    // "../stories/components/Condition", // imports ds-condition
+    // "../stories/components/Filter", // imports failing ds-condition
+    // "../stories/components/Icon", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
+    // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
+    // "../stories/components/InlineNote", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
+    // "../stories/components/Notification", // ModuleNotFoundError: Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
+    // "../stories/components/Radio", // ModuleNotFoundError: Module not found: Error: Can't resolve '@/radio/README.md' in '/Users/syne0152/synerise-design/packages/portal/stories/components/Radio'
+    // "../stories/components/Result", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
+    // "../stories/components/SectionMessage", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
+    // "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
+    // ds-condition/dist/condstep/stepheader Module not found: Error: Resolving to directories is not possible with the exports field (request was ./)
+    // "../stories/components/Switch", // ModuleNotFoundError: Module not found: Error: Can't resolve '@/radio/README.md' in '/Users/syne0152/synerise-design/packages/portal/stories/components/Switch'
+    // "../stories/components/Table", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-alert' in '/Users/syne0152/synerise-design/node_modules/@synerise/ds-column-manager/dist/ColumnManagerGroupSettings'
+    // "../stories/components/Toast", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons' in './packages/portal/stories/components/Toast'
+    // "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in '/Users/syne0152/synerise-design/packages/components/treemenu/src/AddModal'
+  // ] || [
+    "../stories/components/InformationCard",
     "../stories/components/Button",
     "../stories/components/Alert",
-    // "../stories/components/Badge",
-  ] || [
     "../stories/components/AccordionMenu",
     "../stories/components/ActionArea",
     "../stories/components/AppMenu",
     "../stories/components/Autocomplete",
     "../stories/components/Avatar",
-    "../stories/components/AvatarGroup",
     "../stories/components/Badge",
+    "../stories/components/AvatarGroup",
     "../stories/components/BroadcastBar",
     "../stories/components/Button",
     "../stories/components/ButtonCheckbox",
@@ -59,38 +72,31 @@ module.exports = {
     "../stories/components/Cascader",
     "../stories/components/Checkbox",
     "../stories/components/CheckboxTristate",
-    // "../stories/components/CodeSnippet", // problems with importing languages syntax...
+    "../stories/components/CodeSnippet",
     "../stories/components/Collector",
     "../stories/components/ColorPicker",
-    "../stories/components/ColumnManager",
     "../stories/components/CompletedWithin",
-    // "../stories/components/Condition", // imports ds-condition
-    // "../stories/components/ContextSelector", // requires info-card
     "../stories/components/Cruds",
     "../stories/components/DatePicker",
     "../stories/components/DateRangePicker",
+    "../stories/components/ContextSelector",
     "../stories/components/Description",
     "../stories/components/Divider",
     "../stories/components/Drawer",
     "../stories/components/Dropdown",
-    "../stories/components/EditableList",
-    // "../stories/components/EmptyStates", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons/L' in './packages/portal/stories/components/EmptyStates'
-    // "../stories/components/Factors", imports information-card which fails due to ds-icon
+    "../stories/components/EmptyStates", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons/L' in './packages/portal/stories/components/EmptyStates'
+    "../stories/components/Factors", // imports information-card which fails due to ds-icon
     "../stories/components/FieldSet",
     "../stories/components/Fileuploader",
-    // "../stories/components/Filter", // imports failing ds-condition
     "../stories/components/Flag",
     "../stories/components/Footer",
-    // "../stories/components/Form", // TypeError: Cannot assign to read only property 'message' of object 'SyntaxError: Missing semicolon. (2:18)
+    "../stories/components/Form", // TypeError: Cannot assign to read only property 'message' of object 'SyntaxError: Missing semicolon. (2:18)
     "../stories/components/FormatPicker",
     "../stories/components/FrontSide",
     "../stories/components/Grid",
-    // "../stories/components/Icon", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
     "../stories/components/IconAlert",
     "../stories/components/IconPicker",
-    // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
     "../stories/components/InlineEdit",
-    // "../stories/components/InlineNote", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
     "../stories/components/Input",
     "../stories/components/InputNumber",
     "../stories/components/ItemFilter",
@@ -105,40 +111,30 @@ module.exports = {
     "../stories/components/Message",
     "../stories/components/Modal",
     "../stories/components/Navbar",
-    // "../stories/components/Notification", // icon
     "../stories/components/Operators",
     "../stories/components/OrderedList",
     "../stories/components/PageHeader",
     "../stories/components/Pagination",
     "../stories/components/Popconfirm",
     "../stories/components/ProgressBar",
-    "../stories/components/Radio",
-    // "../stories/components/Result", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
     "../stories/components/Scrollbar",
     "../stories/components/Search",
     "../stories/components/SearchBar",
-    // "../stories/components/SectionMessage", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
     "../stories/components/Select",
     "../stories/components/Sidebar",
     "../stories/components/SidebarObject",
     "../stories/components/Skeleton",
     "../stories/components/Slider",
     "../stories/components/Status",
-    // "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
-    // ds-condition/dist/condstep/stepheader Module not found: Error: Resolving to directories is not possible with the exports field (request was ./)
     "../stories/components/Stepper",
     "../stories/components/Subject",
     "../stories/components/SubtleForm",
-    "../stories/components/Switch",
-    "../stories/components/Table",
     "../stories/components/Tabs",
     "../stories/components/Tags",
     "../stories/components/TagsList",
     "../stories/components/TimePicker",
-    // "../stories/components/Toast", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons' in './packages/portal/stories/components/Toast'
     "../stories/components/ToolbarButtons",
     "../stories/components/Tooltip",
-    "../stories/components/TreeMenu",
     "../stories/components/UnorderedList",
     "../stories/components/Wizard",
   ],
@@ -155,7 +151,7 @@ module.exports = {
       // 'highlight.js/lib/languages': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
       // '@storybook/addon-knobs/dist/register': require('path').resolve(__dirname, '../../../node_modules/highlight.js/lib/languages'),
       // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.esm.js'),
-      // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
+      'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
       '@synerise/ds-icon/dist/cjs': require('path').resolve(__dirname, '../../../node_modules/@synerise/ds-icon/dist/cjs'),
     }
 
