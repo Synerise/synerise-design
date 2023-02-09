@@ -33,8 +33,6 @@ module.exports = {
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/EditableList",
-    // "../stories/components/ColumnManager",
     // "../stories/components/Condition", // imports ds-condition
     // "../stories/components/Filter", // imports failing ds-condition
     // "../stories/components/Icon", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
@@ -50,7 +48,9 @@ module.exports = {
     // "../stories/components/Table", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-alert' in '/Users/syne0152/synerise-design/node_modules/@synerise/ds-column-manager/dist/ColumnManagerGroupSettings'
     // "../stories/components/Toast", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons' in './packages/portal/stories/components/Toast'
     // "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in '/Users/syne0152/synerise-design/packages/components/treemenu/src/AddModal'
-  // ] || [
+  ] || [
+    "../stories/components/EditableList",
+    "../stories/components/ColumnManager",
     "../stories/components/InformationCard",
     "../stories/components/Button",
     "../stories/components/Alert",

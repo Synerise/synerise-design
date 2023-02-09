@@ -29,6 +29,7 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-alert": "^0.7.17",
     "@synerise/ds-button": "^0.17.9",
     "@synerise/ds-drawer": "^0.5.26",
     "@synerise/ds-dropdown": "^0.17.43",

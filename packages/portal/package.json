@@ -21,6 +21,7 @@
     "@synerise/ds-utils": "latest",
     "@synerise/ds-information-card": "latest",
     "@synerise/ds-code-snippet": "latest",
+    "@synerise/ds-column-manager": "latest",
     "babel-loader": "^8.3.0"
   },
   "devdeps": {
@@ -61,7 +62,6 @@
     "@synerise/ds-checkbox": "latest",
     "@synerise/ds-collector": "latest",
     "@synerise/ds-color-picker": "latest",
-    "@synerise/ds-column-manager": "latest",
     "@synerise/ds-cruds": "latest",
     "@synerise/ds-date-picker": "latest",
     "@synerise/ds-date-range-picker": "latest",
