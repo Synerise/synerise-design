@@ -12,6 +12,7 @@
     "packages/components/alert",
     "packages/components/information-card",
     "packages/components/tabs",
+    "packages/components/condition",
     "packages/components/column-manager",
     "packages/portal"
   ],

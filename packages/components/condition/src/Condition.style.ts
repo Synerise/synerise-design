@@ -2,7 +2,8 @@ import styled, { FlattenInterpolation, css } from 'styled-components';
 import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 import Icon from '@synerise/ds-icon';
 import Cruds from '@synerise/ds-cruds';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+// import type { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+type ThemeProps = any;
 import { ConditionRowProps } from './ConditionStep/ConditionRow';
 
 export const DragIcon = styled(Icon)`

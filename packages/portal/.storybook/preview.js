@@ -9,6 +9,7 @@ import 'antd/dist/antd.less';
 
 import './style/index.css';
 import '@synerise/ds-core/dist/js/style';
+
 import VIEWPORTS from './viewports';
 
 export const parameters = {

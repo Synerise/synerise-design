@@ -6,6 +6,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "baseUrl": "src",
+    "allowSyntheticDefaultImports": true,
     "jsx": "preserve"
   },
   "references": []

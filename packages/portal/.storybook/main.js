@@ -33,15 +33,15 @@ module.exports = {
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Condition", // ds-alert does not appear in packages/components/tabs/node_modules after `yarn` and even after `yarn workspace @synerise/ds-tabs -- yarn install --focus` // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/tabs/dist'
+    "../stories/components/Condition", // ds-alert does not appear in packages/components/tabs/node_modules after `yarn` and even after `yarn workspace @synerise/ds-tabs -- yarn install --focus` // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/tabs/dist'
     // "../stories/components/Filter", // imports failing ds-condition
     // "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
     // ds-condition/dist/condstep/stepheader Module not found: Error: Resolving to directories is not possible with the exports field (request was ./)
-    // "../stories/components/Table", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-alert' in 'synerise-design/node_modules/@synerise/ds-column-manager/dist/ColumnManagerGroupSettings'
     // "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/treemenu/src/AddModal'
-    // "../stories/components/ColumnManager",
     // "../stories/components/AvatarGroup", // resolve '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types' in 'synerise-design/node_modules/@synerise/ds-avatar-group/node_modules/@synerise/ds-table/dist/GroupTable/GroupTableBody'
-  // ] || [
+    ] || [
+    "../stories/components/ColumnManager",
+    "../stories/components/Table",
     "../stories/components/Icon",
     "../stories/components/InlineNote",
     "../stories/components/Notification",
@@ -152,6 +152,7 @@ module.exports = {
       // 'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.esm.js'),
       'react-select/dist/react-select.browser.esm.js': require('path').resolve(__dirname, '../../../node_modules/react-select/dist/react-select.browser.cjs.js'),
       '@synerise/ds-icon/dist/cjs': require('path').resolve(__dirname, '../../../node_modules/@synerise/ds-icon/dist/cjs'),
+      '@synerise/ds-button': require('path').resolve(__dirname, '../../../node_modules/@synerise/ds-button'),
     }
 
     config.resolve.alias = {
