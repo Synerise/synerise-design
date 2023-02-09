@@ -3,7 +3,7 @@ import { text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import Radio from '@synerise/ds-radio';
-import markdown from '@/radio/README.md';
+// import markdown from '@/radio/README.md';
 
 const stories = {
   default: () => (
@@ -38,7 +38,7 @@ export default {
 name: 'Components/Radio',
   config: {
     notes: {
-      markdown,
+      // markdown,
     },
   },
   stories,

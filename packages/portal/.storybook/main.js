@@ -33,24 +33,24 @@ module.exports = {
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Condition", // imports ds-condition
+    // "../stories/components/Condition", // ds-alert does not appear in packages/components/tabs/node_modules after `yarn` and even after `yarn workspace @synerise/ds-tabs -- yarn install --focus` // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/tabs/dist'
     // "../stories/components/Filter", // imports failing ds-condition
-    // "../stories/components/Icon", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
-    // "../stories/components/InformationCard", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/cjs' in './node_modules/@synerise/ds-information-card/dist'
-    // "../stories/components/InlineNote", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
-    // "../stories/components/Notification", // ModuleNotFoundError: Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
-    // "../stories/components/Radio", // ModuleNotFoundError: Module not found: Error: Can't resolve '@/radio/README.md' in '/Users/syne0152/synerise-design/packages/portal/stories/components/Radio'
-    // "../stories/components/Result", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
-    // "../stories/components/SectionMessage", // Module not found: Error: Resolving to directories is not possible with the exports field (request was ./dist/esm/icons/)
     // "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
     // ds-condition/dist/condstep/stepheader Module not found: Error: Resolving to directories is not possible with the exports field (request was ./)
-    // "../stories/components/Switch", // ModuleNotFoundError: Module not found: Error: Can't resolve '@/radio/README.md' in '/Users/syne0152/synerise-design/packages/portal/stories/components/Switch'
-    // "../stories/components/Table", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-alert' in '/Users/syne0152/synerise-design/node_modules/@synerise/ds-column-manager/dist/ColumnManagerGroupSettings'
-    // "../stories/components/Toast", // Module not found: Error: Can't resolve '@synerise/ds-icon/dist/esm/icons' in './packages/portal/stories/components/Toast'
-    // "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in '/Users/syne0152/synerise-design/packages/components/treemenu/src/AddModal'
-  ] || [
+    // "../stories/components/Table", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-alert' in 'synerise-design/node_modules/@synerise/ds-column-manager/dist/ColumnManagerGroupSettings'
+    // "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/treemenu/src/AddModal'
+    // "../stories/components/ColumnManager",
+    // "../stories/components/AvatarGroup", // resolve '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types' in 'synerise-design/node_modules/@synerise/ds-avatar-group/node_modules/@synerise/ds-table/dist/GroupTable/GroupTableBody'
+  // ] || [
+    "../stories/components/Icon",
+    "../stories/components/InlineNote",
+    "../stories/components/Notification",
+    "../stories/components/Radio",
+    "../stories/components/Result",
+    "../stories/components/SectionMessage",
+    "../stories/components/Switch",
+    "../stories/components/Toast",
     "../stories/components/EditableList",
-    "../stories/components/ColumnManager",
     "../stories/components/InformationCard",
     "../stories/components/Button",
     "../stories/components/Alert",
@@ -60,7 +60,6 @@ module.exports = {
     "../stories/components/Autocomplete",
     "../stories/components/Avatar",
     "../stories/components/Badge",
-    "../stories/components/AvatarGroup",
     "../stories/components/BroadcastBar",
     "../stories/components/Button",
     "../stories/components/ButtonCheckbox",
@@ -175,7 +174,7 @@ module.exports = {
       }
     }
 
-    // config.resolve.alias['@'] = path.resolve(__dirname, '../../components'); // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme' in '/Users/syne0152/synerise-design/node_modules/@synerise/ds-utils/dist/selectColorByLetter'
+    // config.resolve.alias['@'] = path.resolve(__dirname, '../../components'); // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme' in 'synerise-design/node_modules/@synerise/ds-utils/dist/selectColorByLetter'
 
     config.module.rules.push({
       test: /\.less$/,

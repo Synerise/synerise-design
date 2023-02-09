@@ -12,8 +12,12 @@ import Icon from '@synerise/ds-icon';
 
 import { image } from '../Avatar/constants';
 
-const decorator = storyFn => <div style={{ width: '520px' }}>{storyFn()}</div>;
+import * as allIcons from '@synerise/ds-icon';
 
+const iconsRaw = allIcons
+const iconsNames = Object.keys(allIcons)
+
+const decorator = storyFn => <div style={{ width: '520px' }}>{storyFn()}</div>;
 
 const types = {
   success: 'success',
@@ -60,9 +64,6 @@ const listExample = (
     renderItem={item => <List.Item>{item.text}</List.Item>}
   />
 );
-const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
-const iconsRaw = req(req.keys()[0]);
-const iconsNames = Object.keys(iconsRaw);
 
 const getDefaultProps = () => ({
   type: select('Select type', types, 'success'),

@@ -4,9 +4,10 @@ import Alert from '@synerise/ds-alert';
 import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconAlert';
 import Icon from '@synerise/ds-icon';
 
-const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
-const iconsRaw = req(req.keys()[0]);
-const iconsNames = Object.keys(iconsRaw);
+import * as icons from '@synerise/ds-icon';
+
+const iconsRaw = icons
+const iconsNames = Object.keys(icons)
 
 const stories = {
   InlineNoteDefault: () => {

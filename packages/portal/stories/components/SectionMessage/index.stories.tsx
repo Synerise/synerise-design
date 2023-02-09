@@ -26,6 +26,11 @@ import {
   OrderWrapper, Wrapper,
 } from '@synerise/ds-alert/dist/SectionMessage/SectionMessage.styles';
 
+import * as allIcons from '@synerise/ds-icon';
+
+const iconsRaw = allIcons
+const iconsNames = Object.keys(allIcons)
+
 const decorator = storyFn => (
   <div
     style={{
@@ -42,9 +47,6 @@ const decorator = storyFn => (
     {storyFn()}
   </div>
 );
-const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
-const iconsRaw = req(req.keys()[0]);
-const iconsNames = Object.keys(iconsRaw);
 
 const getDefaultProps = () => ({
   customIcon: boolean('Set custom symbol', false),

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 
 import Switch from '@synerise/ds-switch';
-import markdown from '@/radio/README.md';
+// import markdown from '@/radio/README.md';
 
 const stories = {
   default: () => {
@@ -72,7 +72,7 @@ export default {
 name: 'Components/Switch',
   config: {
     notes: {
-      markdown,
+      // markdown,
     },
   },
   stories,

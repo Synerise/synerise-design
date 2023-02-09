@@ -8,9 +8,11 @@ import {notificationsApi, Notification, notificationOpen} from "@synerise/ds-ale
 import Icon, {UserAddM, AddM, ShowM} from "@synerise/ds-icon";
 import { Text } from '@synerise/ds-typography';
 
-const req = require.context('@synerise/ds-icon/dist/esm/icons/', false, /index.js/);
-export const iconsRaw = req(req.keys()[0]);
-export const iconsNames = Object.keys(iconsRaw);
+import * as allIcons from '@synerise/ds-icon';
+
+const iconsRaw = allIcons
+const iconsNames = Object.keys(allIcons)
+
 const icons = Object.assign({}, ...iconsNames.map(e => {
     const IconModule = iconsRaw[e] as React.ComponentType
     return ({
