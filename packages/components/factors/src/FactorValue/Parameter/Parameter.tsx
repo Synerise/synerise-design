@@ -104,12 +104,12 @@ const ParameterInput: React.FC<InputProps> = ({
             popupPlacement: 'top',
             getPopupContainer: getPopupContainerOverride || getPopupContainer,
           } as MenuItemProps['hoverTooltipProps'],
-          renderHoverTooltip: parameter
+          renderHoverTooltip: parameter.name
             ? (): JSX.Element => (
                 <InformationCard
                   icon={parameterIcon}
-                  subtitle={parameterName}
-                  title={parameterName.replace('_', ' ')}
+                  subtitle={parameter.id.toString()}
+                  title={parameterName}
                   descriptionConfig={
                     parameter.description
                       ? { value: parameter.description as string, disabled: true, label: undefined }
