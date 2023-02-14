@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.172.0](https://github.com/synerise/synerise-design/compare/portal@0.171.0...portal@0.172.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* **progress-bar:** show percentage in progressBar stories ([5b9650e](https://github.com/synerise/synerise-design/commit/5b9650eca7fa86fef3de41734649d44237ecc50a))
+
+
+### Features
+
+* **tooltip:** adds customComponent prop ([46da191](https://github.com/synerise/synerise-design/commit/46da191d732325f9435352376af0c7420b1e5fdb))
+* **tooltip:** adds renderCustomComponent property ([5caccd7](https://github.com/synerise/synerise-design/commit/5caccd7e6e952e34f910731f537225afffbf2264))
+
+
+
+
+
 # [0.171.0](https://github.com/synerise/synerise-design/compare/portal@0.170.3...portal@0.171.0) (2023-02-06)
 
 

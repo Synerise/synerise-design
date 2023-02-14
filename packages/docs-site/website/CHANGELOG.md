@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.10...docs@0.23.0) (2023-02-14)
+
+
+### Features
+
+* **tooltip:** adds renderCustomComponent property ([5caccd7](https://gitlab.synerise.com/Frontend/synerise-design/commit/5caccd7e6e952e34f910731f537225afffbf2264))
+
+
+
+
+
 ## [0.22.10](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.9...docs@0.22.10) (2022-11-08)
 
 

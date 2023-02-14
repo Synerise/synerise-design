@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.8...@synerise/ds-factors@0.16.9) (2023-02-14)
+
+
+### Bug Fixes
+
+* **factors:** change usaCallback to useRef to fix problem with typing ([646888e](https://github.com/Synerise/synerise-design/commit/646888e35457fc74b0b843d137d4fbec5b03eaed))
+* **factors:** fix debounce for autocomplete ([0cf9478](https://github.com/Synerise/synerise-design/commit/0cf94789648df5e404bd9e154ba6bb9aafcf66ed))
+* **factors:** fix debounce for autocomplete ([b19f432](https://github.com/Synerise/synerise-design/commit/b19f43274ce8c0be5563e3e8d29a238214219a52))
+
+
+
+
+
 ## [0.16.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.7...@synerise/ds-factors@0.16.8) (2023-02-03)
 
 **Note:** Version bump only for package @synerise/ds-factors

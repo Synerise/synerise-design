@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.19...@synerise/ds-tooltip@0.12.0) (2023-02-14)
+
+
+### Features
+
+* **tooltip:** adds customComponent prop ([46da191](https://github.com/synerise/synerise-design/commit/46da191d732325f9435352376af0c7420b1e5fdb))
+* **tooltip:** adds renderCustomComponent property ([5caccd7](https://github.com/synerise/synerise-design/commit/5caccd7e6e952e34f910731f537225afffbf2264))
+
+
+
+
+
 ## [0.11.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.18...@synerise/ds-tooltip@0.11.19) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

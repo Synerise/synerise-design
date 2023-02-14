@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.1.37...@synerise/ds-information-card@0.2.0) (2023-02-14)
+
+
+### Features
+
+* **information-card:** adjusts styles to use as a tooltip ([8e4d04a](https://github.com/Synerise/synerise-design/commit/8e4d04a08f829a9e5bd21f3d8e432f24b5e5b038))
+
+
+
+
+
 ## [0.1.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.1.36...@synerise/ds-information-card@0.1.37) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-information-card
