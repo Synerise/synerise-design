@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Condition from '@synerise/ds-condition';
+import Condition from '@synerise/ds-condition'; // changed to import()
 import { withState } from '@dump247/storybook-state';
 import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';
 import {
@@ -29,8 +29,30 @@ export const defaultTransforms = {
 
 export type Transform = typeof defaultTransforms;
 
+// const Condition2 = () => <Button>213</Button>
+
+const stories2 = {
+  aaaAaa: () => {
+    return <Button>123</Button>;
+  },
+  a: () => {
+    return <ContextSelector
+      texts={{
+        buttonLabel: '123',
+      }}
+    ></ContextSelector>
+  },
+}
+
 const stories = {
   default: withState(DEFAULT_STATE)(({ store, ...context }) => {
+    // const [Condition2, setCondition2] = React.useState()
+    // React.useEffect(() => {
+    //   import('@synerise/ds-condition').then(m => {
+    //     debugger
+    //     setCondition2(m);
+    //   })
+    // }, [])
     const {
       transformStep,
       props: { defaultDropdownVisibility },

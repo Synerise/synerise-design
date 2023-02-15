@@ -1,7 +1,7 @@
-import InlineEdit from '@synerise/ds-inline-edit';
 import * as React from 'react';
+import InlineEdit from '@synerise/ds-inline-edit';
 import Cruds from '@synerise/ds-cruds';
-import { DragHandleM } from '@synerise/ds-icon/';
+import { DragHandleM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 import { debounce } from 'lodash';
 
@@ -11,6 +11,7 @@ import * as T from './StepHeader.types';
 
 // eslint-disable-next-line import/prefer-default-export
 export const StepHeader: React.FC<T.StepHeaderProps> = ({
+// export const StepHeader: any = ({
   stepName,
   stepId,
   texts,
@@ -20,6 +21,8 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   index,
   draggableEnabled,
 }) => {
+  // return <div>123</div>
+  // /*
   const onChangeNameDebounce = React.useCallback(debounce(updateStepName || NOOP, 300), [updateStepName]);
   const [localName, setLocalName] = React.useState(stepName);
 
@@ -62,4 +65,5 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
       </S.StepCruds>
     </S.StepHeader>
   );
+  // */
 };

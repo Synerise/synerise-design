@@ -13,6 +13,7 @@
     "packages/components/information-card",
     "packages/components/tabs",
     "packages/components/condition",
+    "packages/components/treemenu",
     "packages/components/column-manager",
     "packages/portal"
   ],
