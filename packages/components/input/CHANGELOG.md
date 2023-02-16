@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.30...@synerise/ds-input@0.18.31) (2023-02-16)
+
+
+### Bug Fixes
+
+* **input:** fix width of input when window is smaller ([8dfc579](https://github.com/synerise/synerise-design/commit/8dfc579e71a808cbc0cc18ab19494b8125ea549b))
+
+
+
+
+
 ## [0.18.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.29...@synerise/ds-input@0.18.30) (2023-02-14)
 
 **Note:** Version bump only for package @synerise/ds-input
