@@ -6,18 +6,20 @@
     "type": "git",
     "url": "https://github.com/Synerise/synerise-design.git"
   },
-  "workspaces": [
-    "packages/components/core",
-    "packages/components/button",
-    "packages/components/alert",
-    "packages/components/information-card",
-    "packages/components/tabs",
-    "packages/components/condition",
-    "packages/components/treemenu",
-    "packages/components/column-manager",
-    "packages/portal"
-  ],
-  "workspaces2": [
+  "workspaces": {
+    "packages": [
+      "packages/components/treemenu",
+      "packages/components/core",
+      "packages/components/button",
+      "packages/components/alert",
+      "packages/components/information-card",
+      "packages/components/tabs",
+      "packages/components/condition",
+      "packages/components/column-manager",
+      "packages/portal"
+    ]
+  },
+  "workspaces2": {"nohoist": ["**"], "packages": [
     "packages/components/code-snippet",
     "packages/components/badge",
     "packages/components/typography",
@@ -27,7 +29,7 @@
     "packages/components/*",
     "packages/portal",
     "packages/docs-site/website"
-  ],
+  ]},
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build",

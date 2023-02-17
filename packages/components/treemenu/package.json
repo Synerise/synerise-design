@@ -33,7 +33,7 @@
   "types": "dist/index.d.ts",
   "devDependencies": {
     "@synerise/ds-core": "*",
-    "@synerise/ds-button": "^0.17.9",
+    "@synerise/ds-button": "^0.17.11",
     "@synerise/ds-dropdown": "^0.17.43",
     "@synerise/ds-icon": "^0.51.0",
     "@synerise/ds-input": "^0.18.26",

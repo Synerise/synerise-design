@@ -12,10 +12,7 @@ import itemTypes from './itemTypes';
 import { TreeData, TreeNode } from '@synerise/ds-treemenu/dist/TreeMenu.types';
 
 const wrapperStyles: React.CSSProperties = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  bottom: 0,
+  minWidth: '300px',
 };
 
 const getContainer = (): HTMLElement => {
@@ -39,7 +36,7 @@ const stories = {
       <div style={wrapperStyles}>
         <S.LayoutSidebarWrapper opened>
           <S.LayoutSidebar opened className="scroll-wrapper">
-            <SimpleBar autohide={true} style={{ height: '100vh' }}>
+            <SimpleBar autohide={true} style={{ maxHeight: '100vh' }}>
               <div style={{ padding: '24px' }}>
                 <TreeMenu
                   getContainer={getContainer}
