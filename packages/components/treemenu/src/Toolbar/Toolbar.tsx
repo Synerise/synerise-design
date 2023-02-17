@@ -5,7 +5,7 @@ import Search from './Search';
 
 import * as S from './Toolbar.styles';
 
-const Toolbar: React.FC = ({ children }) => {
+const Toolbar: React.FC = ({ children }: React.PropsWithChildren) => {
   const { searchOpen } = useTreeMenuContext();
   const [addItemWidth, setAddItemWidth] = React.useState<number>(0);
   const addItemRef = React.useRef<HTMLDivElement>(null);

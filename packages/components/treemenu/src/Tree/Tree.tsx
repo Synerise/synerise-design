@@ -90,7 +90,7 @@ export default function Tree({
       const ghost = getGhost();
 
       ghost.style.top = `${(target.node as HTMLDivElement).offsetTop}px`;
-    }, 25);
+    }, 25) as any as number;
   };
 
   const handleSortEnd: SortEndHandler = ({ nodes, oldIndex, newIndex }): void => {

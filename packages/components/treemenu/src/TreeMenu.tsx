@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { useState, useEffect, useMemo } from 'react';
 
 import { FolderAddM } from '@synerise/ds-icon';

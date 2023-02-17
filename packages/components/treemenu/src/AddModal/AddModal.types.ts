@@ -15,4 +15,4 @@ export type AddModalProps = {
   align?: any;
   hasClipboard?: boolean;
   onItemPaste?: (item?: TreeNode) => void;
-};
+} & React.PropsWithChildren;
