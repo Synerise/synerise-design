@@ -30,16 +30,24 @@ module.exports = {
     babelModeV7: true,
     disableTelemetry: true,
   },
+  // cjs export w ds-icon
+  // osobny PR dla forward compatibility z poziomu webpacku4
+  // czy zmiany w packgage nie zmienia
+  // zmiany w storybooku nie pokaza wszystkiego; controls vs knobs
+    // co zmienic, zeby odswiezyc
+    // zkaomentowanie exclude node_modules w analytics
+  // narzedzie do sprawdzania importów, node_modules, eslint vs tsserver
   "stories": [
     // "../stories/**/*.stories.mdx",
     // "../stories/**/*.stories.@(js|jsx|ts|tsx)"
-    // "../stories/components/Condition", // ds-alert does not appear in packages/components/tabs/node_modules after `yarn` and even after `yarn workspace @synerise/ds-tabs -- yarn install --focus` // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/tabs/dist'
-    // "../stories/components/Filter", // imports failing ds-condition
-    // "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
+    "../stories/components/CodeSnippet",
+    ] || [
+    "../stories/components/Condition", // ds-alert does not appear in packages/components/tabs/node_modules after `yarn` and even after `yarn workspace @synerise/ds-tabs -- yarn install --focus` // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/tabs/dist'
+    "../stories/components/Filter", // imports failing ds-condition
+    "../stories/components/StepCard", // Module not found: Error: Can't resolve '@synerise/ds-completed-within' in './packages/portal/stories/components/StepCard'
                                          // ds-condition/dist/condstep/stepheader Module not found: Error: Resolving to directories is not possible with the exports field (request was ./)
     "../stories/components/TreeMenu", // ModuleNotFoundError: Module not found: Error: Can't resolve '@synerise/ds-button' in 'synerise-design/packages/components/treemenu/src/AddModal'
-    // "../stories/components/AvatarGroup", // resolve '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types' in 'synerise-design/node_modules/@synerise/ds-avatar-group/node_modules/@synerise/ds-table/dist/GroupTable/GroupTableBody'
-    ] || [
+    "../stories/components/AvatarGroup", // resolve '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types' in 'synerise-design/node_modules/@synerise/ds-avatar-group/node_modules/@synerise/ds-table/dist/GroupTable/GroupTableBody'
     "../stories/components/ColumnManager",
     "../stories/components/Table",
     "../stories/components/Icon",
@@ -71,7 +79,6 @@ module.exports = {
     "../stories/components/Cascader",
     "../stories/components/Checkbox",
     "../stories/components/CheckboxTristate",
-    "../stories/components/CodeSnippet",
     "../stories/components/Collector",
     "../stories/components/ColorPicker",
     "../stories/components/CompletedWithin",

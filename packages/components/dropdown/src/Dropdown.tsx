@@ -9,7 +9,7 @@ import BackAction from './elements/BackAction/BackAction';
 import { Wrapper } from './Dropdown.styles';
 import TextTrigger from './elements/TextTrigger/TextTrigger';
 
-export type DropdownProps = AntDropDownProps;
+export type DropdownProps = AntDropDownProps & React.PropsWithChildren;
 
 const topPlacements = ['topLeft', 'topRight', 'topCenter'];
 

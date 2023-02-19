@@ -1,6 +1,7 @@
+import * as React from 'react';
 import { CSSProperties } from 'react';
 
-export interface HighlightProps {
+export interface HighlightProps extends React.PropsWithChildren {
   languages: LanguageHighlight[];
   style?: CSSProperties;
 }

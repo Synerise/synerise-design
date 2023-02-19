@@ -34,6 +34,8 @@ build:
     - vms
   script:
     - yarn --frozen-lockfile
+    - sed -i 's/exports"/exports2"/' node_modules/highlight.js/package.json
+    - sed -i 's/exports"/exports2"/' packages/portal/node_modules/highlight.js/package.json
     - yarn lint
     - yarn build
     - yarn test:ci
@@ -133,6 +135,8 @@ chromatic_publish:
       - $CHROMATIC_PROJECT_TOKEN
   script:
     - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+    - sed -i 's/exports"/exports2"/' node_modules/highlight.js/package.json
+    - sed -i 's/exports"/exports2"/' packages/portal/node_modules/highlight.js/package.json
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
 
 chromatic_publish_merge_to_dest_branch:
@@ -152,5 +156,7 @@ chromatic_publish_merge_to_dest_branch:
     - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
     # - sed -i 's#select.esm.js#select.cjs.js#' node_modules/react-select/package.json
     # - sed -i 's#browser.esm.js#browser.cjs.js#' node_modules/react-select/package.json
+    - sed -i 's/exports"/exports2"/' node_modules/highlight.js/package.json
+    - sed -i 's/exports"/exports2"/' packages/portal/node_modules/highlight.js/package.json
     - test ! -e packages/portal/storybook-static && (yarn install && yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)

@@ -14,13 +14,14 @@
       "packages/components/alert",
       "packages/components/information-card",
       "packages/components/tabs",
+      "packages/components/menu",
       "packages/components/condition",
       "packages/components/column-manager",
+      "packages/components/code-snippet",
       "packages/portal"
     ]
   },
   "workspaces2": {"nohoist": ["**"], "packages": [
-    "packages/components/code-snippet",
     "packages/components/badge",
     "packages/components/typography",
     "packages/components/information-card",
