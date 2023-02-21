@@ -35,12 +35,12 @@ export type ConditionTexts = {
 export type ConditionProps = {
   steps: ConditionStep[];
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
-  addCondition?: (stepId: React.ReactText) => string | undefined;
+  addCondition?: (stepId: React.ReactText) => string | void;
   renderAddStep?: () => React.ReactNode;
   removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
   removeStep?: (stepId: React.ReactText) => void;
   duplicateStep?: (stepId: React.ReactText) => void;
-  addStep?: () => string | undefined;
+  addStep?: () => string | void;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
   minConditionsLength: number;
