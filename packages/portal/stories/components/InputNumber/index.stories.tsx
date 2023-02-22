@@ -14,7 +14,7 @@ const stories = {
     const placeholder = text('Placeholder', 'Placeholder');
     return {
       min: number('min', 1),
-      max: number('max', 10),
+      max: number('max', 999999999999),
       onChange: action('onChange'),
       label: renderLabel(text('label', 'Label')),
       description: text('description', 'Description'),
@@ -44,7 +44,7 @@ const getErrorText = (error: boolean, errorText: string): string => {
 };
 
 export default {
-name: 'Components/Input',
+  name: 'Components/Input',
   stories,
   decorator,
   Component: InputNumber,

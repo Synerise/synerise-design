@@ -31,7 +31,8 @@
   "types": "dist/js/index.js",
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "flat": "^5.0.0"
+    "flat": "^5.0.0",
+    "@synerise/ds-data-format": "0.0.1"
   },
   "peerDependencies": {
     "antd": "^4",
