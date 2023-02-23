@@ -11,4 +11,5 @@ export type Props = {
     [k: string]: string | React.ReactNode;
   };
   additionalActions?: AdditionalAction[];
+  selected?: boolean;
 };

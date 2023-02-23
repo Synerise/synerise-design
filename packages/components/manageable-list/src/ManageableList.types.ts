@@ -45,6 +45,7 @@ export interface ManageableListProps<T extends object> {
   expandedIds?: React.ReactText[];
   changeOrderByButtons?: boolean;
   additionalActions?: AdditionalAction[];
+  style?: React.CSSProperties;
 }
 export type Texts = {
   addItemLabel?: string | React.ReactNode;

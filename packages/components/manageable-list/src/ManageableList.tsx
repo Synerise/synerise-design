@@ -42,6 +42,7 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
   texts,
   changeOrderByButtons = false,
   additionalActions,
+  style,
 }) => {
   const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
   const [allItemsVisible, setAllItemsVisible] = React.useState(false);
@@ -225,6 +226,7 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
       className={`ds-manageable-list ${className || ''}`}
       listType={type}
       greyBackground={greyBackground}
+      style={style}
     >
       {type === ListType.DEFAULT && Boolean(onItemAdd) && (
         <AddItemWithName
