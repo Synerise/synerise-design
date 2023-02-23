@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.48...@synerise/ds-manageable-list@0.24.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* **manageable-list:** fixes typo in SimpleItem.styles ([e2762d7](https://github.com/Synerise/synerise-design/commit/e2762d7caf7f8129168745740cf7c4e9e2bbbbdd))
+
+
+### Features
+
+* **manageable-list:** adds style property for ManageableListWrapper ([3ed2199](https://github.com/Synerise/synerise-design/commit/3ed2199f37646a844109a80bb4b547766fb4a510))
+* **manageable-list:** adds styles for selected item ([6dd222f](https://github.com/Synerise/synerise-design/commit/6dd222f0bc8485da3bbbcfe31100c0cbcb7f4252))
+* **manageable-list:** renames selected to isSelected ([54ad6a6](https://github.com/Synerise/synerise-design/commit/54ad6a69d72ddc914bebbdabc78d68afdf610e04))
+
+
+
+
+
 ## [0.23.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.47...@synerise/ds-manageable-list@0.23.48) (2023-02-16)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

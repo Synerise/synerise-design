@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.23.0...docs@0.24.0) (2023-02-23)
+
+
+### Features
+
+* **manageable-list:** adds style property for ManageableListWrapper ([3ed2199](https://gitlab.synerise.com/Frontend/synerise-design/commit/3ed2199f37646a844109a80bb4b547766fb4a510))
+
+
+
+
+
 # [0.23.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.22.10...docs@0.23.0) (2023-02-14)
 
 

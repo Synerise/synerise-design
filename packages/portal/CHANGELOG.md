@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.173.0](https://github.com/synerise/synerise-design/compare/portal@0.172.0...portal@0.173.0) (2023-02-23)
+
+
+### Features
+
+* **manageable-list:** adds styles for selected item ([6dd222f](https://github.com/synerise/synerise-design/commit/6dd222f0bc8485da3bbbcfe31100c0cbcb7f4252))
+
+
+
+
+
 # [0.172.0](https://github.com/synerise/synerise-design/compare/portal@0.171.0...portal@0.172.0) (2023-02-14)
 
 
