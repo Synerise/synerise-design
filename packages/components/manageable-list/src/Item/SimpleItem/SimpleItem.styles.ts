@@ -42,7 +42,7 @@ export const ItemContainer = styled.div<{ selected: boolean }>`
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
-  background-color: ${({ theme, selected }): string => (selected ? theme.palette['blue-050'] : theme.palette.whtie)};
+  background-color: ${({ theme, selected }): string => (selected ? theme.palette['blue-050'] : theme.palette.white)};
   li {
     width: 100%;
     .title {
