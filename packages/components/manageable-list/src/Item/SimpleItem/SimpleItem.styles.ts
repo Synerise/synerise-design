@@ -36,14 +36,18 @@ export const ItemLabelWrapper = styled.div`
   }
 `;
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.div<{ selected: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
+  background-color: ${({ theme, selected }): string => (selected ? theme.palette['blue-050'] : theme.palette.whtie)};
   li {
     width: 100%;
+    .title {
+      color: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+    }
     & > div {
       height: 24px;
       &:nth-child(2) {
@@ -54,8 +58,8 @@ export const ItemContainer = styled.div`
 
   .ds-manageable-list-item-icon {
     svg {
-      color: ${({ theme }): string => theme.palette['grey-600']};
-      fill: ${({ theme }): string => theme.palette['grey-600']};
+      color: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      fill: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
     }
   }
 

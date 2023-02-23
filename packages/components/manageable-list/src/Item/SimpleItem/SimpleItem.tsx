@@ -6,7 +6,7 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { Props } from './SimpleItem.types';
 
-const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions }) => {
+const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions, selected }) => {
   const [editMode, setEditMode] = React.useState(false);
 
   const updateName = React.useCallback(
@@ -26,7 +26,7 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts
   }, []);
 
   return (
-    <S.ItemContainer>
+    <S.ItemContainer selected={!!selected}>
       <List.Item
         icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
         onSelect={handleSelect}
