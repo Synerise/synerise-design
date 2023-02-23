@@ -36,17 +36,18 @@ export const ItemLabelWrapper = styled.div`
   }
 `;
 
-export const ItemContainer = styled.div<{ selected: boolean }>`
+export const ItemContainer = styled.div<{ isSelected: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
-  background-color: ${({ theme, selected }): string => (selected ? theme.palette['blue-050'] : theme.palette.white)};
+  background-color: ${({ theme, isSelected }): string =>
+    isSelected ? theme.palette['blue-050'] : theme.palette.white};
   li {
     width: 100%;
     .title {
-      color: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
     }
     & > div {
       height: 24px;
@@ -58,8 +59,8 @@ export const ItemContainer = styled.div<{ selected: boolean }>`
 
   .ds-manageable-list-item-icon {
     svg {
-      color: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
-      fill: ${({ theme, selected }): string => (selected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      fill: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
     }
   }
 

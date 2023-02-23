@@ -26,7 +26,7 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts
   }, []);
 
   return (
-    <S.ItemContainer selected={!!selected}>
+    <S.ItemContainer isSelected={!!selected}>
       <List.Item
         icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
         onSelect={handleSelect}
