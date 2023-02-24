@@ -24,7 +24,7 @@ const withDSProvider = storyFn => {
   const optionalUserDefinedLocale = localStorage.getItem('lang');
   const props = {
     code: 'en_GB',
-    ...{ dataFormatConfig: getDataFormatConfigFromNotation('US') },
+    ...{ dataFormatConfig: getDataFormatConfigFromNotation('EU') },
     ...(optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {}),
   } as DSProviderProps;
   return React.createElement(DSProvider, props, storyFn());

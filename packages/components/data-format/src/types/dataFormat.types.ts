@@ -2,7 +2,7 @@ import { FormatDateOptions, FormatNumberOptions, FormatPluralOptions } from 'rea
 import { Moment } from 'moment';
 import { Dayjs } from 'dayjs';
 
-const TargetFormats = [
+const TARGET_FORMATS = [
   'date',
   'datetime',
   'time',
@@ -11,12 +11,17 @@ const TargetFormats = [
   'month-long',
   'month-short',
 ] as const;
+export type TargetFormat = typeof TARGET_FORMATS[number];
 
-export type TargetFormat = typeof TargetFormats[number];
+const NAMING_CONVENTIONS = ['upperCase', 'upperFirst', 'lowerCase', 'lowerFirst'] as const;
+export type NamingConvention = typeof NAMING_CONVENTIONS[number];
+
+export type DateToFormat = Date | Moment | Dayjs;
 
 export type CommonFormatOptions = {
   prefix?: string;
   suffix?: string;
+  namingConvention?: NamingConvention;
 };
 
 export type NumberToFormatOptions = FormatNumberOptions &
@@ -24,15 +29,16 @@ export type NumberToFormatOptions = FormatNumberOptions &
     pluralOptions?: FormatPluralOptions;
   };
 
-export type DateToFormatOptions = FormatDateOptions & CommonFormatOptions;
+export type DateToFormatOptions = FormatDateOptions &
+  CommonFormatOptions & {
+    dateOptions?: FormatDateOptions;
+    timeOptions?: FormatDateOptions;
+    targetFormat?: TargetFormat;
+  };
 
-export type DateTimeToFormatOptions = {
-  dateOptions?: FormatDateOptions;
-  timeOptions?: FormatDateOptions;
+export type OverloadFormatValue = {
+  (value: number, options?: NumberToFormatOptions): string;
+  (value: Date, options?: DateToFormatOptions): string;
+  (value: Moment, options?: DateToFormatOptions): string;
+  (value: Dayjs, options?: DateToFormatOptions): string;
 };
-
-export type ValueToFormatOptions = (NumberToFormatOptions | DateToFormatOptions | DateTimeToFormatOptions) & {
-  targetFormat?: TargetFormat;
-};
-
-export type ValueToFormat = number | string | undefined | Date | Moment | Dayjs;

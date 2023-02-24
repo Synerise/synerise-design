@@ -24,4 +24,7 @@ export {
   convertDateToWeekdayShortString,
   convertDateToMonthLongString,
   convertDateToMonthShortString,
+  addPrefix,
+  addSuffix,
+  changeNamingConvention,
 } from './dataFormat.utils';

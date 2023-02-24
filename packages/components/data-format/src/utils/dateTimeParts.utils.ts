@@ -1,13 +1,23 @@
 import { FormatDateOptions, IntlShape } from 'react-intl';
 
-import { DEFAULT_FORMAT_DATE_OPTIONS, DEFAULT_FORMAT_TIME_OPTIONS } from '../constants';
 import {
+  DEFAULT_FORMAT_DATE_OPTIONS,
+  DEFAULT_FORMAT_TIME_OPTIONS,
   DEFAULT_FORMAT_MONTH_LONG_OPTIONS,
   DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
   DEFAULT_FORMAT_WEEKDAY_LONG_OPTIONS,
   DEFAULT_FORMAT_WEEKDAY_SHORT_OPTIONS,
-} from '../constants/dataFormat.constants';
-import { DataFormatNotationType, DateTimeToFormatOptions, ValueToFormatOptions } from '../types';
+  MONTH,
+  MONTH_LONG,
+  MONTH_SHORT,
+  WEEKDAY,
+  WEEKDAY_LONG,
+  WEEKDAY_SHORT,
+  US_NOTATION,
+  LONG,
+  SHORT,
+} from '../constants';
+import { DataFormatNotationType, DateToFormatOptions } from '../types';
 
 export const getDateParts = (
   value: Date,
@@ -95,11 +105,11 @@ export const numberPartsToString = (
   const numberPartsWithReplacedDelimiters = numberParts.map(numberPart => {
     const numberPartWithReplacedDelimiters = numberPart;
     if (numberPartWithReplacedDelimiters.type === 'group') {
-      numberPartWithReplacedDelimiters.value = notation === 'US' ? ',' : ' ';
+      numberPartWithReplacedDelimiters.value = notation === US_NOTATION ? ',' : ' ';
     }
 
     if (numberPartWithReplacedDelimiters.type === 'decimal') {
-      numberPartWithReplacedDelimiters.value = notation === 'US' ? '.' : ',';
+      numberPartWithReplacedDelimiters.value = notation === US_NOTATION ? '.' : ',';
     }
 
     return numberPartWithReplacedDelimiters;
@@ -139,22 +149,20 @@ export const replaceDateTimeParts = (
 export const translateDateTimeParts = (
   dateTimeParts: Intl.DateTimeFormatPart[],
   dateTimePartsFromLanguageIntl: Intl.DateTimeFormatPart[],
-  options?: ValueToFormatOptions
+  options?: DateToFormatOptions
 ): Intl.DateTimeFormatPart[] => {
   const replacementDateTimeFormatPartTypes: Intl.DateTimeFormatPartTypes[] = [];
 
-  if (options?.targetFormat === 'weekday-long' || options?.targetFormat === 'weekday-short')
-    replacementDateTimeFormatPartTypes.push('weekday');
+  if (options?.targetFormat === WEEKDAY_LONG || options?.targetFormat === WEEKDAY_SHORT)
+    replacementDateTimeFormatPartTypes.push(WEEKDAY);
 
-  if (options?.targetFormat === 'month-long' || options?.targetFormat === 'month-short')
-    replacementDateTimeFormatPartTypes.push('month');
+  if (options?.targetFormat === MONTH_LONG || options?.targetFormat === MONTH_SHORT)
+    replacementDateTimeFormatPartTypes.push(MONTH);
 
-  const dateTimeOptions = options as DateTimeToFormatOptions;
-  if (dateTimeOptions?.dateOptions?.month === 'long' || dateTimeOptions?.dateOptions?.month === 'short')
-    replacementDateTimeFormatPartTypes.push('month');
+  if (options?.dateOptions?.month === LONG || options?.dateOptions?.month === SHORT)
+    replacementDateTimeFormatPartTypes.push(MONTH);
 
-  const dateOptions = options as FormatDateOptions;
-  if (dateOptions?.month === 'long' || dateOptions?.month === 'short') replacementDateTimeFormatPartTypes.push('month');
+  if (options?.month === LONG || options?.month === SHORT) replacementDateTimeFormatPartTypes.push(MONTH);
 
   return replaceDateTimeParts(dateTimeParts, dateTimePartsFromLanguageIntl, replacementDateTimeFormatPartTypes);
 };

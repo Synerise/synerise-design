@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import moment from 'moment';
-import dayjs from 'dayjs';
+import moment, { Moment } from 'moment';
+import dayjs, { Dayjs } from 'dayjs';
 
-import { DataFormatNotationType, ValueToFormat, ValueToFormatOptions, CommonFormatOptions } from '../types';
+import { CommonFormatOptions, DataFormatNotationType, DateToFormatOptions, NumberToFormatOptions } from '../types';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import {
   convertDateToDateTimeString,
@@ -14,41 +14,55 @@ import {
   convertDateToWeekdayShortString,
   convertDateToMonthLongString,
   convertDateToMonthShortString,
+  addPrefix,
+  addSuffix,
+  changeNamingConvention,
 } from '../utils';
+import {
+  DATE,
+  DATETIME,
+  EU_NOTATION,
+  MONTH_LONG,
+  MONTH_SHORT,
+  TIME,
+  US_NOTATION,
+  WEEKDAY_LONG,
+  WEEKDAY_SHORT,
+} from '../constants';
 
 export const useDataFormatUtils = (): {
   getLocaleFromNotation: (notation?: DataFormatNotationType) => string;
   getFirstDayOfWeekFromNotation: (notation?: DataFormatNotationType) => number;
   getIs12HoursClockFromNotation: (notation?: DataFormatNotationType) => boolean;
-  getFormattedNumber: (value: ValueToFormat, numberFormatIntl: IntlShape, options?: ValueToFormatOptions) => string;
+  getFormattedNumber: (value: number, numberFormatIntl: IntlShape, options?: NumberToFormatOptions) => string;
   getFormattedDate: (
-    value: ValueToFormat,
+    value: Date,
     dateFormatIntl: IntlShape,
     timeFormatIntl: IntlShape,
-    options?: ValueToFormatOptions
+    options?: DateToFormatOptions
   ) => string;
   getFormattedDateFromMoment: (
-    value: ValueToFormat,
+    value: Moment,
     dateFormatIntl: IntlShape,
     timeFormatIntl: IntlShape,
-    options?: ValueToFormatOptions
+    options?: DateToFormatOptions
   ) => string;
   getFormattedDateFromDayjs: (
-    value: ValueToFormat,
+    value: Dayjs,
     dateFormatIntl: IntlShape,
     timeFormatIntl: IntlShape,
-    options?: ValueToFormatOptions
+    options?: DateToFormatOptions
   ) => string;
-  getFormattedValueUsingCommonOptions: (value: ValueToFormat, options?: ValueToFormatOptions) => string;
+  getFormattedValueUsingCommonOptions: (value: string, options?: CommonFormatOptions) => string;
 } => {
   const languageIntl = useIntl();
   const { numberFormatNotation } = useDataFormatConfig();
 
   const getLocaleFromNotation = useCallback((notation?: DataFormatNotationType): string => {
     switch (notation) {
-      case 'EU':
+      case EU_NOTATION:
         return 'pl';
-      case 'US':
+      case US_NOTATION:
         return 'en-US';
       default:
         return 'pl';
@@ -57,9 +71,9 @@ export const useDataFormatUtils = (): {
 
   const getFirstDayOfWeekFromNotation = useCallback((notation?: DataFormatNotationType): number => {
     switch (notation) {
-      case 'EU':
+      case EU_NOTATION:
         return 1;
-      case 'US':
+      case US_NOTATION:
         return 0;
       default:
         return 1;
@@ -67,56 +81,44 @@ export const useDataFormatUtils = (): {
   }, []);
 
   const getIs12HoursClockFromNotation = useCallback(
-    (notation?: DataFormatNotationType): boolean => notation === 'US',
+    (notation?: DataFormatNotationType): boolean => notation === US_NOTATION,
     []
   );
 
   const getFormattedNumber = useCallback(
-    (value: ValueToFormat, numberFormatIntl: IntlShape, options?: ValueToFormatOptions): string => {
-      if (typeof value !== 'number') {
-        return value?.toString() ?? '';
-      }
+    (value: number, numberFormatIntl: IntlShape, options?: NumberToFormatOptions): string => {
       return convertNumberString(value, numberFormatIntl, languageIntl, numberFormatNotation, options);
     },
     [languageIntl, numberFormatNotation]
   );
 
   const getFormattedDate = useCallback(
-    (
-      value: ValueToFormat,
-      dateFormatIntl: IntlShape,
-      timeFormatIntl: IntlShape,
-      options?: ValueToFormatOptions
-    ): string => {
-      if (!(value instanceof Date)) {
-        return value?.toString() ?? '';
-      }
-
-      if (options?.targetFormat === 'datetime') {
+    (value: Date, dateFormatIntl: IntlShape, timeFormatIntl: IntlShape, options?: DateToFormatOptions): string => {
+      if (options?.targetFormat === DATETIME) {
         return convertDateToDateTimeString(value, dateFormatIntl, timeFormatIntl, languageIntl, options);
       }
 
-      if (options?.targetFormat === 'time') {
+      if (options?.targetFormat === TIME) {
         return convertDateToTimeString(value, timeFormatIntl, options);
       }
 
-      if (options?.targetFormat === 'weekday-long') {
+      if (options?.targetFormat === WEEKDAY_LONG) {
         return convertDateToWeekdayLongString(value, dateFormatIntl, languageIntl, options);
       }
 
-      if (options?.targetFormat === 'weekday-short') {
+      if (options?.targetFormat === WEEKDAY_SHORT) {
         return convertDateToWeekdayShortString(value, dateFormatIntl, languageIntl, options);
       }
 
-      if (options?.targetFormat === 'month-long') {
+      if (options?.targetFormat === MONTH_LONG) {
         return convertDateToMonthLongString(value, dateFormatIntl, languageIntl, options);
       }
 
-      if (options?.targetFormat === 'month-short') {
+      if (options?.targetFormat === MONTH_SHORT) {
         return convertDateToMonthShortString(value, dateFormatIntl, languageIntl, options);
       }
 
-      if (options?.targetFormat === 'date' || !options?.targetFormat) {
+      if (options?.targetFormat === DATE || !options?.targetFormat) {
         return convertDateToDateString(value, dateFormatIntl, languageIntl, options);
       }
 
@@ -126,54 +128,26 @@ export const useDataFormatUtils = (): {
   );
 
   const getFormattedDateFromMoment = useCallback(
-    (
-      value: ValueToFormat,
-      dateFormatIntl: IntlShape,
-      timeFormatIntl: IntlShape,
-      options?: ValueToFormatOptions
-    ): string => {
-      if (!moment.isMoment(value)) {
-        return value?.toString() ?? '';
-      }
-
+    (value: Moment, dateFormatIntl: IntlShape, timeFormatIntl: IntlShape, options?: DateToFormatOptions): string => {
       return getFormattedDate(moment(value).toDate(), dateFormatIntl, timeFormatIntl, options);
     },
     [getFormattedDate]
   );
 
   const getFormattedDateFromDayjs = useCallback(
-    (
-      value: ValueToFormat,
-      dateFormatIntl: IntlShape,
-      timeFormatIntl: IntlShape,
-      options?: ValueToFormatOptions
-    ): string => {
-      if (!dayjs.isDayjs(value)) {
-        return value?.toString() ?? '';
-      }
-
+    (value: Dayjs, dateFormatIntl: IntlShape, timeFormatIntl: IntlShape, options?: DateToFormatOptions): string => {
       return getFormattedDate(dayjs(value).toDate(), dateFormatIntl, timeFormatIntl, options);
     },
     [getFormattedDate]
   );
 
-  const getFormattedValueUsingCommonOptions = useCallback(
-    (value: ValueToFormat, options?: ValueToFormatOptions): string => {
-      const commonOptions = options as CommonFormatOptions;
-      let result = value?.toString() ?? '';
-
-      if (commonOptions?.prefix) {
-        result = commonOptions?.prefix + result;
-      }
-
-      if (commonOptions?.suffix) {
-        result += commonOptions?.suffix;
-      }
-
-      return result;
-    },
-    []
-  );
+  const getFormattedValueUsingCommonOptions = useCallback((value: string, options?: CommonFormatOptions): string => {
+    let result = value;
+    result = addPrefix(result, options);
+    result = addSuffix(result, options);
+    result = changeNamingConvention(result, options);
+    return result;
+  }, []);
 
   return {
     getLocaleFromNotation,

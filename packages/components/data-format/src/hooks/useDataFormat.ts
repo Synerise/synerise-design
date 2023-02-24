@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { isDayjs } from 'dayjs';
 import { isMoment } from 'moment';
 
-import { ValueToFormat, ValueToFormatOptions } from '../types';
+import { OverloadFormatValue } from '../types';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatUtils } from './useDataFormatUtils';
 import { useDataFormatIntls } from './useDataFormatIntls';
@@ -10,7 +10,7 @@ import { useDataFormatIntls } from './useDataFormatIntls';
 export const useDataFormat = (): {
   firstDayOfWeek: number;
   is12HoursClock: boolean;
-  formattedValue: (value: ValueToFormat, options?: ValueToFormatOptions) => string;
+  formatValue: (value: any, options?: any) => string;
 } => {
   const { numberFormatIntl, timeFormatIntl, dateFormatIntl } = useDataFormatIntls();
   const { startWeekDayNotation, timeFormatNotation } = useDataFormatConfig();
@@ -34,9 +34,9 @@ export const useDataFormat = (): {
     [timeFormatNotation, getIs12HoursClockFromNotation]
   );
 
-  const formattedValue = useCallback(
-    (value: ValueToFormat, options?: ValueToFormatOptions): string => {
-      let result = value;
+  const formatValue = useCallback<OverloadFormatValue>(
+    (value: any, options?: any) => {
+      let result = '';
 
       if (isMoment(value)) {
         result = getFormattedDateFromMoment(value, dateFormatIntl, timeFormatIntl, options);
@@ -68,5 +68,5 @@ export const useDataFormat = (): {
     ]
   );
 
-  return { firstDayOfWeek, is12HoursClock, formattedValue };
+  return { firstDayOfWeek, is12HoursClock, formatValue };
 };

@@ -8,8 +8,8 @@ export type FormattedNumberProps = {
   options?: NumberToFormatOptions;
 };
 
-export const FormattedNumber: React.FC<FormattedNumberProps> = ({ value, options }) => {
-  const { formattedValue } = useDataFormat();
+export const FormattedNumber: React.FC<FormattedNumberProps> = ({ value, options }): JSX.Element => {
+  const { formatValue } = useDataFormat();
 
-  return <span>{formattedValue(value, options)}</span>;
+  return <>{formatValue(value, options)}</>;
 };

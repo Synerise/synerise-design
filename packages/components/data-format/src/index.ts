@@ -12,10 +12,4 @@ export { useDataFormatIntls } from './hooks';
 
 export { getDataFormatConfigFromNotation } from './utils';
 
-export {
-  DataFormatNotationType,
-  NumberToFormatOptions,
-  DateToFormatOptions,
-  DateTimeToFormatOptions,
-  ValueToFormatOptions,
-} from './types';
+export { DataFormatNotationType, NumberToFormatOptions, DateToFormatOptions } from './types';
