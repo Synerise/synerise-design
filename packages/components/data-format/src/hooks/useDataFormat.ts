@@ -10,6 +10,7 @@ import { useDataFormatIntls } from './useDataFormatIntls';
 export const useDataFormat = (): {
   firstDayOfWeek: number;
   is12HoursClock: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formatValue: (value: any, options?: any) => string;
 } => {
   const { numberFormatIntl, timeFormatIntl, dateFormatIntl } = useDataFormatIntls();
@@ -35,6 +36,7 @@ export const useDataFormat = (): {
   );
 
   const formatValue = useCallback<OverloadFormatValue>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (value: any, options?: any) => {
       let result = '';
 
