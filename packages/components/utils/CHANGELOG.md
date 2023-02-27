@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.23.2...@synerise/ds-utils@0.24.0) (2023-02-27)
+
+
+### Features
+
+* **ds-data-format:** data format intl tools ([838380b](https://github.com/synerise/synerise-design/commit/838380b89956c37ff0e54b6be93f68aae03f1e1b))
+
+
+
+
+
 ## [0.23.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.23.1...@synerise/ds-utils@0.23.2) (2022-10-24)
 
 **Note:** Version bump only for package @synerise/ds-utils
