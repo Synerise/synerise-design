@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InputNumberProps } from 'antd/lib/input-number';
 
-import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export interface Props extends InputNumberProps {
   errorText?: React.ReactNode | string;
