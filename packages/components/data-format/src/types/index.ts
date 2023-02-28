@@ -1,4 +1,4 @@
-export {
+export type {
   NumberToFormatOptions,
   DateToFormatOptions,
   CommonFormatOptions,
@@ -8,6 +8,6 @@ export {
   OverloadFormatValue,
 } from './dataFormat.types';
 
-export { DataFormatNotationType, DataFormatConfig, DataFormatIntls } from './dataFormatConfig.types';
+export type { DataFormatNotationType, DataFormatConfig, DataFormatIntls } from './dataFormatConfig.types';
 
-export { DateTimePartFormat } from './dateTimeParts.types';
+export type { DateTimePartFormat } from './dateTimeParts.types';
