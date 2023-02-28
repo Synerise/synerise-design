@@ -23,6 +23,11 @@ const stories = {
       placeholder: placeholder,
       prefixel: text('prefixel', 'Prefixel'),
       suffixel: text('suffixel', 'Suffixel'),
+      tooltipConfig: {
+        type: 'description',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      },
       onBlur: () => {
         action('I am blurred');
         setFocus(false);
