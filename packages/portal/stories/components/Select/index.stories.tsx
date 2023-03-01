@@ -96,7 +96,15 @@ const stories = {
     const message = 'Error';
     const [isFocus, setFocus] = React.useState(false);
     return {
-      tooltip: text('tooltip', 'This is example tooltip!'),
+      tooltip: boolean('with simple tooltip', false) && text('Tooltip title', 'Select tooltip title'),
+      tooltipConfig: boolean('with advanced tooltip', false) && {
+        type: select('select advanced tooltip type', ['default', 'largeSimple', 'header-label'], 'default'),
+        title: text('Tooltip title', 'Select tooltip title'),
+        description: text(
+          'Tooltip description',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        ),
+      },
       clearTooltip: text('Clear tooltip', 'Clear'),
       description: text('description', 'Description'),
       errorText: !isFocus && getErrorText(validationState, message),

@@ -20,6 +20,7 @@ class Select extends React.Component<Props> {
       errorText,
       error,
       tooltip,
+      tooltipConfig,
       clearTooltip,
       prefixel,
       suffixel,
@@ -33,7 +34,7 @@ class Select extends React.Component<Props> {
     const { size } = antdProps;
     return (
       <>
-        <S.Label label={label} tooltip={tooltip} />
+        <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}
           error={Boolean(errorText)}
