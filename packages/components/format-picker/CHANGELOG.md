@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.46...@synerise/ds-format-picker@0.3.47) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-format-picker
+
+
+
+
+
 ## [0.3.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.45...@synerise/ds-format-picker@0.3.46) (2023-02-28)
 
 **Note:** Version bump only for package @synerise/ds-format-picker
