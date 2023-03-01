@@ -26,7 +26,7 @@ const InputNumber: React.FC<Props> = ({
   const showError = Boolean(error || errorText);
 
   return (
-    <>
+    <S.InputNumberContainer>
       {label && !raw && (
         <S.ContentAbove>
           <S.Label htmlFor={id}>
@@ -64,7 +64,7 @@ const InputNumber: React.FC<Props> = ({
           {description && <S.Description>{description}</S.Description>}
         </S.ContentBelow>
       )}
-    </>
+    </S.InputNumberContainer>
   );
 };
 

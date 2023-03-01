@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import BaseAntInputNumber from 'antd/lib/input-number';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
+export const InputNumberContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-item: flex-start;
+  justify-content: flex-start;
+`;
+
 export const AntdInputNumber = styled(BaseAntInputNumber)`
   color: ${(props): string => props.theme.palette['grey-700']};
 
