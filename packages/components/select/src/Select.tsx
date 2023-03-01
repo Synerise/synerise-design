@@ -33,7 +33,7 @@ class Select extends React.Component<Props> {
     } = this.props;
     const { size } = antdProps;
     return (
-      <>
+      <S.SelectContainer>
         <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}
@@ -77,7 +77,7 @@ class Select extends React.Component<Props> {
             {description && <Description disabled={antdProps.disabled}>{description}</Description>}
           </S.DescWrapper>
         )}
-      </>
+      </S.SelectContainer>
     );
   }
 }
