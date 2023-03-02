@@ -114,7 +114,7 @@ export type InformationCardProps = {
   /**
    * Second line. Required prop. Can be copied.
    */
-  subtitle: string;
+  subtitle?: string;
   /**
    * Title of the information-card. Can be copied.
    */
