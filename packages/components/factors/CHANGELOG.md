@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.16...@synerise/ds-factors@0.17.0) (2023-03-02)
+
+
+### Features
+
+* add test for tooltip and fixes ([ad89d98](https://github.com/Synerise/synerise-design/commit/ad89d980591f39f66e66ba04f53c6df2d45cca99))
+* tooltip improvements ([7bd8c7f](https://github.com/Synerise/synerise-design/commit/7bd8c7fb3921932540edce5ee1435e5a810c852f))
+
+
+
+
+
 ## [0.16.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.15...@synerise/ds-factors@0.16.16) (2023-03-02)
 
 **Note:** Version bump only for package @synerise/ds-factors
