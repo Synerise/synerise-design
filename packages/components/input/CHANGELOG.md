@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.33...@synerise/ds-input@0.18.34) (2023-03-02)
+
+
+### Bug Fixes
+
+* **input:** change max-width of input when media is minimum 1420px ([f16217a](https://github.com/synerise/synerise-design/commit/f16217ab1f7b877b2d2ce863929bebdd6a39d64d))
+
+
+
+
+
 ## [0.18.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.31...@synerise/ds-input@0.18.33) (2023-03-01)
 
 

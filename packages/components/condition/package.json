@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-condition",
-  "version": "0.19.15",
+  "version": "0.19.16",
   "description": "Condition UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,14 +33,14 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.17.11",
-    "@synerise/ds-context-selector": "^0.15.9",
+    "@synerise/ds-context-selector": "^0.15.10",
     "@synerise/ds-core": "^0.39.1",
     "@synerise/ds-cruds": "^0.3.20",
-    "@synerise/ds-factors": "^0.16.15",
+    "@synerise/ds-factors": "^0.16.16",
     "@synerise/ds-icon": "^0.53.0",
-    "@synerise/ds-inline-edit": "^0.6.49",
-    "@synerise/ds-operators": "^0.10.8",
-    "@synerise/ds-subject": "^0.9.37",
+    "@synerise/ds-inline-edit": "^0.6.50",
+    "@synerise/ds-operators": "^0.10.9",
+    "@synerise/ds-subject": "^0.9.38",
     "@synerise/ds-tooltip": "^0.12.0",
     "@synerise/ds-utils": "^0.19.0",
     "react-sortablejs": "^6.0.0"
