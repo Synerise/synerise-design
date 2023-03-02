@@ -223,7 +223,7 @@ export const AutoResize = styled.div<AutoResizeInputProps>`
   white-space: pre;
   padding: ${(props): string => getPaddingAutoResize(props)};
   ${(props: AutoResizeInputProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
-  @media (max-width: 1280px) {
+  @media (max-width: 1420px) {
     max-width: 300px;
   }
   @media (max-width: 1150px) {
