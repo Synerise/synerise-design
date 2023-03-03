@@ -41,7 +41,7 @@ const addonStyles = (props: ThemeProps): string => `
 export const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: flex-start;
 `;
 
