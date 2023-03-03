@@ -20,6 +20,7 @@ class Select extends React.Component<Props> {
       errorText,
       error,
       tooltip,
+      tooltipConfig,
       clearTooltip,
       prefixel,
       suffixel,
@@ -32,8 +33,8 @@ class Select extends React.Component<Props> {
     } = this.props;
     const { size } = antdProps;
     return (
-      <>
-        <S.Label label={label} tooltip={tooltip} />
+      <S.SelectContainer>
+        <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}
           error={Boolean(errorText)}
@@ -76,7 +77,7 @@ class Select extends React.Component<Props> {
             {description && <Description disabled={antdProps.disabled}>{description}</Description>}
           </S.DescWrapper>
         )}
-      </>
+      </S.SelectContainer>
     );
   }
 }
