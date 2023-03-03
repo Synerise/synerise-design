@@ -5,7 +5,7 @@ import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/t
 export const InputNumberContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-item: flex-start;
+  align-items: stretch;
   justify-content: flex-start;
 `;
 
