@@ -1,4 +1,4 @@
-import { InputProps } from 'antd/lib/input';
+import type { InputProps } from 'antd/lib/input';
 
 export type ColorHookType = {
   color: string;
