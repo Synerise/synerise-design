@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from "@testing-library/react";
+import { fireEvent } from '@testing-library/react';
 import InputNumber from '../index';
 
 describe('InputNumber', () => {
@@ -16,12 +16,7 @@ describe('InputNumber', () => {
   it('should handle increase', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(
-      <InputNumber
-        data-testid={TEST_ID}
-        defaultValue={3}
-      />
-    );
+    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={3} />);
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
@@ -34,12 +29,7 @@ describe('InputNumber', () => {
   it('should handle decrease', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(
-      <InputNumber
-        data-testid={TEST_ID}
-        defaultValue={3}
-      />
-    );
+    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={3} />);
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ASSERT
@@ -55,13 +45,7 @@ describe('InputNumber', () => {
   it('should keep min value', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(
-      <InputNumber
-        data-testid={TEST_ID}
-        defaultValue={2}
-        min={2}
-      />
-    );
+    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={2} min={2} />);
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
@@ -74,13 +58,7 @@ describe('InputNumber', () => {
   it('should keep max value', () => {
     // ARRANGE
     const TEST_ID = 'test-id';
-    const { getByTestId } = renderWithProvider(
-      <InputNumber
-        data-testid={TEST_ID}
-        defaultValue={2}
-        max={2}
-      />
-    );
+    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={2} max={2} />);
     const input = getByTestId(TEST_ID) as HTMLInputElement;
 
     // ACT
@@ -93,11 +71,7 @@ describe('InputNumber', () => {
   it('should render label', () => {
     // ARRANGE
     const LABEL = 'label';
-    const { getByLabelText } = renderWithProvider(
-      <InputNumber
-        label={LABEL}
-      />
-    );
+    const { getByLabelText } = renderWithProvider(<InputNumber label={LABEL} />);
 
     // ASSERT
     expect(getByLabelText(LABEL)).toBeTruthy();
@@ -106,11 +80,7 @@ describe('InputNumber', () => {
   it('should render description', () => {
     // ARRANGE
     const DESCRIPTION = 'description';
-    const { getByText } = renderWithProvider(
-      <InputNumber
-        description={DESCRIPTION}
-      />
-    );
+    const { getByText } = renderWithProvider(<InputNumber description={DESCRIPTION} />);
 
     // ASSERT
     expect(getByText(DESCRIPTION)).toBeTruthy();
@@ -119,11 +89,7 @@ describe('InputNumber', () => {
   it('should handle error state', () => {
     // ARRANGE
     const ERROR_MESSAGE = 'error message';
-    const { getByText, container } = renderWithProvider(
-      <InputNumber
-        errorText={ERROR_MESSAGE}
-      />
-    );
+    const { getByText, container } = renderWithProvider(<InputNumber errorText={ERROR_MESSAGE} />);
 
     // ASSERT
     expect(getByText(ERROR_MESSAGE)).toBeTruthy();
@@ -134,15 +100,20 @@ describe('InputNumber', () => {
     // ARRANGE
     const PREFIX = 'Prefix value';
     const SUFFIX = 'Suffix value';
-    const { getByText } = renderWithProvider(
-      <InputNumber
-        prefixel={PREFIX}
-        suffixel={SUFFIX}
-      />
-    );
+    const { getByText } = renderWithProvider(<InputNumber prefixel={PREFIX} suffixel={SUFFIX} />);
 
     // ASSERT
     expect(getByText(PREFIX)).toBeTruthy();
     expect(getByText(SUFFIX)).toBeTruthy();
+  });
+  it('should render label with tooltip icon', () => {
+    // ARRANGE
+    const TOOLTIP = 'Tooltip title';
+    const LABEL = 'Label';
+    const { getByText } = renderWithProvider(<InputNumber label={LABEL} tooltip={TOOLTIP} />);
+
+    // ASSERT
+    expect(getByText(LABEL)).toBeTruthy();
+    expect(document.querySelector('.ds-icon > .info-fill-s')).toBeTruthy();
   });
 });
