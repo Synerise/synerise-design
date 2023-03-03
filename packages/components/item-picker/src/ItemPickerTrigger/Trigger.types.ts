@@ -7,7 +7,7 @@ export interface Props {
   closeDropdown: () => void;
   size: ItemPickerSize;
   clear: string | React.ReactNode;
-  onClear: () => void;
+  onClear?: () => void;
   opened: boolean;
   placeholder: string | React.ReactNode;
   placeholderIcon?: React.ReactNode;
