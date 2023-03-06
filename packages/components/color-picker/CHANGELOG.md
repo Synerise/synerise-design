@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.8...@synerise/ds-color-picker@0.3.9) (2023-03-06)
+
+
+### Bug Fixes
+
+* change InputProps import in ColorPicker ([798cbf5](https://github.com/Synerise/synerise-design/commit/798cbf5710f1f564910f0dd5f459bc0408187d80))
+* fix import ([b5761a4](https://github.com/Synerise/synerise-design/commit/b5761a4beea1436903552fc0f4fa0f2424448b63))
+
+
+
+
+
 ## [0.3.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.7...@synerise/ds-color-picker@0.3.8) (2023-03-02)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

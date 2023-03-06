@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.175.0](https://github.com/synerise/synerise-design/compare/portal@0.174.0...portal@0.175.0) (2023-03-06)
+
+
+### Features
+
+* **input-number:** adds tooltip & tooltipConfig to storybook example ([4adfef1](https://github.com/synerise/synerise-design/commit/4adfef130428a439440314f57de15460f12938d6))
+* **input-number:** adds tooltip next to input label ([bba90b6](https://github.com/synerise/synerise-design/commit/bba90b60db71b49d994c7432c48d92668ec93937))
+* **item-picker:** changes onClear to optional property ([6d4df8f](https://github.com/synerise/synerise-design/commit/6d4df8f871d55cdaec55f42c1bdca55f2aea0497))
+* **select:** adds tooltipConfig property ([0df3e95](https://github.com/synerise/synerise-design/commit/0df3e95638e58b8aca04653caa83a7086c9eb88e))
+
+
+
+
+
 # [0.174.0](https://github.com/synerise/synerise-design/compare/portal@0.173.0...portal@0.174.0) (2023-02-27)
 
 
