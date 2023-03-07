@@ -3,7 +3,13 @@ import { IntlShape, useIntl } from 'react-intl';
 import moment, { Moment } from 'moment';
 import dayjs, { Dayjs } from 'dayjs';
 
-import { CommonFormatOptions, DataFormatNotationType, DateToFormatOptions, NumberToFormatOptions } from '../types';
+import {
+  CommonFormatOptions,
+  DataFormatNotationType,
+  DateToFormatOptions,
+  NumberToFormatOptions,
+  Delimiter,
+} from '../types';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import {
   convertDateToDateTimeString,
@@ -21,11 +27,15 @@ import {
 import {
   DATE,
   DATETIME,
+  EU_DECIMAL_DELIMITER,
   EU_NOTATION,
+  EU_THOUSAND_DELIMITER,
   MONTH_LONG,
   MONTH_SHORT,
   TIME,
+  US_DECIMAL_DELIMITER,
   US_NOTATION,
+  US_THOUSAND_DELIMITER,
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
 } from '../constants';
@@ -54,6 +64,8 @@ export const useDataFormatUtils = (): {
     options?: DateToFormatOptions
   ) => string;
   getFormattedValueUsingCommonOptions: (value: string, options?: CommonFormatOptions) => string;
+  getThousandDelimiterFromNotation: (notation?: DataFormatNotationType) => Delimiter;
+  getDecimalDelimiterFromNotation: (notation?: DataFormatNotationType) => Delimiter;
 } => {
   const languageIntl = useIntl();
   const { numberFormatNotation } = useDataFormatConfig();
@@ -80,6 +92,18 @@ export const useDataFormatUtils = (): {
     }
   }, []);
 
+  const getThousandDelimiterFromNotation = useCallback(
+    (notation?: DataFormatNotationType): Delimiter =>
+      notation === US_NOTATION ? US_THOUSAND_DELIMITER : EU_THOUSAND_DELIMITER,
+    []
+  );
+
+  const getDecimalDelimiterFromNotation = useCallback(
+    (notation?: DataFormatNotationType): Delimiter =>
+      notation === US_NOTATION ? US_DECIMAL_DELIMITER : EU_DECIMAL_DELIMITER,
+    []
+  );
+
   const getIs12HoursClockFromNotation = useCallback(
     (notation?: DataFormatNotationType): boolean => notation === US_NOTATION,
     []
@@ -87,9 +111,11 @@ export const useDataFormatUtils = (): {
 
   const getFormattedNumber = useCallback(
     (value: number, numberFormatIntl: IntlShape, options?: NumberToFormatOptions): string => {
-      return convertNumberString(value, numberFormatIntl, languageIntl, numberFormatNotation, options);
+      const thousandDelimiter = getThousandDelimiterFromNotation(numberFormatNotation);
+      const decimalDelimiter = getDecimalDelimiterFromNotation(numberFormatNotation);
+      return convertNumberString(value, numberFormatIntl, languageIntl, thousandDelimiter, decimalDelimiter, options);
     },
-    [languageIntl, numberFormatNotation]
+    [languageIntl, numberFormatNotation, getThousandDelimiterFromNotation, getDecimalDelimiterFromNotation]
   );
 
   const getFormattedDate = useCallback(
@@ -158,5 +184,7 @@ export const useDataFormatUtils = (): {
     getFormattedDateFromMoment,
     getFormattedDateFromDayjs,
     getFormattedValueUsingCommonOptions,
+    getThousandDelimiterFromNotation,
+    getDecimalDelimiterFromNotation,
   };
 };

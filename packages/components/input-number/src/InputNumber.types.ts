@@ -1,6 +1,8 @@
 import { InputNumberProps } from 'antd/lib/input-number';
 import * as React from 'react';
 
+import { NumberToFormatOptions } from '@synerise/ds-data-format';
+
 export interface Props extends InputNumberProps {
   errorText?: React.ReactNode | string;
   label?: React.ReactNode | string;
@@ -9,4 +11,5 @@ export interface Props extends InputNumberProps {
   prefixel?: React.ReactNode | string;
   suffixel?: React.ReactNode | string;
   raw?: boolean;
+  valueFormatOptions?: NumberToFormatOptions;
 }

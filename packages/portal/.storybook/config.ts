@@ -8,7 +8,7 @@ import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
 import type { DSProviderProps } from '@synerise/ds-core';
 import '@synerise/ds-core/dist/js/style';
-import { getDataFormatConfigFromNotation } from '@synerise/ds-data-format';
+import { DEFAULT_DATA_FORMAT_NOTATION, getDataFormatConfigFromNotation } from '@synerise/ds-data-format';
 
 import '../../../config/wdyr/wdyr';
 import './style/index.css';
@@ -24,7 +24,7 @@ const withDSProvider = storyFn => {
   const optionalUserDefinedLocale = localStorage.getItem('lang');
   const props = {
     code: 'en_GB',
-    ...{ dataFormatConfig: getDataFormatConfigFromNotation('EU') },
+    ...{ dataFormatConfig: getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION) },
     ...(optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {}),
   } as DSProviderProps;
   return React.createElement(DSProvider, props, storyFn());

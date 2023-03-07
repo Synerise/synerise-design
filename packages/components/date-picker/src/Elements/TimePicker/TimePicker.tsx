@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import fnsFormat from '../../format';
 
+import { useDataFormat } from '@synerise/ds-data-format';
+
+import fnsFormat from '../../format';
 import Navbar from '../Navbar/Navbar';
 import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
@@ -16,6 +18,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onShortPrev,
 }: TimePickerProps) => {
   const intl = useIntl();
+
+  const { is12HoursClock } = useDataFormat();
 
   return (
     <>
@@ -34,6 +38,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           disabledHours={disabledHours}
           disabledMinutes={disabledMinutes}
           disabledSeconds={disabledSeconds}
+          use12HourClock={is12HoursClock}
           raw
         />
       </S.Container>
