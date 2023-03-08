@@ -22,9 +22,18 @@ const withDSProvider = storyFn => {
    * window.localeStorage.setItem('lang', 'en')
    */
   const optionalUserDefinedLocale = localStorage.getItem('lang');
+
+  /**
+   * allows overwriting the default dataFormatConfig in storybook with localeStorage entry
+   * window.localeStorage.setItem("dataFormatConfig", {"startWeekDayNotation":"US","dateFormatNotation":"US","timeFormatNotation":"US","numberFormatNotation":"US"})
+   */
+  const optionalUserDefinedDataFormatConfig = JSON.parse(localStorage.getItem('dataFormatConfig'));
+
   const props = {
     code: 'en_GB',
-    ...{ dataFormatConfig: getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION) },
+    ...(optionalUserDefinedDataFormatConfig
+      ? { dataFormatConfig: optionalUserDefinedDataFormatConfig }
+      : getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION)),
     ...(optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {}),
   } as DSProviderProps;
   return React.createElement(DSProvider, props, storyFn());

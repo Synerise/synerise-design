@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { text, number, boolean } from '@storybook/addon-knobs';
+import { text, number, boolean, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import InputNumber from '@synerise/ds-input-number';
 
@@ -9,6 +9,7 @@ const renderLabel = (text: string) => {
 const stories = {
   inputNumber: () => {
     const validationState = boolean('Set validation state', false);
+    const valueFormatOptions = object('valueFormatOptions', {});
     const message = 'Error';
     const [isFocus, setFocus] = React.useState(false);
     const placeholder = text('Placeholder', 'Placeholder');
@@ -23,6 +24,7 @@ const stories = {
       placeholder: placeholder,
       prefixel: text('prefixel', 'Prefixel'),
       suffixel: text('suffixel', 'Suffixel'),
+      valueFormatOptions: valueFormatOptions,
       onBlur: () => {
         action('I am blurred');
         setFocus(false);
