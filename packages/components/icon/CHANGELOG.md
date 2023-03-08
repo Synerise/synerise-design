@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.53.0...@synerise/ds-icon@0.54.0) (2023-03-02)
+
+
+### Features
+
+* **icon:** build icons with inline styles ([f268342](https://github.com/Synerise/synerise-design/commit/f2683422b73daeff6b53b7fdf581e3d2f3e5ea66))
+
+
+
+
+
 # [0.53.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.52.0...@synerise/ds-icon@0.53.0) (2023-01-12)
 
 

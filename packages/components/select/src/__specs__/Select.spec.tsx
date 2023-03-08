@@ -17,7 +17,10 @@ describe('Select', () => {
   });
 
   it('change selected item when unselected is clicked', async () => {
-    const options = [{ value: 'red', label: 'Red' }, { value: 'green', label: 'Green' }];
+    const options = [
+      { value: 'red', label: 'Red' },
+      { value: 'green', label: 'Green' },
+    ];
     const { getByTestId, getByText } = renderWithProvider(
       <Select open data-testid="select" defaultValue="red">
         {options.map(o => (
@@ -94,5 +97,15 @@ describe('Select', () => {
     // ASSERT
     const noDataElem = await waitFor(() => getByText('No Data'));
     expect(noDataElem).toBeTruthy();
+  });
+  it('should render label with tooltip icon', () => {
+    // ARRANGE
+    const TOOLTIP = 'Tooltip title';
+    const LABEL = 'Label';
+    const { getByText } = renderWithProvider(<Select label={LABEL} tooltip={TOOLTIP} />);
+
+    // ASSERT
+    expect(getByText(LABEL)).toBeTruthy();
+    expect(document.querySelector('.ds-icon > .info-fill-s')).toBeTruthy();
   });
 });

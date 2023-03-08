@@ -37,13 +37,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
 
   const filteredDataSource = React.useMemo(() => {
     return searchQuery
-      ? dataSource.filter(
-          item =>
-            item.text &&
-            String(item.text)
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase())
-        )
+      ? dataSource.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
       : dataSource;
   }, [searchQuery, dataSource]);
 

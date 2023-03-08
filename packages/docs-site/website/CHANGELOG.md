@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.24.0...docs@0.25.0) (2023-03-06)
+
+
+### Features
+
+* **input-number:** adds tooltip next to input label ([bba90b6](https://gitlab.synerise.com/Frontend/synerise-design/commit/bba90b60db71b49d994c7432c48d92668ec93937))
+* **select:** adds tooltipConfig property ([0df3e95](https://gitlab.synerise.com/Frontend/synerise-design/commit/0df3e95638e58b8aca04653caa83a7086c9eb88e))
+
+
+
+
+
 # [0.24.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.23.0...docs@0.24.0) (2023-02-23)
 
 

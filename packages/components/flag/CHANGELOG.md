@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.3.7...@synerise/ds-flag@0.4.0) (2023-03-02)
+
+
+### Features
+
+* **icon:** build icons with inline styles ([f268342](https://github.com/Synerise/synerise-design/commit/f2683422b73daeff6b53b7fdf581e3d2f3e5ea66))
+
+
+
+
+
 ## [0.3.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-flag@0.3.2...@synerise/ds-flag@0.3.7) (2022-08-11)
 
 **Note:** Version bump only for package @synerise/ds-flag

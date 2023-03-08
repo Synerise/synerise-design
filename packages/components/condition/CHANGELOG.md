@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.1...@synerise/ds-condition@0.20.2) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.20.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.0...@synerise/ds-condition@0.20.1) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.16...@synerise/ds-condition@0.20.0) (2023-03-02)
+
+
+### Features
+
+* add test for tooltip and fixes ([ad89d98](https://github.com/Synerise/synerise-design/commit/ad89d980591f39f66e66ba04f53c6df2d45cca99))
+
+
+
+
+
+## [0.19.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.15...@synerise/ds-condition@0.19.16) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.19.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.13...@synerise/ds-condition@0.19.15) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.19.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.13...@synerise/ds-condition@0.19.14) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
 ## [0.19.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.19.12...@synerise/ds-condition@0.19.13) (2023-02-28)
 
 **Note:** Version bump only for package @synerise/ds-condition

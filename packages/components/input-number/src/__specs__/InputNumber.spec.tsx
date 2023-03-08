@@ -107,6 +107,17 @@ describe('InputNumber', () => {
     expect(getByText(SUFFIX)).toBeTruthy();
   });
 
+  it('should render label with tooltip icon', () => {
+    // ARRANGE
+    const TOOLTIP = 'Tooltip title';
+    const LABEL = 'Label';
+    const { getByText } = renderWithProvider(<InputNumber label={LABEL} tooltip={TOOLTIP} />);
+
+    // ASSERT
+    expect(getByText(LABEL)).toBeTruthy();
+    expect(document.querySelector('.ds-icon > .info-fill-s')).toBeTruthy();
+  });
+
   it('should have proper value and formatting for EU notation', () => {
     // ARRANGE
     const TEST_ID = 'test-id';

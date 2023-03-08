@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.12.1...@synerise/ds-tooltip@0.13.0) (2023-03-06)
+
+
+### Features
+
+* **tooltip:** exports types from index ([c2bedad](https://github.com/synerise/synerise-design/commit/c2bedad22e7e56c30580b8e25fec1892b703ab10))
+
+
+
+
+
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.12.0...@synerise/ds-tooltip@0.12.1) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
 # [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.19...@synerise/ds-tooltip@0.12.0) (2023-02-14)
 
 

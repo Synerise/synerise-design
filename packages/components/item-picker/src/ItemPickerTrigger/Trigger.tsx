@@ -30,7 +30,7 @@ const Trigger: React.FC<Props> = ({
     (event: React.MouseEvent<HTMLDivElement>): void => {
       event.stopPropagation();
       closeDropdown();
-      onClear();
+      onClear && onClear();
     },
     [onClear, closeDropdown]
   );
@@ -64,7 +64,7 @@ const Trigger: React.FC<Props> = ({
     }
 
     return null;
-  }, [selected, handleClear, clear, withClearConfirmation, clearConfirmTitle, noText, yesText]);
+  }, [clear, selected, withClearConfirmation, handleClear, clearConfirmTitle, yesText, noText]);
 
   const renderAngleIcon = React.useMemo(() => {
     return (
@@ -131,7 +131,7 @@ const Trigger: React.FC<Props> = ({
         )}
       </S.Trigger>
       <S.IconWrapper size={size}>
-        {renderClear}
+        {onClear && renderClear}
         {renderAngleIcon}
       </S.IconWrapper>
     </S.TriggerWrapper>

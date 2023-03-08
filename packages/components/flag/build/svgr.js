@@ -48,6 +48,9 @@ const buildIconsSet = (path, libDir, indexDistFile) => {
                 },
                 removeViewBox: false,
                 removeDimensions: true,
+                inlineStyles: {
+                  onlyMatchedOnce: false,
+                },
               }]
             }
           },

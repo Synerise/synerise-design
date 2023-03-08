@@ -1,4 +1,4 @@
-import type { InputProps } from '@synerise/ds-input';
+import type { InputProps } from 'antd/lib/input';
 
 export type ColorHookType = {
   color: string;

@@ -21,6 +21,7 @@ export type ContextItem = {
   groupName?: string;
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
+  subtitle?: string;
 };
 
 export type ContextGroup = {

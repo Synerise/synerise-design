@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.38...@synerise/ds-select@0.15.0) (2023-03-06)
+
+
+### Bug Fixes
+
+* **select:** fixes styles ([2913902](https://github.com/synerise/synerise-design/commit/2913902949e99eea558f5a29c317edce54a1fee1))
+
+
+### Features
+
+* **input-number:** adds wrapper element for select component ([2a7c8df](https://github.com/synerise/synerise-design/commit/2a7c8df4d939067e4f3ab27bc0d0963e4c199598))
+* **select:** adds tooltipConfig property ([0df3e95](https://github.com/synerise/synerise-design/commit/0df3e95638e58b8aca04653caa83a7086c9eb88e))
+
+
+
+
+
+## [0.14.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.37...@synerise/ds-select@0.14.38) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.37](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.36...@synerise/ds-select@0.14.37) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.36](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.34...@synerise/ds-select@0.14.36) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.35](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.34...@synerise/ds-select@0.14.35) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.14.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.33...@synerise/ds-select@0.14.34) (2023-02-16)
 
 **Note:** Version bump only for package @synerise/ds-select
