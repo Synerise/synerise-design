@@ -6,6 +6,7 @@ export type {
   NamingConvention,
   DateToFormat,
   OverloadFormatValue,
+  Delimiter,
 } from './dataFormat.types';
 
 export type { DataFormatNotationType, DataFormatConfig, DataFormatIntls } from './dataFormatConfig.types';

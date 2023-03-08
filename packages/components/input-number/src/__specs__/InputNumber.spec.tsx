@@ -106,6 +106,7 @@ describe('InputNumber', () => {
     expect(getByText(PREFIX)).toBeTruthy();
     expect(getByText(SUFFIX)).toBeTruthy();
   });
+
   it('should render label with tooltip icon', () => {
     // ARRANGE
     const TOOLTIP = 'Tooltip title';
@@ -115,5 +116,49 @@ describe('InputNumber', () => {
     // ASSERT
     expect(getByText(LABEL)).toBeTruthy();
     expect(document.querySelector('.ds-icon > .info-fill-s')).toBeTruthy();
+  });
+
+  it('should have proper value and formatting for EU notation', () => {
+    // ARRANGE
+    const TEST_ID = 'test-id';
+    const { getByTestId } = renderWithProvider(<InputNumber data-testid={TEST_ID} defaultValue={1234567.89} />);
+    const input = getByTestId(TEST_ID) as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toEqual('1 234 567,89');
+    expect(input.getAttribute('aria-valuenow')).toEqual('1234567.89');
+  });
+
+  it('should have proper value and formatting for US notation', () => {
+    // ARRANGE
+    const TEST_ID = 'test-id';
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={1234567.89} />,
+      {},
+      { notation: 'US' }
+    );
+    const input = getByTestId(TEST_ID) as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toEqual('1,234,567.89');
+    expect(input.getAttribute('aria-valuenow')).toEqual('1234567.89');
+  });
+
+  it('should have proper value and formatting with formatting options', () => {
+    // ARRANGE
+    const TEST_ID = 'test-id';
+    const { getByTestId } = renderWithProvider(
+      <InputNumber
+        data-testid={TEST_ID}
+        defaultValue={1234567.891234}
+        valueFormatOptions={{ maximumFractionDigits: 3 }}
+      />,
+      {},
+      { notation: 'US' }
+    );
+    const input = getByTestId(TEST_ID) as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toEqual('1,234,567.891');
   });
 });

@@ -24,6 +24,10 @@ export {
   UPPER_FIRST,
   LOWER_CASE,
   LOWER_FIRST,
+  US_THOUSAND_DELIMITER,
+  US_DECIMAL_DELIMITER,
+  EU_THOUSAND_DELIMITER,
+  EU_DECIMAL_DELIMITER,
 } from './dataFormat.constants';
 
 export { WEEKDAY, MONTH, LONG, SHORT } from './dateTimeParts.constants';

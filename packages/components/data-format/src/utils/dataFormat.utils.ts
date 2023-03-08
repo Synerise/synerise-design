@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { lowerCase, lowerFirst, upperCase, upperFirst } from 'lodash';
 
-import { CommonFormatOptions, DataFormatNotationType, DateToFormatOptions, NumberToFormatOptions } from '../types';
+import { CommonFormatOptions, DateToFormatOptions, Delimiter, NumberToFormatOptions } from '../types';
 import {
   dateTimePartsToString,
   getDateParts,
@@ -14,13 +14,22 @@ import {
   numberPartsToString,
   translateDateTimeParts,
 } from './dateTimeParts.utils';
-import { LOWER_CASE, LOWER_FIRST, UPPER_CASE, UPPER_FIRST } from '../constants';
+import {
+  DATE,
+  DATETIME,
+  DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
+  LOWER_CASE,
+  LOWER_FIRST,
+  UPPER_CASE,
+  UPPER_FIRST,
+} from '../constants';
 
 export const convertNumberString = (
   value: number,
   numberFormatIntl: IntlShape,
   languageIntl: IntlShape,
-  numberFormatNotation?: DataFormatNotationType,
+  thousandDelimiter: Delimiter,
+  decimalDelimiter: Delimiter,
   numberOptions?: NumberToFormatOptions
 ): string => {
   if (numberOptions?.pluralOptions) {
@@ -28,7 +37,7 @@ export const convertNumberString = (
   }
 
   const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, numberOptions);
-  return numberPartsToString(numberParts, numberFormatNotation);
+  return numberPartsToString(numberParts, thousandDelimiter, decimalDelimiter);
 };
 
 export const convertDateToDateTimeString = (
@@ -182,3 +191,9 @@ export const changeNamingConvention = (value: string, options?: CommonFormatOpti
   }
   return result;
 };
+
+export const getDefaultDataTimeOptions = (showTime?: boolean): DateToFormatOptions => ({
+  targetFormat: showTime ? DATETIME : DATE,
+  dateOptions: DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
+  namingConvention: UPPER_FIRST,
+});

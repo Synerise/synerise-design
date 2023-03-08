@@ -13,31 +13,63 @@ yarn add @synerise/ds-data-format
 ```
 
 ## Usage
+### For function components:
+```tsx harmony
+import React, { FC } from 'react';
 
-```jsx harmony
-import { FormattedNumber, FormattedDate, FormattedTime, FormattedDateTime, useDataFormat} from '@synerise/ds-data-format';
-
-const {is12HoursClock, firstDayOfWeek, formatValue} = useDataFormat();
+import { useDataFormat, FormattedNumber, FormattedDate, FormattedTime, FormattedDateTime } from '@synerise/ds-data-format';
 
 const DATE = new Date('2023-06-25T15:40:00');
-const dateToFormat = DATE // moment(DATE) // dayjs(DATE)
+const DATE_TO_FORMAT = DATE // moment(DATE) // dayjs(DATE)
 
-is12HoursClock // true // false
-firstDayOfWeek // Sunday = 0 // Monday = 1
-formatValue(1234567);
-formatValue(dateToFormat);
-formatValue(dateToFormat, {targetFormat: 'date'});
-formatValue(dateToFormat, {targetFormat: 'time'});
-formatValue(dateToFormat, {targetFormat: 'datetime'});
+export const FunctionComponent: FC = (): JSX.Element => {
+  const { formatValue, is12HoursClock, firstDayOfWeek, thousandDelimiter, decimalDelimiter } = useDataFormat();
 
-<>
-  <FormattedNumber value={1234567} options={{unit: 'percent'}}
-  <FormattedDate value={dateToFormat} options={{month: 'long'}}
-  <FormattedTime value={dateToFormat} options={{second: 'numeric'}}
-  <FormattedDateTime value={dateToFormat} options={{ dateOptions: { month: 'long' }, timeOptions: { second: 'numeric' } }}
-</>
+  is12HoursClock // true // false
+  firstDayOfWeek // Sunday = 0 // Monday = 1
+  thousandDelimiter // "," // " "
+  decimalDelimiter // "." // ","
+  formatValue(1234567);
+  formatValue(DATE_TO_FORMAT);
+  formatValue(DATE_TO_FORMAT, {targetFormat: 'date'});
+  formatValue(DATE_TO_FORMAT, {targetFormat: 'time'});
+  formatValue(DATE_TO_FORMAT, {targetFormat: 'datetime'});
 
+  return (
+    <>
+      <FormattedNumber value={1234567} options={{ unit: 'percent' }} />
+      <FormattedDate value={DATE_TO_FORMAT} options={{ month: 'long' }} />
+      <FormattedTime value={DATE_TO_FORMAT} options={{ second: 'numeric' }} />
+      <FormattedDateTime value={DATE_TO_FORMAT} options={{ dateOptions: { month: 'long' }, timeOptions: { second: 'numeric' } }} />
+    </>
+  );
+};
 ```
+
+For class components:
+
+```tsx harmony
+import React, { Component } from 'react';
+import { withDateFormat, WithDataFormatProps } from '@synerise/ds-data-format';
+
+class ClassComponent extends Component<WithDataFormatProps> {
+  constructor(props: WithDataFormatProps) {
+    super(props);
+  }
+
+  render() {
+    const { formatValue, is12HoursClock, firstDayOfWeek, thousandDelimiter, decimalDelimiter } = this.props;
+    return (
+      <>
+        <div>{formatValue(1234567)}</div>
+      </>
+    );
+  }
+}
+
+export default withDateFormat(ClassComponent);
+```
+
 ## Examples
 
 ### Number

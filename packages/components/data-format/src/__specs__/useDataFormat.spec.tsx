@@ -556,4 +556,48 @@ describe('useDataFormat', () => {
       result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'lowerFirst' })
     ).toBe(`cze`);
   });
+
+  it('Should return correct thousandDelimiter and decimalDelimiter for EU notation', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: EU_NOTATION,
+            timeFormatNotation: EU_NOTATION,
+            numberFormatNotation: EU_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(result.current.thousandDelimiter).toBe(` `);
+    expect(result.current.decimalDelimiter).toBe(`,`);
+  });
+
+  it('Should return correct thousandDelimiter and decimalDelimiter for US notation', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: US_NOTATION,
+            timeFormatNotation: US_NOTATION,
+            numberFormatNotation: US_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(result.current.thousandDelimiter).toBe(`,`);
+    expect(result.current.decimalDelimiter).toBe(`.`);
+  });
 });

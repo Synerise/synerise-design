@@ -1,13 +1,16 @@
 import * as React from 'react';
+import { ReactText } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
+import { useDataFormat } from '@synerise/ds-data-format';
 
 import './style/index.less';
 import * as S from './InputNumber.styles';
 import { Props } from './InputNumber.types';
+import { formatNumber, parseFormattedNumber } from './utils/inputNumber.utils';
 
 const InputNumber: React.FC<Props> = ({
   label,
@@ -20,10 +23,29 @@ const InputNumber: React.FC<Props> = ({
   style,
   tooltip,
   tooltipConfig,
+  valueFormatOptions,
   ...antdProps
 }) => {
+  const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
+
+  formatValue(new Date(), {});
+
   const id = React.useMemo(() => uuid(), []);
   const showError = Boolean(error || errorText);
+
+  const formatter = React.useCallback(
+    (value: string | number | undefined): string => {
+      return formatNumber(value, formatValue, thousandDelimiter, decimalDelimiter, valueFormatOptions);
+    },
+    [formatValue, valueFormatOptions, thousandDelimiter, decimalDelimiter]
+  );
+
+  const parser = React.useCallback(
+    (value: string | undefined): ReactText => {
+      return parseFormattedNumber(value, formatValue, thousandDelimiter, decimalDelimiter);
+    },
+    [formatValue, thousandDelimiter, decimalDelimiter]
+  );
 
   return (
     <S.InputNumberContainer>
@@ -55,6 +77,9 @@ const InputNumber: React.FC<Props> = ({
           error={showError}
           className={showError ? 'error' : undefined}
           autoComplete="off"
+          formatter={formatter}
+          parser={parser}
+          decimalSeparator={decimalDelimiter}
         />
         {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
       </S.InputNumberWrapper>

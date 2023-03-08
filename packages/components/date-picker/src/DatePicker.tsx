@@ -1,6 +1,8 @@
 import * as React from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import { Props } from './DatePicker.types';
 import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
@@ -11,6 +13,7 @@ const DatePicker: React.FC<Props> = ({
   disabled,
   texts,
   format,
+  valueFormatOptions,
   value,
   onApply,
   showTime,
@@ -74,6 +77,7 @@ const DatePicker: React.FC<Props> = ({
           : undefined
       }
       format={format}
+      valueFormatOptions={valueFormatOptions}
       onClear={handleClear}
       placeholder={texts.inputPlaceholder}
       prefixel={prefixel}

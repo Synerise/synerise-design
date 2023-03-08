@@ -13,11 +13,10 @@ import {
   WEEKDAY,
   WEEKDAY_LONG,
   WEEKDAY_SHORT,
-  US_NOTATION,
   LONG,
   SHORT,
 } from '../constants';
-import { DataFormatNotationType, DateToFormatOptions } from '../types';
+import { DateToFormatOptions, Delimiter } from '../types';
 
 export const getDateParts = (
   value: Date,
@@ -100,16 +99,17 @@ export const nbspToSpace = (text: string): string => {
 
 export const numberPartsToString = (
   numberParts: Intl.NumberFormatPart[],
-  notation?: DataFormatNotationType
+  thousandDelimiter: Delimiter,
+  decimalDelimiter: Delimiter
 ): string => {
   const numberPartsWithReplacedDelimiters = numberParts.map(numberPart => {
     const numberPartWithReplacedDelimiters = numberPart;
     if (numberPartWithReplacedDelimiters.type === 'group') {
-      numberPartWithReplacedDelimiters.value = notation === US_NOTATION ? ',' : ' ';
+      numberPartWithReplacedDelimiters.value = thousandDelimiter;
     }
 
     if (numberPartWithReplacedDelimiters.type === 'decimal') {
-      numberPartWithReplacedDelimiters.value = notation === US_NOTATION ? '.' : ',';
+      numberPartWithReplacedDelimiters.value = decimalDelimiter;
     }
 
     return numberPartWithReplacedDelimiters;

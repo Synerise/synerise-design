@@ -38,7 +38,9 @@ export type DateToFormatOptions = FormatDateOptions &
 
 export type OverloadFormatValue = {
   (value: number, options?: NumberToFormatOptions): string;
-  (value: Date, options?: DateToFormatOptions): string;
-  (value: Moment, options?: DateToFormatOptions): string;
-  (value: Dayjs, options?: DateToFormatOptions): string;
+  (value: Date | Moment | Dayjs, options?: DateToFormatOptions): string;
+  (value: string, options?: CommonFormatOptions): string;
 };
+
+const DELIMITERS = [',', '.', ' '] as const;
+export type Delimiter = typeof DELIMITERS[number];

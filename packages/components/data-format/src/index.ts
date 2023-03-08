@@ -10,9 +10,19 @@ export { useDataFormat } from './hooks';
 export { useDataFormatUtils } from './hooks';
 export { useDataFormatConfig } from './hooks';
 export { useDataFormatIntls } from './hooks';
+export type { UseDataFormatProps } from './hooks';
 
-export { getDataFormatConfigFromNotation } from './utils';
+export { withDataFormat } from './hocs/withDataFormat';
+export type { WithDataFormatProps } from './hocs/withDataFormat';
 
-export { DEFAULT_DATA_FORMAT_CONFIG } from './constants';
+export { getDataFormatConfigFromNotation, getDefaultDataTimeOptions } from './utils';
 
-export type { DataFormatNotationType, NumberToFormatOptions, DateToFormatOptions, DataFormatConfig } from './types';
+export { DEFAULT_DATA_FORMAT_CONFIG, DEFAULT_DATA_FORMAT_NOTATION, US_NOTATION, EU_NOTATION } from './constants';
+
+export type {
+  DataFormatNotationType,
+  NumberToFormatOptions,
+  DateToFormatOptions,
+  DataFormatConfig,
+  Delimiter,
+} from './types';

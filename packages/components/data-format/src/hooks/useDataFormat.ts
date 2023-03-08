@@ -2,19 +2,22 @@ import { useCallback, useMemo } from 'react';
 import { isDayjs } from 'dayjs';
 import { isMoment } from 'moment';
 
-import { OverloadFormatValue } from '../types';
+import { OverloadFormatValue, Delimiter } from '../types';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatUtils } from './useDataFormatUtils';
 import { useDataFormatIntls } from './useDataFormatIntls';
 
-export const useDataFormat = (): {
+export type UseDataFormatProps = {
   firstDayOfWeek: number;
   is12HoursClock: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formatValue: (value: any, options?: any) => string;
-} => {
+  formatValue: OverloadFormatValue;
+  thousandDelimiter: Delimiter;
+  decimalDelimiter: Delimiter;
+};
+
+export const useDataFormat = (): UseDataFormatProps => {
   const { numberFormatIntl, timeFormatIntl, dateFormatIntl } = useDataFormatIntls();
-  const { startWeekDayNotation, timeFormatNotation } = useDataFormatConfig();
+  const { startWeekDayNotation, timeFormatNotation, numberFormatNotation } = useDataFormatConfig();
   const {
     getFirstDayOfWeekFromNotation,
     getIs12HoursClockFromNotation,
@@ -23,6 +26,8 @@ export const useDataFormat = (): {
     getFormattedDateFromMoment,
     getFormattedDateFromDayjs,
     getFormattedValueUsingCommonOptions,
+    getThousandDelimiterFromNotation,
+    getDecimalDelimiterFromNotation,
   } = useDataFormatUtils();
 
   const firstDayOfWeek = useMemo(
@@ -70,5 +75,15 @@ export const useDataFormat = (): {
     ]
   );
 
-  return { firstDayOfWeek, is12HoursClock, formatValue };
+  const thousandDelimiter: Delimiter = useMemo(
+    () => getThousandDelimiterFromNotation(numberFormatNotation),
+    [numberFormatNotation, getThousandDelimiterFromNotation]
+  );
+
+  const decimalDelimiter: Delimiter = useMemo(
+    () => getDecimalDelimiterFromNotation(numberFormatNotation),
+    [numberFormatNotation, getDecimalDelimiterFromNotation]
+  );
+
+  return { firstDayOfWeek, is12HoursClock, formatValue, thousandDelimiter, decimalDelimiter };
 };

@@ -1,5 +1,5 @@
 import { FormatDateOptions } from 'react-intl';
-import { TargetFormat, NamingConvention } from '../types';
+import { TargetFormat, NamingConvention, Delimiter } from '../types';
 
 export const DEFAULT_FORMAT_DATE_OPTIONS: FormatDateOptions = {
   year: 'numeric',
@@ -40,3 +40,8 @@ export const UPPER_CASE: NamingConvention = 'upperCase';
 export const UPPER_FIRST: NamingConvention = 'upperFirst';
 export const LOWER_CASE: NamingConvention = 'lowerCase';
 export const LOWER_FIRST: NamingConvention = 'lowerFirst';
+
+export const US_THOUSAND_DELIMITER: Delimiter = ',';
+export const US_DECIMAL_DELIMITER: Delimiter = '.';
+export const EU_THOUSAND_DELIMITER: Delimiter = ' ';
+export const EU_DECIMAL_DELIMITER: Delimiter = ',';
