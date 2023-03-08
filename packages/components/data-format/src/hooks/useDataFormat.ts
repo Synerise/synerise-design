@@ -7,13 +7,15 @@ import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatUtils } from './useDataFormatUtils';
 import { useDataFormatIntls } from './useDataFormatIntls';
 
-export const useDataFormat = (): {
+export type UseDataFormatProps = {
   firstDayOfWeek: number;
   is12HoursClock: boolean;
   formatValue: OverloadFormatValue;
   thousandDelimiter: Delimiter;
   decimalDelimiter: Delimiter;
-} => {
+};
+
+export const useDataFormat = (): UseDataFormatProps => {
   const { numberFormatIntl, timeFormatIntl, dateFormatIntl } = useDataFormatIntls();
   const { startWeekDayNotation, timeFormatNotation, numberFormatNotation } = useDataFormatConfig();
   const {

@@ -10,6 +10,7 @@ export { useDataFormat } from './hooks';
 export { useDataFormatUtils } from './hooks';
 export { useDataFormatConfig } from './hooks';
 export { useDataFormatIntls } from './hooks';
+export type { UseDataFormatProps } from './hooks';
 
 export { withDataFormat } from './hocs/withDataFormat';
 export type { WithDataFormatProps } from './hocs/withDataFormat';

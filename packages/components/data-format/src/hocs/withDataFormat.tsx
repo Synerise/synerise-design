@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { useDataFormat } from '../hooks';
-import { OverloadFormatValue } from '../types';
+import { useDataFormat, UseDataFormatProps } from '../hooks';
 
-export type WithDataFormatProps = {
-  formatValue: OverloadFormatValue;
-};
+export type WithDataFormatProps = UseDataFormatProps;
 
 export const withDataFormat = <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
