@@ -49,10 +49,10 @@ export const FunctionComponent: FC = (): JSX.Element => {
 For class components:
 
 ```tsx harmony
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { withDateFormat, WithDataFormatProps } from '@synerise/ds-data-format';
 
-class ClassComponent extends PureComponent<WithDataFormatProps> {
+class ClassComponent extends Component<WithDataFormatProps> {
   constructor(props: WithDataFormatProps) {
     super(props);
   }
