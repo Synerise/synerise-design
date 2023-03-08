@@ -6322,11 +6322,6 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.47.2.tgz#9476545f2d0aeb8ac36b5fa49212021d6050bb3e"
   integrity sha1-lHZUXy0K64rDa1+kkhICHWBQuz4=
 
-"@synerise/ds-icon@^0.53.0":
-  version "0.53.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.53.0.tgz#084d82da33fa0a2bad115d4ed398c128409b372d"
-  integrity sha1-CE2C2jP6CiutEV1O05jBKECbNy0=
-
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
