@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.176.0](https://github.com/synerise/synerise-design/compare/portal@0.175.0...portal@0.176.0) (2023-03-08)
+
+
+### Features
+
+* **data-format:** using data format tools in ds components ([ee52cba](https://github.com/synerise/synerise-design/commit/ee52cbac5e798e048722aefb2e47a7058e0f4c9c))
+
+
+
+
+
 # [0.175.0](https://github.com/synerise/synerise-design/compare/portal@0.174.0...portal@0.175.0) (2023-03-06)
 
 
