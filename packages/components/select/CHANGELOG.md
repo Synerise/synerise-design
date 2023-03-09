@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.0...@synerise/ds-select@0.15.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **select:** fix custom scroll in select ([52b874c](https://github.com/synerise/synerise-design/commit/52b874c9f0c3717e60d8248b497d3fd25027320f))
+* **select:** fix custom scroll in select ([8472fcc](https://github.com/synerise/synerise-design/commit/8472fcc3676c4cc91e5ceeaa1b61aa149c1ad44b))
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.38...@synerise/ds-select@0.15.0) (2023-03-06)
 
 
