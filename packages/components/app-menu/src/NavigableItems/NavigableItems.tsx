@@ -19,20 +19,24 @@ const NavigableItems: React.FC<NavigableItemsProps> = ({ children, onHideMenu })
   const isNavigateTopVisible = currentIndex > 0;
   const isNavigateBottomVisible = currentIndex + itemsCapacity <= children.length;
   const [animationInProgress, setAnimationInProgress] = React.useState('');
+  const [lastHeight, setLastHeight] = React.useState(0);
 
   const countCapacity = React.useCallback(() => {
     if (ref.current) {
       const { height } = ref.current.getBoundingClientRect();
+      if (height > 0) {
+        setLastHeight(height);
+      }
       const itemsHeight = children.length * itemHeight;
       setIndex(0);
 
       if (itemsHeight > height) {
-        setItemsCapacity(Math.floor(height / itemHeight));
+        setItemsCapacity(Math.floor((height || lastHeight) / itemHeight));
       } else {
         setItemsCapacity(Infinity);
       }
     }
-  }, [children.length, ref]);
+  }, [children.length, ref, lastHeight, setLastHeight]);
 
   React.useEffect(() => {
     window.addEventListener('resize', countCapacity);
