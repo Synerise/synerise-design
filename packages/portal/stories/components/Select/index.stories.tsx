@@ -114,6 +114,7 @@ const stories = {
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
       defaultValue: text('defaultValue', 'Option A'),
       disabled: boolean('disabled', false),
+      dropdownClassName: text('dropdownClassName', ''),
       dropdownMatchSelectWidth: boolean('dropdownMatchSelectWidth', true),
       dropdownStyle: object('dropdownStyle', dropdownMenuStyles),
       dropdownMenuStyle: object('dropdownMenuStyle', dropdownStyles),
