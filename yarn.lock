@@ -6322,6 +6322,11 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.47.2.tgz#9476545f2d0aeb8ac36b5fa49212021d6050bb3e"
   integrity sha1-lHZUXy0K64rDa1+kkhICHWBQuz4=
 
+"@synerise/ds-icon@^0.53.0":
+  version "0.53.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.53.0.tgz#084d82da33fa0a2bad115d4ed398c128409b372d"
+  integrity sha1-CE2C2jP6CiutEV1O05jBKECbNy0=
+
 "@synerise/ds-input-number@^0.3.45":
   version "0.3.45"
   resolved "https://registry.yarnpkg.com/@synerise/ds-input-number/-/ds-input-number-0.3.45.tgz#c7fad23ae0d7b3c34ac53c9028190324bf99d065"
@@ -24404,6 +24409,11 @@ typescript@^3.2.1:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
   integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+
+typescript@^4.9.4:
+  version "4.9.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
+  integrity sha1-CVl5+bzA0J2jJNWNA86Pg3TL5lo=
 
 ua-parser-js@^0.7.18:
   version "0.7.21"
