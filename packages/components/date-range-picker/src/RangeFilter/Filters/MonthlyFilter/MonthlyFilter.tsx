@@ -236,6 +236,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           name: 'counted-from-select',
           maxLength: 120,
         }}
+        inputStyle={{
+          display: 'flex',
+        }}
         dataSource={dataSource}
         size="small"
       />
