@@ -15,7 +15,9 @@ export const ItemLabel = styled.span`
   line-height: 24px;
   max-width: 170px;
   user-select: none;
-
+  &.full-width {
+    max-width: unset;
+  }
   .search-highlight {
     font-weight: 500;
     color: ${(props): string => props.theme.palette['grey-800']};

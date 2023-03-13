@@ -296,6 +296,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   {this.renderCountedFromField(item, key)}
                 </S.DropdownHeader>
               ),
+              nameWrapperClassNames: ['full-width'],
               content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow
