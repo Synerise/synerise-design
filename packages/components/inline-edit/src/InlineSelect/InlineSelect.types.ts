@@ -11,6 +11,7 @@ export interface InlineSelectProps {
   input: Partial<InputProps>;
   style?: React.CSSProperties;
   dropdownOverlayStyle?: React.CSSProperties;
+  inputStyle?: React.CSSProperties;
   dropdownProps?: Partial<DropdownProps>;
   autoFocus?: boolean;
   error?: boolean;
