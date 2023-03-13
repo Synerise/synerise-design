@@ -195,6 +195,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           name: 'days-of-period',
           maxLength: 120,
         }}
+        inputStyle={{
+          display: 'flex',
+        }}
         dataSource={dataSource}
         size="small"
       />
