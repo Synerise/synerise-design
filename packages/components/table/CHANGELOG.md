@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.46.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.45.37...@synerise/ds-table@0.46.0) (2023-03-13)
+
+
+### Features
+
+* **table:** adds formatting for numbers in table title ([7c6bb72](https://github.com/synerise/synerise-design/commit/7c6bb7242de71ec4c1d1cfbc9c50f6df2eefacb9))
+
+
+
+
+
 ## [0.45.37](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.45.36...@synerise/ds-table@0.45.37) (2023-03-09)
 
 **Note:** Version bump only for package @synerise/ds-table
