@@ -4,11 +4,13 @@ import styled from 'styled-components';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text, select, optionsKnob } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
 import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
+import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
+import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter.types';
 import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
 import {
   DEFAULT_RANGE_END,
@@ -473,14 +475,25 @@ const stories = {
     const showTime = boolean('Set showTime', true);
     const hideFooter = boolean('hide footer', true);
     const [filters, setFilters] = React.useState(savedFilters);
-    const valueSelectionModes = ['Range'];
+    const valueSelectionModes:DateLimitMode = ['Range'];
+
+    const allowedFilterLabel = 'Filter types';
+    const optionsObj = {
+      display: 'inline-check',
+    };
+    const allowedFilterTypes: AvailableFilterTypes[] = optionsKnob(allowedFilterLabel, TYPES, Object.values(TYPES), optionsObj);
+
+    // RangeFilterTypes 
     return (
       <RangeFilter
         value={value} 
         hideFooter={hideFooter}
         onCancel={action('onCancel')}
-        savedFilters={filters}
+        onChange={action('onChange')}
+        onApply={action('onApply')}
         onFilterSave={action('onFilterSave')}
+        savedFilters={filters}
+        allowedFilterTypes={allowedFilterTypes}
         valueSelectionModes={valueSelectionModes}
         texts={{
           ...texts,
