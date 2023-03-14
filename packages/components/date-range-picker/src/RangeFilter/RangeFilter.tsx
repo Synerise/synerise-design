@@ -35,7 +35,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { state, props } = this;
     const { activeType } = state;
     if (props.allowedFilterTypes?.length && !props.allowedFilterTypes.includes(activeType)) {
-      this.handleTypeChange(props.allowedFilterTypes[0].toString());
+      this.handleTypeChange(props.allowedFilterTypes[0]);
     }
   };
 
@@ -103,8 +103,8 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const { intl, savedFilters, onFilterSave, texts, hideFooter, valueSelectionModes, allowedFilterTypes } = this.props;
 
     const buttonSource = allowedFilterTypes?.length ? allowedFilterTypes : Object.values(TYPES);
-    buttonSource.sort((a, b) => {
-      return Object.values(TYPES).indexOf(a.toString()) < Object.values(TYPES).indexOf(b.toString()) ? -1 : 1;
+    buttonSource.sort((a: string, b: string) => {
+      return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b) ? -1 : 1;
     });
     return (
       <S.Container>

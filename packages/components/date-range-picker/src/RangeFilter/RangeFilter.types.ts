@@ -19,7 +19,7 @@ export type RangeFilterProps = {
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
   texts?: Texts;
-  allowedFilterTypes?: AvailableFilterTypes[];
+  allowedFilterTypes?: string[];
   valueSelectionModes?: DateLimitMode[];
   rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
 };
@@ -83,5 +83,3 @@ export type MonthlyFilterDefinition = {
 };
 
 export type ValueSelectionModes = ['Range', 'Hour'];
-
-export type AvailableFilterTypes = ['DAILY', 'WEEKLY', 'MONTHLY'];
