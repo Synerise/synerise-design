@@ -40,8 +40,6 @@ export const normalizeRange = (range: DateRange): DateRange => {
 
     if (duration.type !== offset.type) {
       let unitMultiplier;
-      // http://docs.terrariumdb.puck.snrstage.com/user-guide/analytical-queries/date-filters/#relative-range
-      // The unit that is the base for the rounding is the smaller one among the offset and duration.
       if (multiplier[duration.type] < multiplier[offset.type]) {
         unitMultiplier = multiplier[offset.type] / multiplier[duration.type];
         durationUnit = duration.type;
@@ -55,8 +53,6 @@ export const normalizeRange = (range: DateRange): DateRange => {
         durationUnit = offset.type;
         durationValue = duration.value * unitMultiplier;
       }
-      console.log('was', offset.type, offset.value, duration.type, duration.value);
-      console.log('is', offsetUnit, offsetValue, durationUnit, durationValue, unitMultiplier);
     }
 
     if (offset?.type === 'SINCE') {
