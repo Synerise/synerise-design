@@ -14,6 +14,16 @@ import { Texts } from './DateRangePicker.types';
 
 export { START_OF, END_OF };
 
+const multiplier = {
+  SECONDS: 1,
+  MINUTES: 60,
+  HOURS: 60 * 60,
+  DAYS: 60 * 60 * 24,
+  WEEKS: 60 * 60 * 24 * 7,
+  MONTHS: 60 * 60 * 24 * 30,
+  YEARS: 60 * 60 * 24 * 365,
+};
+
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined };
@@ -23,21 +33,46 @@ export const normalizeRange = (range: DateRange): DateRange => {
     const now = new Date();
     let left;
     let right;
+    let offsetUnit = offset.type;
+    let offsetValue = offset.value;
+    let durationUnit = duration.type;
+    let durationValue = duration.value;
+
+    if (duration.type !== offset.type) {
+      let unitMultiplier;
+      // http://docs.terrariumdb.puck.snrstage.com/user-guide/analytical-queries/date-filters/#relative-range
+      // The unit that is the base for the rounding is the smaller one among the offset and duration.
+      if (multiplier[duration.type] < multiplier[offset.type]) {
+        unitMultiplier = multiplier[offset.type] / multiplier[duration.type];
+        durationUnit = duration.type;
+        durationValue = duration.value;
+        offsetUnit = duration.type;
+        offsetValue = offset.value * unitMultiplier;
+      } else {
+        unitMultiplier = multiplier[duration.type] / multiplier[offset.type];
+        offsetUnit = offset.type;
+        offsetValue = offset.value;
+        durationUnit = offset.type;
+        durationValue = duration.value * unitMultiplier;
+      }
+      console.log('was', offset.type, offset.value, duration.type, duration.value);
+      console.log('is', offsetUnit, offsetValue, durationUnit, durationValue, unitMultiplier);
+    }
 
     if (offset?.type === 'SINCE') {
       if (future) {
-        left = offset.value;
-        right = ADD[duration.type](offset.value, duration.value);
+        left = offsetValue;
+        right = ADD[durationUnit](offsetValue, durationValue);
       } else {
-        left = ADD[duration.type](offset.value, -duration.value);
-        right = offset.value;
+        left = ADD[durationUnit](offsetValue, -durationValue);
+        right = offsetValue;
       }
     } else if (future) {
-      left = ADD[offset.type](START_OF[offset.type](now), offset.value);
-      right = ADD[duration.type](END_OF[duration.type](left), duration.value - 1);
+      left = ADD[offsetUnit](START_OF[offsetUnit](now), offsetValue);
+      right = ADD[durationUnit](END_OF[durationUnit](left), durationValue - 1);
     } else {
-      right = ADD[offset.type](END_OF[offset.type](now), -offset.value);
-      left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
+      right = ADD[offsetUnit](END_OF[offsetUnit](now), -offsetValue);
+      left = ADD[durationUnit](START_OF[durationUnit](right), 1 - durationValue);
     }
 
     const from = fnsMin([left, right]);
