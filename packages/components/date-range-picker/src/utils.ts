@@ -14,16 +14,6 @@ import { Texts } from './DateRangePicker.types';
 
 export { START_OF, END_OF };
 
-const multiplier = {
-  SECONDS: 1,
-  MINUTES: 60,
-  HOURS: 60 * 60,
-  DAYS: 60 * 60 * 24,
-  WEEKS: 60 * 60 * 24 * 7,
-  MONTHS: 60 * 60 * 24 * 30,
-  YEARS: 60 * 60 * 24 * 365,
-};
-
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined };
@@ -33,43 +23,32 @@ export const normalizeRange = (range: DateRange): DateRange => {
     const now = new Date();
     let left;
     let right;
-    let offsetUnit = offset.type;
-    let offsetValue = offset.value;
-    let durationUnit = duration.type;
-    let durationValue = duration.value;
 
     if (offset?.type === 'SINCE') {
       if (future) {
-        left = offsetValue;
-        right = ADD[durationUnit](offsetValue, durationValue);
+        left = offset.value;
+        right = ADD[duration.type](offset.value, duration.value);
       } else {
-        left = ADD[durationUnit](offsetValue, -durationValue);
-        right = offsetValue;
+        left = ADD[duration.type](offset.value, -duration.value);
+        right = offset.value;
       }
     } else {
+      let rightBoundaryRoundingUnit = future ? duration.type : offset.type;
+
       if (duration.type !== offset.type) {
-        let unitMultiplier;
-        if (multiplier[duration.type] < multiplier[offset.type]) {
-          unitMultiplier = multiplier[offset.type] / multiplier[duration.type];
-          durationUnit = duration.type;
-          durationValue = duration.value;
-          offsetUnit = duration.type;
-          offsetValue = offset.value * unitMultiplier;
-        } else {
-          unitMultiplier = multiplier[duration.type] / multiplier[offset.type];
-          offsetUnit = offset.type;
-          offsetValue = offset.value;
-          durationUnit = offset.type;
-          durationValue = duration.value * unitMultiplier;
-        }
+        const unitGranularityOrder = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'WEEKS', 'MONTHS', 'YEARS'];
+        rightBoundaryRoundingUnit =
+          unitGranularityOrder.indexOf(duration.type) < unitGranularityOrder.indexOf(offset.type)
+            ? duration.type
+            : offset.type;
       }
 
       if (future) {
-        left = ADD[offsetUnit](START_OF[offsetUnit](now), offsetValue);
-        right = ADD[durationUnit](END_OF[durationUnit](left), durationValue - 1);
+        left = ADD[offset.type](START_OF[offset.type](now), offset.value);
+        right = ADD[duration.type](END_OF[duration.type](left), duration.value - 1);
       } else {
-        right = ADD[offsetUnit](END_OF[offsetUnit](now), -offsetValue);
-        left = ADD[durationUnit](START_OF[durationUnit](right), 1 - durationValue);
+        right = ADD[offset.type](END_OF[rightBoundaryRoundingUnit](now), -offset.value);
+        left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
       }
     }
 
