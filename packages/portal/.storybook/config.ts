@@ -33,7 +33,7 @@ const withDSProvider = storyFn => {
     code: 'en_GB',
     ...(optionalUserDefinedDataFormatConfig
       ? { dataFormatConfig: optionalUserDefinedDataFormatConfig }
-      : getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION)),
+      : { dataFormatConfig: getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION) }),
     ...(optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {}),
   } as DSProviderProps;
   return React.createElement(DSProvider, props, storyFn());

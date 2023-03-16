@@ -4,6 +4,8 @@ import { injectIntl } from 'react-intl';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
 import fnsFormat from '../dateUtils/format';
@@ -23,11 +25,24 @@ const Footer: React.FC<Props> = ({
   texts,
   value,
   format,
+  valueFormatOptions,
   showTime,
   displayDateContainerClass = 'ds-date-range-picker-value',
   ...rest
 }) => {
+  const { formatValue } = useDataFormat();
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+
+  const footerDateToString = React.useCallback(
+    (date: Date | string) => {
+      if (format || typeof date === 'string') {
+        return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
+      }
+      return formatValue(date, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+    },
+    [footerFormat, format, formatValue, intl.locale, valueFormatOptions, showTime]
+  );
+
   const ChosenRange = React.useMemo(() => {
     if (value?.key === CONST.ALL_TIME || (value && isLifetime(value))) {
       return (
@@ -38,14 +53,10 @@ const Footer: React.FC<Props> = ({
     }
     return (
       <S.ChosenRange className={displayDateContainerClass}>
-        {!!value && !!value.from
-          ? fnsFormat(getDateFromString(value?.from), footerFormat, intl.locale)
-          : texts.startDatePlaceholder}
+        {!!value && !!value.from ? footerDateToString(value?.from) : texts.startDatePlaceholder}
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to
-          ? fnsFormat(getDateFromString(value?.to), footerFormat, intl.locale)
-          : texts.endDatePlaceholder}
+        {!!value && !!value.to ? footerDateToString(value?.to) : texts.endDatePlaceholder}
       </S.ChosenRange>
     );
   }, [value, footerFormat, intl.locale, texts, displayDateContainerClass]);

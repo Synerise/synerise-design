@@ -1,5 +1,4 @@
 import { IntlShape } from 'react-intl';
-import { lowerCase, lowerFirst, upperCase, upperFirst } from 'lodash';
 
 import { CommonFormatOptions, DateToFormatOptions, Delimiter, NumberToFormatOptions } from '../types';
 import {
@@ -175,16 +174,16 @@ export const changeNamingConvention = (value: string, options?: CommonFormatOpti
   let result = value;
   switch (options?.namingConvention) {
     case UPPER_CASE:
-      result = upperCase(result);
+      result = result.toUpperCase();
       break;
     case UPPER_FIRST:
-      result = upperFirst(result);
+      result = result.charAt(0).toUpperCase() + result.slice(1);
       break;
     case LOWER_CASE:
-      result = lowerCase(result);
+      result = result.toLowerCase();
       break;
     case LOWER_FIRST:
-      result = lowerFirst(result);
+      result = result.charAt(0).toLowerCase() + result.slice(1);
       break;
     default:
       break;

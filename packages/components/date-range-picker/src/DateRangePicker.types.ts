@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
+
+import { DateToFormatOptions } from '@synerise/ds-data-format';
+
 import { DateFilter, DateRange, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
@@ -40,7 +43,11 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   readOnly?: boolean;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   format?: string;
+  valueFormatOptions?: DateToFormatOptions;
   forceAdjacentMonths?: boolean;
   forceAbsolute?: boolean;
   footerProps?: Partial<FooterProps>;

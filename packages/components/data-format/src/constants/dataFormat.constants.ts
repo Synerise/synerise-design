@@ -1,5 +1,5 @@
 import { FormatDateOptions } from 'react-intl';
-import { TargetFormat, NamingConvention, Delimiter } from '../types';
+import { TargetFormat, NamingConvention, Delimiter, DateConstantsTargetFormat } from '../types';
 
 export const DEFAULT_FORMAT_DATE_OPTIONS: FormatDateOptions = {
   year: 'numeric',
@@ -45,3 +45,14 @@ export const US_THOUSAND_DELIMITER: Delimiter = ',';
 export const US_DECIMAL_DELIMITER: Delimiter = '.';
 export const EU_THOUSAND_DELIMITER: Delimiter = ' ';
 export const EU_DECIMAL_DELIMITER: Delimiter = ',';
+
+export const DATE_CONSTANTS_TARGET_FORMATS = [
+  'months-long',
+  'months-short',
+  'weekdays-long',
+  'weekdays-short',
+] as const;
+export const MONTHS_LONG: DateConstantsTargetFormat = 'months-long';
+export const MONTHS_SHORT: DateConstantsTargetFormat = 'months-short';
+export const WEEKDAYS_LONG: DateConstantsTargetFormat = 'weekdays-long';
+export const WEEKDAYS_SHORT: DateConstantsTargetFormat = 'weekdays-short';

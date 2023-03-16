@@ -28,6 +28,11 @@ export {
   US_DECIMAL_DELIMITER,
   EU_THOUSAND_DELIMITER,
   EU_DECIMAL_DELIMITER,
+  DATE_CONSTANTS_TARGET_FORMATS,
+  MONTHS_LONG,
+  MONTHS_SHORT,
+  WEEKDAYS_LONG,
+  WEEKDAYS_SHORT,
 } from './dataFormat.constants';
 
 export { WEEKDAY, MONTH, LONG, SHORT } from './dateTimeParts.constants';

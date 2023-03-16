@@ -230,6 +230,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     const {
       showTime,
       format,
+      valueFormatOptions,
       disabledDate,
       validate,
       forceAdjacentMonths,
@@ -308,6 +309,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
           value={value}
           showTime={showTime}
           format={format}
+          valueFormatOptions={valueFormatOptions}
           {...footerProps}
         />
       </Container>

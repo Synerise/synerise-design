@@ -29,3 +29,5 @@ export {
   changeNamingConvention,
   getDefaultDataTimeOptions,
 } from './dataFormat.utils';
+
+export { getConstantDatesAndFormattingOptions } from './date.utils';
