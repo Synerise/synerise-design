@@ -29,6 +29,7 @@ class Select extends React.Component<Props> {
       className,
       getPopupContainer = defaultGetPopupContainer,
       grey,
+      dropdownClassName,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
@@ -63,6 +64,7 @@ class Select extends React.Component<Props> {
             }
             removeIcon={<Icon component={<CloseS />} />}
             className={classNames({ error: errorText || error })}
+            dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
           />
           {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
         </S.SelectWrapper>

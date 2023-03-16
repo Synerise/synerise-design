@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.176.1](https://github.com/synerise/synerise-design/compare/portal@0.176.0...portal@0.176.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **select:** resolve PR comments ([58cd450](https://github.com/synerise/synerise-design/commit/58cd450a7ffbe9e092c995bbe0da07d5a808eb0b))
+
+
+
+
+
 # [0.176.0](https://github.com/synerise/synerise-design/compare/portal@0.175.0...portal@0.176.0) (2023-03-08)
 
 
