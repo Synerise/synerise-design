@@ -38,23 +38,6 @@ export const normalizeRange = (range: DateRange): DateRange => {
     let durationUnit = duration.type;
     let durationValue = duration.value;
 
-    if (duration.type !== offset.type) {
-      let unitMultiplier;
-      if (multiplier[duration.type] < multiplier[offset.type]) {
-        unitMultiplier = multiplier[offset.type] / multiplier[duration.type];
-        durationUnit = duration.type;
-        durationValue = duration.value;
-        offsetUnit = duration.type;
-        offsetValue = offset.value * unitMultiplier;
-      } else {
-        unitMultiplier = multiplier[duration.type] / multiplier[offset.type];
-        offsetUnit = offset.type;
-        offsetValue = offset.value;
-        durationUnit = offset.type;
-        durationValue = duration.value * unitMultiplier;
-      }
-    }
-
     if (offset?.type === 'SINCE') {
       if (future) {
         left = offsetValue;
@@ -63,12 +46,31 @@ export const normalizeRange = (range: DateRange): DateRange => {
         left = ADD[durationUnit](offsetValue, -durationValue);
         right = offsetValue;
       }
-    } else if (future) {
-      left = ADD[offsetUnit](START_OF[offsetUnit](now), offsetValue);
-      right = ADD[durationUnit](END_OF[durationUnit](left), durationValue - 1);
     } else {
-      right = ADD[offsetUnit](END_OF[offsetUnit](now), -offsetValue);
-      left = ADD[durationUnit](START_OF[durationUnit](right), 1 - durationValue);
+      if (duration.type !== offset.type) {
+        let unitMultiplier;
+        if (multiplier[duration.type] < multiplier[offset.type]) {
+          unitMultiplier = multiplier[offset.type] / multiplier[duration.type];
+          durationUnit = duration.type;
+          durationValue = duration.value;
+          offsetUnit = duration.type;
+          offsetValue = offset.value * unitMultiplier;
+        } else {
+          unitMultiplier = multiplier[duration.type] / multiplier[offset.type];
+          offsetUnit = offset.type;
+          offsetValue = offset.value;
+          durationUnit = offset.type;
+          durationValue = duration.value * unitMultiplier;
+        }
+      }
+
+      if (future) {
+        left = ADD[offsetUnit](START_OF[offsetUnit](now), offsetValue);
+        right = ADD[durationUnit](END_OF[durationUnit](left), durationValue - 1);
+      } else {
+        right = ADD[offsetUnit](END_OF[offsetUnit](now), -offsetValue);
+        left = ADD[durationUnit](START_OF[durationUnit](right), 1 - durationValue);
+      }
     }
 
     const from = fnsMin([left, right]);
