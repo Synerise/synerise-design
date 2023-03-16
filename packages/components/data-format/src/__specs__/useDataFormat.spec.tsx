@@ -357,6 +357,7 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2K`);
     expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2M`);
     expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2B`);
+    expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0,0`);
     expect(
       result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
         minimumFractionDigits: 1,
@@ -392,6 +393,7 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2K`);
     expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2M`);
     expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2B`);
+    expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0.0`);
     expect(
       result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
         minimumFractionDigits: 1,
