@@ -33,6 +33,9 @@ export {
   MONTHS_SHORT,
   WEEKDAYS_LONG,
   WEEKDAYS_SHORT,
+  COMPACT_LARGER_NUMBER,
+  COMPACT_DECIMAL_LARGER_NUMBER,
+  LARGER_NUMBER_LIMIT,
 } from './dataFormat.constants';
 
 export { WEEKDAY, MONTH, LONG, SHORT } from './dateTimeParts.constants';

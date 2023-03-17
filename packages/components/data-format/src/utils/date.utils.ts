@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-import { DateConstantsTargetFormat, DateToFormatOptions, TargetFormat } from '../types';
+import { DateConstantsTargetFormat, DateToFormatOptions, DateTargetFormat } from '../types';
 import {
   MONTH_LONG,
   MONTH_SHORT,
@@ -32,7 +32,7 @@ export const getConstantDatesAndFormattingOptions = (
   const startDate = new Date(2023, 0, isSundayFirstWeekDay ? 1 : 2);
   const endDate = new Date(2023, 0, isSundayFirstWeekDay ? 1 : 2);
 
-  let defaultTargetFormat: TargetFormat = MONTH_LONG;
+  let defaultTargetFormat: DateTargetFormat = MONTH_LONG;
   let interval: dayjs.UnitType = 'month';
 
   switch (targetFormat) {

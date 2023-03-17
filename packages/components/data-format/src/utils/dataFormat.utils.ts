@@ -14,14 +14,17 @@ import {
   translateDateTimeParts,
 } from './dateTimeParts.utils';
 import {
+  COMPACT_DECIMAL_LARGER_NUMBER,
   DATE,
   DATETIME,
   DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
+  LARGER_NUMBER_LIMIT,
   LOWER_CASE,
   LOWER_FIRST,
   UPPER_CASE,
   UPPER_FIRST,
 } from '../constants';
+import { COMPACT_LARGER_NUMBER } from '../constants/dataFormat.constants';
 
 export const convertNumberString = (
   value: number,
@@ -31,11 +34,23 @@ export const convertNumberString = (
   decimalDelimiter: Delimiter,
   numberOptions?: NumberToFormatOptions
 ): string => {
-  if (numberOptions?.pluralOptions) {
-    return numberFormatIntl.formatPlural(value, numberOptions);
+  const updatedNumberOptions = numberOptions;
+
+  if (updatedNumberOptions?.pluralOptions) {
+    return numberFormatIntl.formatPlural(value, updatedNumberOptions);
   }
 
-  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, numberOptions);
+  if (updatedNumberOptions?.targetFormat === COMPACT_LARGER_NUMBER && value > LARGER_NUMBER_LIMIT) {
+    if (!updatedNumberOptions.notation) updatedNumberOptions.notation = 'compact';
+  }
+
+  if (updatedNumberOptions?.targetFormat === COMPACT_DECIMAL_LARGER_NUMBER && value > LARGER_NUMBER_LIMIT) {
+    if (!updatedNumberOptions.notation) updatedNumberOptions.notation = 'compact';
+    if (!updatedNumberOptions.minimumFractionDigits && updatedNumberOptions.minimumFractionDigits !== 0)
+      updatedNumberOptions.minimumFractionDigits = 1;
+  }
+
+  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, updatedNumberOptions);
   return numberPartsToString(numberParts, thousandDelimiter, decimalDelimiter);
 };
 

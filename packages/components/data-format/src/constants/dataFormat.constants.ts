@@ -1,5 +1,5 @@
 import { FormatDateOptions } from 'react-intl';
-import { TargetFormat, NamingConvention, Delimiter, DateConstantsTargetFormat } from '../types';
+import { DateTargetFormat, NamingConvention, Delimiter, DateConstantsTargetFormat, NumberTargetFormat } from '../types';
 
 export const DEFAULT_FORMAT_DATE_OPTIONS: FormatDateOptions = {
   year: 'numeric',
@@ -28,13 +28,18 @@ export const DEFAULT_FORMAT_MONTH_SHORT_OPTIONS: FormatDateOptions = {
   month: 'short',
 };
 
-export const DATE: TargetFormat = 'date';
-export const TIME: TargetFormat = 'time';
-export const DATETIME: TargetFormat = 'datetime';
-export const WEEKDAY_LONG: TargetFormat = 'weekday-long';
-export const WEEKDAY_SHORT: TargetFormat = 'weekday-short';
-export const MONTH_LONG: TargetFormat = 'month-long';
-export const MONTH_SHORT: TargetFormat = 'month-short';
+export const DATE: DateTargetFormat = 'date';
+export const TIME: DateTargetFormat = 'time';
+export const DATETIME: DateTargetFormat = 'datetime';
+export const WEEKDAY_LONG: DateTargetFormat = 'weekday-long';
+export const WEEKDAY_SHORT: DateTargetFormat = 'weekday-short';
+export const MONTH_LONG: DateTargetFormat = 'month-long';
+export const MONTH_SHORT: DateTargetFormat = 'month-short';
+
+export const COMPACT_LARGER_NUMBER: NumberTargetFormat = 'compact-larger-number';
+export const COMPACT_DECIMAL_LARGER_NUMBER: NumberTargetFormat = 'compact-decimal-larger-number';
+
+export const LARGER_NUMBER_LIMIT = 999;
 
 export const UPPER_CASE: NamingConvention = 'upperCase';
 export const UPPER_FIRST: NamingConvention = 'upperFirst';

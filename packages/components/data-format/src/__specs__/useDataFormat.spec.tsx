@@ -371,6 +371,16 @@ describe('useDataFormat', () => {
         notation: 'compact',
       })
     ).toBe(`13,0K`);
+
+    expect(result.current.formatValue(1, { targetFormat: 'compact-larger-number' })).toBe(`1`);
+    expect(result.current.formatValue(13, { targetFormat: 'compact-larger-number' })).toBe(`13`);
+    expect(result.current.formatValue(1300, { targetFormat: 'compact-larger-number' })).toBe(`1,3K`);
+    expect(result.current.formatValue(13000, { targetFormat: 'compact-larger-number' })).toBe(`13K`);
+
+    expect(result.current.formatValue(1, { targetFormat: 'compact-decimal-larger-number' })).toBe(`1`);
+    expect(result.current.formatValue(13, { targetFormat: 'compact-decimal-larger-number' })).toBe(`13`);
+    expect(result.current.formatValue(1300, { targetFormat: 'compact-decimal-larger-number' })).toBe(`1,3K`);
+    expect(result.current.formatValue(13000, { targetFormat: 'compact-decimal-larger-number' })).toBe(`13,0K`);
   });
 
   it('Should return correct compact values (number format base on US notation, abbreviation base on user language intl)', () => {

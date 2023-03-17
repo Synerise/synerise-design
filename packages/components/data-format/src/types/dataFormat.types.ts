@@ -3,7 +3,7 @@ import { Moment } from 'moment';
 import dayjs, { Dayjs } from 'dayjs';
 import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
 
-const TARGET_FORMATS = [
+const DATE_TARGET_FORMATS = [
   'date',
   'datetime',
   'time',
@@ -12,7 +12,10 @@ const TARGET_FORMATS = [
   'month-long',
   'month-short',
 ] as const;
-export type TargetFormat = typeof TARGET_FORMATS[number];
+export type DateTargetFormat = typeof DATE_TARGET_FORMATS[number];
+
+const NUMBER_TARGET_FORMATS = ['compact-larger-number', 'compact-decimal-larger-number'] as const;
+export type NumberTargetFormat = typeof NUMBER_TARGET_FORMATS[number];
 
 const NAMING_CONVENTIONS = ['upperCase', 'upperFirst', 'lowerCase', 'lowerFirst'] as const;
 export type NamingConvention = typeof NAMING_CONVENTIONS[number];
@@ -30,13 +33,14 @@ export type CommonFormatOptions = {
 export type NumberToFormatOptions = FormatNumberOptions &
   CommonFormatOptions & {
     pluralOptions?: FormatPluralOptions;
+    targetFormat?: NumberTargetFormat;
   };
 
 export type DateToFormatOptions = FormatDateOptions &
   CommonFormatOptions & {
     dateOptions?: FormatDateOptions;
     timeOptions?: FormatDateOptions;
-    targetFormat?: TargetFormat;
+    targetFormat?: DateTargetFormat;
   };
 
 export type OverloadFormatValue = {
