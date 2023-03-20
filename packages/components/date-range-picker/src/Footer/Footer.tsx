@@ -59,7 +59,8 @@ const Footer: React.FC<Props> = ({
         {!!value && !!value.to ? footerDateToString(value?.to) : texts.endDatePlaceholder}
       </S.ChosenRange>
     );
-  }, [value, footerFormat, intl.locale, texts, displayDateContainerClass]);
+  }, [value, texts, displayDateContainerClass, footerDateToString]);
+
   return (
     <S.Container className="ds-date-range-picker-footer" {...rest}>
       {ChosenRange}
