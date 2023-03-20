@@ -11,4 +11,4 @@ export {
   MAP_24_HOUR_TO_12,
 } from './constants/timePicker.constants';
 
-export type { ClockModes } from './types/TimePicker.types';
+export type { ClockModes, TimePickerProps } from './types/TimePicker.types';

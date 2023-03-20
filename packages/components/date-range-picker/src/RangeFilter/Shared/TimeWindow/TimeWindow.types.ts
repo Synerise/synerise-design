@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { WrappedComponentProps } from 'react-intl';
 
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
-import { WithDataFormatProps } from '@synerise/ds-data-format';
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+import type { WithDataFormatProps } from '@synerise/ds-data-format';
 
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
