@@ -1,5 +1,7 @@
 import { IntlShape } from 'react-intl';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+
 import { RangeActions } from '../../Shared/TimeWindow/TimeWindow.types';
 import { DenormalizedFilter, FilterDefinition, MonthlySelectValue, WithDisabledProp } from '../../RangeFilter.types';
 import { WithTranslations } from '../../../DateRangePicker.types';

@@ -19,6 +19,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
     forceAdjacentMonths,
     disableDefaultTexts,
     arrowColor,
+    valueFormatOptions,
     onVisibleChange,
     popoverProps = {},
     rangePickerInputProps = {},
@@ -69,6 +70,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
       value={selectedDate}
       showTime={showTime}
       texts={allTexts}
+      valueFormatOptions={valueFormatOptions}
       onChange={onApplyCallback}
       active={!!inputActive}
       {...rangePickerInputProps}

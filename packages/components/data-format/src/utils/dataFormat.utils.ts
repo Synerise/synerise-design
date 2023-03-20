@@ -1,5 +1,4 @@
 import { IntlShape } from 'react-intl';
-import { lowerCase, lowerFirst, upperCase, upperFirst } from 'lodash';
 
 import { CommonFormatOptions, DateToFormatOptions, Delimiter, NumberToFormatOptions } from '../types';
 import {
@@ -15,14 +14,17 @@ import {
   translateDateTimeParts,
 } from './dateTimeParts.utils';
 import {
+  COMPACT_DECIMAL_LARGER_NUMBER,
   DATE,
   DATETIME,
   DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
+  LARGER_NUMBER_LIMIT,
   LOWER_CASE,
   LOWER_FIRST,
   UPPER_CASE,
   UPPER_FIRST,
 } from '../constants';
+import { COMPACT_LARGER_NUMBER } from '../constants/dataFormat.constants';
 
 export const convertNumberString = (
   value: number,
@@ -32,11 +34,23 @@ export const convertNumberString = (
   decimalDelimiter: Delimiter,
   numberOptions?: NumberToFormatOptions
 ): string => {
-  if (numberOptions?.pluralOptions) {
-    return numberFormatIntl.formatPlural(value, numberOptions);
+  const updatedNumberOptions = numberOptions;
+
+  if (updatedNumberOptions?.pluralOptions) {
+    return numberFormatIntl.formatPlural(value, updatedNumberOptions);
   }
 
-  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, numberOptions);
+  if (updatedNumberOptions?.targetFormat === COMPACT_LARGER_NUMBER && value > LARGER_NUMBER_LIMIT) {
+    if (!updatedNumberOptions.notation) updatedNumberOptions.notation = 'compact';
+  }
+
+  if (updatedNumberOptions?.targetFormat === COMPACT_DECIMAL_LARGER_NUMBER && value > LARGER_NUMBER_LIMIT) {
+    if (!updatedNumberOptions.notation) updatedNumberOptions.notation = 'compact';
+    if (!updatedNumberOptions.minimumFractionDigits && updatedNumberOptions.minimumFractionDigits !== 0)
+      updatedNumberOptions.minimumFractionDigits = 1;
+  }
+
+  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, updatedNumberOptions);
   return numberPartsToString(numberParts, thousandDelimiter, decimalDelimiter);
 };
 
@@ -175,16 +189,16 @@ export const changeNamingConvention = (value: string, options?: CommonFormatOpti
   let result = value;
   switch (options?.namingConvention) {
     case UPPER_CASE:
-      result = upperCase(result);
+      result = result.toUpperCase();
       break;
     case UPPER_FIRST:
-      result = upperFirst(result);
+      result = result.charAt(0).toUpperCase() + result.slice(1);
       break;
     case LOWER_CASE:
-      result = lowerCase(result);
+      result = result.toLowerCase();
       break;
     case LOWER_FIRST:
-      result = lowerFirst(result);
+      result = result.charAt(0).toLowerCase() + result.slice(1);
       break;
     default:
       break;

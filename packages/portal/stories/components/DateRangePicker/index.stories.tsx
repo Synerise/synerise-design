@@ -8,7 +8,7 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+import { TimePickerProps } from '@synerise/ds-time-picker';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,

@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
 import { WrappedComponentProps } from 'react-intl';
+
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+import type { WithDataFormatProps } from '@synerise/ds-data-format';
+
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
@@ -61,6 +64,7 @@ export type TimeWindowProps = {
   renderRangeFormSuffix?: () => React.ReactNode;
   timePickerProps?: Partial<TimePickerProps>;
 } & Partial<RangeActions> &
+  WithDataFormatProps &
   WithDisabledProp &
   WrappedComponentProps;
 
