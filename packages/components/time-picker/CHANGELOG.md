@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.58...@synerise/ds-time-picker@0.7.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* **data-format:** import types fix ([c3d20f2](https://github.com/Synerise/synerise-design/commit/c3d20f2bff43ce4605224c96b824a6f91662d961))
+
+
+### Features
+
+* **data-format:** data format tools in pickers plus new tools ([c4adbfe](https://github.com/Synerise/synerise-design/commit/c4adbfe563af93f9daffc7e0b327098432c5e31e))
+
+
+
+
+
 ## [0.6.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.6.57...@synerise/ds-time-picker@0.6.58) (2023-03-08)
 
 **Note:** Version bump only for package @synerise/ds-time-picker
