@@ -32,10 +32,11 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   }
 
   componentDidUpdate = (): void => {
-    const { state, props } = this;
+    const { state } = this;
+    const { allowedFilterTypes } = this.props;
     const { activeType } = state;
-    if (props.allowedFilterTypes?.length && !props.allowedFilterTypes.includes(activeType)) {
-      this.handleTypeChange(props.allowedFilterTypes[0]);
+    if (allowedFilterTypes?.length && !allowedFilterTypes.includes(activeType)) {
+      this.handleTypeChange(allowedFilterTypes[0]);
     }
   };
 
@@ -131,7 +132,10 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                   type={activeType === key ? 'primary' : undefined}
                   onClick={(): void => this.handleTypeChange(key)}
                 >
-                  {intl.formatMessage({ id: TYPES_DATA[key].labelTranslationKey })}
+                  {intl.formatMessage({
+                    id: TYPES_DATA[key].labelTranslationKey,
+                    defaultMessage: TYPES_DATA[key].defaultLabel,
+                  })}
                 </Button>
               ))}
             </ButtonGroup>
