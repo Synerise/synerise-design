@@ -32,6 +32,9 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   placeholder?: string;
   placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
   raw?: boolean;
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   timeFormat?: string;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   units?: dayjs.UnitType[];
