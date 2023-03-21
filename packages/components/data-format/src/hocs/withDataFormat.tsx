@@ -4,13 +4,11 @@ import { useDataFormat, UseDataFormatProps } from '../hooks';
 
 export type WithDataFormatProps = UseDataFormatProps;
 
-export const withDataFormat = <Props extends WithDataFormatProps = WithDataFormatProps>(
+export const withDataFormat = <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
-): React.ComponentType<Props & WithDataFormatProps> => {
-  const HocComponent: React.FC<Props> = (props: Omit<Props, keyof WithDataFormatProps>) => {
-    const dataFormatProps = useDataFormat();
-    return <WrappedComponent {...dataFormatProps} {...(props as Props)} />;
+): React.ComponentType<Props> => {
+  return (props: Props): JSX.Element => {
+    const { formatValue } = useDataFormat();
+    return <WrappedComponent {...props} formatValue={formatValue} />;
   };
-
-  return HocComponent;
 };
