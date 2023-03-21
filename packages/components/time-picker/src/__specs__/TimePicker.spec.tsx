@@ -134,10 +134,29 @@ describe('TimePicker', () => {
     expect(input.value).toBe('10:24:52');
   });
 
+  it('should render with valueFormatOptions', async () => {
+    Element.prototype.scrollTo = jest.fn();
+    // ARRANGE
+    const { getByPlaceholderText } = renderWithProvider(
+      <TimePicker
+        placeholder="Select time"
+        alwaysOpen
+        valueFormatOptions={{ minute: undefined, second: undefined }}
+        value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()}
+      />,
+      {},
+      { notation: 'US' }
+    );
+    const input = getByPlaceholderText('10:24:52 AM') as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toBe('10 AM');
+  });
+
   it('should render correct value for 12 hour clock', async () => {
     const getTimerPickerInputValue = (timeString: string, index) => {
       const date = dayjs(`12-04-2020 ${timeString}`, 'DD-MM-YYYY HH:mm:ss').toDate();
-      const { getAllByTestId } = renderWithProvider(<TimePicker value={date} use12HourClock={true} />);
+      const { getAllByTestId } = renderWithProvider(<TimePicker value={date} />, {}, { notation: 'US' });
       const input = getAllByTestId(INPUT_TESTID)[index] as HTMLInputElement;
       return input.value;
     };
