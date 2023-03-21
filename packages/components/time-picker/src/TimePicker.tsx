@@ -70,7 +70,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         return dayjs(date).format(timeFormatByClockMode);
       }
 
-      return formatValue(date, { targetFormat: 'time', ...valueFormatOptions, minute: undefined });
+      return formatValue(date, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [timeFormat, timeFormatByClockMode, formatValue]
