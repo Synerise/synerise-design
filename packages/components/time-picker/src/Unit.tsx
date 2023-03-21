@@ -12,7 +12,7 @@ export type UnitConfig = {
   options: number[];
   disabled?: number[];
   insertSeperator?: boolean;
-  use12HourClock?: boolean;
+  use12HourClock?: boolean | undefined;
 };
 
 export type UnitProps = UnitConfig & {

@@ -7,6 +7,7 @@ import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import { useDataFormat } from '@synerise/ds-data-format';
 
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
@@ -28,6 +29,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onChange,
   containerStyle = {},
   timeFormat,
+  valueFormatOptions,
   use12HourClock,
   alwaysOpen,
   dropdownProps = {},
@@ -43,6 +45,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onClockModeChange,
   intl,
 }) => {
+  const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
 
   const [clockMode, setClockMode] = React.useState<string>(() => {
@@ -51,23 +54,32 @@ const TimePicker: React.FC<TimePickerProps> = ({
     return initialHour >= HOUR_12 ? PM : AM;
   });
 
+  const is12HourClock: boolean = React.useMemo(() => {
+    if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
+    return use12HourClock;
+  }, [is12HoursClockFromDataFormat, use12HourClock]);
+
   const timeFormatByClockMode = React.useMemo(
-    () => timeFormat ?? (use12HourClock ? 'hh:mm:ss A' : 'HH:mm:ss'),
-    [timeFormat, use12HourClock]
+    () => timeFormat ?? (is12HourClock ? 'hh:mm:ss A' : 'HH:mm:ss'),
+    [timeFormat, is12HourClock]
   );
 
   const getTimeString = React.useCallback(
     (date: Date): string => {
-      return dayjs(date).format(timeFormatByClockMode);
+      if (timeFormat) {
+        return dayjs(date).format(timeFormatByClockMode);
+      }
+
+      return formatValue(date, { targetFormat: 'time', ...valueFormatOptions, minute: undefined });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [timeFormat, timeFormatByClockMode]
+    [timeFormat, timeFormatByClockMode, formatValue]
   );
 
   const unitConfig: UnitConfig[] = [
     {
       unit: HOUR,
-      options: use12HourClock ? range(1, 13) : range(24),
+      options: is12HourClock ? range(1, 13) : range(24),
       disabled: disabledHours,
       insertSeperator: true,
     },
@@ -81,7 +93,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       unit: SECOND,
       options: range(60),
       disabled: disabledSeconds,
-      insertSeperator: !!use12HourClock,
+      insertSeperator: is12HourClock,
     },
   ];
 
@@ -100,7 +112,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     newValue: number | undefined,
     clockModeChanged = false
   ): void => {
-    const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, use12HourClock, clockMode, unitConfig);
+    const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, is12HourClock, clockMode, unitConfig);
     onChange && onChange(newDate, getTimeString(newDate));
   };
 
@@ -127,6 +139,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
+
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
@@ -136,12 +149,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
             {...u}
             value={value}
             onSelect={(newValue): void => handleChange(u.unit, newValue)}
-            use12HourClock={use12HourClock}
+            use12HourClock={is12HourClock}
           />
-          {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
+          {(index !== unitsToRender.length - 1 || is12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
-      {use12HourClock && renderClockSwitch()}
+      {is12HourClock && renderClockSwitch()}
     </S.OverlayContainer>
   );
 
