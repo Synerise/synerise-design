@@ -239,6 +239,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       intl,
       containerClass = 'ds-date-range-picker',
       footerProps,
+      allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
     } = this.props;
     const { value, mode } = this.state;
@@ -257,6 +258,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
             savedFilters={savedFilters}
+            allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
           />
         </Container>
