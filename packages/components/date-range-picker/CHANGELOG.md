@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.1...@synerise/ds-date-range-picker@0.20.2) (2023-03-22)
+
+
+### Bug Fixes
+
+* **date-range-picker:** display date range for relative ranges fixed ([fedcf35](https://github.com/Synerise/synerise-design/commit/fedcf356e86e5ccb4c82cd4c8bb4b85fc845de5d))
+* **date-range-picker:** exclude date ranges with offset.type 'since' ([a73e689](https://github.com/Synerise/synerise-design/commit/a73e689be1259b4537cb882f544773be38c9a7a6))
+* **date-range-picker:** round relative boundary to smaller unit ([2c47a26](https://github.com/Synerise/synerise-design/commit/2c47a26d528ba6f1845c13840fa3b997f8d5fda3))
+
+
+
+
+
 ## [0.20.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.0...@synerise/ds-date-range-picker@0.20.1) (2023-03-21)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
