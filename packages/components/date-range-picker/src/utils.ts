@@ -58,8 +58,8 @@ export const normalizeRange = (range: DateRange): DateRange => {
     return normalizedRange as DateRange;
   }
   const keys = Object.keys(range);
-  const from = range.from ? legacyParse(range.from) : undefined;
-  const to = range.to ? legacyParse(range.to) : undefined;
+  const from = range.from ? START_OF.SECONDS(legacyParse(range.from)) : undefined;
+  const to = range.to ? START_OF.SECONDS(legacyParse(range.to)) : undefined;
   const dropNonAbsolute = (dateRange: DateRange): DateRange =>
     omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
   const absoluteRange = { ...dropNonAbsolute(range), from, to };
