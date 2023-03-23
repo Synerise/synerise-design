@@ -19,7 +19,7 @@ const EU_NOTATION: DataFormatNotationType = 'EU';
 const EU_FORMATTED_DATE = '25.06.2023';
 const EU_FORMATTED_TIME = '15:40';
 
-describe('FormattedTime', () => {
+describe('FormattedDateTime', () => {
   it('should render properly datetime with default notation', () => {
     // ARRANGE
     const { getByText } = renderWithProvider(<FormattedDateTime value={DATE_TO_FORMAT} />);

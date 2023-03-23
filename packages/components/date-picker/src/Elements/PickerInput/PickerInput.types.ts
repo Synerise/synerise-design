@@ -1,9 +1,15 @@
 import * as React from 'react';
 
+import { DateToFormatOptions } from '@synerise/ds-data-format';
+
 export type Props = {
   autoFocus?: boolean;
   size?: 'large' | 'default' | 'small';
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   format?: string;
+  valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   allowClear?: boolean;
   value?: Date | string;

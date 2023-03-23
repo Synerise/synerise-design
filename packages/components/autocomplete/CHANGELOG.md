@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.36...@synerise/ds-autocomplete@0.4.37) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.35...@synerise/ds-autocomplete@0.4.36) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.34...@synerise/ds-autocomplete@0.4.35) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
 ## [0.4.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.33...@synerise/ds-autocomplete@0.4.34) (2023-02-28)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

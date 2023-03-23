@@ -27,4 +27,7 @@ export {
   addPrefix,
   addSuffix,
   changeNamingConvention,
+  getDefaultDataTimeOptions,
 } from './dataFormat.utils';
+
+export { getConstantDatesAndFormattingOptions } from './date.utils';

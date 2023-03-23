@@ -1,4 +1,5 @@
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+
 import { DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 export type FilterBaseProps = {

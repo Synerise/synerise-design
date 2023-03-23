@@ -1,17 +1,21 @@
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
-import RawDatePicker from '../RawDatePicker/RawDatePicker';
-import DatePicker from '../DatePicker';
 import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { US_NOTATION } from '@synerise/ds-data-format';
+
+import RawDatePicker from '../RawDatePicker/RawDatePicker';
+import DatePicker from '../DatePicker';
 
 const ROWS = 6;
 const WEEKDAYS = 7;
 const NAVBAR_ITEM_SELECTOR = '.ds-date-picker-nav  > div > button';
+
 describe('RawDatePicker', () => {
-  beforeEach(()=>{
+  beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
-  })
+  });
   it('should render', () => {
     const element = renderWithProvider(
       <RawDatePicker
@@ -114,7 +118,7 @@ describe('RawDatePicker', () => {
         disabledSeconds={[]}
       />
     );
-    const dayOne = await container.querySelector('[data-attr="1"]') as HTMLElement;
+    const dayOne = (await container.querySelector('[data-attr="1"]')) as HTMLElement;
     await dayOne.click();
     expect(await getByTestId('tp-overlay-container')).toBeTruthy();
   });
@@ -221,5 +225,68 @@ describe('RawDatePicker', () => {
     // ASSERT
     expect(getAllByText(PREFIX)[0]).toBeTruthy();
     expect(getAllByText(SUFFIX)[0]).toBeTruthy();
+  });
+  it('should render with default formatValueOptions', () => {
+    // ARRANGE
+    const { getAllByText } = renderWithProvider(
+      <DatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />
+    );
+
+    // ASSERT
+    expect(screen.getByDisplayValue('27 Oct 1996, 03:24')).toBeInTheDocument();
+  });
+  it('should render with custom formatValueOptions', () => {
+    // ARRANGE
+    const { getAllByText } = renderWithProvider(
+      <DatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        valueFormatOptions={{
+          dateOptions: { month: 'numeric' },
+        }}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />
+    );
+    // ASSERT
+    expect(screen.getByDisplayValue('27.10.1996, 03:24')).toBeInTheDocument();
+  });
+  it('should render correct with US notation', () => {
+    // ARRANGE
+    const { getAllByText } = renderWithProvider(
+      <DatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        valueFormatOptions={{
+          dateOptions: { month: 'numeric' },
+        }}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />,
+      {},
+      { notation: US_NOTATION }
+    );
+    // ASSERT
+    expect(screen.getByDisplayValue('10/27/1996, 3:24 AM')).toBeInTheDocument();
   });
 });

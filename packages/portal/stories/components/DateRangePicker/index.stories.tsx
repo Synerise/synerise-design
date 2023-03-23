@@ -11,7 +11,7 @@ import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/
 import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
 import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
 import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter.types';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+import { TimePickerProps } from '@synerise/ds-time-picker';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,

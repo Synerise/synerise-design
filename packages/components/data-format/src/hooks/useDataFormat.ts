@@ -2,19 +2,27 @@ import { useCallback, useMemo } from 'react';
 import { isDayjs } from 'dayjs';
 import { isMoment } from 'moment';
 
-import { OverloadFormatValue } from '../types';
+import { OverloadFormatValue, Delimiter, OverloadFormatMultipleValues, OverloadGetConstants } from '../types';
+import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
 import { useDataFormatConfig } from './useDataFormatConfig';
 import { useDataFormatUtils } from './useDataFormatUtils';
 import { useDataFormatIntls } from './useDataFormatIntls';
+import { getConstantDatesAndFormattingOptions } from '../utils';
 
-export const useDataFormat = (): {
+export type UseDataFormatProps = {
   firstDayOfWeek: number;
+  isSundayFirstWeekDay: boolean;
   is12HoursClock: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formatValue: (value: any, options?: any) => string;
-} => {
+  formatValue: OverloadFormatValue;
+  formatMultipleValues: OverloadFormatMultipleValues;
+  getConstants: OverloadGetConstants;
+  thousandDelimiter: Delimiter;
+  decimalDelimiter: Delimiter;
+};
+
+export const useDataFormat = (): UseDataFormatProps => {
   const { numberFormatIntl, timeFormatIntl, dateFormatIntl } = useDataFormatIntls();
-  const { startWeekDayNotation, timeFormatNotation } = useDataFormatConfig();
+  const { startWeekDayNotation, timeFormatNotation, numberFormatNotation } = useDataFormatConfig();
   const {
     getFirstDayOfWeekFromNotation,
     getIs12HoursClockFromNotation,
@@ -23,12 +31,16 @@ export const useDataFormat = (): {
     getFormattedDateFromMoment,
     getFormattedDateFromDayjs,
     getFormattedValueUsingCommonOptions,
+    getThousandDelimiterFromNotation,
+    getDecimalDelimiterFromNotation,
   } = useDataFormatUtils();
 
   const firstDayOfWeek = useMemo(
     () => getFirstDayOfWeekFromNotation(startWeekDayNotation),
     [startWeekDayNotation, getFirstDayOfWeekFromNotation]
   );
+
+  const isSundayFirstWeekDay = useMemo(() => firstDayOfWeek === 0, [firstDayOfWeek]);
 
   const is12HoursClock = useMemo(
     () => getIs12HoursClockFromNotation(timeFormatNotation),
@@ -56,6 +68,10 @@ export const useDataFormat = (): {
         result = getFormattedNumber(value, numberFormatIntl, options);
       }
 
+      if (typeof value === 'string') {
+        result = value;
+      }
+
       return getFormattedValueUsingCommonOptions(result, options);
     },
     [
@@ -70,5 +86,52 @@ export const useDataFormat = (): {
     ]
   );
 
-  return { firstDayOfWeek, is12HoursClock, formatValue };
+  const formatMultipleValues = useCallback<OverloadFormatMultipleValues>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (values: any[], options?: any) => {
+      return values.map(value => formatValue(value, options));
+    },
+    [formatValue]
+  );
+
+  const getConstants = useCallback<OverloadGetConstants>(
+    (targetFormat, options, customStartDate, customEndDate, interval) => {
+      if (DATE_CONSTANTS_TARGET_FORMATS.includes(targetFormat)) {
+        const { constantDates, defaultOptions } = getConstantDatesAndFormattingOptions(
+          targetFormat,
+          isSundayFirstWeekDay,
+          customStartDate,
+          customEndDate,
+          interval
+        );
+        return formatMultipleValues(constantDates, {
+          ...defaultOptions,
+          ...options,
+        });
+      }
+      return undefined;
+    },
+    [formatMultipleValues, isSundayFirstWeekDay]
+  );
+
+  const thousandDelimiter: Delimiter = useMemo(
+    () => getThousandDelimiterFromNotation(numberFormatNotation),
+    [numberFormatNotation, getThousandDelimiterFromNotation]
+  );
+
+  const decimalDelimiter: Delimiter = useMemo(
+    () => getDecimalDelimiterFromNotation(numberFormatNotation),
+    [numberFormatNotation, getDecimalDelimiterFromNotation]
+  );
+
+  return {
+    firstDayOfWeek,
+    isSundayFirstWeekDay,
+    is12HoursClock,
+    formatValue,
+    formatMultipleValues,
+    getConstants,
+    thousandDelimiter,
+    decimalDelimiter,
+  };
 };

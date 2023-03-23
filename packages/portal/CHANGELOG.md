@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.177.1](https://github.com/synerise/synerise-design/compare/portal@0.177.0...portal@0.177.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* **data-format:** data format usage fixes ([fef43fc](https://github.com/synerise/synerise-design/commit/fef43fce8a04a28caddbb7b4dbd68126013ee58d))
+
+
+
+
+
+# [0.177.0](https://github.com/synerise/synerise-design/compare/portal@0.176.1...portal@0.177.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* **data-format:** import types fix ([c3d20f2](https://github.com/synerise/synerise-design/commit/c3d20f2bff43ce4605224c96b824a6f91662d961))
+
+
+### Features
+
+* **data-format:** data format tools in pickers plus new tools ([c4adbfe](https://github.com/synerise/synerise-design/commit/c4adbfe563af93f9daffc7e0b327098432c5e31e))
+
+
+
+
+
+## [0.176.1](https://github.com/synerise/synerise-design/compare/portal@0.176.0...portal@0.176.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **select:** resolve PR comments ([58cd450](https://github.com/synerise/synerise-design/commit/58cd450a7ffbe9e092c995bbe0da07d5a808eb0b))
+
+
+
+
+
+# [0.176.0](https://github.com/synerise/synerise-design/compare/portal@0.175.0...portal@0.176.0) (2023-03-08)
+
+
+### Features
+
+* **data-format:** using data format tools in ds components ([ee52cba](https://github.com/synerise/synerise-design/commit/ee52cbac5e798e048722aefb2e47a7058e0f4c9c))
+
+
+
+
+
 # [0.175.0](https://github.com/synerise/synerise-design/compare/portal@0.174.0...portal@0.175.0) (2023-03-06)
 
 

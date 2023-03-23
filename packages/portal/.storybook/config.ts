@@ -8,7 +8,7 @@ import centered from '@storybook/addon-centered/react';
 import { DSProvider } from '@synerise/ds-core';
 import type { DSProviderProps } from '@synerise/ds-core';
 import '@synerise/ds-core/dist/js/style';
-import { getDataFormatConfigFromNotation } from '@synerise/ds-data-format';
+import { DEFAULT_DATA_FORMAT_NOTATION, getDataFormatConfigFromNotation } from '@synerise/ds-data-format';
 
 import '../../../config/wdyr/wdyr';
 import './style/index.css';
@@ -22,9 +22,18 @@ const withDSProvider = storyFn => {
    * window.localeStorage.setItem('lang', 'en')
    */
   const optionalUserDefinedLocale = localStorage.getItem('lang');
+
+  /**
+   * allows overwriting the default dataFormatConfig in storybook with localeStorage entry
+   * window.localeStorage.setItem("dataFormatConfig", {"startWeekDayNotation":"US","dateFormatNotation":"US","timeFormatNotation":"US","numberFormatNotation":"US"})
+   */
+  const optionalUserDefinedDataFormatConfig = JSON.parse(localStorage.getItem('dataFormatConfig'));
+
   const props = {
     code: 'en_GB',
-    ...{ dataFormatConfig: getDataFormatConfigFromNotation('EU') },
+    ...(optionalUserDefinedDataFormatConfig
+      ? { dataFormatConfig: optionalUserDefinedDataFormatConfig }
+      : { dataFormatConfig: getDataFormatConfigFromNotation(DEFAULT_DATA_FORMAT_NOTATION) }),
     ...(optionalUserDefinedLocale ? { locale: optionalUserDefinedLocale } : {}),
   } as DSProviderProps;
   return React.createElement(DSProvider, props, storyFn());

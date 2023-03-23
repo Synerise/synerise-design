@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
 import dayjs from 'dayjs';
+
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+
 import TimePicker from '../index';
+import { TEST_CASES_FOR_12_HOUR_CLOCK } from './constants/testCasesFor12HourClock.constants';
 
 describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
@@ -129,6 +132,39 @@ describe('TimePicker', () => {
 
     // ASSERT
     expect(input.value).toBe('10:24:52');
+  });
+
+  it('should render with valueFormatOptions', async () => {
+    Element.prototype.scrollTo = jest.fn();
+    // ARRANGE
+    const { getByPlaceholderText } = renderWithProvider(
+      <TimePicker
+        placeholder="Select time"
+        alwaysOpen
+        valueFormatOptions={{ minute: undefined, second: undefined }}
+        value={dayjs('12-04-2020 10:24:52', 'DD-MM-YYYY HH:mm:ss').toDate()}
+      />,
+      {},
+      { notation: 'US' }
+    );
+    const input = getByPlaceholderText('10:24:52 AM') as HTMLInputElement;
+
+    // ASSERT
+    expect(input.value).toBe('10 AM');
+  });
+
+  it('should render correct value for 12 hour clock', async () => {
+    const getTimerPickerInputValue = (timeString: string, index) => {
+      const date = dayjs(`12-04-2020 ${timeString}`, 'DD-MM-YYYY HH:mm:ss').toDate();
+      const { getAllByTestId } = renderWithProvider(<TimePicker value={date} />, {}, { notation: 'US' });
+      const input = getAllByTestId(INPUT_TESTID)[index] as HTMLInputElement;
+      return input.value;
+    };
+
+    // ASSERT
+    for (const [index, [key, value]] of Object.entries(Object.entries(TEST_CASES_FOR_12_HOUR_CLOCK))) {
+      expect(getTimerPickerInputValue(key, index)).toBe(value);
+    }
   });
 
   it.todo('should read hour minute seconds from initial date value');

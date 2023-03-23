@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.42...@synerise/ds-subject@0.9.43) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.41...@synerise/ds-subject@0.9.42) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
+## [0.9.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.40...@synerise/ds-subject@0.9.41) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-subject
+
+
+
+
+
 ## [0.9.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subject@0.9.39...@synerise/ds-subject@0.9.40) (2023-03-06)
 
 **Note:** Version bump only for package @synerise/ds-subject

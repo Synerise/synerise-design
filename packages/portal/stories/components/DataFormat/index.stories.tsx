@@ -5,10 +5,10 @@ import { object, number, text } from '@storybook/addon-knobs';
 
 const stories = {
   FormattedNumber: () => (
-    <FormattedNumber value={number('value', 1234567.89)} options={object('NumberToFormatOptions', {})} />
+    <FormattedNumber value={number('value', 1234567.89)} options={object('valueFormatOptions', {})} />
   ),
   FormattedDate: () => (
-    <FormattedDate value={new Date(text('date', '2023-06-25T15:40:00'))} options={object('ValueToFormatOptions', {})} />
+    <FormattedDate value={new Date(text('date', '2023-06-25T15:40:00'))} options={object('valueFormatOptions', {})} />
   ),
   FormattedDateTime: () => (
     <FormattedDateTime
@@ -17,7 +17,7 @@ const stories = {
     />
   ),
   FormattedTime: () => (
-    <FormattedTime value={new Date(text('date', '2023-06-25T15:40:00'))} options={object('ValueToFormatOptions', {})} />
+    <FormattedTime value={new Date(text('date', '2023-06-25T15:40:00'))} options={object('valueFormatOptions', {})} />
   ),
 };
 

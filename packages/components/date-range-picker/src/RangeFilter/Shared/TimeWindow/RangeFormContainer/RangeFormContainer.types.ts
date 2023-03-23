@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+
 import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
 import { FilterDefinition, WithDisabledProp } from '../../../RangeFilter.types';
 import { DateLimitMode } from './RangeForm/RangeForm.types';

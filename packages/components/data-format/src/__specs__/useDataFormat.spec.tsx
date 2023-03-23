@@ -18,6 +18,7 @@ const US_NOTATION: DataFormatNotationType = 'US';
 const US_FIRST_DAY_OF_WEEK = 0;
 const US_FORMATTED_DATE = '6/25/2023';
 const US_FORMATTED_LONG_DATE = 'June 25, 2023';
+const US_FORMATTED_SHORT_DATE = 'Jun 25, 2023';
 const US_FORMATTED_TIME = '3:40 PM';
 const US_FORMATTED_TIME_WITH_SECONDS = '3:40:00 PM';
 const US_FORMATTED_INT_NUMBER = '1,234,567';
@@ -54,6 +55,9 @@ describe('useDataFormat', () => {
     // firstDayOfWeek returns 0 for Sunday or 1 for Monday
     expect(result.current.firstDayOfWeek).toBe(US_FIRST_DAY_OF_WEEK);
 
+    // isSundayFirstWeekDay returns true for Sunday or false for Monday
+    expect(result.current.isSundayFirstWeekDay).toBe(true);
+
     // new Date('2023-06-25T15:40:00') > 6/25/2023
     expect(result.current.formatValue(DATE_TO_FORMAT)).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
@@ -74,6 +78,15 @@ describe('useDataFormat', () => {
         timeOptions: { second: 'numeric' },
       })
     ).toBe(`${US_FORMATTED_LONG_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
+
+    // new Date('2023-06-25T15:40:00') > Jun 25, 2023, 3:40:00 PM
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, {
+        targetFormat: 'datetime',
+        dateOptions: { month: 'short' },
+        timeOptions: { second: 'numeric' },
+      })
+    ).toBe(`${US_FORMATTED_SHORT_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
 
     // 1234567 > 1,234,567
     expect(result.current.formatValue(INT_NUMBER_TO_FORMAT)).toBe(US_FORMATTED_INT_NUMBER);
@@ -97,6 +110,15 @@ describe('useDataFormat', () => {
         suffix: ' per month',
       })
     ).toBe(`Salary: $${US_FORMATTED_FLOAT_NUMBER} per month`);
+
+    // 1234567890 > 1.235b
+    expect(
+      result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+        namingConvention: 'lowerCase',
+      })
+    ).toBe(`1.235b`);
   });
 
   it('Should return correct formatted values with US notation', () => {
@@ -119,6 +141,9 @@ describe('useDataFormat', () => {
     // ASSERT
     expect(result.current.firstDayOfWeek).toBe(US_FIRST_DAY_OF_WEEK);
 
+    expect(result.current.isSundayFirstWeekDay).toBe(true);
+
+    expect(result.current.formatValue('string')).toBe('string');
     expect(result.current.formatValue(DATE_TO_FORMAT)).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })).toBe(US_FORMATTED_TIME);
@@ -185,6 +210,8 @@ describe('useDataFormat', () => {
 
     // ASSERT
     expect(result.current.firstDayOfWeek).toBe(EU_FIRST_DAY_OF_WEEK);
+
+    expect(result.current.isSundayFirstWeekDay).toBe(false);
 
     expect(result.current.formatValue(DATE_TO_FORMAT)).toBe(EU_FORMATTED_DATE);
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'date' })).toBe(EU_FORMATTED_DATE);
@@ -330,6 +357,30 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2K`);
     expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2M`);
     expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2B`);
+    expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0,0`);
+    expect(
+      result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+      })
+    ).toBe(`1,235B`);
+
+    expect(
+      result.current.formatValue(13000, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+      })
+    ).toBe(`13,0K`);
+
+    expect(result.current.formatValue(1, { targetFormat: 'compact-larger-number' })).toBe(`1`);
+    expect(result.current.formatValue(13, { targetFormat: 'compact-larger-number' })).toBe(`13`);
+    expect(result.current.formatValue(1300, { targetFormat: 'compact-larger-number' })).toBe(`1,3K`);
+    expect(result.current.formatValue(13000, { targetFormat: 'compact-larger-number' })).toBe(`13K`);
+
+    expect(result.current.formatValue(1, { targetFormat: 'compact-decimal-larger-number' })).toBe(`1`);
+    expect(result.current.formatValue(13, { targetFormat: 'compact-decimal-larger-number' })).toBe(`13`);
+    expect(result.current.formatValue(1300, { targetFormat: 'compact-decimal-larger-number' })).toBe(`1,3K`);
+    expect(result.current.formatValue(13000, { targetFormat: 'compact-decimal-larger-number' })).toBe(`13,0K`);
   });
 
   it('Should return correct compact values (number format base on US notation, abbreviation base on user language intl)', () => {
@@ -352,6 +403,20 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2K`);
     expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2M`);
     expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2B`);
+    expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0.0`);
+    expect(
+      result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+      })
+    ).toBe(`1.235B`);
+
+    expect(
+      result.current.formatValue(13000, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+      })
+    ).toBe(`13.0K`);
   });
 
   it('Should return correct compact values (number format base on EU notation, abbreviation base on PL language)', () => {
@@ -522,7 +587,67 @@ describe('useDataFormat', () => {
     ).toBe(`${EU_FORMATTED_LONG_DATE}, ${EU_FORMATTED_TIME}`);
   });
 
-  it('Should return correct formatted values with naming convention', () => {
+  it('Should return correct formatted values with naming convention and EU notation', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: EU_NOTATION,
+            timeFormatNotation: EU_NOTATION,
+            numberFormatNotation: EU_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'upperFirst' })
+    ).toBe(`Cze`);
+
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'upperCase' })
+    ).toBe(`CZE`);
+
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'lowerCase' })
+    ).toBe(`cze`);
+
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'lowerFirst' })
+    ).toBe(`cze`);
+
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, {
+        targetFormat: 'datetime',
+        namingConvention: 'lowerCase',
+        dateOptions: { month: 'long' },
+        timeOptions: { second: 'numeric' },
+      })
+    ).toBe(`25 czerwca 2023, 15:40:00`);
+
+    expect(
+      result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+        namingConvention: 'lowerCase',
+      })
+    ).toBe(`1,235 mld`);
+
+    expect(
+      result.current.formatValue(13000, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+        namingConvention: 'lowerCase',
+      })
+    ).toBe(`13,0 tys.`);
+  });
+
+  it('Should return correct formatted values with naming convention and US notation', () => {
     // ARRANGE
     const { result } = renderHook(() => useDataFormat(), {
       wrapper: ({ children }) => (
@@ -555,5 +680,232 @@ describe('useDataFormat', () => {
     expect(
       result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'month-short', namingConvention: 'lowerFirst' })
     ).toBe(`cze`);
+
+    expect(
+      result.current.formatValue(DATE_TO_FORMAT, {
+        targetFormat: 'datetime',
+        namingConvention: 'upperFirst',
+        dateOptions: { month: 'long' },
+        timeOptions: { second: 'numeric' },
+      })
+    ).toBe(`Czerwca 25, 2023, 3:40:00 PM`);
+
+    expect(
+      result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+        namingConvention: 'lowerCase',
+      })
+    ).toBe(`1.235 mld`);
+
+    expect(
+      result.current.formatValue(13000, {
+        minimumFractionDigits: 1,
+        notation: 'compact',
+        namingConvention: 'lowerCase',
+      })
+    ).toBe(`13.0 tys.`);
+  });
+
+  it('Should return correct thousandDelimiter and decimalDelimiter for EU notation', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: EU_NOTATION,
+            timeFormatNotation: EU_NOTATION,
+            numberFormatNotation: EU_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(result.current.thousandDelimiter).toBe(` `);
+    expect(result.current.decimalDelimiter).toBe(`,`);
+  });
+
+  it('Should return correct thousandDelimiter and decimalDelimiter for US notation', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: US_NOTATION,
+            timeFormatNotation: US_NOTATION,
+            numberFormatNotation: US_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(result.current.thousandDelimiter).toBe(`,`);
+    expect(result.current.decimalDelimiter).toBe(`.`);
+  });
+
+  it('Should return correct getConstants for PL language', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: EU_NOTATION,
+            timeFormatNotation: EU_NOTATION,
+            numberFormatNotation: EU_NOTATION,
+          }}
+          locale="pl"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(JSON.stringify(result.current.getConstants('months-long'))).toBe(
+      JSON.stringify([
+        'Styczeń',
+        'Luty',
+        'Marzec',
+        'Kwiecień',
+        'Maj',
+        'Czerwiec',
+        'Lipiec',
+        'Sierpień',
+        'Wrzesień',
+        'Październik',
+        'Listopad',
+        'Grudzień',
+      ])
+    );
+    expect(JSON.stringify(result.current.getConstants('months-short'))).toBe(
+      JSON.stringify(['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'])
+    );
+    expect(JSON.stringify(result.current.getConstants('weekdays-long'))).toBe(
+      JSON.stringify(['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'])
+    );
+    expect(JSON.stringify(result.current.getConstants('weekdays-short'))).toBe(
+      JSON.stringify(['Pon.', 'Wt.', 'Śr.', 'Czw.', 'Pt.', 'Sob.', 'Niedz.'])
+    );
+  });
+
+  it('Should return correct getConstants for US notation and EN language', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: US_NOTATION,
+            timeFormatNotation: US_NOTATION,
+            numberFormatNotation: US_NOTATION,
+            startWeekDayNotation: US_NOTATION,
+          }}
+          locale="en"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(JSON.stringify(result.current.getConstants('months-long'))).toBe(
+      JSON.stringify([
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ])
+    );
+    expect(JSON.stringify(result.current.getConstants('months-short'))).toBe(
+      JSON.stringify(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+    );
+    expect(JSON.stringify(result.current.getConstants('weekdays-long'))).toBe(
+      JSON.stringify(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'])
+    );
+    expect(JSON.stringify(result.current.getConstants('weekdays-short'))).toBe(
+      JSON.stringify(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+    );
+  });
+
+  it('Should return correct getConstants with customStartData, customEndData and  interval', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: US_NOTATION,
+            timeFormatNotation: US_NOTATION,
+            numberFormatNotation: US_NOTATION,
+            startWeekDayNotation: US_NOTATION,
+          }}
+          locale="en"
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(
+      JSON.stringify(
+        result.current.getConstants(
+          'months-long',
+          { namingConvention: 'lowerCase' },
+          new Date(2022, 10),
+          new Date(2023, 2),
+          'month'
+        )
+      )
+    ).toBe(JSON.stringify(['november', 'december', 'january', 'february', 'march']));
+
+    expect(
+      JSON.stringify(
+        result.current.getConstants('weekdays-long', undefined, new Date(2022, 12, 28), new Date(2023, 1, 2), 'day')
+      )
+    ).toBe(JSON.stringify(['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']));
+  });
+
+  it('Should return correct values for formatMultipleValues function', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            dateFormatNotation: EU_NOTATION,
+            timeFormatNotation: EU_NOTATION,
+            numberFormatNotation: EU_NOTATION,
+          }}
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(JSON.stringify(result.current.formatMultipleValues([INT_NUMBER_TO_FORMAT, INT_NUMBER_TO_FORMAT]))).toBe(
+      JSON.stringify([EU_FORMATTED_INT_NUMBER, EU_FORMATTED_INT_NUMBER])
+    );
+    expect(JSON.stringify(result.current.formatMultipleValues([DATE_TO_FORMAT, DATE_TO_FORMAT]))).toBe(
+      JSON.stringify([EU_FORMATTED_DATE, EU_FORMATTED_DATE])
+    );
+    expect(JSON.stringify(result.current.formatMultipleValues([]))).toBe(JSON.stringify([]));
+    expect(JSON.stringify(result.current.formatMultipleValues([US_NOTATION, EU_NOTATION]))).toBe(
+      JSON.stringify([US_NOTATION, EU_NOTATION])
+    );
   });
 });
