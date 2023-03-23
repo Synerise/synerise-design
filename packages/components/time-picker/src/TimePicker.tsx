@@ -183,10 +183,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
 
   const placeholderValue = React.useMemo((): string => {
     if (value) {
-      return dayjs(value).format(timeFormatByClockMode);
+      return getTimeString(value);
     }
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl, value, timeFormatByClockMode]);
+  }, [placeholder, intl, value, getTimeString]);
 
   if (raw) {
     return overlay;

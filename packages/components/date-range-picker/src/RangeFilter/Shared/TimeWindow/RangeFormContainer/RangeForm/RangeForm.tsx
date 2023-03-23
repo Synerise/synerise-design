@@ -27,6 +27,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   mode = valueSelectionModes[0],
   timePickerProps,
   texts,
+  valueFormatOptions,
 }) => {
   const { is12HoursClock } = useDataFormat();
 
@@ -59,10 +60,20 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabledMinutes={[]}
         disabledSeconds={[]}
         use12HourClock={is12HoursClock}
+        valueFormatOptions={valueFormatOptions}
         {...timePickerProps}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer, texts, timePickerProps, disabled, is12HoursClock]);
+  }, [
+    start,
+    onExactHourSelect,
+    getPopupContainer,
+    texts,
+    timePickerProps,
+    disabled,
+    is12HoursClock,
+    valueFormatOptions,
+  ]);
   const renderRangePicker = React.useCallback(() => {
     return (
       <>
@@ -81,6 +92,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
           disabledMinutes={getDisabledTimeOptions(start || end, 'MINUTES', null, end, is12HoursClock)}
           disabledSeconds={getDisabledTimeOptions(start || end, 'SECONDS', null, end, is12HoursClock)}
           use12HourClock={is12HoursClock}
+          valueFormatOptions={valueFormatOptions}
           {...timePickerProps}
         />
         <S.Separator>-</S.Separator>
@@ -115,6 +127,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
     timePickerProps,
     disabled,
     is12HoursClock,
+    valueFormatOptions,
   ]);
   const limitModeSelect = React.useMemo(
     () =>
