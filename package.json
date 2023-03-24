@@ -78,6 +78,7 @@
     "@commitlint/config-conventional": "8.3.4",
     "@commitlint/config-lerna-scopes": "8.3.4",
     "@formatjs/intl-pluralrules": "1.5.2",
+    "@jridgewell/gen-mapping": "0.3.2",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
     "@testing-library/react-hooks": "^8.0.1",
