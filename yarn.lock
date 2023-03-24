@@ -516,6 +516,11 @@
     resolve "^1.14.2"
     semver "^6.1.2"
 
+"@babel/helper-environment-visitor@7.18.9":
+  version "7.18.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-environment-visitor/-/helper-environment-visitor-7.18.9.tgz#0c0cee9b35d2ca190478756865bb3528422f51be"
+  integrity sha1-DAzumzXSyhkEeHVoZbs1KEIvUb4=
+
 "@babel/helper-explode-assignable-expression@^7.12.13":
   version "7.12.13"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-explode-assignable-expression/-/helper-explode-assignable-expression-7.12.13.tgz#0e46990da9e271502f77507efa4c9918d3d8634a"
