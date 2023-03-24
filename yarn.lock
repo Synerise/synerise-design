@@ -911,6 +911,11 @@
   dependencies:
     "@babel/types" "^7.8.3"
 
+"@babel/helper-string-parser@7.19.4":
+  version "7.19.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-string-parser/-/helper-string-parser-7.19.4.tgz#38d3acb654b4701a9b77fb0615a96f775c3a9e63"
+  integrity sha1-ONOstlS0cBqbd/sGFalvd1w6nmM=
+
 "@babel/helper-validator-identifier@^7.10.4":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.10.4.tgz#a78c7a7251e01f616512d31b10adcf52ada5e0d2"
