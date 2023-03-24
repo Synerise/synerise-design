@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.177.2](https://github.com/synerise/synerise-design/compare/portal@0.177.1...portal@0.177.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** data format in date range picker usage fix ([0f17e68](https://github.com/synerise/synerise-design/commit/0f17e68dbdf1d324e939e2dc45f5c5a454dc20f7))
+* **date-range-picker:** rollback storybook config change ([e9b218c](https://github.com/synerise/synerise-design/commit/e9b218cf6a02f81ba402a393ec3a4946d9850ddd))
+
+
+
+
+
 ## [0.177.1](https://github.com/synerise/synerise-design/compare/portal@0.177.0...portal@0.177.1) (2023-03-21)
 
 

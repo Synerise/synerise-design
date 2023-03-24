@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.1...@synerise/ds-time-picker@0.7.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** data format in date range picker usage fix ([0f17e68](https://github.com/Synerise/synerise-design/commit/0f17e68dbdf1d324e939e2dc45f5c5a454dc20f7))
+* **time-picker:** test fix ([ca3dd75](https://github.com/Synerise/synerise-design/commit/ca3dd75d9b39bc49ca571872528673945ead6a60))
+
+
+
+
+
 ## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.0...@synerise/ds-time-picker@0.7.1) (2023-03-21)
 
 
