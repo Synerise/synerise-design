@@ -56,6 +56,7 @@ export const defaultId = uuid();
 export const TYPES_DATA = {
   MONTHLY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.MONTHLY',
+    defaultLabel: 'Monthly',
     component: MonthlyFilter,
     definition: [
       {
@@ -66,9 +67,15 @@ export const TYPES_DATA = {
       },
     ],
   },
-  WEEKLY: { labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY', component: WeeklyFilter, definition: {} },
+  WEEKLY: {
+    labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY',
+    defaultLabel: 'Weekly',
+    component: WeeklyFilter,
+    definition: {},
+  },
   DAILY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
+    defaultLabel: 'Daily',
     component: DailyFilter,
     definition: {
       start: DEFAULT_RANGE_START,

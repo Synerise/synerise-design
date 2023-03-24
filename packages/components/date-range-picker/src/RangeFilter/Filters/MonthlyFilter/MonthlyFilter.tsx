@@ -195,6 +195,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           name: 'days-of-period',
           maxLength: 120,
         }}
+        inputStyle={{
+          display: 'flex',
+        }}
         dataSource={dataSource}
         size="small"
       />
@@ -232,6 +235,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         input={{
           name: 'counted-from-select',
           maxLength: 120,
+        }}
+        inputStyle={{
+          display: 'flex',
         }}
         dataSource={dataSource}
         size="small"
@@ -293,6 +299,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   {this.renderCountedFromField(item, key)}
                 </S.DropdownHeader>
               ),
+              nameWrapperClassNames: ['full-width'],
               content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow

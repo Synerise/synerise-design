@@ -331,7 +331,7 @@ describe('DateRangePicker', () => {
   it.todo('sinceTimestamp in SINCE is actually emitted');
   it.todo('date type SINCE can be passed to onApply (isValid)');
   it.todo('SINCE dateFilter value has future prop indicating whether it is next or last');
-  it.todo(
-    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
-  );
+  it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
+  it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
+  it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
 });
