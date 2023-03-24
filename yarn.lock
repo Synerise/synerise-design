@@ -516,6 +516,11 @@
     resolve "^1.14.2"
     semver "^6.1.2"
 
+"@babel/helper-environment-visitor@7.18.9":
+  version "7.18.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-environment-visitor/-/helper-environment-visitor-7.18.9.tgz#0c0cee9b35d2ca190478756865bb3528422f51be"
+  integrity sha1-DAzumzXSyhkEeHVoZbs1KEIvUb4=
+
 "@babel/helper-explode-assignable-expression@^7.12.13":
   version "7.12.13"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-explode-assignable-expression/-/helper-explode-assignable-expression-7.12.13.tgz#0e46990da9e271502f77507efa4c9918d3d8634a"
@@ -910,6 +915,11 @@
   integrity sha512-3x3yOeyBhW851hroze7ElzdkeRXQYQbFIb7gLK1WQYsw2GWDay5gAJNw1sWJ0VFP6z5J1whqeXH/WCdCjZv6dA==
   dependencies:
     "@babel/types" "^7.8.3"
+
+"@babel/helper-string-parser@7.19.4":
+  version "7.19.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-string-parser/-/helper-string-parser-7.19.4.tgz#38d3acb654b4701a9b77fb0615a96f775c3a9e63"
+  integrity sha1-ONOstlS0cBqbd/sGFalvd1w6nmM=
 
 "@babel/helper-validator-identifier@^7.10.4":
   version "7.10.4"
@@ -4346,6 +4356,38 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
+
+"@jridgewell/gen-mapping@0.3.2":
+  version "0.3.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jridgewell/gen-mapping/-/gen-mapping-0.3.2.tgz#c1aedc61e853f2bb9f5dfe6d4442d3b565b253b9"
+  integrity sha1-wa7cYehT8rufXf5tRELTtWWyU7k=
+  dependencies:
+    "@jridgewell/set-array" "^1.0.1"
+    "@jridgewell/sourcemap-codec" "^1.4.10"
+    "@jridgewell/trace-mapping" "^0.3.9"
+
+"@jridgewell/resolve-uri@3.1.0":
+  version "3.1.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jridgewell/resolve-uri/-/resolve-uri-3.1.0.tgz#2203b118c157721addfe69d47b70465463066d78"
+  integrity sha1-IgOxGMFXchrd/mnUe3BGVGMGbXg=
+
+"@jridgewell/set-array@^1.0.1":
+  version "1.1.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jridgewell/set-array/-/set-array-1.1.2.tgz#7c6cf998d6d20b914c0a55a91ae928ff25965e72"
+  integrity sha1-fGz5mNbSC5FMClWpGuko/yWWXnI=
+
+"@jridgewell/sourcemap-codec@1.4.14", "@jridgewell/sourcemap-codec@^1.4.10":
+  version "1.4.14"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz#add4c98d341472a289190b424efbdb096991bb24"
+  integrity sha1-rdTJjTQUcqKJGQtCTvvbCWmRuyQ=
+
+"@jridgewell/trace-mapping@^0.3.9":
+  version "0.3.17"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jridgewell/trace-mapping/-/trace-mapping-0.3.17.tgz#793041277af9073b0951a7fe0f0d8c4c98c36985"
+  integrity sha1-eTBBJ3r5BzsJUaf+Dw2MTJjDaYU=
+  dependencies:
+    "@jridgewell/resolve-uri" "3.1.0"
+    "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@juggle/resize-observer@^3.3.1":
   version "3.3.1"

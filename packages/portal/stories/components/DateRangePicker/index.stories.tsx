@@ -56,7 +56,7 @@ const POPOVER_PLACEMENT = {
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
   units: ['hour', 'minute'],
-  timeFormat: 'HH:mm',
+  valueFormatOptions: { second: undefined },
 };
 
 const savedFilters = [];

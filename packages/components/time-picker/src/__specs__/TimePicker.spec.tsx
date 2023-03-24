@@ -147,7 +147,7 @@ describe('TimePicker', () => {
       {},
       { notation: 'US' }
     );
-    const input = getByPlaceholderText('10:24:52 AM') as HTMLInputElement;
+    const input = getByPlaceholderText('10 AM') as HTMLInputElement;
 
     // ASSERT
     expect(input.value).toBe('10 AM');

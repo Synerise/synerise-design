@@ -36,7 +36,8 @@ const Weekly: React.FC<WeeklyProps> = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
   valueSelectionMode = ['Hour', 'Range'],
   onChange = NOOP,
-  timeFormat = 'HH:mm',
+  timeFormat,
+  valueFormatOptions,
   value,
   timePickerProps,
   disabled,
@@ -324,6 +325,7 @@ const Weekly: React.FC<WeeklyProps> = ({
             renderSuffix={RENDER_EMPTY_NODE_FN}
             timePickerProps={timePickerProps}
             timeFormat={timeFormat}
+            valueFormatOptions={valueFormatOptions}
             disabled={disabled}
           />
         ))}
