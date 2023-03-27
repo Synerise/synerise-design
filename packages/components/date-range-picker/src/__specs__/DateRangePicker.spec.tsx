@@ -319,7 +319,7 @@ describe('DateRangePicker', () => {
   it.todo('range gets updated to show selected visible');
   it.todo('onChange is called only when apply button is clicked');
   it.todo('right side should not be earlier than left side');
-  it.todo('month is extended to the end of the month if duration is a type of month');
+  it.todo('month is extended to the end of the month if duration is a type of month'); // not exactly - right side should be rounded to the more granular type among offset and duration
   it.todo('the default value is distinguishable from lifetime (no from nor to property)');
   it.todo('LAST_MONTH selects all days in a month');
   it.todo('LAST_MONTH (with option before n days) not necessarily selects a whole month');
@@ -335,4 +335,6 @@ describe('DateRangePicker', () => {
   it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
   it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
   it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
+  it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
+  it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
 });
