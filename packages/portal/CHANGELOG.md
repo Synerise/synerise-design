@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.177.3](https://github.com/synerise/synerise-design/compare/portal@0.177.2...portal@0.177.3) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added stories ([76d1d79](https://github.com/synerise/synerise-design/commit/76d1d7973a1f4962e4bcd2d4886b2d769f81b5ff))
+* **date-range-picker:** allow range type buttons to be optional ([6d3e723](https://github.com/synerise/synerise-design/commit/6d3e723b3324c3c73bcb29944211508de0069d87))
+* **inline-edit:** updated stories ([8bd8fe4](https://github.com/synerise/synerise-design/commit/8bd8fe4e019f009a519016370db65311b3d164ea))
+
+
+
+
+
 ## [0.177.2](https://github.com/synerise/synerise-design/compare/portal@0.177.1...portal@0.177.2) (2023-03-24)
 
 

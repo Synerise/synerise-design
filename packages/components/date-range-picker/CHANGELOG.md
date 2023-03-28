@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.3...@synerise/ds-date-range-picker@0.20.4) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add allowedFilterTypes prop to DateRangePicker ([1be368e](https://github.com/Synerise/synerise-design/commit/1be368e03cb7f4224ed604c3c539a2385510d9ff))
+* **date-range-picker:** add default labels ([f9e8990](https://github.com/Synerise/synerise-design/commit/f9e899009d9eac4fba86ca8ed99704b2ad334b9d))
+* **date-range-picker:** allow range type buttons to be optional ([6d3e723](https://github.com/Synerise/synerise-design/commit/6d3e723b3324c3c73bcb29944211508de0069d87))
+* **date-range-picker:** change allowed filter types to string array ([4fbdca0](https://github.com/Synerise/synerise-design/commit/4fbdca055e576f2aaa115a2a2ebd403d4937e05c))
+* **date-range-picker:** fix monthly filter clipping ([20a205f](https://github.com/Synerise/synerise-design/commit/20a205fb892fd2bbeaf1d3f5f93641fe759f8dfe))
+* **date-range-picker:** fix vert align for 2nd select in monthly filter ([be25040](https://github.com/Synerise/synerise-design/commit/be25040b25378118290abfb85a888bb317501235))
+* **date-range-picker:** fix vertical alignment in monthly range filter ([b673345](https://github.com/Synerise/synerise-design/commit/b6733451ad42766f6a29e128969f531bbd7bd233))
+* **date-range-picker:** monthly filter dropdowns display current value ([3c70725](https://github.com/Synerise/synerise-design/commit/3c707252c0d6ef0899cfa60184356e084b56f1d6))
+
+
+
+
+
 ## [0.20.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.2...@synerise/ds-date-range-picker@0.20.3) (2023-03-24)
 
 
