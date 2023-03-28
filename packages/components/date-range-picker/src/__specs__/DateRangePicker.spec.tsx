@@ -334,6 +334,7 @@ describe('DateRangePicker', () => {
   it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
   it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
   it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
+  it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
   it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
   it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
 });

@@ -100,7 +100,7 @@ export const getDisabledTimeOptions = (
 
 export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): State => {
   const from = fnsStartOfMonth(fnsIsValid(value.from) ? legacyParse(value.from) : new Date());
-  let to = fnsStartOfMonth(fnsIsValid(value.to) ? legacyParse(value.to) : new Date());
+  let to = fnsIsValid(value.to) ? fnsStartOfMonth(legacyParse(value.to)) : from;
   if (fnsIsSameMonth(from, to)) {
     to = ADD.MONTHS(to, 1);
   }
