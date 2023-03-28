@@ -336,4 +336,5 @@ describe('DateRangePicker', () => {
   it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
   it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
   it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
+  it.todo('date filter with time - clicking clear button should reset to DEFAULT_RANGE_START / DEFAULT_RANGE_END (i.e. not current time)');
 });
