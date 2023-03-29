@@ -230,6 +230,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     const {
       showTime,
       format,
+      valueFormatOptions,
       disabledDate,
       validate,
       forceAdjacentMonths,
@@ -239,6 +240,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       intl,
       containerClass = 'ds-date-range-picker',
       footerProps,
+      allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
     } = this.props;
     const { value, mode } = this.state;
@@ -257,6 +259,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
             savedFilters={savedFilters}
+            allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
           />
         </Container>
@@ -308,6 +311,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
           value={value}
           showTime={showTime}
           format={format}
+          valueFormatOptions={valueFormatOptions}
           {...footerProps}
         />
       </Container>

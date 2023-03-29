@@ -30,7 +30,7 @@ const TextInput: React.FC<InputProps> = ({
     useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
   const [localError, setLocalError] = React.useState(false);
-  const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
+  const onChangeDebounce = React.useRef(debounce(onChange, 300)).current;
 
   React.useEffect(() => {
     if (inputRef?.current && opened) {
@@ -44,6 +44,7 @@ const TextInput: React.FC<InputProps> = ({
 
   const handleChange = React.useCallback(
     event => {
+      onChangeDebounce.cancel();
       setLocalValue(event.target.value);
       onChangeDebounce(event.target.value);
       if (!event.target.value.length) {
@@ -67,6 +68,7 @@ const TextInput: React.FC<InputProps> = ({
 
   const handleAutocomplete = React.useCallback(
     val => {
+      onChangeDebounce.cancel();
       setLocalValue(val);
       onChangeDebounce(val);
     },

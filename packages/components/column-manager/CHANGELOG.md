@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.59...@synerise/ds-column-manager@0.10.60) (2023-03-28)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.58...@synerise/ds-column-manager@0.10.59) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.57...@synerise/ds-column-manager@0.10.58) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.56...@synerise/ds-column-manager@0.10.57) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.55...@synerise/ds-column-manager@0.10.56) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.54...@synerise/ds-column-manager@0.10.55) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.53...@synerise/ds-column-manager@0.10.54) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.51...@synerise/ds-column-manager@0.10.53) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.51...@synerise/ds-column-manager@0.10.52) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.50...@synerise/ds-column-manager@0.10.51) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.49...@synerise/ds-column-manager@0.10.50) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.48...@synerise/ds-column-manager@0.10.49) (2023-02-23)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.47...@synerise/ds-column-manager@0.10.48) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
+## [0.10.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.46...@synerise/ds-column-manager@0.10.47) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
 ## [0.10.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.10.45...@synerise/ds-column-manager@0.10.46) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

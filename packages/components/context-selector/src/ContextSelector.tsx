@@ -121,8 +121,8 @@ const ContextSelector: React.FC<ContextProps> = ({
               ? (): JSX.Element => (
                   <InformationCard
                     icon={selectedItem.icon}
-                    subtitle={selectedItem.name}
-                    title={selectedItem.name.replace('_', ' ')}
+                    subtitle={selectedItem.subtitle}
+                    title={selectedItem.name}
                     descriptionConfig={
                       selectedItem.description
                         ? { value: selectedItem.description as string, disabled: true, label: undefined }

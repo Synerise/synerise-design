@@ -32,6 +32,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   offset = 'default',
   children,
   button,
+  render,
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -136,6 +137,22 @@ const Tooltip: React.FC<TooltipProps> = ({
         handleOnClickHideDelay(visible);
       },
     };
+
+  if (render !== undefined) {
+    return (
+      <AntdTooltip
+        overlayClassName={offsetClassName}
+        autoAdjustOverflow={false}
+        title={render()}
+        align={{ offset: [0, 0] }}
+        getPopupContainer={getPopupContainer}
+        {...handleHideAfterClick}
+        {...props}
+      >
+        {children}
+      </AntdTooltip>
+    );
+  }
 
   return titleExists ? (
     <AntdTooltip

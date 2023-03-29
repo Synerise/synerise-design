@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.36...@synerise/ds-autocomplete@0.4.37) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.35...@synerise/ds-autocomplete@0.4.36) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.34...@synerise/ds-autocomplete@0.4.35) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.33...@synerise/ds-autocomplete@0.4.34) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.32...@synerise/ds-autocomplete@0.4.33) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.4.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.31...@synerise/ds-autocomplete@0.4.32) (2023-02-03)
+
+
+### Bug Fixes
+
+* remove ref to first object render ([7612079](https://github.com/Synerise/synerise-design/commit/7612079baa75a7b2d552c80e792075f9fbbb3d53))
+* **autocomplete:** add getPopupContainer into select component ([39b901b](https://github.com/Synerise/synerise-design/commit/39b901ba7107e66e755f544e29dbf16d99c777d5))
+* **autocomplete:** refactor parentNode func ([34eaa9b](https://github.com/Synerise/synerise-design/commit/34eaa9bb4a04e848c0640c01f059f9ae195815c6))
+
+
+
+
+
 ## [0.4.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.30...@synerise/ds-autocomplete@0.4.31) (2023-01-25)
 
 

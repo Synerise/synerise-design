@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.17...@synerise/ds-app-menu@0.6.18) (2023-03-09)
+
+
+### Bug Fixes
+
+* **app-menu:** fix disappearing icons when resizing window ([b97a5ae](https://github.com/Synerise/synerise-design/commit/b97a5aea85b130d52e2d951f71ee434df69f12b1))
+
+
+
+
+
+## [0.6.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.16...@synerise/ds-app-menu@0.6.17) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+## [0.6.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.15...@synerise/ds-app-menu@0.6.16) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
+## [0.6.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.14...@synerise/ds-app-menu@0.6.15) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-app-menu
+
+
+
+
+
 ## [0.6.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.13...@synerise/ds-app-menu@0.6.14) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

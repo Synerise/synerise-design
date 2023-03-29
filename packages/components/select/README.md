@@ -103,6 +103,7 @@ const { Option, OptGroup } = Select;
 | suffixIcon               | The custom suffix icon                                                                            | React.ReactNode                                                                   | -                                            |
 | tokenSeparators          | Separator used to tokenize on tag/multiple mode                                                   | string[]                                                                          |                                              |
 | tooltip                  | Tooltip content                                                                                   | React.ReactNode                                                                   | -                                            |
+| tooltipConfig            | Config of tooltip                                                                                 | [TooltipProps](https://design.synerise.com/docs/components/tooltip#api)           | -                                            |
 | value                    | Current selected option.                                                                          | `string` / `string[]` / `number` / `number[]` / `LabeledValue` / `LabeledValue[]` | -                                            |
 
 ### Option props
@@ -117,7 +118,7 @@ const { Option, OptGroup } = Select;
 
 ### Option group props
 
-| Property | Description      | Type                     | Default |     |
-| -------- | ---------------- | ------------------------ | ------- | --- |
-| key      | Key of an option | string                   | -       |     |
-| label    | Group label      | `string | React.Element` | -       |
+| Property | Description      | Type    | Default        |     |
+| -------- | ---------------- | ------- | -------------- | --- |
+| key      | Key of an option | string  | -              |     |
+| label    | Group label      | `string | React.Element` | -   |

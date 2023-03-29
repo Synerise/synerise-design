@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.36](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.35...@synerise/ds-input@0.18.36) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.18.35](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.34...@synerise/ds-input@0.18.35) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.18.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.33...@synerise/ds-input@0.18.34) (2023-03-02)
+
+
+### Bug Fixes
+
+* **input:** change max-width of input when media is minimum 1420px ([f16217a](https://github.com/synerise/synerise-design/commit/f16217ab1f7b877b2d2ce863929bebdd6a39d64d))
+
+
+
+
+
+## [0.18.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.31...@synerise/ds-input@0.18.33) (2023-03-01)
+
+
+### Bug Fixes
+
+* **input:** change max-width when media is 1280px ([4b6f737](https://github.com/synerise/synerise-design/commit/4b6f737a8bf6eb33f2a9be5b90a484f6ec4fc86f))
+
+
+
+
+
+## [0.18.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.31...@synerise/ds-input@0.18.32) (2023-03-01)
+
+
+### Bug Fixes
+
+* **input:** change max-width when media is 1280px ([4b6f737](https://github.com/synerise/synerise-design/commit/4b6f737a8bf6eb33f2a9be5b90a484f6ec4fc86f))
+
+
+
+
+
+## [0.18.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.30...@synerise/ds-input@0.18.31) (2023-02-16)
+
+
+### Bug Fixes
+
+* **input:** fix width of input when window is smaller ([8dfc579](https://github.com/synerise/synerise-design/commit/8dfc579e71a808cbc0cc18ab19494b8125ea549b))
+
+
+
+
+
+## [0.18.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.29...@synerise/ds-input@0.18.30) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
 ## [0.18.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.28...@synerise/ds-input@0.18.29) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-input

@@ -180,6 +180,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         this.handleTypeChange(period.value as string, key);
       },
     }));
+
+    const daysOfPeriodValue = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).find(period => item?.period === period.value);
+
     return (
       <S.Select
         disabled={disabled}
@@ -192,8 +195,12 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         }}
         placeholder={intl.formatMessage({ id: (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].translationKey })}
         input={{
+          value: daysOfPeriodValue ? intl.formatMessage({ id: daysOfPeriodValue?.translationKey }) : undefined,
           name: 'days-of-period',
           maxLength: 120,
+        }}
+        inputStyle={{
+          display: 'flex',
         }}
         dataSource={dataSource}
         size="small"
@@ -218,6 +225,9 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         this.handlePeriodTypeChange(i.value as string, key);
       },
     }));
+
+    const countedFromValue = (countedFromPeriods || DEFAULT_COUNTED_FROM).find(i => item?.periodType === i.value);
+
     return (
       <S.Select
         disabled={disabled}
@@ -230,8 +240,14 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         }}
         placeholder={intl.formatMessage({ id: (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].translationKey })}
         input={{
+          value: countedFromValue
+            ? intl.formatMessage({ id: countedFromValue?.translationKey, defaultMessage: item?.periodType })
+            : undefined,
           name: 'counted-from-select',
           maxLength: 120,
+        }}
+        inputStyle={{
+          display: 'flex',
         }}
         dataSource={dataSource}
         size="small"
@@ -293,6 +309,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   {this.renderCountedFromField(item, key)}
                 </S.DropdownHeader>
               ),
+              nameWrapperClassNames: ['full-width'],
               content: visible[item.id] ? (
                 <S.ContentWrapper>
                   <TimeWindow

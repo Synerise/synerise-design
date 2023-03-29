@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.35...@synerise/ds-unordered-list@0.2.36) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.34...@synerise/ds-unordered-list@0.2.35) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.33...@synerise/ds-unordered-list@0.2.34) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.31...@synerise/ds-unordered-list@0.2.33) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.31...@synerise/ds-unordered-list@0.2.32) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.30...@synerise/ds-unordered-list@0.2.31) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
+## [0.2.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.29...@synerise/ds-unordered-list@0.2.30) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-unordered-list
+
+
+
+
+
 ## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.28...@synerise/ds-unordered-list@0.2.29) (2023-01-12)
 
 **Note:** Version bump only for package @synerise/ds-unordered-list

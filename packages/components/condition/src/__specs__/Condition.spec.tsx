@@ -33,7 +33,7 @@ const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditio
     value: `text-${uuid()}`,
   },
 };
-const DEFAULT_STEP: Partial<ConditionStep> = {
+const DEFAULT_STEP: ConditionStep = {
   id: 0,
   stepName: 'Step name',
   subject: {
@@ -42,6 +42,7 @@ const DEFAULT_STEP: Partial<ConditionStep> = {
     iconPlaceholder: <NotificationsM />,
     selectedItem: SUBJECT_ITEMS[0],
     items: SUBJECT_ITEMS,
+    /** @fixme */
     texts: undefined,
   },
 };
@@ -143,7 +144,7 @@ const DEFAULT_PROPS = (): ConditionProps => ({
   onChangeFactorValue: () => {},
   onChangeFactorType: () => {},
   onChangeSubject: () => {},
-  steps: getSteps(1, 1) as ConditionStep[],
+  steps: getSteps(1, 1),
 });
 
 const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
@@ -650,5 +651,44 @@ describe('Condition component', () => {
 
     // ASSERT
     expect(getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
+  });
+
+  it('should render tooltip on selectedItem mouseOver', async () => {
+    // ARRANGE
+    const { getByText, findByText } = renderWithProvider(
+      RENDER_CONDITIONS({
+        steps: [
+          {
+            ...DEFAULT_STEP,
+            conditions: getConditions(1),
+            context: {
+              texts: {
+                buttonLabel: 'Choose',
+                searchPlaceholder: 'Search',
+                noResults: 'No results',
+                loadingResults: 'Loading results',
+              },
+              selectedItem: {
+                id: 'a',
+                name: 'TEST_SELECTED_ITEM',
+                subtitle: 'TEST_SELECTED_ITEM_SUBTITLE',
+                icon: VarTypeStringM,
+              },
+              groups: [],
+              items: [
+                {
+                  id: 'a',
+                  name: 'TEST_SELECTED_ITEM',
+                  subtitle: 'TEST_SELECTED_ITEM_SUBTITLE',
+                  icon: VarTypeStringM,
+                },
+              ],
+            },
+          },
+        ],
+      })
+    );
+    fireEvent.mouseOver(getByText('TEST_SELECTED_ITEM'));
+    expect(await findByText('TEST_SELECTED_ITEM_SUBTITLE')).toBeInTheDocument();
   });
 });

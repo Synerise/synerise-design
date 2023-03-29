@@ -5,12 +5,14 @@ import { debounce } from 'debounce';
 import Scrollbar from '@synerise/ds-scrollbar';
 
 import * as S from './TimePicker.styles';
+import { getUnitSelectedNumber } from './utils/unit.utils';
 
 export type UnitConfig = {
   unit: dayjs.UnitType;
   options: number[];
   disabled?: number[];
   insertSeperator?: boolean;
+  use12HourClock?: boolean | undefined;
 };
 
 export type UnitProps = UnitConfig & {
@@ -21,8 +23,12 @@ export type UnitProps = UnitConfig & {
 const CELL_HEIGHT = 32;
 const DEBOUNCE_DELAY = 150;
 
-const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect }) => {
-  const selected = value && dayjs(value).get(unit);
+const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect, use12HourClock }) => {
+  const selected: number | undefined = React.useMemo(
+    () => getUnitSelectedNumber(value, unit, use12HourClock),
+    [unit, use12HourClock, value]
+  );
+
   const [forceUpdate, setForceUpdate] = React.useState<boolean>(false);
   const selectedCellRef = React.useRef<HTMLButtonElement>(null);
   const unitContainerRef = React.useRef<HTMLDivElement>(null);

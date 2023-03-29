@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.22.10",
+  "version": "0.25.0",
   "scripts": {
     "postinstall": "node ../../../scripts/docs/componentmd.js",
     "docs-watch": "npm run postinstall && node ../../../scripts/docs/watch.js",
@@ -14,9 +14,9 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.9.0",
     "@docusaurus/core": "^2.0.0-alpha.48",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.48"
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48",
+    "@babel/plugin-transform-runtime": "^7.9.0"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",

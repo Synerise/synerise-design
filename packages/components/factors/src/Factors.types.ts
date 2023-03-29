@@ -121,7 +121,7 @@ export type FactorsProps = {
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: React.ReactNode;
-  inputProps?: InputProps;
+  inputProps?: Partial<InputProps>;
   readOnly?: boolean;
 };
 
@@ -156,6 +156,7 @@ export type FactorValueProps = Pick<
   | 'onDeactivate'
   | 'error'
   | 'inputProps'
+  | 'autoResize'
   | 'readOnly'
 > & {
   texts: FactorsTexts;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { text, number, boolean } from '@storybook/addon-knobs';
+import { text, number, boolean, select, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import InputNumber from '@synerise/ds-input-number';
 
@@ -9,12 +9,13 @@ const renderLabel = (text: string) => {
 const stories = {
   inputNumber: () => {
     const validationState = boolean('Set validation state', false);
+    const valueFormatOptions = object('valueFormatOptions', {});
     const message = 'Error';
     const [isFocus, setFocus] = React.useState(false);
     const placeholder = text('Placeholder', 'Placeholder');
     return {
       min: number('min', 1),
-      max: number('max', 10),
+      max: number('max', 999999999999),
       onChange: action('onChange'),
       label: renderLabel(text('label', 'Label')),
       description: text('description', 'Description'),
@@ -23,6 +24,16 @@ const stories = {
       placeholder: placeholder,
       prefixel: text('prefixel', 'Prefixel'),
       suffixel: text('suffixel', 'Suffixel'),
+      tooltip: boolean('with simple tooltip', false) && text('Tooltip title', 'Input number tooltip'),
+      tooltipConfig: boolean('with advanced tooltip', false) && {
+        type: select('select advanced tooltip type', ['default', 'largeSimple', 'header-label'], 'default'),
+        title: text('Tooltip title', 'Input number tooltip'),
+        description: text(
+          'Tooltip description',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        ),
+      },
+      valueFormatOptions: valueFormatOptions,
       onBlur: () => {
         action('I am blurred');
         setFocus(false);
@@ -44,7 +55,7 @@ const getErrorText = (error: boolean, errorText: string): string => {
 };
 
 export default {
-name: 'Components/Input',
+  name: 'Components/Input',
   stories,
   decorator,
   Component: InputNumber,

@@ -1,4 +1,5 @@
 import { WrappedComponentProps } from 'react-intl';
+
 import { DateRange } from '../date.types';
 import { Texts } from '../DateRangePicker.types';
 

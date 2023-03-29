@@ -17,4 +17,4 @@ export type RangeFormProps = {
   valueSelectionModes: DateLimitMode[];
 } & WithTranslations &
   WithDisabledProp &
-  Pick<RangeFormContainerProps, 'timePickerProps'>;
+  Pick<RangeFormContainerProps, 'timePickerProps' | 'valueFormatOptions'>;

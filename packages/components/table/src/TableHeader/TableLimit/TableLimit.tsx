@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Alert from '@synerise/ds-alert';
+import { useDataFormat } from '@synerise/ds-data-format';
 import * as S from './TableLimit.styles';
 import { TableLimitProps } from './TableLimit.types';
 
@@ -10,6 +11,7 @@ export function TableLimit<T extends { key: React.ReactText; children?: T[] }>({
   itemsMenu,
   selection,
 }: TableLimitProps<T>): React.ReactElement | null {
+  const { formatValue } = useDataFormat();
   const selectedRows = React.useMemo(() => selection?.selectedRowKeys.length || 0, [selection]);
   const limitReachedInfo = React.useMemo(
     () =>
@@ -25,14 +27,15 @@ export function TableLimit<T extends { key: React.ReactText; children?: T[] }>({
   const selected = React.useMemo(() => {
     return selectedRows > 0 ? (
       <S.Title>
-        <strong>{selectedRows}</strong> {locale.selected} / {`${total} ${locale.pagination?.items}`}
+        <strong>{formatValue(selectedRows)}</strong> {locale.selected} /{' '}
+        {`${formatValue(total)} ${locale.pagination?.items}`}
       </S.Title>
     ) : (
       <S.Title>
-        <strong>{total}</strong> {locale.pagination?.items}
+        <strong>{formatValue(total)}</strong> {locale.pagination?.items}
       </S.Title>
     );
-  }, [locale.pagination, locale.selected, selectedRows, total]);
+  }, [formatValue, locale.pagination, locale.selected, selectedRows, total]);
 
   return (
     <S.TableLimit>

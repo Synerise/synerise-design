@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { boolean, text, select, optionsKnob } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
+import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
+import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter.types';
+import { TimePickerProps } from '@synerise/ds-time-picker';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
@@ -24,7 +27,7 @@ const { getDefaultTexts } = utils;
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
-    <div style={{ width: '340px', margin: 'auto' }}>{storyFn()}</div>
+    <div style={{ width: '600px', margin: 'auto' }}>{storyFn()}</div>
   </div>
 );
 const CUSTOM_COLORS = [
@@ -56,7 +59,7 @@ const POPOVER_PLACEMENT = {
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
   containerStyle: { width: '268px', maxWidth: 'none' },
   units: ['hour', 'minute'],
-  timeFormat: 'HH:mm',
+  valueFormatOptions: { second: undefined },
 };
 
 const savedFilters = [];
@@ -463,6 +466,42 @@ const stories = {
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         showFilter={true}
         relativeModes={getRelativeModes(modesObj)}
+      />
+    );
+  },
+
+  dateFilterStandalone: () => {
+    const value = undefined;
+    const showTime = boolean('Set showTime', true);
+    const hideFooter = boolean('hide footer', true);
+    const [filters, setFilters] = React.useState(savedFilters);
+    const valueSelectionModes:DateLimitMode = ['Range'];
+
+    const allowedFilterLabel = 'Filter types';
+    const optionsObj = {
+      display: 'inline-check',
+    };
+    const allowedFilterTypes: AvailableFilterTypes[] = optionsKnob(allowedFilterLabel, TYPES, Object.values(TYPES), optionsObj);
+
+    // RangeFilterTypes 
+    return (
+      <RangeFilter
+        value={value} 
+        hideFooter={hideFooter}
+        onCancel={action('onCancel')}
+        onChange={action('onChange')}
+        onApply={action('onApply')}
+        onFilterSave={action('onFilterSave')}
+        savedFilters={filters}
+        allowedFilterTypes={allowedFilterTypes}
+        valueSelectionModes={valueSelectionModes}
+        texts={{
+          ...texts,
+          startDatePlaceholder: 'Start date',
+          endDatePlaceholder: 'End date',
+          clear: 'Clear',
+          emptyDateError: 'Date cannot be empty',
+        }}
       />
     );
   },

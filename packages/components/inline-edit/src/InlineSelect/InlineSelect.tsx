@@ -13,6 +13,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   style,
   dropdownProps = {},
   dropdownOverlayStyle = {},
+  inputStyle = {},
   size = 'normal',
   disabled,
   autoFocus,
@@ -95,6 +96,7 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           value={selectedValue || placeholder}
           autoComplete={input.autoComplete}
           placeholderIsMinWidth={false}
+          style={inputStyle}
           /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
           ref={inputRef as any}
         />

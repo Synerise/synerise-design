@@ -3,6 +3,8 @@ import { useIntl } from 'react-intl';
 import * as dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
+import { useDataFormat } from '@synerise/ds-data-format';
+
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import { SelectionCount, SelectionHint, AddButton } from '../../../Shared';
 import Grid from '../../../Shared/TimeWindow/Grid/Grid';
@@ -25,12 +27,17 @@ import {
   RENDER_EMPTY_NODE_FN,
   NOOP,
 } from '../constants';
+import {
+  EU_NOTATION_WEEK_DAYS_INDEXES,
+  US_NOTATION_WEEK_DAYS_INDEXES,
+} from '../../../Shared/TimeWindow/constants/timeWindow.constants';
 
 const Weekly: React.FC<WeeklyProps> = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
   valueSelectionMode = ['Hour', 'Range'],
   onChange = NOOP,
-  timeFormat = 'HH:mm',
+  timeFormat,
+  valueFormatOptions,
   value,
   timePickerProps,
   disabled,
@@ -51,7 +58,12 @@ const Weekly: React.FC<WeeklyProps> = ({
   const ref = React.useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
   const intl = useIntl();
-  const allKeys = React.useMemo(() => range(0, 7), []);
+  const { isSundayFirstWeekDay } = useDataFormat();
+
+  const allKeys = React.useMemo(
+    () => (isSundayFirstWeekDay ? US_NOTATION_WEEK_DAYS_INDEXES : EU_NOTATION_WEEK_DAYS_INDEXES),
+    [isSundayFirstWeekDay]
+  );
 
   React.useEffect(() => {
     setFilteredSchedule(Object.keys(value));
@@ -313,6 +325,7 @@ const Weekly: React.FC<WeeklyProps> = ({
             renderSuffix={RENDER_EMPTY_NODE_FN}
             timePickerProps={timePickerProps}
             timeFormat={timeFormat}
+            valueFormatOptions={valueFormatOptions}
             disabled={disabled}
           />
         ))}
