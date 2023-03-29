@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.48"
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48",
+    "@babel/plugin-transform-runtime": "^7.9.0"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",
@@ -25,8 +26,10 @@
     "global": "4.4.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
     "sass": "^1.43.4"
+  },
+  "peerDependencies": {
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0"
   }
 }
