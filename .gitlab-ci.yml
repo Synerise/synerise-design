@@ -53,6 +53,7 @@ docs_build:
       - dev
   script:
     - yarn --frozen-lockfile
+    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - yarn build
     - yarn npx:lerna run postinstall
     - yarn npx:lerna run build-docs
