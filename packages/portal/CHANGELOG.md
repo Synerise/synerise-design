@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.178.0](https://github.com/synerise/synerise-design/compare/portal@0.177.3...portal@0.178.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* **portal:** add less-vars-loader ([c3f1461](https://github.com/synerise/synerise-design/commit/c3f1461d8197550e288ded586691323328430571))
+* **portal:** addon-knobs register dist dir ([f1ee3e4](https://github.com/synerise/synerise-design/commit/f1ee3e436131e3c2a65f977ed14b16ac9c2d7b37))
+
+
+### Features
+
+* **portal:** upgrade to storybook 6.5 ([89c3394](https://github.com/synerise/synerise-design/commit/89c339434261545e9deb0e653f78a7274b79f941))
+
+
+
+
+
 ## [0.177.3](https://github.com/synerise/synerise-design/compare/portal@0.177.2...portal@0.177.3) (2023-03-28)
 
 

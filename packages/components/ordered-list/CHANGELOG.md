@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.36...@synerise/ds-ordered-list@0.3.37) (2023-03-29)
+
+
+### Bug Fixes
+
+* **ordered-list:** exclude spec files ([f74f7fe](https://github.com/Synerise/synerise-design/commit/f74f7fe4186fc97a09ff27e5b770b16465cd4cc7))
+
+
+
+
+
 ## [0.3.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.35...@synerise/ds-ordered-list@0.3.36) (2023-03-06)
 
 **Note:** Version bump only for package @synerise/ds-ordered-list
