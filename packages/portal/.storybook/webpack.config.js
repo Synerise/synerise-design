@@ -30,7 +30,7 @@ module.exports = async ({ config, mode }) => {
           presets: ['babel-preset-react-app'],
           plugins:
             []
-            .concat((process.env['STORYBOOK_REPO_URL_PREFIX'] || process.env['BUNDLE_DS_SRC_DOCS_LINKS']) ? [
+            .concat((process.env['STORYBOOK_REPO_URL_PREFIX'] || process.env['STORYBOOK_BUNDLE_DS_SRC_DOCS_LINKS']) ? [
               require('@synerise/portal-plugin-docs-inline-stories-links-to-sources'),
             ] : [])
             .concat(mode === 'PRODUCTION'
