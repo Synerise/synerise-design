@@ -31,7 +31,7 @@ module.exports = async ({ config, mode }) => {
           plugins:
             []
             .concat((process.env['STORYBOOK_REPO_URL_PREFIX'] || process.env['STORYBOOK_BUNDLE_DS_SRC_DOCS_LINKS']) ? [
-              require('@synerise/portal-plugin-docs-inline-stories-links-to-sources'),
+              require('@synerise/portal-plugin-docs-inline-stories-links-to-sources').addLinksToStories,
             ] : [])
             .concat(mode === 'PRODUCTION'
               ? []

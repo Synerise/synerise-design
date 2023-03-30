@@ -47,7 +47,7 @@ function getModulePath(filename) {
   }
 }
 
-module.exports = function addLinksToStories(babel) {
+function addLinksToStories(babel) {
   const getPkgJsonImport = dir => babel.template.statement.ast(`import pkg from '${dir}package.json';`);
   const paramsDef = babel.template.statement.ast(`
     ({parameters: process.env['STORYBOOK_REPO_URL_PREFIX'] === undefined ? {} : {
@@ -75,4 +75,8 @@ module.exports = function addLinksToStories(babel) {
       },
     },
   };
+}
+
+module.exports = {
+  addLinksToStories,
 };
