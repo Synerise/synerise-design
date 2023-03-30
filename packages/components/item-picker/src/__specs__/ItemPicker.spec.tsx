@@ -306,7 +306,7 @@ describe('ItemPicker component', () => {
 
     expect(getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
   });
-  it.todo('should call onYReachEnd function', () => {});
-  it.todo('should shows loading state', () => {});
-  it.todo('should highlight labels based on searchBarProps.value', () => {});
+  it.skip('should call onYReachEnd function');
+  it.skip('should shows loading state');
+  it.skip('should highlight labels based on searchBarProps.value');
 });

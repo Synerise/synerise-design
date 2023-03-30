@@ -22,8 +22,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   closeOnBottomAction,
   isDropdownOpened,
   searchBarProps,
-  onYReachEnd,
-  isLoading,
+  scrollbarProps,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -70,8 +69,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
           absolute
           onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
           style={{ paddingRight: '8px' }}
-          onYReachEnd={onYReachEnd}
-          loading={isLoading}
+          {...scrollbarProps}
         >
           <SearchItems
             data={filteredDataSource}

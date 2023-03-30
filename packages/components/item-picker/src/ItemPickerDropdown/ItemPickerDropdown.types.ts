@@ -1,4 +1,5 @@
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 
 export interface Props {
@@ -13,6 +14,5 @@ export interface Props {
   closeOnBottomAction?: boolean;
   isDropdownOpened: boolean;
   searchBarProps?: Partial<SearchBarProps>;
-  isLoading?: boolean;
-  onYReachEnd?: () => void;
+  scrollbarProps?: ScrollbarProps;
 }

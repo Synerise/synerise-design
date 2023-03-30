@@ -3,6 +3,7 @@ import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import * as React from 'react';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
 export type ItemPickerSize = 'small' | 'large';
 
@@ -37,6 +38,5 @@ export type ItemPickerProps = {
   tooltip?: string | React.ReactNode;
   withClearConfirmation?: boolean;
   yesText?: string;
-  onYReachEnd?: () => void;
-  isLoading?: boolean;
+  scrollbarProps?: ScrollbarProps;
 };
