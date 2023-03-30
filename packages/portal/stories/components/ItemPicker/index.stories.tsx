@@ -58,6 +58,8 @@ const stories = {
           dropdownProps={{
             getPopupContainer: () => document.querySelector('.ds-items-picker'),
           }}
+          onYReachEnd={action('reached end of Y scrollbar')}
+          isLoading={boolean('isLoading', false)}
         />
       </div>
     );
