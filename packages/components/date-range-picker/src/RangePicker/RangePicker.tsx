@@ -357,7 +357,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
         </S.Sides>
         <S.PickerFooter>
           <Range
-            onClick={(): void => {
+            onClick={({ currentTarget }: React.UIEvent): void => {
               const now = new Date();
               const literallyNow: AbsoluteDateRange = {
                 ...value,
@@ -367,6 +367,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
                 to: fnsAddMinutes(now, 1),
               };
               onChange(literallyNow);
+              (currentTarget as HTMLElement).blur();
             }}
           >
             {texts.now}
