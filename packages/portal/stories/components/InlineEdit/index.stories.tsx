@@ -40,6 +40,7 @@ const stories = {
   inlineSelect: () => {
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
+    const size = select('Size', ['small', 'normal'], 'normal');
 
     return (
       <div style={{ padding: 8, display: 'inline-block' }}>
@@ -49,7 +50,7 @@ const stories = {
             placeholder: 'This is placeholder',
             onEnterPress: action('onEnterPress'),
           }}
-          size={'normal'}
+          size={size}
           error={error}
           disabled={disabled}
           dataSource={dataSource}

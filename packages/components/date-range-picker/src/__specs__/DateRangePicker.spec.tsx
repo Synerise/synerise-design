@@ -17,6 +17,24 @@ const ABSOLUTE_VALUE = {
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
 };
+const ABSOLUTE_VALUE_WITH_FILTER = {
+  type: ABSOLUTE,
+  from: '2018-10-09T00:00:00+02:00',
+  to: '2018-12-08T23:59:59+01:00',
+  filter: {
+    type: "WEEKLY",
+    nestingType: "IN_PLACE",
+    days: [
+      {
+        from: "00:00:00.000",
+        to: "23:59:59.999",
+        day: 5,
+        inverted: false,
+        mode: 'Range'
+      }
+    ]
+  },
+};
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
@@ -319,7 +337,7 @@ describe('DateRangePicker', () => {
   it.todo('range gets updated to show selected visible');
   it.todo('onChange is called only when apply button is clicked');
   it.todo('right side should not be earlier than left side');
-  it.todo('month is extended to the end of the month if duration is a type of month');
+  it.todo('month is extended to the end of the month if duration is a type of month'); // not exactly - right side should be rounded to the more granular type among offset and duration
   it.todo('the default value is distinguishable from lifetime (no from nor to property)');
   it.todo('LAST_MONTH selects all days in a month');
   it.todo('LAST_MONTH (with option before n days) not necessarily selects a whole month');
@@ -331,7 +349,32 @@ describe('DateRangePicker', () => {
   it.todo('sinceTimestamp in SINCE is actually emitted');
   it.todo('date type SINCE can be passed to onApply (isValid)');
   it.todo('SINCE dateFilter value has future prop indicating whether it is next or last');
-  it.todo(
-    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
-  );
+  it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
+  it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
+  it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
+  it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
+  it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
+  it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
+  it('filters should persist when date range changes', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        showRelativePicker={false}
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE_WITH_FILTER as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
+    const applyButton = await container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    fireEvent.click(getDayButton());
+    fireEvent.click(getDayButton());
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
+  });
 });

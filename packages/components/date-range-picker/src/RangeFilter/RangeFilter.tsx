@@ -19,13 +19,26 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
 
   constructor(props: RangeFilterProps) {
     super(props);
-    const valueType = props?.value?.type;
+    const allowedFilterTypes = props?.allowedFilterTypes?.length ? props?.allowedFilterTypes : Object.keys(TYPES);
+    const valueType =
+      props?.value?.type && allowedFilterTypes.includes(props?.value?.type)
+        ? props?.value?.type
+        : allowedFilterTypes[0];
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       activeType: valueType,
       [String(valueType)]: { ...denormalizeValue(props.value as FilterValue) },
     } as RangeFilterState;
   }
+
+  componentDidUpdate = (): void => {
+    const { state } = this;
+    const { allowedFilterTypes } = this.props;
+    const { activeType } = state;
+    if (allowedFilterTypes?.length && !allowedFilterTypes.includes(activeType)) {
+      this.handleTypeChange(allowedFilterTypes[0]);
+    }
+  };
 
   handleApply = (): void => {
     const { state } = this;
@@ -88,7 +101,12 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl, savedFilters, onFilterSave, texts, hideFooter, valueSelectionModes } = this.props;
+    const { intl, savedFilters, onFilterSave, texts, hideFooter, valueSelectionModes, allowedFilterTypes } = this.props;
+
+    const buttonSource = allowedFilterTypes?.length ? allowedFilterTypes : Object.values(TYPES);
+    buttonSource.sort((a: string, b: string) => {
+      return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b) ? -1 : 1;
+    });
     return (
       <S.Container>
         <S.Header>
@@ -106,17 +124,22 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           )}
         </S.Header>
         <S.Body>
-          <ButtonGroup fullWidth size="large">
-            {Object.values(TYPES).map(key => (
-              <Button
-                key={key}
-                type={activeType === key ? 'primary' : undefined}
-                onClick={(): void => this.handleTypeChange(key)}
-              >
-                {intl.formatMessage({ id: TYPES_DATA[key].labelTranslationKey })}
-              </Button>
-            ))}
-          </ButtonGroup>
+          {buttonSource.length > 1 && (
+            <ButtonGroup fullWidth size="large">
+              {buttonSource.map(key => (
+                <Button
+                  key={key}
+                  type={activeType === key ? 'primary' : undefined}
+                  onClick={(): void => this.handleTypeChange(key)}
+                >
+                  {intl.formatMessage({
+                    id: TYPES_DATA[key].labelTranslationKey,
+                    defaultMessage: TYPES_DATA[key].defaultLabel,
+                  })}
+                </Button>
+              ))}
+            </ButtonGroup>
+          )}
           <S.MainComponentWrapper>
             {Component && (
               <Component

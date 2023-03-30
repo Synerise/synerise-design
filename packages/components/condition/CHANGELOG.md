@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.10...@synerise/ds-condition@0.20.11) (2023-03-30)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
+## [0.20.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.9...@synerise/ds-condition@0.20.10) (2023-03-29)
+
+
+### Bug Fixes
+
+* **condition:** hide step cruds when readonly ([a995840](https://github.com/Synerise/synerise-design/commit/a995840f9749c5a964b67f9df07d9e6ba5ed45fc))
+
+
+
+
+
+## [0.20.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.8...@synerise/ds-condition@0.20.9) (2023-03-28)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
 ## [0.20.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.7...@synerise/ds-condition@0.20.8) (2023-03-24)
 
 **Note:** Version bump only for package @synerise/ds-condition

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.25.0...docs@0.25.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **docs:** fix minified reactjs error (inconsistency in deps) ([f01a7cf](https://gitlab.synerise.com/Frontend/synerise-design/commit/f01a7cf90280f44772abc1d6d17cb9d0ef602cd7))
+
+
+
+
+
 # [0.25.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.24.0...docs@0.25.0) (2023-03-06)
 
 

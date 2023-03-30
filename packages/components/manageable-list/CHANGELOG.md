@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.10...@synerise/ds-manageable-list@0.24.11) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fix monthly filter clipping ([20a205f](https://github.com/Synerise/synerise-design/commit/20a205fb892fd2bbeaf1d3f5f93641fe759f8dfe))
+* **inline-edit:** flatten classnames to string ([8e2735c](https://github.com/Synerise/synerise-design/commit/8e2735cbb5b4fceb5c6ec86061d23157874d4ca7))
+
+
+
+
+
 ## [0.24.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.9...@synerise/ds-manageable-list@0.24.10) (2023-03-21)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list
