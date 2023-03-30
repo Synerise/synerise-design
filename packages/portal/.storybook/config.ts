@@ -43,12 +43,12 @@ interface storyConfig {
   Component: React.FunctionComponent | React.ComponentClass;
   name: string;
   stories: {
-    [key: string]: object | Function,
-  },
-  decorator?: DecoratorFn,
-  config?: object,
-  parameters?: object,
-  withoutCenter?: boolean,
+    [key: string]: object | Function;
+  };
+  decorator?: DecoratorFn;
+  config?: object;
+  parameters?: object;
+  withoutCenter?: boolean;
 }
 
 function loadStories() {
