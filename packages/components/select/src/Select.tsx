@@ -20,6 +20,7 @@ class Select extends React.Component<Props> {
       errorText,
       error,
       tooltip,
+      tooltipConfig,
       clearTooltip,
       prefixel,
       suffixel,
@@ -28,12 +29,13 @@ class Select extends React.Component<Props> {
       className,
       getPopupContainer = defaultGetPopupContainer,
       grey,
+      dropdownClassName,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
     return (
-      <>
-        <S.Label label={label} tooltip={tooltip} />
+      <S.SelectContainer>
+        <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}
           error={Boolean(errorText)}
@@ -62,6 +64,7 @@ class Select extends React.Component<Props> {
             }
             removeIcon={<Icon component={<CloseS />} />}
             className={classNames({ error: errorText || error })}
+            dropdownClassName={classNames('ps__child--consume', dropdownClassName)}
           />
           {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
         </S.SelectWrapper>
@@ -76,7 +79,7 @@ class Select extends React.Component<Props> {
             {description && <Description disabled={antdProps.disabled}>{description}</Description>}
           </S.DescWrapper>
         )}
-      </>
+      </S.SelectContainer>
     );
   }
 }

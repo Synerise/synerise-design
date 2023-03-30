@@ -23,13 +23,14 @@ const TextInput: React.FC<InputProps> = ({
   onDeactivate,
   error,
   inputProps,
+  readOnly = false,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
   const [inputRef, setInputRef] =
     useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
   const [localError, setLocalError] = React.useState(false);
-  const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
+  const onChangeDebounce = React.useRef(debounce(onChange, 300)).current;
 
   React.useEffect(() => {
     if (inputRef?.current && opened) {
@@ -43,6 +44,7 @@ const TextInput: React.FC<InputProps> = ({
 
   const handleChange = React.useCallback(
     event => {
+      onChangeDebounce.cancel();
       setLocalValue(event.target.value);
       onChangeDebounce(event.target.value);
       if (!event.target.value.length) {
@@ -66,10 +68,11 @@ const TextInput: React.FC<InputProps> = ({
 
   const handleAutocomplete = React.useCallback(
     val => {
+      onChangeDebounce.cancel();
       setLocalValue(val);
-      onChange(val);
+      onChangeDebounce(val);
     },
-    [onChange]
+    [onChangeDebounce]
   );
 
   const autocompleteOptions = React.useMemo(() => {
@@ -91,6 +94,7 @@ const TextInput: React.FC<InputProps> = ({
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
+          readOnly={readOnly}
         >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>
@@ -111,6 +115,7 @@ const TextInput: React.FC<InputProps> = ({
             onChange={handleChange}
             onBlur={onDeactivate}
             error={localError || error}
+            readOnly={readOnly}
           />
         </S.InputWrapper>
       );
@@ -123,13 +128,14 @@ const TextInput: React.FC<InputProps> = ({
           placeholder={texts.valuePlaceholder}
           icon1={
             <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
-              <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />
+              {!readOnly && <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />}
             </S.IconWrapper>
           }
           value={localValue as string}
           onChange={handleChange}
           onBlur={onDeactivate}
           error={localError || error}
+          readOnly={readOnly}
         />
       </S.InputWrapper>
     );

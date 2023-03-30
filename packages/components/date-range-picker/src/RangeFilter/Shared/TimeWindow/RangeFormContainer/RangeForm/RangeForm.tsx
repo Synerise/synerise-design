@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import Select from '@synerise/ds-select';
 import Icon, { CloseS } from '@synerise/ds-icon';
-
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { useDataFormat } from '@synerise/ds-data-format';
 import TimePicker from '@synerise/ds-time-picker';
+import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+
 import { DateLimitMode, RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';
 import { getDisabledTimeOptions } from '../../../../../RangePicker/utils';
@@ -25,7 +27,10 @@ const RangeForm: React.FC<RangeFormProps> = ({
   mode = valueSelectionModes[0],
   timePickerProps,
   texts,
+  valueFormatOptions,
 }) => {
+  const { is12HoursClock } = useDataFormat();
+
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const getPopupContainer = React.useCallback(
@@ -54,10 +59,21 @@ const RangeForm: React.FC<RangeFormProps> = ({
         disabledHours={[]}
         disabledMinutes={[]}
         disabledSeconds={[]}
+        use12HourClock={is12HoursClock}
+        valueFormatOptions={valueFormatOptions}
         {...timePickerProps}
       />
     );
-  }, [start, onExactHourSelect, getPopupContainer, texts, timePickerProps, disabled]);
+  }, [
+    start,
+    onExactHourSelect,
+    getPopupContainer,
+    texts,
+    timePickerProps,
+    disabled,
+    is12HoursClock,
+    valueFormatOptions,
+  ]);
   const renderRangePicker = React.useCallback(() => {
     return (
       <>
@@ -72,9 +88,11 @@ const RangeForm: React.FC<RangeFormProps> = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={getDisabledTimeOptions(start || end, 'HOURS', null, end)}
-          disabledMinutes={getDisabledTimeOptions(start || end, 'MINUTES', null, end)}
-          disabledSeconds={getDisabledTimeOptions(start || end, 'SECONDS', null, end)}
+          disabledHours={getDisabledTimeOptions(start || end, 'HOURS', null, end, is12HoursClock)}
+          disabledMinutes={getDisabledTimeOptions(start || end, 'MINUTES', null, end, is12HoursClock)}
+          disabledSeconds={getDisabledTimeOptions(start || end, 'SECONDS', null, end, is12HoursClock)}
+          use12HourClock={is12HoursClock}
+          valueFormatOptions={valueFormatOptions}
           {...timePickerProps}
         />
         <S.Separator>-</S.Separator>
@@ -89,14 +107,28 @@ const RangeForm: React.FC<RangeFormProps> = ({
           dropdownProps={{
             getPopupContainer,
           }}
-          disabledHours={getDisabledTimeOptions(end || start, 'HOURS', start, null)}
-          disabledMinutes={getDisabledTimeOptions(end || start, 'MINUTES', start, null)}
-          disabledSeconds={getDisabledTimeOptions(end || start, 'SECONDS', start, null)}
+          disabledHours={getDisabledTimeOptions(end || start, 'HOURS', start, null, is12HoursClock)}
+          disabledMinutes={getDisabledTimeOptions(end || start, 'MINUTES', start, null, is12HoursClock)}
+          disabledSeconds={getDisabledTimeOptions(end || start, 'SECONDS', start, null, is12HoursClock)}
+          use12HourClock={is12HoursClock}
           {...timePickerProps}
         />
       </>
     );
-  }, [start, end, onStartChange, onEndChange, setStart, setEnd, getPopupContainer, texts, timePickerProps, disabled]);
+  }, [
+    start,
+    end,
+    onStartChange,
+    onEndChange,
+    setStart,
+    setEnd,
+    getPopupContainer,
+    texts,
+    timePickerProps,
+    disabled,
+    is12HoursClock,
+    valueFormatOptions,
+  ]);
   const limitModeSelect = React.useMemo(
     () =>
       valueSelectionModes.length > 1 ? (

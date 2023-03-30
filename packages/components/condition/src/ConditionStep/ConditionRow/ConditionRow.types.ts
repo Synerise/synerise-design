@@ -29,5 +29,6 @@ export type ConditionRowProps = {
   getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
-  inputProps?: InputProps;
+  inputProps?: Partial<InputProps>;
+  readOnly?: boolean;
 };

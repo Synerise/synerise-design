@@ -30,6 +30,7 @@ const stories = {
         onDeactivate={action('onDeactivate')}
         loading={boolean('Set loading', false)}
         disabled={boolean('Set disabled', false)}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),
@@ -50,6 +51,7 @@ const stories = {
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
         disabled={boolean('Set disabled', false)}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),
@@ -70,6 +72,7 @@ const stories = {
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
         disabled={boolean('Set disabled', false)}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),
@@ -90,6 +93,7 @@ const stories = {
         onActivate={action('onActivate')}
         onDeactivate={action('onDeactivate')}
         disabled={boolean('Set disabled', false)}
+        readOnly={boolean('Set readOnly', false)}
       />
     );
   }),

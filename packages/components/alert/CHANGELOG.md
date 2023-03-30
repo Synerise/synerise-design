@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.26...@synerise/ds-alert@0.7.27) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.25...@synerise/ds-alert@0.7.26) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.24...@synerise/ds-alert@0.7.25) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.22...@synerise/ds-alert@0.7.24) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.22...@synerise/ds-alert@0.7.23) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.21...@synerise/ds-alert@0.7.22) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.20...@synerise/ds-alert@0.7.21) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.19...@synerise/ds-alert@0.7.20) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.18...@synerise/ds-alert@0.7.19) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.17...@synerise/ds-alert@0.7.18) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.16...@synerise/ds-alert@0.7.17) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
 ## [0.7.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.15...@synerise/ds-alert@0.7.16) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-alert

@@ -10,7 +10,7 @@ export type ItemPickerProps = {
   dataSource: MenuItemProps[];
   intl: IntlShape;
   onChange: (item: MenuItemProps) => void;
-  onClear: () => void;
+  onClear?: () => void;
   placeholder: string | React.ReactNode;
   changeButtonLabel?: string | React.ReactNode;
   clear?: string | React.ReactNode;

@@ -58,6 +58,7 @@ const getTexts = () => ({
 const stories = {
   default: withState({
     items: ITEMS,
+    selectedId: undefined,
   })(({ store }) => {
     const addItem = ({ name }): void => {
       store.set({
@@ -78,7 +79,8 @@ const stories = {
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store)}
-        onItemSelect={action('onItemSelect')}
+        onItemSelect={({ id }) => store.set({ selectedId: id })}
+        selectedItemId={store.state.selectedId}
         items={store.state.items}
         loading={false}
         placeholder={'Folder name'}

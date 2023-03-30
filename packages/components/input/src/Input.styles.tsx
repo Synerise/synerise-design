@@ -59,6 +59,9 @@ export const OuterWrapper = styled.div<{
   }
   input {
     ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
+    @media (max-width: 960px) {
+      max-width: 150px;
+    }
   }
 `;
 
@@ -220,6 +223,15 @@ export const AutoResize = styled.div<AutoResizeInputProps>`
   white-space: pre;
   padding: ${(props): string => getPaddingAutoResize(props)};
   ${(props: AutoResizeInputProps): string => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
+  @media (max-width: 1420px) {
+    max-width: 300px;
+  }
+  @media (max-width: 1150px) {
+    max-width: 200px;
+  }
+  @media (max-width: 1100px) {
+    max-width: 150px;
+  }
 `;
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};

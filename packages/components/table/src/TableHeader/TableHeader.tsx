@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
+import { useDataFormat } from '@synerise/ds-data-format';
 import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter } from '../Table.types';
@@ -28,6 +29,7 @@ const TableHeader: React.FC<Props> = ({
   renderSelectionTitle,
   hideTitlePart,
 }) => {
+  const { formatValue } = useDataFormat();
   const titleRef = React.useRef<HTMLElement>(null);
   const [isTitleTruncated, setIsTitleTruncated] = React.useState<boolean>(false);
 
@@ -50,7 +52,7 @@ const TableHeader: React.FC<Props> = ({
         ) : (
           <S.TitleContainer>
             <S.TitlePart>
-              <strong>{selectedRows}</strong> <span>{locale.selected}</span>
+              <strong>{formatValue(selectedRows)}</strong> <span>{locale.selected}</span>
             </S.TitlePart>
           </S.TitleContainer>
         )}
@@ -76,24 +78,24 @@ const TableHeader: React.FC<Props> = ({
           )}
           {!hideTitlePart && (
             <S.TitlePart>
-              <strong>{dataSource.length}</strong> <span>{locale.pagination.items}</span>
+              <strong>{formatValue(dataSource.length)}</strong> <span>{locale.pagination.items}</span>
             </S.TitlePart>
           )}
         </S.TitleContainer>
       </S.Left>
     );
   }, [
+    selection,
     dataSource,
-    titleRef,
-    filters,
-    isTitleTruncated,
     itemsMenu,
     locale,
-    renderSelectionTitle,
-    rowKey,
     selectedRows,
-    selection,
+    rowKey,
+    renderSelectionTitle,
+    filters,
+    formatValue,
     title,
+    isTitleTruncated,
     hideTitlePart,
   ]);
 

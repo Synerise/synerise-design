@@ -22,6 +22,7 @@ const ParameterInput: React.FC<InputProps> = ({
   getPopupContainerOverride,
   onActivate,
   onDeactivate,
+  readOnly = false,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -75,7 +76,56 @@ const ParameterInput: React.FC<InputProps> = ({
     [onActivate, onDeactivate]
   );
 
-  return (
+  const triggerMode = React.useMemo(() => {
+    if (value) {
+      return readOnly ? 'icon-label' : 'two-icons';
+    }
+
+    return readOnly ? 'simple' : 'label-icon';
+  }, [value, readOnly]);
+
+  const triggerButton = (
+    <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleOnClick : undefined}>
+      <Icon component={parameterIcon} />
+      <Value>{parameterName}</Value>
+      {!readOnly && <Icon component={<AngleDownS />} />}
+    </Button>
+  );
+
+  const trigger = (
+    <Menu
+      asDropdownMenu
+      showTextTooltip
+      asInfoCardContainer
+      dataSource={[
+        {
+          text: triggerButton,
+          hoverTooltipProps: {
+            popupPlacement: 'top',
+            getPopupContainer: getPopupContainerOverride || getPopupContainer,
+          } as MenuItemProps['hoverTooltipProps'],
+          renderHoverTooltip: parameter?.name
+            ? (): JSX.Element => (
+                <InformationCard
+                  icon={parameterIcon}
+                  subtitle={parameter.id.toString()}
+                  title={parameterName}
+                  descriptionConfig={
+                    parameter.description
+                      ? { value: parameter.description as string, disabled: true, label: undefined }
+                      : undefined
+                  }
+                />
+              )
+            : undefined,
+        },
+      ]}
+    />
+  );
+
+  return readOnly ? (
+    trigger
+  ) : (
     <div data-popup-container>
       <Dropdown
         visible={dropdownVisible}
@@ -91,40 +141,7 @@ const ParameterInput: React.FC<InputProps> = ({
           />
         }
       >
-        <Menu
-          asDropdownMenu
-          showTextTooltip
-          asInfoCardContainer
-          dataSource={[
-            {
-              text: (
-                <Button type="secondary" mode="two-icons" onClick={handleOnClick}>
-                  <Icon component={parameterIcon} />
-                  <Value>{parameterName}</Value>
-                  <Icon component={<AngleDownS />} />
-                </Button>
-              ),
-              hoverTooltipProps: {
-                popupPlacement: 'top',
-                getPopupContainer: getPopupContainerOverride || getPopupContainer,
-              } as MenuItemProps['hoverTooltipProps'],
-              renderHoverTooltip: parameter
-                ? (): JSX.Element => (
-                    <InformationCard
-                      icon={parameterIcon}
-                      subtitle={parameterName}
-                      title={parameterName.replace('_', ' ')}
-                      descriptionConfig={
-                        parameter.description
-                          ? { value: parameter.description as string, disabled: true, label: undefined }
-                          : undefined
-                      }
-                    />
-                  )
-                : undefined,
-            },
-          ]}
-        />
+        {trigger}
       </Dropdown>
     </div>
   );

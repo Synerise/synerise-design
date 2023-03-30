@@ -3,6 +3,172 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.10...@synerise/ds-manageable-list@0.24.11) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fix monthly filter clipping ([20a205f](https://github.com/Synerise/synerise-design/commit/20a205fb892fd2bbeaf1d3f5f93641fe759f8dfe))
+* **inline-edit:** flatten classnames to string ([8e2735c](https://github.com/Synerise/synerise-design/commit/8e2735cbb5b4fceb5c6ec86061d23157874d4ca7))
+
+
+
+
+
+## [0.24.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.9...@synerise/ds-manageable-list@0.24.10) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.8...@synerise/ds-manageable-list@0.24.9) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.7...@synerise/ds-manageable-list@0.24.8) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.6...@synerise/ds-manageable-list@0.24.7) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.5...@synerise/ds-manageable-list@0.24.6) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.4...@synerise/ds-manageable-list@0.24.5) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.2...@synerise/ds-manageable-list@0.24.4) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.2...@synerise/ds-manageable-list@0.24.3) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.1...@synerise/ds-manageable-list@0.24.2) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.24.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.0...@synerise/ds-manageable-list@0.24.1) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+# [0.24.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.48...@synerise/ds-manageable-list@0.24.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* **manageable-list:** fixes typo in SimpleItem.styles ([e2762d7](https://github.com/Synerise/synerise-design/commit/e2762d7caf7f8129168745740cf7c4e9e2bbbbdd))
+
+
+### Features
+
+* **manageable-list:** adds style property for ManageableListWrapper ([3ed2199](https://github.com/Synerise/synerise-design/commit/3ed2199f37646a844109a80bb4b547766fb4a510))
+* **manageable-list:** adds styles for selected item ([6dd222f](https://github.com/Synerise/synerise-design/commit/6dd222f0bc8485da3bbbcfe31100c0cbcb7f4252))
+* **manageable-list:** renames selected to isSelected ([54ad6a6](https://github.com/Synerise/synerise-design/commit/54ad6a69d72ddc914bebbdabc78d68afdf610e04))
+
+
+
+
+
+## [0.23.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.47...@synerise/ds-manageable-list@0.23.48) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.46...@synerise/ds-manageable-list@0.23.47) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.45...@synerise/ds-manageable-list@0.23.46) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.44...@synerise/ds-manageable-list@0.23.45) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.43...@synerise/ds-manageable-list@0.23.44) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.42...@synerise/ds-manageable-list@0.23.43) (2022-11-30)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
+## [0.23.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.41...@synerise/ds-manageable-list@0.23.42) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.23.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.23.40...@synerise/ds-manageable-list@0.23.41) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

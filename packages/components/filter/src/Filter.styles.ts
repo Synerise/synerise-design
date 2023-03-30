@@ -93,4 +93,18 @@ export const AddButtonWrapper = styled.div`
   justify-content: flex-start;
   margin: 24px 0 0;
   width: 100%;
+  position: relative;
+`;
+
+export const FilterTitle = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: ${(props): string => props.theme.palette['grey-800']};
+  text-align: left;
+  user-select: none;
+  margin-bottom: 24px;
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import RangeForm from './RangeForm/RangeForm';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import { DayKey } from '../TimeWindow.types';
@@ -34,6 +35,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   timePickerProps,
   renderSuffix,
   timeFormat,
+  valueFormatOptions,
 }) => {
   const dayValue = getDayValue(activeDays[0]);
 
@@ -117,6 +119,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
         onExactHourSelect={onExactHourSelect}
         onRangeDelete={onRangeDelete}
         valueSelectionModes={valueSelectionModes}
+        valueFormatOptions={valueFormatOptions}
         timePickerProps={timePickerProps}
       />
     ),
@@ -133,6 +136,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       onStartChange,
       onEndChange,
       onExactHourSelect,
+      valueFormatOptions,
     ]
   );
   const suffix = React.useMemo(() => {

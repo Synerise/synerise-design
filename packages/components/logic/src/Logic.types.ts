@@ -12,6 +12,7 @@ export type LogicProps = {
   value: LogicOperatorValue;
   options?: LogicOperator[];
   onChange: (value: LogicOperatorValue) => void;
+  readOnly?: boolean;
 };
 
 export type LogicSubComponents = {

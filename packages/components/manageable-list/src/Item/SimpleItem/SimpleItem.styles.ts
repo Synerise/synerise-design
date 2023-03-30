@@ -15,7 +15,9 @@ export const ItemLabel = styled.span`
   line-height: 24px;
   max-width: 170px;
   user-select: none;
-
+  &.full-width {
+    max-width: unset;
+  }
   .search-highlight {
     font-weight: 500;
     color: ${(props): string => props.theme.palette['grey-800']};
@@ -36,14 +38,19 @@ export const ItemLabelWrapper = styled.div`
   }
 `;
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.div<{ isSelected: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: stretch;
+  background-color: ${({ theme, isSelected }): string =>
+    isSelected ? theme.palette['blue-050'] : theme.palette.white};
   li {
     width: 100%;
+    .title {
+      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+    }
     & > div {
       height: 24px;
       &:nth-child(2) {
@@ -54,8 +61,8 @@ export const ItemContainer = styled.div`
 
   .ds-manageable-list-item-icon {
     svg {
-      color: ${({ theme }): string => theme.palette['grey-600']};
-      fill: ${({ theme }): string => theme.palette['grey-600']};
+      color: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
+      fill: ${({ theme, isSelected }): string => (isSelected ? theme.palette['blue-600'] : theme.palette['grey-600'])};
     }
   }
 

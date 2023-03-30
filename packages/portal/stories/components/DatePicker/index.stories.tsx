@@ -1,15 +1,17 @@
 import * as React from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, object } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => {
     const showTime = boolean('Show time', true);
-    const disabled = boolean("Set disabled", false);
+    const disabled = boolean('Set disabled', false);
     const prefixel = text('prefixel', 'Prefixel');
     const suffixel = text('suffixel', 'Suffixel');
     const hideNow = boolean('Hide now button', false);
+    const readOnly = boolean('Set readOnly', false);
+    const valueFormatOptions = object('valueFormatOptions', {});
 
     return (
       <div>
@@ -28,6 +30,8 @@ const stories = {
             clearTooltip: 'Clear',
           }}
           hideNow={hideNow}
+          readOnly={readOnly}
+          valueFormatOptions={valueFormatOptions}
         />
       </div>
     );

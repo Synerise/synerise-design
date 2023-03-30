@@ -1,8 +1,14 @@
 import * as React from 'react';
 import dayjs from 'dayjs';
 import { IntlShape } from 'react-intl';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import { InputProps } from 'antd/es/input/Input';
+
+import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import { DateToFormatOptions } from '@synerise/ds-data-format';
+
+import { CLOCK_MODES } from '../constants/timePicker.constants';
+
+export type ClockModes = typeof CLOCK_MODES[number];
 
 export type TimePickerDisabledUnits = {
   disabledSeconds?: number[];
@@ -15,7 +21,6 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   className?: string;
   clearTooltip?: string | React.ReactNode;
   containerStyle?: React.CSSProperties;
-  defaultAM?: boolean;
   defaultOpen?: boolean;
   disabled?: boolean;
   dropdownProps?: Partial<DropdownProps>;
@@ -27,9 +32,16 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   placeholder?: string;
   placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
   raw?: boolean;
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   timeFormat?: string;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   units?: dayjs.UnitType[];
+  /**
+   * @deprecated use DSProvider::dataFormatConfig instead
+   */
   use12HourClock?: boolean;
+  valueFormatOptions?: DateToFormatOptions;
   value?: Date;
 };

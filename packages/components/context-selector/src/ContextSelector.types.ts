@@ -21,6 +21,7 @@ export type ContextItem = {
   groupName?: string;
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
+  subtitle?: string;
 };
 
 export type ContextGroup = {
@@ -39,6 +40,7 @@ export type ContextGroup = {
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
 export type ContextProps = {
   disabled?: boolean;
+  readOnly?: boolean;
   defaultDropdownVisibility?: boolean;
   selectedItem?: ContextItem | undefined;
   onActivate?: (fieldType: string) => void;

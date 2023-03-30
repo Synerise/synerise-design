@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.25...@synerise/ds-search-bar@0.6.26) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.24...@synerise/ds-search-bar@0.6.25) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.23...@synerise/ds-search-bar@0.6.24) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.21...@synerise/ds-search-bar@0.6.23) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.21...@synerise/ds-search-bar@0.6.22) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.20...@synerise/ds-search-bar@0.6.21) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.19...@synerise/ds-search-bar@0.6.20) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.18...@synerise/ds-search-bar@0.6.19) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.17...@synerise/ds-search-bar@0.6.18) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.16...@synerise/ds-search-bar@0.6.17) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
+## [0.6.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.15...@synerise/ds-search-bar@0.6.16) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
 ## [0.6.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.14...@synerise/ds-search-bar@0.6.15) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-search-bar

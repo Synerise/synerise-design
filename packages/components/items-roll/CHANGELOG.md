@@ -3,6 +3,142 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.55...@synerise/ds-items-roll@0.6.56) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.54...@synerise/ds-items-roll@0.6.55) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.53...@synerise/ds-items-roll@0.6.54) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.52...@synerise/ds-items-roll@0.6.53) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.51...@synerise/ds-items-roll@0.6.52) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.50...@synerise/ds-items-roll@0.6.51) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.48...@synerise/ds-items-roll@0.6.50) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.48...@synerise/ds-items-roll@0.6.49) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.47...@synerise/ds-items-roll@0.6.48) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.46...@synerise/ds-items-roll@0.6.47) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.45...@synerise/ds-items-roll@0.6.46) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.44...@synerise/ds-items-roll@0.6.45) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.43...@synerise/ds-items-roll@0.6.44) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.42...@synerise/ds-items-roll@0.6.43) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.41...@synerise/ds-items-roll@0.6.42) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.40...@synerise/ds-items-roll@0.6.41) (2022-11-30)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+## [0.6.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.39...@synerise/ds-items-roll@0.6.40) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
 ## [0.6.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.38...@synerise/ds-items-roll@0.6.39) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

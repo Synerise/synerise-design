@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.0...@synerise/ds-select@0.15.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **select:** fix custom scroll in select ([52b874c](https://github.com/synerise/synerise-design/commit/52b874c9f0c3717e60d8248b497d3fd25027320f))
+* **select:** fix custom scroll in select ([8472fcc](https://github.com/synerise/synerise-design/commit/8472fcc3676c4cc91e5ceeaa1b61aa149c1ad44b))
+
+
+
+
+
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.38...@synerise/ds-select@0.15.0) (2023-03-06)
+
+
+### Bug Fixes
+
+* **select:** fixes styles ([2913902](https://github.com/synerise/synerise-design/commit/2913902949e99eea558f5a29c317edce54a1fee1))
+
+
+### Features
+
+* **input-number:** adds wrapper element for select component ([2a7c8df](https://github.com/synerise/synerise-design/commit/2a7c8df4d939067e4f3ab27bc0d0963e4c199598))
+* **select:** adds tooltipConfig property ([0df3e95](https://github.com/synerise/synerise-design/commit/0df3e95638e58b8aca04653caa83a7086c9eb88e))
+
+
+
+
+
+## [0.14.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.37...@synerise/ds-select@0.14.38) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.37](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.36...@synerise/ds-select@0.14.37) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.36](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.34...@synerise/ds-select@0.14.36) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.35](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.34...@synerise/ds-select@0.14.35) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.33...@synerise/ds-select@0.14.34) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.32...@synerise/ds-select@0.14.33) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.32](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.31...@synerise/ds-select@0.14.32) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.31](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.30...@synerise/ds-select@0.14.31) (2023-01-09)
+
+
+### Bug Fixes
+
+* **select:** add selector style prop to select field ([edac18e](https://github.com/synerise/synerise-design/commit/edac18e6f8befb184df7349aa310e2ab9dab31e6))
+
+
+
+
+
+## [0.14.30](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.29...@synerise/ds-select@0.14.30) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.29](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.28...@synerise/ds-select@0.14.29) (2022-12-08)
+
+
+### Bug Fixes
+
+* **select:** export props from select ([6f9f7fc](https://github.com/synerise/synerise-design/commit/6f9f7fc5717047e82dd5dc9f0b2b6d4847e68e9c))
+
+
+
+
+
+## [0.14.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.27...@synerise/ds-select@0.14.28) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
+## [0.14.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.26...@synerise/ds-select@0.14.27) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-select
+
+
+
+
+
 ## [0.14.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.14.25...@synerise/ds-select@0.14.26) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-select

@@ -41,6 +41,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   showSuffix,
   hoverDisabled,
   inputProps,
+  readOnly = false,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -90,13 +91,15 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
         removeStep={removeStep}
         duplicateStep={duplicateStep}
         draggableEnabled={Boolean(draggableEnabled)}
+        readOnly={readOnly}
       />
     ),
-    [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName]
+    [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName, readOnly]
   );
 
   const addConditionButton = React.useMemo(() => {
     return (
+      !readOnly &&
       addCondition &&
       (maxConditionsLength === undefined || step.conditions.length < maxConditionsLength) && (
         <AddCondition
@@ -118,6 +121,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     step.id,
     step.subject,
     text,
+    readOnly,
   ]);
 
   const renderConditionRow = React.useCallback(
@@ -162,6 +166,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           texts={text}
           stepType={step.context?.type}
           onDeactivate={onDeactivate}
+          readOnly={readOnly}
         />
       );
     },
@@ -189,6 +194,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       setCurrentCondition,
       setCurrentStep,
       inputProps,
+      readOnly,
     ]
   );
 
@@ -230,6 +236,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
               onDeactivate={onDeactivate}
               opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectContext(value, step.id)}
+              readOnly={readOnly}
             />
           )}
         </S.Subject>
@@ -237,7 +244,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
           {addConditionButton}
         </S.ConditionRows>
-        {!updateStepName && (
+        {!updateStepName && !readOnly && (
           <S.StepConditionCruds
             onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
             onDelete={removeStep ? (): void => removeStep(step.id) : undefined}

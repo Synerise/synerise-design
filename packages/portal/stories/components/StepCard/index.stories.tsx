@@ -39,15 +39,18 @@ const stories = {
         );
       } else {
         return (
+          /** workaround for an issue with displaying '-' instead of date range */
           <Button type="tertiary" mode="label-icon">
-            {fnsFormat(rangeValue.from, 'MMM D, YYYY')}
+            {fnsFormat(new Date(rangeValue.from), 'MMM D, YYYY')}
             {` - `}
-            {fnsFormat(rangeValue.to, 'MMM D, YYYY')}
+            {fnsFormat(new Date(rangeValue.to), 'MMM D, YYYY')}
             <Icon component={<CalendarM />} />
           </Button>
         );
       }
     }, [rangeValue]);
+
+    const readOnly = boolean('Set readOnly', false);
 
     return (
       <div style={{ width: '100%' }}>
@@ -55,6 +58,7 @@ const stories = {
           matching={matching}
           onChangeMatching={setMatching}
           name={name}
+          readOnly={readOnly}
           onChangeName={name => {
             setName(name);
           }}
@@ -83,12 +87,14 @@ const stories = {
                   texts={dateRangePickerTexts}
                   value={rangeValue}
                   popoverTrigger={dateRangePickerTrigger}
+                  readOnly={readOnly}
                 />
               </>
             )
           }
+          isHeaderVisible={boolean('Show header', true)}
         >
-          <ConditionExample steps={steps} onChange={setSteps} />
+          <ConditionExample steps={steps} onChange={setSteps} readOnly={readOnly} />
         </StepCard>
       </div>
     );

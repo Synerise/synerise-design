@@ -42,7 +42,7 @@ export const UnitSeperator = styled.div`
 
 export const CellText = styled(Label)`
   && {
-    width: 18px;
+    width: 22px;
     height: 18px;
     text-align: center;
     color: ${(props): string => props.theme.palette['grey-600']};

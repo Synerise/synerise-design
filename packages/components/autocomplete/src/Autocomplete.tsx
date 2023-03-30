@@ -28,6 +28,10 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
+  const getParentNode = (triggerNode: HTMLElement): HTMLElement => {
+    return triggerNode.parentNode as HTMLElement;
+  };
+
   const renderAutoCompleteComponent = (): React.ReactNode => {
     return (
       <AntdAutoComplete
@@ -38,6 +42,7 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         ref={inputRef}
         dropdownClassName="ds-autocomplete-dropdown"
         className={!!errorText || error ? 'error' : undefined}
+        getPopupContainer={getParentNode}
       />
     );
   };

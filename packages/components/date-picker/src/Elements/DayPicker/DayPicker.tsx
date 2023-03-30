@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { injectIntl } from 'react-intl';
-import fnsFormat from '../../format';
 
+import { useDataFormat } from '@synerise/ds-data-format';
+
+import fnsFormat from '../../format';
 import Navbar from '../Navbar/Navbar';
-import { fnsAddYears, fnsAddMonths } from '../../fns';
+import { fnsAddMonths, fnsAddYears } from '../../fns';
 import localeUtils from '../../localeUtils';
 import { DayPickerProps } from './DayPicker.types';
 import { DayPicker } from './DayPicker.styles';
@@ -27,6 +29,8 @@ const Picker: React.FC<DayPickerProps> = props => {
     ...rest
   } = props;
 
+  const { firstDayOfWeek } = useDataFormat();
+
   return (
     <>
       {renderNavbar ? (
@@ -49,7 +53,7 @@ const Picker: React.FC<DayPickerProps> = props => {
       )}
       <DayPicker
         month={month}
-        firstDayOfWeek={1}
+        firstDayOfWeek={firstDayOfWeek}
         captionElement={captionElement}
         key="body"
         locale={intl.locale}

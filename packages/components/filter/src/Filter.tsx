@@ -40,6 +40,8 @@ const Filter: React.FC<FilterProps> = ({
   addFilterComponent,
   texts,
   logicOptions,
+  visibilityConfig = { isStepCardHeaderVisible: true },
+  readOnly = false,
 }) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
@@ -129,6 +131,7 @@ const Filter: React.FC<FilterProps> = ({
           onDuplicate: !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
+          isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
           texts: {
             ...text.step,
             ...contextTypeTexts,
@@ -151,6 +154,7 @@ const Filter: React.FC<FilterProps> = ({
       renderStepContent,
       renderStepFooter,
       text.step,
+      visibilityConfig.isStepCardHeaderVisible,
     ]
   );
 
@@ -163,34 +167,38 @@ const Filter: React.FC<FilterProps> = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          style={isActive(expression) ? { zIndex: 10001 } : undefined}
+          style={!readOnly && isActive(expression) ? { zIndex: 10001 } : undefined}
           onClick={(): void => setActiveExpressionId(expression.id)}
         >
-          <Component {...expression.data} {...componentProps(expression)} />
+          <Component {...expression.data} {...componentProps(expression)} readOnly={readOnly} />
           {expression.logic && index + 1 < expressions.length && (
             <S.LogicWrapper>
-              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} />
+              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} readOnly={readOnly} />
             </S.LogicWrapper>
           )}
         </S.ExpressionWrapper>
       );
     },
-    [text.dropMeHere, isActive, componentProps, expressions.length]
+    [text.dropMeHere, isActive, componentProps, expressions.length, readOnly]
   );
 
   return (
     <S.FilterWrapper>
-      <MatchingWrapper>
-        <div>{matching && <Matching {...matching} texts={text.matching} />}</div>
-        {!!maxConditionsLimit && (
-          <S.ConditionsLimit>
-            {text.conditionsLimit}:{' '}
-            <S.ConditionsLimitResults>
-              {expressions.length}/{maxConditionsLimit}
-            </S.ConditionsLimitResults>
-          </S.ConditionsLimit>
-        )}
-      </MatchingWrapper>
+      {texts?.overwritten?.filterTitle ? (
+        <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
+      ) : (
+        <MatchingWrapper>
+          <div>{matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}</div>
+          {!!maxConditionsLimit && (
+            <S.ConditionsLimit>
+              {text.conditionsLimit}:{' '}
+              <S.ConditionsLimitResults>
+                {expressions.length}/{maxConditionsLimit}
+              </S.ConditionsLimitResults>
+            </S.ConditionsLimit>
+          )}
+        </MatchingWrapper>
+      )}
 
       <>
         {expressions.length > 0 ? (
@@ -200,12 +208,12 @@ const Filter: React.FC<FilterProps> = ({
         ) : (
           <Placeholder text={text.placeholder.chooseCondition} />
         )}
+        {addFilterComponent && !readOnly && (
+          <S.AddButtonWrapper>
+            {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
+          </S.AddButtonWrapper>
+        )}
       </>
-      {addFilterComponent && (
-        <S.AddButtonWrapper>
-          {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}
-        </S.AddButtonWrapper>
-      )}
     </S.FilterWrapper>
   );
 };

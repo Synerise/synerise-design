@@ -62,6 +62,10 @@ export type InformationCardProps = {
    */
   actionButtonTooltipText?: string;
   /**
+   * adjusts the styles to be displayed as a tooltip
+   */
+  asTooltip?: boolean;
+  /**
    * description in a tooltip shown when user (note renderBadge has to be provided)
    */
   avatarTooltipText?: string;
@@ -110,7 +114,7 @@ export type InformationCardProps = {
   /**
    * Second line. Required prop. Can be copied.
    */
-  subtitle: string;
+  subtitle?: string;
   /**
    * Title of the information-card. Can be copied.
    */
@@ -133,6 +137,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       actionButton,
       actionButtonTooltipText,
       actionButtonCallback,
+      asTooltip,
       avatarTooltipText,
       children,
       copyTooltip,
@@ -152,7 +157,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
   ): JSX.Element => {
     const copyableSlot = (content: string): JSX.Element => (
       <RowWrapper copyable>
-        <S.Flex style={{ backgroundColor: '', alignItems: 'center' }}>
+        <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
           <span>{content}</span>
           <Copy
             copyValue={content}
@@ -169,7 +174,7 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       [children, descriptionConfig]
     );
     return (
-      <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card">
+      <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card" asTooltip={asTooltip}>
         <Card
           background="white"
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore

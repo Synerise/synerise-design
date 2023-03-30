@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
+
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import { DateToFormatOptions } from '@synerise/ds-data-format';
 
 export type Props = {
   autoFocus?: boolean;
@@ -10,7 +12,11 @@ export type Props = {
   disabledMinutes: number[];
   disabledSeconds: number[];
   dropdownProps?: Partial<DropdownProps>;
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   format?: string;
+  valueFormatOptions?: DateToFormatOptions;
   intl?: IntlShape;
   onApply?: (date?: Date) => void;
   onClear?: () => void;
@@ -27,6 +33,7 @@ export type Props = {
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
+  readOnly?: boolean;
 };
 
 export type State = {

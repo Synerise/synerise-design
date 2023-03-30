@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.1...@synerise/ds-logic@0.8.2) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.0...@synerise/ds-logic@0.8.1) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.9...@synerise/ds-logic@0.8.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/Synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
+## [0.7.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.8...@synerise/ds-logic@0.7.9) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-logic
+
+
+
+
+
 ## [0.7.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.7.7...@synerise/ds-logic@0.7.8) (2022-08-31)
 
 **Note:** Version bump only for package @synerise/ds-logic

@@ -19,6 +19,7 @@ export type RangeFilterProps = {
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
   texts?: Texts;
+  allowedFilterTypes?: string[];
   valueSelectionModes?: DateLimitMode[];
   rangeUnits?: Pick<DateRangePickerProps, 'rangeUnits'>;
 };
@@ -67,7 +68,7 @@ export type WeekFilter = {
 };
 export type WithDisabledProp = {
   disabled?: boolean;
-}
+};
 export type WeeklyFilterDefinition = {
   [key: string]: FilterDefinition;
 };

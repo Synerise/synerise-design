@@ -5,7 +5,7 @@ import * as S from './Matching.styles';
 
 const MATCHING_TOGGLE = '#MATCHING_TOGGLE#';
 
-const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange, texts }) => {
+const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange, texts, readOnly = false }) => {
   const intl = useIntl();
 
   const text = React.useMemo(() => {
@@ -22,11 +22,16 @@ const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange
 
   const getToggle = React.useMemo(() => {
     return (
-      <S.Toggle onClick={handleClick} matching={matching} className="ds-matching-toggle">
+      <S.Toggle
+        onClick={!readOnly ? handleClick : undefined}
+        matching={matching}
+        className="ds-matching-toggle"
+        readOnly={readOnly}
+      >
         {matching ? text.matching : text.notMatching}
       </S.Toggle>
     );
-  }, [handleClick, matching, text]);
+  }, [handleClick, matching, text, readOnly]);
 
   const getLabelWithToggle = React.useMemo(() => {
     if (sentence) {

@@ -5,12 +5,12 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, waitFor } from '@testing-library/react';
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
-import { isLifetime } from "../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown";
-import { normalizeRange } from "../utils";
+import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import { normalizeRange } from '../utils';
 
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
@@ -163,10 +163,10 @@ describe('DateRangePicker', () => {
     const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
     findDayCell(1).click();
     findDayCell(1).click();
-    expect(valueWrapper.textContent).toBe('Oct 1, 2018, 00:00 – Oct 1, 2018, 23:59');
+    expect(valueWrapper.textContent).toBe('1 Oct 2018, 00:00 – 1 Oct 2018, 23:59');
     findDayCell(2).click();
     findDayCell(12).click();
-    expect(valueWrapper.textContent).toBe('Oct 2, 2018, 00:00 – Oct 12, 2018, 23:59');
+    expect(valueWrapper.textContent).toBe('2 Oct 2018, 00:00 – 12 Oct 2018, 23:59');
   });
 
   it.todo('should set to last 30 days if relative-date-range custom range');
@@ -192,11 +192,11 @@ describe('DateRangePicker', () => {
     const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
     findDayCell(2).click();
     findDayCell(14).click();
-    expect(valueWrapper.textContent).toBe('Oct 2, 2018 – Oct 14, 2018');
+    expect(valueWrapper.textContent).toBe('2.10.2018 – 14.10.2018');
   });
   it('should display custom color for arrow popup', async () => {
     const onApply = jest.fn();
-    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement}>();
+    const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement }>();
     const { container, getByText } = renderWithProvider(
       <DateRangePicker
         onApply={() => {}}
@@ -205,7 +205,7 @@ describe('DateRangePicker', () => {
         forceAbsolute
         showRelativePicker
         texts={texts}
-        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef} as Partial<PopoverProps> }
+        popoverProps={{ placement: 'topLeft', mouseEnterDelay: 0, ref: popoverRef } as Partial<PopoverProps>}
         arrowColor={{ topLeft: 'grey' }}
         forceAdjacentMonths={false}
         relativeModes={RELATIVE_MODES as RelativeMode[]}
@@ -225,7 +225,9 @@ describe('DateRangePicker', () => {
   it.todo('RangePickerInput.getText accepts Invalid Date');
   it.todo('date range picker relative addon internals is able to handle invalid ranges');
   it.todo('should render DecadePicker (YearPicker.decadeMode) when no initial value');
-  it.todo('should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)');
+  it.todo(
+    'should render DecadePicker (YearPicker.decadeMode) in MODES.SINCE when no initial value (data comes from renderYearPicker state.side=utils getSidesState)'
+  );
   it('should omit non-absolute properties if emitting an absolute date-range value', async () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(
@@ -283,7 +285,8 @@ describe('DateRangePicker', () => {
   it.todo('lifetime is after transformation is properly displayed in the footer');
   it.todo('onApply emits transformedValue');
   it.todo('default value is not recognized as lifetime');
-  it.todo('ALL_TIME should emit only type: absolute and no other keys'/*, () => {
+  it.todo(
+    'ALL_TIME should emit only type: absolute and no other keys' /*, () => {
     const valueFromRelativeDateRangeAddon: DateRange = {
       "key": "ALL_TIME",
       "translationKey": "allTime",
@@ -291,7 +294,8 @@ describe('DateRangePicker', () => {
       "future": false
     }
     expect(defaultValueTransformer).toDeepEqual({"type": "ABSOLUTE"})
-  }*/);
+  }*/
+  );
   it.todo('clicking button DATE-PICKER.NOW sets the type to absolute');
   it.todo('RangePicker is able to render relative dates (decorate with relativeToAbsolute)');
   it.todo('selecting last x days/months automatically switches to selected date');
@@ -303,25 +307,34 @@ describe('DateRangePicker', () => {
   it.todo('can click on select-time when lifetime');
   // it.skip('switch a whole month view at least to the month of the selected date (e.g. when last 3 months)') // TODO
   it.todo('can clear both relative and absolute dates');
-  it.todo('LAST_MONTH (normalizeRange) returns proper range', /* () => {
+  it.todo(
+    'LAST_MONTH (normalizeRange) returns proper range' /* () => {
     const date = RELATIVE_PRESETS.find(e => e.key === 'LAST_MONTH')
     const dateRange = normalizeRange(date)
     expect(isLifetime(dateRange)).toBeTruthy()
-  } */);
+  } */
+  );
   it.todo('clicking button calls onApply with the current value');
   it.todo('custom range properly calculates finishing date (end of the month, if month date, normalizeRange)');
   it.todo('range gets updated to show selected visible');
   it.todo('onChange is called only when apply button is clicked');
   it.todo('right side should not be earlier than left side');
-  it.todo('month is extended to the end of the month if duration is a type of month');
+  it.todo('month is extended to the end of the month if duration is a type of month'); // not exactly - right side should be rounded to the more granular type among offset and duration
   it.todo('the default value is distinguishable from lifetime (no from nor to property)');
   it.todo('LAST_MONTH selects all days in a month');
   it.todo('LAST_MONTH (with option before n days) not necessarily selects a whole month');
   it.todo('changing to custom mode should enforce currentRange.type=RELATIVE');
-  it.todo('clearing relative custom SINCE should reset value to non-undefined (and what follows - preserve custom view)');
+  it.todo(
+    'clearing relative custom SINCE should reset value to non-undefined (and what follows - preserve custom view)'
+  );
   it.todo('SINCE is usnig durationModifier == LAST');
   it.todo('sinceTimestamp in SINCE is actually emitted');
   it.todo('date type SINCE can be passed to onApply (isValid)');
   it.todo('SINCE dateFilter value has future prop indicating whether it is next or last');
   it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
+  it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
+  it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
+  it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
+  it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
+  it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
 });

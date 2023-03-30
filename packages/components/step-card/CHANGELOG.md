@@ -3,6 +3,172 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.14...@synerise/ds-step-card@0.8.15) (2023-03-28)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.13...@synerise/ds-step-card@0.8.14) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.12...@synerise/ds-step-card@0.8.13) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.11...@synerise/ds-step-card@0.8.12) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.10...@synerise/ds-step-card@0.8.11) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.9...@synerise/ds-step-card@0.8.10) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.8...@synerise/ds-step-card@0.8.9) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.6...@synerise/ds-step-card@0.8.8) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.6...@synerise/ds-step-card@0.8.7) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.5...@synerise/ds-step-card@0.8.6) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.4...@synerise/ds-step-card@0.8.5) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.3...@synerise/ds-step-card@0.8.4) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.2...@synerise/ds-step-card@0.8.3) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.1...@synerise/ds-step-card@0.8.2) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.8.0...@synerise/ds-step-card@0.8.1) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.25...@synerise/ds-step-card@0.8.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/Synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
+## [0.7.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.24...@synerise/ds-step-card@0.7.25) (2022-12-07)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.7.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.23...@synerise/ds-step-card@0.7.24) (2022-11-30)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.7.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.22...@synerise/ds-step-card@0.7.23) (2022-11-23)
+
+
+### Bug Fixes
+
+* **filter:** filter props to hide step card header ([b117415](https://github.com/Synerise/synerise-design/commit/b11741522b60065e905bfac76e926b93f9d26568))
+
+
+
+
+
+## [0.7.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.21...@synerise/ds-step-card@0.7.22) (2022-11-22)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
 ## [0.7.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.7.20...@synerise/ds-step-card@0.7.21) (2022-11-08)
 
 **Note:** Version bump only for package @synerise/ds-step-card

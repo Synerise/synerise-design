@@ -1,6 +1,8 @@
 import * as React from 'react';
+
 import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
 
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
@@ -13,8 +15,10 @@ const PickerInput: React.FC<Props> = ({
   autoFocus,
   size,
   disabled,
+  readOnly,
   value,
   format: dateFormat,
+  valueFormatOptions,
   onChange,
   showTime,
   style,
@@ -29,14 +33,20 @@ const PickerInput: React.FC<Props> = ({
   suffixel,
   ...rest
 }: Props) => {
+  const { formatValue } = useDataFormat();
+
   const [hovered, setHovered] = React.useState<boolean>(false);
+
   const getText = React.useCallback((): string => {
     if (!value) return '';
     if (dateFormat) {
       return format(legacyParse(value), dateFormat);
     }
-    return format(legacyParse(value), dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
-  }, [value, dateFormat, showTime]);
+    if (typeof value === 'string') {
+      return format(legacyParse(value), dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
+    }
+    return formatValue(value, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+  }, [value, dateFormat, showTime, formatValue, valueFormatOptions]);
 
   const handleApply = React.useCallback(
     (date?: Date | null): void => {
@@ -65,7 +75,7 @@ const PickerInput: React.FC<Props> = ({
 
   const iconInput = React.useMemo(
     () =>
-      (hovered || highlight) && !!value && !disabled ? (
+      (hovered || highlight) && !readOnly && !!value ? (
         <S.ClearIconWrapper>
           <Tooltip title={clearTooltip}>
             <Icon component={<Close3S />} onClick={handleIconClick} />
@@ -76,7 +86,7 @@ const PickerInput: React.FC<Props> = ({
           <Icon component={<CalendarM />} />
         </S.DefaultIconWrapper>
       ),
-    [hovered, value, disabled, clearTooltip, handleIconClick, highlight]
+    [hovered, value, readOnly, clearTooltip, handleIconClick, highlight]
   );
   return (
     <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
@@ -90,7 +100,7 @@ const PickerInput: React.FC<Props> = ({
           autoFocus={autoFocus}
           active={!!highlight}
           resetMargin
-          readOnly
+          readOnly={readOnly}
           type="text"
           size={size as SizeType}
           disabled={disabled}
