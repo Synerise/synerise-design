@@ -50,10 +50,10 @@ function getModulePath(filename) {
 module.exports = function addLinksToStories(babel) {
   const getPkgJsonImport = dir => babel.template.statement.ast(`import pkg from '${dir}package.json';`);
   const paramsDef = babel.template.statement.ast(`
-    ({parameters: process.env['REACT_APP_REPO_URL_PREFIX'] === undefined ? {} : {
+    ({parameters: process.env['STORYBOOK_REPO_URL_PREFIX'] === undefined ? {} : {
       info: {
-        text: \`Source code of [the component](\${process.env['REACT_APP_REPO_URL_PREFIX'] || ''}\${pkg.name}@\${pkg.version}/packages/components/\${pkg.name.replace('@synerise/ds-', '')}/src)
-          and [stories](\${process.env['REACT_APP_REPO_URL_PREFIX'] || ''}\${pkg.name}@\${pkg.version}/packages/portal/stories/components/\${pkg.name.replace('@synerise/ds', '').replace(/-./g, match => match[1].toUpperCase())}).\`,
+        text: \`Source code of [the component](\${process.env['STORYBOOK_REPO_URL_PREFIX'] || ''}\${pkg.name}@\${pkg.version}/packages/components/\${pkg.name.replace('@synerise/ds-', '')}/src)
+          and [stories](\${process.env['STORYBOOK_REPO_URL_PREFIX'] || ''}\${pkg.name}@\${pkg.version}/packages/portal/stories/components/\${pkg.name.replace('@synerise/ds', '').replace(/-./g, match => match[1].toUpperCase())}).\`,
       }
     }})`).expression.properties[0];
   return {
