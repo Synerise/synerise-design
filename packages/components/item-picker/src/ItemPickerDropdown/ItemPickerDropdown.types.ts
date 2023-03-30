@@ -13,4 +13,6 @@ export interface Props {
   closeOnBottomAction?: boolean;
   isDropdownOpened: boolean;
   searchBarProps?: Partial<SearchBarProps>;
+  isLoading?: boolean;
+  onYReachEnd?: () => void;
 }

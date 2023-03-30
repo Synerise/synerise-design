@@ -37,4 +37,6 @@ export type ItemPickerProps = {
   tooltip?: string | React.ReactNode;
   withClearConfirmation?: boolean;
   yesText?: string;
+  onYReachEnd?: () => void;
+  isLoading?: boolean;
 };

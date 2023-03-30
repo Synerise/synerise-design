@@ -22,6 +22,8 @@ const ItemPickerDropdown: React.FC<Props> = ({
   closeOnBottomAction,
   isDropdownOpened,
   searchBarProps,
+  onYReachEnd,
+  isLoading,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -68,10 +70,12 @@ const ItemPickerDropdown: React.FC<Props> = ({
           absolute
           onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
           style={{ paddingRight: '8px' }}
+          onYReachEnd={onYReachEnd}
+          loading={isLoading}
         >
           <SearchItems
             data={filteredDataSource}
-            highlight={searchQuery}
+            highlight={searchBarProps?.value ?? searchQuery}
             itemRender={(item: MenuItemProps): JSX.Element => <Menu.Item key={item?.text as string} {...item} />}
             onItemClick={(i): void => handleChange(i)}
             rowHeight={rowHeight}
