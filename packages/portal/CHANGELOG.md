@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.179.0](https://github.com/synerise/synerise-design/compare/portal@0.178.0...portal@0.179.0) (2023-03-30)
+
+
+### Bug Fixes
+
+* **portal:** fix block indentation, fix unexpected ret val from visitor ([67d8dc6](https://github.com/synerise/synerise-design/commit/67d8dc6e8c408069b1493782ea45a76d9adfcfb9))
+* **portal:** prefer named exports to default ([7bbcf62](https://github.com/synerise/synerise-design/commit/7bbcf62d72e9d943965d75255719c29de08314dd))
+* **portal:** types with ; not like objects , ([dac35a3](https://github.com/synerise/synerise-design/commit/dac35a379d25e55ca5db5390da5b077478dc9f72))
+
+
+### Features
+
+* **portal:** add link to the sources in "Show info" details ([2ab571c](https://github.com/synerise/synerise-design/commit/2ab571c084f56ef3643ef457e6bfa3f16e102cd6))
+* **portal:** docs-inline-source-links as a plugin ([f7f106d](https://github.com/synerise/synerise-design/commit/f7f106d149f184521201a54d0ec0aeccdd18f60b))
+
+
+
+
+
 # [0.178.0](https://github.com/synerise/synerise-design/compare/portal@0.177.3...portal@0.178.0) (2023-03-29)
 
 
