@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.179.1](https://github.com/synerise/synerise-design/compare/portal@0.179.0...portal@0.179.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+* **time-picker:** rever storybook config change ([001ba34](https://github.com/synerise/synerise-design/commit/001ba343d8519358e3cf174aa70b237468118943))
+
+
+
+
+
 # [0.179.0](https://github.com/synerise/synerise-design/compare/portal@0.178.0...portal@0.179.0) (2023-03-30)
 
 
