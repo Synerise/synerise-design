@@ -75,7 +75,7 @@ function loadStories() {
       }
 
       if (parameters) {
-        componentStories.addParameters(parameters)
+        componentStories.addParameters(parameters);
       }
 
       for (const storyName in stories) {
