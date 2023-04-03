@@ -1,9 +1,9 @@
+import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import * as React from 'react';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
+import { ScrollbarProps } from '@synerise/ds-scrollbar';
 
 export type ItemPickerSize = 'small' | 'large';
 
