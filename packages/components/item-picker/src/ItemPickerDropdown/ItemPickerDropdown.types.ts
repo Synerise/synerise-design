@@ -1,5 +1,5 @@
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
+import { ScrollbarProps } from '@synerise/ds-scrollbar';
 import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 
 export interface Props {
