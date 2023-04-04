@@ -58,10 +58,14 @@ const stories = {
           dropdownProps={{
             getPopupContainer: () => document.querySelector('.ds-items-picker'),
           }}
-          scrollbarProps={{
-            onYReachEnd: action('Reached end of Y scrollbar'),
-            loading: boolean('Show loading state', false),
-          }}
+          scrollbarProps={
+            boolean('additional scrollbar props', true)
+              ? {
+                  onYReachEnd: action('Reached end of Y scrollbar'),
+                  loading: boolean('Show loading state', false),
+                }
+              : {}
+          }
         />
       </div>
     );
