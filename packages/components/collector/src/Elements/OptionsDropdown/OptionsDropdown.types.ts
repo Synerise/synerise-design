@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { ScrollbarProps } from '@synerise/ds-scrollbar';
+
 import { CollectorTexts, CollectorValue } from '../../Collector.types';
 
 export type OptionsDropdownProps = {
@@ -16,4 +18,5 @@ export type OptionsDropdownProps = {
   lookupKey: string;
   customContent?: React.ReactNode;
   dropdownItemHeight?: 'large';
+  scrollbarProps?: ScrollbarProps;
 };
