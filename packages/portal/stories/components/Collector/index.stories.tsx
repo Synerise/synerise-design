@@ -81,10 +81,14 @@ const stories = {
           toNavigate: 'to navigate',
         }}
         onConfirm={() => setSelected([])}
-        scrollbarProps={{
-          onYReachEnd: action('Reached end of Y scrollbar'),
-          loading: boolean('Show loading state', false),
-        }}
+        scrollbarProps={
+          boolean('additional scrollbar props', true)
+            ? {
+                onYReachEnd: action('Reached end of Y scrollbar'),
+                loading: boolean('Show loading state', false),
+              }
+            : {}
+        }
       />
     );
   },
