@@ -1,17 +1,18 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
-import {boolean} from "@storybook/addon-knobs";
+import { boolean } from '@storybook/addon-knobs';
 
-const decorator = (storyFn) => (
-  <div style={{width: 400, background: '#fff'}}>
-    {storyFn()}
-  </div>
-);
+const decorator = storyFn => <div style={{ width: 400, background: '#fff' }}>{storyFn()}</div>;
 
 const stories = {
   default: () => {
     return (
-      <Scrollbar maxHeight={250} classes={'test'} absolute={boolean('Scrollbar over text', false)}>
+      <Scrollbar
+        maxHeight={250}
+        classes={'test'}
+        absolute={boolean('Scrollbar over text', false)}
+        loading={boolean('Show loading status', false)}
+      >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laborum nisi officia ut vitae? Architecto
           dolor dolores doloribus exercitationem explicabo ipsam, nisi nobis odit quo, recusandae rem ut. Architecto
@@ -29,14 +30,14 @@ const stories = {
           impedit in, iste, nam numquam perspiciatis quam recusandae similique sunt totam.
         </div>
       </Scrollbar>
-    )
+    );
   },
 };
 
 export default {
-name: 'Components/Scrollbar',
+  name: 'Components/Scrollbar',
   config: {},
   stories,
   decorator,
   Component: Scrollbar,
-}
+};

@@ -64,6 +64,7 @@ import Collector from '@synerise/ds-collector'
 | selected                         | Array of items which are already selected                              | CollectorValue[]                              | []      |
 | suggestions                      | Array of items which are displayed when showing suggestions dropdown   | CollectorValue[]                              | []      |
 | texts                            | Texts object for the component                                         | CollectorTexts                                | {}      |
+| scrollbarProps                   | Object with scrollbar configturaion                                    | ScrollbarAdditionalProps                      | -       |
 
 `CollectorValue = {[key:string]: any}`
 

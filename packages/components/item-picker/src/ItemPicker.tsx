@@ -39,6 +39,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   size = 'small',
   yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),
   withClearConfirmation,
+  scrollbarProps,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
 
@@ -78,6 +79,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
         dropdownBottomAction={dropdownBottomAction}
         closeOnBottomAction={closeOnBottomAction}
         isDropdownOpened={dropdownOpened}
+        scrollbarProps={scrollbarProps}
       />
     ),
     [
@@ -92,6 +94,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
       dropdownBottomAction,
       closeOnBottomAction,
       dropdownOpened,
+      scrollbarProps,
     ]
   );
 

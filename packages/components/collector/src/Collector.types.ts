@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Props as DsButtonProps } from '@synerise/ds-button/dist/Button.types';
+import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
 export type CollectorProps = {
   addButtonProps?: Partial<DsButtonProps>;
@@ -32,6 +33,7 @@ export type CollectorProps = {
   texts: CollectorTexts;
   dropdownItemHeight?: 'large';
   enableCustomFilteringSuggestions?: boolean;
+  scrollbarProps?: ScrollbarAdditionalProps;
 };
 export type CollectorTexts = {
   add: string | React.ReactNode;
