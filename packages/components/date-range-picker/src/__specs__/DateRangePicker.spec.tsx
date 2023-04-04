@@ -5,7 +5,7 @@ import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor, act } from '@testing-library/react';
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
@@ -58,6 +58,7 @@ const texts = {
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
+  more: 'More'
 } as any;
 
 describe('DateRangePicker', () => {
@@ -377,4 +378,40 @@ describe('DateRangePicker', () => {
     fireEvent.click(applyButton);
     expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
   });
+  it('clicking "more" should toggle relative ranges dropdown', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={true}
+        forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    
+    act(() => {
+      getByText(texts.relativeDateRange).click();
+    });
+    const moreLabel = getByText(texts.more);
+    if (moreLabel) {
+      const moreButton = moreLabel.closest('button');
+      const dropdown = moreButton.nextElementSibling;
+      act(() => {
+        moreButton.click();
+      });
+      expect(dropdown).toHaveStyle('display:flex')
+      act(() => {
+        moreButton.click();
+      });
+    }
+
+  });
+
+
+  
 });
