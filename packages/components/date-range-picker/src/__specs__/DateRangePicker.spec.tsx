@@ -18,6 +18,24 @@ const ABSOLUTE_VALUE = {
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
 };
+const ABSOLUTE_VALUE_WITH_FILTER = {
+  type: ABSOLUTE,
+  from: '2018-10-09T00:00:00+02:00',
+  to: '2018-12-08T23:59:59+01:00',
+  filter: {
+    type: "WEEKLY",
+    nestingType: "IN_PLACE",
+    days: [
+      {
+        from: "00:00:00.000",
+        to: "23:59:59.999",
+        day: 5,
+        inverted: false,
+        mode: 'Range'
+      }
+    ]
+  },
+};
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 
@@ -336,6 +354,7 @@ describe('DateRangePicker', () => {
   it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
   it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
   it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
+  it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
   it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
   it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
   it('date filter with time - clicking clear button should reset to DEFAULT_RANGE_START / DEFAULT_RANGE_END (i.e. not current time)', () => {
@@ -352,7 +371,7 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    
+
     act(() => {
       getByText(texts.filter).click();
     });
@@ -381,6 +400,27 @@ describe('DateRangePicker', () => {
       fireEvent.click(clearIcon1);
     })
     expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0,8));
-    
+  });
+  it('filters should persist when date range changes', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        showRelativePicker={false}
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE_WITH_FILTER as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
+    const applyButton = await container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    fireEvent.click(getDayButton());
+    fireEvent.click(getDayButton());
+    fireEvent.click(applyButton);
+    expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
   });
 });

@@ -22,11 +22,12 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   if (value.key === 'ALL_TIME' || isLifetime(value)) {
     return { type: 'ABSOLUTE' };
   }
-  const { id, timestamp, translationKey } = value;
+  const { id, timestamp, translationKey, filter } = value;
   const baseValue = {
     ...(id ? { id } : {}),
     ...(timestamp ? { timestamp } : {}),
     ...(translationKey ? { translationKey } : {}),
+    ...(filter ? { filter } : {}),
   };
   if (value.type === 'ABSOLUTE') {
     return {
@@ -44,7 +45,6 @@ export function defaultValueTransformer(value: DateRange): DateRange {
       duration: value.duration,
       offset: value.offset,
       future: value.future,
-      ...(value.filter ? { filter: value.filter } : {}),
     };
   }
   return value;
