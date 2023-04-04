@@ -19,13 +19,27 @@ const EU_FORMATTED_INT_NUMBER = '1 234 567';
 const EU_FORMATTED_FLOAT_NUMBER = '1 234 567,89';
 
 describe('withDataFormat', () => {
-  const FunctionComponent: React.FC<WithDataFormatProps> = ({ formatValue }) => {
+  const FunctionComponent: React.FC<WithDataFormatProps> = ({
+    formatValue,
+    isSundayFirstWeekDay,
+    firstDayOfWeek,
+    is12HoursClock,
+    getConstants,
+    formatMultipleValues,
+    decimalDelimiter,
+  }) => {
     return (
       <>
-        <div>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</div>
-        <div>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</div>
-        <div>{formatValue(DATE_TO_FORMAT)}</div>
-        <div>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</div>
+        <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
+        <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
+        <span>{formatValue(DATE_TO_FORMAT)}</span>
+        <span>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+        <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
+        <span>firstDayOfWeek: {firstDayOfWeek.toString()}</span>
+        <span>is12HoursClock: {is12HoursClock.toString()}</span>
+        <span>getConstants: {getConstants('weekdays-short').toString()}</span>
+        <span>formatMultipleValues: {formatMultipleValues([123456, 123456789]).toString()}</span>
+        <span>decimalDelimiter: {decimalDelimiter}</span>
       </>
     );
   };
@@ -36,13 +50,27 @@ describe('withDataFormat', () => {
       super(props);
     }
     render() {
-      const { formatValue } = this.props;
+      const {
+        formatValue,
+        isSundayFirstWeekDay,
+        firstDayOfWeek,
+        is12HoursClock,
+        getConstants,
+        formatMultipleValues,
+        decimalDelimiter,
+      } = this.props;
       return (
         <>
-          <div>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</div>
-          <div>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</div>
-          <div>{formatValue(DATE_TO_FORMAT)}</div>
-          <div>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</div>
+          <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
+          <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
+          <span>{formatValue(DATE_TO_FORMAT)}</span>
+          <span>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+          <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
+          <span>firstDayOfWeek: {firstDayOfWeek}</span>
+          <span>is12HoursClock: {is12HoursClock.toString()}</span>
+          <span>getConstants: {getConstants('weekdays-short').toString()}</span>
+          <span>formatMultipleValues: {formatMultipleValues([123456, 123456789]).toString()}</span>
+          <span>decimalDelimiter: {decimalDelimiter}</span>
         </>
       );
     }
@@ -58,6 +86,12 @@ describe('withDataFormat', () => {
     expect(getByText(`Salary: ${EU_FORMATTED_INT_NUMBER},00`)).toBeTruthy();
     expect(getByText(EU_FORMATTED_DATE)).toBeTruthy();
     expect(getByText(EU_FORMATTED_TIME)).toBeTruthy();
+    expect(getByText('isSundayFirstWeekDay: false')).toBeTruthy();
+    expect(getByText('firstDayOfWeek: 1')).toBeTruthy();
+    expect(getByText('is12HoursClock: false')).toBeTruthy();
+    expect(getByText('getConstants: Mon,Tue,Wed,Thu,Fri,Sat,Sun')).toBeTruthy();
+    expect(getByText('formatMultipleValues: 123 456,123 456 789')).toBeTruthy();
+    expect(getByText('decimalDelimiter: ,')).toBeTruthy();
   });
 
   it('should render properly FunctionComponentWithDataFormat with US notation', () => {
@@ -69,6 +103,12 @@ describe('withDataFormat', () => {
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
     expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
+    expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
+    expect(getByText('is12HoursClock: true')).toBeTruthy();
+    expect(getByText('getConstants: Sun,Mon,Tue,Wed,Thu,Fri,Sat')).toBeTruthy();
+    expect(getByText('formatMultipleValues: 123,456,123,456,789')).toBeTruthy();
+    expect(getByText('decimalDelimiter: .')).toBeTruthy();
   });
 
   it('should render properly ClassComponentWithDataFormat with default notation', () => {
@@ -80,6 +120,12 @@ describe('withDataFormat', () => {
     expect(getByText(`Salary: ${EU_FORMATTED_INT_NUMBER},00`)).toBeTruthy();
     expect(getByText(EU_FORMATTED_DATE)).toBeTruthy();
     expect(getByText(EU_FORMATTED_TIME)).toBeTruthy();
+    expect(getByText('isSundayFirstWeekDay: false')).toBeTruthy();
+    expect(getByText('firstDayOfWeek: 1')).toBeTruthy();
+    expect(getByText('is12HoursClock: false')).toBeTruthy();
+    expect(getByText('getConstants: Mon,Tue,Wed,Thu,Fri,Sat,Sun')).toBeTruthy();
+    expect(getByText('formatMultipleValues: 123 456,123 456 789')).toBeTruthy();
+    expect(getByText('decimalDelimiter: ,')).toBeTruthy();
   });
 
   it('should render properly ClassComponentWithDataFormat with US notation', () => {
@@ -91,5 +137,11 @@ describe('withDataFormat', () => {
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
     expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
+    expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
+    expect(getByText('is12HoursClock: true')).toBeTruthy();
+    expect(getByText('getConstants: Sun,Mon,Tue,Wed,Thu,Fri,Sat')).toBeTruthy();
+    expect(getByText('formatMultipleValues: 123,456,123,456,789')).toBeTruthy();
+    expect(getByText('decimalDelimiter: .')).toBeTruthy();
   });
 });
