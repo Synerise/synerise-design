@@ -32,7 +32,7 @@ export const Loader = styled.div<{ loading?: boolean }>`
 export const LoaderWrapper = styled.div`
   width: 100%;
   height: 100%;
-  top: 0;
+  bottom: 0;
   left: 0;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.6);

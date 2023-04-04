@@ -19,17 +19,17 @@ const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
       );
     }, [children, fetchData, forwardedRef, props]);
 
-    return loading ? (
+    return (
       <S.ScrollbarContainer>
         {renderScrollbar}
-        <S.LoaderWrapper>
-          <S.Loader loading={loading}>
-            <Icon component={<SpinnerM />} color={theme.palette['grey-600']} />
-          </S.Loader>
-        </S.LoaderWrapper>
+        {loading && (
+          <S.LoaderWrapper>
+            <S.Loader loading={loading}>
+              <Icon component={<SpinnerM />} color={theme.palette['grey-600']} />
+            </S.Loader>
+          </S.LoaderWrapper>
+        )}
       </S.ScrollbarContainer>
-    ) : (
-      renderScrollbar
     );
   }
 );
