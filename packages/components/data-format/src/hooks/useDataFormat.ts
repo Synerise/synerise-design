@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { isDayjs } from 'dayjs';
-import { isMoment } from 'moment';
+import moment from 'moment';
+import type { Moment } from 'moment';
 
 import { OverloadFormatValue, Delimiter, OverloadFormatMultipleValues, OverloadGetConstants } from '../types';
 import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
@@ -52,8 +53,8 @@ export const useDataFormat = (): UseDataFormatProps => {
     (value: any, options?: any) => {
       let result = '';
 
-      if (isMoment(value)) {
-        result = getFormattedDateFromMoment(value, dateFormatIntl, timeFormatIntl, options);
+      if (value instanceof moment) {
+        result = getFormattedDateFromMoment(value as Moment, dateFormatIntl, timeFormatIntl, options);
       }
 
       if (isDayjs(value)) {

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.56...@synerise/ds-inline-edit@0.6.57) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
+## [0.6.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.55...@synerise/ds-inline-edit@0.6.56) (2023-03-28)
+
+
+### Bug Fixes
+
+* **inline-edit:** allow additional inline styles on input element ([b75fca9](https://github.com/Synerise/synerise-design/commit/b75fca9be873f91d2567742c102c5d6789b6dd8a))
+
+
+
+
+
 ## [0.6.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.54...@synerise/ds-inline-edit@0.6.55) (2023-03-21)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

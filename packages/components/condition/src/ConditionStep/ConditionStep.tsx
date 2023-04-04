@@ -244,7 +244,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
           {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
           {addConditionButton}
         </S.ConditionRows>
-        {!updateStepName && (
+        {!updateStepName && !readOnly && (
           <S.StepConditionCruds
             onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
             onDelete={removeStep ? (): void => removeStep(step.id) : undefined}

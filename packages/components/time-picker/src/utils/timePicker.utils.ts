@@ -1,15 +1,6 @@
 import dayjs from 'dayjs';
 
-import {
-  AM,
-  HOUR,
-  HOUR_12,
-  MAP_12_AM_TO_24_HOUR,
-  MAP_12_PM_TO_24_HOUR,
-  MINUTE,
-  PM,
-  SECOND,
-} from '../constants/timePicker.constants';
+import { AM, HOUR, HOUR_12, MAP_12_AM_TO_24_HOUR, MAP_12_PM_TO_24_HOUR, PM } from '../constants/timePicker.constants';
 import { UnitConfig } from '../Unit';
 
 export const handleTimeChange = (
@@ -33,10 +24,6 @@ export const handleTimeChange = (
     hourToMap = clockMode === AM ? MAP_12_AM_TO_24_HOUR[hourToMap] : MAP_12_PM_TO_24_HOUR[hourToMap];
     if (unit === HOUR || clockModeChanged) {
       dateBuilder = dateBuilder.set(HOUR, hourToMap);
-    }
-    if (clockMode === PM && hourToMap === HOUR_12) {
-      dateBuilder = dateBuilder.set(MINUTE, 0);
-      dateBuilder = dateBuilder.set(SECOND, 0);
     }
     if (clockMode === AM && hourToMap === HOUR_12) {
       dateBuilder = dateBuilder.set(HOUR, hourToMap);

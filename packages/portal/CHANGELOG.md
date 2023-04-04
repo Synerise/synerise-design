@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.179.1](https://github.com/synerise/synerise-design/compare/portal@0.179.0...portal@0.179.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+* **time-picker:** rever storybook config change ([001ba34](https://github.com/synerise/synerise-design/commit/001ba343d8519358e3cf174aa70b237468118943))
+
+
+
+
+
+# [0.179.0](https://github.com/synerise/synerise-design/compare/portal@0.178.0...portal@0.179.0) (2023-03-30)
+
+
+### Bug Fixes
+
+* **portal:** fix block indentation, fix unexpected ret val from visitor ([67d8dc6](https://github.com/synerise/synerise-design/commit/67d8dc6e8c408069b1493782ea45a76d9adfcfb9))
+* **portal:** prefer named exports to default ([7bbcf62](https://github.com/synerise/synerise-design/commit/7bbcf62d72e9d943965d75255719c29de08314dd))
+* **portal:** types with ; not like objects , ([dac35a3](https://github.com/synerise/synerise-design/commit/dac35a379d25e55ca5db5390da5b077478dc9f72))
+
+
+### Features
+
+* **portal:** add link to the sources in "Show info" details ([2ab571c](https://github.com/synerise/synerise-design/commit/2ab571c084f56ef3643ef457e6bfa3f16e102cd6))
+* **portal:** docs-inline-source-links as a plugin ([f7f106d](https://github.com/synerise/synerise-design/commit/f7f106d149f184521201a54d0ec0aeccdd18f60b))
+
+
+
+
+
+# [0.178.0](https://github.com/synerise/synerise-design/compare/portal@0.177.3...portal@0.178.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* **portal:** add less-vars-loader ([c3f1461](https://github.com/synerise/synerise-design/commit/c3f1461d8197550e288ded586691323328430571))
+* **portal:** addon-knobs register dist dir ([f1ee3e4](https://github.com/synerise/synerise-design/commit/f1ee3e436131e3c2a65f977ed14b16ac9c2d7b37))
+
+
+### Features
+
+* **portal:** upgrade to storybook 6.5 ([89c3394](https://github.com/synerise/synerise-design/commit/89c339434261545e9deb0e653f78a7274b79f941))
+
+
+
+
+
+## [0.177.3](https://github.com/synerise/synerise-design/compare/portal@0.177.2...portal@0.177.3) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added stories ([76d1d79](https://github.com/synerise/synerise-design/commit/76d1d7973a1f4962e4bcd2d4886b2d769f81b5ff))
+* **date-range-picker:** allow range type buttons to be optional ([6d3e723](https://github.com/synerise/synerise-design/commit/6d3e723b3324c3c73bcb29944211508de0069d87))
+* **inline-edit:** updated stories ([8bd8fe4](https://github.com/synerise/synerise-design/commit/8bd8fe4e019f009a519016370db65311b3d164ea))
+
+
+
+
+
 ## [0.177.2](https://github.com/synerise/synerise-design/compare/portal@0.177.1...portal@0.177.2) (2023-03-24)
 
 

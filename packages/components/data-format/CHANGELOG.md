@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.1...@synerise/ds-data-format@0.3.2) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/Synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+
+
+
+
+
 ## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.0...@synerise/ds-data-format@0.3.1) (2023-03-21)
 
 

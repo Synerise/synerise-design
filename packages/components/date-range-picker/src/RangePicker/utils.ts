@@ -4,7 +4,7 @@ import { Modifiers } from 'react-day-picker';
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
 import fnsIsValid from 'date-fns/isValid';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 import { AM, PM, HOUR_12, MAP_24_HOUR_TO_12, ClockModes, HOUR } from '@synerise/ds-time-picker';
 
@@ -100,7 +100,7 @@ export const getDisabledTimeOptions = (
 
 export const getSidesState = (value: DateRange, forceAdjacentMonths?: boolean): State => {
   const from = fnsStartOfMonth(fnsIsValid(value.from) ? legacyParse(value.from) : new Date());
-  let to = fnsStartOfMonth(fnsIsValid(value.to) ? legacyParse(value.to) : new Date());
+  let to = fnsIsValid(value.to) ? fnsStartOfMonth(legacyParse(value.to)) : from;
   if (fnsIsSameMonth(from, to)) {
     to = ADD.MONTHS(to, 1);
   }
