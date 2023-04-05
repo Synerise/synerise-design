@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.13...@synerise/ds-manageable-list@0.25.0) (2023-04-05)
+
+
+### Features
+
+* **manageable-list:** adds draft tests for new features ([5a706d2](https://github.com/Synerise/synerise-design/commit/5a706d29d719804d48623d632a59188be0af2542))
+* **manageable-list:** adds new header suffix options ([0b0817f](https://github.com/Synerise/synerise-design/commit/0b0817fe1bbe5e5a0102b5dd86cac935352946c0))
+
+
+
+
+
 ## [0.24.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.24.12...@synerise/ds-manageable-list@0.24.13) (2023-04-05)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

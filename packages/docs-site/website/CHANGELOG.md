@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.25.1...docs@0.26.0) (2023-04-05)
+
+
+### Features
+
+* **manageable-list:** adds new header suffix options ([0b0817f](https://gitlab.synerise.com/Frontend/synerise-design/commit/0b0817fe1bbe5e5a0102b5dd86cac935352946c0))
+
+
+
+
+
 ## [0.25.1](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.25.0...docs@0.25.1) (2023-03-29)
 
 
