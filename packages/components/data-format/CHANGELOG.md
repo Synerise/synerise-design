@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.2...@synerise/ds-data-format@0.3.3) (2023-04-05)
+
+
+### Bug Fixes
+
+* **data-format:** withDataFormat props fix + default number options ([4be2d79](https://github.com/Synerise/synerise-design/commit/4be2d7996a5b53db90925f7259187b3729015afd))
+
+
+
+
+
 ## [0.3.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.1...@synerise/ds-data-format@0.3.2) (2023-03-31)
 
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.180.0](https://github.com/synerise/synerise-design/compare/portal@0.179.1...portal@0.180.0) (2023-04-05)
+
+
+### Features
+
+* **collector:** adds scrollbarProps ([6a67188](https://github.com/synerise/synerise-design/commit/6a6718814e8fb84c147b69a688d9eee0a3969cb7))
+* **collector:** improve storybook example ([850ae51](https://github.com/synerise/synerise-design/commit/850ae51d7b1d51185a7b29ecf801ccee6979b257))
+* **item-picker:** adds scrollbarProps property ([36f158f](https://github.com/synerise/synerise-design/commit/36f158f93ffe6be5f5e37dcf3ca7df0c5bc36e1b))
+* **item-picker:** improve storybook example ([35790a4](https://github.com/synerise/synerise-design/commit/35790a49fe8a4734e320a19588f7540cd218d4b4))
+* **item-picker:** updates storybook example ([e1962a6](https://github.com/synerise/synerise-design/commit/e1962a6bac669712366a53c5aba6e28dafedec08))
+* **item-picker:** updates storybook examples ([433dd90](https://github.com/synerise/synerise-design/commit/433dd9095d4cd9da1ed40d7ccd4c907976236ec2))
+* **scrollbar:** improves styles of the loading state ([c3c6a6c](https://github.com/synerise/synerise-design/commit/c3c6a6cc8d7eefc07be308454dc14cffdb96319d))
+* **scrollbar:** updates storybook example ([6567e0f](https://github.com/synerise/synerise-design/commit/6567e0f3992445d72585e73ead87a532b8bf2220))
+
+
+
+
+
 ## [0.179.1](https://github.com/synerise/synerise-design/compare/portal@0.179.0...portal@0.179.1) (2023-03-31)
 
 
