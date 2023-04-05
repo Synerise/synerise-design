@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.5.5...@synerise/ds-scrollbar@0.6.0) (2023-04-05)
+
+
+### Features
+
+* **scrollbar:** adds additional type with optional props, improve style ([ceb5f90](https://github.com/Synerise/synerise-design/commit/ceb5f907f36f98e92875b44e76e2012e77d290f8))
+* **scrollbar:** exports types from index.ts ([d561879](https://github.com/Synerise/synerise-design/commit/d5618792a6cfbb4197e610469151f782975189e7))
+* **scrollbar:** improves styles of the loading state ([c3c6a6c](https://github.com/Synerise/synerise-design/commit/c3c6a6cc8d7eefc07be308454dc14cffdb96319d))
+
+
+
+
+
 ## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.5.4...@synerise/ds-scrollbar@0.5.5) (2023-03-02)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

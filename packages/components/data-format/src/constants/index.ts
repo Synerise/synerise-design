@@ -36,6 +36,7 @@ export {
   COMPACT_LARGER_NUMBER,
   COMPACT_DECIMAL_LARGER_NUMBER,
   LARGER_NUMBER_LIMIT,
+  DEFAULT_FORMAT_NUMBER_OPTIONS,
 } from './dataFormat.constants';
 
 export { WEEKDAY, MONTH, LONG, SHORT } from './dateTimeParts.constants';

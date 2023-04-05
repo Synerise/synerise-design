@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.56...@synerise/ds-collector@0.6.0) (2023-04-05)
+
+
+### Features
+
+* **collector:** adds placeholder for missing tests ([7996926](https://github.com/Synerise/synerise-design/commit/7996926f4dd9102a1b9342a7603598342f1bc0cc))
+* **collector:** adds scrollbarProps ([6a67188](https://github.com/Synerise/synerise-design/commit/6a6718814e8fb84c147b69a688d9eee0a3969cb7))
+* **collector:** improves types ([2e1865c](https://github.com/Synerise/synerise-design/commit/2e1865c3868a0d288308eb56cd36d3a5de2f2bf8))
+
+
+
+
+
+## [0.5.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.55...@synerise/ds-collector@0.5.56) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
 ## [0.5.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.54...@synerise/ds-collector@0.5.55) (2023-03-21)
 
 **Note:** Version bump only for package @synerise/ds-collector

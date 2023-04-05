@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.180.0](https://github.com/synerise/synerise-design/compare/portal@0.179.1...portal@0.180.0) (2023-04-05)
+
+
+### Features
+
+* **collector:** adds scrollbarProps ([6a67188](https://github.com/synerise/synerise-design/commit/6a6718814e8fb84c147b69a688d9eee0a3969cb7))
+* **collector:** improve storybook example ([850ae51](https://github.com/synerise/synerise-design/commit/850ae51d7b1d51185a7b29ecf801ccee6979b257))
+* **item-picker:** adds scrollbarProps property ([36f158f](https://github.com/synerise/synerise-design/commit/36f158f93ffe6be5f5e37dcf3ca7df0c5bc36e1b))
+* **item-picker:** improve storybook example ([35790a4](https://github.com/synerise/synerise-design/commit/35790a49fe8a4734e320a19588f7540cd218d4b4))
+* **item-picker:** updates storybook example ([e1962a6](https://github.com/synerise/synerise-design/commit/e1962a6bac669712366a53c5aba6e28dafedec08))
+* **item-picker:** updates storybook examples ([433dd90](https://github.com/synerise/synerise-design/commit/433dd9095d4cd9da1ed40d7ccd4c907976236ec2))
+* **scrollbar:** improves styles of the loading state ([c3c6a6c](https://github.com/synerise/synerise-design/commit/c3c6a6cc8d7eefc07be308454dc14cffdb96319d))
+* **scrollbar:** updates storybook example ([6567e0f](https://github.com/synerise/synerise-design/commit/6567e0f3992445d72585e73ead87a532b8bf2220))
+
+
+
+
+
+## [0.179.1](https://github.com/synerise/synerise-design/compare/portal@0.179.0...portal@0.179.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+* **time-picker:** rever storybook config change ([001ba34](https://github.com/synerise/synerise-design/commit/001ba343d8519358e3cf174aa70b237468118943))
+
+
+
+
+
+# [0.179.0](https://github.com/synerise/synerise-design/compare/portal@0.178.0...portal@0.179.0) (2023-03-30)
+
+
+### Bug Fixes
+
+* **portal:** fix block indentation, fix unexpected ret val from visitor ([67d8dc6](https://github.com/synerise/synerise-design/commit/67d8dc6e8c408069b1493782ea45a76d9adfcfb9))
+* **portal:** prefer named exports to default ([7bbcf62](https://github.com/synerise/synerise-design/commit/7bbcf62d72e9d943965d75255719c29de08314dd))
+* **portal:** types with ; not like objects , ([dac35a3](https://github.com/synerise/synerise-design/commit/dac35a379d25e55ca5db5390da5b077478dc9f72))
+
+
+### Features
+
+* **portal:** add link to the sources in "Show info" details ([2ab571c](https://github.com/synerise/synerise-design/commit/2ab571c084f56ef3643ef457e6bfa3f16e102cd6))
+* **portal:** docs-inline-source-links as a plugin ([f7f106d](https://github.com/synerise/synerise-design/commit/f7f106d149f184521201a54d0ec0aeccdd18f60b))
+
+
+
+
+
 # [0.178.0](https://github.com/synerise/synerise-design/compare/portal@0.177.3...portal@0.178.0) (2023-03-29)
 
 

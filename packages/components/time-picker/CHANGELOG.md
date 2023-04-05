@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.3...@synerise/ds-time-picker@0.7.4) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.2...@synerise/ds-time-picker@0.7.3) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/Synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+
+
+
+
+
 ## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.1...@synerise/ds-time-picker@0.7.2) (2023-03-24)
 
 

@@ -118,7 +118,7 @@ describe('useDataFormat', () => {
         notation: 'compact',
         namingConvention: 'lowerCase',
       })
-    ).toBe(`1.235b`);
+    ).toBe(`1.23b`);
   });
 
   it('Should return correct formatted values with US notation', () => {
@@ -354,16 +354,16 @@ describe('useDataFormat', () => {
     });
 
     // ASSERT
-    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2K`);
-    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2M`);
-    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2B`);
+    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23K`);
+    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23M`);
+    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23B`);
     expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0,0`);
     expect(
       result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
         minimumFractionDigits: 1,
         notation: 'compact',
       })
-    ).toBe(`1,235B`);
+    ).toBe(`1,23B`);
 
     expect(
       result.current.formatValue(13000, {
@@ -400,16 +400,16 @@ describe('useDataFormat', () => {
     });
 
     // ASSERT
-    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2K`);
-    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2M`);
-    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2B`);
+    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23K`);
+    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23M`);
+    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23B`);
     expect(result.current.formatValue(0, { notation: 'compact', minimumFractionDigits: 1 })).toBe(`0.0`);
     expect(
       result.current.formatValue(LONG_NUMBER_TO_FORMAT, {
         minimumFractionDigits: 1,
         notation: 'compact',
       })
-    ).toBe(`1.235B`);
+    ).toBe(`1.23B`);
 
     expect(
       result.current.formatValue(13000, {
@@ -437,9 +437,9 @@ describe('useDataFormat', () => {
     });
 
     // ASSERT
-    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2 tys.`);
-    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2 mln`);
-    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,2 mld`);
+    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23 tys.`);
+    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23 mln`);
+    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1,23 mld`);
   });
 
   it('Should return correct compact values (number format base on US notation, abbreviation base on PL language)', () => {
@@ -460,9 +460,9 @@ describe('useDataFormat', () => {
     });
 
     // ASSERT
-    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2 tys.`);
-    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2 mln`);
-    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.2 mld`);
+    expect(result.current.formatValue(SHORT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23 tys.`);
+    expect(result.current.formatValue(INT_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23 mln`);
+    expect(result.current.formatValue(LONG_NUMBER_TO_FORMAT, { notation: 'compact' })).toBe(`1.23 mld`);
   });
 
   it('Should return correct formatted plural values', () => {
@@ -636,7 +636,7 @@ describe('useDataFormat', () => {
         notation: 'compact',
         namingConvention: 'lowerCase',
       })
-    ).toBe(`1,235 mld`);
+    ).toBe(`1,23 mld`);
 
     expect(
       result.current.formatValue(13000, {
@@ -696,7 +696,7 @@ describe('useDataFormat', () => {
         notation: 'compact',
         namingConvention: 'lowerCase',
       })
-    ).toBe(`1.235 mld`);
+    ).toBe(`1.23 mld`);
 
     expect(
       result.current.formatValue(13000, {
@@ -907,5 +907,24 @@ describe('useDataFormat', () => {
     expect(JSON.stringify(result.current.formatMultipleValues([US_NOTATION, EU_NOTATION]))).toBe(
       JSON.stringify([US_NOTATION, EU_NOTATION])
     );
+  });
+
+  it('Should return correct number values for default number options', () => {
+    // ARRANGE
+    const { result } = renderHook(() => useDataFormat(), {
+      wrapper: ({ children }) => (
+        <DSProvider
+          dataFormatConfig={{
+            numberFormatNotation: US_NOTATION,
+          }}
+        >
+          {children}
+        </DSProvider>
+      ),
+    });
+
+    // ASSERT
+    expect(result.current.formatValue(9999.1234567)).toBe('9,999.12');
+    expect(result.current.formatValue(9999.1234567, { maximumFractionDigits: 3 })).toBe('9,999.123');
   });
 });

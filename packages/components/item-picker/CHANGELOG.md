@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.10.4...@synerise/ds-item-picker@0.11.0) (2023-04-05)
+
+
+### Features
+
+* **item-picker:** adds loading, onReachYEnd props ([9b1194b](https://github.com/Synerise/synerise-design/commit/9b1194b6e82782c5e1bc2eed7994446cd870b641))
+* **item-picker:** adds missing dependency + imporves imports ([3002519](https://github.com/Synerise/synerise-design/commit/3002519f299ea400a219b6ff68b5af6f40de7e84))
+* **item-picker:** adds scrollbarProps property ([36f158f](https://github.com/Synerise/synerise-design/commit/36f158f93ffe6be5f5e37dcf3ca7df0c5bc36e1b))
+* **item-picker:** improves types ([590fc88](https://github.com/Synerise/synerise-design/commit/590fc88049777ff96b4a4bd91b783fbd24d74e84))
+* **item-picker:** improves types imports from @synerise/ds-scrollbar ([e156c45](https://github.com/Synerise/synerise-design/commit/e156c45748f5c8929b716c737959196763e5eed5))
+* **item-picker:** skip missing tests ([00ba5b2](https://github.com/Synerise/synerise-design/commit/00ba5b273627f370a37f67803762069692cf68be))
+
+
+
+
+
+## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.10.3...@synerise/ds-item-picker@0.10.4) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
 ## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.10.2...@synerise/ds-item-picker@0.10.3) (2023-03-21)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

@@ -30,6 +30,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   customContent,
   renderItem,
   dropdownItemHeight,
+  scrollbarProps,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
@@ -60,6 +61,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
               onScroll={({ currentTarget }: React.SyntheticEvent): void => {
                 setScrollTop(currentTarget.scrollTop);
               }}
+              {...scrollbarProps}
             >
               {showAddButton && onItemAdd && !!value && (
                 <S.DropdownTop>

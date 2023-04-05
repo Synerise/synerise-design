@@ -243,11 +243,7 @@ describe('ItemPicker component', () => {
     const handleChange = jest.fn();
 
     const { queryByTestId } = renderWithProvider(
-      <ITEM_PICKER
-        onChange={handleChange}
-        description={DESCRIPTION}
-        selectedItem={DATA_SOURCE[0]}
-      />
+      <ITEM_PICKER onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />
     );
 
     expect(queryByTestId(CLEAR_TEST_ID)).toBeFalsy();
@@ -310,5 +306,7 @@ describe('ItemPicker component', () => {
 
     expect(getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
   });
-
+  it.todo('should call onYReachEnd function');
+  it.todo('should shows loading state');
+  it.todo('should highlight labels based on searchBarProps.value');
 });

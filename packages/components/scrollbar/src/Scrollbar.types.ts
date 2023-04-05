@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-export type ScrollbarProps = {
+export type ScrollbarAdditionalProps = {
   absolute?: boolean;
-  children: React.ReactNode | string;
   classes?: string;
   hasMore?: boolean;
   loading?: boolean;
@@ -12,4 +11,8 @@ export type ScrollbarProps = {
   onScroll?: (e: React.UIEvent) => void;
   onYReachEnd?: () => void;
   withDnd?: boolean;
+};
+
+export type ScrollbarProps = ScrollbarAdditionalProps & {
+  children: React.ReactNode | string;
 };
