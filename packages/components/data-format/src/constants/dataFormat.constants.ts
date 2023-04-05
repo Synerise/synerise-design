@@ -1,5 +1,9 @@
-import { FormatDateOptions } from 'react-intl';
+import { FormatDateOptions, FormatNumberOptions } from 'react-intl';
 import { DateTargetFormat, NamingConvention, Delimiter, DateConstantsTargetFormat, NumberTargetFormat } from '../types';
+
+export const DEFAULT_FORMAT_NUMBER_OPTIONS: FormatNumberOptions = {
+  maximumFractionDigits: 2,
+};
 
 export const DEFAULT_FORMAT_DATE_OPTIONS: FormatDateOptions = {
   year: 'numeric',
