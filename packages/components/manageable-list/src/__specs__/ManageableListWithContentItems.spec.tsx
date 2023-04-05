@@ -293,4 +293,6 @@ describe('ManageableList with content items', () => {
     // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[0], CONTENT_ITEMS[2], CONTENT_ITEMS[1]]);
   });
+  it.todo('should render additionalHeaderSuffix');
+  it.todo('should hide headerSuffix on hover');
 });
