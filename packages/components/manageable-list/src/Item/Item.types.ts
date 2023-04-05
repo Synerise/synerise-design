@@ -49,4 +49,6 @@ export type ItemProps<T extends object = {}> = T & {
   disableExpanding?: boolean;
   expanded?: boolean;
   headerSuffix?: React.ReactNode;
+  hideHeaderSuffixOnHover?: boolean;
+  additionalSuffix?: React.ReactNode;
 };

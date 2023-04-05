@@ -20,6 +20,8 @@ import Radio from '@synerise/ds-radio';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item.types';
 import { Input } from '@synerise/ds-input';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
+import Icon, { ShowM } from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
 
 const decorator = storyFn => (
   <div style={{ width: '520px' }}>
@@ -65,7 +67,18 @@ const suffixType = {
   radio: 'radio',
 };
 const attachCrudKnobs = (item, knobValue) => {
-  return { ...item, canUpdate: knobValue, canDuplicate: knobValue, canDelete: knobValue };
+  return {
+    ...item,
+    canUpdate: knobValue,
+    canDuplicate: knobValue,
+    canDelete: knobValue,
+    hideHeaderSuffixOnHover: boolean('Hide suffix on hover', true),
+    additionalSuffix: boolean('Show additional suffix element', false) && (
+      <Button type="ghost" mode="single-icon" onClick={action('additional button action')}>
+        <Icon component={<ShowM />} />
+      </Button>
+    ),
+  };
 };
 const attachContentKnobs = (item, knobValue): ItemProps => {
   return {
@@ -143,7 +156,7 @@ const withOption = defaultItem => {
   );
 };
 const withRadios = defaultItem => {
-  return <ContentItem item={defaultItem} greyBackground={boolean('Set grey background', false)}  />;
+  return <ContentItem item={defaultItem} greyBackground={boolean('Set grey background', false)} />;
 };
 const withCruds = defaultItem => {
   const [item, setItem] = React.useState(defaultItem);

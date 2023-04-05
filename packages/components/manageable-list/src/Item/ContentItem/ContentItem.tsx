@@ -134,7 +134,9 @@ const ContentItem: React.FC<ContentItemProps> = ({
         </S.ItemHeaderPrefix>
         <ItemName item={item} editMode={editMode} onUpdate={updateName} />
         <S.ItemHeaderSuffix>
-          {((!!headerSuffix || item?.headerSuffix) && headerSuffix) || item.headerSuffix}
+          <div className={item.hideHeaderSuffixOnHover ? 'suffix--hide-on-hover' : ''}>
+            {((!!headerSuffix || item?.headerSuffix) && headerSuffix) || item.headerSuffix}
+          </div>
           {renderMoveButtons}
           <ItemActions
             item={item}
@@ -172,6 +174,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
               </Dropdown>
             </S.DropdownWrapper>
           )}
+          {item.additionalSuffix && <S.AdditionalSuffix>{item.additionalSuffix}</S.AdditionalSuffix>}
           {(item.user || item.created) && <ItemMeta user={item.user} created={item.created} />}
         </S.ItemHeaderSuffix>
       </S.ItemHeader>

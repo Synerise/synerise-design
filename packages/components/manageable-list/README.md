@@ -74,16 +74,19 @@ ManageableList UI Component
 
 #### Item
 
-| Property     | Description                                         | Type            | Default |
-| ------------ | --------------------------------------------------- | --------------- | ------- |
-| id           | Identifier of item                                  | string          | -       |
-| name         | Name of item (visible on list)                      | string          | -       |
-| canUpdate    | Flag which allows to update item name               | boolean         | -       |
-| canDelete    | Flag which allows to remove item                    | boolean         | -       |
-| canDuplicate | Flag which allows to duplicate item                 | boolean         | -       |
-| tag          | Tag (ds-tags), available only for content list type | Tag             | -       |
-| icon         | Icon (ds-icon)                                      | Icon            | -       |
-| content      | Content rendered in content type list               | React.ReactNode | -       |
+| Property                | Description                                                   | Type            | Default |
+| ----------------------- | ------------------------------------------------------------- | --------------- | ------- |
+| id                      | Identifier of item                                            | string          | -       |
+| name                    | Name of item (visible on list)                                | string          | -       |
+| canUpdate               | Flag which allows to update item name                         | boolean         | -       |
+| canDelete               | Flag which allows to remove item                              | boolean         | -       |
+| canDuplicate            | Flag which allows to duplicate item                           | boolean         | -       |
+| tag                     | Tag (ds-tags), available only for content list type           | Tag             | -       |
+| icon                    | Icon (ds-icon)                                                | Icon            | -       |
+| content                 | Content rendered in content type list                         | React.ReactNode | -       |
+| headerSuffix            | Component that will be rendered on the start of the item      | React.ReactNode | -       |
+| hideHeaderSuffixOnHover | Whether to hide suffixHeader on hover                         | boolean         | -       |
+| additionalHeaderSuffix  | Component that will be rendered on the end of the item suffix | React.ReactNode | -       |
 
 #### AdditionalAction
 
