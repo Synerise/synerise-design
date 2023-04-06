@@ -133,8 +133,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   handleDayTimeChange = (value: DateValue, dayKey: DayKey): void => {
     this.handleDayChange(dayKey, {
       restricted: true,
-      start: dayjs(value[0]).format(TIME_FORMAT),
-      stop: dayjs(value[1]).format(TIME_FORMAT),
+      start: value[0] !== undefined ? dayjs(value[0]).format(TIME_FORMAT) : DEFAULT_RANGE_START,
+      stop: value[1] !== undefined ? dayjs(value[1]).format(TIME_FORMAT) : DEFAULT_RANGE_END,
     });
   };
 
