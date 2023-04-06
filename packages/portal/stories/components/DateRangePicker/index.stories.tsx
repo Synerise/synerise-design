@@ -8,6 +8,7 @@ import { boolean, text, select, optionsKnob } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
+import Monthly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Monthly/Monthly';
 import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
 import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
 import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter.types';
@@ -16,6 +17,10 @@ import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
 } from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/constants';
+import {
+  DAYS_OF_PERIOD_ENUM,
+  COUNTED_FROM_ENUM,
+} from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
 import { ABSOLUTE, RELATIVE, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from '@synerise/ds-date-range-picker/dist/constants';
 import { CONST } from '@synerise/ds-date-range-picker';
 import { DateRange, RelativeDateRange } from '@synerise/ds-date-range-picker/dist/date.types';
@@ -548,6 +553,24 @@ const stories = {
     const [value, setValue] = React.useState({});
     return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
   },
+  monthlyDateFilter: () => {
+    const disabled = boolean('Set disabled', false);
+    const countedFromOptions = {
+      Beginning: COUNTED_FROM_ENUM.BEGINNING,
+      End: COUNTED_FROM_ENUM.ENDING
+    };
+    const periodTypeOptions = {
+      "Days of month": DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH,
+      "Days of week": DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK
+    }
+    const countedFrom = select('Counted from', countedFromOptions, COUNTED_FROM_ENUM.BEGINNING);
+    const periodType = select('Period type', periodTypeOptions, DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK);
+    
+    const [value, setValue] = React.useState({});
+    
+    return <Monthly countedFrom={countedFrom} periodType={periodType} timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
+  },
+
   overwritingBaseStylesCheck: () => {
     /**
      * in some circumstances antd default styles overwrite provided display: flex;
