@@ -4,8 +4,9 @@ import '@testing-library/jest-dom/extend-expect';
 import RawDateRangePicker from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
+import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from '../RangeFilter/constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { fireEvent, waitFor, act } from '@testing-library/react';
+import { fireEvent, getByTestId, getAllByTestId, waitFor, act } from '@testing-library/react';
 import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
@@ -54,6 +55,7 @@ export const RANGES: RelativeDateRange[] = [
 ];
 const texts = {
   relativeDateRange: 'Relative Picker',
+  filter: 'Date Filter',
   myRange: 'myRange',
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
@@ -356,6 +358,50 @@ describe('DateRangePicker', () => {
   it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
   it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
   it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
+  it('date filter with time - clicking clear button should reset to DEFAULT_RANGE_START / DEFAULT_RANGE_END (i.e. not current time)', () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        showRelativePicker={false}
+        forceAbsolute={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+
+    act(() => {
+      getByText(texts.filter).click();
+    });
+    const addFilterButton = getByTestId(container, 'ds-add-button-label');
+    act(() => {
+      addFilterButton.click()
+    });
+    const inputs = getAllByTestId(container, 'tp-input');
+    const wrapper0 = inputs[0].closest('div');
+    const wrapper1 = inputs[1].closest('div');
+    
+    act(() => {
+      inputs[0].click();
+    })
+    const clearIcon = wrapper0.querySelector('svg');
+    act(() => {
+      fireEvent.click(clearIcon);
+    })
+    expect(inputs[0]).toHaveValue(DEFAULT_RANGE_START.substring(0,8));
+    
+    act(() => {
+      inputs[1].click();
+    })
+    const clearIcon1 = wrapper1.querySelector('svg');
+    act(() => {
+      fireEvent.click(clearIcon1);
+    })
+    expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0,8));
+  });
   it('filters should persist when date range changes', async () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(

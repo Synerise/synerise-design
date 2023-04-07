@@ -137,4 +137,6 @@ describe('Collector', () => {
     cancelButton.click();
     expect(onCancelFn).toBeCalledTimes(1);
   });
+  it.todo('should call onYReachEnd function');
+  it.todo('should shows loading state on dropdown');
 });

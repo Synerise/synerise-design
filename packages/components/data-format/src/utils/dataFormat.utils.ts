@@ -18,13 +18,14 @@ import {
   DATE,
   DATETIME,
   DEFAULT_FORMAT_MONTH_SHORT_OPTIONS,
+  DEFAULT_FORMAT_NUMBER_OPTIONS,
   LARGER_NUMBER_LIMIT,
   LOWER_CASE,
   LOWER_FIRST,
   UPPER_CASE,
   UPPER_FIRST,
+  COMPACT_LARGER_NUMBER,
 } from '../constants';
-import { COMPACT_LARGER_NUMBER } from '../constants/dataFormat.constants';
 
 export const convertNumberString = (
   value: number,
@@ -50,7 +51,10 @@ export const convertNumberString = (
       updatedNumberOptions.minimumFractionDigits = 1;
   }
 
-  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, updatedNumberOptions);
+  const numberParts: Intl.NumberFormatPart[] = languageIntl.formatNumberToParts(value, {
+    ...DEFAULT_FORMAT_NUMBER_OPTIONS,
+    ...updatedNumberOptions,
+  });
   return numberPartsToString(numberParts, thousandDelimiter, decimalDelimiter);
 };
 

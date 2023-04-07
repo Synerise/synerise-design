@@ -42,6 +42,7 @@ const Collector: React.FC<CollectorProps> = ({
   searchValue,
   renderItem,
   onSearchValueChange,
+  scrollbarProps,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -282,6 +283,7 @@ const Collector: React.FC<CollectorProps> = ({
         width={getContainerWidth()}
         customContent={dropdownContent}
         texts={texts}
+        scrollbarProps={scrollbarProps}
       />
       {(showError || description) && (
         <S.ContentBelow>
