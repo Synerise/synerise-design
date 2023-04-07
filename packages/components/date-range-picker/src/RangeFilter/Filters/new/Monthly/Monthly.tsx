@@ -209,7 +209,7 @@ const Monthly: React.FC<MonthlyProps> = ({
       if (periodType === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
         return dayWeekFormatter(dayKey, long);
       }
-      return dayMonthFormatter(dayKey, long);
+      return dayMonthFormatter(dayKey);
     },
     [periodType, dayWeekFormatter, dayMonthFormatter]
   );
@@ -219,8 +219,8 @@ const Monthly: React.FC<MonthlyProps> = ({
   }, []);
 
   const getDayLabel = React.useCallback(
-    (dayKey: DayKey, long: boolean): string | object | React.ReactNode => {
-      return dayFormatter(dayKey, long);
+    (dayKey: DayKey, long?: boolean): string | object | React.ReactNode => {
+      return dayFormatter(dayKey, long || false);
     },
     [dayFormatter]
   );
