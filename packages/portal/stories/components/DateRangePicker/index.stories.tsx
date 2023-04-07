@@ -564,11 +564,20 @@ const stories = {
       "Days of week": DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK
     }
     const countedFrom = select('Counted from', countedFromOptions, COUNTED_FROM_ENUM.BEGINNING);
-    const periodType = select('Period type', periodTypeOptions, DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK);
+    const periodType = select('Period type', periodTypeOptions, DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH);
     
     const [value, setValue] = React.useState({});
-    
-    return <Monthly countedFrom={countedFrom} periodType={periodType} timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
+  
+    return <Monthly 
+      countedFrom={countedFrom} 
+      periodType={periodType} 
+      timePickerProps={TIME_PICKER_PROPS} 
+      onChange={v => {
+        action('OnChange')(v);
+        setValue(v);
+      }}
+      value={value} 
+      disabled={disabled} />;
   },
 
   overwritingBaseStylesCheck: () => {

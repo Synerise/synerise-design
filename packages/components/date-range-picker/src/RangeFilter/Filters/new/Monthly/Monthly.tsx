@@ -3,6 +3,8 @@ import { useIntl } from 'react-intl';
 import * as dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
+import { useDataFormat } from '@synerise/ds-data-format';
+
 import { GridProps } from '../../../Shared/TimeWindow/Grid/Grid.types';
 import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer';
 import { SelectionCount, SelectionHint, AddButton } from '../../../Shared';
@@ -26,6 +28,7 @@ import {
   NOOP,
 } from '../constants';
 import { MONTH_DAYS, DAYS_OF_PERIOD_ENUM, COUNTED_FROM_ENUM } from '../../../constants';
+import { US_NOTATION_WEEK_DAYS_INDEXES } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
 
 const Monthly: React.FC<MonthlyProps> = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -55,13 +58,20 @@ const Monthly: React.FC<MonthlyProps> = ({
   const ref = React.useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
   const intl = useIntl();
+  const { isSundayFirstWeekDay } = useDataFormat();
 
   const allKeys = React.useMemo(() => {
     if (periodType === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
-      return range(0, 5 * 7);
+      if (isSundayFirstWeekDay) {
+        let keys: number[] = [];
+        range(0, 5).forEach(i => {
+          keys = [...keys, ...US_NOTATION_WEEK_DAYS_INDEXES.map(index => index + 7 * i)];
+        });
+        return keys;
+      }
     }
     return range(0, 31);
-  }, [periodType]);
+  }, [periodType, isSundayFirstWeekDay]);
 
   const getGridSettings = (): Partial<GridProps> => {
     const settings = {
@@ -171,10 +181,17 @@ const Monthly: React.FC<MonthlyProps> = ({
   );
 
   const dayWeekFormatter = React.useCallback(
-    (dayKey: DayKey): string => {
+    (dayKey: DayKey, long: boolean): string => {
       const weekStartIndex = Math.floor((dayKey as number) / 7);
       const dayOfWeek = (dayKey as number) - weekStartIndex * 7;
-      return intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
+
+      const weekday = intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek + 1}` });
+      const nthWeek = intl.formatMessage({
+        id: `DS.DATE-RANGE-PICKER.NTH.${weekStartIndex === 5 ? 'LAST' : weekStartIndex + 1}`,
+      });
+      return long
+        ? `${nthWeek} ${weekday}`
+        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
     },
     [intl]
   );
@@ -188,13 +205,12 @@ const Monthly: React.FC<MonthlyProps> = ({
   );
 
   const dayFormatter = React.useCallback(
-    (dayKey: DayKey): React.ReactNode => {
+    (dayKey: DayKey, long: boolean): React.ReactNode => {
       if (periodType === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
-        return dayWeekFormatter(dayKey);
+        return dayWeekFormatter(dayKey, long);
       }
-      return dayMonthFormatter(dayKey);
+      return dayMonthFormatter(dayKey, long);
     },
-    // intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
     [periodType, dayWeekFormatter, dayMonthFormatter]
   );
 
@@ -203,8 +219,8 @@ const Monthly: React.FC<MonthlyProps> = ({
   }, []);
 
   const getDayLabel = React.useCallback(
-    (dayKey: DayKey): React.ReactNode => {
-      return dayFormatter(dayKey);
+    (dayKey: DayKey, long: boolean): string | object | React.ReactNode => {
+      return dayFormatter(dayKey, long);
     },
     [dayFormatter]
   );
@@ -374,6 +390,7 @@ const Monthly: React.FC<MonthlyProps> = ({
             timeFormat={timeFormat}
             valueFormatOptions={valueFormatOptions}
             disabled={disabled}
+            monthlyFilterPeriod={periodType}
           />
         ))}
       {isAnyDaySelected && !canAddRange && (
