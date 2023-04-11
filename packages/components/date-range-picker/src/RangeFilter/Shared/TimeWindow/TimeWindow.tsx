@@ -20,7 +20,12 @@ import Day from './Day/Day';
 import SelectionHint from '../SelectionHint/SelectionHint';
 import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
-import { EU_NOTATION_WEEK_DAYS_INDEXES, US_NOTATION_WEEK_DAYS_INDEXES } from './constants/timeWindow.constants';
+import {
+  EU_NOTATION_MONTH_DAYS_INDEXES,
+  EU_NOTATION_WEEK_DAYS_INDEXES,
+  US_NOTATION_MONTH_DAYS_INDEXES,
+  US_NOTATION_WEEK_DAYS_INDEXES,
+} from './constants/timeWindow.constants';
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
@@ -228,12 +233,26 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop });
   };
 
-  getAllKeys = (): DayKey[] => {
-    const { numberOfDays, customDays, isSundayFirstWeekDay } = this.props;
-    let keys = range(numberOfDays);
-    if (JSON.stringify(keys) === JSON.stringify(EU_NOTATION_WEEK_DAYS_INDEXES) && isSundayFirstWeekDay) {
-      keys = US_NOTATION_WEEK_DAYS_INDEXES;
+  replaceDaysIndexesForUSNotation = (daysIndexes: number[]): number[] => {
+    const { isSundayFirstWeekDay } = this.props;
+    const stringifyDaysIndexes = JSON.stringify(daysIndexes);
+    const stringifyEUNotationWeekDaysIndexes = JSON.stringify(EU_NOTATION_WEEK_DAYS_INDEXES);
+    const stringifyEUNotationMonthDaysIndexes = JSON.stringify(EU_NOTATION_MONTH_DAYS_INDEXES);
+    let result = daysIndexes;
+
+    if (stringifyDaysIndexes === stringifyEUNotationWeekDaysIndexes && isSundayFirstWeekDay) {
+      result = US_NOTATION_WEEK_DAYS_INDEXES;
     }
+    if (stringifyDaysIndexes === stringifyEUNotationMonthDaysIndexes && isSundayFirstWeekDay) {
+      result = US_NOTATION_MONTH_DAYS_INDEXES;
+    }
+    return result;
+  };
+
+  getAllKeys = (): DayKey[] => {
+    const { numberOfDays, customDays } = this.props;
+    let keys = range(numberOfDays);
+    keys = this.replaceDaysIndexesForUSNotation(keys).slice();
     if (customDays) keys = [...keys, ...(Object.keys(customDays) as unknown as number[])];
     return keys;
   };
