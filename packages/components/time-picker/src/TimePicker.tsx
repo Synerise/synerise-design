@@ -142,12 +142,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
       if (mode === PM && clockMode === PM) {
         return false;
       }
-      if (
-        mode === AM &&
-        (disabledHours?.includes(HOUR_12) ||
-          disabledHours?.includes(0) ||
-          disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR))
-      ) {
+      if (mode === AM && (disabledHours?.includes(HOUR_12) || disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR))) {
         return true;
       }
       if (mode === PM && disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR)) {
