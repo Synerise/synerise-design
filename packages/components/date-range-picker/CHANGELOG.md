@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.9...@synerise/ds-date-range-picker@0.21.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** addsus notation support to monthly scheduler ([7cef538](https://github.com/Synerise/synerise-design/commit/7cef5388ee1e50b9f147e089bc2e88d4f6706c3f))
+* **date-range-picker:** fixes to support long display of days ([496e467](https://github.com/Synerise/synerise-design/commit/496e467e21d2071c8ab13a0b217332abb6e2cfc0))
+* **date-range-picker:** now button should not be left focused ([382dd26](https://github.com/Synerise/synerise-design/commit/382dd268e23337036933a5a420459e0748a7c170))
+* **date-range-picker:** prevent end time clearing to current time ([5e4cfb6](https://github.com/Synerise/synerise-design/commit/5e4cfb62b4a4bf50fb1fafc1497b146d2b31ad7c))
+
+
+### Features
+
+* **date-range-picker:** exposes a standalone monthly scheduler ([d73d59c](https://github.com/Synerise/synerise-design/commit/d73d59c2364fc4e9a6f8a1b2daeb306da8a9dc89))
+
+
+
+
+
 ## [0.20.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.8...@synerise/ds-date-range-picker@0.20.9) (2023-04-05)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
