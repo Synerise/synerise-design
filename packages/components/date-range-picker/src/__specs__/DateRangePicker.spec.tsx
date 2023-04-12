@@ -430,5 +430,34 @@ describe('DateRangePicker', () => {
   it.todo(
     'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
   );
-  it.todo('datepicker value.from && value.to, if defined, should have 0ms');
+  it('datepicker value.from && value.to, if defined, should have 0ms', () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    const from = new Date();
+    from.setMilliseconds(0);
+    const to = new Date();
+    to.setMinutes(to.getMinutes()+1);
+    to.setMilliseconds(0);
+    
+    act(() => {
+      getByText(texts.now).click();
+    });
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from']).toBe(from.toISOString());
+    expect(onApplyParameter['to']).toBe(to.toISOString());
+  });
 });
