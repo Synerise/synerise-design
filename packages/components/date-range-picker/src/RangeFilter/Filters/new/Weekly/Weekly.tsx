@@ -82,9 +82,12 @@ const Weekly: React.FC<WeeklyProps> = ({
   );
 
   React.useEffect(() => {
-    const entriesWithActiveDaysValue = Object.keys(value).filter(id =>
-      activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
-    );
+    const entriesWithActiveDaysValue = activeDays.length
+      ? Object.keys(value).filter(id =>
+          activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
+        )
+      : [];
+
     removeEmptyEntries(value);
     setFilteredSchedule(entriesWithActiveDaysValue);
   }, [value, activeDays, removeEmptyEntries]);
