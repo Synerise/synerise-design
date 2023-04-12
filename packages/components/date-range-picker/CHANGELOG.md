@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.0...@synerise/ds-date-range-picker@0.21.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds separated translation key indexes ([6e899e9](https://github.com/Synerise/synerise-design/commit/6e899e99800ba26f81faf22650698b27529acb95))
+
+
+
+
+
 # [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.9...@synerise/ds-date-range-picker@0.21.0) (2023-04-12)
 
 
