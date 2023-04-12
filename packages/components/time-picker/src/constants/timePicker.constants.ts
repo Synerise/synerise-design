@@ -11,6 +11,7 @@ export const PM: ClockModes = 'PM';
 export const AM: ClockModes = 'AM';
 
 export const HOUR_12 = 12;
+export const DISABLE_CLOCK_MODE_HOUR = -1;
 
 export const MAP_12_AM_TO_24_HOUR = {
   0: 12,
