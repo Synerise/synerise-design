@@ -40,9 +40,9 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   valueTransformer = (e: RelativeDateRange | object): RelativeDateRange | object => e,
 }: RangeDropdownProps) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
-  const overlayRef = React.useRef<HTMLDivElement>(null);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
-  useOnClickOutside(overlayRef, () => {
+  useOnClickOutside(dropdownRef, () => {
     setDropVisible(false);
   });
 
@@ -62,7 +62,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
     (currentRange && find(range => range.key === currentRange.key, ranges)) ||
     anyOfTransformedRangesMatchesCurrentRange;
   const overlay = (
-    <S.OverlayWrapper visible={dropVisible} ref={overlayRef} width={DROPDOWN_WIDTH}>
+    <S.OverlayWrapper visible={dropVisible} width={DROPDOWN_WIDTH}>
       <Scrollbar
         maxHeight={MAX_ITEMS_COUNT * ITEMS_HEIGHT}
         style={{ width: DROPDOWN_WIDTH - DROPDOWN_PADDING }}
@@ -84,7 +84,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
     </S.OverlayWrapper>
   );
   return (
-    <S.DropdownContainer>
+    <S.DropdownContainer ref={dropdownRef}>
       <S.Range
         type={containsCurrentRange ? 'primary' : 'tertiary'}
         mode="label-icon"
