@@ -423,4 +423,7 @@ describe('DateRangePicker', () => {
     fireEvent.click(applyButton);
     expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
   });
+  it.todo('monthly scheduler should render');
+  it.todo('monthly scheduler should render from beginning or end');
+  it.todo('monthly scheduler should render days of week or month');
 });

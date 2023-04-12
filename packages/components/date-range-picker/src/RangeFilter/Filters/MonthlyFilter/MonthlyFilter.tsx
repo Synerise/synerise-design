@@ -97,7 +97,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     this.setData(data);
   };
 
-  dayWeekFormatter = (index: number, long: boolean): string => {
+  dayWeekFormatter = (index: number, long?: boolean): string => {
     const { intl } = this.props;
     const weekStartIndex = Math.floor(index / 7);
     const dayOfWeek = index - weekStartIndex * 7;
@@ -110,7 +110,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
   };
 
-  dayMonthFormatter = (i: number, long: boolean): string => {
+  dayMonthFormatter = (i: number, long?: boolean): string => {
     const { intl } = this.props;
 
     const locale = intl.locale.substring(0, 2);

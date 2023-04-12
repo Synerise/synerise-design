@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.182.0](https://github.com/synerise/synerise-design/compare/portal@0.181.0...portal@0.182.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** addsus notation support to monthly scheduler ([7cef538](https://github.com/synerise/synerise-design/commit/7cef5388ee1e50b9f147e089bc2e88d4f6706c3f))
+
+
+### Features
+
+* **date-range-picker:** exposes a standalone monthly scheduler ([d73d59c](https://github.com/synerise/synerise-design/commit/d73d59c2364fc4e9a6f8a1b2daeb306da8a9dc89))
+
+
+
+
+
 # [0.181.0](https://github.com/synerise/synerise-design/compare/portal@0.180.0...portal@0.181.0) (2023-04-05)
 
 
