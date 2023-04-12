@@ -60,7 +60,8 @@ const texts = {
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
-  now: 'Now'
+  now: 'Now',
+  more: 'More',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -424,6 +425,39 @@ describe('DateRangePicker', () => {
     fireEvent.click(applyButton);
     expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
   });
+  it('clicking "more" should toggle relative ranges dropdown', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={true}
+        forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    
+    act(() => {
+      getByText(texts.relativeDateRange).click();
+    });
+    const moreLabel = getByText(texts.more);
+    if (moreLabel) {
+      const moreButton = moreLabel.closest('button');
+      const dropdown = moreButton.nextElementSibling;
+      act(() => {
+        moreButton.click();
+      });
+      expect(dropdown).toHaveStyle('display:flex')
+      act(() => {
+        moreButton.click();
+      });
+    }
+
+  });  
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
