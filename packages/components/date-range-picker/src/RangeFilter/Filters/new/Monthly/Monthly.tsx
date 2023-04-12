@@ -27,7 +27,14 @@ import {
   RENDER_EMPTY_NODE_FN,
   NOOP,
 } from '../constants';
-import { MONTH_DAYS, DAYS_OF_PERIOD_ENUM, COUNTED_FROM_ENUM } from '../../../constants';
+import {
+  MONTH_DAYS,
+  DAYS_OF_PERIOD_ENUM,
+  COUNTED_FROM_ENUM,
+  MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK,
+  MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG,
+  MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_SHORT,
+} from '../../../constants';
 import { US_NOTATION_WEEK_DAYS_INDEXES } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
 
 const Monthly: React.FC<MonthlyProps> = ({
@@ -69,6 +76,7 @@ const Monthly: React.FC<MonthlyProps> = ({
         });
         return keys;
       }
+      return range(0, 5 * 7);
     }
     return range(0, 31);
   }, [periodType, isSundayFirstWeekDay]);
@@ -86,9 +94,7 @@ const Monthly: React.FC<MonthlyProps> = ({
         labelInverted: countedFrom === COUNTED_FROM_ENUM.ENDING,
         inverted: countedFrom === COUNTED_FROM_ENUM.ENDING,
         rowLabelFormatter: (rowIndex: number): string =>
-          intl.formatMessage({
-            id: `DS.DATE-RANGE-PICKER.NTH.${rowIndex + 1}`,
-          }),
+          intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK[rowIndex]),
       },
     };
     return settings[periodType] as Partial<GridProps>;
@@ -184,14 +190,9 @@ const Monthly: React.FC<MonthlyProps> = ({
     (dayKey: DayKey, long: boolean): string => {
       const weekStartIndex = Math.floor((dayKey as number) / 7);
       const dayOfWeek = (dayKey as number) - weekStartIndex * 7;
-
-      const weekday = intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.${dayOfWeek + 1}` });
-      const nthWeek = intl.formatMessage({
-        id: `DS.DATE-RANGE-PICKER.NTH.${weekStartIndex === 5 ? 'LAST' : weekStartIndex + 1}`,
-      });
-      return long
-        ? `${nthWeek} ${weekday}`
-        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayOfWeek}` });
+      const weekday = intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG[dayOfWeek]);
+      const nthWeek = intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK[weekStartIndex]);
+      return long ? `${nthWeek} ${weekday}` : intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_SHORT[dayOfWeek]);
     },
     [intl]
   );
