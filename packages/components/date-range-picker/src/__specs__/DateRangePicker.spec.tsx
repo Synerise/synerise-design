@@ -60,6 +60,7 @@ const texts = {
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
+  now: 'Now'
 } as any;
 
 describe('DateRangePicker', () => {
@@ -426,4 +427,8 @@ describe('DateRangePicker', () => {
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
+  it.todo(
+    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
+  );
+  it.todo('datepicker value.from && value.to, if defined, should have 0ms');
 });
