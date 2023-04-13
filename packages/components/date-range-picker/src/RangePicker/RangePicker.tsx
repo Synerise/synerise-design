@@ -274,7 +274,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
   };
 
   renderTimePicker = (side: SideType): React.ReactNode => {
-    const { value } = this.props;
+    const { value, is12HoursClock } = this.props;
     const { from, to } = value;
     if (!from || !to) {
       return null;
@@ -287,9 +287,9 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
             key={`time-picker-${side}`}
             value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
-            disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
-            disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
-            disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
+            disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to, is12HoursClock)}
+            disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to, is12HoursClock)}
+            disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to, is12HoursClock)}
             onShortNext={
               sidesAreAdjacent
                 ? undefined
@@ -309,9 +309,9 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
             key={`time-picker-${side}`}
             value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
-            disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
-            disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
-            disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
+            disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null, is12HoursClock)}
+            disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null, is12HoursClock)}
+            disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null, is12HoursClock)}
             onShortNext={(): void => {
               this.handleAddDay(1, COLUMNS.RIGHT);
             }}
