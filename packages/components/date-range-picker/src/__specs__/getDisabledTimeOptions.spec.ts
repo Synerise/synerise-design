@@ -44,4 +44,6 @@ describe('RangePicker::getDisabledTimeOptions', () => {
       ).toStrictEqual(testDataObject.disabledResultArray);
     });
   });
+  it.todo('should calculate correct disabled values for 24 hours clock (more test cases in TEST_DATA_SET array)');
+  it.todo('should calculate correct disabled values for 12 hours clock (more test cases in TEST_DATA_SET array)');
 });
