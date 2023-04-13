@@ -14,7 +14,9 @@ export const AddonHeader = styled.div`
   justify-content: space-between;
   flex-wrap: no-wrap;
 `;
-export const Content = styled.div``;
+export const Content = styled.div<{ expanded?: boolean }>`
+  ${(props): string | false => !props.expanded && `display: none;`}
+`;
 
 export const Suffix = styled.div`
   display: flex;

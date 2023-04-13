@@ -26,6 +26,7 @@ export type State = {
   currentRange: RelativeDateRange;
   groupedRanges?: DateRange[];
   sinceTimestamp?: Date | undefined;
+  lastCustomRange?: RelativeDateRange;
 };
 
 /**
