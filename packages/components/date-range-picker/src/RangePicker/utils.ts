@@ -64,7 +64,7 @@ export const getDisabledTimeOptions = (
 
   if (is12HoursClock && lowerLimit) {
     if (lowerLimitClockMode === PM && dayjs(lowerLimit).get(HOUR) === HOUR_12) {
-      return [0];
+      return [DISABLE_CLOCK_MODE_HOUR];
     }
     if (lowerLimitClockMode === AM && dayClockMode === PM) {
       const day12HBuilder = dayjs(change24To12Hour(dayBuilder.toDate()));
