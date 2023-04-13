@@ -48,8 +48,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<TimeWindowProps>, prevState: Readonly<State>): void {
+    const { activeDays } = this.state;
     const hasCommonRange = this.haveActiveDaysCommonRange();
-    if (prevState.isRangeDefined !== hasCommonRange) {
+    if (prevState.isRangeDefined !== hasCommonRange && activeDays.length) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState(state => ({ ...state, isRangeDefined: hasCommonRange }));
     }
@@ -164,7 +165,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   handleClearSelection = (): void => {
-    this.setState({ activeDays: [] });
+    this.setState({ activeDays: [], isRangeDefined: false });
   };
 
   handleSelectAll = (): void => {
