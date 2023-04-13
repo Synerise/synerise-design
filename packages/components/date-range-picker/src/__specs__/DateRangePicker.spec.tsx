@@ -430,6 +430,39 @@ describe('DateRangePicker', () => {
   it.todo(
     'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
   );
+  it('datepicker with isTruncateMs=false prop should not truncate miliseconds', () => {
+    const onApply = jest.fn();
+    const from = new Date();
+    const to = new Date();
+    to.setMinutes(to.getMinutes()+1);
+    
+    const VALUE_WITH_MS = {
+      type: ABSOLUTE,
+      from: from.toISOString(),
+      to: to.toISOString(),
+    };
+
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={VALUE_WITH_MS as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+        isTruncateMs={false}
+      />
+    );
+    
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from']).toBe(from.toISOString());
+    expect(onApplyParameter['to']).toBe(to.toISOString());
+  });
   it('datepicker value.from && value.to, if defined, should have 0ms', () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(
