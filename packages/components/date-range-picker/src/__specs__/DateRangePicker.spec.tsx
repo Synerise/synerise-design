@@ -23,17 +23,17 @@ const ABSOLUTE_VALUE_WITH_FILTER = {
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
   filter: {
-    type: 'WEEKLY',
-    nestingType: 'IN_PLACE',
+    type: "WEEKLY",
+    nestingType: "IN_PLACE",
     days: [
       {
-        from: '00:00:00.000',
-        to: '23:59:59.999',
+        from: "00:00:00.000",
+        to: "23:59:59.999",
         day: 5,
         inverted: false,
-        mode: 'Range',
-      },
-    ],
+        mode: 'Range'
+      }
+    ]
   },
 };
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
@@ -351,18 +351,12 @@ describe('DateRangePicker', () => {
   it.todo('sinceTimestamp in SINCE is actually emitted');
   it.todo('date type SINCE can be passed to onApply (isValid)');
   it.todo('SINCE dateFilter value has future prop indicating whether it is next or last');
-  it.todo(
-    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
-  );
+  it.todo('SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)');
   it.todo('all three date filter buttons render when allowedFilterTypes prop is not present');
   it.todo('selected date filter buttons render when allowedFilterTypes prop is set');
-  it.todo(
-    'when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.'
-  );
+  it.todo('when from is selected from the right side of the picker the picker re-renders with from on the left side and the subsequent month rendered on the right side.');
   it.todo('monthly date filter - periodType dropdown display value should show currently selected period type');
-  it.todo(
-    'monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value'
-  );
+  it.todo('monthly date filter - periodCountedFrom dropdown display value should show currently selected countedFrom value');
   it('date filter with time - clicking clear button should reset to DEFAULT_RANGE_START / DEFAULT_RANGE_END (i.e. not current time)', () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(
@@ -383,29 +377,29 @@ describe('DateRangePicker', () => {
     });
     const addFilterButton = getByTestId(container, 'ds-add-button-label');
     act(() => {
-      addFilterButton.click();
+      addFilterButton.click()
     });
     const inputs = getAllByTestId(container, 'tp-input');
     const wrapper0 = inputs[0].closest('div');
     const wrapper1 = inputs[1].closest('div');
-
+    
     act(() => {
       inputs[0].click();
-    });
+    })
     const clearIcon = wrapper0.querySelector('svg');
     act(() => {
       fireEvent.click(clearIcon);
-    });
-    expect(inputs[0]).toHaveValue(DEFAULT_RANGE_START.substring(0, 8));
-
+    })
+    expect(inputs[0]).toHaveValue(DEFAULT_RANGE_START.substring(0,8));
+    
     act(() => {
       inputs[1].click();
-    });
+    })
     const clearIcon1 = wrapper1.querySelector('svg');
     act(() => {
       fireEvent.click(clearIcon1);
-    });
-    expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0, 8));
+    })
+    expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0,8));
   });
   it('filters should persist when date range changes', async () => {
     const onApply = jest.fn();
@@ -432,14 +426,4 @@ describe('DateRangePicker', () => {
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
-  it.todo('RangePickerInput should render correct date time for 24 hours clock');
-  it.todo('RangePickerInput should render correct date time for 12 hours clock');
-  it.todo('Footer should render correct date time for 24 hours clock');
-  it.todo('Footer should render correct date time for 12 hours clock');
-  it.todo('TimeWindow::Everyday should render correct time for 24 hours clock');
-  it.todo('TimeWindow::Everyday should render correct time for 12 hours clock');
-  it.todo('TimeWindow::EveryWeek should render correct days order for Monday first notation');
-  it.todo('TimeWindow::EveryWeek should render correct days order for Sunday first notation');
-  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Monday first notation');
-  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Sunday first notation');
 });
