@@ -426,4 +426,14 @@ describe('DateRangePicker', () => {
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
+  it.todo('RangePickerInput should render correct date time for 24 hours clock');
+  it.todo('RangePickerInput should render correct date time for 12 hours clock');
+  it.todo('Footer should render correct date time for 24 hours clock');
+  it.todo('Footer should render correct date time for 12 hours clock');
+  it.todo('TimeWindow::Everyday should render correct time for 24 hours clock');
+  it.todo('TimeWindow::Everyday should render correct time for 12 hours clock');
+  it.todo('TimeWindow::EveryWeek should render correct days order for Monday first notation');
+  it.todo('TimeWindow::EveryWeek should render correct days order for Sunday first notation');
+  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Monday first notation');
+  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Sunday first notation');
 });
