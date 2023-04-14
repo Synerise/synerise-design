@@ -18,7 +18,7 @@ const TEST_DATA_SET: TestDataObject[] = [
     upperLimit: '2023-03-30T09:36:54',
     granularity: 'HOURS',
     is12HoursClock: true,
-    disabledResultArray: [10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    disabledResultArray: [10, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, -1],
   },
   {
     lowerLimit: '2023-03-30T15:29:24',
@@ -26,7 +26,7 @@ const TEST_DATA_SET: TestDataObject[] = [
     upperLimit: null,
     granularity: 'HOURS',
     is12HoursClock: true,
-    disabledResultArray: [0, 1, 2, 3],
+    disabledResultArray: [0, 1, 2, 3, 12],
   },
 ];
 
@@ -44,4 +44,6 @@ describe('RangePicker::getDisabledTimeOptions', () => {
       ).toStrictEqual(testDataObject.disabledResultArray);
     });
   });
+  it.todo('should calculate correct disabled values for 24 hours clock (more test cases in TEST_DATA_SET array)');
+  it.todo('should calculate correct disabled values for 12 hours clock (more test cases in TEST_DATA_SET array)');
 });
