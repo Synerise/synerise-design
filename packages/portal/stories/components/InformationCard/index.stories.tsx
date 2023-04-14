@@ -39,6 +39,26 @@ function defaultStory() {
   const iconArray = [<SegmentM color="mars" />, <VarTypeStringM />];
   const icon = iconArray[select('Icon type', { segment: 0, 'icontype-string': 1 }, 0)];
   const avatarTooltipText = text('Icon tooltip text', 'Icon tooltip text');
+  const description = text('Description text', 'Description text');
+  const editable = boolean('Description editable', true);
+  const disabled = boolean('Description disabled', false);
+  const withNotice = boolean('With notice', false);
+  let notice;
+  if (withNotice) {
+    notice = buildExtraInfo('Note: cannot be undone', 'warning');
+  }
+  let descriptionConfig;
+  if (editable) {
+    descriptionConfig = {
+      value: description,
+      disabled: disabled,
+      onChange: action('onChange')
+    }
+  }
+  else {
+    descriptionConfig = description;
+  }
+
   return wrapCardWithMenu(
     () => (
       <InformationCard
@@ -46,8 +66,9 @@ function defaultStory() {
         subtitle="subtitle"
         icon={icon}
         iconColor={iconColor}
+        notice={notice}
         avatarTooltipText={avatarTooltipText}
-        descriptionConfig={{ onChange: action('on change') }}
+        descriptionConfig={descriptionConfig}
       />
     ),
     'Menu item'
@@ -104,9 +125,11 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
     {
       text: 'Edit',
       renderHoverTooltip: () => (
-        <InformationCardWithKnobs title="Edit" subtitle="someElement.edit()">
-          this is a custom content (editable textarea is by default)
-        </InformationCardWithKnobs>
+        <InformationCardWithKnobs 
+          title="Edit"
+          subtitle="someElement.edit()"
+          descriptionConfig="this is a custom content (editable textarea is by default)"
+        />
       ),
     },
     {
@@ -116,9 +139,8 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
           title="Duplicate"
           subtitle="someElement.duplicate()"
           footerText="Existing duplicates: 0"
-        >
-          note footer section with the description and action button below
-        </InformationCardWithKnobs>
+          descriptionConfig="note footer section with the description and action button below"
+        />
       ),
     },
     {
@@ -135,9 +157,7 @@ function WithMenu(menuEntryMapper = (menuEntry, idx) => menuEntry) {
           title="Delete"
           subtitle="someElement.delete()"
           notice={buildExtraInfo('Note: cannot be undo', 'alert')}
-        >
-          {''}
-        </InformationCardWithKnobs>
+        />
       ),
     },
   ];
@@ -367,25 +387,24 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
   if (actionButton) {
     actionButtonTooltipText = text('Action button tooltip title text', 'You can set title');
   }
-  const descriptionProps = {} as any;
-  let hideDescription;
-  const hasCustomDescription = boolean('Has custom description', false);
-  let customDescription,
-    usePlainTextArea = false;
-  if (hasCustomDescription) {
-    usePlainTextArea = boolean('Use plain HTML <textarea> in the description', false);
-    if (usePlainTextArea) {
-      customDescription = ({ onChange } = {} as any) => <textarea onChange={onChange} />;
+  let descriptionProps;
+  const hideDescription = boolean('Hide description', true);
+  
+  if (!hideDescription) {
+    const hasEditableDescription = boolean('Editable description', true);
+    const descriptionContent = text('Description content', 'Plain text description');
+    if (hasEditableDescription) {
+      descriptionProps = {
+        value: descriptionContent,
+        onChange: action('on change'),
+        error: boolean('Set validation state as error', false),
+        disabled: boolean('Disable editing textarea', false)
+      }
     } else {
-      customDescription = text('Description content', 'custom description');
-    }
-  } else {
-    hideDescription = boolean('Hide description', false);
-    if (!hideDescription) {
-      descriptionProps.error = boolean('Set validation state as error', false);
-      descriptionProps.disabled = boolean('Disable editing textarea', false);
+      descriptionProps = descriptionContent;
     }
   }
+  
   return (
     <InformationCard
       renderBadge={preset.renderBadge}
@@ -397,21 +416,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
       avatarTooltipText={avatarTooltipText}
       {...preset}
       {...props}
-      {...(hideDescription
-        ? {
-            descriptionConfig: null,
-          }
-        : {
-            descriptionConfig: {
-              onChange: action('on change'),
-              ...descriptionProps,
-            },
-          })}
-      {...(hasCustomDescription || hideDescription
-        ? {
-            children: customDescription || null,
-          }
-        : {})}
+      descriptionConfig={!hideDescription ? descriptionProps : null}
     />
   );
 }
