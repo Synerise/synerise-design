@@ -36,10 +36,6 @@ export type InformationCardProps = {
    */
   avatarTooltipText?: string;
   /**
-   * content of the tooltip, it defaults to `SubtleForm.TextArea`
-   */
-  children?: React.ReactNode | ((props?: SubtleTextAreaProps | string | null) => React.ReactNode);
-  /**
    * subtitle's value to be copied when clicking on the copy button
    */
   copyTooltip?: string;
