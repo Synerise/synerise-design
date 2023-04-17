@@ -71,9 +71,12 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   }
 
   onModeChange = (mode: RelativeMode | null): void => {
-    this.setState({ currentGroup: mode, lastCustomRange: undefined, sinceTimestamp: new Date() });
-    const { onChange } = this.props;
-    onChange(DEFAULT_RANGE);
+    const { currentGroup } = this.state;
+    if (mode !== currentGroup) {
+      this.setState({ currentGroup: mode, lastCustomRange: undefined, sinceTimestamp: new Date() });
+      const { onChange } = this.props;
+      onChange(DEFAULT_RANGE);
+    }
   };
 
   onTimestampChange = (timestamp: Date | undefined): void => {
