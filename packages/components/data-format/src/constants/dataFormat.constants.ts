@@ -3,6 +3,7 @@ import { DateTargetFormat, NamingConvention, Delimiter, DateConstantsTargetForma
 
 export const DEFAULT_FORMAT_NUMBER_OPTIONS: FormatNumberOptions = {
   maximumFractionDigits: 2,
+  useGrouping: true,
 };
 
 export const DEFAULT_FORMAT_DATE_OPTIONS: FormatDateOptions = {
