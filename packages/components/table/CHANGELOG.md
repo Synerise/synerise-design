@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.7...@synerise/ds-table@0.46.8) (2023-04-17)
+
+
+### Bug Fixes
+
+* **table:** add formatValue to pagination ([d4c9d06](https://github.com/synerise/synerise-design/commit/d4c9d06efa1027a43a4d1475d56a05e6118e4450))
+
+
+
+
+
 ## [0.46.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.6...@synerise/ds-table@0.46.7) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-table
