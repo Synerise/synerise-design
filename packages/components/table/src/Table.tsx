@@ -136,7 +136,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
       },
       ...pagination,
     };
-  }, [pagination, grouped, tableLocale, hideTitlePart]);
+  }, [pagination, formatValue, grouped, tableLocale, hideTitlePart]);
 
   return (
     <TableLocaleContext.Provider value={tableLocale}>
