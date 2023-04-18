@@ -80,6 +80,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   allowedFilterTypes?: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   renderPopoverTrigger?: (...args: any) => JSX.Element;
+  isTruncateMs?: boolean;
 }
 
 /**

@@ -2,6 +2,8 @@ import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
+import fnsStartOfSecond from 'date-fns/startOfSecond';
+import { legacyParse } from '@date-fns/upgrade/v2';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
@@ -57,6 +59,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     showRelativePicker: true,
     validate: (): { valid: boolean } => ({ valid: true }),
     valueTransformer: defaultValueTransformer,
+    isTruncateMs: true,
   };
 
   constructor(props: DateRangePickerProps) {
@@ -93,9 +96,17 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       return;
     }
 
-    const { onValueChange, valueTransformer } = this.props;
+    const { onValueChange, valueTransformer, isTruncateMs } = this.props;
     const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
+    if (isTruncateMs) {
+      if (newValue.from !== undefined) {
+        newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+      }
+      if (newValue.to !== undefined) {
+        newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+      }
+    }
     if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
       this.setState({ mode: MODES.DATE });
     }
