@@ -401,6 +401,10 @@ describe('DateRangePicker', () => {
     })
     expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0,8));
   });
+  it.todo('relative custom range form values should persist when swithing to absolute range and back to custom');
+  it.todo('relative custom range form values should persist when swithing to predefined relative range and back to custom');
+  it.todo('relative custom range form values should persist when swithing to lifetime and back to custom');
+  it.todo('relative custom range form values should reset when switching custom range mode');
   it('filters should persist when date range changes', async () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(
