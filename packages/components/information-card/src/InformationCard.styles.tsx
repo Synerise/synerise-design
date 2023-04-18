@@ -4,7 +4,6 @@ import {
   IconContainer,
   Container as CardContainer,
   PaddingWrapper,
-  ChildrenContainer,
   HeaderContent,
   Header,
   Title,
@@ -34,13 +33,11 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
     margin-bottom: 1px;
     font-weight: 400;
     min-width: 250px;
-    &.custom-description ${ChildrenContainer} {
-      margin-top: 8px;
-    }
     padding: 16px 16px 8px 16px; // right is 16px as divider ends there
     border-radius: 3px;
     box-shadow: ${(props): string => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
   }
+
   ${PaddingWrapper} {
     padding-top: 0;
   }
@@ -72,6 +69,21 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
     box-shadow: unset;
   }
 `;
+
+export const AlertWrapper = styled.div`
+  padding-bottom: 8px;
+  :empty {
+    display: none;
+  }
+`;
+export const NonEditableWrapper = styled.div`
+  padding-bottom: 8px;
+  :empty {
+    display: none;
+  }
+`;
+
+export const DescriptionWrapper = styled.div``;
 
 /**
  * This component can be used to style container with popovers/tooltips to disable arrow.
