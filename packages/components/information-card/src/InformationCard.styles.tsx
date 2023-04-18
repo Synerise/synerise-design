@@ -27,12 +27,12 @@ export const ActionButtonContainer = styled.div`
 
 export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boolean }>`
   margin-left: ${(props): string => (props.asTooltip ? '0' : '8px')};
+  width: 294px;
 
   ${CardContainer} {
     background-color: white;
     margin-bottom: 1px;
     font-weight: 400;
-    min-width: 250px;
     padding: 16px 16px 8px 16px; // right is 16px as divider ends there
     border-radius: 3px;
     box-shadow: ${(props): string => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
