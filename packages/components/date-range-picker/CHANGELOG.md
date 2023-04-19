@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.3...@synerise/ds-date-range-picker@0.21.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** date range values are rounded to full seconds ([aa6d01b](https://github.com/Synerise/synerise-design/commit/aa6d01bf445abb613acfded51f868b70c116a1e3))
+* **date-range-picker:** makes ms truncation optional via props ([20480d4](https://github.com/Synerise/synerise-design/commit/20480d4636f4d439880cc0785fbe5e8339d91c2c))
+* **date-range-picker:** rounds range from & to to full seconds ([7f13dfe](https://github.com/Synerise/synerise-design/commit/7f13dfebb7f210b6b425e05907660c195d532874))
+
+
+
+
+
 ## [0.21.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.2...@synerise/ds-date-range-picker@0.21.3) (2023-04-17)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
