@@ -130,6 +130,8 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     remove: texts?.remove || getIntlMessage(`DS.DATE-RANGE-PICKER.REMOVE`, intl, disableDefault),
     savedFiltersTrigger:
       texts?.savedFiltersTrigger || getIntlMessage(`DS.DATE-RANGE-PICKER.SAVED-FILTERS`, intl, disableDefault),
+    range: texts?.range || getIntlMessage(`DS.DATE-RANGE-PICKER.RANGE`, intl, disableDefault),
+    hour: texts?.hour || getIntlMessage(`DS.DATE-RANGE-PICKER.HOUR`, intl, disableDefault),
   };
 };
 

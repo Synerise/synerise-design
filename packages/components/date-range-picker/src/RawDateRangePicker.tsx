@@ -200,6 +200,9 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     }
     if (showFilter) {
       const addonKey = 'filter';
+      const label = value?.filter
+        ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
+        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.ADD-FILTER`, defaultMessage: 'Add filter' });
       addons.push({
         content: (
           <AddonCollapse
@@ -208,7 +211,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
                 onFilterRemove={this.handleRemoveFilterClick}
                 filter={value.filter}
                 disabled={!value.from || !value.to}
-                label={value?.filter ? 'Filter enabled' : 'Add filter'}
+                label={label}
                 onClick={this.handleModalOpenClick}
               />
             }
