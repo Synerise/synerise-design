@@ -289,4 +289,6 @@ describe('RawDatePicker', () => {
     // ASSERT
     expect(screen.getByDisplayValue('10/27/1996, 3:24 AM')).toBeInTheDocument();
   });
+  it.todo('should render month picker using locale');
+  it.todo('should render day picker using locale');
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { range } from 'lodash';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import {
@@ -25,20 +26,20 @@ function getInitialState(props: MonthPickerProps): MonthPickerState {
   };
 }
 
-function getCells(cursor: Date, min?: Date, max?: Date): Cell[] {
+function getCells(cursor: Date, min?: Date, max?: Date, locale?: string): Cell[] {
   const minDate = min ? fnsStartOfMonth(min) : fnsSetMonth(cursor, 0);
   const maxDate = max ? fnsEndOfMonth(max) : fnsSetMonth(cursor, 12);
   return range(0, 12).map(index => {
     const date = fnsSetMonth(cursor, index);
     return {
       key: date.toISOString(),
-      text: fnsFormat(date, 'MMM'),
+      text: fnsFormat(date, 'MMM', locale),
       disabled: fnsIsAfter(date, maxDate) || fnsIsBefore(date, minDate),
     } as Cell;
   });
 }
 
-export default class MonthPicker extends React.PureComponent<MonthPickerProps, MonthPickerState> {
+class MonthPicker extends React.PureComponent<MonthPickerProps & WrappedComponentProps, MonthPickerState> {
   state = getInitialState(this.props);
 
   getSnapshotBeforeUpdate(prevProps: Readonly<MonthPickerProps>): null {
@@ -61,8 +62,8 @@ export default class MonthPicker extends React.PureComponent<MonthPickerProps, M
 
   render(): React.ReactNode {
     const { cursor, yearMode } = this.state;
-    const { min, max, value, onChange } = this.props;
-    const cells = getCells(cursor, min, max);
+    const { min, max, value, intl, onChange } = this.props;
+    const cells = getCells(cursor, min, max, intl?.locale);
     const valueCell = value ? cells.find(cell => fnsIsSameMonth(value, legacyParse(cell.key))) : null;
     const selectedKey = valueCell ? valueCell.key : null;
     if (yearMode) {
@@ -90,3 +91,4 @@ export default class MonthPicker extends React.PureComponent<MonthPickerProps, M
     ];
   }
 }
+export default injectIntl(MonthPicker);
