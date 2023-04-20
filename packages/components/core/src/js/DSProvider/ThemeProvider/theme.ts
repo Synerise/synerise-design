@@ -1,4 +1,4 @@
-import { ThemeProps as SCThemeProps } from 'styled-components';
+import { ThemeProps as SCThemeProps, useTheme as originalUseTheme } from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import vars from './variables';
@@ -14,6 +14,10 @@ export type ThemePropsVars = {
 };
 
 export type ThemeProps = SCThemeProps<ThemePropsVars>;
+
+export const useTheme = (): ThemePropsVars => {
+  return originalUseTheme() as ThemePropsVars;
+};
 
 const getBreakpoints = (): string[] =>
   [breakpoints.small.max, breakpoints.medium.max, breakpoints.large.max].map(item => `${item}px`);
