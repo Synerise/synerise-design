@@ -150,7 +150,9 @@ export type Translations =
   | 'savedFiltersTrigger'
   | 'clearRange'
   | 'copyRange'
-  | 'pasteRange';
+  | 'pasteRange'
+  | 'range'
+  | 'hour';
 
 export type WithTranslations = {
   texts?: Texts;

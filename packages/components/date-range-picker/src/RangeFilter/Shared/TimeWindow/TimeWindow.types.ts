@@ -35,6 +35,8 @@ export type TimeWindowTexts = {
   clearRange: React.ReactNode | string;
   copyRange: React.ReactNode | string;
   pasteRange: React.ReactNode | string;
+  range: React.ReactNode | string;
+  hour: React.ReactNode | string;
 };
 export type TimeWindowProps = {
   days: Days;
