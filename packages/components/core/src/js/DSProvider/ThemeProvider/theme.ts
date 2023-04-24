@@ -15,6 +15,8 @@ export type ThemePropsVars = {
 
 export type ThemeProps = SCThemeProps<ThemePropsVars>;
 
+export type WithTheme = SCThemeProps<ThemePropsVars>;
+
 export const useTheme = originalUseTheme as () => ThemePropsVars;
 
 const getBreakpoints = (): string[] =>
