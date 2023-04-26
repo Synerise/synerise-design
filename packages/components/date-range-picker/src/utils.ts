@@ -42,12 +42,11 @@ export const normalizeRange = (range: DateRange): DateRange => {
             ? duration.type
             : offset.type;
       }
-
       if (future) {
         left = ADD[offset.type](START_OF[offset.type](now), offset.value);
-        right = ADD[duration.type](END_OF[duration.type](left), duration.value - 1);
+        right = END_OF[duration.type](ADD[duration.type](left, duration.value - 1));
       } else {
-        right = ADD[offset.type](END_OF[rightBoundaryRoundingUnit](now), -offset.value);
+        right = END_OF[rightBoundaryRoundingUnit](ADD[offset.type](now, -offset.value));
         left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
       }
     }
