@@ -88,7 +88,13 @@ const ContextSelector: React.FC<ContextProps> = ({
 
     return addMode && !selectedItem ? (
       <>
-        <Button disabled={disabled} type="primary" mode="icon-label" onClick={!readOnly ? handleClick : undefined}>
+        <Button
+          disabled={disabled}
+          type="primary"
+          mode="icon-label"
+          onClick={!readOnly ? handleClick : undefined}
+          readOnly={readOnly}
+        >
           <Icon component={<Add3M />} />
           {buttonLabel}
         </Button>
@@ -107,6 +113,7 @@ const ContextSelector: React.FC<ContextProps> = ({
                 color={triggerColor}
                 mode={triggerMode}
                 onClick={!readOnly ? handleClick : undefined}
+                readOnly={readOnly}
               >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
                 <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
