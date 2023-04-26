@@ -85,7 +85,7 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [value, readOnly]);
 
   const triggerButton = (
-    <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleOnClick : undefined}>
+    <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleOnClick : undefined} readOnly={readOnly}>
       <Icon component={parameterIcon} />
       <Value>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}
