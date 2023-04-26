@@ -83,9 +83,7 @@ function renderAddonComponent(suffixElementType: string, labelText?: string) {
         </Tooltip>
       );
     case addonType.avatar:
-      return (
-        <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />
-      );
+      return <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />;
     case addonType.tag:
       return (
         <S.TagAddon
@@ -107,6 +105,7 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
+    const readOnly = boolean('Read only', false);
 
     return (
       <Input
@@ -124,6 +123,7 @@ const stories = {
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        readOnly={readOnly}
         size={size}
         onBlur={() => {
           action('I am blurred');
@@ -195,7 +195,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={(prefix as unknown) as SelectValue}
+        value={prefix as unknown as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -374,7 +374,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={(prefix as unknown) as SelectValue}
+        value={prefix as unknown as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -586,16 +586,24 @@ const stories = {
       }
     };
     return (
-        <div>
-          <Modal
-        size="small"
-        visible={true}
-        title={'Title'}
-        bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
-        onOk={() => setOpen(open)}
+      <div>
+        <Modal
+          size="small"
+          visible={true}
+          title={'Title'}
+          bodyStyle={{ padding: '20px 180px' }}
+          onCancel={() => setOpen(!open)}
+          onOk={() => setOpen(open)}
         >
-            <Input
-              autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+          <Input
+            autoResize={
+              autoResize
+                ? {
+                    maxWidth: `${number('Set autoResize max width', 1000)}px`,
+                    minWidth: `${number('Set autoResize min width', 150)}px`,
+                  }
+                : undefined
+            }
             placeholder={text('Placeholder', 'Placeholder')}
             label={renderLabel(text('Label', 'Label'))}
             description={descriptionMessage && getDescription(hasDescription)}
@@ -613,9 +621,9 @@ const stories = {
             }}
             value={value}
           />
-          </Modal>
-        </div>
-    )
+        </Modal>
+      </div>
+    );
   },
   inputWithAutoresize: () => {
     const [value, setValue] = React.useState<string>('');
@@ -643,7 +651,14 @@ const stories = {
 
     return (
       <Input
-        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+        autoResize={
+          autoResize
+            ? {
+                maxWidth: `${number('Set autoResize max width', 300)}px`,
+                minWidth: `${number('Set autoResize min width', 150)}px`,
+              }
+            : undefined
+        }
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -793,8 +808,8 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        onChange={(values) => {
-          action(JSON.stringify({type: 'onChange', values}));
+        onChange={values => {
+          action(JSON.stringify({ type: 'onChange', values }));
         }}
       />
     );
