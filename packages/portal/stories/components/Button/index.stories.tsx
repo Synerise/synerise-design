@@ -67,19 +67,24 @@ const CREATOR_TYPE = {
   validated: CreatorStatus.Error,
 };
 
-const getDefaultProps = (isSplit = false) => ({
-  label: text('Label', 'Button'),
-  type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
-  color: select('Set custom color', customColorOptions, customColorOptions.red),
-  size: select('Set size', buttonSizes, 'default'),
-  leftIconSize: select('Set size of left icon', iconSizes, 'S'),
-  rightIconSize: select('Set size of right icon', iconSizes, 'S'),
-  disabled: boolean('Disabled', false),
-  loading: boolean('Loading', false),
-  block: boolean('Block', false),
-  onClick: action('onClick CLICK'),
-  error: boolean('Set validation state', false),
-});
+const getDefaultProps = (isSplit = false) => {
+  const defaultProps = {
+    label: text('Label', 'Button'),
+    type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
+    color: select('Set custom color', customColorOptions, customColorOptions.red),
+    size: select('Set size', buttonSizes, 'default'),
+    leftIconSize: select('Set size of left icon', iconSizes, 'S'),
+    rightIconSize: select('Set size of right icon', iconSizes, 'S'),
+    disabled: boolean('Disabled', false),
+    loading: boolean('Loading', false),
+    block: boolean('Block', false),
+    onClick: action('onClick CLICK'),
+    error: boolean('Set validation state', false),
+  };
+  return [typeOptions.Secondary, typeOptions.CustomColor].includes(defaultProps.type)
+    ? { ...defaultProps, readOnly: boolean('Read Only', false) }
+    : defaultProps;
+};
 
 const getSplitProps = (isSplit = false) => ({
   label: text('Label', 'Button'),
@@ -295,8 +300,8 @@ const stories = {
   },
   buttonSkeleton: () => {
     return (
-      <div style={{width: '66px'}}>
-        <Skeleton numberOfSkeletons={1} width='M' size='L'/>
+      <div style={{ width: '66px' }}>
+        <Skeleton numberOfSkeletons={1} width="M" size="L" />
       </div>
     );
   },
