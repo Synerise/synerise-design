@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.19...@synerise/ds-factors@0.17.20) (2023-04-26)
+
+
+### Bug Fixes
+
+* **factors:** adds missing texts for date-range-picker factor ([72e25e1](https://github.com/Synerise/synerise-design/commit/72e25e1638ba09f7de362e9d30f334b4b7099f24))
+
+
+
+
+
 ## [0.17.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.18...@synerise/ds-factors@0.17.19) (2023-04-19)
 
 **Note:** Version bump only for package @synerise/ds-factors

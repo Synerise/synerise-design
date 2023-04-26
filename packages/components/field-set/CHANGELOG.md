@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.1.34...@synerise/ds-field-set@0.1.35) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-field-set
+
+
+
+
+
 ## [0.1.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.1.33...@synerise/ds-field-set@0.1.34) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-field-set
