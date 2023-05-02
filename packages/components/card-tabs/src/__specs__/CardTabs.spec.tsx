@@ -1,4 +1,5 @@
 import * as React from 'react';
+import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import {range} from 'lodash';
 import CardTabs from '../CardTabs';
@@ -219,5 +220,27 @@ describe('Card Tabs', () => {
     </CardTabs>);
     const suffix = container.querySelector('.ds-cruds .duplicate');
     expect(suffix).toBeFalsy();
+  });
+
+  it.todo('should render custom menu as suffix');
+  
+  it('should enter edito mode on label doubleclick', () => {
+    // ARRANGE
+    const onChangeName = jest.fn();
+    const { container, queryAllByTestId } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onChangeName={onChangeName} />) }
+    </CardTabs>);
+    const label = queryAllByTestId('card-tab-label')[0];
+    const input = label.querySelector('input');
+    expect(input).toBeNull();
+    // ACT
+    if(label){
+      userEvent.dblClick(label);
+    }
+
+    // ASSERT
+    const label1 = queryAllByTestId('card-tab-label')[0];
+    const input1 = label1.querySelector('input');
+    expect(input1).toBeInTheDocument();
   });
 });
