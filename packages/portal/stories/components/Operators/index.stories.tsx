@@ -29,6 +29,25 @@ const stories = {
       />
     );
   }),
+  singleGroup: withState(DEFAULT_STATE)(({ store }) => {
+    const setValue = value => {
+      store.set({ value });
+    };
+    const group = OPERATORS_GROUPS[0];
+    const items = OPERATORS_ITEMS.filter( item => item.groupId == group.id)
+    return (
+      <Operators
+        texts={OPERATORS_TEXTS}
+        onChange={setValue}
+        value={store.state.value}
+        items={items}
+        groups={[group]}
+        onDeactivate={action('onDeactivate')}
+        onActivate={action('onActivate')}
+        readOnly={boolean('Set readOnly', false)}
+      />
+    );
+  })
 };
 
 export default {
