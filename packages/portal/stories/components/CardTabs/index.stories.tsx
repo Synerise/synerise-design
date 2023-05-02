@@ -7,30 +7,37 @@ import { CardTab } from '@synerise/ds-card-tabs';
 import { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
 import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
 import { action } from '@storybook/addon-actions';
-import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
+import Icon, { ShowM, OptionHorizontalM, OptionVerticalM, EditM, DuplicateM, TrashM, SearchM } from '@synerise/ds-icon';
+import Menu from '@synerise/ds-menu';
+import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import theme, { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Dropdown from '@synerise/ds-dropdown';
 
-const suffixType = {
+const suffixIcon = {
   singleIcon: <OptionHorizontalM />,
   cruds: null,
+  menu: null
 };
 const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
+  menu: 'menu'
 };
 
 const stories = {
   default: withState({
     name: 'Example',
+    dropdownOpen: false
   })(({ store }) => {
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
-      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT },
+      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT, dragHandle: prefixType.HANDLE },
       prefixType.TAG
     );
-    const setSuffix = select('Set suffix type', types, 'cruds');
+    
+    const suffixType = select('Set suffix type', types, 'menu');
     const isActive = boolean('Is active', false);
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
@@ -48,6 +55,45 @@ const stories = {
     const handleChangeOrder = (newOrder: CardTabsItem): void => {
       store.set({ items: newOrder });
     };
+    const handleDropdownToggle = (open: boolean): void => {
+      store.set({ dropdownOpen: open });
+    }
+    
+   
+    const renderSuffix = ({handleEditName, handleDuplicate, handleRemove, texts}): React.ReactNode => {
+      const menuItems: React.ReactElement[] = [];
+      
+      // custom menu items
+      menuItems.push(<MenuItem key="key0" prefixel={<Icon component={<SearchM />} onClick={() => handleDropdownToggle(false)} />}>Show profiles</MenuItem>)
+
+      if (handleEditName) {
+        menuItems.push(<MenuItem key="key1" prefixel={<Icon component={<EditM />} />} onClick={() => { handleEditName(); handleDropdownToggle(false); }}>
+          {texts?.changeNameMenuItem || 'Edit'}
+        </MenuItem>)
+      }
+      if (handleDuplicate) {
+        menuItems.push(<MenuItem key="key2" prefixel={<Icon component={<DuplicateM />} />} onClick={() => { handleDuplicate(); handleDropdownToggle(false); }}>
+          {texts?.duplicateMenuItem || 'Duplicate'}
+        </MenuItem>)
+      }
+      if (handleRemove) {
+        menuItems.push(<MenuItem key="key3" type="danger" prefixel={<Icon component={<TrashM />} />} onClick={() => { handleRemove(); handleDropdownToggle(false); }}>
+          {texts?.removeMenuItem || 'Delete'}
+        </MenuItem>)
+      }
+      
+      return <Dropdown
+          overlayStyle={{ borderRadius: '3px' }}
+          visible={store.state.dropdownOpen}
+          placement="bottomLeft"
+          trigger={['click']}
+          overlay={<Menu asDropdownMenu>
+            {menuItems}
+          </Menu>}
+          >
+          <Icon onClick={(e): void => { e.stopPropagation(); handleDropdownToggle(!store.state.dropdownOpen)}} component={<OptionVerticalM />} color={theme.palette['grey-600']} />
+        </Dropdown>
+    }
 
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
@@ -62,7 +108,8 @@ const stories = {
             color={setCustomColor ?`${selectCustomColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
-            suffixIcon={suffixType[setSuffix]}
+            suffixIcon={suffixIcon[suffixType]}
+            renderSuffix={suffixType === 'menu' ? renderSuffix : undefined}
             disabled={disabled}
             prefix={prefix}
             onSelectTab={handleSelect}
@@ -70,9 +117,9 @@ const stories = {
             onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
             onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
-              changeNameTooltip: text('Set rename tooltip', 'Rename'),
-              removeTooltip: text('Set remove tooltip', 'Remove'),
-              duplicateTooltip: text('Set duplicate tooltip', 'Duplicate'),
+              changeNameMenuItem: text('Set rename menu item', 'Rename'),
+              removeMenuItem: text('Set remove menu item', 'Remove'),
+              duplicateMenuItem: text('Set duplicate menu item', 'Duplicate'),
             }}
             invalid={invalid}
             invalidName={invalidName}
@@ -86,6 +133,7 @@ const stories = {
       id: i,
       name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
       tag: String.fromCharCode(65 + i).toUpperCase(),
+      dropdownOpen: false,
       itemData: {
         age: i * 10,
         name: `Name ${String.fromCharCode(65 + i).toUpperCase()}`,
@@ -98,10 +146,10 @@ const stories = {
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
-      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT },
+      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT, dragHandle: prefixType.HANDLE },
       prefixType.TAG
     );
-    const setSuffix = select('Set suffix type', types, 'cruds');
+    const suffixType = select('Set suffix type', types, 'menu');
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
@@ -147,6 +195,7 @@ const stories = {
             ...duplicatedTab,
             tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
             id: store.state.nextId,
+            dropdownOpen: false,
           },
         ],
         nextId: store.state.nextId + 1,
@@ -161,6 +210,7 @@ const stories = {
             id: store.state.nextId,
             name: `Variant ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
             tag: String.fromCharCode(65 + store.state.nextId).toUpperCase(),
+            dropdownOpen: false,
             itemData: {
               age: store.state.nextId * 10,
               name: `Name ${String.fromCharCode(65 + store.state.nextId).toUpperCase()}`,
@@ -171,6 +221,10 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
+    
+    const handleDropdownToggle = (open: boolean): void => {
+      store.set({ dropdownOpen: open });
+    }
 
     const handleChangeOrder = (newOrder: CardTabsItem): void => {
       store.set({ items: newOrder });
@@ -185,6 +239,41 @@ const stories = {
     const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
     const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
     const addTabLabel = text('Add new card label', 'Add new');
+
+    const renderSuffix = ({handleEditName, handleDuplicate, handleRemove, texts}): React.ReactNode => {
+      const menuItems: React.ReactElement[] = [];
+      
+      // custom menu items
+      menuItems.push(<MenuItem key="key0" prefixel={<Icon component={<SearchM />} onClick={() => handleDropdownToggle(false)} />}>Show profiles</MenuItem>)
+
+      if (handleEditName) {
+        menuItems.push(<MenuItem key="key1" prefixel={<Icon component={<EditM />} />} onClick={() => { handleEditName(); handleDropdownToggle(false); }}>
+          {texts?.changeNameMenuItem || 'Edit'}
+        </MenuItem>)
+      }
+      if (handleDuplicate) {
+        menuItems.push(<MenuItem key="key2" prefixel={<Icon component={<DuplicateM />} />} onClick={() => { handleDuplicate(); handleDropdownToggle(false); }}>
+          {texts?.duplicateMenuItem || 'Duplicate'}
+        </MenuItem>)
+      }
+      if (handleRemove) {
+        menuItems.push(<MenuItem key="key3" type="danger" prefixel={<Icon component={<TrashM />} />} onClick={() => { handleRemove(); handleDropdownToggle(false); }}>
+          {texts?.removeMenuItem || 'Delete'}
+        </MenuItem>)
+      }
+      
+      return <Dropdown
+          overlayStyle={{ borderRadius: '3px' }}
+          visible={store.state.dropdownOpen}
+          placement="bottomLeft"
+          trigger={['click']}
+          overlay={<Menu asDropdownMenu>
+            {menuItems}
+          </Menu>}
+          >
+          <Icon onClick={(e): void => { e.stopPropagation(); handleDropdownToggle(!store.state.dropdownOpen)}} component={<OptionVerticalM />} color={theme.palette['grey-600']} />
+        </Dropdown>
+    }
 
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px', ...additionalStyle }}>
@@ -204,7 +293,7 @@ const stories = {
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
-              suffixIcon={suffixType[setSuffix]}
+              suffixIcon={suffixIcon[suffixType]}
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}
@@ -218,10 +307,11 @@ const stories = {
                   : handleDuplicate
               }
               texts={{
-                changeNameTooltip: 'Rename',
-                removeTooltip: 'Remove',
-                duplicateTooltip: 'Duplicate',
+                changeNameMenuItem: 'Rename',
+                removeMenuItem: 'Remove',
+                duplicateMenuItem: 'Duplicate',
               }}
+              renderSuffix={suffixType === 'menu' ? renderSuffix : undefined}
               invalid={invalid}
               invalidName={invalidName}
               itemData={item.itemData}

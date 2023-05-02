@@ -6,6 +6,7 @@ export enum prefixType {
   TAG,
   ICON,
   DOT,
+  HANDLE,
 }
 
 export type Color =
@@ -26,6 +27,9 @@ export type CardTabTexts = {
   changeNameTooltip?: string | React.ReactNode;
   removeTooltip?: string | React.ReactNode;
   duplicateTooltip?: string | React.ReactNode;
+  changeNameMenuItem?: string | React.ReactNode;
+  removeMenuItem?: string | React.ReactNode;
+  duplicateMenuItem?: string | React.ReactNode;
 };
 
 export interface CardTabProps {
@@ -50,4 +54,13 @@ export interface CardTabProps {
   onRemoveTab?: (id: number) => void;
   texts?: CardTabTexts;
   itemData?: unknown;
+  renderSuffix?: (props: CardTabSuffixProps) => React.ReactNode;
 }
+export type CardTabSuffixProps = Omit<
+  CardTabProps & {
+    handleRemove?: (event?: React.MouseEvent<HTMLElement>) => void;
+    handleDuplicate?: (event?: React.MouseEvent<HTMLElement>) => void;
+    handleEditName?: (event?: React.MouseEvent<HTMLElement>) => void;
+  },
+  'onChangeName' | 'onDuplicateTab' | 'onRemoveTab' | 'onSelectTab'
+>;

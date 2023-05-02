@@ -10,6 +10,7 @@ const SORTABLE_CONFIG = {
   className: 'sortable-card',
   animation: 150,
   group: 'column-manager',
+  filter: '.ds-card-tabs__suffix-nodrag',
 };
 const CardTabs: React.FC<CardTabsProps> = ({
   className,
