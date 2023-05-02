@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, queryByTestId } from '@testing-library/react';
 
 import { VarTypeNumberM } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
@@ -42,6 +42,21 @@ describe('Operators component', () => {
     expect(search).toBeTruthy();
     expect(tabs).toBeTruthy();
     expect(dateOptions).toBeTruthy();
+  });
+
+  test('Should show no tabs if single group', () => {
+    // ARRANGE
+    const groups = OPERATORS_GROUPS.slice(0,1);
+    const { getByText, queryByTestId } = renderWithProvider(RENDER_OPERATORS({groups: groups}));
+
+    // ACT
+    const trigger = getByText(OPERATORS_TEXTS.buttonLabel);
+    fireEvent.click(trigger);
+    const tabs = queryByTestId('tabs-container');
+
+    // ASSERT
+    expect(tabs).not.toBeInTheDocument()
+    
   });
 
   test('Should show selected value', () => {
