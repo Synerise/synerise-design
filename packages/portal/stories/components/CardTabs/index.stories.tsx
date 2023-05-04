@@ -238,7 +238,7 @@ const stories = {
 
     const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
     const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
-    const addTabLabel = text('Add new card label', 'Add new');
+    const addTabLabel = text('Add new card label', '');
 
     const renderSuffix = ({handleEditName, handleDuplicate, handleRemove, texts}): React.ReactNode => {
       const menuItems: React.ReactElement[] = [];

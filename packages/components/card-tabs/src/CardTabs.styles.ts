@@ -42,6 +42,7 @@ export const CardTabsContainer = styled.div`
   }
   @media (max-width: 588px) {
     .ds-button-creator {
+      width: 48px !important;
       ${CreatorStyles.CreatorLabel} {
         display: none;
       }
