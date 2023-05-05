@@ -132,8 +132,9 @@ const CardTab: React.FC<CardTabProps> = props => {
       color={color}
       onClick={handleSelect}
       onMouseDown={(): void => setPressed(true)}
-      onMouseLeave={(): void => setPressed(false)}
+      onMouseLeave={!draggable ? (): void => setPressed(false) : undefined}
       onMouseUp={(): void => setPressed(false)}
+      onDragEnd={(): void => setPressed(false)}
       greyBackground={!!greyBackground}
       data-id={id}
       data-testid="card-tab-container"
