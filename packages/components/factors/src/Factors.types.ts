@@ -123,6 +123,8 @@ export type FactorsProps = {
   withCustomFactor?: React.ReactNode;
   inputProps?: Partial<InputProps>;
   readOnly?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getMenuEntryProps?: (arg: any) => object;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -178,6 +180,7 @@ export type InputProps = Pick<
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
+  | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

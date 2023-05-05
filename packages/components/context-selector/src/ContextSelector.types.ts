@@ -66,6 +66,8 @@ export type ContextProps = {
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getMenuEntryProps?: (arg: any) => object;
 };
 
 export type ContextDropdownProps = {

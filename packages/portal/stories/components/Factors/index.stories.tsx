@@ -20,6 +20,14 @@ const stories = {
       action('onChange')(val);
     };
 
+    const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card')
+
+    const additionalProps = typeOfTooltip !== 'information-card' ? {
+      getMenuEntryProps: (arg) => ({
+        renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text</span>,
+      }),
+    } : {};
+
     return (
       <Factors
         selectedFactorType={store.state.selectedFactorType}
@@ -54,6 +62,7 @@ const stories = {
         texts={FACTORS_TEXTS}
         onDeactivate={action('onDeactivate')}
         readOnly={boolean('Set readOnly', false)}
+        {...additionalProps}
       />
     );
   }),

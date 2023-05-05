@@ -40,6 +40,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   dropdownProps,
   disabled,
   readOnly = false,
+  getMenuEntryProps,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   React.useEffect(() => {
@@ -131,6 +132,7 @@ const ContextSelector: React.FC<ContextProps> = ({
                   />
                 )
               : undefined,
+            ...getMenuEntryProps?.(selectedItem),
           },
         ]}
       />
