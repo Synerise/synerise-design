@@ -7,10 +7,10 @@ import { CardTabsProps } from './CardTabs.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
-  className: 'sortable-card',
+  className: 'ds-card-tags-sortable',
   animation: 150,
-  group: 'column-manager',
   filter: '.ds-card-tabs__suffix-nodrag',
+  preventOnFilter: false,
 };
 const CardTabs: React.FC<CardTabsProps> = ({
   className,
@@ -40,12 +40,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable
-            {...SORTABLE_CONFIG}
-            className="ds-card-tags-sortable"
-            list={children}
-            setList={handleChangeOrder}
-          >
+          <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
             {renderChildren()}
           </ReactSortable>
         </div>

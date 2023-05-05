@@ -126,8 +126,7 @@ const CardTab: React.FC<CardTabProps> = props => {
       className={`${pressed ? 'pressed' : ''}`}
       edited={edited}
       active={Boolean(active)}
-      invalid={Boolean(invalid)}
-      invalidName={Boolean(invalidName) && !invalid}
+      invalid={Boolean(invalid || invalidName)}
       disabled={!active && Boolean(disabled)}
       draggable={draggable}
       color={color}
@@ -143,11 +142,7 @@ const CardTab: React.FC<CardTabProps> = props => {
       {!edited && (
         <CardTabPrefix colorDot={colorDot} draggable={draggable} prefixIcon={prefixIcon} prefix={prefix} tag={tag} />
       )}
-      <S.CardTabLabel
-        onDoubleClick={handleEditName}
-        data-testid="card-tab-label"
-        invalidName={Boolean(invalidName) && !invalid}
-      >
+      <S.CardTabLabel onDoubleClick={handleEditName} data-testid="card-tab-label">
         {edited ? (
           <InlineEdit
             className="ds-card-tabs__edit-name"
