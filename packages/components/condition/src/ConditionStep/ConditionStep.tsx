@@ -103,6 +103,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
       addCondition &&
       (maxConditionsLength === undefined || step.conditions.length < maxConditionsLength) && (
         <AddCondition
+          errorText={step.addConditionErrorText}
           texts={text}
           stepId={step.id}
           addCondition={onAddCondition}
@@ -122,6 +123,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     step.subject,
     text,
     readOnly,
+    step.addConditionErrorText,
   ]);
 
   const renderConditionRow = React.useCallback(

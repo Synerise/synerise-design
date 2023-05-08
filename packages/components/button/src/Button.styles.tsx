@@ -470,7 +470,7 @@ export const AntdButton = styled(
         &.ant-btn {
           background-color: ${props.theme.palette[`${props.customColor}-600`]};
           border: 0 solid transparent;
-
+          color: ${props.theme.palette.white};
           span {
             color: ${props.theme.palette.white};
           }
