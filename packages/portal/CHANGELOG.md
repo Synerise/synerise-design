@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.182.2](https://github.com/synerise/synerise-design/compare/portal@0.182.1...portal@0.182.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds story for checking translations ([b952f82](https://github.com/synerise/synerise-design/commit/b952f8296d5fcf0d7fd7e88a68db027eef123dee))
+
+
+
+
+
+## [0.182.1](https://github.com/synerise/synerise-design/compare/portal@0.182.0...portal@0.182.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* **information-card:** adds support for plain text descriptions ([ebeb57f](https://github.com/synerise/synerise-design/commit/ebeb57f8c6fafa035fdd664744a85f16aaa64304))
+
+
+### BREAKING CHANGES
+
+* **information-card:** children prop no longer supported
+
+
+
+
+
 # [0.182.0](https://github.com/synerise/synerise-design/compare/portal@0.181.0...portal@0.182.0) (2023-04-12)
 
 

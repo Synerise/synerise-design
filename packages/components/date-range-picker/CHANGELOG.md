@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.4...@synerise/ds-date-range-picker@0.21.5) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds missing translation keys and texts ([8b9c454](https://github.com/Synerise/synerise-design/commit/8b9c454590aac1fd49f5cac9a7eb3f05a5f70822))
+* **date-range-picker:** fixes filter limit mode change for multiple days ([713a8e2](https://github.com/Synerise/synerise-design/commit/713a8e2b19a8e224b0ba696e93ac260639b590e4))
+
+
+
+
+
+## [0.21.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.3...@synerise/ds-date-range-picker@0.21.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** date range values are rounded to full seconds ([aa6d01b](https://github.com/Synerise/synerise-design/commit/aa6d01bf445abb613acfded51f868b70c116a1e3))
+* **date-range-picker:** makes ms truncation optional via props ([20480d4](https://github.com/Synerise/synerise-design/commit/20480d4636f4d439880cc0785fbe5e8339d91c2c))
+* **date-range-picker:** rounds range from & to to full seconds ([7f13dfe](https://github.com/Synerise/synerise-design/commit/7f13dfebb7f210b6b425e05907660c195d532874))
+
+
+
+
+
+## [0.21.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.2...@synerise/ds-date-range-picker@0.21.3) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.21.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.1...@synerise/ds-date-range-picker@0.21.2) (2023-04-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** "more" dropdown trigger should toggle dropdown ([7083de0](https://github.com/Synerise/synerise-design/commit/7083de02906eb79a2274ef952b2cbd2c8122e1a7))
+* **date-range-picker:** add some it.todo in tests ([ec6f52a](https://github.com/Synerise/synerise-design/commit/ec6f52a69df81e2d14312850521bc47114a70bdc))
+* **date-range-picker:** date range picker us notation fixes ([c17afe0](https://github.com/Synerise/synerise-design/commit/c17afe052c3c0226ab4ed2f7c25655a0d2e89a75))
+* **date-range-picker:** disable AM mode for 12 PM lower limit ([237bc00](https://github.com/Synerise/synerise-design/commit/237bc00277fa3fa3cb6dacba14a2630da75706fe))
+* **date-range-picker:** fixes filter unselect all ([592b48e](https://github.com/Synerise/synerise-design/commit/592b48eedc876dd8215790d2b73a08f3e0ade170))
+* **date-range-picker:** fixes issues with range cloning in old filters ([15fc3b4](https://github.com/Synerise/synerise-design/commit/15fc3b4878e761e2685cda99afdfd1ff590e2ac4))
+* **date-range-picker:** month filter US notation fixes ([06ce486](https://github.com/Synerise/synerise-design/commit/06ce4861a1cc468b15ba01b82f75eca374f96f0f))
+* **date-range-picker:** rangePicker 12HoursClock disabling options fix ([5de9505](https://github.com/Synerise/synerise-design/commit/5de95050e786821892557528cd3a61a0b5eadcbf))
+* **date-range-picker:** tests fixes ([68935f3](https://github.com/Synerise/synerise-design/commit/68935f394b102e4af8cb1f04f314275cb45a41bb))
+* **date-range-picker:** uS_NOTATION_MONTH_DAYS_INDEXES order fix ([1e1f701](https://github.com/Synerise/synerise-design/commit/1e1f701521a8a50c21f33bcf476cf41449e5c0f2))
+
+
+
+
+
 ## [0.21.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.0...@synerise/ds-date-range-picker@0.21.1) (2023-04-12)
 
 

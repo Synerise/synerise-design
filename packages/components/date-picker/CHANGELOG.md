@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.8...@synerise/ds-date-picker@0.9.9) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-picker:** fixes rendering monthpicker using locale ([f69eb08](https://github.com/Synerise/synerise-design/commit/f69eb08c3a08da4e3aa0ee2e6f24a8c1adc200f4))
+
+
+
+
+
+## [0.9.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.7...@synerise/ds-date-picker@0.9.8) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.9.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.6...@synerise/ds-date-picker@0.9.7) (2023-04-17)
+
+
+### Bug Fixes
+
+* **date-range-picker:** selected date numbers must to be centered ([aeeb9b5](https://github.com/Synerise/synerise-design/commit/aeeb9b5ac9150b177564c885b3bb594e3a7b5f57))
+
+
+
+
+
+## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.5...@synerise/ds-date-picker@0.9.6) (2023-04-14)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
 ## [0.9.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.4...@synerise/ds-date-picker@0.9.5) (2023-04-05)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

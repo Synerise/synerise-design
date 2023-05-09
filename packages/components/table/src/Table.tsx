@@ -5,6 +5,7 @@ import Icon, { AngleLeftS, AngleRightS, SpinnerM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { useIntl } from 'react-intl';
 import Skeleton from '@synerise/ds-skeleton';
+import { useDataFormat } from '@synerise/ds-data-format';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
@@ -49,6 +50,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
+  const { formatValue } = useDataFormat();
 
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
@@ -105,7 +107,8 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
       showTotal: (total: number, range: number[]): React.ReactNode =>
         !hideTitlePart ? (
           <span>
-            <strong>{range[0]}</strong>-<strong>{range[1]}</strong> of <strong>{total}</strong>{' '}
+            <strong>{formatValue(range[0])}</strong>-<strong>{formatValue(range[1])}</strong> of{' '}
+            <strong>{formatValue(total)}</strong>{' '}
             {grouped ? tableLocale?.pagination?.groups : tableLocale?.pagination?.items}
           </span>
         ) : (
@@ -133,7 +136,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
       },
       ...pagination,
     };
-  }, [pagination, grouped, tableLocale, hideTitlePart]);
+  }, [pagination, formatValue, grouped, tableLocale, hideTitlePart]);
 
   return (
     <TableLocaleContext.Provider value={tableLocale}>

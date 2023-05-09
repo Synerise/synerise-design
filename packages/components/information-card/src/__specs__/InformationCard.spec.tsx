@@ -82,9 +82,7 @@ describe('Information card', () => {
   it.skip('FIXME: click on popover does not close dropdown', async () => {
     // FIXME: container detection is not working properly
     const renderInformationCard = () => (
-      <InformationCard title={sampleTitle} subtitle={sampleSubtitle}>
-        {sampleDesc}
-      </InformationCard>
+      <InformationCard title={sampleTitle} subtitle={sampleSubtitle} descriptionConfig={sampleDesc}/>
     );
     const { infoCard, infoCardPopoverContainer, dropdown, sleep } = testComponentAdapter(() => <WithDropdown />, {
       usingPortal: true,

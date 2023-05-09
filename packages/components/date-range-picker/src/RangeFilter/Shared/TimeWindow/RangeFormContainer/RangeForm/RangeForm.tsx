@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIntl } from 'react-intl';
 
 import Select from '@synerise/ds-select';
 import Icon, { CloseS } from '@synerise/ds-icon';
@@ -14,6 +15,11 @@ export const FORM_MODES: Record<string, DateLimitMode> = {
   HOUR: 'Hour',
   RANGE: 'Range',
 };
+export const RANGE_FORM_INTL_KEYS = {
+  Hour: { id: 'DS.DATE-RANGE-PICKER.HOUR', defaultMessage: 'Hour' },
+  Range: { id: 'DS.DATE-RANGE-PICKER.RANGE', defaultMessage: 'Range' },
+};
+
 const RangeForm: React.FC<RangeFormProps> = ({
   onModeChange,
   disabled,
@@ -30,7 +36,7 @@ const RangeForm: React.FC<RangeFormProps> = ({
   valueFormatOptions,
 }) => {
   const { is12HoursClock } = useDataFormat();
-
+  const intl = useIntl();
   const [start, setStart] = React.useState<Date | undefined>(startDate);
   const [end, setEnd] = React.useState<Date | undefined>(endDate);
   const getPopupContainer = React.useCallback(
@@ -129,6 +135,14 @@ const RangeForm: React.FC<RangeFormProps> = ({
     is12HoursClock,
     valueFormatOptions,
   ]);
+
+  const getModeLabel = React.useCallback(
+    (modeName: DateLimitMode): string | DateLimitMode => {
+      if (texts && texts[modeName]) return texts[modeName];
+      return intl.formatMessage(RANGE_FORM_INTL_KEYS[modeName]);
+    },
+    [texts, intl]
+  );
   const limitModeSelect = React.useMemo(
     () =>
       valueSelectionModes.length > 1 ? (
@@ -142,12 +156,12 @@ const RangeForm: React.FC<RangeFormProps> = ({
         >
           {valueSelectionModes.map(modeName => (
             <Select.Option key={modeName} value={modeName}>
-              {modeName}
+              {getModeLabel(modeName)}
             </Select.Option>
           ))}
         </Select>
       ) : null,
-    [mode, onModeChange, getPopupContainer, valueSelectionModes, disabled]
+    [mode, onModeChange, getPopupContainer, valueSelectionModes, disabled, getModeLabel]
   );
   return (
     <S.Container>

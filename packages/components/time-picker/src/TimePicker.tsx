@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { range } from 'lodash';
 import dayjs from 'dayjs';
@@ -11,9 +12,18 @@ import { useDataFormat } from '@synerise/ds-data-format';
 
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
-import { TimePickerProps } from './types/TimePicker.types';
+import { ClockModes, TimePickerProps } from './types/TimePicker.types';
 import { handleTimeChange } from './utils/timePicker.utils';
-import { AM, CLOCK_MODES, HOUR, HOUR_12, MINUTE, PM, SECOND } from './constants/timePicker.constants';
+import {
+  AM,
+  CLOCK_MODES,
+  HOUR,
+  HOUR_12,
+  MINUTE,
+  PM,
+  SECOND,
+  DISABLE_CLOCK_MODE_HOUR,
+} from './constants/timePicker.constants';
 
 dayjs.extend(customParseFormatPlugin);
 
@@ -121,6 +131,28 @@ const TimePicker: React.FC<TimePickerProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clockMode]);
 
+  const isAmOrPmModeDisabled = useCallback(
+    (mode: ClockModes): boolean => {
+      if (!is12HourClock) {
+        return false;
+      }
+      if (mode === AM && clockMode === AM) {
+        return false;
+      }
+      if (mode === PM && clockMode === PM) {
+        return false;
+      }
+      if (mode === AM && (disabledHours?.includes(HOUR_12) || disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR))) {
+        return true;
+      }
+      if (mode === PM && disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR)) {
+        return true;
+      }
+      return false;
+    },
+    [clockMode, disabledHours, is12HourClock]
+  );
+
   const renderClockSwitch = (): React.ReactNode => {
     return (
       <S.Unit>
@@ -132,6 +164,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
               setClockMode(mode);
               onClockModeChange && onClockModeChange(mode);
             }}
+            disabled={isAmOrPmModeDisabled(mode)}
           >
             <S.CellText>{mode}</S.CellText>
           </S.Cell>

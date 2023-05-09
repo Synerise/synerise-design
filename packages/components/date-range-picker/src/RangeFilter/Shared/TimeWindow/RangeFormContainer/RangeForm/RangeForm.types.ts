@@ -18,3 +18,7 @@ export type RangeFormProps = {
 } & WithTranslations &
   WithDisabledProp &
   Pick<RangeFormContainerProps, 'timePickerProps' | 'valueFormatOptions'>;
+export type RangeFormTexts = {
+  range: React.ReactNode | string;
+  hour: React.ReactNode | string;
+};

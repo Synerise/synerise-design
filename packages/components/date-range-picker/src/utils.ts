@@ -42,12 +42,11 @@ export const normalizeRange = (range: DateRange): DateRange => {
             ? duration.type
             : offset.type;
       }
-
       if (future) {
         left = ADD[offset.type](START_OF[offset.type](now), offset.value);
-        right = ADD[duration.type](END_OF[duration.type](left), duration.value - 1);
+        right = END_OF[duration.type](ADD[duration.type](left, duration.value - 1));
       } else {
-        right = ADD[offset.type](END_OF[rightBoundaryRoundingUnit](now), -offset.value);
+        right = END_OF[rightBoundaryRoundingUnit](ADD[offset.type](now, -offset.value));
         left = ADD[duration.type](START_OF[duration.type](right), 1 - duration.value);
       }
     }
@@ -130,6 +129,8 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     remove: texts?.remove || getIntlMessage(`DS.DATE-RANGE-PICKER.REMOVE`, intl, disableDefault),
     savedFiltersTrigger:
       texts?.savedFiltersTrigger || getIntlMessage(`DS.DATE-RANGE-PICKER.SAVED-FILTERS`, intl, disableDefault),
+    range: texts?.range || getIntlMessage(`DS.DATE-RANGE-PICKER.RANGE`, intl, disableDefault),
+    hour: texts?.hour || getIntlMessage(`DS.DATE-RANGE-PICKER.HOUR`, intl, disableDefault),
   };
 };
 

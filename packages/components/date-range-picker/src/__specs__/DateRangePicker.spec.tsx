@@ -60,6 +60,8 @@ const texts = {
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
+  now: 'Now',
+  more: 'More',
 } as any;
 
 describe('DateRangePicker', () => {
@@ -427,7 +429,116 @@ describe('DateRangePicker', () => {
     fireEvent.click(applyButton);
     expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
   });
+  it('clicking "more" should toggle relative ranges dropdown', async () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={true}
+        forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        value={ABSOLUTE_VALUE as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+    
+    act(() => {
+      getByText(texts.relativeDateRange).click();
+    });
+    const moreLabel = getByText(texts.more);
+    if (moreLabel) {
+      const moreButton = moreLabel.closest('button');
+      const dropdown = moreButton.nextElementSibling;
+      act(() => {
+        moreButton.click();
+      });
+      expect(dropdown).toHaveStyle('display:flex')
+      act(() => {
+        moreButton.click();
+      });
+    }
+
+  });  
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
+  it.todo(
+    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
+  );
+  it('datepicker with isTruncateMs=false prop should not truncate miliseconds', () => {
+    const onApply = jest.fn();
+    const from = new Date();
+    const to = new Date();
+    to.setMinutes(to.getMinutes()+1);
+    
+    const VALUE_WITH_MS = {
+      type: ABSOLUTE,
+      from: from.toISOString(),
+      to: to.toISOString(),
+    };
+
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={VALUE_WITH_MS as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+        isTruncateMs={false}
+      />
+    );
+    
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from']).toBe(from.toISOString());
+    expect(onApplyParameter['to']).toBe(to.toISOString());
+  });
+  it('datepicker value.from && value.to, if defined, should have 0ms', () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    const from = new Date();
+    from.setMilliseconds(0);
+    const to = new Date();
+    to.setMinutes(to.getMinutes()+1);
+    to.setMilliseconds(0);
+    
+    act(() => {
+      getByText(texts.now).click();
+    });
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from']).toBe(from.toISOString());
+    expect(onApplyParameter['to']).toBe(to.toISOString());
+  });
+  it.todo('RangePickerInput should render correct date time for 24 hours clock');
+  it.todo('RangePickerInput should render correct date time for 12 hours clock');
+  it.todo('Footer should render correct date time for 24 hours clock');
+  it.todo('Footer should render correct date time for 12 hours clock');
+  it.todo('TimeWindow::Everyday should render correct time for 24 hours clock');
+  it.todo('TimeWindow::Everyday should render correct time for 12 hours clock');
+  it.todo('TimeWindow::EveryWeek should render correct days order for Monday first notation');
+  it.todo('TimeWindow::EveryWeek should render correct days order for Sunday first notation');
+  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Monday first notation');
+  it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Sunday first notation');
 });
