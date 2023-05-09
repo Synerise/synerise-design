@@ -13,6 +13,7 @@ import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
 import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
 import theme, { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Dropdown from '@synerise/ds-dropdown';
+import { useOnClickOutside } from '@synerise/ds-utils';
 
 const suffixIcon = {
   singleIcon: <OptionHorizontalM />,
@@ -143,6 +144,7 @@ const stories = {
     activeTab: 0,
     nextId: 3,
   })(({ store }) => {
+    
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
@@ -167,6 +169,10 @@ const stories = {
         }),
       });
     };
+
+    const getIndex = id => {
+      return store.state.items.findIndex(item => item.id === id)
+    }
 
     const handleRemove = id => {
       store.set({
@@ -201,7 +207,26 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
-
+    const handleDropdownToggle = (id: number, open: boolean): void => {
+      store.set({
+        items: store.state.items.map(item => {
+          if (item.id === id) {
+            return {
+              ...item,
+              dropdownOpen: open,
+            }
+          }
+          else if (open) {
+            return {
+              ...item,
+              dropdownOpen: !open,
+            }
+          }
+          return item
+        }),
+      });
+    }
+    
     const handleAddItem = () => {
       store.set({
         items: [
@@ -222,10 +247,6 @@ const stories = {
       });
     };
     
-    const handleDropdownToggle = (open: boolean): void => {
-      store.set({ dropdownOpen: open });
-    }
-
     const handleChangeOrder = (newOrder: CardTabsItem): void => {
       store.set({ items: newOrder });
     };
@@ -240,39 +261,46 @@ const stories = {
     const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
     const addTabLabel = text('Add new card label', '');
 
-    const renderSuffix = ({handleEditName, handleDuplicate, handleRemove, texts}): React.ReactNode => {
+    const renderSuffix = ({handleEditName, handleDuplicate, handleRemove, texts, id, index}): React.ReactNode => {
+      const ref = React.useRef<HTMLDivElement>(null);
+      
+      useOnClickOutside(ref, () => {
+        handleDropdownToggle(id, false);
+      });
       const menuItems: React.ReactElement[] = [];
       
       // custom menu items
-      menuItems.push(<MenuItem key="key0" prefixel={<Icon component={<SearchM />} onClick={() => handleDropdownToggle(false)} />}>Show profiles</MenuItem>)
+      menuItems.push(<MenuItem key="key0" prefixel={<Icon component={<SearchM />} />} onClick={() => { handleDropdownToggle(id, false); }}>Show profiles</MenuItem>)
 
       if (handleEditName) {
-        menuItems.push(<MenuItem key="key1" prefixel={<Icon component={<EditM />} />} onClick={() => { handleEditName(); handleDropdownToggle(false); }}>
+        menuItems.push(<MenuItem key="key1" prefixel={<Icon component={<EditM />} />} onClick={() => { handleEditName(); handleDropdownToggle(id, false); }}>
           {texts?.changeNameMenuItem || 'Edit'}
         </MenuItem>)
       }
       if (handleDuplicate) {
-        menuItems.push(<MenuItem key="key2" prefixel={<Icon component={<DuplicateM />} />} onClick={() => { handleDuplicate(); handleDropdownToggle(false); }}>
+        menuItems.push(<MenuItem key="key2" prefixel={<Icon component={<DuplicateM />} />} onClick={() => { handleDuplicate(); handleDropdownToggle(id, false); }}>
           {texts?.duplicateMenuItem || 'Duplicate'}
         </MenuItem>)
       }
       if (handleRemove) {
-        menuItems.push(<MenuItem key="key3" type="danger" prefixel={<Icon component={<TrashM />} />} onClick={() => { handleRemove(); handleDropdownToggle(false); }}>
+        menuItems.push(<MenuItem key="key3" type="danger" prefixel={<Icon component={<TrashM />} />} onClick={() => { handleRemove(); handleDropdownToggle(id, false); }}>
           {texts?.removeMenuItem || 'Delete'}
         </MenuItem>)
       }
-      
-      return <Dropdown
+      const open = store.state.items[getIndex(id)].dropdownOpen;
+      return (<div ref={ref}>
+        <Dropdown  
           overlayStyle={{ borderRadius: '3px' }}
-          visible={store.state.dropdownOpen}
+          visible={open}
           placement="bottomLeft"
           trigger={['click']}
           overlay={<Menu asDropdownMenu>
             {menuItems}
           </Menu>}
           >
-          <Icon onClick={(e): void => { e.stopPropagation(); handleDropdownToggle(!store.state.dropdownOpen)}} component={<OptionVerticalM />} color={theme.palette['grey-600']} />
+          <Icon onClick={(e: React.MouseEvent): void => { e.stopPropagation(); handleDropdownToggle(id, !open); }} component={<OptionVerticalM />} color={theme.palette['grey-600']} />
         </Dropdown>
+      </div>);
     }
 
     return (
