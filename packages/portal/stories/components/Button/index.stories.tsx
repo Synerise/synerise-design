@@ -300,8 +300,8 @@ const stories = {
   },
   buttonSkeleton: () => {
     return (
-      <div style={{ width: '66px' }}>
-        <Skeleton numberOfSkeletons={1} width="M" size="L" />
+      <div style={{width: '66px'}}>
+        <Skeleton numberOfSkeletons={1} width='M' size='L'/>
       </div>
     );
   },
