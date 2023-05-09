@@ -588,16 +588,16 @@ const stories = {
       }
     };
     return (
-      <div>
-        <Modal
-          size="small"
-          visible={true}
-          title={'Title'}
-          bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
-          onOk={() => setOpen(open)}
+        <div>
+          <Modal
+        size="small"
+        visible={true}
+        title={'Title'}
+        bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
+        onOk={() => setOpen(open)}
         >
-          <Input
-            autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+            <Input
+              autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
             placeholder={text('Placeholder', 'Placeholder')}
             label={renderLabel(text('Label', 'Label'))}
             description={descriptionMessage && getDescription(hasDescription)}
@@ -615,9 +615,9 @@ const stories = {
             }}
             value={value}
           />
-        </Modal>
-      </div>
-    );
+          </Modal>
+        </div>
+    )
   },
   inputWithAutoresize: () => {
     const [value, setValue] = React.useState<string>('');
