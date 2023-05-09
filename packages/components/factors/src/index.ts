@@ -1,2 +1,2 @@
 export { default } from './Factors';
-export type { FactorsProps, ParameterValueType } from './Factors.types';
+export type { FactorsProps, ParameterValueType, InputProps } from './Factors.types';

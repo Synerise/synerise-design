@@ -38,7 +38,7 @@ const stories = {
         } as MenuItemProps),
       },
       'none': {
-        getMenuEntryProps: (arg) => ({
+        getMenuEntryProps: () => ({
           renderHoverTooltip: undefined,
         }),
       }, // as FactorsProps,
