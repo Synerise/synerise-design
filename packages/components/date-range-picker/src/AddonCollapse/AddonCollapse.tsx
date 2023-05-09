@@ -14,8 +14,7 @@ const AddonCollapse: React.FC<Props> = ({ title, content, expanded, onCollapseCh
         {!expanded && <S.Suffix>{collapsedSummary}</S.Suffix>}
         <Button.Expander onClick={handleClick} expanded={expanded} />
       </S.AddonHeader>
-
-      <S.Content expanded={expanded}>{content}</S.Content>
+      {expanded && <S.Content>{content}</S.Content>}
     </S.AddonWrapper>
   );
 };
