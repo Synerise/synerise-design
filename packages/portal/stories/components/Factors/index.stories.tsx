@@ -6,6 +6,8 @@ import { boolean, number, object, select } from '@storybook/addon-knobs';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
 import { action } from '@storybook/addon-actions';
+import type { MenuItemProps } from '@synerise/ds-menu';
+import type { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
 
 const DEFAULT_STATE = {
   selectedFactorType: undefined,
@@ -22,11 +24,25 @@ const stories = {
 
     const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card')
 
-    const additionalProps = typeOfTooltip !== 'information-card' ? {
-      getMenuEntryProps: (arg) => ({
-        renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text</span>,
-      }),
-    } : {};
+     /* @type Record<string, import('@synerise/ds-factors').FactorsProps> */
+    const additionalProps: Record<string, FactorsProps> = {
+      ['tooltip']: {
+        // mostly for `packages/components/factors/src/FactorValue/Parameter/Parameter.tsx`
+        getMenuEntryProps: (arg) => ({
+          renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text <u>{arg.name}: {arg.id}</u></span>,
+          hoverTooltipProps: {
+            popupPlacement: 'bottom',
+          },
+          // TODO allow providing component in runtime
+          // TooltipComponent: require('@synerise/ds-information-card').default,
+        } as MenuItemProps),
+      },
+      'none': {
+        getMenuEntryProps: (arg) => ({
+          renderHoverTooltip: undefined,
+        }),
+      }, // as FactorsProps,
+    }[typeOfTooltip]
 
     return (
       <Factors

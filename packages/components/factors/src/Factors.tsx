@@ -88,6 +88,7 @@ const Factors: React.FC<FactorsProps> = ({
   error,
   inputProps,
   readOnly,
+  getMenuEntryProps,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -259,6 +260,7 @@ const Factors: React.FC<FactorsProps> = ({
         onDeactivate={onDeactivate}
         error={error}
         readOnly={readOnly}
+        getMenuEntryProps={getMenuEntryProps}
       />
     </S.Group>
   );
