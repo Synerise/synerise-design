@@ -9,7 +9,7 @@ import {
   PARAMETER_GROUPS,
   PARAMETER_ITEMS,
 } from './data/index.data';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../Operators/data/index.data';
 import { FACTORS_TEXTS } from '../Factors/data/index.data';
@@ -253,6 +253,32 @@ const stories = {
       );
     };
 
+    const validationGroupId = 'Error Validation'
+
+    const showContextErrorMessage = boolean('Show context selector error message', false, validationGroupId);
+    let contextErrorMessage;
+    if (showContextErrorMessage) {
+      contextErrorMessage = text('Context error messsage', 'Context error', validationGroupId);
+    }
+
+    const showParameterErrorMessage = boolean('Show parameter error message', false, validationGroupId);
+    let parameterErrorMessage;
+    if (showParameterErrorMessage) {
+      parameterErrorMessage = text('Parameter error message', 'Parameter cannot be empty', validationGroupId);
+    }
+
+    const showFactorErrorMessage = boolean('Show factor error message', false, validationGroupId);
+    let factorErrorMessage;
+    if (showFactorErrorMessage) {
+      factorErrorMessage = text('Factor error message', 'Value cannot be empty', validationGroupId);
+    }
+
+    const showAddConditionErrorMessage = boolean('Show "add condition" error message', false, validationGroupId);
+    let addConditionErrorMessage;
+    if (showAddConditionErrorMessage) {
+      addConditionErrorMessage = text('Condition error message','Parameter must be chosen', validationGroupId);
+    }
+
     return (
       <div
         style={{
@@ -311,6 +337,7 @@ const stories = {
             transformStep({
               id: step.id,
               stepName: step.stepName,
+              addConditionErrorText: addConditionErrorMessage,
               context: {
                 texts: CONTEXT_TEXTS,
                 selectedItem: step.context.selectedItem,
@@ -319,6 +346,7 @@ const stories = {
                 type: step.context.type,
                 loading: boolean('Loading context content', false),
                 defaultDropdownVisibility: defaultDropdownVisibility,
+                errorText: contextErrorMessage,
               },
               conditions: step.conditions.map(condition => ({
                 id: condition.id,
@@ -340,6 +368,7 @@ const stories = {
                   withoutTypeSelector: true,
                   texts: FACTORS_TEXTS,
                   loading: boolean('Loading parameters content', false),
+                  errorText: parameterErrorMessage,
                 },
                 operator: {
                   value: condition.operator.value,
@@ -368,6 +397,7 @@ const stories = {
                     items: PARAMETER_ITEMS,
                   },
                   texts: FACTORS_TEXTS,
+                  errorText: factorErrorMessage,
                 },
               })),
             })

@@ -9,4 +9,5 @@ export type AddConditionProps = {
   selectedSubject: boolean;
   selectedContext: boolean;
   readOnly?: boolean;
+  errorText?: React.ReactNode | string;
 };
