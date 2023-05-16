@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import { DatePicker } from '@synerise/ds-date-picker';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, object } from '@storybook/addon-knobs';
 
