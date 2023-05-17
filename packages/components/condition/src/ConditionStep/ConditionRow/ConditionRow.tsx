@@ -39,17 +39,20 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   inputProps,
   readOnly = false,
 }) => {
-  const rowHasError = !!(conditionParameter.errorText || (conditionFactor.errorText && conditionParameter.value));
+  const conditionFactorErrorText = conditionFactor?.errorText;
+  const conditionParameterErrorText = conditionParameter?.errorText;
+  const conditionParameterValue = conditionParameter?.value;
+  const rowHasError = !!(conditionParameterErrorText || (conditionFactorErrorText && conditionParameterValue));
 
   const conditionErrorMessage = React.useMemo(() => {
     let errorText: React.ReactNode | string;
-    if (conditionParameter.errorText) {
-      errorText = conditionParameter.errorText;
-    } else if (conditionFactor.errorText && conditionParameter.value) {
-      errorText = conditionFactor.errorText;
+    if (conditionParameterErrorText) {
+      errorText = conditionParameterErrorText;
+    } else if (conditionFactorErrorText && conditionParameterValue) {
+      errorText = conditionFactorErrorText;
     }
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
-  }, [conditionFactor.errorText, conditionParameter.errorText, conditionParameter.value]);
+  }, [conditionFactorErrorText, conditionParameterErrorText, conditionParameterValue]);
 
   return (
     <S.ConditionRow
