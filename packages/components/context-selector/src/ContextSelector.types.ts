@@ -66,6 +66,7 @@ export type ContextProps = {
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
+  errorText?: React.ReactNode | string;
 };
 
 export type ContextDropdownProps = {

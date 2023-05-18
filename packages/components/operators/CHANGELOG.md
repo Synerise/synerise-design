@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.19...@synerise/ds-operators@0.10.20) (2023-05-16)
+
+
+### Bug Fixes
+
+* **operators:** hides tabs if single group is available ([85a14e0](https://github.com/Synerise/synerise-design/commit/85a14e030413a90f6d2bf92c27562e6d6f1a2a65))
+
+
+
+
+
 ## [0.10.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.18...@synerise/ds-operators@0.10.19) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-operators
