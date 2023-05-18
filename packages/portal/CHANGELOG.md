@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.182.2](https://github.com/synerise/synerise-design/compare/portal@0.182.1...portal@0.182.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds story for checking translations ([b952f82](https://github.com/synerise/synerise-design/commit/b952f8296d5fcf0d7fd7e88a68db027eef123dee))
+
+
+
+
+
 ## [0.182.1](https://github.com/synerise/synerise-design/compare/portal@0.182.0...portal@0.182.1) (2023-04-19)
 
 

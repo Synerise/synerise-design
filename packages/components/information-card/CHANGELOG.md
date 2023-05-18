@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.12...@synerise/ds-information-card@0.3.13) (2023-04-26)
+
+
+### Bug Fixes
+
+* **information-card:** sets correct width on wrapper ([5f2da0d](https://github.com/Synerise/synerise-design/commit/5f2da0dcdfe78784303d82b1208bea24e8a67f62))
+
+
+
+
+
 ## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.11...@synerise/ds-information-card@0.3.12) (2023-04-19)
 
 

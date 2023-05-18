@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.48...@synerise/ds-search@0.8.49) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-search
+
+
+
+
+
 ## [0.8.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.47...@synerise/ds-search@0.8.48) (2023-04-19)
 
 **Note:** Version bump only for package @synerise/ds-search

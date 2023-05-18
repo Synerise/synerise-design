@@ -183,7 +183,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      {searchQuery === '' && (
+      {searchQuery === '' && getTabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
             block

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.55.0...@synerise/ds-icon@0.56.0) (2023-04-26)
+
+
+### Features
+
+* **icon:** add dynamic-key-s ([a598c94](https://github.com/Synerise/synerise-design/commit/a598c945cbde7863e9bef11b1f88d228792dc241))
+
+
+
+
+
 # [0.55.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.54.0...@synerise/ds-icon@0.55.0) (2023-04-19)
 
 

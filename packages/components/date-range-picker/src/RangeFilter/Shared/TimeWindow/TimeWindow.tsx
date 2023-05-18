@@ -150,6 +150,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const updatedDays = {};
     activeDays.forEach(k => {
       updatedDays[k] = {
+        ...this.getDayValue(k),
         day: k,
         start: dayjs(value[0]).format(TIME_FORMAT),
         stop: dayjs(value[1]).format(TIME_FORMAT),
