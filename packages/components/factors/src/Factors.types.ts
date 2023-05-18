@@ -91,6 +91,7 @@ export type FactorsTexts = {
 export type FactorsProps = {
   factorKey?: React.ReactText;
   error?: boolean;
+  errorText?: React.ReactNode | string;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];

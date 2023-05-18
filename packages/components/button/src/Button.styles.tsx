@@ -181,9 +181,9 @@ export const AntdButton = styled(
         ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
       }
       &:focus:not(:active) {
-              color: ${(props): string => props.theme.palette['grey-600']};
+        color: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
         svg {
-          fill: ${(props): string => props.theme.palette['grey-600']};
+          fill: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
         }
         background: ${(props): string => props.theme.palette['grey-050']};
       }
@@ -242,6 +242,7 @@ export const AntdButton = styled(
       `};
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.type === buttonType[props.type] &&
+      !props.error &&
       css`
         &.ant-btn {
           &:not(:disabled) {
@@ -395,13 +396,16 @@ export const AntdButton = styled(
         props.error &&
         css`
           &.ant-btn {
-            background-color: ${props.theme.palette[`red-050`]};
+            background-color: ${props.theme.palette[`red-100`]};
             box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
             span {
               color: ${props.theme.palette[`red-600`]};
             }
             svg {
               fill: ${props.theme.palette[`red-600`]};
+            }
+            .btn-focus {
+              box-shadow: none;
             }
             &&&:hover:not(:disabled):not(:focus) {
               background-color: ${props.theme.palette[`red-200`]};
@@ -414,7 +418,8 @@ export const AntdButton = styled(
               }
             }
             &:active {
-              background-color: ${props.theme.palette[`red-600`]};
+              background-color: ${props.theme.palette[`red-700`]};
+              box-shadow: none;
               span {
                 color: ${props.theme.palette.white};
               }
@@ -424,25 +429,16 @@ export const AntdButton = styled(
             }
             &&&:focus:not(:active) {
               border: none !important;
-              background-color: ${props.theme.palette[`red-050`]};
+              background-color: ${props.theme.palette[`red-100`]};
               span {
                 color: ${props.theme.palette[`red-600`]};
+              }
+              .btn-focus {
+                box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
               }
             }
             svg {
               fill: ${props.theme.palette[`red-600`]};
-            }
-          }
-          &&&:focus {
-            &&&:active {
-              border: none !important;
-              background-color: ${props.theme.palette[`red-600`]};
-              span {
-                color: ${props.theme.palette.white};
-              }
-              svg {
-                fill: ${props.theme.palette.white};
-              }
             }
           }
           ${RippleEffect} {
@@ -453,14 +449,30 @@ export const AntdButton = styled(
             props.error &&
             props.type === 'secondary' &&
             css`
-              &&&.ant-btn .btn-focus {
-                box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']} !important;
+              &&&.ant-btn {
+                span {
+                  color: ${props.theme.palette[`red-600`]};
+                }
+                svg {
+                  fill: ${props.theme.palette[`red-600`]};
+                }
+                .btn-focus {
+                  box-shadow: none;
+                }
+
                 &&&:hover {
                   background-color: ${props.theme.palette[`red-200`]};
+                  .btn-focus {
+                    box-shadow: none;
+                  }
+                }
+                &&&:focus:not(:active) {
+                  .btn-focus {
+                    box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+                  }
                 }
                 &&&:active {
-                  background-color: ${props.theme.palette[`red-600`]};
-                  box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+                  background-color: ${props.theme.palette[`red-700`]};
                   span {
                     color: ${props.theme.palette.white};
                   }
@@ -477,11 +489,12 @@ export const AntdButton = styled(
 
     ${(props): FlattenSimpleInterpolation | false =>
       props.type === 'custom-color' &&
+      !props.error &&
       css`
         &.ant-btn {
           background-color: ${props.theme.palette[`${props.customColor}-600`]};
           border: 0 solid transparent;
-
+          color: ${props.theme.palette.white};
           span {
             color: ${props.theme.palette.white};
           }
@@ -535,6 +548,7 @@ export const AntdButton = styled(
       `}
       ${(props): FlattenSimpleInterpolation | false =>
         props.type === 'custom-color-ghost' &&
+        !props.error &&
         css`
           color: ${props.theme.palette[`${props.customColor}-600`]};
           .ds-icon > svg {

@@ -23,6 +23,7 @@ const ParameterInput: React.FC<InputProps> = ({
   onActivate,
   onDeactivate,
   readOnly = false,
+  error,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -85,7 +86,13 @@ const ParameterInput: React.FC<InputProps> = ({
   }, [value, readOnly]);
 
   const triggerButton = (
-    <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleOnClick : undefined} readOnly={readOnly}>
+    <Button
+      error={error}
+      type="secondary"
+      mode={triggerMode}
+      onClick={!readOnly ? handleOnClick : undefined}
+      readOnly={readOnly}
+    >
       <Icon component={parameterIcon} />
       <Value>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}

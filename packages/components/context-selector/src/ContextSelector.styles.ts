@@ -37,11 +37,15 @@ export const Title = styled.div`
   padding: 8px 12px;
 `;
 
-export const ItemWrapper = styled.div`
+export const ItemWrapper = styled.span`
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${(props): string => props.theme.palette.white};
+`;
+
+export const ErrorWrapper = styled.div`
+  color: ${(props): string => props.theme.palette['red-600']};
+  margin-top: 8px;
 `;
 
 export const LoaderWrapper = styled.div`

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.182.3](https://github.com/synerise/synerise-design/compare/portal@0.182.2...portal@0.182.3) (2023-05-16)
+
+
+### Bug Fixes
+
+* **operators:** hides tabs if single group is available ([85a14e0](https://github.com/synerise/synerise-design/commit/85a14e030413a90f6d2bf92c27562e6d6f1a2a65))
+
+
+
+
+
 ## [0.182.2](https://github.com/synerise/synerise-design/compare/portal@0.182.1...portal@0.182.2) (2023-04-26)
 
 
