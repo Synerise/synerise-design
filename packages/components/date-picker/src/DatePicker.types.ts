@@ -29,6 +29,7 @@ export type Props = {
   suffixel?: React.ReactNode | string;
   showTime?: boolean;
   texts: Texts;
+  triggerElement?: React.ReactElement;
   value?: Date;
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
