@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
@@ -8,7 +9,7 @@ import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
 import { CardTabProps, CardTabSuffixProps } from './CardTab.types';
 
-const CardTab: React.FC<CardTabProps> = props => {
+const CardTab: FC<CardTabProps> = props => {
   const {
     intl,
     id,
@@ -34,11 +35,11 @@ const CardTab: React.FC<CardTabProps> = props => {
     itemData,
   } = props;
 
-  const [edited, setEdited] = React.useState(false);
-  const [editedName, setEditedName] = React.useState(name);
-  const [pressed, setPressed] = React.useState(false);
+  const [edited, setEdited] = useState(false);
+  const [editedName, setEditedName] = useState(name);
+  const [pressed, setPressed] = useState(false);
 
-  const getTexts = React.useMemo(() => {
+  const getTexts = useMemo(() => {
     return {
       changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME' }),
       removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE' }),
@@ -50,19 +51,19 @@ const CardTab: React.FC<CardTabProps> = props => {
     };
   }, [texts, intl]);
 
-  const handleEditName = React.useCallback(
-    (event?: React.MouseEvent<HTMLElement>): void => {
+  const handleEditName = useCallback(
+    (event?: MouseEvent<HTMLElement>): void => {
       !!event && event.stopPropagation();
       setEdited(true);
     },
     [setEdited]
   );
 
-  const handleChangeName = React.useMemo(() => {
+  const handleChangeName = useMemo(() => {
     if (onChangeName === undefined) {
       return undefined;
     }
-    return (event?: React.ChangeEvent<HTMLInputElement>): void => {
+    return (event?: ChangeEvent<HTMLInputElement>): void => {
       if (event) {
         const { value: nameValue } = event.target;
         setEditedName(nameValue);
@@ -71,44 +72,44 @@ const CardTab: React.FC<CardTabProps> = props => {
     };
   }, [setEditedName, onChangeName, id]);
 
-  const handleEditNameBlur = React.useCallback((): void => {
+  const handleEditNameBlur = useCallback((): void => {
     setEdited(false);
     onChangeName && onChangeName(id, editedName);
   }, [onChangeName, id, editedName]);
 
-  const handleDuplicate = React.useMemo(() => {
+  const handleDuplicate = useMemo(() => {
     if (onDuplicateTab === undefined) {
       return undefined;
     }
-    return (event?: React.MouseEvent<HTMLElement>): void => {
+    return (event?: MouseEvent<HTMLElement>): void => {
       event && event.stopPropagation();
       onDuplicateTab && onDuplicateTab(id);
     };
   }, [id, onDuplicateTab]);
 
-  const handleRemove = React.useMemo(() => {
+  const handleRemove = useMemo(() => {
     if (onRemoveTab === undefined) {
       return undefined;
     }
-    return (event?: React.MouseEvent<HTMLElement>): void => {
+    return (event?: MouseEvent<HTMLElement>): void => {
       event && event.stopPropagation();
       onRemoveTab && onRemoveTab(id);
     };
   }, [id, onRemoveTab]);
 
-  const handleSelect = React.useCallback(
-    (event: React.MouseEvent<HTMLElement>): void => {
+  const handleSelect = useCallback(
+    (event: MouseEvent<HTMLElement>): void => {
       !!event && event.stopPropagation();
       !edited && onSelectTab && onSelectTab(id);
     },
     [edited, id, onSelectTab]
   );
 
-  const showCardActions = React.useCallback((): boolean => {
+  const showCardActions = useCallback((): boolean => {
     return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab) && !suffixIcon && !renderSuffix;
   }, [onChangeName, onDuplicateTab, onRemoveTab, suffixIcon, renderSuffix]);
 
-  const handleSuffixClick = React.useCallback((event: React.MouseEvent<HTMLElement>): void => {
+  const handleSuffixClick = useCallback((event: MouseEvent<HTMLElement>): void => {
     !!event && event.stopPropagation();
   }, []);
 

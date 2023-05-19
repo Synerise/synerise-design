@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC, ReactElement, Children, cloneElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
@@ -12,7 +13,7 @@ const SORTABLE_CONFIG = {
   filter: '.ds-card-tabs__suffix-nodrag',
   preventOnFilter: false,
 };
-const CardTabs: React.FC<CardTabsProps> = ({
+const CardTabs: FC<CardTabsProps> = ({
   className,
   onChangeOrder,
   onAddTab,
@@ -20,7 +21,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   children = [],
   addTabLabel,
 }) => {
-  const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
+  const handleChangeOrder = (newOrder: ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
         newOrder.map(item => ({
@@ -29,8 +30,8 @@ const CardTabs: React.FC<CardTabsProps> = ({
       );
   };
   const renderChildren = (): JSX.Element[] =>
-    React.Children.map(children, (child, i) =>
-      React.cloneElement(child, {
+    Children.map(children, (child, i) =>
+      cloneElement(child, {
         ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
         draggable: Boolean(onChangeOrder) || child.props.draggable,
       })
@@ -53,7 +54,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
         <span data-testid="card-tabs-add-button">
           <Button.Creator
             block
-            disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
+            disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
             label={addTabLabel ?? ''}
             onClick={onAddTab}
           />
