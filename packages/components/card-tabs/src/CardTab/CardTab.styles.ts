@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import { InPlaceEditableInputContainer } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
+import { getColor, getLighterColor } from '../utils';
 
 type CardTabContainerProps = {
   active: boolean;
@@ -11,22 +12,6 @@ type CardTabContainerProps = {
   edited: boolean;
   draggable?: boolean;
   itemData?: unknown;
-};
-
-const getColor = (isActive: boolean, activeColor: string, defaultColor: string): string => {
-  if (isActive) return activeColor;
-  return defaultColor;
-};
-const getLighterColor = (color: string): string => {
-  if (color) {
-    const levelRegex = /(\d){3}$/g;
-    const matches = color.match(levelRegex);
-    if (matches?.length) {
-      const level: number = parseInt(matches[0], 10);
-      return color.replace(levelRegex, (level - 100).toString());
-    }
-  }
-  return color;
 };
 
 export const CardTabSuffix = styled.div`
