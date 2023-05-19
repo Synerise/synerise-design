@@ -6,6 +6,7 @@ export type StepProps = {
   stepNumber: number;
   active?: boolean;
   done?: boolean;
+  warning?: boolean;
   validated?: boolean;
   tooltip?: string | React.ReactNode;
   onClick?: () => void;

@@ -71,7 +71,7 @@ export const StepWrapper = styled.div<{ clickable: boolean }>`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  cursor: ${(props): string => (props.onClick ? 'pointer' : 'default')};
+  cursor: ${(props): string => (props.clickable ? 'pointer' : 'default')};
 `;
 
 export const StepContent = styled.div`
@@ -91,6 +91,7 @@ export const Step = styled.div<{
   active: boolean;
   wasActive: boolean;
   done: boolean;
+  warning: boolean;
   validated: boolean;
   hasChildren: boolean;
   size: StepperSize;
@@ -166,6 +167,17 @@ export const Step = styled.div<{
         ${StepNumber},
         ${StepLabel} {
           color: ${props.theme.palette['red-600']};
+          font-weight: 400;
+        }
+      `;
+    if (props.warning)
+      return css`
+        ${StepPrefix} {
+          border-color: ${props.theme.palette['yellow-600']};
+        }
+        ${StepNumber},
+        ${StepLabel} {
+          color: ${props.theme.palette['yellow-600']};
           font-weight: 400;
         }
       `;

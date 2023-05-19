@@ -94,6 +94,8 @@ const stories = {
     };
     const showTooltip = boolean('Show tooltip', false);
     const invalidStep = select('Set index of invalid step', [0, 1, 2, 3, '-'], '-');
+    const warningStep = select('Set index of warning step', [0, 1, 2, 3, '-'], '-');
+    const clickableSteps = boolean('Clicable steps', true);
 
     return (
       <Stepper
@@ -102,12 +104,13 @@ const stories = {
       >
         {steps.map((step, index) => (
           <Stepper.Step
-            onClick={() => setActiveStep(index)}
+            onClick={clickableSteps ? () => setActiveStep(index) : undefined}
             label={step.label}
             stepNumber={step.number}
             active={index === store.state.activeStep}
             done={index < store.state.activeStep || boolean('All steps done', false)}
             validated={invalidStep === index}
+            warning={warningStep === index}
             tooltip={showTooltip && text('Set tooltip text', 'Tooltip info')}
             children={step.children}
           />
