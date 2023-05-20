@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.61...@synerise/ds-items-roll@0.6.62) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
 ## [0.6.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.60...@synerise/ds-items-roll@0.6.61) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

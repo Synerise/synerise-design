@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.9...@synerise/ds-date-picker@0.9.10) (2023-05-20)
+
+
+### Bug Fixes
+
+* **date-picker:** export DatePicker from package index ([d908631](https://github.com/Synerise/synerise-design/commit/d9086310dc45e8cd3f9ed98800c164e497352219))
+
+
+
+
+
 ## [0.9.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.8...@synerise/ds-date-picker@0.9.9) (2023-04-26)
 
 

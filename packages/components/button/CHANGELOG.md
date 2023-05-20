@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.14...@synerise/ds-button@0.17.15) (2023-05-20)
+
+
+### Bug Fixes
+
+* **button:** fixes error validation styles ([9b47139](https://github.com/synerise/synerise-design/commit/9b47139807265c448b62350ebf226b526f31caad))
+* **condition:** adds validation errors support ([0da0a99](https://github.com/synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+
+
+
+
+
 ## [0.17.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.13...@synerise/ds-button@0.17.14) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-button

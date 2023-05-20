@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.41...@synerise/ds-autocomplete@0.4.42) (2023-05-20)
+
+
+### Bug Fixes
+
+* **autocomplete:** fixes scroll conflict ([81d6bfe](https://github.com/Synerise/synerise-design/commit/81d6bfe681b5c2d6e561ac45c4c1d47fc332725f))
+
+
+
+
+
 ## [0.4.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.4.40...@synerise/ds-autocomplete@0.4.41) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

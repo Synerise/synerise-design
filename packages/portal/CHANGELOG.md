@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.182.4](https://github.com/synerise/synerise-design/compare/portal@0.182.3...portal@0.182.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+* **stepper:** enable warning mode in step, fix logic of clicable pointer ([5f257f9](https://github.com/synerise/synerise-design/commit/5f257f95ececc549e4de0957995f5e13f664988b))
+
+
+
+
+
 ## [0.182.3](https://github.com/synerise/synerise-design/compare/portal@0.182.2...portal@0.182.3) (2023-05-16)
 
 

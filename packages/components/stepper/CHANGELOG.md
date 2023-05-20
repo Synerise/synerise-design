@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.24...@synerise/ds-stepper@0.3.25) (2023-05-20)
+
+
+### Bug Fixes
+
+* **stepper:** enable warning mode in step, fix logic of clicable pointer ([5f257f9](https://github.com/Synerise/synerise-design/commit/5f257f95ececc549e4de0957995f5e13f664988b))
+
+
+
+
+
 ## [0.3.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.23...@synerise/ds-stepper@0.3.24) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-stepper
