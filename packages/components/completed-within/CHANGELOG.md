@@ -3,6 +3,182 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.51...@synerise/ds-completed-within@0.5.52) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.50...@synerise/ds-completed-within@0.5.51) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.49...@synerise/ds-completed-within@0.5.50) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.48...@synerise/ds-completed-within@0.5.49) (2023-04-14)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.47...@synerise/ds-completed-within@0.5.48) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.46...@synerise/ds-completed-within@0.5.47) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.45...@synerise/ds-completed-within@0.5.46) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.44...@synerise/ds-completed-within@0.5.45) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.43...@synerise/ds-completed-within@0.5.44) (2023-03-09)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.42...@synerise/ds-completed-within@0.5.43) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.41...@synerise/ds-completed-within@0.5.42) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.40...@synerise/ds-completed-within@0.5.41) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.39...@synerise/ds-completed-within@0.5.40) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.37...@synerise/ds-completed-within@0.5.39) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.37...@synerise/ds-completed-within@0.5.38) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.36...@synerise/ds-completed-within@0.5.37) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.35...@synerise/ds-completed-within@0.5.36) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.34...@synerise/ds-completed-within@0.5.35) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.33...@synerise/ds-completed-within@0.5.34) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.32...@synerise/ds-completed-within@0.5.33) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.31...@synerise/ds-completed-within@0.5.32) (2023-01-09)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.30...@synerise/ds-completed-within@0.5.31) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
 ## [0.5.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.29...@synerise/ds-completed-within@0.5.30) (2022-12-08)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

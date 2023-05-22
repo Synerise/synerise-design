@@ -3,6 +3,171 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.3...@synerise/ds-collector@0.6.4) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.2...@synerise/ds-collector@0.6.3) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.1...@synerise/ds-collector@0.6.2) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.0...@synerise/ds-collector@0.6.1) (2023-04-14)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.56...@synerise/ds-collector@0.6.0) (2023-04-05)
+
+
+### Features
+
+* **collector:** adds placeholder for missing tests ([7996926](https://github.com/Synerise/synerise-design/commit/7996926f4dd9102a1b9342a7603598342f1bc0cc))
+* **collector:** adds scrollbarProps ([6a67188](https://github.com/Synerise/synerise-design/commit/6a6718814e8fb84c147b69a688d9eee0a3969cb7))
+* **collector:** improves types ([2e1865c](https://github.com/Synerise/synerise-design/commit/2e1865c3868a0d288308eb56cd36d3a5de2f2bf8))
+
+
+
+
+
+## [0.5.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.55...@synerise/ds-collector@0.5.56) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.54...@synerise/ds-collector@0.5.55) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.53...@synerise/ds-collector@0.5.54) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.52...@synerise/ds-collector@0.5.53) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.51...@synerise/ds-collector@0.5.52) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.50...@synerise/ds-collector@0.5.51) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.49...@synerise/ds-collector@0.5.50) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.47...@synerise/ds-collector@0.5.49) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.47...@synerise/ds-collector@0.5.48) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.46...@synerise/ds-collector@0.5.47) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.45...@synerise/ds-collector@0.5.46) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.44...@synerise/ds-collector@0.5.45) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.43...@synerise/ds-collector@0.5.44) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.42...@synerise/ds-collector@0.5.43) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.5.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.41...@synerise/ds-collector@0.5.42) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
 ## [0.5.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.5.40...@synerise/ds-collector@0.5.41) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-collector

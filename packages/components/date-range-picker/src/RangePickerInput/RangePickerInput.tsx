@@ -1,8 +1,11 @@
 import * as React from 'react';
-import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import fnsIsValid from 'date-fns/isValid';
+
+import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Tooltip from '@synerise/ds-tooltip';
+import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+
 // eslint-disable-next-line import/no-named-default
 import { default as fnsFormat } from '../dateUtils/format';
 import { RangePickerInputProps } from './RangePickerInput.types';
@@ -15,6 +18,7 @@ import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeD
 const RangePickerInput: React.FC<RangePickerInputProps> = ({
   value,
   format,
+  valueFormatOptions,
   showTime,
   onChange,
   onClick,
@@ -25,12 +29,15 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   description,
   tooltip,
   disabled,
+  readOnly,
   onFocus,
   onBlur,
   error,
   errorText,
   preferRelativeDesc = false,
 }: RangePickerInputProps) => {
+  const { formatValue } = useDataFormat();
+
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
   const [hovered, setHovered] = React.useState<boolean>(false);
   const showError = error || !!errorText;
@@ -57,10 +64,13 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
     (dateToDisplay): string => {
       if (!dateToDisplay || !fnsIsValid(dateToDisplay)) return '';
       let dateValue = dateToDisplay;
-      if (typeof dateToDisplay === 'string') dateValue = new Date(dateToDisplay);
-      return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+      if (typeof dateToDisplay === 'string') {
+        dateValue = new Date(dateToDisplay);
+        return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+      }
+      return formatValue(dateToDisplay, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [format, showTime]
+    [format, showTime, formatValue, valueFormatOptions]
   );
 
   const renderFromDate = React.useCallback(() => {
@@ -126,7 +136,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
         >
           {placeholder}
           <S.IconSeparator />
-          {hovered && !!value && !!value.to && !!value.from ? (
+          {!readOnly && hovered && !!value && !!value.to && !!value.from ? (
             <Tooltip title={texts?.clear}>
               <S.ClearIconWrapper>
                 <Icon component={<Close3S />} onClick={handleClear} />

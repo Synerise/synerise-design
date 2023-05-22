@@ -28,6 +28,10 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
+  const getParentNode = (triggerNode: HTMLElement): HTMLElement => {
+    return triggerNode.parentNode as HTMLElement;
+  };
+
   const renderAutoCompleteComponent = (): React.ReactNode => {
     return (
       <AntdAutoComplete
@@ -36,8 +40,9 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         ref={inputRef}
-        dropdownClassName="ds-autocomplete-dropdown"
+        dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
         className={!!errorText || error ? 'error' : undefined}
+        getPopupContainer={getParentNode}
       />
     );
   };

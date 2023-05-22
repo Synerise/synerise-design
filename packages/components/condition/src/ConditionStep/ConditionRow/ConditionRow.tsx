@@ -35,99 +35,130 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   texts,
   stepType,
   onDeactivate,
-  error,
+  // error,
   inputProps,
+  readOnly = false,
 }) => {
+  const conditionFactorErrorText = conditionFactor?.errorText;
+  const conditionParameterErrorText = conditionParameter?.errorText;
+  const conditionParameterValue = conditionParameter?.value;
+  const rowHasError = !!(conditionParameterErrorText || (conditionFactorErrorText && conditionParameterValue));
+
+  const conditionErrorMessage = React.useMemo(() => {
+    let errorText: React.ReactNode | string;
+    if (conditionParameterErrorText) {
+      errorText = conditionParameterErrorText;
+    } else if (conditionFactorErrorText && conditionParameterValue) {
+      errorText = conditionFactorErrorText;
+    }
+    return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
+  }, [conditionFactorErrorText, conditionParameterErrorText, conditionParameterValue]);
+
   return (
     <S.ConditionRow
       stepType={stepType}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       key={`condition-row-${conditionId}`}
       index={index}
+      withError={rowHasError}
     >
       <S.ConditionConnections
         first={index === 0}
-        last={Boolean(
-          addCondition &&
-            index + 1 === conditionsNumber &&
-            maxConditionLength !== undefined &&
-            conditionsNumber === maxConditionLength
-        )}
+        last={
+          readOnly
+            ? Boolean(index + 1 === conditionsNumber)
+            : Boolean(
+                addCondition &&
+                  index + 1 === conditionsNumber &&
+                  maxConditionLength !== undefined &&
+                  conditionsNumber === maxConditionLength
+              )
+        }
+        readOnly={readOnly}
       />
-      <S.ConditionWrapper>
-        {conditionParameter && (
-          <Factors
-            {...conditionParameter}
-            inputProps={inputProps}
-            getPopupContainerOverride={getPopupContainerOverride}
-            onActivate={(): void => onActivate && onActivate(PARAMETER)}
-            onDeactivate={onDeactivate}
-            onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
-            opened={
-              hasPriority &&
-              stepId === currentStepId &&
-              conditionId === currentConditionId &&
-              currentField === PARAMETER
-            }
-          />
-        )}
-      </S.ConditionWrapper>
-      {(!conditionParameter ||
-        (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
-        conditionOperator && (
+      <S.ConditionRowLine>
+        <S.ConditionRowDefinition>
           <S.ConditionWrapper>
-            <Operators
-              {...conditionOperator}
-              getPopupContainerOverride={getPopupContainerOverride}
-              onActivate={(): void => onActivate && onActivate(OPERATOR)}
-              onDeactivate={onDeactivate}
-              onChange={(value): void => selectOperator(stepId, conditionId, value)}
-              opened={
-                hasPriority &&
-                stepId === currentStepId &&
-                conditionId === currentConditionId &&
-                currentField === OPERATOR
-              }
-            />
-          </S.ConditionWrapper>
-        )}
-      {conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null && (
-        <S.ConditionWrapper fullWidth>
-          <>
-            {conditionFactor?.withCustomFactor || (
+            {conditionParameter && (
               <Factors
-                {...conditionFactor}
+                {...conditionParameter}
                 inputProps={inputProps}
                 getPopupContainerOverride={getPopupContainerOverride}
-                onActivate={(): void => onActivate && onActivate(FACTOR)}
+                onActivate={(): void => onActivate && onActivate(PARAMETER)}
                 onDeactivate={onDeactivate}
-                setSelectedFactorType={(factorType): void =>
-                  setStepConditionFactorType(stepId, conditionId, factorType)
-                }
-                onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
-                factorKey={conditionId}
-                error={error}
+                onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&
                   conditionId === currentConditionId &&
-                  currentField === FACTOR
+                  currentField === PARAMETER
                 }
+                readOnly={readOnly}
+                error={Boolean(conditionParameter.errorText)}
               />
             )}
-          </>
-        </S.ConditionWrapper>
-      )}
-      {removeCondition && conditionsNumber > minConditionLength && (
-        <S.RemoveIconWrapper
-          onClick={(): void => removeCondition(stepId, conditionId)}
-          className="ds-conditions-remove-row"
-        >
-          <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
-            <Icon component={<CloseS />} color={theme.palette['red-600']} />
-          </Tooltip>
-        </S.RemoveIconWrapper>
-      )}
+          </S.ConditionWrapper>
+          {(!conditionParameter ||
+            (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
+            conditionOperator && (
+              <S.ConditionWrapper>
+                <Operators
+                  {...conditionOperator}
+                  getPopupContainerOverride={getPopupContainerOverride}
+                  onActivate={(): void => onActivate && onActivate(OPERATOR)}
+                  onDeactivate={onDeactivate}
+                  onChange={(value): void => selectOperator(stepId, conditionId, value)}
+                  opened={
+                    hasPriority &&
+                    stepId === currentStepId &&
+                    conditionId === currentConditionId &&
+                    currentField === OPERATOR
+                  }
+                  readOnly={readOnly}
+                />
+              </S.ConditionWrapper>
+            )}
+          {conditionFactor !== undefined &&
+            conditionOperator?.value &&
+            conditionFactor?.availableFactorTypes !== null && (
+              <S.ConditionWrapper fullWidth>
+                {conditionFactor?.withCustomFactor || (
+                  <Factors
+                    {...conditionFactor}
+                    inputProps={inputProps}
+                    getPopupContainerOverride={getPopupContainerOverride}
+                    onActivate={(): void => onActivate && onActivate(FACTOR)}
+                    onDeactivate={onDeactivate}
+                    setSelectedFactorType={(factorType): void =>
+                      setStepConditionFactorType(stepId, conditionId, factorType)
+                    }
+                    onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
+                    factorKey={conditionId}
+                    error={Boolean(conditionFactor.errorText)}
+                    opened={
+                      hasPriority &&
+                      stepId === currentStepId &&
+                      conditionId === currentConditionId &&
+                      currentField === FACTOR
+                    }
+                    readOnly={readOnly}
+                  />
+                )}
+              </S.ConditionWrapper>
+            )}
+          {!readOnly && removeCondition && conditionsNumber > minConditionLength && (
+            <S.RemoveIconWrapper
+              onClick={(): void => removeCondition(stepId, conditionId)}
+              className="ds-conditions-remove-row"
+            >
+              <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
+                <Icon component={<CloseS />} color={theme.palette['red-600']} />
+              </Tooltip>
+            </S.RemoveIconWrapper>
+          )}
+        </S.ConditionRowDefinition>
+        {conditionErrorMessage}
+      </S.ConditionRowLine>
     </S.ConditionRow>
   );
 };

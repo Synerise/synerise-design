@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.13.2...@synerise/ds-tooltip@0.13.3) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.13.1...@synerise/ds-tooltip@0.13.2) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.13.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.13.0...@synerise/ds-tooltip@0.13.1) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.12.1...@synerise/ds-tooltip@0.13.0) (2023-03-06)
+
+
+### Features
+
+* **tooltip:** exports types from index ([c2bedad](https://github.com/synerise/synerise-design/commit/c2bedad22e7e56c30580b8e25fec1892b703ab10))
+
+
+
+
+
+## [0.12.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.12.0...@synerise/ds-tooltip@0.12.1) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.19...@synerise/ds-tooltip@0.12.0) (2023-02-14)
+
+
+### Features
+
+* **tooltip:** adds customComponent prop ([46da191](https://github.com/synerise/synerise-design/commit/46da191d732325f9435352376af0c7420b1e5fdb))
+* **tooltip:** adds renderCustomComponent property ([5caccd7](https://github.com/synerise/synerise-design/commit/5caccd7e6e952e34f910731f537225afffbf2264))
+
+
+
+
+
+## [0.11.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.18...@synerise/ds-tooltip@0.11.19) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
 ## [0.11.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.11.17...@synerise/ds-tooltip@0.11.18) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

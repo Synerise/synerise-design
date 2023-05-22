@@ -3,6 +3,353 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.21...@synerise/ds-factors@0.17.22) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/Synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+
+
+
+
+
+## [0.17.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.20...@synerise/ds-factors@0.17.21) (2023-05-16)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.19...@synerise/ds-factors@0.17.20) (2023-04-26)
+
+
+### Bug Fixes
+
+* **factors:** adds missing texts for date-range-picker factor ([72e25e1](https://github.com/Synerise/synerise-design/commit/72e25e1638ba09f7de362e9d30f334b4b7099f24))
+
+
+
+
+
+## [0.17.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.18...@synerise/ds-factors@0.17.19) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.17...@synerise/ds-factors@0.17.18) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.16...@synerise/ds-factors@0.17.17) (2023-04-14)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.15...@synerise/ds-factors@0.17.16) (2023-04-12)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.14...@synerise/ds-factors@0.17.15) (2023-04-12)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.13...@synerise/ds-factors@0.17.14) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.12...@synerise/ds-factors@0.17.13) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.11...@synerise/ds-factors@0.17.12) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.10...@synerise/ds-factors@0.17.11) (2023-03-30)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.9...@synerise/ds-factors@0.17.10) (2023-03-29)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.8...@synerise/ds-factors@0.17.9) (2023-03-28)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.7...@synerise/ds-factors@0.17.8) (2023-03-24)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.6...@synerise/ds-factors@0.17.7) (2023-03-22)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.5...@synerise/ds-factors@0.17.6) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.4...@synerise/ds-factors@0.17.5) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.3...@synerise/ds-factors@0.17.4) (2023-03-09)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.2...@synerise/ds-factors@0.17.3) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.1...@synerise/ds-factors@0.17.2) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.0...@synerise/ds-factors@0.17.1) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.16...@synerise/ds-factors@0.17.0) (2023-03-02)
+
+
+### Features
+
+* add test for tooltip and fixes ([ad89d98](https://github.com/Synerise/synerise-design/commit/ad89d980591f39f66e66ba04f53c6df2d45cca99))
+* tooltip improvements ([7bd8c7f](https://github.com/Synerise/synerise-design/commit/7bd8c7fb3921932540edce5ee1435e5a810c852f))
+
+
+
+
+
+## [0.16.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.15...@synerise/ds-factors@0.16.16) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.13...@synerise/ds-factors@0.16.15) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.13...@synerise/ds-factors@0.16.14) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.12...@synerise/ds-factors@0.16.13) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.11...@synerise/ds-factors@0.16.12) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.10...@synerise/ds-factors@0.16.11) (2023-02-23)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.9...@synerise/ds-factors@0.16.10) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.8...@synerise/ds-factors@0.16.9) (2023-02-14)
+
+
+### Bug Fixes
+
+* **factors:** change usaCallback to useRef to fix problem with typing ([646888e](https://github.com/Synerise/synerise-design/commit/646888e35457fc74b0b843d137d4fbec5b03eaed))
+* **factors:** fix debounce for autocomplete ([0cf9478](https://github.com/Synerise/synerise-design/commit/0cf94789648df5e404bd9e154ba6bb9aafcf66ed))
+* **factors:** fix debounce for autocomplete ([b19f432](https://github.com/Synerise/synerise-design/commit/b19f43274ce8c0be5563e3e8d29a238214219a52))
+
+
+
+
+
+## [0.16.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.7...@synerise/ds-factors@0.16.8) (2023-02-03)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.6...@synerise/ds-factors@0.16.7) (2023-01-31)
+
+
+### Bug Fixes
+
+* **factors:** add autoResize in FactorValueProps ([85a7c38](https://github.com/Synerise/synerise-design/commit/85a7c384d1784e43f9c8425c15aee100f8c300f9))
+
+
+
+
+
+## [0.16.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.5...@synerise/ds-factors@0.16.6) (2023-01-30)
+
+
+### Bug Fixes
+
+* **factors:** fix debounce on onChange ([954808d](https://github.com/Synerise/synerise-design/commit/954808daf1498f1c2260eb3d47c38cd9fed2452a))
+
+
+
+
+
+## [0.16.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.4...@synerise/ds-factors@0.16.5) (2023-01-30)
+
+
+### Bug Fixes
+
+* **factors:** fix debounce on onChange ([ea297f7](https://github.com/Synerise/synerise-design/commit/ea297f7f298a5493b58bdb6ef3a18750ebf64443))
+
+
+
+
+
+## [0.16.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.3...@synerise/ds-factors@0.16.4) (2023-01-25)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.2...@synerise/ds-factors@0.16.3) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.1...@synerise/ds-factors@0.16.2) (2023-01-09)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.16.0...@synerise/ds-factors@0.16.1) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.16...@synerise/ds-factors@0.16.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/Synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
 ## [0.15.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.15.15...@synerise/ds-factors@0.15.16) (2022-12-08)
 
 **Note:** Version bump only for package @synerise/ds-factors

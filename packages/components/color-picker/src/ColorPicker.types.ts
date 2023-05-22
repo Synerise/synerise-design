@@ -1,11 +1,18 @@
-import type { SelectProps } from '@synerise/ds-select';
+import type { InputProps } from 'antd/lib/input';
 
 export type ColorHookType = {
   color: string;
   setColor: (color: string) => void;
 };
 
+export enum ColorPickerSize {
+  'S' = 136,
+  'M' = 168,
+  'L' = 200,
+}
+
 export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeholder'>> {
+  maxWidth?: number;
   value?: string;
   onChange?: (color: string) => void;
   colors?: string[];
@@ -16,5 +23,13 @@ export interface ColorPickerProps extends Partial<Pick<HTMLInputElement, 'placeh
    */
   infix?: (colorHooks?: Partial<ColorHookType>) => JSX.Element;
   maxSavedColors?: number;
-  selectProps?: Omit<SelectProps, 'value' | 'onChange' | 'defaultValue'>;
+  inputProps?: Omit<InputProps, 'value' | 'onChange' | 'defaultValue'>;
+  tooltip?: {
+    copy: string;
+    copied: string;
+  };
+  isShownSavedColors?: boolean;
+  size?: 'S' | 'M' | 'L';
+  errorText?: string;
+  description?: string;
 }

@@ -19,6 +19,7 @@ type DraggerWrapperProps = {
 type ItemHeaderProps = {
   hasPrefix: boolean;
 };
+
 const dashedStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
   && {
     box-shadow: 0 0 0 0 transparent;
@@ -28,6 +29,11 @@ const dashedStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
     border: 1px dashed ${props.theme.palette['grey-400']};
   }
 `;
+
+export const AdditionalSuffix = styled.div`
+  margin-left: 8px;
+`;
+
 export const DraggerWrapper = styled.div<DraggerWrapperProps>`
   cursor: pointer;
   display: flex;
@@ -57,6 +63,21 @@ export const ItemHeaderPrefix = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  ${Tag} {
+    margin: 0 12px 0 0;
+  }
+
+  ${IconWrapper} {
+    margin-right: 12px;
+  }
+
+  ${DraggerWrapper} {
+    margin-right: 12px;
+    svg {
+      color: ${({ theme }): string => theme.palette['grey-400']};
+      fill: ${({ theme }): string => theme.palette['grey-400']};
+    }
+  }
 `;
 
 export const ItemHeaderSuffix = styled.div`
@@ -91,26 +112,15 @@ export const ItemHeader = styled.div<ItemHeaderProps>`
   max-height: 48px;
 
   ${(props): string | false => !props.hasPrefix && `padding-left:16px;`}
-  ${Tag} {
-    margin: 0 12px 0 0;
-  }
 
-  ${IconWrapper} {
-    margin-right: 12px;
-  }
-
-  ${DraggerWrapper} {
-    margin-right: 12px;
-    svg {
-      color: ${({ theme }): string => theme.palette['grey-400']};
-      fill: ${({ theme }): string => theme.palette['grey-400']};
-    }
-  }
   ${ItemMeta} {
     padding: 0;
   }
 
   &:hover {
+    .suffix--hide-on-hover {
+      display: none;
+    }
     ${ItemLabel} {
       color: ${({ theme }): string => theme.palette['grey-800']};
     }

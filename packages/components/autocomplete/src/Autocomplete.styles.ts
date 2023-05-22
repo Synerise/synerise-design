@@ -51,6 +51,11 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
     ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)};
     grid-area: 1 / 1;
   }
+  .ant-select > span {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
   .ant-select-dropdown {
     &.ant-select {
       .ant-input {

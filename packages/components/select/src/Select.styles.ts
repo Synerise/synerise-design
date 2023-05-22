@@ -38,7 +38,14 @@ const addonStyles = (props: ThemeProps): string => `
   line-height: 1.39;
  `;
 
-export const AntdSelect = styled((Select as unknown) as React.ComponentType<Props>)<{
+export const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+`;
+
+export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
   size?: string;
   prefixel?: boolean;
   suffixel?: boolean;
@@ -57,6 +64,12 @@ export const AntdSelect = styled((Select as unknown) as React.ComponentType<Prop
     }
     }
   `}
+
+  && {
+    .ant-select-selector {
+      ${(props): FlattenSimpleInterpolation | false => !!props.selectorStyle && css(props.selectorStyle)}
+    }
+
   &&& {
     width: 100%;
     .ant-select-clear {

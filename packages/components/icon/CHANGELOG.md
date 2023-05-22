@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.55.0...@synerise/ds-icon@0.56.0) (2023-04-26)
+
+
+### Features
+
+* **icon:** add dynamic-key-s ([a598c94](https://github.com/Synerise/synerise-design/commit/a598c945cbde7863e9bef11b1f88d228792dc241))
+
+
+
+
+
+# [0.55.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.54.0...@synerise/ds-icon@0.55.0) (2023-04-19)
+
+
+### Features
+
+* **icon:** add basic advanced builder icons ([a533f4f](https://github.com/Synerise/synerise-design/commit/a533f4f96f90ac4d5a7d706b73ebee1ba5ed37a8))
+
+
+
+
+
+# [0.54.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.53.0...@synerise/ds-icon@0.54.0) (2023-03-02)
+
+
+### Features
+
+* **icon:** build icons with inline styles ([f268342](https://github.com/Synerise/synerise-design/commit/f2683422b73daeff6b53b7fdf581e3d2f3e5ea66))
+
+
+
+
+
+# [0.53.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.52.0...@synerise/ds-icon@0.53.0) (2023-01-12)
+
+
+### Features
+
+* **icon:** workspaces icon color name ([06dcd94](https://github.com/Synerise/synerise-design/commit/06dcd945e0eefa29d2d24c1c028efbb06a26a066))
+* **icon:** workspaces icons ([baed041](https://github.com/Synerise/synerise-design/commit/baed0414a32f1395f52aff8181c5e73d10960408))
+
+
+
+
+
 # [0.52.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.51.0...@synerise/ds-icon@0.52.0) (2022-12-07)
 
 

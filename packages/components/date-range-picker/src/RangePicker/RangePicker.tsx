@@ -2,6 +2,8 @@ import * as React from 'react';
 import { DateUtils, DayModifiers } from 'react-day-picker';
 import fnsIsSameDay from 'date-fns/isSameDay';
 import fnsIsValid from 'date-fns/isValid';
+import { legacyParse } from '@date-fns/upgrade/v2';
+
 import MonthPicker from '@synerise/ds-date-picker/dist/Elements/MonthPicker/MonthPicker';
 import TimePicker from '@synerise/ds-date-picker/dist/Elements/TimePicker/TimePicker';
 import {
@@ -16,7 +18,7 @@ import Icon, { CalendarM, ClockM } from '@synerise/ds-icon';
 import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
 import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import fnsFormat from '@synerise/ds-date-picker/dist/format';
-import { legacyParse } from '@date-fns/upgrade/v2';
+import { getDefaultDataTimeOptions, withDataFormat, WithDataFormatProps } from '@synerise/ds-data-format';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
@@ -61,8 +63,8 @@ function replaceRange(value: AbsoluteDateRange | RelativeDateRange, day: Date): 
   }
   return { from, to };
 }
-export default class RangePicker extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
+class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State> {
+  constructor(props: Props & WithDataFormatProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
@@ -174,15 +176,22 @@ export default class RangePicker extends React.PureComponent<Props, State> {
 
   renderDay = (day: Date): React.ReactNode => {
     const text = day.getDate();
-    const { value, intl } = this.props;
+    const { value, intl, formatValue } = this.props;
+
+    const formatDate = (date: Date | string): string => {
+      if (typeof date === 'string') {
+        return fnsFormat(legacyParse(date), TOOLTIP_FORMAT, intl.locale);
+      }
+      return formatValue(date, { ...getDefaultDataTimeOptions(true) });
+    };
+
     return (
       <>
         <DayBackground className="DayPicker-Day-BG" />
         <DayText className="DayPicker-Day-Text" data-attr={text}>
           {value.to && value.from && (
             <DayTooltip>
-              {fnsFormat(legacyParse(value.from), TOOLTIP_FORMAT, intl.locale)} -{' '}
-              {fnsFormat(legacyParse(value.to), TOOLTIP_FORMAT, intl.locale)}
+              {formatDate(value.from)} - {formatDate(value.to)}
             </DayTooltip>
           )}
           {text}
@@ -265,7 +274,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
   };
 
   renderTimePicker = (side: SideType): React.ReactNode => {
-    const { value } = this.props;
+    const { value, is12HoursClock } = this.props;
     const { from, to } = value;
     if (!from || !to) {
       return null;
@@ -278,9 +287,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             key={`time-picker-${side}`}
             value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
-            disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to)}
-            disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to)}
-            disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to)}
+            disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to, is12HoursClock)}
+            disabledMinutes={getDisabledTimeOptions(from, 'MINUTES', null, to, is12HoursClock)}
+            disabledSeconds={getDisabledTimeOptions(from, 'SECONDS', null, to, is12HoursClock)}
             onShortNext={
               sidesAreAdjacent
                 ? undefined
@@ -300,9 +309,9 @@ export default class RangePicker extends React.PureComponent<Props, State> {
             key={`time-picker-${side}`}
             value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
-            disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null)}
-            disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null)}
-            disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null)}
+            disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null, is12HoursClock)}
+            disabledMinutes={getDisabledTimeOptions(to, 'MINUTES', from, null, is12HoursClock)}
+            disabledSeconds={getDisabledTimeOptions(to, 'SECONDS', from, null, is12HoursClock)}
             onShortNext={(): void => {
               this.handleAddDay(1, COLUMNS.RIGHT);
             }}
@@ -348,7 +357,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
         </S.Sides>
         <S.PickerFooter>
           <Range
-            onClick={(): void => {
+            onClick={({ currentTarget }: React.UIEvent): void => {
               const now = new Date();
               const literallyNow: AbsoluteDateRange = {
                 ...value,
@@ -358,6 +367,7 @@ export default class RangePicker extends React.PureComponent<Props, State> {
                 to: fnsAddMinutes(now, 1),
               };
               onChange(literallyNow);
+              (currentTarget as HTMLElement).blur();
             }}
           >
             {texts.now}
@@ -380,3 +390,5 @@ export default class RangePicker extends React.PureComponent<Props, State> {
     );
   }
 }
+
+export default withDataFormat(RangePicker) as React.FC<Props>;

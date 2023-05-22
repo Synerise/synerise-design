@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { TimePickerProps } from '@synerise/ds-time-picker/dist/TimePicker.types';
+
+import type { TimePickerProps } from '@synerise/ds-time-picker';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
+
 import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
 import { FilterDefinition, WithDisabledProp } from '../../../RangeFilter.types';
 import { DateLimitMode } from './RangeForm/RangeForm.types';
@@ -17,7 +20,11 @@ export type RangeFormContainerProps = {
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
   texts: Partial<TimeWindowTexts>;
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   timeFormat?: string;
+  valueFormatOptions?: DateToFormatOptions;
   timePickerProps?: Partial<TimePickerProps>;
   renderSuffix?: () => React.ReactNode;
 } & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> &

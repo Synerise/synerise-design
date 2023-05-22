@@ -12,21 +12,31 @@ export const AddCondition: React.FC<T.AddConditionProps> = ({
   texts,
   selectedSubject,
   selectedContext,
+  readOnly = false,
+  errorText,
 }) => {
+  const disabled = !(selectedSubject || selectedContext);
   return (
-    <S.AddConditionRow>
-      <S.ConditionConnections last first={conditionsNumber === 0} />
-      <Button
-        type="ghost"
-        mode="icon-label"
-        onClick={(): void => {
-          addCondition && addCondition(stepId);
-        }}
-        disabled={!(selectedSubject || selectedContext)}
-      >
-        <Icon component={<Add2M />} />
-        {conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
-      </Button>
-    </S.AddConditionRow>
+    <>
+      <S.AddConditionRow>
+        <S.ConditionConnections last first={conditionsNumber === 0} />
+
+        <S.ConditionRowLine>
+          <Button
+            icon={<Icon component={<Add2M />} />}
+            error={!disabled && Boolean(errorText)}
+            type="ghost"
+            mode="icon-label"
+            onClick={(): void => {
+              addCondition && addCondition(stepId);
+            }}
+            disabled={disabled}
+          >
+            {!readOnly && conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
+          </Button>
+          {!disabled && errorText && <S.ErrorWrapper>{errorText}</S.ErrorWrapper>}
+        </S.ConditionRowLine>
+      </S.AddConditionRow>
+    </>
   );
 };

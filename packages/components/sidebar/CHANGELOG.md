@@ -3,6 +3,166 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.62...@synerise/ds-sidebar@0.4.63) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.61...@synerise/ds-sidebar@0.4.62) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.60...@synerise/ds-sidebar@0.4.61) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.59...@synerise/ds-sidebar@0.4.60) (2023-04-14)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.58...@synerise/ds-sidebar@0.4.59) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.57...@synerise/ds-sidebar@0.4.58) (2023-03-31)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.56...@synerise/ds-sidebar@0.4.57) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.55...@synerise/ds-sidebar@0.4.56) (2023-03-20)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.54...@synerise/ds-sidebar@0.4.55) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.53...@synerise/ds-sidebar@0.4.54) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.52...@synerise/ds-sidebar@0.4.53) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.51...@synerise/ds-sidebar@0.4.52) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.49...@synerise/ds-sidebar@0.4.51) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.49...@synerise/ds-sidebar@0.4.50) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.48...@synerise/ds-sidebar@0.4.49) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.47...@synerise/ds-sidebar@0.4.48) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.46...@synerise/ds-sidebar@0.4.47) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.45...@synerise/ds-sidebar@0.4.46) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.44...@synerise/ds-sidebar@0.4.45) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
+## [0.4.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.43...@synerise/ds-sidebar@0.4.44) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-sidebar
+
+
+
+
+
 ## [0.4.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.4.42...@synerise/ds-sidebar@0.4.43) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-sidebar

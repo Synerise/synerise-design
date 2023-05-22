@@ -3,6 +3,340 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.6...@synerise/ds-date-range-picker@0.21.7) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.21.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.5...@synerise/ds-date-range-picker@0.21.6) (2023-05-16)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixes incorrect range calculation for months ([30405fb](https://github.com/Synerise/synerise-design/commit/30405fba917d3c70b1719cc95fafcfb90296b52d))
+
+
+
+
+
+## [0.21.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.4...@synerise/ds-date-range-picker@0.21.5) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds missing translation keys and texts ([8b9c454](https://github.com/Synerise/synerise-design/commit/8b9c454590aac1fd49f5cac9a7eb3f05a5f70822))
+* **date-range-picker:** fixes filter limit mode change for multiple days ([713a8e2](https://github.com/Synerise/synerise-design/commit/713a8e2b19a8e224b0ba696e93ac260639b590e4))
+
+
+
+
+
+## [0.21.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.3...@synerise/ds-date-range-picker@0.21.4) (2023-04-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** date range values are rounded to full seconds ([aa6d01b](https://github.com/Synerise/synerise-design/commit/aa6d01bf445abb613acfded51f868b70c116a1e3))
+* **date-range-picker:** makes ms truncation optional via props ([20480d4](https://github.com/Synerise/synerise-design/commit/20480d4636f4d439880cc0785fbe5e8339d91c2c))
+* **date-range-picker:** rounds range from & to to full seconds ([7f13dfe](https://github.com/Synerise/synerise-design/commit/7f13dfebb7f210b6b425e05907660c195d532874))
+
+
+
+
+
+## [0.21.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.2...@synerise/ds-date-range-picker@0.21.3) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.21.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.1...@synerise/ds-date-range-picker@0.21.2) (2023-04-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** "more" dropdown trigger should toggle dropdown ([7083de0](https://github.com/Synerise/synerise-design/commit/7083de02906eb79a2274ef952b2cbd2c8122e1a7))
+* **date-range-picker:** add some it.todo in tests ([ec6f52a](https://github.com/Synerise/synerise-design/commit/ec6f52a69df81e2d14312850521bc47114a70bdc))
+* **date-range-picker:** date range picker us notation fixes ([c17afe0](https://github.com/Synerise/synerise-design/commit/c17afe052c3c0226ab4ed2f7c25655a0d2e89a75))
+* **date-range-picker:** disable AM mode for 12 PM lower limit ([237bc00](https://github.com/Synerise/synerise-design/commit/237bc00277fa3fa3cb6dacba14a2630da75706fe))
+* **date-range-picker:** fixes filter unselect all ([592b48e](https://github.com/Synerise/synerise-design/commit/592b48eedc876dd8215790d2b73a08f3e0ade170))
+* **date-range-picker:** fixes issues with range cloning in old filters ([15fc3b4](https://github.com/Synerise/synerise-design/commit/15fc3b4878e761e2685cda99afdfd1ff590e2ac4))
+* **date-range-picker:** month filter US notation fixes ([06ce486](https://github.com/Synerise/synerise-design/commit/06ce4861a1cc468b15ba01b82f75eca374f96f0f))
+* **date-range-picker:** rangePicker 12HoursClock disabling options fix ([5de9505](https://github.com/Synerise/synerise-design/commit/5de95050e786821892557528cd3a61a0b5eadcbf))
+* **date-range-picker:** tests fixes ([68935f3](https://github.com/Synerise/synerise-design/commit/68935f394b102e4af8cb1f04f314275cb45a41bb))
+* **date-range-picker:** uS_NOTATION_MONTH_DAYS_INDEXES order fix ([1e1f701](https://github.com/Synerise/synerise-design/commit/1e1f701521a8a50c21f33bcf476cf41449e5c0f2))
+
+
+
+
+
+## [0.21.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.0...@synerise/ds-date-range-picker@0.21.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds separated translation key indexes ([6e899e9](https://github.com/Synerise/synerise-design/commit/6e899e99800ba26f81faf22650698b27529acb95))
+
+
+
+
+
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.9...@synerise/ds-date-range-picker@0.21.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** addsus notation support to monthly scheduler ([7cef538](https://github.com/Synerise/synerise-design/commit/7cef5388ee1e50b9f147e089bc2e88d4f6706c3f))
+* **date-range-picker:** fixes to support long display of days ([496e467](https://github.com/Synerise/synerise-design/commit/496e467e21d2071c8ab13a0b217332abb6e2cfc0))
+* **date-range-picker:** now button should not be left focused ([382dd26](https://github.com/Synerise/synerise-design/commit/382dd268e23337036933a5a420459e0748a7c170))
+* **date-range-picker:** prevent end time clearing to current time ([5e4cfb6](https://github.com/Synerise/synerise-design/commit/5e4cfb62b4a4bf50fb1fafc1497b146d2b31ad7c))
+
+
+### Features
+
+* **date-range-picker:** exposes a standalone monthly scheduler ([d73d59c](https://github.com/Synerise/synerise-design/commit/d73d59c2364fc4e9a6f8a1b2daeb306da8a9dc89))
+
+
+
+
+
+## [0.20.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.8...@synerise/ds-date-range-picker@0.20.9) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.20.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.7...@synerise/ds-date-range-picker@0.20.8) (2023-04-05)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.20.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.6...@synerise/ds-date-range-picker@0.20.7) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/Synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+
+
+
+
+
+## [0.20.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.5...@synerise/ds-date-range-picker@0.20.6) (2023-03-30)
+
+
+### Bug Fixes
+
+* **date-range-picker:** filter persistance test ([93b4a35](https://github.com/Synerise/synerise-design/commit/93b4a3576c9ec7c61f19dfe3bdf3b44c4a9d7912))
+* **date-range-picker:** filters must persist through range change ([1fb7b43](https://github.com/Synerise/synerise-design/commit/1fb7b430fa8f8528d7487802e3df682b3a4fd4d9))
+
+
+
+
+
+## [0.20.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.4...@synerise/ds-date-range-picker@0.20.5) (2023-03-29)
+
+
+### Bug Fixes
+
+* **date-range-picker:** order range picker sides chronologically ([ce24063](https://github.com/Synerise/synerise-design/commit/ce24063b6492150aac332244256fcbdac7eadcae))
+
+
+
+
+
+## [0.20.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.3...@synerise/ds-date-range-picker@0.20.4) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add allowedFilterTypes prop to DateRangePicker ([1be368e](https://github.com/Synerise/synerise-design/commit/1be368e03cb7f4224ed604c3c539a2385510d9ff))
+* **date-range-picker:** add default labels ([f9e8990](https://github.com/Synerise/synerise-design/commit/f9e899009d9eac4fba86ca8ed99704b2ad334b9d))
+* **date-range-picker:** allow range type buttons to be optional ([6d3e723](https://github.com/Synerise/synerise-design/commit/6d3e723b3324c3c73bcb29944211508de0069d87))
+* **date-range-picker:** change allowed filter types to string array ([4fbdca0](https://github.com/Synerise/synerise-design/commit/4fbdca055e576f2aaa115a2a2ebd403d4937e05c))
+* **date-range-picker:** fix monthly filter clipping ([20a205f](https://github.com/Synerise/synerise-design/commit/20a205fb892fd2bbeaf1d3f5f93641fe759f8dfe))
+* **date-range-picker:** fix vert align for 2nd select in monthly filter ([be25040](https://github.com/Synerise/synerise-design/commit/be25040b25378118290abfb85a888bb317501235))
+* **date-range-picker:** fix vertical alignment in monthly range filter ([b673345](https://github.com/Synerise/synerise-design/commit/b6733451ad42766f6a29e128969f531bbd7bd233))
+* **date-range-picker:** monthly filter dropdowns display current value ([3c70725](https://github.com/Synerise/synerise-design/commit/3c707252c0d6ef0899cfa60184356e084b56f1d6))
+
+
+
+
+
+## [0.20.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.2...@synerise/ds-date-range-picker@0.20.3) (2023-03-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** data format in date range picker usage fix ([0f17e68](https://github.com/Synerise/synerise-design/commit/0f17e68dbdf1d324e939e2dc45f5c5a454dc20f7))
+
+
+
+
+
+## [0.20.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.1...@synerise/ds-date-range-picker@0.20.2) (2023-03-22)
+
+
+### Bug Fixes
+
+* **date-range-picker:** display date range for relative ranges fixed ([fedcf35](https://github.com/Synerise/synerise-design/commit/fedcf356e86e5ccb4c82cd4c8bb4b85fc845de5d))
+* **date-range-picker:** exclude date ranges with offset.type 'since' ([a73e689](https://github.com/Synerise/synerise-design/commit/a73e689be1259b4537cb882f544773be38c9a7a6))
+* **date-range-picker:** round relative boundary to smaller unit ([2c47a26](https://github.com/Synerise/synerise-design/commit/2c47a26d528ba6f1845c13840fa3b997f8d5fda3))
+
+
+
+
+
+## [0.20.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.20.0...@synerise/ds-date-range-picker@0.20.1) (2023-03-21)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.13...@synerise/ds-date-range-picker@0.20.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* **data-format:** import types fix ([c3d20f2](https://github.com/Synerise/synerise-design/commit/c3d20f2bff43ce4605224c96b824a6f91662d961))
+* **date-range-picker:** useMemo deps fix ([12f0904](https://github.com/Synerise/synerise-design/commit/12f0904351ba6862df469523260d8f99354c39df))
+
+
+### Features
+
+* **data-format:** data format tools in pickers plus new tools ([c4adbfe](https://github.com/Synerise/synerise-design/commit/c4adbfe563af93f9daffc7e0b327098432c5e31e))
+
+
+
+
+
+## [0.19.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.12...@synerise/ds-date-range-picker@0.19.13) (2023-03-08)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.11...@synerise/ds-date-range-picker@0.19.12) (2023-03-06)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.10...@synerise/ds-date-range-picker@0.19.11) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.9...@synerise/ds-date-range-picker@0.19.10) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.7...@synerise/ds-date-range-picker@0.19.9) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.7...@synerise/ds-date-range-picker@0.19.8) (2023-03-01)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.6...@synerise/ds-date-range-picker@0.19.7) (2023-02-28)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.5...@synerise/ds-date-range-picker@0.19.6) (2023-02-27)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.4...@synerise/ds-date-range-picker@0.19.5) (2023-02-23)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.3...@synerise/ds-date-range-picker@0.19.4) (2023-02-16)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.2...@synerise/ds-date-range-picker@0.19.3) (2023-02-14)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.1...@synerise/ds-date-range-picker@0.19.2) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.19.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.19.0...@synerise/ds-date-range-picker@0.19.1) (2023-01-02)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.18.4...@synerise/ds-date-range-picker@0.19.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/Synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
 ## [0.18.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.18.3...@synerise/ds-date-range-picker@0.18.4) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

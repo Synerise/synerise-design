@@ -91,6 +91,7 @@ export type FactorsTexts = {
 export type FactorsProps = {
   factorKey?: React.ReactText;
   error?: boolean;
+  errorText?: React.ReactNode | string;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -121,12 +122,13 @@ export type FactorsProps = {
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: React.ReactNode;
-  inputProps?: InputProps;
+  inputProps?: Partial<InputProps>;
+  readOnly?: boolean;
 };
 
 export type FactorTypeSelectorProps = Pick<
   FactorsProps,
-  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType'
+  'unavailableFactorTypes' | 'availableFactorTypes' | 'selectedFactorType' | 'readOnly'
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;
@@ -155,6 +157,8 @@ export type FactorValueProps = Pick<
   | 'onDeactivate'
   | 'error'
   | 'inputProps'
+  | 'autoResize'
+  | 'readOnly'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -174,6 +178,7 @@ export type InputProps = Pick<
   | 'error'
   | 'inputProps'
   | 'autoResize'
+  | 'readOnly'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

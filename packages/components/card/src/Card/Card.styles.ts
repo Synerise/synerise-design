@@ -144,6 +144,9 @@ export const Title = styled(Typography.Title)<{ fat: boolean; description?: Reac
 
 export const Description = styled.div`
   && {
+    color: ${(props): string => props.theme.palette['grey-600']};
+    font-size: 13px;
+    line-height: 1.38;
     margin: 0;
   }
 `;

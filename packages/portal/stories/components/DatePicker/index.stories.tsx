@@ -1,16 +1,28 @@
 import * as React from 'react';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import { DatePicker } from '@synerise/ds-date-picker';
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, object, select } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => {
     const showTime = boolean('Show time', true);
-    const disabled = boolean("Set disabled", false);
+    const disabled = boolean('Set disabled', false);
     const prefixel = text('prefixel', 'Prefixel');
     const suffixel = text('suffixel', 'Suffixel');
     const hideNow = boolean('Hide now button', false);
+    const readOnly = boolean('Set readOnly', false);
+    const valueFormatOptions = object('valueFormatOptions', {});
 
+    const defaultHourProp = {
+      startOfDay: 'useStartOfDay',
+      endOfDay: 'useEndOfDay',
+      none: 'now'
+    };
+
+    const defaultHour = select('Default hour', defaultHourProp, 'now');
+    const useEndOfDay = defaultHour === 'useEndOfDay';
+    const useStartOfDay = defaultHour === 'useStartOfDay';
+    
     return (
       <div>
         <DatePicker
@@ -21,13 +33,16 @@ const stories = {
           onApply={value => {
             action('Selected', value);
           }}
-          useStartOfDay
+          useStartOfDay={useStartOfDay}
+          useEndOfDay={useEndOfDay}
           texts={{
             apply: 'Apply',
             inputPlaceholder: 'Select date',
             clearTooltip: 'Clear',
           }}
           hideNow={hideNow}
+          readOnly={readOnly}
+          valueFormatOptions={valueFormatOptions}
         />
       </div>
     );

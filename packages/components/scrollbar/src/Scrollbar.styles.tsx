@@ -24,9 +24,18 @@ export const Loader = styled.div<{ loading?: boolean }>`
   transition: opacity 0.3s ease-in-out;
   animation: ${spinnerAnimation} 1s forwards linear infinite;
   svg {
-    color: ${(props): string => props.theme.palette['blue-600']};
-    fill: ${(props): string => props.theme.palette['blue-600']};
+    color: ${(props): string => props.theme.palette['grey-600']};
+    fill: ${(props): string => props.theme.palette['grey-600']};
   }
+`;
+
+export const LoaderWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
 `;
 
 export const ScrollbarContainer = styled.div`

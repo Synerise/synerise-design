@@ -14,3 +14,4 @@ export {
   WrapperAutoResize,
 } from './Input';
 export type { EnhancedProps };
+export type { Props as InputProps } from './Input.types';

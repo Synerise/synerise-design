@@ -2,6 +2,8 @@ import * as React from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
+import fnsStartOfSecond from 'date-fns/startOfSecond';
+import { legacyParse } from '@date-fns/upgrade/v2';
 import { Container, Separator, Addon } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
@@ -22,11 +24,12 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   if (value.key === 'ALL_TIME' || isLifetime(value)) {
     return { type: 'ABSOLUTE' };
   }
-  const { id, timestamp, translationKey } = value;
+  const { id, timestamp, translationKey, filter } = value;
   const baseValue = {
     ...(id ? { id } : {}),
     ...(timestamp ? { timestamp } : {}),
     ...(translationKey ? { translationKey } : {}),
+    ...(filter ? { filter } : {}),
   };
   if (value.type === 'ABSOLUTE') {
     return {
@@ -44,7 +47,6 @@ export function defaultValueTransformer(value: DateRange): DateRange {
       duration: value.duration,
       offset: value.offset,
       future: value.future,
-      ...(value.filter ? { filter: value.filter } : {}),
     };
   }
   return value;
@@ -57,6 +59,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     showRelativePicker: true,
     validate: (): { valid: boolean } => ({ valid: true }),
     valueTransformer: defaultValueTransformer,
+    isTruncateMs: true,
   };
 
   constructor(props: DateRangePickerProps) {
@@ -93,9 +96,17 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       return;
     }
 
-    const { onValueChange, valueTransformer } = this.props;
+    const { onValueChange, valueTransformer, isTruncateMs } = this.props;
     const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
+    if (isTruncateMs) {
+      if (newValue.from !== undefined) {
+        newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+      }
+      if (newValue.to !== undefined) {
+        newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+      }
+    }
     if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
       this.setState({ mode: MODES.DATE });
     }
@@ -200,6 +211,9 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     }
     if (showFilter) {
       const addonKey = 'filter';
+      const label = value?.filter
+        ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
+        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.ADD-FILTER`, defaultMessage: 'Add filter' });
       addons.push({
         content: (
           <AddonCollapse
@@ -208,7 +222,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
                 onFilterRemove={this.handleRemoveFilterClick}
                 filter={value.filter}
                 disabled={!value.from || !value.to}
-                label={value?.filter ? 'Filter enabled' : 'Add filter'}
+                label={label}
                 onClick={this.handleModalOpenClick}
               />
             }
@@ -230,6 +244,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     const {
       showTime,
       format,
+      valueFormatOptions,
       disabledDate,
       validate,
       forceAdjacentMonths,
@@ -239,6 +254,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       intl,
       containerClass = 'ds-date-range-picker',
       footerProps,
+      allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
     } = this.props;
     const { value, mode } = this.state;
@@ -257,6 +273,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
             savedFilters={savedFilters}
+            allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
           />
         </Container>
@@ -308,6 +325,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
           value={value}
           showTime={showTime}
           format={format}
+          valueFormatOptions={valueFormatOptions}
           {...footerProps}
         />
       </Container>

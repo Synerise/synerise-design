@@ -46,6 +46,8 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
     return item.name;
   }, [item.id, item.name, searchQuery]);
 
+  const classes = item.nameWrapperClassNames?.length ? ['title', ...item.nameWrapperClassNames] : ['title'];
+
   return (
     <S.ItemLabelWrapper data-testid={item.description && 'item-description-icon'}>
       {editMode ? (
@@ -59,7 +61,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
         />
       ) : (
         <S.ItemLabelWithIcon>
-          <S.ItemLabel data-testid="list-item-name" className="title">
+          <S.ItemLabel data-testid="list-item-name" className={classes.join(' ')}>
             {name}
           </S.ItemLabel>
           {item.description && (

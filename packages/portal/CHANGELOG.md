@@ -3,6 +3,337 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.182.4](https://github.com/synerise/synerise-design/compare/portal@0.182.3...portal@0.182.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+* **stepper:** enable warning mode in step, fix logic of clicable pointer ([5f257f9](https://github.com/synerise/synerise-design/commit/5f257f95ececc549e4de0957995f5e13f664988b))
+
+
+
+
+
+## [0.182.3](https://github.com/synerise/synerise-design/compare/portal@0.182.2...portal@0.182.3) (2023-05-16)
+
+
+### Bug Fixes
+
+* **operators:** hides tabs if single group is available ([85a14e0](https://github.com/synerise/synerise-design/commit/85a14e030413a90f6d2bf92c27562e6d6f1a2a65))
+
+
+
+
+
+## [0.182.2](https://github.com/synerise/synerise-design/compare/portal@0.182.1...portal@0.182.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds story for checking translations ([b952f82](https://github.com/synerise/synerise-design/commit/b952f8296d5fcf0d7fd7e88a68db027eef123dee))
+
+
+
+
+
+## [0.182.1](https://github.com/synerise/synerise-design/compare/portal@0.182.0...portal@0.182.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* **information-card:** adds support for plain text descriptions ([ebeb57f](https://github.com/synerise/synerise-design/commit/ebeb57f8c6fafa035fdd664744a85f16aaa64304))
+
+
+### BREAKING CHANGES
+
+* **information-card:** children prop no longer supported
+
+
+
+
+
+# [0.182.0](https://github.com/synerise/synerise-design/compare/portal@0.181.0...portal@0.182.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **date-range-picker:** addsus notation support to monthly scheduler ([7cef538](https://github.com/synerise/synerise-design/commit/7cef5388ee1e50b9f147e089bc2e88d4f6706c3f))
+
+
+### Features
+
+* **date-range-picker:** exposes a standalone monthly scheduler ([d73d59c](https://github.com/synerise/synerise-design/commit/d73d59c2364fc4e9a6f8a1b2daeb306da8a9dc89))
+
+
+
+
+
+# [0.181.0](https://github.com/synerise/synerise-design/compare/portal@0.180.0...portal@0.181.0) (2023-04-05)
+
+
+### Features
+
+* **manageable-list:** adds new header suffix options ([0b0817f](https://github.com/synerise/synerise-design/commit/0b0817fe1bbe5e5a0102b5dd86cac935352946c0))
+
+
+
+
+
+# [0.180.0](https://github.com/synerise/synerise-design/compare/portal@0.179.1...portal@0.180.0) (2023-04-05)
+
+
+### Features
+
+* **collector:** adds scrollbarProps ([6a67188](https://github.com/synerise/synerise-design/commit/6a6718814e8fb84c147b69a688d9eee0a3969cb7))
+* **collector:** improve storybook example ([850ae51](https://github.com/synerise/synerise-design/commit/850ae51d7b1d51185a7b29ecf801ccee6979b257))
+* **item-picker:** adds scrollbarProps property ([36f158f](https://github.com/synerise/synerise-design/commit/36f158f93ffe6be5f5e37dcf3ca7df0c5bc36e1b))
+* **item-picker:** improve storybook example ([35790a4](https://github.com/synerise/synerise-design/commit/35790a49fe8a4734e320a19588f7540cd218d4b4))
+* **item-picker:** updates storybook example ([e1962a6](https://github.com/synerise/synerise-design/commit/e1962a6bac669712366a53c5aba6e28dafedec08))
+* **item-picker:** updates storybook examples ([433dd90](https://github.com/synerise/synerise-design/commit/433dd9095d4cd9da1ed40d7ccd4c907976236ec2))
+* **scrollbar:** improves styles of the loading state ([c3c6a6c](https://github.com/synerise/synerise-design/commit/c3c6a6cc8d7eefc07be308454dc14cffdb96319d))
+* **scrollbar:** updates storybook example ([6567e0f](https://github.com/synerise/synerise-design/commit/6567e0f3992445d72585e73ead87a532b8bf2220))
+
+
+
+
+
+## [0.179.1](https://github.com/synerise/synerise-design/compare/portal@0.179.0...portal@0.179.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* **time-picker:** for 12 pm picker fix ([2566b19](https://github.com/synerise/synerise-design/commit/2566b190a194b095bbe6e4a12a883ef8fd183422))
+* **time-picker:** rever storybook config change ([001ba34](https://github.com/synerise/synerise-design/commit/001ba343d8519358e3cf174aa70b237468118943))
+
+
+
+
+
+# [0.179.0](https://github.com/synerise/synerise-design/compare/portal@0.178.0...portal@0.179.0) (2023-03-30)
+
+
+### Bug Fixes
+
+* **portal:** fix block indentation, fix unexpected ret val from visitor ([67d8dc6](https://github.com/synerise/synerise-design/commit/67d8dc6e8c408069b1493782ea45a76d9adfcfb9))
+* **portal:** prefer named exports to default ([7bbcf62](https://github.com/synerise/synerise-design/commit/7bbcf62d72e9d943965d75255719c29de08314dd))
+* **portal:** types with ; not like objects , ([dac35a3](https://github.com/synerise/synerise-design/commit/dac35a379d25e55ca5db5390da5b077478dc9f72))
+
+
+### Features
+
+* **portal:** add link to the sources in "Show info" details ([2ab571c](https://github.com/synerise/synerise-design/commit/2ab571c084f56ef3643ef457e6bfa3f16e102cd6))
+* **portal:** docs-inline-source-links as a plugin ([f7f106d](https://github.com/synerise/synerise-design/commit/f7f106d149f184521201a54d0ec0aeccdd18f60b))
+
+
+
+
+
+# [0.178.0](https://github.com/synerise/synerise-design/compare/portal@0.177.3...portal@0.178.0) (2023-03-29)
+
+
+### Bug Fixes
+
+* **portal:** add less-vars-loader ([c3f1461](https://github.com/synerise/synerise-design/commit/c3f1461d8197550e288ded586691323328430571))
+* **portal:** addon-knobs register dist dir ([f1ee3e4](https://github.com/synerise/synerise-design/commit/f1ee3e436131e3c2a65f977ed14b16ac9c2d7b37))
+
+
+### Features
+
+* **portal:** upgrade to storybook 6.5 ([89c3394](https://github.com/synerise/synerise-design/commit/89c339434261545e9deb0e653f78a7274b79f941))
+
+
+
+
+
+## [0.177.3](https://github.com/synerise/synerise-design/compare/portal@0.177.2...portal@0.177.3) (2023-03-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added stories ([76d1d79](https://github.com/synerise/synerise-design/commit/76d1d7973a1f4962e4bcd2d4886b2d769f81b5ff))
+* **date-range-picker:** allow range type buttons to be optional ([6d3e723](https://github.com/synerise/synerise-design/commit/6d3e723b3324c3c73bcb29944211508de0069d87))
+* **inline-edit:** updated stories ([8bd8fe4](https://github.com/synerise/synerise-design/commit/8bd8fe4e019f009a519016370db65311b3d164ea))
+
+
+
+
+
+## [0.177.2](https://github.com/synerise/synerise-design/compare/portal@0.177.1...portal@0.177.2) (2023-03-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** data format in date range picker usage fix ([0f17e68](https://github.com/synerise/synerise-design/commit/0f17e68dbdf1d324e939e2dc45f5c5a454dc20f7))
+* **date-range-picker:** rollback storybook config change ([e9b218c](https://github.com/synerise/synerise-design/commit/e9b218cf6a02f81ba402a393ec3a4946d9850ddd))
+
+
+
+
+
+## [0.177.1](https://github.com/synerise/synerise-design/compare/portal@0.177.0...portal@0.177.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* **data-format:** data format usage fixes ([fef43fc](https://github.com/synerise/synerise-design/commit/fef43fce8a04a28caddbb7b4dbd68126013ee58d))
+
+
+
+
+
+# [0.177.0](https://github.com/synerise/synerise-design/compare/portal@0.176.1...portal@0.177.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* **data-format:** import types fix ([c3d20f2](https://github.com/synerise/synerise-design/commit/c3d20f2bff43ce4605224c96b824a6f91662d961))
+
+
+### Features
+
+* **data-format:** data format tools in pickers plus new tools ([c4adbfe](https://github.com/synerise/synerise-design/commit/c4adbfe563af93f9daffc7e0b327098432c5e31e))
+
+
+
+
+
+## [0.176.1](https://github.com/synerise/synerise-design/compare/portal@0.176.0...portal@0.176.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **select:** resolve PR comments ([58cd450](https://github.com/synerise/synerise-design/commit/58cd450a7ffbe9e092c995bbe0da07d5a808eb0b))
+
+
+
+
+
+# [0.176.0](https://github.com/synerise/synerise-design/compare/portal@0.175.0...portal@0.176.0) (2023-03-08)
+
+
+### Features
+
+* **data-format:** using data format tools in ds components ([ee52cba](https://github.com/synerise/synerise-design/commit/ee52cbac5e798e048722aefb2e47a7058e0f4c9c))
+
+
+
+
+
+# [0.175.0](https://github.com/synerise/synerise-design/compare/portal@0.174.0...portal@0.175.0) (2023-03-06)
+
+
+### Features
+
+* **input-number:** adds tooltip & tooltipConfig to storybook example ([4adfef1](https://github.com/synerise/synerise-design/commit/4adfef130428a439440314f57de15460f12938d6))
+* **input-number:** adds tooltip next to input label ([bba90b6](https://github.com/synerise/synerise-design/commit/bba90b60db71b49d994c7432c48d92668ec93937))
+* **item-picker:** changes onClear to optional property ([6d4df8f](https://github.com/synerise/synerise-design/commit/6d4df8f871d55cdaec55f42c1bdca55f2aea0497))
+* **select:** adds tooltipConfig property ([0df3e95](https://github.com/synerise/synerise-design/commit/0df3e95638e58b8aca04653caa83a7086c9eb88e))
+
+
+
+
+
+# [0.174.0](https://github.com/synerise/synerise-design/compare/portal@0.173.0...portal@0.174.0) (2023-02-27)
+
+
+### Features
+
+* **data-format:** after review changes ([fd1e6cc](https://github.com/synerise/synerise-design/commit/fd1e6ccbbfbbafa67f6d5e310a73ae64a029155e))
+* **ds-data-format:** data format intl tools ([838380b](https://github.com/synerise/synerise-design/commit/838380b89956c37ff0e54b6be93f68aae03f1e1b))
+
+
+
+
+
+# [0.173.0](https://github.com/synerise/synerise-design/compare/portal@0.172.0...portal@0.173.0) (2023-02-23)
+
+
+### Features
+
+* **manageable-list:** adds styles for selected item ([6dd222f](https://github.com/synerise/synerise-design/commit/6dd222f0bc8485da3bbbcfe31100c0cbcb7f4252))
+
+
+
+
+
+# [0.172.0](https://github.com/synerise/synerise-design/compare/portal@0.171.0...portal@0.172.0) (2023-02-14)
+
+
+### Bug Fixes
+
+* **progress-bar:** show percentage in progressBar stories ([5b9650e](https://github.com/synerise/synerise-design/commit/5b9650eca7fa86fef3de41734649d44237ecc50a))
+
+
+### Features
+
+* **tooltip:** adds customComponent prop ([46da191](https://github.com/synerise/synerise-design/commit/46da191d732325f9435352376af0c7420b1e5fdb))
+* **tooltip:** adds renderCustomComponent property ([5caccd7](https://github.com/synerise/synerise-design/commit/5caccd7e6e952e34f910731f537225afffbf2264))
+
+
+
+
+
+# [0.171.0](https://github.com/synerise/synerise-design/compare/portal@0.170.3...portal@0.171.0) (2023-02-06)
+
+
+### Features
+
+* **color-picker:** copy tooltip texts object ([929c93e](https://github.com/synerise/synerise-design/commit/929c93e53e3679e69c44e8ee655b0dbf200ad283))
+
+
+
+
+
+## [0.170.3](https://github.com/synerise/synerise-design/compare/portal@0.170.2...portal@0.170.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* **color-picker:** bugs ([9702cad](https://github.com/synerise/synerise-design/commit/9702cada1d33b94275681b905cba291684cf7732))
+* **color-picker:** main wrapper for the color-picker component ([6c3ad7e](https://github.com/synerise/synerise-design/commit/6c3ad7ea4d1b2a4a089a0494126a2f12962588df))
+
+
+
+
+
+## [0.170.2](https://github.com/synerise/synerise-design/compare/portal@0.170.1...portal@0.170.2) (2023-01-09)
+
+
+### Bug Fixes
+
+* **select:** add selector style prop to select field ([edac18e](https://github.com/synerise/synerise-design/commit/edac18e6f8befb184df7349aa310e2ab9dab31e6))
+* **select:** pipeline bug fix + merge with master ([ba286c7](https://github.com/synerise/synerise-design/commit/ba286c7ed3ea43ca7b134c9113558a00cd286859))
+* **select:** pipeline fix ([e0e4726](https://github.com/synerise/synerise-design/commit/e0e47268518ea082dbc69e1a58ea29c7e750c930))
+
+
+
+
+
+## [0.170.1](https://github.com/synerise/synerise-design/compare/portal@0.170.0...portal@0.170.1) (2023-01-02)
+
+
+### Bug Fixes
+
+* **color-picker:** fix adding dot to tags and typing,copy text ([b33b588](https://github.com/synerise/synerise-design/commit/b33b5882d5d357b745d2b9421c4d30d09c651871))
+* **color-picker:** fix height of dropdown ([0f1d964](https://github.com/synerise/synerise-design/commit/0f1d9647cfd29936c98218f4fd7de9a175dcb3e2))
+* **color-picker:** remove select and add input to pick color ([dd9cd1a](https://github.com/synerise/synerise-design/commit/dd9cd1aba392af05637ee89b51f09ffc59e9c5b7))
+
+
+
+
+
+# [0.170.0](https://github.com/synerise/synerise-design/compare/portal@0.169.1...portal@0.170.0) (2022-12-13)
+
+
+### Features
+
+* **filter:** readOnly state for conditions ([dfa4db3](https://github.com/synerise/synerise-design/commit/dfa4db35826c0800859b7217dd1ea2f1497ac3c9))
+
+
+
+
+
 ## [0.169.1](https://github.com/synerise/synerise-design/compare/portal@0.169.0...portal@0.169.1) (2022-12-08)
 
 

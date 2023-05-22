@@ -32,6 +32,7 @@ export type ItemProps<T extends object = {}> = T & {
   canDelete?: boolean;
   canDuplicate?: boolean;
   name: string;
+  nameWrapperClassNames?: string[];
   description?: string;
   tag?: React.ReactElement;
   icon?: React.ReactNode;
@@ -48,4 +49,6 @@ export type ItemProps<T extends object = {}> = T & {
   disableExpanding?: boolean;
   expanded?: boolean;
   headerSuffix?: React.ReactNode;
+  hideHeaderSuffixOnHover?: boolean;
+  additionalSuffix?: React.ReactNode;
 };

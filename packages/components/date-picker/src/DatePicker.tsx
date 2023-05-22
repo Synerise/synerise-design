@@ -1,6 +1,8 @@
 import * as React from 'react';
+
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import { Props } from './DatePicker.types';
 import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
@@ -11,6 +13,7 @@ const DatePicker: React.FC<Props> = ({
   disabled,
   texts,
   format,
+  valueFormatOptions,
   value,
   onApply,
   showTime,
@@ -24,6 +27,7 @@ const DatePicker: React.FC<Props> = ({
   dropdownProps,
   suffixel,
   hideNow,
+  readOnly,
   ...rest
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
@@ -59,7 +63,36 @@ const DatePicker: React.FC<Props> = ({
     onClear && onClear();
   }, [onClear]);
 
-  return (
+  const trigger = (
+    <PickerInput
+      disabled={disabled}
+      autoFocus={!disabled && autoFocus}
+      value={selectedDate}
+      showTime={showTime}
+      onClick={
+        !readOnly
+          ? (): void => {
+              setDropVisible(!dropVisible);
+            }
+          : undefined
+      }
+      format={format}
+      valueFormatOptions={valueFormatOptions}
+      onClear={handleClear}
+      placeholder={texts.inputPlaceholder}
+      prefixel={prefixel}
+      suffixel={suffixel}
+      clearTooltip={texts.clearTooltip}
+      highlight={!!dropVisible && !disabled}
+      error={error}
+      errorText={errorText}
+      readOnly={readOnly}
+    />
+  );
+
+  return readOnly ? (
+    trigger
+  ) : (
     <Dropdown
       overlay={
         <S.OverlayContainer ref={ref}>
@@ -82,28 +115,7 @@ const DatePicker: React.FC<Props> = ({
       disabled={disabled}
       {...dropdownProps}
     >
-      <PickerInput
-        disabled={disabled}
-        autoFocus={!disabled && autoFocus}
-        value={selectedDate}
-        showTime={showTime}
-        onClick={
-          !disabled
-            ? (): void => {
-                setDropVisible(!dropVisible);
-              }
-            : undefined
-        }
-        format={format}
-        onClear={handleClear}
-        placeholder={texts.inputPlaceholder}
-        prefixel={prefixel}
-        suffixel={suffixel}
-        clearTooltip={texts.clearTooltip}
-        highlight={!!dropVisible && !disabled}
-        error={error}
-        errorText={errorText}
-      />
+      {trigger}
     </Dropdown>
   );
 };

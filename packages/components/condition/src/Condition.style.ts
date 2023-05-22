@@ -5,6 +5,11 @@ import Cruds from '@synerise/ds-cruds';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import { ConditionRowProps } from './ConditionStep/ConditionRow';
 
+export const ErrorWrapper = styled.div`
+  color: ${(props): string => props.theme.palette['red-600']};
+  margin-top: 8px;
+`;
+
 export const DragIcon = styled(Icon)`
   opacity: 0;
   visibility: hidden;
@@ -50,6 +55,11 @@ export const StepName = styled.div`
     margin-top: 2px;
     cursor: default;
   }
+`;
+
+export const StepIndexWrapper = styled.span<{ readOnly?: boolean }>`
+  font-size: 13px;
+  font-weight: ${({ readOnly }): string => (readOnly ? '500' : '400')};
 `;
 
 export const Condition = styled.div`
@@ -273,13 +283,60 @@ export const ConditionRows = styled.div`
   flex-direction: column;
 `;
 
-export const ConditionRow = styled.div<{ index: number; stepType: ConditionRowProps['stepType'] }>`
+export const ConditionRowDefinition = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+`;
+
+export const ConditionRowLine = styled.div``;
+
+export const AddConditionRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+`;
+
+export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean; readOnly?: boolean }>`
+  display: flex;
+  width: 32px;
+  min-width: 32px;
+  margin: 0 12px;
+  position: relative;
+  height: 32px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: ${(props): string => (props.first ? '100%' : '16px')};
+    height: 1px;
+    top: 16px;
+    left: ${(props): string => (props.first ? '0' : '16px')};
+    background-color: ${(props): string => props.theme.palette['grey-300']};
+  }
+  &:after {
+    display: ${(props): string => ((props.first && props.last) || (props.last && props.readOnly) ? 'none' : 'flex')};
+    position: absolute;
+    content: '';
+    width: 1px;
+    left: 50%;
+    height: auto;
+    top: ${(props): string => (props.first ? '16px' : '0')};
+    bottom: ${(props): string => (props.last ? '16px' : '-16px')};
+    background-color: ${(props): string => props.theme.palette['grey-300']};
+  }
+`;
+
+export const ConditionRow = styled.div<{ withError: boolean; index: number; stepType: ConditionRowProps['stepType'] }>`
   padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
   z-index: ${(props): number => 10000 - props.index};
+  display: flex;
+
+  ${ConditionConnections} {
+    height: ${(props): string => (props.withError ? 'auto' : '32px')};
+  }
 
   ${ConditionWrapper} {
     margin-right: 8px;
@@ -295,43 +352,6 @@ export const ConditionRow = styled.div<{ index: number; stepType: ConditionRowPr
       pointer-events: all;
       cursor: pointer;
     }
-  }
-`;
-
-export const AddConditionRow = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: row;
-`;
-
-export const ConditionConnections = styled.span<{ first?: boolean; last?: boolean }>`
-  display: flex;
-  width: 32px;
-  min-width: 32px;
-  margin: 0 12px;
-  position: relative;
-  height: 32px;
-
-  &:before {
-    position: absolute;
-    content: '';
-    width: ${(props): string => (props.first ? '100%' : '16px')};
-    height: 1px;
-    top: 50%;
-    left: ${(props): string => (props.first ? '0' : '16px')};
-    background-color: ${(props): string => props.theme.palette['grey-300']};
-  }
-  &:after {
-    display: ${(props): string => (props.first && props.last ? 'none' : 'flex')};
-    position: absolute;
-    content: '';
-    width: 1px;
-    left: 50%;
-    height: auto;
-    top: ${(props): string => (props.first ? '16px' : '0')};
-    bottom: ${(props): string => (props.last ? '16px' : '-16px')};
-    background-color: ${(props): string => props.theme.palette['grey-300']};
   }
 `;
 

@@ -4,6 +4,9 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import dayjs from 'dayjs';
+
+import { withDataFormat } from '@synerise/ds-data-format';
+
 import { DayKey, TimeWindowProps, State, DayOptions, TimeWindowTexts } from './TimeWindow.types';
 import * as S from './TimeWindow.styles';
 import { getDateFromDayValue } from './utils';
@@ -17,6 +20,12 @@ import Day from './Day/Day';
 import SelectionHint from '../SelectionHint/SelectionHint';
 import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from './RangeFormContainer/RangeFormContainer.types';
+import {
+  EU_NOTATION_MONTH_DAYS_INDEXES,
+  EU_NOTATION_WEEK_DAYS_INDEXES,
+  US_NOTATION_MONTH_DAYS_INDEXES,
+  US_NOTATION_WEEK_DAYS_INDEXES,
+} from './constants/timeWindow.constants';
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
@@ -44,8 +53,9 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<TimeWindowProps>, prevState: Readonly<State>): void {
+    const { activeDays } = this.state;
     const hasCommonRange = this.haveActiveDaysCommonRange();
-    if (prevState.isRangeDefined !== hasCommonRange) {
+    if (prevState.isRangeDefined !== hasCommonRange && activeDays.length) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState(state => ({ ...state, isRangeDefined: hasCommonRange }));
     }
@@ -129,8 +139,8 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   handleDayTimeChange = (value: DateValue, dayKey: DayKey): void => {
     this.handleDayChange(dayKey, {
       restricted: true,
-      start: dayjs(value[0]).format(TIME_FORMAT),
-      stop: dayjs(value[1]).format(TIME_FORMAT),
+      start: value[0] !== undefined ? dayjs(value[0]).format(TIME_FORMAT) : DEFAULT_RANGE_START,
+      stop: value[1] !== undefined ? dayjs(value[1]).format(TIME_FORMAT) : DEFAULT_RANGE_END,
     });
   };
 
@@ -140,6 +150,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const updatedDays = {};
     activeDays.forEach(k => {
       updatedDays[k] = {
+        ...this.getDayValue(k),
         day: k,
         start: dayjs(value[0]).format(TIME_FORMAT),
         stop: dayjs(value[1]).format(TIME_FORMAT),
@@ -160,7 +171,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   };
 
   handleClearSelection = (): void => {
-    this.setState({ activeDays: [] });
+    this.setState({ activeDays: [], isRangeDefined: false });
   };
 
   handleSelectAll = (): void => {
@@ -224,9 +235,26 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop });
   };
 
+  replaceDaysIndexesForUSNotation = (daysIndexes: number[]): number[] => {
+    const { isSundayFirstWeekDay } = this.props;
+    const stringifyDaysIndexes = JSON.stringify(daysIndexes);
+    const stringifyEUNotationWeekDaysIndexes = JSON.stringify(EU_NOTATION_WEEK_DAYS_INDEXES);
+    const stringifyEUNotationMonthDaysIndexes = JSON.stringify(EU_NOTATION_MONTH_DAYS_INDEXES);
+    let result = daysIndexes;
+
+    if (stringifyDaysIndexes === stringifyEUNotationWeekDaysIndexes && isSundayFirstWeekDay) {
+      result = US_NOTATION_WEEK_DAYS_INDEXES;
+    }
+    if (stringifyDaysIndexes === stringifyEUNotationMonthDaysIndexes && isSundayFirstWeekDay) {
+      result = US_NOTATION_MONTH_DAYS_INDEXES;
+    }
+    return result;
+  };
+
   getAllKeys = (): DayKey[] => {
     const { numberOfDays, customDays } = this.props;
     let keys = range(numberOfDays);
+    keys = this.replaceDaysIndexesForUSNotation(keys).slice();
     if (customDays) keys = [...keys, ...(Object.keys(customDays) as unknown as number[])];
     return keys;
   };
@@ -404,4 +432,4 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 }
 
-export default injectIntl(TimeWindowBase);
+export default withDataFormat(injectIntl(TimeWindowBase)) as React.FC<TimeWindowProps>;

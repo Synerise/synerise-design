@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.14.2...@synerise/ds-card@0.14.3) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.14.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.14.1...@synerise/ds-card@0.14.2) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.14.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.14.0...@synerise/ds-card@0.14.1) (2023-03-02)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.13.3...@synerise/ds-card@0.14.0) (2023-02-14)
+
+
+### Features
+
+* **card:** adjusts styles to use as a tooltip ([13a73e5](https://github.com/Synerise/synerise-design/commit/13a73e5ddbfe3cdb3ca15f9d03f470b04cd2a8a0))
+
+
+
+
+
+## [0.13.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.13.2...@synerise/ds-card@0.13.3) (2023-01-12)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
 ## [0.13.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.13.1...@synerise/ds-card@0.13.2) (2022-12-07)
 
 **Note:** Version bump only for package @synerise/ds-card

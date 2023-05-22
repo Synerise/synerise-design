@@ -4,12 +4,12 @@ import './style/index.less';
 import { useIntl } from 'react-intl';
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
-import { Props } from './DateRangePicker.types';
+import { DateRangePickerProps } from './DateRangePicker.types';
 import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
 import { getDefaultTexts } from './utils';
 
-const DateRangePicker: React.FC<Props> = props => {
+const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   const {
     value,
     onApply,
@@ -19,10 +19,12 @@ const DateRangePicker: React.FC<Props> = props => {
     forceAdjacentMonths,
     disableDefaultTexts,
     arrowColor,
+    valueFormatOptions,
     onVisibleChange,
     popoverProps = {},
     rangePickerInputProps = {},
     renderPopoverTrigger = (): void => undefined,
+    readOnly = false,
   } = props;
   const intl = useIntl();
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(false);
@@ -59,6 +61,25 @@ const DateRangePicker: React.FC<Props> = props => {
   const conditionalVisibilityProps = {
     ...(popupVisible === false && { visible: false }),
   };
+
+  const handleRangePickerInputClick = readOnly ? undefined : (): void => setPopupVisible(undefined);
+
+  const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
+    <RangePickerInput
+      onClick={handleRangePickerInputClick}
+      value={selectedDate}
+      showTime={showTime}
+      texts={allTexts}
+      valueFormatOptions={valueFormatOptions}
+      onChange={onApplyCallback}
+      active={!!inputActive}
+      {...rangePickerInputProps}
+      readOnly={readOnly}
+    />
+  );
+
+  if (readOnly) return <>{triggerElement}</>;
+
   return (
     <S.PickerWrapper arrowColor={arrowColor}>
       <S.PopoverWrapper
@@ -83,17 +104,7 @@ const DateRangePicker: React.FC<Props> = props => {
         {...popoverProps}
         {...conditionalVisibilityProps}
       >
-        {popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
-          <RangePickerInput
-            onClick={(): void => setPopupVisible(undefined)}
-            value={selectedDate}
-            showTime={showTime}
-            texts={allTexts}
-            onChange={onApplyCallback}
-            active={!!inputActive}
-            {...rangePickerInputProps}
-          />
-        )}
+        {triggerElement}
       </S.PopoverWrapper>
     </S.PickerWrapper>
   );

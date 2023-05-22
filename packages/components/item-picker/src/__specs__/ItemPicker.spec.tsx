@@ -239,6 +239,16 @@ describe('ItemPicker component', () => {
     expect(getByTestId(CLEAR_TEST_ID)).toBeTruthy();
   });
 
+  it('should render without clear icon', () => {
+    const handleChange = jest.fn();
+
+    const { queryByTestId } = renderWithProvider(
+      <ITEM_PICKER onChange={handleChange} description={DESCRIPTION} selectedItem={DATA_SOURCE[0]} />
+    );
+
+    expect(queryByTestId(CLEAR_TEST_ID)).toBeFalsy();
+  });
+
   it('should render without custom change button', () => {
     const handleClear = jest.fn();
     const handleChange = jest.fn();
@@ -296,5 +306,7 @@ describe('ItemPicker component', () => {
 
     expect(getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
   });
-
+  it.todo('should call onYReachEnd function');
+  it.todo('should shows loading state');
+  it.todo('should highlight labels based on searchBarProps.value');
 });

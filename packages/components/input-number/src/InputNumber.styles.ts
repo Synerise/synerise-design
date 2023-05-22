@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import BaseAntInputNumber from 'antd/lib/input-number';
 import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
+export const InputNumberContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+`;
+
 export const AntdInputNumber = styled(BaseAntInputNumber)`
   color: ${(props): string => props.theme.palette['grey-700']};
 
@@ -27,6 +34,16 @@ export const Label = styled.label`
   font-weight: 500;
   display: block;
   white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+
+  .ds-icon > svg {
+    margin-top: -1px;
+    fill: ${(props): string => props.theme.palette['grey-400']};
+  }
 `;
 
 export const Description = styled.div`

@@ -87,6 +87,7 @@ const Factors: React.FC<FactorsProps> = ({
   getPopupContainerOverride,
   error,
   inputProps,
+  readOnly,
 }) => {
   const { formatMessage } = useIntl();
   const text = React.useMemo(
@@ -159,6 +160,8 @@ const Factors: React.FC<FactorsProps> = ({
         weeks: formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKS`, defaultMessage: 'Weeks' }),
         years: formatMessage({ id: `DS.DATE-RANGE-PICKER.YEARS`, defaultMessage: 'Years' }),
         yesterday: formatMessage({ id: `DS.DATE-RANGE-PICKER.YESTERDAY`, defaultMessage: 'Yesterday' }),
+        range: formatMessage({ id: `DS.DATE-RANGE-PICKER.RANGE`, defaultMessage: 'Range' }),
+        hour: formatMessage({ id: `DS.DATE-RANGE-PICKER.HOUR`, defaultMessage: 'Hour' }),
       },
       datePicker: {
         apply: formatMessage({ id: 'DS.FACTORS.DATE_PICKER.APPLY', defaultMessage: 'Apply' }),
@@ -231,6 +234,7 @@ const Factors: React.FC<FactorsProps> = ({
           selectedFactor={selectedFactor}
           availableFactorTypes={availableFactorTypes}
           unavailableFactorTypes={unavailableFactorTypes}
+          readOnly={readOnly}
         />
       )}
       <FactorValue
@@ -254,6 +258,7 @@ const Factors: React.FC<FactorsProps> = ({
         onActivate={onActivate}
         onDeactivate={onDeactivate}
         error={error}
+        readOnly={readOnly}
       />
     </S.Group>
   );

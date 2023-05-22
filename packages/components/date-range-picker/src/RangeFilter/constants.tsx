@@ -56,6 +56,7 @@ export const defaultId = uuid();
 export const TYPES_DATA = {
   MONTHLY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.MONTHLY',
+    defaultLabel: 'Monthly',
     component: MonthlyFilter,
     definition: [
       {
@@ -66,9 +67,15 @@ export const TYPES_DATA = {
       },
     ],
   },
-  WEEKLY: { labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY', component: WeeklyFilter, definition: {} },
+  WEEKLY: {
+    labelTranslationKey: 'DS.DATE-RANGE-PICKER.WEEKLY',
+    defaultLabel: 'Weekly',
+    component: WeeklyFilter,
+    definition: {},
+  },
   DAILY: {
     labelTranslationKey: 'DS.DATE-RANGE-PICKER.DAILY',
+    defaultLabel: 'Daily',
     component: DailyFilter,
     definition: {
       start: DEFAULT_RANGE_START,
@@ -79,3 +86,28 @@ export const TYPES_DATA = {
 };
 
 export const SPACE_UNICODE = '\u00A0';
+
+export const MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK = range(1, 6).map(i => ({
+  id: `DS.DATE-RANGE-PICKER.NTH.${i}`,
+  defaultMessage: `Week ${i}`,
+}));
+
+export const MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG = [
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.1', defaultMessage: 'Monday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.2', defaultMessage: 'Tuesday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.3', defaultMessage: 'Wednesday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.4', defaultMessage: 'Thursday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.5', defaultMessage: 'Friday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.6', defaultMessage: 'Saturday' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_LONG.7', defaultMessage: 'Sunday' },
+];
+
+export const MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_SHORT = [
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.1', defaultMessage: 'Mon' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.2', defaultMessage: 'Tue' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.3', defaultMessage: 'Wed' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.4', defaultMessage: 'Thu' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.5', defaultMessage: 'Fri' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.6', defaultMessage: 'Sat' },
+  { id: 'DS.DATE-RANGE-PICKER.WEEKDAYS_SHORT.7', defaultMessage: 'Sun' },
+];

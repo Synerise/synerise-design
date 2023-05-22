@@ -1,8 +1,11 @@
+import * as React from 'react';
+import { boolean } from '@storybook/addon-knobs';
+
 import { FolderM } from '@synerise/ds-icon';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
-import * as React from 'react';
 import { Input } from '@synerise/ds-input';
+import Status from '@synerise/ds-status';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 
@@ -42,6 +45,7 @@ export const withOptions = {
   id: '00000000-0000-0000-0000-000000000005',
   name: TEXT_PLACEHOLDER,
   icon: <FolderM />,
+  headerSuffix: <Status label={'Draft'} type={'disabled'} />,
   dropdown: (
     <DropdownMenu>
       <DropdownMenuItem> Option 1</DropdownMenuItem>
@@ -57,7 +61,9 @@ export const withExpanderAndOptions = {
   dropdown: (
     <DropdownMenu>
       <DropdownMenuItem
-        onClick={(e)=>{e.stopPropagation();}}
+        onClick={e => {
+          e.stopPropagation();
+        }}
       >
         Option 1
       </DropdownMenuItem>

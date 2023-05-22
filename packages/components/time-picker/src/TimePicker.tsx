@@ -1,20 +1,33 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
+import { useCallback } from 'react';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { range } from 'lodash';
+import dayjs from 'dayjs';
+import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { useDataFormat } from '@synerise/ds-data-format';
+
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
-import { TimePickerProps } from './TimePicker.types';
+import { ClockModes, TimePickerProps } from './types/TimePicker.types';
+import { handleTimeChange } from './utils/timePicker.utils';
+import {
+  AM,
+  CLOCK_MODES,
+  HOUR,
+  HOUR_12,
+  MINUTE,
+  PM,
+  SECOND,
+  DISABLE_CLOCK_MODE_HOUR,
+} from './constants/timePicker.constants';
 
-const defaultUnits = ['hour', 'minute', 'second'] as dayjs.UnitType[];
-export const CLOCK_MODES = {
-  AM: 'AM',
-  PM: 'PM',
-};
+dayjs.extend(customParseFormatPlugin);
+
+const defaultUnits = [HOUR, MINUTE, SECOND] as dayjs.UnitType[];
 
 const TimePicker: React.FC<TimePickerProps> = ({
   placement,
@@ -23,10 +36,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
   value,
   units,
   defaultOpen,
-  defaultAM,
   onChange,
   containerStyle = {},
   timeFormat,
+  valueFormatOptions,
   use12HourClock,
   alwaysOpen,
   dropdownProps = {},
@@ -42,30 +55,55 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onClockModeChange,
   intl,
 }) => {
+  const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
-  const [clockMode, setClockMode] = React.useState<string>(defaultAM ? CLOCK_MODES.AM : CLOCK_MODES.PM);
 
-  const getTimeString = (date: Date): string => dayjs(date).format(timeFormat);
-  // eslint-disable-next-line
-  // @ts-ignore
+  const [clockMode, setClockMode] = React.useState<string>(() => {
+    const initialDate = dayjs(value);
+    const initialHour = initialDate.get(HOUR);
+    return initialHour >= HOUR_12 ? PM : AM;
+  });
+
+  const is12HourClock: boolean = React.useMemo(() => {
+    if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
+    return use12HourClock;
+  }, [is12HoursClockFromDataFormat, use12HourClock]);
+
+  const timeFormatByClockMode = React.useMemo(
+    () => timeFormat ?? (is12HourClock ? 'hh:mm:ss A' : 'HH:mm:ss'),
+    [timeFormat, is12HourClock]
+  );
+
+  const getTimeString = React.useCallback(
+    (date: Date): string => {
+      if (timeFormat) {
+        return dayjs(date).format(timeFormatByClockMode);
+      }
+
+      return formatValue(date, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [timeFormat, timeFormatByClockMode, formatValue]
+  );
+
   const unitConfig: UnitConfig[] = [
     {
-      unit: 'hour',
-      options: use12HourClock ? range(12) : range(24),
+      unit: HOUR,
+      options: is12HourClock ? range(1, 13) : range(24),
       disabled: disabledHours,
       insertSeperator: true,
     },
     {
-      unit: 'minute',
+      unit: MINUTE,
       options: range(60),
       disabled: disabledMinutes,
       insertSeperator: true,
     },
     {
-      unit: 'second',
+      unit: SECOND,
       options: range(60),
       disabled: disabledSeconds,
-      insertSeperator: !!use12HourClock,
+      insertSeperator: is12HourClock,
     },
   ];
 
@@ -78,17 +116,42 @@ const TimePicker: React.FC<TimePickerProps> = ({
     setOpen(visible);
     !visible && onChange && onChange(value as Date, getTimeString(value as Date));
   };
-  const handleChange = (unit: dayjs.UnitType, newValue: number): void => {
-    const wasUndefined = value === undefined;
-    let dateBuilder = dayjs(value);
-    dateBuilder = dateBuilder[unit](newValue);
-    if (wasUndefined) {
-      // set remaining time fields to 0, HH:00:00, 00:mm:00, 00:00:ss
-      unitConfig.filter(u => u.unit !== unit).forEach(unitDef => (dateBuilder = dateBuilder[unitDef.unit](0)));
-    }
-    const newDate = dateBuilder.toDate();
-    onChange && onChange(newDate as Date, getTimeString(newDate as Date));
+
+  const handleChange = (
+    unit: dayjs.UnitType | undefined,
+    newValue: number | undefined,
+    clockModeChanged = false
+  ): void => {
+    const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, is12HourClock, clockMode, unitConfig);
+    onChange && onChange(newDate, getTimeString(newDate));
   };
+
+  React.useEffect(() => {
+    handleChange(undefined, undefined, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clockMode]);
+
+  const isAmOrPmModeDisabled = useCallback(
+    (mode: ClockModes): boolean => {
+      if (!is12HourClock) {
+        return false;
+      }
+      if (mode === AM && clockMode === AM) {
+        return false;
+      }
+      if (mode === PM && clockMode === PM) {
+        return false;
+      }
+      if (mode === AM && (disabledHours?.includes(HOUR_12) || disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR))) {
+        return true;
+      }
+      if (mode === PM && disabledHours?.includes(DISABLE_CLOCK_MODE_HOUR)) {
+        return true;
+      }
+      return false;
+    },
+    [clockMode, disabledHours, is12HourClock]
+  );
 
   const renderClockSwitch = (): React.ReactNode => {
     return (
@@ -101,6 +164,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
               setClockMode(mode);
               onClockModeChange && onClockModeChange(mode);
             }}
+            disabled={isAmOrPmModeDisabled(mode)}
           >
             <S.CellText>{mode}</S.CellText>
           </S.Cell>
@@ -108,16 +172,22 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
+
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
         <React.Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <Unit {...u} value={value} onSelect={(newValue): void => handleChange(u.unit, newValue)} />
-          {(index !== unitsToRender.length - 1 || !!use12HourClock) && <S.UnitSeperator />}
+          <Unit
+            {...u}
+            value={value}
+            onSelect={(newValue): void => handleChange(u.unit, newValue)}
+            use12HourClock={is12HourClock}
+          />
+          {(index !== unitsToRender.length - 1 || is12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
-      {use12HourClock && renderClockSwitch()}
+      {is12HourClock && renderClockSwitch()}
     </S.OverlayContainer>
   );
 
@@ -146,10 +216,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
 
   const placeholderValue = React.useMemo((): string => {
     if (value) {
-      return dayjs(value).format('HH:mm:ss');
+      return getTimeString(value);
     }
     return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl, value]);
+  }, [placeholder, intl, value, getTimeString]);
 
   if (raw) {
     return overlay;
@@ -169,7 +239,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           disabled={disabled}
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
-          value={use12HourClock && !!dateString ? `${dateString} ${clockMode}` : dateString}
+          value={dateString}
           placeholder={placeholderValue}
           readOnly
           icon1={timePickerIcon}
@@ -182,7 +252,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
 
 TimePicker.defaultProps = {
   placement: 'bottomLeft',
-  timeFormat: 'HH:mm:ss',
   trigger: ['click'],
   units: defaultUnits,
 };

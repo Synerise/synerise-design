@@ -38,6 +38,7 @@ export type OperatorsProps = {
   texts?: Partial<OperatorTexts>;
   opened?: boolean;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
+  readOnly?: boolean;
 };
 
 export type OperatorsDropdownProps = {

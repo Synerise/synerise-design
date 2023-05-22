@@ -75,3 +75,4 @@ import ItemPicker from '@synerise/ds-item-picker'
 | yesText               | Label of confirm button                                  | string                                                                                          | 'Yes'                                    |
 | noText                | Label of cancel button                                   | string                                                                                          | 'No'                                     |
 | noResults             | No search results info                                   | string                                                                                          | 'No results'                             |
+| scrollbarProps        | Object with scrollbar configturaion                      | ScrollbarAdditionalProps                                                                        | -                                        |

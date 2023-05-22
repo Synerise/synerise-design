@@ -74,6 +74,7 @@ const Item: React.FC<Props> = ({
           onUpdate={onUpdate}
           onRemove={onRemove}
           texts={texts}
+          selected={selected}
           additionalActions={additionalActions}
         />
       );

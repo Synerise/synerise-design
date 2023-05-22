@@ -3,11 +3,12 @@ import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { UserAvatar } from '@synerise/ds-avatar';
-import Icon, { InfoFillS, InfoM } from '@synerise/ds-icon';
+import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import Status from '@synerise/ds-status';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import InformationCard from '@synerise/ds-information-card';
 
 const decorator = storyFn => <div style={{ padding: '60px' }}>{storyFn()}</div>;
 
@@ -156,6 +157,24 @@ const stories = {
           onClick: action('click'),
           buttonIcon: boolean('Show button icon', true) && <Icon component={<InfoM />} />,
         }}
+      >
+        <Button type="primary">Show tips</Button>
+      </Tooltip>
+    </div>
+  ),
+  withCustomComponent: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        render={() => (
+          <InformationCard
+            asTooltip={true}
+            title={'Custom tooltip example'}
+            subtitle={'subtitle'}
+            icon={<SegmentM />}
+            iconColor="red"
+          />
+        )}
       >
         <Button type="primary">Show tips</Button>
       </Tooltip>

@@ -1,9 +1,16 @@
 import * as React from 'react';
+import { ReactText } from 'react';
 import { v4 as uuid } from 'uuid';
+
 import '@synerise/ds-core/dist/js/style';
+import Tooltip from '@synerise/ds-tooltip';
+import Icon, { InfoFillS } from '@synerise/ds-icon';
+import { useDataFormat } from '@synerise/ds-data-format';
+
 import './style/index.less';
 import * as S from './InputNumber.styles';
 import { Props } from './InputNumber.types';
+import { formatNumber, parseFormattedNumber } from './utils/inputNumber.utils';
 
 const InputNumber: React.FC<Props> = ({
   label,
@@ -14,16 +21,52 @@ const InputNumber: React.FC<Props> = ({
   prefixel,
   suffixel,
   style,
+  tooltip,
+  tooltipConfig,
+  valueFormatOptions,
   ...antdProps
 }) => {
+  const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
+
+  formatValue(new Date(), {});
+
   const id = React.useMemo(() => uuid(), []);
   const showError = Boolean(error || errorText);
 
+  const formatter = React.useCallback(
+    (value: string | number | undefined): string => {
+      return formatNumber(value, formatValue, thousandDelimiter, decimalDelimiter, valueFormatOptions);
+    },
+    [formatValue, valueFormatOptions, thousandDelimiter, decimalDelimiter]
+  );
+
+  const parser = React.useCallback(
+    (value: string | undefined): ReactText => {
+      return parseFormattedNumber(value, formatValue, thousandDelimiter, decimalDelimiter);
+    },
+    [formatValue, thousandDelimiter, decimalDelimiter]
+  );
+
   return (
-    <>
+    <S.InputNumberContainer>
       {label && !raw && (
         <S.ContentAbove>
-          <S.Label htmlFor={id}>{label}</S.Label>
+          <S.Label htmlFor={id}>
+            {label}
+            {(tooltip || tooltipConfig) && (
+              <Tooltip
+                title={tooltip}
+                placement="top"
+                trigger="hover"
+                transitionName="zoom-big-fast"
+                {...tooltipConfig}
+              >
+                <span>
+                  <Icon size={24} component={<InfoFillS />} />
+                </span>
+              </Tooltip>
+            )}
+          </S.Label>
         </S.ContentAbove>
       )}
       <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>
@@ -34,6 +77,9 @@ const InputNumber: React.FC<Props> = ({
           error={showError}
           className={showError ? 'error' : undefined}
           autoComplete="off"
+          formatter={formatter}
+          parser={parser}
+          decimalSeparator={decimalDelimiter}
         />
         {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
       </S.InputNumberWrapper>
@@ -43,7 +89,7 @@ const InputNumber: React.FC<Props> = ({
           {description && <S.Description>{description}</S.Description>}
         </S.ContentBelow>
       )}
-    </>
+    </S.InputNumberContainer>
   );
 };
 

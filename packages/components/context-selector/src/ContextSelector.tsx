@@ -10,7 +10,7 @@ import type { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuIte
 
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextProps } from './ContextSelector.types';
-import { ItemWrapper } from './ContextSelector.styles';
+import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
 
 const ContextSelector: React.FC<ContextProps> = ({
   defaultDropdownVisibility,
@@ -39,6 +39,8 @@ const ContextSelector: React.FC<ContextProps> = ({
   type,
   dropdownProps,
   disabled,
+  errorText,
+  readOnly = false,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   React.useEffect(() => {
@@ -65,8 +67,12 @@ const ContextSelector: React.FC<ContextProps> = ({
   }, [opened]);
 
   const triggerMode = React.useMemo(() => {
-    return selectedItem ? 'two-icons' : 'label-icon';
-  }, [selectedItem]);
+    if (selectedItem) {
+      return readOnly ? 'icon-label' : 'two-icons';
+    }
+
+    return readOnly ? 'simple' : 'label-icon';
+  }, [selectedItem, readOnly]);
 
   const triggerColor = React.useMemo(() => {
     if (!selectedItem) return 'blue';
@@ -80,10 +86,17 @@ const ContextSelector: React.FC<ContextProps> = ({
 
   const triggerButton = React.useMemo(() => {
     const { buttonLabel } = texts;
+    const hasError = Boolean(errorText);
 
     return addMode && !selectedItem ? (
       <>
-        <Button disabled={disabled} type="primary" mode="icon-label" onClick={handleClick}>
+        <Button
+          error={hasError}
+          disabled={disabled}
+          type="primary"
+          mode="icon-label"
+          onClick={!readOnly ? handleClick : undefined}
+        >
           <Icon component={<Add3M />} />
           {buttonLabel}
         </Button>
@@ -97,15 +110,16 @@ const ContextSelector: React.FC<ContextProps> = ({
           {
             text: (
               <Button
+                error={hasError}
                 disabled={disabled}
                 type="custom-color"
                 color={triggerColor}
                 mode={triggerMode}
-                onClick={handleClick}
+                onClick={!readOnly ? handleClick : undefined}
               >
                 {selectedItem ? <Icon component={selectedItem.icon} /> : null}
                 <ItemWrapper>{selectedItem ? selectedItem.name : buttonLabel}</ItemWrapper>
-                <Icon component={<AngleDownS />} />
+                {!readOnly && <Icon component={<AngleDownS />} />}
               </Button>
             ),
             hoverTooltipProps: {
@@ -116,8 +130,8 @@ const ContextSelector: React.FC<ContextProps> = ({
               ? (): JSX.Element => (
                   <InformationCard
                     icon={selectedItem.icon}
-                    subtitle={selectedItem.name}
-                    title={selectedItem.name.replace('_', ' ')}
+                    subtitle={selectedItem.subtitle}
+                    title={selectedItem.name}
                     descriptionConfig={
                       selectedItem.description
                         ? { value: selectedItem.description as string, disabled: true, label: undefined }
@@ -130,7 +144,18 @@ const ContextSelector: React.FC<ContextProps> = ({
         ]}
       />
     );
-  }, [texts, addMode, selectedItem, disabled, handleClick, triggerColor, triggerMode, getPopupContainerOverride]);
+  }, [
+    texts,
+    addMode,
+    selectedItem,
+    disabled,
+    readOnly,
+    handleClick,
+    triggerColor,
+    triggerMode,
+    getPopupContainerOverride,
+    errorText,
+  ]);
 
   const onDropdownVisibilityChange = React.useCallback(
     (value: boolean) => {
@@ -145,38 +170,43 @@ const ContextSelector: React.FC<ContextProps> = ({
     [onActivate, onDeactivate]
   );
 
+  if (readOnly) return <>{customTriggerComponent ?? triggerButton}</>;
+
   return (
-    <div data-popup-container>
-      <Dropdown
-        {...dropdownProps}
-        getPopupContainer={getPopupContainerOverride || getPopupContainer}
-        onVisibleChange={onDropdownVisibilityChange}
-        trigger={trigger}
-        visible={dropdownVisible}
-        overlay={
-          <ContextSelectorDropdown
-            value={selectedItem}
-            setDropdownVisible={setDropdownVisible}
-            setSelected={handleChange}
-            onSetGroup={handleOnSetGroup}
-            groups={groups}
-            items={items}
-            texts={texts}
-            visible={dropdownVisible}
-            loading={loading}
-            menuItemHeight={menuItemHeight}
-            dropdownWrapperStyles={dropdownWrapperStyles}
-            onClickOutsideEvents={onClickOutsideEvents}
-            onClickOutside={onClickOutside}
-            onSearch={onSearch}
-            hasMoreItems={hasMoreItems}
-            onFetchData={onFetchData}
-          />
-        }
-      >
-        {customTriggerComponent ?? triggerButton}
-      </Dropdown>
-    </div>
+    <>
+      <div data-popup-container>
+        <Dropdown
+          {...dropdownProps}
+          getPopupContainer={getPopupContainerOverride || getPopupContainer}
+          onVisibleChange={onDropdownVisibilityChange}
+          trigger={trigger}
+          visible={dropdownVisible}
+          overlay={
+            <ContextSelectorDropdown
+              value={selectedItem}
+              setDropdownVisible={setDropdownVisible}
+              setSelected={handleChange}
+              onSetGroup={handleOnSetGroup}
+              groups={groups}
+              items={items}
+              texts={texts}
+              visible={dropdownVisible}
+              loading={loading}
+              menuItemHeight={menuItemHeight}
+              dropdownWrapperStyles={dropdownWrapperStyles}
+              onClickOutsideEvents={onClickOutsideEvents}
+              onClickOutside={onClickOutside}
+              onSearch={onSearch}
+              hasMoreItems={hasMoreItems}
+              onFetchData={onFetchData}
+            />
+          }
+        >
+          {customTriggerComponent ?? triggerButton}
+        </Dropdown>
+      </div>
+      {errorText && <ErrorWrapper>{errorText}</ErrorWrapper>}
+    </>
   );
 };
 export default ContextSelector;

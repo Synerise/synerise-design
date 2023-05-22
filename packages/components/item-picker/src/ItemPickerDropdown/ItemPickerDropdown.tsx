@@ -22,6 +22,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   closeOnBottomAction,
   isDropdownOpened,
   searchBarProps,
+  scrollbarProps,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
@@ -37,13 +38,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
 
   const filteredDataSource = React.useMemo(() => {
     return searchQuery
-      ? dataSource.filter(
-          item =>
-            item.text &&
-            String(item.text)
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase())
-        )
+      ? dataSource.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
       : dataSource;
   }, [searchQuery, dataSource]);
 
@@ -74,10 +69,11 @@ const ItemPickerDropdown: React.FC<Props> = ({
           absolute
           onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
           style={{ paddingRight: '8px' }}
+          {...scrollbarProps}
         >
           <SearchItems
             data={filteredDataSource}
-            highlight={searchQuery}
+            highlight={searchBarProps?.value ?? searchQuery}
             itemRender={(item: MenuItemProps): JSX.Element => <Menu.Item key={item?.text as string} {...item} />}
             onItemClick={(i): void => handleChange(i)}
             rowHeight={rowHeight}

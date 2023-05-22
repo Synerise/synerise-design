@@ -13,6 +13,7 @@ const DynamicKey: React.FC<InputProps> = ({
   opened,
   onDeactivate,
   error,
+  readOnly = false,
 }) => {
   const [localValue, setLocalValue] = React.useState<DynamicKeyValueType>({
     key: (value as DynamicKeyValueType).key,
@@ -37,8 +38,8 @@ const DynamicKey: React.FC<InputProps> = ({
     setLocalValue(value as DynamicKeyValueType);
   }, [value]);
 
-  return (
-    <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>
+  const trigger = (
+    <>
       <RawInput
         placeholder={texts.dynamicKey.keyPlaceholder}
         value={localValue.key}
@@ -47,6 +48,7 @@ const DynamicKey: React.FC<InputProps> = ({
         autoFocus={opened}
         onBlur={onDeactivate}
         error={localError || error}
+        readOnly={readOnly}
       />
       <RawInput
         placeholder={texts.dynamicKey.valuePlaceholder}
@@ -54,9 +56,12 @@ const DynamicKey: React.FC<InputProps> = ({
         name="value"
         onChange={handleChange}
         error={localError || error}
+        readOnly={readOnly}
       />
-    </S.DynamicKey>
+    </>
   );
+
+  return readOnly ? trigger : <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>{trigger}</S.DynamicKey>;
 };
 
 export default DynamicKey;
