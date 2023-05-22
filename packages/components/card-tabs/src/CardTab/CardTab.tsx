@@ -145,7 +145,7 @@ const CardTab: React.FC<CardTabProps> = ({
       </S.CardTabLabel>
       {showCardActions() && (
         <CardTabActions
-          onChangeName={handleEditName}
+          onChangeName={onChangeName ? handleEditName : undefined}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
           texts={getTexts}
