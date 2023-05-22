@@ -24,6 +24,7 @@ const ParameterInput: React.FC<InputProps> = ({
   onDeactivate,
   readOnly = false,
   error,
+  getMenuEntryProps,
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
@@ -119,6 +120,7 @@ const ParameterInput: React.FC<InputProps> = ({
                 />
               )
             : undefined,
+          ...getMenuEntryProps?.(parameter),
         },
       ]}
     />

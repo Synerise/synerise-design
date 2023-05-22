@@ -41,6 +41,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   disabled,
   errorText,
   readOnly = false,
+  getMenuEntryProps,
 }) => {
   const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
   React.useEffect(() => {
@@ -140,6 +141,8 @@ const ContextSelector: React.FC<ContextProps> = ({
                   />
                 )
               : undefined,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ...getMenuEntryProps?.(selectedItem as any),
           },
         ]}
       />
@@ -155,6 +158,7 @@ const ContextSelector: React.FC<ContextProps> = ({
     triggerMode,
     getPopupContainerOverride,
     errorText,
+    getMenuEntryProps,
   ]);
 
   const onDropdownVisibilityChange = React.useCallback(

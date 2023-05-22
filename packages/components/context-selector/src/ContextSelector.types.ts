@@ -3,6 +3,7 @@ import { CSSProperties } from 'react';
 import { HandledEventsType } from '@synerise/ds-utils';
 import { ItemSize } from '@synerise/ds-menu';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { FactorsProps } from '@synerise/ds-factors';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -67,6 +68,7 @@ export type ContextProps = {
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
   errorText?: React.ReactNode | string;
+  getMenuEntryProps?: FactorsProps['getMenuEntryProps'];
 };
 
 export type ContextDropdownProps = {
