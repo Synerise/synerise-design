@@ -107,6 +107,7 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
+    const readOnly = boolean('Read only', false);
 
     return (
       <Input
@@ -124,6 +125,7 @@ const stories = {
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        readOnly={readOnly}
         size={size}
         onBlur={() => {
           action('I am blurred');

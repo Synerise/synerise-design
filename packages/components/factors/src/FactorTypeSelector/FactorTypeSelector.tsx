@@ -37,7 +37,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
   const trigger = (
-    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector">
+    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector" readOnly={readOnly}>
       <Icon component={selectedFactor.icon} />
     </S.TriggerButton>
   );

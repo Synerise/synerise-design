@@ -142,7 +142,7 @@ export const AntdInput = styled(
       <BaseAntInput autoComplete="off" {...props} ref={ref} />
     )
   )
-)<{ error?: boolean }>`
+)<{ error?: boolean; readOnly?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
@@ -164,6 +164,19 @@ export const AntdInput = styled(
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
     }
+    ${({ readOnly, theme }): string =>
+      readOnly
+        ? `
+            &:hover {
+              border-color: ${theme.palette['grey-300']};
+            }
+            &:focus {
+              border-color: ${theme.palette['grey-300']};
+              box-shadow: none;
+              background: #fff;
+            }
+          `
+        : ''}
   }
 `;
 

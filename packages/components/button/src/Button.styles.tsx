@@ -175,8 +175,8 @@ export const AntdButton = styled(
         }
       `}
 
-    &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator),
-    &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator){
+    &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator):not(.read-only),
+    &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator):not(.read-only){
       &:active{
         ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
       }
@@ -204,6 +204,30 @@ export const AntdButton = styled(
         }
       }
     }
+    ${(props): FlattenSimpleInterpolation | false =>
+      props.readOnly &&
+      css`
+        &&.ant-btn {
+          cursor: default;
+          transition: none;
+        }
+        &&.ant-btn-secondary {
+          &:hover,
+          &:focus {
+            background: ${props.theme.palette['grey-050']};
+            .btn-focus {
+              box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
+            }
+            span,
+            svg {
+              color: ${props.theme.palette['grey-700']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-700']} !important;
+            }
+          }
+        }
+      `}
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.loading &&
       css`
@@ -342,7 +366,7 @@ export const AntdButton = styled(
       ${(props): FlattenSimpleInterpolation | false =>
         props.activated &&
         css`
-          &&&.ant-btn {
+          &&&.ant-btn:not(.read-only) {
             background-color: ${props.theme.palette[`blue-050`]};
             span {
               color: ${props.theme.palette['blue-600']};
@@ -488,14 +512,16 @@ export const AntdButton = styled(
             background-color: ${props.theme.palette[`${props.customColor}-700`]};
           }
 
-          &:focus {
+          &:focus:not(.read-only) {
             ${ButtonFocus} {
               box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
             }
           }
 
           &:hover:not(:disabled):not(:focus) {
-            background-color: ${props.theme.palette[`${props.customColor}-500`]};
+            background-color: ${props.theme.palette[
+              props.readOnly ? `${props.customColor}-600` : `${props.customColor}-500`
+            ]};
             span {
               color: ${props.theme.palette.white};
             }
