@@ -97,6 +97,7 @@ import ContextSelector from '@synerise/ds-context-selector'
 | addMode                   | If true trigger doesn't change style when value is set        | ContextItem \ undefined                                | undefined             | 
 | customTriggerComponent    | Add custom trigger                                            | React.ReactNode                                        | undefined             | 
 | trigger                   | Add custom trigger to modal                                   | 'click' \ 'hover' \ 'contextMenu'                      | 'click                | 
+| getMenuEntryProps         | Configure tooltip (information-card by default)               | (arg: ParameterValueType) => MenuItemProps \ undefined | undefined             | 
 | dropdownWrapperStyles     | Apply custom styles to dropdown wrapper                       | CSSProperties \ undefined                              | -                     | 
 | onClickOutsideEvents      | Overwrite default events for document listener                | HandledEventsType[] \ undefined                        | -                     | 
 | onClickOutside            | Callback called when user click outside dropdown              | () => void \ undefined                                 | -                     | 
