@@ -24,24 +24,20 @@ const stories = {
 
     const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card')
 
-     /* @type Record<string, import('@synerise/ds-factors').FactorsProps> */
     const additionalProps: Record<string, FactorsProps> = {
       ['tooltip']: {
-        // mostly for `packages/components/factors/src/FactorValue/Parameter/Parameter.tsx`
         getMenuEntryProps: (arg) => ({
           renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text <u>{arg.name}: {arg.id}</u></span>,
           hoverTooltipProps: {
             popupPlacement: 'bottom',
           },
-          // TODO allow providing component in runtime
-          // TooltipComponent: require('@synerise/ds-information-card').default,
         } as MenuItemProps),
       },
       'none': {
         getMenuEntryProps: () => ({
           renderHoverTooltip: undefined,
         }),
-      }, // as FactorsProps,
+      },
     }[typeOfTooltip]
 
     return (
