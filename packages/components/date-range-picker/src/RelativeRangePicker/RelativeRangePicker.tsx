@@ -109,11 +109,11 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
       type: 'RELATIVE',
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const newRange = normalizeRange(changes as any);
-    if (newRange?.translationKey === CUSTOM_RANGE_KEY) {
-      this.setState({ lastCustomRange: newRange as RelativeDateRange });
+    const resultRange = normalizeRange(changes as any);
+    if (resultRange?.translationKey === CUSTOM_RANGE_KEY) {
+      this.setState({ lastCustomRange: resultRange as RelativeDateRange });
     }
-    onChange(newRange);
+    onChange(resultRange);
   };
 
   renderRanges = (ranges: DateRange[]): React.ReactNode => {
