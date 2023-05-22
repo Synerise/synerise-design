@@ -1,11 +1,11 @@
-import * as React from 'react';
+import { MouseEvent } from 'react';
 import { CardTabTexts } from '../CardTab.types';
 
 export interface Props {
-  onChangeName?: (event?: React.MouseEvent<HTMLElement>) => void;
+  onChangeName?: (event?: MouseEvent<HTMLElement>) => void;
   /** @deprecated */
-  enterEditNameMode?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onDuplicateTab?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onRemoveTab?: (event?: React.MouseEvent<HTMLElement>) => void;
+  enterEditNameMode?: (event?: MouseEvent<HTMLElement>) => void;
+  onDuplicateTab?: (event?: MouseEvent<HTMLElement>) => void;
+  onRemoveTab?: (event?: MouseEvent<HTMLElement>) => void;
   texts?: CardTabTexts;
 }
