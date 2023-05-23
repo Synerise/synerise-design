@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.21...@synerise/ds-operators@0.10.22) (2023-05-23)
+
+
+### Bug Fixes
+
+* **operators:** fix handling readOnly ([3348f77](https://github.com/Synerise/synerise-design/commit/3348f77007c806f09219ac6d8db5401fe7aea1d8))
+
+
+
+
+
 ## [0.10.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.20...@synerise/ds-operators@0.10.21) (2023-05-20)
 
 **Note:** Version bump only for package @synerise/ds-operators

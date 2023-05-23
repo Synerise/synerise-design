@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.13.50...@synerise/ds-card-tabs@0.13.51) (2023-05-23)
+
+
+### Bug Fixes
+
+* **card-tabs:** changes button creator height ([d822687](https://github.com/Synerise/synerise-design/commit/d822687f69b513d5adb4e67ade2650d454909aae))
+* **card-tabs:** dont show edit crud when not needed ([0e5b2e5](https://github.com/Synerise/synerise-design/commit/0e5b2e5b68393f6b522ce28dc9256e077dc7f3ad))
+* **card-tabs:** fixes sortable ghost item ([6cbac12](https://github.com/Synerise/synerise-design/commit/6cbac12a7dc31a9c458106629125acfa5af24c75))
+* **card-tabs:** implements ui feedback ([f20f3ca](https://github.com/Synerise/synerise-design/commit/f20f3ca5124d0b21e31679e648a4cee681ae82b5))
+* **card-tabs:** updates UX and UI to align with desgins ([8bdbcfd](https://github.com/Synerise/synerise-design/commit/8bdbcfd7088830f6cd5cac9d3e13b5c2d4b4a6ae))
+
+
+
+
+
 ## [0.13.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.13.49...@synerise/ds-card-tabs@0.13.50) (2023-05-20)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

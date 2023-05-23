@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.40...@synerise/ds-input@0.18.41) (2023-05-23)
+
+
+### Bug Fixes
+
+* **input:** add missing readOnly styles to input ([0316b64](https://github.com/synerise/synerise-design/commit/0316b6460eb568602db3a24110735dad211eecc2))
+
+
+
+
+
 ## [0.18.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.39...@synerise/ds-input@0.18.40) (2023-05-20)
 
 **Note:** Version bump only for package @synerise/ds-input

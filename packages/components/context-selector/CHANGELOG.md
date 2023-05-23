@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.14...@synerise/ds-context-selector@0.17.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* types fix ([5f877b8](https://github.com/Synerise/synerise-design/commit/5f877b8d38c81a40f2c21d6e89795297f88407ea))
+* **context-selector:** fix handling readOnly ([c88b710](https://github.com/Synerise/synerise-design/commit/c88b7108c52cd4e2c3192bddcecb81dac2b560fc))
+* **factors:** reuse FactorsProps type ([5743065](https://github.com/Synerise/synerise-design/commit/574306564fb5c2b8f78f75a36a937960f0c7c609))
+
+
+### Features
+
+* **factors:** allow changing tooltip ([6da9e97](https://github.com/Synerise/synerise-design/commit/6da9e979e972ca042fce6b2c79d05735257155d9))
+
+
+
+
+
 ## [0.16.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.13...@synerise/ds-context-selector@0.16.14) (2023-05-20)
 
 

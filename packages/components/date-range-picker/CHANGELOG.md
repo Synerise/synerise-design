@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.7...@synerise/ds-date-range-picker@0.21.8) (2023-05-23)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixes custom range values persistance ([0252358](https://github.com/Synerise/synerise-design/commit/025235894be3633e975144765f9c97ab91a55d9d))
+* **date-range-picker:** fixes mode button resetting values ([3499e88](https://github.com/Synerise/synerise-design/commit/3499e8882787b21d5b3aa4839fae6c167fc5a024))
+* **date-range-picker:** revert to not rendering closed addon ([5414e4f](https://github.com/Synerise/synerise-design/commit/5414e4f877f08ef50d3622ef059e250845cd9491))
+
+
+
+
+
 ## [0.21.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.6...@synerise/ds-date-range-picker@0.21.7) (2023-05-20)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.15...@synerise/ds-button@0.17.16) (2023-05-23)
+
+
+### Bug Fixes
+
+* **button:** add readOnly styles to button ([e02c5f3](https://github.com/synerise/synerise-design/commit/e02c5f34963de704766e9f69bb775f0171a04a77))
+* **card-tabs:** changes button creator height ([d822687](https://github.com/synerise/synerise-design/commit/d822687f69b513d5adb4e67ade2650d454909aae))
+
+
+
+
+
 ## [0.17.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.14...@synerise/ds-button@0.17.15) (2023-05-20)
 
 

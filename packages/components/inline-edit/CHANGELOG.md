@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.62...@synerise/ds-inline-edit@0.6.63) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-inline-edit
+
+
+
+
+
 ## [0.6.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.61...@synerise/ds-inline-edit@0.6.62) (2023-05-20)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.22...@synerise/ds-factors@0.18.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* **factors:** fix handling readOnly ([50c17a7](https://github.com/Synerise/synerise-design/commit/50c17a7eca3589204b35c90ab09cb247ec4fecfe))
+* **factors:** handle readOnly in FactorTypeSelector ([3b76ab6](https://github.com/Synerise/synerise-design/commit/3b76ab67c538cff33bd56a8464070d83ea298149))
+* **factors:** reuse FactorsProps type ([5743065](https://github.com/Synerise/synerise-design/commit/574306564fb5c2b8f78f75a36a937960f0c7c609))
+* **factors:** tooltip types, drilling menu props, test draft ([c01c97c](https://github.com/Synerise/synerise-design/commit/c01c97c19238991276f37f48c5a3cf1ce6af6d9a))
+
+
+### Features
+
+* **factors:** allow changing tooltip ([6da9e97](https://github.com/Synerise/synerise-design/commit/6da9e979e972ca042fce6b2c79d05735257155d9))
+
+
+
+
+
 ## [0.17.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.21...@synerise/ds-factors@0.17.22) (2023-05-20)
 
 
