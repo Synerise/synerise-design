@@ -132,10 +132,11 @@ k8s-deploy-prod:
   only:
     refs:
       - tags
+      - master
   variables:
     APPLICATION: ${APP}
     NAMESPACE: default
-    CURRENT_TAG: $CI_COMMIT_TAG-$CI_COMMIT_SHA
+    CURRENT_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}
 
 chromatic_publish:
   stage: deploy
