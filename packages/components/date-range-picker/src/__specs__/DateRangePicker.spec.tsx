@@ -523,8 +523,8 @@ describe('DateRangePicker', () => {
       applyButton.click();
     })
     const onApplyParameter = onApply.mock.calls[0][0];
-    expect(onApplyParameter['from'].slice(-4)).toBe('.000');
-    expect(onApplyParameter['to'].slice(-4)).toBe('.000');
+    expect(onApplyParameter['from'].slice(-5)).toBe('.000Z');
+    expect(onApplyParameter['to'].slice(-5)).toBe('.000Z');
   });
   it.todo('RangePickerInput should render correct date time for 24 hours clock');
   it.todo('RangePickerInput should render correct date time for 12 hours clock');
