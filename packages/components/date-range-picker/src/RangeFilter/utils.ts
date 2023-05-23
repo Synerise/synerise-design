@@ -70,7 +70,11 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
           rules.push({
             weeks: Object.entries(groupBy(days, 'week')).map(([week, daysArray]) => ({
               week: +week + 1,
-              days: daysArray.map(day => ({ ...omit(day as object, ['week']), type })),
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              days: daysArray.map((day: any) => {
+                const dayOfWeek = +day.day % 7;
+                return { ...omit(day as object, ['week']), type, dayOfWeek };
+              }),
             })),
             type: def.period,
             inverted: def.periodType !== COUNTED_FROM_ENUM.BEGINNING,
