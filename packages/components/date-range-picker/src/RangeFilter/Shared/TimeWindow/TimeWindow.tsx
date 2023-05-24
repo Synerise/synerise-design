@@ -105,6 +105,10 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
+  handleClearDay = (dayKey: DayKey): void => {
+    this.removeDaySelection(dayKey);
+  };
+
   handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>): void => {
     const { onChange, days } = this.props;
     onChange({
@@ -283,6 +287,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         readOnly={readOnly}
         intl={intl}
         onToggle={this.handleToggleDay}
+        onClear={this.handleClearDay}
         texts={texts}
       />
     );
