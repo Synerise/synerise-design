@@ -1,7 +1,7 @@
 export enum SkeletonSize {
   'S' = 14,
   'M' = 16,
-  'L' = 30,
+  'L' = 32,
 }
 export enum WidthSize {
   'M' = 60,
