@@ -16,6 +16,10 @@ const wrapperStyles: React.CSSProperties = {
   top: 0,
   left: 0,
   bottom: 0,
+  width: '300px',
+  height: '100%',
+  overflow: 'auto',
+  resize: 'both',
 };
 
 const getContainer = (): HTMLElement => {
