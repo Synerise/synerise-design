@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.11...@synerise/ds-date-picker@0.10.0) (2023-05-25)
+
+
+### Features
+
+* **date-picker:** add prop to pass custom trigger element ([a3a64dc](https://github.com/Synerise/synerise-design/commit/a3a64dcd318fc753d5cfc322b8b634dd3abeb96f))
+* **date-picker:** change triggerElement prop into renderTrigger prop ([0ff7d6f](https://github.com/Synerise/synerise-design/commit/0ff7d6f18c669fe7c1329dbda723f29c6f02813c))
+
+
+
+
+
 ## [0.9.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.9.10...@synerise/ds-date-picker@0.9.11) (2023-05-23)
 
 **Note:** Version bump only for package @synerise/ds-date-picker
