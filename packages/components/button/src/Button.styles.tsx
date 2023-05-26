@@ -157,7 +157,12 @@ export const AntdButton = styled(
       margin: 0;
       width: 24px;
       height: 24px;
+
+      svg {
+        transition: all .3s cubic-bezier(.645,.045,.355,1);
+      }
     }
+
     
     &:disabled {
       && {
