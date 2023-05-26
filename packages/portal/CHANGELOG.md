@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.184.0](https://github.com/synerise/synerise-design/compare/portal@0.183.1...portal@0.184.0) (2023-05-26)
+
+
+### Features
+
+* **skeleton:** add height prop to allow custom height ([f68b8d0](https://github.com/synerise/synerise-design/commit/f68b8d04b5b2e73442721928212a0bef85e98ece))
+
+
+
+
+
 ## [0.183.1](https://github.com/synerise/synerise-design/compare/portal@0.183.0...portal@0.183.1) (2023-05-24)
 
 

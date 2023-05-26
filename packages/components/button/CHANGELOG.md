@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.16...@synerise/ds-button@0.17.17) (2023-05-26)
+
+
+### Bug Fixes
+
+* **button:** fixes button icon animation ([e3ce585](https://github.com/synerise/synerise-design/commit/e3ce585f1e70673a7195f5917a12b7e614e855df))
+
+
+
+
+
 ## [0.17.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.15...@synerise/ds-button@0.17.16) (2023-05-23)
 
 

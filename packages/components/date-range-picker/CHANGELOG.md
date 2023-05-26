@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.9...@synerise/ds-date-range-picker@0.21.10) (2023-05-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixes monthly filter (days of week) value ([3b47835](https://github.com/Synerise/synerise-design/commit/3b478352c78a3932609ba4f6ffda2b5948960ff9))
+* **date-range-picker:** invalid key name fixed ([fbff700](https://github.com/Synerise/synerise-design/commit/fbff7005f01df30834c595fe2656be107fe115f8))
+
+
+
+
+
 ## [0.21.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.8...@synerise/ds-date-range-picker@0.21.9) (2023-05-25)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
