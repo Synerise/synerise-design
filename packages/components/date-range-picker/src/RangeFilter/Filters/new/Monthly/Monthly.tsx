@@ -117,9 +117,11 @@ const Monthly: React.FC<MonthlyProps> = ({
   );
 
   React.useEffect(() => {
-    const entriesWithActiveDaysValue = Object.keys(value).filter(id =>
-      activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
-    );
+    const entriesWithActiveDaysValue = activeDays.length
+      ? Object.keys(value).filter(id =>
+          activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
+        )
+      : [];
     removeEmptyEntries(value);
     setFilteredSchedule(entriesWithActiveDaysValue);
   }, [value, activeDays, removeEmptyEntries]);
@@ -312,11 +314,12 @@ const Monthly: React.FC<MonthlyProps> = ({
           readOnly={disabled}
           intl={intl}
           onToggle={handleToggleDay}
+          onClear={removeDaySelection}
           texts={EMPTY_OBJECT}
         />
       );
     },
-    [activeDays, intl, getDayLabel, handleToggleDay, isDayRestricted, disabled]
+    [activeDays, intl, getDayLabel, handleToggleDay, removeDaySelection, isDayRestricted, disabled]
   );
 
   const handleRangeAdd = React.useCallback((): void => {
