@@ -12,9 +12,14 @@ const stories = {
   default: () => {
     const size = select('Size', SkeletonSizes, 'M');
     const numberOfSkeletons = number('Number of skeletons', 2);
+    const usePredefinedHeight = boolean('use pixel height', false);
+    let height: number | undefined;
+    if (usePredefinedHeight) {
+        height = number('Height (overwrites height defined by size)', 24);
+    }
     return (
       <div style={{width: '150px'}}>
-      <Skeleton size={size} numberOfSkeletons={numberOfSkeletons}/>
+      <Skeleton size={size} height={height} numberOfSkeletons={numberOfSkeletons}/>
       </div>
     )
   },

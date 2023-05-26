@@ -14,6 +14,7 @@ export enum StartOffsetSize {
 
 export type SkeletonProps = {
   size?: 'S' | 'M' | 'L';
+  height?: number;
   numberOfSkeletons?: number;
   width?: 'M' | 'L';
 };
