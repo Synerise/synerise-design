@@ -355,7 +355,7 @@ const Monthly: React.FC<MonthlyProps> = ({
         onUnselectAll={handleUnselectAll}
         onSelectAll={handleSelectAll}
         showUnselectAll={Boolean(activeDays.length)}
-        showSelectAll
+        showSelectAll={allKeys.length > activeDays.length}
         renderDay={renderDay}
         keys={allKeys}
         days={EMPTY_OBJECT}

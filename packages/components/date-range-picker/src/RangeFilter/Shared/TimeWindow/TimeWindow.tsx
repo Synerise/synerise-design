@@ -407,6 +407,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             numberOfDays={numberOfDays}
             texts={texts}
             {...rest}
+            showSelectAll={keys.length > activeDays?.length}
             title={
               <SelectionCount
                 selectedDayCount={activeDays.length}
