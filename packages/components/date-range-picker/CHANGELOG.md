@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.10...@synerise/ds-date-range-picker@0.21.11) (2023-06-05)
+
+
+### Bug Fixes
+
+* **date-range-picker:** allow clearing range from active day ([17c0ae7](https://github.com/Synerise/synerise-design/commit/17c0ae7e83e61aaf3b562b59f6613bb93423093a))
+* **date-range-picker:** hides "select all" when all days are selected ([34b3d8e](https://github.com/Synerise/synerise-design/commit/34b3d8eec6c034835c7692b5d5da736c703e3ec0))
+
+
+
+
+
 ## [0.21.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.9...@synerise/ds-date-range-picker@0.21.10) (2023-05-26)
 
 
