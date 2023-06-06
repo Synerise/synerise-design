@@ -9,4 +9,7 @@ export type CardTabsProps = {
   children?: JSX.Element[];
 };
 
+/*
+ * @deprecated use `CardTabProps`
+ */
 export type CardTabsItem = Partial<CardTabProps>;
