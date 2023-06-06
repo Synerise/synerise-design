@@ -102,6 +102,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | color          | Color of CardTab                                                                | `red`/ `green`/ `grey`/ `yellow`/ `blue`/ `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple`/ `violet` | `yellow` |
 | colorDot       | single color dot                                                                | React.ReactNode                                                                                        | -        |
 | itemData       | Additional item data                                                            | any                                                                                                    | -        |
+| renderSuffix   | render custom suffix instead of cruds and icon                                  | (props: CardTabSuffixProps) => ReactNode                                                                                              | -        |
 
 #### CardTabTexts
 
