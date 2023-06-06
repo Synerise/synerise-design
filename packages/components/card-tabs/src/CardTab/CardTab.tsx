@@ -7,6 +7,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
+import CardTabDropdown from './CardTabDropdown/CardTabDropdown';
 import { CardTabProps, CardTabSuffixProps } from './CardTab.types';
 
 const CardTab: FC<CardTabProps> = props => {
@@ -33,6 +34,7 @@ const CardTab: FC<CardTabProps> = props => {
     color = 'yellow',
     colorDot,
     itemData,
+    actionsAsDropdown,
   } = props;
 
   const [edited, setEdited] = useState(false);
@@ -109,10 +111,6 @@ const CardTab: FC<CardTabProps> = props => {
     return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab) && !suffixIcon && !renderSuffix;
   }, [onChangeName, onDuplicateTab, onRemoveTab, suffixIcon, renderSuffix]);
 
-  const handleSuffixClick = useCallback((event: MouseEvent<HTMLElement>): void => {
-    !!event && event.stopPropagation();
-  }, []);
-
   const suffixProps: CardTabSuffixProps = {
     ...props,
     handleRemove,
@@ -120,7 +118,51 @@ const CardTab: FC<CardTabProps> = props => {
     handleEditName,
     texts: getTexts,
   };
-  const renderedSuffix = !!renderSuffix && renderSuffix(suffixProps);
+
+  const cardSuffix = React.useMemo((): React.ReactNode => {
+    if (actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove)) {
+      return (
+        <CardTabDropdown
+          editNameHandler={onChangeName ? handleEditName : undefined}
+          duplicateHandler={handleDuplicate}
+          removeHandler={handleRemove}
+          texts={getTexts}
+        />
+      );
+    }
+    if (renderSuffix) {
+      return renderSuffix(suffixProps);
+    }
+    if (suffixIcon) {
+      return (
+        <S.CardSuffixWrapper>
+          <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />
+        </S.CardSuffixWrapper>
+      );
+    }
+    if (showCardActions()) {
+      return (
+        <CardTabActions
+          onChangeName={onChangeName ? handleEditName : undefined}
+          onDuplicateTab={handleDuplicate}
+          onRemoveTab={handleRemove}
+          texts={getTexts}
+        />
+      );
+    }
+    return <></>;
+  }, [
+    renderSuffix,
+    suffixProps,
+    actionsAsDropdown,
+    suffixIcon,
+    showCardActions,
+    onChangeName,
+    handleEditName,
+    handleDuplicate,
+    handleRemove,
+    getTexts,
+  ]);
 
   return (
     <S.CardTabContainer
@@ -165,29 +207,8 @@ const CardTab: FC<CardTabProps> = props => {
           </Tooltip>
         )}
       </S.CardTabLabel>
-      {suffixIcon && (
-        <S.CardSuffixWrapper>
-          <Icon className="ds-card-tabs__suffix-icon" component={suffixIcon} />
-        </S.CardSuffixWrapper>
-      )}
-      {!suffixIcon && !!renderSuffix && (
-        <S.CardSuffixWrapper
-          className="ds-card-tabs__suffix-nodrag"
-          onClick={handleSuffixClick}
-          onPointerDown={handleSuffixClick}
-          data-testid="card-tab-suffix"
-        >
-          {renderedSuffix}
-        </S.CardSuffixWrapper>
-      )}
-      {showCardActions() && (
-        <CardTabActions
-          onChangeName={onChangeName ? handleEditName : undefined}
-          onDuplicateTab={handleDuplicate}
-          onRemoveTab={handleRemove}
-          texts={getTexts}
-        />
-      )}
+
+      {cardSuffix}
     </S.CardTabContainer>
   );
 };

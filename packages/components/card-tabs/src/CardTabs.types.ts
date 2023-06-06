@@ -1,3 +1,5 @@
+import type { CardTabProps } from './CardTab/CardTab.types';
+
 export type CardTabsProps = {
   className?: string;
   onChangeOrder?: (newOrder: CardTabsItem[]) => void;
@@ -7,8 +9,4 @@ export type CardTabsProps = {
   children?: JSX.Element[];
 };
 
-export type CardTabsItem = {
-  id: number;
-  name: string;
-  tag: string;
-};
+export type CardTabsItem = Partial<CardTabProps>;
