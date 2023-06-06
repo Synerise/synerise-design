@@ -44,6 +44,8 @@ const stories = {
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
     const setCustomColor = boolean('Set custom color', false);
+    const renameEnabled = boolean('Rename enabled', true);
+
     const selectCustomColor = setCustomColor ? select('Pick custom color',defaultColorsOrder, 'blue-500') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
@@ -114,7 +116,7 @@ const stories = {
             disabled={disabled}
             prefix={prefix}
             onSelectTab={handleSelect}
-            onChangeName={handleChangeName}
+            onChangeName={renameEnabled ? handleChangeName : undefined}
             onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
             onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
@@ -157,6 +159,8 @@ const stories = {
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
     const setCustomColor = boolean('Set custom color', false);
+    const renameEnabled = boolean('Rename enabled', true);
+
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -325,7 +329,7 @@ const stories = {
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}
-              onChangeName={handleChangeName}
+              onChangeName={renameEnabled ? handleChangeName : undefined}
               onRemoveTab={handleRemove}
               onDuplicateTab={
                 boolean('Enable not displaying duplicate-card button if reached cards limit', true)
