@@ -223,6 +223,16 @@ describe('Card Tabs', () => {
   });
 
   it.todo('should render custom menu as suffix');
+
+  it('should render dropdown menu as suffix', () => {
+    const onDuplicate = jest.fn();
+    const onChangeName = jest.fn();
+    const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
+      { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} actionsAsDropdown id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onDuplicateTab={onDuplicate} onChangeName={onChangeName} />) }
+    </CardTabs>);
+    const suffix = container.querySelector('.ant-dropdown-trigger');
+    expect(suffix).toBeTruthy();
+  });
   
   it('should enter edito mode on label doubleclick', () => {
     // ARRANGE
