@@ -13,17 +13,17 @@ import { CardTabDropdownProps } from './CardTabDropdown.types';
 const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateHandler, removeHandler, texts }) => {
   const [open, setOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
+  const menuItems: ReactElement[] = [];
 
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
-  const menuItems: ReactElement[] = [];
 
   if (editNameHandler) {
     menuItems.push(
       <MenuItem
-        onClick={(e): void => {
-          editNameHandler(e.domEvent);
+        onClick={(event): void => {
+          editNameHandler(event.domEvent);
           setOpen(false);
         }}
         prefixel={<Icon component={<EditM />} />}
@@ -35,8 +35,8 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
   if (duplicateHandler) {
     menuItems.push(
       <MenuItem
-        onClick={(e): void => {
-          duplicateHandler(e.domEvent);
+        onClick={(event): void => {
+          duplicateHandler(event.domEvent);
           setOpen(false);
         }}
         prefixel={<Icon component={<DuplicateM />} />}
@@ -49,8 +49,8 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
     menuItems.push(
       <MenuItem
         prefixel={<Icon component={<TrashM />} />}
-        onClick={(e): void => {
-          removeHandler(e.domEvent);
+        onClick={(event): void => {
+          removeHandler(event.domEvent);
           setOpen(false);
         }}
         key="key3"
@@ -75,8 +75,8 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
         }
       >
         <Icon
-          onClick={(e: MouseEvent): void => {
-            e.stopPropagation();
+          onClick={(event: MouseEvent): void => {
+            event.stopPropagation();
             setOpen(!open);
           }}
           component={<OptionVerticalM />}
