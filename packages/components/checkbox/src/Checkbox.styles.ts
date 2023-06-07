@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntCheckbox from 'antd/lib/checkbox';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 const checkSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');

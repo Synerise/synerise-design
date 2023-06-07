@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { MaskedDatePlaceholder } from './Elements/DatePicker/DatePicker.styles';
 
 const disableBlinkingCursor = (props: ThemeProps & { grey: boolean }): FlattenSimpleInterpolation => css`

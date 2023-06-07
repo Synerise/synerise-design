@@ -2,7 +2,8 @@ import * as React from 'react';
 import { FC, ReactElement, Children, cloneElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { defaultColorsOrder } from '@synerise/ds-core';
+
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
 

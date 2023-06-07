@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 // eslint-disable-next-line import/prefer-default-export
 export const TextTrigger = styled.div<{ inactiveColor: string; onFocus?: () => void }>`

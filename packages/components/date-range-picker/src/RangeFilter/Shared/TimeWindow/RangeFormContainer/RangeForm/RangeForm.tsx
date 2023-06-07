@@ -5,7 +5,7 @@ import Select from '@synerise/ds-select';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { useDataFormat } from '@synerise/ds-data-format';
 import TimePicker from '@synerise/ds-time-picker';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import { DateLimitMode, RangeFormProps } from './RangeForm.types';
 import * as S from './RangeForm.styles';

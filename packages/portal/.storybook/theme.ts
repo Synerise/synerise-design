@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import image from '../logo_syne.svg';
 
 export default create({

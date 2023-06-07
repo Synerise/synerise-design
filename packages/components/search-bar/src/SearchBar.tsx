@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { Close3M } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';

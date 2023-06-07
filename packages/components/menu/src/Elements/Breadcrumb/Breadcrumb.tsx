@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { AngleRightS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { escapeRegEx } from '@synerise/ds-utils';
 import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';

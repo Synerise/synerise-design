@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { EditS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { Label, TextArea } from '@synerise/ds-input';
 import calculateSize from 'calculate-size';
 import * as S from '../../SubtleForm.styles';

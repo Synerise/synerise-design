@@ -1,5 +1,5 @@
 import { BadgeProps as AntBadgeProps } from 'antd/lib/badge';
-import { DefaultColor } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { DefaultColor } from '@synerise/ds-core';
 
 export const color = [
   'red',

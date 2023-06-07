@@ -4,7 +4,7 @@ import Sidebar from '@synerise/ds-sidebar';
 import { withState } from '@dump247/storybook-state';
 import Block from '@synerise/ds-block';
 import Icon, { EditM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import SidebarWithButton from '@synerise/ds-sidebar/dist/SidebarWithButton/SidebarWithButton';
 
 const wrapperStyles = {

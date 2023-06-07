@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { Label } from '@synerise/ds-input';
 import Select from '@synerise/ds-select';
 import * as S from '../../SubtleForm.styles';

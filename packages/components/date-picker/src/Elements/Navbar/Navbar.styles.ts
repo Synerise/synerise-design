@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 
 export const NavButton = styled(Button)<{ hidden?: boolean }>`

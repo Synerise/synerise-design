@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { v4 as uuid } from 'uuid';
 import { Month, MonthlyFilterProps, MonthlyFilterState } from './MonthlyFilter.types';

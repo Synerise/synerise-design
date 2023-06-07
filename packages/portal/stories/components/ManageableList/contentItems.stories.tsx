@@ -14,7 +14,7 @@ import {
 } from './contentItems.data';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import styled from 'styled-components';
 import Radio from '@synerise/ds-radio';
 import { ItemProps } from '@synerise/ds-manageable-list/dist/Item/Item.types';

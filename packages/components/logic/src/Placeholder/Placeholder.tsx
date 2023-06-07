@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { ClickM } from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import * as S from './Placeholder.styles';
 import { PlaceholderType } from './Placeholder.types';

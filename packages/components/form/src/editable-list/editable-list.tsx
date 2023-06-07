@@ -1,7 +1,7 @@
 import { Input } from '@synerise/ds-input';
 import Autocomplete from '@synerise/ds-autocomplete';
 import * as React from 'react';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import Cruds from '@synerise/ds-cruds';
 import { EditListProps, EditableParam } from './editable-list.types';

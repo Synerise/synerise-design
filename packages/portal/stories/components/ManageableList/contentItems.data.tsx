@@ -7,7 +7,7 @@ import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import { Input } from '@synerise/ds-input';
 import Status from '@synerise/ds-status';
 import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const TEXT_PLACEHOLDER = 'Position';
 export const withLabel = {

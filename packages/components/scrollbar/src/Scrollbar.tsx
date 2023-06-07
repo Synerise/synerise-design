@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import * as S from './Scrollbar.styles';
 import { ScrollbarProps } from './Scrollbar.types';

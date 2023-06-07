@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-import { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemePropsVars } from '@synerise/ds-core';
 import { BadgeStatus } from './CardBadge.types';
 
 const background = {

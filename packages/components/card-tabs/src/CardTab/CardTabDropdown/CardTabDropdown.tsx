@@ -5,7 +5,7 @@ import { useOnClickOutside } from '@synerise/ds-utils';
 import Icon, { OptionVerticalM, EditM, DuplicateM, TrashM } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
 import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import * as S from '../CardTab.styles';
 import { CardTabDropdownProps } from './CardTabDropdown.types';

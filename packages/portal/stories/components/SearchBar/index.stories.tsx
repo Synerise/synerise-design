@@ -3,7 +3,7 @@ import * as React from 'react';
 import SearchBar from '@synerise/ds-search-bar';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { boolean, text } from '@storybook/addon-knobs';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 

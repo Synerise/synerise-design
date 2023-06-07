@@ -7,7 +7,7 @@ import { focusWithArrowKeys, getClosest, useOnClickOutside } from '@synerise/ds-
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Loader from '@synerise/ds-loader';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { v4 as uuid } from 'uuid';
 import { VariableSizeList, VariableSizeList as List } from 'react-window';
 

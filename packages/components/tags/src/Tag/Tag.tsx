@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { Props, TagShape } from './Tag.types';
 import * as S from './Tag.styles';

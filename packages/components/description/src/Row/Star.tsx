@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './DescriptionRow.styles';
 import { StarProps } from './Star.types';
 

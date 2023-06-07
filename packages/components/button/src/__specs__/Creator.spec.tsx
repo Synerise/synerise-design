@@ -1,7 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import { fireEvent } from '@testing-library/react';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import Button from '../index';
 import { CreatorStatus } from '../Creator/Creator.types';

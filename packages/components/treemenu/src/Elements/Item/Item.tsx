@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { SortableHandle, SortableElement, SortableElementProps } from 'react-sortable-hoc';
 import { Node } from 'tree-model';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { DragHandleM, FileM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 

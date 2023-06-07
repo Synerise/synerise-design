@@ -4,7 +4,7 @@ import { isEqual } from 'lodash';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
 import { DateRange, RelativeDateRange } from '../../../date.types';

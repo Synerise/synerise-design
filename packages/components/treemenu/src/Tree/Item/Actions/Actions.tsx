@@ -15,7 +15,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 
 import { MenuInfo } from 'rc-menu/lib/interface';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { ActionProps } from './Actions.types';
 import * as S from './Actions.styles';

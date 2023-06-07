@@ -4,7 +4,7 @@ import Description, { DescriptionRow } from '@synerise/ds-description';
 import Status from '@synerise/ds-status';
 import { select, text } from '@storybook/addon-knobs';
 import Icon, { AddM, DuplicateS, LockM, MailM, PlayM, SearchM, UserM, VarTypeStringM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Badge from '@synerise/ds-badge';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { CheckS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../RelativeRangePicker.styles';
 import { RANGES_ICON } from '../../utils';

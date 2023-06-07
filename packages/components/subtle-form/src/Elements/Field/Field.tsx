@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { Label } from '@synerise/ds-input';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../SubtleForm.styles';

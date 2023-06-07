@@ -15,7 +15,7 @@ import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUt
 import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { boolean, number } from '@storybook/addon-knobs';
 import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
 import Layout from '@synerise/ds-layout';
