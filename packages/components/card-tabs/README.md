@@ -111,3 +111,6 @@ import CardTabs from '@synerise/ds-card-tabs'
 | changeNameTooltip | Rename tooltip    | string / React.ReactNode | 'Rename'    |
 | duplicateTooltip  | Duplicate tooltip | string / React.ReactNode | 'Duplicate' |
 | removeTooltip     | Remove tooltip    | string / React.ReactNode | 'Remove'    |
+| changeNameMenuItem | Rename menu label    | string / React.ReactNode | 'Rename'    |
+| duplicateMenuItem  | Duplicate menu label | string / React.ReactNode | 'Duplicate' |
+| removeMenuItem     | Remove menu label    | string / React.ReactNode | 'Remove'    |
