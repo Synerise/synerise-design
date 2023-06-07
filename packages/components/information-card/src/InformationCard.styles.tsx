@@ -9,7 +9,7 @@ import {
   Title,
 } from '@synerise/ds-card/dist/Card/Card.styles';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
-import { AntdButton } from '@synerise/ds-button/dist/Button.styles';
+import { ButtonStyles } from '@synerise/ds-button';
 
 export const Flex = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
     margin-bottom: 0;
     font-size: 14px;
   }
-  ${AntdButton} {
+  ${ButtonStyles.Button.AntdButton} {
     width: 32px;
     height: 32px;
   }

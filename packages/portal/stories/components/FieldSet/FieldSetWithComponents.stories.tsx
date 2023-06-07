@@ -1,5 +1,4 @@
 import { boolean, number, select as knobSelect, select, text } from '@storybook/addon-knobs';
-import Expander from '@synerise/ds-button/dist/Expander/Expander';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import FieldSet from '@synerise/ds-field-set';
 import Checkbox from '@synerise/ds-checkbox/dist';
@@ -38,7 +37,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -93,7 +92,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -142,7 +141,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -219,7 +218,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -257,7 +256,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -310,7 +309,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -363,7 +362,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
@@ -401,7 +400,7 @@ const stories = {
     const additionalPrefixMapper = {
       expander: (
         <ExpanderWrapper description={description}>
-          <Expander />
+          <Button.Expander />
         </ExpanderWrapper>
       ),
       switch: <Switch />,
