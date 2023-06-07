@@ -103,6 +103,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | colorDot       | single color dot                                                                | React.ReactNode                                                                                        | -        |
 | itemData       | Additional item data                                                            | any                                                                                                    | -        |
 | renderSuffix   | render custom suffix instead of cruds and icon                                  | (props: CardTabSuffixProps) => ReactNode                                                                                              | -        |
+| actionsAsDropdown | render crud actions in dropdown instead of icons                                  | boolean                                                                                              | `false`        |
 
 #### CardTabTexts
 

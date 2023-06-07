@@ -38,7 +38,7 @@ export interface CardTabProps {
   name: string;
   tag: string;
   prefix: prefixType;
-  colorDot: ReactNode;
+  colorDot?: ReactNode;
   color?: Color | DefaultColor | string;
   active?: boolean;
   draggable?: boolean;
@@ -54,6 +54,7 @@ export interface CardTabProps {
   onRemoveTab?: (id: number) => void;
   texts?: CardTabTexts;
   itemData?: unknown;
+  actionsAsDropdown?: boolean;
   renderSuffix?: (props: CardTabSuffixProps) => ReactNode;
 }
 export type CardTabSuffixProps = Omit<
