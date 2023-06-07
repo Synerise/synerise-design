@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent } from 'react';
+import { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent, ReactNode } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
@@ -119,8 +119,9 @@ const CardTab: FC<CardTabProps> = props => {
     texts: getTexts,
   };
 
-  const cardSuffix = React.useMemo((): React.ReactNode => {
-    if (actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove)) {
+  const cardSuffix = useMemo((): ReactNode => {
+    const showActionsDropdownMenu = actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove);
+    if (showActionsDropdownMenu) {
       return (
         <CardTabDropdown
           editNameHandler={onChangeName ? handleEditName : undefined}
