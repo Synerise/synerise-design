@@ -29,7 +29,7 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
         key="card-tabs-menu-item-rename"
         prefixel={<Icon component={<EditM />} />}
       >
-        {texts?.changeNameMenuItem || 'Edit'}
+        {texts.changeNameMenuItem}
       </MenuItem>
     );
   }
@@ -43,7 +43,7 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
         key="card-tabs-menu-item-duplicate"
         prefixel={<Icon component={<DuplicateM />} />}
       >
-        {texts?.duplicateMenuItem || 'Duplicate'}
+        {texts.duplicateMenuItem}
       </MenuItem>
     );
   }
@@ -58,7 +58,7 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
         key="card-tabs-menu-item-delete"
         type="danger"
       >
-        {texts?.removeMenuItem || 'Delete'}
+        {texts.removeMenuItem}
       </MenuItem>
     );
   }

@@ -43,12 +43,12 @@ const CardTab: FC<CardTabProps> = props => {
 
   const getTexts = useMemo(() => {
     return {
-      changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME' }),
-      removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE' }),
-      duplicateTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE' }),
-      changeNameMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME' }),
-      removeMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE' }),
-      duplicateMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE' }),
+      changeNameTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME', defaultMessage: 'Rename' }),
+      removeTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE', defaultMessage: 'Delete' }),
+      duplicateTooltip: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE', defaultMessage: 'Duplicate' }),
+      changeNameMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.RENAME', defaultMessage: 'Rename' }),
+      removeMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.REMOVE', defaultMessage: 'Delete' }),
+      duplicateMenuItem: intl.formatMessage({ id: 'DS.CARD-TAB.DUPLICATE', defaultMessage: 'Duplicate' }),
       ...texts,
     };
   }, [texts, intl]);
