@@ -66,7 +66,6 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix" className="ds-card-tabs__suffix-nodrag">
       <Dropdown
-        overlayStyle={{ borderRadius: '3px' }}
         visible={open}
         placement="bottomLeft"
         trigger={['click']}
