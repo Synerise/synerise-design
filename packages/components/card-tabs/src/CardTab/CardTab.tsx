@@ -53,13 +53,15 @@ const CardTab: FC<CardTabProps> = props => {
     };
   }, [texts, intl]);
 
-  const handleEditName = useCallback(
-    (event?: MouseEvent<HTMLElement>): void => {
+  const handleEditName = useMemo(() => {
+    if (onChangeName === undefined) {
+      return undefined;
+    }
+    return (event?: MouseEvent<HTMLElement>): void => {
       !!event && event.stopPropagation();
       setEdited(true);
-    },
-    [setEdited]
-  );
+    };
+  }, [onChangeName, setEdited]);
 
   const handleChangeName = useMemo(() => {
     if (onChangeName === undefined) {
