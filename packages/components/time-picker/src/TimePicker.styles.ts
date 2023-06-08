@@ -24,8 +24,7 @@ export const Unit = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
 
   .scrollbar-container {
     margin-right: -11px;
