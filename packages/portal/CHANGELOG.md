@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.184.1](https://github.com/synerise/synerise-design/compare/portal@0.184.0...portal@0.184.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **card-tabs:** adds prop to render cruds as dropdown ([a721030](https://github.com/synerise/synerise-design/commit/a721030c508a490f99ad84595d3242870bac2b95))
+
+
+
+
+
 # [0.184.0](https://github.com/synerise/synerise-design/compare/portal@0.183.1...portal@0.184.0) (2023-05-26)
 
 
