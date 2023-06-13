@@ -19,6 +19,7 @@ const Card: React.FC<CardProps> = ({
   description,
   compactHeader,
   icon,
+  avatar,
   renderBadge,
   iconColor,
   headerSideChildren,
@@ -56,9 +57,10 @@ const Card: React.FC<CardProps> = ({
               <Icon component={icon} color={iconColor} />
             </S.IconContainer>
           )) ||
+            avatar ||
             (renderBadge && renderBadge())}
 
-          <S.HeaderContent compact={compactHeader} hasIcon={!!icon}>
+          <S.HeaderContent compact={compactHeader} hasIconOrAvatar={Boolean(icon || avatar)}>
             {title && (
               <S.Title description={description} level={4} fat={!!fatTitle}>
                 {title}

@@ -17,6 +17,7 @@ export interface CardProps {
   icon?: React.ReactNode;
   renderBadge?: () => React.ReactNode;
   iconColor?: string;
+  avatar?: React.ReactNode;
   staticContent?: React.ReactNode;
   headerSideChildren?: React.ReactNode;
   onHeaderClick?: (e: React.SyntheticEvent) => void;

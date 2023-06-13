@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import Typography from '@synerise/ds-typography';
+import Typography, { macro } from '@synerise/ds-typography';
 import * as React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -139,6 +139,7 @@ export const Title = styled(Typography.Title)<{ fat: boolean; description?: Reac
     min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
     margin-bottom: ${(props): string => (props.description ? '6px' : '0')};
+    ${macro.h400};
   }
 `;
 
@@ -151,23 +152,24 @@ export const Description = styled.div`
   }
 `;
 
-export const HeaderContent = styled.div<{ compact?: boolean; hasIcon: boolean }>`
+export const HeaderContent = styled.div<{ compact?: boolean; hasIconOrAvatar: boolean }>`
   max-width: 100%;
   flex: 1;
+  display: flex;
+  flex-direction: ${(props): string => (props.compact ? 'row' : 'column')};
+  align-items: ${(props): string => (props.compact ? 'center' : 'flex-start')};
 
-  ${(props): FlattenSimpleInterpolation | false =>
-    props.hasIcon &&
-    css`
-      margin: 0 0 0 20px;
-    `};
+  margin: 0 0 0
+    ${(props): string => {
+      if (props.hasIconOrAvatar) {
+        return '24px';
+      }
+      return '0';
+    }};
 
   ${(props): FlattenSimpleInterpolation | false =>
     !!props.compact &&
     css`
-      display: flex;
-      align-items: flex-start;
-      flex-direction: row;
-
       ${Title} {
         height: 32px;
         line-height: 32px;
