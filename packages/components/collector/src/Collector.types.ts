@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Props as DsButtonProps } from '@synerise/ds-button/dist/Button.types';
+import { ButtonProps } from '@synerise/ds-button';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
 export type CollectorProps = {
-  addButtonProps?: Partial<DsButtonProps>;
+  addButtonProps?: Partial<ButtonProps>;
   allowCustomValue?: boolean;
   allowMultipleValues?: boolean;
-  cancelButtonProps?: Partial<DsButtonProps>;
+  cancelButtonProps?: Partial<ButtonProps>;
   className?: string;
   description?: React.ReactNode | string;
   disabled?: boolean;

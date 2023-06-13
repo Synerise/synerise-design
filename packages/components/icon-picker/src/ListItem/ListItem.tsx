@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@synerise/ds-button/dist/Button';
+import Button from '@synerise/ds-button';
 import { ListItemProps } from './ListItem.types';
 import * as S from '../IconPicker.styles';
 

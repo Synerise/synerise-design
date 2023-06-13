@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { AntdButton as StyledButtonContainer } from '@synerise/ds-button/dist/Button.styles';
+import { ButtonStyles } from '@synerise/ds-button';
 import { IconContainer } from '@synerise/ds-icon';
 import * as T from '@synerise/ds-typography';
 
@@ -31,7 +31,7 @@ export const ButtonContainer = styled.div`
   text-align: center;
   width: 100%;
 
-  ${StyledButtonContainer} {
+  ${ButtonStyles.Button.AntdButton} {
     margin: 0 4px;
 
     &:first-of-type {
