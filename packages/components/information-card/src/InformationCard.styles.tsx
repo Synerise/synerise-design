@@ -1,6 +1,6 @@
 import type { ReactHTML } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import CardStyles from '@synerise/ds-card';
+import { CardStyles } from '@synerise/ds-card';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
 import { AntdButton } from '@synerise/ds-button/dist/Button.styles';
 
