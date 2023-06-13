@@ -6,7 +6,7 @@ import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM, UserCircleM } from "@synerise/ds-icon";
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import * as S from './stories.styles';
-import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
+import { Backgrounds, CardProps } from '@synerise/ds-card';
 import { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 
 const backgrounds = {

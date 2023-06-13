@@ -15,7 +15,7 @@ import OrderedList from '@synerise/ds-ordered-list';
 import UnorderedList from '@synerise/ds-unordered-list';
 import ModalProxy from '@synerise/ds-modal';
 import Card, { CardBadge } from '@synerise/ds-card';
-import { CardProps } from '@synerise/ds-card/dist/Card/Card.types';
+import { CardProps } from '@synerise/ds-card';
 import * as S from '../Card/stories.styles';
 
 const typeOfPrefix = ['expander', 'switch'];
