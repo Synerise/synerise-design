@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.17...@synerise/ds-information-card@0.3.18) (2023-06-14)
+
+
+### Bug Fixes
+
+* **information-card:** add missing dependecies ([daeb175](https://github.com/Synerise/synerise-design/commit/daeb175c4f6d4d7095656186b046237e441bd751))
+
+
+
+
+
 ## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.16...@synerise/ds-information-card@0.3.17) (2023-05-26)
 
 **Note:** Version bump only for package @synerise/ds-information-card

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.10...@synerise/ds-time-picker@0.7.11) (2023-06-14)
+
+
+### Bug Fixes
+
+* **time-picker:** hide scroll bar in time picker ([7dd7995](https://github.com/Synerise/synerise-design/commit/7dd7995a7f4dcce1c14bfade93344c0a269eecfd))
+
+
+
+
+
 ## [0.7.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.9...@synerise/ds-time-picker@0.7.10) (2023-05-26)
 
 **Note:** Version bump only for package @synerise/ds-time-picker
