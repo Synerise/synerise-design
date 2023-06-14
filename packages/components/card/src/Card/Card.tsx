@@ -62,7 +62,7 @@ const Card: React.FC<CardProps> = ({
 
           <S.HeaderContent compact={compactHeader} hasIconOrAvatar={Boolean(icon || avatar)}>
             {title && (
-              <S.Title description={description} level={4} fat={!!fatTitle}>
+              <S.Title description={Boolean(description)} level={4} fat={!!fatTitle}>
                 {title}
               </S.Title>
             )}

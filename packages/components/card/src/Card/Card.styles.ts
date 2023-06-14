@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import Typography, { macro } from '@synerise/ds-typography';
+import { Title as DSTitle } from '@synerise/ds-typography';
 import * as React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -21,29 +21,16 @@ const boxShadow = (props: { background: Backgrounds; theme: ThemePropsVars }): s
   if (withOutline.includes(props.background)) return `${props.theme.palette['grey-200']} 0px 0px 0px 1px inset`;
   return 'none';
 };
-type IconContainerProps = { compact?: boolean; description?: React.ReactNode };
-const getHeight = (props: IconContainerProps): string => {
-  if (props.compact && props.description) {
-    return ' 32px';
-  }
-  if (props.compact) {
-    return ' 32px';
-  }
-  if (props.description) {
-    return '24px';
-  }
-  return ' 32px';
-};
 
 export const HeaderSideChildren = styled.div`
   position: relative;
   padding-left: 24px;
 `;
 
-export const IconContainer = styled.div<IconContainerProps>`
+export const IconContainer = styled.div<{ compact?: boolean; description?: React.ReactNode }>`
   display: flex;
   width: 24px;
-  height: ${(props): string => getHeight(props)};
+  height: ${(props): string => (props.description && !props.compact ? '24px' : '32px')};
   align-items: center;
 `;
 
@@ -132,14 +119,14 @@ export const Header = styled.div<{
     `}
 `;
 
-export const Title = styled(Typography.Title)<{ fat: boolean; description?: React.ReactNode }>`
+export const Title = styled(DSTitle)<{ fat: boolean; description?: boolean }>`
   && {
     display: flex;
     align-items: center;
     min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
     margin-bottom: ${(props): string => (props.description ? '6px' : '0')};
-    ${macro.h400};
+    line-height: 1.4;
   }
 `;
 
