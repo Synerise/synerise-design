@@ -10,6 +10,7 @@ import * as S from './Input.styles';
 import Label from './Label/Label';
 import Textarea from './Textarea/Textarea';
 import { EnhancedProps, Props } from './Input.types';
+import { AutosizeInput } from './autosize/autosize'
 
 const VERTICAL_BORDER_OFFSET = 2;
 
@@ -80,6 +81,9 @@ const enhancedInput =
     }, [inputRef]);
 
     const renderInputComponent = (): React.ReactNode => {
+      if (autoResize) {
+        return <AutosizeInput {...antdInputProps}/>;
+      }
       return (
         <WrappedComponent
           {...antdInputProps}
@@ -177,5 +181,5 @@ export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.Rea
 };
 export const RawTextArea = S.AntdTextArea;
 export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';
-export const AutoResize = Object.assign(S.AutoResize);
+// export const AutoResize = Object.assign(S.AutoResize);
 export const WrapperAutoResize = Object.assign(S.WrapperAutoResize);
