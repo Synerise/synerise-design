@@ -1,4 +1,4 @@
-import { Props as DsButtonProps } from '@synerise/ds-button/dist/Button.types';
+import { ButtonProps } from '@synerise/ds-button';
 import * as React from 'react';
 
-export type AddButtonProps = DsButtonProps & { label?: React.ReactNode | string };
+export type AddButtonProps = ButtonProps & { label?: React.ReactNode | string };

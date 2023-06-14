@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {renderWithProvider} from "@synerise/ds-utils/dist/testing";
 import { fireEvent } from "@testing-library/react";
-import Button from "@synerise/ds-button/dist/Button";
+import Button from "@synerise/ds-button";
 import Icon, { Add3M } from "@synerise/ds-icon";
 import IconPicker from "../IconPicker";
 

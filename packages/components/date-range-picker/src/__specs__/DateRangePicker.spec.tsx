@@ -7,7 +7,7 @@ import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from '../RangeFilter/constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { fireEvent, getByTestId, getAllByTestId, waitFor, act } from '@testing-library/react';
-import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import { ExpanderSize } from '@synerise/ds-button';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';

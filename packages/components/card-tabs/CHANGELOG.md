@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.13.53...@synerise/ds-card-tabs@0.13.54) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-card-tabs
+
+
+
+
+
+## [0.13.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.13.52...@synerise/ds-card-tabs@0.13.53) (2023-06-12)
+
+
+### Bug Fixes
+
+* **card-tabs:** adds prop to render cruds as dropdown ([a721030](https://github.com/Synerise/synerise-design/commit/a721030c508a490f99ad84595d3242870bac2b95))
+* **card-tabs:** applies code review feedback ([044862e](https://github.com/Synerise/synerise-design/commit/044862e18c467bb70332f2f875ec97e484952095))
+* **card-tabs:** makes dbl click to edit name conditional ([63307fa](https://github.com/Synerise/synerise-design/commit/63307fa40bd0831fe2c63c61c1e40ebc4bc28e7c))
+* **card-tabs:** moved fallback texts to defaultMessage in intl ([d739d7a](https://github.com/Synerise/synerise-design/commit/d739d7ac158ec297fd5a1b7908fbe5981fbf63a2))
+* **card-tabs:** removed unnecessary inline css ([14cbd5c](https://github.com/Synerise/synerise-design/commit/14cbd5cb95c61ba3a594248892ba2598d9793ad8))
+
+
+
+
+
 ## [0.13.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.13.51...@synerise/ds-card-tabs@0.13.52) (2023-05-26)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-avatar",
-  "version": "0.14.67",
+  "version": "0.14.68",
   "description": "Avatar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -34,8 +34,8 @@
   "dependencies": {
     "@synerise/ds-badge": "^0.6.28",
     "@synerise/ds-icon": "^0.56.0",
-    "@synerise/ds-status": "^0.5.67",
-    "@synerise/ds-tooltip": "^0.13.5"
+    "@synerise/ds-status": "^0.5.68",
+    "@synerise/ds-tooltip": "^0.13.6"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

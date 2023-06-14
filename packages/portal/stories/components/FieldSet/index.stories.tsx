@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import FieldSet from '@synerise/ds-field-set';
 import { boolean, text } from '@storybook/addon-knobs';
-import Expander from '@synerise/ds-button/dist/Expander/Expander';
+import Button from '@synerise/ds-button';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import Checkbox from '@synerise/ds-checkbox/dist';
@@ -28,7 +28,7 @@ const stories = {
     const title = text('Title', 'Advanced option');
     const description = text('Description', 'This section is for avanced users only');
     return (
-      <FieldSet title={title} description={description} prefix={<ExpanderWrapper description={description}><Expander/></ExpanderWrapper>}  />
+      <FieldSet title={title} description={description} prefix={<ExpanderWrapper description={description}><Button.Expander/></ExpanderWrapper>}  />
     )
   },
   withSwitch: () => {

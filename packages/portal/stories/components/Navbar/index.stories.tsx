@@ -2,7 +2,7 @@ import Navbar from '@synerise/ds-navbar';
 
 import * as React from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
-import Button from '@synerise/ds-button/dist/Button';
+import Button from '@synerise/ds-button';
 import Icon, { Add3M, AngleDownS, HelpM, NotificationsActiveM, BookM } from '@synerise/ds-icon';
 import { action } from '@storybook/addon-actions';
 import { theme } from '@synerise/ds-core';

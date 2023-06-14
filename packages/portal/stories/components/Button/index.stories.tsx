@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Icon, { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
-import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
+import { CreatorStatus } from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import ButtonGroup from '@synerise/ds-button-group';
 import Skeleton from '@synerise/ds-skeleton';
