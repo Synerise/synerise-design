@@ -2,6 +2,7 @@ import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Card from '../index';
 import { waitFor } from '@testing-library/react';
+import { ObjectAvatar } from '@synerise/ds-avatar';
 
 describe('Card', () => {
   it('should render', function() {
@@ -92,5 +93,14 @@ describe('Card', () => {
       />
     )
     expect(container.querySelector('.badge-slot')).toBeTruthy();
+  })
+  it('should render with avatar', () => {
+    const { container } = renderWithProvider(
+      <Card
+        withHeader
+        avatar={<ObjectAvatar />}
+      />
+    )
+    expect(container.querySelector('.ds-avatar')).toBeTruthy();
   })
 });
