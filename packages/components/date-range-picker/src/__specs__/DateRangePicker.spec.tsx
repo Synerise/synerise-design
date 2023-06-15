@@ -7,7 +7,7 @@ import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from '../RangeFilter/constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { fireEvent, getByTestId, getAllByTestId, waitFor, act } from '@testing-library/react';
-import { ExpanderSize } from '@synerise/ds-button/dist/Expander/Expander.types';
+import { ExpanderSize } from '@synerise/ds-button';
 import DateRangePicker from '../DateRangePicker';
 import type { PopoverProps } from 'antd/lib/popover';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
@@ -60,6 +60,7 @@ const texts = {
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
+  now: 'Now',
   more: 'More',
 } as any;
 
@@ -408,6 +409,10 @@ describe('DateRangePicker', () => {
     });
     expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0, 8));
   });
+  it.todo('relative custom range form values should persist when swithing to absolute range and back to custom');
+  it.todo('relative custom range form values should persist when swithing to predefined relative range and back to custom');
+  it.todo('relative custom range form values should persist when swithing to lifetime and back to custom');
+  it.todo('relative custom range form values should reset when switching custom range mode');
   it('filters should persist when date range changes', async () => {
     const onApply = jest.fn();
     const { container, getByText } = renderWithProvider(
@@ -465,6 +470,68 @@ describe('DateRangePicker', () => {
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
   it.todo('monthly scheduler should render days of week or month');
+  it.todo('monthly scheduler in days of week mode should return "day" key values within 1-7 range');
+  it.todo(
+    'SINCE dateFilter next or last is being properly distinguished while shown on the month view (future is recognized)'
+  );
+  it('datepicker with isTruncateMs=false prop should not truncate miliseconds', () => {
+    const onApply = jest.fn();
+    const from = new Date();
+    const to = new Date();
+    to.setMinutes(to.getMinutes()+1);
+    
+    const VALUE_WITH_MS = {
+      type: ABSOLUTE,
+      from: from.toISOString(),
+      to: to.toISOString(),
+    };
+
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={VALUE_WITH_MS as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+        isTruncateMs={false}
+      />
+    );
+    
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from']).toBe(from.toISOString());
+    expect(onApplyParameter['to']).toBe(to.toISOString());
+  });
+  it('datepicker value.from && value.to, if defined, should have 0ms', () => {
+    const onApply = jest.fn();
+    const { container, getByText } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    
+    act(() => {
+      getByText(texts.now).click();
+    });
+    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    act(() => {
+      applyButton.click();
+    })
+    const onApplyParameter = onApply.mock.calls[0][0];
+    expect(onApplyParameter['from'].slice(-5)).toBe('.000Z');
+    expect(onApplyParameter['to'].slice(-5)).toBe('.000Z');
+  });
   it.todo('RangePickerInput should render correct date time for 24 hours clock');
   it.todo('RangePickerInput should render correct date time for 12 hours clock');
   it.todo('Footer should render correct date time for 24 hours clock');

@@ -6,7 +6,7 @@ import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
 import { Carousel } from 'antd';
 import Button from '@synerise/ds-button';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './Tooltip.styles';
 import { tooltipTypes, descriptionType, TooltipProps } from './Tooltip.types';
 

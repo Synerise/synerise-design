@@ -286,7 +286,8 @@ ${daySelector('entered')}:not(${daySelector('disabled')}):not(${daySelector('end
       color: ${(props): string => props.theme.palette.white};
       background-color: ${(props): string => props.theme.palette['blue-600']};
       margin-right: 4px;
-      padding-left: 4px;
+      padding-left: 0px;
+      padding-right: 0px;
     }
     & > ${DayBackground} {
       background-color: ${(props): string => props.theme.palette['blue-100']};

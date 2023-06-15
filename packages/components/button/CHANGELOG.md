@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.17...@synerise/ds-button@0.17.18) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.17.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.16...@synerise/ds-button@0.17.17) (2023-05-26)
+
+
+### Bug Fixes
+
+* **button:** fixes button icon animation ([e3ce585](https://github.com/synerise/synerise-design/commit/e3ce585f1e70673a7195f5917a12b7e614e855df))
+
+
+
+
+
+## [0.17.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.15...@synerise/ds-button@0.17.16) (2023-05-23)
+
+
+### Bug Fixes
+
+* **button:** add readOnly styles to button ([e02c5f3](https://github.com/synerise/synerise-design/commit/e02c5f34963de704766e9f69bb775f0171a04a77))
+* **card-tabs:** changes button creator height ([d822687](https://github.com/synerise/synerise-design/commit/d822687f69b513d5adb4e67ade2650d454909aae))
+
+
+
+
+
+## [0.17.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.14...@synerise/ds-button@0.17.15) (2023-05-20)
+
+
+### Bug Fixes
+
+* **button:** fixes error validation styles ([9b47139](https://github.com/synerise/synerise-design/commit/9b47139807265c448b62350ebf226b526f31caad))
+* **condition:** adds validation errors support ([0da0a99](https://github.com/synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+
+
+
+
+
+## [0.17.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.13...@synerise/ds-button@0.17.14) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.17.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.12...@synerise/ds-button@0.17.13) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.17.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.17.11...@synerise/ds-button@0.17.12) (2023-03-02)
 
 **Note:** Version bump only for package @synerise/ds-button

@@ -7,7 +7,7 @@ import Radio from '@synerise/ds-radio';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { AcademyM, ChatM, HelpM } from '@synerise/ds-icon';
 
 const steps = [

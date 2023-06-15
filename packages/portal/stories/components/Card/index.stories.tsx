@@ -3,11 +3,11 @@ import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
-import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM } from "@synerise/ds-icon";
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM, UserCircleM } from "@synerise/ds-icon";
+import { theme } from '@synerise/ds-core';
 import * as S from './stories.styles';
-import { Backgrounds, CardProps } from '@synerise/ds-card/dist/Card/Card.types';
-import { ObjectAvatar } from '@synerise/ds-avatar';
+import { Backgrounds, CardProps } from '@synerise/ds-card';
+import { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 
 const backgrounds = {
   White: 'white',
@@ -56,6 +56,7 @@ const renderCard = (
       withHeader={props.withHeader}
       title={props.title}
       description={props.description}
+      avatar={props.avatar}
       icon={props.icon || (props.withIcon && IconComponent)}
       iconColor={props.iconColor}
       compactHeader={props.compactHeader}
@@ -111,10 +112,13 @@ const stories = {
       4: false,
       5: false,
       6: false,
+      7: false,
+      8: false,
     });
 
     const updateCollapsedState = (index, collapsed) =>
       setCollapsedCardsState({ ...collapsedCardsState, [index]: collapsed });
+
 
     return (
       <div
@@ -448,7 +452,7 @@ const stories = {
                 raised: false,
                 description: null,
                 compactHeader: false,
-                icon: <Icon component={<UserM />} style={{ marginTop: '3px' }} />,
+                icon: <Icon component={<UserM />} />,
                 iconColor: theme.palette['grey-400'],
                 headerBorderBottom: false,
                 headerSideChildren: (
@@ -471,6 +475,91 @@ const stories = {
               false
             )}
           </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: false,
+                raised: false,
+                description: null,
+                compactHeader: false,
+                avatar: (
+                  <UserAvatar 
+                    text="A"
+                    size="medium"
+                    badgeStatus="active"
+                    backgroundColor="auto"
+                    iconComponent={ <Icon component={<UserCircleM />} /> }
+                  />
+                ),
+                // iconColor: theme.palette['grey-400'],
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Icon
+                        component={<WarningFillM />}
+                        color={theme.palette['yellow-600']}
+                        style={{ marginRight: '4px' }}
+                      />
+                      <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                    </div>
+                    <Button type="custom-color" color="green" disabled>
+                      Apply
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+          <S.HeaderWrapper>
+            {renderCard(
+              {
+                ...props,
+                lively: false,
+                raised: false,
+                description: 'Lorem ipsum dolor sit amet',
+                compactHeader: false,
+                avatar: (
+                  <ObjectAvatar
+                    color="mars"
+                    size="medium"
+                    backgroundColor="blue"
+                    object={{
+                      name: 'Object name',
+                      status: 'API',
+                      description: 'Some great description',
+                    }}
+                  />
+                ),
+                headerBorderBottom: false,
+                headerSideChildren: (
+                  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gridColumnGap: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <Icon
+                        component={<WarningFillM />}
+                        color={theme.palette['yellow-600']}
+                        style={{ marginRight: '4px' }}
+                      />
+                      <span style={{ fontWeight: 500, color: theme.palette['yellow-600'] }}>Uncompleted</span>
+                    </div>
+                    <Button type="custom-color" color="green" disabled>
+                      Apply
+                    </Button>
+                  </div>
+                ),
+                showSideChildrenWhenHeaderHidden: false,
+              },
+              false
+            )}
+          </S.HeaderWrapper>
+
+
+          
         </div>
       </div>
     );

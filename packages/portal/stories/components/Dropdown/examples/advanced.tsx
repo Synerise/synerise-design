@@ -5,7 +5,7 @@ import Icon, { FileM, SearchM, CheckS } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { debounce } from 'lodash';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';

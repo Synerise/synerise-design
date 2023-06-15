@@ -239,7 +239,18 @@
       "MULTIPLE-MODE-HINT": "Użyj klawisza Shift by wybrać wiele.",
       "SAVE-FILTER": "Zapisz filtr",
       "FILTER-NAME": "Nazwa filtra",
-      "SET_TIME_FOR": "Ustaw czas na:"
+      "SET_TIME_FOR": "Ustaw czas na:",
+      "START-DATE-PLACEHOLDER": "Od",
+      "END-DATE-PLACEHOLDER": "Do",
+      "ADD-FILTER": "Dodaj filtr",
+      "FILTER-ENABLED": "Filtr zdefiniowany",
+      "COPY-RANGE": "Kopiuj zakres",
+      "PASTE-RANGE": "Wklej zakres",
+      "CLEAR-RANGE": "Usuń zakres",
+      "RANGE": "Zakres",
+      "HOUR": "Godzina",
+      "SAVED-FILTERS": "Zapisane filtry",
+      "CHANGE": "Zmień"
     },
     "CARD-TAB": {
       "RENAME": "Zmień nazwę",

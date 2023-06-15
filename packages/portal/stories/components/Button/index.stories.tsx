@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import Icon, { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import markdown from '@/button/README.md';
-import { CreatorStatus } from '@synerise/ds-button/dist/Creator/Creator.types';
+import { CreatorStatus } from '@synerise/ds-button';
 import { withState } from '@dump247/storybook-state';
 import ButtonGroup from '@synerise/ds-button-group';
 import Skeleton from '@synerise/ds-skeleton';
@@ -67,19 +67,24 @@ const CREATOR_TYPE = {
   validated: CreatorStatus.Error,
 };
 
-const getDefaultProps = (isSplit = false) => ({
-  label: text('Label', 'Button'),
-  type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
-  color: select('Set custom color', customColorOptions, customColorOptions.red),
-  size: select('Set size', buttonSizes, 'default'),
-  leftIconSize: select('Set size of left icon', iconSizes, 'S'),
-  rightIconSize: select('Set size of right icon', iconSizes, 'S'),
-  disabled: boolean('Disabled', false),
-  loading: boolean('Loading', false),
-  block: boolean('Block', false),
-  onClick: action('onClick CLICK'),
-  error: boolean('Set validation state', false),
-});
+const getDefaultProps = (isSplit = false) => {
+  const defaultProps = {
+    label: text('Label', 'Button'),
+    type: select('Set type', !isSplit ? typeOptions : splitTypeOptions, 'primary'),
+    color: select('Set custom color', customColorOptions, customColorOptions.red),
+    size: select('Set size', buttonSizes, 'default'),
+    leftIconSize: select('Set size of left icon', iconSizes, 'S'),
+    rightIconSize: select('Set size of right icon', iconSizes, 'S'),
+    disabled: boolean('Disabled', false),
+    loading: boolean('Loading', false),
+    block: boolean('Block', false),
+    onClick: action('onClick CLICK'),
+    error: boolean('Set validation state', false),
+  };
+  return [typeOptions.Secondary, typeOptions.CustomColor].includes(defaultProps.type)
+    ? { ...defaultProps, readOnly: boolean('Read Only', false) }
+    : defaultProps;
+};
 
 const getSplitProps = (isSplit = false) => ({
   label: text('Label', 'Button'),

@@ -283,7 +283,18 @@
             "IN-WEEK": "week",
             "IN-MONTH": "month",
             "MAXIMUM-RANGES-MESSAGE": "You have reached a maximum amount of ranges for selected entries.",
-            "SET_TIME_FOR": "Set time for:"
+            "SET_TIME_FOR": "Set time for:",
+            "START-DATE-PLACEHOLDER": "Start date",
+            "END-DATE-PLACEHOLDER": "End date",
+            "ADD-FILTER": "Add filter",
+            "FILTER-ENABLED": "Filter enabled",
+            "COPY-RANGE": "Copy range",
+            "PASTE-RANGE": "Paste range",
+            "CLEAR-RANGE": "Clear range",
+            "RANGE": "Range",
+            "HOUR": "Hour",
+            "SAVED-FILTERS": "Saved filters",
+            "CHANGE": "Change"
         },
         "CARD-TAB": {
             "REMOVE": "Remove",

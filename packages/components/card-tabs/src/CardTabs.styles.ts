@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as CreatorStyles from '@synerise/ds-button/dist/Creator/Creator.styles';
+import { ButtonStyles } from '@synerise/ds-button';
 import { CardTabContainer } from './CardTab/CardTab.styles';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -22,19 +22,16 @@ export const CardTabsContainer = styled.div`
   }
   .sortable-chosen {
     cursor: grabbing;
-    background-color: ${(props): string => props.theme.palette.white};
+    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
     opacity: 1;
   }
 
   .sortable-drag {
     opacity: 1 !important;
-    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
   }
   .sortable-card-ghost-element {
-    background-color: ${(props): string => props.theme.palette['blue-300']};
-    &:hover {
-      background-color: ${(props): string => props.theme.palette['blue-050']};
-    }
+    border: dashed 1px ${(props): string => props.theme.palette['blue-600']};
+    background-color: ${(props): string => props.theme.palette['blue-050']};
     opacity: 1;
     cursor: grabbing;
     * {
@@ -43,7 +40,8 @@ export const CardTabsContainer = styled.div`
   }
   @media (max-width: 588px) {
     .ds-button-creator {
-      ${CreatorStyles.CreatorLabel} {
+      width: 48px !important;
+      ${ButtonStyles.Creator.CreatorLabel} {
         display: none;
       }
     }

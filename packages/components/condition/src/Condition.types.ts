@@ -17,6 +17,7 @@ export type ConditionStep = {
   context?: Omit<ContextProps, 'onSelectItem'>;
   stepName?: string;
   conditions: StepConditions[];
+  addConditionErrorText?: React.ReactNode | string;
 };
 
 export type ConditionTexts = {

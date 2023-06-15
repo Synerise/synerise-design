@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.21...@synerise/ds-color-picker@0.3.22) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
+## [0.3.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.20...@synerise/ds-color-picker@0.3.21) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
+## [0.3.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.19...@synerise/ds-color-picker@0.3.20) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
+## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.18...@synerise/ds-color-picker@0.3.19) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.17...@synerise/ds-color-picker@0.3.18) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.16...@synerise/ds-color-picker@0.3.17) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
 ## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.15...@synerise/ds-color-picker@0.3.16) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

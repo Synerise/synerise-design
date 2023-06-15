@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.3...@synerise/ds-context-selector@0.17.4) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.17.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.2...@synerise/ds-context-selector@0.17.3) (2023-06-05)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.17.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.1...@synerise/ds-context-selector@0.17.2) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.0...@synerise/ds-context-selector@0.17.1) (2023-05-25)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.14...@synerise/ds-context-selector@0.17.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* types fix ([5f877b8](https://github.com/Synerise/synerise-design/commit/5f877b8d38c81a40f2c21d6e89795297f88407ea))
+* **context-selector:** fix handling readOnly ([c88b710](https://github.com/Synerise/synerise-design/commit/c88b7108c52cd4e2c3192bddcecb81dac2b560fc))
+* **factors:** reuse FactorsProps type ([5743065](https://github.com/Synerise/synerise-design/commit/574306564fb5c2b8f78f75a36a937960f0c7c609))
+
+
+### Features
+
+* **factors:** allow changing tooltip ([6da9e97](https://github.com/Synerise/synerise-design/commit/6da9e979e972ca042fce6b2c79d05735257155d9))
+
+
+
+
+
+## [0.16.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.13...@synerise/ds-context-selector@0.16.14) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/Synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+
+
+
+
+
+## [0.16.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.12...@synerise/ds-context-selector@0.16.13) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.16.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.11...@synerise/ds-context-selector@0.16.12) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
+## [0.16.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.10...@synerise/ds-context-selector@0.16.11) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-context-selector
+
+
+
+
+
 ## [0.16.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.16.9...@synerise/ds-context-selector@0.16.10) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

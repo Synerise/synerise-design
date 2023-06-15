@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.36...@synerise/ds-skeleton@0.3.0) (2023-05-26)
+
+
+### Features
+
+* **skeleton:** add height prop to allow custom height ([f68b8d0](https://github.com/Synerise/synerise-design/commit/f68b8d04b5b2e73442721928212a0bef85e98ece))
+
+
+
+
+
+## [0.2.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.35...@synerise/ds-skeleton@0.2.36) (2023-05-24)
+
+
+### Bug Fixes
+
+* **skeleton:** fixes large skeleton height ([4fcf6cc](https://github.com/Synerise/synerise-design/commit/4fcf6cccb1300bfb0e417be7a0d54c4959143d61))
+
+
+
+
+
+## [0.2.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.34...@synerise/ds-skeleton@0.2.35) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
 ## [0.2.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.2.33...@synerise/ds-skeleton@0.2.34) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-skeleton

@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.184.2](https://github.com/synerise/synerise-design/compare/portal@0.184.1...portal@0.184.2) (2023-06-14)
+
+**Note:** Version bump only for package portal
+
+
+
+
+
+## [0.184.1](https://github.com/synerise/synerise-design/compare/portal@0.184.0...portal@0.184.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **card-tabs:** adds prop to render cruds as dropdown ([a721030](https://github.com/synerise/synerise-design/commit/a721030c508a490f99ad84595d3242870bac2b95))
+
+
+
+
+
+# [0.184.0](https://github.com/synerise/synerise-design/compare/portal@0.183.1...portal@0.184.0) (2023-05-26)
+
+
+### Features
+
+* **skeleton:** add height prop to allow custom height ([f68b8d0](https://github.com/synerise/synerise-design/commit/f68b8d04b5b2e73442721928212a0bef85e98ece))
+
+
+
+
+
+## [0.183.1](https://github.com/synerise/synerise-design/compare/portal@0.183.0...portal@0.183.1) (2023-05-24)
+
+
+### Bug Fixes
+
+* **portal:** add width to treemenu story container, also allow resizing ([1d6c6a4](https://github.com/synerise/synerise-design/commit/1d6c6a4aef733663663d0256d6f877776209252a))
+
+
+
+
+
+# [0.183.0](https://github.com/synerise/synerise-design/compare/portal@0.182.4...portal@0.183.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* **button:** add readOnly styles to button ([e02c5f3](https://github.com/synerise/synerise-design/commit/e02c5f34963de704766e9f69bb775f0171a04a77))
+* **card-tabs:** changes button creator height ([d822687](https://github.com/synerise/synerise-design/commit/d822687f69b513d5adb4e67ade2650d454909aae))
+* **card-tabs:** fixed story with multiple card tabs + dropdown ([3f38b29](https://github.com/synerise/synerise-design/commit/3f38b2999ec33cce528d60b24cda78e53447bc38))
+* **card-tabs:** updates UX and UI to align with desgins ([8bdbcfd](https://github.com/synerise/synerise-design/commit/8bdbcfd7088830f6cd5cac9d3e13b5c2d4b4a6ae))
+* **factors:** reuse FactorsProps type ([5743065](https://github.com/synerise/synerise-design/commit/574306564fb5c2b8f78f75a36a937960f0c7c609))
+* **factors:** tooltip types, drilling menu props, test draft ([c01c97c](https://github.com/synerise/synerise-design/commit/c01c97c19238991276f37f48c5a3cf1ce6af6d9a))
+* **input:** add missing readOnly styles to input ([0316b64](https://github.com/synerise/synerise-design/commit/0316b6460eb568602db3a24110735dad211eecc2))
+
+
+### Features
+
+* **factors:** allow changing tooltip ([6da9e97](https://github.com/synerise/synerise-design/commit/6da9e979e972ca042fce6b2c79d05735257155d9))
+
+
+
+
+
+## [0.182.4](https://github.com/synerise/synerise-design/compare/portal@0.182.3...portal@0.182.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+* **stepper:** enable warning mode in step, fix logic of clicable pointer ([5f257f9](https://github.com/synerise/synerise-design/commit/5f257f95ececc549e4de0957995f5e13f664988b))
+
+
+
+
+
+## [0.182.3](https://github.com/synerise/synerise-design/compare/portal@0.182.2...portal@0.182.3) (2023-05-16)
+
+
+### Bug Fixes
+
+* **operators:** hides tabs if single group is available ([85a14e0](https://github.com/synerise/synerise-design/commit/85a14e030413a90f6d2bf92c27562e6d6f1a2a65))
+
+
+
+
+
+## [0.182.2](https://github.com/synerise/synerise-design/compare/portal@0.182.1...portal@0.182.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds story for checking translations ([b952f82](https://github.com/synerise/synerise-design/commit/b952f8296d5fcf0d7fd7e88a68db027eef123dee))
+
+
+
+
+
+## [0.182.1](https://github.com/synerise/synerise-design/compare/portal@0.182.0...portal@0.182.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* **information-card:** adds support for plain text descriptions ([ebeb57f](https://github.com/synerise/synerise-design/commit/ebeb57f8c6fafa035fdd664744a85f16aaa64304))
+
+
+### BREAKING CHANGES
+
+* **information-card:** children prop no longer supported
+
+
+
+
+
 # [0.182.0](https://github.com/synerise/synerise-design/compare/portal@0.181.0...portal@0.182.0) (2023-04-12)
 
 

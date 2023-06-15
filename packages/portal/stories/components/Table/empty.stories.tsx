@@ -34,7 +34,7 @@ import { AnyObject } from '@synerise/ds-search/dist/Search.types';
 import Divider from '@synerise/ds-divider';
 import Search from '@synerise/ds-search';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => (

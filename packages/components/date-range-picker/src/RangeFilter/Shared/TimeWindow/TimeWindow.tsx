@@ -105,6 +105,10 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
+  handleClearDay = (dayKey: DayKey): void => {
+    this.removeDaySelection(dayKey);
+  };
+
   handleDayChange = (dayKey: DayKey, dayChanges: Partial<DayOptions>): void => {
     const { onChange, days } = this.props;
     onChange({
@@ -150,6 +154,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const updatedDays = {};
     activeDays.forEach(k => {
       updatedDays[k] = {
+        ...this.getDayValue(k),
         day: k,
         start: dayjs(value[0]).format(TIME_FORMAT),
         stop: dayjs(value[1]).format(TIME_FORMAT),
@@ -282,6 +287,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         readOnly={readOnly}
         intl={intl}
         onToggle={this.handleToggleDay}
+        onClear={this.handleClearDay}
         texts={texts}
       />
     );
@@ -406,6 +412,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
             numberOfDays={numberOfDays}
             texts={texts}
             {...rest}
+            showSelectAll={keys.length > activeDays?.length}
             title={
               <SelectionCount
                 selectedDayCount={activeDays.length}

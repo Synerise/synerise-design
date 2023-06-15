@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.53...@synerise/ds-file-uploader@0.6.54) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.6.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.52...@synerise/ds-file-uploader@0.6.53) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.6.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.51...@synerise/ds-file-uploader@0.6.52) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.6.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.50...@synerise/ds-file-uploader@0.6.51) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.6.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.49...@synerise/ds-file-uploader@0.6.50) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
+## [0.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.48...@synerise/ds-file-uploader@0.6.49) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-file-uploader
+
+
+
+
+
 ## [0.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.6.47...@synerise/ds-file-uploader@0.6.48) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-file-uploader

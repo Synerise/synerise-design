@@ -7,12 +7,12 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Alert from '@synerise/ds-alert';
 import BroadcastBar from '@synerise/ds-alert/dist/BroadcastBar/BroadcastBar';
-import Button from '@synerise/ds-button/dist/Button';
+import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import Navbar from '@synerise/ds-navbar';
 import { UserAvatar } from '@synerise/ds-avatar';
 import { addonType } from '../Select/index.stories';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import AnimateHeight from 'react-animate-height';
 
 

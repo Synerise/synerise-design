@@ -8,7 +8,7 @@ import { ADD_TAGS, FOLDERS, TOP_MENU_ITEMS, TEXTS } from './dataset';
 import Scrollbar from '@synerise/ds-scrollbar';
 import message from '@synerise/ds-message';
 import Icon, { StarFillM, StarM, TagM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from '@synerise/ds-layout/dist/Layout.styles';
 
 const { Divider } = Menu;

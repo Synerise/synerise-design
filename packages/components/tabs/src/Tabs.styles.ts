@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Button from '@synerise/ds-button';
-import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
+import Button, { ButtonProps } from '@synerise/ds-button';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import Menu from '@synerise/ds-menu';
 import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
@@ -50,8 +49,7 @@ export const HiddenTabs = styled.div`
   width: 0;
   visibility: hidden;
 `;
-export const DropdownMenu = styled(Menu)<AntdMenuProps>`
-`;
+export const DropdownMenu = styled(Menu)<AntdMenuProps>``;
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
   &&& {
     border: none;

@@ -47,11 +47,14 @@ const Button: React.FC<Props> = ({
       onClick && onClick(event);
     }
   };
+
   const classNameString = React.useMemo((): string => {
-    const modeStringifed = !mode ? '' : mode;
-    const classNameStringifed = !className ? '' : className;
-    return `ds-button ${modeStringifed} ${classNameStringifed}`;
-  }, [mode, className]);
+    const modeStringifed = mode || '';
+    const readOnlyStringifed = antdProps.readOnly ? 'read-only' : '';
+    const classNameStringifed = className || '';
+    return `ds-button ${modeStringifed} ${classNameStringifed} ${readOnlyStringifed}`;
+  }, [mode, className, antdProps.readOnly]);
+
   return (
     <S.AntdButton
       justifyContent={justifyContent}
@@ -74,7 +77,7 @@ const Button: React.FC<Props> = ({
       /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
-      <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />
+      {!antdProps.readOnly && <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />}
       {antdProps.children}
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">

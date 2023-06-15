@@ -71,7 +71,12 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   }
 
   onModeChange = (mode: RelativeMode | null): void => {
-    this.setState({ currentGroup: mode }, () => this.onChange(DEFAULT_RANGE));
+    const { currentGroup } = this.state;
+    if (mode !== currentGroup) {
+      this.setState({ currentGroup: mode, lastCustomRange: undefined, sinceTimestamp: new Date() });
+      const { onChange } = this.props;
+      onChange(DEFAULT_RANGE);
+    }
   };
 
   onTimestampChange = (timestamp: Date | undefined): void => {
@@ -85,10 +90,9 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
 
   handleCustomClick = (): void => {
     const { onChange } = this.props;
-    const { currentGroup, currentRange } = this.state;
-    if (currentGroup === RANGES_MODE.SINCE) {
-      onChange({ ...currentRange, type: 'RELATIVE', key: undefined, translationKey: CUSTOM_RANGE_KEY });
-      // FIXME: make currentGroup rely on value rather than state
+    const { lastCustomRange, currentGroup } = this.state;
+    if (lastCustomRange && lastCustomRange.translationKey === CUSTOM_RANGE_KEY) {
+      onChange({ ...lastCustomRange, key: undefined });
     } else {
       const sourceRange = getDefaultCustomRange(currentGroup);
       onChange({ ...sourceRange, key: undefined, translationKey: CUSTOM_RANGE_KEY });
@@ -105,7 +109,11 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
       type: 'RELATIVE',
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onChange(normalizeRange(changes as any));
+    const resultRange = normalizeRange(changes as any);
+    if (resultRange?.translationKey === CUSTOM_RANGE_KEY) {
+      this.setState({ lastCustomRange: resultRange as RelativeDateRange });
+    }
+    onChange(resultRange);
   };
 
   renderRanges = (ranges: DateRange[]): React.ReactNode => {

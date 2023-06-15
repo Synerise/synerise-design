@@ -7,7 +7,7 @@ import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import OperatorsDropdownItem from './OperatorsDropdownItem';
 import * as S from '../Operators.style';
@@ -183,7 +183,7 @@ const OperatorsDropdown: React.FC<OperatorsDropdownProps> = ({
         autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      {searchQuery === '' && (
+      {searchQuery === '' && getTabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
             block

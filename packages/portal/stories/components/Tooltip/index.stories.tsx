@@ -7,7 +7,7 @@ import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import Status from '@synerise/ds-status';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import InformationCard from '@synerise/ds-information-card';
 
 const decorator = storyFn => <div style={{ padding: '60px' }}>{storyFn()}</div>;

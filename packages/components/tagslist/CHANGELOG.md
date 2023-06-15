@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.64](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.63...@synerise/ds-tagslist@0.8.64) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.8.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.62...@synerise/ds-tagslist@0.8.63) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.8.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.61...@synerise/ds-tagslist@0.8.62) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.8.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.60...@synerise/ds-tagslist@0.8.61) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.8.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.59...@synerise/ds-tagslist@0.8.60) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
+## [0.8.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.58...@synerise/ds-tagslist@0.8.59) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-tagslist
+
+
+
+
+
 ## [0.8.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.57...@synerise/ds-tagslist@0.8.58) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

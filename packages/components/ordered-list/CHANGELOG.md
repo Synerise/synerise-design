@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.43...@synerise/ds-ordered-list@0.3.44) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
+## [0.3.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.42...@synerise/ds-ordered-list@0.3.43) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
+## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.41...@synerise/ds-ordered-list@0.3.42) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
+## [0.3.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.40...@synerise/ds-ordered-list@0.3.41) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
+## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.39...@synerise/ds-ordered-list@0.3.40) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
+## [0.3.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.38...@synerise/ds-ordered-list@0.3.39) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
 ## [0.3.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.37...@synerise/ds-ordered-list@0.3.38) (2023-04-05)
 
 **Note:** Version bump only for package @synerise/ds-ordered-list

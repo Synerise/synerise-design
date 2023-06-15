@@ -8,7 +8,7 @@ import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Button from '@synerise/ds-button';
 import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { DayProps } from './Day.types';
 import * as S from './Day.styles';
@@ -19,6 +19,7 @@ const Day: React.FC<DayProps> = ({
   active,
   label,
   onToggle,
+  onClear,
   readOnly,
   restricted,
   dayKey,
@@ -28,10 +29,10 @@ const Day: React.FC<DayProps> = ({
   const [hovered, setHovered] = React.useState<boolean>(false);
   const type = React.useMemo(() => (active ? 'primary' : 'secondary'), [active]);
   const handleIconClick = React.useCallback((): void => {
-    !readOnly && onToggle(dayKey, false);
-  }, [readOnly, onToggle, dayKey]);
+    !readOnly && onClear(dayKey);
+  }, [readOnly, onClear, dayKey]);
 
-  const handleMouseOut = React.useCallback(() => {
+  const handleMouseLeave = React.useCallback(() => {
     setHovered(false);
   }, []);
 
@@ -55,19 +56,10 @@ const Day: React.FC<DayProps> = ({
   const handleTooltipVisibleChange = React.useCallback((visible: boolean): void => setHovered(visible), []);
   return (
     <S.Container>
-      <Button
-        {...rest}
-        onMouseLeave={handleMouseOut}
-        onMouseOut={handleMouseOut}
-        onBlur={handleMouseOut}
-        block
-        onClick={handleButtonClick}
-        type={type}
-        mode="label-icon"
-      >
+      <Button {...rest} onMouseLeave={handleMouseLeave} block onClick={handleButtonClick} type={type} mode="label-icon">
         <S.Content>{label}</S.Content>
       </Button>
-      {restricted && !active && (
+      {restricted && (
         <Tooltip
           trigger={['hover']}
           title={texts?.clear || 'Clear'}

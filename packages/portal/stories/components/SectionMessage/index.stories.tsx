@@ -12,7 +12,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import Alert from '@synerise/ds-alert';
 import Card, { CardBadge } from '@synerise/ds-card';
-import { CardProps } from '@synerise/ds-card/dist/Card/Card.types';
+import { CardProps } from '@synerise/ds-card';
 import Button from '@synerise/ds-button';
 import * as S from '../Card/stories.styles';
 import ModalProxy from '@synerise/ds-modal';

@@ -125,6 +125,19 @@ k8s-deploy-branch-release:
   only:
     - dev
 
+k8s-deploy-prod:
+  extends: .k8s-deploy-tag-prod
+  stage: deploy
+  when: manual
+  only:
+    refs:
+      - tags
+      - master
+  variables:
+    APPLICATION: ${APP}
+    NAMESPACE: default
+    CURRENT_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}
+
 chromatic_publish:
   stage: deploy
   only:

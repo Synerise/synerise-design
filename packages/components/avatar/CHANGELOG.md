@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.68](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.67...@synerise/ds-avatar@0.14.68) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.14.67](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.66...@synerise/ds-avatar@0.14.67) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.14.66](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.65...@synerise/ds-avatar@0.14.66) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.14.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.64...@synerise/ds-avatar@0.14.65) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.14.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.63...@synerise/ds-avatar@0.14.64) (2023-04-26)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
+## [0.14.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.62...@synerise/ds-avatar@0.14.63) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
 ## [0.14.62](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.14.61...@synerise/ds-avatar@0.14.62) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-avatar

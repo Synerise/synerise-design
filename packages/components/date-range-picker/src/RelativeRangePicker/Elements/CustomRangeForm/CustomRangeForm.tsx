@@ -62,7 +62,6 @@ const CustomRangeForm: React.FC<Props> = ({
         <TimestampRange
           handleModeChange={handleModeChange}
           currentRange={currentRange}
-          currentGroup={currentGroup}
           handleChange={handleChange}
           onTimestampChange={handleTimestampChange}
           timestamp={timestamp}

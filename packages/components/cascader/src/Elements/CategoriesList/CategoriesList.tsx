@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
@@ -39,21 +39,19 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
     <>
       {Object.keys(rootCategory)
         .filter(key => rootCategory[key]?.name)
-        .map(
-          (key): React.ReactNode => {
-            const item = rootCategory[key];
-            return (
-              <Menu.Item
-                text={item.name}
-                type={selectedIds && selectedIds.includes(item.id) ? '' : 'select'}
-                key={`${item.id}`}
-                suffixel={renderSuffix(item)}
-                parent={hasNestedCategories(item)}
-                onClick={(): void => onCategoryClickHandler(item)}
-              />
-            );
-          }
-        )}
+        .map((key): React.ReactNode => {
+          const item = rootCategory[key];
+          return (
+            <Menu.Item
+              text={item.name}
+              type={selectedIds && selectedIds.includes(item.id) ? '' : 'select'}
+              key={`${item.id}`}
+              suffixel={renderSuffix(item)}
+              parent={hasNestedCategories(item)}
+              onClick={(): void => onCategoryClickHandler(item)}
+            />
+          );
+        })}
     </>
   );
 };

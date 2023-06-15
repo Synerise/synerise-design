@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.17...@synerise/ds-information-card@0.3.18) (2023-06-14)
+
+
+### Bug Fixes
+
+* **information-card:** add missing dependecies ([daeb175](https://github.com/Synerise/synerise-design/commit/daeb175c4f6d4d7095656186b046237e441bd751))
+
+
+
+
+
+## [0.3.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.16...@synerise/ds-information-card@0.3.17) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.15...@synerise/ds-information-card@0.3.16) (2023-05-25)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.14...@synerise/ds-information-card@0.3.15) (2023-05-23)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.13...@synerise/ds-information-card@0.3.14) (2023-05-20)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.12...@synerise/ds-information-card@0.3.13) (2023-04-26)
+
+
+### Bug Fixes
+
+* **information-card:** sets correct width on wrapper ([5f2da0d](https://github.com/Synerise/synerise-design/commit/5f2da0dcdfe78784303d82b1208bea24e8a67f62))
+
+
+
+
+
+## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.11...@synerise/ds-information-card@0.3.12) (2023-04-19)
+
+
+### Bug Fixes
+
+* **information-card:** adds support for plain text descriptions ([ebeb57f](https://github.com/Synerise/synerise-design/commit/ebeb57f8c6fafa035fdd664744a85f16aaa64304))
+* **information-card:** removed children from props ([4451b88](https://github.com/Synerise/synerise-design/commit/4451b883364b89c4a9fb94aaf630e18f70f80505))
+
+
+### BREAKING CHANGES
+
+* **information-card:** children prop no longer supported in information-card
+* **information-card:** children prop no longer supported
+
+
+
+
+
+## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.10...@synerise/ds-information-card@0.3.11) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
 ## [0.3.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.9...@synerise/ds-information-card@0.3.10) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-information-card

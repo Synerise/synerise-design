@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.7...@synerise/ds-core@0.39.8) (2023-04-26)
+
+
+### Bug Fixes
+
+* **core:** exports ds-typed usetheme hook ([1246d86](https://github.com/synerise/synerise-design/commit/1246d86e03c75c8b001ef5dbce3e91c6edf25b47))
+* **core:** reexport theme props for withTheme hook ([79ee3e5](https://github.com/synerise/synerise-design/commit/79ee3e5591883ca9be8a17641ab71bd0a8fab27b))
+* **core:** removes unnecessary wrapper fn ([12c2eaf](https://github.com/synerise/synerise-design/commit/12c2eafa59fe3acd3e557ffe512f04b618fa2965))
+* **date-range-picker:** adds missing translation keys ([2bee40b](https://github.com/synerise/synerise-design/commit/2bee40bd8374386cfa9baecc4bae1cc9cc347ae2))
+
+
+
+
+
 ## [0.39.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.6...@synerise/ds-core@0.39.7) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-core

@@ -20,7 +20,7 @@ import {
   SEARCH_PLACEHOLDER,
 } from './dataset';
 import Icon from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';

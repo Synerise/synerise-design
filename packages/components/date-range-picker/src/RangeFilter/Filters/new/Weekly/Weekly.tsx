@@ -253,11 +253,12 @@ const Weekly: React.FC<WeeklyProps> = ({
           readOnly={disabled}
           intl={intl}
           onToggle={handleToggleDay}
+          onClear={removeDaySelection}
           texts={EMPTY_OBJECT}
         />
       );
     },
-    [activeDays, intl, getDayLabel, handleToggleDay, isDayRestricted, disabled]
+    [activeDays, intl, getDayLabel, handleToggleDay, removeDaySelection, isDayRestricted, disabled]
   );
 
   const handleRangeAdd = React.useCallback((): void => {
@@ -296,7 +297,7 @@ const Weekly: React.FC<WeeklyProps> = ({
         onUnselectAll={handleUnselectAll}
         onSelectAll={handleSelectAll}
         showUnselectAll={Boolean(activeDays.length)}
-        showSelectAll
+        showSelectAll={allKeys.length > activeDays.length}
         renderDay={renderDay}
         keys={allKeys}
         days={EMPTY_OBJECT}

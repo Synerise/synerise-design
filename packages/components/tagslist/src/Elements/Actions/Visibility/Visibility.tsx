@@ -2,7 +2,7 @@ import React from 'react';
 import { MenuProps } from 'antd/lib/menu';
 
 import Icon, { CheckS, ShowM, ShowCheckM, HideM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { NOOP } from '@synerise/ds-utils';
 
 import { TagVisibility } from '../../../TagsList.types';

@@ -14,7 +14,7 @@ import Select from '@synerise/ds-select';
 import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import * as S from '../Select/stories.styles';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';
@@ -107,6 +107,7 @@ const stories = {
     const message = text('Error Text', 'Error');
     const [isFocus, setFocus] = React.useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
+    const readOnly = boolean('Read only', false);
 
     return (
       <Input
@@ -124,6 +125,7 @@ const stories = {
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
         value={value}
+        readOnly={readOnly}
         size={size}
         onBlur={() => {
           action('I am blurred');

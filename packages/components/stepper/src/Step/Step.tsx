@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import AnimateHeight from 'react-animate-height';
 import { StepProps } from './Step.types';
@@ -13,6 +13,7 @@ const Step: React.FC<StepProps> = ({
   label,
   active,
   done,
+  warning,
   validated,
   tooltip,
   onClick,
@@ -41,6 +42,7 @@ const Step: React.FC<StepProps> = ({
       active={Boolean(active)}
       wasActive={wasActive}
       done={Boolean(done)}
+      warning={Boolean(warning)}
       validated={Boolean(validated)}
       hasChildren={Boolean(children)}
       size={size}

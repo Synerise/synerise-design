@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/dom';
 import { RenderResult } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';

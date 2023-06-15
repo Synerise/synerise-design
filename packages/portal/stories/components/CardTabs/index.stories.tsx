@@ -4,20 +4,24 @@ import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { CardTab } from '@synerise/ds-card-tabs';
-import { prefixType } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.types';
-import { CardTabsItem } from '@synerise/ds-card-tabs/dist/CardTabs.types';
+import { prefixType } from '@synerise/ds-card-tabs';
+import type { CardTabsItem } from '@synerise/ds-card-tabs';
 import { action } from '@storybook/addon-actions';
 import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
-import { CardDot } from '@synerise/ds-card-tabs/dist/CardTab/CardTab.styles';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { CardDot } from '@synerise/ds-card-tabs';
+import { defaultColorsOrder } from '@synerise/ds-core';
 
-const suffixType = {
+
+
+const suffixIcon = {
   singleIcon: <OptionHorizontalM />,
   cruds: null,
+  menu: null
 };
 const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
+  menu: 'menu'
 };
 
 const stories = {
@@ -27,15 +31,18 @@ const stories = {
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
-      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT },
+      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT, dragHandle: prefixType.HANDLE },
       prefixType.TAG
     );
-    const setSuffix = select('Set suffix type', types, 'cruds');
+    
+    const suffixType = select('Set suffix type', types, 'menu');
     const isActive = boolean('Is active', false);
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid tab name', false);
     const setCustomColor = boolean('Set custom color', false);
+    const renameEnabled = boolean('Rename enabled', true);
+
     const selectCustomColor = setCustomColor ? select('Pick custom color',defaultColorsOrder, 'blue-500') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
@@ -45,10 +52,11 @@ const stories = {
     const handleSelect = id => {
       store.set({ activeTab: id });
     };
-    const handleChangeOrder = (newOrder: CardTabsItem): void => {
+    const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
       store.set({ items: newOrder });
     };
-
+    
+   
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}>
@@ -62,17 +70,18 @@ const stories = {
             color={setCustomColor ?`${selectCustomColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
-            suffixIcon={suffixType[setSuffix]}
+            suffixIcon={suffixIcon[suffixType]}
+            actionsAsDropdown={suffixType==='menu'}
             disabled={disabled}
             prefix={prefix}
             onSelectTab={handleSelect}
-            onChangeName={handleChangeName}
+            onChangeName={renameEnabled ? handleChangeName : undefined}
             onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
             onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
-              changeNameTooltip: text('Set rename tooltip', 'Rename'),
-              removeTooltip: text('Set remove tooltip', 'Remove'),
-              duplicateTooltip: text('Set duplicate tooltip', 'Duplicate'),
+              changeNameMenuItem: text('Set rename menu item', 'Rename'),
+              removeMenuItem: text('Set remove menu item', 'Remove'),
+              duplicateMenuItem: text('Set duplicate menu item', 'Duplicate'),
             }}
             invalid={invalid}
             invalidName={invalidName}
@@ -95,18 +104,21 @@ const stories = {
     activeTab: 0,
     nextId: 3,
   })(({ store }) => {
+    
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
-      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT },
+      { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT, dragHandle: prefixType.HANDLE },
       prefixType.TAG
     );
-    const setSuffix = select('Set suffix type', types, 'cruds');
+    const suffixType = select('Set suffix type', types, 'menu');
     const disabled = boolean('Disabled tabs', false);
     const invalid = boolean('Invalid tabs', false);
     const invalidName = boolean('Invalid names', false);
     const maxTabCount = number('Max number of tabs', 4);
     const setCustomColor = boolean('Set custom color', false);
+    const renameEnabled = boolean('Rename enabled', true);
+
     const handleChangeName = (id, name) => {
       store.set({
         items: store.state.items.map(item => {
@@ -119,6 +131,10 @@ const stories = {
         }),
       });
     };
+
+    const getIndex = id => {
+      return store.state.items.findIndex(item => item.id === id)
+    }
 
     const handleRemove = id => {
       store.set({
@@ -152,7 +168,7 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
-
+    
     const handleAddItem = () => {
       store.set({
         items: [
@@ -171,11 +187,10 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
-
-    const handleChangeOrder = (newOrder: CardTabsItem): void => {
-      store.set({ items: newOrder });
+    
+    const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
+      store.set({ items: [ ...newOrder ] });
     };
-
     const handleSelect = id => {
       store.set({ activeTab: id });
     };
@@ -184,7 +199,7 @@ const stories = {
 
     const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
     const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
-    const addTabLabel = text('Add new card label', 'Add new');
+    const addTabLabel = text('Add new card label', '');
 
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px', ...additionalStyle }}>
@@ -204,24 +219,25 @@ const stories = {
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
-              suffixIcon={suffixType[setSuffix]}
+              suffixIcon={suffixIcon[suffixType]}
               disabled={disabled}
               prefix={prefix}
               onSelectTab={handleSelect}
-              onChangeName={handleChangeName}
-              onRemoveTab={handleRemove}
+              onChangeName={renameEnabled ? handleChangeName : undefined}
+              onRemoveTab={boolean('Removing enabled', true) ? handleRemove : undefined}
               onDuplicateTab={
-                boolean('Enable not displaying duplicate-card button if reached cards limit', true)
+                boolean('Enable not displaying "duplicate" action if reached cards limit', true)
                   ? isTabsLimitNotExceeded
                     ? handleDuplicate
                     : undefined
                   : handleDuplicate
               }
               texts={{
-                changeNameTooltip: 'Rename',
-                removeTooltip: 'Remove',
-                duplicateTooltip: 'Duplicate',
+                changeNameMenuItem: 'Rename',
+                removeMenuItem: 'Remove',
+                duplicateMenuItem: 'Duplicate',
               }}
+              actionsAsDropdown={suffixType==='menu'}
               invalid={invalid}
               invalidName={invalidName}
               itemData={item.itemData}

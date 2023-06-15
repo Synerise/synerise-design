@@ -4,7 +4,7 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { EMPTY_CONTENT_ITEM, CONTENT_ITEMS, EMPTY_ITEM, FILTER_LIST_ITEMS, ITEMS, ACCORDION_ITEMS } from './index.data';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { Settings2S } from '@synerise/ds-icon';
 
 const decorator = storyFn => (

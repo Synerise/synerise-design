@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { InfoM } from '@synerise/ds-icon';
 
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import * as S from '../TimeWindow/TimeWindow.styles';
 
 export type SelectionHintProps = {

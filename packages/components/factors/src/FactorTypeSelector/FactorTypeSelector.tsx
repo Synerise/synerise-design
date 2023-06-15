@@ -3,7 +3,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import Menu from '@synerise/ds-menu';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './FactorTypeSelector.styles';
 import { ALL_FACTOR_TYPES, FactorType, FactorTypeSelectorProps } from '../Factors.types';
 import { factorTypes } from '../Factors';
@@ -37,7 +37,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
   const trigger = (
-    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector">
+    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector" readOnly={readOnly}>
       <Icon component={selectedFactor.icon} />
     </S.TriggerButton>
   );

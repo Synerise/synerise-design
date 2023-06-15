@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import BaseAntInputNumber from 'antd/lib/input-number';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 export const InputNumberContainer = styled.div`
   display: flex;

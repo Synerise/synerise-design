@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
-import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
-import Button from '@synerise/ds-button';
+import Button, { ButtonProps } from '@synerise/ds-button';
 
 export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
 

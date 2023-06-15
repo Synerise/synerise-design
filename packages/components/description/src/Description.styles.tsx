@@ -1,5 +1,5 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
-import { ThemeProps, ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps, ThemePropsVars } from '@synerise/ds-core';
 import {
   PrefixWrapper,
   RowLabel,
@@ -98,7 +98,7 @@ export const Description = styled.div<{ type: DescriptionType; ratio?: Descripti
   ${PrefixWrapper},
   ${SuffixWrapper},
   ${ValueWrapper},
-  ${RowLabel}{
+  ${RowLabel} {
     padding: ${(props): string => (props.singleRow ? '0' : '7px 0')};
   }
   ${(props: ThemeProps & { type: DescriptionType; ratio?: DescriptionRatio }): FlattenSimpleInterpolation | false => {

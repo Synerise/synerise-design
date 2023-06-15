@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { EditS, DuplicateS, CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './ItemActions.styles';
 import { ItemActionsProps } from './ItemActions.types';
 

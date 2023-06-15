@@ -1,17 +1,20 @@
 import * as React from 'react';
+import { FC, ReactElement, Children, cloneElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { defaultColorsOrder } from '@synerise/ds-core';
+
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
-  className: 'sortable-card',
+  className: 'ds-card-tags-sortable',
   animation: 150,
-  group: 'column-manager',
+  filter: '.ds-card-tabs__suffix-nodrag',
+  preventOnFilter: false,
 };
-const CardTabs: React.FC<CardTabsProps> = ({
+const CardTabs: FC<CardTabsProps> = ({
   className,
   onChangeOrder,
   onAddTab,
@@ -19,7 +22,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
   children = [],
   addTabLabel,
 }) => {
-  const handleChangeOrder = (newOrder: React.ReactElement[]): void => {
+  const handleChangeOrder = (newOrder: ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
         newOrder.map(item => ({
@@ -28,8 +31,8 @@ const CardTabs: React.FC<CardTabsProps> = ({
       );
   };
   const renderChildren = (): JSX.Element[] =>
-    React.Children.map(children, (child, i) =>
-      React.cloneElement(child, {
+    Children.map(children, (child, i) =>
+      cloneElement(child, {
         ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
         draggable: Boolean(onChangeOrder) || child.props.draggable,
       })
@@ -39,12 +42,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable
-            {...SORTABLE_CONFIG}
-            className="ds-card-tags-sortable"
-            list={children}
-            setList={handleChangeOrder}
-          >
+          <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
             {renderChildren()}
           </ReactSortable>
         </div>
@@ -57,7 +55,7 @@ const CardTabs: React.FC<CardTabsProps> = ({
         <span data-testid="card-tabs-add-button">
           <Button.Creator
             block
-            disabled={!!maxTabsCount && React.Children.toArray(children).length >= maxTabsCount}
+            disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
             label={addTabLabel ?? ''}
             onClick={onAddTab}
           />

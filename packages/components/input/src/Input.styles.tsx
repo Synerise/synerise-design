@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
@@ -142,7 +142,7 @@ export const AntdInput = styled(
       <BaseAntInput autoComplete="off" {...props} ref={ref} />
     )
   )
-)<{ error?: boolean }>`
+)<{ error?: boolean; readOnly?: boolean }>`
   ${(props): string => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
@@ -164,6 +164,19 @@ export const AntdInput = styled(
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
     }
+    ${({ readOnly, theme }): string =>
+      readOnly
+        ? `
+            &:hover {
+              border-color: ${theme.palette['grey-300']};
+            }
+            &:focus {
+              border-color: ${theme.palette['grey-300']};
+              box-shadow: none;
+              background: #fff;
+            }
+          `
+        : ''}
   }
 `;
 

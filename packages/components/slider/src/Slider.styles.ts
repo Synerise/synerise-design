@@ -1,6 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Slider, { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { ComponentType } from 'react';
 import { ColorMapProps, Props as DsSliderProps } from './Slider.types';
 
@@ -49,16 +49,20 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     padding: 3px 7px;
     user-select: none;
   }
-  ${props.disabled &&
+  ${
+    props.disabled &&
     `.ant-tooltip-inner {
         color: ${props.theme.palette['grey-400']};
       }
-    `}
-  ${props.disabled &&
+    `
+  }
+  ${
+    props.disabled &&
     `.ant-slider-dot {
         background-color: ${props.theme.palette.white};
       }
-    `}
+    `
+  }
 
   &&&.ant-slider-disabled {
     .ant-slider-dot-active {
@@ -70,7 +74,8 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
   }
   .ant-slider-handle:hover,
   .ant-slider-handle:focus {
-    ${!props.disabled &&
+    ${
+      !props.disabled &&
       `
     .ant-tooltip-content {
       background-color: ${props.theme.palette['grey-900']};
@@ -82,16 +87,19 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     .ant-tooltip-inner {
       color: ${props.theme.palette['grey-050']};
     }
-    `}
+    `
+    }
   }
   .ant-slider-handle:focus {
-  ${!props.disabled &&
+  ${
+    !props.disabled &&
     `
   ${Description} {
      ${props.range && `opacity: 1`};
     }
     }
-    `}
+    `
+  }
   .ant-slider-handle:hover:not(:focus) {
     background-color: ${!props.disabled && props.theme.palette['grey-500']};
   }
@@ -185,7 +193,7 @@ type SliderStyles = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdSlider = styled((Slider as any) as ComponentType<Omit<SliderProps, 'value'>>)<
+export const AntdSlider = styled(Slider as any as ComponentType<Omit<SliderProps, 'value'>>)<
   DsSliderProps & SliderStyles
 >`
   ${(props): FlattenSimpleInterpolation =>

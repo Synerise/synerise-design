@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { Label } from '@synerise/ds-input';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import { DatePicker } from '@synerise/ds-date-picker';
 import format from '@synerise/ds-date-picker/dist/format';
 import * as S from '../../SubtleForm.styles';
 import { SelectContainer, ContentAbove, MaskedDatePlaceholder } from './DatePicker.styles';

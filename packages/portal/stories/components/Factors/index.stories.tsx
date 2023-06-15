@@ -6,6 +6,8 @@ import { boolean, number, object, select } from '@storybook/addon-knobs';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
 import { action } from '@storybook/addon-actions';
+import type { MenuItemProps } from '@synerise/ds-menu';
+import type { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
 
 const DEFAULT_STATE = {
   selectedFactorType: undefined,
@@ -19,6 +21,24 @@ const stories = {
       store.set({ value: val });
       action('onChange')(val);
     };
+
+    const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card')
+
+    const additionalProps: Record<string, FactorsProps> = {
+      ['tooltip']: {
+        getMenuEntryProps: (arg) => ({
+          renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text <u>{arg.name}: {arg.id}</u></span>,
+          hoverTooltipProps: {
+            popupPlacement: 'bottom',
+          },
+        } as MenuItemProps),
+      },
+      'none': {
+        getMenuEntryProps: () => ({
+          renderHoverTooltip: undefined,
+        }),
+      },
+    }[typeOfTooltip]
 
     return (
       <Factors
@@ -54,6 +74,7 @@ const stories = {
         texts={FACTORS_TEXTS}
         onDeactivate={action('onDeactivate')}
         readOnly={boolean('Set readOnly', false)}
+        {...additionalProps}
       />
     );
   }),

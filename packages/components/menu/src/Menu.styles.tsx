@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { Menu } from 'antd';
 import { AntdMenuProps, MenuDividerProps } from './Menu.types';
 

@@ -21,7 +21,7 @@ import Icon, {
   FileTypePptx,
 } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 

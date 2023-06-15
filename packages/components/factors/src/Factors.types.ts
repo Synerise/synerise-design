@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
 import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
+import type { MenuItemProps } from '@synerise/ds-menu';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -91,6 +92,7 @@ export type FactorsTexts = {
 export type FactorsProps = {
   factorKey?: React.ReactText;
   error?: boolean;
+  errorText?: React.ReactNode | string;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -123,6 +125,7 @@ export type FactorsProps = {
   withCustomFactor?: React.ReactNode;
   inputProps?: Partial<InputProps>;
   readOnly?: boolean;
+  getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
 };
 
 export type FactorTypeSelectorProps = Pick<
@@ -158,6 +161,7 @@ export type FactorValueProps = Pick<
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
+  | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -178,6 +182,7 @@ export type InputProps = Pick<
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
+  | 'getMenuEntryProps'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

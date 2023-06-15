@@ -1,4 +1,4 @@
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import latinize from 'latinize';
 
 export type ColorByLetter = {
@@ -11,8 +11,8 @@ export const palette = ['blue', 'cyan', 'fern', 'green', 'orange', 'yellow', 're
 
 function getColorByLetter(): ColorByLetter {
   const colors = {};
-  for(let i = 0; i<=25; i += 1) {
-    colors[String.fromCharCode(i+65)] = palette[i % palette.length];
+  for (let i = 0; i <= 25; i += 1) {
+    colors[String.fromCharCode(i + 65)] = palette[i % palette.length];
   }
   return colors;
 }
@@ -25,12 +25,12 @@ export function getColor(colorString: string, forAvatar: boolean): Color {
     color: colorString.split('-')[0],
     hue: colorString.split('-')[1],
   };
-};
+}
 
 function selectColorByLetter(letter?: string, forAvatar = false): Color {
-  return typeof letter !== 'string' 
+  return typeof letter !== 'string'
     ? getColor('orange-500', forAvatar)
     : getColor(`${colorByLetter[latinize(letter.toUpperCase())] || 'orange'}-500`, forAvatar);
-};
+}
 
 export default selectColorByLetter;

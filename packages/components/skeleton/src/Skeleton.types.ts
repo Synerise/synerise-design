@@ -1,7 +1,7 @@
 export enum SkeletonSize {
   'S' = 14,
   'M' = 16,
-  'L' = 30,
+  'L' = 32,
 }
 export enum WidthSize {
   'M' = 60,
@@ -14,6 +14,7 @@ export enum StartOffsetSize {
 
 export type SkeletonProps = {
   size?: 'S' | 'M' | 'L';
+  height?: number;
   numberOfSkeletons?: number;
   width?: 'M' | 'L';
 };

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-collector",
-  "version": "0.6.1",
+  "version": "0.6.7",
   "description": "Collector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,10 +32,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.17.12",
-    "@synerise/ds-icon": "^0.54.0",
-    "@synerise/ds-input": "^0.18.37",
-    "@synerise/ds-search": "^0.8.47",
+    "@synerise/ds-button": "^0.17.18",
+    "@synerise/ds-icon": "^0.56.0",
+    "@synerise/ds-input": "^0.18.43",
+    "@synerise/ds-search": "^0.8.53",
     "classnames": "^2.2.6"
   },
   "peerDependencies": {

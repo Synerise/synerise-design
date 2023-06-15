@@ -161,4 +161,5 @@ describe('Factors component', () => {
 
     expect(handleDeactivate).toBeCalled();
   });
+  test.todo('should show tooltip on mousehover on selected parameter');
 });

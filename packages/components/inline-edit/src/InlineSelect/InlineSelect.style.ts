@@ -1,5 +1,5 @@
 import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { macro } from '@synerise/ds-typography';
 
 type InPlaceEditableInputContainerProps = {

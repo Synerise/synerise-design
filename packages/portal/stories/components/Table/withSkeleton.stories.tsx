@@ -10,7 +10,7 @@ import {
 
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
 import Skeleton from '@synerise/ds-skeleton';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 

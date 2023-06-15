@@ -2,7 +2,7 @@ import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { FormattedMessage } from 'react-intl';
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import ListItem from '../ListItem/ListItem';
 import { FilterElement, FilterItem } from '../IconPicker.types';
 import { ListProps } from './List.types';

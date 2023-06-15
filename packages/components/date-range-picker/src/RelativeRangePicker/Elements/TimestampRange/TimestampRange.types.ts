@@ -3,7 +3,6 @@ import { RelativeMode, Texts } from '../../../DateRangePicker.types';
 
 export type TimestampRangeProps = {
   currentRange: RelativeDateRange;
-  currentGroup: string | null;
   handleChange: (value: RelativeDateRange) => void;
   handleModeChange: (mode: RelativeMode | null) => void;
   onTimestampChange?: (timestamp: Date | undefined) => void;

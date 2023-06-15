@@ -5,7 +5,7 @@ import Select from '@synerise/ds-select';
 import Scrollbar from '@synerise/ds-scrollbar';
 import Result from '@synerise/ds-result';
 import Icon, { LaptopM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { TagShape } from '@synerise/ds-tags';
 import * as S from './stories.styles';
 import Tooltip from '@synerise/ds-tooltip';

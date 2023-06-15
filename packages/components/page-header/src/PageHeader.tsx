@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import InlineEdit from '@synerise/ds-inline-edit/';
 import Icon, { CloseM, ArrowLeftM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button/';

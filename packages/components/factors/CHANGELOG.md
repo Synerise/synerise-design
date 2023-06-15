@@ -3,6 +3,103 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.3...@synerise/ds-factors@0.18.4) (2023-06-14)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.18.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.2...@synerise/ds-factors@0.18.3) (2023-06-05)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.18.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.1...@synerise/ds-factors@0.18.2) (2023-05-26)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.18.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.0...@synerise/ds-factors@0.18.1) (2023-05-25)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.22...@synerise/ds-factors@0.18.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* **factors:** fix handling readOnly ([50c17a7](https://github.com/Synerise/synerise-design/commit/50c17a7eca3589204b35c90ab09cb247ec4fecfe))
+* **factors:** handle readOnly in FactorTypeSelector ([3b76ab6](https://github.com/Synerise/synerise-design/commit/3b76ab67c538cff33bd56a8464070d83ea298149))
+* **factors:** reuse FactorsProps type ([5743065](https://github.com/Synerise/synerise-design/commit/574306564fb5c2b8f78f75a36a937960f0c7c609))
+* **factors:** tooltip types, drilling menu props, test draft ([c01c97c](https://github.com/Synerise/synerise-design/commit/c01c97c19238991276f37f48c5a3cf1ce6af6d9a))
+
+
+### Features
+
+* **factors:** allow changing tooltip ([6da9e97](https://github.com/Synerise/synerise-design/commit/6da9e979e972ca042fce6b2c79d05735257155d9))
+
+
+
+
+
+## [0.17.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.21...@synerise/ds-factors@0.17.22) (2023-05-20)
+
+
+### Bug Fixes
+
+* **condition:** adds validation errors support ([0da0a99](https://github.com/Synerise/synerise-design/commit/0da0a99436920398787a1128e26d5432af2d89e2))
+
+
+
+
+
+## [0.17.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.20...@synerise/ds-factors@0.17.21) (2023-05-16)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.19...@synerise/ds-factors@0.17.20) (2023-04-26)
+
+
+### Bug Fixes
+
+* **factors:** adds missing texts for date-range-picker factor ([72e25e1](https://github.com/Synerise/synerise-design/commit/72e25e1638ba09f7de362e9d30f334b4b7099f24))
+
+
+
+
+
+## [0.17.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.18...@synerise/ds-factors@0.17.19) (2023-04-19)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.17.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.17...@synerise/ds-factors@0.17.18) (2023-04-17)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
 ## [0.17.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.17.16...@synerise/ds-factors@0.17.17) (2023-04-14)
 
 **Note:** Version bump only for package @synerise/ds-factors

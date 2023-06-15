@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as React from 'react';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { ColorType } from './BroadcastBar.types';
 
