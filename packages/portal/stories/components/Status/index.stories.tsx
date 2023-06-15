@@ -3,7 +3,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import Status from '@synerise/ds-status';
 import { TagShape } from '@synerise/ds-tags';
 import Tags from '@synerise/ds-tags/dist/Tags';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 12 }}>

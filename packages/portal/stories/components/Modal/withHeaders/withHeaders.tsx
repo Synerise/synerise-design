@@ -4,7 +4,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import * as S from './withHeaders.styles';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import Icon, { MailM, SearchM, UserM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';

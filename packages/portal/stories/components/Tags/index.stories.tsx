@@ -3,7 +3,7 @@ import { select, boolean, number } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { Add3M} from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 import { getColorText } from '@synerise/ds-tags/dist/Tag/Tag.styles';

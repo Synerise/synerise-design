@@ -1,6 +1,6 @@
 import styled, { keyframes, Keyframes } from 'styled-components';
 import * as React from 'react';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import 'animate.css';
 import { ColorIconType, ColorType, CustomColorType } from './Toast.types';
 

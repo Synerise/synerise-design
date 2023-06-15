@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 
 import { Title } from '@synerise/ds-typography';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { TextTriggerProps } from './TextTrigger.types';
 import * as S from './TextTrigger.styles';
 

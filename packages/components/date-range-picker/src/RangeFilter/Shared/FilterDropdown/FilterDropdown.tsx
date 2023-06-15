@@ -4,7 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { AngleDownS, TrashS } from '@synerise/ds-icon';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { FilterDropdownProps } from './FilterDropdown.types';
 import * as S from './FilterDropdown.styles';
 

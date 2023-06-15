@@ -12,7 +12,7 @@ import Icon, {
 import { text } from '@storybook/addon-knobs';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { action } from '@storybook/addon-actions';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 export const SEARCH_PLACEHOLDER = 'Search...';
 

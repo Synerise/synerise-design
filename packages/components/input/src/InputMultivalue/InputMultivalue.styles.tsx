@@ -1,4 +1,4 @@
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export type InputWrapperProps = { error?: boolean; focus?: boolean; disabled?: boolean };
@@ -95,15 +95,14 @@ export const InputWrapper = styled.div<InputWrapperProps>`
   width: 100%;
   border-radius: 3px;
   display: flex;
-  padding: 2px 12px ;
+  padding: 2px 12px;
   min-height: 32px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   transition: 0.3s all;
   ${(props): FlattenSimpleInterpolation | false => !props.disabled && hoverStyle(props)}
   ${(props): string => (props.focus && !props.disabled ? focusStyle(props) : '')}
   ${(props): string => (props.error ? errorInputStyle(props) : '')}
   ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
-  
 `;
 
 export const ValueWrapper = styled.div<{ disabled?: boolean; shrink?: boolean }>`

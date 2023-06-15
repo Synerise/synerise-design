@@ -1,6 +1,6 @@
 import { ReactNode, MouseEvent } from 'react';
 import { IntlShape } from 'react-intl';
-import { DefaultColor } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { DefaultColor } from '@synerise/ds-core';
 
 export enum prefixType {
   TAG,

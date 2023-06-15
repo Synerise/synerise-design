@@ -1,6 +1,6 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 import * as React from 'react';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import Text from '../Item/Text/Text';
 import { PrefixelWrapper } from '../Item/Text/Text.styles';
 

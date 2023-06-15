@@ -12,7 +12,7 @@ import { action } from '@storybook/addon-actions';
 import Navbar from '@synerise/ds-navbar';
 import { UserAvatar } from '@synerise/ds-avatar';
 import { addonType } from '../Select/index.stories';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import AnimateHeight from 'react-animate-height';
 
 

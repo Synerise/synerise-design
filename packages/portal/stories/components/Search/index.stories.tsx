@@ -6,7 +6,7 @@ import Icon from '@synerise/ds-icon';
 import { getItemsWithAvatar, getSuggestions, parameters, recent } from './dataPopulator';
 import Divider from '@synerise/ds-divider';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import DebouncedInput from './DebouncedInput';
 import { debounce } from 'lodash';
 

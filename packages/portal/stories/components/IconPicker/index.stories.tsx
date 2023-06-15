@@ -31,7 +31,7 @@ import Icon, {
   ArrowUpM,
 } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar/dist/Avatar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import avatar1 from '../../assets/avatars/av-anonym-001.png';
 import avatar2 from '../../assets/avatars/av-anonym-002.png';

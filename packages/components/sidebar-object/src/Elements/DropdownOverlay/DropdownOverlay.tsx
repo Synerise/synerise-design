@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Icon, { Add3M, FolderM, SearchM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';

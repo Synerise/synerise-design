@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { defaultColorsOrder } from '@synerise/ds-core';
+
 import './style/index.less';
 import * as S from './Slider.styles';
 import { ColorMapProps, Props, SliderTypes } from './Slider.types';

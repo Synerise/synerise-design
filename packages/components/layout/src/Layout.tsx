@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './Layout.styles';
 import * as T from './Layout.types';
 

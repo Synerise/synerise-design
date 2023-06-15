@@ -14,7 +14,7 @@ import Select from '@synerise/ds-select';
 import { array, boolean, number, select, select as knobSelect, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import * as S from '../Select/stories.styles';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { TagShape } from '@synerise/ds-tags';
 import DSFlag from '@synerise/ds-flag';
 import { FlagContainer } from './stories.styles';

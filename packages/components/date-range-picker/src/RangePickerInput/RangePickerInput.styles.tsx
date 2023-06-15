@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Label as DSLabel } from '@synerise/ds-input';
 

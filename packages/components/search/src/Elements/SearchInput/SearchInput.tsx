@@ -2,7 +2,7 @@ import * as React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import Input from 'antd/lib/input';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
 
 import * as S from '../../Search.styles';

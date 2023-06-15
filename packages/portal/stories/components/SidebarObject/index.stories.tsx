@@ -4,7 +4,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
 import Icon, { ArrowLeftM , MailS, MailM, StarFillM, StarM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { UserAvatar, ObjectAvatar } from '@synerise/ds-avatar';
 import Status from '@synerise/ds-status';
 import Tags, { TagShape } from '@synerise/ds-tags';

@@ -1,9 +1,12 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import * as React from 'react';
 
-const getVar = (name: string) => (props: ThemeProps): string => props.theme.palette[name];
+const getVar =
+  (name: string) =>
+  (props: ThemeProps): string =>
+    props.theme.palette[name];
 
 const transition = `
   transition-timing-function: ease-in-out;
@@ -106,12 +109,10 @@ export const Container = styled.div<
     error?: boolean;
   } & ThemeProps
 >`
-
-
   ${is('stretchToFit')`
     height: 100%;
   `}
-  
+
   ${transition};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
@@ -121,14 +122,14 @@ export const Container = styled.div<
      }
   `}
   display: flex;
-  flex:1;
+  flex: 1;
   justify-content: ${(props): string => mapElementsPosition[props.elementsPosition]};
   border-color: ${getVar('white')};
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
   cursor: pointer;
   &&:focus-within {
-      box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
+    box-shadow: 0px 0px 0px 2px ${getVar('blue-600')};
   }
   ${isNot('pressed') && isNot('value')`box-shadow:  0px 0px 0px 1px ${getVar('grey-300')};`}
   ${is('value')`
@@ -136,26 +137,24 @@ export const Container = styled.div<
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
     ${is('value') &&
-      is('raised')`
+  is('raised')`
   box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};
   `}
     ${is('value') && is('pressed')` box-shadow:  0px 0px 0px 2px ${getVar('blue-600')};`}
 
   ${Title}, ${Description}, ${IconWrapper} {
-  text-align: ${(props): string => props.elementsPosition};
+    text-align: ${(props): string => props.elementsPosition};
   }
-  
+
   ${Aside} {
-  ${(props): string => (props.elementsPosition === 'left' ? 'right' : 'left')}: ${(props): string | number =>
-  sizeCondition('4px', '14px', props)};
+    ${(props): string => (props.elementsPosition === 'left' ? 'right' : 'left')}: ${(props): string | number =>
+      sizeCondition('4px', '14px', props)};
   }
-  
+
   ${IconWrapper} {
-  margin-left: ${(props): string => (props.elementsPosition === 'left' ? '-18px' : '0px')};
-  margin-right: ${(props): string => (props.elementsPosition === 'right' ? '-18px' : '0px')};
+    margin-left: ${(props): string => (props.elementsPosition === 'left' ? '-18px' : '0px')};
+    margin-right: ${(props): string => (props.elementsPosition === 'right' ? '-18px' : '0px')};
   }
-  
-  
 
   ${isNot('disabled')`
     

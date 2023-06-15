@@ -4,7 +4,7 @@ import Icon, { SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { v4 as uuid } from 'uuid';
 import Loader from '@synerise/ds-loader';

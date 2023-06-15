@@ -6,7 +6,7 @@ import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as S from './RangeFilterStatus.styles';
 import { RangeFilterStatusProps } from './RangeFilterStatus.types';
 

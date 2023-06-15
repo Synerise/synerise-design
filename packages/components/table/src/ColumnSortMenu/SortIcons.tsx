@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { CheckS, SortAscendingM, SortDescendingM, ArrangeM, SortAzM, SortZaM } from '@synerise/ds-icon';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { ColumnSortOrder } from './useSortState';
 
 const CheckIconBase = ({ isActive, theme }: { isActive: boolean } & ThemeProps): React.ReactElement | null =>

@@ -9,7 +9,7 @@ import { HoverEventHandler } from 'rc-menu/lib/interface';
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
 import Icon, { CheckS, AngleRightS } from '@synerise/ds-icon';
-import theme, { ThemePropsVars } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme, ThemePropsVars } from '@synerise/ds-core';
 
 import * as S from './Text.styles';
 import { triggerPlacements } from '../../../utils';

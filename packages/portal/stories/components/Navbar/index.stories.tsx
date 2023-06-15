@@ -5,7 +5,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M, AngleDownS, HelpM, NotificationsActiveM, BookM } from '@synerise/ds-icon';
 import { action } from '@storybook/addon-actions';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { UserAvatar } from '@synerise/ds-avatar';
 import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconAlert';
 

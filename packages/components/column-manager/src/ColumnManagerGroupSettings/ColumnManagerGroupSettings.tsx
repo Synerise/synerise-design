@@ -4,7 +4,7 @@ import Select from '@synerise/ds-select';
 import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
 
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import InputNumber from '@synerise/ds-input-number';
 import Alert from '@synerise/ds-alert';

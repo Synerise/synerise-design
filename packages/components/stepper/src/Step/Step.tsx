@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import AnimateHeight from 'react-animate-height';
 import { StepProps } from './Step.types';

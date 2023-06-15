@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { macro } from '@synerise/ds-typography';
 import { IconContainer } from '@synerise/ds-icon';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 export const TabLabel = styled.span`
   ${macro.h300}

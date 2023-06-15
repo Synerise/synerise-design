@@ -3,7 +3,7 @@ import { text, select, number, boolean, object } from '@storybook/addon-knobs';
 import Badge from '@synerise/ds-badge';
 import Icon, { FileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
-import theme, { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme, defaultColorsOrder } from '@synerise/ds-core';
 
 import { shapes as avatarShape, sizes as avatarSize } from '../Avatar/constants';
 import { statuses } from './constants';

@@ -6,7 +6,7 @@ import { DataSource } from '@synerise/ds-avatar-group/dist/AvatarGroup.types';
 import Menu from '@synerise/ds-menu';
 import Icon, { LockM, UserRemoveM } from '@synerise/ds-icon';
 import { action } from '@storybook/addon-actions';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import { sizes as groupSizes } from '../Avatar/constants';
 

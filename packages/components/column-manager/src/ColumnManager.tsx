@@ -8,7 +8,7 @@ import ItemFilter from '@synerise/ds-item-filter';
 
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchBar from '@synerise/ds-search-bar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import ColumnManagerActions from './ColumnManagerActions/ColumnManagerActions';
 import ColumnManagerList from './ColumnManagerList/ColumnManagerList';

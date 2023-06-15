@@ -14,7 +14,7 @@ import Icon, {
 import Button from '@synerise/ds-button';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Stepper from '@synerise/ds-stepper';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';

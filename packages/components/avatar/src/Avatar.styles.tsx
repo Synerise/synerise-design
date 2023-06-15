@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Avatar, { AvatarProps } from 'antd/lib/avatar';
 import { macro } from '@synerise/ds-typography';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -169,12 +169,12 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
         }
 
         ${props.icon &&
-          css`
-            &.ant-avatar-icon {
-              ${macro.xlAvatarIcon};
-              ${macro.flexCentered}
-            }
-          `};
+        css`
+          &.ant-avatar-icon {
+            ${macro.xlAvatarIcon};
+            ${macro.flexCentered}
+          }
+        `};
       `};
 
     ${(props): FlattenSimpleInterpolation | false =>
@@ -190,12 +190,12 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
         }
 
         ${props.icon &&
-          css`
-            &.ant-avatar-icon {
-              ${macro.xlAvatarIcon};
-              ${macro.flexCentered}
-            }
-          `};
+        css`
+          &.ant-avatar-icon {
+            ${macro.xlAvatarIcon};
+            ${macro.flexCentered}
+          }
+        `};
       `};
 
     ${(props): FlattenSimpleInterpolation | false =>
@@ -212,12 +212,12 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
         }
 
         ${props.icon &&
-          css`
-            &.ant-avatar-icon {
-              ${macro.xlAvatarIcon};
-              ${macro.flexCentered}
-            }
-          `};
+        css`
+          &.ant-avatar-icon {
+            ${macro.xlAvatarIcon};
+            ${macro.flexCentered}
+          }
+        `};
       `};
   }
 `;

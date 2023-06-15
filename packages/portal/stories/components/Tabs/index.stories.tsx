@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { array, boolean, number } from '@storybook/addon-knobs';
 import { SearchM, BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const decorator = storyFn => (
   <div

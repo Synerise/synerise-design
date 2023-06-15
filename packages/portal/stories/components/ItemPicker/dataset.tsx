@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon, { LaptopM, MobileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
