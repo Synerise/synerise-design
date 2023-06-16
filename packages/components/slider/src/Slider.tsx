@@ -15,6 +15,11 @@ const couldBeInverted = (value: number | number[], inverted: boolean): boolean =
 const mapToColor = (_: string | object, idx: number): Record<number, string> => ({
   [idx]: defaultColorsOrder[idx] as string,
 });
+/**
+ * Converts an array of strings (e.g. colors) `["blue-600", "yellow-600"]`
+ * into `{"0": "blue-600", "1": "yellow-600"}`.
+ * @returns Object Record<string, string>
+ */
 export const buildDefaultTracksColorMap = (): ColorMapProps =>
   Object.assign({} as Record<number, string>, ...defaultColorsOrder.map(mapToColor));
 

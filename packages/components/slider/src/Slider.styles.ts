@@ -137,6 +137,7 @@ const createTracksStyles = (
 ): FlattenSimpleInterpolation => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
+      .ant-s-track-${index},
       .ant-slider-track-${index + 1},
       .ant-slider-track-${index + 11} {
         background-color: ${props.theme.palette[color]};
