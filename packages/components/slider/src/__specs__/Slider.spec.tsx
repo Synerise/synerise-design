@@ -158,4 +158,5 @@ describe('Slider', () => {
   });
   it.todo('Slider defaults range colors to defaultColorsOrder');
   it.todo('Slider/Allocation defaults range colors to defaultColorsOrder');
+  it.todo('Slider multivalue segments\'colors can be changed with colors map prop');
 });
