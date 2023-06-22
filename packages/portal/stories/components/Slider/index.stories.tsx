@@ -63,6 +63,19 @@ const tracksColorMap = {
   '9': 'fern-600',
 };
 
+function decodeQuotes(str) {
+  return str.replace(/&quot;/g, '"');
+}
+
+/**
+ * Handles loading colors from the addon-knobs.
+ * Note that addon-knobs escapes quotes, therefore `decodeQuotes`.
+ */
+function getColors() {
+  const str = text('Colors', JSON.stringify(tracksColorMap)) || '{}'
+  return JSON.parse(decodeQuotes(str));
+}
+
 const tipFormatter = (value: string) => <div className="Tip">{value}%</div>;
 
 const Wrapper = (props: SliderProps) => {
@@ -200,7 +213,7 @@ const stories = {
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
-      tracksColorMap={boolean('Use other colors than default', false) ? tracksColorMap : undefined}
+      tracksColorMap={boolean('Other colors than default', false) ? getColors() : undefined}
     />
   ),
 };
