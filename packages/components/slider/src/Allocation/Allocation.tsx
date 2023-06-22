@@ -89,7 +89,7 @@ const Allocation: React.FC<SliderProps> = ({
       <S.TrackContainer controlGroup={controlGroupEnabled}>
         {allocations.map((u: number, index: number) => (
           // eslint-disable-next-line react/no-array-index-key
-          <S.Track key={`${u}-${index}`} className={`ant-s-track ant-s-track-${index}`} index={index} width={u} />
+          <S.Track key={`${u}-${index}`} className={`ant-slider-segment-${index}`} index={index} width={u} />
         ))}
       </S.TrackContainer>
     </S.AllocationSlider>
