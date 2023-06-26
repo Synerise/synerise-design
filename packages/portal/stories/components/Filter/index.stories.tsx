@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useState } from 'react';
 import Filter from '@synerise/ds-filter';
 import { v4 as uuid } from 'uuid';
 import { withState } from '@dump247/storybook-state';
@@ -189,7 +189,7 @@ const stories = {
         </Button>
       );
       const isDateFilterOn = boolean('Show filter', false);
-      const [filters, setFilters] = React.useState([]);
+      const [filters, setFilters] = useState([]);
       const dateFilterProps = isDateFilterOn
         ? {
             savedFilters: filters,
