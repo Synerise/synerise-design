@@ -30,7 +30,7 @@ const TextInput: React.FC<InputProps> = ({
     useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = React.useState(value);
   const [localError, setLocalError] = React.useState(false);
-  const onChangeDebounce = React.useRef(debounce(onChange, 300)).current;
+  const onChangeRef = React.useRef(onChange);
 
   React.useEffect(() => {
     if (inputRef?.current && opened) {
@@ -42,37 +42,45 @@ const TextInput: React.FC<InputProps> = ({
     setLocalValue(value);
   }, [value]);
 
+  React.useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [localValue, onChange]);
+
+  const debouncedOnChange = React.useMemo(() => {
+    const persistentOnChange = (inputValue: React.ReactText | undefined): void => {
+      onChangeRef.current && onChangeRef.current(inputValue);
+    };
+    return debounce(persistentOnChange, 300);
+  }, []);
+
   const handleChange = React.useCallback(
     event => {
-      onChangeDebounce.cancel();
       setLocalValue(event.target.value);
-      onChangeDebounce(event.target.value);
+      debouncedOnChange(event.target.value);
       if (!event.target.value.length) {
         setLocalError(true);
       } else {
         setLocalError(false);
       }
     },
-    [onChangeDebounce]
+    [setLocalValue, setLocalError, debouncedOnChange]
   );
 
   const handleApply = React.useCallback(
     val => {
       setOpenExpanseEditor(false);
-      onChangeDebounce.cancel();
       setLocalValue(val);
-      onChangeDebounce(val);
+      debouncedOnChange(val);
     },
-    [onChangeDebounce]
+    [debouncedOnChange]
   );
 
   const handleAutocomplete = React.useCallback(
     val => {
-      onChangeDebounce.cancel();
       setLocalValue(val);
-      onChangeDebounce(val);
+      debouncedOnChange(val);
     },
-    [onChangeDebounce]
+    [debouncedOnChange]
   );
 
   const autocompleteOptions = React.useMemo(() => {
