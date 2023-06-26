@@ -2,7 +2,7 @@ import * as React from 'react';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import { renderFooter, typesFooter } from '../index.stories';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { MailM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import Badge from '@synerise/ds-badge';
 import Status from '@synerise/ds-status';

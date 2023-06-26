@@ -2,7 +2,7 @@ import * as React from 'react';
 import fnsIsValid from 'date-fns/isValid';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
 

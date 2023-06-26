@@ -6,7 +6,7 @@ import withTabs from './withTabs/withTabs';
 import WithSearch from './examples/withSearch';
 import WithTextTrigger from './examples/withTextTrigger';
 import skeletonDropdown from './examples/skeletonDropdown';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { Add3M, KeyboardDownM, KeyboardEnterM, KeyboardUpM } from '@synerise/ds-icon';
 import Default from './examples/Default';
 import WithCopyID from './examples/withCopyId';

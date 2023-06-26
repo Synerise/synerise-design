@@ -1,6 +1,6 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
 
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 export const LabelWrapper = styled.div`
   margin: 0px 0px 8px 0px;

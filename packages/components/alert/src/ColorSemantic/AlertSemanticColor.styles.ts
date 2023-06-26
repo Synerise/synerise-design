@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import { ColorType, ModeType } from './AlertSemanticColor.types';
 
 type AlertStyles = {
@@ -8,12 +8,12 @@ type AlertStyles = {
 } & ThemeProps;
 
 const getAlertIconColor = (props: AlertStyles): string => {
-  if(props.mode === 'background' || props.mode === 'shadow') {
+  if (props.mode === 'background' || props.mode === 'shadow') {
     return props.theme.palette.white;
   }
-    return props.theme.palette[`${props.color}-600`];
+  return props.theme.palette[`${props.color}-600`];
 };
-  const getAlertColor = (props: AlertStyles): string => {
+const getAlertColor = (props: AlertStyles): string => {
   if (props.mode === 'background' || props.mode === 'shadow') {
     return props.theme.palette[`${props.color}-600`];
   }
@@ -46,6 +46,8 @@ export const Container = styled.div<{
   border: 1px solid
     ${(props): string => (props.mode === 'background-outline' ? props.theme.palette[`${props.color}-200`] : 'none')};
   border-radius: 4px;
-  -webkit-box-shadow: ${(props): string => (props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none')};
-  box-shadow: ${(props): string => (props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none')};
+  -webkit-box-shadow: ${(props): string =>
+    props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none'};
+  box-shadow: ${(props): string =>
+    props.mode === 'shadow' ? `0px 16px 32px 5px ${props.theme.palette[`grey-300`]}` : 'none'};
 `;

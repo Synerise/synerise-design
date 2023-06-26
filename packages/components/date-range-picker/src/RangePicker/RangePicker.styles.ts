@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Button from '@synerise/ds-button';
-import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
+import Button, { ButtonProps } from '@synerise/ds-button';
 
 export const Sides = styled.div`
   display: grid;

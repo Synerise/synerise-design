@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 import { OperatorsGroup, OperatorsItem } from '../Operator.types';
 

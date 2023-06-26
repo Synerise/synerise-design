@@ -3,7 +3,7 @@ import { IconProps } from '@synerise/ds-icon';
 import { IconTooltipCell } from '@synerise/ds-table/dist/Cell';
 
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 export type Column = {
   title: string | React.ReactNode;

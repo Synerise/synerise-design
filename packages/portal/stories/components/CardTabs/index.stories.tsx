@@ -9,7 +9,8 @@ import type { CardTabsItem } from '@synerise/ds-card-tabs';
 import { action } from '@storybook/addon-actions';
 import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
 import { CardDot } from '@synerise/ds-card-tabs';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { defaultColorsOrder } from '@synerise/ds-core';
+
 
 
 const suffixIcon = {

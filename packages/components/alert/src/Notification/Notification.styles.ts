@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 
 export const NotificationsContainer = styled.div`
   background-color: ${(props): string => (props?.theme || theme).palette?.['grey-800']};

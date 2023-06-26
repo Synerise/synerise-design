@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, select, } from '@storybook/addon-knobs';
-import { defaultColorsOrder } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { defaultColorsOrder } from '@synerise/ds-core';
+
 
 import Slider from '@synerise/ds-slider';
 import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';

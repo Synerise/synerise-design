@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as CreatorStyles from '@synerise/ds-button/dist/Creator/Creator.styles';
+import { ButtonStyles } from '@synerise/ds-button';
 import { CardTabContainer } from './CardTab/CardTab.styles';
 
 // eslint-disable-next-line import/prefer-default-export
@@ -41,7 +41,7 @@ export const CardTabsContainer = styled.div`
   @media (max-width: 588px) {
     .ds-button-creator {
       width: 48px !important;
-      ${CreatorStyles.CreatorLabel} {
+      ${ButtonStyles.Creator.CreatorLabel} {
         display: none;
       }
     }

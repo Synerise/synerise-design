@@ -18,7 +18,7 @@ import Icon, {
   WarningFillS,
 } from '@synerise/ds-icon';
 import Label from '@synerise/ds-input/dist/Label/Label';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { VisibilityTrigger } from '@synerise/ds-menu/dist/Menu.types';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './stories.styles';

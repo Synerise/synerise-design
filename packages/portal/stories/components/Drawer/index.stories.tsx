@@ -8,7 +8,7 @@ import Icon, { SearchM, CloseM, ArrowLeftM } from '@synerise/ds-icon';
 import Result from '@synerise/ds-result';
 import { select } from '@storybook/addon-knobs';
 import SearchBar from '@synerise/ds-search-bar';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { FormattedMessage } from 'react-intl';
 
 const TABS = [

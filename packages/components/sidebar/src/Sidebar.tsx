@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './style/index.less';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';

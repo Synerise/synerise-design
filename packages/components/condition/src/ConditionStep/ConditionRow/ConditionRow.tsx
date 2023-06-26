@@ -2,7 +2,7 @@ import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import * as React from 'react';
 import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
 import { FACTOR, OPERATOR, PARAMETER } from '../../Condition';

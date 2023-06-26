@@ -7,7 +7,7 @@ import Icon, { FileM, SearchM, ArrowRightCircleM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Result from '@synerise/ds-result';
 import { useOnClickOutside } from '@synerise/ds-utils';
 

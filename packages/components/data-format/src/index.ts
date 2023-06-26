@@ -13,6 +13,8 @@ export { getDataFormatConfigFromNotation, getDefaultDataTimeOptions } from './ut
 
 export * from './constants';
 
+export { DataFormatConfigContext, DataFormatIntlsContext } from './contexts';
+
 export type {
   DataFormatNotationType,
   NumberToFormatOptions,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FC, useCallback, useEffect, useMemo, useState, useRef, MutableRefObject, ReactText, ReactNode } from 'react';
 import { debounce } from 'lodash';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Autocomplete from '@synerise/ds-autocomplete';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore

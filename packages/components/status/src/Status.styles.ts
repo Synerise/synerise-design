@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Tag } from '@synerise/ds-tags';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 
 const typeColor = (props: ThemeProps & { type: string }): string =>
   ({

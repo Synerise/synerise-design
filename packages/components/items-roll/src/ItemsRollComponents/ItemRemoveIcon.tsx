@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 import { RemoveIconProps } from './ItemRemoveIcon.types';
 

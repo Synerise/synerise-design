@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { DSTableProps } from 'Table.types';
 import Button from '@synerise/ds-button';
 import Icon, { ChildRowLeftDownM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { v4 as uuid } from 'uuid';
 import DSTable from '../Table';
 import * as S from './TreeTable.styles';

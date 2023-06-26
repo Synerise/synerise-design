@@ -4,7 +4,7 @@ import Collector from '@synerise/ds-collector';
 import { boolean, text } from '@storybook/addon-knobs';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import { action } from '@storybook/addon-actions';
 
 const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;

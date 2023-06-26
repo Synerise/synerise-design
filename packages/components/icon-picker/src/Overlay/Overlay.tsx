@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { SearchM } from '@synerise/ds-icon';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown/dist/Dropdown';
 import { OverlayTypes } from './Overlay.types';
 import List from '../List/List';

@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
-import { ThemeProps } from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { ThemeProps } from '@synerise/ds-core';
 import * as React from 'react';
 import MaskedInput from 'antd-mask-input';
 import { SizeType } from 'antd/es/config-provider/SizeContext';

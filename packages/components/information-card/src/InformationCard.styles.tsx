@@ -1,15 +1,8 @@
 import type { ReactHTML } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-  IconContainer,
-  Container as CardContainer,
-  PaddingWrapper,
-  HeaderContent,
-  Header,
-  Title,
-} from '@synerise/ds-card/dist/Card/Card.styles';
+import { CardStyles } from '@synerise/ds-card';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
-import { AntdButton } from '@synerise/ds-button/dist/Button.styles';
+import { ButtonStyles } from '@synerise/ds-button';
 
 export const Flex = styled.div`
   display: flex;
@@ -29,7 +22,7 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
   margin-left: ${(props): string => (props.asTooltip ? '0' : '8px')};
   width: 294px;
 
-  ${CardContainer} {
+  ${CardStyles.Card.Container} {
     background-color: white;
     margin-bottom: 1px;
     font-weight: 400;
@@ -38,26 +31,26 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
     box-shadow: ${(props): string => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
   }
 
-  ${PaddingWrapper} {
+  ${CardStyles.Card.PaddingWrapper} {
     padding-top: 0;
   }
-  ${Header} {
+  ${CardStyles.Card.Header} {
     padding: 0 0 1px 0;
     margin-bottom: 8px;
   }
-  ${IconContainer} {
+  ${CardStyles.Card.IconContainer} {
     align-self: center;
     margin-left: 10px;
     margin-right: 10px;
   }
-  ${HeaderContent} {
+  ${CardStyles.Card.HeaderContent} {
     margin: 0;
   }
-  ${Title}${Title} {
+  ${CardStyles.Card.Title}${CardStyles.Card.Title} {
     margin-bottom: 0;
     font-size: 14px;
   }
-  ${AntdButton} {
+  ${ButtonStyles.Button.AntdButton} {
     width: 32px;
     height: 32px;
   }

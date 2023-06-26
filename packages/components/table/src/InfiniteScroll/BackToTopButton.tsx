@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Icon, { ArrowUpCircleM } from '@synerise/ds-icon';
-import { Props as ButtonProps } from '@synerise/ds-button/dist/Button.types';
+import { ButtonProps } from '@synerise/ds-button';
 import * as S from './BackToTopButton.styles';
 
 export const BackToTopButton = (props: ButtonProps): React.ReactElement => (

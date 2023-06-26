@@ -3,7 +3,7 @@ import * as React from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, suffixType } from '../Menu/dataset';
 import Menu from '@synerise/ds-menu';
-import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
+import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import { StyledInlineEditMenu } from '../Menu/stories.styles';
