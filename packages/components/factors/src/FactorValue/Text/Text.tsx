@@ -1,18 +1,18 @@
 import * as React from 'react';
+import { FC, useCallback, useEffect, useMemo, useState, useRef, MutableRefObject, ReactText, ReactNode } from 'react';
+import { debounce } from 'lodash';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import theme from '@synerise/ds-core/dist/js/DSProvider/ThemeProvider/theme';
 import Autocomplete from '@synerise/ds-autocomplete';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { Input } from '@synerise/ds-input';
-import { useState } from 'react';
-import { debounce } from 'lodash';
 
 import { InputProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
-const TextInput: React.FC<InputProps> = ({
+const TextInput: FC<InputProps> = ({
   value,
   onChange,
   texts,
@@ -25,35 +25,34 @@ const TextInput: React.FC<InputProps> = ({
   inputProps,
   readOnly = false,
 }) => {
-  const [openExpanseEditor, setOpenExpanseEditor] = React.useState(false);
-  const [inputRef, setInputRef] =
-    useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
-  const [localValue, setLocalValue] = React.useState(value);
-  const [localError, setLocalError] = React.useState(false);
-  const onChangeRef = React.useRef(onChange);
+  const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
+  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
+  const [localValue, setLocalValue] = useState(value);
+  const [localError, setLocalError] = useState(false);
+  const onChangeRef = useRef(onChange);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (inputRef?.current && opened) {
       inputRef.current.focus();
     }
   }, [inputRef, opened]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLocalValue(value);
   }, [value]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     onChangeRef.current = onChange;
   }, [localValue, onChange]);
 
-  const debouncedOnChange = React.useMemo(() => {
-    const persistentOnChange = (inputValue: React.ReactText | undefined): void => {
+  const debouncedOnChange = useMemo(() => {
+    const persistentOnChange = (inputValue: ReactText | undefined): void => {
       onChangeRef.current && onChangeRef.current(inputValue);
     };
     return debounce(persistentOnChange, 300);
   }, []);
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     event => {
       setLocalValue(event.target.value);
       debouncedOnChange(event.target.value);
@@ -66,7 +65,7 @@ const TextInput: React.FC<InputProps> = ({
     [setLocalValue, setLocalError, debouncedOnChange]
   );
 
-  const handleApply = React.useCallback(
+  const handleApply = useCallback(
     val => {
       setOpenExpanseEditor(false);
       setLocalValue(val);
@@ -75,7 +74,7 @@ const TextInput: React.FC<InputProps> = ({
     [debouncedOnChange]
   );
 
-  const handleAutocomplete = React.useCallback(
+  const handleAutocomplete = useCallback(
     val => {
       setLocalValue(val);
       debouncedOnChange(val);
@@ -83,14 +82,14 @@ const TextInput: React.FC<InputProps> = ({
     [debouncedOnChange]
   );
 
-  const autocompleteOptions = React.useMemo(() => {
+  const autocompleteOptions = useMemo(() => {
     return (
       (autocompleteText &&
         autocompleteText.options.filter(option => option.toLowerCase().includes(String(localValue).toLowerCase()))) ||
       []
     );
   }, [localValue, autocompleteText]);
-  const renderInput = (typesOfInput: typeof textType, factorsType: typeof factorType): React.ReactNode => {
+  const renderInput = (typesOfInput: typeof textType, factorsType: typeof factorType): ReactNode => {
     if (typesOfInput === 'autocomplete' && factorsType === 'text') {
       return (
         <Autocomplete
