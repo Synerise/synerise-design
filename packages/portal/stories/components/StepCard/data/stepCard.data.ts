@@ -51,4 +51,6 @@ export const dateRangePickerTexts = {
   savedFiltersTrigger: 'Saved filters',
   copyRange: 'Copy range',
   pasteRange: 'Paste range',
+  hour: 'Hour',
+  range: 'Range'
 };

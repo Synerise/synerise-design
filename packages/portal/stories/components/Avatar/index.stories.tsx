@@ -3,7 +3,7 @@ import { text, select, boolean } from '@storybook/addon-knobs';
 import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';
 import Icon, { MailM, Thunder2M, UserCircleM } from '@synerise/ds-icon';
-import theme from "@synerise/ds-core";
+import { theme } from "@synerise/ds-core";
 import { action } from '@storybook/addon-actions';
 
 import { sizes, shapes, backgroundColorHue, backgroundColors, iconColors, image as anonymImage } from './constants';

@@ -1,4 +1,13 @@
+import * as React from 'react';
+import { useState, useCallback, ReactText, FC } from 'react';
 import { boolean, number, select } from '@storybook/addon-knobs';
+import { v4 as uuid } from 'uuid';
+import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';
+import Condition from '@synerise/ds-condition';
+import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
+import ContextSelector from '@synerise/ds-context-selector';
+import Button from '@synerise/ds-button';
+
 import {
   DEFAULT_CONDITION_ROW,
   DEFAULT_STEP,
@@ -6,16 +15,10 @@ import {
   PARAMETER_ITEMS,
 } from '../../Condition/data/index.data';
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../../ContextSelector/data/index.data';
-import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';
 import { FACTORS_TEXTS } from '../../Factors/data/index.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../../Operators/data/index.data';
-import * as React from 'react';
-import Condition from '@synerise/ds-condition';
-import { v4 as uuid } from 'uuid';
-import { ConditionStep } from '@synerise/ds-condition/dist/Condition.types';
-import ContextSelector from '@synerise/ds-context-selector';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../../ContextSelector/data/client.data';
-import Button from '@synerise/ds-button';
+
 
 type ConditionExampleProps = {
   steps: ConditionStep[];
@@ -24,14 +27,14 @@ type ConditionExampleProps = {
   readOnly?: boolean;
 };
 
-export const ConditionExample: React.FC<ConditionExampleProps> = ({
+export const ConditionExample: FC<ConditionExampleProps> = ({
   steps,
   onChange,
   hoverDisabled,
   readOnly = false,
 }) => {
-  const [openedAddStep, setOpenedAddStep] = React.useState(false);
-  const setStepContext = React.useCallback(
+  const [openedAddStep, setOpenedAddStep] = useState(false);
+  const setStepContext = useCallback(
     (stepId, item) => {
       onChange(
         steps.map(s => {
@@ -51,7 +54,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     },
     [onChange, steps]
   );
-  const setStepConditionParameter = React.useCallback(
+  const setStepConditionParameter = useCallback(
     (stepId, conditionId, value) => {
       onChange(
         steps.map(s => {
@@ -79,7 +82,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const setStepConditionFactorValue = React.useCallback(
+  const setStepConditionFactorValue = useCallback(
     (stepId, conditionId, value) => {
       onChange(
         steps.map(s => {
@@ -107,7 +110,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const setStepConditionFactorType = React.useCallback(
+  const setStepConditionFactorType = useCallback(
     (stepId, conditionId, value) => {
       onChange(
         steps.map(s => {
@@ -136,7 +139,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const setOperatorValue = React.useCallback(
+  const setOperatorValue = useCallback(
     (stepId, conditionId, value) => {
       onChange(
         steps.map(s => {
@@ -164,8 +167,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps, readOnly]
   );
 
-  const addStepCondition = React.useCallback(
-    (stepId: React.ReactText) => {
+  const addStepCondition = useCallback(
+    (stepId: ReactText) => {
       const newCondition = { ...DEFAULT_CONDITION_ROW(), id: uuid() };
       onChange(
         // @ts-ignore
@@ -184,8 +187,8 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const removeStepCondition = React.useCallback(
-    (stepId: React.ReactText, conditionId: React.ReactText) => {
+  const removeStepCondition = useCallback(
+    (stepId: ReactText, conditionId: ReactText) => {
       onChange(
         steps.map(step => {
           if (step.id === stepId) {
@@ -201,7 +204,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const updateStepName = React.useCallback(
+  const updateStepName = useCallback(
     (stepId, name) => {
       onChange(
         steps.map(step => {
@@ -218,14 +221,14 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const removeStep = React.useCallback(
+  const removeStep = useCallback(
     stepId => {
       onChange(steps.filter(step => step.id !== stepId));
     },
     [onChange, steps]
   );
 
-  const duplicateStep = React.useCallback(
+  const duplicateStep = useCallback(
     stepId => {
       const duplicatedStep = { ...steps.find(step => step.id === stepId) };
       duplicatedStep.id = uuid();
@@ -234,7 +237,7 @@ export const ConditionExample: React.FC<ConditionExampleProps> = ({
     [onChange, steps]
   );
 
-  const addStep = React.useCallback(() => {
+  const addStep = useCallback(() => {
     const newStep = DEFAULT_STEP();
     onChange([...steps, newStep]);
     return newStep.id;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useState } from 'react';
 import Filter from '@synerise/ds-filter';
 import { v4 as uuid } from 'uuid';
 import { withState } from '@dump247/storybook-state';
@@ -8,16 +8,15 @@ import { DEFAULT_STEP } from '../Condition/data/index.data';
 import CompletedWithin from '@synerise/ds-completed-within';
 import Tooltip from '@synerise/ds-tooltip';
 import { dateRangePickerTexts } from '../StepCard/data/stepCard.data';
-import DateRangePicker from '@synerise/ds-date-range-picker';
+import DateRangePicker, { fnsFormat } from '@synerise/ds-date-range-picker';
 import Button from '@synerise/ds-button';
 import Icon, { CalendarM } from '@synerise/ds-icon';
-import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUtils/format';
 import { CONTEXT_TEXTS } from '../ContextSelector/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import ContextSelector from '@synerise/ds-context-selector';
 import { theme } from '@synerise/ds-core';
 import { boolean, number } from '@storybook/addon-knobs';
-import { DEFAULT_RANGE } from '@synerise/ds-date-range-picker/dist/utils';
+import { utils } from '@synerise/ds-date-range-picker';
 import Layout from '@synerise/ds-layout';
 
 const DEFAULT_EXPRESSION = (subject = undefined) => ({
@@ -42,7 +41,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
     dateRange: {
       from: undefined,
       to: undefined,
-      ...DEFAULT_RANGE,
+      ...utils.DEFAULT_RANGE,
     },
   },
   expressionType: 'event', // or 'attribute'
@@ -190,7 +189,7 @@ const stories = {
         </Button>
       );
       const isDateFilterOn = boolean('Show filter', false);
-      const [filters, setFilters] = React.useState([]);
+      const [filters, setFilters] = useState([]);
       const dateFilterProps = isDateFilterOn
         ? {
             savedFilters: filters,
@@ -290,7 +289,7 @@ const stories = {
                 disabled={isLimitExceeded}
                 texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
                 onSelectItem={handleAddStep}
-                selectedItem={null}
+                selectedItem={undefined}
                 items={CONTEXT_CLIENT_ITEMS}
                 groups={CONTEXT_CLIENT_GROUPS}
                 addMode={true}
