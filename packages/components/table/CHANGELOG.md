@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.16...@synerise/ds-table@0.46.17) (2023-06-28)
+
+
+### Bug Fixes
+
+* **table:** make IconTooltipCell props optional ([7f850e7](https://github.com/synerise/synerise-design/commit/7f850e7397181448451e5600334a862aeaa8b0b3))
+* **table:** make prop optional ([578d6de](https://github.com/synerise/synerise-design/commit/578d6de6419dcc20c2e5b3ae10ccafc32e33b569))
+
+
+
+
+
 ## [0.46.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.15...@synerise/ds-table@0.46.16) (2023-06-14)
 
 **Note:** Version bump only for package @synerise/ds-table

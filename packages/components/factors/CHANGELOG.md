@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.4...@synerise/ds-factors@0.18.5) (2023-06-28)
+
+
+### Bug Fixes
+
+* **factors:** fixes debounced onchange for text field ([00df476](https://github.com/Synerise/synerise-design/commit/00df4764521cfb1c3cffa9b3240fd7a8e86d28bc))
+
+
+
+
+
 ## [0.18.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.3...@synerise/ds-factors@0.18.4) (2023-06-14)
 
 **Note:** Version bump only for package @synerise/ds-factors

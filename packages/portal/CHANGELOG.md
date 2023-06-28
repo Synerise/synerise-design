@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.185.0](https://github.com/synerise/synerise-design/compare/portal@0.184.2...portal@0.185.0) (2023-06-28)
+
+
+### Bug Fixes
+
+* **avatar:** fixes sb build error in avatar story ([7f7e65f](https://github.com/synerise/synerise-design/commit/7f7e65f77ae2279367ee45b63098ac5e66678379))
+* **filter:** fixes code examples in storybook ([62a7199](https://github.com/synerise/synerise-design/commit/62a71997836ee82f24032f0784509b42a3b25bce))
+
+
+### Features
+
+* **card:** add support for avatar in header ([7484281](https://github.com/synerise/synerise-design/commit/74842815f1ba2e575ad17ede1418f0557aba0c8b))
+
+
+
+
+
 ## [0.184.2](https://github.com/synerise/synerise-design/compare/portal@0.184.1...portal@0.184.2) (2023-06-14)
 
 **Note:** Version bump only for package portal

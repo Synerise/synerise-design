@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.7...@synerise/ds-typography@0.12.8) (2023-06-28)
+
+
+### Bug Fixes
+
+* **card:** swapped header title to ds title ([1d8e2d2](https://github.com/synerise/synerise-design/commit/1d8e2d2f62dcb4462ddb7834ba0c43647135c914))
+
+
+
+
+
 ## [0.12.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.2...@synerise/ds-typography@0.12.7) (2022-08-11)
 
 **Note:** Version bump only for package @synerise/ds-typography

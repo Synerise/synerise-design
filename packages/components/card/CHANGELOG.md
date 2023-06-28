@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.14.3...@synerise/ds-card@0.15.0) (2023-06-28)
+
+
+### Bug Fixes
+
+* **card:** swapped header title to ds title ([1d8e2d2](https://github.com/Synerise/synerise-design/commit/1d8e2d2f62dcb4462ddb7834ba0c43647135c914))
+
+
+### Features
+
+* **card:** add support for avatar in header ([7484281](https://github.com/Synerise/synerise-design/commit/74842815f1ba2e575ad17ede1418f0557aba0c8b))
+
+
+
+
+
 ## [0.14.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.14.2...@synerise/ds-card@0.14.3) (2023-04-26)
 
 **Note:** Version bump only for package @synerise/ds-card

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.56.0...@synerise/ds-icon@0.57.0) (2023-06-28)
+
+
+### Features
+
+* **icon:** add automation clone types icons ([a1ea887](https://github.com/Synerise/synerise-design/commit/a1ea887932bb55a3c0aafdfc64ac2e6562fa1aad))
+
+
+
+
+
 # [0.56.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.55.0...@synerise/ds-icon@0.56.0) (2023-04-26)
 
 

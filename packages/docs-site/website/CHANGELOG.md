@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.26.1...docs@0.27.0) (2023-06-28)
+
+
+### Features
+
+* **card:** add support for avatar in header ([7484281](https://gitlab.synerise.com/Frontend/synerise-design/commit/74842815f1ba2e575ad17ede1418f0557aba0c8b))
+
+
+
+
+
 ## [0.26.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.26.0...docs@0.26.1) (2023-06-12)
 
 **Note:** Version bump only for package docs

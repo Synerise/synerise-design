@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.18...@synerise/ds-information-card@0.3.19) (2023-06-28)
+
+
+### Bug Fixes
+
+* **information-card:** fixed import path ([361acc1](https://github.com/Synerise/synerise-design/commit/361acc1088630dfac575668858aa4434e9769bf1))
+
+
+
+
+
 ## [0.3.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.17...@synerise/ds-information-card@0.3.18) (2023-06-14)
 
 

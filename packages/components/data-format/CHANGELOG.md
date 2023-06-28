@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.4...@synerise/ds-data-format@0.3.5) (2023-06-28)
+
+
+### Bug Fixes
+
+* **data-format:** data format exports update ([2b4a60a](https://github.com/Synerise/synerise-design/commit/2b4a60aa3d5f565fcb4ae1242a20cbb81c700be3))
+
+
+
+
+
 ## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.3.3...@synerise/ds-data-format@0.3.4) (2023-04-14)
 
 
