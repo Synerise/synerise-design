@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-context-selector",
-  "version": "0.17.5",
+  "version": "0.17.6",
   "description": "ContextSelector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.17.19",
     "@synerise/ds-dropdown": "^0.17.68",
-    "@synerise/ds-factors": "^0.18.5",
+    "@synerise/ds-factors": "^0.18.6",
     "@synerise/ds-icon": "^0.57.0",
     "@synerise/ds-information-card": "^0.3.19",
     "@synerise/ds-menu": "^0.17.12",
