@@ -72,7 +72,7 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
               week: +week + 1,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               days: daysArray.map((day: any) => {
-                const dayOfWeek = +day.day % 7;
+                const dayOfWeek = ((day.day - 1) % 7) + 1;
                 return { ...omit(day as object, ['week']), type, day: dayOfWeek };
               }),
             })),
