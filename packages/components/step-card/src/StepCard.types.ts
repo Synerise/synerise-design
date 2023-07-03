@@ -22,4 +22,5 @@ export type StepCardProps = {
   texts?: StepCardTexts;
   isHeaderVisible?: boolean;
   readOnly?: boolean;
+  headerRightSide?: React.ReactNode;
 };

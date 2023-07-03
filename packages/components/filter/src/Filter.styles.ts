@@ -9,12 +9,24 @@ export const FilterWrapper = styled.div`
   width: 100%;
 `;
 
+export const FilterHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 24px;
+`;
+
+export const FilterHeaderRightSide = styled.div`
+  align-self: flex-end;
+  flex: 0 0 auto;
+`;
+
 export const MatchingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   align-content: flex-end;
-  margin-bottom: 24px;
 `;
 
 export const ConditionsLimit = styled.div`

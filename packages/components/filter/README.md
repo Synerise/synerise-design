@@ -57,20 +57,24 @@ import Filter from '@synerise/ds-filter'
 
 ## API
 
-| Property             | Description                                                 | Type                                            | Default |
-| ---                  | ---                                                         | ---                                             | ---     |
-| expressions          | Array of expressions                                        | Expression[]                                    | -       |
-| matching             | Main matching configuration                                 | : MatchingProps                                 | -       |
-| onChangeOrder        | Function called when user change order of StepCards         | (newOrder: Expression[]) => void                | -       |
-| onChangeLogic        | Function called when user change value of Logic             | (id: string, logic: LogicOperatorValue) => void | -       |
-| onChangeStepMatching | Function called when user change value of StepCard matching | (id: string, matching: boolean) => void         | -       |
-| onChangeStepName     | Function called when user change name of StepCard           | (id: string, name: string) => void              | -       |
-| onDeleteStep         | Function called when user click on delete StepCard icon     | (id: string) => void                            | -       |
-| onDuplicateStep      | Function called when user click on duplicate StepCard icon  | (id: string) => void                            | -       |
-| renderStepFooter     | Function which renders footer of StepCard                   | : (expression: Expression) => React.ReactNode   | -       |
-| renderStepContent    | Function which render content of StepCard                   | : (expression: Expression) => React.ReactNode   | -       |
-| onAdd                | Function called when user click on AddFilter button         | : () => void                                    | -       |
-| texts                | Object with translations                                    | FilterTexts                                     | -       |
+| Property                     | Description                                                 | Type                                            | Default |
+| ---                          | ---                                                         | ---                                             | ---     |
+| expressions                  | Array of expressions                                        | Expression[]                                    | -       |
+| matching                     | Main matching configuration                                 | : MatchingProps                                 | -       |
+| onChangeOrder                | Function called when user change order of StepCards         | (newOrder: Expression[]) => void                | -       |
+| onChangeLogic                | Function called when user change value of Logic             | (id: string, logic: LogicOperatorValue) => void | -       |
+| onChangeStepMatching         | Function called when user change value of StepCard matching | (id: string, matching: boolean) => void         | -       |
+| onChangeStepName             | Function called when user change name of StepCard           | (id: string, name: string) => void              | -       |
+| onDeleteStep                 | Function called when user click on delete StepCard icon     | (id: string) => void                            | -       |
+| onDuplicateStep              | Function called when user click on duplicate StepCard icon  | (id: string) => void                            | -       |
+| renderHeaderRightSide        | Renders filter header right side slot                       | (expressions: Expression[]) => React.ReactNode; | -       |
+| renderStepFooter             | Function which renders footer of StepCard                   | (expression: Expression) => React.ReactNode     | -       |
+| renderStepContent            | Function which render content of StepCard                   | (expression: Expression) => React.ReactNode     | -       |
+| renderStepHeaderRightSide    | Function which renders right side slot in StepCard header   | (expression: Expression, index: number) => React.ReactNode   | -       |
+| onAdd                        | Function called when user click on AddFilter button         | () => void                                      | -       |
+| texts                        | Object with translations                                    | FilterTexts                                     | -       |
+
+
 
 ### Expression
 

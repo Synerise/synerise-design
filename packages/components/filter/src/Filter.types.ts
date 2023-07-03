@@ -35,9 +35,11 @@ export type FilterProps = {
   onDuplicateStep: (id: string) => void;
   renderStepFooter?: (expression: Expression) => React.ReactNode;
   renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
+  renderStepHeaderRightSide?: (expression: Expression, index: number) => React.ReactNode;
   addFilterComponent?: React.ReactNode | ((arg: addFilterComponentProps) => React.ReactNode);
   logicOptions?: LogicOperator[];
   readOnly?: boolean;
+  renderHeaderRightSide?: (expressions: Expression[]) => React.ReactNode;
   texts?: {
     matching?: MatchingTexts;
     step?: {
