@@ -13,6 +13,7 @@ const TEXTS = {
 };
 
 const FOOTER_CONTENT = 'Footer';
+const HEADER_RIGHT_SIDE_CONTENT = 'Header right side slot';
 const CONTENT = 'Content';
 const STEP_CARD_NAME = 'funnel';
 
@@ -42,6 +43,29 @@ describe('StepCard', () => {
     expect(queryByText(TEXTS.notMatching)).toBeFalsy();
     expect(getByText(FOOTER_CONTENT)).toBeTruthy();
     expect(getByText(CONTENT)).toBeTruthy();
+  });
+  it('Should render with header right side slot', () => {
+    // ARRANGE
+    const handleChangeMatching = jest.fn();
+    const handleChangeName = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleDelete = jest.fn();
+    const { getByText, queryByText } = renderWithProvider(
+      <StepCard
+        matching={true}
+        onChangeMatching={handleChangeMatching}
+        name={STEP_CARD_NAME}
+        onChangeName={handleChangeName}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        texts={TEXTS}
+        headerRightSide={HEADER_RIGHT_SIDE_CONTENT}
+      >
+        {CONTENT}
+      </StepCard>
+    );
+    // ASSERT
+    expect(getByText(HEADER_RIGHT_SIDE_CONTENT)).toBeTruthy();
   });
   it('Should call duplicate callback', () => {
     // ARRANGE

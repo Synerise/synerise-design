@@ -27,12 +27,16 @@ type ConditionExampleProps = {
   readOnly?: boolean;
 };
 
-export const ConditionExample: FC<ConditionExampleProps> = ({
-  steps,
-  onChange,
-  hoverDisabled,
-  readOnly = false,
-}) => {
+export const ConditionExample = React.forwardRef<HTMLDivElement, ConditionExampleProps>(
+  (
+    {
+      steps,
+      onChange,
+      hoverDisabled,
+      readOnly = false,
+    },
+    ref
+  ) => {
   const [openedAddStep, setOpenedAddStep] = useState(false);
   const setStepContext = useCallback(
     (stepId, item) => {
@@ -281,107 +285,104 @@ export const ConditionExample: FC<ConditionExampleProps> = ({
   };
 
   return (
-    <Condition
-      texts={{
-        stepNamePlaceholder: 'Unnamed step',
-        removeConditionRowTooltip: 'Remove',
-        addFirstConditionRowButton: 'where',
-        addConditionRowButton: 'and where',
-        dropLabel: 'Drop me here',
-        addStep: 'And then...',
-        duplicateTooltip: 'Duplicate',
-        removeTooltip: 'Remove',
-        moveTooltip: 'Move',
-        conditionSuffix: 'and',
-      }}
-      minConditionsLength={1}
-      maxConditionsLength={10}
-      autoClearCondition
-      inputProps={{
-        autoResize: boolean('Set width of autoResize', true)
-          ? {
-              maxWidth: `${number('Set autoResize max width', 450)}px`,
-              minWidth: `${number('Set autoResize min width', 144)}px`,
-            }
-          : undefined,
-      }}
-      addCondition={addStepCondition}
-      removeCondition={removeStepCondition}
-      onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
-      removeStep={removeStep}
-      duplicateStep={duplicateStep}
-      addStep={boolean('Enable default add step', false) ? addStep : undefined}
-      renderAddStep={boolean('Enable custom add step', true) ? renderCustomAddStep : undefined}
-      onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
-      onChangeContext={setStepContext}
-      onChangeSubject={setStepContext}
-      onChangeParameter={setStepConditionParameter}
-      onChangeOperator={setOperatorValue}
-      onChangeFactorValue={setStepConditionFactorValue}
-      onChangeFactorType={setStepConditionFactorType}
-      showSuffix={boolean('Display and suffix', true)}
-      hoverDisabled={hoverDisabled}
-      readOnly={readOnly}
-      steps={steps.map(step => ({
-        id: step.id,
-        stepName: step.stepName,
-        context: {
-          texts: CONTEXT_TEXTS,
-          // onSelectItem: item => setStepSubject(step.id, item),
-          selectedItem: step.context.selectedItem,
-          items: CONTEXT_ITEMS,
-          groups: CONTEXT_GROUPS,
-          type: step.context?.type,
-        },
-        conditions: step.conditions.map(condition => ({
-          id: condition.id,
-          parameter: {
-            availableFactorTypes: ['parameter'],
-            selectedFactorType: 'parameter',
-            defaultFactorType: 'parameter',
-            // setSelectedFactorType: () => {},
-            // onChangeValue: value => setStepConditionParameter(step.id, condition.id, value),
-            value: condition.parameter.value,
-            parameters: {
-              buttonLabel: 'Parameter',
-              buttonIcon: <VarTypeStringM />,
-              groups: PARAMETER_GROUPS,
-              items: PARAMETER_ITEMS,
-            },
-            withoutTypeSelector: true,
-            texts: FACTORS_TEXTS,
+    <div ref={ref}>
+      <Condition
+        texts={{
+          stepNamePlaceholder: 'Unnamed step',
+          removeConditionRowTooltip: 'Remove',
+          addFirstConditionRowButton: 'where',
+          addConditionRowButton: 'and where',
+          dropLabel: 'Drop me here',
+          addStep: 'And then...',
+          duplicateTooltip: 'Duplicate',
+          removeTooltip: 'Remove',
+          moveTooltip: 'Move',
+          conditionSuffix: 'and',
+        }}
+        minConditionsLength={1}
+        maxConditionsLength={10}
+        autoClearCondition
+        inputProps={{
+          autoResize: boolean('Set width of autoResize', true)
+            ? {
+                maxWidth: `${number('Set autoResize max width', 450)}px`,
+                minWidth: `${number('Set autoResize min width', 144)}px`,
+              }
+            : undefined,
+        }}
+        addCondition={addStepCondition}
+        removeCondition={removeStepCondition}
+        onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
+        removeStep={removeStep}
+        duplicateStep={duplicateStep}
+        addStep={boolean('Enable default add step', false) ? addStep : undefined}
+        renderAddStep={boolean('Enable custom add step', true) ? renderCustomAddStep : undefined}
+        onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
+        onChangeContext={setStepContext}
+        onChangeSubject={setStepContext}
+        onChangeParameter={setStepConditionParameter}
+        onChangeOperator={setOperatorValue}
+        onChangeFactorValue={setStepConditionFactorValue}
+        onChangeFactorType={setStepConditionFactorType}
+        showSuffix={boolean('Display and suffix', true)}
+        hoverDisabled={hoverDisabled}
+        readOnly={readOnly}
+        steps={steps.map(step => ({
+          id: step.id,
+          stepName: step.stepName,
+          context: {
+            texts: CONTEXT_TEXTS,
+            // onSelectItem: item => setStepSubject(step.id, item),
+            selectedItem: step.context?.selectedItem,
+            items: CONTEXT_ITEMS,
+            groups: CONTEXT_GROUPS,
+            type: step.context?.type,
           },
-          operator: {
-            // onChange: value => setOperatorValue(step.id, condition.id, value),
-            value: condition.operator.value,
-            items: OPERATORS_ITEMS,
-            groups: OPERATORS_GROUPS,
-            texts: OPERATORS_TEXTS,
-          },
-          factor: {
-            // @ts-ignore availableFactors is just sample data
-            availableFactorTypes: condition.operator?.value?.availableFactors || null,
-            selectedFactorType: condition.factor.selectedFactorType,
-            defaultFactorType: 'text',
-            // setSelectedFactorType: factorType => setStepConditionFactorType(step.id, condition.id, factorType),
-            // onChangeValue: value => setStepConditionFactorValue(step.id, condition.id, value),
-            textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
-            autocompleteText: {
-              options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+          conditions: step.conditions.map(condition => ({
+            id: condition.id,
+            parameter: {
+              availableFactorTypes: ['parameter'],
+              selectedFactorType: 'parameter',
+              defaultFactorType: 'parameter',
+              value: condition.parameter?.value,
+              parameters: {
+                buttonLabel: 'Parameter',
+                buttonIcon: <VarTypeStringM />,
+                groups: PARAMETER_GROUPS,
+                items: PARAMETER_ITEMS,
+              },
+              withoutTypeSelector: true,
+              texts: FACTORS_TEXTS,
             },
-            value: condition.factor.value,
-            formulaEditor: <div>Formula editor</div>,
-            parameters: {
-              buttonLabel: 'Parameter',
-              buttonIcon: <VarTypeStringM />,
-              groups: PARAMETER_GROUPS,
-              items: PARAMETER_ITEMS,
+            operator: {
+              value: condition.operator?.value,
+              items: OPERATORS_ITEMS,
+              groups: OPERATORS_GROUPS,
+              texts: OPERATORS_TEXTS,
             },
+            factor: {
+              // @ts-ignore availableFactors is just sample data
+              availableFactorTypes: condition.operator?.value?.availableFactors || null,
+              selectedFactorType: condition.factor?.selectedFactorType,
+              defaultFactorType: 'text',
+              textType: select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default'),
+              autocompleteText: {
+                options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+              },
+              value: condition.factor?.value,
+              formulaEditor: <div>Formula editor</div>,
+              parameters: {
+                buttonLabel: 'Parameter',
+                buttonIcon: <VarTypeStringM />,
+                groups: PARAMETER_GROUPS,
+                items: PARAMETER_ITEMS,
+              },
 
-            texts: FACTORS_TEXTS,
-          },
-        })),
-      }))}
-    />
+              texts: FACTORS_TEXTS,
+            },
+          })),
+        }))}
+      />
+    </div>
   );
-};
+});

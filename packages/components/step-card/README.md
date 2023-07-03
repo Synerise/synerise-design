@@ -51,8 +51,10 @@ footer={<span>Footer</span>}
 | onChangeName     | Function called when user change name of StepCard           | (name: string) => void      | -       |
 | onDelete         | Function called when user click on delete StepCard icon     | () => void                  | -       |
 | onDuplicate      | Function called when user click on duplicate StepCard icon  | () => void                  | -       |
-| footer           | Function which renders footer of StepCard                   | React.ReactNode             | -       |
+| footer           | React node to inject as footer of StepCard                    React.ReactNode             | -       |
+| headerRightSide  | React node to inject into header right side slot            | React.ReactNode             | -       |
 | texts            | Object with translations                                    | StepCardTexts               | -       |
+| readonly         | Toggles editability (cruds, step name, draggability)        | boolean               | -       |
  
 ### StepCardTexts
 

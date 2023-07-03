@@ -129,4 +129,37 @@ describe('Filter component', () => {
     expect(getByText('Footer')).toBeTruthy();
     expect(getByText('Content')).toBeTruthy();
   });
+
+  it('Should render with expression with right side slot', () => {
+    // ARRANGE
+    const onChangeLogic = jest.fn();
+    const onChangeOrder = jest.fn();
+    const onChangeStepMatching = jest.fn();
+    const onDuplicateStep = jest.fn();
+    const onDeleteStep = jest.fn();
+    const onChangeStepName = jest.fn();
+    const handleChangeMatching = jest.fn();
+    const { getByText } = renderWithProvider(
+      <Filter
+        expressions={[DEFAULT_EXPRESSION]}
+        onChangeLogic={onChangeLogic}
+        onChangeOrder={onChangeOrder}
+        onChangeStepMatching={onChangeStepMatching}
+        onChangeStepName={onChangeStepName}
+        onDeleteStep={onDeleteStep}
+        onDuplicateStep={onDuplicateStep}
+        renderStepHeaderRightSide={() => <span>Right side</span>}
+        matching={{
+          onChange: handleChangeMatching,
+          matching: true,
+        }}
+        texts={DEFAULT_TEXTS}
+      />
+    );
+
+    // ASSERT
+    expect(getByText('Right side')).toBeTruthy();
+  });
 });
+
+

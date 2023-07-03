@@ -1,15 +1,16 @@
 import * as React from 'react';
+import { useCallback, useMemo, FC, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
 import StepCard from '@synerise/ds-step-card';
 import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
-import { useIntl } from 'react-intl';
 import { usePrevious } from '@synerise/ds-utils';
+
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
-import { MatchingWrapper } from './Filter.styles';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'ghost-element',
@@ -17,7 +18,7 @@ const SORTABLE_CONFIG = {
   handle: '.step-card-drag-handler',
   animation: 200,
   forceFallback: true,
-  filter: '.ds-matching-toggle, .ds-cruds',
+  filter: '.ds-matching-toggle, .step-card-right-side',
 };
 
 const component = {
@@ -25,7 +26,7 @@ const component = {
   STEP: StepCard,
 };
 
-const Filter: React.FC<FilterProps> = ({
+const Filter: FC<FilterProps> = ({
   maxConditionsLimit,
   expressions,
   matching,
@@ -37,23 +38,25 @@ const Filter: React.FC<FilterProps> = ({
   onDuplicateStep,
   renderStepFooter,
   renderStepContent,
+  renderStepHeaderRightSide,
   addFilterComponent,
   texts,
   logicOptions,
+  renderHeaderRightSide,
   visibilityConfig = { isStepCardHeaderVisible: true },
   readOnly = false,
 }) => {
   const previousExpressions = usePrevious(expressions);
-  const [activeExpressionId, setActiveExpressionId] = React.useState<string | null>(null);
+  const [activeExpressionId, setActiveExpressionId] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (previousExpressions && expressions.length > previousExpressions.length) {
       setActiveExpressionId(expressions[expressions.length - 1].id);
     }
   }, [expressions, previousExpressions]);
 
   const { formatMessage } = useIntl();
-  const text = React.useMemo(
+  const text = useMemo(
     () => ({
       addFilter: formatMessage({ id: 'DS.FILTER.ADD-FILTER' }),
       dropMeHere: formatMessage({ id: 'DS.FILTER.DROP-ME-HERE' }),
@@ -90,7 +93,7 @@ const Filter: React.FC<FilterProps> = ({
     [formatMessage, texts]
   );
 
-  const getContextTypeTexts = React.useCallback(
+  const getContextTypeTexts = useCallback(
     expression => {
       const contextType = expression.expressionType;
       return {
@@ -103,20 +106,20 @@ const Filter: React.FC<FilterProps> = ({
     [text]
   );
 
-  const isActive = React.useCallback(
+  const isActive = useCallback(
     expression => {
       return expression.id === activeExpressionId;
     },
     [activeExpressionId]
   );
 
-  const isLimitExceeded = React.useMemo(
+  const isLimitExceeded = useMemo(
     () => (maxConditionsLimit ? expressions.length >= maxConditionsLimit : false),
     [expressions, maxConditionsLimit]
   );
 
-  const componentProps = React.useCallback(
-    (expression: Expression) => {
+  const componentProps = useCallback(
+    (expression: Expression, index: number) => {
       const contextTypeTexts = getContextTypeTexts(expression);
 
       const props = {
@@ -132,6 +135,7 @@ const Filter: React.FC<FilterProps> = ({
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
+          headerRightSide: renderStepHeaderRightSide && renderStepHeaderRightSide(expression, index),
           texts: {
             ...text.step,
             ...contextTypeTexts,
@@ -153,12 +157,13 @@ const Filter: React.FC<FilterProps> = ({
       onDuplicateStep,
       renderStepContent,
       renderStepFooter,
+      renderStepHeaderRightSide,
       text.step,
       visibilityConfig.isStepCardHeaderVisible,
     ]
   );
 
-  const renderExpression = React.useCallback(
+  const renderExpression = useCallback(
     (expression, index) => {
       const Component = component[expression.type];
       const LogicComponent = expression.logic && component[expression.logic.type];
@@ -170,10 +175,14 @@ const Filter: React.FC<FilterProps> = ({
           style={!readOnly && isActive(expression) ? { zIndex: 10001 } : undefined}
           onClick={(): void => setActiveExpressionId(expression.id)}
         >
-          <Component {...expression.data} {...componentProps(expression)} readOnly={readOnly} />
+          <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
           {expression.logic && index + 1 < expressions.length && (
             <S.LogicWrapper>
-              <LogicComponent {...expression.logic.data} {...componentProps(expression.logic)} readOnly={readOnly} />
+              <LogicComponent
+                {...expression.logic.data}
+                {...componentProps(expression.logic, index)}
+                readOnly={readOnly}
+              />
             </S.LogicWrapper>
           )}
         </S.ExpressionWrapper>
@@ -184,21 +193,27 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <S.FilterWrapper>
-      {texts?.overwritten?.filterTitle ? (
-        <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
-      ) : (
-        <MatchingWrapper>
-          <div>{matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}</div>
-          {!!maxConditionsLimit && (
-            <S.ConditionsLimit>
-              {text.conditionsLimit}:{' '}
-              <S.ConditionsLimitResults>
-                {expressions.length}/{maxConditionsLimit}
-              </S.ConditionsLimitResults>
-            </S.ConditionsLimit>
-          )}
-        </MatchingWrapper>
-      )}
+      <S.FilterHeader>
+        {texts?.overwritten?.filterTitle ? (
+          <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
+        ) : (
+          <S.MatchingWrapper>
+            <div>{matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}</div>
+            {!!maxConditionsLimit && (
+              <S.ConditionsLimit>
+                {text.conditionsLimit}:{' '}
+                <S.ConditionsLimitResults>
+                  {expressions.length}/{maxConditionsLimit}
+                </S.ConditionsLimitResults>
+              </S.ConditionsLimit>
+            )}
+          </S.MatchingWrapper>
+        )}
+
+        {renderHeaderRightSide && (
+          <S.FilterHeaderRightSide>{renderHeaderRightSide(expressions)}</S.FilterHeaderRightSide>
+        )}
+      </S.FilterHeader>
 
       <>
         {expressions.length > 0 ? (

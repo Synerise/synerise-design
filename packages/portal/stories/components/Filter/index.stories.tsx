@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Filter from '@synerise/ds-filter';
+import { Tag, TagShape } from '@synerise/ds-tags';
 import { v4 as uuid } from 'uuid';
 import { withState } from '@dump247/storybook-state';
 import { ConditionExample } from '../StepCard/data/Condition';
@@ -84,7 +85,7 @@ const stories = {
         expressions,
       });
     };
-
+    
     const handleChangeStepMatching = (id, matching) => {
       const expressions = store.state.expressions.map(exp => {
         if (exp.id === id) {
@@ -225,6 +226,45 @@ const stories = {
     };
 
     const readOnly = boolean('Set readOnly', false);
+    
+    const expressionRefs = {};
+    store.state.expressions.forEach(exp => {
+      expressionRefs[exp.id] = React.createRef();
+    });
+
+    const jumpToExpression = (expressionId) => {
+      if (expressionRefs[expressionId] && expressionRefs[expressionId].current) {
+        expressionRefs[expressionId].current.scrollIntoView();
+      }
+    }
+
+    const renderHeaderRightSide = (expressions) => {
+      return (
+        <>
+          {expressions.map((expression, index) => {
+            if (expression.type === 'STEP') {
+              return (
+                <>
+                  <Tag
+                    shape={TagShape.SINGLE_CHARACTER_ROUND}
+                    name={String.fromCharCode(index + 65)}
+                    color={theme.palette['grey-200']}
+                    onClick={(): void => {
+                      jumpToExpression(expression.id)
+                    }}
+                  />
+                  {expression.logic && index + 1 < expressions.length && (
+                    <>
+                      {expression.logic?.data?.value}
+                    </>
+                  )}
+                </>
+              );
+            }
+          })}
+        </>
+      );
+    };
 
     const renderStepContent = (expression, hoverDisabled) => {
       const handleChangeExpressionSteps = expressionSteps => {
@@ -243,6 +283,7 @@ const stories = {
 
       return (
         <ConditionExample
+          ref={expressionRefs[expression.id]}
           onChange={handleChangeExpressionSteps}
           steps={expression.expressionSteps}
           hoverDisabled={hoverDisabled}
@@ -250,6 +291,18 @@ const stories = {
         />
       );
     };
+
+
+    const renderStepHeaderRightSide = (expression, index): React.ReactNode => {
+      return (
+        <Tag
+          shape={TagShape.SINGLE_CHARACTER_ROUND}
+          name={String.fromCharCode(index + 65)}
+          color={theme.palette['grey-200']}
+          asPill
+        />
+      );
+    }
 
     const handleAddStep = subject => {
       store.set({ expressions: [...store.state.expressions, DEFAULT_EXPRESSION(subject)] });
@@ -262,6 +315,8 @@ const stories = {
     const handleChangeOrder = expressions => {
       store.set({ expressions });
     };
+    
+    const showStepTags = boolean('Show step card tags', true);
 
     const maxConditionsLimit = number('Set max conditions limit', 0);
 
@@ -303,6 +358,8 @@ const stories = {
             onDuplicateStep={handleDuplicateStep}
             // renderStepFooter={renderStepFooter}
             renderStepContent={renderStepContent}
+            renderStepHeaderRightSide={showStepTags && renderStepHeaderRightSide}
+            renderHeaderRightSide={showStepTags && renderHeaderRightSide}
             matching={{
               onChange: handleChangeMatching,
               matching: store.state.matching,

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import StepCard from '@synerise/ds-step-card';
+import { Tag, TagShape } from '@synerise/ds-tags';
 import { boolean, text } from '@storybook/addon-knobs';
 import CompletedWithin from '@synerise/ds-completed-within';
 import DateRangePicker from '@synerise/ds-date-range-picker';
@@ -11,6 +12,7 @@ import { default as fnsFormat } from '@synerise/ds-date-range-picker/dist/dateUt
 import { ConditionExample } from './data/Condition';
 import { DEFAULT_STEP } from '../Condition/data/index.data';
 import { action } from '@storybook/addon-actions';
+import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 
 const stories = {
@@ -93,6 +95,16 @@ const stories = {
             )
           }
           isHeaderVisible={boolean('Show header', true)}
+          headerRightSide={
+            boolean('Show tag in header', true) && (
+              <Tag
+                shape={TagShape.SINGLE_CHARACTER_ROUND}
+                name="A"
+                color={theme.palette['grey-200']}
+                asPill
+              />
+            )
+          }
         >
           <ConditionExample steps={steps} onChange={setSteps} readOnly={readOnly} />
         </StepCard>
