@@ -10,7 +10,6 @@ type WrapperProps = {
   suffixel?: boolean;
   description?: string | React.ReactNode;
   copyable?: boolean;
-  indentLevel?: number;
   ordered?: boolean;
   size?: 'default' | 'large';
   active?: boolean;
@@ -40,7 +39,8 @@ export const ArrowRight = styled.div<{ disabled?: boolean }>`
   opacity: ${(props): string => (props.disabled ? '1' : '0')};
 `;
 
-export const Inner = styled.div`
+export const Inner = styled.div<{ indentLevel?: number }>`
+  padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px`};
   width: 100%;
   display: flex;
 `;
@@ -96,9 +96,6 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     margin: 0;
     transition: background-color ${TRANSITION_FN};
     padding-left: ${(props): string => (props.prefixel ? '8' : '12')}px;
-    ${Inner} {
-      padding-left: ${(props): string => `${calculateIndent(props.indentLevel)}px `};
-    }
     ${(props): string =>
       props.disabled
         ? `

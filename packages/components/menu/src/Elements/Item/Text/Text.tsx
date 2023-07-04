@@ -155,7 +155,6 @@ const Text: React.FC<BasicItemProps> = ({
       tabIndex={disabled ? -1 : 0}
       description={description}
       style={renderHoverTooltip ? undefined : style}
-      indentLevel={Number(indentLevel)}
       ordered={ordered}
       size={size}
       onClick={onClick}
@@ -171,7 +170,7 @@ const Text: React.FC<BasicItemProps> = ({
         timeToHideAfterClick={timeToHideTooltip}
         {...tooltipProps}
       >
-        <S.Inner>
+        <S.Inner indentLevel={Number(indentLevel)}>
           <S.ContentWrapper className="ds-menu-content-wrapper">
             {shouldRenderPrefix && (
               <S.PrefixelWrapper className="ds-menu-prefix" visible={shouldRenderPrefix} disabled={disabled}>
