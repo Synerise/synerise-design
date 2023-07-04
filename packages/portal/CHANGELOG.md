@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.186.0](https://github.com/synerise/synerise-design/compare/portal@0.185.0...portal@0.186.0) (2023-07-04)
+
+
+### Features
+
+* **filter:** adds letter tags to step cards and filter header ([ad9a366](https://github.com/synerise/synerise-design/commit/ad9a366ae6bb8127eaeafa5e7bd89f7e35c1bcde))
+
+
+
+
+
 # [0.185.0](https://github.com/synerise/synerise-design/compare/portal@0.184.2...portal@0.185.0) (2023-06-28)
 
 

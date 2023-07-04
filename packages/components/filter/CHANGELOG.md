@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.28...@synerise/ds-filter@0.15.0) (2023-07-04)
+
+
+### Features
+
+* **filter:** adds letter tags to step cards and filter header ([ad9a366](https://github.com/Synerise/synerise-design/commit/ad9a366ae6bb8127eaeafa5e7bd89f7e35c1bcde))
+
+
+
+
+
 ## [0.14.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.14.27...@synerise/ds-filter@0.14.28) (2023-06-28)
 
 **Note:** Version bump only for package @synerise/ds-filter

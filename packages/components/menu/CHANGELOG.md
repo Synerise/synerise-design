@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.12...@synerise/ds-menu@0.17.13) (2023-07-04)
+
+
+### Bug Fixes
+
+* **menu:** fix indentLevel prop in menu item component ([20f17cb](https://github.com/Synerise/synerise-design/commit/20f17cb738bfc4b03d47ca006335057e7ae55ba9))
+
+
+
+
+
 ## [0.17.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.11...@synerise/ds-menu@0.17.12) (2023-06-28)
 
 **Note:** Version bump only for package @synerise/ds-menu
