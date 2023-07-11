@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.1...@synerise/ds-tags@0.8.2) (2023-07-11)
+
+
+### Bug Fixes
+
+* **ds-tags:** split value and type export ([62db42f](https://github.com/Synerise/synerise-design/commit/62db42f65142c2f4a49467f63dd3d6f2bf50ccb5))
+
+
+
+
+
 ## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.0...@synerise/ds-tags@0.8.1) (2023-07-11)
 
 
