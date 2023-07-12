@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.9...@synerise/ds-core@0.39.10) (2023-07-12)
+
+
+### Bug Fixes
+
+* **core:** change the type export ([21626e5](https://github.com/synerise/synerise-design/commit/21626e5edf4adc2598568f74520f4fd2a0a99c66))
+
+
+
+
+
 ## [0.39.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.8...@synerise/ds-core@0.39.9) (2023-06-28)
 
 **Note:** Version bump only for package @synerise/ds-core
