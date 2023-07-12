@@ -15,7 +15,7 @@ const stories = {
     const placeholder = text('Placeholder', 'Placeholder');
     return {
       min: number('min', 1),
-      max: number('max', 999999999999),
+      max: number('max', Number.MAX_SAFE_INTEGER),
       onChange: action('onChange'),
       label: renderLabel(text('label', 'Label')),
       description: text('description', 'Description'),

@@ -2,41 +2,47 @@ import { ReactText } from 'react';
 
 import { NumberToFormatOptions, Delimiter } from '@synerise/ds-data-format';
 
-import { MAXIMUM_FRACTION_DIGITS, NUMBER_DELIMITER } from '../constants/inputNumber.constants';
+import { MAXIMUM_FRACTION_DIGITS, MAXIMUM_NUMBER_DIGITS, NUMBER_DELIMITER } from '../constants/inputNumber.constants';
 
-// input 1: not formatted number string (on input change)
-// input 2: not formatted number (on blur)
+// input case 1: not formatted number string (on input change)
+// input case 2: not formatted number (on blur)
 // output: formatted number string with decimal char
 export const formatNumber = (
   value: string | number | undefined,
   formatValue: (value: number, options: NumberToFormatOptions) => string,
-  thousandDelimiter: Delimiter,
-  decimalDelimiter: Delimiter,
+  notationThousandDelimiter: Delimiter,
+  notationDecimalDelimiter: Delimiter,
   valueFormatOptions?: NumberToFormatOptions
 ): string => {
   if (value === undefined || value === '') return '';
 
   const formatOptions = { maximumFractionDigits: MAXIMUM_FRACTION_DIGITS, ...valueFormatOptions };
 
-  let notationDecimalChar = '';
-  let result = '';
-
   if (typeof value === 'number') {
-    result = formatValue(value, formatOptions);
-  } else {
-    const lastChar = value?.slice(-1);
-    if (lastChar === NUMBER_DELIMITER) {
-      notationDecimalChar = decimalDelimiter;
-    }
-
-    const numberResult = Number(value);
-    if (Number.isNaN(numberResult)) {
-      return '';
-    }
-
-    result = formatValue(numberResult, formatOptions);
-    result = `${result}${notationDecimalChar}`;
+    return formatValue(value, formatOptions);
   }
+
+  let result = '';
+  const lastChar = value?.slice(-1);
+  const numberResult = parseFloat(value);
+  const notationDecimalChar = lastChar === NUMBER_DELIMITER ? notationDecimalDelimiter : '';
+  const zerosAtTheEnd = value.match(new RegExp('0+$'))?.[0];
+  const zerosWithDecimalDelimiterAtTheEnd = value.match(new RegExp(`\\${NUMBER_DELIMITER}0+$`))?.[0];
+  const numberDelimiterExists = new RegExp(`\\${NUMBER_DELIMITER}`).test(value);
+
+  if (Number.isNaN(numberResult)) {
+    return '';
+  }
+
+  result = formatValue(numberResult, formatOptions);
+  result = `${result}${notationDecimalChar}`;
+
+  if (zerosWithDecimalDelimiterAtTheEnd) {
+    result = `${result}${zerosWithDecimalDelimiterAtTheEnd}`;
+  } else if (zerosAtTheEnd && numberDelimiterExists) {
+    result = `${result}${zerosAtTheEnd}`;
+  }
+
   return result;
 };
 
@@ -45,17 +51,23 @@ export const formatNumber = (
 export const parseFormattedNumber = (
   value: string | undefined,
   formatValue: (value: number, options: NumberToFormatOptions) => string,
-  thousandDelimiter: Delimiter,
-  decimalDelimiter: Delimiter
+  notationThousandDelimiter: Delimiter,
+  notationDecimalDelimiter: Delimiter
 ): ReactText => {
   if (value === undefined || value === '') {
     return '';
   }
 
-  let result = value.split(thousandDelimiter).join('');
+  let result = value;
 
-  if (decimalDelimiter !== NUMBER_DELIMITER) {
-    result = result.replace(decimalDelimiter, NUMBER_DELIMITER);
+  result = result.split(notationThousandDelimiter).join('');
+
+  if (result.length > MAXIMUM_NUMBER_DIGITS) {
+    result = result.slice(0, MAXIMUM_NUMBER_DIGITS);
+  }
+
+  if (notationDecimalDelimiter !== NUMBER_DELIMITER) {
+    result = result.replace(notationDecimalDelimiter, NUMBER_DELIMITER);
   }
 
   if ((result.match(new RegExp(`\\${NUMBER_DELIMITER}`, 'g')) || []).length > 1) {

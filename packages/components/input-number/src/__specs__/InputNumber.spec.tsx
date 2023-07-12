@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import type { DataFormatNotationType } from '@synerise/ds-data-format';
 import { fireEvent } from '@testing-library/react';
 import InputNumber from '../index';
 
@@ -161,4 +162,111 @@ describe('InputNumber', () => {
     // ASSERT
     expect(input.value).toEqual('1,234,567.891');
   });
+});
+
+const setup = ({
+  defaultValue,
+  notation = 'EU',
+}: {
+  defaultValue: number;
+  notation?: DataFormatNotationType;
+}): { input: HTMLInputElement } => {
+  const TEST_ID = `${notation}-test-id`;
+  const { getByTestId } = renderWithProvider(
+    <InputNumber data-testid={TEST_ID} defaultValue={defaultValue} />,
+    {},
+    { notation: notation }
+  );
+  const input = getByTestId(TEST_ID) as HTMLInputElement;
+  return { input };
+};
+
+describe('InputNumber near MAX_SAFE_INTEGER', () => {
+  const testCases = [
+    {
+      initialValue: 999999999999999,
+      expectedEuResult: '999 999 999 999 999',
+      expectedUsResult: '999,999,999,999,999',
+    },
+    {
+      initialValue: 9.99999999999999,
+      expectedEuResult: '9,99999999999999',
+      expectedUsResult: '9.99999999999999',
+    },
+    {
+      initialValue: 9999999999.99999,
+      expectedEuResult: '9 999 999 999,99999',
+      expectedUsResult: '9,999,999,999.99999',
+    },
+    {
+      initialValue: 9007199254740991,
+      expectedEuResult: '9 007 199 254 740 991',
+      expectedUsResult: '9,007,199,254,740,991',
+    },
+  ];
+
+  for (const testCase of testCases) {
+    it(`should have proper value and formatting near MAX_SAFE_INTEGER for: ${testCase.initialValue}`, async () => {
+      const { input: euInput } = setup({ defaultValue: testCase.initialValue, notation: 'EU' });
+      const { input: usInput } = setup({ defaultValue: testCase.initialValue, notation: 'US' });
+
+      expect(euInput).toHaveValue(testCase.expectedEuResult);
+      expect(usInput).toHaveValue(testCase.expectedUsResult);
+    });
+  }
+});
+
+describe('InputNumber with zeros', () => {
+  const testCases = [
+    {
+      initialValue: 70,
+      expectedEuResult: '70',
+      expectedUsResult: '70',
+    },
+    {
+      initialValue: 7.0,
+      expectedEuResult: '7',
+      expectedUsResult: '7',
+    },
+    {
+      initialValue: 7.06,
+      expectedEuResult: '7,06',
+      expectedUsResult: '7.06',
+    },
+    {
+      initialValue: 7.06,
+      expectedEuResult: '7,06',
+      expectedUsResult: '7.06',
+    },
+    {
+      initialValue: 7.06,
+      expectedEuResult: '7,06',
+      expectedUsResult: '7.06',
+    },
+    {
+      initialValue: 7.06005,
+      expectedEuResult: '7,06005',
+      expectedUsResult: '7.06005',
+    },
+    {
+      initialValue: 7.06005,
+      expectedEuResult: '7,06005',
+      expectedUsResult: '7.06005',
+    },
+    {
+      initialValue: 7.0600504,
+      expectedEuResult: '7,0600504',
+      expectedUsResult: '7.0600504',
+    },
+  ];
+
+  for (const testCase of testCases) {
+    it(`should have proper value and formatting with zeros for: ${testCase.initialValue}`, async () => {
+      const { input: euInput } = setup({ defaultValue: testCase.initialValue, notation: 'EU' });
+      const { input: usInput } = setup({ defaultValue: testCase.initialValue, notation: 'US' });
+
+      expect(euInput).toHaveValue(testCase.expectedEuResult);
+      expect(usInput).toHaveValue(testCase.expectedUsResult);
+    });
+  }
 });
