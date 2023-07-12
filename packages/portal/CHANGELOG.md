@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.186.1](https://github.com/synerise/synerise-design/compare/portal@0.186.0...portal@0.186.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **input-number:** input number edge cases fix ([6615b12](https://github.com/synerise/synerise-design/commit/6615b1220fb740d6a5efe53621736e8cf4a1a5b8))
+
+
+
+
+
 # [0.186.0](https://github.com/synerise/synerise-design/compare/portal@0.185.0...portal@0.186.0) (2023-07-04)
 
 

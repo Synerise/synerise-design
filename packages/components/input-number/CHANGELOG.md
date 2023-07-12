@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.13...@synerise/ds-input-number@0.8.14) (2023-07-12)
+
+
+### Bug Fixes
+
+* **input-number:** input number edge cases fix ([6615b12](https://github.com/Synerise/synerise-design/commit/6615b1220fb740d6a5efe53621736e8cf4a1a5b8))
+
+
+
+
+
 ## [0.8.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.12...@synerise/ds-input-number@0.8.13) (2023-07-12)
 
 **Note:** Version bump only for package @synerise/ds-input-number
