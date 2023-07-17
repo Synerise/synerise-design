@@ -50,7 +50,7 @@ export type DefaultColor = typeof defaultColorsOrder[number];
 
 const colorsOrder = defaultColorsOrder.map(color => vars.colors[color]);
 
-const theme: ThemePropsVars = {
+export const theme: ThemePropsVars = {
   variables: vars.variables,
   palette: vars.colors,
   breakpoints: getBreakpoints(),
