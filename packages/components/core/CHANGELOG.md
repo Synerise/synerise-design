@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.10...@synerise/ds-core@0.39.11) (2023-07-17)
+
+
+### Bug Fixes
+
+* **core:** export default vs export const default ([dd3faca](https://github.com/synerise/synerise-design/commit/dd3faca8494c35d9ca761d2e7ed0a8cf08a14cb0))
+
+
+
+
+
 ## [0.39.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.9...@synerise/ds-core@0.39.10) (2023-07-12)
 
 

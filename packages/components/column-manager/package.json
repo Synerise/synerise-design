@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-column-manager",
-  "version": "0.10.75",
+  "version": "0.10.76",
   "description": "ColumnManager UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -30,11 +30,11 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.17.19",
-    "@synerise/ds-drawer": "^0.5.37",
-    "@synerise/ds-dropdown": "^0.17.69",
+    "@synerise/ds-drawer": "^0.5.38",
+    "@synerise/ds-dropdown": "^0.17.70",
     "@synerise/ds-icon": "^0.57.0",
     "@synerise/ds-input": "^0.18.44",
-    "@synerise/ds-item-filter": "^0.8.75",
+    "@synerise/ds-item-filter": "^0.8.76",
     "@synerise/ds-result": "^0.6.26",
     "@synerise/ds-scrollbar": "^0.6.3",
     "@synerise/ds-search-bar": "^0.6.34",
