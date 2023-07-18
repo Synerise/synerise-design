@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DatePicker } from '@synerise/ds-date-picker';
+import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { InputProps } from '../../Factors.types';
 
 const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate, error, readOnly = false }) => {
