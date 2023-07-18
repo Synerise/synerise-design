@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
-import { DatePicker } from '@synerise/ds-date-picker';
+import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
 import { TimestampRangeProps as Props } from './TimestampRange.types';
