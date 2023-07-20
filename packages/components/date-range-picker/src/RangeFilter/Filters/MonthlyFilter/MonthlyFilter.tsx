@@ -270,8 +270,12 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       renderRangeFormSuffix,
       maxEntries,
     } = this.props;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+    const { min = 1 } = this.props as any;
     const { visible } = this.state;
     const data = [...value];
+    /** if `min` is undefined, then entry can be always deleted, otherwise it's key has to be greated or equal than N */
+    const deletableDueToEntriesLimit = (key: number): boolean => min === undefined || (min !== undefined && key >= min);
     return (
       <S.MonthlyFilterWrapper className="monthly-wrapper">
         {data.map((item, key) => (
@@ -290,7 +294,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   textColor={theme.palette['grey-500']}
                 />
               ),
-              canDelete: !disabled,
+              canDelete: !disabled && deletableDueToEntriesLimit(key),
               id: item.id as string,
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
