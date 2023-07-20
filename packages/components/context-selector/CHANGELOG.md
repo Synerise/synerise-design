@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.13...@synerise/ds-context-selector@0.18.0) (2023-07-20)
+
+
+### Features
+
+* **context-selector:** add filtering by subtitle ([32f4c18](https://github.com/Synerise/synerise-design/commit/32f4c1856f8dd8c66e037605e8a2e2e6220acb0e))
+
+
+
+
+
 ## [0.17.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.17.12...@synerise/ds-context-selector@0.17.13) (2023-07-18)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

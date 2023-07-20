@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.187.0](https://github.com/synerise/synerise-design/compare/portal@0.186.2...portal@0.187.0) (2023-07-20)
+
+
+### Features
+
+* **context-selector:** add filtering by subtitle ([32f4c18](https://github.com/synerise/synerise-design/commit/32f4c1856f8dd8c66e037605e8a2e2e6220acb0e))
+
+
+
+
+
 ## [0.186.2](https://github.com/synerise/synerise-design/compare/portal@0.186.1...portal@0.186.2) (2023-07-18)
 
 **Note:** Version bump only for package portal
