@@ -156,7 +156,12 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
     const itemsNumber = items.length;
     for (let i = 0; i < itemsNumber; i += 1) {
       const item = items[i];
-      const matching = !searchQuery || item.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const searchQueryInLowerCase = searchQuery.toLowerCase();
+      const isMatchingName = item.name?.toLowerCase().includes(searchQueryInLowerCase);
+      const isMatchingSubtitle = item.subtitle?.toLowerCase().includes(searchQueryInLowerCase);
+      const matching = !searchQuery || isMatchingName || isMatchingSubtitle;
+
       if (matching) {
         result.push({
           className: classNames,

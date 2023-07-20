@@ -173,6 +173,7 @@ export const CONTEXT_ITEMS = [
   },
   {
     name: 'Slack',
+    subtitle: 'Desktop App',
     id: '1234-1234-1234-1238',
     icon: <WebhookM />,
     groupName: 'Integrations',
@@ -180,6 +181,7 @@ export const CONTEXT_ITEMS = [
   },
   {
     name: 'Github',
+    subtitle: 'Website',
     id: '1234-1234-1234-12123',
     icon: <WebhookM />,
     groupName: 'Integrations',
@@ -187,6 +189,7 @@ export const CONTEXT_ITEMS = [
   },
   {
     name: 'Booking.com',
+    subtitle: 'Website',
     id: '1234-1234-1234-1223123',
     icon: <WebhookM />,
     groupName: 'Integrations',
