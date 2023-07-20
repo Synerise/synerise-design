@@ -61,4 +61,32 @@ describe('Context selector component', () => {
 
     expect(handleDeactivate).toBeCalled();
   });
+
+  test("should display the correct item when searched by subtitle", async () => {
+    const { getByText , getByPlaceholderText, queryByText } = renderWithProvider(
+        RENDER_CONTEXT_SELECTOR({
+          items: [
+            {
+              name: 'Name 1',
+              id: 'id_1',
+              icon: <ApiM />,
+            },
+            {
+              name: 'Name 2',
+              subtitle: 'subtitle 2',
+              id: 'id_2',
+              icon: <ApiM />,
+            },
+          ]
+        })
+    );
+
+    userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
+
+    const searchInput = getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder);
+    await userEvent.type(searchInput, 'subtitle 2');
+
+    expect(queryByText("Name 2")).toBeInTheDocument();
+    expect(queryByText("Name 1")).not.toBeInTheDocument();
+  })
 });
