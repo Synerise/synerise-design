@@ -72,3 +72,7 @@ const value = {
 | offset   | Offset of the relative range from today's date | {type: RelativeUnit, duration:number} | -       |
 
 `RelativeUnit = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'WEEKS' | 'MONTHS' | 'YEARS'`
+
+### Undocumented props
+
+* min in `MonthlyFilter` - controls minimal amount of entires in monthly filter, disable with `undefined`, default is `1`
