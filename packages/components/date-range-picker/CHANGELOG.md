@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.20...@synerise/ds-date-range-picker@0.21.21) (2023-07-21)
+
+
+### Bug Fixes
+
+* **date-range-picker:** cond enable remove ContentItem in MonthlyFilter ([f25e3a3](https://github.com/Synerise/synerise-design/commit/f25e3a362e23d77571604ec29c33d2062ca55369))
+
+
+
+
+
 ## [0.21.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.19...@synerise/ds-date-range-picker@0.21.20) (2023-07-18)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
