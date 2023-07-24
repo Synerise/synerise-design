@@ -95,6 +95,29 @@ const stories = {
       </Tooltip>
     </div>
   ),
+  largeScrollable: () => (
+    <div>
+      <Tooltip
+        {...props()}
+        type="largeScrollable"
+        title={(<><Icon component={<InfoM />} color={theme.palette['grey-400']} /> {text('Set tooltip title', 'Tooltip Title')}</>)}
+        description={text(
+          'Set tooltip description',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. '
+        )}
+        offset="small"
+        button={{
+          label: text('Set button label', 'More info'),
+          onClick: action('click'),
+          buttonIcon: boolean('Show button icon', false) && <Icon component={<InfoM />} />,
+        }}
+      >
+        <span style={{ display: 'flex' }}>
+          <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+        </span>
+      </Tooltip>
+    </div>
+  ),
   WithHeaderAndLabel: () => (
     <div>
       <Tooltip
