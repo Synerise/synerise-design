@@ -2,17 +2,22 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdTooltip from 'antd/lib/tooltip';
 import * as React from 'react';
+import { ReactNode } from 'react';
+import { Carousel } from 'antd';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
-import { Carousel } from 'antd';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Tooltip.styles';
 import { tooltipTypes, descriptionType, TooltipProps } from './Tooltip.types';
 
 const shouldRenderDescription = (description: descriptionType, type: tooltipTypes): descriptionType | null => {
   if (type === 'default' || !description) return null;
   return description;
+};
+const shouldRenderTitle = (type: tooltipTypes, title: ReactNode): ReactNode | null => {
+  return type !== 'largeSimple' ? title : null;
 };
 const shouldRenderStatus = (status: React.ReactNode | null, type: tooltipTypes): descriptionType | null => {
   if (type === 'status' || status) return status;
@@ -44,17 +49,6 @@ const Tooltip: React.FC<TooltipProps> = ({
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
 
-  const renderTooltip = (
-    <S.TooltipComponent tooltipType={type}>
-      <S.TooltipStatus tooltipType={type}>{type && shouldRenderStatus(status, type)}</S.TooltipStatus>
-      <S.TooltipTitle tooltipType={type}>
-        {type && shouldRenderIcon(type, icon)}
-        {type !== 'largeSimple' ? title : null}
-      </S.TooltipTitle>
-      <S.TooltipDescription>{shouldRenderDescription(description, type)}</S.TooltipDescription>
-    </S.TooltipComponent>
-  );
-
   const renderButton = React.useMemo(() => {
     const buttonMode = (): string => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -65,34 +59,61 @@ const Tooltip: React.FC<TooltipProps> = ({
       return 'label';
     };
 
+    return button ? (
+      <S.TooltipButton>
+        {/* eslint-disable-next-line react/jsx-handler-names */}
+        <Button type="ghost-white" mode={buttonMode()} onClick={button?.onClick}>
+          {button?.buttonIcon}
+          {button?.label}
+        </Button>
+      </S.TooltipButton>
+    ) : (
+      <></>
+    );
+  }, [button]);
+
+  const renderTooltipComponent = (
+    <S.TooltipComponent tooltipType={type}>
+      <S.TooltipContent>
+        <S.TooltipStatus tooltipType={type}>{type && shouldRenderStatus(status, type)}</S.TooltipStatus>
+        <S.TooltipTitle tooltipType={type}>
+          {type && shouldRenderIcon(type, icon)}
+          {type && shouldRenderTitle(type, title)}
+        </S.TooltipTitle>
+        <S.TooltipDescription tooltipType={type}>
+          {type === 'largeScrollable' && (
+            <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
+              <>{shouldRenderDescription(description, type)}</>
+            </Scrollbar>
+          )}
+          {type !== 'largeScrollable' && shouldRenderDescription(description, type)}
+        </S.TooltipDescription>
+      </S.TooltipContent>
+      {renderButton}
+    </S.TooltipComponent>
+  );
+
+  const renderButtonComponent = React.useMemo(() => {
     return (
       <S.TooltipComponent tooltipType={type}>
         <S.TooltipContent>
           <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
           <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
-          <S.TooltipDescription>{description}</S.TooltipDescription>
+          <S.TooltipDescription tooltipType={type}>{description}</S.TooltipDescription>
         </S.TooltipContent>
-        {button && (
-          <S.TooltipButton>
-            {/* eslint-disable-next-line react/jsx-handler-names */}
-            <Button type="ghost-white" mode={buttonMode()} onClick={button?.onClick}>
-              {button?.buttonIcon}
-              {button?.label}
-            </Button>
-          </S.TooltipButton>
-        )}
+        {renderButton}
       </S.TooltipComponent>
     );
-  }, [button, type, title, description, status]);
+  }, [type, title, description, status, renderButton]);
 
-  const renderTutorial = (
+  const renderTutorialComponent = (
     <S.TooltipComponent tooltipType={type}>
       <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
         {tutorials &&
           tutorials.map(tutorial => (
             <S.TutorialItem key={`${JSON.stringify(tutorial.title)}`}>
               <S.TooltipTitle tooltipType="tutorial">{tutorial.title}</S.TooltipTitle>
-              <S.TooltipDescription>{tutorial.description}</S.TooltipDescription>
+              <S.TooltipDescription tooltipType="tutorial">{tutorial.description}</S.TooltipDescription>
             </S.TutorialItem>
           ))}
       </Carousel>
@@ -100,14 +121,14 @@ const Tooltip: React.FC<TooltipProps> = ({
   );
 
   const tooltipComponent = React.useMemo(() => {
-    if (type === 'tutorial') return renderTutorial;
-    if (type === 'button') return renderButton;
-    return renderTooltip;
-  }, [type, renderTooltip, renderTutorial, renderButton]);
+    if (type === 'tutorial') return renderTutorialComponent;
+    if (type === 'button') return renderButtonComponent;
+    return renderTooltipComponent;
+  }, [type, renderTooltipComponent, renderTutorialComponent, renderButtonComponent]);
 
-  const offsetClassName = React.useMemo(() => {
-    return `ds-tooltip-offset-${offset}`;
-  }, [offset]);
+  const overlayClassName = React.useMemo(() => {
+    return `ds-tooltip-offset-${offset} ds-tooltip-type-${type}`;
+  }, [offset, type]);
 
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
@@ -141,7 +162,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   if (render !== undefined) {
     return (
       <AntdTooltip
-        overlayClassName={offsetClassName}
+        overlayClassName={overlayClassName}
         autoAdjustOverflow={false}
         title={render()}
         align={{ offset: [0, 0] }}
@@ -156,7 +177,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   return titleExists ? (
     <AntdTooltip
-      overlayClassName={offsetClassName}
+      overlayClassName={overlayClassName}
       autoAdjustOverflow={false}
       title={tooltipComponent}
       align={{ offset: [0, 0] }}
