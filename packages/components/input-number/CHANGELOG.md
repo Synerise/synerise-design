@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.15...@synerise/ds-input-number@0.8.16) (2023-07-26)
+
+
+### Bug Fixes
+
+* **input-number:** allow minus sign as valid value ([a04e032](https://github.com/Synerise/synerise-design/commit/a04e0322df969ac1f199ab2448b0a50dc550a2cc))
+
+
+
+
+
 ## [0.8.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.14...@synerise/ds-input-number@0.8.15) (2023-07-17)
 
 **Note:** Version bump only for package @synerise/ds-input-number

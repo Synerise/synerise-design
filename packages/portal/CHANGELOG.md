@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.188.0](https://github.com/synerise/synerise-design/compare/portal@0.187.0...portal@0.188.0) (2023-07-26)
+
+
+### Bug Fixes
+
+* **input-number:** allow minus sign as valid value ([a04e032](https://github.com/synerise/synerise-design/commit/a04e0322df969ac1f199ab2448b0a50dc550a2cc))
+
+
+### Features
+
+* **tooltip:** added large & scrollable version of tooltip ([082c4ed](https://github.com/synerise/synerise-design/commit/082c4ed9b95166d063a0a0d50071b818cad14c6e))
+
+
+
+
+
 # [0.187.0](https://github.com/synerise/synerise-design/compare/portal@0.186.2...portal@0.187.0) (2023-07-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-empty-states",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "description": "EmptyStates UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,7 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.57.0"
+    "@synerise/ds-icon": "^0.58.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

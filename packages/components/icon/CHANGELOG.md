@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.57.0...@synerise/ds-icon@0.58.0) (2023-07-26)
+
+
+### Features
+
+* **icon:** added file expired icon ([b66826d](https://github.com/Synerise/synerise-design/commit/b66826de2667492ce0e8b33b43ac6fc58f7d97b4))
+* **icon:** new icon (GemsXL) ([3c9b253](https://github.com/Synerise/synerise-design/commit/3c9b253b37c037477383e5aa091f0b598074f503))
+
+
+
+
+
 # [0.57.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.56.0...@synerise/ds-icon@0.57.0) (2023-06-28)
 
 

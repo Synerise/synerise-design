@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.27.0...docs@0.28.0) (2023-07-26)
+
+
+### Features
+
+* **tooltip:** added large & scrollable version of tooltip ([082c4ed](http://gitlab.synerise.com/Frontend/synerise-design/commit/082c4ed9b95166d063a0a0d50071b818cad14c6e))
+
+
+
+
+
 # [0.27.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.26.1...docs@0.27.0) (2023-06-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.13.7...@synerise/ds-tooltip@0.14.0) (2023-07-26)
+
+
+### Features
+
+* **tooltip:** added large & scrollable version of tooltip ([082c4ed](https://github.com/synerise/synerise-design/commit/082c4ed9b95166d063a0a0d50071b818cad14c6e))
+
+
+
+
+
 ## [0.13.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.13.6...@synerise/ds-tooltip@0.13.7) (2023-06-28)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
