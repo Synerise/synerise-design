@@ -14,7 +14,7 @@ const stories = {
     const [isFocus, setFocus] = React.useState(false);
     const placeholder = text('Placeholder', 'Placeholder');
     return {
-      min: number('min', 1),
+      min: number('min', -100),
       max: number('max', Number.MAX_SAFE_INTEGER),
       onChange: action('onChange'),
       label: renderLabel(text('label', 'Label')),

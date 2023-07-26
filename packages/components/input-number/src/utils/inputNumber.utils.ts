@@ -16,6 +16,8 @@ export const formatNumber = (
 ): string => {
   if (value === undefined || value === '') return '';
 
+  if (value === '-') return '-';
+
   const formatOptions = { maximumFractionDigits: MAXIMUM_FRACTION_DIGITS, ...valueFormatOptions };
 
   if (typeof value === 'number') {
