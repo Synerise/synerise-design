@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.0...docs@0.28.1) (2023-07-27)
+
+
+### Bug Fixes
+
+* **input-number:** pass formatted and parsed (validated) val to onchange ([6caa1bf](http://gitlab.synerise.com/Frontend/synerise-design/commit/6caa1bf5d7e4ab3fd52861d8252e4c33ae950232))
+
+
+
+
+
 # [0.28.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.27.0...docs@0.28.0) (2023-07-26)
 
 

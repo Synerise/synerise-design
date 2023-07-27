@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.16...@synerise/ds-input-number@0.8.17) (2023-07-27)
+
+
+### Bug Fixes
+
+* **input-number:** pass formatted and parsed (validated) val to onchange ([6caa1bf](https://github.com/Synerise/synerise-design/commit/6caa1bf5d7e4ab3fd52861d8252e4c33ae950232))
+
+
+
+
+
 ## [0.8.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.15...@synerise/ds-input-number@0.8.16) (2023-07-26)
 
 
