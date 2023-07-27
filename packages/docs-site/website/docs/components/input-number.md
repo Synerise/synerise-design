@@ -25,7 +25,7 @@ Input-Number UI Component
 | label            | Input label                                                                                       | string                                                                  | -         |
 | max              | Max value                                                                                         | number                                                                  | Infinity  |
 | min              | Min value                                                                                         | number                                                                  | -Infinity |
-| onChange         | The callback triggered when the value is changed.                                                 | (value: number / string) => void                                        |
+| onChange         | The callback triggered when the value is changed. The return value is either a number or empty string '' if NaN | (value: number / string) => void                                        |
 | onPressEnter     | The callback function that is triggered when Enter key is pressed.                                | (e:Event) => void                                                       |
 | parser           | Specifies the value extracted from formatter                                                      | (val: number / string) => string                                        | -         |
 | precision        | Precision of input value                                                                          | number                                                                  | -         |

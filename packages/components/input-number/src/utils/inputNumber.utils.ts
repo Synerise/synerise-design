@@ -76,5 +76,6 @@ export const parseFormattedNumber = (
     const lastDecimalDelimiterIndex = result.lastIndexOf(NUMBER_DELIMITER);
     result = result.slice(0, lastDecimalDelimiterIndex);
   }
+
   return result;
 };

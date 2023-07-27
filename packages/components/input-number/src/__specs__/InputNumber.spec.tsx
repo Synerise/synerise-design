@@ -162,6 +162,40 @@ describe('InputNumber', () => {
     // ASSERT
     expect(input.value).toEqual('1,234,567.891');
   });
+
+  it('should fire onchange handler with value as number', () => {
+    // ARRANGE
+    const TEST_ID = 'test-id';
+    const changedValue = 123.45;
+    const onChange = jest.fn();
+    const { getByTestId } = renderWithProvider(
+      <InputNumber
+        data-testid={TEST_ID}
+        defaultValue={1234567.891234}
+        onChange={onChange}
+      />
+    );
+    const input = getByTestId(TEST_ID) as HTMLInputElement;
+    fireEvent.change(input, {target: {value: changedValue}});
+
+    // ASSERT
+    expect(onChange).toBeCalledWith(changedValue);
+  });
+  it('should fire onchange handler with formatted and parsed value, so it matches the input value', () => {
+    // ARRANGE
+    const TEST_ID = 'test-id';
+    const changedValue = '1234567.891a';
+    const expectedValue = 1234567.891;
+    const onChange = jest.fn();
+    const { getByTestId } = renderWithProvider(
+      <InputNumber data-testid={TEST_ID} defaultValue={1234567.89} onChange={onChange} />
+    );
+    const input = getByTestId(TEST_ID) as HTMLInputElement;
+    fireEvent.change(input, {target: {value: changedValue}});
+    
+    // ASSERT
+    expect(onChange).toBeCalledWith(expectedValue);
+  });
 });
 
 const setup = ({
