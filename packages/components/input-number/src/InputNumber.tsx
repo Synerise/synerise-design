@@ -24,11 +24,10 @@ const InputNumber: React.FC<Props> = ({
   tooltip,
   tooltipConfig,
   valueFormatOptions,
+  onChange,
   ...antdProps
 }) => {
   const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
-
-  formatValue(new Date(), {});
 
   const id = React.useMemo(() => uuid(), []);
   const showError = Boolean(error || errorText);
@@ -45,6 +44,18 @@ const InputNumber: React.FC<Props> = ({
       return parseFormattedNumber(value, formatValue, thousandDelimiter, decimalDelimiter);
     },
     [formatValue, thousandDelimiter, decimalDelimiter]
+  );
+
+  const handleOnChange = React.useCallback(
+    (value: string | number | undefined): void => {
+      const formattedValue = formatter(value);
+      const parsedFormattedValue = parser(formattedValue);
+      const valueAsNumber =
+        typeof parsedFormattedValue === 'string' ? parseFloat(parsedFormattedValue) : parsedFormattedValue;
+      const resultValue = Number.isNaN(valueAsNumber) ? '' : valueAsNumber;
+      onChange && onChange(resultValue);
+    },
+    [onChange, formatter, parser]
   );
 
   return (
@@ -73,6 +84,7 @@ const InputNumber: React.FC<Props> = ({
         {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
         <S.AntdInputNumber
           {...antdProps}
+          onChange={handleOnChange}
           id={id}
           error={showError}
           className={showError ? 'error' : undefined}
