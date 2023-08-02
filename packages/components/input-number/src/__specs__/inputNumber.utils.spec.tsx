@@ -143,6 +143,21 @@ const formatterTestCases = [
     euExpectedResult: '-',
     usExpectedResult: '-',
   },
+  {
+    inputValue: '',
+    euExpectedResult: '',
+    usExpectedResult: '',
+  },
+  {
+    inputValue: null,
+    euExpectedResult: '',
+    usExpectedResult: '',
+  },
+  {
+    inputValue: undefined,
+    euExpectedResult: '',
+    usExpectedResult: '',
+  },
 ];
 
 describe('InputNumber utils', () => {
