@@ -8,13 +8,14 @@ import { MAXIMUM_FRACTION_DIGITS, MAXIMUM_NUMBER_DIGITS, NUMBER_DELIMITER } from
 // input case 2: not formatted number (on blur)
 // output: formatted number string with decimal char
 export const formatNumber = (
-  value: string | number | undefined,
+  /** Important: value can be null when input string is '' */
+  value: string | number | undefined | null,
   formatValue: (value: number, options: NumberToFormatOptions) => string,
   notationThousandDelimiter: Delimiter,
   notationDecimalDelimiter: Delimiter,
   valueFormatOptions?: NumberToFormatOptions
 ): string => {
-  if (value === undefined || value === '') return '';
+  if (value === undefined || value === '' || value === null) return '';
 
   if (value === '-') return '-';
 
