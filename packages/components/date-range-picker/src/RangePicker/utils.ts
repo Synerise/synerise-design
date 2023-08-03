@@ -32,14 +32,6 @@ const getAmOrPmFromDate = (date: Date): ClockModes => {
   return dayjs(date).get(HOUR) >= HOUR_12 ? PM : AM;
 };
 
-const change24To12Hour = (date: Date): Date => {
-  let dateBuilder = dayjs(date);
-  const hour = dateBuilder.get(HOUR);
-  const hourToMap = MAP_24_HOUR_TO_12[hour];
-  dateBuilder = dateBuilder.set(HOUR, hourToMap);
-  return dateBuilder.toDate();
-};
-
 export const getDisabledTimeOptions = (
   initialDay: string | Date | undefined,
   granularity: string,
@@ -47,59 +39,31 @@ export const getDisabledTimeOptions = (
   initialUpperLimit: NullableDateLimit = null,
   is12HoursClock?: boolean
 ): number[] => {
-  let day = initialDay;
-  let lowerLimit = initialLowerLimit;
-  let upperLimit = initialUpperLimit;
+  const day = initialDay;
+  const lowerLimit = initialLowerLimit;
+  const upperLimit = initialUpperLimit;
 
   if (!day) {
     return [];
   }
+  const dayBuilder = dayjs(day);
 
   const dayClockMode = getAmOrPmFromDate(legacyParse(day));
-  const lowerLimitClockMode = getAmOrPmFromDate(legacyParse(lowerLimit));
-  const upperLimitClockMode = getAmOrPmFromDate(legacyParse(upperLimit));
 
-  const dayBuilder = dayjs(day);
-  const dayHour = dayBuilder.get(HOUR);
-
-  if (is12HoursClock && lowerLimit) {
-    if (lowerLimitClockMode === PM && dayjs(lowerLimit).get(HOUR) === HOUR_12) {
-      return [DISABLE_CLOCK_MODE_HOUR];
-    }
-    if (lowerLimitClockMode === AM && dayClockMode === PM) {
-      const day12HBuilder = dayjs(change24To12Hour(dayBuilder.toDate()));
-      const lowLimitDayBuilder = dayjs(lowerLimit);
-      if (day12HBuilder.isBefore(lowLimitDayBuilder)) {
-        return [DISABLE_CLOCK_MODE_HOUR];
+  let disableMeridienToggle = false;
+  if (is12HoursClock && granularity === HOURS_GRANULARITY) {
+    let diff;
+    if (lowerLimit) {
+      diff = dayBuilder.diff(dayjs(lowerLimit), 'minute') / 60;
+      if (diff < 12 && dayClockMode === PM) {
+        disableMeridienToggle = true;
       }
     }
-    if (lowerLimitClockMode === AM && dayClockMode === PM) {
-      return [];
-    }
-    if (lowerLimitClockMode === PM && dayClockMode === PM) {
-      day = change24To12Hour(legacyParse(day));
-      lowerLimit = change24To12Hour(legacyParse(lowerLimit));
-    }
-  }
-
-  if (is12HoursClock && upperLimit) {
-    if (upperLimitClockMode === PM && dayClockMode === PM) {
-      day = change24To12Hour(legacyParse(day));
-    }
-
-    upperLimit = change24To12Hour(legacyParse(upperLimit));
-    const upLimitDayBuilder = dayjs(upperLimit);
-    if (upperLimitClockMode === PM && dayClockMode === AM && dayBuilder.isAfter(upLimitDayBuilder)) {
-      return [DISABLE_CLOCK_MODE_HOUR];
-    }
-    if (upperLimitClockMode === PM && dayClockMode === AM) {
-      return [];
-    }
-  }
-
-  if (is12HoursClock && granularity !== HOURS_GRANULARITY) {
-    if (dayHour === HOUR_12) {
-      return [];
+    if (upperLimit) {
+      diff = dayjs(upperLimit).diff(dayBuilder, 'minute') / 60;
+      if (diff < 12 && dayClockMode === AM) {
+        disableMeridienToggle = true;
+      }
     }
   }
 
@@ -113,21 +77,16 @@ export const getDisabledTimeOptions = (
     )
     .map((option: number) => GET[granularity](option));
 
-  if (is12HoursClock) {
-    if (granularity === HOURS_GRANULARITY) {
-      result = result.filter((item: number) => item !== HOUR_12);
+  if (is12HoursClock && granularity === HOURS_GRANULARITY) {
+    if (dayClockMode === AM) {
+      result = result.filter((item: number) => item < HOUR_12);
+    } else if (dayClockMode === PM) {
+      result = result.filter((item: number) => item >= HOUR_12);
+    }
+    result = result.map((item: number) => MAP_24_HOUR_TO_12[item]);
 
-      const lowLimitDayBuilder = dayjs(lowLimit);
-      const lowerLimitHour = lowLimitDayBuilder.get(HOUR);
-      if (lowerLimitClockMode === PM && lowerLimitHour !== HOUR_12 && result[0] === 0) {
-        result.push(HOUR_12);
-      }
-      if (lowerLimitClockMode === AM && lowerLimitHour !== 0 && dayClockMode === AM && initialLowerLimit !== null) {
-        result.push(HOUR_12);
-      }
-      if (upperLimit && upperLimitClockMode === AM && dayClockMode === AM) {
-        result.push(DISABLE_CLOCK_MODE_HOUR);
-      }
+    if (disableMeridienToggle) {
+      result.push(DISABLE_CLOCK_MODE_HOUR);
     }
   }
   return result;
