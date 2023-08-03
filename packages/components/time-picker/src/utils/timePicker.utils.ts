@@ -25,9 +25,6 @@ export const handleTimeChange = (
     if (unit === HOUR || clockModeChanged) {
       dateBuilder = dateBuilder.set(HOUR, hourToMap);
     }
-    if (clockMode === AM && hourToMap === HOUR_12) {
-      dateBuilder = dateBuilder.set(HOUR, hourToMap);
-    }
   }
 
   if (wasUndefined) {

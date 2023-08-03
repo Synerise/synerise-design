@@ -6,6 +6,7 @@ scripts/create-component
 scripts/style
 scripts/utils
 *.config.js
+*.spec.*
 config/
 **/core/build/*.js
 **/core/**/variables.js

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor, within } from '@testing-library/react';
 import dayjs from 'dayjs';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
-import TimePicker from '../index';
-import { TEST_CASES_FOR_12_HOUR_CLOCK } from './constants/testCasesFor12HourClock.constants';
+import TimePicker from './index';
+import { TEST_CASES_FOR_12_HOUR_CLOCK } from './constants/timePicker.spec.constants';
 
 describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
@@ -173,4 +173,26 @@ describe('TimePicker', () => {
   it.todo('should return date with only changed time after selecting new time');
   it.todo('should display clear button for partially selected time');
   it.todo('should have default value of undefined');
+  it('in 12 hour mode meridiem indicator should not change when minutes change', async () => {
+    const handleChange = jest.fn();
+    const getLastCallParams = () => handleChange.mock.calls[handleChange.mock.calls.length - 1];
+    const date = dayjs('12-04-2020 00:00:00', 'DD-MM-YYYY HH:mm:ss').toDate();
+
+    const { findByTestId } = renderWithProvider(
+      <TimePicker 
+        value={date} 
+        raw 
+        onChange={handleChange} 
+      />, 
+      {}, 
+      { notation: 'US' }
+    );
+
+    const minutesWrapper = await findByTestId('ds-time-picker-unit-minute');
+    const minutes = within(minutesWrapper).getByText('22')
+    
+    minutes.click();
+    expect(getLastCallParams()[1]).toBe('12:22:00 AM');
+    
+  });
 });

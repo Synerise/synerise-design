@@ -14,6 +14,7 @@ import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
 import { ClockModes, TimePickerProps } from './types/TimePicker.types';
 import { handleTimeChange } from './utils/timePicker.utils';
+import { getClockModeFromDate, getOppositeClockMode } from './utils/clockMode.utils';
 import {
   AM,
   CLOCK_MODES,
@@ -57,12 +58,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
 }) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
-
-  const [clockMode, setClockMode] = React.useState<string>(() => {
-    const initialDate = dayjs(value);
-    const initialHour = initialDate.get(HOUR);
-    return initialHour >= HOUR_12 ? PM : AM;
-  });
 
   const is12HourClock: boolean = React.useMemo(() => {
     if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
@@ -122,17 +117,21 @@ const TimePicker: React.FC<TimePickerProps> = ({
     newValue: number | undefined,
     clockModeChanged = false
   ): void => {
+    let clockMode = getClockModeFromDate(value);
+    if (clockModeChanged) {
+      clockMode = getOppositeClockMode(clockMode);
+    }
     const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, is12HourClock, clockMode, unitConfig);
     onChange && onChange(newDate, getTimeString(newDate));
   };
 
-  React.useEffect(() => {
+  const toggleClockModeChange = (): void => {
     handleChange(undefined, undefined, true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clockMode]);
+  };
 
   const isAmOrPmModeDisabled = useCallback(
     (mode: ClockModes): boolean => {
+      const clockMode = getClockModeFromDate(value);
       if (!is12HourClock) {
         return false;
       }
@@ -150,19 +149,22 @@ const TimePicker: React.FC<TimePickerProps> = ({
       }
       return false;
     },
-    [clockMode, disabledHours, is12HourClock]
+    [value, disabledHours, is12HourClock]
   );
 
   const renderClockSwitch = (): React.ReactNode => {
+    const currentClockMode = getClockModeFromDate(value);
     return (
       <S.Unit>
         {Object.values(CLOCK_MODES).map(mode => (
           <S.Cell
             key={mode}
-            active={clockMode === mode}
+            active={currentClockMode === mode}
             onClick={(): void => {
-              setClockMode(mode);
-              onClockModeChange && onClockModeChange(mode);
+              if (currentClockMode !== mode) {
+                toggleClockModeChange();
+                onClockModeChange && onClockModeChange(mode);
+              }
             }}
             disabled={isAmOrPmModeDisabled(mode)}
           >
