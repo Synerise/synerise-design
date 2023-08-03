@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar-object",
-  "version": "0.6.83",
+  "version": "0.6.84",
   "description": "SidebarObject UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,7 @@
     "@synerise/ds-dropdown": "^0.17.71",
     "@synerise/ds-icon": "^0.58.0",
     "@synerise/ds-inline-edit": "^0.6.70",
-    "@synerise/ds-subtle-form": "^0.9.63",
+    "@synerise/ds-subtle-form": "^0.9.64",
     "@synerise/ds-tabs": "^0.13.68"
   },
   "peerDependencies": {
