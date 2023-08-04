@@ -1,1 +1,1 @@
-export { default, buildModalFooter } from './Modal';
+export * from './Modal';
