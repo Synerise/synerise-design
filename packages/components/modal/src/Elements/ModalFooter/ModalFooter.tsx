@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Button, { ButtonProps } from '@synerise/ds-button';
 
 import type { ButtonType } from 'antd/lib/button/button';
-import { ModalProps } from 'Modal.types';
+import { ModalProps } from '../../Modal.types';
 import * as S from './ModalFooter.styles';
 
 export type ModalFooterProps = Pick<
@@ -13,6 +13,7 @@ export type ModalFooterProps = Pick<
   | 'okButton'
   | 'cancelButton'
   | 'DSButton'
+  | 'CustomFooterButton'
   | 'texts'
   | 'onOk'
   | 'onCancel'
@@ -25,6 +26,7 @@ export type ModalFooterProps = Pick<
 
 export const ModalFooter = ({
   DSButton = Button as unknown as FC<ButtonProps>,
+  CustomFooterButton = Button as unknown as FC<ButtonProps>,
   prefix,
   infix,
   suffix,
@@ -38,24 +40,26 @@ export const ModalFooter = ({
       cancelButton: 'Cancel',
     },
   } = antModalProps;
+
+  const CustomButton = CustomFooterButton || DSButton;
   return (
     <S.FooterContainer data-testid="modal-footer">
       {prefix}
       {antModalProps.cancelButton || (
-        <DSButton type="ghost" onClick={onCancel} disabled={!onCancel} {...antModalProps.cancelButtonProps}>
+        <CustomButton type="ghost" onClick={onCancel} disabled={!onCancel} {...antModalProps.cancelButtonProps}>
           {antModalProps.cancelText || texts?.cancelButton}
-        </DSButton>
+        </CustomButton>
       )}
       {infix}
       {antModalProps.okButton || (
-        <DSButton
+        <CustomButton
           type={(antModalProps.okType as ButtonType) || 'primary'}
           onClick={onOk}
           disabled={!onOk}
           {...antModalProps.okButtonProps}
         >
           {antModalProps.okText || texts?.okButton}
-        </DSButton>
+        </CustomButton>
       )}
       {suffix}
     </S.FooterContainer>

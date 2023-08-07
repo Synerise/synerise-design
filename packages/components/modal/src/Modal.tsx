@@ -6,7 +6,7 @@ import '@synerise/ds-core/dist/js/style';
 import { ModalFooter } from './Elements/ModalFooter';
 import { ModalTitle } from './Elements/ModalTitle';
 
-import type { ModalProps } from './Modal.types';
+import type { ModalFooterBuilder, ModalProps } from './Modal.types';
 import './style/index.less';
 import * as S from './Modal.styles';
 
@@ -17,6 +17,9 @@ const mapSizeToWidth = {
   extraLarge: 1280,
   fullSize: '100%',
 };
+
+/** @deprecated */
+export const buildModalFooter = (props: ModalFooterBuilder) => <ModalFooter {...props} />;
 
 export const Modal = (props: ModalProps) => {
   const {

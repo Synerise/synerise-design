@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM } from '@synerise/ds-icon';
 
-import { ModalProps } from 'Modal.types';
+import { ModalProps } from '../../Modal.types';
 import * as S from './ModalTitle.styles';
 
 type ModalTitleProps = Pick<

@@ -24,4 +24,5 @@ export type ModalFooterBuilder = {
   okButton?: ReactNode;
   cancelButton?: ReactNode;
   DSButton?: FC<ButtonProps>;
+  CustomFooterButton?: FC<ButtonProps>;
 };
