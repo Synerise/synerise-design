@@ -5,6 +5,8 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
 import Loader from '@synerise/ds-loader';
 import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
+import { AutosizeInput } from '@synerise/ds-input';
+import AntdAutoComplete from 'antd/lib/auto-complete';
 
 const dataSource = ['First position', 'Second position'];
 const renderLabel = (text: string) => {
@@ -113,111 +115,40 @@ const AutocompleteWithState: React.FC = () => {
     </Autocomplete>
   );
 };
-const AutocompleteWithAutoResize: React.FC = () => {
+const AutocompleteWithAutosize: React.FC = () => {
   const [value, setValue] = React.useState<string>('');
   const [search, setSearch] = React.useState<string>('');
-  const [results, setResults] = React.useState<string[]>([]);
-  const description = text('Description', 'Description');
-  const errorMessage = text('Error Text', 'Error');
-  const hasError = boolean('Set validation state', false);
-  const loading = boolean('Set loading indicator', false);
-  const placeholder = text('Placeholder', 'Placeholder');
-  const [isBlur, setBlur] = React.useState(false);
-  const autoResize = boolean('Set autoResize', true);
+  const [options, setOptions] = React.useState<{ value: string }[]>([]);
 
-  function useDebounce(values, wait = 300) {
-    const [debounceValue, setDebounceValue] = React.useState(values);
-    React.useEffect(() => {
-      const timer = setTimeout(() => {
-        setDebounceValue(values);
-      }, wait);
-      return () => clearTimeout(timer);
-    }, [values, wait]);
-    return debounceValue;
-  }
-  const debounceInput = useDebounce(value);
-
-  React.useEffect(() => {
-    action('fetch')(value);
-    fetch(`https://jsonplaceholder.typicode.com/todos?q=${debounceInput}`)
-      .then(jsonData => jsonData.json())
-      .then(jsonData => {
-        setResults(jsonData);
-      });
-  }, [debounceInput]);
-
-  const renderResults = React.useMemo(() => {
-    if (!value || value.indexOf('@') >= 0) {
-      return [search];
-    } else {
-      return results.filter(item => Object.values(item).join('').toLowerCase().includes(value.toLowerCase()));
-    }
-  }, [results, search]);
-
-  const getErrorText = (hasError: boolean): string => {
-    if (hasError) {
-      return errorMessage;
-    } else {
-      return '';
-    }
-  };
-
-  const extractContent = (str: string) => {
-    const span = document.createElement('span');
-    span.innerHTML = str;
-    return span.textContent || span.innerText;
-  };
-
-  return (
-    <Autocomplete
-      placeholder={placeholder}
-      onSearch={renderResults}
-      label={renderLabel(text('Label', 'Label'))}
-      errorText={!isBlur && getErrorText(hasError)}
-      error={!isBlur && hasError}
-      onBlur={() => {
-        action('I am blurred');
-        setBlur(false);
+  return (<>
+    <AutosizeInput
+      renderInput={Autocomplete || AntdAutoComplete}
+      extraWidth={24}
+      transformRef={el => {
+        return el.querySelector('input')
       }}
-      onFocus={() => {
-        action('I am focused');
-        setBlur(true);
+      refPropName='inputRef'
+      options={options}
+      inputStyle={{
+        ...(number('Min width', 200) ? {minWidth: number('Min width', 200)} : {}),
+        ...(number('Max width', 0) ? {maxWidth: number('Max width', 0)} : {}),
       }}
-      onChange={(value: string) => {
-        setSearch(extractContent(value));
-        setValue(extractContent(value));
+      onSelect={val => setValue(val)}
+      onSearch={(text) => {
+        setOptions([text + ' sample value', `text: ${text}`].map(e => ({value: e})));
+        setSearch(text);
       }}
-      description={description}
-      autoResize={
-        autoResize
-          ? {
-              maxWidth: `${number('Set autoResize max width', 300)}px`,
-              minWidth: `${number('Set autoResize min width', 150)}px`,
-            }
-          : undefined
-      }
-      value={value === 'undefined' ? '' : value}
-    >
-      {!loading &&
-        renderResults.map(result => (
-          <Autocomplete.Option value={result.title} key={result.toString()}>
-            <span style={{ fontWeight: 400 }}>{JSON.stringify(result.title)}</span>
-          </Autocomplete.Option>
-        ))}
-      {loading && (
-        <Autocomplete.Option>
-          <LoaderWrapper>
-            <Loader label="Loading..." />
-          </LoaderWrapper>{' '}
-        </Autocomplete.Option>
-      )}
-    </Autocomplete>
-  );
+      textLenPropName="value"
+      value={search}
+      placeholder="input here"
+      description={value ? `Value: ${value}` : '(select an option)'}
+    ></AutosizeInput>
+  </>);
 };
 
 const stories = {
   default: () => <AutocompleteWithState />,
-  AutocompleteWithAutoResize: () => <AutocompleteWithAutoResize />,
+  AutocompleteWithAutosize: () => <AutocompleteWithAutosize />,
 };
 
 export default {

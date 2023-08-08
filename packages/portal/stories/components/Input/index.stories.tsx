@@ -667,9 +667,9 @@ const stories = {
   },
   inputWithPrefixAndSuffix: () => {
     const [value, setValue] = React.useState<string>('');
-    const prefixType = select('Set prefix type', addonType, addonType.none);
+    const prefixType = select('Set prefix type', addonType, addonType.avatar);
     const prefixLabelText = text('Set prefix label text', 'Prefix');
-    const suffixType = select('Set suffix type', addonType, addonType.none);
+    const suffixType = select('Set suffix type', addonType, addonType.label);
     const suffixLabelText = text('Set suffix label text', 'Suffix');
 
     return (

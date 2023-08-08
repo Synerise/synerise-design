@@ -245,4 +245,18 @@ describe('Input', () => {
     });
   });
   it.todo('resize accordingly to the input text width up to given width if prop autoResize')
+  it.todo('autosize works for masked input')
+  it.todo('autosize with masked input allows polish characters ąśćłźóń')
+  // it.todo('masked-input forwardsRef (requires antd>=4.19)')
+  it.todo('min max width applies only for autosize')
+  it.todo('autosize input works in modal')
+  it.todo('autosize sizer does not expand parent containers (e.g. modals)')
+  it.todo('proper styles (;) in autosize obj parser (there was a bug in styled components with css`` macro)')
+  it.todo('autosize obj should support unlimited maxwidth')
+  it.todo('autosize works with prefixel suffixel (e.g. renderInputComponent)')
+  it.todo('input does not loose focus after input event (when in e.g. autosize mode) - all rendering helpers renderInputComponent get cached (memoized)')
+  it.todo('nested input does not get rerendered when props objects differ in object referentiality')
+  it.todo('input with and without autoreisze paddings and margins are the same (content-box vs border-box)')
+  it.todo('autosize has no transition on width')
+  it.todo('autosize when resizing is aware of its parent size (problematic when)')
 });

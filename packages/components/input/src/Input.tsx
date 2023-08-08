@@ -10,7 +10,7 @@ import * as S from './Input.styles';
 import Label from './Label/Label';
 import Textarea from './Textarea/Textarea';
 import { EnhancedProps, Props } from './Input.types';
-import { AutosizeInput } from './autosize/autosize'
+import { AutosizeInput } from './autosize/autosize';
 
 const VERTICAL_BORDER_OFFSET = 2;
 
@@ -80,38 +80,40 @@ const enhancedInput =
       inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
     }, [inputRef]);
 
-    const renderInputComponent = (): React.ReactNode => {
-      if (autoResize) {
-        return <AutosizeInput {...antdInputProps}/>;
-      }
-      return (
-        <WrappedComponent
-          {...antdInputProps}
-          autoResize={autoResize}
-          className={hasErrorMessage || error ? 'error' : undefined}
-          addonBefore={
-            !!prefixel && (
-              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                {prefixel}
-              </S.AddonWrapper>
-            )
-          }
-          addonAfter={
-            !!suffixel && (
-              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                {suffixel}
-              </S.AddonWrapper>
-            )
-          }
-          error={hasErrorMessage || error}
-          onChange={handleChange}
-          value={antdInputProps.value}
-          id={id}
-          ref={inputRef}
-          autoComplete="off"
-        />
-      );
-    };
+    const renderInputComponent = React.useMemo(
+      () => (): React.ReactNode => {
+        const Component = autoResize ? AutosizeInput : WrappedComponent;
+        return (
+          <Component
+            {...antdInputProps}
+            {...(autoResize ? { renderInput: WrappedComponent, autoResize } : {})}
+            className={hasErrorMessage || error ? 'error' : undefined}
+            addonBefore={
+              !!prefixel && (
+                <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                  {prefixel}
+                </S.AddonWrapper>
+              )
+            }
+            addonAfter={
+              !!suffixel && (
+                <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                  {suffixel}
+                </S.AddonWrapper>
+              )
+            }
+            error={hasErrorMessage || error}
+            onChange={handleChange}
+            value={antdInputProps.value}
+            id={id}
+            ref={inputRef}
+            autoComplete="off"
+          />
+        );
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [antdInputProps, handleChange]
+    );
 
     return (
       <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
@@ -146,16 +148,7 @@ const enhancedInput =
               </S.IconsFlexContainer>
             </S.IconsWrapper>
           )}
-          {autoResize ? (
-            <S.WrapperAutoResize autoResize={autoResize}>
-              {renderInputComponent()}
-              <S.AutoResize icon1={icon1} icon2={icon2} suffixel={suffixel} prefixel={prefixel} autoResize={autoResize}>
-                {antdInputProps.value}
-              </S.AutoResize>
-            </S.WrapperAutoResize>
-          ) : (
-            renderInputComponent()
-          )}
+          {renderInputComponent()}
         </S.InputWrapper>
         {(hasErrorMessage || description) && (
           <S.ContentBelow>
@@ -181,5 +174,5 @@ export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.Rea
 };
 export const RawTextArea = S.AntdTextArea;
 export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';
-// export const AutoResize = Object.assign(S.AutoResize);
+export const AutoResize = Object.assign(S.AutoResize);
 export const WrapperAutoResize = Object.assign(S.WrapperAutoResize);
