@@ -1,17 +1,18 @@
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
+import type { PopoverProps } from 'antd/lib/popover';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { fireEvent, getByTestId, getAllByTestId, waitFor, act, within, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import RawDateRangePicker, { defaultValueTransformer } from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE, ABSOLUTE_PRESETS, ALL_TIME } from '../constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from '../RangeFilter/constants';
 import { RelativeMode } from '../DateRangePicker.types';
-import { fireEvent, getByTestId, getAllByTestId, waitFor, act } from '@testing-library/react';
-import { ExpanderSize } from '@synerise/ds-button';
 import DateRangePicker from '../DateRangePicker';
-import type { PopoverProps } from 'antd/lib/popover';
-import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
-import { normalizeRange } from '../utils';
+import Weekly from '../RangeFilter/Filters/new/Weekly/Weekly';
+
+jest.mock('uuid', () => ({ v4: () => '123456789' }));
 
 const FILTER = {
   type: 'WEEKLY',
@@ -412,6 +413,7 @@ describe('DateRangePicker', () => {
     });
     expect(inputs[1]).toHaveValue(DEFAULT_RANGE_END.substring(0, 8));
   });
+
   it.todo('relative custom range form values should persist when swithing to absolute range and back to custom');
   it.todo('relative custom range form values should persist when swithing to predefined relative range and back to custom');
   it.todo('relative custom range form values should persist when swithing to lifetime and back to custom');
@@ -545,4 +547,54 @@ describe('DateRangePicker', () => {
   it.todo('TimeWindow::EveryWeek should render correct days order for Sunday first notation');
   it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Monday first notation');
   it.todo('TimeWindow::EveryMonth::DaysOfWeek should render correct days order for Sunday first notation');
+
+  it('weekly filter with range - selecting range end time should NOT reset start time', async () => {
+    const onChange = jest.fn();
+    const getLastCallParams = () => onChange.mock.calls[onChange.mock.calls.length - 1][0];
+    
+    const dayValue = {
+      "start": "06:00:00.000",
+      "stop": "20:59:59.999",
+      "restricted": true,
+      "display": false,
+      "inverted": false,
+      "mode": "Range"
+    };
+    const value = {
+      "6235e246-fa7e-4882-9223c-44d72aaa1e8e": {
+        0: dayValue
+      },
+    };
+    const expectedDayValue = { "0": { ...dayValue, stop: "07:59:59.999" } };
+    
+    renderWithProvider(
+      <Weekly
+        onChange={onChange}
+        valueSelectionMode={['Range']}
+        texts={texts}
+        // @ts-ignore
+        value={value}
+      />
+    );
+    const dayButtons = screen.getAllByRole('button');
+    expect(dayButtons.length).toBe(7)
+    dayButtons[0].click();
+    
+    const inputs = await screen.findAllByTestId('tp-input');
+    expect(inputs.length).toBe(2);
+    userEvent.click(inputs[1])
+
+    const hoursWrapper = await screen.findByTestId('ds-time-picker-unit-hour');
+    expect(hoursWrapper).toBeInTheDocument();
+
+    const hours = within(hoursWrapper).getByText('07');
+    expect(hours).toBeInTheDocument();
+    userEvent.click(hours);
+    
+    expect(onChange).toHaveBeenCalled();
+    
+    const changedValue = Object.values(getLastCallParams())[0];
+    expect(changedValue).toEqual(expectedDayValue);
+
+  });
 });

@@ -60,6 +60,7 @@ const value = {
 | value                | Value of the picker                                                 | DateRange            | new Date()                                                    |
 | startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
 | onVisibleChange      | Callback executed when popover with dateRangePicker changes its visibility | (visible: boolean) => void | -                                                |
+| filterValueSelectionModes  | Allowed modes to display in filter | DateLimitMode[] | ["Range", "Hour"]                                                |
 
 ### DateRange
 
