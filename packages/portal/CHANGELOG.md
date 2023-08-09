@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.188.1](https://github.com/synerise/synerise-design/compare/portal@0.188.0...portal@0.188.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **date-picker:** added styles for inactive arrows in nav ([225722c](https://github.com/synerise/synerise-design/commit/225722cd546060114ecf5d3136e5b07eb1df2c61))
+* **date-range-picker:** weekly filter standalone starttime reset fixed ([63072c2](https://github.com/synerise/synerise-design/commit/63072c21bbe63286f2b5b31decf7f58b22c1ac1d))
+* **portal:** updated welcome image to fix typo ([1f2e3a6](https://github.com/synerise/synerise-design/commit/1f2e3a650c79587f6372175e6eebb98bd12afc0d))
+
+
+
+
+
 # [0.188.0](https://github.com/synerise/synerise-design/compare/portal@0.187.0...portal@0.188.0) (2023-07-26)
 
 
