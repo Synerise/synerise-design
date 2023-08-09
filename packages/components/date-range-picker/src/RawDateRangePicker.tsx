@@ -21,10 +21,13 @@ import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
 export function defaultValueTransformer(value: DateRange): DateRange {
-  if (value.key === 'ALL_TIME' || isLifetime(value)) {
-    return { type: 'ABSOLUTE' };
-  }
   const { id, timestamp, translationKey, filter } = value;
+  if (value.key === 'ALL_TIME' || isLifetime(value)) {
+    return {
+      type: 'ABSOLUTE',
+      ...(filter ? { filter } : {}),
+    };
+  }
   const baseValue = {
     ...(id ? { id } : {}),
     ...(timestamp ? { timestamp } : {}),
@@ -211,6 +214,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     }
     if (showFilter) {
       const addonKey = 'filter';
+      const filterEnabled = (value.from && value.to) || isLifetime(value);
       const label = value?.filter
         ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
         : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.ADD-FILTER`, defaultMessage: 'Add filter' });
@@ -221,7 +225,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
               <RangeFilterStatus
                 onFilterRemove={this.handleRemoveFilterClick}
                 filter={value.filter}
-                disabled={!value.from || !value.to}
+                disabled={!filterEnabled}
                 label={label}
                 onClick={this.handleModalOpenClick}
               />
