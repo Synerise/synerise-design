@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
 import { boolean, text, select, optionsKnob } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { action, configureActions } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
 import Monthly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Monthly/Monthly';
@@ -29,6 +29,10 @@ import Tooltip from '@synerise/ds-tooltip';
 import { utils } from '@synerise/ds-date-range-picker';
 
 const { getDefaultTexts } = utils;
+
+configureActions({
+  depth: 20
+})
 
 const decorator = storyFn => (
   <div style={{ width: '100vw', position: 'absolute', left: '0', top: '5vh' }}>
