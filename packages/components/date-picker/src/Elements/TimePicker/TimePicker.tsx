@@ -13,6 +13,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
   disabledHours = [],
   disabledMinutes = [],
   disabledSeconds = [],
+  inactivePrev,
+  inactiveNext,
   onChange,
   onShortNext,
   onShortPrev,
@@ -27,6 +29,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
         <Navbar
           title={fnsFormat(value, 'iii d, yyyy', intl.locale)}
           key="head"
+          inactivePrev={inactivePrev}
+          inactiveNext={inactiveNext}
           onShortNext={onShortNext}
           onShortPrev={onShortPrev}
         />

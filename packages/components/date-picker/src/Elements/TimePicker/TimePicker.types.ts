@@ -5,6 +5,8 @@ export type TimePickerProps = {
   disabledHours: number[];
   disabledMinutes: number[];
   disabledSeconds: number[];
+  inactivePrev?: boolean;
+  inactiveNext?: boolean;
   onShortNext?: () => void;
   onShortPrev?: () => void;
 };
