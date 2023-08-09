@@ -96,6 +96,7 @@ const stories = {
     const message = 'Error';
     const [isFocus, setFocus] = React.useState(false);
     return {
+      grey: boolean('grey background', false),
       tooltip: boolean('with simple tooltip', false) && text('Tooltip title', 'Select tooltip title'),
       tooltipConfig: boolean('with advanced tooltip', false) && {
         type: select('select advanced tooltip type', ['default', 'largeSimple', 'header-label'], 'default'),
