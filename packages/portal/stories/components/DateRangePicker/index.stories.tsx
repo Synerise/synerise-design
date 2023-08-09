@@ -11,7 +11,7 @@ import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/
 import Monthly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Monthly/Monthly';
 import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
 import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
-import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter.types';
+import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { TimePickerProps } from '@synerise/ds-time-picker';
 import {
   DEFAULT_RANGE_END,
@@ -274,6 +274,18 @@ const stories = {
     const twice = boolean('Render twice', false);
     const customTrigger = boolean('Custom trigger', false);
     const readOnly = boolean('Set readOnly', false);
+    let filterValueModes;
+    if (showFilter) {
+      filterValueModes = {
+        Range: boolean('Filter mode: range', true),
+        Hour: boolean('Filter mode: hour', true),
+      };
+    }
+    const getFilterSelectionModes = (modesObject: object) => {
+      const keys = Object.keys(modesObject);
+      const enabledModes = keys.filter(k => !!modesObject[k]);
+      return enabledModes;
+    };
 
     const datePicker = (
       <>
@@ -288,6 +300,7 @@ const stories = {
           forceAbsolute={forceAbsolute}
           showRelativePicker={showRelativePicker}
           showFilter={showFilter}
+          filterValueSelectionModes={filterValueModes && getFilterSelectionModes(filterValueModes)}
           texts={texts}
           popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
           arrowColor={setCustomArrowColor && additionalMapper}
@@ -556,7 +569,7 @@ const stories = {
   weeklyDateFilter: () => {
     const disabled = boolean('Set disabled', false);
     const [value, setValue] = React.useState({});
-    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
+    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />;
   },
   monthlyDateFilter: () => {
     const disabled = boolean('Set disabled', false);

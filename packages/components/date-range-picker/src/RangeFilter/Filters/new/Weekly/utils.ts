@@ -45,3 +45,11 @@ export const canAddAnotherRange = (
     )
   );
 };
+
+export const removeEmptyEntries = (weeklySchedule: WeeklySchedule): void => {
+  const emptyEntries = Object.keys(weeklySchedule).filter(key => Object.keys(weeklySchedule[key]).length === 0);
+  const scheduleToUpdate = weeklySchedule;
+  emptyEntries.forEach(emptyEntry => {
+    delete scheduleToUpdate[emptyEntry];
+  });
+};

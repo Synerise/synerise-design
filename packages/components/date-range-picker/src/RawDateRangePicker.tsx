@@ -260,6 +260,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       footerProps,
       allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
+      filterValueSelectionModes,
     } = this.props;
     const { value, mode } = this.state;
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
@@ -279,6 +280,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
             savedFilters={savedFilters}
             allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
+            valueSelectionModes={filterValueSelectionModes}
           />
         </Container>
       );

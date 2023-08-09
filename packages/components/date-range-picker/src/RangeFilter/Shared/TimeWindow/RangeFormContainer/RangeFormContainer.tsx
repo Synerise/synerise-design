@@ -65,7 +65,8 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
 
   const onStartChange = React.useCallback(
     (start?: Date): void => {
-      const end = dayValue.stop;
+      const dayVal = getDayValue(activeDays[0]);
+      const end = dayVal.stop;
       const value: DateValue = [start, end ? getDateFromDayValue(end, timeFormat) : undefined];
 
       if (activeDays.length > 1) {
@@ -74,13 +75,15 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
         onDayTimeChange(value, dayKeys as DayKey);
       }
     },
-    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, dayValue, dayKeys]
+    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]
   );
 
   const onEndChange = React.useCallback(
     (end?: Date): void => {
-      const { start } = dayValue;
-      const value: DateValue = [start ? getDateFromDayValue(dayValue.start, timeFormat) : undefined, end];
+      const dayVal = getDayValue(activeDays[0]);
+      const { start } = dayVal;
+
+      const value: DateValue = [start ? getDateFromDayValue(start, timeFormat) : undefined, end];
 
       if (activeDays.length > 1) {
         onMultipleDayTimeChange(value);
@@ -88,7 +91,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
         onDayTimeChange(value, dayKeys as DayKey);
       }
     },
-    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, dayValue, dayKeys]
+    [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]
   );
 
   const onExactHourSelect = React.useCallback(
