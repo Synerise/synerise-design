@@ -1,9 +1,9 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import RawDateRangePicker from '../RawDateRangePicker';
+import RawDateRangePicker, { defaultValueTransformer } from '../RawDateRangePicker';
 import { DateRange, RelativeDateRange } from '../date.types';
-import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE } from '../constants';
+import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE, ABSOLUTE_PRESETS, ALL_TIME } from '../constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from '../RangeFilter/constants';
 import { RelativeMode } from '../DateRangePicker.types';
 import { fireEvent, getByTestId, getAllByTestId, waitFor, act } from '@testing-library/react';
@@ -13,6 +13,19 @@ import type { PopoverProps } from 'antd/lib/popover';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 import { normalizeRange } from '../utils';
 
+const FILTER = {
+  type: 'WEEKLY',
+  nestingType: 'IN_PLACE',
+  days: [
+    {
+      from: '00:00:00.000',
+      to: '23:59:59.999',
+      day: 5,
+      inverted: false,
+      mode: 'Range',
+    },
+  ],
+};
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
@@ -22,22 +35,15 @@ const ABSOLUTE_VALUE_WITH_FILTER = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
-  filter: {
-    type: 'WEEKLY',
-    nestingType: 'IN_PLACE',
-    days: [
-      {
-        from: '00:00:00.000',
-        to: '23:59:59.999',
-        day: 5,
-        inverted: false,
-        mode: 'Range',
-      },
-    ],
-  },
+  filter: { ...FILTER }
 };
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
+const LIFETIME_VALUE = ABSOLUTE_PRESETS.find(event => event.key === ALL_TIME);
+const LIFETIME_VALUE_WITH_FILTER = {
+  ...LIFETIME_VALUE,
+  filter: { ...FILTER }
+}
 
 const APPLY_BUTTON_SELECTOR = '.ds-date-range-picker-footer  button';
 
@@ -307,17 +313,14 @@ describe('DateRangePicker', () => {
   it.todo('lifetime is after transformation is properly displayed in the footer');
   it.todo('onApply emits transformedValue');
   it.todo('default value is not recognized as lifetime');
-  it.todo(
-    'ALL_TIME should emit only type: absolute and no other keys' /*, () => {
-    const valueFromRelativeDateRangeAddon: DateRange = {
-      "key": "ALL_TIME",
-      "translationKey": "allTime",
-      "type": "ABSOLUTE",
-      "future": false
-    }
-    expect(defaultValueTransformer).toDeepEqual({"type": "ABSOLUTE"})
-  }*/
-  );
+  it('ALL_TIME should emit type: absolute and optional filter key', () => {
+    const transformedLifetimeValue = defaultValueTransformer(LIFETIME_VALUE as DateRange);
+    const transformedLifetimeValueWithFilter = defaultValueTransformer(LIFETIME_VALUE_WITH_FILTER as DateRange);
+    
+    expect(Object.keys(transformedLifetimeValue)).toEqual(["type"]);
+    expect(Object.keys(transformedLifetimeValueWithFilter)).toEqual(["type", "filter"]);
+    
+  });
   it.todo('clicking button DATE-PICKER.NOW sets the type to absolute');
   it.todo('RangePicker is able to render relative dates (decorate with relativeToAbsolute)');
   it.todo('selecting last x days/months automatically switches to selected date');

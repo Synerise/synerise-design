@@ -317,6 +317,7 @@ const stories = {
     return (
       <DateRangePicker
         showRelativePicker
+        showFilter
         relativeModes={['PAST', 'FUTURE', 'SINCE']}
         texts={texts}
         value={value}
