@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import InputGroup from "../InputGroup";
+import InputGroup from "./InputGroup";
 
 describe('InputGroup', () => {
   it('should render label', () => {

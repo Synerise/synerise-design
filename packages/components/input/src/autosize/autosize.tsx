@@ -21,6 +21,7 @@ const INPUT_PROPS_BLACKLIST = [
   'minWidth',
   'onAutosize',
   'placeholderIsMinWidth',
+  'autoResize',
 ];
 
 const cleanInputProps = inputProps => {
