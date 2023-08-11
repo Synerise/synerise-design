@@ -172,7 +172,7 @@ export class AutosizeInput extends Component {
       minHeight: `${30 - 12 * 2}px`,
       ...this.props.inputStyle,
     };
-    const defaultRenderInput = props => <input title={JSON.stringify(props)} {...props} />;
+    const defaultRenderInput = props => <input {...props} />;
     const { renderInput: RenderInput = defaultRenderInput, ...inputProps } = this.props;
     cleanInputProps(inputProps);
     inputProps.className = this.props.inputClassName;
@@ -182,6 +182,7 @@ export class AutosizeInput extends Component {
     const name = this.props.refPropName ?? 'ref';
     const input = (
       <RenderInput
+        data-testid="autosize-input"
         {...inputProps}
         {...{
           [name]: this.inputRef,
@@ -192,11 +193,11 @@ export class AutosizeInput extends Component {
       <div className={this.props.className} style={wrapperStyle}>
         {this.renderStyles()}
         {input}
-        <div ref={this.sizerRef} style={sizerStyle}>
+        <div data-testid="autosize-sizer" ref={this.sizerRef} style={sizerStyle}>
           {sizerValue}
         </div>
         {this.props.placeholder ? (
-          <div ref={this.placeHolderSizerRef} style={sizerStyle}>
+          <div data-testid="autosize-placeholder" ref={this.placeHolderSizerRef} style={sizerStyle}>
             {this.props.placeholder}
           </div>
         ) : null}
