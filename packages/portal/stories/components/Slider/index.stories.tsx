@@ -70,6 +70,7 @@ const Wrapper = (props: SliderProps) => {
   const [rangeValue, setRangeValue] = React.useState([-50, 50]);
   const hasMarks = boolean('Set scale', false);
   const maxMark = number('Max', 100);
+  const minMark = number('Min', 0);
   const descriptionMessage = renderDescription(text('Description', 'Description'));
   const hasDescription = boolean('Set Description', false);
   const isOtherColor = boolean('Use other colors than default', false);
@@ -89,7 +90,7 @@ const Wrapper = (props: SliderProps) => {
     setTracksColor({ ...tracksColor, ...color !== customColorOptions.undefined ? {'0': color} : {} });
   },[color]);
   const mark = {
-    0: '0',
+    [minMark]: minMark,
     [maxMark]: maxMark,
   };
 console.log(tracksColor)

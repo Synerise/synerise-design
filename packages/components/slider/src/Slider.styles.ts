@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Slider, { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import { ThemeProps } from '@synerise/ds-core';
 import { ComponentType } from 'react';
-import { ColorMapProps, Props as DsSliderProps } from './Slider.types';
+import { ColorMapProps, SliderProps as DsSliderProps } from './Slider.types';
 
 type SliderProps = SliderSingleProps | SliderRangeProps;
 
