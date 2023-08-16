@@ -28,8 +28,3 @@ export interface SliderProps extends AntdSliderProps {
   hideMinAndMaxMarks?: boolean;
   disabled?: boolean;
 }
-
-/**
- * @deprecated do not use, use `SliderProps`
- */
-export type Props = SliderProps;

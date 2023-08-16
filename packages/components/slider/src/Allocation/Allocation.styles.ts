@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-components';
-import { Props } from '../Slider.types';
+import { SliderProps } from '../Slider.types';
 import { AntdSlider } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
 import { TrackProps } from './Allocation.types';
@@ -17,7 +17,7 @@ export const indexMap = {
   '9': 'fern-600',
 };
 
-export const AllocationSlider = styled(AntdSlider)<Props>`
+export const AllocationSlider = styled(AntdSlider)<SliderProps>`
   .ant-slider-handle-value,
   .ant-slider-rail,
   .ant-slider-track,
