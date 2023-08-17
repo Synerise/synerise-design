@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.188.2](https://github.com/synerise/synerise-design/compare/portal@0.188.1...portal@0.188.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **slider:** minimum value setting ([b4aa982](https://github.com/synerise/synerise-design/commit/b4aa9825f49c3232fdefa59960e17a5d613b7200))
+
+
+
+
+
 ## [0.188.1](https://github.com/synerise/synerise-design/compare/portal@0.188.0...portal@0.188.1) (2023-08-09)
 
 
