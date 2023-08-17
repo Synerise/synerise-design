@@ -23,7 +23,6 @@ const WizardOnModal: React.FC<OnModalProps> = ({
     <Modal
       visible={visible}
       onCancel={onClose}
-      closable
       title={title}
       {...modalProps}
       headerActions={

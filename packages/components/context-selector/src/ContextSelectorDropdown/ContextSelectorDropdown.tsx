@@ -339,7 +339,6 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
                 style={listStyle}
                 ref={listRef}
               >
-                {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
                 {({ index, style }) => {
                   const item = activeItems[index];
                   return item && isListTitle(item) ? (

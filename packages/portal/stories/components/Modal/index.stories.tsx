@@ -34,10 +34,12 @@ export const propsWithKnobs = () => ({
   zIndex: number('zIndex', 1),
   closable: boolean('(x) button is visible on top right', true),
   confirmLoading: boolean('Loading visual effect', false),
-  ...boolean('Enabled buttons: OK, Close', false) ? {
-    onClose: action('onClose CLICK'),
-    onOk: action('onOk CLICK')
-  }: {},
+  ...(boolean('Enabled buttons: OK, Close', false)
+    ? {
+        onClose: action('onClose CLICK'),
+        onOk: action('onOk CLICK'),
+      }
+    : {}),
   onCancel: action('onCancel CLICK'),
   settingButton: text('setting button text', 'Settings'),
   showHeaderAction: boolean('Show example of an additional header button', true),

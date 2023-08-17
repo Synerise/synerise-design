@@ -228,7 +228,6 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
                 style={listStyle}
                 ref={listRef}
               >
-                {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
                 {({ index, style }) => (
                   <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />
                 )}

@@ -138,7 +138,6 @@ const FilterItem: React.FC<FilterItemProps> = ({
       </S.ItemContainer>
       <ModalProxy
         blank
-        closable
         onCancel={(): void => setConfirmDeleteVisible(false)}
         visible={confirmDeleteVisible}
         size="small"
