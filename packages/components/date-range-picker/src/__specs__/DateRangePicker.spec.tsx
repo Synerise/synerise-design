@@ -76,6 +76,7 @@ const ABSOLUTE_VALUE_WITH_MONTHLY_FILTER = {
 }
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
+
 const LIFETIME_VALUE = ABSOLUTE_PRESETS.find(event => event.key === ALL_TIME);
 const LIFETIME_VALUE_WITH_FILTER = {
   ...LIFETIME_VALUE,
@@ -100,11 +101,29 @@ const texts = {
   relativeDateRange: 'Relative Picker',
   filter: 'Date Filter',
   myRange: 'myRange',
+  allTime: 'Lifetime',
   startDatePlaceholder: 'Start date',
   endDatePlaceholder: 'End date',
   today: 'Today',
   now: 'Now',
   more: 'More',
+  saveFilter: 'Save filter',
+  yesterday: 'yesterday',
+  tomorrow: 'tomorrow',
+  lastWeek: 'lastWeek',
+  thisWeek: 'thisWeek',
+  nextWeek: 'nextWeek',
+  last7Days: 'last7Days',
+  next7Days: 'next7Days',
+  lastMonth: 'lastMonth',
+  thisMonth: 'thisMonth',
+  nextMonth: 'nextMonth',
+  last3Months: 'last3Months',
+  next3Months: 'next3Months',
+  last6Months: 'last6Months',
+  next6Months: 'next6Months',
+  lastYear: 'lastYear',
+  nextYear: 'nextYear'
 } as any;
 
 describe('DateRangePicker', () => {
@@ -157,12 +176,65 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     applyButton.click();
     const onApplyParameter = onApply.mock.calls[0][0];
     expect(onApplyParameter['type']).toBe(ABSOLUTE);
   });
-  it.todo('relative date-filter addon should render saving filters only if saving setter function is provided');
+  it('relative date-filter addon should render saving filter button if saving setter function (onFilterSave) is provided', async () => {
+    const onApply = jest.fn();
+    const setFilters = jest.fn();
+    const savedFilters = [];
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        onFilterSave={setFilters}
+        savedFilters={savedFilters}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    const filterTrigger = screen.getByText(texts.filter);
+    expect(filterTrigger).toBeInTheDocument();
+
+    userEvent.click(filterTrigger);
+    
+    const addFilterButton = screen.getByTestId('ds-add-button-label');
+    expect(addFilterButton).toBeInTheDocument();
+    userEvent.click(addFilterButton);
+    
+    const saveFilterButton = screen.getByText(texts.saveFilter);
+    expect(saveFilterButton).toBeInTheDocument();
+
+  });
+
+  it('relative date-filter addon should NOT render saving filter button if saving setter function (onFilterSave) is provided', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    const filterTrigger = screen.getByText(texts.filter);
+    expect(filterTrigger).toBeInTheDocument();
+
+    userEvent.click(filterTrigger);
+    
+    const addFilterButton = screen.getByTestId('ds-add-button-label');
+    expect(addFilterButton).toBeInTheDocument();
+    userEvent.click(addFilterButton);
+
+    const saveFilterButton = screen.queryByText(texts.saveFilter);
+    expect(saveFilterButton).toBeNull();
+  });
   it('should not convert date to absolute by default', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -177,7 +249,7 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     applyButton.click();
     const onApplyParameter = onApply.mock.calls[0][0];
     expect(onApplyParameter['type']).toBe(RELATIVE_VALUE.type);
@@ -197,7 +269,10 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    await getByText(texts.relativeDateRange).click();
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+
     await waitFor(
       () => {
         expect(getByText(texts[RANGES[0].translationKey as string])).toBeInTheDocument();
@@ -205,7 +280,27 @@ describe('DateRangePicker', () => {
       { timeout: 50 }
     );
   });
-  it.todo('should render Lifetime option by default in ranges');
+  it('should render Lifetime option by default in ranges', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        value={RELATIVE_VALUE as DateRange}
+        forceAbsolute={false}
+        
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+      />
+    );
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+    const lifetimeMenuItem = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
+    expect(lifetimeMenuItem).toBeInTheDocument();
+  });
   it('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
@@ -262,7 +357,7 @@ describe('DateRangePicker', () => {
   it('should display custom color for arrow popup', async () => {
     const onApply = jest.fn();
     const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement }>();
-    const { container, getByText } = renderWithProvider(
+    const { getByText } = renderWithProvider(
       <DateRangePicker
         onApply={() => {}}
         showTime
@@ -311,7 +406,7 @@ describe('DateRangePicker', () => {
     const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
     fireEvent.click(getDayButton());
     fireEvent.click(getDayButton());
-    const applyButton = container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     fireEvent.click(applyButton);
     expect(getLastCallParams().from).toBeDefined();
@@ -338,13 +433,75 @@ describe('DateRangePicker', () => {
     expect(getLastCallParams().future).not.toBeDefined();
   });
   it.todo('should properly set primary class in RangeButtons for currentRange');
-  it.todo('should disable select time if selected ALL_TIME');
-  it.todo('should switch to MODES.DATE if was in selecting time and selected ALL_TIME');
-  it.todo('all relative modes (including lifetime) mode make apply button enabled');
+  it.todo('should disable select time if selected ALL_TIME'); // FIXME fails when lifetime is provided as default value.... 
+    
+  it('should switch to MODES.DATE if was in selecting time and selected ALL_TIME', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+      />
+    );
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+
+    const timeButton = document.querySelector('.ds-date-time-switch'); 
+    const lifetimeMenuItem = screen.getByText(texts[LIFETIME_VALUE?.translationKey as string])
+    expect(timeButton).toBeInTheDocument();
+    expect(lifetimeMenuItem).toBeInTheDocument();
+
+    if (timeButton) {
+      userEvent.click(timeButton);
+      
+      expect(document.querySelector('.ds-time-picker')).not.toBeNull();
+      
+      userEvent.click(lifetimeMenuItem);
+      
+      expect(document.querySelector('.ds-time-picker')).toBeNull();
+    }
+    else {
+      fail('time mode button not available')
+    }
+  });
+  
+  it('all relative modes (including lifetime) mode make apply button enabled', async () => {
+    const rangePresets = [ ...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS ];
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker
+        ranges={rangePresets}
+        value={ABSOLUTE_VALUE as DateRange}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        texts={texts}
+      />
+    );
+    
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
+
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+
+    for (const rangePreset of rangePresets) {
+      const rangePresetButton = screen.getByText(texts[rangePreset.translationKey as string])
+      expect(rangePresetButton).toBeInTheDocument()
+      userEvent.click(rangePresetButton);
+      expect(applyButton).not.toBeDisabled();
+    }
+  });
   it.todo('CUSTOM relative mode sets key to undefined (handleCustomClick)');
   it.todo('relative range addon should be formatted accordingly to provided styles even if base styled are imported');
-  it.todo('when in ALL_TIME - time picker should be disabled');
-  it.todo('if time picker is shown - switching to Lifetime switches to MODE.DATE');
   it.todo('transformed value with valueTransformer is selected in RangesDropdown');
   it.todo('transformed Lifetime value can be applied');
   it.todo('lifetime is after transformation is properly displayed in the footer');
@@ -358,7 +515,31 @@ describe('DateRangePicker', () => {
     expect(Object.keys(transformedLifetimeValueWithFilter)).toEqual(["type", "filter"]);
     
   });
-  it.todo('clicking button DATE-PICKER.NOW sets the type to absolute');
+  it('clicking button DATE-PICKER.NOW sets the type to absolute', () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={false}
+        value={ABSOLUTE_VALUE as DateRange}
+        forceAbsolute={false}
+        texts={texts}
+      />
+    );
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
+    expect(applyButton).toBeInTheDocument();
+
+    const nowButton = screen.getByText(texts.now);
+    expect(nowButton).toBeInTheDocument();
+    
+    userEvent.click(nowButton);
+    userEvent.click(applyButton);
+    
+    expect(getLastCallParams().type).toBe(ABSOLUTE);
+  });
   it.todo('RangePicker is able to render relative dates (decorate with relativeToAbsolute)');
   it.todo('selecting last x days/months automatically switches to selected date');
   it.todo('months view, year view highlights selected (even relative) date range');
@@ -469,7 +650,7 @@ describe('DateRangePicker', () => {
       />
     );
     const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
-    const applyButton = await container.querySelector('.ds-date-range-picker-footer .ds-button');
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     fireEvent.click(getDayButton());
     fireEvent.click(getDayButton());
@@ -491,10 +672,11 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
+    
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
 
-    act(() => {
-      getByText(texts.relativeDateRange).click();
-    });
     const moreLabel = getByText(texts.more);
     if (moreLabel) {
       const moreButton = moreLabel.closest('button');
@@ -540,7 +722,7 @@ describe('DateRangePicker', () => {
       />
     );
     
-    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     act(() => {
       applyButton.click();
     })
@@ -565,7 +747,7 @@ describe('DateRangePicker', () => {
     act(() => {
       getByText(texts.now).click();
     });
-    const applyButton = container.querySelector(APPLY_BUTTON_SELECTOR) as HTMLElement;
+    const applyButton = screen.getByTestId('date-range-picker-apply-button');
     act(() => {
       applyButton.click();
     })

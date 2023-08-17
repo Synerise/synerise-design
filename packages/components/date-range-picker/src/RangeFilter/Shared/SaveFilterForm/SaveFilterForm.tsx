@@ -14,7 +14,7 @@ const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ onFilterSave }) => {
   const input = (
     <>
       <RawInput
-        placeholder={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.FILTER-NAME' })}
+        placeholder={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.FILTER-NAME', defaultMessage: 'Filter name' })}
         value={name}
         onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
           setName(e.target.value);
@@ -44,12 +44,12 @@ const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ onFilterSave }) => {
     </>
   );
   return (
-    <S.Container>
+    <S.Container data-testid="drp-save-filter-form">
       {active ? (
         input
       ) : (
         <Button type="ghost" onClick={(): void => setActive(!active)}>
-          {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SAVE-FILTER' })}
+          {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SAVE-FILTER', defaultMessage: 'Save filter' })}
         </Button>
       )}
     </S.Container>
