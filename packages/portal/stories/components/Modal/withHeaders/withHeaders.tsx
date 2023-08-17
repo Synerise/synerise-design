@@ -8,7 +8,7 @@ import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';
 import { action } from '@storybook/addon-actions';
-import { buildModalFooter } from "@synerise/ds-modal";
+import { ModalFooter } from '@synerise/ds-modal';
 
 const HeaderTypes = {
   DEFAULT: 'DEFAULT',
@@ -52,15 +52,19 @@ const headerWithPrefix = (text: string, prefix: React.ReactNode) => {
   );
 };
 
-const footer = (settingButton: string, cancelText: string, applyButton: string,) => {
-  return buildModalFooter({
+const footer = (settingButton: string, cancelText: string, applyButton: string) => {
+  const props = {
     okText: applyButton,
     cancelText: cancelText,
-    prefix: (<div style={{ width: '100%', display: 'flex' }}>
-      <Button type="secondary">{settingButton}</Button>
-    </div>),
-  });
-}
+    prefix: (
+      <div style={{ width: '100%', display: 'flex' }}>
+        <Button type="secondary">{settingButton}</Button>
+      </div>
+    ),
+  };
+
+  return <ModalFooter {...props} />;
+};
 
 const headerWithTabs = (text: string) => {
   const [activeTab, setActiveTab] = React.useState(0);
@@ -103,7 +107,10 @@ const customHeaderProps = (headerType: string) => {
       return {
         title: headerWithPrefix(
           'Header with avatar',
-          <ObjectAvatar badgeStatus="active" iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />} />
+          <ObjectAvatar
+            badgeStatus="active"
+            iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />}
+          />
         ),
       };
     }
@@ -111,7 +118,10 @@ const customHeaderProps = (headerType: string) => {
       return {
         title: headerWithPrefix(
           'Header with avatar and description',
-          <ObjectAvatar badgeStatus="active" iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />} />
+          <ObjectAvatar
+            badgeStatus="active"
+            iconComponent={<Icon component={<MailM />} color={theme.palette['red-500']} />}
+          />
         ),
         description: 'Description',
       };
@@ -132,7 +142,13 @@ const withHeaders = () => {
   const storyProps = {
     size: select('Size', sizes, null),
     visible: boolean('Set open', true),
-    footer: boolean('Show footer', true) ? footer(text('Set text of setting button', 'Settings'),text('Set text of cancel button', 'Cancel'),text('Set text of ok button', 'Apply'),) : null,
+    footer: boolean('Show footer', true)
+      ? footer(
+          text('Set text of setting button', 'Settings'),
+          text('Set text of cancel button', 'Cancel'),
+          text('Set text of ok button', 'Apply')
+        )
+      : null,
     headerActions: (
       <div>
         <Button mode="single-icon" type="ghost" onClick={action('Additional header button clicked')}>
@@ -142,8 +158,10 @@ const withHeaders = () => {
     ),
   };
   const header = select('Set header type', HeaderKnobs, HeaderTypes.DEFAULT);
-  return <S.Modal {...storyProps} {...customHeaderProps(header)} withTabs={header === HeaderTypes.TABS} >
-    <S.ContentPlaceholder></S.ContentPlaceholder>
-  </S.Modal>;
+  return (
+    <S.Modal {...storyProps} {...customHeaderProps(header)} withTabs={header === HeaderTypes.TABS}>
+      <S.ContentPlaceholder></S.ContentPlaceholder>
+    </S.Modal>
+  );
 };
 export default withHeaders;
