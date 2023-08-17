@@ -68,6 +68,7 @@ const Footer: React.FC<Props> = ({
       <S.Actions>
         <Tooltip title={message}>
           <Button
+            data-testid="date-range-picker-apply-button"
             disabled={!canApply}
             type="primary"
             onClick={(): void => {

@@ -27,6 +27,38 @@ const FILTER = {
     },
   ],
 };
+const MONTHLY_FILTER = {
+  "type": "MONTHLY",
+  "nestingType": "IN_PLACE",
+  "rules": [
+    {
+      "days": [
+        {
+          "from": "00:00:00.000",
+          "to": "23:59:59.999",
+          "day": 27,
+          "inverted": false,
+          "mode": "Range"
+        }
+      ],
+      "type": "MONTH",
+      "inverted": false
+    },
+    {
+      "days": [
+        {
+          "from": "00:00:00.000",
+          "to": "23:59:59.999",
+          "day": 3,
+          "inverted": false,
+          "mode": "Range"
+        }
+      ],
+      "type": "MONTH",
+      "inverted": true
+    }
+  ]
+}
 const ABSOLUTE_VALUE = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
@@ -38,6 +70,10 @@ const ABSOLUTE_VALUE_WITH_FILTER = {
   to: '2018-12-08T23:59:59+01:00',
   filter: { ...FILTER }
 };
+const ABSOLUTE_VALUE_WITH_MONTHLY_FILTER = {
+  ...ABSOLUTE_VALUE,
+  filter: { ...MONTHLY_FILTER }
+}
 const RELATIVE_MODES = ['PAST', 'FUTURE', 'SINCE'];
 const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 const LIFETIME_VALUE = ABSOLUTE_PRESETS.find(event => event.key === ALL_TIME);
@@ -595,6 +631,64 @@ describe('DateRangePicker', () => {
     
     const changedValue = Object.values(getLastCallParams())[0];
     expect(changedValue).toEqual(expectedDayValue);
+
+  });
+
+  it('monthly filter - default values for "counted from" and "days of" should be correct', async () => {
+    const onApply = jest.fn();
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    const expectedLength = ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter.rules.length;
+    renderWithProvider(
+      <RawDateRangePicker
+        onApply={onApply}
+        showFilter={true}
+        value={ABSOLUTE_VALUE_WITH_MONTHLY_FILTER as DateRange}
+        // @ts-ignore
+        texts={texts}
+      />
+    );
+
+    const filterButton = screen.getByText(texts.filter);
+    expect(filterButton).toBeInTheDocument();
+    
+    userEvent.click(filterButton);
+
+    const filterLabel = await screen.findByText('Every month')
+    expect(filterLabel).toBeInTheDocument();
+
+    userEvent.click(filterLabel);
+
+    const inlineInputs = document.querySelectorAll('.ds-inline-edit input');
+
+    const countedFromInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => { return input.name === 'counted-from-select'})
+    const daysOfInputs = [].filter.call(inlineInputs, (input: HTMLInputElement) => { return input.name === 'days-of-period'})
+    
+    expect(countedFromInputs.length).toBe(expectedLength);
+    expect(daysOfInputs.length).toBe(expectedLength);
+
+    countedFromInputs.forEach((input: HTMLInputElement, index: number) => {
+      const invertedValue = ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter.rules[index].inverted ? 'end' : 'beginning';
+      expect(input.value).toBe(invertedValue);
+    });
+
+    daysOfInputs.forEach((input: HTMLInputElement, index: number) => {
+      const daysOfValue = ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter.rules[index].type === 'MONTH' ? 'month' : 'week';
+      expect(input.value).toBe(daysOfValue);
+    });
+    
+    const applyFilterButton = await screen.findByTestId('range-filter-apply-button');
+    expect(applyFilterButton).toBeInTheDocument();
+
+    userEvent.click(applyFilterButton);
+    
+    const applyButton = await screen.findByTestId('date-range-picker-apply-button');
+    expect(applyButton).toBeInTheDocument();
+    
+    userEvent.click(applyButton);
+
+    expect(onApply).toBeCalled();
+    const appliedFilter = getLastCallParams().filter;
+    expect(appliedFilter).toEqual(ABSOLUTE_VALUE_WITH_MONTHLY_FILTER.filter);
 
   });
 });

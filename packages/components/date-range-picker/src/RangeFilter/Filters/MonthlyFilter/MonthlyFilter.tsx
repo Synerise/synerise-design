@@ -44,7 +44,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     const id = uuid();
     const { value, countedFromPeriods, daysOfPeriods } = this.props;
     const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
-    const defaultPeriodType = (countedFromPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
+    const defaultPeriodType = (countedFromPeriods || DEFAULT_COUNTED_FROM)[0].value;
     this.setData([...value, { period: defaultPeriod, periodType: defaultPeriodType, definition: {}, id }]);
     this.handleCollapse(id);
   };
