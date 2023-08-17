@@ -158,13 +158,18 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
           </S.MainComponentWrapper>
         </S.Body>
         {!hideFooter && (
-          <S.Footer>
+          <S.Footer data-testid="range-filter-footer">
             {savedFilters && onFilterSave && <SaveFilterForm onFilterSave={this.handleFilterSave} />}
             <S.FooterSeparator />
-            <Button type="ghost" onClick={this.handleCancel}>
+            <Button data-testid="range-filter-cancel-button" type="ghost" onClick={this.handleCancel}>
               {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL', defaultMessage: 'Cancel' })}
             </Button>
-            <Button type="primary" disabled={!isValidValue(activeValue)} onClick={this.handleApply}>
+            <Button
+              data-testid="range-filter-apply-button"
+              type="primary"
+              disabled={!isValidValue(activeValue)}
+              onClick={this.handleApply}
+            >
               {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY', defaultMessage: 'Apply' })}
             </Button>
           </S.Footer>
