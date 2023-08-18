@@ -90,7 +90,6 @@ type ModalTitleProps = Pick<
 >;
 ```
 
-
 ## ModalFooter
 ```bash
 export type ModalFooterProps = Pick<
@@ -112,4 +111,4 @@ export type ModalFooterProps = Pick<
   | 'okButtonProps'
 >;
 ```
-**(Deprecated)** method buildModalFooter - recommended is using ModalFooter Component
+**(Deprecated)** method buildModalFooter - use ModalFooter Component instead
