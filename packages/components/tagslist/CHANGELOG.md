@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.69...@synerise/ds-tagslist@0.9.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.8.69](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.8.68...@synerise/ds-tagslist@0.8.69) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

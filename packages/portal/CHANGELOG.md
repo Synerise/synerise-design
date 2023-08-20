@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.189.0](https://github.com/synerise/synerise-design/compare/portal@0.188.2...portal@0.189.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.188.2](https://github.com/synerise/synerise-design/compare/portal@0.188.1...portal@0.188.2) (2023-08-17)
 
 

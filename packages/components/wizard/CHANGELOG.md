@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.72...@synerise/ds-wizard@0.4.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.3.72](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.3.71...@synerise/ds-wizard@0.3.72) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-wizard

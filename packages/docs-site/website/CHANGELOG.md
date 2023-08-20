@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.1...docs@0.29.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ad3aa7b](http://gitlab.synerise.com/Frontend/synerise-design/commit/ad3aa7bd844d2880044dd518aee1f9ee41176bbe))
+
+
+
+
+
 ## [0.28.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.0...docs@0.28.1) (2023-07-27)
 
 

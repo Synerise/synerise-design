@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.24...@synerise/ds-date-range-picker@0.22.0) (2023-08-20)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added missing deps to package.json ([a8ec6ee](https://github.com/Synerise/synerise-design/commit/a8ec6ee2ce43d6b5ca98ed4767144ccd990de053))
+* **date-range-picker:** fixed default value for monthly filter dropdown ([03b520f](https://github.com/Synerise/synerise-design/commit/03b520f3d203050d8675b048028c9942e1d535ef))
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.21.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.23...@synerise/ds-date-range-picker@0.21.24) (2023-08-09)
 
 

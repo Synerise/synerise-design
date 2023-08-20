@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.18.5...@synerise/ds-context-selector@0.19.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.18.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.18.4...@synerise/ds-context-selector@0.18.5) (2023-08-09)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

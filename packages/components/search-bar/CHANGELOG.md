@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.36](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.35...@synerise/ds-search-bar@0.6.36) (2023-08-20)
+
+**Note:** Version bump only for package @synerise/ds-search-bar
+
+
+
+
+
 ## [0.6.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search-bar@0.6.34...@synerise/ds-search-bar@0.6.35) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-search-bar
