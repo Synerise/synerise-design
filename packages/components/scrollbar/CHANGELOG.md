@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.6.4...@synerise/ds-scrollbar@0.6.5) (2023-08-22)
+
+
+### Bug Fixes
+
+* **scrollbar:** fixed contrast for scrollbar ([118347f](https://github.com/Synerise/synerise-design/commit/118347f5bf6e2bf5a622f0e18667babf82623133))
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.6.3...@synerise/ds-scrollbar@0.6.4) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

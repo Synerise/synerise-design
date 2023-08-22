@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.13...@synerise/ds-item-picker@0.11.14) (2023-08-22)
+
+
+### Bug Fixes
+
+* **item-picker:** changed itempicker contrast ([e5194ab](https://github.com/Synerise/synerise-design/commit/e5194ab06994a4243e28ffc3f3daacf058e4be41))
+
+
+
+
+
 ## [0.11.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.12...@synerise/ds-item-picker@0.11.13) (2023-08-20)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

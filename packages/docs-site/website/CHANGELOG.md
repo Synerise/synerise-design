@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.0...docs@0.29.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* **status:** fixed types and styles for status pills ([cc23a04](http://gitlab.synerise.com/Frontend/synerise-design/commit/cc23a04620e934915c2a300bab1022657b2c5357))
+
+
+
+
+
 # [0.29.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.1...docs@0.29.0) (2023-08-20)
 
 

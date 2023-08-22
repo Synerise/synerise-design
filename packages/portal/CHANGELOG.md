@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.190.0](https://github.com/synerise/synerise-design/compare/portal@0.189.0...portal@0.190.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** tweaks to title styles ([629be2c](https://github.com/synerise/synerise-design/commit/629be2c0bb8fd1765c134c59757f85995a309215))
+* **status:** fixed types and styles for status pills ([cc23a04](https://github.com/synerise/synerise-design/commit/cc23a04620e934915c2a300bab1022657b2c5357))
+
+
+### Features
+
+* **date-range-picker:** added prop to hide "now" button ([61fe484](https://github.com/synerise/synerise-design/commit/61fe484482b1610a872d918efa79760c906f3e7a))
+* **wizard:** adds prop to customise wizard step button props ([346551d](https://github.com/synerise/synerise-design/commit/346551d00ef56ad832468ba34cd98f16681fa4d4))
+
+
+
+
+
 # [0.189.0](https://github.com/synerise/synerise-design/compare/portal@0.188.2...portal@0.189.0) (2023-08-20)
 
 

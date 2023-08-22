@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.22.0...@synerise/ds-date-range-picker@0.23.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds weekly types exports ([9d145bd](https://github.com/Synerise/synerise-design/commit/9d145bd6bd0060e7c044f694bdfeb7badaf8e475))
+
+
+### Features
+
+* **date-range-picker:** added prop to hide "now" button ([61fe484](https://github.com/Synerise/synerise-design/commit/61fe484482b1610a872d918efa79760c906f3e7a))
+
+
+
+
+
 # [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.24...@synerise/ds-date-range-picker@0.22.0) (2023-08-20)
 
 
