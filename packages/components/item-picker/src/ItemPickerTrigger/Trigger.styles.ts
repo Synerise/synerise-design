@@ -82,7 +82,7 @@ export const Value = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex: 1;
-  color: ${(props): string => props.theme.palette['grey-700']};
+  color: ${(props): string => props.theme.palette['grey-800']};
   max-width: 100%;
   overflow: hidden;
   padding: 0 0 0 4px;
@@ -125,7 +125,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   transition: all 0.3s ease;
   padding ${(props): string => (props.size === 'small' ? '0 8px' : '0 12px')};
   background-color: ${(props): string => {
-    if (props.disabled) return props.theme.palette['grey-050'];
+    if (props.disabled) return props.theme.palette['grey-100'];
     if (props.error) return props.theme.palette['red-050'];
     return props.theme.palette.white;
   }};
@@ -150,14 +150,6 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
           border: 1px solid ${props.theme.palette['grey-400']};
         }
       `};
-    ${Value} {
-      ${(props): FlattenInterpolation<ThemeProps> | false =>
-        props.selected &&
-        Boolean(props.disabled) &&
-        css`
-          color: ${props.theme.palette['grey-500']};
-        `};
-      }
     
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.opened &&
