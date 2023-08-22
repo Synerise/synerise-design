@@ -62,7 +62,6 @@ export const PopconfirmTitle = styled.div`
   color: ${(props): string => props.theme.palette['grey-800']};
   font-weight: 500;
   padding-top: 2px;
-  max-width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
 `;
