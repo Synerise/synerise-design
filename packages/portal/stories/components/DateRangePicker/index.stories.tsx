@@ -80,7 +80,7 @@ const texts = {
   clear: 'Clear',
   clearRange: ' Clear range',
   copyRange: 'Copy range',
-  custom: 'Custom',
+  custom: 'Custom range',
   days: 'Days',
   emptyDateError: 'Date cannot be empty',
   endDate: 'End date',
@@ -330,6 +330,7 @@ const stories = {
     return (
       <DateRangePicker
         showRelativePicker
+        showTime
         showFilter
         relativeModes={['PAST', 'FUTURE', 'SINCE']}
         texts={texts}

@@ -60,7 +60,9 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 < 17.0.0"
+    "antd": "^4",
+    "react": ">=16.9.0 < 17.0.0",
+    "styled-components": "5.0.1"
   },
   "devDependencies": {
     "@types/ramda": "^0.27.14"

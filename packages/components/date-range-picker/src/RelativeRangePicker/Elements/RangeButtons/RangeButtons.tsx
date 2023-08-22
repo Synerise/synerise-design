@@ -7,6 +7,7 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, texts, onChange }
     <>
       {ranges.map(range => (
         <S.Range
+          data-testid={`relative-range-preset-${range.key || range.id}`}
           key={range.key || range.id}
           onClick={(): void => {
             onChange && onChange(range);

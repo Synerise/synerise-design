@@ -5,7 +5,9 @@ module.exports = api => {
 
   let ignore = ['**/dist/!(es)'];
 
-  if (!isTest) ignore = ignore.concat(['**/__specs__/', '**/__stories__/']);
+  if (!isTest) ignore = ignore.concat(['**/__specs__/', '**/__stories__/', (filename) => {
+    return filename.match(/\.spec\.(.*\.)?ts(x)?$/g);
+  }]);
 
   return {
     babelrcRoots: ['.', ...packages],

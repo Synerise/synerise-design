@@ -187,6 +187,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
         <S.Ranges>
           {showCustomRange && (
             <S.Range
+              data-testid={`relative-range-preset-${CUSTOM_RANGE_KEY}`}
               key={CUSTOM_RANGE_KEY}
               onClick={this.handleCustomClick}
               type={isCustomValue ? 'primary' : 'tertiary'}

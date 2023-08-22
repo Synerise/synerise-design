@@ -5,7 +5,7 @@ import { ModalProps as AntdModalProps } from 'antd/lib/modal';
 /*
  * @deprecated use `ModalProps`
  */
-export type Props = ModalProps
+export type Props = ModalProps;
 
 export type ModalProps = {
   description?: string;
@@ -25,7 +25,7 @@ export type ModalProps = {
 
 /*
  * @deprecated use `ModalProps`
- */ 
+ */
 export type ModalFooterBuilder = {
   prefix?: ReactNode;
   infix?: ReactNode;
@@ -34,7 +34,7 @@ export type ModalFooterBuilder = {
   cancelButton?: ReactNode;
   /*
    * @deprecated use `CustomFooterButton`
-   */ 
+   */
   DSButton?: ComponentType<ButtonProps>;
   CustomFooterButton?: ComponentType<ButtonProps>;
 };

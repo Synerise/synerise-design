@@ -295,7 +295,8 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);
     // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
     const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
-    const canSwitchToTimePicker = isValid && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
+    const canSwitchToTimePicker =
+      isValid && !isLifetime(value) && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
 
     return (
       <Container className={containerClass}>
