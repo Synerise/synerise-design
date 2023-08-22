@@ -4,6 +4,7 @@ import Status from '@synerise/ds-status';
 import { TagShape } from '@synerise/ds-tags';
 import Tags from '@synerise/ds-tags/dist/Tags';
 import { theme } from '@synerise/ds-core';
+import { StatusType } from '@synerise/ds-status';
 
 const decorator = (storyFn) => (
   <div style={{ padding: 12 }}>
@@ -17,6 +18,7 @@ const typeOptions = {
   success: 'success',
   warning: 'warning',
   danger: 'danger',
+  disabled: 'disabled',
   customStatus: 'customStatus',
 };
 const customColorOptions = {
@@ -33,30 +35,16 @@ const customColorOptions = {
   purple: theme.palette['purple-600'],
   violet: theme.palette['violet-600'],
 };
-const customColorStatusOptions = {
-  blue: theme.palette['blue-600'],
-  grey: theme.palette['grey-500'],
-  red: theme.palette['red-600'],
-  green: theme.palette['green-600'],
-  yellow: theme.palette['yellow-600'],
-  pink: theme.palette['pink-600'],
-  mars: theme.palette['mars-600'],
-  orange: theme.palette['orange-600'],
-  fern: theme.palette['fern-600'],
-  cyan: theme.palette['cyan-600'],
-  purple: theme.palette['purple-600'],
-  violet: theme.palette['violet-600'],
-};
 
 const stories = {
   Status: () => {
     const type = select('Type', typeOptions, 'default');
-    const colors = type === 'customStatus' && select('Set custom status color', customColorStatusOptions, customColorStatusOptions.grey);
+    const colors = type === 'customStatus' && select('Set custom status color', customColorOptions, customColorOptions.grey);
     const label = text('Label', 'Draft')
     return(
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Status label={label} type={type} color={colors}/>
+          <Status label={label} type={type as StatusType} color={colors}/>
         </div>
       </React.Fragment>
     );
