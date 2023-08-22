@@ -5,5 +5,6 @@ export { RawDateRangePicker } from './RawDateRangePicker';
 export * as utils from './utils';
 export * as CONST from './constants';
 export { default } from './DateRangePicker';
+export { fnsFormat } from './fns';
 
 export { getDisabledTimeOptions } from './RangePicker/utils';
