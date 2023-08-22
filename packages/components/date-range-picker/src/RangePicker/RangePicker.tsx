@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC, UIEvent, PureComponent, ReactNode, MouseEvent } from 'react';
 import { DateUtils, DayModifiers } from 'react-day-picker';
 import fnsIsSameDay from 'date-fns/isSameDay';
 import fnsIsValid from 'date-fns/isValid';
@@ -63,7 +63,7 @@ function replaceRange(value: AbsoluteDateRange | RelativeDateRange, day: Date): 
   }
   return { from, to };
 }
-class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State> {
+class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   constructor(props: Props & WithDataFormatProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
@@ -117,7 +117,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     this.setState({ enteredTo: null });
   };
 
-  handleDayClick = (day: Date, modifiers: DayModifiers, e: React.MouseEvent<HTMLDivElement>): void => {
+  handleDayClick = (day: Date, modifiers: DayModifiers, e: MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
     const { value, onChange } = this.props;
     if (modifiers.disabled) return;
@@ -174,7 +174,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     this.setState(prevState => ({ ...prevState, [side]: { ...prevState[side], mode } }));
   };
 
-  renderDay = (day: Date): React.ReactNode => {
+  renderDay = (day: Date): ReactNode => {
     const text = day.getDate();
     const { value, intl, formatValue } = this.props;
 
@@ -201,7 +201,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     );
   };
 
-  renderYearPicker = (side: SideType): React.ReactNode => {
+  renderYearPicker = (side: SideType): ReactNode => {
     const { [side]: currentSide } = this.state;
     const { month } = currentSide;
     return (
@@ -213,7 +213,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     );
   };
 
-  renderMonthPicker = (side: SideType): React.ReactNode => {
+  renderMonthPicker = (side: SideType): ReactNode => {
     const opposite: SideType = side === COLUMNS.LEFT ? (COLUMNS.RIGHT as SideType) : (COLUMNS.LEFT as SideType);
     const { [side]: currentSide, [opposite]: oppositeSide } = this.state;
     const oppositeMonth = legacyParse(oppositeSide.month);
@@ -228,7 +228,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     );
   };
 
-  renderDatePicker = (side: SideType): React.ReactNode => {
+  renderDatePicker = (side: SideType): ReactNode => {
     const { value, disabledDate, forceAdjacentMonths } = this.props;
     const { enteredTo, left, right, [side]: sideState } = this.state;
     const { from, to, type } = value;
@@ -273,7 +273,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     );
   };
 
-  renderTimePicker = (side: SideType): React.ReactNode => {
+  renderTimePicker = (side: SideType): ReactNode => {
     const { value, is12HoursClock } = this.props;
     const { from, to } = value;
     if (!from || !to) {
@@ -330,7 +330,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
     }
   };
 
-  renderSide = (side: SideType): React.ReactNode | null => {
+  renderSide = (side: SideType): ReactNode | null => {
     const { mode } = this.props;
     const { [side]: sideState } = this.state;
     if (mode === MODES.TIME) return this.renderTimePicker(side);
@@ -348,7 +348,7 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
 
   render(): JSX.Element {
     const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, texts } = this.props;
-
+    const { showNowButton = true } = this.props;
     return (
       <>
         <S.Sides>
@@ -356,22 +356,24 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
           <S.Side mode={mode}>{this.renderSide(COLUMNS.RIGHT as SideType)}</S.Side>
         </S.Sides>
         <S.PickerFooter>
-          <Range
-            onClick={({ currentTarget }: React.UIEvent): void => {
-              const now = new Date();
-              const literallyNow: AbsoluteDateRange = {
-                ...value,
-                translationKey: 'now',
-                type: 'ABSOLUTE',
-                from: now,
-                to: fnsAddMinutes(now, 1),
-              };
-              onChange(literallyNow);
-              (currentTarget as HTMLElement).blur();
-            }}
-          >
-            {texts.now}
-          </Range>
+          {showNowButton && (
+            <Range
+              onClick={({ currentTarget }: UIEvent): void => {
+                const now = new Date();
+                const literallyNow: AbsoluteDateRange = {
+                  ...value,
+                  translationKey: 'now',
+                  type: 'ABSOLUTE',
+                  from: now,
+                  to: fnsAddMinutes(now, 1),
+                };
+                onChange(literallyNow);
+                (currentTarget as HTMLElement).blur();
+              }}
+            >
+              {texts.now}
+            </Range>
+          )}
           <S.FooterSeparator />
           {!dateOnly && (
             <S.DateTimeModeSwitch
@@ -391,4 +393,4 @@ class RangePicker extends React.PureComponent<Props & WithDataFormatProps, State
   }
 }
 
-export default withDataFormat(RangePicker) as React.FC<Props>;
+export default withDataFormat(RangePicker) as FC<Props>;

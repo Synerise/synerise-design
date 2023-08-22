@@ -54,6 +54,7 @@ const value = {
 | relativePast         | Enable relative filter for past ranges                              | boolean              | `false`                                                       |
 | relativeFuture       | Enable relative filter for future ranges                            | boolean              | `false`                                                       |
 | showTime             | Enable user to choose particular hour                               | boolean              | `false`                                                       |
+| showNowButton        | Include "now" button to select current time (last minue)                             | boolean              | `true`                                                       |
 | showFilter           | Enable range filtering                                              | boolean              | `false`                                                       |
 | showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                       |
 | validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
