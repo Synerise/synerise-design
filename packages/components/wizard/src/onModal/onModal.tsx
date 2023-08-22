@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { OnModalProps } from './onModal.types';
 import * as S from '../Wizard.styles';
 
-const WizardOnModal: React.FC<OnModalProps> = ({
+const WizardOnModal = ({
   visible,
   stepper,
   headerAction,
@@ -17,8 +17,13 @@ const WizardOnModal: React.FC<OnModalProps> = ({
   onNextStep,
   texts,
   modalProps,
-}) => {
+  stepButtonProps,
+}: OnModalProps) => {
   const intl = useIntl();
+  const prevButtonProps = stepButtonProps?.prevButtonProps
+    ? stepButtonProps.prevButtonProps
+    : { type: 'ghost', mode: 'icon-label' };
+  const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
   return (
     <Modal
       visible={visible}
@@ -33,7 +38,7 @@ const WizardOnModal: React.FC<OnModalProps> = ({
       footer={
         <S.ModalWizardButtons>
           {onPrevStep ? (
-            <Button mode="icon-label" type="ghost" onClick={onPrevStep}>
+            <Button {...prevButtonProps} onClick={onPrevStep}>
               <Icon component={<ArrowLeftCircleM />} />{' '}
               {texts?.prevButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
             </Button>
@@ -41,7 +46,7 @@ const WizardOnModal: React.FC<OnModalProps> = ({
             <S.ButtonPlaceholder />
           )}
           {onNextStep && (
-            <Button type="primary" onClick={onNextStep}>
+            <Button {...nextButtonProps} onClick={onNextStep}>
               {texts?.nextButtonLabel ||
                 intl.formatMessage({ id: 'DS.WIZARD.NEXT-BUTTON', defaultMessage: 'Next step' })}
             </Button>
