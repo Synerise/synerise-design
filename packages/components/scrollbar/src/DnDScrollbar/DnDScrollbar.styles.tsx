@@ -24,6 +24,14 @@ export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boole
   }
 `;
 
+export const ThumbVertical = styled.div`
+  width: 3px;
+  background-color: ${props => props.theme.palette['grey-300']};
+  border-radius: 2px;
+  right: 4px;
+  position: absolute;
+`;
+
 export const ScrollbarTrackWrapper = styled.div`
   display: block;
   height: 100%;
@@ -33,18 +41,11 @@ export const ScrollbarTrackWrapper = styled.div`
   right: 0;
   bottom: 0;
   user-select: none;
-  opacity: 0.2;
   &:hover {
-    opacity: 0.6;
+    ${ThumbVertical} {
+      background-color: ${props => props.theme.palette['grey-500']};
+    }
   }
-`;
-
-export const ThumbVertical = styled.div`
-  width: 3px;
-  background-color: #6a7580;
-  border-radius: 2px;
-  right: 4px;
-  position: absolute;
 `;
 
 export const TrackVertical = styled.div`
@@ -56,7 +57,6 @@ export const TrackVertical = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  //transition: opacity 0.3s ease-in-out;
   position: absolute;
 
   &:hover,
