@@ -7,4 +7,11 @@ export * as CONST from './constants';
 export { default } from './DateRangePicker';
 export { fnsFormat } from './fns';
 
+export type {
+  WeeklyProps,
+  WeeklyScheduleDayValue,
+  WeeklySchedule,
+  DayOfWeekIndex,
+} from './RangeFilter/Filters/new/Weekly/Weekly.types';
+
 export { getDisabledTimeOptions } from './RangePicker/utils';
