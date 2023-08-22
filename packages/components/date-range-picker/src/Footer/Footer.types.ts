@@ -2,7 +2,7 @@ import { WrappedComponentProps } from 'react-intl';
 
 import { DateToFormatOptions } from '@synerise/ds-data-format';
 
-import { Texts } from 'DateRangePicker.types';
+import { Texts } from '../DateRangePicker.types';
 import { DateRange } from '../date.types';
 
 export type Props = {

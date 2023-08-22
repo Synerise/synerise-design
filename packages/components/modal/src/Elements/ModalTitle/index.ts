@@ -1,2 +1,2 @@
 export * from './ModalTitle';
-export { TitleContainer } from './ModalTitle.styles'
+export { TitleContainer } from './ModalTitle.styles';
