@@ -79,6 +79,58 @@ describe('Wizard component', () => {
     expect(screen.queryByText(NEXT_STEP)).toBeFalsy();
   });
 
+  it('should render prev step button with custom props', () => {
+    // ARRANGE
+    const handleClose = jest.fn();
+    const handleNextStep = jest.fn();
+    const handlePrevStep = jest.fn();
+    renderWithProvider(
+      <Wizard
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        stepButtonProps={{
+          prevButtonProps: {
+            disabled: true
+          }
+        }}
+        onNextStep={handleNextStep}
+        onPrevStep={handlePrevStep}
+        texts={{ prevButtonLabel: BACK, nextButtonLabel: NEXT_STEP }}
+      />
+    );
+
+    // ASSERT
+    expect(screen.getByText(BACK)).toBeDisabled();
+    expect(screen.getByText(NEXT_STEP)).not.toBeDisabled();
+  });
+
+  it('should render next step button with custom props', () => {
+    // ARRANGE
+    const handleClose = jest.fn();
+    const handleNextStep = jest.fn();
+    const handlePrevStep = jest.fn();
+    renderWithProvider(
+      <Wizard
+        title={TITLE}
+        visible={true}
+        onClose={handleClose}
+        stepButtonProps={{
+          nextButtonProps: {
+            disabled: true
+          }
+        }}
+        onNextStep={handleNextStep}
+        onPrevStep={handlePrevStep}
+        texts={{ prevButtonLabel: BACK, nextButtonLabel: NEXT_STEP }}
+      />
+    );
+
+    // ASSERT
+    expect(screen.getByText(BACK)).not.toBeDisabled();
+    expect(screen.getByText(NEXT_STEP)).toBeDisabled();
+  });
+
   it('should call handleClose callback', () => {
     // ARRANGE
     const handleClose = jest.fn();

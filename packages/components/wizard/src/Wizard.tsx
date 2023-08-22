@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Layout from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header/dist/PageHeader';
 import Button from '@synerise/ds-button';
@@ -20,10 +20,17 @@ const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
   children,
   onPrevStep,
   onNextStep,
+  stepButtonProps,
   texts,
   visible,
 }) => {
   const intl = useIntl();
+
+  const prevButtonProps = stepButtonProps?.prevButtonProps
+    ? stepButtonProps.prevButtonProps
+    : { type: 'ghost', mode: 'icon-label' };
+  const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
+
   return visible ? (
     <S.WizardWrapper className="ds-wizard">
       <Layout
@@ -46,7 +53,7 @@ const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
             {children}
             <S.WizardButtons>
               {onPrevStep ? (
-                <Button mode="icon-label" type="ghost" onClick={onPrevStep}>
+                <Button {...prevButtonProps} onClick={onPrevStep}>
                   <Icon component={<ArrowLeftCircleM />} />{' '}
                   {texts?.prevButtonLabel ||
                     intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
@@ -55,7 +62,7 @@ const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
                 <S.ButtonPlaceholder />
               )}
               {onNextStep && (
-                <Button type="primary" onClick={onNextStep}>
+                <Button {...nextButtonProps} onClick={onNextStep}>
                   {texts?.nextButtonLabel ||
                     intl.formatMessage({ id: 'DS.WIZARD.NEXT-BUTTON', defaultMessage: 'Next step' })}
                 </Button>
