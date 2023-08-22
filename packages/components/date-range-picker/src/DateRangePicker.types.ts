@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
 
@@ -57,7 +57,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
-  popoverTrigger?: React.ReactNode;
+  popoverTrigger?: ReactNode;
   ranges?: DateRange[];
   rangeUnits?: Array<RelativeUnits>;
   relativeFuture?: boolean;
@@ -68,6 +68,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   showFilter?: boolean;
   showTime?: boolean;
   showCustomRange?: boolean;
+  showNowButton?: boolean;
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
@@ -98,7 +99,7 @@ export interface State {
   visibleAddonKey?: string | undefined;
 }
 export type Texts = {
-  [k in Translations]: string | React.ReactNode;
+  [k in Translations]: string | ReactNode;
 } & {
   [k in TranslationsPlaceholders]: string;
 };
@@ -161,6 +162,6 @@ export type WithTranslations = {
 };
 
 export type AddonType = {
-  content: React.ReactNode;
+  content: ReactNode;
   key: string;
 };

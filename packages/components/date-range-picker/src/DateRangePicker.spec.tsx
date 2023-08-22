@@ -146,6 +146,33 @@ describe('DateRangePicker', () => {
     );
     expect((container.querySelector('.ds-date-range-picker')) as HTMLElement).toBeTruthy();
   });
+  it('should render with NOW button by default', async () => {
+    const onApply = jest.fn();
+    const { container } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        value={ABSOLUTE_VALUE as DateRange}
+        texts={texts}
+      />
+    );
+    const nowButton = screen.getByText(texts.now);
+    expect(nowButton).toBeInTheDocument();
+  });
+  it('should render without NOW button if set to false', async () => {
+    const onApply = jest.fn();
+    const { container } = renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        showNowButton={false}
+        onApply={onApply}
+        value={ABSOLUTE_VALUE as DateRange}
+        texts={texts}
+      />
+    );
+    const nowButton = screen.queryByText(texts.now);
+    expect(nowButton).toBeFalsy();
+  });
   it('should display passed range', async () => {
     const onApply = jest.fn();
     const { getByText } = renderWithProvider(

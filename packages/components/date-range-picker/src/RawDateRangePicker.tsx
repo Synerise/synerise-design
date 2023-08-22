@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode, PureComponent } from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
@@ -55,7 +55,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   return value;
 }
 
-export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps, State> {
+export class RawDateRangePicker extends PureComponent<DateRangePickerProps, State> {
   static defaultProps = {
     ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
@@ -261,6 +261,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
       filterValueSelectionModes,
+      showNowButton = true,
     } = this.props;
     const { value, mode } = this.state;
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
@@ -301,6 +302,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     return (
       <Container className={containerClass}>
         <RangePicker
+          showNowButton={showNowButton}
           value={value}
           onChange={this.handleRangeChange}
           mode={mode}
@@ -314,7 +316,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
         />
         {addons.length > 0 && <Separator />}
         {addons.map(
-          (addon, index: number): React.ReactNode => (
+          (addon, index: number): ReactNode => (
             <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
               {addon.content}
             </Addon>

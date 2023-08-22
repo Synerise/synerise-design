@@ -28,6 +28,8 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import { utils } from '@synerise/ds-date-range-picker';
 
+import markdown from '@/date-range-picker/README.md';
+
 const { getDefaultTexts } = utils;
 
 configureActions({
@@ -262,8 +264,8 @@ const stories = {
       return enabledModes;
     };
     const forceAbsolute = boolean('Force absolute date on apply', false);
-    const showRelativePicker = boolean('Set relative filter', true);
-    const showFilter = boolean('Show relative date-hours-filter', false);
+    const showRelativePicker = boolean('Set relative picker add on', true);
+    const showFilter = boolean('Show filter add on', false);
     const disableAbsoluteTimepickerInRelative = boolean(
       'Disable time-picker for relative dates (so no hidden convertion to an absolute date)',
       false
@@ -300,6 +302,7 @@ const stories = {
           forceAbsolute={forceAbsolute}
           showRelativePicker={showRelativePicker}
           showFilter={showFilter}
+          showNowButton={boolean('Show NOW button', true)}
           filterValueSelectionModes={filterValueModes && getFilterSelectionModes(filterValueModes)}
           texts={texts}
           popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
@@ -332,6 +335,7 @@ const stories = {
         showRelativePicker
         showTime
         showFilter
+        showNowButton={boolean('Show NOW button', true)}
         relativeModes={['PAST', 'FUTURE', 'SINCE']}
         texts={texts}
         value={value}
@@ -419,11 +423,12 @@ const stories = {
       const enabledModes = keys.filter(k => !!modesObject[k]);
       return enabledModes;
     };
-    const showRelativePicker = boolean('Set relative filter', true);
+    const showRelativePicker = boolean('Set relative picker add on', true);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
         showTime={showTime}
+        showNowButton={boolean('Show NOW button', true)}
         value={value}
         relativeFuture
         forceAbsolute
@@ -468,7 +473,7 @@ const stories = {
       return enabledModes;
     };
     const [filters, setFilters] = React.useState(savedFilters);
-    const showRelativePicker = boolean('Set relative filter', true);
+    const showRelativePicker = boolean('Set relative picker add on', true);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -476,6 +481,7 @@ const stories = {
         value={value}
         relativeFuture
         forceAbsolute
+        showNowButton={boolean('Show NOW button', true)}
         showRelativePicker={showRelativePicker}
         savedFilters={filters}
         onFilterSave={setFilters}
@@ -537,7 +543,7 @@ const stories = {
       type: 'ABSOLUTE',
     };
     const showTime = boolean('Set showTime', true);
-    const showRelativePicker = boolean('Set relative filter', true);
+    const showRelativePicker = boolean('Set relative picker add on', true);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -545,6 +551,7 @@ const stories = {
         value={value}
         relativeFuture
         forceAbsolute
+        showNowButton={boolean('Show NOW button', true)}
         showRelativePicker={showRelativePicker}
         texts={texts}
         popoverProps={{ placement: 'bottomLeft' }}
@@ -617,6 +624,7 @@ const stories = {
           onApply={action('OnApply')}
           value={value}
           relativeFuture
+          showNowButton={boolean('Show NOW button', true)}
           showRelativePicker={true}
           showFilter={true}
           texts={texts}
@@ -640,7 +648,7 @@ const stories = {
       return enabledModes;
     };
     const [filters, setFilters] = React.useState(savedFilters);
-    const showRelativePicker = boolean('Set relative filter', true);
+    const showRelativePicker = boolean('Set relative picker add on', true);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -648,6 +656,7 @@ const stories = {
         value={value}
         relativeFuture
         forceAbsolute
+        showNowButton={boolean('Show NOW button', true)}
         showRelativePicker={showRelativePicker}
         savedFilters={filters}
         onFilterSave={setFilters}
@@ -662,7 +671,11 @@ const stories = {
 
 export default {
   name: 'Components/Pickers/DateRangePicker',
-  config: {},
+  config: {
+    notes: {
+      markdown,
+    },
+  },
   component: DateRangePicker,
   stories,
   decorator,
