@@ -59,9 +59,6 @@ export const OuterWrapper = styled.div<{
   }
   input {
     ${(props: AutoResizeInputProps): string => autoresizeConfObjToCss(props)}
-    @media (max-width: 960px) {
-      max-width: 150px;
-    }
   }
 `;
 

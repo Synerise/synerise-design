@@ -36,7 +36,7 @@
     "@synerise/ds-scrollbar": "^0.6.4",
     "@synerise/ds-tooltip": "^0.14.1",
     "@synerise/ds-typography": "^0.12.8",
-    "@synerise/ds-utils": "^0.19.0",
+    "@synerise/ds-utils": "^0.24.12",
     "antd-mask-input": "^0.1.13",
     "uuid": "^7.0.2"
   },
