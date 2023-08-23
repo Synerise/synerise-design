@@ -27,8 +27,35 @@ const stories = {
   withExpander: () => {
     const title = text('Title', 'Advanced option');
     const description = text('Description', 'This section is for avanced users only');
+    const [expanded, setExpanded] = React.useState(false);
+    const handleClick = (): void => {
+      setExpanded(!expanded);
+    }
     return (
-      <FieldSet title={title} description={description} prefix={<ExpanderWrapper description={description}><Button.Expander/></ExpanderWrapper>}  />
+      <FieldSet onTitleClick={handleClick} title={title} description={description} prefix={<ExpanderWrapper description={description}><Button.Expander onClick={handleClick} expanded={expanded} /></ExpanderWrapper>} component={ expanded &&
+        <Checkbox.Group onChange={values => console.log('Checked values', values)}>
+          <Checkbox
+            disabled={boolean('Disabled', false)}
+            hasError={boolean('Has error', false)}
+            indeterminate={boolean('Set indeterminate state of checkbox', false)}
+            description="Deliver your campaign"
+            errorText={text('Set error message', '')}
+            value="A"
+          >
+            Batch delivery
+          </Checkbox>
+          <Checkbox
+            disabled={boolean('Disabled', false)}
+            hasError={boolean('Has error', false)}
+            indeterminate={boolean('Set indeterminate state of checkbox', false)}
+            description="Lorem ipsum dolor sit amet"
+            errorText={text('Set error message', '')}
+            value="B"
+          >
+            Enable a control group
+          </Checkbox>
+        </Checkbox.Group>
+      }  />
     )
   },
   withSwitch: () => {

@@ -6,4 +6,5 @@ export type FieldSetProps = {
   title?: string;
   description?: string;
   button?: React.ReactNode;
+  onTitleClick?: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
