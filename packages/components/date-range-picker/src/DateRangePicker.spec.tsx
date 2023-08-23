@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { PopoverProps } from 'antd/lib/popover';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { waitFor, within, screen, act } from '@testing-library/react';
@@ -148,7 +148,7 @@ describe('DateRangePicker', () => {
   });
   it('should render with NOW button by default', async () => {
     const onApply = jest.fn();
-    const { container } = renderWithProvider(
+    renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
@@ -161,7 +161,7 @@ describe('DateRangePicker', () => {
   });
   it('should render without NOW button if set to false', async () => {
     const onApply = jest.fn();
-    const { container } = renderWithProvider(
+    renderWithProvider(
       <RawDateRangePicker
         showTime
         showNowButton={false}
@@ -175,7 +175,7 @@ describe('DateRangePicker', () => {
   });
   it('should display passed range', async () => {
     const onApply = jest.fn();
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
@@ -187,8 +187,8 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const leftSideMonth = getByText('Oct');
-    const rightSideMonth = getByText('Dec');
+    const leftSideMonth = screen.getByText('Oct');
+    const rightSideMonth = screen.getByText('Dec');
     expect(leftSideMonth).toBeInTheDocument();
     expect(rightSideMonth).toBeInTheDocument();
   });
@@ -290,7 +290,7 @@ describe('DateRangePicker', () => {
   });
   it('should render custom ranges', async () => {
     const onApply = jest.fn();
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
@@ -309,7 +309,7 @@ describe('DateRangePicker', () => {
 
     await waitFor(
       () => {
-        expect(getByText(texts[RANGES[0].translationKey as string])).toBeInTheDocument();
+        expect(screen.getByText(texts[RANGES[0].translationKey as string])).toBeInTheDocument();
       },
       { timeout: 50 }
     );
@@ -460,7 +460,7 @@ describe('DateRangePicker', () => {
   );
   it('should omit non-absolute properties if emitting an absolute date-range value', async () => {
     const onApply = jest.fn();
-    const { container, getByText } = renderWithProvider(
+    const { container } = renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
@@ -494,7 +494,7 @@ describe('DateRangePicker', () => {
     if (expander) {
       userEvent.click(expander);
     }
-    userEvent.click(getByText(texts['today']));
+    userEvent.click(screen.getByText(texts['today']));
     userEvent.click(applyButton);
     expect(getLastCallParams().from).not.toBeDefined();
     expect(getLastCallParams().to).not.toBeDefined();
@@ -576,7 +576,6 @@ describe('DateRangePicker', () => {
         showRelativePicker
         value={RELATIVE_VALUE as DateRange}
         forceAbsolute={false}
-        
         relativeModes={RELATIVE_MODES as RelativeMode[]}
         texts={texts}
       />
@@ -799,7 +798,7 @@ describe('DateRangePicker', () => {
   });
   it('clicking "more" should toggle relative ranges dropdown', async () => {
     const onApply = jest.fn();
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <RawDateRangePicker
         showTime
         onApply={onApply}
@@ -816,7 +815,7 @@ describe('DateRangePicker', () => {
     expect(relativeRanges).toBeInTheDocument();
     userEvent.click(relativeRanges);
 
-    const moreLabel = getByText(texts.more);
+    const moreLabel = screen.getByText(texts.more);
     if (moreLabel) {
       const moreButton = moreLabel.closest('button');
       if (!moreButton) {
@@ -830,6 +829,57 @@ describe('DateRangePicker', () => {
       moreButton.click();
       
     }
+  });
+  it('"more" button should be tertiary if no range within it selected (i.e. by default)', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={true}
+        forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        value={ABSOLUTE_VALUE as DateRange}
+        texts={texts}
+      />
+    );
+    
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+
+    const moreLabel = screen.getByText(texts.more);
+    expect(moreLabel).toBeInTheDocument();
+
+    const moreButton = screen.getByRole('button', {name: /more/i});
+    expect(moreButton).toBeInTheDocument();
+    expect(moreButton).toHaveClass('ant-btn-tertiary');
+      
+    
+  });
+  it('"more" button should be primary if range within it is selected (i.e. "lifetime")', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={false}
+        showRelativePicker={true}
+        forceAbsolute={false}
+        relativeModes={RELATIVE_MODES as RelativeMode[]}
+        value={LIFETIME_VALUE as DateRange}
+        texts={texts}
+      />
+    );
+    
+    const relativeRanges = await screen.findByText(texts.relativeDateRange);
+    expect(relativeRanges).toBeInTheDocument();
+    userEvent.click(relativeRanges);
+
+    const rangesDropdown = screen.getByTestId('relative-ranges-dropdown');
+    expect(rangesDropdown).toBeInTheDocument();
+    expect(rangesDropdown).toHaveClass('ant-btn-primary');
   });
   it.todo('monthly scheduler should render');
   it.todo('monthly scheduler should render from beginning or end');
