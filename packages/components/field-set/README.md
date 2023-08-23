@@ -30,6 +30,7 @@ import FieldSet from '@synerise/ds-field-set'
 | ---------------- | ---------------------------- | ------------------------- | ----------- |
 | component        | prop to set component        | React.ReactNode           | -           |
 | title            | text of title                | string                    | -           |
+| onTitleClick     | onclick handler for title    | () => void                | -           |
 | description      | text of the description      | string                    | -           |
 | prefix           | prop to set prefix item      | React.ReactNode           | -           |
 | button           | prop to set button           | React.ReactNode           | -           |
