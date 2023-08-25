@@ -59,6 +59,20 @@ describe('Modal', () => {
     expect(modalDialog).toHaveStyle({ width: '792px' });
   });
 
+  it('should render modal with default footer if its not in props', () => {
+    renderWithProvider(<Modal visible />);
+
+    const defaultFooter = screen.queryByTestId('modal-footer');
+    expect(defaultFooter).toBeInTheDocument();
+  });
+
+  it('should render modal without footer if its in props as null', () => {
+    renderWithProvider(<Modal visible footer={null} />);
+
+    const defaultFooter = screen.queryByTestId('modal-footer');
+    expect(defaultFooter).not.toBeInTheDocument();
+  });
+  
   it('should show custom footer if its in props', () => {
     renderWithProvider(<Modal footer={<div>Custom Footer</div>} visible />);
 
