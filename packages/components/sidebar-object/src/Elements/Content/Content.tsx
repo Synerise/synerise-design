@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import Drawer from '@synerise/ds-drawer';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { ContentProps } from './Content.types';
 import { ContentWrapper, InlineEditWrapper, TagsWrapper } from './Content.style';
 
-const Content: React.FC<ContentProps> = ({
+const Content = ({
   onFolderSelect,
   texts,
   mainContent,
@@ -12,7 +12,7 @@ const Content: React.FC<ContentProps> = ({
   tags,
   textDescription,
   onDescriptionChange,
-}) => {
+}: ContentProps) => {
   return (
     <Drawer.DrawerBody>
       <ContentWrapper withFolder={!!onFolderSelect}>{mainContent}</ContentWrapper>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Tabs from '@synerise/ds-tabs';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
@@ -7,7 +7,7 @@ import Header from './Elements/Header/Header';
 import * as S from './SidebarObject.style';
 import { HeaderType } from './Elements/Header/Header.types';
 
-const SidebarObject: React.FC<SidebarObjectProps> = ({
+const SidebarObject = ({
   avatar,
   headerPreffix,
   headerTabs,
@@ -34,7 +34,7 @@ const SidebarObject: React.FC<SidebarObjectProps> = ({
   typeButtons,
   onCancelClick,
   onApplyClick,
-}) => {
+}: SidebarObjectProps) => {
   return (
     <S.SidebarObjectWrapper>
       <Header

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
@@ -8,7 +8,7 @@ import Content from '../Content/Content';
 import ObjectSummary from '../ObjectSummary/ObjectSummary';
 import { OverviewObjectProps } from './Overview.types';
 
-const Overview: React.FC<OverviewObjectProps> = ({
+const Overview = ({
   inputObject,
   contentTags,
   folders,
@@ -22,9 +22,9 @@ const Overview: React.FC<OverviewObjectProps> = ({
   onDescriptionChange,
   descriptionProps = {},
   onAddFolderClick,
-}) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
-  const [value, setValue] = React.useState('');
+}: OverviewObjectProps) => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [value, setValue] = useState('');
   const onClearInput = (): void => {
     setValue('');
   };
