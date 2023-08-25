@@ -50,7 +50,7 @@ export const Modal = (props: ModalProps) => {
       width={size && mapSizeToWidth[size]}
       closable={false}
       title={(title || description || blank) && <ModalTitle {...props} />}
-      footer={antModalProps.footer ?? <ModalFooter {...props} />}
+      footer={antModalProps.footer !== null ? antModalProps.footer || <ModalFooter {...props} /> : null}
     />
   );
 };
