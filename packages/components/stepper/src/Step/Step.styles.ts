@@ -164,8 +164,8 @@ export const Step = styled.div<{
         ${StepPrefix} {
           border-color: ${props.theme.palette['red-600']};
         }
-        ${StepNumber},
-        ${StepLabel} {
+        ${StepNumber}${StepNumber},
+        ${StepLabel}${StepLabel} {
           color: ${props.theme.palette['red-600']};
           font-weight: 400;
         }
@@ -175,8 +175,8 @@ export const Step = styled.div<{
         ${StepPrefix} {
           border-color: ${props.theme.palette['yellow-600']};
         }
-        ${StepNumber},
-        ${StepLabel} {
+        ${StepNumber}${StepNumber},
+        ${StepLabel}${StepLabel} {
           color: ${props.theme.palette['yellow-600']};
           font-weight: 400;
         }
