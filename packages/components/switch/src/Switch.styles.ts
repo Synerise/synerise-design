@@ -3,6 +3,7 @@ import { macro } from '@synerise/ds-typography';
 
 export const SwitchWrapper = styled.div`
   display: flex;
+  margin: 0 0 16px 0;
 `;
 
 export const Texts = styled.div`
