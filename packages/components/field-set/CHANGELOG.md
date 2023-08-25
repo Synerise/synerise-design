@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.1.39...@synerise/ds-field-set@0.2.0) (2023-08-25)
+
+
+### Features
+
+* **field-set:** added clickability to fieldset title ([cc81e30](https://github.com/Synerise/synerise-design/commit/cc81e306e422f9050a010d5d9de9e2f2e957e51f))
+
+
+
+
+
 ## [0.1.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.1.38...@synerise/ds-field-set@0.1.39) (2023-08-20)
 
 **Note:** Version bump only for package @synerise/ds-field-set

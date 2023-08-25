@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.5.39...@synerise/ds-divider@0.5.40) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-divider
+
+
+
+
+
 ## [0.5.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.5.38...@synerise/ds-divider@0.5.39) (2023-08-20)
 
 **Note:** Version bump only for package @synerise/ds-divider

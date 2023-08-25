@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.191.0](https://github.com/synerise/synerise-design/compare/portal@0.190.0...portal@0.191.0) (2023-08-25)
+
+
+### Features
+
+* **field-set:** added clickability to fieldset title ([cc81e30](https://github.com/synerise/synerise-design/commit/cc81e306e422f9050a010d5d9de9e2f2e957e51f))
+
+
+
+
+
 # [0.190.0](https://github.com/synerise/synerise-design/compare/portal@0.189.0...portal@0.190.0) (2023-08-22)
 
 

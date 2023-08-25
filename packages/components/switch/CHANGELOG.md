@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.40](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.39...@synerise/ds-switch@0.4.40) (2023-08-25)
+
+
+### Bug Fixes
+
+* **switch:** added standard margin below switch component ([071e4ab](https://github.com/synerise/synerise-design/commit/071e4ab6c9a7eb7336eb6d089c353b7933fc4c73))
+
+
+
+
+
 ## [0.4.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.38...@synerise/ds-switch@0.4.39) (2023-08-20)
 
 **Note:** Version bump only for package @synerise/ds-switch

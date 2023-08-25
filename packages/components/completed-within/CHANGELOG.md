@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.61...@synerise/ds-completed-within@0.5.62) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
 ## [0.5.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.60...@synerise/ds-completed-within@0.5.61) (2023-08-22)
 
 **Note:** Version bump only for package @synerise/ds-completed-within
