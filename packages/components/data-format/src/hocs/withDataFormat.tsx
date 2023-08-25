@@ -4,9 +4,12 @@ import { useDataFormat, UseDataFormatProps } from '../hooks';
 
 export type WithDataFormatProps = UseDataFormatProps;
 
-export const withDataFormat = <Props extends object>(WrappedComponent: ComponentType<Props>): ComponentType<Props> => {
-  return (props: Props): JSX.Element => {
+export const withDataFormat = <Props extends object>(
+  WrappedComponent: ComponentType<Props>
+): ComponentType<Omit<Props, keyof UseDataFormatProps>> => {
+  return (props: Omit<Props, keyof UseDataFormatProps>): JSX.Element => {
     const dataFormatProps = useDataFormat();
-    return <WrappedComponent {...props} {...dataFormatProps} />;
+    const newProps = { ...props, ...dataFormatProps } as Props;
+    return <WrappedComponent {...newProps} />;
   };
 };
