@@ -1,18 +1,18 @@
+import { ReactNode } from 'react';
 import { TabItem } from '@synerise/ds-tabs/dist/Tabs.types';
-import * as React from 'react';
 import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 import { HeaderTexts, HeaderType, ButtonVariant } from './Elements/Header/Header.types';
 
 export type SidebarObjectProps = {
-  avatar?: React.ReactNode;
-  headerPreffix?: React.ReactNode;
-  additionalNode?: React.ReactNode;
+  avatar?: ReactNode;
+  headerPreffix?: ReactNode;
+  additionalNode?: ReactNode;
   headerType?: HeaderType;
   typeButtons?: ButtonVariant;
-  headerTabs: TabItem & { content?: React.ReactNode }[];
+  headerTabs: (TabItem & { content?: ReactNode })[];
   inputObjectIdKey?: string;
   inputObject: {
-    [key: string]: string | React.ReactNode;
+    [key: string]: string | ReactNode;
   } & object;
   inlineEditInputProps?: InputProps;
   onEdit?: (inputObject: object) => void;
@@ -28,7 +28,7 @@ export type SidebarObjectProps = {
   onArrowDown?: () => void;
   withScrollbar?: boolean;
   handleTabClick?: (index: number) => void;
-  footer?: React.ReactNode;
+  footer?: ReactNode;
   name?: string;
   onRename?: (name: string) => void;
   activeTab?: number;

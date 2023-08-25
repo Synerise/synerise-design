@@ -1,13 +1,13 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { HeaderTexts } from '../Header/Header.types';
 import { FolderItem } from '../../SidebarObject.types';
 
 export type OverviewObjectProps = {
   inputObject: {
-    [key: string]: string | React.ReactNode;
+    [key: string]: string | ReactNode;
   } & object;
-  contentTags: React.ReactNode;
+  contentTags: ReactNode;
   descriptionProps?: SubtleTextAreaProps;
   folders: FolderItem[];
   foldersFilterKey?: string;
@@ -23,7 +23,7 @@ export type OverviewObjectProps = {
 export type OverviewTexts = HeaderTexts &
   Partial<{
     placeholder: string;
-    suffixTooltip: string | React.ReactNode;
+    suffixTooltip: string | ReactNode;
     search: string;
     folder: string;
     addFolder: string;

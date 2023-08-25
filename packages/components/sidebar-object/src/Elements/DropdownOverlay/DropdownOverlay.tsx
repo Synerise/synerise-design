@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Icon, { Add3M, FolderM, SearchM } from '@synerise/ds-icon';
@@ -9,7 +9,7 @@ import Button from '@synerise/ds-button';
 import { DropdownWrapper, MenuWrapper } from './DropdownOverlay.styles';
 import { Props } from './DropdownOverlay.types';
 
-const DropdownOverlay: React.FC<Props> = ({
+const DropdownOverlay = ({
   texts,
   onClearInput,
   data,
@@ -22,8 +22,8 @@ const DropdownOverlay: React.FC<Props> = ({
   foldersIdKey,
   foldersFilterKey,
   foldersDisplayKey,
-}) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+}: Props) => {
+  const ref = useRef<HTMLDivElement>(null);
   const filteredData = data.filter(
     item =>
       typeof item[foldersFilterKey] === 'string' &&

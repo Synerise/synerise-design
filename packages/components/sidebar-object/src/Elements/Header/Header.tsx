@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import Drawer from '@synerise/ds-drawer';
 import Typography from 'antd/lib/typography';
 import Button from '@synerise/ds-button';
@@ -21,7 +21,7 @@ import { ButtonVariant, HeaderProps, HeaderType } from './Header.types';
 import * as S from './Header.style';
 import { DropdownWrapper } from './Header.style';
 
-const Header: React.FC<HeaderProps> = ({
+const Header = ({
   avatar,
   preffix,
   tabs,
@@ -44,13 +44,13 @@ const Header: React.FC<HeaderProps> = ({
   typeButtons,
   onCancelClick,
   onApplyClick,
-}) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+}: HeaderProps) => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   });
-  const renderBackTitle = (titleType: typeof type): React.ReactNode => {
+  const renderBackTitle = (titleType: typeof type) => {
     if (titleType === HeaderType.EDITABLE) {
       return (
         <S.StyledInlineEdit
@@ -71,14 +71,9 @@ const Header: React.FC<HeaderProps> = ({
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
 
-  const renderMenuDivider = React.useMemo(() => onEdit || onDelete || onDuplicate || onMove, [
-    onEdit,
-    onDelete,
-    onDuplicate,
-    onMove,
-  ]);
+  const renderMenuDivider = Boolean(onEdit || onDelete || onDuplicate || onMove);
 
-  const renderActionButtons = (typesOfButtons: typeof typeButtons): React.ReactNode => {
+  const renderActionButtons = (typesOfButtons: typeof typeButtons) => {
     if (typesOfButtons === ButtonVariant.WITH_NAVIGATION) {
       return (
         <>
