@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode, Component } from 'react';
 import { ErrorText, Description } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
@@ -9,11 +9,11 @@ import classNames from 'classnames';
 import * as S from './Select.styles';
 import { Props } from './Select.types';
 
-class Select extends React.Component<Props> {
+class Select extends Component<Props> {
   static Option = S.AntdSelectOption;
   static OptGroup = S.AntdSelectOptGroup;
 
-  render(): React.ReactNode {
+  render(): ReactNode {
     const {
       label,
       description,
