@@ -131,13 +131,14 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
   }
 `;
-const createTracksStyles = (
+export const createTracksStyles = (
   props: ThemeProps & DsSliderProps,
   colorsMap: ColorMapProps
 ): FlattenSimpleInterpolation => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
-      .ant-slider-segment-track-${index},
+      .ant-slider-segment-${index},
+      .ant-slider-segment-letter-${index},
       .ant-slider-track-${index + 1},
       .ant-slider-track-${index + 11} {
         background-color: ${props.theme.palette[color]};

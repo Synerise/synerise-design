@@ -197,7 +197,7 @@ const stories = {
       included={boolean('Set area active', true)}
       max={number('Max', 100)}
       min={number('Min', 0)}
-      range={boolean('Range', true)}
+      range={true}
       step={number('Step', 1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
@@ -206,10 +206,10 @@ const stories = {
       useColorPalette={true}
       thickness={select('Set bar thickness', sizeTypes, sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
-      tracksColorMap={boolean('Use other colors than default', false) ? tracksColorMap : undefined}
+      tracksColorMap={boolean('Use other colors than default', false) ? getColors() : undefined}
     />
   ),
-  multiValuesRanges: () => (
+  allocationSlider: () => (
     <WrapperMultiValuesMode
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}

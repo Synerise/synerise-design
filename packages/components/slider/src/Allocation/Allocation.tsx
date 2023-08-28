@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
 import { DescriptionWrapper, Description } from '../Slider.styles';
@@ -13,29 +13,25 @@ import {
 } from './utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
-const Allocation: React.FC<SliderProps> = ({
-  allocationConfig,
-  tracksColorMap,
-  description,
-  tipFormatter,
-  ...rest
-}: SliderProps) => {
+const Allocation = ({ allocationConfig, tracksColorMap, description, tipFormatter, ...rest }: SliderProps) => {
   const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
     allocationConfig as AllocationConfig;
-  const [allocations, setAllocations] = React.useState(countAllocation(variants, controlGroupEnabled));
+  const [allocations, setAllocations] = useState(countAllocation(variants, controlGroupEnabled));
   const intl = useIntl();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setAllocations(countAllocation(variants, controlGroupEnabled));
   }, [variants, controlGroupEnabled]);
 
-  const markRenderer = React.useCallback(
+  const markRenderer = useCallback(
     (value: number, index: number, allocationVariants: AllocationVariant[]) => (
       <S.Mark className="slider-mark">
         <S.MarkValue>{value}</S.MarkValue>
         {allocationVariants[index] && (
           <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
-            <S.MarkLetter index={index}>{allocationVariants[index].tabLetter}</S.MarkLetter>
+            <S.MarkLetter className={`ant-slider-segment-letter-${index}`} index={index}>
+              {allocationVariants[index].tabLetter}
+            </S.MarkLetter>
           </Tooltip>
         )}
         {!allocationVariants[index] && (
@@ -55,7 +51,7 @@ const Allocation: React.FC<SliderProps> = ({
     [controlGroupTooltip, controlGroupLabel, intl]
   );
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (value: [number, number]) => {
       if (typeof value === 'number') {
         return;
@@ -79,7 +75,7 @@ const Allocation: React.FC<SliderProps> = ({
       marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
       onChange={handleChange}
       step={1}
-      tipFormatter={(value?: number): React.ReactNode => (
+      tipFormatter={(value?: number) => (
         <DescriptionWrapper>
           {description && <Description>{description}</Description>}
           {tipFormatter && tipFormatter(value)}
