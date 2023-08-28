@@ -1,10 +1,10 @@
 import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-components';
 import { SliderProps } from '../Slider.types';
-import { AntdSlider } from '../Slider.styles';
+import { AntdSlider, createTracksStyles } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
 import { TrackProps } from './Allocation.types';
 
-export const indexMap = {
+export const INDEX_MAP = {
   '0': 'cyan-600',
   '1': 'yellow-600',
   '2': 'mars-600',
@@ -18,6 +18,14 @@ export const indexMap = {
 };
 
 export const AllocationSlider = styled(AntdSlider)<SliderProps>`
+  ${(props): FlattenSimpleInterpolation =>
+    createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
+
+  &.ant-slider:hover {
+    ${(props): FlattenSimpleInterpolation =>
+      createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)};
+  }
+
   .ant-slider-handle-value,
   .ant-slider-rail,
   .ant-slider-track,
@@ -41,7 +49,7 @@ const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800'): st
   if (props.isCustomColor) {
     return (props.getColor && props.getColor(props.index)) || defaultColor;
   }
-  return props.theme.palette[(colors || indexMap)[props.index] || defaultColor];
+  return props.theme.palette[(colors || INDEX_MAP)[props.index] || defaultColor];
 };
 
 export const MarkLetter = styled.div<{ index: number | string }>`

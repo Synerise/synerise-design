@@ -2,7 +2,7 @@ import {
   countAllocation,
   isLowerOrUpperBound,
   mergeAllocationWithVariants,
-} from '../Allocation/utils';
+} from './allocation.utils';
 import { AllocationVariant } from '../Allocation/Allocation.types';
 
 const VARIANTS_WITH_ALLOCATION: AllocationVariant[] = [
