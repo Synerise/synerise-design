@@ -5,8 +5,6 @@ import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import { AutocompleteProps, StaticComponents } from 'Autocomplete.types';
 import Select from 'antd/lib/select';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import { AutosizeInput } from '@synerise/ds-input';
 import * as S from './Autocomplete.styles';
 

@@ -47,7 +47,7 @@ const generateId = () => {
   return isIE ? '_' + Math.random().toString(36).substr(2, 12) : undefined;
 };
 
-export class AutosizeInput extends Component {
+class AutosizeInput extends Component {
   static getDerivedStateFromProps(props, state) {
     const { id } = props;
     return id !== state.prevId ? { inputId: id || generateId(), prevId: id } : null;
@@ -205,3 +205,5 @@ export class AutosizeInput extends Component {
     );
   }
 }
+
+export default AutosizeInput;

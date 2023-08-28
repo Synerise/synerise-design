@@ -10,7 +10,7 @@ import * as S from './Input.styles';
 import Label from './Label/Label';
 import Textarea from './Textarea/Textarea';
 import { EnhancedProps, Props } from './Input.types';
-import { AutosizeInput } from './autosize/autosize';
+import AutosizeInput from './autosize/autosize';
 
 const VERTICAL_BORDER_OFFSET = 2;
 
