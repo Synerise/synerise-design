@@ -53,22 +53,45 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
   ${(props): string | false =>
     props.size === 'large' &&
     `
-    &&& {
-    height:48px;
-    .ant-select-selector, .ant-select-selection-search-input{
-    height:48px !important;
+
+    &.ant-select-single .ant-select-selector, 
+    &.ant-select-single .ant-select-selection-search-input {
+      height:48px;
     }
 
-    .ant-select-selection-item, .ant-select-selection-placeholder{
-      line-height:46px !important;
+    &.ant-select-single .ant-select-selection-item, 
+    &.ant-select-single .ant-select-selection-placeholder {
+      line-height:46px;
     }
+    
+    &.ant-select-multiple.ant-select-lg {
+      .ant-select-arrow {
+        top: 23px
+      }
+      .ant-select-selector {
+        padding: 8px;
+      }
+
+      .ant-select-selector::after,
+      .ant-select-selection-item,
+      .ant-select-selection-search {
+        height: 24px; 
+        line-height: 22px;
+      }
     }
+
   `}
 
+  &.ant-select-multiple {
+    .ant-select-arrow {
+      top: 16px;
+    }
+  }
   && {
     .ant-select-selector {
       ${(props): FlattenSimpleInterpolation | false => !!props.selectorStyle && css(props.selectorStyle)}
     }
+  }
 
   &&& {
     width: 100%;
