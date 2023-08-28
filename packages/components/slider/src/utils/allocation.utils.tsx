@@ -1,4 +1,4 @@
-import { AllocationMark, AllocationVariant } from './Allocation.types';
+import { AllocationMark, AllocationVariant } from '../Allocation/Allocation.types';
 
 export const countControlGroupAllocation = (userAllocation: number[]): number =>
   100 - userAllocation.reduce((prev, curr) => prev + curr, 0);
@@ -47,7 +47,7 @@ export const mapUserAllocationToHandles = (userAllocation: number[]): number[] =
     .reduce(
       (result: number[], item, index) => [
         ...result,
-        parseInt((item as unknown) as string, 10) + parseInt(((result[index - 1] || 0) as unknown) as string, 10),
+        parseInt(item as unknown as string, 10) + parseInt((result[index - 1] || 0) as unknown as string, 10),
       ],
       []
     )

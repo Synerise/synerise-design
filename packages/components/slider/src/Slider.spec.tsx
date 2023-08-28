@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, getByRole, screen } from '@testing-library/react';
+import { fireEvent, waitFor, screen, prettyDOM } from '@testing-library/react';
 
-import Slider from '../index';
-import { AllocationVariant } from '../Allocation/Allocation.types';
+import { defaultColorsOrder, theme } from '@synerise/ds-core';
+import Slider from './index';
+import { AllocationVariant } from './Allocation/Allocation.types';
 
 const LABEL = 'label';
 const FIFTY = 50;
 const MAX = 100;
 const MIN = 0;
-const tipFormatter = (value: number) => <div className="tooltip-content">{value}</div>;
+const tipFormatter = (value?: number) => <div className="tooltip-content">{value}</div>;
 const allocationVariants: AllocationVariant[] = [
   { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
   { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
@@ -18,14 +19,14 @@ const allocationVariants: AllocationVariant[] = [
 describe('Slider', () => {
   it('should render with label', () => {
     // ARRANGE
-    const { getByText, container } = renderWithProvider(
+    const { container } = renderWithProvider(
       <Slider label={LABEL} max={MAX} min={MIN} tipFormatter={tipFormatter} value={FIFTY} />
     );
 
     const sliderComponent = container.querySelector('.ant-slider');
 
     // ASSERT
-    expect(getByText(LABEL)).toBeTruthy();
+    expect(screen.getByText(LABEL)).toBeTruthy();
     expect(sliderComponent).toBeTruthy();
   });
 
@@ -85,7 +86,7 @@ describe('Slider', () => {
 
   it('should show tooltip on hover', async () => {
     // ARRANGE
-    const { container, getByRole } = renderWithProvider(
+    const { container } = renderWithProvider(
       <Slider max={MAX} min={MIN} value={FIFTY} tipFormatter={tipFormatter} tooltipVisible />
     );
 
@@ -96,7 +97,7 @@ describe('Slider', () => {
     sliderHandle && fireEvent.mouseOver(sliderHandle);
 
     // const tooltipContent = container.querySelector('.ant-tooltip-inner');
-    const tooltip = await waitFor(() => getByRole('tooltip'));
+    const tooltip = await waitFor(() => screen.getByRole('tooltip'));
 
     // ASSERT
     expect(tooltip).toHaveTextContent(`${FIFTY}`);
@@ -128,7 +129,7 @@ describe('Slider', () => {
   });
   it('should render allocation labels', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Slider
         type={'allocation'}
         allocationConfig={{
@@ -139,7 +140,7 @@ describe('Slider', () => {
     );
     // ASSERT
     allocationVariants.forEach(v => {
-      expect(getByText(v.tabLetter as string)).toBeTruthy();
+      expect(screen.getByText(v.tabLetter as string)).toBeTruthy();
     });
   });
   it('should render (n-1) handles for (n) variants', () => {
@@ -156,9 +157,58 @@ describe('Slider', () => {
     // ASSERT
     expect(container.querySelectorAll('.ant-slider-handle').length).toBe(allocationVariants.length - 1);
   });
-  it.todo('Slider defaults range colors to defaultColorsOrder');
-  it.todo('Slider/Allocation defaults range colors to defaultColorsOrder');
-  it.todo('Slider multivalue segments\'colors can be changed with colors map prop');
+  it('Slider defaults range colors to defaultColorsOrder', () => {
+    const { container } = renderWithProvider(
+      <Slider max={MAX} min={MIN} value={[20, 40, 60, 80]} useColorPalette range tipFormatter={tipFormatter} />
+    );
+    
+    const sliderComponent = container.querySelector('.ant-slider');
+    const tracks = sliderComponent && sliderComponent.querySelectorAll('.ant-slider-track');
+    tracks?.forEach((track, index: number) => {
+      const trackColorToken = defaultColorsOrder[index];
+      expect(track).toHaveStyle(`background-color: ${theme.palette[trackColorToken]}`);
+    })
+
+  });
+  it('Slider/Allocation defaults range colors to defaultColorsOrder', () => {
+    const { container } = renderWithProvider(
+      <Slider
+        type={'allocation'}
+        allocationConfig={{
+          variants: allocationVariants,
+        }}
+        useColorPalette
+      />
+    );
+    
+    const sliderComponent = container.querySelector('.ant-slider');
+    const tracks = sliderComponent && sliderComponent.querySelectorAll('.ant-slider-segment');
+    tracks?.forEach((track, index: number) => {
+      const trackColorToken = defaultColorsOrder[index];
+      expect(track).toHaveStyle(`background-color: ${theme.palette[trackColorToken]}`);
+    })
+  });
+  it('Slider multivalue segments\'colors can be changed with colors map prop', () => {
+    const tracksColorMap = {"0":"cyan-600","1":"yellow-600","2":"pink-600","3":"green-600","4":"mars-600","5":"orange-600","6":"purple-600","7":"violet-600","8":"red-600","9":"fern-600"}
+    const { container } = renderWithProvider(
+      <Slider
+        type={'allocation'}
+        allocationConfig={{
+          variants: allocationVariants,
+        }}
+        useColorPalette
+        tracksColorMap={tracksColorMap}
+      />
+    );
+    
+    const sliderComponent = container.querySelector('.ant-slider');
+    const tracks = sliderComponent && sliderComponent.querySelectorAll('.ant-slider-segment');
+    tracks?.forEach((track, index: number) => {
+      const trackColorToken = tracksColorMap[index];
+      expect(track).toHaveStyle(`background-color: ${theme.palette[trackColorToken]}`);
+    })
+  });
+
   it('should display the min and max values', () => {
     const minVal = 17;
     const maxVal = 93;

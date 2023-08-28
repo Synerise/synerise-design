@@ -10,7 +10,7 @@ import {
   mapSliderValueToVariants,
   mapUserAllocationToHandles,
   mapUserAllocationToMarks,
-} from './utils';
+} from '../utils/allocation.utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
 const Allocation = ({ allocationConfig, tracksColorMap, description, tipFormatter, ...rest }: SliderProps) => {
