@@ -1,7 +1,8 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
 import { DescriptionWrapper, Description } from '../Slider.styles';
+import { buildDefaultTracksColorMap } from '../Slider';
 import * as S from './Allocation.styles';
 import { SliderProps } from '../Slider.types';
 import {
@@ -13,7 +14,13 @@ import {
 } from '../utils/allocation.utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
-const Allocation = ({ allocationConfig, tracksColorMap, description, tipFormatter, ...rest }: SliderProps) => {
+const Allocation = ({
+  allocationConfig,
+  tracksColorMap = buildDefaultTracksColorMap(),
+  description,
+  tipFormatter,
+  ...rest
+}: SliderProps) => {
   const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
     allocationConfig as AllocationConfig;
   const [allocations, setAllocations] = useState(countAllocation(variants, controlGroupEnabled));
@@ -23,44 +30,38 @@ const Allocation = ({ allocationConfig, tracksColorMap, description, tipFormatte
     setAllocations(countAllocation(variants, controlGroupEnabled));
   }, [variants, controlGroupEnabled]);
 
-  const markRenderer = useCallback(
-    (value: number, index: number, allocationVariants: AllocationVariant[]) => (
-      <S.Mark className="slider-mark">
-        <S.MarkValue>{value}</S.MarkValue>
-        {allocationVariants[index] && (
-          <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
-            <S.MarkLetter className={`ant-slider-segment-letter-${index}`} index={index}>
-              {allocationVariants[index].tabLetter}
-            </S.MarkLetter>
-          </Tooltip>
-        )}
-        {!allocationVariants[index] && (
-          <Tooltip
-            title={
-              controlGroupTooltip ||
-              intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
-            }
-          >
-            <S.MarkLetter index="cg">
-              {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
-            </S.MarkLetter>
-          </Tooltip>
-        )}
-      </S.Mark>
-    ),
-    [controlGroupTooltip, controlGroupLabel, intl]
+  const markRenderer = (value: number, index: number, allocationVariants: AllocationVariant[]) => (
+    <S.Mark className="slider-mark">
+      <S.MarkValue>{value}</S.MarkValue>
+      {allocationVariants[index] && (
+        <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
+          <S.MarkLetter className={`ant-slider-segment-letter-${index}`} index={index}>
+            {allocationVariants[index].tabLetter}
+          </S.MarkLetter>
+        </Tooltip>
+      )}
+      {!allocationVariants[index] && (
+        <Tooltip
+          title={
+            controlGroupTooltip ||
+            intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
+          }
+        >
+          <S.MarkLetter index="cg">
+            {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
+          </S.MarkLetter>
+        </Tooltip>
+      )}
+    </S.Mark>
   );
 
-  const handleChange = useCallback(
-    (value: [number, number]) => {
-      if (typeof value === 'number') {
-        return;
-      }
-      const calculatedVariants = mapSliderValueToVariants(value, variants);
-      !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
-    },
-    [onAllocationChange, variants]
-  );
+  const handleChange = (value: [number, number]) => {
+    if (typeof value === 'number') {
+      return;
+    }
+    const calculatedVariants = mapSliderValueToVariants(value, variants);
+    !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
+  };
 
   return (
     <S.AllocationSlider

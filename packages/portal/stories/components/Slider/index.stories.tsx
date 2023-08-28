@@ -5,7 +5,7 @@ import { defaultColorsOrder } from '@synerise/ds-core';
 
 
 import Slider from '@synerise/ds-slider';
-import { Props as SliderProps } from '@synerise/ds-slider/dist/Slider.types';
+import type { SliderProps } from '@synerise/ds-slider/dist/Slider.types';
 import { AllocationVariant } from '@synerise/ds-slider/dist/Allocation/Allocation.types';
 
 const decorator = storyFn => <div style={{ padding: '48px' }}>{storyFn()}</div>;
@@ -14,20 +14,7 @@ const renderDescription = (text: string) => {
 };
 
 const sliderValues = [0, 25, 75, 100];
-const placements = [
-  'top',
-  'left',
-  'right',
-  'bottom',
-  'topLeft',
-  'topRight',
-  'bottomLeft',
-  'bottomRight',
-  'leftTop',
-  'leftBottom',
-  'rightTop',
-  'rightBottom',
-];
+
 const sizeTypes = {
   '3px': '3',
   '6px': '6',
@@ -38,7 +25,7 @@ const allocationVariants: AllocationVariant[] = [
   { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
 ];
 const customColorOptions = {
-  'undefined': undefined,
+  'default': undefined,
   red: 'red-600',
   green: 'green-600',
   yellow: 'yellow-600',
@@ -86,12 +73,7 @@ const Wrapper = (props: SliderProps) => {
   const minMark = number('Min', 0);
   const descriptionMessage = renderDescription(text('Description', 'Description'));
   const hasDescription = boolean('Set Description', false);
-  const isOtherColor = boolean('Use other colors than default', false);
-  const [tracksColor, setTracksColor] = React.useState(tracksColorMap);
-  const tracksColors = React.useMemo(() => {
-    return props.tracksColorMap || tracksColor;
-  }, [tracksColor, props.tracksColorMap]);
-  const color = isOtherColor ? select('Set color', customColorOptions, customColorOptions.undefined) : undefined;
+  const color = select('Set custom color', customColorOptions, customColorOptions.default);
   const getDescription = (hasDescription: boolean): string | React.ReactNode => {
     if (hasDescription) {
       return descriptionMessage;
@@ -99,14 +81,12 @@ const Wrapper = (props: SliderProps) => {
       return '';
     }
   };
-  React.useEffect(() => {
-    setTracksColor({ ...tracksColor, ...color !== customColorOptions.undefined ? {'0': color} : {} });
-  },[color]);
+  
   const mark = {
     [minMark]: minMark,
     [maxMark]: maxMark,
   };
-console.log(tracksColor)
+  
   return (
     <Slider
       {...props}
@@ -116,7 +96,7 @@ console.log(tracksColor)
       value={props.range ? rangeValue : value}
       onChange={props.range ? setRangeValue : setValue}
       hideMinAndMaxMarks={true}
-      tracksColorMap={isOtherColor ? tracksColors : undefined}
+      tracksColorMap={color ? { "0": color } : undefined}
     />
   );
 };
@@ -166,30 +146,14 @@ const stories = {
       onAfterChange={action('onAfterChange')}
       tooltipPlacement='bottom'
       getTooltipPopupContainer={container => container}
-      useColorPalette={true}
+      useColorPalette
       tooltipVisible={boolean('Value visible', false)}
       thickness={select('Set bar thickness', sizeTypes,sizeTypes['3px'])}
     />
   ),
-  /*  withVisibleLabels: () => (
-    <Wrapper
-      tooltipVisible={true}
-      disabled={boolean('disabled', false)}
-      dots={boolean('dots', false)}
-      included={boolean('included', true)}
-      inverted={boolean('inverted', false)}
-      max={number('max', 24)}
-      min={number('min', 0)}
-      range={boolean('range', true)}
-      step={number('step', 1)}
-      onAfterChange={action('onAfterChange')}
-      tooltipPlacement={select('Placement', placements, 'bottom')}
-      useColorPalette={boolean('useColorPalette', false)}
-      getTooltipPopupContainer={() => document.body}
-      thick={boolean('Set thick', false)}
-    />
-  ),*/
-  multipleRange: () => (
+  multipleRange: () => {
+    const customColours = boolean('Use other colors than default', false);
+    return (
     <WrapperMultiMode
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
@@ -197,18 +161,18 @@ const stories = {
       included={boolean('Set area active', true)}
       max={number('Max', 100)}
       min={number('Min', 0)}
-      range={true}
+      range
       step={number('Step', 1)}
       tipFormatter={tipFormatter}
       onAfterChange={action('onAfterChange')}
       getTooltipPopupContainer={container => container}
       tooltipPlacement='bottom'
-      useColorPalette={true}
+      useColorPalette
       thickness={select('Set bar thickness', sizeTypes, sizeTypes['3px'])}
       tooltipVisible={boolean('Value visible', false)}
-      tracksColorMap={boolean('Use other colors than default', false) ? getColors() : undefined}
+      tracksColorMap={customColours ? getColors() : undefined}
     />
-  ),
+  )},
   allocationSlider: () => (
     <WrapperMultiValuesMode
       label={text('Label', 'Label')}

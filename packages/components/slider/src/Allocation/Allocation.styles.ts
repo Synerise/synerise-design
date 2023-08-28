@@ -19,13 +19,11 @@ export const INDEX_MAP = {
 
 export const AllocationSlider = styled(AntdSlider)<SliderProps>`
   ${(props): FlattenSimpleInterpolation =>
-    props.useColorPalette ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP) : css``}
+    createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
 
   &.ant-slider:hover {
     ${(props): FlattenSimpleInterpolation =>
-      props.useColorPalette
-        ? createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)
-        : css``};
+      createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)};
   }
 
   .ant-slider-handle-value,

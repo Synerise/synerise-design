@@ -26,8 +26,8 @@ describe('Slider', () => {
     const sliderComponent = container.querySelector('.ant-slider');
 
     // ASSERT
-    expect(screen.getByText(LABEL)).toBeTruthy();
-    expect(sliderComponent).toBeTruthy();
+    expect(screen.getByText(LABEL)).toBeInTheDocument();
+    expect(sliderComponent).toBeInTheDocument();
   });
 
   it('should have track proper values with min and max', () => {
@@ -140,7 +140,7 @@ describe('Slider', () => {
     );
     // ASSERT
     allocationVariants.forEach(v => {
-      expect(screen.getByText(v.tabLetter as string)).toBeTruthy();
+      expect(screen.getByText(v.tabLetter as string)).toBeInTheDocument();
     });
   });
   it('should render (n-1) handles for (n) variants', () => {
