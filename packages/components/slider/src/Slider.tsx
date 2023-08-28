@@ -5,7 +5,7 @@ import { defaultColorsOrder } from '@synerise/ds-core';
 
 import './style/index.less';
 import * as S from './Slider.styles';
-import { ColorMapProps, Props, SliderTypes } from './Slider.types';
+import { ColorMapProps, SliderProps, SliderTypes } from './Slider.types';
 import Allocation from './Allocation/Allocation';
 
 const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
@@ -23,7 +23,7 @@ const mapToColor = (_: string | object, idx: number): Record<number, string> => 
 export const buildDefaultTracksColorMap = (): ColorMapProps =>
   Object.assign({} as Record<number, string>, ...defaultColorsOrder.map(mapToColor));
 
-const Slider: React.FC<Props> = props => {
+const Slider = (props: SliderProps): JSX.Element => {
   const {
     useColorPalette,
     label,
@@ -96,6 +96,7 @@ const Slider: React.FC<Props> = props => {
       <S.AntdSlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
+        min={min}
         max={max}
         value={value}
         reachedEnd={reachedEnd}

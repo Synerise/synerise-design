@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
-import { denormalizeValue, isValidValue, normalizeValue } from '../RangeFilter/utils';
-import { FilterValue } from '../RangeFilter/RangeFilter.types';
+import { denormalizeValue, isValidValue, normalizeValue } from './utils';
+import { FilterValue } from './RangeFilter.types';
 
 const denormalizeWeeklyFilter = {
   definition: {

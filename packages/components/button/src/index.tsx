@@ -18,7 +18,6 @@ class Button extends React.Component<ButtonProps> {
   static readonly Expander = Expander;
   static readonly Star = StarButton;
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   render() {
     return <MainButton {...this.props} />;
   }

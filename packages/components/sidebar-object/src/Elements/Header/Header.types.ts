@@ -1,17 +1,17 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { InputProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
 
 export type HeaderProps = {
-  avatar: React.ReactNode;
-  preffix: React.ReactNode;
-  tabs: React.ReactNode;
-  additionalNode?: React.ReactNode;
+  avatar: ReactNode;
+  preffix: ReactNode;
+  tabs: ReactNode;
+  additionalNode?: ReactNode;
   type?: HeaderType;
   typeButtons?: ButtonVariant;
-  nextTooltip?: React.ReactNode | string;
-  previousTooltip?: React.ReactNode | string;
-  crudsTooltip?: React.ReactNode | string;
-  closeTooltip?: React.ReactNode | string;
+  nextTooltip?: ReactNode | string;
+  previousTooltip?: ReactNode | string;
+  crudsTooltip?: ReactNode | string;
+  closeTooltip?: ReactNode | string;
   onEdit?: (inputObject: object) => void;
   onDuplicate?: (inputObject: object) => void;
   onMove?: (inputObject: object) => void;
@@ -22,10 +22,10 @@ export type HeaderProps = {
   onArrowUp?: () => void;
   onArrowDown?: () => void;
   inputObject: {
-    [key: string]: string | React.ReactNode;
+    [key: string]: string | ReactNode;
   } & object;
   inputObjectIdKey?: string;
-  inlineEditInputProps?: InputProps;
+  inlineEditInputProps?: Partial<InputProps>;
   name?: string | number;
   onRename?: (name: string) => void;
   onCancelClick?: () => void;

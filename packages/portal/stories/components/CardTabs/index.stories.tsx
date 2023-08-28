@@ -8,10 +8,10 @@ import { prefixType } from '@synerise/ds-card-tabs';
 import type { CardTabsItem } from '@synerise/ds-card-tabs';
 import { action } from '@storybook/addon-actions';
 import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
-import { CardDot } from '@synerise/ds-card-tabs';
+import { CardTabsStyles } from '@synerise/ds-card-tabs';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
-
+const { CardTab: { CardDot } } = CardTabsStyles;
 
 const suffixIcon = {
   singleIcon: <OptionHorizontalM />,
@@ -56,7 +56,6 @@ const stories = {
       store.set({ items: newOrder });
     };
     
-   
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}>

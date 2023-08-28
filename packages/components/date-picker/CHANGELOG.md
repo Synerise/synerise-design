@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.10...@synerise/ds-date-picker@0.10.11) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.10.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.9...@synerise/ds-date-picker@0.10.10) (2023-08-22)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.10.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.8...@synerise/ds-date-picker@0.10.9) (2023-08-20)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
+## [0.10.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.7...@synerise/ds-date-picker@0.10.8) (2023-08-09)
+
+
+### Bug Fixes
+
+* **date-picker:** added styles for inactive arrows in nav ([225722c](https://github.com/Synerise/synerise-design/commit/225722cd546060114ecf5d3136e5b07eb1df2c61))
+
+
+
+
+
 ## [0.10.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.6...@synerise/ds-date-picker@0.10.7) (2023-08-03)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

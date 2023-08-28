@@ -14,6 +14,7 @@ export interface RangePickerProps extends WrappedComponentProps {
   texts: Texts;
   forceAdjacentMonths?: boolean;
   showCustomRange?: boolean;
+  showNowButton?: boolean;
   startAlwaysOnTheLeft?: boolean;
   jumpToStartAndEnd?: boolean;
 }

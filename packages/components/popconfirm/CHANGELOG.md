@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.12...@synerise/ds-popconfirm@0.10.13) (2023-08-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** tweaks to title styles ([629be2c](https://github.com/Synerise/synerise-design/commit/629be2c0bb8fd1765c134c59757f85995a309215))
+
+
+
+
+
+## [0.10.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.11...@synerise/ds-popconfirm@0.10.12) (2023-08-20)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
 ## [0.10.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.10...@synerise/ds-popconfirm@0.10.11) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

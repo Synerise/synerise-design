@@ -177,7 +177,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
         onMonthNameClick={(): void => this.handleModeSwitch('month')}
         onYearNameClick={(): void => this.handleModeSwitch('year')}
         onMonthChange={(selectedMonth: Date): void => this.handleMonthChange(selectedMonth, 'date')}
-        modifiers={(modifiers as unknown) as Modifiers}
+        modifiers={modifiers as unknown as Modifiers}
       />
     );
   };
@@ -191,7 +191,11 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
 
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
-    const { disabledHours, disabledMinutes, disabledSeconds } = this.props;
+    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } = this.props;
+    const prevDay = fnsAddDays(legacyParse(value), -1);
+    const nextDay = fnsAddDays(legacyParse(value), 1);
+    const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
+    const inactiveNext = disabledDates ? disabledDates(nextDay) : false;
     return (
       <TimePicker
         value={value}
@@ -199,8 +203,10 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
         disabledSeconds={disabledSeconds}
-        onShortNext={(): void => this.handleDaySwitch(fnsAddDays(legacyParse(value), 1))}
-        onShortPrev={(): void => this.handleDaySwitch(fnsAddDays(legacyParse(value), -1))}
+        inactiveNext={inactiveNext}
+        inactivePrev={inactivePrev}
+        onShortNext={(): void => this.handleDaySwitch(nextDay)}
+        onShortPrev={(): void => this.handleDaySwitch(prevDay)}
       />
     );
   };

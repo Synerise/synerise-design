@@ -33,6 +33,15 @@ import Wizard from '@synerise/ds-wizard'
       ...
     </Stepper>
   }
+  stepButtonProps={{
+    prevButtonProps: {
+      type: 'primary'
+    },
+    nextButtonProps: {
+      type: 'primary',
+      disabled: true
+    }
+  }}
   footer={
     <>
       <Button mode="icon-label" type="ghost" onClick={() => {}}>
@@ -63,6 +72,7 @@ import Wizard from '@synerise/ds-wizard'
 | contentWidth | Width of content ex: `500px`                            | string                   | `100%`  |
 | onPrevStep   | Function called when user clicks on prev step button    | () => void               | -       |
 | onNextStep   | Function called when user clicks on next step button    | () => void               | -       |
+| stepButtonProps| Custom props for prev/next buttons                    | WizardStepButtons        | -       |
 | texts        | Translations object for wizard                          | WizardTexts              | -       |
  
 ### WizardTexts
@@ -71,3 +81,8 @@ import Wizard from '@synerise/ds-wizard'
 | prevButtonLabel | Label of prev button | React.ReactNode \ String | -       |
 | nextButtonLabel | Label of next button | React.ReactNode \ String | -       |
 
+### WizardStepButtons
+| Property        | Description          | Type                                  | Default |
+| ---             | ---                  | ---                                   | ---     |
+| prevButtonProps | Props of prev button | Partial<Omit<ButtonProps, 'onClick'>> | -       |
+| nextButtonLabel | Props of next button | Partial<Omit<ButtonProps, 'onClick'>> | -       |

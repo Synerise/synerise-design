@@ -1,14 +1,15 @@
-import * as React from 'react';
-import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
+import React, { useState, useCallback, useEffect } from 'react';
+import AnimateHeight from 'react-animate-height';
 
+import Icon, { CheckS, WarningFillS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
-import AnimateHeight from 'react-animate-height';
+
 import { StepProps } from './Step.types';
 import * as S from './Step.styles';
 import { ORIENTATIONS } from '../Stepper.types';
 
-const Step: React.FC<StepProps> = ({
+const Step = ({
   stepNumber,
   label,
   active,
@@ -20,14 +21,14 @@ const Step: React.FC<StepProps> = ({
   children,
   size = 'default',
   orientation = ORIENTATIONS.HORIZONTAL,
-}) => {
-  const [wasActive, setWasActive] = React.useState(Boolean(active));
+}: StepProps) => {
+  const [wasActive, setWasActive] = useState(Boolean(active));
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     onClick && onClick();
   }, [onClick]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!active && wasActive) {
       setWasActive(false);
     }
@@ -52,7 +53,7 @@ const Step: React.FC<StepProps> = ({
         <Tooltip trigger={['hover']} title={label}>
           <S.StepPrefix noMargin={!label}>
             {done && !validated ? (
-              <Icon component={<CheckS />} color={theme.palette['green-600']} />
+              <Icon component={<CheckS />} color={warning ? theme.palette['yellow-600'] : theme.palette['green-600']} />
             ) : (
               <S.StepNumber>{stepNumber}</S.StepNumber>
             )}

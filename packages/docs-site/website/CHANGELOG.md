@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.2](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.1...docs@0.29.2) (2023-08-25)
+
+
+### Bug Fixes
+
+* **modal:** handle footer property with null ([c8f9040](http://gitlab.synerise.com/Frontend/synerise-design/commit/c8f90400160ee51576fa0e1f1b76653be0ab1ca5))
+
+
+
+
+
+## [0.29.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.0...docs@0.29.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* **status:** fixed types and styles for status pills ([cc23a04](http://gitlab.synerise.com/Frontend/synerise-design/commit/cc23a04620e934915c2a300bab1022657b2c5357))
+
+
+
+
+
+# [0.29.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.1...docs@0.29.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ad3aa7b](http://gitlab.synerise.com/Frontend/synerise-design/commit/ad3aa7bd844d2880044dd518aee1f9ee41176bbe))
+
+
+
+
+
 ## [0.28.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.28.0...docs@0.28.1) (2023-07-27)
 
 

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 import Popconfirm from '@synerise/ds-popconfirm';
 import Button from '@synerise/ds-button';
-import Icon, { WarningFillM } from '@synerise/ds-icon';
+import Icon, { WarningFillM, CloseM } from '@synerise/ds-icon';
 
 const decorator = storyFn => <div style={{ padding: 40 }}>{storyFn()}</div>;
 
@@ -29,21 +29,24 @@ const triggers = ['hover', 'focus', 'click', 'contextMenu'] as const;
 
 const buttonsAligns = [undefined, 'left', 'right'] as const;
 
-const getDefaultProps = () => ({
-  cancelText: text('cancelText', 'No'),
-  okText: text('okText', 'Yes'),
-  okType: select('Set type', typeOptions, 'primary'),
-  title: text('Set title', 'Are you sure to delete this item and move to the next category'),
-  onCancel: action('onCancel Clicked'),
-  onConfirm: action('onConfirm Clicked'),
-  disabled: boolean('disabled', false),
-  placement: select('placement', placements, 'top'),
-  mouseEnterDelay: number('mouseEnterDelay', 0),
-  mouseLeaveDelay: number('mouseLeaveDelay', 0),
-  trigger: select('trigger', triggers, 'click'),
-  buttonsAlign: select('buttonsAlign', buttonsAligns, undefined),
-});
-
+const getDefaultProps = () => {
+  const closeIcon = boolean('close icon', false);
+  return {
+    cancelText: text('cancelText', 'No'),
+    okText: text('okText', 'Yes'),
+    okType: select('Set type', typeOptions, 'primary'),
+    title: text('Set title', 'Are you sure to delete this item and move to the next category'),
+    onCancel: action('onCancel Clicked'),
+    onConfirm: action('onConfirm Clicked'),
+    disabled: boolean('disabled', false),
+    closeIcon: closeIcon ? <Icon component={<CloseM />} /> : undefined,
+    placement: select('placement', placements, 'top'),
+    mouseEnterDelay: number('mouseEnterDelay', 0),
+    mouseLeaveDelay: number('mouseLeaveDelay', 0),
+    trigger: select('trigger', triggers, 'click'),
+    buttonsAlign: select('buttonsAlign', buttonsAligns, undefined),
+  };
+}
 const stories = {
   default: () => {
     return (

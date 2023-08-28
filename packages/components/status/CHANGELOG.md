@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.78](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.77...@synerise/ds-status@0.5.78) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
+## [0.5.77](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.76...@synerise/ds-status@0.5.77) (2023-08-22)
+
+
+### Bug Fixes
+
+* **status:** fixed types and styles for status pills ([cc23a04](https://github.com/Synerise/synerise-design/commit/cc23a04620e934915c2a300bab1022657b2c5357))
+
+
+
+
+
+## [0.5.76](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.75...@synerise/ds-status@0.5.76) (2023-08-20)
+
+**Note:** Version bump only for package @synerise/ds-status
+
+
+
+
+
 ## [0.5.75](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.74...@synerise/ds-status@0.5.75) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-status

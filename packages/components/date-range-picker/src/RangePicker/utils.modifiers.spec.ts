@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
-import { getModifiers } from '../RangePicker/utils';
+import { getModifiers } from './utils';
 
 describe('DateRangePicker modifiers', () => {
   it('should calculate start and end modifiers', () => {

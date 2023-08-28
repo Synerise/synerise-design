@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, getByRole } from '@testing-library/react';
+import { fireEvent, waitFor, getByRole, screen } from '@testing-library/react';
 
 import Slider from '../index';
 import { AllocationVariant } from '../Allocation/Allocation.types';
@@ -159,4 +159,18 @@ describe('Slider', () => {
   it.todo('Slider defaults range colors to defaultColorsOrder');
   it.todo('Slider/Allocation defaults range colors to defaultColorsOrder');
   it.todo('Slider multivalue segments\'colors can be changed with colors map prop');
+  it('should display the min and max values', () => {
+    const minVal = 17;
+    const maxVal = 93;
+
+    const mark = {
+      [minVal]: minVal,
+      [maxVal]: maxVal,
+    };
+
+    renderWithProvider(<Slider label={LABEL} max={maxVal} min={minVal} value={FIFTY} marks={mark} />);
+
+    expect(screen.getByText(minVal.toString())).toBeInTheDocument();
+    expect(screen.getByText(maxVal.toString())).toBeInTheDocument();
+  });
 });

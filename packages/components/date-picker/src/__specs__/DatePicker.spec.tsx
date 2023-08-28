@@ -289,6 +289,84 @@ describe('RawDatePicker', () => {
     // ASSERT
     expect(screen.getByDisplayValue('10/27/1996, 3:24 AM')).toBeInTheDocument();
   });
-  it.todo('should render month picker using locale');
-  it.todo('should render day picker using locale');
+  it('should render month picker using locale', async () => {
+    const { getByText } = renderWithProvider(
+      <RawDatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />,
+      {},
+      { locale: 'pl' }
+    );
+    await fireEvent.click(await getByText('paź'));
+    
+    // ASSERT
+    expect(getByText('kwi')).toBeInTheDocument();
+  });
+  it('should render day picker using locale', async () => {
+    const { container, getByText } = renderWithProvider(
+      <RawDatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={new Date('1996-10-27T03:24:00')}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />,
+      {},
+      { locale: 'pl' }
+    );
+    expect(await getByText('Śr')).toBeTruthy();
+  });
+
+  it('should show prev and next arrows in TimePicker as disabled if following and previous days are disabled', async () => {
+    const defaultDay = new Date('1996-10-27T03:24:00');
+    const allowedDay = new Date(defaultDay.getTime());
+    allowedDay.setHours(0);
+    allowedDay.setMinutes(0);
+    allowedDay.setSeconds(0);
+    allowedDay.setMilliseconds(0);
+    const disabledDates = (date?: Date): boolean => {
+      if (date) {
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        return date.getTime() !== allowedDay.getTime();
+      }
+      return true;
+    }
+    const { container, getByTestId } = renderWithProvider(
+      <RawDatePicker
+        showTime={true}
+        texts={{
+          apply: 'Apply',
+          now: 'Now',
+        }}
+        value={defaultDay}
+        disabledDates={disabledDates}
+        disabledHours={[]}
+        disabledMinutes={[]}
+        disabledSeconds={[]}
+      />
+    );
+    const dayOne = (await container.querySelector('[data-attr="27"]')) as HTMLElement;
+    await dayOne.click();
+    await getByTestId('tp-overlay-container');
+    const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
+    const toNextDay = navigationArrows[1];
+    const toPrevDay = navigationArrows[0];
+    expect(toNextDay).toBeDisabled();
+    expect(toPrevDay).toBeDisabled();
+  });
 });

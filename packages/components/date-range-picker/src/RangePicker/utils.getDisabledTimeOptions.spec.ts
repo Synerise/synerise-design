@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 
-import { getDisabledTimeOptions } from '../RangePicker/utils';
+import { getDisabledTimeOptions } from './utils';
 
 type TestDataObject = {
   lowerLimit: string | null;

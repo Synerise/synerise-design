@@ -7,7 +7,6 @@
     "rootDir": "src",
     "baseUrl": "src",
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
   },
   "references": []
 }

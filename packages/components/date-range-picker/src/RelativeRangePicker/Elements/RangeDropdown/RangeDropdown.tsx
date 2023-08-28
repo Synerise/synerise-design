@@ -8,6 +8,7 @@ import { theme } from '@synerise/ds-core';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
 import { DateRange, RelativeDateRange } from '../../../date.types';
+import { ALL_TIME } from '../../../constants';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
@@ -57,9 +58,12 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   if (!ranges || ranges.length === 0) return null;
   const mappedRanges = ranges.map(valueTransformer);
   const transformedCurrentRange = valueTransformer(currentRange);
-  const anyOfTransformedRangesMatchesCurrentRange = find(r => isEqual(transformedCurrentRange, r), mappedRanges);
+  const anyOfTransformedRangesMatchesCurrentRange = isLifetime(transformedCurrentRange as DateRange)
+    ? false
+    : find(r => isEqual(transformedCurrentRange, r), mappedRanges);
   const containsCurrentRange =
     (currentRange && find(range => range.key === currentRange.key, ranges)) ||
+    isLifetime(currentRange) ||
     anyOfTransformedRangesMatchesCurrentRange;
   const overlay = (
     <S.OverlayWrapper visible={dropVisible} width={DROPDOWN_WIDTH}>
@@ -69,16 +73,17 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
         absolute
       >
         <S.DropMenu onClick={onMenuItemClick} selectedKeys={[]}>
-          {ranges.map(range => (
-            <S.DropMenuItem
-              key={range.key || range.id}
-              suffixel={
-                currentRange?.key === range.key && <Icon component={<CheckS />} color={theme.palette['green-600']} />
-              }
-            >
-              {range.translationKey ? texts[range.translationKey] : range.key}
-            </S.DropMenuItem>
-          ))}
+          {ranges.map(range => {
+            const selected = currentRange?.key === range.key || (isLifetime(currentRange) && range.key === ALL_TIME);
+            return (
+              <S.DropMenuItem
+                key={range.key || range.id}
+                suffixel={selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
+              >
+                {range.translationKey ? texts[range.translationKey] : range.key}
+              </S.DropMenuItem>
+            );
+          })}
         </S.DropMenu>
       </Scrollbar>
     </S.OverlayWrapper>
@@ -86,6 +91,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   return (
     <S.DropdownContainer ref={dropdownRef}>
       <S.Range
+        data-testid="relative-ranges-dropdown"
         type={containsCurrentRange ? 'primary' : 'tertiary'}
         mode="label-icon"
         onClick={(): void => setDropVisible(!dropVisible)}
