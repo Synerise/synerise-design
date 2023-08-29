@@ -35,7 +35,8 @@ export function addIconColor(iconComponent: React.ReactNode, color: string): Rea
   return iconElement;
 }
 
-export function getColorByText(text: string | null, backgroundColor?: 'auto' | Color): [Color, ColorHue] {
+export function getColorByText(text: string | null, backgroundColor?: 'auto' | Color | string): [Color, ColorHue] {
+  if (backgroundColor && backgroundColor.indexOf('-') !== -1) return backgroundColor.split('-') as [Color, ColorHue];
   const autoColor =
     ((typeof text === 'string' ? selectColorByLetter(text.slice(0, 1), true) : {}) as ColorObject)?.color || 'grey';
   const color = text && backgroundColor && backgroundColor !== 'auto' ? (backgroundColor as Color) : autoColor;

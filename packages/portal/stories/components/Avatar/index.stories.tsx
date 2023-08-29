@@ -59,7 +59,7 @@ const stories = {
           size={select('Set size', sizes, 'medium')}
           onClick={boolean('Use onClick', true) ? action('UserAvatar clicked!') : undefined}
           badgeStatus={select('Set badge status', [...statuses, undefined], 'active')}          
-          backgroundColor={select('Set background color', backgroundColors, 'auto')}
+          backgroundColor={select('Set background color (requires custom text)', [...backgroundColors, 'grey-700', 'grey-800'], 'auto')}
           iconComponent={boolean('Use custom icon', false) ? <Icon component={<UserCircleM />} /> : undefined}
           disabled={boolean('Disabled', false)}
         />
