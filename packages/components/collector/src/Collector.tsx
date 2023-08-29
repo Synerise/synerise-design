@@ -1,4 +1,13 @@
-import * as React from 'react';
+import React, {
+  SyntheticEvent,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+  useState,
+  FocusEvent,
+  KeyboardEvent,
+} from 'react';
 import classNames from 'classnames';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import { CollectorProps, CollectorValue } from './Collector.types';
@@ -11,7 +20,7 @@ import Values from './Elements/Values/Values';
 const DROPDOWN_PADDING = 2 * 8;
 const COLLECTOR_CLASSNAME = 'ds-collector';
 
-const Collector: React.FC<CollectorProps> = ({
+const Collector = ({
   allowCustomValue,
   allowMultipleValues,
   addButtonProps,
@@ -42,25 +51,28 @@ const Collector: React.FC<CollectorProps> = ({
   searchValue,
   renderItem,
   onSearchValueChange,
-  scrollbarProps,
-}) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const mainContentRef = React.useRef<HTMLDivElement>(null);
-  const [isFocused, setFocused] = React.useState<boolean>(false);
-  const [showGradient, setShowGradient] = React.useState<boolean>(false);
-  const [scrollLeft, setScrollLeft] = React.useState<number>(0);
-  const [value, setValue] = React.useState<string>(searchValue || '');
-  const [selectedValues, setSelectedValues] = React.useState<CollectorValue[]>(
+}: CollectorProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setFocused] = useState<boolean>(false);
+  const [showGradient, setShowGradient] = useState<boolean>(false);
+  const [scrollLeft, setScrollLeft] = useState<number>(0);
+  const [value, setValue] = useState<string>(searchValue || '');
+  const [selectedValues, setSelectedValues] = useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
-  const [filteredSuggestions, setFilteredSuggestions] = React.useState<CollectorValue[]>(suggestions || []);
+  useEffect(() => {
+    setSelectedValues(selected);
+  }, [selected]);
 
-  const filterLookupKey = React.useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
-  const displayLookupKey = React.useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState<CollectorValue[]>(suggestions || []);
 
-  const onFocusCallback = React.useCallback(
-    (e: React.FocusEvent<HTMLDivElement>): void => {
+  const filterLookupKey = useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
+  const displayLookupKey = useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
+
+  const onFocusCallback = useCallback(
+    (e: FocusEvent<HTMLDivElement>) => {
       e.preventDefault();
       if (!e.target.classList.contains(COLLECTOR_CLASSNAME)) {
         if (!!inputRef && !!inputRef?.current) {
@@ -71,27 +83,27 @@ const Collector: React.FC<CollectorProps> = ({
     },
     [inputRef]
   );
-  const filterSuggestions = React.useCallback(
-    (val: string): void => {
+  const filterSuggestions = useCallback(
+    (val: string) => {
       const filtered = filterValueSuggestions(suggestions, selectedValues, val, filterLookupKey);
       setFilteredSuggestions(filtered);
     },
     [suggestions, selectedValues, filterLookupKey]
   );
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
-    setFilteredSuggestions(suggestions || []);
+    setFilteredSuggestions([]);
     !searchValue && allowMultipleValues && setValue('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allowMultipleValues, allowCustomValue, selected, suggestions]);
+  }, [allowMultipleValues, allowCustomValue, selected]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (searchValue !== undefined && searchValue !== null) {
       setValue(searchValue as string);
     }
   }, [searchValue]);
 
-  React.useEffect((): void => {
+  useEffect(() => {
     if (fixedHeight) {
       setShowGradient(isOverflown(mainContentRef));
     } else {
@@ -99,18 +111,18 @@ const Collector: React.FC<CollectorProps> = ({
     }
   }, [selectedValues, mainContentRef, fixedHeight]);
 
-  React.useEffect((): void => {
+  useEffect(() => {
     if (!enableCustomFilteringSuggestions) filterSuggestions(value);
   }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
 
-  const clear = React.useCallback((): void => {
+  const clear = useCallback(() => {
     setSelectedValues([]);
     setValue('');
     setFocused(false);
     inputRef?.current && inputRef.current.blur();
   }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (!enableCustomFilteringSuggestions && e.key === 'Enter') {
       const suggestionsIncludesCurrentValue = filteredSuggestions.some(
         suggestion => suggestion[filterLookupKey].trim().toLowerCase() === value.trim().toLowerCase()
@@ -138,12 +150,12 @@ const Collector: React.FC<CollectorProps> = ({
     }
   };
 
-  const onCancelCallback = React.useCallback((): void => {
+  const onCancelCallback = useCallback(() => {
     clear();
     onCancel && onCancel();
   }, [onCancel, clear]);
 
-  const onConfirmCallback = React.useCallback((): void => {
+  const onConfirmCallback = useCallback(() => {
     if (allowMultipleValues) {
       onConfirm && onConfirm(selectedValues);
       clear();
@@ -169,18 +181,18 @@ const Collector: React.FC<CollectorProps> = ({
     filterLookupKey,
   ]);
 
-  const getContainerWidth = React.useCallback(
-    (): number => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
+  const getContainerWidth = useCallback(
+    () => Number(containerRef.current?.offsetWidth) - DROPDOWN_PADDING,
     [containerRef]
   );
 
-  const handleDropdownClick = React.useCallback((): void => {
+  const handleDropdownClick = useCallback(() => {
     if (inputRef?.current) {
       inputRef.current.focus({ preventScroll: true });
     }
   }, [inputRef]);
 
-  useOnClickOutside(containerRef, (): void => {
+  useOnClickOutside(containerRef, () => {
     setFocused(false);
   });
   const showError = error || !!errorText;
@@ -188,7 +200,7 @@ const Collector: React.FC<CollectorProps> = ({
   return (
     <S.Container
       ref={containerRef}
-      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>): void => {
+      onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
         focusWithArrowKeys(e, 'ds-search-item', () => {
           inputRef?.current && inputRef.current.focus({ preventScroll: true });
         });
@@ -210,7 +222,7 @@ const Collector: React.FC<CollectorProps> = ({
       >
         <S.MainContent
           wrap={!fixedHeight}
-          onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+          onScroll={({ currentTarget }: SyntheticEvent) => {
             if (fixedHeight) {
               setScrollLeft(currentTarget.scrollLeft);
             }
@@ -233,7 +245,7 @@ const Collector: React.FC<CollectorProps> = ({
             value={value}
             onChange={
               !disableSearch
-                ? (e): void => {
+                ? e => {
                     onSearchValueChange && onSearchValueChange(e.target.value);
                     setValue(e.target.value);
                     if (!enableCustomFilteringSuggestions) filterSuggestions(e.target.value);
@@ -272,7 +284,7 @@ const Collector: React.FC<CollectorProps> = ({
           !disabled &&
           (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
         }
-        onSelect={(item): void => {
+        onSelect={item => {
           onItemSelect && onItemSelect(item);
           !keepSearchQueryOnSelect && item[filterLookupKey] && setValue(item[filterLookupKey]);
         }}
@@ -283,7 +295,6 @@ const Collector: React.FC<CollectorProps> = ({
         width={getContainerWidth()}
         customContent={dropdownContent}
         texts={texts}
-        scrollbarProps={scrollbarProps}
       />
       {(showError || description) && (
         <S.ContentBelow>
