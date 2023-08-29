@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode, PureComponent } from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { injectIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
@@ -21,10 +21,13 @@ import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
 export function defaultValueTransformer(value: DateRange): DateRange {
-  if (value.key === 'ALL_TIME' || isLifetime(value)) {
-    return { type: 'ABSOLUTE' };
-  }
   const { id, timestamp, translationKey, filter } = value;
+  if (value.key === 'ALL_TIME' || isLifetime(value)) {
+    return {
+      type: 'ABSOLUTE',
+      ...(filter ? { filter } : {}),
+    };
+  }
   const baseValue = {
     ...(id ? { id } : {}),
     ...(timestamp ? { timestamp } : {}),
@@ -52,7 +55,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   return value;
 }
 
-export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps, State> {
+export class RawDateRangePicker extends PureComponent<DateRangePickerProps, State> {
   static defaultProps = {
     ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
@@ -211,6 +214,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     }
     if (showFilter) {
       const addonKey = 'filter';
+      const filterEnabled = (value.from && value.to) || isLifetime(value);
       const label = value?.filter
         ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
         : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.ADD-FILTER`, defaultMessage: 'Add filter' });
@@ -221,7 +225,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
               <RangeFilterStatus
                 onFilterRemove={this.handleRemoveFilterClick}
                 filter={value.filter}
-                disabled={!value.from || !value.to}
+                disabled={!filterEnabled}
                 label={label}
                 onClick={this.handleModalOpenClick}
               />
@@ -256,6 +260,8 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
       footerProps,
       allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
+      filterValueSelectionModes,
+      showNowButton = true,
     } = this.props;
     const { value, mode } = this.state;
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
@@ -275,6 +281,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
             savedFilters={savedFilters}
             allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
+            valueSelectionModes={filterValueSelectionModes}
           />
         </Container>
       );
@@ -289,11 +296,13 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
     const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);
     // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
     const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
-    const canSwitchToTimePicker = isValid && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
+    const canSwitchToTimePicker =
+      isValid && !isLifetime(value) && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
 
     return (
       <Container className={containerClass}>
         <RangePicker
+          showNowButton={showNowButton}
           value={value}
           onChange={this.handleRangeChange}
           mode={mode}
@@ -307,7 +316,7 @@ export class RawDateRangePicker extends React.PureComponent<DateRangePickerProps
         />
         {addons.length > 0 && <Separator />}
         {addons.map(
-          (addon, index: number): React.ReactNode => (
+          (addon, index: number): ReactNode => (
             <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
               {addon.content}
             </Addon>

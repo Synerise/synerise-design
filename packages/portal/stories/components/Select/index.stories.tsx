@@ -26,7 +26,6 @@ for (let i = 10; i < 36; i++) {
 
 const modes = ['default', 'multiple', 'tags'];
 const sizes = {
-  small: 'small',
   default: 'default',
   large: 'large',
 };
@@ -96,6 +95,7 @@ const stories = {
     const message = 'Error';
     const [isFocus, setFocus] = React.useState(false);
     return {
+      grey: boolean('grey background', false),
       tooltip: boolean('with simple tooltip', false) && text('Tooltip title', 'Select tooltip title'),
       tooltipConfig: boolean('with advanced tooltip', false) && {
         type: select('select advanced tooltip type', ['default', 'largeSimple', 'header-label'], 'default'),
@@ -130,7 +130,7 @@ const stories = {
         setFocus(true);
       },
       placeholder: text('placeholder', 'Please select value...'),
-      size: select<'default' | 'small' | 'large'>('size', sizes as any, 'default'),
+      size: select<'default' | 'large'>('size', sizes as any, 'default'),
       showArrow: boolean('showArrow', true),
       showSearch: boolean('showSearch', false),
       onChange: action('OnChange'),

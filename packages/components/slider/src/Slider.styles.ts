@@ -2,7 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Slider, { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import { ThemeProps } from '@synerise/ds-core';
 import { ComponentType } from 'react';
-import { ColorMapProps, Props as DsSliderProps } from './Slider.types';
+import { ColorMapProps, SliderProps as DsSliderProps } from './Slider.types';
 
 type SliderProps = SliderSingleProps | SliderRangeProps;
 
@@ -131,12 +131,14 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     box-shadow: 0 0 0 3px rgba(35, 138, 254, 0.25) !important;
   }
 `;
-const createTracksStyles = (
+export const createTracksStyles = (
   props: ThemeProps & DsSliderProps,
   colorsMap: ColorMapProps
 ): FlattenSimpleInterpolation => {
   const styles = Object.values(colorsMap).map(
     (color: string, index: number) => `
+      .ant-slider-segment-${index},
+      .ant-slider-segment-letter-${index},
       .ant-slider-track-${index + 1},
       .ant-slider-track-${index + 11} {
         background-color: ${props.theme.palette[color]};

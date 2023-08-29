@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.17.1...@synerise/ds-modal@0.17.2) (2023-08-25)
+
+
+### Bug Fixes
+
+* **modal:** handle footer property with null ([c8f9040](https://github.com/synerise/synerise-design/commit/c8f90400160ee51576fa0e1f1b76653be0ab1ca5))
+
+
+
+
+
+## [0.17.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.17.0...@synerise/ds-modal@0.17.1) (2023-08-22)
+
+**Note:** Version bump only for package @synerise/ds-modal
+
+
+
+
+
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.16.18...@synerise/ds-modal@0.17.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.16.18](https://github.com/synerise/synerise-design/compare/@synerise/ds-modal@0.16.17...@synerise/ds-modal@0.16.18) (2023-07-26)
 
 **Note:** Version bump only for package @synerise/ds-modal

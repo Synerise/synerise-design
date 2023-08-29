@@ -5,7 +5,7 @@ import { defaultColorsOrder } from '@synerise/ds-core';
 
 import './style/index.less';
 import * as S from './Slider.styles';
-import { ColorMapProps, Props, SliderTypes } from './Slider.types';
+import { ColorMapProps, SliderProps, SliderTypes } from './Slider.types';
 import Allocation from './Allocation/Allocation';
 
 const getDefaultTooltipPopupContainer = (): HTMLElement => document.querySelector(`.ant-slider`) as HTMLElement;
@@ -15,10 +15,15 @@ const couldBeInverted = (value: number | number[], inverted: boolean): boolean =
 const mapToColor = (_: string | object, idx: number): Record<number, string> => ({
   [idx]: defaultColorsOrder[idx] as string,
 });
+/**
+ * Converts an array of strings (e.g. colors) `["blue-600", "yellow-600"]`
+ * into `{"0": "blue-600", "1": "yellow-600"}`.
+ * @returns Object Record<string, string>
+ */
 export const buildDefaultTracksColorMap = (): ColorMapProps =>
   Object.assign({} as Record<number, string>, ...defaultColorsOrder.map(mapToColor));
 
-const Slider: React.FC<Props> = props => {
+const Slider = (props: SliderProps): JSX.Element => {
   const {
     useColorPalette,
     label,
@@ -91,6 +96,7 @@ const Slider: React.FC<Props> = props => {
       <S.AntdSlider
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...antdProps}
+        min={min}
         max={max}
         value={value}
         reachedEnd={reachedEnd}

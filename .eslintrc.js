@@ -35,7 +35,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [IGNORE],
     'import/no-unresolved': [IGNORE],
     'import/prefer-default-export': [IGNORE],
-    '@typescript-eslint/explicit-function-return-type': ERROR,
+    '@typescript-eslint/explicit-function-return-type': IGNORE,
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
     'react/jsx-props-no-spreading': [IGNORE],
   },

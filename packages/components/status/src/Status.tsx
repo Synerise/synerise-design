@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { TagShape } from '@synerise/ds-tags';
 import * as S from './Status.styles';
 import { StatusProps } from './Status.types';
 
-const Status: React.FC<StatusProps> = ({ type, onClick, className, label, color }) => {
+const Status = ({ type = 'primary', onClick, className, label, color }: StatusProps) => {
   return (
     <S.StatusTag
       onClick={onClick}
@@ -15,10 +15,6 @@ const Status: React.FC<StatusProps> = ({ type, onClick, className, label, color 
       asPill
     />
   );
-};
-
-Status.defaultProps = {
-  type: 'primary',
 };
 
 export default Status;

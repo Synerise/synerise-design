@@ -1,5 +1,5 @@
-import Step from 'Step/Step';
 import { CSSProperties } from 'styled-components';
+import Step from './Step/Step';
 
 export type StepperOrientation = 'vertical' | 'horizontal' | string;
 export type StepperSize = 'small' | 'default' | string;

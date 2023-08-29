@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.1...@synerise/ds-time-picker@0.8.2) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.0...@synerise/ds-time-picker@0.8.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* **input:** removed responsive input width ([c514b2d](https://github.com/Synerise/synerise-design/commit/c514b2dcd7bebfad4af029a66766f6b32a0c71cb))
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.16...@synerise/ds-time-picker@0.8.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
 ## [0.7.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.7.15...@synerise/ds-time-picker@0.7.16) (2023-08-03)
 
 

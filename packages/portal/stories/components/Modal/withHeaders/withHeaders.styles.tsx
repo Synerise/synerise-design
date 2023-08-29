@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import DsModal from '@synerise/ds-modal';
 import { ModalProps } from 'antd/lib/modal';
-import { TitleContainer } from '@synerise/ds-modal/dist/Modal.styles';
+import { TitleContainer } from '@synerise/ds-modal';
 
 export const HeaderWrapper = styled.div`
   display: flex;

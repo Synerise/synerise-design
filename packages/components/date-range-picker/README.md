@@ -54,12 +54,14 @@ const value = {
 | relativePast         | Enable relative filter for past ranges                              | boolean              | `false`                                                       |
 | relativeFuture       | Enable relative filter for future ranges                            | boolean              | `false`                                                       |
 | showTime             | Enable user to choose particular hour                               | boolean              | `false`                                                       |
+| showNowButton        | Include "now" button to select current time (last minue)                             | boolean              | `true`                                                       |
 | showFilter           | Enable range filtering                                              | boolean              | `false`                                                       |
 | showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                       |
 | validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
 | value                | Value of the picker                                                 | DateRange            | new Date()                                                    |
 | startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
 | onVisibleChange      | Callback executed when popover with dateRangePicker changes its visibility | (visible: boolean) => void | -                                                |
+| filterValueSelectionModes  | Allowed modes to display in filter | DateLimitMode[] | ["Range", "Hour"]                                                |
 
 ### DateRange
 

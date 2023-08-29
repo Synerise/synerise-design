@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { WrappedComponentProps } from 'react-intl';
 import { PopoverProps } from 'antd/lib/popover';
 
@@ -9,6 +9,7 @@ import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Props as FooterProps } from './Footer/Footer.types';
 import { RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
+import { DateLimitMode } from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 export { DateRange } from './date.types';
 
@@ -56,7 +57,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   onVisibleChange?: (visible: boolean) => void;
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
-  popoverTrigger?: React.ReactNode;
+  popoverTrigger?: ReactNode;
   ranges?: DateRange[];
   rangeUnits?: Array<RelativeUnits>;
   relativeFuture?: boolean;
@@ -67,6 +68,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   showFilter?: boolean;
   showTime?: boolean;
   showCustomRange?: boolean;
+  showNowButton?: boolean;
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
@@ -81,6 +83,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   renderPopoverTrigger?: (...args: any) => JSX.Element;
   isTruncateMs?: boolean;
+  filterValueSelectionModes?: DateLimitMode[];
 }
 
 /**
@@ -96,7 +99,7 @@ export interface State {
   visibleAddonKey?: string | undefined;
 }
 export type Texts = {
-  [k in Translations]: string | React.ReactNode;
+  [k in Translations]: string | ReactNode;
 } & {
   [k in TranslationsPlaceholders]: string;
 };
@@ -159,6 +162,6 @@ export type WithTranslations = {
 };
 
 export type AddonType = {
-  content: React.ReactNode;
+  content: ReactNode;
   key: string;
 };

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.23.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.23.0...@synerise/ds-date-range-picker@0.23.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **date-range-picker:** changes more btn type by default ([a90ac44](https://github.com/Synerise/synerise-design/commit/a90ac44aaa400f3357a5ddb81c5202fadc01adf8))
+
+
+
+
+
+# [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.22.0...@synerise/ds-date-range-picker@0.23.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds weekly types exports ([9d145bd](https://github.com/Synerise/synerise-design/commit/9d145bd6bd0060e7c044f694bdfeb7badaf8e475))
+
+
+### Features
+
+* **date-range-picker:** added prop to hide "now" button ([61fe484](https://github.com/Synerise/synerise-design/commit/61fe484482b1610a872d918efa79760c906f3e7a))
+
+
+
+
+
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.24...@synerise/ds-date-range-picker@0.22.0) (2023-08-20)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added missing deps to package.json ([a8ec6ee](https://github.com/Synerise/synerise-design/commit/a8ec6ee2ce43d6b5ca98ed4767144ccd990de053))
+* **date-range-picker:** fixed default value for monthly filter dropdown ([03b520f](https://github.com/Synerise/synerise-design/commit/03b520f3d203050d8675b048028c9942e1d535ef))
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
+## [0.21.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.23...@synerise/ds-date-range-picker@0.21.24) (2023-08-09)
+
+
+### Bug Fixes
+
+* **date-range-picker:** weekly filter standalone starttime reset fixed ([63072c2](https://github.com/Synerise/synerise-design/commit/63072c21bbe63286f2b5b31decf7f58b22c1ac1d))
+
+
+
+
+
 ## [0.21.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.21.22...@synerise/ds-date-range-picker@0.21.23) (2023-08-03)
 
 

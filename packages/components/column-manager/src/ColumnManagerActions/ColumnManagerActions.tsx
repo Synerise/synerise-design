@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
-import Modal from '@synerise/ds-modal/dist/Modal';
+import Modal from '@synerise/ds-modal';
 import { Input, TextArea } from '@synerise/ds-input';
 import * as S from './ColumnManagerActions.styles';
 import { Props, State } from './ColumnManagerActions.types';
@@ -30,12 +30,12 @@ class ColumnManagerActions extends React.Component<Props, State> {
 
   handleChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = event.currentTarget;
-    this.setState(({
+    this.setState({
       [name]: {
         value,
         error: '',
       },
-    } as unknown) as State);
+    } as unknown as State);
   };
 
   handleSubmit = (): void => {
@@ -75,7 +75,6 @@ class ColumnManagerActions extends React.Component<Props, State> {
         </S.ColumnManagerActions>
         <Modal
           visible={modalVisible}
-          closable
           onCancel={this.handleCancel}
           title={texts.saveView}
           footer={

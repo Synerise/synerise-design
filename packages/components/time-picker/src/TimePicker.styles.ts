@@ -91,12 +91,12 @@ export const Cell = styled.button<{ active?: boolean }>`
     css`
       && {
         cursor: initial;
-        background-color: ${props.theme.palette['blue-050']};
+        background-color: ${props.theme.palette['blue-600']};
       }
 
-      ${CellText} {
+      ${CellText}${CellText} {
         cursor: initial;
-        color: ${props.theme.palette['blue-600']};
+        color: ${props.theme.palette.white};
       }
     `};
 `;

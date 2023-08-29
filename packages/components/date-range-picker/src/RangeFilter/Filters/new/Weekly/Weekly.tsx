@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-data-format';
@@ -17,7 +17,7 @@ import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
 import { TimeWindowTexts } from '../../../Shared/TimeWindow/TimeWindow.types';
 
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
-import { canAddAnotherRange, haveActiveDaysCommonRange, range } from './utils';
+import { canAddAnotherRange, haveActiveDaysCommonRange, range, removeEmptyEntries } from './utils';
 import {
   DEFAULT_RANGE_START,
   DEFAULT_RANGE_END,
@@ -66,47 +66,31 @@ const Weekly: React.FC<WeeklyProps> = ({
   );
 
   React.useEffect(() => {
-    setFilteredSchedule(Object.keys(value));
-  }, [value]);
-
-  const removeEmptyEntries = React.useCallback(
-    (weeklySchedule: WeeklySchedule) => {
-      const emptyEntries = Object.keys(weeklySchedule).filter(key => Object.keys(weeklySchedule[key]).length === 0);
-      const scheduleToUpdate = weeklySchedule;
-      emptyEntries.forEach(emptyEntry => {
-        delete scheduleToUpdate[emptyEntry];
-      });
-      onChange(scheduleToUpdate);
-    },
-    [onChange]
-  );
-
-  React.useEffect(() => {
+    removeEmptyEntries(value);
     const entriesWithActiveDaysValue = activeDays.length
       ? Object.keys(value).filter(id =>
           activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
         )
       : [];
-
-    removeEmptyEntries(value);
     setFilteredSchedule(entriesWithActiveDaysValue);
-  }, [value, activeDays, removeEmptyEntries]);
+  }, [value, activeDays]);
 
   const handleDayTimeChange = React.useCallback(
     (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
       const updatedSchedule = value;
       const [start, end] = dayValue;
-
       if (dayKey instanceof Array) {
         dayKey.forEach(day => {
-          updatedSchedule[guid][day] = {
-            ...value[guid][day],
-            restricted: true,
-            start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
-            stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
-          };
+          if (guid in updatedSchedule) {
+            updatedSchedule[guid][day] = {
+              ...value[guid][day],
+              restricted: true,
+              start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
+              stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
+            };
+          }
         });
-      } else {
+      } else if (guid in updatedSchedule) {
         updatedSchedule[guid][dayKey] = {
           ...value[guid][dayKey],
           restricted: true,
@@ -114,7 +98,6 @@ const Weekly: React.FC<WeeklyProps> = ({
           stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
         };
       }
-
       onChange(updatedSchedule);
     },
     [value, onChange]
@@ -343,6 +326,7 @@ const Weekly: React.FC<WeeklyProps> = ({
       )}
       {shouldRenderAddButton && (
         <AddButton
+          data-testid="drp-filter-add-range"
           label={intl.formatMessage({
             id: 'DS.DATE-RANGE-PICKER.ADD-TIME',
             defaultMessage: 'Add range',

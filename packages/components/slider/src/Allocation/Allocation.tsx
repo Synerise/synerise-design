@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { useIntl } from 'react-intl';
 import { DescriptionWrapper, Description } from '../Slider.styles';
+import { buildDefaultTracksColorMap } from '../Slider';
 import * as S from './Allocation.styles';
 import { SliderProps } from '../Slider.types';
 import {
@@ -10,61 +11,57 @@ import {
   mapSliderValueToVariants,
   mapUserAllocationToHandles,
   mapUserAllocationToMarks,
-} from './utils';
+} from '../utils/allocation.utils';
 import { AllocationConfig, AllocationVariant } from './Allocation.types';
 
-const Allocation: React.FC<SliderProps> = ({
+const Allocation = ({
   allocationConfig,
-  tracksColorMap,
+  tracksColorMap = buildDefaultTracksColorMap(),
   description,
   tipFormatter,
   ...rest
 }: SliderProps) => {
   const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
     allocationConfig as AllocationConfig;
-  const [allocations, setAllocations] = React.useState(countAllocation(variants, controlGroupEnabled));
+  const [allocations, setAllocations] = useState(countAllocation(variants, controlGroupEnabled));
   const intl = useIntl();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setAllocations(countAllocation(variants, controlGroupEnabled));
   }, [variants, controlGroupEnabled]);
 
-  const markRenderer = React.useCallback(
-    (value: number, index: number, allocationVariants: AllocationVariant[]) => (
-      <S.Mark className="slider-mark">
-        <S.MarkValue>{value}</S.MarkValue>
-        {allocationVariants[index] && (
-          <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
-            <S.MarkLetter index={index}>{allocationVariants[index].tabLetter}</S.MarkLetter>
-          </Tooltip>
-        )}
-        {!allocationVariants[index] && (
-          <Tooltip
-            title={
-              controlGroupTooltip ||
-              intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
-            }
-          >
-            <S.MarkLetter index="cg">
-              {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
-            </S.MarkLetter>
-          </Tooltip>
-        )}
-      </S.Mark>
-    ),
-    [controlGroupTooltip, controlGroupLabel, intl]
+  const markRenderer = (value: number, index: number, allocationVariants: AllocationVariant[]) => (
+    <S.Mark className="slider-mark">
+      <S.MarkValue>{value}</S.MarkValue>
+      {allocationVariants[index] && (
+        <Tooltip title={<S.MarkTooltipWrapper>{allocationVariants[index].tabLetter}</S.MarkTooltipWrapper>}>
+          <S.MarkLetter className={`ant-slider-segment-letter-${index}`} index={index}>
+            {allocationVariants[index].tabLetter}
+          </S.MarkLetter>
+        </Tooltip>
+      )}
+      {!allocationVariants[index] && (
+        <Tooltip
+          title={
+            controlGroupTooltip ||
+            intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP', defaultMessage: 'Control group' })
+          }
+        >
+          <S.MarkLetter index="cg">
+            {controlGroupLabel || intl.formatMessage({ id: 'DS.SLIDER.CONTROL-GROUP-TOOLTIP', defaultMessage: 'CG' })}
+          </S.MarkLetter>
+        </Tooltip>
+      )}
+    </S.Mark>
   );
 
-  const handleChange = React.useCallback(
-    (value: [number, number]) => {
-      if (typeof value === 'number') {
-        return;
-      }
-      const calculatedVariants = mapSliderValueToVariants(value, variants);
-      !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
-    },
-    [onAllocationChange, variants]
-  );
+  const handleChange = (value: [number, number]) => {
+    if (typeof value === 'number') {
+      return;
+    }
+    const calculatedVariants = mapSliderValueToVariants(value, variants);
+    !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
+  };
 
   return (
     <S.AllocationSlider
@@ -79,7 +76,7 @@ const Allocation: React.FC<SliderProps> = ({
       marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
       onChange={handleChange}
       step={1}
-      tipFormatter={(value?: number): React.ReactNode => (
+      tipFormatter={(value?: number) => (
         <DescriptionWrapper>
           {description && <Description>{description}</Description>}
           {tipFormatter && tipFormatter(value)}
@@ -89,7 +86,7 @@ const Allocation: React.FC<SliderProps> = ({
       <S.TrackContainer controlGroup={controlGroupEnabled}>
         {allocations.map((u: number, index: number) => (
           // eslint-disable-next-line react/no-array-index-key
-          <S.Track key={`${u}-${index}`} index={index} width={u} />
+          <S.Track key={`${u}-${index}`} className={`ant-slider-segment-${index}`} index={index} width={u} />
         ))}
       </S.TrackContainer>
     </S.AllocationSlider>

@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.191.0](https://github.com/synerise/synerise-design/compare/portal@0.190.0...portal@0.191.0) (2023-08-25)
+
+
+### Features
+
+* **field-set:** added clickability to fieldset title ([cc81e30](https://github.com/synerise/synerise-design/commit/cc81e306e422f9050a010d5d9de9e2f2e957e51f))
+
+
+
+
+
+# [0.190.0](https://github.com/synerise/synerise-design/compare/portal@0.189.0...portal@0.190.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **popconfirm:** tweaks to title styles ([629be2c](https://github.com/synerise/synerise-design/commit/629be2c0bb8fd1765c134c59757f85995a309215))
+* **status:** fixed types and styles for status pills ([cc23a04](https://github.com/synerise/synerise-design/commit/cc23a04620e934915c2a300bab1022657b2c5357))
+
+
+### Features
+
+* **date-range-picker:** added prop to hide "now" button ([61fe484](https://github.com/synerise/synerise-design/commit/61fe484482b1610a872d918efa79760c906f3e7a))
+* **wizard:** adds prop to customise wizard step button props ([346551d](https://github.com/synerise/synerise-design/commit/346551d00ef56ad832468ba34cd98f16681fa4d4))
+
+
+
+
+
+# [0.189.0](https://github.com/synerise/synerise-design/compare/portal@0.188.2...portal@0.189.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
+## [0.188.2](https://github.com/synerise/synerise-design/compare/portal@0.188.1...portal@0.188.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **slider:** minimum value setting ([b4aa982](https://github.com/synerise/synerise-design/commit/b4aa9825f49c3232fdefa59960e17a5d613b7200))
+
+
+
+
+
+## [0.188.1](https://github.com/synerise/synerise-design/compare/portal@0.188.0...portal@0.188.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **date-picker:** added styles for inactive arrows in nav ([225722c](https://github.com/synerise/synerise-design/commit/225722cd546060114ecf5d3136e5b07eb1df2c61))
+* **date-range-picker:** weekly filter standalone starttime reset fixed ([63072c2](https://github.com/synerise/synerise-design/commit/63072c21bbe63286f2b5b31decf7f58b22c1ac1d))
+* **portal:** updated welcome image to fix typo ([1f2e3a6](https://github.com/synerise/synerise-design/commit/1f2e3a650c79587f6372175e6eebb98bd12afc0d))
+
+
+
+
+
 # [0.188.0](https://github.com/synerise/synerise-design/compare/portal@0.187.0...portal@0.188.0) (2023-07-26)
 
 

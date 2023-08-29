@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.1...@synerise/ds-factors@0.19.2) (2023-08-25)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.19.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.0...@synerise/ds-factors@0.19.1) (2023-08-22)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.18...@synerise/ds-factors@0.19.0) (2023-08-20)
+
+
+### Features
+
+* **modal:** create modal footer, header and refactor modal ([ab3603f](https://github.com/Synerise/synerise-design/commit/ab3603f5d8ac379ad1700b4a9904f340cd50315a))
+
+
+
+
+
+## [0.18.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.17...@synerise/ds-factors@0.18.18) (2023-08-09)
+
+
+### Bug Fixes
+
+* **date-range-picker:** weekly filter standalone starttime reset fixed ([63072c2](https://github.com/Synerise/synerise-design/commit/63072c21bbe63286f2b5b31decf7f58b22c1ac1d))
+
+
+
+
+
 ## [0.18.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.18.16...@synerise/ds-factors@0.18.17) (2023-08-03)
 
 **Note:** Version bump only for package @synerise/ds-factors

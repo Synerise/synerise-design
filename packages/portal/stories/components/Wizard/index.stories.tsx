@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Wizard from '@synerise/ds-wizard';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, object } from '@storybook/addon-knobs';
 import Stepper from '@synerise/ds-stepper';
 import Radio from '@synerise/ds-radio';
 import { withState } from '@dump247/storybook-state';
@@ -81,6 +81,7 @@ const stories = {
     const handleNextStep = () => store.set({ activeStep: store.state.activeStep + 1 });
     const handleClose = () => store.set({ visible: false });
     const handleShow = () => store.set({ visible: true });
+    const stepButtonProps = object('stepButtonProps', {});
     return (
       <>
         <Wizard
@@ -95,6 +96,7 @@ const stories = {
             prevButtonLabel: 'Back',
             nextButtonLabel: store.state.activeStep === 3 ? 'Complete' : 'Next step',
           }}
+          stepButtonProps={stepButtonProps}
           stepper={
             <Stepper>
               {steps.map((step, index) => (
@@ -137,6 +139,7 @@ const stories = {
     const handleNextStep = () => store.set({ activeStep: store.state.activeStep + 1 });
     const handleClose = () => store.set({ visible: false });
     const handleShow = () => store.set({ visible: true });
+    const stepButtonProps = object('stepButtonProps', {});
     return (
       <>
         <Wizard.OnModal
@@ -154,6 +157,7 @@ const stories = {
             prevButtonLabel: 'Back',
             nextButtonLabel: store.state.activeStep === 3 ? 'Complete' : 'Next step',
           }}
+          stepButtonProps={stepButtonProps}
           stepper={
             <Stepper size={'small'}>
               {steps.map((step, index) => (

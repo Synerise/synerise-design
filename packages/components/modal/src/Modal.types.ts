@@ -1,16 +1,40 @@
-import { ModalProps } from 'antd/lib/modal';
-import * as React from 'react';
+import type { CSSProperties, ComponentType, ReactNode } from 'react';
+import { ButtonProps } from '@synerise/ds-button';
+import { ModalProps as AntdModalProps } from 'antd/lib/modal';
 
-export interface Props extends ModalProps {
+/*
+ * @deprecated use `ModalProps`
+ */
+export type Props = ModalProps;
+
+export type ModalProps = {
   description?: string;
-  headerActions?: React.ReactNode;
+  headerActions?: ReactNode;
   size?: 'small' | 'medium' | 'large' | 'extraLarge' | 'fullSize';
   bodyBackground?: 'white' | 'grey';
   blank?: boolean;
-  titleContainerStyle?: React.CSSProperties;
+  titleContainerStyle?: CSSProperties;
   settingButtonText?: string;
   texts?: {
     okButton?: string;
     cancelButton?: string;
   };
-}
+  children?: ReactNode;
+} & AntdModalProps &
+  ModalFooterBuilder;
+
+/*
+ * @deprecated use `ModalProps`
+ */
+export type ModalFooterBuilder = {
+  prefix?: ReactNode;
+  infix?: ReactNode;
+  suffix?: ReactNode;
+  okButton?: ReactNode;
+  cancelButton?: ReactNode;
+  /*
+   * @deprecated use `CustomFooterButton`
+   */
+  DSButton?: ComponentType<ButtonProps>;
+  CustomFooterButton?: ComponentType<ButtonProps>;
+};

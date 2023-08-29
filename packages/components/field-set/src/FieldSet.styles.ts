@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Title = styled.div<{ description?: boolean }>`
+export const Title = styled.div<{ description?: boolean; isClickable?: boolean }>`
   display: flex;
   line-height: 16px;
   padding-bottom: ${(props): string => (props.description ? '8px' : '14px')};
@@ -10,6 +10,7 @@ export const Title = styled.div<{ description?: boolean }>`
   word-wrap: break-word;
   align-items: center;
   color: ${(props): string => props.theme.palette['grey-800']};
+  cursor: ${(props): string => (props.isClickable ? 'pointer' : 'default')};
 `;
 export const ContainerWrapper = styled.div``;
 export const HeaderWrapper = styled.div`
@@ -21,7 +22,6 @@ export const ButtonWrapper = styled.div`
 export const ActionButton = styled.div`
   display: flex;
   padding; 8px;
-  
 `;
 export const ExpanderWrapper = styled.div<{ description?: boolean }>`
   display: flex;

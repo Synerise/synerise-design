@@ -1,4 +1,5 @@
 import * as React from 'react';
+import dayjs from 'dayjs';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, object, select } from '@storybook/addon-knobs';
@@ -30,6 +31,55 @@ const stories = {
           showTime={showTime}
           prefixel={prefixel}
           suffixel={suffixel}
+          onApply={value => {
+            action('Selected', value);
+          }}
+          useStartOfDay={useStartOfDay}
+          useEndOfDay={useEndOfDay}
+          texts={{
+            apply: 'Apply',
+            inputPlaceholder: 'Select date',
+            clearTooltip: 'Clear',
+          }}
+          hideNow={hideNow}
+          readOnly={readOnly}
+          valueFormatOptions={valueFormatOptions}
+        />
+      </div>
+    );
+  },
+
+  inactiveDates: () => {
+    const showTime = boolean('Show time', true);
+    const disabled = boolean('Set disabled', false);
+    const prefixel = text('prefixel', 'Prefixel');
+    const suffixel = text('suffixel', 'Suffixel');
+    const hideNow = boolean('Hide now button', false);
+    const readOnly = boolean('Set readOnly', false);
+    const valueFormatOptions = object('valueFormatOptions', {});
+
+    const defaultHourProp = {
+      startOfDay: 'useStartOfDay',
+      endOfDay: 'useEndOfDay',
+      none: 'now'
+    };
+
+    const defaultHour = select('Default hour', defaultHourProp, 'now');
+    const useEndOfDay = defaultHour === 'useEndOfDay';
+    const useStartOfDay = defaultHour === 'useStartOfDay';
+
+    const disabledDates = (date?: Date): boolean => {
+      return Math.abs(dayjs().startOf('day').diff(dayjs(date).startOf('day'), "day")) > 2;
+    }
+    
+    return (
+      <div>
+        <DatePicker
+          disabled={disabled}
+          showTime={showTime}
+          prefixel={prefixel}
+          suffixel={suffixel}
+          disabledDates={disabledDates}
           onApply={value => {
             action('Selected', value);
           }}
