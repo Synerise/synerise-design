@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
-import { AutocompleteProps, StaticComponents } from 'Autocomplete.types';
 import Select from 'antd/lib/select';
 import { AutosizeInput } from '@synerise/ds-input';
+import { AutocompleteProps, StaticComponents } from './Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
 const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
