@@ -1,4 +1,16 @@
-import * as React from 'react';
+import React, {
+  cloneElement,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  ChangeEvent,
+  ComponentType,
+  ReactNode,
+  useMemo,
+  ReactElement,
+  FunctionComponent,
+} from 'react';
 import '@synerise/ds-core/dist/js/style';
 import { v4 as uuid } from 'uuid';
 import { InputProps, TextAreaProps } from 'antd/lib/input';
@@ -17,10 +29,10 @@ const VERTICAL_BORDER_OFFSET = 2;
 const enhancedInput =
   <P extends object>(
     WrappedComponent:
-      | React.FunctionComponent
-      | StyledComponent<React.ComponentType<InputProps | TextAreaProps | MaskedInputProps>, { error?: string }>,
+      | FunctionComponent
+      | StyledComponent<ComponentType<InputProps | TextAreaProps | MaskedInputProps>, { error?: string }>,
     { type }: { type: string }
-  ): React.ComponentType<P & EnhancedProps> =>
+  ): ComponentType<P & EnhancedProps> =>
   ({
     className,
     errorText,
@@ -40,21 +52,21 @@ const enhancedInput =
     suffixel,
     error,
     ...antdInputProps
-  }): React.ReactElement => {
-    const [charCount, setCharCount] = React.useState<number>(0);
+  }): ReactElement => {
+    const [charCount, setCharCount] = useState<number>(0);
 
     const hasErrorMessage = Boolean(errorText);
-    const id = React.useMemo(() => uuid(), []);
+    const id = useMemo(() => uuid(), []);
 
-    const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>();
-    const [inputAddonHeight, setInputAddonHeight] = React.useState<number>(0);
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
+    const [inputAddonHeight, setInputAddonHeight] = useState<number>(0);
 
-    React.useEffect(() => {
+    useEffect(() => {
       handleInputRef && handleInputRef(inputRef);
     }, [inputRef, handleInputRef]);
 
-    const handleChange = React.useCallback(
-      (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = useCallback(
+      (e: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>) => {
         const { value: newValue } = e.currentTarget;
 
         if (counterLimit && newValue.length > counterLimit) return;
@@ -64,24 +76,24 @@ const enhancedInput =
       [antdInputProps, counterLimit]
     );
 
-    const handleIconsClick = React.useCallback(() => {
+    const handleIconsClick = useCallback(() => {
       inputRef.current && inputRef.current.focus();
     }, [inputRef]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (counterLimit && antdInputProps.value && antdInputProps.value.toString().length > counterLimit) return;
 
       setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
     }, [antdInputProps.value, counterLimit]);
 
-    React.useEffect(() => {
+    useEffect(() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
     }, [inputRef]);
 
-    const renderInputComponent = React.useMemo(
-      () => (): React.ReactNode => {
+    const renderInputComponent = useMemo(
+      () => (): ReactNode => {
         const Component = autoResize ? AutosizeInput : WrappedComponent;
         return (
           <Component
@@ -134,7 +146,7 @@ const enhancedInput =
                 <Tooltip title={icon1Tooltip}>
                   <S.IconWrapper className={className}>
                     {icon1 &&
-                      React.cloneElement(icon1, {
+                      cloneElement(icon1, {
                         className: 'icon icon1',
                         ...(icon2 && { style: { marginRight: '4px' } }),
                       })}
@@ -142,7 +154,7 @@ const enhancedInput =
                 </Tooltip>
                 <Tooltip title={icon2Tooltip}>
                   <S.IconWrapper className={className}>
-                    {icon2 && React.cloneElement(icon2, { className: 'icon icon2' })}
+                    {icon2 && cloneElement(icon2, { className: 'icon icon2' })}
                   </S.IconWrapper>
                 </Tooltip>
               </S.IconsFlexContainer>
@@ -168,7 +180,7 @@ export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
 
-export const RawInput = (props: Props & (InputProps | TextAreaProps)): React.ReactElement => {
+export const RawInput = (props: Props & (InputProps | TextAreaProps)): ReactElement => {
   const { error } = props;
   return <S.AntdInput className={error ? 'error' : ''} {...props} />;
 };
