@@ -1,10 +1,10 @@
+import * as React from 'react';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import Factors from './../Factors';
 import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';
-import * as React from 'react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: FactorsProps = {
@@ -33,133 +33,132 @@ const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />
 
 describe('Factors component', () => {
   test('Should render', () => {
-    // ASSERT
     const { container } = renderWithProvider(RENDER_FACTORS());
 
-    // ASSERT
-    expect(container.querySelector('.ds-factors')).toBeTruthy();
-    expect(container.querySelector('.ds-factors-type-selector')).toBeTruthy();
+    expect(container.querySelector('.ds-factors')).toBeInTheDocument();
+    expect(container.querySelector('.ds-factors-type-selector')).toBeInTheDocument();
   });
 
   test('Should render with default type and placeholder', () => {
-    // ARRANGE
-    const { container, getByPlaceholderText } = renderWithProvider(RENDER_FACTORS());
+    const { container } = renderWithProvider(RENDER_FACTORS());
 
-    // ASSERT
-    expect(container.querySelector(`.ds-factors-${DEFAULT_PROPS.defaultFactorType}`)).toBeTruthy();
-    expect(getByPlaceholderText(FACTORS_TEXTS.valuePlaceholder)).toBeTruthy();
+    expect(container.querySelector(`.ds-factors-${DEFAULT_PROPS.defaultFactorType}`)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(FACTORS_TEXTS.valuePlaceholder)).toBeInTheDocument();
   });
 
   test('Should render with value', () => {
-    // ARRANGE
     const VALUE = 'DISPLAY_VALUE';
-    const { getByDisplayValue } = renderWithProvider(RENDER_FACTORS({ value: VALUE }));
+    renderWithProvider(RENDER_FACTORS({ value: VALUE }));
 
-    // ASSERT
-    expect(getByDisplayValue(VALUE)).toBeTruthy();
+    expect(screen.getByDisplayValue(VALUE)).toBeInTheDocument();
   });
 
   test('Should render without change factor type button', () => {
-    // ARRANGE
     const { container } = renderWithProvider(RENDER_FACTORS({ withoutTypeSelector: true }));
 
-    // ASSERT
-    expect(container.querySelector('.ds-factors-type-selector')).toBeFalsy();
+    expect(container.querySelector('.ds-factors-type-selector')).not.toBeInTheDocument();
   });
 
   test('Should display list of available factor types', () => {
-    // ARRANGE
-    const { container, queryByText } = renderWithProvider(RENDER_FACTORS());
+    const { container } = renderWithProvider(RENDER_FACTORS());
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
-    // ACT
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
-    // ASSERT
-    expect(queryByText('Text')).toBeTruthy();
-    expect(queryByText('Parameter')).toBeTruthy();
-    expect(queryByText('Number')).toBeTruthy();
-    expect(queryByText('Context parameter')).toBeTruthy();
-    expect(queryByText('Dynamic key')).toBeTruthy();
-    expect(queryByText('Array')).toBeTruthy();
-    expect(queryByText('Date')).toBeTruthy();
-    expect(queryByText('Formula')).toBeTruthy();
+    expect(screen.queryByText('Text')).toBeInTheDocument();
+    expect(screen.queryByText('Parameter')).toBeInTheDocument();
+    expect(screen.queryByText('Number')).toBeInTheDocument();
+    expect(screen.queryByText('Context parameter')).toBeInTheDocument();
+    expect(screen.queryByText('Dynamic key')).toBeInTheDocument();
+    expect(screen.queryByText('Array')).toBeInTheDocument();
+    expect(screen.queryByText('Date')).toBeInTheDocument();
+    expect(screen.queryByText('Formula')).toBeInTheDocument();
   });
 
   test('Should display list of factor types, without excluded ones', () => {
-    // ARRANGE
-    const { container, queryByText } = renderWithProvider(
+    const { container } = renderWithProvider(
       RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] })
     );
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
-    // ACT
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
 
-    // ASSERT
-    expect(queryByText('Text')).toBeTruthy();
-    expect(queryByText('Parameter')).toBeTruthy();
-    expect(queryByText('Number')).toBeFalsy();
-    expect(queryByText('Context parameter')).toBeTruthy();
-    expect(queryByText('Dynamic key')).toBeTruthy();
-    expect(queryByText('Array')).toBeTruthy();
-    expect(queryByText('Date')).toBeTruthy();
-    expect(queryByText('Formula')).toBeFalsy();
+    expect(screen.queryByText('Text')).toBeInTheDocument();
+    expect(screen.queryByText('Parameter')).toBeInTheDocument();
+    expect(screen.queryByText('Number')).not.toBeInTheDocument();
+    expect(screen.queryByText('Context parameter')).toBeInTheDocument();
+    expect(screen.queryByText('Dynamic key')).toBeInTheDocument();
+    expect(screen.queryByText('Array')).toBeInTheDocument();
+    expect(screen.queryByText('Date')).toBeInTheDocument();
+    expect(screen.queryByText('Formula')).not.toBeInTheDocument();
   });
 
   test('Should change selected factor type', () => {
-    // ARRANGE
     const selectFactorType = jest.fn();
-    const { container, queryByText } = renderWithProvider(RENDER_FACTORS({ setSelectedFactorType: selectFactorType }));
+    const { container } = renderWithProvider(RENDER_FACTORS({ setSelectedFactorType: selectFactorType }));
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
-    // ACT
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
-    const numberFactroType = queryByText('Number');
+    const numberFactroType = screen.queryByText('Number');
     numberFactroType && fireEvent.click(numberFactroType);
 
-    // ASSERT
     expect(selectFactorType).toBeCalledWith('number');
   });
 
   test('should call onActivate on Parameter factor', () => {
-    // ARRANGE
     const handleActivate = jest.fn();
     const { getByText } = renderWithProvider(
       RENDER_FACTORS({ selectedFactorType: 'parameter', onActivate: handleActivate })
     );
 
-    // ACT
     userEvent.click(getByText('Parameter'));
 
-    // ASSERT
     expect(handleActivate).toBeCalled();
   });
   test('should call onDeactivate Parameter factor', () => {
-    // ARRANGE
     const handleDeactivate = jest.fn();
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_FACTORS({ selectedFactorType: 'parameter', onDeactivate: handleDeactivate })
     );
 
-    // ACT
-    userEvent.click(getByText('Parameter'));
+    userEvent.click(screen.getByText('Parameter'));
     userEvent.click(document.body);
 
     expect(handleDeactivate).toBeCalled();
   });
   test('should call onDeactivate Text factor', () => {
-    // ARRANGE
     const handleDeactivate = jest.fn();
-    const { getByPlaceholderText } = renderWithProvider(
+    renderWithProvider(
       RENDER_FACTORS({ selectedFactorType: 'text', onDeactivate: handleDeactivate })
     );
 
-    // ACT
-    fireEvent.focus(getByPlaceholderText('Value'));
-    fireEvent.blur(getByPlaceholderText('Value'));
+    fireEvent.focus(screen.getByPlaceholderText('Value'));
+    fireEvent.blur(screen.getByPlaceholderText('Value'));
 
     expect(handleDeactivate).toBeCalled();
+  });
+  test('should render dateRange factor with date filter with slider UI', async () => {
+    renderWithProvider(
+      RENDER_FACTORS({ selectedFactorType: 'dateRange' })
+    );
+
+    userEvent.click(screen.getByText('Start date'));
+    
+    const nowBtn = screen.getByText('Now')
+    expect(nowBtn).toBeInTheDocument();
+    userEvent.click(nowBtn);
+
+    const filterAddOn = await screen.findByText(/filter/i);
+    expect(filterAddOn).toBeInTheDocument();
+    userEvent.click(filterAddOn);
+
+    const filterAdd = await screen.findByText('Add filter');
+    expect(filterAdd).toBeInTheDocument();
+    userEvent.click(filterAdd);
+
+    const slider = screen.getAllByRole('slider');
+    expect(slider.length).toBe(2);
+
   });
   test.todo('should show tooltip on mousehover on selected parameter');
 });
