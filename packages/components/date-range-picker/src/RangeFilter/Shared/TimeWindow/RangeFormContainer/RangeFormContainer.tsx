@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import RangeForm from './RangeForm/RangeForm';
+import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
 import { DayKey } from '../TimeWindow.types';
 import { Header } from '../Header/Header';
@@ -10,9 +12,10 @@ import { DateLimitMode } from './RangeForm/RangeForm.types';
 import { ActionsTexts } from '../RangeActions/RangeActions.types';
 import { Texts } from '../../../../DateRangePicker.types';
 import { DEFAULT_LIMIT_MODE } from '../TimeWindow';
+import * as S from './RangeFormContainer.styles';
 import type { RangeFormContainerProps, DateValue } from './RangeFormContainer.types';
 
-const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
+const RangeFormContainer = ({
   activeDays,
   disabled,
   days,
@@ -22,6 +25,7 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   onDayTimeChange,
   onMultipleDayTimeChange,
   hideHeader,
+  headerOptions = {},
   monthlyFilter,
   monthlyFilterPeriod,
   onRangeClear,
@@ -31,12 +35,13 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   texts = {},
   onChange,
   valueSelectionModes = ['Range', 'Hour'],
+  rangeDisplayMode,
   onModeChange,
   timePickerProps,
   renderSuffix,
   timeFormat,
   valueFormatOptions,
-}) => {
+}: RangeFormContainerProps) => {
   const dayValue = getDayValue(activeDays[0]);
 
   const [mode, setMode] = React.useState<DateLimitMode>(dayValue?.mode || valueSelectionModes[0] || DEFAULT_LIMIT_MODE);
@@ -66,8 +71,8 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const onStartChange = React.useCallback(
     (start?: Date): void => {
       const dayVal = getDayValue(activeDays[0]);
-      const end = dayVal.stop;
-      const value: DateValue = [start, end ? getDateFromDayValue(end, timeFormat) : undefined];
+      const { inverted, stop: end } = dayVal;
+      const value: DateValue = [start, end ? getDateFromDayValue(end, timeFormat) : undefined, Boolean(inverted)];
 
       if (activeDays.length > 1) {
         onMultipleDayTimeChange(value);
@@ -81,9 +86,9 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
   const onEndChange = React.useCallback(
     (end?: Date): void => {
       const dayVal = getDayValue(activeDays[0]);
-      const { start } = dayVal;
+      const { start, inverted } = dayVal;
 
-      const value: DateValue = [start ? getDateFromDayValue(start, timeFormat) : undefined, end];
+      const value: DateValue = [start ? getDateFromDayValue(start, timeFormat) : undefined, end, Boolean(inverted)];
 
       if (activeDays.length > 1) {
         onMultipleDayTimeChange(value);
@@ -94,12 +99,29 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
     [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]
   );
 
+  const toggleInverted = React.useCallback((): void => {
+    const dayVal = getDayValue(activeDays[0]);
+    const { start, inverted, stop: end } = dayVal;
+
+    const value: DateValue = [
+      start ? getDateFromDayValue(start, timeFormat) : undefined,
+      end ? getDateFromDayValue(end, timeFormat) : undefined,
+      Boolean(!inverted),
+    ];
+
+    if (activeDays.length > 1) {
+      onMultipleDayTimeChange(value);
+    } else {
+      onDayTimeChange(value, dayKeys as DayKey);
+    }
+  }, [activeDays, onMultipleDayTimeChange, onDayTimeChange, timeFormat, getDayValue, dayKeys]);
+
   const onExactHourSelect = React.useCallback(
     (value?: Date): void => {
       if (activeDays.length > 1) {
-        onMultipleDayTimeChange([value, value]);
+        onMultipleDayTimeChange([value, value, false]);
       } else {
-        onDayTimeChange([value, value], dayKeys as DayKey);
+        onDayTimeChange([value, value, false], dayKeys as DayKey);
       }
     },
     [activeDays, onMultipleDayTimeChange, onDayTimeChange, dayKeys]
@@ -124,10 +146,13 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
         valueSelectionModes={valueSelectionModes}
         valueFormatOptions={valueFormatOptions}
         timePickerProps={timePickerProps}
+        rangeDisplayMode={rangeDisplayMode}
+        isInvertedRange={Boolean(dayValue?.inverted)}
       />
     ),
     [
       timeFormat,
+      rangeDisplayMode,
       valueSelectionModes,
       handleModeChange,
       mode,
@@ -142,29 +167,57 @@ const RangeFormContainer: React.FC<RangeFormContainerProps> = ({
       valueFormatOptions,
     ]
   );
+
+  const invertedToggleLink = React.useMemo(() => {
+    return (
+      <S.InvertAction onClick={toggleInverted}>
+        <FormattedMessage id="DS.DATE-RANGE-PICKER.FILTER-INVERSE-SELECTION" defaultMessage="Inverse selection" />
+      </S.InvertAction>
+    );
+  }, [toggleInverted]);
+
   const suffix = React.useMemo(() => {
+    const { includeActions = true } = headerOptions;
     return renderSuffix ? (
       renderSuffix()
     ) : (
-      <RangeActions
-        onRangeClear={onRangeClear}
-        onRangeCopy={onRangeCopy}
-        onRangePaste={onRangePaste}
-        texts={texts as ActionsTexts}
-      />
+      <>
+        {rangeDisplayMode === RANGE_DISPLAY_MODES.SLIDER && invertedToggleLink}
+        {includeActions && (
+          <RangeActions
+            onRangeClear={onRangeClear}
+            onRangeCopy={onRangeCopy}
+            onRangePaste={onRangePaste}
+            texts={texts as ActionsTexts}
+          />
+        )}
+      </>
     );
-  }, [onRangePaste, onRangeClear, onRangeCopy, texts, renderSuffix]);
+  }, [
+    onRangePaste,
+    onRangeClear,
+    onRangeCopy,
+    texts,
+    renderSuffix,
+    rangeDisplayMode,
+    invertedToggleLink,
+    headerOptions,
+  ]);
+
   if (hideHeader) return rangeForm;
+  const { includeSummary = true } = headerOptions;
   return (
     <>
       <Header
         title={
-          <RangeSummary
-            dayKeys={dayKeys as DayKey[]}
-            getDayLabel={getDayLabel}
-            monthlyFilter={monthlyFilter}
-            monthlyFilterPeriod={monthlyFilterPeriod}
-          />
+          includeSummary && (
+            <RangeSummary
+              dayKeys={dayKeys as DayKey[]}
+              getDayLabel={getDayLabel}
+              monthlyFilter={monthlyFilter}
+              monthlyFilterPeriod={monthlyFilterPeriod}
+            />
+          )
         }
         suffix={suffix}
       />

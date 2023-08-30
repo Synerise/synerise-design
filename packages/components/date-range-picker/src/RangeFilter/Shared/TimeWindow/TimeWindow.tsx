@@ -1,8 +1,6 @@
-import * as React from 'react';
+import React, { ReactNode, PureComponent, FC, createRef, KeyboardEvent } from 'react';
 import { range } from 'lodash';
 import { FormattedMessage, injectIntl } from 'react-intl';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import dayjs from 'dayjs';
 
 import { withDataFormat } from '@synerise/ds-data-format';
@@ -29,17 +27,17 @@ import {
 
 export const DEFAULT_LIMIT_MODE: DateLimitMode = 'Range';
 
-class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
+class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
   // eslint-disable-next-line react/destructuring-assignment
   state: State = { activeDays: this.props.daily ? [0] : [], controlKeyPressed: false };
-  private wrapperRef = React.createRef<HTMLDivElement>();
+  private wrapperRef = createRef<HTMLDivElement>();
   static defaultProps: Partial<TimeWindowProps> = {
     days: {},
     numberOfDays: 1,
     showSelectAll: false,
     valueSelectionModes: ['Range', 'Hour'],
     dayTemplate: (index): { dayOfWeek: number } => ({ dayOfWeek: Number(index) + 1 }),
-    dayFormatter: (dayKey: DayKey): React.ReactNode => (
+    dayFormatter: (dayKey: DayKey): ReactNode => (
       <FormattedMessage id={`DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}`} />
     ),
   };
@@ -145,6 +143,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       restricted: true,
       start: value[0] !== undefined ? dayjs(value[0]).format(TIME_FORMAT) : DEFAULT_RANGE_START,
       stop: value[1] !== undefined ? dayjs(value[1]).format(TIME_FORMAT) : DEFAULT_RANGE_END,
+      inverted: Boolean(value[2]),
     });
   };
 
@@ -158,6 +157,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         day: k,
         start: dayjs(value[0]).format(TIME_FORMAT),
         stop: dayjs(value[1]).format(TIME_FORMAT),
+        inverted: Boolean(value[2]),
         restricted: true,
       };
     });
@@ -206,7 +206,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     };
   };
 
-  getDayLabel = (dayKey: DayKey, long?: boolean): string | object | React.ReactNode => {
+  getDayLabel = (dayKey: DayKey, long?: boolean): string | object | ReactNode => {
     const { dayFormatter, customDays } = this.props;
     let label;
     if (typeof dayKey === 'string' && customDays && customDays[dayKey]) {
@@ -224,9 +224,14 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         ? this.handleMultipleDayTimeChange([
             getDateFromDayValue(rangeClipboard.start),
             getDateFromDayValue(rangeClipboard.stop),
+            rangeClipboard?.inverted,
           ])
         : this.handleDayTimeChange(
-            [getDateFromDayValue(rangeClipboard.start), getDateFromDayValue(rangeClipboard.stop)],
+            [
+              getDateFromDayValue(rangeClipboard.start),
+              getDateFromDayValue(rangeClipboard.stop),
+              rangeClipboard?.inverted,
+            ],
             dayKeys
           );
     }
@@ -236,7 +241,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     const { onRangeCopy } = this.props;
     const { activeDays } = this.state;
     const dayValue = this.getDayValue(activeDays[0]);
-    onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop });
+    onRangeCopy && onRangeCopy({ start: dayValue.start, stop: dayValue.stop, inverted: dayValue.inverted });
   };
 
   replaceDaysIndexesForUSNotation = (daysIndexes: number[]): number[] => {
@@ -299,15 +304,17 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       this.handleMultipleDayTimeChange([
         getDateFromDayValue(DEFAULT_RANGE_START),
         getDateFromDayValue(DEFAULT_RANGE_END),
+        false,
       ]);
     }
     this.setState({ isRangeDefined: true });
   };
 
-  renderRangeForm = (dayKeys: DayKey | DayKey[]): React.ReactNode => {
+  renderRangeForm = (dayKeys: DayKey | DayKey[]): ReactNode => {
     const { activeDays } = this.state;
     const {
       hideHeader,
+      headerOptions,
       monthlyFilterPeriod,
       monthlyFilter,
       daily,
@@ -318,6 +325,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
       renderRangeFormSuffix,
       timePickerProps,
       disabled,
+      rangeDisplayMode,
     } = this.props;
     return (
       <RangeFormContainer
@@ -334,6 +342,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         onRangeCopy={disabled ? undefined : this.handleRangeCopy}
         onRangePaste={(): void => this.handleRangePaste(dayKeys as DayKey)}
         hideHeader={hideHeader}
+        headerOptions={headerOptions}
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
@@ -341,6 +350,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
         renderSuffix={renderRangeFormSuffix}
         timePickerProps={timePickerProps}
         valueSelectionModes={valueSelectionModes}
+        rangeDisplayMode={rangeDisplayMode}
       />
     );
   };
@@ -365,7 +375,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     return !activeDaysHaveDifferentRanges;
   };
 
-  handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+  handleKeyDown = (e: KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Shift') {
       this.setState(state => ({ ...state, controlKeyPressed: false, shiftKeyPressed: true }));
     }
@@ -374,7 +384,7 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
     }
   };
 
-  handleKeyUp = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+  handleKeyUp = (e: KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Control' || e.key === 'Meta') {
       this.setState(state => ({ ...state, controlKeyPressed: false }));
     }
@@ -438,4 +448,4 @@ class TimeWindowBase extends React.PureComponent<TimeWindowProps, State> {
   }
 }
 
-export default withDataFormat(injectIntl(TimeWindowBase)) as React.FC<TimeWindowProps>;
+export default withDataFormat(injectIntl(TimeWindowBase)) as FC<TimeWindowProps>;

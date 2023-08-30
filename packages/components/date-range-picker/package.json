@@ -46,7 +46,7 @@
     "@synerise/ds-manageable-list": "^0.26.2",
     "@synerise/ds-menu": "^0.17.16",
     "@synerise/ds-scrollbar": "^0.6.5",
-    "@synerise/ds-select": "^0.15.13",
+    "@synerise/ds-slider": "^0.12.23",
     "@synerise/ds-tags": "^0.8.8",
     "@synerise/ds-time-picker": "^0.8.2",
     "@synerise/ds-tooltip": "^0.14.2",

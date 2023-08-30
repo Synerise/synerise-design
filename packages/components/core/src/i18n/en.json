@@ -294,7 +294,8 @@
             "RANGE": "Range",
             "HOUR": "Hour",
             "SAVED-FILTERS": "Saved filters",
-            "CHANGE": "Change"
+            "CHANGE": "Change",
+            "FILTER-INVERSE-SELECTION": "Inverse selection"
         },
         "CARD-TAB": {
             "REMOVE": "Remove",

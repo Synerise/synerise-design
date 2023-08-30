@@ -5,7 +5,7 @@ import type { TimePickerProps } from '@synerise/ds-time-picker';
 import { RangeActions } from '../../Shared/TimeWindow/TimeWindow.types';
 import { DenormalizedFilter, FilterDefinition, MonthlySelectValue, WithDisabledProp } from '../../RangeFilter.types';
 import { WithTranslations } from '../../../DateRangePicker.types';
-import { DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { RangeDisplayMode, DateLimitMode } from '../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from '../../constants';
 
 export type MonthlyFilterProps = {
@@ -19,6 +19,7 @@ export type MonthlyFilterProps = {
   timePickerProps?: Partial<TimePickerProps>;
   rangeClipboard?: Partial<FilterDefinition>;
   valueSelectionModes?: DateLimitMode[];
+  rangeDisplayMode?: RangeDisplayMode;
 } & WithDisabledProp &
   Partial<RangeActions> &
   WithTranslations;

@@ -4,6 +4,7 @@ import { RangeFormContainerProps } from '../RangeFormContainer.types';
 import { WithDisabledProp } from '../../../../RangeFilter.types';
 
 export type DateLimitMode = 'Hour' | 'Range';
+export type RangeDisplayMode = 'timepicker' | 'slider';
 export type RangeFormProps = {
   mode: DateLimitMode;
   onModeChange: (mode: DateLimitMode) => void;
@@ -15,6 +16,8 @@ export type RangeFormProps = {
   onExactHourSelect: (value?: Date) => void;
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
+  rangeDisplayMode?: RangeDisplayMode;
+  isInvertedRange?: boolean;
 } & WithTranslations &
   WithDisabledProp &
   Pick<RangeFormContainerProps, 'timePickerProps' | 'valueFormatOptions'>;

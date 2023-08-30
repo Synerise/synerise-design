@@ -129,7 +129,7 @@ const Monthly: React.FC<MonthlyProps> = ({
   const handleDayTimeChange = React.useCallback(
     (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
       const updatedSchedule = value;
-      const [start, end] = dayValue;
+      const [start, end, inverted] = dayValue;
 
       if (dayKey instanceof Array) {
         dayKey.forEach(day => {
@@ -138,6 +138,7 @@ const Monthly: React.FC<MonthlyProps> = ({
             restricted: true,
             start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
             stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
+            inverted: Boolean(inverted),
           };
         });
       } else {
@@ -146,6 +147,7 @@ const Monthly: React.FC<MonthlyProps> = ({
           restricted: true,
           start: start ? dayjs(start).format(DEFAULT_TIME_FORMAT) : undefined,
           stop: end ? dayjs(end).format(DEFAULT_TIME_FORMAT) : undefined,
+          inverted: Boolean(inverted),
         };
       }
 

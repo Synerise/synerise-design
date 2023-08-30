@@ -86,7 +86,6 @@ const Wrapper = (props: SliderProps) => {
     [minMark]: minMark,
     [maxMark]: maxMark,
   };
-  
   return (
     <Slider
       {...props}

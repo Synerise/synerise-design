@@ -9,7 +9,10 @@ import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Props as FooterProps } from './Footer/Footer.types';
 import { RangePickerInputProps } from './RangePickerInput/RangePickerInput.types';
-import { DateLimitMode } from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import {
+  DateLimitMode,
+  RangeDisplayMode,
+} from './RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 
 export { DateRange } from './date.types';
 
@@ -84,6 +87,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   renderPopoverTrigger?: (...args: any) => JSX.Element;
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];
+  filterRangeDisplayMode?: RangeDisplayMode;
 }
 
 /**

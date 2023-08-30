@@ -13,6 +13,7 @@ const WeeklyFilter = ({
   rangeClipboard,
   intl,
   valueSelectionModes,
+  rangeDisplayMode,
   texts,
 }: WeeklyFilterProps): JSX.Element => {
   const handleDayFormatter = React.useCallback(
@@ -43,6 +44,7 @@ const WeeklyFilter = ({
         onRangeClear={onRangeClear}
         rangeClipboard={rangeClipboard}
         valueSelectionModes={valueSelectionModes}
+        rangeDisplayMode={rangeDisplayMode}
       />
     </S.WeeklyFilterContainer>
   );

@@ -269,6 +269,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       disabled,
       renderRangeFormSuffix,
       maxEntries,
+      rangeDisplayMode,
     } = this.props;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     const { min = 1 } = this.props as any;
@@ -345,6 +346,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                     timePickerProps={timePickerProps}
                     {...this.getTimeWindowSettings(item)}
                     monthlyFilter
+                    rangeDisplayMode={rangeDisplayMode}
                   />
                 </S.ContentWrapper>
               ) : (
