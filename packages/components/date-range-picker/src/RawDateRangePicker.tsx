@@ -261,6 +261,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
       allowedFilterTypes,
       disableAbsoluteTimepickerInRelative = false,
       filterValueSelectionModes,
+      filterRangeDisplayMode,
       showNowButton = true,
     } = this.props;
     const { value, mode } = this.state;
@@ -282,6 +283,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
             allowedFilterTypes={allowedFilterTypes}
             onFilterSave={onFilterSave}
             valueSelectionModes={filterValueSelectionModes}
+            rangeDisplayMode={filterRangeDisplayMode}
           />
         </Container>
       );

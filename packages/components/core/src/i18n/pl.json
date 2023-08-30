@@ -250,7 +250,8 @@
       "RANGE": "Zakres",
       "HOUR": "Godzina",
       "SAVED-FILTERS": "Zapisane filtry",
-      "CHANGE": "Zmień"
+      "CHANGE": "Zmień",
+      "FILTER-INVERSE-SELECTION": "Odwróć zakres"
     },
     "CARD-TAB": {
       "RENAME": "Zmień nazwę",

@@ -7,7 +7,7 @@ import type { WithDataFormatProps } from '@synerise/ds-data-format';
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
 import { GridTexts } from './Grid/Grid.types';
-import { DateLimitMode } from './RangeFormContainer/RangeForm/RangeForm.types';
+import { DateLimitMode, RangeDisplayMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
 export type DayKey = number | string;
 
@@ -52,6 +52,10 @@ export type TimeWindowProps = {
   dayTemplate: (day: DayKey) => object;
   dayFormatter: (day: DayKey, long?: boolean) => string | React.ReactNode;
   hideHeader?: boolean;
+  headerOptions?: {
+    includeSummary?: boolean;
+    includeActions?: boolean;
+  };
   onCheckDay?: (dayKey: DayKey) => void;
   onSelectAll?: () => void;
   onUnselectAll?: () => void;
@@ -62,6 +66,7 @@ export type TimeWindowProps = {
   daily?: boolean;
   rangeClipboard: Partial<FilterDefinition>;
   valueSelectionModes: DateLimitMode[];
+  rangeDisplayMode?: RangeDisplayMode;
   texts?: TimeWindowTexts & GridTexts;
   renderRangeFormSuffix?: () => React.ReactNode;
   timePickerProps?: Partial<TimePickerProps>;

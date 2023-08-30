@@ -11,7 +11,7 @@ import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/
 import Monthly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Monthly/Monthly';
 import RangeFilter from '@synerise/ds-date-range-picker/dist/RangeFilter/RangeFilter';
 import { TYPES } from '@synerise/ds-date-range-picker/dist/RangeFilter/constants';
-import { DateLimitMode, AvailableFilterTypes } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
+import { DateLimitMode, RangeDisplayMode } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { TimePickerProps } from '@synerise/ds-time-picker';
 import {
   DEFAULT_RANGE_END,
@@ -276,12 +276,16 @@ const stories = {
     const twice = boolean('Render twice', false);
     const customTrigger = boolean('Custom trigger', false);
     const readOnly = boolean('Set readOnly', false);
-    let filterValueModes;
+    let filterValueModes,
+      filterRangeDisplayAsSlider;
     if (showFilter) {
-      filterValueModes = {
-        Range: boolean('Filter mode: range', true),
-        Hour: boolean('Filter mode: hour', true),
-      };
+      filterRangeDisplayAsSlider = boolean('Display range filter as slider', true);
+      if (!filterRangeDisplayAsSlider) {
+        filterValueModes = {
+          Range: boolean('Filter mode: range', true),
+          Hour: boolean('Filter mode: hour', true),
+        };
+      }
     }
     const getFilterSelectionModes = (modesObject: object) => {
       const keys = Object.keys(modesObject);
@@ -299,6 +303,7 @@ const stories = {
           showTime={showTime}
           value={value}
           relativeFuture
+          filterRangeDisplayMode={filterRangeDisplayAsSlider ? 'slider' : 'timepicker'}
           forceAbsolute={forceAbsolute}
           showRelativePicker={showRelativePicker}
           showFilter={showFilter}
@@ -330,11 +335,16 @@ const stories = {
   lifetimeByDefault: () => {
     const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME);
     const DateRangePicker = injectIntl(RawDateRangePicker);
+    
+    const filterRangeDisplayAsSlider = boolean('Display range filter as slider', true);
+    
+
     return (
       <DateRangePicker
         showRelativePicker
         showTime
         showFilter
+        filterRangeDisplayMode={filterRangeDisplayAsSlider ? 'Slider' : 'TimePicker'}
         showNowButton={boolean('Show NOW button', true)}
         relativeModes={['PAST', 'FUTURE', 'SINCE']}
         texts={texts}

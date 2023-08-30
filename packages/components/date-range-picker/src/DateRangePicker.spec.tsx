@@ -17,8 +17,14 @@ import Weekly from './RangeFilter/Filters/new/Weekly/Weekly';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
 jest.mock('uuid', () => ({ v4: () => '123456789' }));
-
-const FILTER = {
+const DAILY_FILTER = {
+  from: "00:00:00.000",
+  to: "23:59:59.999",
+  type: "DAILY",
+  inverted: false,
+  nestingType: "IN_PLACE"
+}
+const WEEKLY_FILTER = {
   type: 'WEEKLY',
   nestingType: 'IN_PLACE',
   days: [
@@ -31,6 +37,7 @@ const FILTER = {
     },
   ],
 };
+
 const MONTHLY_FILTER = {
   "type": "MONTHLY",
   "nestingType": "IN_PLACE",
@@ -72,8 +79,12 @@ const ABSOLUTE_VALUE_WITH_FILTER = {
   type: ABSOLUTE,
   from: '2018-10-09T00:00:00+02:00',
   to: '2018-12-08T23:59:59+01:00',
-  filter: { ...FILTER }
+  filter: { ...WEEKLY_FILTER }
 };
+const ABSOLUTE_VALUE_WITH_DAILY_FILTER = {
+  ...ABSOLUTE_VALUE,
+  filter: { ...DAILY_FILTER }
+}
 const ABSOLUTE_VALUE_WITH_MONTHLY_FILTER = {
   ...ABSOLUTE_VALUE,
   filter: { ...MONTHLY_FILTER }
@@ -84,7 +95,7 @@ const RELATIVE_VALUE = RELATIVE_PRESETS[1];
 const LIFETIME_VALUE = ABSOLUTE_PRESETS.find(event => event.key === ALL_TIME);
 const LIFETIME_VALUE_WITH_FILTER = {
   ...LIFETIME_VALUE,
-  filter: { ...FILTER }
+  filter: { ...WEEKLY_FILTER }
 }
 
 const displayDateContainerClass = 'ds-date-range-picker-value';
@@ -795,6 +806,92 @@ describe('DateRangePicker', () => {
     userEvent.click(getDayButton());
     userEvent.click(applyButton);
     expect(getLastCallParams().filter).toBe(ABSOLUTE_VALUE_WITH_FILTER.filter);
+  });
+  it('should render filter as slider', async () => {
+    const onApply = jest.fn();
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        showRelativePicker={false}
+        forceAbsolute={false}
+        filterRangeDisplayMode='slider'
+        value={ABSOLUTE_VALUE_WITH_MONTHLY_FILTER as DateRange}
+        texts={texts}
+      />
+    );
+    
+    const filterAddOn = screen.getByText(texts.filter);
+    expect(filterAddOn).toBeInTheDocument();
+    
+    userEvent.click(filterAddOn);
+
+    const filterButton = screen.getByText('Change');
+    expect(filterButton).toBeInTheDocument();
+    
+    userEvent.click(filterButton);
+
+    const filterLabel = await screen.findByText('Everyday')
+    expect(filterLabel).toBeInTheDocument();
+
+    userEvent.click(filterLabel);
+    
+    const slider = screen.getAllByRole('slider');
+    expect(slider.length).toBeGreaterThan(0);
+    
+  });
+
+  it('should allow inverted filter in slider mode', async () => {
+    const onApply = jest.fn();
+    const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
+    renderWithProvider(
+      <RawDateRangePicker
+        showTime
+        onApply={onApply}
+        showFilter={true}
+        showRelativePicker={false}
+        forceAbsolute={false}
+        filterRangeDisplayMode='slider'
+        value={ABSOLUTE_VALUE_WITH_DAILY_FILTER as DateRange}
+        texts={texts}
+      />
+    );
+    
+    const filterAddOn = screen.getByText(texts.filter);
+    expect(filterAddOn).toBeInTheDocument();
+    
+    userEvent.click(filterAddOn);
+
+    const filterButton = screen.getByText('Change');
+    expect(filterButton).toBeInTheDocument();
+    
+    userEvent.click(filterButton);
+
+    const filterLabel = await screen.findByText('Everyday')
+    expect(filterLabel).toBeInTheDocument();
+
+    userEvent.click(filterLabel);
+    
+    const inverseLink = screen.getByText('Inverse selection');
+    expect(inverseLink).toBeInTheDocument();
+
+    userEvent.click(inverseLink);
+
+    
+    const applyFilter = screen.getByTestId('range-filter-apply-button');
+    expect(applyFilter).toBeInTheDocument();
+
+    userEvent.click(applyFilter);
+    
+    const applyRange = screen.getByTestId('date-range-picker-apply-button');
+    expect(applyRange).toBeInTheDocument();
+
+    userEvent.click(applyRange);
+
+    expect(onApply).toHaveBeenCalled();
+    expect(getLastCallParams().filter.inverted).toBe(true);
+    
   });
   it('clicking "more" should toggle relative ranges dropdown', async () => {
     const onApply = jest.fn();

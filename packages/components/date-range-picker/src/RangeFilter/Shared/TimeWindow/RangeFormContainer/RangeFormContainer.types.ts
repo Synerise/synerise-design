@@ -5,9 +5,9 @@ import type { DateToFormatOptions } from '@synerise/ds-data-format';
 
 import { DayKey, RangeActions, TimeWindowProps, TimeWindowTexts } from '../TimeWindow.types';
 import { FilterDefinition, WithDisabledProp } from '../../../RangeFilter.types';
-import { DateLimitMode } from './RangeForm/RangeForm.types';
+import { DateLimitMode, RangeDisplayMode } from './RangeForm/RangeForm.types';
 
-export type DateValue = [Date | undefined, Date | undefined];
+export type DateValue = [Date | undefined, Date | undefined, boolean | undefined];
 
 export type RangeFormContainerProps = {
   activeDays: DayKey[];
@@ -19,6 +19,7 @@ export type RangeFormContainerProps = {
   onModeChange?: (mode: DateLimitMode) => void;
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
+  rangeDisplayMode?: RangeDisplayMode;
   texts: Partial<TimeWindowTexts>;
   /**
    * @deprecated use `valueFormatOptions` instead
@@ -27,6 +28,9 @@ export type RangeFormContainerProps = {
   valueFormatOptions?: DateToFormatOptions;
   timePickerProps?: Partial<TimePickerProps>;
   renderSuffix?: () => React.ReactNode;
-} & Pick<TimeWindowProps, 'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'onChange' | 'days'> &
+} & Pick<
+  TimeWindowProps,
+  'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'headerOptions' | 'onChange' | 'days'
+> &
   WithDisabledProp &
   Partial<RangeActions>;
