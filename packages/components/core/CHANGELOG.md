@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.13...@synerise/ds-core@0.40.0) (2023-08-30)
+
+
+### Features
+
+* **date-range-picker:** range filter as slider with "inverted" toggler ([6ae7d9e](https://github.com/synerise/synerise-design/commit/6ae7d9e27925c4fee502ed8fac84806836e5e727))
+
+
+
+
+
 ## [0.39.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.39.12...@synerise/ds-core@0.39.13) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-core

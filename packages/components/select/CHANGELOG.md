@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.13...@synerise/ds-select@0.15.14) (2023-08-30)
+
+
+### Bug Fixes
+
+* **select:** fixed styles for select multiple mode ([644521f](https://github.com/synerise/synerise-design/commit/644521f05265340624f5ae3cc3a6744309cf62ac))
+
+
+
+
+
 ## [0.15.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.12...@synerise/ds-select@0.15.13) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-select

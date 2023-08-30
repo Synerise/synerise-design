@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.23.1...@synerise/ds-date-range-picker@0.24.0) (2023-08-30)
+
+
+### Features
+
+* **date-range-picker:** range filter as slider with "inverted" toggler ([6ae7d9e](https://github.com/Synerise/synerise-design/commit/6ae7d9e27925c4fee502ed8fac84806836e5e727))
+
+
+
+
+
 ## [0.23.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.23.0...@synerise/ds-date-range-picker@0.23.1) (2023-08-25)
 
 

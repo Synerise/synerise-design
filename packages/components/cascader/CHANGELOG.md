@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.73](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.4.72...@synerise/ds-cascader@0.4.73) (2023-08-30)
+
+**Note:** Version bump only for package @synerise/ds-cascader
+
+
+
+
+
 ## [0.4.72](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.4.71...@synerise/ds-cascader@0.4.72) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-cascader

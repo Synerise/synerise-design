@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.2...@synerise/ds-time-picker@0.8.3) (2023-08-30)
+
+
+### Bug Fixes
+
+* **time-picker:** changed colour of active cell state ([a1d7672](https://github.com/Synerise/synerise-design/commit/a1d76722b77874231dca7ce0821ad752427edc2d))
+
+
+
+
+
 ## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.1...@synerise/ds-time-picker@0.8.2) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.12.23...@synerise/ds-slider@0.12.24) (2023-08-30)
+
+
+### Bug Fixes
+
+* **slider:** code review feedback + story fixes ([d06667c](https://github.com/Synerise/synerise-design/commit/d06667ce841b4c1ce2af0cb4cfd58fe81ec2a1ea))
+* **slider:** fixed styles in allocation slider ([3c515ea](https://github.com/Synerise/synerise-design/commit/3c515eada4001013b3b37a44dbd8d44bbb89f64a))
+* **slider:** style segments in segmented multivalue slider ([45704a7](https://github.com/Synerise/synerise-design/commit/45704a7feb04fcf0e74acc14d49cdd95953f6834))
+
+
+
+
+
 ## [0.12.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.12.22...@synerise/ds-slider@0.12.23) (2023-08-22)
 
 **Note:** Version bump only for package @synerise/ds-slider
