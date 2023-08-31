@@ -13,6 +13,7 @@ import { ItemProps } from './Item/Item.types';
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-list-ghost-element',
   className: 'sortable-list',
+  handle: '.item-drag-handle',
   animation: 150,
   group: 'column-manager',
   forceFallback: true,
