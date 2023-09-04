@@ -48,8 +48,9 @@ const Step = ({
       hasChildren={Boolean(children)}
       size={size}
       orientation={orientation}
+      clickable={Boolean(onClick)}
     >
-      <S.StepWrapper onClick={handleClick} clickable={Boolean(onClick)}>
+      <S.StepWrapper onClick={handleClick}>
         <Tooltip trigger={['hover']} title={label}>
           <S.StepPrefix noMargin={!label}>
             {done && !validated ? (

@@ -66,12 +66,11 @@ export const StepLabel = styled.span`
   width: 100%;
 `;
 
-export const StepWrapper = styled.div<{ clickable: boolean }>`
+export const StepWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  cursor: ${(props): string => (props.clickable ? 'pointer' : 'default')};
 `;
 
 export const StepContent = styled.div`
@@ -96,6 +95,7 @@ export const Step = styled.div<{
   hasChildren: boolean;
   size: StepperSize;
   orientation: StepperOrientation;
+  clickable: boolean;
 }>`
   display: flex;
   flex-direction: row;
@@ -158,7 +158,7 @@ export const Step = styled.div<{
     return false;
   }};
 
-  ${(props): FlattenSimpleInterpolation => {
+  ${(props): FlattenSimpleInterpolation | false => {
     if (props.validated)
       return css`
         ${StepPrefix} {
@@ -212,22 +212,28 @@ export const Step = styled.div<{
           }
         }
       `;
-    return css`
-      &:hover {
-        ${StepPrefix} {
-          border-color: ${props.theme.palette['grey-700']};
+    return (
+      props.clickable &&
+      css`
+        &:hover {
+          ${StepPrefix} {
+            border-color: ${props.theme.palette['grey-700']};
+          }
+          ${StepNumber},
+          ${StepLabel} {
+            color: ${props.theme.palette['grey-700']};
+            font-weight: 400;
+          }
         }
-        ${StepNumber},
-        ${StepLabel} {
-          color: ${props.theme.palette['grey-700']};
-          font-weight: 400;
-        }
-      }
-    `;
+      `
+    );
   }};
   &:last-of-type {
     ${StepContent} {
       border-left: 0;
     }
+  }
+  ${StepWrapper} {
+    cursor: ${(props): string => (props.clickable ? 'pointer' : 'default')};
   }
 `;
