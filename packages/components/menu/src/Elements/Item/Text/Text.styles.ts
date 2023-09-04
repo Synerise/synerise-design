@@ -99,7 +99,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     ${(props): string =>
       props.disabled
         ? `
-    & > * {
+    & > :active {
        pointer-events: none
     }`
         : ''}
