@@ -93,7 +93,7 @@ export default class YearPicker extends React.PureComponent<YearPickerProps, Yea
           onLongNext={this.handleLongNext}
           key="head"
         />
-        <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />,
+        <GridPicker selectedKey={selectedKey} cells={cells} onCellClick={this.handleCellClick} key="body" />
       </>
     );
   }
