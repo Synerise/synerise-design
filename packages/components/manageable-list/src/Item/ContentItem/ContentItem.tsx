@@ -120,7 +120,7 @@ const ContentItem: React.FC<ContentItemProps> = ({
       >
         <S.ItemHeaderPrefix>
           {draggable && (
-            <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
+            <S.DraggerWrapper className="item-drag-handle" disabled={Boolean(changeOrderDisabled)}>
               <Icon size={24} component={<DragHandleM />} />
             </S.DraggerWrapper>
           )}
