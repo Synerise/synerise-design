@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import { BadgeProps } from 'Badge.types';
+import { BadgeProps } from './Badge.types';
 import AntdBadge from './Badge.styles';
 
 const Badge: React.FC<BadgeProps> = ({

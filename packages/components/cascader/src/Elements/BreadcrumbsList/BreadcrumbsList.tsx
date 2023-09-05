@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
-import { Path } from 'Cascader.types';
 import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+import { Path } from '../../Cascader.types';
 import { BreadcrumbsListProps } from './BreadcrumbsList.types';
 
 const DEFAULT_VISIBLE_ROWS = 6;

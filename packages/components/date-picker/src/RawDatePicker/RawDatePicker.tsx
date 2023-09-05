@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Props, State, Texts } from 'DatePicker.types';
 import { FormattedMessage } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import Footer from '../Elements/Footer/Footer';
 import * as S from '../DatePicker.styles';
+import { Props, State, Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
 import MonthPicker from '../Elements/MonthPicker/MonthPicker';
 import YearPicker from '../Elements/YearPicker/YearPicker';
