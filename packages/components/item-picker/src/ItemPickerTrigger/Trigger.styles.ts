@@ -127,6 +127,7 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   background-color: ${(props): string => {
     if (props.disabled) return props.theme.palette['grey-100'];
     if (props.error) return props.theme.palette['red-050'];
+    if (props.size === 'large') return 'transparent';
     return props.theme.palette.white;
   }};
   
