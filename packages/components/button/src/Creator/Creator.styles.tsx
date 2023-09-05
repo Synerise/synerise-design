@@ -96,7 +96,7 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     padding: 0;
     border-radius: 3px;
     border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
-    background: ${({ theme }): string => theme.palette.white};
+    background: transparent;
     transition: all 0.3s ease;
     justify-content: ${(props): string => (props.withLabel ? `flex-start` : 'center')};
     align-items: center;
