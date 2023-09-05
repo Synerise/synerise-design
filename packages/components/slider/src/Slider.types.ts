@@ -1,6 +1,6 @@
 import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 import * as React from 'react';
-import { AllocationConfig } from 'Allocation/Allocation.types';
+import { AllocationConfig } from './Allocation/Allocation.types';
 
 type AntSliderProps = SliderSingleProps | SliderRangeProps;
 

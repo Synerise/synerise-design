@@ -2,12 +2,12 @@ import * as React from 'react';
 import '@synerise/ds-core/dist/js/style';
 
 import classNames from 'classnames';
-import { DSTableProps } from 'Table.types';
 import Button from '@synerise/ds-button';
 import Icon, { ChildRowLeftDownM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { v4 as uuid } from 'uuid';
 import DSTable from '../Table';
+import { DSTableProps } from '../Table.types';
 import * as S from './TreeTable.styles';
 
 const INDENT_SIZE = 42;

@@ -20,7 +20,7 @@ const lodash = require('lodash');
 lodash.debounce = jest.fn(fn => fn);
 
 const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditions[P]> } = {
-  id: uuid(),
+  id: 'e5b71a06-0eb2-434f-9411-0259b1804862',
   parameter: {
     value: '',
   },
@@ -30,7 +30,7 @@ const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditio
   factor: {
     selectedFactorType: '',
     defaultFactorType: 'text',
-    value: `text-${uuid()}`,
+    value: `text-6e35703c-7d60-4662-8803-4b346dccafed`,
   },
 };
 const DEFAULT_STEP: ConditionStep = {

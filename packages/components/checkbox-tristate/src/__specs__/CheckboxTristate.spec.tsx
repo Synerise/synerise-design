@@ -1,8 +1,8 @@
 import * as React from 'react';
-import CheckboxTristate, { checkedValue, nextCheckedValues } from '../index';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
-import { CheckboxTristateChangeEvent } from 'CheckboxTristate.types';
+import CheckboxTristate, { checkedValue, nextCheckedValues } from '../index';
+import { CheckboxTristateChangeEvent } from '../CheckboxTristate.types';
 
 const SELECTOR_FALSE = '.ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-indeterminate)';
 const SELECTOR_TRUE = '.ant-checkbox-checked:not(.ant-checkbox-indeterminate)';

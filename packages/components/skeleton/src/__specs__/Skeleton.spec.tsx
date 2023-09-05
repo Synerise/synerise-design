@@ -1,6 +1,6 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import * as React from 'react';
-import Skeleton from '@synerise/ds-skeleton';
+import Skeleton from '../index';
 
 describe('Skeleton', () => {
   it('should render', function() {

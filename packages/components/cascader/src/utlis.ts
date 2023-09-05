@@ -1,4 +1,4 @@
-import { Category, Path } from 'Cascader.types';
+import { Category, Path } from './Cascader.types';
 
 export const searchCategoryWithId = (category: Category, id: string | number): Category | undefined => {
   if (id === undefined) {

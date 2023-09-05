@@ -39,11 +39,19 @@
     "@synerise/ds-icon": "^0.58.0",
     "@synerise/ds-menu": "^0.17.16",
     "@synerise/ds-radio": "^0.11.41",
+    "@synerise/ds-tooltip": "^0.14.2",
+    "@synerise/ds-typography": "^0.12.8",
     "@types/numeral": "^0.0.28",
-    "numeral": "^2.0.6"
+    "lodash": "^4.17.19",
+    "numeral": "^2.0.6",
+    "react-intl": "3.12.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 < 17.0.0"
+    "react": ">=16.9.0 < 17.0.0",
+    "styled-components": "5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "5.1.1"
   }
 }

@@ -8,7 +8,7 @@ import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 import { AvatarProps } from '@synerise/ds-avatar/dist/Avatar.types';
 
-import { DataSource } from 'AvatarGroup.types';
+import { DataSource } from '../AvatarGroup.types';
 import * as S from './GroupModal.styles';
 import { GroupModalProps } from './GroupModal.types';
 
