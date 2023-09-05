@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.35](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.34...@synerise/ds-stepper@0.3.35) (2023-09-05)
+
+
+### Bug Fixes
+
+* **stepper:** removes hover styles if no onclick prop ([edb9dd0](https://github.com/Synerise/synerise-design/commit/edb9dd0139bed7247d4051b87185bda095773d5f))
+
+
+
+
+
 ## [0.3.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.33...@synerise/ds-stepper@0.3.34) (2023-08-30)
 
 **Note:** Version bump only for package @synerise/ds-stepper

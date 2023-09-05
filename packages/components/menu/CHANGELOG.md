@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.16...@synerise/ds-menu@0.17.17) (2023-09-05)
+
+
+### Bug Fixes
+
+* **menu:** allow hover on disabled items ([588a086](https://github.com/Synerise/synerise-design/commit/588a086e2eda5e7e204aa72a223acb97b61adf45))
+
+
+
+
+
 ## [0.17.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.15...@synerise/ds-menu@0.17.16) (2023-08-22)
 
 **Note:** Version bump only for package @synerise/ds-menu
