@@ -49,7 +49,7 @@ const renderWithHighlightedText = (highlight, item): React.ReactNode => {
   return item;
 };
 
-const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '400px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
 const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
@@ -220,7 +220,7 @@ const stories = {
         onChange={e => setValue(e.target.value)}
         value={value}
         error={boolean('Set input error', false)}
-        style={{ width: '45%' }}
+        
         mask={inputOptionMask[dateMaskKey]}
       />
     );
@@ -228,7 +228,6 @@ const stories = {
       <Select
         size={size}
         tooltip={text('Tooltip', 'This is example tooltip!')}
-        style={{ width: '50%' }}
         defaultValue="post"
         error={boolean('Set select error', false)}
       >
@@ -241,7 +240,6 @@ const stories = {
         className={'white'}
         size={size}
         tooltip={text('Tooltip', 'This is example tooltip!')}
-        style={{ width: '50%' }}
         defaultValue="post"
         error={boolean('Set select error', false)}
       >
@@ -255,7 +253,6 @@ const stories = {
         placeholder={text('Placeholder', 'Placeholder')}
         disabled={boolean('Disabled', false)}
         error={boolean('Set input error', false)}
-        style={{ width: '50%' }}
       />
     );
     const inputNumber = (
@@ -264,7 +261,6 @@ const stories = {
         placeholder={text('Placeholder', 'Placeholder')}
         disabled={boolean('Disabled', false)}
         error={boolean('Set input error', false)}
-        style={{ width: '50%' }}
         raw
       />
     );
@@ -307,7 +303,7 @@ const stories = {
         description={text('Description', 'Description')}
         errors={array('Errors', [])}
         resetMargin={boolean('ResetMargin', false)}
-        compact
+        compact={boolean('Compact layout', false)}
       >
         {inputGroupElementsLeft[leftSideComponent]}
         {inputGroupElementsRight[rightSideComponent]}
@@ -400,7 +396,7 @@ const stories = {
         size={size}
         value={value}
         error={boolean('Set input error', false)}
-        style={{ width: '45%' }}
+        
         mask={inputOptionMask[dateMask]}
       />
     );
