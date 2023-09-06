@@ -1,8 +1,10 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
+import { ButtonProps } from '@synerise/ds-button';
 
 export type ActionAreaProps = {
-  label?: string | React.ReactNode;
-  description: string | React.ReactNode;
+  label?: ReactNode;
+  description: ReactNode;
   action: () => void;
-  actionLabel: string | React.ReactNode;
+  actionLabel: ReactNode;
+  buttonProps?: Partial<ButtonProps>;
 };
