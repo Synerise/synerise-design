@@ -1,10 +1,14 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { MediumText, SmallText, XSmallText } from './CommonElements';
+
+import { Ellipsis, EllipsisProps } from './Ellipsis';
 
 export type TextSize = 'medium' | 'small' | 'xsmall';
 
 type TextProps = {
   size?: TextSize;
+  ellipsis?: EllipsisProps;
+  children?: ReactNode;
 };
 
 const MapSizeToComponent = {
@@ -14,7 +18,11 @@ const MapSizeToComponent = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const Text: React.FC<TextProps> = ({ size = 'medium', children }) => {
+export const Text = ({ size = 'medium', children, ellipsis }: TextProps) => {
   const Component = MapSizeToComponent[size];
-  return <Component className="ds-text">{children}</Component>;
+  const content = <Component className="ds-text">{children}</Component>;
+  if (ellipsis === undefined) {
+    return content;
+  }
+  return <Ellipsis {...ellipsis}>{content}</Ellipsis>;
 };

@@ -6,6 +6,13 @@ export const Description = styled.div<{ disabled?: boolean }>`
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
 `;
 
+export const EllipsisText = styled.div`
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
   margin-bottom: 4px;

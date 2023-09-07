@@ -32,6 +32,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-tooltip": "0.14.2",
     "classnames": "2.2.6"
   },
   "peerDependencies": {
