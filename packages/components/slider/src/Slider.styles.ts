@@ -48,6 +48,7 @@ export const applyTooltipStyles = (props: ThemeProps & DsSliderProps & SliderSty
     font-size: 13px;
     padding: 3px 7px;
     user-select: none;
+    white-space: nowrap;
   }
   ${
     props.disabled &&
