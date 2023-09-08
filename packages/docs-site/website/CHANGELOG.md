@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.4](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.3...docs@0.29.4) (2023-09-08)
+
+
+### Bug Fixes
+
+* **manageable-list:** updated title to toggle onclick ([69eb232](http://gitlab.synerise.com/Frontend/synerise-design/commit/69eb232b29c5e3d35b6bb12a411fa7fcf1d8f12c))
+
+
+
+
+
 ## [0.29.3](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.2...docs@0.29.3) (2023-08-30)
 
 

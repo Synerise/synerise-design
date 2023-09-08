@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.4...@synerise/ds-manageable-list@0.26.5) (2023-09-08)
+
+
+### Bug Fixes
+
+* **manageable-list:** updated title to toggle onclick ([69eb232](https://github.com/Synerise/synerise-design/commit/69eb232b29c5e3d35b6bb12a411fa7fcf1d8f12c))
+
+
+
+
+
 ## [0.26.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.3...@synerise/ds-manageable-list@0.26.4) (2023-09-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.2.29...@synerise/ds-action-area@0.3.0) (2023-09-08)
+
+
+### Features
+
+* **action-area:** extended button with props ([09e31f6](https://github.com/Synerise/synerise-design/commit/09e31f6bf443301f9b39578f3f314fea43c9cffe))
+
+
+
+
+
 ## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.2.28...@synerise/ds-action-area@0.2.29) (2023-09-05)
 
 **Note:** Version bump only for package @synerise/ds-action-area

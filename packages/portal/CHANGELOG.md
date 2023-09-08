@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.193.0](https://github.com/synerise/synerise-design/compare/portal@0.192.0...portal@0.193.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* **input:** fixed styles for input group ([ce30745](https://github.com/synerise/synerise-design/commit/ce3074527dd6408bd87ea1e0a5f867f283c61f93))
+* **table:** virtual table wrapping issue fixed ([4fcac9d](https://github.com/synerise/synerise-design/commit/4fcac9da76b0543e26e9e27a92ffc994d297108b))
+
+
+### Features
+
+* **action-area:** extended button with props ([09e31f6](https://github.com/synerise/synerise-design/commit/09e31f6bf443301f9b39578f3f314fea43c9cffe))
+
+
+
+
+
 # [0.192.0](https://github.com/synerise/synerise-design/compare/portal@0.191.0...portal@0.192.0) (2023-08-30)
 
 

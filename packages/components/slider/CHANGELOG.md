@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.12.25...@synerise/ds-slider@0.12.26) (2023-09-08)
+
+
+### Bug Fixes
+
+* **slider:** force slider tooltips to single line ([1a3069c](https://github.com/Synerise/synerise-design/commit/1a3069cd8285eb87ea16bda17e6b96984b14c23f))
+
+
+
+
+
 ## [0.12.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-slider@0.12.24...@synerise/ds-slider@0.12.25) (2023-09-05)
 
 **Note:** Version bump only for package @synerise/ds-slider
