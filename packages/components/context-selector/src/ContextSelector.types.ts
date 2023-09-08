@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode, ReactText } from 'react';
 import { HandledEventsType } from '@synerise/ds-utils';
 import { ItemSize } from '@synerise/ds-menu';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
@@ -13,12 +12,12 @@ export type ContextTexts = {
 };
 
 export type ContextItem = {
-  id: React.ReactText;
+  id: ReactText | null;
   name: string;
-  icon: React.ReactNode;
-  customSuffix?: React.ReactNode;
-  description?: React.ReactNode;
-  groupId?: React.ReactText;
+  icon: ReactNode;
+  customSuffix?: ReactNode;
+  description?: ReactNode;
+  groupId?: ReactText;
   groupName?: string;
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
@@ -26,12 +25,12 @@ export type ContextItem = {
 };
 
 export type ContextGroup = {
-  id: React.ReactText;
+  id: ReactText;
   name: string;
-  customSuffix?: React.ReactNode;
+  customSuffix?: ReactNode;
   defaultGroup?: boolean;
-  description?: React.ReactNode;
-  icon?: React.ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
   itemType?: string;
   tooltip?: string;
   subGroups?: ContextGroup[];
@@ -55,7 +54,7 @@ export type ContextProps = {
   opened?: boolean;
   addMode?: boolean;
   loading?: boolean;
-  customTriggerComponent?: React.ReactNode;
+  customTriggerComponent?: ReactNode;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   menuItemHeight?: ItemSize;
   dropdownWrapperStyles?: CSSProperties;
@@ -67,7 +66,7 @@ export type ContextProps = {
   hasMoreItems?: boolean;
   type?: 'default' | 'attribute' | 'event';
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
-  errorText?: React.ReactNode | string;
+  errorText?: ReactNode | string;
   getMenuEntryProps?: FactorsProps['getMenuEntryProps'];
 };
 
@@ -88,7 +87,7 @@ export type ContextDropdownProps = {
   onSearch?: (query: string) => void;
   onFetchData?: () => void;
   hasMoreItems?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
 export type ContextSelectorDropdownItemProps = {
@@ -100,7 +99,7 @@ export type ContextSelectorDropdownItemProps = {
   selected?: boolean;
   className: string;
   menuItemHeight?: ItemSize;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
 export type ListItem = {
