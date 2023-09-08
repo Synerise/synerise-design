@@ -86,7 +86,7 @@ ManageableList UI Component
 | content                 | Content rendered in content type list                         | React.ReactNode | -       |
 | headerSuffix            | Component that will be rendered on the start of the item      | React.ReactNode | -       |
 | hideHeaderSuffixOnHover | Whether to hide suffixHeader on hover                         | boolean         | -       |
-| additionalHeaderSuffix  | Component that will be rendered on the end of the item suffix | React.ReactNode | -       |
+| additionalSuffix  | Component that will be rendered on the end of the item suffix | React.ReactNode | -       |
 
 #### AdditionalAction
 
