@@ -34,6 +34,10 @@ function isListTitle(element: DropdownItemProps): element is ListTitle {
   return (element as ListTitle).title !== undefined;
 }
 
+function isGroup(item: ContextItem | ContextGroup): item is ContextGroup {
+  return 'isGroup' in item;
+}
+
 const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   texts,
   setSelected,
@@ -73,8 +77,10 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   const handleOnSetGroup = React.useCallback(
     (item: ContextItem | ContextGroup) => {
-      onSetGroup && onSetGroup(item);
-      setActiveGroup(item);
+      if (isGroup(item)) {
+        onSetGroup && onSetGroup(item);
+        setActiveGroup(item);
+      }
     },
     [onSetGroup]
   );
