@@ -46,6 +46,7 @@ const Daily: React.FC<DailyProps> = ({
         restricted: true,
         start: dayjs(dateValueArray[0]).format(DEFAULT_TIME_FORMAT),
         stop: dayjs(dateValueArray[1]).format(DEFAULT_TIME_FORMAT),
+        inverted: Boolean(dateValueArray[2]),
       };
     },
     [value]

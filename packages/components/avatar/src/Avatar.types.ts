@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { BadgeStatus } from '@synerise/ds-badge';
 import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
 
@@ -46,7 +47,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
   /**
    * Background color of the avatar
    */
-  backgroundColor?: Color;
+  backgroundColor?: Color | string;
   /**
    * Hue of the avatar background color
    */
@@ -62,8 +63,8 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
 }
 
 type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
-  backgroundColor?: 'auto' | Color;
-  badgeStatus?: string;
+  backgroundColor?: 'auto' | Color | string;
+  badgeStatus?: BadgeStatus;
   text?: string;
   tooltip?: TooltipObject | boolean;
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;

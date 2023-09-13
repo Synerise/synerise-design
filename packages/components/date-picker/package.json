@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-date-picker",
-  "version": "0.10.11",
+  "version": "0.10.14",
   "description": "DatePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,19 +33,26 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@date-fns/upgrade": "^1.0.3",
-    "@synerise/ds-button": "^0.18.0",
-    "@synerise/ds-core": "^0.39.13",
-    "@synerise/ds-icon": "^0.58.0",
-    "@synerise/ds-time-picker": "^0.8.2",
-    "@synerise/ds-tooltip": "^0.14.2",
+    "@synerise/ds-button": "^0.18.1",
+    "@synerise/ds-core": "^0.40.1",
+    "@synerise/ds-data-format": "^0.4.2",
+    "@synerise/ds-dropdown": "^0.17.77",
+    "@synerise/ds-icon": "^0.58.1",
+    "@synerise/ds-input": "^0.18.51",
+    "@synerise/ds-time-picker": "^0.8.5",
+    "@synerise/ds-tooltip": "^0.14.3",
+    "@synerise/ds-utils": "^0.24.15",
     "classnames": "^2.2.6",
     "date-fns": "2.16.1",
     "lodash": "^4.17.20",
     "react-day-picker": "^7.4.8",
-    "uuid": "^8.2.0"
+    "react-intl": "3.12.0",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 < 17.0.0"
+    "antd": "4.7.0",
+    "react": ">=16.9.0 < 17.0.0",
+    "styled-components": "5.0.1"
   }
 }

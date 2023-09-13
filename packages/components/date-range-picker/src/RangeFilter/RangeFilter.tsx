@@ -101,7 +101,16 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     const activeValue = state[activeType] as FilterValue;
     const { definition } = activeValue;
     const Component = activeType && TYPES_DATA[activeType] && TYPES_DATA[activeType].component;
-    const { intl, savedFilters, onFilterSave, texts, hideFooter, valueSelectionModes, allowedFilterTypes } = this.props;
+    const {
+      intl,
+      savedFilters,
+      onFilterSave,
+      texts,
+      hideFooter,
+      valueSelectionModes,
+      allowedFilterTypes,
+      rangeDisplayMode,
+    } = this.props;
 
     const buttonSource = allowedFilterTypes?.length ? allowedFilterTypes : Object.values(TYPES);
     buttonSource.sort((a: string, b: string) => {
@@ -145,6 +154,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
               <Component
                 intl={intl}
                 texts={texts}
+                rangeDisplayMode={rangeDisplayMode}
                 value={definition}
                 onChange={(def: FilterDefinition): void => {
                   const updatedFilter = { [activeType]: { ...activeValue, definition: def } };

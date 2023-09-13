@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+import type { RangeDisplayMode } from './RangeForm.types';
 
 export const RemoveIconWrapper = styled.div`
   opacity: 0;
@@ -31,12 +32,41 @@ export const Container = styled.div`
     }
   }
 `;
-export const Row = styled.div<{ justifyContent: string }>`
+export const Row = styled.div<{ justifyContent: string; mode: RangeDisplayMode }>`
   width: 100%;
   display: flex;
   justify-content: ${(props): string => props.justifyContent};
   min-height: 32px;
   margin: 8px 0;
+
+  ${(props): FlattenSimpleInterpolation | false =>
+    props.mode === 'slider' &&
+    css`
+      & {
+        column-gap: 8px;
+        margin-top: 16px;
+        ${RemoveIconWrapper} {
+          margin-top: 14px;
+        }
+      }
+    `}
+
+  .ant-slider {
+    width: 100%;
+    margin: 24px 8px 8px;
+  }
+  .ant-tooltip-inner {
+    white-space: nowrap;
+  }
+  && .ant-slider-handle:focus,
+  && .ant-slider-handle:hover {
+    .ant-tooltip-content {
+      background-color: transparent;
+    }
+    .ant-tooltip-inner {
+      color: ${(props): string => props.theme.palette['grey-600']};
+    }
+  }
 `;
 export const Separator = styled.span`
   & {

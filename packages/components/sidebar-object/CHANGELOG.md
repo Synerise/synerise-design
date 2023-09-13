@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.91](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.6.90...@synerise/ds-sidebar-object@0.6.91) (2023-09-08)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.6.90](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.6.89...@synerise/ds-sidebar-object@0.6.90) (2023-09-05)
+
+**Note:** Version bump only for package @synerise/ds-sidebar-object
+
+
+
+
+
+## [0.6.89](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.6.88...@synerise/ds-sidebar-object@0.6.89) (2023-08-30)
+
+
+### Bug Fixes
+
+* **sidebar-object:** fixed incorrect typing + code style ([a8b6913](https://github.com/Synerise/synerise-design/commit/a8b6913952d0f88c1b2be871132aad2b405f3969))
+
+
+
+
+
 ## [0.6.88](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar-object@0.6.87...@synerise/ds-sidebar-object@0.6.88) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-sidebar-object

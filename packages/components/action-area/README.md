@@ -29,7 +29,8 @@ import ActionArea from '@synerise/ds-action-area'
 | Property    | Description                                      | Type                        | Default |
 | ---         | ---                                              | ---                         | ---     |
 | action      | Function called when user clicks on ActionButton | `Function`                  | -       |
-| actionLabel | Label of action button                           | `string`/ `React.ReactNode` | -       |
-| description | Description of ActionArea                        | `string`/ `React.ReactNode` | -       |
-| label       | Label of ActionArea                              | `string`/ `React.ReactNode` | -       |
+| actionLabel | Label of action button                           | `React.ReactNode`           | -       |
+| description | Description of ActionArea                        | `React.ReactNode`           | -       |
+| label       | Label of ActionArea                              | `React.ReactNode`           | -       |
+| buttonProps | optional additional button props                 | see ds-button               | -       |
 

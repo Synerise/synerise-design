@@ -14,7 +14,7 @@ type HeaderProps = {
   suffix?: React.ReactNode;
 };
 
-const HeaderBase: React.FC<HeaderProps> = ({ title, actions, suffix }) => (
+const HeaderBase = ({ title, actions, suffix }: HeaderProps) => (
   <S.Container data-attr="time-window-header">
     <S.Title data-attr="title">{title}</S.Title>
     <S.Actions data-attr="actions">

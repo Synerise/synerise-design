@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.4...@synerise/ds-factors@0.19.5) (2023-09-08)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.19.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.3...@synerise/ds-factors@0.19.4) (2023-09-05)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.19.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.2...@synerise/ds-factors@0.19.3) (2023-08-30)
+
+
+### Bug Fixes
+
+* **factors:** set drp factor to display filter in slider mode ([ca7a4bb](https://github.com/Synerise/synerise-design/commit/ca7a4bb882a290c9fd25abbd2720ce5a3687f235))
+
+
+
+
+
 ## [0.19.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.1...@synerise/ds-factors@0.19.2) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-factors

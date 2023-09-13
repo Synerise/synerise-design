@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-time-picker",
-  "version": "0.8.2",
+  "version": "0.8.5",
   "description": "TimePicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -32,22 +32,26 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.4.1",
-    "@synerise/ds-dropdown": "^0.17.74",
-    "@synerise/ds-icon": "^0.58.0",
-    "@synerise/ds-input": "^0.18.48",
-    "@synerise/ds-scrollbar": "^0.6.5",
-    "@synerise/ds-search-bar": "^0.6.38",
-    "@synerise/ds-typography": "^0.12.8",
-    "@synerise/ds-utils": "^0.24.13",
+    "@synerise/ds-data-format": "^0.4.2",
+    "@synerise/ds-dropdown": "^0.17.77",
+    "@synerise/ds-icon": "^0.58.1",
+    "@synerise/ds-input": "^0.18.51",
+    "@synerise/ds-scrollbar": "^0.6.6",
+    "@synerise/ds-tooltip": "^0.14.3",
+    "@synerise/ds-typography": "^0.12.10",
+    "@synerise/ds-utils": "^0.24.15",
     "dayjs": "^1.8.19",
-    "debounce": "^1.2.0"
+    "debounce": "^1.2.0",
+    "lodash": "^4.17.19",
+    "react-intl": "3.12.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
+    "antd": "4.7.0",
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
+    "@testing-library/react": "10.0.1",
     "@types/debounce": "^1.2.0"
   }
 }

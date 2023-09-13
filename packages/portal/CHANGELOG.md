@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.193.0](https://github.com/synerise/synerise-design/compare/portal@0.192.0...portal@0.193.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* **input:** fixed styles for input group ([ce30745](https://github.com/synerise/synerise-design/commit/ce3074527dd6408bd87ea1e0a5f867f283c61f93))
+* **table:** virtual table wrapping issue fixed ([4fcac9d](https://github.com/synerise/synerise-design/commit/4fcac9da76b0543e26e9e27a92ffc994d297108b))
+
+
+### Features
+
+* **action-area:** extended button with props ([09e31f6](https://github.com/synerise/synerise-design/commit/09e31f6bf443301f9b39578f3f314fea43c9cffe))
+
+
+
+
+
+# [0.192.0](https://github.com/synerise/synerise-design/compare/portal@0.191.0...portal@0.192.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* **collector:** multiple values + validation ([4a8b146](https://github.com/synerise/synerise-design/commit/4a8b1462f50e7be6727fb95e51ee55998249b5b6))
+* **select:** fixed styles for select multiple mode ([644521f](https://github.com/synerise/synerise-design/commit/644521f05265340624f5ae3cc3a6744309cf62ac))
+* **slider:** code review feedback + story fixes ([d06667c](https://github.com/synerise/synerise-design/commit/d06667ce841b4c1ce2af0cb4cfd58fe81ec2a1ea))
+* **slider:** fixed styles in allocation slider ([3c515ea](https://github.com/synerise/synerise-design/commit/3c515eada4001013b3b37a44dbd8d44bbb89f64a))
+
+
+### Features
+
+* **avatar:** background color accepts colorName-hue ([f3a8ce4](https://github.com/synerise/synerise-design/commit/f3a8ce48cae9ea7cc19ef4ca7913259c080b2b87))
+* **date-range-picker:** range filter as slider with "inverted" toggler ([6ae7d9e](https://github.com/synerise/synerise-design/commit/6ae7d9e27925c4fee502ed8fac84806836e5e727))
+
+
+
+
+
 # [0.191.0](https://github.com/synerise/synerise-design/compare/portal@0.190.0...portal@0.191.0) (2023-08-25)
 
 

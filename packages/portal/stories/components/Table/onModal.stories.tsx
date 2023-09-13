@@ -1,5 +1,7 @@
 import { VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
+import { Text } from '@synerise/ds-typography';
+
 import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
@@ -13,10 +15,17 @@ import { renderWithIconInHeaders } from './helpers/helpers';
 
 const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth: '100%' }}>{storyFn()}</div>;
 
-const dataSource = [...new Array(5000)].map((i, k) => ({
-  key: k + 1,
-  name: faker.name.findName(),
-}));
+const dataSource = [...new Array(5000)].map((i, k) => {
+  const name = k === 1 ? faker.lorem.sentences(8) : faker.name.findName();
+  
+  return {
+    key: k + 1,
+    name: <Text 
+      size="medium" 
+      ellipsis={{ tooltip: name }} 
+    >{name}</Text>
+  }
+});
 
 const columns = [
   {

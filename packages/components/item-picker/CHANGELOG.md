@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.17...@synerise/ds-item-picker@0.11.18) (2023-09-08)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
+## [0.11.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.16...@synerise/ds-item-picker@0.11.17) (2023-09-05)
+
+
+### Bug Fixes
+
+* **button:** creator and item picker large background changed ([250e6ee](https://github.com/Synerise/synerise-design/commit/250e6ee5b0d5074639bf66339a47df8220bf692e))
+
+
+
+
+
+## [0.11.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.15...@synerise/ds-item-picker@0.11.16) (2023-08-30)
+
+**Note:** Version bump only for package @synerise/ds-item-picker
+
+
+
+
+
 ## [0.11.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.14...@synerise/ds-item-picker@0.11.15) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

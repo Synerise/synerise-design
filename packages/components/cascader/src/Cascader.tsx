@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { CascaderProps, Category, Path } from 'Cascader.types';
 import SearchBar from '@synerise/ds-search-bar';
 import Menu from '@synerise/ds-menu';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { useResize } from '@synerise/ds-utils';
 import * as S from './Cascader.styles';
+import { CascaderProps, Category, Path } from './Cascader.types';
 import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utlis';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';

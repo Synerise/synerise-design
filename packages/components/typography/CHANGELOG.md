@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.9...@synerise/ds-typography@0.12.10) (2023-09-08)
+
+
+### Bug Fixes
+
+* **table:** virtual table wrapping issue fixed ([4fcac9d](https://github.com/synerise/synerise-design/commit/4fcac9da76b0543e26e9e27a92ffc994d297108b))
+
+
+
+
+
+## [0.12.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.8...@synerise/ds-typography@0.12.9) (2023-09-05)
+
+**Note:** Version bump only for package @synerise/ds-typography
+
+
+
+
+
 ## [0.12.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.7...@synerise/ds-typography@0.12.8) (2023-06-28)
 
 

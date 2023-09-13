@@ -39,6 +39,7 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeacti
         placement: 'bottomLeft',
         onVisibleChange: handleVisibleChange,
       }}
+      filterRangeDisplayMode="slider"
       filterValueSelectionModes={['Range']}
       rangePickerInputProps={{ readOnly }}
       readOnly={readOnly}

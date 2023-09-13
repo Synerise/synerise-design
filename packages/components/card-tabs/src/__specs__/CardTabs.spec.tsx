@@ -1,7 +1,6 @@
 import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import {range} from 'lodash';
 import CardTabs from '../CardTabs';
 import CardTab from '../CardTab/CardTab';
 import { fireEvent } from '@testing-library/react';
@@ -10,7 +9,7 @@ import { CardTabsItem } from '../CardTabs.types';
 import { prefixType } from '../CardTab/CardTab.types';
 
 describe('Card Tabs', () => {
-  const ITEMS: CardTabsItem[] = range(3).map((i: number) => ({
+  const ITEMS: CardTabsItem[] = [0,1,2].map((i: number) => ({
       id: i,
       name: `Variant ${String.fromCharCode(65 + i).toUpperCase()}`,
       tag: String.fromCharCode(65 + i).toUpperCase(),

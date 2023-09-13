@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState, MouseEvent, useEffect, useMemo } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { withTheme } from 'styled-components';
 
@@ -14,7 +14,7 @@ import ItemMeta from '../ItemMeta/ItemMeta';
 import { ContentItemProps } from './ContentItem.types';
 import * as S from './ContentItem.styles';
 
-const ContentItem: React.FC<ContentItemProps> = ({
+const ContentItem = ({
   onRemove,
   onUpdate,
   onDuplicate,
@@ -36,32 +36,32 @@ const ContentItem: React.FC<ContentItemProps> = ({
   isFirst,
   isLast,
   ...rest
-}): React.ReactElement => {
-  const [expandedState, setExpanded] = React.useState(expanded);
-  const [editMode, setEditMode] = React.useState(false);
+}: ContentItemProps) => {
+  const [expandedState, setExpanded] = useState(expanded);
+  const [editMode, setEditMode] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (expandedState !== expanded) {
       setExpanded(expanded);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expanded]);
 
-  const updateName = React.useCallback(
-    (updateParams): void => {
+  const updateName = useCallback(
+    updateParams => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
     [onUpdate]
   );
-  const enterEditMode = React.useCallback((): void => {
+  const enterEditMode = () => {
     setEditMode(true);
-  }, []);
-  const stopPropagationHandler = React.useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-  }, []);
+  };
+  const stopPropagationHandler = (event: MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+  };
 
-  const renderMoveButtons = React.useMemo(() => {
+  const renderMoveButtons = useMemo(() => {
     return (
       (onMoveTop || onMoveBottom) && (
         <S.MoveItemButtons>
@@ -70,8 +70,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
               <Button
                 type="ghost"
                 mode="single-icon"
-                onClick={(e): void => {
-                  e.stopPropagation();
+                onClick={event => {
+                  event.stopPropagation();
                   onMoveTop(item);
                 }}
               >
@@ -84,8 +84,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
               <Button
                 type="ghost"
                 mode="single-icon"
-                onClick={(e): void => {
-                  e.stopPropagation();
+                onClick={event => {
+                  event.stopPropagation();
                   onMoveBottom(item);
                 }}
               >
@@ -109,18 +109,14 @@ const ContentItem: React.FC<ContentItemProps> = ({
     >
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
-        onDoubleClick={(): void => {
-          !item.disableExpanding && setExpanded(false);
-          !item.disableExpanding && onExpand && onExpand(item.id, false);
-        }}
-        onClick={(): void => {
-          !item.disableExpanding && setExpanded(true);
-          !item.disableExpanding && onExpand && onExpand(item.id, true);
+        onClick={() => {
+          !item.disableExpanding && setExpanded(!expandedState);
+          !item.disableExpanding && onExpand && onExpand(item.id, !expandedState);
         }}
       >
         <S.ItemHeaderPrefix>
           {draggable && (
-            <S.DraggerWrapper disabled={Boolean(changeOrderDisabled)}>
+            <S.DraggerWrapper className="item-drag-handle" disabled={Boolean(changeOrderDisabled)}>
               <Icon size={24} component={<DragHandleM />} />
             </S.DraggerWrapper>
           )}
@@ -151,8 +147,8 @@ const ContentItem: React.FC<ContentItemProps> = ({
             <S.ToggleContentWrapper data-testid="item-toggle-content-wrapper">
               <Button.Expander
                 disabled={item.disableExpanding}
-                onClick={(e?: React.MouseEvent<HTMLElement>): void => {
-                  !!e && e.stopPropagation();
+                onClick={(event?: MouseEvent<HTMLElement>) => {
+                  !!event && event.stopPropagation();
                   !item.disableExpanding && setExpanded(!expandedState);
                   !item.disableExpanding && onExpand && onExpand(item.id, !expandedState);
                 }}

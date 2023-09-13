@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { FC, useCallback, useEffect, useMemo, useState, useRef, MutableRefObject, ReactText, ReactNode } from 'react';
 import { debounce } from 'lodash';
+import { Select } from 'antd';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Autocomplete from '@synerise/ds-autocomplete';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
 import { Input } from '@synerise/ds-input';
 
 import { InputProps } from '../../Factors.types';
@@ -26,7 +25,8 @@ const TextInput: FC<InputProps> = ({
   readOnly = false,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
-  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
+  const [inputRef, setInputRef] =
+    useState<MutableRefObject<HTMLInputElement | Select | HTMLTextAreaElement | undefined>>();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
   const onChangeRef = useRef(onChange);
@@ -101,7 +101,8 @@ const TextInput: FC<InputProps> = ({
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
-          readOnly={readOnly}
+          // fixme no readonly prop for autocomplete
+          // readOnly={readOnly}
         >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>

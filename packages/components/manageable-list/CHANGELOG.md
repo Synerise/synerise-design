@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.4...@synerise/ds-manageable-list@0.26.5) (2023-09-08)
+
+
+### Bug Fixes
+
+* **manageable-list:** updated title to toggle onclick ([69eb232](https://github.com/Synerise/synerise-design/commit/69eb232b29c5e3d35b6bb12a411fa7fcf1d8f12c))
+
+
+
+
+
+## [0.26.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.3...@synerise/ds-manageable-list@0.26.4) (2023-09-05)
+
+
+### Bug Fixes
+
+* **manageable-list:** allow dragging only on drag handle ([76050e9](https://github.com/Synerise/synerise-design/commit/76050e9c388ade396bba89f21438c9e203b07cfc))
+
+
+
+
+
+## [0.26.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.2...@synerise/ds-manageable-list@0.26.3) (2023-08-30)
+
+**Note:** Version bump only for package @synerise/ds-manageable-list
+
+
+
+
+
 ## [0.26.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.1...@synerise/ds-manageable-list@0.26.2) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

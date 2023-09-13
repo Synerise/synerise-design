@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { prefixType } from 'CardTab/CardTab.types';
+import { prefixType } from '../CardTab.types';
 
 export interface Props {
   prefix: prefixType;

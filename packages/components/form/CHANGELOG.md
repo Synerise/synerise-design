@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.47...@synerise/ds-form@0.5.48) (2023-09-08)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
+## [0.5.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.46...@synerise/ds-form@0.5.47) (2023-09-05)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
+## [0.5.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.45...@synerise/ds-form@0.5.46) (2023-08-30)
+
+**Note:** Version bump only for package @synerise/ds-form
+
+
+
+
+
 ## [0.5.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.5.44...@synerise/ds-form@0.5.45) (2023-08-25)
 
 **Note:** Version bump only for package @synerise/ds-form

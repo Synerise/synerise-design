@@ -1,10 +1,10 @@
+import React from 'react';
+import { fireEvent, prettyDOM, screen, waitFor, waitForDomChange } from '@testing-library/react';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import FileM from '@synerise/ds-icon';
-import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import ManageableList from '../ManageableList';
-import { fireEvent } from '@testing-library/react';
 
 const CONTENT_ITEMS: any = [
   {
@@ -15,6 +15,7 @@ const CONTENT_ITEMS: any = [
     canDelete: false,
     tag: <Tag name={'A'} shape={TagShape.SINGLE_CHARACTER_ROUND} color={'red'} />,
     content: <div>content</div>,
+    additionalSuffix: 'additionalSuffix'
   },
   {
     id: '00000000-0000-0000-0000-000000000002',
@@ -293,6 +294,49 @@ describe('ManageableList with content items', () => {
     // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[0], CONTENT_ITEMS[2], CONTENT_ITEMS[1]]);
   });
-  it.todo('should render additionalHeaderSuffix');
+  it('should toggle content on click on header', async () => {
+    renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        type="content"
+        texts={texts}
+      />
+    );
+
+    const headers = screen.queryAllByTestId('list-item-name');
+    const content = screen.queryAllByTestId('item-content-wrapper');
+    
+    expect(headers.length).toBe(CONTENT_ITEMS.length);
+    
+    fireEvent.click(headers[0]);
+    
+    waitFor( () => { expect(content[0].parentElement).not.toHaveStyle({display: 'none'}); }, { timeout: 100 });
+
+    fireEvent.click(headers[0]);
+
+    waitFor( () => { expect(content[0].parentElement).toHaveStyle({display: 'none'}); }, { timeout: 100 });
+
+  });
+  it('should render additionalSuffix', () => {
+    renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        type="content"
+        texts={texts}
+      />
+    );
+    const additionalSuffix = screen.getByText('additionalSuffix');
+    expect(additionalSuffix).toBeInTheDocument();
+  });
   it.todo('should hide headerSuffix on hover');
 });
