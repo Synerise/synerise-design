@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import Select from 'antd/lib/select';
 import { AutosizeInput } from '@synerise/ds-input';
-import { AutocompleteProps, StaticComponents } from './Autocomplete.types';
+import { AutocompleteProps } from './Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
-const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
+const Autocomplete = (props: AutocompleteProps) => {
   const { className, label, description, errorText, disabled, error, handleInputRef, autoResize } = props;
-  const inputRef = React.useRef<Select | undefined>(undefined);
+  const inputRef = useRef<Select | undefined>(undefined);
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
-  const getParentNode = (triggerNode: HTMLElement): HTMLElement => {
+  const getParentNode = (triggerNode: HTMLElement) => {
     return triggerNode.parentNode as HTMLElement;
   };
 
-  const renderAutoCompleteComponent = (): React.ReactNode => {
+  const renderAutoCompleteComponent = () => {
     const Component = autoResize ? AutosizeInput : AntdAutoComplete;
     return (
       <Component
