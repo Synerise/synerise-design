@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.24.2...@synerise/ds-date-range-picker@0.24.3) (2023-09-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixes event conflicts in drp and contentitem ([d80d8de](https://github.com/Synerise/synerise-design/commit/d80d8deb973235200e0ca8843dea40ec18efd366))
+
+
+
+
+
 ## [0.24.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.24.1...@synerise/ds-date-range-picker@0.24.2) (2023-09-08)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

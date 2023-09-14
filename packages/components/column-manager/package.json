@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-column-manager",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "description": "ColumnManager UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,7 +36,7 @@
     "@synerise/ds-icon": "^0.58.1",
     "@synerise/ds-input": "^0.18.51",
     "@synerise/ds-input-number": "^0.8.23",
-    "@synerise/ds-item-filter": "^0.8.83",
+    "@synerise/ds-item-filter": "^0.8.84",
     "@synerise/ds-menu": "^0.17.17",
     "@synerise/ds-modal": "^0.17.4",
     "@synerise/ds-result": "^0.6.30",

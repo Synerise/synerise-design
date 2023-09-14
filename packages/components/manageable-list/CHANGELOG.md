@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.5...@synerise/ds-manageable-list@0.26.6) (2023-09-14)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixes event conflicts in drp and contentitem ([d80d8de](https://github.com/Synerise/synerise-design/commit/d80d8deb973235200e0ca8843dea40ec18efd366))
+* **manageable-list:** disable toggling content if in edit mode ([bebe461](https://github.com/Synerise/synerise-design/commit/bebe461a9194e05b1439824c526aebfb24659366))
+
+
+
+
+
 ## [0.26.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.4...@synerise/ds-manageable-list@0.26.5) (2023-09-08)
 
 
