@@ -110,8 +110,10 @@ const ContentItem = ({
       <S.ItemHeader
         hasPrefix={Boolean(draggable || item.tag || item.icon)}
         onClick={() => {
-          !item.disableExpanding && setExpanded(!expandedState);
-          !item.disableExpanding && onExpand && onExpand(item.id, !expandedState);
+          if (!item.disableExpanding && !editMode) {
+            setExpanded(!expandedState);
+            onExpand && onExpand(item.id, !expandedState);
+          }
         }}
       >
         <S.ItemHeaderPrefix>
