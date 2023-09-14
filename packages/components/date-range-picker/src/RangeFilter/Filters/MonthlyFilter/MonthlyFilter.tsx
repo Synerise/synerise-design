@@ -191,7 +191,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
           minWidth: '150px',
         }}
         dropdownProps={{
-          getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
+          getPopupContainer: (triggerNode: HTMLElement) => triggerNode.closest('.monthly-wrapper') || document.body,
         }}
         placeholder={intl.formatMessage({ id: (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].translationKey })}
         input={{
@@ -233,7 +233,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
         disabled={disabled}
         expanded={false}
         dropdownProps={{
-          getPopupContainer: (): HTMLElement => document.querySelector('.monthly-wrapper') || document.body,
+          getPopupContainer: (triggerNode: HTMLElement) => triggerNode.closest('.monthly-wrapper') || document.body,
         }}
         dropdownOverlayStyle={{
           minWidth: '150px',
@@ -300,7 +300,10 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               name: (
-                <S.DropdownHeader className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}>
+                <S.DropdownHeader
+                  onClick={event => event.stopPropagation()}
+                  className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}
+                >
                   <S.DropdownLabel>
                     <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="Days of" />
                     {SPACE_UNICODE}
