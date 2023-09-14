@@ -175,6 +175,7 @@ export const ItemContainer = styled.div<ItemContainerProps>`
 
 export const ToggleContentWrapper = styled.div`
   margin-left: 12px;
+  line-height: 0;
 `;
 export const DropdownTrigger = styled(Button)`
   margin-left: 12px;
