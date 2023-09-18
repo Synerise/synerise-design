@@ -9,11 +9,6 @@ export const Settings = styled.div`
   padding: 20px;
   background-color: ${(props): string => props.theme.palette.white};
   max-width: 238px;
-  .ant-input-group {
-    > * {
-      width: 50%;
-    }
-  }
 
   .ant-select-selection-item,
   .ant-select-selection-placeholder {
