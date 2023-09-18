@@ -393,6 +393,69 @@ const stories = {
       </div>
     );
   }),
+  minWidth: () => {
+    const [exprs, setExprs] = React.useState(DEFAULT_STATE.expressions)
+    React.useEffect(() => {
+      const cond = {
+        "id": "aa845890-156d-4641-9366-d40280562d39",
+        "parameter": {
+          "value": {
+            "name": "City",
+          }
+        },
+        "operator": {
+          "value": {
+            "id": "DATE_EQUAL",
+            "value": "DATE_EQUAL",
+            "logic": "EQUAL",
+            "name": "Equal",
+            "groupId": "DATE_ONE",
+            "group": "DATE_ONE",
+            "groupName": "Date",
+            "availableFactors": [
+              "date",
+              "parameter",
+              "dynamicKey"
+            ]
+          }
+        },
+        "factor": {
+          "selectedFactorType": "",
+          "defaultFactorType": "text",
+          "value": "123456789"
+        }
+      }
+      exprs[0].expressionSteps[0].conditions.push(cond)
+    }, [])
+    return (<>
+      <Filter
+       expressions={exprs}
+       onChangeOrder={console.info}
+       addFilterComponent={<button onClick={(ev, subj = 'subj') => {
+        setExprs([...exprs, DEFAULT_EXPRESSION(subj)])
+       }}>+</button>}
+       renderStepContent={(expr, hoverDisabled) => {
+        const idx = exprs.indexOf(expr)
+        function updateSteps(steps) {
+          console.info(steps)
+          const newExprs = [...exprs];
+          newExprs[idx] = {...newExprs[idx], expressionSteps: steps}
+          setExprs(newExprs)
+          return newExprs
+        }
+        return (<ConditionExample
+          onChange={updateSteps}
+          steps={expr.expressionSteps}
+          hoverDisabled={hoverDisabled}
+          readOnly={false}
+        />)
+       }}
+       texts={{
+        addFilter: 'Add filter',
+       }}
+      />
+    </>)
+  },
 };
 
 export default {

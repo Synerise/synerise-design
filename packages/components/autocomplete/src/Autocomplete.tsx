@@ -1,40 +1,30 @@
-import * as React from 'react';
+import React, { useRef, useEffect } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
 import Select from 'antd/lib/select';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import { AutoResize, WrapperAutoResize } from '@synerise/ds-input';
-import { AutocompleteProps, StaticComponents } from './Autocomplete.types';
+import { AutosizeInput } from '@synerise/ds-input';
+import { AutocompleteProps } from './Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
-const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
-  const {
-    className,
-    label,
-    description,
-    errorText,
-    disabled,
-    error,
-    handleInputRef,
-    autoResize,
-    ...antdAutocompleteProps
-  } = props;
-  const inputRef = React.useRef<Select | undefined>(undefined);
+const Autocomplete = (props: AutocompleteProps) => {
+  const { className, label, description, errorText, disabled, error, handleInputRef, autoResize } = props;
+  const inputRef = useRef<Select | undefined>(undefined);
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleInputRef && handleInputRef(inputRef);
   }, [inputRef, handleInputRef]);
 
-  const getParentNode = (triggerNode: HTMLElement): HTMLElement => {
+  const getParentNode = (triggerNode: HTMLElement) => {
     return triggerNode.parentNode as HTMLElement;
   };
 
-  const renderAutoCompleteComponent = (): React.ReactNode => {
+  const renderAutoCompleteComponent = () => {
+    const Component = autoResize ? AutosizeInput : AntdAutoComplete;
     return (
-      <AntdAutoComplete
+      <Component
+        {...(autoResize ? { renderInput: AntdAutoComplete, autoResize } : {})}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -54,14 +44,7 @@ const Autocomplete: React.FC<AutocompleteProps> & StaticComponents = props => {
           <Label>{label}</Label>
         </S.LabelWrapper>
       )}
-      {autoResize ? (
-        <WrapperAutoResize autoResize={autoResize}>
-          {renderAutoCompleteComponent()}
-          <AutoResize autoResize={autoResize}>{antdAutocompleteProps.value}</AutoResize>
-        </WrapperAutoResize>
-      ) : (
-        renderAutoCompleteComponent()
-      )}
+      {renderAutoCompleteComponent()}
       {errorText && (
         <S.ErrorWrapper>
           <ErrorText>{errorText}</ErrorText>

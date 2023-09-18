@@ -161,4 +161,5 @@ describe('Factors component', () => {
 
   });
   test.todo('should show tooltip on mousehover on selected parameter');
+  test.todo('the type of autocomplete should allow autosizing');
 });
