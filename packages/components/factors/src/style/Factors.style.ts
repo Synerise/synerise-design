@@ -12,7 +12,6 @@ export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
     }
     ${FactorInput} {
       width: auto;
-      display: inline-flex;
       > * {
         border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0 3px 3px 0')};
       }
