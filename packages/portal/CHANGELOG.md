@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.194.0](https://github.com/synerise/synerise-design/compare/portal@0.193.0...portal@0.194.0) (2023-09-18)
+
+
+### Features
+
+* **input:** autosize input, filter ([c507a67](https://github.com/synerise/synerise-design/commit/c507a672b2705da82e8bebe589495caf5d509e71))
+
+
+
+
+
 # [0.193.0](https://github.com/synerise/synerise-design/compare/portal@0.192.0...portal@0.193.0) (2023-09-08)
 
 

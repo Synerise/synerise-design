@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.14...@synerise/ds-date-picker@0.10.15) (2023-09-18)
+
+**Note:** Version bump only for package @synerise/ds-date-picker
+
+
+
+
+
 ## [0.10.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.13...@synerise/ds-date-picker@0.10.14) (2023-09-08)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

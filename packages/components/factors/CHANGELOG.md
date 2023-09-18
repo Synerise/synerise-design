@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.6...@synerise/ds-factors@0.20.0) (2023-09-18)
+
+
+### Features
+
+* **input:** autosize input, filter ([c507a67](https://github.com/Synerise/synerise-design/commit/c507a672b2705da82e8bebe589495caf5d509e71))
+
+
+
+
+
 ## [0.19.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.19.5...@synerise/ds-factors@0.19.6) (2023-09-14)
 
 **Note:** Version bump only for package @synerise/ds-factors

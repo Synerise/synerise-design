@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.51...@synerise/ds-input@0.19.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **input:** deps missing in autocomplete + input exports ([4a1439b](https://github.com/synerise/synerise-design/commit/4a1439b70856f24b1c4500c97956c7ff8b97468a))
+* **input:** fixed autosize imports/exports ([4fbebfa](https://github.com/synerise/synerise-design/commit/4fbebfa9b5c13dc92b81cf1e6ee3639f54d3145b))
+
+
+### Features
+
+* **input:** autosize input, filter ([c507a67](https://github.com/synerise/synerise-design/commit/c507a672b2705da82e8bebe589495caf5d509e71))
+* react-input-autosize@3.0.0 ([ebc6fb0](https://github.com/synerise/synerise-design/commit/ebc6fb0d883b48754714075bb1005081a735cf48))
+
+
+
+
+
 ## [0.18.51](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.18.50...@synerise/ds-input@0.18.51) (2023-09-08)
 
 
