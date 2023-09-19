@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-information-card",
-  "version": "0.3.35",
+  "version": "0.3.36",
   "description": "InformationCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,16 +34,16 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-alert": "^0.7.41",
-    "@synerise/ds-avatar": "^0.15.3",
+    "@synerise/ds-avatar": "^0.15.4",
     "@synerise/ds-badge": "^0.6.36",
     "@synerise/ds-button": "^0.18.1",
     "@synerise/ds-card": "^0.15.3",
     "@synerise/ds-description": "^0.3.80",
     "@synerise/ds-divider": "^0.5.42",
-    "@synerise/ds-dropdown": "^0.17.78",
+    "@synerise/ds-dropdown": "^0.17.79",
     "@synerise/ds-icon": "^0.58.1",
     "@synerise/ds-menu": "^0.17.17",
-    "@synerise/ds-subtle-form": "^0.9.72",
+    "@synerise/ds-subtle-form": "^0.9.73",
     "@synerise/ds-tooltip": "^0.14.3",
     "@synerise/ds-typography": "^0.12.10",
     "rc-trigger": "5.2.5"
