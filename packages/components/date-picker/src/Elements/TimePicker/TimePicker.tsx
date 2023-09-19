@@ -1,14 +1,11 @@
-import * as React from 'react';
-import { useIntl } from 'react-intl';
+import React from 'react';
 
-import { useDataFormat } from '@synerise/ds-data-format';
-
-import fnsFormat from '../../format';
+import { useDataFormat, getDefaultDataTimeOptions } from '@synerise/ds-data-format';
 import Navbar from '../Navbar/Navbar';
 import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
 
-const TimePicker: React.FC<TimePickerProps> = ({
+const TimePicker = ({
   value = new Date(),
   disabledHours = [],
   disabledMinutes = [],
@@ -19,15 +16,14 @@ const TimePicker: React.FC<TimePickerProps> = ({
   onShortNext,
   onShortPrev,
 }: TimePickerProps) => {
-  const intl = useIntl();
-
-  const { is12HoursClock } = useDataFormat();
+  const { is12HoursClock, formatValue } = useDataFormat();
+  const navbarDate = formatValue(value, { ...getDefaultDataTimeOptions(), targetFormat: 'date', month: 'short' });
 
   return (
     <>
       {!!value && (
         <Navbar
-          title={fnsFormat(value, 'iii d, yyyy', intl.locale)}
+          title={navbarDate}
           key="head"
           inactivePrev={inactivePrev}
           inactiveNext={inactiveNext}
