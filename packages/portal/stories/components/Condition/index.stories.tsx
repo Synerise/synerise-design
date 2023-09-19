@@ -267,6 +267,12 @@ const stories = {
       parameterErrorMessage = text('Parameter error message', 'Parameter cannot be empty', validationGroupId);
     }
 
+    const showOperatorErrorMessage = boolean('Show operator error message', false, validationGroupId);
+    let operatorErrorMessage;
+    if (showOperatorErrorMessage) {
+      operatorErrorMessage = text('Operator error message', 'Operator cannot be empty', validationGroupId);
+    }
+
     const showFactorErrorMessage = boolean('Show factor error message', false, validationGroupId);
     let factorErrorMessage;
     if (showFactorErrorMessage) {
@@ -375,6 +381,7 @@ const stories = {
                   items: OPERATORS_ITEMS,
                   groups: OPERATORS_GROUPS,
                   texts: OPERATORS_TEXTS,
+                  errorText: operatorErrorMessage,
                 },
                 factor: {
                   // @ts-ignore availableFactors is just sample data

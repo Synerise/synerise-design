@@ -22,16 +22,23 @@ const Autocomplete = (props: AutocompleteProps) => {
 
   const renderAutoCompleteComponent = () => {
     const Component = autoResize ? AutosizeInput : AntdAutoComplete;
+    const autosizeProps = autoResize
+      ? {
+          transformRef: (el: HTMLElement) => el.querySelector('input'),
+          refPropName: 'inputRef',
+          extraWidth: 24,
+        }
+      : {};
+
     return (
       <Component
-        {...(autoResize ? { renderInput: AntdAutoComplete, autoResize } : {})}
+        {...(autoResize ? { renderInput: AntdAutoComplete, autoResize, autosizeProps } : {})}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         ref={inputRef}
         dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
-        className={!!errorText || error ? 'error' : undefined}
         getPopupContainer={getParentNode}
       />
     );
@@ -44,7 +51,7 @@ const Autocomplete = (props: AutocompleteProps) => {
           <Label>{label}</Label>
         </S.LabelWrapper>
       )}
-      {renderAutoCompleteComponent()}
+      <S.ComponentWrapper error={!!errorText || error}>{renderAutoCompleteComponent()}</S.ComponentWrapper>
       {errorText && (
         <S.ErrorWrapper>
           <ErrorText>{errorText}</ErrorText>

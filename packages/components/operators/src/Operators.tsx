@@ -22,6 +22,7 @@ const Operators: React.FC<OperatorsProps> = ({
   onActivate,
   onDeactivate,
   readOnly = false,
+  errorText,
 }) => {
   const { formatMessage } = useIntl();
   const [dropdownVisible, setDropdownVisible] = React.useState(false);
@@ -75,7 +76,13 @@ const Operators: React.FC<OperatorsProps> = ({
       title={(value as OperatorsItem)?.name || ''}
       trigger={['hover']}
     >
-      <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleClick : undefined} readOnly={readOnly}>
+      <Button
+        error={Boolean(errorText)}
+        type="secondary"
+        mode={triggerMode}
+        onClick={!readOnly ? handleClick : undefined}
+        readOnly={readOnly}
+      >
         {value && <Icon component={(value as OperatorsItem).icon} />}
         <S.Value>{value ? (value as OperatorsItem).name : text.buttonLabel}</S.Value>
         {!readOnly && <Icon component={<AngleDownS />} />}

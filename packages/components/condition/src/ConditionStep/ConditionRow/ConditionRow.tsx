@@ -41,18 +41,25 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
 }) => {
   const conditionFactorErrorText = conditionFactor?.errorText;
   const conditionParameterErrorText = conditionParameter?.errorText;
+  const conditionOperatorErrorText = conditionOperator?.errorText;
   const conditionParameterValue = conditionParameter?.value;
-  const rowHasError = !!(conditionParameterErrorText || (conditionFactorErrorText && conditionParameterValue));
+  const rowHasError = !!(
+    conditionParameterErrorText ||
+    (conditionOperatorErrorText && conditionParameterValue) ||
+    (conditionFactorErrorText && conditionParameterValue)
+  );
 
   const conditionErrorMessage = React.useMemo(() => {
     let errorText: React.ReactNode | string;
     if (conditionParameterErrorText) {
       errorText = conditionParameterErrorText;
+    } else if (conditionOperatorErrorText && conditionParameterValue) {
+      errorText = conditionOperatorErrorText;
     } else if (conditionFactorErrorText && conditionParameterValue) {
       errorText = conditionFactorErrorText;
     }
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
-  }, [conditionFactorErrorText, conditionParameterErrorText, conditionParameterValue]);
+  }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText, conditionParameterValue]);
 
   return (
     <S.ConditionRow
@@ -115,6 +122,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                     currentField === OPERATOR
                   }
                   readOnly={readOnly}
+                  errorText={conditionOperator.errorText}
                 />
               </S.ConditionWrapper>
             )}

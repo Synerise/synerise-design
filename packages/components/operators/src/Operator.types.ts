@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, ReactText } from 'react';
 
 export type OperatorTexts = {
   buttonLabel: string;
@@ -8,11 +8,11 @@ export type OperatorTexts = {
 
 export type OperatorsItem = {
   name: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   group?: string;
-  groupId: React.ReactText;
+  groupId: ReactText;
   groupName?: string;
-  id: React.ReactText;
+  id: ReactText;
   logic?: string;
   value?: string;
   subGroups?: OperatorsGroup[];
@@ -20,8 +20,8 @@ export type OperatorsItem = {
 
 export type OperatorsGroup = {
   defaultGroup?: boolean;
-  icon: React.ReactNode;
-  id: React.ReactText;
+  icon: ReactNode;
+  id: ReactText;
   itemType?: string;
   name: string;
   tooltip?: string;
@@ -39,6 +39,7 @@ export type OperatorsProps = {
   opened?: boolean;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   readOnly?: boolean;
+  errorText?: ReactNode;
 };
 
 export type OperatorsDropdownProps = {
