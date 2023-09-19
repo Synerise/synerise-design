@@ -56,38 +56,14 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
     left: 0;
     top: 0;
   }
+
   .ant-select-dropdown {
-    &.ant-select {
-      .ant-input {
-        transition: ease-in-out all 0.3s;
-        &:focus {
-          ${active()}
-          &:hover {
-            ${active()}
-          }
-        }
-      }
-    }
-
-    &.error {
-      .ant-select-selector {
-        &:hover {
-          ${error()}
-        }
-        ${error()}
-      }
-    }
-
     .ant-select-selection__rendered {
       margin: 0;
     }
 
     .ant-select-selection:hover .ant-select-selection__rendered {
       margin-right: 10px;
-    }
-
-    &.ant-select .ant-input {
-      padding: 8px 12px;
     }
 
     .ant-select-selection__clear {
@@ -105,13 +81,6 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
         color: ${(props): string => props.theme.palette['grey-700']};
       }
     }
-    .ant-select-selection-placeholder {
-      padding-left: 3px;
-    }
-
-    .ant-select-dropdown {
-      padding: 8px;
-    }
 
     .ant-select-dropdown-menu-item {
       font-weight: normal;
@@ -123,5 +92,39 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
   }
   .ant-select-selection-search-input {
     padding: 0;
+  }
+`;
+
+export const ComponentWrapper = styled.div<{ error?: boolean }>`
+  .ant-select-auto-complete {
+    
+    ${(props): FlattenInterpolation<ThemeProps> => {
+      if (props.error) {
+        return css`
+          .ant-select-selector {
+            &:hover {
+              ${error()}
+            }
+            ${error()}
+          }
+        `;
+      }
+      return css`
+        &.ant-select {
+          .ant-input {
+            transition: ease-in-out all 0.3s;
+            &:focus {
+              ${active()}
+              &:hover {
+                ${active()}
+              }
+            }
+          }
+        }
+      `;
+    }}
+
+      
+    }   
   }
 `;

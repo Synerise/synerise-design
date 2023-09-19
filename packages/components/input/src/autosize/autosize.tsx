@@ -98,7 +98,7 @@ class AutosizeInput extends Component {
     if (!this.mounted || !window.getComputedStyle) {
       return;
     }
-    const inputStyles = this.input && window.getComputedStyle(this.input);
+    const inputStyles = this.input && this.input instanceof HTMLElement && window.getComputedStyle(this.input);
     if (!inputStyles) {
       return;
     }

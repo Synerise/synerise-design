@@ -78,6 +78,7 @@ import Operators from '@synerise/ds-operators'
 
 | Property                  | Description                                                | Type                                                       | Default   |
 | ---                       | ---                                                        | ---                                                        | ---       | 
+| error                     | error validation                                         | boolean                                  | - | 
 | getPopupContainerOverride | Popup container function for child tooltips and dropdowns  | (trigger: HTMLElement \ null) => HTMLElement;              | -         | 
 | groups                    | Groups of operators                                        | OperatorsGroup[]                                           | []        | 
 | items                     | Array of operators                                         | OperatorsItem[]                                            | []        | 

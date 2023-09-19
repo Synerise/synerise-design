@@ -124,10 +124,6 @@ const AutocompleteWithAutosize: React.FC = () => {
     <AutosizeInput
       renderInput={Autocomplete || AntdAutoComplete}
       extraWidth={24}
-      transformRef={el => {
-        return el.querySelector('input')
-      }}
-      refPropName='inputRef'
       options={options}
       inputStyle={{
         ...(number('Min width', 200) ? {minWidth: number('Min width', 200)} : {}),
