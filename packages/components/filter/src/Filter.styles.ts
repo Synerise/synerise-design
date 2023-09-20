@@ -64,7 +64,9 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
       opacity: 1;
     }
     ${Body} {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      height: 0;
     }
     ${Footer} {
       display: none;
@@ -94,7 +96,9 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
       color: ${(props): string => props.theme.palette['blue-600']};
     }
     * {
-      display: none;
+      position: absolute;
+      opacity: 0;
+      height: 0;
     }
   }
 `;
