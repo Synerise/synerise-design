@@ -1,9 +1,9 @@
+import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import * as React from 'react';
 import Alert from '@synerise/ds-alert';
 import IconAlert from '@synerise/ds-alert/dist/IconAlert/IconAlert';
 
@@ -20,7 +20,19 @@ const decorator = storyFn => (
       alignItems: 'flex-start',
     }}
   >
-    {storyFn()}
+    <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '400px',
+          height: '100%',
+          margin: '0 auto',
+        }}
+      >
+      {storyFn()}
+    </div>
   </div>
 );
 const typeOptions = ['default', 'primary', 'ghost', 'dashed', 'danger', 'link', 'success', 'flat', 'warning'] as const;
@@ -59,34 +71,23 @@ const triggers = ['hover', 'click'] as const;
 const stories = {
   default: () => {
     const getDefaultIconAlertProps = () => ({
+      title: '',
       disabled: boolean('Disabled', false),
       trigger: select('Trigger', triggers, 'hover'),
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
+      <Popconfirm
+        {...getDefaultIconAlertProps()}
+        description='I will never close automatically. I will be close automatically. I will never close automatically.'
+        closeIcon={<Icon  component={<CloseM/>}/>}
+        hideButtons
+        titlePadding={true}
+        placement={placement}
+        align={{ offset: getPopconfirmAlign(placement)}}
       >
-        <Popconfirm
-          {...getDefaultIconAlertProps()}
-          description='I will never close automatically. I will be close automatically. I will never close automatically.'
-          closeIcon={<Icon  component={<CloseM/>}/>}
-          hideButtons
-          titlePadding={true}
-          placement={placement}
-          align={{ offset: getPopconfirmAlign(placement)}}
-        >
-          <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
-        </Popconfirm>
-      </div>
+        <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
+      </Popconfirm>
     );
   },
   withTitle: () => {
@@ -98,17 +99,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
@@ -119,7 +110,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
   withHeader: () => {
@@ -131,17 +121,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           closeIcon={<Icon component={<CloseM/>}/>}
@@ -151,7 +131,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
   withLink: () => {
@@ -163,17 +142,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           description='I will never close automatically. I will be close automatically. I will never close automatically.'
@@ -185,7 +154,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
   withIconAndTitle: () => {
@@ -197,17 +165,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
@@ -219,7 +177,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
   withActions: () => {
@@ -236,17 +193,7 @@ const stories = {
     });
     const placement = select('Placement', placements, 'topLeft');
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           icon={<Icon component={<WarningFillM/>} color='#ffc300'/>}
@@ -257,7 +204,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
 
@@ -279,17 +225,7 @@ const stories = {
     const hasIcon = boolean('Set Icon', false);
     const hasLink = boolean('Set Link', false);
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '400px',
-          height: '100%',
-          margin: '0 auto',
-        }}
-      >
+      
         <Popconfirm
           {...getDefaultIconAlertProps()}
           icon={ hasIcon && (<Icon component={<WarningFillM/>} color='#ffc300'/>)}
@@ -303,7 +239,6 @@ const stories = {
         >
           <IconAlert disabled={boolean('Disabled', false)} hoverButton={true} iconAlert={true} type="warning"/>
         </Popconfirm>
-      </div>
     );
   },
 }
