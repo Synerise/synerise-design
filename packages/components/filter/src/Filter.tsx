@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useCallback, useMemo, FC, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
@@ -26,7 +25,7 @@ const component = {
   STEP: StepCard,
 };
 
-const Filter: FC<FilterProps> = ({
+const Filter = ({
   maxConditionsLimit,
   expressions,
   matching,
@@ -45,7 +44,7 @@ const Filter: FC<FilterProps> = ({
   renderHeaderRightSide,
   visibilityConfig = { isStepCardHeaderVisible: true },
   readOnly = false,
-}) => {
+}: FilterProps) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = useState<string | null>(null);
 
@@ -173,7 +172,7 @@ const Filter: FC<FilterProps> = ({
           data-dropLabel={text.dropMeHere}
           index={index}
           style={!readOnly && isActive(expression) ? { zIndex: 10001 } : undefined}
-          onClick={(): void => setActiveExpressionId(expression.id)}
+          onMouseDown={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
           {expression.logic && index + 1 < expressions.length && (
