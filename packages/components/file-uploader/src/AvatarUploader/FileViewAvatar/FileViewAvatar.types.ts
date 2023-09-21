@@ -1,17 +1,17 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { ExtendedFile } from '../../FileUploader.types';
 
 export interface FileViewAvatarTexts {
-  removeTooltip?: string | React.ReactNode;
-  retryTooltip?: string | React.ReactNode;
-  buttonLabel: string | React.ReactNode;
-  buttonDescription: string | React.ReactNode;
+  removeTooltip?: ReactNode;
+  retryTooltip?: ReactNode;
+  buttonLabel?: ReactNode;
+  buttonDescription?: ReactNode;
 }
 
 export interface FileViewAvatarProps {
   data: ExtendedFile;
-  texts: FileViewAvatarTexts;
+  texts?: FileViewAvatarTexts;
   removable?: boolean;
   onRemove?: () => void;
-  description?: string | React.ReactNode;
+  description?: ReactNode;
 }

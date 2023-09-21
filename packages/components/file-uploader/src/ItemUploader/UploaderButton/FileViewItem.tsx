@@ -1,5 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
+import { FormattedMessage } from 'react-intl';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { RepeatM, FileTypeTextM, Close3M, FileM } from '@synerise/ds-icon';
 
@@ -15,12 +16,18 @@ const mapperOfIcons = {
   'text/csv': <FileTypeTextM />,
 };
 
-const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, removable }) => {
+const FileViewItem = ({ data, texts, onRemove, removable }: FileViewAvatarProps) => {
   const { disabled, error, file, progress } = data;
+
+  const finalTexts = {
+    retryTooltip: <FormattedMessage id="DS.FILE-UPLOADER.RETRY-TOOLTIP" defaultMessage="Retry" />,
+    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-TOOLTIP" defaultMessage="Remove" />,
+    ...texts,
+  };
 
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';
-  const [removeButtonPressed, removeButtonSetPressed] = React.useState<boolean>(false);
+  const [removeButtonPressed, removeButtonSetPressed] = useState(false);
   const handleRemove = (): void => {
     onRemove && onRemove();
     removeButtonSetPressed(false);
@@ -50,7 +57,7 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
             </S.LoaderIcon>
           )}
           {error && (
-            <Tooltip title={texts.retryTooltip}>
+            <Tooltip title={finalTexts.retryTooltip}>
               <S.RepeatIcon>
                 <Icon component={<RepeatM />} />
               </S.RepeatIcon>
@@ -63,7 +70,7 @@ const FileViewItem: React.FC<FileViewAvatarProps> = ({ data, texts, onRemove, re
               pressed={removeButtonPressed}
               data-testid="fileview-remove"
             >
-              <Tooltip title={texts.removeTooltip}>
+              <Tooltip title={finalTexts.removeTooltip}>
                 <Icon component={<Close3M />} size={16} />
               </Tooltip>
             </S.RemoveButtonWrapper>

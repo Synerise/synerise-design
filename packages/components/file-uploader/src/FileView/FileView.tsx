@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import filesize from 'filesize.js';
 
 import ProgressBar from '@synerise/ds-progress-bar';
@@ -22,6 +22,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
+import { FormattedMessage } from 'react-intl';
 import * as S from './FileView.styles';
 import { FileViewProps } from './FileView.types';
 
@@ -56,14 +57,31 @@ const mapperOfIcons = {
   'text/csv': <FileTypeTxt />,
 };
 
-const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, retry, retryButtonProps }) => {
+const FileView = ({ data, texts, onRemove, removable, retry, retryButtonProps }: FileViewProps) => {
   const getFriendlySize = (size?: number): string => filesize(size || 0);
 
   const { disabled, error, file, progress, success } = data;
 
+  const finalTexts = {
+    size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" defaultMessage="Size" />,
+    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE-TOOLTIP" defaultMessage="Remove" />,
+    cancelText: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.CANCEL" defaultMessage="Cancel" />,
+    okText: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.OK" defaultMessage="OK" />,
+    removeConfirmTitle: (
+      <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.REMOVE-CONFIRM-TITLE" defaultMessage="Remove" />
+    ),
+    fileWeight: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.FILE-WEIGHT" defaultMessage="File weight" />,
+    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-LABEL" defaultMessage="Upload a file" />,
+    buttonDescription: (
+      <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.BUTTON-DESCRIPTION" defaultMessage="or drop one here" />
+    ),
+    retryLabel: <FormattedMessage id="DS.FILE-UPLOADER.FILE-VIEW.RETRY-BUTTON-LABEL" defaultMessage="Retry" />,
+    ...texts,
+  };
+
   const hasError = !!error;
   const hasProgress = typeof progress === 'number';
-  const [pressed, setPressed] = React.useState<boolean>(false);
+  const [pressed, setPressed] = useState<boolean>(false);
   const handleRemove = (): void => {
     onRemove && onRemove();
     setPressed(false);
@@ -92,12 +110,12 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
         {hasProgress ? (
           <>
             <S.Name>
-              {file.name} <S.FileWeight>{texts.fileWeight}</S.FileWeight>
+              {file.name} <S.FileWeight>{finalTexts.fileWeight}</S.FileWeight>
             </S.Name>
             <div style={{ display: 'flex' }}>
-              <ProgressBar amount={100} percent={texts.percent} />
+              <ProgressBar amount={100} percent={finalTexts.percent} />
               <S.RemoveWrapper onClick={onRemove} data-testid="fileview-remove">
-                <Tooltip title={texts.removeTooltip}>
+                <Tooltip title={finalTexts.removeTooltip}>
                   <Icon component={<Close3M />} size={20} />
                 </Tooltip>
               </S.RemoveWrapper>
@@ -110,7 +128,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
             <S.SizeOrError>
               {error || (
                 <>
-                  {texts.size} {getFriendlySize(file.size)}
+                  {finalTexts.size} {getFriendlySize(file.size)}
                 </>
               )}
             </S.SizeOrError>
@@ -129,7 +147,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
           type="ghost-primary"
         >
           <Icon component={<RepeatM />} />
-          {texts.retryLabel}
+          {finalTexts.retryLabel}
         </Button>
       )}
       {!error && !disabled && !hasProgress && (
@@ -142,10 +160,10 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
           onConfirm={handleRemove}
           onCancel={(): void => setPressed(false)}
           icon={<Icon component={<WarningFillM />} color={theme.palette['yellow-600']} />}
-          cancelText={texts.cancelText}
-          okText={texts.okText}
+          cancelText={finalTexts.cancelText}
+          okText={finalTexts.okText}
           okType="primary"
-          title={texts.removeConfirmTitle}
+          title={finalTexts.removeConfirmTitle}
           placement="top"
           mouseEnterDelay={250}
           mouseLeaveDelay={250}
@@ -156,7 +174,7 @@ const FileView: React.FC<FileViewProps> = ({ data, texts, onRemove, removable, r
             pressed={pressed}
             data-testid="fileview-remove"
           >
-            <Tooltip title={texts.removeTooltip}>
+            <Tooltip title={finalTexts.removeTooltip}>
               <Icon component={<Close3M />} size={20} />
             </Tooltip>
           </S.RemoveButtonWrapper>
