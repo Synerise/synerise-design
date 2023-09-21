@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
 import Tooltip from '@synerise/ds-tooltip';
@@ -24,7 +23,7 @@ function readAsText(file: File): Promise<FileContent> {
   });
 }
 
-const AvatarUploader: React.FC<FileUploaderProps> = ({
+const AvatarUploader = ({
   className,
   onUpload,
   disabled,
@@ -38,22 +37,15 @@ const AvatarUploader: React.FC<FileUploaderProps> = ({
   mode = 'single',
   removable = true,
   files = [],
-  texts = {
-    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
-    buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
-    size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
-    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
-  },
-}) => {
+  texts,
+}: FileUploaderProps) => {
   const [uploadSuccess, setUploadSuccess] = React.useState(true);
 
   const readFilesContent = React.useCallback(
     (addedFiles: File[]) => {
-      const readerPromises = addedFiles.map(
-        (file): Promise<FileContent> => {
-          return readAsText(file);
-        }
-      );
+      const readerPromises = addedFiles.map((file): Promise<FileContent> => {
+        return readAsText(file);
+      });
       Promise.all(readerPromises).then((filesContent: FileContent[]): void => {
         const filesWithContent = addedFiles.map((file, index) => {
           return Object.assign(file, { content: filesContent[index] });

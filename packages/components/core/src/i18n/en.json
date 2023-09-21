@@ -59,9 +59,21 @@
         },
         "FILE-UPLOADER": {
             "BUTTON-LABEL": "Upload a new file",
+            "BUTTON-LABEL-LARGE": "Upload a new file",
             "BUTTON-DESC": "or drag one here",
             "SIZE": "Size:",
-            "UPLOADING": "Uploading..."
+            "UPLOADING": "Uploading...",
+            "REMOVE-TOOLTIP": "Remove",
+            "RETRY-TOOLTIP": "Retry",
+            "FILE-VIEW": {
+                "CANCEL": "Cancel",
+                "OK": "OK",
+                "REMOVE-CONFIRM-TITLE": "Remove",
+                "FILE-WEIGHT": "File weight",
+                "BUTTON-LABEL": "Upload",
+                "BUTTON-DESCRIPTION": "Button description",
+                "RETRY-BUTTON-LABEL": "Retry"
+            }
         },
         "ITEM-FILTER": {
             "ACTIVATE-ITEM-TITLE": "By activating this filter, you will cancel your unsaved filter settings",

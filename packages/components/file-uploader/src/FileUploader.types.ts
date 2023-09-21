@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import { FileViewTexts } from './FileView/FileView.types';
 
 export interface ExtendedFile {
@@ -16,9 +16,9 @@ export interface FileWithContent extends File {
 export type FileContent = string | ArrayBuffer | null;
 
 type FileUploaderTexts = FileViewTexts & {
-  buttonLabel: string | React.ReactNode;
-  buttonLabelLarge: string | React.ReactNode;
-  buttonDescription: string | React.ReactNode;
+  buttonLabel?: ReactNode;
+  buttonLabelLarge?: ReactNode;
+  buttonDescription?: ReactNode;
 };
 
 export interface FileUploaderProps {
@@ -29,10 +29,10 @@ export interface FileUploaderProps {
   disabled?: boolean;
   removable?: boolean;
   tooltip?: string;
-  removeTooltip?: string | React.ReactNode;
+  removeTooltip?: ReactNode;
   label?: string;
   error?: string;
-  texts: FileUploaderTexts;
+  texts?: FileUploaderTexts;
   files: ExtendedFile[];
   accept?: string[];
   onRemove?: (file: FileWithContent, index: number) => void;

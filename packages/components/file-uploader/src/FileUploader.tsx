@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDropzone } from 'react-dropzone';
 
@@ -22,7 +22,7 @@ function readAsText(file: File): Promise<FileContent> {
   });
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({
+const FileUploader = ({
   className,
   onUpload,
   disabled,
@@ -37,23 +37,20 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   removable = true,
   files = [],
   retry,
-  texts = {
-    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" />,
-    buttonLabelLarge: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL-LARGE" />,
-    buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" />,
-    size: <FormattedMessage id="DS.FILE-UPLOADER.SIZE" />,
-    removeTooltip: <FormattedMessage id="DS.FILE-UPLOADER.REMOVE" />,
-  },
-}) => {
-  const [uploadSuccess, setUploadSuccess] = React.useState(true);
-
-  const readFilesContent = React.useCallback(
+  texts,
+}: FileUploaderProps) => {
+  const [uploadSuccess, setUploadSuccess] = useState(true);
+  const finalTexts = {
+    buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" defaultMessage="Upload file" />,
+    buttonLabelLarge: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL-LARGE" defaultMessage="Upload file" />,
+    buttonDescription: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-DESC" defaultMessage="Description" />,
+    ...texts,
+  };
+  const readFilesContent = useCallback(
     (addedFiles: File[]) => {
-      const readerPromises = addedFiles.map(
-        (file): Promise<FileContent> => {
-          return readAsText(file);
-        }
-      );
+      const readerPromises = addedFiles.map((file): Promise<FileContent> => {
+        return readAsText(file);
+      });
       Promise.all(readerPromises).then((filesContent: FileContent[]): void => {
         const filesWithContent = addedFiles.map((file, index) => {
           return Object.assign(file, { content: filesContent[index] });
@@ -64,7 +61,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     [onUpload]
   );
 
-  const onDrop = React.useCallback(
+  const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       let possibleUpload = 0;
       if (filesAmount) {
@@ -94,7 +91,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   }
 
   const hasError = Boolean(error) || !uploadSuccess;
-  const [pressed, setPressed] = React.useState<boolean>(false);
+  const [pressed, setPressed] = useState<boolean>(false);
   const errors = hasError && !uploadSuccess ? [error].concat('To many files uploaded') : [error];
   return (
     <S.Container className={`ds-file-uploader ${className || ''}`}>
@@ -132,13 +129,13 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             {mode === 'multi-large' && files.length === 0 ? (
               <>
                 <Icon component={<FileUploadL />} size={48} />
-                <S.LargeDropAreaLabel>{texts.buttonLabelLarge}</S.LargeDropAreaLabel>
-                <S.LargeDropAreaDescription>{texts.buttonDescription}</S.LargeDropAreaDescription>
+                <S.LargeDropAreaLabel>{finalTexts.buttonLabelLarge}</S.LargeDropAreaLabel>
+                <S.LargeDropAreaDescription>{finalTexts.buttonDescription}</S.LargeDropAreaDescription>
               </>
             ) : (
               <>
                 <Icon component={<AddM />} size={24} />
-                <S.DropAreaLabel>{texts.buttonLabel}</S.DropAreaLabel>
+                <S.DropAreaLabel>{finalTexts.buttonLabel}</S.DropAreaLabel>
               </>
             )}
           </S.DropAreaButton>
