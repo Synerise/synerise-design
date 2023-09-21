@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.194.2](https://github.com/synerise/synerise-design/compare/portal@0.194.1...portal@0.194.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **alert:** added missing exports (wip) ([7b3d9dc](https://github.com/synerise/synerise-design/commit/7b3d9dc1a387d61cda7ef987209b9d671ddcd1d2))
+
+
+
+
+
 ## [0.194.1](https://github.com/synerise/synerise-design/compare/portal@0.194.0...portal@0.194.1) (2023-09-19)
 
 **Note:** Version bump only for package portal

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.9...@synerise/ds-filter@0.15.10) (2023-09-21)
+
+
+### Bug Fixes
+
+* **filter:** dropdowns not closing during dragging ([d60a645](https://github.com/Synerise/synerise-design/commit/d60a645c79c5d82af48a3b2105053774f00a054d))
+
+
+
+
+
 ## [0.15.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.8...@synerise/ds-filter@0.15.9) (2023-09-08)
 
 **Note:** Version bump only for package @synerise/ds-filter

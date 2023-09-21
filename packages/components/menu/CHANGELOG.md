@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.17...@synerise/ds-menu@0.17.18) (2023-09-21)
+
+
+### Bug Fixes
+
+* **menu:** added styled wrappers to exports ([2b0c37f](https://github.com/Synerise/synerise-design/commit/2b0c37f5f905880bc8586f4a404996549bf50c0f))
+
+
+
+
+
 ## [0.17.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.16...@synerise/ds-menu@0.17.17) (2023-09-05)
 
 

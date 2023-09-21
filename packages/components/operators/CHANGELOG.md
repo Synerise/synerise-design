@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.38](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.37...@synerise/ds-operators@0.10.38) (2023-09-21)
+
+
+### Bug Fixes
+
+* **operators:** added missing types exports ([5e323a7](https://github.com/Synerise/synerise-design/commit/5e323a7a29764da726915704550521482b11b96e))
+
+
+
+
+
 ## [0.10.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.36...@synerise/ds-operators@0.10.37) (2023-09-19)
 
 **Note:** Version bump only for package @synerise/ds-operators
