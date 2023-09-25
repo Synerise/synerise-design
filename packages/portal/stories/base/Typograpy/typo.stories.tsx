@@ -4,8 +4,15 @@ import Table from '@synerise/ds-table';
 
 const DATA = [
   {
+    name: `<Title level={1} ellipsis={{title}}></Title>`,
+    example: <div style={{maxWidth: '200px'}}><Title level={1} ellipsis={{tooltip: 'h1. Synerise DS with ellipsis'}}>h1. Synerise DS with ellipsis</Title></div>,
+    fontSize: '24px',
+    lineHeight: '28px',
+    letterSpacing: '-0.05px',
+  },
+  {
     name: `<Title level={1}></Title>`,
-    example: <Title level={1}>h1. Synerise DS</Title>,
+    example: <Title level={1} ellipsis={{title: 'h1. Synerise DS'}}>h1. Synerise DS</Title>,
     fontSize: '24px',
     lineHeight: '28px',
     letterSpacing: '-0.05px',
@@ -51,6 +58,13 @@ const DATA = [
     fontSize: '10px',
     lineHeight: '16px',
     letterSpacing: '0.05px',
+  },
+  {
+    name: `<Text size="medium" ellipsis={{title}}></Text>`,
+    example: <div style={{maxWidth: '150px'}}><Text size="medium" ellipsis={{tooltip: 'Text with conditional ellipsis. The tooltip will show only if text has ellipsis'}}>Text with conditional ellipsis</Text></div>,
+    fontSize: '24px',
+    lineHeight: '28px',
+    letterSpacing: '-0.05px',
   },
   {
     name: `<Text size="medium"></Text>`,
@@ -104,6 +118,7 @@ const columns = [
   {
     title: 'Example',
     dataIndex: 'example',
+    
   },
   {
     title: 'Font size',
