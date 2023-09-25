@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { H1, H2, H3, H4, H5, H6, H7 } from './CommonElements';
 import { Props } from './Title.types';
+import { Ellipsis } from './Ellipsis';
 
 const StyledElements = {
   1: H1,
@@ -13,16 +14,18 @@ const StyledElements = {
   7: H7,
 };
 
-const Title: React.FC<Props> = ({ level = 1, withoutMargin, children, className }) => {
-  const TitleElement = React.useMemo(() => {
-    return StyledElements[level];
-  }, [level]);
+const Title = ({ level = 1, withoutMargin, children, className, ellipsis }: Props) => {
+  const TitleElement = StyledElements[level];
   const elementClassName = classNames('ds-title', className);
-  return (
+  const content = (
     <TitleElement className={elementClassName} withoutMargin={Boolean(withoutMargin)}>
       {children}
     </TitleElement>
   );
+  if (ellipsis === undefined) {
+    return content;
+  }
+  return <Ellipsis {...ellipsis}>{content}</Ellipsis>;
 };
 
 export default Title;

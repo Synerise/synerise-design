@@ -6,13 +6,6 @@ export const Description = styled.div<{ disabled?: boolean }>`
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
 `;
 
-export const EllipsisText = styled.div`
-  display: block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
 export const ErrorText = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
   margin-bottom: 4px;
@@ -136,4 +129,13 @@ export const H7 = styled.h6<{ withoutMargin: boolean }>`
     css`
       margin-bottom: 0;
     `}
+`;
+export const EllipsisText = styled.div`
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  ${H1}, ${H2}, ${H3}, ${H4}, ${H5}, ${H6}, ${H7} {
+    display: inline;
+  }
 `;
