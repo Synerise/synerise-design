@@ -1,8 +1,7 @@
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdTooltip from 'antd/lib/tooltip';
-import * as React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode, useRef, useState, useMemo, useEffect } from 'react';
 import { Carousel } from 'antd';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
@@ -19,12 +18,12 @@ const shouldRenderDescription = (description: descriptionType, type: tooltipType
 const shouldRenderTitle = (type: tooltipTypes, title: ReactNode): ReactNode | null => {
   return type !== 'largeSimple' ? title : null;
 };
-const shouldRenderStatus = (status: React.ReactNode | null, type: tooltipTypes): descriptionType | null => {
+const shouldRenderStatus = (status: ReactNode | null, type: tooltipTypes): descriptionType | null => {
   if (type === 'status' || status) return status;
   return null;
 };
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Tooltip = ({
   type = 'default',
   icon,
   title,
@@ -39,19 +38,18 @@ const Tooltip: React.FC<TooltipProps> = ({
   button,
   render,
   ...props
-}) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const timeoutClickRef = React.useRef<null | number>(null);
+}: TooltipProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const timeoutClickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: React.ReactNode): React.ReactNode | undefined => {
+  const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: ReactNode): ReactNode | undefined => {
     if (tooltipType !== 'icon') return null;
     if (tooltipIcon && icon) return icon;
     return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
   };
 
-  const renderButton = React.useMemo(() => {
+  const renderButton = useMemo(() => {
     const buttonMode = (): string => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const { buttonIcon, label } = button;
       if (buttonIcon && label) return 'icon-label';
@@ -72,7 +70,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     );
   }, [button]);
 
-  const renderTooltipComponent = (
+  const tooltipComponent = (
     <S.TooltipComponent tooltipType={type}>
       <S.TooltipContent>
         <S.TooltipStatus tooltipType={type}>{type && shouldRenderStatus(status, type)}</S.TooltipStatus>
@@ -93,20 +91,18 @@ const Tooltip: React.FC<TooltipProps> = ({
     </S.TooltipComponent>
   );
 
-  const renderButtonComponent = React.useMemo(() => {
-    return (
-      <S.TooltipComponent tooltipType={type}>
-        <S.TooltipContent>
-          <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
-          <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
-          <S.TooltipDescription tooltipType={type}>{description}</S.TooltipDescription>
-        </S.TooltipContent>
-        {renderButton}
-      </S.TooltipComponent>
-    );
-  }, [type, title, description, status, renderButton]);
+  const buttonComponent = (
+    <S.TooltipComponent tooltipType={type}>
+      <S.TooltipContent>
+        <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
+        <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
+        <S.TooltipDescription tooltipType={type}>{description}</S.TooltipDescription>
+      </S.TooltipContent>
+      {renderButton}
+    </S.TooltipComponent>
+  );
 
-  const renderTutorialComponent = (
+  const tutorialComponent = (
     <S.TooltipComponent tooltipType={type}>
       <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
         {tutorials &&
@@ -120,19 +116,25 @@ const Tooltip: React.FC<TooltipProps> = ({
     </S.TooltipComponent>
   );
 
-  const tooltipComponent = React.useMemo(() => {
-    if (type === 'tutorial') return renderTutorialComponent;
-    if (type === 'button') return renderButtonComponent;
-    return renderTooltipComponent;
-  }, [type, renderTooltipComponent, renderTutorialComponent, renderButtonComponent]);
+  let component: JSX.Element;
+  switch (type) {
+    case 'tutorial':
+      component = tutorialComponent;
+      break;
+    case 'button':
+      component = buttonComponent;
+      break;
+    default:
+      component = tooltipComponent;
+  }
 
-  const overlayClassName = React.useMemo(() => {
+  const overlayClassName = useMemo(() => {
     return `ds-tooltip-offset-${offset} ds-tooltip-type-${type}`;
   }, [offset, type]);
 
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return (): void => {
       timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
     };
@@ -179,7 +181,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     <AntdTooltip
       overlayClassName={overlayClassName}
       autoAdjustOverflow={false}
-      title={tooltipComponent}
+      title={component}
       align={{ offset: [0, 0] }}
       getPopupContainer={getPopupContainer}
       {...handleHideAfterClick}

@@ -46,7 +46,7 @@ const OverlayExample1: React.FC<Props> = ({ value, onSearchChange, onClearInput,
         ))}
           </Menu>}
       <Dropdown.BottomAction
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        
         // @ts-ignore
         style={{ marginTop: '0px', padding: '0 8px', cursor: 'auto',alignItems: 'center' }}
       >

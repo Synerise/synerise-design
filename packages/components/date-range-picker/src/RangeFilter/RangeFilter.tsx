@@ -189,6 +189,5 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export default injectIntl(RangeFilter);

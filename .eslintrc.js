@@ -35,9 +35,25 @@ module.exports = {
     'import/no-extraneous-dependencies': [IGNORE],
     'import/no-unresolved': [IGNORE],
     'import/prefer-default-export': [IGNORE],
+    'react/jsx-props-no-spreading': [IGNORE],
+    'no-use-before-define': IGNORE,
+    'no-shadow': IGNORE,
+    'no-shadow-restricted-names': WARNING,
+    '@typescript-eslint/ban-types': IGNORE,
+    '@typescript-eslint/ban-ts-comment': IGNORE,
+    '@typescript-eslint/explicit-module-boundary-types': IGNORE,
     '@typescript-eslint/explicit-function-return-type': IGNORE,
     '@typescript-eslint/no-unused-vars': [ERROR, { ignoreRestSiblings: true }],
-    'react/jsx-props-no-spreading': [IGNORE],
+    '@typescript-eslint/no-shadow': ERROR,
+    '@typescript-eslint/no-use-before-define': [
+      'warn',
+      {
+        functions: false,
+        classes: false,
+        variables: false,
+        typedefs: false,
+      },
+    ],
   },
   settings: {
     'import/resolver': {

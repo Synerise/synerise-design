@@ -177,7 +177,6 @@ const Item: React.FC<ItemProps> = ({
       withCheckbox={withCheckbox}
       suffixel={suffixel}
       text={textComponent}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore: because onMouseLeave is not there :P just for clearance onMouseOut isn't there too
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}

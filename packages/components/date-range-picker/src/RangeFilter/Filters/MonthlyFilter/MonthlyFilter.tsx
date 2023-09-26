@@ -297,7 +297,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               ),
               canDelete: !disabled && deletableDueToEntriesLimit(key),
               id: item.id as string,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
               // @ts-ignore
               name: (
                 <S.DropdownHeader
@@ -329,20 +329,16 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                     showSelectAll
                     invertibleTime
                     numberOfDaysPerRow={7}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-expect-error: FIXME: Type '{ [day: number]: DenormalizedFilter; }' is not assignable to type 'Days'.
                     days={item.definition}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-expect-error: FIXME: Type '(definition: Month) => void' is not assignable to type '(days: Days) => void'.
                     onChange={(definition: Month): void => this.handleDefinitionChange(definition, key)}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-expect-error: FIXME: Type 'Partial<FilterDefinition> | undefined' is not assignable to type 'Partial<FilterDefinition>'.
                     rangeClipboard={rangeClipboard}
                     monthlyFilterPeriod={data[key].period}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-expect-error: FIXME: Type 'Partial<FilterDefinition> | undefined' is not assignable to type 'Partial<FilterDefinition>'.
                     valueSelectionModes={valueSelectionModes}
                     renderRangeFormSuffix={renderRangeFormSuffix}

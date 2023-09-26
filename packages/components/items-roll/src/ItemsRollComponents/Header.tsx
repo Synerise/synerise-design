@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({
         {allTexts.changeSelectionLabel}
       </S.ChangeSelection>
     ),
-    [onChangeSelection, allTexts.changeSelectionLabel]
+    [ChangeSelectionIcon, onChangeSelection, allTexts.changeSelectionLabel]
   );
 
   return (

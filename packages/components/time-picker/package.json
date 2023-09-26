@@ -52,6 +52,6 @@
   },
   "devDependencies": {
     "@testing-library/react": "10.0.1",
-    "@types/debounce": "^1.2.0"
+    "@types/debounce": "^1.2.1"
   }
 }

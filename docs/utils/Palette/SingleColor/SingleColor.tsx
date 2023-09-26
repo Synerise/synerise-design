@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Card from '@synerise/ds-card';
 import { hexToRgba } from '@synerise/ds-utils';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import palette from '!less-vars-loader!@synerise/ds-core/src/style/colors.less';

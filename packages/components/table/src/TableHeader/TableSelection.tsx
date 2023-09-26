@@ -10,7 +10,6 @@ import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
 import { Props } from './TableSelection.types';
 import { useRowKey } from '../hooks/useRowKey';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
   dataSource,

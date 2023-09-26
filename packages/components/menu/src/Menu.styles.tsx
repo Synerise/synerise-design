@@ -1,17 +1,17 @@
-import * as React from 'react';
+import { ReactNode, PropsWithChildren } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 import { Menu } from 'antd';
 import { AntdMenuProps, MenuDividerProps } from './Menu.types';
 
-type SubMenuProps = {
+type SubMenuProps = PropsWithChildren<{
   ordered?: boolean | undefined;
   disabled?: boolean | undefined;
   danger?: boolean | undefined;
-  prefixel?: React.ReactNode;
-  title: string | React.ReactNode;
+  prefixel?: ReactNode;
+  title: string | ReactNode; 
   tabIndex?: number;
-};
+}>;
 
 const overflowStyles = css`
   text-overflow: ellipsis;

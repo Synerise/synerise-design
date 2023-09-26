@@ -30,7 +30,6 @@ const WeeklyFilter = ({
       <TimeWindow
         texts={texts}
         showSelectAll
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-expect-error: FIXME:  Property 'invertibleTime' does not exist on type
         invertibleTime
         dayFormatter={handleDayFormatter}

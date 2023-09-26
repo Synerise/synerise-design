@@ -73,7 +73,7 @@ const SidebarObject = ({
       />
       <Scrollbar
         absolute
-        maxHeight="100vh" // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        maxHeight="100vh"
         // @ts-ignore
         options={{ suppressScrollY: !withScrollbar }}
       >

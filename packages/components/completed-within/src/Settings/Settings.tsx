@@ -23,7 +23,6 @@ const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValu
           size={'default' as SizeType}
           value={value.period}
           placeholder={text.periodPlaceholder}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           onChange={(option: Period): void => {
             onPeriodChange(option);

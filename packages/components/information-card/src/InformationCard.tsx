@@ -82,13 +82,12 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card" asTooltip={asTooltip}>
         <Card
           background="white"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           renderBadge={(): React.ReactNode => {
             return (
               renderBadge !== null && (
                 <div style={{ marginRight: '16px' }}>
-                  {renderBadge?.call(null) ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
+                  {renderBadge?.() ?? buildIconBadge({ iconElement, iconColor, avatarTooltipText })}
                 </div>
               )
             );

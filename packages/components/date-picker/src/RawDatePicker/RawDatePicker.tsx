@@ -184,7 +184,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
 
   handleDaySwitch = (day: Date): void => {
     const { disabledDates } = this.props;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
     // @ts-ignore
     this.handleDayClick(day, { disabled: disabledDates ? disabledDates(day) : false });
   };

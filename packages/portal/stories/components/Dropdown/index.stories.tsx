@@ -63,7 +63,7 @@ export function renderFooter(suffixElementType: string) {
       return (
         <Dropdown.BottomAction
           onClickAction={() => {}}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          
           // @ts-ignore
           style={{ marginTop: '0px', cursor: 'auto' }}
         />

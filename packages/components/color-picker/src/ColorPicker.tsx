@@ -139,7 +139,6 @@ const ColorPicker = ({
       {savedColors.length > 0 && (
         <Tags
           tagShape={TagShape.SINGLE_CHARACTER_SQUARE}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           selected={savedColors.map((colorEntry, i) => ({
             id: i,

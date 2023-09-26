@@ -10,18 +10,15 @@ import { VirtualScrollbar } from './VirtualScrollbar';
 const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
   ({ children, loading, withDnd, fetchData, ...props }, forwardedRef) => {
     const Component = withDnd ? DnDScrollbar : VirtualScrollbar;
-
-    const renderScrollbar = React.useMemo(() => {
-      return (
-        <Component {...props} fetchData={fetchData} ref={forwardedRef}>
-          {children}
-        </Component>
-      );
-    }, [children, fetchData, forwardedRef, props]);
+    const scrollbar = (
+      <Component {...props} fetchData={fetchData} ref={forwardedRef}>
+        {children}
+      </Component>
+    );
 
     return (
       <S.ScrollbarContainer>
-        {renderScrollbar}
+        {scrollbar}
         {loading && (
           <S.LoaderWrapper>
             <S.Loader loading={loading}>

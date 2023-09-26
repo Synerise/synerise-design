@@ -6,12 +6,18 @@ import { InputProps } from '../../Factors.types';
 
 const NumberInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate, readOnly = false }) => {
   const [localValue, setLocalValue] = React.useState<string | number | undefined>(value as number);
-  const onChangeValueDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
+  const onChangeValueDebounce = React.useRef(debounce(onChange, 300)).current;
 
   const handleChange = (val: string | number | undefined): void => {
     setLocalValue(val);
     onChangeValueDebounce(val);
   };
+
+  React.useEffect(() => {
+    return () => {
+      onChangeValueDebounce.cancel();
+    };
+  }, [onChangeValueDebounce]);
 
   React.useEffect(() => {
     setLocalValue(value as number);

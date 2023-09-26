@@ -134,7 +134,7 @@ function GroupTableBody<T extends unknown>({
                   return (
                     column.dataIndex && (
                       <S.SubRow
-                        key={index}
+                        key={column.dataIndex}
                         selected={column.dataIndex === group.children[0].props.record.column}
                         sorted={Boolean(column.sortOrder)}
                       >

@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import palette from '!less-vars-loader!@synerise/ds-core/src/style/colors.less';

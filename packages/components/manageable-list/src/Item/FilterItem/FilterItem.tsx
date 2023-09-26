@@ -74,7 +74,6 @@ const FilterItem: React.FC<FilterItemProps> = ({
           <S.ItemHeaderPrefix>
             <SelectFilterItem data-testid={selected && 'filter-item-selected'}>
               {selected ? (
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 // @ts-ignore
                 <Icon className="selected-item-icon" component={<CheckS />} color={theme.palette.white} />
               ) : (

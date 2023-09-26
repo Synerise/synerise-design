@@ -10,7 +10,6 @@ type LayoutProps = {
 const Page: React.FC<LayoutProps> = ({ navBar, appMenu, children }) => {
   const renderAppMenu = React.useMemo(() => {
     if (appMenu) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return React.cloneElement(appMenu, {
         top: navBar ? 56 : 0,

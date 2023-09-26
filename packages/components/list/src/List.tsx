@@ -18,7 +18,6 @@ export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
   return !!array.length && array[0] instanceof Array;
 };
 
-
 class List<T> extends React.PureComponent<ListPropsType<T>> {
   static ItemWrapper: typeof ItemWrapper = ItemWrapper;
   static Item: typeof TextItem = TextItem;
@@ -36,7 +35,6 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
     if (isNestedArray(dataSource)) {
       ReadyList =
         !!dataSource &&
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         dataSource.map((singleDataSource: T[] | undefined, index: number) => {
           const isLastItem = dataSource.length === index + 1;

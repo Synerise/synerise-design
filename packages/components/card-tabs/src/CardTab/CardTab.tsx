@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent, ReactNode } from 'react';
+import React, { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
@@ -121,7 +120,7 @@ const CardTab: FC<CardTabProps> = props => {
     texts: getTexts,
   };
 
-  const cardSuffix = useMemo((): ReactNode => {
+  const cardSuffix = (() => {
     const showActionsDropdownMenu = actionsAsDropdown && (onChangeName || handleDuplicate || handleRemove);
     if (showActionsDropdownMenu) {
       return (
@@ -154,18 +153,7 @@ const CardTab: FC<CardTabProps> = props => {
       );
     }
     return <></>;
-  }, [
-    renderSuffix,
-    suffixProps,
-    actionsAsDropdown,
-    suffixIcon,
-    showCardActions,
-    onChangeName,
-    handleEditName,
-    handleDuplicate,
-    handleRemove,
-    getTexts,
-  ]);
+  })();
 
   return (
     <S.CardTabContainer

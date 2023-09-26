@@ -111,7 +111,6 @@ function GroupTable<T extends GroupType<T>>(
       <Table<T>
         {...props}
         dataSource={sortedRowsData}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore: FIXME: antd table columns type is not compatible with DS
         columns={decoratedColumns}
         components={{
@@ -127,7 +126,6 @@ function GroupTable<T extends GroupType<T>>(
                   allItems={allItems}
                   expanded={expandedGroups.indexOf(record['data-row-key']) >= 0}
                   expandGroup={toggleExpand}
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                   // @ts-ignore: FIXME: Type 'DSColumnType<T>[]' is not assignable to type 'GroupColumnsType<T>[]'.
                   columns={columnsWithCustomSorting}
                   addItem={addItem}
@@ -138,7 +136,6 @@ function GroupTable<T extends GroupType<T>>(
             },
           },
         }}
-        /* eslint-disable-next-line @typescript-eslint/ban-ts-ignore */
         // @ts-ignore
         rowSelection={
           selection && {

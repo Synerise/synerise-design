@@ -102,6 +102,5 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export default withTheme(PageHeader);

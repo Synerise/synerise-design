@@ -158,15 +158,12 @@ const sortReducer: React.Reducer<ColumnsSortState, ColumnSortAction> = (state, a
 
   switch (type) {
     case 'setSingleOrder':
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return setSingleOrder(state, action);
     case 'setMultipleOrder':
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return setMultipleOrder(state, action);
     case 'updateColumns':
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       return updateColumns(state, action);
     default:

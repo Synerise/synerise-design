@@ -16,7 +16,7 @@ const getPortalRoot = (): HTMLElement => {
 class WizardPortal extends React.Component {
   private modalRoot: HTMLElement;
   private readonly el: HTMLDivElement;
-  constructor(props: Readonly<{}>) {
+  constructor(props: Readonly<Record<string, unknown>>) {
     super(props);
     this.modalRoot = getPortalRoot();
     this.el = document.createElement('div');

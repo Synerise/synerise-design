@@ -21,12 +21,18 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   draggableEnabled,
   readOnly = false,
 }) => {
-  const onChangeNameDebounce = React.useCallback(debounce(updateStepName || NOOP, 300), [updateStepName]);
+  const onChangeNameDebounce = React.useRef(debounce(updateStepName || NOOP, 300)).current;
   const [localName, setLocalName] = React.useState(stepName);
 
   React.useEffect(() => {
     setLocalName(stepName);
   }, [stepName]);
+
+  React.useEffect(() => {
+    return () => {
+      onChangeNameDebounce.cancel();
+    };
+  }, [onChangeNameDebounce]);
 
   const handleChangeName = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,5 +1,4 @@
 import { ThemeProps as SCThemeProps, useTheme as originalUseTheme } from 'styled-components';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import vars from './variables';
 import breakpoints from './breakpoints';

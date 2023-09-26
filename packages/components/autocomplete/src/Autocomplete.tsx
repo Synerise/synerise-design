@@ -35,7 +35,6 @@ const Autocomplete = (props: AutocompleteProps) => {
         {...(autoResize ? { renderInput: AntdAutoComplete, autoResize, autosizeProps } : {})}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         ref={inputRef}
         dropdownClassName="ds-autocomplete-dropdown ps__child--consume"

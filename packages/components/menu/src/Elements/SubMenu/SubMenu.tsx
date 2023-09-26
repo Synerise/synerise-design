@@ -66,7 +66,6 @@ class SubMenuItem extends React.PureComponent<SubMenuProps & MenuItemProps, SubM
         })}
       >
         {Boolean(subMenu) &&
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore */
           subMenu.map((subItem: SubMenuItemProps, index: number) => (
             <MenuItem

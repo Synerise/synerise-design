@@ -101,7 +101,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
 
   const placeholder = React.useMemo(() => {
     if (isLifetime(value as typeof dateRangeValue)) {
-      return <>{texts?.['allTime'] || 'Lifetime'}</>;
+      return <>{texts?.allTime || 'Lifetime'}</>;
     }
     return (
       <>

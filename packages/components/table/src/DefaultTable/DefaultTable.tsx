@@ -111,14 +111,13 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
   );
 
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     <Table<T>
       {...props}
       data-popup-container
       columns={[
         ...prependedColumns,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
         // @ts-ignore: decoratedColumns type is different in DSTableProps than AntTableProps
         ...decoratedColumns,
       ]}
@@ -136,7 +135,6 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           />
         ),
       }}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       title={title}
       showSorterTooltip={false}
@@ -146,7 +144,6 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
         },
         ...decoratedComponents,
       }}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       rowSelection={
         selection && {

@@ -263,10 +263,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         fixedWeeks
         showOutsideDay
         modifiers={modifiers}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         onDayClick={this.handleDayClick}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         selectedDays={selectedDays}
       />

@@ -70,7 +70,10 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [texts, formatMessage]
   );
 
-  const onActivate = setCurrentStep ? (): void => setCurrentStep(step.id) : undefined;
+  const onActivate = React.useCallback(
+    () => (setCurrentStep ? (): void => setCurrentStep(step.id) : undefined),
+    [step.id, setCurrentStep]
+  );
 
   const onAddCondition = React.useCallback(
     (stepId: React.ReactText) => {

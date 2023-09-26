@@ -55,8 +55,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
   const renderHeader = React.useCallback((): React.ReactNode => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     const data = grouped
-      ? // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
+      ? // @ts-ignore
         dataSource?.reduce((items: T[], group: GroupType<T>) => {
           if (group.rows) {
             return [...items, ...group.rows];
@@ -151,7 +150,6 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           </S.Spinner>
         )}
         {grouped && dataSource?.length ? (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           <GroupTable<T>
             {...props}

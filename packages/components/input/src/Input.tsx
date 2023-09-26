@@ -87,7 +87,6 @@ const enhancedInput =
     }, [antdInputProps.value, counterLimit]);
 
     useEffect(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
     }, [inputRef]);
