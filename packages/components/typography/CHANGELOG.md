@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.10...@synerise/ds-typography@0.13.0) (2023-09-26)
+
+
+### Features
+
+* **typography:** ellipsis with conditional tooltip ([4448c30](https://github.com/synerise/synerise-design/commit/4448c304837bf8a04d5009ffcb47f67421003738))
+
+
+
+
+
 ## [0.12.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.12.9...@synerise/ds-typography@0.12.10) (2023-09-08)
 
 

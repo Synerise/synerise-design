@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-loader",
-  "version": "0.2.43",
+  "version": "0.2.44",
   "description": "Loader UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.15",
+    "@synerise/ds-utils": "^0.24.16",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

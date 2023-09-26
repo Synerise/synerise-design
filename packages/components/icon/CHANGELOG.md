@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.58.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.1...@synerise/ds-icon@0.58.2) (2023-09-26)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
 ## [0.58.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.0...@synerise/ds-icon@0.58.1) (2023-09-05)
 
 **Note:** Version bump only for package @synerise/ds-icon
