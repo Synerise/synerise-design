@@ -89,7 +89,7 @@ export const normalizeValue = ({ type, definition }: FilterValue): NormalizedFil
       days = [];
       break;
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
   // @ts-ignore
   result.days = days.map(({ restricted, display, ...rest }) => rest) as Partial<FilterDefinition>[];
   return result;
@@ -106,12 +106,11 @@ export const createMonthlyWeekDayRange = (rules: { weeks?: (NormalizedFilter & W
     const weekStartIndex = Math.floor(i / 7);
     const week = weekStartIndex;
     const dayOfWeek = i - weekStartIndex * 7;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
     // @ts-expect-error: FIXME: Type 'undefined' is not assignable to type 'NormalizedFilter[]'.ts(2322)
     const days: NormalizedFilter[] =
       rules.weeks &&
       rules.weeks.reduce(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         (prev, item) => [...prev, ...item.days.map(day => ({ ...denormMapTimeSchema(day), week: item.week - 1 }))],
         []
@@ -141,7 +140,7 @@ export const denormalizers: { [key: string]: Function } = {
       period: value.type,
       id: Math.random(),
       periodType: value.inverted ? COUNTED_FROM_ENUM.ENDING : COUNTED_FROM_ENUM.BEGINNING,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
       // @ts-ignore
       definition: monthlyDenormalizers[value.type](value),
     }));

@@ -43,6 +43,7 @@ const Advanced: React.FC<Props> = ({
 
   const onSearchChange = (value: string, disableDebounce?: boolean) => {
     searchDebounce.cancel();
+    console.log('val', value)
     setSearchQuery(value);
 
     if (disableDebounce) {
@@ -51,6 +52,12 @@ const Advanced: React.FC<Props> = ({
       searchDebounce(value);
     }
   };
+
+  React.useEffect(() => {
+    return () => {
+      searchDebounce.cancel();
+    };
+  }, [searchDebounce]);
 
   const onMenuScroll = (e: React.UIEvent) => {
     const scrollTop = e.target.scrollTop;

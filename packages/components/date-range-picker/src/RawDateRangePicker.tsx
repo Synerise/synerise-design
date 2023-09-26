@@ -344,6 +344,5 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 export default injectIntl(RawDateRangePicker);

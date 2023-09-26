@@ -16,7 +16,7 @@ const CopyAction: React.FC<CopyActionProps> = ({
 }) => {
   const [hideHoverTooltip, setHideHoverTooltip] = React.useState(false);
   const iconRef = React.useRef<HTMLDivElement>(null);
-  const timeoutClickRef = React.useRef<null | number>(null);
+  const timeoutClickRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   React.useEffect(() => {
     return (): void => {

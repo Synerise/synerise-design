@@ -9,7 +9,7 @@ export type WithChangeActions = {
   onCopy: ChangeAction;
   onCut: ChangeAction;
   onDuplicate: ChangeAction;
-  onVisibilityChange: ChangeAction;
+  onVisibilityChange?: ChangeAction;
 };
 
 export type ActionProps = WithChangeActions & {

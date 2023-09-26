@@ -102,10 +102,8 @@ const TimePicker: React.FC<TimePickerProps> = ({
     },
   ];
 
-  const unitsToRender = React.useMemo(() => {
-    const availableUnits = units?.length ? units : defaultUnits;
-    return unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
-  }, [units, unitConfig]);
+  const availableUnits = units?.length ? units : defaultUnits;
+  const unitsToRender = unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
 
   const onVisibleChange = (visible: boolean): void => {
     setOpen(visible);

@@ -41,7 +41,6 @@ export const CommonRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper style={{ width: 220 }}>
               <Menu
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
@@ -66,7 +65,6 @@ export const CommonRenderer = <T extends unknown>({
                 {!!columnSortOrder && (
                   <Menu.Item
                     key="null"
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-ignore
                     type="danger"
                     prefixel={<Icon component={<Close2M />} />}
@@ -115,7 +113,6 @@ export const StringRenderer = <T extends unknown>({
           overlay={
             <Dropdown.Wrapper style={{ width: 170 }}>
               <Menu
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 // @ts-ignore
                 asDropdownMenu
                 onClick={({ key }): void => {
@@ -140,7 +137,6 @@ export const StringRenderer = <T extends unknown>({
                 {!!columnSortOrder && (
                   <Menu.Item
                     key="null"
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-ignore
                     type="danger"
                     prefixel={<Icon component={<Close2M />} />}

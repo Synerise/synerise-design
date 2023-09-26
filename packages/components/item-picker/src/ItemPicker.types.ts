@@ -20,7 +20,7 @@ export type ItemPickerProps = {
   description?: string | React.ReactNode;
   disabled?: boolean;
   dropdownBottomAction?: React.ReactNode;
-  dropdownProps?: DropdownProps;
+  dropdownProps?: Partial<DropdownProps>;
   dropdownRowHeight?: number;
   dropdownVisibleRows?: number;
   error?: boolean;

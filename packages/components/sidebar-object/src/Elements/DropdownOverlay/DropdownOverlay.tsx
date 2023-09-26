@@ -45,9 +45,9 @@ const DropdownOverlay = ({
       <MenuWrapper withBottomAction={!!onAddFolderClick}>
         {filteredData?.length > 0 ? (
           <Menu>
-            {filteredData?.map((item, i) => (
+            {filteredData?.map(item => (
               <Menu.Item
-                key={`${item[foldersIdKey]}-${i}`}
+                key={`${item[foldersIdKey]}-${item.id}`}
                 onClick={(): void => onFolderSelect(item)}
                 checked={parentFolder[foldersIdKey] === item[foldersIdKey]}
                 prefixel={<Icon component={<FolderM />} />}

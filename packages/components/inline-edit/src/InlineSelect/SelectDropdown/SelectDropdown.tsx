@@ -42,7 +42,6 @@ const SelectDropdown: React.FC<Props> = ({
             height={rowCount * rowHeight}
             visibleRows={rowCount}
             listProps={{ scrollTop }}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             width="100%"
           />

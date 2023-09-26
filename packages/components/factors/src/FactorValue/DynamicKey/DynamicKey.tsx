@@ -20,7 +20,13 @@ const DynamicKey: React.FC<InputProps> = ({
     value: (value as DynamicKeyValueType).value,
   });
   const [localError, setLocalError] = React.useState(false);
-  const onChangeDebounce = React.useCallback(debounce(onChange, 300), [onChange]);
+  const onChangeDebounce = React.useRef(debounce(onChange, 300)).current;
+
+  React.useEffect(() => {
+    return () => {
+      onChangeDebounce.cancel();
+    };
+  }, [onChangeDebounce]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = { ...(value as DynamicKeyValueType) };

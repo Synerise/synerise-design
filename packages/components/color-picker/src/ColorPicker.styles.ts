@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import { TagsStyles, Tag } from '@synerise/ds-tags';
 import Button from '@synerise/ds-button';

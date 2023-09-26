@@ -30,7 +30,7 @@ export default function Tree({
 }: TreeProps): ReactElement {
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(propExpandedKeys || []);
 
-  const timeoutRef = useRef<number>(0);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const itemGhostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

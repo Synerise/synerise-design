@@ -11,7 +11,6 @@ import { TableLimit } from './TableLimit';
 const isTruncated = (element?: HTMLElement): boolean | undefined =>
   element && element.offsetWidth < element.scrollWidth;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 const TableHeader: React.FC<Props> = ({
   title,

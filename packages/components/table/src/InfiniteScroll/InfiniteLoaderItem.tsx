@@ -21,7 +21,6 @@ const NoMoreItem = (): React.ReactElement => (
   <TableLocaleContext.Consumer>
     {(tableLocale): React.ReactElement => (
       <Alert.InlineAlert
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         type="info"
         message={tableLocale.infiniteScrollNoMoreData}
@@ -39,7 +38,6 @@ const ErrorItem = ({ onRetryClick }: ErrorItemProps): React.ReactElement => (
     {(tableLocale): React.ReactElement => (
       <div style={{ display: 'flex' }}>
         <Alert.InlineAlert
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           type="alert"
           message={tableLocale.infiniteScrollError}

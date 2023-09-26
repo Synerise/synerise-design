@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import {
@@ -17,7 +16,10 @@ import { fireEvent } from '@testing-library/react';
 import { ConditionProps, ConditionStep, StepConditions } from '../Condition.types';
 
 const lodash = require('lodash');
-lodash.debounce = jest.fn(fn => fn);
+lodash.debounce = jest.fn(fn => { 
+  fn.cancel = () => {};
+  return fn;
+});
 
 const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditions[P]> } = {
   id: 'e5b71a06-0eb2-434f-9411-0259b1804862',

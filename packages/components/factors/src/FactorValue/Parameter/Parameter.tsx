@@ -26,7 +26,6 @@ const ParameterInput: React.FC<InputProps> = ({
   error,
   getMenuEntryProps,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const { buttonIcon, buttonLabel, loading, ...restParameters } = parameters;
   const [dropdownVisible, setDropdownVisible] = React.useState(false);

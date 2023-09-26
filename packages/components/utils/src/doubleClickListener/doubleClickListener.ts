@@ -8,7 +8,7 @@ function doubleClickListener<T extends any>(
   onDblClick: (e: React.SyntheticEvent<T>) => void,
   delay = DEFAULT_DELAY
 ): React.ReactEventHandler<T> {
-  let timeout: number | null = null;
+  let timeout: ReturnType<typeof setTimeout> | null;
   return (event): void => {
     if (!timeout) {
       timeout = setTimeout(() => {

@@ -204,12 +204,11 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
 
     if (filterLookupKey && item[filterLookupKey]) {
       onValueChange(item[textLookupConfig.parameters]);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
       // @ts-ignore
       onParameterValueChange(item[filterLookupKey], item);
       this.setState({ isResultChosen: true });
     } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       onParameterValueChange(item[textLookupConfig.parameters], item);
     }

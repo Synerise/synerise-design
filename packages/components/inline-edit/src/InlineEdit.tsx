@@ -50,7 +50,7 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   const handleBlur = React.useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       input.onBlur && input.onBlur(e);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+
       // @ts-ignore
       inputRef.current.input && inputRef.current.input.scrollTo({ left: 0 });
     },

@@ -39,6 +39,7 @@ export type ItemProps<T extends object = {}> = T & {
   content?: React.ReactNode;
   changeOrderDisabled?: boolean;
   user?: {
+    // eslint-disable-next-line camelcase
     avatar_url?: string;
     firstname?: string;
     lastname?: string;

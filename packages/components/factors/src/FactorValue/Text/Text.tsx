@@ -45,12 +45,17 @@ const TextInput: FC<InputProps> = ({
     onChangeRef.current = onChange;
   }, [localValue, onChange]);
 
-  const debouncedOnChange = useMemo(() => {
-    const persistentOnChange = (inputValue: ReactText | undefined): void => {
+  const debouncedOnChange = useRef(
+    debounce((inputValue: ReactText | undefined): void => {
       onChangeRef.current && onChangeRef.current(inputValue);
+    }, 300)
+  ).current;
+
+  React.useEffect(() => {
+    return () => {
+      debouncedOnChange.cancel();
     };
-    return debounce(persistentOnChange, 300);
-  }, []);
+  }, [debouncedOnChange]);
 
   const handleChange = useCallback(
     event => {

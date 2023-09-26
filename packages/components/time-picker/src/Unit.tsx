@@ -23,7 +23,7 @@ export type UnitProps = UnitConfig & {
 const CELL_HEIGHT = 32;
 const DEBOUNCE_DELAY = 150;
 
-const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect, use12HourClock }) => {
+const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: UnitProps) => {
   const selected: number | undefined = React.useMemo(
     () => getUnitSelectedNumber(value, unit, use12HourClock),
     [unit, use12HourClock, value]
@@ -44,34 +44,42 @@ const Unit: React.FC<UnitProps> = ({ options, disabled, value, unit, onSelect, u
     }
   }, [isFirstRender, unitContainerRef]);
 
-  const scrollHandler = React.useCallback(() => {
+  const scrollHandler = () => {
     if (!!unitContainerRef && !!unitContainerRef.current) {
       const pixelsScrolled = unitContainerRef.current.scrollTop;
       const isScrollBetweenTwoCells = pixelsScrolled % CELL_HEIGHT !== 0;
 
       pixelsScrolled !== 0 &&
         isScrollBetweenTwoCells &&
+        typeof unitContainerRef.current.scrollTo === 'function' &&
         unitContainerRef.current.scrollTo({
           top: Math.round(pixelsScrolled / CELL_HEIGHT) * CELL_HEIGHT,
           behavior: 'smooth',
         });
     }
-  }, [unitContainerRef]);
+  };
+  const debouncedScrollHandler = debounce(scrollHandler, DEBOUNCE_DELAY);
+
+  React.useEffect(() => {
+    return () => {
+      debouncedScrollHandler.clear();
+    };
+  }, [debouncedScrollHandler]);
 
   React.useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
-
-      unitContainerRef?.current?.scrollTo?.call &&
+      if (typeof unitContainerRef.current.scrollTo === 'function') {
         unitContainerRef.current.scrollTo({ top: offsetToParent, behavior: scrollBehaviour });
+      }
       setContainerHeight(unitContainerRef.current.offsetHeight);
     }
   }, [selectedCellRef, unitContainerRef, isFirstRender, forceUpdate, containerHeight]);
 
   return (
     <S.Unit data-testid={`ds-time-picker-unit-${unit}`}>
-      <Scrollbar ref={unitContainerRef} onScroll={debounce(scrollHandler, DEBOUNCE_DELAY)} maxHeight={192}>
+      <Scrollbar ref={unitContainerRef} onScroll={debouncedScrollHandler} maxHeight={192}>
         {options.map(option => {
           const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
           const isDisabled = disabled && disabled.includes(option);

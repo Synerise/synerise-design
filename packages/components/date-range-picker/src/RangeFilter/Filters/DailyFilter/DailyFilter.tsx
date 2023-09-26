@@ -51,7 +51,6 @@ const DailyFilter = (props: Props) => {
         customDays={{
           0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY', defaultMessage: 'Every day' }) },
         }}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-expect-error: Type 'string' is not assignable to type 'Days'.ts(2322)
         days={value[0] ? value[0] : value}
         onChange={(val: Days): void => {

@@ -137,7 +137,6 @@ const Text: React.FC<BasicItemProps> = ({
   }, [rest.className, size]);
 
   const element = (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper

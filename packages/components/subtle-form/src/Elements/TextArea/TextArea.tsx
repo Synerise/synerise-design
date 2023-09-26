@@ -95,7 +95,7 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             autoFocus={!hasError && !disabled}
             onChange={
               !disabled
-                ? (e: React.ChangeEvent<HTMLInputElement>): void => {
+                ? (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
                     onChange && onChange(e.currentTarget.value as string);
                   }
                 : undefined
@@ -107,8 +107,6 @@ const SubtleTextArea: React.FC<SubtleTextAreaProps> = ({
             placeholder={placeholder}
             error={error}
             errorText={errorText}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
             wrapperStyle={{ margin: 0 }}
             {...rest}
             {...textAreaProps}

@@ -1,4 +1,4 @@
-import { CSSProperties } from 'styled-components';
+import { CSSProperties } from 'react';
 import Step from './Step/Step';
 
 export type StepperOrientation = 'vertical' | 'horizontal' | string;

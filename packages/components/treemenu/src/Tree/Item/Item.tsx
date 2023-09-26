@@ -121,7 +121,6 @@ const ItemContainer: React.FC<ItemProps> = ({
             texts={texts}
             onDeleteConfirmationVisibilityChange={handleDeleteConfirmationVisibilityChange}
             onDelete={onDelete}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
             // @ts-ignore
             onPaste={hasClipboard && onPaste}
             onCopy={onCopy}

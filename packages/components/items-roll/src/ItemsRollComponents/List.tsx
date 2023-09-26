@@ -60,7 +60,6 @@ const List: React.FC<ListProps> = ({
                 const groupItems = itemsInGroup(group, visibleItems);
 
                 return groupItems.length > 0 ? (
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                   // @ts-ignore
                   <Menu.ItemGroup key={group} title={group}>
                     {groupItems.map(item => (
