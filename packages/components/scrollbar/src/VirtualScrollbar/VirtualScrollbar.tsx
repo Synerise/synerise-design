@@ -1,21 +1,48 @@
-import * as React from 'react';
+import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { debounce } from 'lodash';
 import { useCombinedRefs } from '@synerise/ds-utils';
 import './style/index.less';
 import * as S from './VirtualScrollbar.styles';
 import { ScrollbarProps } from '../Scrollbar.types';
 
 // eslint-disable-next-line import/prefer-default-export
-export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
+export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
   (
     { absolute = false, children, classes, hasMore, loading, maxHeight, style, fetchData, onScroll, onYReachEnd },
     forwardedRef
   ) => {
-    const scrollRef = React.useRef<HTMLElement>();
+    const scrollRef = useRef<HTMLElement>();
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
     const combinedScrollRef = useCombinedRefs(forwardedRef, scrollRef);
-    const [lastScrollTop, setLastScrollTop] = React.useState(0);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
 
-    const handleReachEnd = React.useCallback(() => {
+    const debouncedResize = useRef(
+      debounce(
+        () => {
+          if (combinedScrollRef && combinedScrollRef.current) {
+            const scrollEvent = new window.Event('scroll');
+            combinedScrollRef.current.dispatchEvent(scrollEvent);
+          }
+        },
+        100,
+        { leading: true, trailing: true }
+      )
+    ).current;
+
+    const resizeObserver = useRef(new window.ResizeObserver(debouncedResize)).current;
+
+    useEffect(() => {
+      if (wrapperRef.current) {
+        resizeObserver.observe(wrapperRef.current);
+      }
+      return () => {
+        resizeObserver.disconnect();
+        debouncedResize.cancel();
+      };
+    }, [resizeObserver, debouncedResize]);
+
+    const handleReachEnd = useCallback(() => {
       if (combinedScrollRef?.current?.scrollTop === lastScrollTop) {
         return;
       }
@@ -31,7 +58,7 @@ export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
       }
     }, [loading, hasMore, lastScrollTop, fetchData, onYReachEnd, combinedScrollRef]);
 
-    const handleScrollUp = React.useCallback((): void => {
+    const handleScrollUp = useCallback(() => {
       if (combinedScrollRef?.current?.scrollTop !== 0) {
         setLastScrollTop(0);
       }
@@ -39,7 +66,7 @@ export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
 
     return (
       <PerfectScrollbar
-        containerRef={(ref): void => {
+        containerRef={ref => {
           combinedScrollRef.current = ref;
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
@@ -48,7 +75,7 @@ export const VirtualScrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
         onYReachEnd={handleReachEnd}
       >
         <S.ScrollbarContent className={classes} style={{ maxHeight }} data-testid="virtual-scrollbar">
-          <S.ScrollbarWrapper absolute={absolute} loading={loading} style={style}>
+          <S.ScrollbarWrapper ref={wrapperRef} absolute={absolute} loading={loading} style={style}>
             {children}
           </S.ScrollbarWrapper>
         </S.ScrollbarContent>
