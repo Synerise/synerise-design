@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { ButtonProps } from '@synerise/ds-button';
-import WizardOnModal from './onModal/onModal';
 
 export type WizardProps = {
   stepper?: ReactNode;
@@ -21,8 +20,4 @@ export type WizardProps = {
     prevButtonProps?: Partial<Omit<ButtonProps, 'onClick'>>;
     nextButtonProps?: Partial<Omit<ButtonProps, 'onClick'>>;
   };
-};
-
-export type WizardSubComponent = {
-  OnModal: typeof WizardOnModal;
 };

@@ -5,12 +5,10 @@ import Button from '@synerise/ds-button';
 import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import { useIntl } from 'react-intl';
 import * as S from './Wizard.styles';
-import { WizardProps, WizardSubComponent } from './Wizard.types';
+import { WizardProps } from './Wizard.types';
 import WizardOnModal from './onModal/onModal';
-// scrollbar displays on left when using portal
-// import WizardPortal from './WizardPortal/WizardPortal';
 
-const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
+const Wizard = ({
   stepper,
   contentWidth,
   headerAction,
@@ -23,7 +21,7 @@ const Wizard: React.FC<WizardProps> & WizardSubComponent = ({
   stepButtonProps,
   texts,
   visible,
-}) => {
+}: WizardProps) => {
   const intl = useIntl();
 
   const prevButtonProps = stepButtonProps?.prevButtonProps
