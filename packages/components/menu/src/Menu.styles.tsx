@@ -88,11 +88,13 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     }
   }
   && {
-    .ant-menu-inline,
-    .ant-menu-vertical,
-    .ant-menu-vertical-left {
-      border-right-width: 0px;
-      margin: 8px 0 8px 0;
+    .ant-menu-submenu-open {
+      .ant-menu-inline,
+      .ant-menu-vertical,
+      .ant-menu-vertical-left {
+        border-right-width: 0px;
+        margin: 8px 0 8px 0;
+      }
     }
   }
 

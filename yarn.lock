@@ -7904,6 +7904,15 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-tooltip@0.14.2":
+  version "0.14.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-tooltip/-/ds-tooltip-0.14.2.tgz#f543de8f76ec2451b5eee4f5edfa0e295622b15f"
+  integrity sha1-9UPej3bsJFG17uT17foOKVYisV8=
+  dependencies:
+    "@synerise/ds-button" "^0.18.0"
+    "@synerise/ds-icon" "^0.58.0"
+    "@synerise/ds-scrollbar" "^0.6.5"
+
 "@synerise/ds-utils@^0.8.31":
   version "0.8.31"
   resolved "https://registry.yarnpkg.com/@synerise/ds-utils/-/ds-utils-0.8.31.tgz#f0ca7de48c80e6d7c45708f76577747dfe176543"
