@@ -1,4 +1,4 @@
-image: node:14.15.1
+image: node:16.20.2
 
 variables:
   APP: ds-docs
