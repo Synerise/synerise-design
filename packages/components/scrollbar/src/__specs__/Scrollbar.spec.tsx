@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Scrollbar from '../Scrollbar';
-import './../../../../../config/jest/__mocks__/resizeObserverMock';
 
 describe('Scrollbar', () => {
   it('should render scrollbar', () => {
