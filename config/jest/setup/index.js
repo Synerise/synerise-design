@@ -7,6 +7,8 @@ import '@testing-library/jest-dom/extend-expect'
 
 import './enzyme.js'
 
+import '../__mocks__/resizeObserverMock';
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
