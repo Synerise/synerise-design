@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-utils",
-  "version": "0.24.16",
+  "version": "0.24.17",
   "description": "Utils UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -31,7 +31,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.4.2",
+    "@synerise/ds-data-format": "^0.4.3",
     "latinize": "^0.5.0"
   },
   "peerDependencies": {
@@ -40,7 +40,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-core": "^0.40.2",
+    "@synerise/ds-core": "^0.40.3",
     "@testing-library/react": "10.0.1"
   }
 }

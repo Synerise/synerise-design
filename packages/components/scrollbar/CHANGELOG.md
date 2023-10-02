@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.6.7...@synerise/ds-scrollbar@0.6.8) (2023-10-02)
+
+
+### Bug Fixes
+
+* **scrollbar:** fixed toggling rail visibility on resize ([8df2258](https://github.com/Synerise/synerise-design/commit/8df2258d9f9ae8837510f4ddd6786c3018bdf96a))
+
+
+
+
+
 ## [0.6.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.6.6...@synerise/ds-scrollbar@0.6.7) (2023-09-26)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

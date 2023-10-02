@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.5.8...@synerise/ds-wizard@0.5.9) (2023-10-02)
+
+
+### Bug Fixes
+
+* **wizard:** removed obsolete code ([6232674](https://github.com/Synerise/synerise-design/commit/6232674ee20d27d47574fbeabc8782817e35fbb6))
+
+
+
+
+
 ## [0.5.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.5.7...@synerise/ds-wizard@0.5.8) (2023-09-26)
 
 **Note:** Version bump only for package @synerise/ds-wizard
