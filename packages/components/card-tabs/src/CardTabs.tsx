@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FC, ReactElement, Children, cloneElement } from 'react';
+import { ReactElement, Children, cloneElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
@@ -14,14 +14,14 @@ const SORTABLE_CONFIG = {
   filter: '.ds-card-tabs__suffix-nodrag',
   preventOnFilter: false,
 };
-const CardTabs: FC<CardTabsProps> = ({
+const CardTabs = ({
   className,
   onChangeOrder,
   onAddTab,
   maxTabsCount,
   children = [],
   addTabLabel,
-}) => {
+}: CardTabsProps) => {
   const handleChangeOrder = (newOrder: ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
