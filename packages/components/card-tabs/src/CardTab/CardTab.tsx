@@ -38,7 +38,6 @@ const CardTab: FC<CardTabProps> = props => {
 
   const [edited, setEdited] = useState(false);
   const [editedName, setEditedName] = useState(name);
-  const [pressed, setPressed] = useState(false);
 
   const getTexts = useMemo(() => {
     return {
@@ -157,7 +156,6 @@ const CardTab: FC<CardTabProps> = props => {
 
   return (
     <S.CardTabContainer
-      className={`${pressed ? 'pressed' : ''}`}
       edited={edited}
       active={Boolean(active)}
       invalid={Boolean(invalid || invalidName)}
@@ -165,10 +163,6 @@ const CardTab: FC<CardTabProps> = props => {
       draggable={draggable}
       color={color}
       onClick={handleSelect}
-      onMouseDown={(): void => setPressed(true)}
-      onMouseLeave={!draggable ? (): void => setPressed(false) : undefined}
-      onMouseUp={(): void => setPressed(false)}
-      onDragEnd={(): void => setPressed(false)}
       greyBackground={!!greyBackground}
       data-id={id}
       data-testid="card-tab-container"

@@ -268,7 +268,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     }
   }
 
-  &.pressed {
+  &:active {
     background-color: ${({ theme, active, invalid, color, greyBackground }): string => {
       if (invalid && active) return theme.palette[`${getLighterColor('red-600')}`];
       if (active) return theme.palette[`${getLighterColor(color)}`];
