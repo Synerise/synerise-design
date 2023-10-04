@@ -14,7 +14,8 @@ const stories = {
     orientation: select('orientation', ['left', 'right', 'center'], 'center'),
     marginTop: number('marginTop', 24),
     marginBottom: number('marginBottom', 24),
-    children: text('children', ''),
+    labelAbove: text('Label above', ''),
+    labelBelow: text('Label below', '')
   }),
 };
 

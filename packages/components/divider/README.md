@@ -26,6 +26,8 @@ import Divider from '@synerise/ds-divider';
 | ------------ | -------------------------------- | ------------------------- | ---------- |
 | marginTop    | Value for top margin             | number                    | 0          |
 | marginBottom | Value for bottom margin          | number                    | 0          |
+| labelAbove   | Label to display above divider   | ReactNode                 |            |
+| labelBelow   | Label to display below divider   | ReactNode                 |            |
 | className    | ClassName of container           | string                    | -          |
 | dashed       | Whether line is dashed           | boolean                   |`false`     |
 | orientation  | Position of title inside divider | enum: left right center   | center     |
