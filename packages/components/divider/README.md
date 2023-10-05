@@ -31,5 +31,5 @@ import Divider from '@synerise/ds-divider';
 | className    | ClassName of container           | string                    | -          |
 | dashed       | Whether line is dashed           | boolean                   |`false`     |
 | orientation  | Position of title inside divider | enum: left right center   | center     |
-| style        | Style object of container        | React.CSSProperties                    | -          |
+| style        | Style object of container        | React.CSSProperties       | -          |
 | type         | Direction type of divider        | enum: horizontal vertical | horizontal |
