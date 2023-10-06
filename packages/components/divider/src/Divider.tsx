@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdDivider from 'antd/lib/divider';
@@ -21,11 +21,11 @@ const Divider = ({ marginBottom, marginTop, style, labelAbove, labelBelow, ...an
   const contentBelow = labelBelow && <S.Label level={7}>{labelBelow}</S.Label>;
   return (
     <>
-    {contentAbove}
-    {divider}
-    {contentBelow}
+      {contentAbove}
+      {divider}
+      {contentBelow}
     </>
-  )
+  );
 };
 
 export default Divider;

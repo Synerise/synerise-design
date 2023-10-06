@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { action } from '@storybook/addon-actions';
-import { text, boolean, number, select, } from '@storybook/addon-knobs';
+import { text, boolean, number, select, object } from '@storybook/addon-knobs';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
 
@@ -20,9 +20,10 @@ const sizeTypes = {
   '6px': '6',
 };
 const allocationVariants: AllocationVariant[] = [
-  { name: 'Variant A', percentage: 33, tabId: 1, tabLetter: 'A' },
-  { name: 'Variant B', percentage: 33, tabId: 2, tabLetter: 'B' },
-  { name: 'Variant C', percentage: 34, tabId: 3, tabLetter: 'C' },
+  { name: 'Variant A', percentage: 35, tabId: 1, tabLetter: 'A' },
+  { name: 'Variant B', percentage: 25, tabId: 2, tabLetter: 'B' },
+  { name: 'Variant C', percentage: 30, tabId: 3, tabLetter: 'C' },
+  { name: 'Variant D', percentage: 10, tabId: 3, tabLetter: 'D' },
 ];
 const customColorOptions = {
   'default': undefined,
@@ -172,14 +173,25 @@ const stories = {
       tracksColorMap={customColours ? getColors() : undefined}
     />
   )},
-  allocationSlider: () => (
+  allocationSlider: () => {
+    const blockedHandlers = boolean('Block handlers', false);
+    
+    return (
     <WrapperMultiValuesMode
       label={text('Label', 'Label')}
       disabled={boolean('Disabled', false)}
       tipFormatter={tipFormatter as any}
       tracksColorMap={boolean('Other colors than default', false) ? getColors() : undefined}
-    />
-  ),
+      handlers={blockedHandlers ? object('Handlers config', {
+        1:{
+          blocked:true,
+          blockedTooltipProps:{
+            title:"Blocked handler"
+          }
+        }
+      }):undefined}
+    />)
+  }
 };
 
 export default {

@@ -1,6 +1,5 @@
 import {
   countAllocation,
-  isLowerOrUpperBound,
   mergeAllocationWithVariants,
 } from './allocation.utils';
 import { AllocationVariant } from '../Allocation/Allocation.types';
@@ -24,17 +23,5 @@ describe('Slider allocation utils', () => {
     expect(mergeAllocationWithVariants(VARIANTS_WITHOUT_ALLOCATION as AllocationVariant[], ALLOCATION)).toStrictEqual(
       VARIANTS_WITH_ALLOCATION
     );
-  });
-  it('should detect upper bound based on slider value', () => {
-    expect(isLowerOrUpperBound([5, 100], [])).toBe(true);
-  });
-  it('should detect lower bound based on variants', () => {
-    expect(
-      isLowerOrUpperBound([50, 80], [
-        { percentage: 0 },
-        { percentage: 50 },
-        { percentage: 80 },
-      ] as AllocationVariant[])
-    ).toBe(true);
   });
 });

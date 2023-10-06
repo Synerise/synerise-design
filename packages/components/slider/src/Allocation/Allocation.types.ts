@@ -1,18 +1,19 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
 
 export type AllocationConfig = {
   controlGroupEnabled?: boolean;
-  controlGroupLabel?: string | React.ReactNode;
-  controlGroupTooltip?: string | React.ReactNode;
+  controlGroupLabel?: ReactNode;
+  controlGroupTooltip?: ReactNode;
   variants?: AllocationVariant[];
   onAllocationChange?: (variants?: AllocationVariant[]) => void;
 };
 
 export type AllocationVariant = {
-  name: string | React.ReactNode;
+  name: ReactNode;
   percentage: number;
   tabId: number;
-  tabLetter: string | React.ReactNode;
+  tabLetter: ReactNode;
+  minPercentage?: number;
 };
 
 export type AllocationMark = {
@@ -25,4 +26,10 @@ export type TrackProps = {
   index: number;
   isCustomColor?: boolean;
   getColor?: (index: number) => string;
+};
+
+export type DefinedCssRuleParameters = {
+  indexes: number[];
+  classConstPart: string;
+  cssRule: string;
 };

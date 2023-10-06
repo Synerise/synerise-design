@@ -2,7 +2,20 @@ import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-com
 import { SliderProps } from '../Slider.types';
 import { AntdSlider, createTracksStyles } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
-import { TrackProps } from './Allocation.types';
+import type { DefinedCssRuleParameters, TrackProps } from './Allocation.types';
+
+const defineCssSelectorWithRule = ({ indexes, classConstPart, cssRule }: DefinedCssRuleParameters) => {
+  const variantsSize = indexes.length;
+  if (variantsSize === 0) {
+    return '';
+  }
+  const definedClassSpecificity = indexes.reduce(
+    (result, item, index) => `${result}${classConstPart}${item}${index + 1 === variantsSize ? '' : ', '}`,
+    ''
+  );
+
+  return `${definedClassSpecificity} { ${cssRule} }`;
+};
 
 export const INDEX_MAP = {
   '0': 'cyan-600',
@@ -17,7 +30,7 @@ export const INDEX_MAP = {
   '9': 'fern-600',
 };
 
-export const AllocationSlider = styled(AntdSlider)<SliderProps>`
+export const AllocationSlider = styled(AntdSlider)<SliderProps & { blockedHandlersKeys: number[] }>`
   ${(props): FlattenSimpleInterpolation =>
     createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
 
@@ -38,6 +51,19 @@ export const AllocationSlider = styled(AntdSlider)<SliderProps>`
   && .ant-slider-mark-text {
     user-select: none;
   }
+
+  && ${({ blockedHandlersKeys, theme }) =>
+    defineCssSelectorWithRule({
+      indexes: blockedHandlersKeys,
+      classConstPart: '.ant-slider-handle-',
+      cssRule: `
+      background-color: ${theme.palette['grey-300']};
+      box-shadow:none !important;
+      pointer-events: none;
+      z-index:97;
+      border-color: ${theme.palette.white} !important;
+    `,
+    })}
 `;
 
 export const Mark = styled.div`
