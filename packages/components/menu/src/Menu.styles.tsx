@@ -9,7 +9,7 @@ type SubMenuProps = PropsWithChildren<{
   disabled?: boolean | undefined;
   danger?: boolean | undefined;
   prefixel?: ReactNode;
-  title: string | ReactNode; 
+  title: string | ReactNode;
   tabIndex?: number;
 }>;
 

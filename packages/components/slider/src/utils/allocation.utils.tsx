@@ -82,5 +82,8 @@ export const mapSliderValueToVariants = (
   return mergeAllocationWithVariants(variants, allocation);
 };
 
-export const isLowerOrUpperBound = (sliderValue: number[], variants: AllocationVariant[]): boolean =>
-  !!sliderValue.find(v => v === 100) || !!variants.find(v => v.percentage < 1);
+const DEFAULT_MIN_PERCENTAGE = 1;
+
+export const checkIsPercentageInBoundaries = (variants: AllocationVariant[]) => {
+  return !variants.some(variant => variant.percentage < (variant.minPercentage ?? DEFAULT_MIN_PERCENTAGE));
+};

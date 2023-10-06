@@ -1,6 +1,9 @@
+import type { ReactNode } from 'react';
 import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
-import * as React from 'react';
-import { AllocationConfig } from './Allocation/Allocation.types';
+
+import type { TooltipProps } from '@synerise/ds-tooltip';
+
+import { AllocationConfig } from 'Allocation/Allocation.types';
 
 type AntSliderProps = SliderSingleProps | SliderRangeProps;
 
@@ -14,17 +17,26 @@ export declare type ColorMapProps = {
   [key: string]: string;
 };
 
+export type HandlerConfig = Record<
+  number,
+  {
+    blocked: boolean;
+    blockedTooltipProps?: TooltipProps;
+  }
+>;
+
 export interface SliderProps extends AntdSliderProps {
   type?: 'allocation' | 'default';
   allocationConfig?: AllocationConfig;
-  label?: React.ReactNode | string;
+  label?: ReactNode;
   value?: number | number[];
   inverted?: boolean;
   useColorPalette?: boolean;
   autoFocus?: boolean;
   tracksColorMap?: ColorMapProps;
   thickness?: number;
-  description?: React.ReactNode | string;
+  description?: ReactNode;
   hideMinAndMaxMarks?: boolean;
   disabled?: boolean;
+  handlers?: HandlerConfig;
 }

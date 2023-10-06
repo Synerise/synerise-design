@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import Tooltip from '@synerise/ds-tooltip';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
+import Tooltip from '@synerise/ds-tooltip';
+
 import { DescriptionWrapper, Description } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
-import * as S from './Allocation.styles';
-import { SliderProps } from '../Slider.types';
 import {
+  checkIsPercentageInBoundaries,
   countAllocation,
-  isLowerOrUpperBound,
   mapSliderValueToVariants,
   mapUserAllocationToHandles,
   mapUserAllocationToMarks,
 } from '../utils/allocation.utils';
-import { AllocationConfig, AllocationVariant } from './Allocation.types';
+import { BlockedHandlersWithTooltip } from './BlockedHandlersWithTooltip';
+import {
+  calculateHandlersPercentagePosition,
+  checkIsBlockedHandlersConfigEnabled,
+  checkIsBlockedVariantsChange,
+  getBlockedHandlersKeys,
+} from '../utils/allocationHandlers.utils';
+import type { SliderProps } from '../Slider.types';
+import type { AllocationConfig, AllocationVariant } from './Allocation.types';
+import * as S from './Allocation.styles';
 
 const Allocation = ({
   allocationConfig,
   tracksColorMap = buildDefaultTracksColorMap(),
   description,
   tipFormatter,
+  handlers,
   ...rest
 }: SliderProps) => {
   const { variants, onAllocationChange, controlGroupEnabled, controlGroupLabel, controlGroupTooltip } =
@@ -55,12 +65,40 @@ const Allocation = ({
     </S.Mark>
   );
 
+  const currentHandlersPercentagePositions = calculateHandlersPercentagePosition(variants);
+
+  const { blockedHandlersKeys, isBlockedHandlersConfigEnabled } = useMemo(
+    () => ({
+      blockedHandlersKeys: getBlockedHandlersKeys(handlers),
+      isBlockedHandlersConfigEnabled: checkIsBlockedHandlersConfigEnabled(handlers),
+    }),
+    [handlers]
+  );
+
   const handleChange = (value: [number, number]) => {
     if (typeof value === 'number') {
       return;
     }
     const calculatedVariants = mapSliderValueToVariants(value, variants);
-    !isLowerOrUpperBound(value, calculatedVariants) && onAllocationChange && onAllocationChange(calculatedVariants);
+
+    if (!checkIsPercentageInBoundaries(calculatedVariants)) {
+      return;
+    }
+
+    if (isBlockedHandlersConfigEnabled) {
+      const afterChangeHandlersPercentagePositions = calculateHandlersPercentagePosition(calculatedVariants);
+      const isBlockedVariantChanged = checkIsBlockedVariantsChange(
+        blockedHandlersKeys,
+        currentHandlersPercentagePositions,
+        afterChangeHandlersPercentagePositions
+      );
+
+      if (isBlockedVariantChanged) {
+        return;
+      }
+    }
+    // eslint-disable-next-line no-unused-expressions
+    onAllocationChange?.(calculatedVariants);
   };
 
   return (
@@ -82,7 +120,13 @@ const Allocation = ({
           {tipFormatter && tipFormatter(value)}
         </DescriptionWrapper>
       )}
+      blockedHandlersKeys={blockedHandlersKeys}
     >
+      <BlockedHandlersWithTooltip
+        blockedHandlersKeys={blockedHandlersKeys}
+        handlersPosition={currentHandlersPercentagePositions}
+        handlers={handlers}
+      />
       <S.TrackContainer controlGroup={controlGroupEnabled}>
         {allocations.map((u: number, index: number) => (
           // eslint-disable-next-line react/no-array-index-key

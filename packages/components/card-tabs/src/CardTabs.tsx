@@ -14,14 +14,7 @@ const SORTABLE_CONFIG = {
   filter: '.ds-card-tabs__suffix-nodrag',
   preventOnFilter: false,
 };
-const CardTabs = ({
-  className,
-  onChangeOrder,
-  onAddTab,
-  maxTabsCount,
-  children = [],
-  addTabLabel,
-}: CardTabsProps) => {
+const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [], addTabLabel }: CardTabsProps) => {
   const handleChangeOrder = (newOrder: ReactElement[]): void => {
     onChangeOrder &&
       onChangeOrder(
