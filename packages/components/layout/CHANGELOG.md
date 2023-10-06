@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.34](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.13.33...@synerise/ds-layout@0.13.34) (2023-10-06)
+
+
+### Bug Fixes
+
+* **layout:** add 100% height to LayoutMain container under 960 width ([83ef5fb](https://github.com/synerise/synerise-design/commit/83ef5fb0e15faea91774ebae0d8a1c38fc68934f))
+
+
+
+
+
 ## [0.13.33](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.13.32...@synerise/ds-layout@0.13.33) (2023-10-02)
 
 **Note:** Version bump only for package @synerise/ds-layout

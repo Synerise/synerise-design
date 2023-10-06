@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.5...docs@0.30.0) (2023-10-06)
+
+
+### Features
+
+* **divider:** adds label props to divider ([e8f092a](http://gitlab.synerise.com/Frontend/synerise-design/commit/e8f092a8f462e7f86ccebfecb9164715bdd21f02))
+* **slider:** add possibility to block allocation handler ([7c8f33c](http://gitlab.synerise.com/Frontend/synerise-design/commit/7c8f33c7b2ca2616a53f94370161030e350d16e4))
+
+
+
+
+
 ## [0.29.5](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.4...docs@0.29.5) (2023-10-02)
 
 **Note:** Version bump only for package docs

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.20...@synerise/ds-menu@0.18.0) (2023-10-06)
+
+
+### Features
+
+* **slider:** add possibility to block allocation handler ([7c8f33c](https://github.com/Synerise/synerise-design/commit/7c8f33c7b2ca2616a53f94370161030e350d16e4))
+
+
+
+
+
 ## [0.17.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.17.19...@synerise/ds-menu@0.17.20) (2023-10-02)
 
 

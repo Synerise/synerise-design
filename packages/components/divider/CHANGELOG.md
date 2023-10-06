@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.5.44...@synerise/ds-divider@0.6.0) (2023-10-06)
+
+
+### Features
+
+* **divider:** adds label props to divider ([e8f092a](https://github.com/Synerise/synerise-design/commit/e8f092a8f462e7f86ccebfecb9164715bdd21f02))
+* **slider:** add possibility to block allocation handler ([7c8f33c](https://github.com/Synerise/synerise-design/commit/7c8f33c7b2ca2616a53f94370161030e350d16e4))
+
+
+
+
+
 ## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.5.43...@synerise/ds-divider@0.5.44) (2023-10-02)
 
 **Note:** Version bump only for package @synerise/ds-divider

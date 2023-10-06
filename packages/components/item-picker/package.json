@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-picker",
-  "version": "0.11.23",
+  "version": "0.11.24",
   "description": "ItemPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,14 +33,14 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.18.3",
-    "@synerise/ds-dropdown": "^0.17.81",
+    "@synerise/ds-dropdown": "^0.17.82",
     "@synerise/ds-icon": "^0.58.3",
     "@synerise/ds-input": "^0.19.3",
-    "@synerise/ds-menu": "^0.17.20",
+    "@synerise/ds-menu": "^0.18.0",
     "@synerise/ds-popconfirm": "^0.10.16",
     "@synerise/ds-result": "^0.6.32",
     "@synerise/ds-scrollbar": "^0.6.8",
-    "@synerise/ds-search": "^0.8.66",
+    "@synerise/ds-search": "^0.8.67",
     "@synerise/ds-search-bar": "^0.6.45",
     "@synerise/ds-tooltip": "^0.14.5",
     "@synerise/ds-typography": "^0.13.1",
@@ -52,7 +52,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-avatar": "^0.15.6",
+    "@synerise/ds-avatar": "^0.15.7",
     "@synerise/ds-flag": "^0.4.1",
     "@synerise/ds-utils": "^0.24.17",
     "@testing-library/jest-dom": "5.1.1",

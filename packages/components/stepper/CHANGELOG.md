@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.37...@synerise/ds-stepper@0.4.0) (2023-10-06)
+
+
+### Features
+
+* **slider:** add possibility to block allocation handler ([7c8f33c](https://github.com/Synerise/synerise-design/commit/7c8f33c7b2ca2616a53f94370161030e350d16e4))
+
+
+
+
+
 ## [0.3.37](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.3.36...@synerise/ds-stepper@0.3.37) (2023-10-02)
 
 **Note:** Version bump only for package @synerise/ds-stepper
