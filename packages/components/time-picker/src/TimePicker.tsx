@@ -187,6 +187,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           {(index !== unitsToRender.length - 1 || is12HourClock) && <S.UnitSeperator />}
         </React.Fragment>
       ))}
+
       {is12HourClock && renderClockSwitch()}
     </S.OverlayContainer>
   );
