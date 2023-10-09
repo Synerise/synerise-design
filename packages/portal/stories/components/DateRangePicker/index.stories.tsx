@@ -570,7 +570,7 @@ const stories = {
   },
   dailyDateFilter: () => {
     const disabled = boolean('Set disabled', false);
-
+    
     const [value, setValue] = React.useState([
       {
         start: DEFAULT_RANGE_START,
@@ -581,8 +581,7 @@ const stories = {
         mode: 'Hour',
       },
     ]);
-
-    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={setValue} value={value} disabled={disabled} />;
+    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />;
   },
   weeklyDateFilter: () => {
     const disabled = boolean('Set disabled', false);

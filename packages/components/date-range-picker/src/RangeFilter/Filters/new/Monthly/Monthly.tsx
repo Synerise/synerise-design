@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useIntl } from 'react-intl';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 
 import { useDataFormat } from '@synerise/ds-data-format';
