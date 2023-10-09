@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as dayjs from 'dayjs';
+import React, { useMemo, useCallback } from 'react';
+import dayjs from 'dayjs';
 import { useIntl } from 'react-intl';
 import {
   DEFAULT_RANGE_END,
@@ -17,7 +17,7 @@ import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 
-const Daily: React.FC<DailyProps> = ({
+const Daily = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
   disabled,
   value = [],
@@ -25,9 +25,9 @@ const Daily: React.FC<DailyProps> = ({
   valueSelectionMode = ['Hour', 'Range'],
   timeFormat,
   timePickerProps,
-}) => {
+}: DailyProps) => {
   const intl = useIntl();
-  const defaultDayValue = React.useMemo(
+  const defaultDayValue = useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
       stop: DEFAULT_RANGE_END,
@@ -38,7 +38,7 @@ const Daily: React.FC<DailyProps> = ({
     }),
     [valueSelectionMode]
   );
-  const handleDayTimeChange = React.useCallback(
+  const handleDayTimeChange = useCallback(
     (dateValueArray: DateValue, index: number): void => {
       const updatedSchedule = value;
       updatedSchedule[index] = {
@@ -48,10 +48,11 @@ const Daily: React.FC<DailyProps> = ({
         stop: dayjs(dateValueArray[1]).format(DEFAULT_TIME_FORMAT),
         inverted: Boolean(dateValueArray[2]),
       };
+      onChange([...updatedSchedule]);
     },
-    [value]
+    [value, onChange]
   );
-  const getDayValue = React.useCallback(
+  const getDayValue = useCallback(
     (index?: number): DailySchedule => {
       if (typeof index === 'number' && !!value[index]) {
         return value[index];
@@ -60,7 +61,7 @@ const Daily: React.FC<DailyProps> = ({
     },
     [value, defaultDayValue]
   );
-  const handleModeChange = React.useCallback(
+  const handleModeChange = useCallback(
     (selectedMode: DateLimitMode, elementIndex: number): void => {
       const updatedSchedule = value;
       updatedSchedule[elementIndex] = {
@@ -70,7 +71,7 @@ const Daily: React.FC<DailyProps> = ({
     },
     [value]
   );
-  const handleRangeDelete = React.useCallback(
+  const handleRangeDelete = useCallback(
     (index: number): void => {
       const updatedSchedule = value;
       delete updatedSchedule[index];
@@ -78,7 +79,7 @@ const Daily: React.FC<DailyProps> = ({
     },
     [value, onChange]
   );
-  const handleRangeAdd = React.useCallback((): void => {
+  const handleRangeAdd = useCallback((): void => {
     onChange([...value, getDayValue()]);
   }, [onChange, value, getDayValue]);
   return (
