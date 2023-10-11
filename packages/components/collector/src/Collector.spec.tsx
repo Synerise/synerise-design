@@ -1,15 +1,22 @@
 import React from 'react';
 import Collector from './Collector';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, screen } from '@testing-library/react';
+import { createEvent, fireEvent, screen } from '@testing-library/react';
 
 const SUGGESTIONS = [{ text: 'Suggestion 1' }, { text: 'Suggestion 2' }, { text: 'Other' }];
 const SELECTED = [{ text: 'Suggestion 1' }, { text: 'Other' }];
 const PLACEHOLDER = 'Select...';
+afterEach(() => {
+  jest.clearAllMocks();
+});
 describe('Collector', () => {
+
+  const onMultipleSelectFn = jest.fn();
+  const onConfirmFn = jest.fn();
+  const onCancelFn = jest.fn();
+  const onSelectFn = jest.fn();
+
   it('Should render suggestions', () => {
-    const onConfirmFn = jest.fn();
-    const onSelectFn = jest.fn();
     renderWithProvider(
       <Collector
         allowCustomValue
@@ -32,9 +39,7 @@ describe('Collector', () => {
     SUGGESTIONS.map(s => expect(screen.getByText(s['text'])).toBeInTheDocument());
   });
   it('Should render selected values', () => {
-    const onConfirmFn = jest.fn();
-    const onSelectFn = jest.fn();
-
+    
     renderWithProvider(
       <Collector
         allowCustomValue
@@ -55,9 +60,7 @@ describe('Collector', () => {
     SELECTED.map(s => expect(screen.getByText(s['text'])).toBeTruthy());
   });
   it('Should render added value', () => {
-    const onConfirmFn = jest.fn();
-    const onSelectFn = jest.fn();
-
+    
     const newValue = 'That is new!';
     renderWithProvider(
       <Collector
@@ -83,12 +86,11 @@ describe('Collector', () => {
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
     expect(screen.getByText(newValue)).toBeInTheDocument();
   });
+  
   it('Should render multiple added values', () => {
-    const onConfirmFn = jest.fn();
-    const onSelectFn = jest.fn();
-
+    
     const newValue1 = 'That is new!';
-    const newValue2 = 'That is new!';
+    const newValue2 = 'That is also new!';
     renderWithProvider(
       <Collector
         allowCustomValue
@@ -111,16 +113,58 @@ describe('Collector', () => {
     input.focus();
     fireEvent.change(input, { target: { value: newValue1 } });
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
-    
+    expect(onSelectFn).toBeCalledTimes(1);
+    expect(onSelectFn).toBeCalledWith({text: newValue1});
+
     fireEvent.change(input, { target: { value: newValue2 } });
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
-    
-    expect(screen.getByText(newValue1)).toBeInTheDocument();
-    expect(screen.getByText(newValue2)).toBeInTheDocument();
+    expect(onSelectFn).toBeCalledTimes(2);
+    expect(onSelectFn).toBeCalledWith({text: newValue2});
   });
+
+  it('Should render multiple pasted values', async () => {
+    
+    const newValue1 = 'That is new!';
+    const newValue2 = 'That is also new!'; 
+    const separator = ';';
+    const itemAdd = value => ({ text: value });
+    const pastedValue = newValue1+separator+newValue2;
+    const expectedResult = [itemAdd(newValue1),itemAdd(newValue2)];
+
+    renderWithProvider(
+      <Collector
+        allowCustomValue
+        allowMultipleValues
+        allowPaste
+        onMultipleItemsSelect={onMultipleSelectFn}
+        valuesSeparator={separator}
+        onItemSelect={onSelectFn}
+        onItemAdd={itemAdd}
+        selected={[]}
+        suggestions={[]}
+        onConfirm={onConfirmFn}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
+      />
+    );
+    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+    const pasteEvent = createEvent.paste(input, {
+      clipboardData: {
+        getData: () => pastedValue,
+      },
+    });
+  
+    fireEvent(input, pasteEvent);
+    expect(onMultipleSelectFn).toHaveBeenCalledWith(expectedResult);
+    
+  });
+
   it('Should call onConfirm', () => {
-    const onConfirmFn = jest.fn();
-    const onSelectFn = jest.fn();
 
     renderWithProvider(
       <Collector
@@ -147,9 +191,6 @@ describe('Collector', () => {
   });
 
   it('Should call onCancel', () => {
-    const onConfirmFn = jest.fn();
-    const onCancelFn = jest.fn();
-    const onSelectFn = jest.fn();
     renderWithProvider(
       <Collector
         allowCustomValue

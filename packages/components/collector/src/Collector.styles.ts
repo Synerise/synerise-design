@@ -8,6 +8,7 @@ import {
   ErrorText,
   ValueText,
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
+import DSScrollbar from '@synerise/ds-scrollbar';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
 import { InputProps } from 'antd/lib/input';
@@ -32,9 +33,14 @@ export const CollectorInput = styled(InputWrapper)<{
   min-height: 48px;
   padding: 8px 4px;
   border-radius: 5px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 `;
+
+export const Scrollbar = styled(DSScrollbar)``;
+
 export const MainContent = styled.div<{
-  wrap: boolean;
+  fixedHeight?: boolean;
   hasValues?: boolean;
   gradientOverlap?: boolean;
   focus?: boolean;
@@ -44,22 +50,23 @@ export const MainContent = styled.div<{
   padding: ${(props): string => (props.hasValues ? '0' : '2px 0')};
   flex: 1;
   align-items: flex-start;
-  flex-wrap: ${(props): string => (props.wrap ? 'wrap' : 'nowrap')};
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding-right: 4px;
+  flex-wrap: ${(props): string => (props.fixedHeight ? 'nowrap' : 'wrap')};
+  overflow-x: ${(props): string => (props.fixedHeight ? 'scroll' : 'hidden')};
+  overflow-y: ${(props): string => (props.fixedHeight ? 'hidden' : 'scroll')};
+  padding-right: ${(props): string => (props.fixedHeight ? '4px' : '12px')};
   ::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
   .ds-input-value-wrapper {
     min-width: fit-content;
     margin: 4px 0 4px 8px;
     right: 0;
     background: ${(props): string => props.theme.palette['grey-200']};
   }
-    &::before {
+  &::before {
     content: '';
     opacity: ${(props): string => (props.gradientOverlap ? `1` : '0')};
     position: fixed;
@@ -69,12 +76,11 @@ export const MainContent = styled.div<{
     rgba(255,255,255,0) 100%
   )`};
   }
-
 `;
 export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean }>`
   display: flex;
   margin: 0 4px;
-  position:relative;
+  position: relative;
   .ds-button:not(:last-child) {
     margin-right: 8px;
   }
@@ -184,4 +190,10 @@ export const NavigationWrapper = styled.div`
     margin-right: 8px;
     font-weight: 500;
   }
+`;
+export const Counter = styled.div`
+  display: flex;
+  height: 26px;
+  align-items: center;
+  column-gap: 4px;
 `;

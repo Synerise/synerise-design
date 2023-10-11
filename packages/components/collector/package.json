@@ -41,7 +41,8 @@
     "@synerise/ds-scrollbar": "^0.6.8",
     "@synerise/ds-search": "^0.8.67",
     "@synerise/ds-utils": "^0.24.17",
-    "classnames": "2.3.2"
+    "classnames": "2.3.2",
+    "lodash": "^4.17.19"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -51,6 +52,6 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "10.0.1"
+    "@testing-library/react": "^11"
   }
 }

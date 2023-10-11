@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Collector from '@synerise/ds-collector';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, text, select } from '@storybook/addon-knobs';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';
@@ -47,12 +47,18 @@ const stories = {
   default: () => {
     const tooltipText = text('Set tooltip text', 'Tooltip');
     const labelText = text('Set label', 'Label');
+    const separators = [';','/',','];
     const [selected, setSelected] = React.useState<any[]>([]);
-
+    const allowMultiple = boolean('Allow multiple values', true);
+    const allowCustomValues = boolean('Allow custom values', true);
+    const allowPaste = allowCustomValues && allowMultiple && boolean('Allow multi-item paste', true);
+    const valuesSeparator = allowPaste && select('Separator', separators, ';')
     return (
       <Collector
-        allowCustomValue={boolean('Allow custom values', true)}
-        allowMultipleValues={boolean('Allow multiple values', true)}
+        keepSearchQueryOnSelect={boolean('Keep Search Query On Select', false)}
+        showCount={allowMultiple && boolean('Show counter', true)}
+        allowCustomValue={allowCustomValues}
+        allowMultipleValues={allowMultiple}
         selected={selected}
         label={renderLabel(labelText, tooltipText)}
         disabled={boolean('Set disabled', false)}
@@ -64,11 +70,22 @@ const stories = {
           text: value,
         })}
         onItemSelect={item => {
+          action('onItemSelect')(item)
           if (!selected.find(i => i.text === item.text)) {
             setSelected([...selected, item]);
           }
         }}
+        allowPaste={allowPaste}
+        valuesSeparator={valuesSeparator}
+        onMultipleItemsSelect={items => {
+          action('onMultipleItemsSelect')(items)
+          const itemsToAdd = items.filter(item => {
+            return (!selected.find(i => i.text === item.text))
+          });
+          setSelected([...selected, ...itemsToAdd]);
+        }}
         onItemDeselect={item => {
+          action('onItemDeselect')(item)
           setSelected(selected.filter(i => i.text !== item.text));
         }}
         onCancel={() => setSelected([])}
@@ -80,7 +97,8 @@ const stories = {
           toSelect: 'to select',
           toNavigate: 'to navigate',
         }}
-        onConfirm={() => setSelected(selected)}
+        enableCustomFilteringSuggestions={boolean('Enable Custom Filtering Suggestions', false)}
+        onConfirm={(items) => { action('onConfirm')(items); setSelected([]); }}
         scrollbarProps={
           boolean('additional scrollbar props', true)
             ? {
