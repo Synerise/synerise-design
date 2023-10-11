@@ -25,6 +25,7 @@ export type CollectorProps = {
   onItemDeselect?: (item: CollectorValue) => void;
   onItemAdd?: (itemName: React.ReactText) => CollectorValue;
   onItemSelect: (item: CollectorValue) => void;
+  onMultipleItemsSelect?: (items: CollectorValue[]) => void;
   renderItem?: (value: CollectorValue) => JSX.Element;
   showNavigationHints?: boolean;
   searchValue?: string;
@@ -34,7 +35,11 @@ export type CollectorProps = {
   dropdownItemHeight?: 'large';
   enableCustomFilteringSuggestions?: boolean;
   scrollbarProps?: ScrollbarAdditionalProps;
+  allowPaste?: boolean;
+  showCount?: boolean;
+  valuesSeparator?: CollectorValuesSeparator;
 };
+export type CollectorValuesSeparator = ';' | ',' | '|';
 export type CollectorTexts = {
   add: string | React.ReactNode;
   cancel: string | React.ReactNode;

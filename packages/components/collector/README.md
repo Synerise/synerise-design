@@ -65,6 +65,9 @@ import Collector from '@synerise/ds-collector'
 | suggestions                      | Array of items which are displayed when showing suggestions dropdown   | CollectorValue[]                              | []      |
 | texts                            | Texts object for the component                                         | CollectorTexts                                | {}      |
 | scrollbarProps                   | Object with scrollbar configturaion                                    | ScrollbarAdditionalProps                      | -       |
+| allowPaste                       | Object with scrollbar configturaion                                    | boolean                                       | -       |
+| showCount                        | Display item counter above collector                                   | boolean                                       | -       |
+| valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `/` or `,`                | `;`       |
 
 `CollectorValue = {[key:string]: any}`
 

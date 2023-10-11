@@ -5,20 +5,28 @@ import React, {
   useCallback,
   useRef,
   useState,
+  ChangeEvent,
   FocusEvent,
+  MouseEvent,
+  ClipboardEvent,
   KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
+import { compact } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+
 import { CollectorProps, CollectorValue } from './Collector.types';
 import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
 import { filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
 import Values from './Elements/Values/Values';
+import NavigationHint from './Elements/NavigationHint/NavigationHint';
 
 const DROPDOWN_PADDING = 2 * 8;
 const COLLECTOR_CLASSNAME = 'ds-collector';
+const DEFAULT_VALUES_SEPARATOR = ';';
 
 const Collector = ({
   allowCustomValue,
@@ -44,6 +52,7 @@ const Collector = ({
   onItemAdd,
   onItemDeselect,
   onItemSelect,
+  onMultipleItemsSelect,
   dropdownContent,
   disableButtonPanel,
   disableSearch,
@@ -51,31 +60,52 @@ const Collector = ({
   searchValue,
   renderItem,
   onSearchValueChange,
+  allowPaste,
+  showCount,
+  valuesSeparator = DEFAULT_VALUES_SEPARATOR,
 }: CollectorProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const mainContentRef = useRef<HTMLDivElement>(null);
   const [isFocused, setFocused] = useState<boolean>(false);
+  const [isAddActive, setIsAddActive] = useState<boolean>(false);
   const [showGradient, setShowGradient] = useState<boolean>(false);
   const [scrollLeft, setScrollLeft] = useState<number>(0);
   const [value, setValue] = useState<string>(searchValue || '');
   const [selectedValues, setSelectedValues] = useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
-  useEffect(() => {
-    setSelectedValues(selected);
-  }, [selected]);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<CollectorValue[]>(suggestions || []);
 
   const filterLookupKey = useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
   const displayLookupKey = useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
 
+  const suggestionsIncludesItem = useCallback(
+    (item: string) =>
+      filteredSuggestions.some(
+        suggestion => suggestion[filterLookupKey]?.trim()?.toLowerCase() === item.trim().toLowerCase()
+      ),
+    [filterLookupKey, filteredSuggestions]
+  );
+
+  const createItem = useCallback(
+    (text: string) => {
+      const suggestionsIncludesCurrentValue = suggestionsIncludesItem(text);
+
+      if (allowCustomValue || suggestionsIncludesCurrentValue) {
+        return onItemAdd && onItemAdd(text);
+      }
+      return null;
+    },
+    [allowCustomValue, onItemAdd, suggestionsIncludesItem]
+  );
+
   const onFocusCallback = useCallback(
-    (e: FocusEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      if (!e.target.classList.contains(COLLECTOR_CLASSNAME)) {
-        if (!!inputRef && !!inputRef?.current) {
+    (event: FocusEvent<HTMLDivElement> & MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      if (!event.target.classList.contains(COLLECTOR_CLASSNAME)) {
+        if (!!inputRef && !!inputRef.current) {
           inputRef.current.focus({ preventScroll: true });
         }
         setFocused(true);
@@ -90,12 +120,26 @@ const Collector = ({
     },
     [suggestions, selectedValues, filterLookupKey]
   );
+
+  const canCreateItemFromValue = useCallback(() => {
+    if (!value) {
+      return false;
+    }
+    const item = createItem(value);
+    if (item) {
+      return true;
+    }
+    return false;
+  }, [createItem, value]);
+
   useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
-    setFilteredSuggestions([]);
+    if (!enableCustomFilteringSuggestions) {
+      setFilteredSuggestions([]);
+    }
     !searchValue && allowMultipleValues && setValue('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allowMultipleValues, allowCustomValue, selected]);
+  }, [allowMultipleValues, allowCustomValue, selected, enableCustomFilteringSuggestions]);
 
   useEffect(() => {
     if (searchValue !== undefined && searchValue !== null) {
@@ -115,38 +159,61 @@ const Collector = ({
     if (!enableCustomFilteringSuggestions) filterSuggestions(value);
   }, [value, selectedValues, filterSuggestions, enableCustomFilteringSuggestions]);
 
+  useEffect(() => {
+    setIsAddActive(Boolean(selected.length) || canCreateItemFromValue());
+  }, [canCreateItemFromValue, selected]);
+
   const clear = useCallback(() => {
     setSelectedValues([]);
     setValue('');
     setFocused(false);
-    inputRef?.current && inputRef.current.blur();
+    inputRef.current && inputRef.current.blur();
   }, []);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (!enableCustomFilteringSuggestions && e.key === 'Enter') {
-      const suggestionsIncludesCurrentValue = filteredSuggestions.some(
-        suggestion => suggestion[filterLookupKey].trim().toLowerCase() === value.trim().toLowerCase()
-      );
-      if (allowMultipleValues && (allowCustomValue || suggestionsIncludesCurrentValue)) {
-        const newValue = onItemAdd && onItemAdd(value);
-        newValue && onItemSelect(newValue);
-        return;
-      }
-      if (!allowMultipleValues) {
-        if (allowCustomValue || suggestionsIncludesCurrentValue) {
-          const newValue = onItemAdd && onItemAdd(value);
-          if (newValue) {
-            onConfirm && onConfirm([newValue]);
-          }
-          !keepSearchQueryOnSelect && clear();
-        }
+  const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    if (allowMultipleValues && onItemAdd) {
+      const pastedText = event.clipboardData.getData('text');
+      const pastedItems = allowMultipleValues ? pastedText.split(valuesSeparator) : [pastedText];
+
+      const newValues = compact(pastedItems.map(createItem));
+
+      if (newValues.length) {
+        onMultipleItemsSelect && onMultipleItemsSelect(newValues);
       }
     }
-    if (allowMultipleValues && e.key === 'Backspace' && !value && !!selectedValues?.length) {
+  };
+
+  const addItem = () => {
+    if (!value.trim()) {
+      return;
+    }
+    const newValue = createItem(value);
+    if (!newValue) {
+      return;
+    }
+    if (allowMultipleValues) {
+      onItemSelect(newValue);
+    } else {
+      onConfirm && onConfirm([newValue]);
+      !keepSearchQueryOnSelect && clear();
+    }
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (allowMultipleValues && event.key === 'Backspace' && !value && !!selectedValues?.length) {
       const lastElement = selected.pop();
       if (lastElement && onItemDeselect) {
         onItemDeselect(lastElement);
       }
+    }
+  };
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      addItem();
+    }
+    if (allowPaste && event.key === valuesSeparator) {
+      value.trim() ? addItem() : event.preventDefault();
     }
   };
 
@@ -157,11 +224,14 @@ const Collector = ({
 
   const onConfirmCallback = useCallback(() => {
     if (allowMultipleValues) {
-      onConfirm && onConfirm(selectedValues);
+      const createdItem = value && createItem(value);
+      const finalItems = createdItem ? [...selectedValues, createdItem] : selectedValues;
+      onConfirm && onConfirm(finalItems);
       clear();
       return;
     }
-    const suggestionsIncludesCurrentValue = filteredSuggestions.some(
+    const suggestionsIncludesCurrentValue = suggestionsIncludesItem(value);
+    filteredSuggestions.some(
       suggestion => suggestion[filterLookupKey]?.trim()?.toLowerCase() === value.trim().toLowerCase()
     );
     if (allowCustomValue || suggestionsIncludesCurrentValue) {
@@ -170,15 +240,17 @@ const Collector = ({
       clear();
     }
   }, [
-    selectedValues,
-    clear,
-    onConfirm,
+    allowMultipleValues,
+    suggestionsIncludesItem,
     value,
     filteredSuggestions,
-    allowMultipleValues,
     allowCustomValue,
-    onItemAdd,
+    createItem,
+    selectedValues,
+    onConfirm,
+    clear,
     filterLookupKey,
+    onItemAdd,
   ]);
 
   const getContainerWidth = useCallback(
@@ -186,30 +258,102 @@ const Collector = ({
     [containerRef]
   );
 
-  const handleDropdownClick = useCallback(() => {
+  const focusInput = () => {
     if (inputRef?.current) {
       inputRef.current.focus({ preventScroll: true });
     }
-  }, [inputRef]);
+  };
+
+  const handleDropdownClick = () => {
+    focusInput();
+  };
+
+  const handleChange = disableSearch
+    ? undefined
+    : (event: ChangeEvent<HTMLInputElement>) => {
+        onSearchValueChange && onSearchValueChange(event.target.value);
+        setValue(event.target.value);
+        if (!enableCustomFilteringSuggestions) filterSuggestions(event.target.value);
+      };
 
   useOnClickOutside(containerRef, () => {
     setFocused(false);
   });
   const showError = error || !!errorText;
 
+  const renderCountLabel = () => {
+    const total = selectedValues.length;
+    const counterLabel =
+      total === 1 ? (
+        <FormattedMessage id="DS.COLLECTOR.ITEM" defaultMessage="Item" />
+      ) : (
+        <FormattedMessage id="DS.COLLECTOR.ITEMS" defaultMessage="Items" />
+      );
+    return (
+      <S.Counter>
+        {total} {counterLabel}
+      </S.Counter>
+    );
+  };
+
+  const valuesContainer = (
+    <S.MainContent
+      fixedHeight={fixedHeight}
+      onScroll={({ currentTarget }: SyntheticEvent) => {
+        if (fixedHeight) {
+          setScrollLeft(currentTarget.scrollLeft);
+        }
+      }}
+      hasValues={!!selectedValues?.length}
+      ref={mainContentRef}
+      gradientOverlap={showGradient && scrollLeft > 0}
+      focus={isFocused}
+    >
+      <Values
+        values={selectedValues}
+        onDeselect={onItemDeselect}
+        focused={isFocused}
+        disabled={!!disabled}
+        displayLookupKey={displayLookupKey}
+      />
+      <S.Input
+        onPaste={handlePaste}
+        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
+        ref={inputRef}
+        value={value}
+        onChange={handleChange}
+        disabled={disabled}
+        transparent={!!disableSearch}
+        hidden={!!disableSearch && !!selectedValues.length}
+        placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
+        hasValues={!!selectedValues?.length}
+      />
+    </S.MainContent>
+  );
+
+  const innerContent = fixedHeight ? (
+    valuesContainer
+  ) : (
+    <S.Scrollbar absolute maxHeight={160}>
+      {valuesContainer}
+    </S.Scrollbar>
+  );
+
   return (
     <S.Container
       ref={containerRef}
-      onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
-        focusWithArrowKeys(e, 'ds-search-item', () => {
+      onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
+        focusWithArrowKeys(event, 'ds-search-item', () => {
           inputRef?.current && inputRef.current.focus({ preventScroll: true });
         });
-        !value && scrollWithHorizontalArrow(mainContentRef, e);
+        !value && scrollWithHorizontalArrow(mainContentRef, event);
       }}
     >
-      {label && (
+      {(label || showCount) && (
         <S.ContentAbove>
-          <S.Label>{label}</S.Label>
+          {label && <S.Label>{label}</S.Label>}
+          {showCount && renderCountLabel()}
         </S.ContentAbove>
       )}
       <S.CollectorInput
@@ -217,48 +361,12 @@ const Collector = ({
         tabIndex={0}
         focus={isFocused}
         onFocus={onFocusCallback}
+        onClick={onFocusCallback}
         error={showError}
         disabled={disabled}
       >
-        <S.MainContent
-          wrap={!fixedHeight}
-          onScroll={({ currentTarget }: SyntheticEvent) => {
-            if (fixedHeight) {
-              setScrollLeft(currentTarget.scrollLeft);
-            }
-          }}
-          hasValues={!!selectedValues?.length}
-          ref={mainContentRef}
-          gradientOverlap={showGradient && scrollLeft > 0}
-          focus={isFocused}
-        >
-          <Values
-            values={selectedValues}
-            onDeselect={onItemDeselect}
-            focused={isFocused}
-            disabled={!!disabled}
-            displayLookupKey={displayLookupKey}
-          />
-          <S.Input
-            onKeyDown={handleKeyDown}
-            ref={inputRef}
-            value={value}
-            onChange={
-              !disableSearch
-                ? e => {
-                    onSearchValueChange && onSearchValueChange(e.target.value);
-                    setValue(e.target.value);
-                    if (!enableCustomFilteringSuggestions) filterSuggestions(e.target.value);
-                  }
-                : undefined
-            }
-            disabled={disabled}
-            transparent={!!disableSearch}
-            hidden={!!disableSearch && !!selectedValues.length}
-            placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
-            hasValues={!!selectedValues?.length}
-          />
-        </S.MainContent>
+        {innerContent}
+
         {!disableButtonPanel && (
           <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
             <ButtonPanel
@@ -267,7 +375,7 @@ const Collector = ({
               disabled={!!disabled}
               showCancel={!!value || !!selectedValues?.length}
               texts={texts}
-              addButtonProps={addButtonProps}
+              addButtonProps={{ ...addButtonProps, disabled: !isAddActive }}
               cancelButtonProps={cancelButtonProps}
             />
           </S.RightSide>
@@ -275,7 +383,7 @@ const Collector = ({
       </S.CollectorInput>
       <OptionsDropdown
         options={filteredSuggestions}
-        onItemAdd={onItemAdd}
+        onItemAdd={addItem}
         lookupKey={displayLookupKey}
         dropdownItemHeight={dropdownItemHeight}
         value={value}
@@ -286,7 +394,12 @@ const Collector = ({
         }
         onSelect={item => {
           onItemSelect && onItemSelect(item);
-          !keepSearchQueryOnSelect && item[filterLookupKey] && setValue(item[filterLookupKey]);
+          if (!keepSearchQueryOnSelect && item[filterLookupKey]) {
+            setValue(item[filterLookupKey]);
+          } else {
+            clear();
+          }
+          focusInput();
         }}
         onClick={handleDropdownClick}
         renderItem={renderItem}
@@ -305,5 +418,22 @@ const Collector = ({
     </S.Container>
   );
 };
+
+Collector.Container = S.Container;
+Collector.ContentBelow = S.ContentBelow;
+Collector.Description = S.Description;
+Collector.ErrorText = S.ErrorText;
+Collector.CollectorInput = S.CollectorInput;
+Collector.RightSide = S.RightSide;
+Collector.ContentAbove = S.ContentAbove;
+Collector.MainContent = S.MainContent;
+Collector.Input = S.Input;
+Collector.Counter = S.Counter;
+Collector.Label = S.Label;
+
+Collector.Values = Values;
+Collector.ButtonPanel = ButtonPanel;
+Collector.OptionsDropdown = OptionsDropdown;
+Collector.NavigationHint = NavigationHint;
 
 export default Collector;
