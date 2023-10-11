@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.11.12...@synerise/ds-column-manager@0.11.13) (2023-10-11)
+
+**Note:** Version bump only for package @synerise/ds-column-manager
+
+
+
+
+
 ## [0.11.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.11.11...@synerise/ds-column-manager@0.11.12) (2023-10-06)
 
 **Note:** Version bump only for package @synerise/ds-column-manager

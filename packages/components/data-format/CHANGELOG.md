@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.3...@synerise/ds-data-format@0.4.4) (2023-10-11)
+
+**Note:** Version bump only for package @synerise/ds-data-format
+
+
+
+
+
 ## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.2...@synerise/ds-data-format@0.4.3) (2023-10-02)
 
 **Note:** Version bump only for package @synerise/ds-data-format

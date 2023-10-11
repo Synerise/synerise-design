@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.196.1](https://github.com/synerise/synerise-design/compare/portal@0.196.0...portal@0.196.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixed onchange in weekly scheduler ([118fb4f](https://github.com/synerise/synerise-design/commit/118fb4f2aed37309989a471f129919f920ed2271))
+
+
+
+
+
 # [0.196.0](https://github.com/synerise/synerise-design/compare/portal@0.195.1...portal@0.196.0) (2023-10-06)
 
 

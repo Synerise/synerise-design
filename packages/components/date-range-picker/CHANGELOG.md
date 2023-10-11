@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.24.9...@synerise/ds-date-range-picker@0.24.10) (2023-10-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixed onchange in weekly scheduler ([118fb4f](https://github.com/Synerise/synerise-design/commit/118fb4f2aed37309989a471f129919f920ed2271))
+
+
+
+
+
 ## [0.24.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.24.8...@synerise/ds-date-range-picker@0.24.9) (2023-10-06)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
