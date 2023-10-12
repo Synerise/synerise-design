@@ -4,7 +4,15 @@ import { debounce } from 'lodash';
 
 import { InputProps } from '../../Factors.types';
 
-const NumberInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate, readOnly = false }) => {
+const NumberInput: React.FC<InputProps> = ({
+  error,
+  value,
+  onChange,
+  texts,
+  opened,
+  onDeactivate,
+  readOnly = false,
+}) => {
   const [localValue, setLocalValue] = React.useState<string | number | undefined>(value as number);
   const onChangeValueDebounce = React.useRef(debounce(onChange, 300)).current;
 
@@ -25,6 +33,7 @@ const NumberInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onD
 
   return (
     <InputNumber
+      error={error}
       autoFocus={opened}
       placeholder={texts.valuePlaceholder}
       value={localValue as number}
