@@ -368,7 +368,11 @@ const Collector = ({
         {innerContent}
 
         {!disableButtonPanel && (
-          <S.RightSide gradientOverlap={showGradient && !value} focus={isFocused}>
+          <S.RightSide
+            gradientOverlap={showGradient && !value}
+            focus={isFocused}
+            onClick={event => event.stopPropagation()}
+          >
             <ButtonPanel
               onCancel={onCancelCallback}
               onConfirm={onConfirmCallback}
