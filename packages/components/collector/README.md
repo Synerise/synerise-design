@@ -19,9 +19,12 @@ yarn add @synerise/ds-collector
 import Collector from '@synerise/ds-collector'
 
   <Collector
-    selected={["Selected 1]}
-    suggestions={["Suggestions 1]}
+    selected={["Selected 1"]}
+    suggestions={["Suggestions 1"]}
     onConfirm={console.log}
+    onItemAdd={value => ({
+      text: value,
+    })}
     texts={{ add: 'Add', cancel: 'Cancel', placeholder: "Please select values" }}
   />
 ```
@@ -56,6 +59,7 @@ import Collector from '@synerise/ds-collector'
 | onCancel                         | Callback executed when user clicks "cancel" button                     | () => void                                    | ---     |
 | onItemSelect                     | Callback executed when user selects an item                            | (value: CollectorValue) => void               | ---     |
 | onItemDeselect                   | Callback executed when user removes already selected item              | (value: CollectorValue) => void               | ---     |
+| onMultipleItemsSelect            | Callback executed when user pastes multiple items                      | (values: CollectorValue[]) => void             | ---     |
 | onItemAdd                        | Callback executed when user adds a custom item to the list.            | (itemName: React.ReactText) => CollectorValue | ---     |
 | onSearchValueChange              | Callback executed when user changes the value of the input             | (value: string) => void                       | ---     |
 | renderItem                       | Custom function for rendering a custom item inside dropdown            | (value: CollectorValue) => JSX.Element        | ---     |
