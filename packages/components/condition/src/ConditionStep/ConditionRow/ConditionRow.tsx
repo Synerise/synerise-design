@@ -44,18 +44,18 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   const conditionOperatorErrorText = conditionOperator?.errorText;
   const conditionParameterValue = conditionParameter?.value;
   const rowHasError = !!(
-    conditionParameterErrorText ||
-    (conditionOperatorErrorText && conditionParameterValue) ||
-    (conditionFactorErrorText && conditionParameterValue)
+      conditionParameterErrorText ||
+      conditionOperatorErrorText ||
+      conditionFactorErrorText
   );
 
   const conditionErrorMessage = React.useMemo(() => {
     let errorText: React.ReactNode | string;
     if (conditionParameterErrorText) {
       errorText = conditionParameterErrorText;
-    } else if (conditionOperatorErrorText && conditionParameterValue) {
+    } else if (conditionOperatorErrorText) {
       errorText = conditionOperatorErrorText;
-    } else if (conditionFactorErrorText && conditionParameterValue) {
+    } else if (conditionFactorErrorText) {
       errorText = conditionFactorErrorText;
     }
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
