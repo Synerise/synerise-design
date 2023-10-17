@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { EditS } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
@@ -6,17 +6,18 @@ import { FormulaValueType, InputProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';
 import * as S from './Formula.styles';
 
-const FormulaInput: React.FC<InputProps> = ({
+const FormulaInput = ({
   value,
+  error,
   onChange,
   withoutTypeSelector = false,
   texts,
   formulaEditor,
   readOnly = false,
-}) => {
-  const [openFormulaModal, setOpenFormulaModal] = React.useState(false);
+}: InputProps) => {
+  const [openFormulaModal, setOpenFormulaModal] = useState(false);
 
-  const triggerMode = React.useMemo(() => {
+  const triggerMode = useMemo(() => {
     if (value) {
       return readOnly ? 'label-icon' : 'two-icons';
     }
@@ -24,15 +25,15 @@ const FormulaInput: React.FC<InputProps> = ({
     return readOnly ? 'simple' : 'label-icon';
   }, [value, readOnly]);
 
-  const activeIcon = React.useMemo(() => {
+  const activeIcon = useMemo(() => {
     return value ? <Badge flag status="active" /> : '';
   }, [value]);
 
-  const label = React.useMemo(() => {
+  const label = useMemo(() => {
     return value ? (value as FormulaValueType).name : texts.formula.buttonPlaceholder;
   }, [value, texts.formula.buttonPlaceholder]);
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     val => {
       setOpenFormulaModal(false);
       onChange(val);
@@ -40,11 +41,11 @@ const FormulaInput: React.FC<InputProps> = ({
     [onChange]
   );
 
-  const handleClick = (): void => setOpenFormulaModal(true);
+  const handleClick = !readOnly ? (): void => setOpenFormulaModal(true) : undefined;
 
   return (
     <S.FormulaButton withoutTypeSelector={withoutTypeSelector}>
-      <Button type="secondary" mode={triggerMode} onClick={!readOnly ? handleClick : undefined}>
+      <Button readOnly={readOnly} type="secondary" error={error} mode={triggerMode} onClick={handleClick}>
         {activeIcon}
         {label}
         <Icon component={<EditS />} />
