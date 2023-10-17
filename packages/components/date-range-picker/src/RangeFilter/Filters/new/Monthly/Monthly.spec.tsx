@@ -1,0 +1,29 @@
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import Monthly from './Monthly';
+import { fireEvent, screen } from '@testing-library/react';
+import { ERROR_MESSAGE, MONTHLY_SCHEDULE_TEST_DATA } from '../filters.spec.constants';
+
+
+
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+describe('monthly scheduler', () => {
+  const onChange = jest.fn();
+  it.each(MONTHLY_SCHEDULE_TEST_DATA)('should display error messages when single day is selected $case', ({ value, errors, expectedTimepickerCount, expectedErrorCount, dayIndex }) => {
+    renderWithProvider( <Monthly value={value} errorTexts={errors} onChange={onChange} />);
+    
+    const dayButtons = screen.getAllByRole('button');
+    fireEvent.click(dayButtons[dayIndex]);
+
+    const timepickers = screen.getAllByTestId('tp-container');
+    expect(timepickers.length).toEqual(expectedTimepickerCount);
+    const errorMessages = screen.getAllByText(ERROR_MESSAGE);
+    expect(errorMessages.length).toEqual(expectedErrorCount);
+
+  });
+});

@@ -3,6 +3,7 @@ import { DayOptions } from '../../../Shared/TimeWindow/TimeWindow.types';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import { FilterBaseProps } from '../Filters.types';
 import { WithDisabledProp } from '../../../RangeFilter.types';
+import { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 
 export type MonthlyScheduleDayValue = DayOptions & {
   mode: DateLimitMode;
@@ -45,6 +46,9 @@ export type DayOfMonthIndex =
   | 31;
 export type MonthlyProps = {
   value: MonthlySchedule;
+  errorTexts?: {
+    [guid: string]: FilterErrorType[];
+  };
   periodType: DAYS_OF_PERIOD_ENUM;
   countedFrom: COUNTED_FROM_ENUM;
   onChange: (value: MonthlyProps['value']) => void;

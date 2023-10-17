@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 import type { TimePickerProps } from '@synerise/ds-time-picker';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
@@ -9,10 +9,13 @@ import { DateLimitMode, RangeDisplayMode } from './RangeForm/RangeForm.types';
 
 export type DateValue = [Date | undefined, Date | undefined, boolean | undefined];
 
+export type FilterErrorType = [ReactNode?, ReactNode?];
+
 export type RangeFormContainerProps = {
+  errorTexts?: FilterErrorType;
   activeDays: DayKey[];
   dayKeys: DayKey | DayKey[];
-  getDayLabel: (dayKey: DayKey, long?: boolean) => string | object | React.ReactNode;
+  getDayLabel: (dayKey: DayKey, long?: boolean) => string | object | ReactNode;
   getDayValue: (dayKey: DayKey) => Partial<FilterDefinition>;
   onMultipleDayTimeChange: (value: DateValue) => void;
   onDayTimeChange: (value: DateValue, dayKey: DayKey) => void;
@@ -27,7 +30,7 @@ export type RangeFormContainerProps = {
   timeFormat?: string;
   valueFormatOptions?: DateToFormatOptions;
   timePickerProps?: Partial<TimePickerProps>;
-  renderSuffix?: () => React.ReactNode;
+  renderSuffix?: () => ReactNode;
 } & Pick<
   TimeWindowProps,
   'monthlyFilter' | 'monthlyFilterPeriod' | 'hideHeader' | 'headerOptions' | 'onChange' | 'days'

@@ -32,7 +32,7 @@ import {
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
 
-const Weekly: React.FC<WeeklyProps> = ({
+const Weekly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
   valueSelectionMode = ['Hour', 'Range'],
   onChange = NOOP,
@@ -41,7 +41,8 @@ const Weekly: React.FC<WeeklyProps> = ({
   value,
   timePickerProps,
   disabled,
-}) => {
+  errorTexts,
+}: WeeklyProps) => {
   const defaultDayValue = React.useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -275,6 +276,9 @@ const Weekly: React.FC<WeeklyProps> = ({
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
   const isAnyDaySelected = activeDays.length > 0;
   const shouldRenderAddButton = isAnyDaySelected && filteredSchedule.length < maxEntries && canAddRange && !disabled;
+  const getErrorTextsForFormRow = (guid: string) => {
+    return activeDays.length === 1 && errorTexts && errorTexts[guid] && errorTexts[guid][activeDays[0]];
+  };
   return (
     <S.NewFilterContainer ref={ref as React.RefObject<HTMLDivElement>}>
       <Grid
@@ -296,6 +300,7 @@ const Weekly: React.FC<WeeklyProps> = ({
           <RangeFormContainer
             days={EMPTY_OBJECT}
             onChange={NOOP}
+            errorTexts={getErrorTextsForFormRow(guid)}
             key={`value-range-${guid}`}
             onDayTimeChange={(dayValue, dayKey): void => {
               handleDayTimeChange(dayValue, dayKey, guid);

@@ -16,7 +16,7 @@ import DateRangePicker from './DateRangePicker';
 import Weekly from './RangeFilter/Filters/new/Weekly/Weekly';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 
-jest.mock('uuid', () => ({ v4: () => '123456789' }));
+jest.mock('uuid', () => ({ v4: () => Math.floor(Math.random()*999999999).toString() }));
 const DAILY_FILTER = {
   from: "00:00:00.000",
   to: "23:59:59.999",

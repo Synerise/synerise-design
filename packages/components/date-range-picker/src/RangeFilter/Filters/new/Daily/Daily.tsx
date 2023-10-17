@@ -25,6 +25,7 @@ const Daily = ({
   valueSelectionMode = ['Hour', 'Range'],
   timeFormat,
   timePickerProps,
+  errorTexts = [],
 }: DailyProps) => {
   const intl = useIntl();
   const defaultDayValue = useMemo(
@@ -90,6 +91,7 @@ const Daily = ({
             disabled={disabled}
             days={EMPTY_OBJECT}
             onChange={NOOP}
+            errorTexts={errorTexts[index]}
             onMultipleDayTimeChange={NOOP}
             // eslint-disable-next-line react/no-array-index-key
             key={`range-${index}-${String(s?.start)}`}
