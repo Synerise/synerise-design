@@ -42,6 +42,7 @@ const stories = {
 
     return (
       <Factors
+        error={boolean('Set validation state', false)}
         selectedFactorType={store.state.selectedFactorType}
         setSelectedFactorType={setSelectedFactor}
         inputProps={{
@@ -60,8 +61,8 @@ const stories = {
           options: ['First name', 'Last name', 'City', 'Age', 'Points'],
         }}
         unavailableFactorTypes={object(
-          'Unavailable factor types (text, number, parameter, contextParameter, dynamicKey, formula, array, date)',
-          ['number', 'formula']
+          'Unavailable factor types (text, number, parameter, contextParameter, dynamicKey, formula, array, date, dateRange)',
+          []
         )}
         parameters={{
           buttonLabel: 'Parameter',

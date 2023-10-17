@@ -67,7 +67,7 @@ const DynamicKey: React.FC<InputProps> = ({
     </>
   );
 
-  return readOnly ? trigger : <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>{trigger}</S.DynamicKey>;
+  return <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>{trigger}</S.DynamicKey>;
 };
 
 export default DynamicKey;

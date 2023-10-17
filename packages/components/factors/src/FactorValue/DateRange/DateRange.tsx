@@ -1,20 +1,20 @@
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { DateFilter, DateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 import { useIntl } from 'react-intl';
 import { InputProps } from '../../Factors.types';
 
-const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeactivate, readOnly = false }) => {
+const DateRangeInput = ({ value, onChange, error, texts, onDeactivate, readOnly = false }: InputProps) => {
   const intl = useIntl();
 
-  const changeHandler = React.useCallback(
+  const changeHandler = useCallback(
     (date: Partial<DateFilter> | undefined) => {
       onChange(date);
     },
     [onChange]
   );
 
-  const handleVisibleChange = React.useCallback(
+  const handleVisibleChange = useCallback(
     visible => {
       if (!visible) {
         onDeactivate && onDeactivate();
@@ -41,7 +41,7 @@ const DateRangeInput: React.FC<InputProps> = ({ value, onChange, texts, onDeacti
       }}
       filterRangeDisplayMode="slider"
       filterValueSelectionModes={['Range']}
-      rangePickerInputProps={{ readOnly }}
+      rangePickerInputProps={{ readOnly, error }}
       readOnly={readOnly}
     />
   );
