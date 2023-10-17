@@ -42,7 +42,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   const conditionFactorErrorText = conditionFactor?.errorText;
   const conditionParameterErrorText = conditionParameter?.errorText;
   const conditionOperatorErrorText = conditionOperator?.errorText;
-  const conditionParameterValue = conditionParameter?.value;
+
   const rowHasError = !!(
       conditionParameterErrorText ||
       conditionOperatorErrorText ||
@@ -59,7 +59,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
       errorText = conditionFactorErrorText;
     }
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
-  }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText, conditionParameterValue]);
+  }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText]);
 
   return (
     <S.ConditionRow
