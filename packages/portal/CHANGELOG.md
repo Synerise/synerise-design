@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.197.0](https://github.com/synerise/synerise-design/compare/portal@0.196.1...portal@0.197.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* **collector:** added event capture for "add" ([6b3f129](https://github.com/synerise/synerise-design/commit/6b3f12947eeeba555fb3cd2c4218f5335ddf6042))
+* **factors:** error validation for formula and date range factor type ([a9485dd](https://github.com/synerise/synerise-design/commit/a9485dd239e8b5cf285ef5f2ab08f1d9b1993628))
+
+
+### Features
+
+* **date-range-picker:** display errors in daily / weekly / monthly scheduler ([1bc8695](https://github.com/synerise/synerise-design/commit/1bc8695af46628b30492fb247a2ddbe5785711b0))
+
+
+
+
+
 ## [0.196.1](https://github.com/synerise/synerise-design/compare/portal@0.196.0...portal@0.196.1) (2023-10-11)
 
 

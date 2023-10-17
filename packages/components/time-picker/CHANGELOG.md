@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.11...@synerise/ds-time-picker@0.9.0) (2023-10-17)
+
+
+### Features
+
+* **date-range-picker:** display errors in daily / weekly / monthly scheduler ([1bc8695](https://github.com/Synerise/synerise-design/commit/1bc8695af46628b30492fb247a2ddbe5785711b0))
+
+
+
+
+
 ## [0.8.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.8.10...@synerise/ds-time-picker@0.8.11) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

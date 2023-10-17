@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-condition",
-  "version": "0.20.56",
+  "version": "0.20.57",
   "description": "Condition UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,10 +34,10 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.18.4",
-    "@synerise/ds-context-selector": "^0.19.13",
+    "@synerise/ds-context-selector": "^0.19.14",
     "@synerise/ds-core": "^0.40.4",
     "@synerise/ds-cruds": "^0.3.36",
-    "@synerise/ds-factors": "^0.20.6",
+    "@synerise/ds-factors": "^0.20.7",
     "@synerise/ds-icon": "^0.58.4",
     "@synerise/ds-inline-edit": "^0.6.83",
     "@synerise/ds-operators": "^0.10.42",

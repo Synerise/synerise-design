@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.57](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.56...@synerise/ds-condition@0.20.57) (2023-10-17)
+
+
+### Bug Fixes
+
+* **condition:** change hasError logic to show error for operator ([13abae2](https://github.com/Synerise/synerise-design/commit/13abae2bd17ea292913e043cc471e3f3cc7079f4))
+* **condition:** change hasError logic to show error for operator ([59f7e1f](https://github.com/Synerise/synerise-design/commit/59f7e1f4981d058eef1a84491bb835a4cc790976))
+
+
+
+
+
 ## [0.20.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.55...@synerise/ds-condition@0.20.56) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-condition
