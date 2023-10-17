@@ -30,6 +30,7 @@ const stories = {
     const units = array('Available units', undefined, ',');
     const placeholder = text('Set placeholder', 'Select time');
     const clearTooltip = text('Set clear tooltip', 'Clear');
+    const error = text('Error text', '');
 
     const onChange = (newValue: Date) => {
       console.log('On change', newValue);
@@ -41,6 +42,7 @@ const stories = {
     return (
       <div style={{ width: number('Width', 200, { min: 104, max: 208 }) }}>
         <TimePicker
+          errorText={error}
           alwaysOpen={alwaysOpen}
           units={units as any[]}
           value={store.state.value}

@@ -16,6 +16,7 @@ import * as S from './RangeFormContainer.styles';
 import type { RangeFormContainerProps, DateValue } from './RangeFormContainer.types';
 
 const RangeFormContainer = ({
+  errorTexts,
   activeDays,
   disabled,
   days,
@@ -132,6 +133,7 @@ const RangeFormContainer = ({
       <RangeForm
         disabled={disabled}
         texts={texts as Texts}
+        errorTexts={errorTexts}
         onModeChange={(selected: DateLimitMode): void => {
           setMode(selected);
           handleModeChange(selected);
@@ -151,20 +153,23 @@ const RangeFormContainer = ({
       />
     ),
     [
-      timeFormat,
-      rangeDisplayMode,
-      valueSelectionModes,
-      handleModeChange,
-      mode,
       disabled,
-      dayValue,
-      onRangeDelete,
       texts,
-      timePickerProps,
+      errorTexts,
+      mode,
+      dayValue.start,
+      dayValue.stop,
+      dayValue?.inverted,
+      timeFormat,
       onStartChange,
       onEndChange,
       onExactHourSelect,
+      onRangeDelete,
+      valueSelectionModes,
       valueFormatOptions,
+      timePickerProps,
+      rangeDisplayMode,
+      handleModeChange,
     ]
   );
 

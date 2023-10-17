@@ -41,6 +41,7 @@ const RangeForm = ({
   timePickerProps,
   texts,
   valueFormatOptions,
+  errorTexts,
 }: RangeFormProps) => {
   const { is12HoursClock } = useDataFormat();
   const intl = useIntl();
@@ -61,9 +62,11 @@ const RangeForm = ({
   }, [rangeDisplayMode, startDate, endDate]);
 
   const getPopupContainer = (node: HTMLElement) => (node.parentElement != null ? node.parentElement : document.body);
-
+  const errorForFirstItem = errorTexts?.length && errorTexts[0];
+  const errorForSecondItem = errorTexts?.length && errorTexts[1];
   const singleHourPicker = () => (
     <TimePicker
+      errorText={errorForFirstItem}
       disabled={disabled}
       clearTooltip={texts?.clear}
       onChange={date => {
@@ -136,6 +139,7 @@ const RangeForm = ({
     return (
       <>
         <TimePicker
+          errorText={errorForFirstItem}
           disabled={disabled}
           clearTooltip={texts?.clear}
           onChange={(date?: Date) => {
@@ -155,6 +159,7 @@ const RangeForm = ({
         />
         <S.Separator>-</S.Separator>
         <TimePicker
+          errorText={errorForSecondItem}
           disabled={disabled}
           clearTooltip={texts?.clear}
           onChange={(date?: Date) => {

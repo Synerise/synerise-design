@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
-import { boolean, text, select, optionsKnob } from '@storybook/addon-knobs';
+import { boolean, text, select, optionsKnob, array } from '@storybook/addon-knobs';
 import { action, configureActions } from '@storybook/addon-actions';
 import Daily from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Daily/Daily';
 import Weekly from '@synerise/ds-date-range-picker/dist/RangeFilter/Filters/new/Weekly/Weekly';
@@ -515,7 +515,7 @@ const stories = {
     const showTime = boolean('Set showTime', true);
     const hideFooter = boolean('hide footer', true);
     const [filters, setFilters] = React.useState(savedFilters);
-    const valueSelectionModes:DateLimitMode = ['Range'];
+    const valueSelectionModes:DateLimitMode[] = ['Range'];
 
     const allowedFilterLabel = 'Filter types';
     const optionsObj = {
@@ -581,12 +581,39 @@ const stories = {
         mode: 'Hour',
       },
     ]);
-    return <Daily timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />;
+
+    const valueSelectionMode = select('Mode', { Hour: 'Hour', Range: 'Range'}, 'Hour');
+    const valueSelectionModes:DateLimitMode[] = [valueSelectionMode];
+    const errors = boolean('Display errors', false)
+    const errorTexts = errors && value.map( item => 
+      (item.mode === 'Hour' ? ['Error text'] : ['Error text', 'Error text'])
+    );
+    return <Daily errorTexts={errorTexts} valueSelectionMode={valueSelectionModes} timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />;
   },
   weeklyDateFilter: () => {
     const disabled = boolean('Set disabled', false);
     const [value, setValue] = React.useState({});
-    return <Weekly timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />;
+    const displayErrors = boolean('With error messages', false);
+    let errorTexts, errorsCode = <></>;
+    if (displayErrors) {
+      errorTexts = {};
+      Object.keys(value).forEach(guid => {
+        errorTexts[guid] = {};
+        Object.entries(value[guid]).forEach((day) => {
+          errorTexts[guid][day[0]] = (day[1].mode === 'Hour' ? ['Error for day index:'+day[0]] : ['Error for day index:'+day[0], 'Error for day index:'+day[0]]) 
+        })
+      })
+      if (Object.keys(errorTexts).length) {
+        errorsCode = <pre>errorTexts = {JSON.stringify(errorTexts, null, '  ')}</pre>
+      }
+      
+    }
+    return (
+      <>
+        <Weekly errorTexts={displayErrors && errorTexts} timePickerProps={TIME_PICKER_PROPS} onChange={v => { action('onChange')(v); setValue(v); }} value={value} disabled={disabled} />
+        {errorsCode}
+      </>
+    );
   },
   monthlyDateFilter: () => {
     const disabled = boolean('Set disabled', false);
@@ -602,17 +629,36 @@ const stories = {
     const periodType = select('Period type', periodTypeOptions, DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH);
     
     const [value, setValue] = React.useState({});
-  
-    return <Monthly 
-      countedFrom={countedFrom} 
-      periodType={periodType} 
-      timePickerProps={TIME_PICKER_PROPS} 
-      onChange={v => {
-        action('OnChange')(v);
-        setValue(v);
-      }}
-      value={value} 
-      disabled={disabled} />;
+    const displayErrors = boolean('With error messages', false);
+    let errorTexts, errorsCode = <></>;
+    if (displayErrors) {
+      errorTexts = {};
+      Object.keys(value).forEach(guid => {
+        errorTexts[guid] = {};
+        Object.entries(value[guid]).forEach((day) => {
+          errorTexts[guid][day[0]] = (day[1].mode === 'Hour' ? ['Error for day index:'+day[0]] : ['Error for day index:'+day[0], 'Error for day index:'+day[0]]) 
+        })
+      })
+      
+      if (Object.keys(errorTexts).length) {
+        errorsCode = <pre>errorTexts = {JSON.stringify(errorTexts, null, '\t')}</pre>
+      }
+    }
+    return (<>
+      <Monthly 
+        errorTexts={displayErrors && errorTexts} 
+        countedFrom={countedFrom} 
+        periodType={periodType} 
+        timePickerProps={TIME_PICKER_PROPS} 
+        onChange={v => {
+          action('OnChange')(v);
+          setValue(v);
+        }}
+        value={value} 
+        disabled={disabled} />
+        {errorsCode}
+      </>
+    );
   },
 
   overwritingBaseStylesCheck: () => {

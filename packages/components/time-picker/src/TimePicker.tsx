@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
-import Dropdown from '@synerise/ds-dropdown';
+
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { useDataFormat } from '@synerise/ds-data-format';
 
@@ -55,6 +55,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   raw,
   onClockModeChange,
   intl,
+  errorText,
 }) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
   const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
@@ -227,7 +228,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
   }
   return (
     <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container" style={containerStyle}>
-      <Dropdown
+      <S.Dropdown
         trigger={trigger}
         visible={alwaysOpen || open}
         onVisibleChange={onVisibleChange}
@@ -237,6 +238,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
         {...dropdownProps}
       >
         <S.TimePickerInput
+          errorText={!open && errorText}
           disabled={disabled}
           className={`${alwaysOpen || open ? 'active' : ''}`}
           data-testid="tp-input"
@@ -246,7 +248,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
           icon1={timePickerIcon}
           {...inputProps}
         />
-      </Dropdown>
+      </S.Dropdown>
     </S.Container>
   );
 };

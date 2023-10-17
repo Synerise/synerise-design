@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, CSSProperties } from 'react';
 import dayjs from 'dayjs';
 import { IntlShape } from 'react-intl';
 import { InputProps } from 'antd/es/input/Input';
@@ -19,8 +19,8 @@ export type TimePickerDisabledUnits = {
 export type TimePickerProps = TimePickerDisabledUnits & {
   alwaysOpen?: boolean;
   className?: string;
-  clearTooltip?: string | React.ReactNode;
-  containerStyle?: React.CSSProperties;
+  clearTooltip?: string | ReactNode;
+  containerStyle?: CSSProperties;
   defaultOpen?: boolean;
   disabled?: boolean;
   dropdownProps?: Partial<DropdownProps>;
@@ -44,4 +44,5 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   use12HourClock?: boolean;
   valueFormatOptions?: DateToFormatOptions;
   value?: Date;
+  errorText?: ReactNode;
 };

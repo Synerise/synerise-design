@@ -1,13 +1,17 @@
+import { ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Label } from '@synerise/ds-typography';
 import Icon from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
+import DSDropdown from '@synerise/ds-dropdown';
 
+export const Dropdown = styled(DSDropdown)<{ children?: ReactNode }>`
+  margin: 0;
+`;
 export const Container = styled.div`
   min-width: 104px;
   max-width: 208px;
   width: inherit;
-  height: 32px;
   position: relative;
 `;
 
