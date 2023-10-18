@@ -1,8 +1,12 @@
 import * as React from 'react';
 import * as S from '../../RelativeRangePicker.styles';
 import { Props } from './RangeButtons.types';
+import { isLifetime } from '../RangeDropdown/RangeDropdown';
+import { ALL_TIME } from '../../../constants';
+import { findMatchingPreset } from '../../utils';
 
-const RangeButtons: React.FC<Props> = ({ ranges, currentRange, texts, onChange }: Props) => {
+const RangeButtons = ({ ranges, currentRange, texts, onChange }: Props) => {
+  const matchingPreset = findMatchingPreset(currentRange);
   return (
     <>
       {ranges.map(range => (
@@ -12,7 +16,11 @@ const RangeButtons: React.FC<Props> = ({ ranges, currentRange, texts, onChange }
           onClick={(): void => {
             onChange && onChange(range);
           }}
-          type={currentRange && currentRange.key === range.key ? 'primary' : 'tertiary'}
+          type={
+            (matchingPreset && matchingPreset.key === range.key) || (isLifetime(currentRange) && range.key === ALL_TIME)
+              ? 'primary'
+              : 'tertiary'
+          }
         >
           {range.translationKey ? texts[range.translationKey] : texts?.custom}
         </S.Range>

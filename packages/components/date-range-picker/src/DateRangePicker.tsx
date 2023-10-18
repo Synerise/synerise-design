@@ -12,6 +12,7 @@ import { getDefaultTexts } from './utils';
 const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   const {
     value,
+    defaultValue,
     onApply,
     showTime,
     texts,
@@ -27,8 +28,9 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
     readOnly = false,
   } = props;
   const intl = useIntl();
+  const selectedRange = value || defaultValue;
   const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(false);
-  const [selectedDate, setSelectedDate] = React.useState(value);
+  const [selectedDate, setSelectedDate] = React.useState(selectedRange);
   const [inputActive, setInputActive] = React.useState<boolean>();
 
   const allTexts = React.useMemo(
@@ -42,20 +44,21 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   }, [popupVisible]);
 
   React.useEffect((): void => {
-    if (!isEqual(value, selectedDate)) {
-      setSelectedDate(value);
+    if (!isEqual(selectedRange, selectedDate)) {
+      setSelectedDate(selectedRange);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [selectedRange]);
 
   const onApplyCallback = React.useCallback(
-    (val: Partial<DateFilter> | undefined): void => {
-      onApply && onApply(val);
-      setSelectedDate(val as DateRange);
+    (range: Partial<DateFilter> | undefined): void => {
+      const finalDateRange = range === undefined && defaultValue !== undefined ? defaultValue : range;
+      onApply && onApply(finalDateRange);
+      setSelectedDate(finalDateRange as DateRange);
       setPopupVisible(false);
       setInputActive(false);
     },
-    [onApply]
+    [defaultValue, onApply]
   );
 
   const conditionalVisibilityProps = {

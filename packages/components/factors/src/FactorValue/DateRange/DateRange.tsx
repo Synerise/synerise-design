@@ -39,6 +39,7 @@ const DateRangeInput = ({ value, onChange, error, texts, onDeactivate, readOnly 
         placement: 'bottomLeft',
         onVisibleChange: handleVisibleChange,
       }}
+      showNowButton={false}
       filterRangeDisplayMode="slider"
       filterValueSelectionModes={['Range']}
       rangePickerInputProps={{ readOnly, error }}

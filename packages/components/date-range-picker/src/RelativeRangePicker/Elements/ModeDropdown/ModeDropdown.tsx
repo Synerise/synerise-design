@@ -3,7 +3,7 @@ import Icon, { CheckS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../RelativeRangePicker.styles';
-import { RANGES_ICON } from '../../utils';
+import { RANGES_ICON } from '../../../constants';
 import { Props } from './ModeDropdown.types';
 
 const MODE_TRANSLATION_KEYS = {

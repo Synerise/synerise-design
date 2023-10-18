@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { MouseEvent } from 'react';
 import Button from '@synerise/ds-button';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Badge from '@synerise/ds-badge';
@@ -10,16 +10,17 @@ import { theme } from '@synerise/ds-core';
 import * as S from './RangeFilterStatus.styles';
 import { RangeFilterStatusProps } from './RangeFilterStatus.types';
 
-const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, disabled, filter, label, onClick }) => {
+const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, texts }: RangeFilterStatusProps) => {
   const intl = useIntl();
   return (
     <S.Container>
+      <S.Title>{texts?.filter}</S.Title>
       {!filter ? (
         <Button.Creator label={label} disabled={disabled} onClick={onClick} block />
       ) : (
         <ContentItem
-          onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
-            e.stopPropagation();
+          onClick={(event: MouseEvent<HTMLDivElement>) => {
+            event.stopPropagation();
             onClick();
           }}
           headerSuffix={
@@ -29,8 +30,8 @@ const RangeFilterStatus: React.FC<RangeFilterStatusProps> = ({ onFilterRemove, d
               </S.SuffixText>
               <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE', defaultMessage: 'Remove' })}>
                 <Icon
-                  onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
-                    e.stopPropagation();
+                  onClick={(event: MouseEvent<HTMLDivElement>) => {
+                    event.stopPropagation();
                     onFilterRemove && onFilterRemove();
                   }}
                   component={<CloseS />}

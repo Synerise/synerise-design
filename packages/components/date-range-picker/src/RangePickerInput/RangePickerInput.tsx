@@ -41,6 +41,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
   const [hovered, setHovered] = React.useState<boolean>(false);
   const showError = error || !!errorText;
+  const hasValue = dateRangeValue?.from && dateRangeValue?.to;
 
   const handleIconMouseEnter = React.useCallback(() => setHovered(true), []);
   const handleIconMouseLeave = React.useCallback(() => setHovered(false), []);
@@ -136,7 +137,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
         >
           {placeholder}
           <S.IconSeparator />
-          {!readOnly && hovered && !!value && !!value.to && !!value.from ? (
+          {!readOnly && hovered && hasValue ? (
             <Tooltip title={texts?.clear}>
               <S.ClearIconWrapper>
                 <Icon component={<Close3S />} onClick={handleClear} />

@@ -1,11 +1,11 @@
-import { AbsoluteDateRange, DateRange, RelativeDateRange } from '../../../date.types';
+import { DateRange } from '../../../date.types';
 import { DateRangePickerProps, Texts } from '../../../DateRangePicker.types';
 
 export type RangeDropdownProps = {
   ranges: DateRange[];
-  currentRange: RelativeDateRange;
+  currentRange: DateRange;
   texts: Texts;
-  onChange: (range: AbsoluteDateRange | RelativeDateRange | undefined) => void;
+  onChange: (range: DateRange | undefined) => void;
   valueTransformer?: ((value: DateRange | object) => DateRange | object) | DateRangePickerProps['valueTransformer'];
 };
 

@@ -58,7 +58,8 @@ const value = {
 | showFilter           | Enable range filtering                                              | boolean              | `false`                                                       |
 | showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                       |
 | validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
-| value                | Value of the picker                                                 | DateRange            | new Date()                                                    |
+| value                | Value of the picker                                                 | DateRange            |                                                     |
+| defaultValue         | Default value of the picker (when value is undefined and when user clears input) | DateRange            |                                                     |
 | startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
 | onVisibleChange      | Callback executed when popover with dateRangePicker changes its visibility | (visible: boolean) => void | -                                                |
 | filterValueSelectionModes  | Allowed modes to display in filter | DateLimitMode[] | ["Range", "Hour"]                                                |

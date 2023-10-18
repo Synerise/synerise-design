@@ -5,6 +5,13 @@ export const BadgeWrapper = styled.div`
   margin-bottom: -2px;
 `;
 
+export const Title = styled.h3`
+  font-size: 16px;
+  line-height: 1.39;
+  color: ${(props): string => props.theme.palette['grey-800']};
+  margin-bottom: 1em;
+`;
+
 export const SuffixText = styled.span`
   color: ${(props): string => props.theme.palette['blue-600']};
   font-weight: 500;
@@ -12,5 +19,5 @@ export const SuffixText = styled.span`
 `;
 
 export const Container = styled.div`
-  margin: 10px 0 24px 0;
+  padding: 16px 24px 24px;
 `;

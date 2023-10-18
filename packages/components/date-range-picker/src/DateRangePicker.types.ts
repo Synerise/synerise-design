@@ -4,7 +4,7 @@ import { PopoverProps } from 'antd/lib/popover';
 
 import { DateToFormatOptions } from '@synerise/ds-data-format';
 
-import { DateFilter, DateRange, RelativeUnits } from './date.types';
+import { DateFilter, DateRange, DateRangePreset, RelativeUnits } from './date.types';
 import { FilterDefinition } from './RangeFilter/RangeFilter.types';
 import { SavedFilter } from './RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Props as FooterProps } from './Footer/Footer.types';
@@ -61,7 +61,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   onFilterSave?: (filters: SavedFilter[]) => void;
   popoverProps?: Partial<PopoverProps>;
   popoverTrigger?: ReactNode;
-  ranges?: DateRange[];
+  ranges?: DateRangePreset[];
   rangeUnits?: Array<RelativeUnits>;
   relativeFuture?: boolean;
   relativePast?: boolean;
@@ -75,6 +75,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   texts: Texts;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
+  defaultValue?: DateRange;
   /**
    * transforms value, by default omits ALL_TIME props
    */
