@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.7...@synerise/ds-factors@0.20.8) (2023-10-18)
+
+
+### Bug Fixes
+
+* **date-range-picker:** ui/ux updates to filter and relative section ([8bb636b](https://github.com/Synerise/synerise-design/commit/8bb636b185a5fe98a4ef70350dc387493ac6f0a5))
+
+
+
+
+
 ## [0.20.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.6...@synerise/ds-factors@0.20.7) (2023-10-17)
 
 

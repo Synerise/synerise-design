@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-input-number",
-  "version": "0.8.26",
+  "version": "0.8.27",
   "description": "Input-Number UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,9 +34,9 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-data-format": "^0.4.4",
-    "@synerise/ds-icon": "^0.58.4",
-    "@synerise/ds-tooltip": "^0.14.6",
-    "@synerise/ds-utils": "^0.24.18",
+    "@synerise/ds-icon": "^0.58.5",
+    "@synerise/ds-tooltip": "^0.14.7",
+    "@synerise/ds-utils": "^0.24.19",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

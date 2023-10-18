@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.4...@synerise/ds-core@0.40.5) (2023-10-18)
+
+
+### Bug Fixes
+
+* **date-range-picker:** ui/ux updates to filter and relative section ([8bb636b](https://github.com/synerise/synerise-design/commit/8bb636b185a5fe98a4ef70350dc387493ac6f0a5))
+
+
+
+
+
 ## [0.40.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.3...@synerise/ds-core@0.40.4) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-core

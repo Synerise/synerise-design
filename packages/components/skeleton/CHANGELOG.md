@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.3.11...@synerise/ds-skeleton@0.3.12) (2023-10-18)
+
+**Note:** Version bump only for package @synerise/ds-skeleton
+
+
+
+
+
 ## [0.3.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.3.10...@synerise/ds-skeleton@0.3.11) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-skeleton
