@@ -6,7 +6,7 @@ import * as S from '../../RelativeRangePicker.styles';
 import ModeDropdown from '../ModeDropdown/ModeDropdown';
 import DurationField from './DurationField/DurationField';
 import OffsetField from './OffsetField/OffsetField';
-import { RANGES_MODE } from '../../utils';
+import { RANGES_MODE } from '../../../constants';
 import TimestampRange from '../TimestampRange/TimestampRange';
 import { RelativeUnits } from '../../../date.types';
 

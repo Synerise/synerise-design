@@ -7,7 +7,7 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import { theme } from '@synerise/ds-core';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
-import { DateRange, RelativeDateRange } from '../../../date.types';
+import { DateRange } from '../../../date.types';
 import { ALL_TIME } from '../../../constants';
 
 const MAX_ITEMS_COUNT = 7;
@@ -38,7 +38,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   currentRange,
   texts,
   onChange,
-  valueTransformer = (e: RelativeDateRange | object): RelativeDateRange | object => e,
+  valueTransformer = (e: DateRange | object): DateRange | object => e,
 }: RangeDropdownProps) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -62,8 +62,11 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
     ? false
     : find(r => isEqual(transformedCurrentRange, r), mappedRanges);
   const containsCurrentRange =
-    (currentRange && find(range => range.key === currentRange.key, ranges)) ||
-    isLifetime(currentRange) ||
+    (currentRange &&
+      find(range => {
+        const key = isLifetime(currentRange) ? ALL_TIME : currentRange.key;
+        return range.key === key;
+      }, ranges)) ||
     anyOfTransformedRangesMatchesCurrentRange;
   const overlay = (
     <S.OverlayWrapper visible={dropVisible} width={DROPDOWN_WIDTH}>

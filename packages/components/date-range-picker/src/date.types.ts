@@ -81,6 +81,13 @@ export interface RelativeDateRange extends DateRangeBase {
   from?: NullableDateLimit;
   to?: NullableDateLimit;
 }
+type PresetType = {
+  key: string;
+  translationKey?: string;
+};
+export type RelativeDateRangePreset = RelativeDateRange & PresetType;
+export type AbsoluteDateRangePreset = AbsoluteDateRange & PresetType;
+export type DateRangePreset = RelativeDateRangePreset | AbsoluteDateRangePreset;
 
 export type Days = { [key: string]: object };
 

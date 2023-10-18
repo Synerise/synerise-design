@@ -10,16 +10,17 @@ import RangeDropdown from './Elements/RangeDropdown/RangeDropdown';
 import CustomRangeForm from './Elements/CustomRangeForm/CustomRangeForm';
 import {
   getCurrentGroupFromProps,
-  RANGES_MODE,
   getDefaultCustomRange,
   setFuture,
   setOffsetValue,
   setDurationValue,
+  updatePresetKey,
+  findMatchingPreset,
 } from './utils';
 import { fnsIsAfter } from '../fns';
 import { DEFAULT_RANGE, normalizeRange } from '../utils';
 import { RelativeMode } from '../DateRangePicker.types';
-import { CUSTOM_RANGE_KEY } from '../constants';
+import { CUSTOM_RANGE_KEY, RANGES_MODE } from '../constants';
 
 class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentProps, State> {
   static defaultProps: Partial<Props> = {
@@ -32,7 +33,6 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
 
   constructor(props: Props) {
     super(props);
-    // eslint-disable-next-line
     // @ts-ignore
     // eslint-disable-next-line
     this.state = {
@@ -109,7 +109,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
       type: 'RELATIVE',
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const resultRange = normalizeRange(changes as any);
+    const resultRange = normalizeRange(updatePresetKey(changes) as any);
     if (resultRange?.translationKey === CUSTOM_RANGE_KEY) {
       this.setState({ lastCustomRange: resultRange as RelativeDateRange });
     }
@@ -175,12 +175,18 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
   };
 
   render(): React.ReactNode {
-    const { texts, value, showCustomRange } = this.props;
+    const { texts, showCustomRange } = this.props;
     const { groupedRanges, currentGroup, currentRange } = this.state;
-    const isCustomValue =
-      currentRange.type === 'RELATIVE' && (currentRange.key === 'CUSTOM' || !value?.key || !currentRange?.key);
-    const visibleRanges = groupedRanges ? groupedRanges.slice(0, 3) : [];
-    const hiddenRanges = groupedRanges ? groupedRanges.slice(3) : [];
+
+    const isCustomValue = currentRange.type === 'RELATIVE' && !findMatchingPreset(currentRange);
+    const orderedGroupedRanges = groupedRanges?.sort(
+      (a, b) =>
+        CONST.RELATIVE_SECTION_BUTTON_KEYS_ORDER.indexOf(a.key) -
+        CONST.RELATIVE_SECTION_BUTTON_KEYS_ORDER.indexOf(b.key)
+    );
+    const visibleRanges = orderedGroupedRanges ? orderedGroupedRanges.slice(0, 4) : [];
+    const hiddenRanges = orderedGroupedRanges ? orderedGroupedRanges.slice(4) : [];
+    const displayRangeForm = isCustomValue || (currentRange && currentRange.type === CONST.RELATIVE);
     if (!currentGroup) return null;
     return (
       <S.Container>
@@ -198,7 +204,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
           {this.renderRanges(visibleRanges)}
           {this.renderRangesDropdown(hiddenRanges)}
         </S.Ranges>
-        {isCustomValue && showCustomRange && this.renderCustomRangeForm()}
+        {displayRangeForm && this.renderCustomRangeForm()}
       </S.Container>
     );
   }

@@ -243,6 +243,7 @@
       "START-DATE-PLACEHOLDER": "Od",
       "END-DATE-PLACEHOLDER": "Do",
       "ADD-FILTER": "Dodaj filtr",
+      "SELECT-DATE-FILTER": "Wybierz filtr",
       "FILTER-ENABLED": "Filtr zdefiniowany",
       "COPY-RANGE": "Kopiuj zakres",
       "PASTE-RANGE": "Wklej zakres",

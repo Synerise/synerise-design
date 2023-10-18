@@ -71,13 +71,13 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     this.state = {
       mode: MODES.DATE,
       value: normalizeRange(props.value),
-      visibleAddonKey: '',
+      visibleAddonKey: 'relative-picker',
     };
   }
 
   componentDidUpdate(prevProps: Readonly<Props>): void {
     const { value } = this.props;
-    if (prevProps.value !== value && !value) {
+    if (prevProps.value !== value) {
       this.handleRangeChange(value);
     }
   }
@@ -98,7 +98,6 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     if (range.from && !fnsIsValid(range?.from)) {
       return;
     }
-
     const { onValueChange, valueTransformer, isTruncateMs } = this.props;
     const { value, mode } = this.state;
     const newValue = normalizeRange({ ...range, filter: value.filter });
@@ -217,25 +216,16 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
       const filterEnabled = (value.from && value.to) || isLifetime(value);
       const label = value?.filter
         ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
-        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.ADD-FILTER`, defaultMessage: 'Add filter' });
+        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.SELECT-DATE-FILTER`, defaultMessage: 'Select date filter' });
       addons.push({
         content: (
-          <AddonCollapse
-            content={
-              <RangeFilterStatus
-                onFilterRemove={this.handleRemoveFilterClick}
-                filter={value.filter}
-                disabled={!filterEnabled}
-                label={label}
-                onClick={this.handleModalOpenClick}
-              />
-            }
-            title={texts?.filter}
-            expanded={addonKey === visibleAddonKey}
-            onCollapseChange={(expanded): void => this.handleAddonCollapse(addonKey, expanded)}
-            collapsedSummary={
-              value?.filter?.type ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${value?.filter?.type}` }) : null
-            }
+          <RangeFilterStatus
+            onFilterRemove={this.handleRemoveFilterClick}
+            filter={value.filter}
+            texts={texts}
+            disabled={!filterEnabled}
+            label={label}
+            onClick={this.handleModalOpenClick}
           />
         ),
         key: addonKey,
@@ -292,7 +282,12 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     const isValidAbsolute = !Object.keys(value).includes('key') && Boolean(from && to);
     function isRelative(dateRange: DateRange): dateRange is RelativeDateRange {
       const isLegacyCustom = Object.keys(value).includes('key') && key === undefined;
-      return CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) || isLegacyCustom;
+      return (
+        (dateRange.key &&
+          (CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) ||
+            dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
+        isLegacyCustom
+      );
     }
     const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
     const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);

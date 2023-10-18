@@ -144,15 +144,11 @@ describe('Factors component', () => {
 
     userEvent.click(screen.getByText('Start date'));
     
-    const nowBtn = screen.getByText('Now')
-    expect(nowBtn).toBeInTheDocument();
-    userEvent.click(nowBtn);
+    const todayBtn = screen.getByText('Today')
+    expect(todayBtn).toBeInTheDocument();
+    userEvent.click(todayBtn);
 
-    const filterAddOn = await screen.findByText(/filter/i);
-    expect(filterAddOn).toBeInTheDocument();
-    userEvent.click(filterAddOn);
-
-    const filterAdd = await screen.findByText('Add filter');
+    const filterAdd = await screen.findByText('Select date filter');
     expect(filterAdd).toBeInTheDocument();
     userEvent.click(filterAdd);
 

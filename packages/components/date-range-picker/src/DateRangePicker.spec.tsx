@@ -316,7 +316,7 @@ describe('DateRangePicker', () => {
     );
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
 
     await waitFor(
       () => {
@@ -342,7 +342,7 @@ describe('DateRangePicker', () => {
     );
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
     const lifetimeMenuItem = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
     expect(lifetimeMenuItem).toBeInTheDocument();
   });
@@ -396,7 +396,7 @@ describe('DateRangePicker', () => {
     const relativeRanges = screen.getByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-    userEvent.click(relativeRanges);
+    
     
     const customButton = await screen.findByTestId('relative-range-preset-custom');
     expect(customButton).toBeInTheDocument();
@@ -494,17 +494,12 @@ describe('DateRangePicker', () => {
     expect(applyButton).toBeInTheDocument();
     userEvent.click(applyButton);
     
-    
     expect(getLastCallParams().from).toBeDefined();
     expect(getLastCallParams().to).toBeDefined();
     expect(getLastCallParams().offset).not.toBeDefined();
     expect(getLastCallParams().duration).not.toBeDefined();
     expect(getLastCallParams().future).not.toBeDefined();
-    const expander = container.querySelector('.addon-wrapper .ds-expander');
-    expect(expander).toBeTruthy();
-    if (expander) {
-      userEvent.click(expander);
-    }
+    
     userEvent.click(screen.getByText(texts['today']));
     userEvent.click(applyButton);
     expect(getLastCallParams().from).not.toBeDefined();
@@ -556,7 +551,7 @@ describe('DateRangePicker', () => {
     );
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
 
     const timeButton = document.querySelector('.ds-date-time-switch'); 
     const lifetimeMenuItem = screen.getByText(texts[LIFETIME_VALUE?.translationKey as string])
@@ -595,7 +590,7 @@ describe('DateRangePicker', () => {
     const relativeRanges = screen.getByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
 
-    userEvent.click(relativeRanges);
+    
 
     const lifetimeOption = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
     expect(lifetimeOption).toBeInTheDocument();
@@ -627,7 +622,7 @@ describe('DateRangePicker', () => {
 
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
 
     for (const rangePreset of rangePresets) {
       const rangePresetButton = screen.getByText(texts[rangePreset.translationKey as string])
@@ -910,7 +905,7 @@ describe('DateRangePicker', () => {
     
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
 
     const moreLabel = screen.getByText(texts.more);
     if (moreLabel) {
@@ -944,7 +939,7 @@ describe('DateRangePicker', () => {
     
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
+    
 
     const moreLabel = screen.getByText(texts.more);
     expect(moreLabel).toBeInTheDocument();
@@ -972,8 +967,7 @@ describe('DateRangePicker', () => {
     
     const relativeRanges = await screen.findByText(texts.relativeDateRange);
     expect(relativeRanges).toBeInTheDocument();
-    userEvent.click(relativeRanges);
-
+    
     const rangesDropdown = screen.getByTestId('relative-ranges-dropdown');
     expect(rangesDropdown).toBeInTheDocument();
     expect(rangesDropdown).toHaveClass('ant-btn-primary');

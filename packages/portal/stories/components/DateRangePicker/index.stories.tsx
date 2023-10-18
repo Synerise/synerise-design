@@ -2,7 +2,8 @@ import * as React from 'react';
 import { injectIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import DateRangePicker from '@synerise/ds-date-range-picker';
+import DateRangePicker, { fnsFormat } from '@synerise/ds-date-range-picker';
+
 import { RawDateRangePicker } from '@synerise/ds-date-range-picker';
 import { boolean, text, select, optionsKnob, array } from '@storybook/addon-knobs';
 import { action, configureActions } from '@storybook/addon-actions';
@@ -25,6 +26,7 @@ import { ABSOLUTE, RELATIVE, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from '@syneris
 import { CONST } from '@synerise/ds-date-range-picker';
 import { DateRange, RelativeDateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 import Button from '@synerise/ds-button';
+import Icon, {CalendarM} from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { utils } from '@synerise/ds-date-range-picker';
 
@@ -220,6 +222,22 @@ const buildSelectKnobOptions = optionValues => {
   return Object.assign({}, ...Object.keys(optionValues).map(k => ({ [k]: k })));
 };
 
+const getButtonLabel = (range, showTime) => {
+  if (range.type == RELATIVE) {
+    if (range.translationKey && range.translationKey !== 'custom') {
+      return range.translationKey.toUpperCase();
+    }
+    return 'Last '+range.duration.value+' '+range.offset.type.toLowerCase();
+  }
+  if (range.from === undefined && range.to === undefined) {
+    return 'Lifetime';
+  }
+  const from = new Date(range.from);
+  const to = new Date(range.to);
+  return fnsFormat(from, showTime ? 'MMM d, yyyy HH:mm' : 'MMM d, yyyy') + ' - ' + fnsFormat(to, showTime ? 'MMM d, yyyy HH:mm' : 'MMM d, yyyy');
+  
+}
+
 const stories = {
   default: injectIntl(({ intl }) => {
     const initialValue = {
@@ -255,7 +273,7 @@ const stories = {
     const setPlacement = select('Set placement of popover', POPOVER_PLACEMENT, 'bottomLeft');
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
-      FUTURE: boolean('Set relative future mode', true),
+      FUTURE: boolean('Set relative future mode', false),
       SINCE: boolean('Set relative since mode', false),
     };
     const getRelativeModes = (modesObject: object) => {
@@ -292,7 +310,7 @@ const stories = {
       const enabledModes = keys.filter(k => !!modesObject[k]);
       return enabledModes;
     };
-
+    const useCustomTexts = boolean('Use custom texts', false);
     const datePicker = (
       <>
         <DateRangePicker
@@ -309,7 +327,7 @@ const stories = {
           showFilter={showFilter}
           showNowButton={boolean('Show NOW button', true)}
           filterValueSelectionModes={filterValueModes && getFilterSelectionModes(filterValueModes)}
-          texts={texts}
+          texts={useCustomTexts && texts}
           popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
           arrowColor={setCustomArrowColor && additionalMapper}
           forceAdjacentMonths={boolean('Set adjacent months', false)}
@@ -332,12 +350,75 @@ const stories = {
     }
     return datePicker;
   }),
+  analytics: injectIntl(({ intl }) => {
+    const initialValue = {
+      key: 'custom',
+      translationKey: 'custom',
+      type: RELATIVE,
+      future: false,
+      offset: { type: CONST.DAYS, value: 1 },
+      duration: { type: CONST.DAYS, value: 30 },
+    } as DateRange;
+    
+    const showValue = boolean('Print current value', false);
+    const [value, setValue] = React.useState<DateRange>(initialValue);
+    if (value) {
+      value.translationKey = value.translationKey ?? value.key?.toLowerCase();
+    }
+    const showTime = boolean('Set showTime', true);
+    
+    const forceAbsolute = boolean('Force absolute date on apply', false);
+    const showRelativePicker = boolean('Set relative picker add on', true);
+    const showFilter = boolean('Show filter add on', true);
+    const disableAbsoluteTimepickerInRelative = boolean(
+      'Disable time-picker for relative dates (so no hidden convertion to an absolute date)',
+      false
+    );
+    const rangePickerInputProps = {
+      preferRelativeDesc: boolean('Prefer descriptive relative dates', true),
+    };
+    
+    const readOnly = boolean('Set readOnly', false);
+    
+    return (
+      <>
+        <DateRangePicker
+          onApply={v => {
+            action('OnApply')(v);
+            setValue(v);
+          }}
+          showTime={showTime}
+          value={value}
+          relativeFuture
+          filterRangeDisplayMode={'slider'}
+          forceAbsolute={forceAbsolute}
+          showRelativePicker={showRelativePicker}
+          showFilter={showFilter}
+          showNowButton={false}
+          filterValueSelectionModes={['Range']}
+          
+          forceAdjacentMonths={boolean('Set adjacent months', false)}
+          relativeModes={['PAST']}
+          disableAbsoluteTimepickerInRelative={disableAbsoluteTimepickerInRelative}
+          rangePickerInputProps={rangePickerInputProps}
+          popoverTrigger={
+            <Button type="tertiary" mode="label-icon">
+              { getButtonLabel(value, showTime) }
+              <Icon component={<CalendarM />} />
+            </Button>
+          } 
+          readOnly={readOnly}
+        />
+        {showValue && <pre>{JSON.stringify(value, null, 2)}</pre>}
+      </>
+    );
+  }),
   lifetimeByDefault: () => {
     const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME);
     const DateRangePicker = injectIntl(RawDateRangePicker);
     
     const filterRangeDisplayAsSlider = boolean('Display range filter as slider', true);
-    
+    const useCustomTexts = boolean('Use custom texts', false);
 
     return (
       <DateRangePicker
@@ -346,8 +427,8 @@ const stories = {
         showFilter
         filterRangeDisplayMode={filterRangeDisplayAsSlider ? 'Slider' : 'TimePicker'}
         showNowButton={boolean('Show NOW button', true)}
-        relativeModes={['PAST', 'FUTURE', 'SINCE']}
-        texts={texts}
+        relativeModes={['PAST']}
+        texts={useCustomTexts && texts}
         value={value}
         onApply={action('OnApply')}
       />
@@ -425,8 +506,8 @@ const stories = {
     const showTime = boolean('Set showTime', true);
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
-      FUTURE: boolean('Set relative future mode', true),
-      SINCE: boolean('Set relative since mode', true),
+      FUTURE: boolean('Set relative future mode', false),
+      SINCE: boolean('Set relative since mode', false),
     };
     const getRelativeModes = (modesObject: object) => {
       const keys = Object.keys(modesObject);
@@ -434,6 +515,7 @@ const stories = {
       return enabledModes;
     };
     const showRelativePicker = boolean('Set relative picker add on', true);
+    const useCustomTexts = boolean('Use custom texts', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -443,7 +525,7 @@ const stories = {
         relativeFuture
         forceAbsolute
         showRelativePicker={showRelativePicker}
-        texts={texts}
+        texts={useCustomTexts && texts}
         popoverProps={{ placement: 'bottomLeft' }}
         forceAdjacentMonths={boolean('Set adjacent months', false)}
         relativeModes={getRelativeModes(modesObj)}
@@ -474,8 +556,8 @@ const stories = {
     const showTime = boolean('Set showTime', true);
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
-      FUTURE: boolean('Set relative future mode', true),
-      SINCE: boolean('Set relative since mode', true),
+      FUTURE: boolean('Set relative future mode', false),
+      SINCE: boolean('Set relative since mode', false),
     };
     const getRelativeModes = (modesObject: object) => {
       const keys = Object.keys(modesObject);
@@ -484,6 +566,7 @@ const stories = {
     };
     const [filters, setFilters] = React.useState(savedFilters);
     const showRelativePicker = boolean('Set relative picker add on', true);
+    const useCustomTexts = boolean('Use custom texts', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -495,7 +578,7 @@ const stories = {
         showRelativePicker={showRelativePicker}
         savedFilters={filters}
         onFilterSave={setFilters}
-        texts={{
+        texts={useCustomTexts && {
           ...texts,
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',
@@ -522,7 +605,7 @@ const stories = {
       display: 'inline-check',
     };
     const allowedFilterTypes: AvailableFilterTypes[] = optionsKnob(allowedFilterLabel, TYPES, Object.values(TYPES), optionsObj);
-
+    const useCustomTexts = boolean('Use custom texts', false);
     // RangeFilterTypes 
     return (
       <RangeFilter
@@ -535,7 +618,7 @@ const stories = {
         savedFilters={filters}
         allowedFilterTypes={allowedFilterTypes}
         valueSelectionModes={valueSelectionModes}
-        texts={{
+        texts={useCustomTexts && {
           ...texts,
           startDatePlaceholder: 'Start date',
           endDatePlaceholder: 'End date',
@@ -554,6 +637,7 @@ const stories = {
     };
     const showTime = boolean('Set showTime', true);
     const showRelativePicker = boolean('Set relative picker add on', true);
+    const useCustomTexts = boolean('Use custom texts', false);
     return (
       <DateRangePicker
         onApply={action('OnApply')}
@@ -563,7 +647,32 @@ const stories = {
         forceAbsolute
         showNowButton={boolean('Show NOW button', true)}
         showRelativePicker={showRelativePicker}
-        texts={texts}
+        texts={useCustomTexts && texts}
+        popoverProps={{ placement: 'bottomLeft' }}
+      />
+    );
+  },
+  withDefaultValue: () => {
+    
+    const defaultValue = {
+      ...RELATIVE_PRESETS[3]
+    }
+    const [value, setValue] = React.useState<DateRange>();
+    const showTime = boolean('Set showTime', true);
+    const showRelativePicker = boolean('Show relative picker add on', true);
+    const showFilter = boolean('Show filter add on', true);
+    const useCustomTexts = boolean('Use custom texts', false);
+    return (
+      <DateRangePicker
+        defaultValue={defaultValue}
+        value={value}
+        onApply={(v: DateRange) => {action('OnApply')(v); setValue(v);}}
+        showTime={showTime}
+        showNowButton={boolean('Show NOW button', false)}
+        showRelativePicker={showRelativePicker}
+        relativeModes={['PAST']}
+        showFilter={showFilter}
+        texts={useCustomTexts && texts}
         popoverProps={{ placement: 'bottomLeft' }}
       />
     );
@@ -671,6 +780,7 @@ const stories = {
         display: block;
       }
     `;
+    const useCustomTexts = boolean('Use custom texts', false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const value = React.useState<RelativeDateRange>({});
     return (
@@ -682,8 +792,8 @@ const stories = {
           showNowButton={boolean('Show NOW button', true)}
           showRelativePicker={true}
           showFilter={true}
-          texts={texts}
-          relativeModes={['PAST', 'FUTURE', 'SINCE']}
+          texts={useCustomTexts && texts}
+          relativeModes={['PAST']}
         />
       </DefaultAntInputStyles>
     );
@@ -694,8 +804,8 @@ const stories = {
     const showTime = boolean('Set showTime', true);
     const modesObj = {
       PAST: boolean('Set relative past mode', true),
-      FUTURE: boolean('Set relative future mode', true),
-      SINCE: boolean('Set relative since mode', true),
+      FUTURE: boolean('Set relative future mode', false),
+      SINCE: boolean('Set relative since mode', false),
     };
     const getRelativeModes = (modesObject: object) => {
       const keys = Object.keys(modesObject);

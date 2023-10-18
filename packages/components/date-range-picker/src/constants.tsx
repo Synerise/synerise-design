@@ -1,4 +1,6 @@
-import { AbsoluteDateRange, RelativeDateRange, RelativeUnits, RangeKey } from './date.types';
+import React from 'react';
+import { ArrowRightM, ArrowLeftM, SinceArrowRightM } from '@synerise/ds-icon';
+import { RelativeDateRangePreset, AbsoluteDateRangePreset, RelativeUnits, RangeKey } from './date.types';
 
 export const SECONDS = 'SECONDS';
 export const MINUTES = 'MINUTES';
@@ -14,6 +16,18 @@ export const RELATIVE_DURATION_MAX = 999999;
 export const RELATIVE_UNITS: RelativeUnits[] = [SECONDS, MINUTES, HOURS, DAYS, WEEKS, MONTHS, YEARS];
 export const ALL_TIME: RangeKey = 'ALL_TIME';
 
+export const RANGES_MODE = {
+  PAST: 'PAST',
+  FUTURE: 'FUTURE',
+  SINCE: 'SINCE',
+};
+
+export const RANGES_ICON = {
+  PAST: <ArrowLeftM />,
+  FUTURE: <ArrowRightM />,
+  SINCE: <SinceArrowRightM />,
+};
+
 export const range = (start: number, end: number): number[] => {
   if (end <= start) {
     return [];
@@ -27,7 +41,7 @@ export const DURATION_MODIFIERS = {
   NEXT: 'timestampNext',
 } as const;
 
-export const RELATIVE_PRESETS: RelativeDateRange[] = [
+export const RELATIVE_PRESETS: RelativeDateRangePreset[] = [
   {
     key: 'TODAY',
     translationKey: 'today',
@@ -200,7 +214,22 @@ export const RELATIVE_PRESETS: RelativeDateRange[] = [
   },
 ];
 
-export const ABSOLUTE_PRESETS: AbsoluteDateRange[] = [
+export const RELATIVE_SECTION_BUTTON_KEYS_ORDER = [
+  CUSTOM_RANGE_KEY,
+  ALL_TIME,
+  'TODAY',
+  'YESTERDAY',
+  'LAST_WEEK',
+  'LAST_MONTH',
+  'LAST_YEAR',
+  'THIS_WEEK',
+  'THIS_MONTH',
+  'LAST_7_DAYS',
+  'LAST_3_MONTHS',
+  'LAST_6_MONTHS',
+];
+
+export const ABSOLUTE_PRESETS: AbsoluteDateRangePreset[] = [
   {
     key: ALL_TIME,
     translationKey: 'allTime',

@@ -1,9 +1,9 @@
 import { IntlShape } from 'react-intl';
-import { DateRange, RelativeDateRange } from '../date.types';
+import { DateRangePreset, DateRange, RelativeDateRange } from '../date.types';
 import { DateRangePickerProps, RelativeMode, Texts } from '../DateRangePicker.types';
 
 export type RelativeRangePickerProps = {
-  ranges?: DateRange[];
+  ranges?: DateRangePreset[];
   value: DateRange;
   onChange: (range: DateRange | undefined) => void;
   future?: boolean;
@@ -24,7 +24,7 @@ export type State = {
   past: boolean;
   showCustomForm: boolean;
   currentRange: RelativeDateRange;
-  groupedRanges?: DateRange[];
+  groupedRanges?: DateRangePreset[];
   sinceTimestamp?: Date | undefined;
   lastCustomRange?: RelativeDateRange;
 };
