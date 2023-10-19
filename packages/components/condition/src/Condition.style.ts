@@ -324,18 +324,29 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
     left: 50%;
     height: auto;
     top: ${(props): string => (props.first ? '16px' : '0')};
-    bottom: ${(props): string => (props.last ? '16px' : '-16px')};
+    bottom: ${(props): string => (props.last ? '16px' : '-100%')};
     background-color: ${(props): string => props.theme.palette['grey-300']};
   }
 `;
-
-export const ConditionRow = styled.div<{ withError: boolean; index: number; stepType: ConditionRowProps['stepType'] }>`
+export const ConditionRow = styled.div<{
+  withError: boolean;
+  index: number;
+  stepType: ConditionRowProps['stepType'];
+  last?: boolean;
+}>`
   padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
   z-index: ${(props): number => 10000 - props.index};
   display: flex;
 
   ${ConditionConnections} {
     height: ${(props): string => (props.withError ? 'auto' : '32px')};
+    ${props =>
+      props.withError &&
+      css`
+          &:after {
+            bottom: ${() => (props.last ? '16px' : 'calc(-100% + 24px)')};
+      `}
+    }
   }
 
   ${ConditionWrapper} {
