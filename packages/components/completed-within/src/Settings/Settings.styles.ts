@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { InputGroupWrapper } from '@synerise/ds-input/dist/InputGroup.styles';
 
 // eslint-disable-next-line import/prefer-default-export
 export const Settings = styled.div`
@@ -13,5 +14,9 @@ export const Settings = styled.div`
   .ant-select-selection-item,
   .ant-select-selection-placeholder {
     font-weight: 500;
+  }
+
+  ${InputGroupWrapper} {
+    width: 100%;
   }
 `;
