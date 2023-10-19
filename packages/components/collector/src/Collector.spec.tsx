@@ -59,35 +59,8 @@ describe('Collector', () => {
     );
     SELECTED.map(s => expect(screen.getByText(s['text'])).toBeTruthy());
   });
-  it('Should render added value', () => {
-    
-    const newValue = 'That is new!';
-    renderWithProvider(
-      <Collector
-        allowCustomValue
-        allowMultipleValues
-        onItemSelect={onSelectFn}
-        onItemAdd={value => ({ text: value })}
-        selected={[]}
-        suggestions={[]}
-        onConfirm={onConfirmFn}
-        texts={{
-          add: 'Add',
-          cancel: 'Cancel',
-          placeholder: PLACEHOLDER,
-          toSelect: 'to select',
-          toNavigate: 'to navigate',
-        }}
-      />
-    );
-    const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
-    input.focus();
-    fireEvent.change(input, { target: { value: newValue } });
-    fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
-    expect(screen.getByText(newValue)).toBeInTheDocument();
-  });
   
-  it('Should render multiple added values', () => {
+  it('Should call onSelectFn when added values', () => {
     
     const newValue1 = 'That is new!';
     const newValue2 = 'That is also new!';
@@ -111,18 +84,18 @@ describe('Collector', () => {
     );
     const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
     input.focus();
-    fireEvent.change(input, { target: { value: newValue1 } });
+    fireEvent.input(input, { target: { value: newValue1 } });
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
     expect(onSelectFn).toBeCalledTimes(1);
     expect(onSelectFn).toBeCalledWith({text: newValue1});
 
-    fireEvent.change(input, { target: { value: newValue2 } });
+    fireEvent.input(input, { target: { value: newValue2 } });
     fireEvent.keyPress(input, { key: 'Enter', keyCode: 13 });
     expect(onSelectFn).toBeCalledTimes(2);
     expect(onSelectFn).toBeCalledWith({text: newValue2});
   });
 
-  it('Should render multiple pasted values', async () => {
+  it('Should call onMultipleSelectFn when multiple pasted values', async () => {
     
     const newValue1 = 'That is new!';
     const newValue2 = 'That is also new!'; 

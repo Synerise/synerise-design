@@ -51,7 +51,7 @@ const stories = {
     const [selected, setSelected] = React.useState<any[]>([]);
     const allowMultiple = boolean('Allow multiple values', true);
     const allowCustomValues = boolean('Allow custom values', true);
-    const allowPaste = allowCustomValues && allowMultiple && boolean('Allow multi-item paste', true);
+    const allowPaste = allowMultiple && boolean('Allow multi-item paste', true);
     const valuesSeparator = allowPaste && select('Separator', separators, ';')
     return (
       <Collector

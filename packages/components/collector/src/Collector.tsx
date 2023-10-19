@@ -81,6 +81,12 @@ const Collector = ({
   const filterLookupKey = useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);
   const displayLookupKey = useMemo(() => lookupConfig?.display || 'text', [lookupConfig]);
 
+  const focusInput = useCallback(() => {
+    if (inputRef?.current) {
+      inputRef.current.focus({ preventScroll: true });
+    }
+  }, [inputRef]);
+
   const suggestionsIncludesItem = useCallback(
     (item: string) =>
       filteredSuggestions.some(
@@ -104,14 +110,13 @@ const Collector = ({
   const onFocusCallback = useCallback(
     (event: FocusEvent<HTMLDivElement> & MouseEvent<HTMLDivElement>) => {
       event.preventDefault();
-      if (!event.target.classList.contains(COLLECTOR_CLASSNAME)) {
-        if (!!inputRef && !!inputRef.current) {
-          inputRef.current.focus({ preventScroll: true });
-        }
+      if (event.target.classList.contains(COLLECTOR_CLASSNAME)) {
+        focusInput();
+      } else {
         setFocused(true);
       }
     },
-    [inputRef]
+    [focusInput]
   );
   const filterSuggestions = useCallback(
     (val: string) => {
@@ -137,15 +142,17 @@ const Collector = ({
     if (!enableCustomFilteringSuggestions) {
       setFilteredSuggestions([]);
     }
-    !searchValue && allowMultipleValues && setValue('');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allowMultipleValues, allowCustomValue, selected, enableCustomFilteringSuggestions]);
 
   useEffect(() => {
+    if (!searchValue && allowMultipleValues) {
+      setValue('');
+      return;
+    }
     if (searchValue !== undefined && searchValue !== null) {
       setValue(searchValue as string);
     }
-  }, [searchValue]);
+  }, [allowMultipleValues, searchValue]);
 
   useEffect(() => {
     if (fixedHeight) {
@@ -189,10 +196,12 @@ const Collector = ({
     }
     const newValue = createItem(value);
     if (!newValue) {
+      setValue('');
       return;
     }
     if (allowMultipleValues) {
       onItemSelect(newValue);
+      setValue('');
     } else {
       onConfirm && onConfirm([newValue]);
       !keepSearchQueryOnSelect && clear();
@@ -258,19 +267,31 @@ const Collector = ({
     [containerRef]
   );
 
-  const focusInput = () => {
-    if (inputRef?.current) {
-      inputRef.current.focus({ preventScroll: true });
-    }
-  };
-
   const handleDropdownClick = () => {
     focusInput();
   };
 
-  const handleChange = disableSearch
+  const handleDropdownSelect = (item: CollectorValue) => {
+    onItemSelect && onItemSelect(item);
+    if (!allowMultipleValues && !keepSearchQueryOnSelect && item[filterLookupKey]) {
+      setValue(item[filterLookupKey]);
+    } else {
+      clear();
+    }
+    focusInput();
+  };
+
+  const handleInput = disableSearch
     ? undefined
     : (event: ChangeEvent<HTMLInputElement>) => {
+        if (
+          'inputType' in event.nativeEvent &&
+          event.nativeEvent.inputType === 'insertFromPaste' &&
+          allowMultipleValues &&
+          allowPaste
+        ) {
+          return;
+        }
         onSearchValueChange && onSearchValueChange(event.target.value);
         setValue(event.target.value);
         if (!enableCustomFilteringSuggestions) filterSuggestions(event.target.value);
@@ -322,7 +343,7 @@ const Collector = ({
         onKeyDown={handleKeyDown}
         ref={inputRef}
         value={value}
-        onChange={handleChange}
+        onInput={handleInput}
         disabled={disabled}
         transparent={!!disableSearch}
         hidden={!!disableSearch && !!selectedValues.length}
@@ -344,9 +365,7 @@ const Collector = ({
     <S.Container
       ref={containerRef}
       onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
-        focusWithArrowKeys(event, 'ds-search-item', () => {
-          inputRef?.current && inputRef.current.focus({ preventScroll: true });
-        });
+        focusWithArrowKeys(event, 'ds-search-item', focusInput);
         !value && scrollWithHorizontalArrow(mainContentRef, event);
       }}
     >
@@ -396,15 +415,7 @@ const Collector = ({
           !disabled &&
           (filteredSuggestions.length > 0 || (!!value && allowMultipleValues && allowCustomValue))
         }
-        onSelect={item => {
-          onItemSelect && onItemSelect(item);
-          if (!keepSearchQueryOnSelect && item[filterLookupKey]) {
-            setValue(item[filterLookupKey]);
-          } else {
-            clear();
-          }
-          focusInput();
-        }}
+        onSelect={handleDropdownSelect}
         onClick={handleDropdownClick}
         renderItem={renderItem}
         showAddButton={allowCustomValue && allowMultipleValues}
