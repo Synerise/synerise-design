@@ -1,14 +1,31 @@
-import * as React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
-import { InputProps } from '../../Factors.types';
+import { FactorsProps, InputProps } from '../../Factors.types';
 
-const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDeactivate, error, readOnly = false }) => {
+const DateInput: React.FC<InputProps> = ({
+  value,
+  onChange,
+  texts,
+  opened,
+  onDeactivate,
+  onActivate,
+  error,
+  readOnly = false,
+}) => {
+  const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
   const changeHandler = React.useCallback(
     (date: Date | undefined) => {
       onChange(date);
     },
     [onChange]
   );
+
+  const localValueAsDate = useMemo(() => (localValue ? new Date(String(localValue)) : undefined), [localValue]);
 
   const handleClear = React.useCallback(() => {
     onChange(undefined);
@@ -18,31 +35,32 @@ const DateInput: React.FC<InputProps> = ({ value, onChange, texts, opened, onDea
     visible => {
       if (!visible) {
         onDeactivate && onDeactivate();
+        onChange(localValueAsDate);
+      } else {
+        onActivate && onActivate();
       }
     },
-    [onDeactivate]
+    [localValueAsDate, onActivate, onChange, onDeactivate]
   );
-
-  React.useEffect(() => {
-    onDeactivate && onDeactivate();
-  }, [onDeactivate]);
 
   return (
     <DatePicker
       onClear={handleClear}
+      onValueChange={date => setLocalValue(date?.toDateString())}
       onApply={changeHandler}
-      onValueChange={changeHandler}
-      value={value ? new Date(String(value)) : undefined}
+      value={localValueAsDate}
       showTime
       useStartOfDay
       texts={texts.datePicker}
       disabledHours={[]}
       disabledMinutes={[]}
       disabledSeconds={[]}
-      autoFocus={opened}
-      onDropdownVisibleChange={handleVisibleChange}
       error={error}
       readOnly={readOnly}
+      dropdownProps={{
+        visible: opened,
+        onVisibleChange: handleVisibleChange,
+      }}
     />
   );
 };
