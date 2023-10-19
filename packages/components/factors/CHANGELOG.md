@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.8...@synerise/ds-factors@0.20.9) (2023-10-19)
+
+
+### Bug Fixes
+
+* **factors:** fixes visibility of DatePicker ([a3a3232](https://github.com/Synerise/synerise-design/commit/a3a32323ecdf51e0281fa953455963ac46144dc6))
+* **input:** fixes styles of input group ([4f56031](https://github.com/Synerise/synerise-design/commit/4f56031a456905e84299b572fc9a11336eace9a9))
+
+
+
+
+
 ## [0.20.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.7...@synerise/ds-factors@0.20.8) (2023-10-18)
 
 

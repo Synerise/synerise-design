@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.27...@synerise/ds-collector@0.6.28) (2023-10-19)
+
+
+### Bug Fixes
+
+* **collector:** added event capture for "add" ([ce1ec7f](https://github.com/Synerise/synerise-design/commit/ce1ec7f145133b820d5a03dbe0542d74a4b27119))
+
+
+
+
+
 ## [0.6.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.26...@synerise/ds-collector@0.6.27) (2023-10-18)
 
 **Note:** Version bump only for package @synerise/ds-collector

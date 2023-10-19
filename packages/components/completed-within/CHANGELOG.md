@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.74](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.73...@synerise/ds-completed-within@0.5.74) (2023-10-19)
+
+
+### Bug Fixes
+
+* **input:** fixes styles of input group ([4f56031](https://github.com/Synerise/synerise-design/commit/4f56031a456905e84299b572fc9a11336eace9a9))
+
+
+
+
+
 ## [0.5.73](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.72...@synerise/ds-completed-within@0.5.73) (2023-10-18)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

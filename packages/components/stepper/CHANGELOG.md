@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.2...@synerise/ds-stepper@0.4.3) (2023-10-19)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
 ## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.1...@synerise/ds-stepper@0.4.2) (2023-10-18)
 
 **Note:** Version bump only for package @synerise/ds-stepper

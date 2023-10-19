@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-divider",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Divider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,7 +38,7 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.19",
+    "@synerise/ds-utils": "^0.24.20",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

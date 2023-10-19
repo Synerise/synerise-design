@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.58...@synerise/ds-condition@0.20.59) (2023-10-19)
+
+
+### Bug Fixes
+
+* **condition:** fixed connecting line for conditions in filter ([902cf86](https://github.com/Synerise/synerise-design/commit/902cf869705208f12d657bda624934a9a625cea2))
+
+
+
+
+
 ## [0.20.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.57...@synerise/ds-condition@0.20.58) (2023-10-18)
 
 **Note:** Version bump only for package @synerise/ds-condition

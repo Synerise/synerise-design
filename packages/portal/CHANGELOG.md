@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.197.2](https://github.com/synerise/synerise-design/compare/portal@0.197.1...portal@0.197.2) (2023-10-19)
+
+
+### Bug Fixes
+
+* **collector:** added event capture for "add" ([ce1ec7f](https://github.com/synerise/synerise-design/commit/ce1ec7f145133b820d5a03dbe0542d74a4b27119))
+
+
+
+
+
 ## [0.197.1](https://github.com/synerise/synerise-design/compare/portal@0.197.0...portal@0.197.1) (2023-10-18)
 
 
