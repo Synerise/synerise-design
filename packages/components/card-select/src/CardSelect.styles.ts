@@ -58,9 +58,9 @@ export const RadioShape = styled.div<{ size?: string }>`
 export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
   text-align: center;
   color: ${getVar('grey-800')};
-  font-weight: 500;
+  font-weight: ${(props): string | number => sizeCondition('400', '500', props)};
   width: 100%;
-  font-size: ${(props): string | number => sizeCondition('10px', '14px', props)};
+  font-size: ${(props): string | number => sizeCondition('13px', '14px', props)};
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.size === 'small' &&
