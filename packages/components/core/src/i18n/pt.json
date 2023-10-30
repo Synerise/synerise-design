@@ -282,7 +282,21 @@
             "FILTER-NAME": "Nome do filtro",
             "IN-WEEK": "semana",
             "IN-MONTH": "mês",
-            "MAXIMUM-RANGES-MESSAGE": "Você atingiu uma quantidade máxima de faixas para as entradas selecionadas."
+            "MAXIMUM-RANGES-MESSAGE": "Você atingiu uma quantidade máxima de faixas para as entradas selecionadas.",
+            "SET_TIME_FOR": "Definir horário para:",
+            "START-DATE-PLACEHOLDER": "Data de início",
+            "END-DATE-PLACEHOLDER": "Data de término",
+            "ADD-FILTER": "Adicionar filtro",
+            "SELECT-DATE-FILTER": "Selecionar filtro de data",
+            "FILTER-ENABLED": "Filtro ativado",
+            "COPY-RANGE": "Copiar Faixa",
+            "PASTE-RANGE": "Colar Faixa",
+            "CLEAR-RANGE": "Limpar Faixa",
+            "RANGE": "Faixa",
+            "HOUR": "Hora",
+            "SAVED-FILTERS": "Filtros salvos",
+            "CHANGE": "Mudar",
+            "FILTER-INVERSE-SELECTION": "Seleção inversa"
         },
         "CARD-TAB": {
             "REMOVE": "Remover",
