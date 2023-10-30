@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.6...@synerise/ds-core@0.40.7) (2023-10-30)
+
+
+### Bug Fixes
+
+* **core:** drp translations es / pt ([ffdca84](https://github.com/synerise/synerise-design/commit/ffdca84e5e876701499dd0ea1a8e55ea6d013ed6))
+
+
+
+
+
 ## [0.40.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.5...@synerise/ds-core@0.40.6) (2023-10-19)
 
 
