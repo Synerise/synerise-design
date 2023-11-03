@@ -17,7 +17,6 @@ const MapSizeToComponent = {
   xsmall: XSmallText,
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const Text = ({ size = 'medium', children, ellipsis }: TextProps) => {
   const Component = MapSizeToComponent[size];
   const content = <Component className="ds-text">{children}</Component>;
@@ -26,3 +25,5 @@ export const Text = ({ size = 'medium', children, ellipsis }: TextProps) => {
   }
   return <Ellipsis {...ellipsis}>{content}</Ellipsis>;
 };
+
+export default Text;

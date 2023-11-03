@@ -134,6 +134,7 @@ export const EllipsisText = styled.div`
   display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
+  max-width: 100%;
   overflow: hidden;
   ${H1}, ${H2}, ${H3}, ${H4}, ${H5}, ${H6}, ${H7} {
     display: inline;
