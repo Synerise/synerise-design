@@ -2,6 +2,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const AvatarLabel = styled.div<{ onClick?: () => void }>`
   display: inline-flex;
+  min-width: 0;
   align-items: center;
   justify-content: flex-start;
   ${(props): string => (props.onClick !== undefined ? 'cursor: pointer' : '')};
@@ -17,6 +18,7 @@ export const Avatar = styled.div<{ clickable: boolean }>`
 
 export const Description = styled.div`
   display: flex;
+  min-width: 0;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -36,6 +38,7 @@ export const Title = styled.span<{
     css`
       text-overflow: ellipsis;
       overflow: hidden;
+      display: block;
       max-width: ${props.maxWidth ? `${props.maxWidth}px` : '100%'};
     `};
 `;

@@ -1,6 +1,6 @@
 import React, { ReactNode, useRef, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 import Tooltip from '@synerise/ds-tooltip';
-
 import { EllipsisText } from './CommonElements';
 
 export type EllipsisProps = {
@@ -11,11 +11,32 @@ export type EllipsisProps = {
 export const Ellipsis = ({ tooltip, children }: EllipsisProps) => {
   const textComponentRef = useRef<HTMLDivElement | null>(null);
   const [truncated, setTruncated] = useState(false);
+
+  const debouncedResize = useRef(
+    debounce(
+      () => {
+        if (textComponentRef && textComponentRef.current) {
+          setTruncated(textComponentRef.current.offsetWidth < textComponentRef.current.scrollWidth);
+        }
+      },
+      100,
+      { leading: true, trailing: true }
+    )
+  ).current;
+
+  const resizeObserver = useRef(new window.ResizeObserver(debouncedResize)).current;
+
   useEffect(() => {
-    if (textComponentRef?.current) {
-      setTruncated(textComponentRef?.current.offsetWidth < textComponentRef?.current.scrollWidth);
+    if (textComponentRef.current) {
+      resizeObserver.observe(textComponentRef.current);
+      resizeObserver.observe(document.body);
     }
-  }, [children]);
+    return () => {
+      resizeObserver.disconnect();
+      debouncedResize.cancel();
+    };
+  }, [resizeObserver, debouncedResize]);
+
   return (
     <Tooltip title={truncated ? tooltip : undefined}>
       <EllipsisText ref={textComponentRef}>{children}</EllipsisText>
