@@ -3,7 +3,7 @@ import * as S from './Page.styles';
 
 type LayoutProps = {
   navBar?: React.ReactNode;
-  appMenu?: React.Component;
+  appMenu?: React.ReactNode;
   children: JSX.Element;
 };
 
