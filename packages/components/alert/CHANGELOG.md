@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.48...@synerise/ds-alert@0.7.49) (2023-11-09)
+
+
+### Bug Fixes
+
+* **SectionMessage:** [TC-1304] click handling when closing section message ([5ccd4af](https://github.com/Synerise/synerise-design/commit/5ccd4afd4c65f7afa33b69857400ebf9b53a90c5))
+
+
+
+
+
 ## [0.7.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.47...@synerise/ds-alert@0.7.48) (2023-10-30)
 
 **Note:** Version bump only for package @synerise/ds-alert

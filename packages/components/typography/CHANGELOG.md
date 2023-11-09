@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.13.2...@synerise/ds-typography@0.13.3) (2023-11-09)
+
+
+### Bug Fixes
+
+* **table:** avatarlabel cell renderer ([d93ca75](https://github.com/synerise/synerise-design/commit/d93ca7586633a698b6a26923d8618c104276845b))
+
+
+
+
+
 ## [0.13.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.13.1...@synerise/ds-typography@0.13.2) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-typography

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.42](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.41...@synerise/ds-table@0.46.42) (2023-11-09)
+
+
+### Bug Fixes
+
+* **table:** avatarlabel cell renderer ([d93ca75](https://github.com/synerise/synerise-design/commit/d93ca7586633a698b6a26923d8618c104276845b))
+
+
+
+
+
 ## [0.46.41](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.40...@synerise/ds-table@0.46.41) (2023-10-30)
 
 **Note:** Version bump only for package @synerise/ds-table

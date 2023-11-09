@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.197.3](https://github.com/synerise/synerise-design/compare/portal@0.197.2...portal@0.197.3) (2023-11-09)
+
+
+### Bug Fixes
+
+* **SectionMessage:** [TC-1304] click handling when closing section message ([5ccd4af](https://github.com/synerise/synerise-design/commit/5ccd4afd4c65f7afa33b69857400ebf9b53a90c5))
+
+
+
+
+
 ## [0.197.2](https://github.com/synerise/synerise-design/compare/portal@0.197.1...portal@0.197.2) (2023-10-19)
 
 
