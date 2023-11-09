@@ -2,7 +2,7 @@ import { AlertProps } from 'antd/lib/alert';
 import * as React from 'react';
 import { AlertType } from '../ColorSemantic/AlertSemanticColor.types';
 
-export type AlertTypes = Exclude<AlertType,'informative'>
+export type AlertTypes = Exclude<AlertType, 'informative'>;
 export type CustomColorType =
   | 'blue'
   | 'grey'
@@ -28,6 +28,7 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   mode?: ModeType;
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
+  onClose?: () => void;
   newClient?: boolean | React.ReactNode;
   moreButtons?: boolean | React.ReactNode;
   withEmphasis?: React.ReactNode;
