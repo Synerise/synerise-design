@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
+import type { ReactNode } from 'react';
 import Icon, {
   CloseM,
   WarningFillM,
@@ -13,7 +14,7 @@ import Button from '@synerise/ds-button';
 import * as S from './SectionMessage.styles';
 import { Props, AlertTypes } from './SectionMessage.types';
 
-const ICONS: Record<AlertTypes, React.ReactNode> = {
+const ICONS: Record<AlertTypes, ReactNode> = {
   positive: <Check3M />,
   notice: <WarningFillM />,
   negative: <WarningFillM />,
@@ -25,13 +26,14 @@ const ICONS: Record<AlertTypes, React.ReactNode> = {
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const SectionMessage: React.FC<Props> = ({
+const SectionMessage = ({
   icon,
   type,
   message,
   description,
   showMoreLabel,
   onShowMore,
+  onClose,
   newClient,
   moreButtons,
   withEmphasis,
@@ -44,7 +46,7 @@ const SectionMessage: React.FC<Props> = ({
   customIcon,
   textButton,
 }: Props) => {
-  const renderMessage = React.useMemo(() => {
+  const renderMessage = useMemo(() => {
     return (
       <S.AlertContent withLink={withLink}>
         {message && <S.AlertMessage>{message}</S.AlertMessage>}
@@ -60,11 +62,15 @@ const SectionMessage: React.FC<Props> = ({
     );
   }, [message, description, showMoreLabel, onShowMore, moreButtons, withEmphasis, withLink, unorderedList]);
 
-  const renderIcon = React.useMemo(() => {
+  const renderIcon = useMemo(() => {
     if (icon) return icon;
     if (ICONS[type]) return ICONS[type];
     return DEFAULT_ICON;
   }, [icon, type]);
+
+  const handleClose = () => {
+    onClose && onClose();
+  };
 
   return (
     <S.Container color={color} customColor={customColor}>
@@ -83,7 +89,7 @@ const SectionMessage: React.FC<Props> = ({
             </Button>
           )}
           {withClose && (
-            <S.IconCloseWrapper>
+            <S.IconCloseWrapper onClick={handleClose}>
               <Icon component={<CloseM />} />
             </S.IconCloseWrapper>
           )}

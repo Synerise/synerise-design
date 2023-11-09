@@ -9,6 +9,7 @@ import Icon, {
   WarningFillM,
 } from '@synerise/ds-icon';
 import { boolean, select, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import SectionMessage from '@synerise/ds-alert/dist/SectionMessage/SectionMessage';
 import Alert from '@synerise/ds-alert';
 import Card, { CardBadge } from '@synerise/ds-card';
@@ -191,6 +192,7 @@ const stories = {
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
           withClose={true}
+          onClose={action('onClose')}
         />
       </div>
     );
