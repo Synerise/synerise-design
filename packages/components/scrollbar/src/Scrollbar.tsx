@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
-
 import * as S from './Scrollbar.styles';
 import { ScrollbarProps } from './Scrollbar.types';
 import { DnDScrollbar } from './DnDScrollbar';
 import { VirtualScrollbar } from './VirtualScrollbar';
 
 const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
-  ({ children, loading, withDnd, fetchData, ...props }, forwardedRef) => {
+  ({ children, className, loading, withDnd, fetchData, ...props }, forwardedRef) => {
     const Component = withDnd ? DnDScrollbar : VirtualScrollbar;
     const scrollbar = (
       <Component {...props} fetchData={fetchData} ref={forwardedRef}>
@@ -17,7 +16,7 @@ const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
     );
 
     return (
-      <S.ScrollbarContainer>
+      <S.ScrollbarContainer className={className}>
         {scrollbar}
         {loading && (
           <S.LoaderWrapper>

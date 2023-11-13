@@ -18,6 +18,12 @@ export const scrollWithHorizontalArrow = (
   }
 };
 
+
+export const filterOutNullishArrayItems = <T extends unknown>(array: (T | null | '' | undefined)[]) => {
+  const filtered: T[] = array.filter(val => Boolean(val)) as T[];
+  return filtered;
+};
+
 export const isOverflown = (elementRef: React.RefObject<HTMLDivElement>): boolean => {
   if (elementRef !== null && elementRef.current !== null) {
     const element = elementRef.current;

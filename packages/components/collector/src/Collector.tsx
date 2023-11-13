@@ -12,7 +12,6 @@ import React, {
   KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
-import { compact } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 
@@ -20,7 +19,7 @@ import { CollectorProps, CollectorValue } from './Collector.types';
 import * as S from './Collector.styles';
 import ButtonPanel from './Elements/ButtonPanel/ButtonPanel';
 import OptionsDropdown from './Elements/OptionsDropdown/OptionsDropdown';
-import { filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
+import { filterOutNullishArrayItems, filterValueSuggestions, isOverflown, scrollWithHorizontalArrow } from './utils';
 import Values from './Elements/Values/Values';
 import NavigationHint from './Elements/NavigationHint/NavigationHint';
 
@@ -180,12 +179,13 @@ const Collector = ({
   const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
     if (allowMultipleValues && onItemAdd) {
       const pastedText = event.clipboardData.getData('text');
-      const pastedItems = allowMultipleValues ? pastedText.split(valuesSeparator) : [pastedText];
+      if (pastedText.includes(valuesSeparator)) {
+        const pastedItems = allowMultipleValues ? pastedText.split(valuesSeparator) : [pastedText];
+        const newValues = filterOutNullishArrayItems(pastedItems.map(createItem));
 
-      const newValues = compact(pastedItems.map(createItem));
-
-      if (newValues.length) {
-        onMultipleItemsSelect && onMultipleItemsSelect(newValues);
+        if (newValues.length) {
+          onMultipleItemsSelect && onMultipleItemsSelect(newValues);
+        }
       }
     }
   };
@@ -284,17 +284,18 @@ const Collector = ({
   const handleInput = disableSearch
     ? undefined
     : (event: ChangeEvent<HTMLInputElement>) => {
-        if (
-          'inputType' in event.nativeEvent &&
-          event.nativeEvent.inputType === 'insertFromPaste' &&
-          allowMultipleValues &&
-          allowPaste
-        ) {
-          return;
+      
+      const isPasteEvent = 'inputType' in event.nativeEvent &&
+        event.nativeEvent.inputType === 'insertFromPaste' &&
+        allowMultipleValues &&
+        allowPaste && 
+        event.target.value.includes(valuesSeparator);
+
+        if (!isPasteEvent) {
+          onSearchValueChange && onSearchValueChange(event.target.value);
+          setValue(event.target.value);
+          if (!enableCustomFilteringSuggestions) filterSuggestions(event.target.value);
         }
-        onSearchValueChange && onSearchValueChange(event.target.value);
-        setValue(event.target.value);
-        if (!enableCustomFilteringSuggestions) filterSuggestions(event.target.value);
       };
 
   useOnClickOutside(containerRef, () => {
@@ -337,7 +338,7 @@ const Collector = ({
         disabled={!!disabled}
         displayLookupKey={displayLookupKey}
       />
-      <S.Input
+      <S.SearchWrapper><S.Input
         onPaste={handlePaste}
         onKeyPress={handleKeyPress}
         onKeyDown={handleKeyDown}
@@ -349,7 +350,7 @@ const Collector = ({
         hidden={!!disableSearch && !!selectedValues.length}
         placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
         hasValues={!!selectedValues?.length}
-      />
+      /></S.SearchWrapper>
     </S.MainContent>
   );
 
