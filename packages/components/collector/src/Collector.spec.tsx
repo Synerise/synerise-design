@@ -137,6 +137,46 @@ describe('Collector', () => {
     
   });
 
+  it('Should not call onItemSelect or onMultipleItemsSelect when pasted string does not contain separator', async () => {
+
+    const itemAdd = value => ({ text: value });
+    const pastedValue = 'Other';
+    const separator = ';';
+
+    renderWithProvider(
+      <Collector
+        allowCustomValue
+        allowMultipleValues
+        allowPaste
+        onMultipleItemsSelect={onMultipleSelectFn}
+        valuesSeparator={separator}
+        onItemSelect={onSelectFn}
+        onItemAdd={itemAdd}
+        selected={[]}
+        searchValue={''}
+        suggestions={SUGGESTIONS}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: PLACEHOLDER,
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
+      />
+    );
+    const input = screen.getByPlaceholderText(PLACEHOLDER);
+    const pasteEvent = createEvent.paste(input, {
+      clipboardData: {
+        getData: () => pastedValue,
+      },
+    });
+  
+    fireEvent(input, pasteEvent);
+    expect(onMultipleSelectFn).not.toHaveBeenCalled();
+    expect(onSelectFn).not.toHaveBeenCalled();
+    
+  });
+
   it('Should call onConfirm', () => {
 
     renderWithProvider(

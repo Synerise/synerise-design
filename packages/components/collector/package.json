@@ -41,8 +41,7 @@
     "@synerise/ds-scrollbar": "^0.6.12",
     "@synerise/ds-search": "^0.8.71",
     "@synerise/ds-utils": "^0.24.21",
-    "classnames": "2.3.2",
-    "lodash": "^4.17.19"
+    "classnames": "2.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

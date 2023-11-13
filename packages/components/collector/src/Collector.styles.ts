@@ -37,7 +37,9 @@ export const CollectorInput = styled(InputWrapper)<{
   justify-content: space-between;
 `;
 
-export const Scrollbar = styled(DSScrollbar)``;
+export const Scrollbar = styled(DSScrollbar)`
+  width: 100%;
+`;
 
 export const MainContent = styled.div<{
   fixedHeight?: boolean;
@@ -102,6 +104,8 @@ export const Input = styled(BorderLessInput)<
   padding: 1px 0;
   min-width: unset;
   line-height: 18px;
+  width: calc(100% - 12px);
+  
   ${(props): FlattenSimpleInterpolation | false =>
     props.hidden &&
     css`
@@ -114,6 +118,11 @@ export const Input = styled(BorderLessInput)<
       color: transparent;
     `}
 `;
+
+export const SearchWrapper = styled.div`
+    flex: 1 0 auto;
+`;
+
 export { Value as CollectorValue };
 export { ContentAbove };
 export { Label };
