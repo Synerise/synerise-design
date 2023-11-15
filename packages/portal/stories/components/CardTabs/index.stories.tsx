@@ -11,17 +11,19 @@ import { ShowM, OptionHorizontalM } from '@synerise/ds-icon';
 import { CardTabsStyles } from '@synerise/ds-card-tabs';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
-const { CardTab: { CardDot } } = CardTabsStyles;
+const {
+  CardTab: { CardDot },
+} = CardTabsStyles;
 
 const suffixIcon = {
   singleIcon: <OptionHorizontalM />,
   cruds: null,
-  menu: null
+  menu: null,
 };
 const types = {
   singleIcon: 'singleIcon',
   cruds: 'cruds',
-  menu: 'menu'
+  menu: 'menu',
 };
 
 const stories = {
@@ -34,7 +36,7 @@ const stories = {
       { tag: prefixType.TAG, icon: prefixType.ICON, colorDot: prefixType.DOT, dragHandle: prefixType.HANDLE },
       prefixType.TAG
     );
-    
+
     const suffixType = select('Set suffix type', types, 'menu');
     const isActive = boolean('Is active', false);
     const disabled = boolean('Disabled tabs', false);
@@ -43,7 +45,7 @@ const stories = {
     const setCustomColor = boolean('Set custom color', false);
     const renameEnabled = boolean('Rename enabled', true);
 
-    const selectCustomColor = setCustomColor ? select('Pick custom color',defaultColorsOrder, 'blue-500') : undefined;
+    const selectCustomColor = setCustomColor ? select('Pick custom color', defaultColorsOrder, 'blue-500') : undefined;
     const handleChangeName = (id, name) => {
       store.set({
         name,
@@ -55,7 +57,7 @@ const stories = {
     const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
       store.set({ items: newOrder });
     };
-    
+
     return (
       <div style={{ background: bg ? '#fff' : '#f9fafb', padding: '12px' }}>
         <CardTabs onChangeOrder={boolean('Draggable card tabs', true) ? handleChangeOrder : undefined}>
@@ -66,11 +68,11 @@ const stories = {
             tag={select('Select tag', ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], 'A')}
             active={isActive}
             greyBackground={!bg}
-            color={setCustomColor ?`${selectCustomColor}` : undefined}
+            color={setCustomColor ? `${selectCustomColor}` : undefined}
             colorDot={<CardDot />}
             prefixIcon={<ShowM />}
             suffixIcon={suffixIcon[suffixType]}
-            actionsAsDropdown={suffixType==='menu'}
+            actionsAsDropdown={suffixType === 'menu'}
             disabled={disabled}
             prefix={prefix}
             onSelectTab={handleSelect}
@@ -101,9 +103,8 @@ const stories = {
       },
     })),
     activeTab: 0,
-    nextId: 3,
+    nextId: 6,
   })(({ store }) => {
-    
     const bg = boolean('White background', true);
     const prefix = select(
       'Set prefix type',
@@ -132,22 +133,22 @@ const stories = {
     };
 
     const getIndex = id => {
-      return store.state.items.findIndex(item => item.id === id)
-    }
+      return store.state.items.findIndex(item => item.id === id);
+    };
 
     const handleRemove = id => {
       store.set({
         items: store.state.items.filter(item => item.id !== id),
       });
     };
-    const customColorTag = (id) => {
+    const customColorTag = id => {
       store.set({
         items: store.state.items.map(item => {
           return item.id === id
             ? {
-              ...item,
-              name: name,
-            }
+                ...item,
+                name: name,
+              }
             : item;
         }),
       });
@@ -167,7 +168,7 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
-    
+
     const handleAddItem = () => {
       store.set({
         items: [
@@ -186,9 +187,9 @@ const stories = {
         nextId: store.state.nextId + 1,
       });
     };
-    
+
     const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
-      store.set({ items: [ ...newOrder ] });
+      store.set({ items: [...newOrder] });
     };
     const handleSelect = id => {
       store.set({ activeTab: id });
@@ -196,8 +197,8 @@ const stories = {
 
     const isTabsLimitNotExceeded = store.state.items.length < maxTabCount;
 
-    const maxWidth = number('Container\'s max-width (e.g. 588px)', 0);
-    const additionalStyle = maxWidth ? {'maxWidth': maxWidth} : {};
+    const maxWidth = number("Container's max-width (e.g. 588px)", 0);
+    const additionalStyle = maxWidth ? { maxWidth: maxWidth } : {};
     const addTabLabel = text('Add new card label', '');
 
     return (
@@ -208,13 +209,21 @@ const stories = {
           onAddTab={handleAddItem}
           addTabLabel={addTabLabel}
         >
-          {store.state.items.map((item,i) => (
+          {store.state.items.map((item, i) => (
             <CardTab
               id={item.id}
               name={item.name}
               tag={item.tag}
               active={item.id === store.state.activeTab}
-              color={setCustomColor ? `${select(`Pick custom card-tabs's color (card-tab ${i + 1})`, defaultColorsOrder, `${defaultColorsOrder[i + 1 % defaultColorsOrder.length]}`)}`: item.color}
+              color={
+                setCustomColor
+                  ? `${select(
+                      `Pick custom card-tabs's color (card-tab ${i + 1})`,
+                      defaultColorsOrder,
+                      `${defaultColorsOrder[i + (1 % defaultColorsOrder.length)]}`
+                    )}`
+                  : item.color
+              }
               colorDot={<CardDot />}
               greyBackground={!bg}
               prefixIcon={<ShowM />}
@@ -236,7 +245,7 @@ const stories = {
                 removeMenuItem: 'Remove',
                 duplicateMenuItem: 'Duplicate',
               }}
-              actionsAsDropdown={suffixType==='menu'}
+              actionsAsDropdown={suffixType === 'menu'}
               invalid={invalid}
               invalidName={invalidName}
               itemData={item.itemData}

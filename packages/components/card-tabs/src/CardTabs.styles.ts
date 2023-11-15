@@ -6,12 +6,13 @@ import { CardTabContainer } from './CardTab/CardTab.styles';
 export const CardTabsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  algin-items: flex-start;
+  align-items: flex-start;
   justify-content: flex-start;
-  width: 100%;
+  width: 588px;
   ${CardTabContainer} {
     margin-right: 12px;
     margin-bottom: 16px;
+    width: 168px;
   }
   .ds-card-tags-sortable {
     display: flex;
