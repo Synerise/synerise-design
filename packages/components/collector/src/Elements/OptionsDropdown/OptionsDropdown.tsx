@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
-import Menu from '@synerise/ds-menu';
+
 import Icon, { Add3M } from '@synerise/ds-icon';
 
 import Divider from '@synerise/ds-divider';
+import ListItem from '@synerise/ds-list-item';
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
@@ -41,9 +42,9 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
       return renderItem ? (
         renderItem(itemValue)
       ) : (
-        <Menu.Item tabIndex={-1} size={dropdownItemHeight} key={`${itemValue}`}>
+        <ListItem tabIndex={-1} size={dropdownItemHeight} key={`${itemValue}`}>
           {itemValue[lookupKey]}
-        </Menu.Item>
+        </ListItem>
       );
     },
     [lookupKey, renderItem, dropdownItemHeight]
