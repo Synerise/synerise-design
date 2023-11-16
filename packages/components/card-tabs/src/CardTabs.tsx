@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactElement, Children, cloneElement } from 'react';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable, MoveEvent } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
@@ -11,8 +11,14 @@ const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
   className: 'ds-card-tags-sortable',
   animation: 150,
-  filter: '.ds-card-tabs__suffix-nodrag',
+  filter: '.ds-card-tabs__suffix-nodrag, .ds-card-tabs-nodrag',
   preventOnFilter: false,
+  onMove: (ev1: MoveEvent) => {
+    if (ev1.related && ev1.related.classList.contains('ds-card-tabs-nodrag')) {
+      return -1;
+    }
+    return true;
+  },
 };
 const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [], addTabLabel }: CardTabsProps) => {
   const handleChangeOrder = (newOrder: ReactElement[]): void => {
@@ -31,28 +37,30 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
       })
     );
 
+  const addTab = onAddTab && (
+    <span className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
+      <Button.Creator
+        block
+        disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
+        label={addTabLabel ?? ''}
+        onClick={onAddTab}
+      />
+    </span>
+  );
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
           <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
             {renderChildren()}
+            {addTab}
           </ReactSortable>
         </div>
       ) : (
         <div className="ds-card-tags-sortable" data-testid="card-tabs-static">
           {renderChildren()}
+          {addTab}
         </div>
-      )}
-      {onAddTab && (
-        <span data-testid="card-tabs-add-button">
-          <Button.Creator
-            block
-            disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
-            label={addTabLabel ?? ''}
-            onClick={onAddTab}
-          />
-        </span>
       )}
     </S.CardTabsContainer>
   );
