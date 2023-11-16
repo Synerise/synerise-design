@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.96](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.8.95...@synerise/ds-item-filter@0.8.96) (2023-11-16)
+
+**Note:** Version bump only for package @synerise/ds-item-filter
+
+
+
+
+
 ## [0.8.95](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-filter@0.8.94...@synerise/ds-item-filter@0.8.95) (2023-11-09)
 
 **Note:** Version bump only for package @synerise/ds-item-filter
