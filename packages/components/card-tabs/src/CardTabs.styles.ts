@@ -8,11 +8,11 @@ export const CardTabsContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 588px;
+  width: 100%;
+  min-width: 588px;
   ${CardTabContainer} {
     margin-right: 12px;
     margin-bottom: 16px;
-    width: 168px;
   }
   .ds-card-tags-sortable {
     display: flex;
