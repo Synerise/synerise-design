@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Tooltip from 'antd/lib/tooltip';
-import { TooltipProps } from 'antd/es/tooltip';
 import StyledListItem, { StyledIconWrapper } from './ListItem.styles';
 
 export type ListItemProps = {
@@ -10,7 +8,6 @@ export type ListItemProps = {
   danger?: boolean;
   prefixCls?: string;
   direction?: 'ltr' | 'rtl';
-  disableListItemTitleTooltip?: boolean;
   switch?: boolean;
   title?: string;
   noHover?: boolean;
@@ -25,8 +22,6 @@ const ListItem = (props: ListItemProps) => {
     icon,
     danger,
     prefixCls = 'ant-menu',
-    direction = 'ltr',
-    disableListItemTitleTooltip = true,
     title,
     noHover,
     size,
@@ -48,18 +43,10 @@ const ListItem = (props: ListItemProps) => {
     return <span className={`${prefixCls}-title-content`}>{children}</span>;
   };
 
-  const tooltipTitle = title || (typeof children === 'string' ? children : undefined);
-
-  const tooltipProps: TooltipProps = {
-    title: tooltipTitle,
-    placement: direction === 'rtl' ? 'left' : 'right',
-    overlayClassName: `${prefixCls}-inline-collapsed-tooltip`,
-  };
-
   const listItemNode = (
     <StyledListItem
       className={`ds-search-item ${className} ${isSelected ? 'selected' : ''}`}
-      title={tooltipTitle}
+      title={title || (typeof children === 'string' ? children : undefined)}
       onClick={handleClick}
       onMouseLeave={handleMouseLeave}
       tabIndex={0}
@@ -74,11 +61,7 @@ const ListItem = (props: ListItemProps) => {
     </StyledListItem>
   );
 
-  if (disableListItemTitleTooltip || noHover) {
-    return listItemNode;
-  }
-
-  return <Tooltip {...tooltipProps}>{listItemNode}</Tooltip>;
+  return listItemNode;
 };
 
 export default ListItem;
