@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactElement, Children, cloneElement } from 'react';
-import { ReactSortable, MoveEvent } from 'react-sortablejs-typescript';
+import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
@@ -13,7 +13,7 @@ const SORTABLE_CONFIG = {
   animation: 150,
   filter: '.ds-card-tabs__suffix-nodrag, .ds-card-tabs-nodrag',
   preventOnFilter: false,
-  onMove: (ev1: MoveEvent) => {
+  onMove: (ev1: { related: HTMLElement }) => {
     if (ev1.related && ev1.related.classList.contains('ds-card-tabs-nodrag')) {
       return -1;
     }
@@ -29,7 +29,7 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         }))
       );
   };
-  const renderChildren = (): JSX.Element[] =>
+  const renderChildren = () =>
     Children.map(children, (child, i) =>
       cloneElement(child, {
         ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),

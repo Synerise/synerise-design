@@ -19475,7 +19475,7 @@ lodash.uniq@4.5.0, lodash.uniq@^4.5.0:
 
 lodash.uniqueid@^4.0.1:
   version "4.0.1"
-  resolved "https://registry.yarnpkg.com/lodash.uniqueid/-/lodash.uniqueid-4.0.1.tgz#3268f26a7c88e4f4b1758d679271814e31fa5b26"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/lodash.uniqueid/-/lodash.uniqueid-4.0.1.tgz#3268f26a7c88e4f4b1758d679271814e31fa5b26"
   integrity sha1-MmjyanyI5PSxdY1nknGBTjH6WyY=
 
 lodash@4.17.15, "lodash@>=3.5 <5", lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1:
@@ -24197,8 +24197,8 @@ react-sortable-hoc@^1.11.0:
 
 react-sortablejs-typescript@2.0.3:
   version "2.0.3"
-  resolved "https://registry.yarnpkg.com/react-sortablejs-typescript/-/react-sortablejs-typescript-2.0.3.tgz#25de8cc14c0080e69c888bd272be1128ff0c8091"
-  integrity sha512-cRpSS3DxeUhK15fDX5DgPe5sfj9aBTvYrqNw8hKdDsDgD7MykT/JQ2YIEGI4SFCPugbr53vsZ5BK3uNrGIBiNw==
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-sortablejs-typescript/-/react-sortablejs-typescript-2.0.3.tgz#25de8cc14c0080e69c888bd272be1128ff0c8091"
+  integrity sha1-Jd6MwUwAgOaciIvScr4RKP8MgJE=
   dependencies:
     lodash.uniqueid "^4.0.1"
     sortablejs "^1.10.0"
@@ -26021,9 +26021,9 @@ sort-scripts@^1.0.1:
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
 
 sortablejs@^1.10.0:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.10.2.tgz#6e40364d913f98b85a14f6678f92b5c1221f5290"
-  integrity sha512-YkPGufevysvfwn5rfdlGyrGjt7/CRHwvRPogD/lC+TnvcN29jDpCifKP+rBqf+LRldfXSTh+0CGLcSg0VIxq3A==
+  version "1.15.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/sortablejs/-/sortablejs-1.15.0.tgz#53230b8aa3502bb77a29e2005808ffdb4a5f7e2a"
+  integrity sha1-UyMLiqNQK7d6KeIAWAj/20pffio=
 
 source-list-map@^2.0.0:
   version "2.0.1"
