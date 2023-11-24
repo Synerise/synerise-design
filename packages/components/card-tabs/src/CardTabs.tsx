@@ -1,4 +1,4 @@
-import React, { ReactElement, Children, cloneElement } from 'react';
+import React, { ReactElement, Children, cloneElement, isValidElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
@@ -28,13 +28,18 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         }))
       );
   };
+
   const renderChildren = () =>
-    Children.map(children, (child, i) =>
-      cloneElement(child, {
-        ...(child.props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
-        draggable: Boolean(onChangeOrder) || child.props.draggable,
-      })
-    );
+    Children.map(children, (child, i) => {
+      const { props } = child;
+      return (
+        isValidElement(child) &&
+        cloneElement(child as React.ReactElement<CardTabProps>, {
+          ...(props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
+          draggable: Boolean(onChangeOrder) || props.draggable,
+        })
+      );
+    });
 
   const addTab = onAddTab && (
     <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
