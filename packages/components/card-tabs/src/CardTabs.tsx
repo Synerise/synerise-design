@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ReactElement, Children, cloneElement } from 'react';
+import React, { ReactElement, Children, cloneElement } from 'react';
 import { ReactSortable } from 'react-sortablejs-typescript';
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
@@ -38,14 +37,14 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
     );
 
   const addTab = onAddTab && (
-    <span className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
+    <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
       <Button.Creator
         block
         disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
         label={addTabLabel ?? ''}
         onClick={onAddTab}
       />
-    </span>
+    </S.CardTabsAddButton>
   );
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">

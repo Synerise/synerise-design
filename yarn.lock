@@ -26020,7 +26020,7 @@ sort-scripts@^1.0.1:
   resolved "https://registry.yarnpkg.com/sort-scripts/-/sort-scripts-1.0.1.tgz#c1d27f2a7d95d1d0d3d6303f1b949abaaa695b55"
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
 
-sortablejs@^1.10.0:
+sortablejs@1.15.0, sortablejs@^1.10.0:
   version "1.15.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/sortablejs/-/sortablejs-1.15.0.tgz#53230b8aa3502bb77a29e2005808ffdb4a5f7e2a"
   integrity sha1-UyMLiqNQK7d6KeIAWAj/20pffio=
