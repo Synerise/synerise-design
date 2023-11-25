@@ -41,6 +41,8 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
     </S.CardTabsAddButton>
   );
 
+  const childrenCount = Children.count(children);
+
   const renderChildren = () =>
     Children.map(children, (child, i) => {
       const { props } = child;
@@ -48,13 +50,13 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         isValidElement(child) &&
         cloneElement(child as React.ReactElement<CardTabProps>, {
           ...(props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
-          draggable: Boolean(onChangeOrder) || props.draggable,
+          draggable: childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
         })
       );
     });
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
-      {onChangeOrder ? (
+      {onChangeOrder && childrenCount > 1 ? (
         <div data-testid="card-tabs-sortable">
           <ReactSortable revertOnSpill={false} {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
             <>{renderChildren()}</>
