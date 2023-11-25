@@ -1,10 +1,12 @@
 import React, { ReactElement, Children, cloneElement, isValidElement } from 'react';
-import { ReactSortable } from 'react-sortablejs-typescript';
+import { ReactSortable, MoveEvent, ItemInterface } from 'react-sortablejs';
+
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
 import * as S from './CardTabs.styles';
 import { CardTabsProps } from './CardTabs.types';
+import { CardTabProps } from './CardTab/CardTab.types';
 
 const SORTABLE_CONFIG = {
   ghostClass: 'sortable-card-ghost-element',
@@ -12,7 +14,7 @@ const SORTABLE_CONFIG = {
   animation: 150,
   filter: '.ds-card-tabs__suffix-nodrag, .ds-card-tabs-nodrag',
   preventOnFilter: false,
-  onMove: (ev1: { related: HTMLElement }) => {
+  onMove: (ev1: MoveEvent) => {
     if (ev1.related && ev1.related.classList.contains('ds-card-tabs-nodrag')) {
       return -1;
     }
@@ -20,7 +22,7 @@ const SORTABLE_CONFIG = {
   },
 };
 const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [], addTabLabel }: CardTabsProps) => {
-  const handleChangeOrder = (newOrder: ReactElement[]): void => {
+  const handleChangeOrder = (newOrder: (ReactElement & ItemInterface)[]): void => {
     onChangeOrder &&
       onChangeOrder(
         newOrder.map(item => ({
@@ -28,6 +30,16 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         }))
       );
   };
+  const addTab = onAddTab && (
+    <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
+      <Button.Creator
+        block
+        disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
+        label={addTabLabel ?? ''}
+        onClick={onAddTab}
+      />
+    </S.CardTabsAddButton>
+  );
 
   const renderChildren = () =>
     Children.map(children, (child, i) => {
@@ -40,23 +52,12 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         })
       );
     });
-
-  const addTab = onAddTab && (
-    <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
-      <Button.Creator
-        block
-        disabled={!!maxTabsCount && Children.toArray(children).length >= maxTabsCount}
-        label={addTabLabel ?? ''}
-        onClick={onAddTab}
-      />
-    </S.CardTabsAddButton>
-  );
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
-            {renderChildren()}
+          <ReactSortable revertOnSpill={false} {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
+            <>{renderChildren()}</>
             {addTab}
           </ReactSortable>
         </div>
