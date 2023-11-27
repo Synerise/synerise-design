@@ -30,7 +30,7 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         }))
       );
   };
-  const addTab = onAddTab && (
+  const addTab = onAddTab ? (
     <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
       <Button.Creator
         block
@@ -39,27 +39,32 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
         onClick={onAddTab}
       />
     </S.CardTabsAddButton>
+  ) : (
+    <></>
   );
 
   const childrenCount = Children.count(children);
 
-  const renderChildren = () =>
-    Children.map(children, (child, i) => {
-      const { props } = child;
-      return (
-        isValidElement(child) &&
-        cloneElement(child as React.ReactElement<CardTabProps>, {
-          ...(props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
-          draggable: childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
-        })
-      );
-    });
+  const renderChildren = () => (
+    <>
+      {Children.map(children, (child, i) => {
+        const { props } = child;
+        return (
+          isValidElement(child) &&
+          cloneElement(child as React.ReactElement<CardTabProps>, {
+            ...(props.color ? {} : { color: defaultColorsOrder[i % defaultColorsOrder.length] }),
+            draggable: childrenCount > 1 && (Boolean(onChangeOrder) || props.draggable),
+          })
+        );
+      })}
+    </>
+  );
   return (
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder && childrenCount > 1 ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable revertOnSpill={false} {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
-            <>{renderChildren()}</>
+          <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
+            {renderChildren()}
             {addTab}
           </ReactSortable>
         </div>
