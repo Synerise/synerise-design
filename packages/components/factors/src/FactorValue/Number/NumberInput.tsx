@@ -1,7 +1,7 @@
 import * as React from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { debounce } from 'lodash';
-
+import {ReactText, useEffect, useRef} from "react";
 import { InputProps } from '../../Factors.types';
 
 const NumberInput: React.FC<InputProps> = ({
@@ -14,22 +14,32 @@ const NumberInput: React.FC<InputProps> = ({
   readOnly = false,
 }) => {
   const [localValue, setLocalValue] = React.useState<string | number | undefined>(value as number);
-  const onChangeValueDebounce = React.useRef(debounce(onChange, 300)).current;
+  const onChangeRef = useRef(onChange);
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [localValue, onChange]);
+
+  useEffect(() => {
+    setLocalValue(value as number);
+  }, [value]);
+
+  const debouncedOnChange = useRef(
+      debounce((inputValue: ReactText | undefined): void => {
+        onChangeRef.current && onChangeRef.current(inputValue);
+      }, 300)
+  ).current;
+
+  useEffect(() => {
+    return () => {
+      debouncedOnChange.cancel();
+    };
+  }, [debouncedOnChange]);
 
   const handleChange = (val: string | number | undefined): void => {
     setLocalValue(val);
-    onChangeValueDebounce(val);
+    debouncedOnChange(val);
   };
-
-  React.useEffect(() => {
-    return () => {
-      onChangeValueDebounce.cancel();
-    };
-  }, [onChangeValueDebounce]);
-
-  React.useEffect(() => {
-    setLocalValue(value as number);
-  }, [value]);
 
   return (
     <InputNumber
