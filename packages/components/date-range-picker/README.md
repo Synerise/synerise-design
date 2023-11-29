@@ -41,28 +41,29 @@ const value = {
 
 ## API
 
-| Property             | Description                                                         | Type                 | Default                                                       |
-| -------------------- | ------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------- |
-| disabledDate         | Function to specify if particular dates are disabled or not         | (date:Date)=>boolean | -                                                             |
-| disabledDefaultTexts | Disables the default texts translations provided by `react-intl`    | boolean              | `false`                                                       |
-| forceAbsolute        | Force the outcome to be converted to an absolute date               | boolean              | `false`                                                       |
-| format               | Format of the value displayed in the footer                         | string               | "MMM D, YYYY"                                                 |
-| onApply              | Callback executed after applying changes                            | (date:Date)=>void    | -                                                             |
-| ranges               | An array containing custom ranges which may be used as a short-hand | DateRange[]          | []                                                            |
-| popoverProps         | Object representing props applied to the Antd Popover component     | AntdPopoverProps     | {}                                                            |
-| rangeUnits           | Units available in relative range picker                            | RelativeUnits[]      | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
-| relativePast         | Enable relative filter for past ranges                              | boolean              | `false`                                                       |
-| relativeFuture       | Enable relative filter for future ranges                            | boolean              | `false`                                                       |
-| showTime             | Enable user to choose particular hour                               | boolean              | `false`                                                       |
-| showNowButton        | Include "now" button to select current time (last minue)                             | boolean              | `true`                                                       |
-| showFilter           | Enable range filtering                                              | boolean              | `false`                                                       |
-| showCustomRange      | Enable custom range form in relative range picker                   | boolean              | `true`                                                       |
-| validate             | Function to specify if particular date ranges are correct           | (date:Date)=>boolean | -                                                             |
-| value                | Value of the picker                                                 | DateRange            |                                                     |
-| defaultValue         | Default value of the picker (when value is undefined and when user clears input) | DateRange            |                                                     |
-| startAlwaysOnTheLeft | Enable not to move month from left side to right side               | boolean              | `false`                                                       |
-| onVisibleChange      | Callback executed when popover with dateRangePicker changes its visibility | (visible: boolean) => void | -                                                |
-| filterValueSelectionModes  | Allowed modes to display in filter | DateLimitMode[] | ["Range", "Hour"]                                                |
+| Property                  | Description                                                                      | Type                       | Default                                                       |
+| ------------------------- | -------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
+| disabledDate              | Function to specify if particular dates are disabled or not                      | (date:Date)=>boolean       | -                                                             |
+| disabledDefaultTexts      | Disables the default texts translations provided by `react-intl`                 | boolean                    | `false`                                                       |
+| forceAbsolute             | Force the outcome to be converted to an absolute date                            | boolean                    | `false`                                                       |
+| format                    | Format of the value displayed in the footer                                      | string                     | "MMM D, YYYY"                                                 |
+| onApply                   | Callback executed after applying changes                                         | (date:Date)=>void          | -                                                             |
+| ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRange[]                | []                                                            |
+| popoverProps              | Object representing props applied to the Antd Popover component                  | AntdPopoverProps           | {}                                                            |
+| rangeUnits                | Units available in relative range picker                                         | RelativeUnits[]            | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
+| relativePast              | Enable relative filter for past ranges                                           | boolean                    | `false`                                                       |
+| relativeFuture            | Enable relative filter for future ranges                                         | boolean                    | `false`                                                       |
+| showTime                  | Enable user to choose particular hour                                            | boolean                    | `false`                                                       |
+| showNowButton             | Include "now" button to select current time (last minue)                         | boolean                    | `true`                                                        |
+| showFilter                | Enable range filtering                                                           | boolean                    | `false`                                                       |
+| showCustomRange           | Enable custom range form in relative range picker                                | boolean                    | `true`                                                        |
+| validate                  | Function to specify if particular date ranges are correct                        | (date:Date)=>boolean       | -                                                             |
+| value                     | Value of the picker                                                              | DateRange                  |                                                               |
+| defaultValue              | Default value of the picker (when value is undefined and when user clears input) | DateRange                  |                                                               |
+| startAlwaysOnTheLeft      | Enable not to move month from left side to right side                            | boolean                    | `false`                                                       |
+| onVisibleChange           | Callback executed when popover with dateRangePicker changes its visibility       | (visible: boolean) => void | -                                                             |
+| filterValueSelectionModes | Allowed modes to display in filter                                               | DateLimitMode[]            | ["Range", "Hour"]                                             |
+| getPopupContainer         | Function used to set the container of the date range picker.                     | Function(triggerNode)      | `() => document.body`                                         |
 
 ### DateRange
 
@@ -78,4 +79,4 @@ const value = {
 
 ### Undocumented props
 
-* min in `MonthlyFilter` - controls minimal amount of entires in monthly filter, disable with `undefined`, default is `1`
+- min in `MonthlyFilter` - controls minimal amount of entires in monthly filter, disable with `undefined`, default is `1`
