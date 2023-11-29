@@ -18,6 +18,7 @@
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build",
+    "build-storybook": "storybook build",
     "component:create": "node ./scripts/create-component/index.js",
     "docs-build": "npx styleguidist build",
     "docs-dev": "npx styleguidist server",
@@ -26,7 +27,7 @@
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
     "pack:ci": "npx lerna run pack --since master",
-    "storybook": "yarn run build && cd packages/portal && yarn run storybook",
+    "storybook": "storybook dev -p 6006",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "types": "yarn npx:lerna run types --parallel",
     "update-docs": "node ./scripts/docs/componentmd.js",
@@ -64,13 +65,15 @@
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "4.9.1",
     "**/@typescript-eslint/parser": "4.9.1",
-    "rc-util": "^5.8.1"
+    "rc-util": "^5.8.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   },
   "dependencies": {
     "antd": "4.7.0",
     "invariant": "^2.2.4",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-styleguidist": "^11.0.5"
   },
@@ -89,6 +92,14 @@
     "@commitlint/config-lerna-scopes": "8.3.4",
     "@formatjs/intl-pluralrules": "1.5.2",
     "@jridgewell/gen-mapping": "0.3.2",
+    "@storybook/addon-essentials": "^7.6.0",
+    "@storybook/addon-interactions": "^7.6.0",
+    "@storybook/addon-links": "^7.6.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.6.0",
+    "@storybook/react": "^7.6.0",
+    "@storybook/react-webpack5": "^7.6.0",
+    "@storybook/test": "^7.6.0",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
     "@testing-library/react-hooks": "^8.0.1",
@@ -136,6 +147,7 @@
     "prettier-eslint-cli": "5.0.0",
     "react-intl": "3.12.0",
     "sass": "^1.43.4",
+    "storybook": "^7.6.0",
     "style-loader": "^1.1.3",
     "styled-components": "5.0.1",
     "ts-jest": "25.2.1",
