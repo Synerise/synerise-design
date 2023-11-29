@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run vars && npm run copy && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "copy": "node ./build/copy.js",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
