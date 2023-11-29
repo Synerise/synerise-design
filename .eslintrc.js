@@ -35,6 +35,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [IGNORE],
     'import/no-unresolved': [IGNORE],
     'import/prefer-default-export': [IGNORE],
+    'import/newline-after-import': [IGNORE],
     'react/jsx-props-no-spreading': [IGNORE],
     'no-use-before-define': IGNORE,
     'no-shadow': IGNORE,
