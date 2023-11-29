@@ -53,7 +53,7 @@ docs_build:
       - dev
   script:
     - yarn --frozen-lockfile
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - yarn build
     - yarn npx:lerna run postinstall
     - yarn npx:lerna run build-docs
@@ -147,7 +147,7 @@ chromatic_publish:
       - $CHROMATIC_PROJECT_TOKEN
   script:
     - test ! -e packages/portal/storybook-static && yarn install
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - test ! -e packages/portal/storybook-static && (yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - yarn npx:lerna run pack:ci --since origin/master
     - (cd packages/portal/storybook-static/static; ls > index.txt)
@@ -169,6 +169,6 @@ chromatic_publish_merge_to_dest_branch:
   script:
     - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
     - test ! -e packages/portal/storybook-static && yarn install
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - test ! -e packages/portal/storybook-static && (yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
