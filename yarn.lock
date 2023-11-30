@@ -8418,6 +8418,14 @@
     "@storybook/global" "^5.0.0"
     ts-dedent "^2.0.0"
 
+"@storybook/addon-storysource@^7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/addon-storysource/-/addon-storysource-7.6.1.tgz#4a4d7d77db0aae2df5470bbb176c25ef3f6c2359"
+  integrity sha1-Sk19d9sKri31Rwu7F2wl7z9sI1k=
+  dependencies:
+    estraverse "^5.2.0"
+    tiny-invariant "^1.3.1"
+
 "@storybook/addon-toolbars@6.5.16":
   version "6.5.16"
   resolved "https://registry.yarnpkg.com/@storybook/addon-toolbars/-/addon-toolbars-6.5.16.tgz#9de04f9cc64b68d6cb680aa1c4fbf874e11afa32"
@@ -8805,6 +8813,18 @@
     telejson "^7.2.0"
     tiny-invariant "^1.3.1"
 
+"@storybook/channels@7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/channels/-/channels-7.6.1.tgz#00df76421901a7b1bdd63a21e5cdac4b07ff0215"
+  integrity sha1-AN92QhkBp7G91joh5c2sSwf/AhU=
+  dependencies:
+    "@storybook/client-logger" "7.6.1"
+    "@storybook/core-events" "7.6.1"
+    "@storybook/global" "^5.0.0"
+    qs "^6.10.0"
+    telejson "^7.2.0"
+    tiny-invariant "^1.3.1"
+
 "@storybook/cli@7.6.0":
   version "7.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/cli/-/cli-7.6.0.tgz#f92c498ba665ce20e419a7147d86bfa14bf926b0"
@@ -8905,6 +8925,13 @@
   version "7.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/client-logger/-/client-logger-7.6.0.tgz#fdf4ccc3858a6e30e376a6a60403f623ff1fb551"
   integrity sha1-/fTMw4WKbjDjdqamBAP2I/8ftVE=
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
+"@storybook/client-logger@7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/client-logger/-/client-logger-7.6.1.tgz#c0910d8fe2aabc6729c185030958efd5dac15106"
+  integrity sha1-wJENj+KqvGcpwYUDCVjv1drBUQY=
   dependencies:
     "@storybook/global" "^5.0.0"
 
@@ -9159,6 +9186,13 @@
   version "7.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/core-events/-/core-events-7.6.0.tgz#efe10c3da0140c3bee8cd6cc7cf5904f9127d29d"
   integrity sha1-7+EMPaAUDDvujNbMfPWQT5En0p0=
+  dependencies:
+    ts-dedent "^2.0.0"
+
+"@storybook/core-events@7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/core-events/-/core-events-7.6.1.tgz#4d284a4e7e125ef7b7236c55fad25139f33172b3"
+  integrity sha1-TShKTn4SXve3I2xV+tJROfMxcrM=
   dependencies:
     ts-dedent "^2.0.0"
 
@@ -9433,6 +9467,27 @@
     "@storybook/router" "7.6.0"
     "@storybook/theming" "7.6.0"
     "@storybook/types" "7.6.0"
+    dequal "^2.0.2"
+    lodash "^4.17.21"
+    memoizerific "^1.11.3"
+    semver "^7.3.7"
+    store2 "^2.14.2"
+    telejson "^7.2.0"
+    ts-dedent "^2.0.0"
+
+"@storybook/manager-api@^7.6.0":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/manager-api/-/manager-api-7.6.1.tgz#95d4f956468a211ba79422cb45d98d8726f95dfe"
+  integrity sha1-ldT5VkaKIRunlCLLRdmNhyb5Xf4=
+  dependencies:
+    "@storybook/channels" "7.6.1"
+    "@storybook/client-logger" "7.6.1"
+    "@storybook/core-events" "7.6.1"
+    "@storybook/csf" "^0.1.2"
+    "@storybook/global" "^5.0.0"
+    "@storybook/router" "7.6.1"
+    "@storybook/theming" "7.6.1"
+    "@storybook/types" "7.6.1"
     dequal "^2.0.2"
     lodash "^4.17.21"
     memoizerific "^1.11.3"
@@ -9767,6 +9822,15 @@
     memoizerific "^1.11.3"
     qs "^6.10.0"
 
+"@storybook/router@7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/router/-/router-7.6.1.tgz#8fe94ddbef506864343d73a65e182a2af64a50f3"
+  integrity sha1-j+lN2+9QaGQ0PXOmXhgqKvZKUPM=
+  dependencies:
+    "@storybook/client-logger" "7.6.1"
+    memoizerific "^1.11.3"
+    qs "^6.10.0"
+
 "@storybook/semver@^7.3.2":
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/@storybook/semver/-/semver-7.3.2.tgz#f3b9c44a1c9a0b933c04e66d0048fcf2fa10dac0"
@@ -9929,12 +9993,32 @@
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
 
+"@storybook/theming@7.6.1", "@storybook/theming@^7.6.0":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/theming/-/theming-7.6.1.tgz#97c7aa09842af2c11f5d04b0afe39b234aebcb23"
+  integrity sha1-l8eqCYQq8sEfXQSwr+ObI0rryyM=
+  dependencies:
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
+    "@storybook/client-logger" "7.6.1"
+    "@storybook/global" "^5.0.0"
+    memoizerific "^1.11.3"
+
 "@storybook/types@7.6.0":
   version "7.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/types/-/types-7.6.0.tgz#8cdffb37acae14deb7f2a55581bd8fca1b40819b"
   integrity sha1-jN/7N6yuFN638qVVgb2PyhtAgZs=
   dependencies:
     "@storybook/channels" "7.6.0"
+    "@types/babel__core" "^7.0.0"
+    "@types/express" "^4.7.0"
+    file-system-cache "2.3.0"
+
+"@storybook/types@7.6.1":
+  version "7.6.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/types/-/types-7.6.1.tgz#3bb7f5e8ee39af53fb5aaf6ed713f8ad656151cf"
+  integrity sha1-O7f16O45r1P7Wq9u1xP4rWVhUc8=
+  dependencies:
+    "@storybook/channels" "7.6.1"
     "@types/babel__core" "^7.0.0"
     "@types/express" "^4.7.0"
     file-system-cache "2.3.0"
@@ -16802,7 +16886,7 @@ enhanced-resolve@^5.10.0:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
 
-enhanced-resolve@^5.15.0:
+enhanced-resolve@^5.15.0, enhanced-resolve@^5.7.0:
   version "5.15.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/enhanced-resolve/-/enhanced-resolve-5.15.0.tgz#1af946c7d93603eb88e9896cee4904dc012e9c35"
   integrity sha1-GvlGx9k2A+uI6Yls7kkE3AEunDU=
@@ -31920,6 +32004,24 @@ ts-toolbelt@^6.15.1:
   version "6.15.5"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/ts-toolbelt/-/ts-toolbelt-6.15.5.tgz#cb3b43ed725cb63644782c64fbcad7d8f28c0a83"
   integrity sha1-yztD7XJctjZEeCxk+8rX2PKMCoM=
+
+tsconfig-paths-webpack-plugin@^4.1.0:
+  version "4.1.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-4.1.0.tgz#3c6892c5e7319c146eee1e7302ed9e6f2be4f763"
+  integrity sha1-PGiSxecxnBRu7h5zAu2ebyvk92M=
+  dependencies:
+    chalk "^4.1.0"
+    enhanced-resolve "^5.7.0"
+    tsconfig-paths "^4.1.2"
+
+tsconfig-paths@^4.1.2:
+  version "4.2.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tsconfig-paths/-/tsconfig-paths-4.2.0.tgz#ef78e19039133446d244beac0fd6a1632e2d107c"
+  integrity sha1-73jhkDkTNEbSRL6sD9ahYy4tEHw=
+  dependencies:
+    json5 "^2.2.2"
+    minimist "^1.2.6"
+    strip-bom "^3.0.0"
 
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"

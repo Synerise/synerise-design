@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 import Button, { ButtonProps } from '@synerise/ds-button';
 
-type ButtonWithLabel = React.ComponentProps<typeof Button> & { label?: string };
+type ButtonWithLabel = ButtonProps & { label?: string };
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<ButtonWithLabel> = {
@@ -45,7 +45,6 @@ type Story = StoryObj<ButtonWithLabel>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Single: Story = {
-  // render() => (<Button label="test" ></Button>)
   args: {
     type: 'primary',
     disabled: false,
@@ -56,7 +55,7 @@ export const Single: Story = {
 export const Creator: Story = {
   render: ({label, ...args}) => ( <Button.Creator {...args}>{label}</Button.Creator>),
   args: {
-    ...Single.args,
+    // ...Single.args,
   },
 };
 

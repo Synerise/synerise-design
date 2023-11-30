@@ -63,7 +63,7 @@ function addLinksToStories(babel) {
         if (modulePath === null) {
           return;
         }
-        if (!(state.filename.includes('stories/') && state.filename.includes('index.stories.tsx'))) {
+        if (!(state.filename.includes('stories/') && state.filename.includes('stories.tsx'))) {
           return;
         }
         const containsStoriesProperty = path.node.declaration.properties.find(p => p.key.name === 'stories') !== null;

@@ -1,12 +1,8 @@
 import React, { ReactNode } from 'react';
 import type { Preview } from '@storybook/react';
-
 import { DSProvider } from '@synerise/ds-core';
-
-import { DEFAULT_DATA_FORMAT_NOTATION, getDataFormatConfigFromNotation } from '@synerise/ds-data-format';
+import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
 import '@synerise/ds-core/dist/js/style';
-
-
 
 
 const preview: Preview = {
@@ -32,7 +28,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
+  decorators: [  
     (Story, storyContext) => {
       
       const optionalUserDefinedDataFormatConfig = {
@@ -41,17 +37,18 @@ const preview: Preview = {
         timeFormatNotation: storyContext.globals.dataFormat,
         numberFormatNotation: storyContext.globals.dataFormat
       }
-    
-      const props = {
+      
+      const DSProviderProps = {
         code: 'en_GB',
         ...optionalUserDefinedDataFormatConfig,
         locale: storyContext.globals.locale,
       };
       
-      return (<DSProvider {...props}>
-        { Story() }
-      </DSProvider>)
-      
+      return (
+        <DSProvider {...DSProviderProps}>
+          { Story() }
+        </DSProvider>
+      );
     }
   ],
   parameters: {

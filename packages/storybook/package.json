@@ -28,12 +28,16 @@
     "@storybook/addon-essentials": "^7.6.0",
     "@storybook/addon-interactions": "^7.6.0",
     "@storybook/addon-links": "^7.6.0",
+    "@storybook/addon-storysource": "^7.6.1",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.6.0",
     "@storybook/jest": "0.2.3",
     "@storybook/react": "^7.6.0",
     "@storybook/react-webpack5": "^7.6.0",
+    "@storybook/manager-api": "^7.6.0",
+    "@storybook/theming": "^7.6.0",
     "@storybook/test": "^7.6.0",
-    "storybook": "^7.6.0"
+    "storybook": "^7.6.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
   }
 }
