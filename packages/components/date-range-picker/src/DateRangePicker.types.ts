@@ -89,6 +89,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];
   filterRangeDisplayMode?: RangeDisplayMode;
+  getPopupContainer?: (node: HTMLElement) => HTMLElement;
 }
 
 /**
