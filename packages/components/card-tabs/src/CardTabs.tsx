@@ -1,11 +1,11 @@
-import React, { ReactElement, Children, cloneElement, isValidElement } from 'react';
-import { ReactSortable, MoveEvent, ItemInterface } from 'react-sortablejs';
+import React, { Children, cloneElement, isValidElement } from 'react';
+import { ReactSortable, MoveEvent } from 'react-sortablejs';
 
 import Button from '@synerise/ds-button';
 import { defaultColorsOrder } from '@synerise/ds-core';
 
 import * as S from './CardTabs.styles';
-import { CardTabsProps } from './CardTabs.types';
+import { CardTabsProps, CardTabsItem } from './CardTabs.types';
 import { CardTabProps } from './CardTab/CardTab.types';
 
 const SORTABLE_CONFIG = {
@@ -22,13 +22,8 @@ const SORTABLE_CONFIG = {
   },
 };
 const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children = [], addTabLabel }: CardTabsProps) => {
-  const handleChangeOrder = (newOrder: (ReactElement & ItemInterface)[]): void => {
-    onChangeOrder &&
-      onChangeOrder(
-        newOrder.map(item => ({
-          ...item.props,
-        }))
-      );
+  const handleChangeOrder = (newOrder: CardTabsItem[]): void => {
+    onChangeOrder && onChangeOrder(newOrder);
   };
   const addTab = onAddTab ? (
     <S.CardTabsAddButton className="ds-card-tabs-nodrag" data-testid="card-tabs-add-button">
@@ -44,6 +39,7 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
   );
 
   const childrenCount = Children.count(children);
+  const childrenData = Children.map(children, child => child.props);
 
   const renderChildren = () => (
     <>
@@ -63,7 +59,7 @@ const CardTabs = ({ className, onChangeOrder, onAddTab, maxTabsCount, children =
     <S.CardTabsContainer className={`ds-card-tabs ${className || ''}`} data-testid="card-tabs-container">
       {onChangeOrder && childrenCount > 1 ? (
         <div data-testid="card-tabs-sortable">
-          <ReactSortable {...SORTABLE_CONFIG} list={children} setList={handleChangeOrder}>
+          <ReactSortable<CardTabProps> {...SORTABLE_CONFIG} list={childrenData} setList={handleChangeOrder}>
             {renderChildren()}
             {addTab}
           </ReactSortable>
