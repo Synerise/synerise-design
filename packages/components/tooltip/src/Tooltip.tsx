@@ -1,7 +1,7 @@
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdTooltip from 'antd/lib/tooltip';
-import React, { ReactNode, useRef, useState, useMemo, useEffect } from 'react';
+import React, { ReactNode, useRef, useState, useMemo, useEffect, MouseEvent } from 'react';
 import { Carousel } from 'antd';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
@@ -70,13 +70,17 @@ const Tooltip = ({
     );
   }, [button]);
 
+  const captureClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   const tooltipComponent = (
-    <S.TooltipComponent tooltipType={type}>
+    <S.TooltipComponent onClick={captureClick} tooltipType={type}>
       <S.TooltipContent>
         <S.TooltipStatus tooltipType={type}>{type && shouldRenderStatus(status, type)}</S.TooltipStatus>
         <S.TooltipTitle tooltipType={type}>
           {type && shouldRenderIcon(type, icon)}
-          {type && shouldRenderTitle(type, title)}
+          <S.TooltipTitleWrapper>{type && shouldRenderTitle(type, title)}</S.TooltipTitleWrapper>
         </S.TooltipTitle>
         <S.TooltipDescription tooltipType={type}>
           {type === 'largeScrollable' && (
@@ -92,7 +96,7 @@ const Tooltip = ({
   );
 
   const buttonComponent = (
-    <S.TooltipComponent tooltipType={type}>
+    <S.TooltipComponent onClick={captureClick} tooltipType={type}>
       <S.TooltipContent>
         <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
         <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
@@ -103,7 +107,7 @@ const Tooltip = ({
   );
 
   const tutorialComponent = (
-    <S.TooltipComponent tooltipType={type}>
+    <S.TooltipComponent onClick={captureClick} tooltipType={type}>
       <Carousel autoplay={tutorialAutoplay} autoplaySpeed={tutorialAutoplaySpeed} effect="fade">
         {tutorials &&
           tutorials.map(tutorial => (
