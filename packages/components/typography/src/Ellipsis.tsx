@@ -6,9 +6,10 @@ import { EllipsisText } from './CommonElements';
 export type EllipsisProps = {
   tooltip?: ReactNode;
   children?: ReactNode;
+  className?: string;
 };
 
-export const Ellipsis = ({ tooltip, children }: EllipsisProps) => {
+export const Ellipsis = ({ tooltip, children, className }: EllipsisProps) => {
   const textComponentRef = useRef<HTMLDivElement | null>(null);
   const [truncated, setTruncated] = useState(false);
 
@@ -39,7 +40,9 @@ export const Ellipsis = ({ tooltip, children }: EllipsisProps) => {
 
   return (
     <Tooltip title={truncated ? tooltip : undefined}>
-      <EllipsisText ref={textComponentRef}>{children}</EllipsisText>
+      <EllipsisText className={className} ref={textComponentRef}>
+        {children}
+      </EllipsisText>
     </Tooltip>
   );
 };

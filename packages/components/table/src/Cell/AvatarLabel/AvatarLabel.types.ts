@@ -1,14 +1,17 @@
-import * as React from 'react';
+import { ReactElement, ReactNode } from 'react';
 
-export type Props = {
-  avatar: React.ReactElement;
+export type AvatarLabelProps = {
+  avatar: ReactElement;
   avatarAction?: () => void;
-  title: string | React.ReactNode;
-  labels?: (string | React.ReactNode)[];
-  icon?: React.ReactElement;
+  avatarLink?: string;
+  title: ReactNode;
+  labels?: ReactNode[];
+  icon?: ReactElement;
   textSize?: 'small' | 'default';
   ellipsis?: boolean;
   maxWidth?: number;
   avatarSize?: string | 'large';
-  loader?: React.ReactElement;
+  loader?: ReactElement;
 };
+// @deprecated - use AvatarLabelProps instead
+export type Props = AvatarLabelProps;
