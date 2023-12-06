@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.43...@synerise/ds-table@0.47.0) (2023-12-06)
+
+
+### Features
+
+* **table:** ported avatar label solution from UL ([46dfcfe](https://github.com/synerise/synerise-design/commit/46dfcfe7a557aa45aa9b2d35a406da696428f61a))
+
+
+
+
+
 ## [0.46.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.42...@synerise/ds-table@0.46.43) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-table

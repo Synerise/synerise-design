@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.2.50...@synerise/ds-checkbox-tristate@0.2.51) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-checkbox-tristate
+
+
+
+
+
 ## [0.2.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-checkbox-tristate@0.2.49...@synerise/ds-checkbox-tristate@0.2.50) (2023-11-09)
 
 **Note:** Version bump only for package @synerise/ds-checkbox-tristate

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.12...@synerise/ds-factors@0.20.13) (2023-12-06)
+
+
+### Bug Fixes
+
+* **factors:** change debounce logic in NumberInput ([436ccaf](https://github.com/Synerise/synerise-design/commit/436ccaf70e053b948fd8ba7dbf29263d5b352629))
+
+
+
+
+
 ## [0.20.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.11...@synerise/ds-factors@0.20.12) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-factors

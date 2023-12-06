@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-description",
-  "version": "0.3.87",
+  "version": "0.3.88",
   "description": "Description UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@synerise/ds-core": "^0.40.7",
     "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-tooltip": "^0.14.10",
+    "@synerise/ds-tooltip": "^0.14.11",
     "classnames": "2.3.2",
     "react-intl": "3.12.0"
   },

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.25.5...@synerise/ds-date-range-picker@0.26.0) (2023-12-06)
+
+
+### Features
+
+* **date-range-picker:** adds getPopupContainer prop ([7d6a1db](https://github.com/Synerise/synerise-design/commit/7d6a1db80ace779e10236aee42e3f702afb7a55c))
+
+
+
+
+
 ## [0.25.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.25.4...@synerise/ds-date-range-picker@0.25.5) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

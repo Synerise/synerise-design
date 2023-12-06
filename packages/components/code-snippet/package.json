@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-code-snippet",
-  "version": "0.3.41",
+  "version": "0.3.42",
   "description": "CodeSnippet UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,7 +36,7 @@
     "@synerise/ds-button": "^0.18.7",
     "@synerise/ds-icon": "^0.58.7",
     "@synerise/ds-scrollbar": "^0.6.13",
-    "@synerise/ds-tooltip": "^0.14.10",
+    "@synerise/ds-tooltip": "^0.14.11",
     "@synerise/ds-utils": "^0.24.21",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^11.2.0",
