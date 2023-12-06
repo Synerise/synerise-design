@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React, { MouseEvent } from 'react';
 import { v4 as uuid } from 'uuid';
 import * as S from './AvatarLabel.styles';
-import { Props } from './AvatarLabel.types';
+import { AvatarLabelProps } from './AvatarLabel.types';
 
-const AvatarLabel: React.FC<Props> = ({
+const AvatarLabel = ({
   avatar,
   avatarAction,
+  avatarLink,
   title,
   labels,
   icon,
@@ -14,13 +15,22 @@ const AvatarLabel: React.FC<Props> = ({
   maxWidth,
   avatarSize,
   loader,
-}) => {
-  return (
-    <S.AvatarLabel onClick={avatarAction}>
+}: AvatarLabelProps) => {
+  const titleEllipsisProps = ellipsis ? { ellipsis: { tooltip: title } } : {};
+
+  const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey) {
+      event.stopPropagation();
+    } else if (avatarAction) {
+      event.preventDefault();
+    }
+  };
+  const cellContent = (
+    <>
       {icon && <S.Icon>{icon}</S.Icon>}
       <S.Avatar clickable={Boolean(avatarAction)}>{avatar}</S.Avatar>
       <S.Description>
-        <S.Title ellipsis={Boolean(ellipsis)} maxWidth={maxWidth} avatarSize={avatarSize}>
+        <S.Title {...titleEllipsisProps} hasEllipsis={ellipsis} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}
         </S.Title>
         {labels?.map(
@@ -32,6 +42,18 @@ const AvatarLabel: React.FC<Props> = ({
         )}
         {loader && <S.Loader>{loader}</S.Loader>}
       </S.Description>
+    </>
+  );
+
+  return (
+    <S.AvatarLabel onClick={avatarAction}>
+      {avatarLink ? (
+        <S.AvatarLink href={avatarLink} onClick={handleLinkClick}>
+          {cellContent}
+        </S.AvatarLink>
+      ) : (
+        cellContent
+      )}
     </S.AvatarLabel>
   );
 };

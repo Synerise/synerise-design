@@ -139,4 +139,12 @@ export const EllipsisText = styled.div`
   ${H1}, ${H2}, ${H3}, ${H4}, ${H5}, ${H6}, ${H7} {
     display: inline;
   }
+  ${MediumText},
+  ${SmallText},
+  ${XSmallText} {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
 `;
