@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx' --ignore '**/*.spec.ts' --ignore '**/*.spec.tsx' --ignore '**/*.spec.constants.ts' --ignore '**/*.spec.constants.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx' --ignore '**/*.spec.ts' --ignore '**/*.spec.tsx' --ignore '**/*.spec.constants.ts' --ignore '**/*.spec.constants.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
