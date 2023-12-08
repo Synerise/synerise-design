@@ -9,8 +9,6 @@ import { join, dirname, resolve } from 'path';
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-console.log(getAbsolutePath('tsconfig-paths-webpack-plugin'));
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -48,35 +46,6 @@ const config: StorybookConfig = {
   staticDirs: ['../public'],
   async webpackFinal(config, { configType }) {
     
-    const plugins: any[] = [];
-    if (process.env['STORYBOOK_REPO_URL_PREFIX'] || process.env['STORYBOOK_BUNDLE_DS_SRC_DOCS_LINKS']) {
-      plugins.concat([
-        require('@synerise/portal-plugin-docs-inline-stories-links-to-sources').addLinksToStories,
-      ])
-    }
-    if (configType !== 'PRODUCTION') {
-      plugins.concat([
-        [
-          'transform-rename-import',
-          {
-            replacements: [
-              {
-                original: '@synerise/ds-core(/dist)?(.*)',
-                replacement: (importName, isDist, rest) => {
-                  let result = '@synerise/ds-core/src';
-                  return isDist ? `${result}${rest}` : `${result}/js`;
-                },
-              },
-              {
-                original: '@synerise/ds-((?!core|icon)[a-z0-9-]+)(/dist)?(.*)',
-                replacement: '@synerise/ds-$1/src$3',
-              },
-            ],
-          },
-        ],
-      ])
-    }
-    
     config.module = {
       ...(config.module || {}),
       rules: [
@@ -88,7 +57,24 @@ const config: StorybookConfig = {
               loader: 'babel-loader',
               options: {
                 presets: ['babel-preset-react-app'],
-                plugins: plugins
+                plugins: configType !== 'PRODUCTION' ? [[
+                  'transform-rename-import',
+                    {
+                      replacements: [
+                        {
+                          original: '@synerise/ds-core(/dist)?(.*)',
+                          replacement: (importName, isDist, rest) => {
+                            let result = '@synerise/ds-core/src';
+                            return isDist ? `${result}${rest}` : `${result}/js`;
+                          },
+                        },
+                        {
+                          original: '@synerise/ds-((?!core|icon)[a-z0-9-]+)(/dist)?(.*)',
+                          replacement: '@synerise/ds-$1/src$3',
+                        },
+                      ],
+                    },
+                  ]] : []
               },
             },
           ],
@@ -119,21 +105,8 @@ const config: StorybookConfig = {
         ...(config.resolve?.extensions || []),
         '.ts',
         '.tsx'
-      ],
-      plugins: [
-        ...(config.resolve?.plugins || []),
-        new TsconfigPathsPlugin({
-          configFile: '../../config/typescript/tsconfig.base.json',
-          extensions: config.resolve?.extensions,
-          baseUrl: '../../'
-        }),
-      ],
-      alias: {
-        ...(config.resolve?.alias || {}),
-        '@': resolve(__dirname, '../../components')
-      }
+      ]
     }
-    
     return config;
   },
 };

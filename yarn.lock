@@ -16886,7 +16886,7 @@ enhanced-resolve@^5.10.0:
     graceful-fs "^4.2.4"
     tapable "^2.2.0"
 
-enhanced-resolve@^5.15.0, enhanced-resolve@^5.7.0:
+enhanced-resolve@^5.15.0:
   version "5.15.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/enhanced-resolve/-/enhanced-resolve-5.15.0.tgz#1af946c7d93603eb88e9896cee4904dc012e9c35"
   integrity sha1-GvlGx9k2A+uI6Yls7kkE3AEunDU=
@@ -32004,24 +32004,6 @@ ts-toolbelt@^6.15.1:
   version "6.15.5"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/ts-toolbelt/-/ts-toolbelt-6.15.5.tgz#cb3b43ed725cb63644782c64fbcad7d8f28c0a83"
   integrity sha1-yztD7XJctjZEeCxk+8rX2PKMCoM=
-
-tsconfig-paths-webpack-plugin@^4.1.0:
-  version "4.1.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tsconfig-paths-webpack-plugin/-/tsconfig-paths-webpack-plugin-4.1.0.tgz#3c6892c5e7319c146eee1e7302ed9e6f2be4f763"
-  integrity sha1-PGiSxecxnBRu7h5zAu2ebyvk92M=
-  dependencies:
-    chalk "^4.1.0"
-    enhanced-resolve "^5.7.0"
-    tsconfig-paths "^4.1.2"
-
-tsconfig-paths@^4.1.2:
-  version "4.2.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tsconfig-paths/-/tsconfig-paths-4.2.0.tgz#ef78e19039133446d244beac0fd6a1632e2d107c"
-  integrity sha1-73jhkDkTNEbSRL6sD9ahYy4tEHw=
-  dependencies:
-    json5 "^2.2.2"
-    minimist "^1.2.6"
-    strip-bom "^3.0.0"
 
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"

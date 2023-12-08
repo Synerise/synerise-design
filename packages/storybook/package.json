@@ -37,7 +37,6 @@
     "@storybook/manager-api": "^7.6.0",
     "@storybook/theming": "^7.6.0",
     "@storybook/test": "^7.6.0",
-    "storybook": "^7.6.0",
-    "tsconfig-paths-webpack-plugin": "^4.1.0"
+    "storybook": "^7.6.0"
   }
 }
