@@ -642,8 +642,8 @@ describe('DateRangePicker', () => {
     const transformedLifetimeValue = defaultValueTransformer(LIFETIME_VALUE as DateRange);
     const transformedLifetimeValueWithFilter = defaultValueTransformer(LIFETIME_VALUE_WITH_FILTER as DateRange);
     
-    expect(Object.keys(transformedLifetimeValue)).toEqual(["type"]);
-    expect(Object.keys(transformedLifetimeValueWithFilter)).toEqual(["type", "filter"]);
+    expect(Object.keys(transformedLifetimeValue).sort()).toEqual(["type","translationKey"].sort());
+    expect(Object.keys(transformedLifetimeValueWithFilter).sort()).toEqual(["type", "filter","translationKey"].sort());
     
   });
   it('clicking button DATE-PICKER.NOW sets the type to absolute', () => {
