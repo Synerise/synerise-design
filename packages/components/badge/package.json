@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-badge",
-  "version": "0.6.44",
+  "version": "0.6.45",
   "description": "Badge UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,7 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "^0.14.0"
+    "@synerise/ds-typography": "^0.14.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -42,7 +42,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-utils": "^0.24.22",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

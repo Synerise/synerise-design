@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.19...@synerise/ds-filter@0.15.20) (2023-12-11)
+
+
+### Bug Fixes
+
+* added missing sortablejs dependencies ([5e3e50f](https://github.com/Synerise/synerise-design/commit/5e3e50fc9f39c8cd7e7cba96c717a8f1198d9f9c))
+
+
+
+
+
 ## [0.15.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.18...@synerise/ds-filter@0.15.19) (2023-12-06)
 
 **Note:** Version bump only for package @synerise/ds-filter

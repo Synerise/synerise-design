@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.10...@synerise/ds-input@0.19.11) (2023-12-11)
+
+
+### Bug Fixes
+
+* **input:** wordkaround for input group with single child ([72be45c](https://github.com/synerise/synerise-design/commit/72be45c44ec8a0b160c538bda8d90a3e2001919e))
+
+
+
+
+
 ## [0.19.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.9...@synerise/ds-input@0.19.10) (2023-12-06)
 
 **Note:** Version bump only for package @synerise/ds-input

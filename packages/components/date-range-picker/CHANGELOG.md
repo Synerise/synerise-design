@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.0...@synerise/ds-date-range-picker@0.26.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds translationKey for lifetime option ([3c6764c](https://github.com/Synerise/synerise-design/commit/3c6764c937c29a6e0d52ca7a78e80d6ab70e7119))
+
+
+
+
+
 # [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.25.5...@synerise/ds-date-range-picker@0.26.0) (2023-12-06)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.64](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.63...@synerise/ds-condition@0.20.64) (2023-12-11)
+
+
+### Bug Fixes
+
+* added missing sortablejs dependencies ([5e3e50f](https://github.com/Synerise/synerise-design/commit/5e3e50fc9f39c8cd7e7cba96c717a8f1198d9f9c))
+
+
+
+
+
 ## [0.20.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.20.62...@synerise/ds-condition@0.20.63) (2023-12-06)
 
 **Note:** Version bump only for package @synerise/ds-condition
