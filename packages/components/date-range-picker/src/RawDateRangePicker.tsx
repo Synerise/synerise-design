@@ -25,6 +25,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   if (value.key === 'ALL_TIME' || isLifetime(value)) {
     return {
       type: 'ABSOLUTE',
+      translationKey,
       ...(filter ? { filter } : {}),
     };
   }
