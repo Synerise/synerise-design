@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import type { CardTabProps } from './CardTab/CardTab.types';
 
 export type CardTabsProps = {
@@ -6,7 +7,7 @@ export type CardTabsProps = {
   onAddTab?: () => void;
   addTabLabel?: string;
   maxTabsCount?: number;
-  children?: JSX.Element[];
+  children?: Array<ReactElement<CardTabProps>>;
 };
 
 /*
