@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { text, select, number, boolean } from '@storybook/addon-knobs';
+import faker from 'faker';
+import { select, number, boolean } from '@storybook/addon-knobs';
 import CardSelect from '@synerise/ds-card-select';
 import { theme } from '@synerise/ds-core';
 import { AbTestXl, ChartPieL } from '@synerise/ds-icon';
@@ -12,21 +13,18 @@ const positionOfElements = {
   right: 'right',
 };
 
+const getDescription = (hasDescription: boolean): string => {
+  return hasDescription ?  faker.lorem.sentences(2) : '';
+};
+
 const stories = {
   cardWithIcon:() =>{
     const [selected, setSelected] = React.useState<boolean>(false);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
-    const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
     const setBackground = boolean('SetBackground', false);
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
-    const getDescription = (hasDescription: boolean): string => {
-      if (hasDescription) {
-        return descriptionMessage;
-      } else {
-        return '';
-      }
-    };
+    
 
     const commonProps = {
       tickVisible,
@@ -46,7 +44,7 @@ const stories = {
             <CardSelect
               {...commonProps}
               title={`A/B Tests`}
-              description={descriptionMessage && getDescription(hasDescription)}
+              description={getDescription(hasDescription)}
               value={selected}
               onChange={() => setSelected(!selected)}
               disabled={boolean('Disabled', false)}
@@ -61,15 +59,9 @@ const stories = {
     const [selected, setSelected] = React.useState<boolean>(false);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
-    const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
+    
     const setBackground = boolean('SetBackground', false);
-    const getDescription = (hasDescription: boolean): string => {
-      if (hasDescription) {
-        return descriptionMessage;
-      } else {
-        return '';
-      }
-    };
+    
 
     const commonProps = {
       tickVisible,
@@ -88,7 +80,7 @@ const stories = {
             <CardSelect
               {...commonProps}
               title={`A/B Tests`}
-              description={descriptionMessage && getDescription(hasDescription)}
+              description={getDescription(hasDescription)}
               disabled={boolean('Disabled', false)}
               value={selected}
               onChange={()=> setSelected(!selected)}
@@ -138,18 +130,11 @@ const stories = {
     const [selectedIndex, setSelectedIndex] = React.useState<number>(null);
     const tickVisible = boolean('With tick', true);
     const hasDescription = boolean('Set Description', true);
-    const descriptionMessage = text('Description', 'Suspendisse a pellentesque duim maecenas malesuad.');
+    
     const elementsPosition = select('Position of elements', positionOfElements, positionOfElements.center);
     const itemsInGroup = number('Number of cards rendered',2,{min:2});
     const columns = select('Number of columns',[2,3],2)
-    const getDescription = (hasDescription: boolean): string => {
-      if (hasDescription) {
-        return descriptionMessage;
-      } else {
-        return '';
-      }
-    };
-
+    
     const commonProps = {
       tickVisible,
       icon: <AbTestXl/>,
@@ -169,8 +154,9 @@ const stories = {
               <CardSelect
               {...commonProps}
               key={key}
+              stretchToFit={boolean('stretchToFit', false)}
               title={`A/B Tests`}
-              description={descriptionMessage && getDescription(hasDescription)}
+              description={getDescription(hasDescription)}
               value={selectedIndex === index}
               onChange={()=> selectedIndex === index? setSelectedIndex(null): setSelectedIndex(index)}
               disabled={boolean('Disabled', false)}
@@ -205,6 +191,7 @@ const stories = {
             {[...Array(itemsInGroup).keys()].map((key,index)=>(
               <CardSelect
               {...commonProps}
+              stretchToFit={boolean('stretchToFit', false)}
               title={`Column`}
               value={selectedIndex === index}
               onChange={()=> selectedIndex === index? setSelectedIndex(null): setSelectedIndex(index)}
