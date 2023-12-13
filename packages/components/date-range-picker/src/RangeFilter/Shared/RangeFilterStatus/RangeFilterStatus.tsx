@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import Button from '@synerise/ds-button';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Badge from '@synerise/ds-badge';
 import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
@@ -16,7 +15,7 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
     <S.Container>
       <S.Title>{texts?.filter}</S.Title>
       {!filter ? (
-        <Button.Creator label={label} disabled={disabled} onClick={onClick} block />
+        <S.CreatorButton label={label} disabled={disabled} onClick={onClick} block />
       ) : (
         <ContentItem
           onClick={(event: MouseEvent<HTMLDivElement>) => {

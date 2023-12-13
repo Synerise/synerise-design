@@ -8,4 +8,5 @@ export interface ExpanderProps {
   size?: 'S' | 'M';
   disabled?: boolean;
   expanded?: boolean;
+  className?: string;
 }

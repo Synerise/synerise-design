@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
+import classnames from 'classnames';
 import Icon, { AddM } from '@synerise/ds-icon';
 
 import * as S from './Creator.styles';
 import { CreatorProps } from './Creator.types';
 
-const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block, status }) => {
+const Creator = ({ onClick, disabled, label, block, status, className }: CreatorProps) => {
   const [pressed, setPressed] = React.useState(false);
   const onPress = React.useCallback((): void => {
     setPressed(true);
@@ -15,7 +16,7 @@ const Creator: React.FC<CreatorProps> = ({ onClick, disabled, label, block, stat
   return (
     <S.Creator
       block={block}
-      className="ds-button-creator"
+      className={classnames([className, 'ds-button-creator'])}
       disabled={disabled}
       onClick={onClick}
       onMouseDown={onPress}

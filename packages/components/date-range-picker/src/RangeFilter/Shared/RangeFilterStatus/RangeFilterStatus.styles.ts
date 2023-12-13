@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '@synerise/ds-button';
 
 export const BadgeWrapper = styled.div`
   margin-right: 16px;
@@ -17,7 +18,11 @@ export const SuffixText = styled.span`
   font-weight: 500;
   margin-right: 16px;
 `;
-
+export const CreatorButton = styled(Button.Creator)`
+  &&& {
+    justify-content: flex-start;
+  }
+`;
 export const Container = styled.div`
   padding: 16px 24px 24px;
 `;

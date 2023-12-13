@@ -79,7 +79,7 @@ const uploadStyles = ({ theme }: ThemeProps): FlattenSimpleInterpolation => css`
     }
   }
 `;
-export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...rest} />)<{
+export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Button {...rest} />)<{
   withLabel: boolean;
   pressed: boolean;
   status: string;
@@ -92,13 +92,12 @@ export const Creator = styled(({ pressed, withLabel, ...rest }) => <Button {...r
     }};
     opacity: ${(props): string => (props.disabled ? `0.4` : '1')};
     height: 48px;
-    ${(props): string | false => props.withLabel && !props.block && `min-width: 200px;`}
-    padding: 0;
+    padding: ${(props): string => (props.withLabel ? `0 12px 0 0` : '0')};
     border-radius: 3px;
     border: 1px dashed ${({ theme }): string => theme.palette['grey-400']};
     background: transparent;
     transition: all 0.3s ease;
-    justify-content: ${(props): string => (props.withLabel ? `flex-start` : 'center')};
+    justify-content: ${(props): string => (props.withLabel && !props.block ? `flex-start` : 'center')};
     align-items: center;
 
     ${IconContainer} {
