@@ -106,6 +106,7 @@ const getExpanderProps = (isSplit = false) => ({
 });
 const getCreatorKnobs = (isSplit = false) => ({
   disabled: boolean('Disabled', false),
+  block: boolean('Block', false),
   status: select('Set creator mode', CREATOR_TYPE, CREATOR_TYPE.default),
 });
 const getBackgroundStyles = type => {
@@ -276,12 +277,14 @@ const stories = {
       },
     } as object;
     return (
+      <div style={{width: '300px'}}>
       <Button.Creator
         {...props}
         onClick={() => {
           console.log('Button clicked!');
         }}
       ></Button.Creator>
+      </div>
     );
   },
   creatorWithLabel: () => {
@@ -293,7 +296,7 @@ const stories = {
       },
     } as object;
     return (
-      <div>
+      <div style={{width: '300px'}}>
         <Button.Creator {...props} label={'Add position'} onClick={action('Creator Click')}></Button.Creator>
       </div>
     );

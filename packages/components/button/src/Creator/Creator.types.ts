@@ -9,5 +9,5 @@ export interface CreatorProps {
   label?: string | React.ReactNode;
   block?: boolean;
   status?: CreatorStatus;
-
+  className?: string;
 }

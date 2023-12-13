@@ -21,6 +21,7 @@ export interface CheckboxButtonProps extends ButtonPropsOmitted {
   hasError?: boolean;
   indeterminate?: boolean;
   onChange?: (checked: boolean) => void;
+  className?: string;
 }
 
 export interface ButtonCheckboxIconProps {

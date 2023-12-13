@@ -18,4 +18,5 @@ type ButtonPropsOmitted = Omit<
 export interface StarButtonProps extends ButtonPropsOmitted {
   active?: boolean;
   hasError?: boolean;
+  className?: string;
 }
