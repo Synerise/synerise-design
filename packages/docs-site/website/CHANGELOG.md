@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.30.0...docs@0.31.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](http://gitlab.synerise.com/Frontend/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+### Features
+
+* **scrollbar:** added new design for scrollbar ([0fe6588](http://gitlab.synerise.com/Frontend/synerise-design/commit/0fe65884204bdc2fabae4b54d559f84e5761d7fb))
+
+
+
+
+
 # [0.30.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.5...docs@0.30.0) (2023-10-06)
 
 

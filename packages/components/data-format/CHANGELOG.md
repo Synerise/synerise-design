@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.5...@synerise/ds-data-format@0.4.6) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](https://github.com/Synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+
+
+
 ## [0.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.4...@synerise/ds-data-format@0.4.5) (2023-12-11)
 
 **Note:** Version bump only for package @synerise/ds-data-format

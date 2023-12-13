@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-information-card",
-  "version": "0.3.49",
+  "version": "0.3.50",
   "description": "InformationCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,18 +34,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "^0.7.50",
-    "@synerise/ds-avatar": "^0.15.15",
-    "@synerise/ds-badge": "^0.6.45",
-    "@synerise/ds-button": "^0.18.8",
-    "@synerise/ds-card": "^0.15.12",
-    "@synerise/ds-description": "^0.3.89",
-    "@synerise/ds-divider": "^0.6.5",
-    "@synerise/ds-dropdown": "^0.17.90",
-    "@synerise/ds-icon": "^0.58.8",
-    "@synerise/ds-menu": "^0.18.7",
-    "@synerise/ds-subtle-form": "^0.9.86",
-    "@synerise/ds-tooltip": "^0.14.12",
+    "@synerise/ds-alert": "^0.7.51",
+    "@synerise/ds-avatar": "^0.15.16",
+    "@synerise/ds-badge": "^0.6.46",
+    "@synerise/ds-button": "^0.18.9",
+    "@synerise/ds-card": "^0.15.13",
+    "@synerise/ds-description": "^0.3.90",
+    "@synerise/ds-divider": "^0.6.6",
+    "@synerise/ds-dropdown": "^0.17.91",
+    "@synerise/ds-icon": "^0.58.9",
+    "@synerise/ds-menu": "^0.18.8",
+    "@synerise/ds-subtle-form": "^0.9.87",
+    "@synerise/ds-tooltip": "^0.14.13",
     "@synerise/ds-typography": "^0.14.1",
     "rc-trigger": "5.2.5"
   },
@@ -55,7 +55,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.22",
+    "@synerise/ds-utils": "^0.24.23",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1"
   }

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.198.0](https://github.com/synerise/synerise-design/compare/portal@0.197.4...portal@0.198.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* **button:** creator block styles fixed ([2ecef7c](https://github.com/synerise/synerise-design/commit/2ecef7ce5bd12b9b6d3c52b913b66852babfa15d))
+* **card-select:** fixed vertical alignemtn in group of cards ([406952a](https://github.com/synerise/synerise-design/commit/406952a26ce2f5ddb32cc7945bf52d54d323134b))
+* **card-tabs:** change width for card and cards container ([5ccb79e](https://github.com/synerise/synerise-design/commit/5ccb79e506b1f7dfdc41cc9ecf46159e0fbd4abc))
+* **information-card:** force word wrap inside infocard ([d31a68a](https://github.com/synerise/synerise-design/commit/d31a68a5fdea003b58a4887c94d3b55e6084dca9))
+* **switch:** styled switch ([80d89fc](https://github.com/synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+### Features
+
+* **scrollbar:** added new design for scrollbar ([0fe6588](https://github.com/synerise/synerise-design/commit/0fe65884204bdc2fabae4b54d559f84e5761d7fb))
+
+
+
+
+
 ## [0.197.4](https://github.com/synerise/synerise-design/compare/portal@0.197.3...portal@0.197.4) (2023-11-16)
 
 **Note:** Version bump only for package portal

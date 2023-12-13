@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.53](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.52...@synerise/ds-switch@0.4.53) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](https://github.com/synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+
+
+
 ## [0.4.52](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.51...@synerise/ds-switch@0.4.52) (2023-12-11)
 
 **Note:** Version bump only for package @synerise/ds-switch

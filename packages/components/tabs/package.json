@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tabs",
-  "version": "0.13.88",
+  "version": "0.13.89",
   "description": "Tabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -33,12 +33,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.8",
-    "@synerise/ds-dropdown": "^0.17.90",
-    "@synerise/ds-icon": "^0.58.8",
-    "@synerise/ds-menu": "^0.18.7",
+    "@synerise/ds-button": "^0.18.9",
+    "@synerise/ds-dropdown": "^0.17.91",
+    "@synerise/ds-icon": "^0.58.9",
+    "@synerise/ds-menu": "^0.18.8",
     "@synerise/ds-typography": "^0.14.1",
-    "@synerise/ds-utils": "^0.24.22",
+    "@synerise/ds-utils": "^0.24.23",
     "classnames": "2.3.2"
   },
   "peerDependencies": {

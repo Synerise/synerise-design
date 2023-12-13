@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.8...@synerise/ds-button@0.18.9) (2023-12-13)
+
+
+### Bug Fixes
+
+* **button:** creator block styles fixed ([2ecef7c](https://github.com/synerise/synerise-design/commit/2ecef7ce5bd12b9b6d3c52b913b66852babfa15d))
+
+
+
+
+
 ## [0.18.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.7...@synerise/ds-button@0.18.8) (2023-12-11)
 
 **Note:** Version bump only for package @synerise/ds-button
