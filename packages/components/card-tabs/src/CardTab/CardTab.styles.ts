@@ -119,7 +119,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
   align-items: center;
   justify-content: flex-start;
   padding: 12px;
-  width: 180px;
+  width: 168px;
   @media (max-width: 588px) {
     max-width: 145px;
   }
