@@ -63,7 +63,7 @@ function defaultStory() {
     () => (
       <InformationCard
         title={text('Title', 'Title')}
-        subtitle="subtitle"
+        subtitle={text('Subtitle', 'Subtitle')}
         icon={icon}
         iconColor={iconColor}
         notice={notice}

@@ -21,6 +21,7 @@ export const ActionButtonContainer = styled.div`
 export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boolean }>`
   margin-left: ${(props): string => (props.asTooltip ? '0' : '8px')};
   width: 294px;
+  overflow-wrap: anywhere;
 
   ${CardStyles.Card.Container} {
     background-color: white;
