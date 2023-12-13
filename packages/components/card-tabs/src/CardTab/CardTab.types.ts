@@ -32,7 +32,7 @@ export type CardTabTexts = {
   duplicateMenuItem?: string | ReactNode;
 };
 
-export interface CardTabProps {
+export type CardTabProps = {
   intl: IntlShape;
   id: number;
   name: string;
@@ -56,7 +56,8 @@ export interface CardTabProps {
   itemData?: unknown;
   actionsAsDropdown?: boolean;
   renderSuffix?: (props: CardTabSuffixProps) => ReactNode;
-}
+};
+
 export type CardTabSuffixProps = Omit<
   CardTabProps & {
     handleRemove?: (event?: MouseEvent<HTMLElement>) => void;
