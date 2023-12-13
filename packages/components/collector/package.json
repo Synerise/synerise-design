@@ -33,6 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-list-item": "0.0.4",
     "@synerise/ds-button": "^0.18.8",
     "@synerise/ds-divider": "^0.6.5",
     "@synerise/ds-icon": "^0.58.8",

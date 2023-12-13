@@ -1,8 +1,14 @@
-import { SwitchProps } from 'antd/lib/switch';
-import * as React from 'react';
+import { SwitchProps as AntdSwitchProps } from 'antd/lib/switch';
+import { ReactNode } from 'react';
 
-export interface Props extends Omit<SwitchProps, 'size'> {
-  errorText?: string | React.ReactNode;
-  label: string | React.ReactNode;
-  description?: string | React.ReactNode;
-}
+type TooltipProps = {
+  tooltipIcon?: ReactNode;
+  tooltip?: ReactNode;
+};
+
+export type Props = Omit<AntdSwitchProps, 'size'> & {
+  errorText?: ReactNode;
+  label: ReactNode;
+  description?: ReactNode;
+  withFormElementMargin?: boolean;
+} & TooltipProps;

@@ -33,8 +33,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@synerise/ds-input": "^0.19.11",
     "@synerise/ds-typography": "^0.14.1",
     "@synerise/ds-utils": "^0.24.22",
+    "classnames": "2.3.2",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
