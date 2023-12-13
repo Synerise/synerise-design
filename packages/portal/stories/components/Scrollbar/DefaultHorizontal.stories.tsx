@@ -2,19 +2,19 @@ import * as React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { boolean } from '@storybook/addon-knobs';
 
-const decorator = storyFn => <div style={{ width: 400, background: '#fff' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: 350, background: '#fff' }}>{storyFn()}</div>;
 
 const stories = {
-  default: () => {
+  defaultHorizontal: () => {
     return (
       <Scrollbar
-        maxHeight={250}
+        maxWidth={300}
         classes={'test'}
         absolute={boolean('Scrollbar over text', false)}
         loading={boolean('Show loading status', false)}
         largeSize={boolean('Scrollbar large size', false)}
       >
-        <div>
+        <div style={{ width: '600px' }}> 
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laborum nisi officia ut vitae? Architecto
           dolor dolores doloribus exercitationem explicabo ipsam, nisi nobis odit quo, recusandae rem ut. Architecto
           corporis deserunt distinctio dolores dolorum eligendi ex fuga, harum impedit ipsam molestias mollitia nesciunt

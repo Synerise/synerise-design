@@ -5,6 +5,7 @@
   width: calc(100% - 8px) !important;
   transform: translateX(-4px);
   overflow: hidden;
+  margin-right: 12px;
 }
 
 .ps__rail-y.ps__rail-y {
@@ -14,6 +15,7 @@
   height: calc(100% - 8px) !important;
   transform: translateY(4px);
   overflow: hidden;
+  margin-bottom: 12px;
 }
 
 .ps:hover .ps__rail-x,
@@ -32,7 +34,7 @@
 
 .ps__thumb-x {
   background-color: @grey-300;
-  border-radius: 2px;
+  border-radius: 3px;
   height: 3px;
   bottom: 4px;
   margin: 0 4px;
@@ -40,7 +42,7 @@
 
 .ps__thumb-y {
   background-color: @grey-300;
-  border-radius: 2px;
+  border-radius: 3px;
   width: 3px;
   right: 4px;
 }
@@ -54,7 +56,44 @@
 
 .ps__rail-y:hover > .ps__thumb-y,
 .ps__rail-y:focus > .ps__thumb-y,
-.ps__rail-y.ps--clicking .ps__thumb-y {
+.ps__rail-y.ps--clicking .ps__thumb-y,
+.ps__thumb-y {
   background-color: @grey-500;
   width: 3px;
+}
+
+.large-size {
+  .ps__rail-x.ps__rail-x,
+  .ps__rail-y.ps__rail-y {
+    opacity: 1;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .ps__thumb-x,
+  .ps__thumb-y,
+  .ps__thumb-y:hover,
+  .ps__thumb-y--clicking,
+  .ps__rail-y:hover > .ps__thumb-y,
+  .ps__rail-y:focus > .ps__thumb-y,
+  .ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: @blue-050;
+    border-radius: 3px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid @grey-300;
+  }
+
+  .ps__rail-x:hover > .ps__thumb-x,
+  .ps__rail-x:focus > .ps__thumb-x,
+  .ps__rail-x.ps--clicking .ps__thumb-x,
+  .ps__rail-y:hover > .ps__thumb-y,
+  .ps__rail-y:focus > .ps__thumb-y,
+  .ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: @blue-100;
+    border: 1px solid @grey-400;
+    height: 16px;
+  }
 }

@@ -47,8 +47,14 @@ const stories = {
       );
     };
 
+    
     return (
-      <Scrollbar maxHeight={250} absolute={boolean('Scrollbar over text', true)} withDnd={true}>
+      <Scrollbar 
+        maxHeight={250} 
+        absolute={boolean('Scrollbar over text', true)} 
+        withDnd={true} 
+        largeSize={boolean('Scrollbar large size', false)} 
+      >
         <ReactSortable {...SORTABLE_CONFIG} list={store.state.data} setList={handleChangeOrder}>
           {store.state.data.map(renderItem)}
         </ReactSortable>

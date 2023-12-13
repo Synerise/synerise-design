@@ -29,6 +29,7 @@ const stories = {
         absolute={boolean('Scrollbar over text', true)}
         loading={false}
         withDnd={false}
+        largeSize={boolean('Scrollbar large size', false)}
         onScroll={handleScroll}
       >
         <List

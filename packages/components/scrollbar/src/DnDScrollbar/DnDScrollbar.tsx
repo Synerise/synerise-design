@@ -9,6 +9,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
   maxHeight,
   absolute,
   loading,
+  largeSize,
   onScroll,
   onYReachEnd,
   fetchData,
@@ -154,11 +155,11 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
   return (
     <S.ScrollbarContainer data-testid="dnd-scrollbar">
       <S.ScrollbarContent ref={contentRef} {...props} style={{ maxHeight }} onScroll={handleScroll}>
-        <S.ScrollbarWrapper ref={wrapperRef} loading={loading} absolute={absolute}>
+        <S.ScrollbarWrapper ref={wrapperRef} loading={loading} absolute={absolute} largeSize={largeSize}>
           {children}
         </S.ScrollbarWrapper>
       </S.ScrollbarContent>
-      <S.ScrollbarTrackWrapper>
+      <S.ScrollbarTrackWrapper largeSize={largeSize}>
         <S.TrackVertical ref={scrollTrackRef} onClick={handleTrackClick} />
         <S.ThumbVertical
           ref={scrollThumbRef}

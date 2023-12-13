@@ -1,13 +1,13 @@
 import styled, { keyframes } from 'styled-components';
 
 const spinnerAnimation = keyframes`
-  from {
-    transform: rotateZ(0deg);
-  }
-  
-  to {
-    transform: rotateZ(360deg);
-  }
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
 `;
 
 export const Loader = styled.div<{ loading?: boolean }>`
