@@ -8048,6 +8048,13 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-list-item@0.0.2":
+  version "0.0.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-list-item/-/ds-list-item-0.0.2.tgz#1206c124870ddef6f25479d4144e8533bc35f0a7"
+  integrity sha1-EgbBJIcN3vbyVHnUFE6FM7w18Kc=
+  dependencies:
+    "@synerise/ds-switch" "^0.4.49"
+
 "@synerise/ds-tooltip@0.14.2":
   version "0.14.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-tooltip/-/ds-tooltip-0.14.2.tgz#f543de8f76ec2451b5eee4f5edfa0e295622b15f"
@@ -12815,6 +12822,11 @@ dayjs@^1.8.35:
   version "1.8.35"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.35.tgz#67118378f15d31623f3ee2992f5244b887606888"
   integrity sha512-isAbIEenO4ilm6f8cpqvgjZCsuerDAz2Kb7ri201AiNn58aqXuaLJEnCtfIMdCvERZHNGRY5lDMTr/jdAnKSWQ==
+
+dayjs@~1.8.35:
+  version "1.8.36"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.36.tgz#be36e248467afabf8f5a86bae0de0cdceecced50"
+  integrity sha512-3VmRXEtw7RZKAf+4Tv1Ym9AGeo8r8+CjDi26x+7SYQil1UqtqdaokhzoEJohqlzt0m5kacJSDhJQkG/LWhpRBw==
 
 debounce@^1.2.0:
   version "1.2.0"

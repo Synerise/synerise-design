@@ -33,7 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "dayjs": "^1.8.35",
+    "dayjs": "~1.8.35",
     "moment": "^2.25.3",
     "react-intl": "3.12.0"
   },

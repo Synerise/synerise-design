@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
-
 import Switch from '@synerise/ds-switch';
 import markdown from '@/radio/README.md';
 
@@ -9,7 +8,7 @@ const stories = {
     const hasError = boolean('Set validation state', false);
     const disabled = boolean('Disabled', false);
     const [checked, setChecked] = React.useState(true);
-    return(
+    return (
       <Switch
         disabled={disabled}
         onChange={setChecked}
@@ -31,7 +30,9 @@ const stories = {
         return '';
       }
     };
-    return(
+    const tooltipConfig = text('Tooltip Content', null);
+
+    return (
       <Switch
         label={text('Label', 'Option')}
         disabled={disabled}
@@ -39,6 +40,7 @@ const stories = {
         defaultChecked={true}
         checked={checked && !disabled}
         errorText={getErrorText(hasError)}
+        tooltip={tooltipConfig}
       />
     );
   },
@@ -54,22 +56,26 @@ const stories = {
         return '';
       }
     };
-    return(
+
+    const tooltipConfig = text('Tooltip Content', null);
+
+    return (
       <Switch
         label={text('Label', 'Option')}
         disabled={disabled}
-        description={text('Description',"Description")}
+        description={text('Description', 'Description')}
         onChange={setChecked}
         defaultChecked={true}
         checked={checked && !disabled}
         errorText={getErrorText(hasError)}
+        tooltip={tooltipConfig}
       />
     );
   },
 };
 
 export default {
-name: 'Components/Switch',
+  name: 'Components/Switch',
   config: {
     notes: {
       markdown,
