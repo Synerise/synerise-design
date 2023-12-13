@@ -31,6 +31,7 @@ import Scrollbar from '@synerise/ds-scrollbar'
 | Property  | Description                                                          | Type                     | Default |
 |-----------|----------------------------------------------------------------------|--------------------------|---------|
 | absolute  | Whether the scrollbar is over content                                | boolean                  | `true`  |
+| largeSize  | Larger scrollbar                                | boolean                  | boolean  | false
 | children  | Scrolled component                                                   | React.ReactNode / string | -       |
 | classes   | String with optional classes                                         | string                   | -       |
 | fetchData | Callback called when scrollbar has been scrolled to the end in Y axis | () => void               | -       |
