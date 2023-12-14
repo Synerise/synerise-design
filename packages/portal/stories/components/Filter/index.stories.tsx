@@ -50,7 +50,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
 });
 
 const DEFAULT_STATE = {
-  expressions: [DEFAULT_EXPRESSION()],
+  expressions: [DEFAULT_EXPRESSION(), DEFAULT_EXPRESSION()],
   matching: true,
 };
 

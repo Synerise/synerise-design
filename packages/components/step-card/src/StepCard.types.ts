@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 export type StepCardTexts = {
   matching: string;
@@ -7,20 +7,26 @@ export type StepCardTexts = {
   notConditionType: string;
   namePlaceholder: string;
   moveTooltip: string;
+  moveUpTooltip: string;
+  moveDownTooltip: string;
   deleteTooltip: string;
   duplicateTooltip: string;
 };
 
 export type StepCardProps = {
-  footer?: React.ReactNode;
+  footer?: ReactNode;
   matching: boolean;
   name: string;
   onChangeName: (name: string) => void;
   onChangeMatching: (matching: boolean) => void;
   onDelete: () => void;
   onDuplicate: () => void;
+  onMove: (index: number, offset: number) => void;
+  expressionIndex: number;
+  expressionCount: number;
+  expressionMoved?: boolean;
   texts?: StepCardTexts;
   isHeaderVisible?: boolean;
   readOnly?: boolean;
-  headerRightSide?: React.ReactNode;
+  headerRightSide?: ReactNode;
 };

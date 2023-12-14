@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useEffect, useState, useRef, TransitionEvent } from 'react';
 import { useIntl } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
@@ -11,18 +11,19 @@ import { usePrevious } from '@synerise/ds-utils';
 import * as S from './Filter.styles';
 import { Expression, FilterProps } from './Filter.types';
 
-const SORTABLE_CONFIG = {
-  ghostClass: 'ghost-element',
-  className: 'sortable-list',
-  handle: '.step-card-drag-handler',
-  animation: 200,
-  forceFallback: true,
-  filter: '.ds-matching-toggle, .step-card-right-side',
-};
-
 const component = {
   LOGIC: Logic,
   STEP: StepCard,
+};
+
+const TRANSITION_DURATION = 0.5;
+const TRANSITION_DURATION_MAX = 1.5;
+const TOP_TRANSITION_ZINDEX = '10003';
+const BOTTOM_TRANSITION_ZINDEX = '10002';
+
+const rearrangeItems = (sourceArray: Expression[], oldIndex: number, newIndex: number) => {
+  sourceArray.splice(newIndex, 0, sourceArray.splice(oldIndex, 1)[0]);
+  return [...sourceArray];
 };
 
 const Filter = ({
@@ -47,6 +48,62 @@ const Filter = ({
 }: FilterProps) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = useState<string | null>(null);
+  const expressionRefs = useRef({});
+  const movedExpressionId = useRef<string | null>(null);
+
+  const SORTABLE_CONFIG = {
+    ghostClass: 'ghost-element',
+    className: 'sortable-list',
+    handle: '.step-card-drag-handler',
+    animation: 200,
+    forceFallback: true,
+    filter: '.ds-matching-toggle, .step-card-right-side',
+    onStart: () => {
+      movedExpressionId.current = null;
+    },
+  };
+
+  useEffect(() => {
+    if (movedExpressionId.current && previousExpressions?.length) {
+      const oldIndex = previousExpressions?.findIndex((expression: Expression) => {
+        return expression.id === movedExpressionId.current;
+      });
+      const newIndex = expressions?.findIndex((expression: Expression) => {
+        return expression.id === movedExpressionId.current;
+      });
+      if (oldIndex !== undefined && oldIndex !== newIndex) {
+        const sign = oldIndex < newIndex ? 1 : -1;
+        const low = Math.min(oldIndex, newIndex);
+        const high = Math.max(oldIndex, newIndex);
+
+        const movedExpressionHeight =
+          sign * expressionRefs.current[movedExpressionId.current].getBoundingClientRect().height;
+        let expressionOffset = 0;
+        const movedCardTransformDuration = Math.min((high - low) * TRANSITION_DURATION, TRANSITION_DURATION_MAX);
+        expressions.forEach((expression: Expression, index: number) => {
+          if (expression.id !== movedExpressionId.current && index >= low && index <= high) {
+            expressionOffset += expressionRefs.current[expression.id].getBoundingClientRect().height;
+            expressionRefs.current[expression.id].style.transition = '';
+            expressionRefs.current[expression.id].style.zIndex = BOTTOM_TRANSITION_ZINDEX;
+            expressionRefs.current[expression.id].style.transform = `translateY(${movedExpressionHeight}px)`;
+          }
+        });
+        expressionRefs.current[movedExpressionId.current].style.transition = '';
+        expressionRefs.current[movedExpressionId.current].style.zIndex = TOP_TRANSITION_ZINDEX;
+        expressionRefs.current[movedExpressionId.current].style.transform = `translateY(${-sign * expressionOffset}px)`;
+
+        requestAnimationFrame(() => {
+          expressions.forEach((expression: Expression) => {
+            expressionRefs.current[expression.id].style.transition = `transform ${
+              expression.id === movedExpressionId.current ? movedCardTransformDuration : TRANSITION_DURATION
+            }s`;
+            expressionRefs.current[expression.id].style.transform = '';
+          });
+          movedExpressionId.current = null;
+        });
+      }
+    }
+  });
 
   useEffect(() => {
     if (previousExpressions && expressions.length > previousExpressions.length) {
@@ -117,9 +174,35 @@ const Filter = ({
     [expressions, maxConditionsLimit]
   );
 
+  const stepExpressionCount = useMemo(() => {
+    return expressions.filter(expression => expression.type === 'STEP').length;
+  }, [expressions]);
+
+  const handleTransitionEnd = (event: TransitionEvent) => {
+    if (event.currentTarget && event.currentTarget instanceof HTMLElement) {
+      event.currentTarget.style.removeProperty('z-index');
+    }
+  };
+
+  const handleMove = useCallback(
+    (index: number, offset: number) => {
+      const newIndex = index + offset;
+      const newOrder = rearrangeItems([...expressions], index, newIndex);
+      movedExpressionId.current = newOrder[newIndex].id;
+      onChangeOrder && onChangeOrder(newOrder);
+    },
+    [expressions, onChangeOrder]
+  );
+
   const componentProps = useCallback(
     (expression: Expression, index: number) => {
       const contextTypeTexts = getContextTypeTexts(expression);
+      const reorderProps = {
+        expressionIndex: index,
+        expressionMoved: movedExpressionId.current === expression.id,
+        expressionCount: stepExpressionCount,
+        onMove: handleMove,
+      };
 
       const props = {
         LOGIC: {
@@ -127,6 +210,7 @@ const Filter = ({
           options: logicOptions,
         },
         STEP: {
+          ...reorderProps,
           onChangeMatching: (value: boolean): void => onChangeStepMatching(expression.id, value),
           onChangeName: (value: string): void => onChangeStepName(expression.id, value),
           onDelete: (): void => onDeleteStep(expression.id),
@@ -146,9 +230,11 @@ const Filter = ({
     [
       activeExpressionId,
       getContextTypeTexts,
+      handleMove,
       isActive,
       isLimitExceeded,
       logicOptions,
+      movedExpressionId,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,
@@ -157,6 +243,7 @@ const Filter = ({
       renderStepContent,
       renderStepFooter,
       renderStepHeaderRightSide,
+      stepExpressionCount,
       text.step,
       visibilityConfig.isStepCardHeaderVisible,
     ]
@@ -166,8 +253,11 @@ const Filter = ({
     (expression, index) => {
       const Component = component[expression.type];
       const LogicComponent = expression.logic && component[expression.logic.type];
+
       return (
         <S.ExpressionWrapper
+          onTransitionEnd={handleTransitionEnd}
+          ref={element => (expressionRefs.current[expression.id] = element)}
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}

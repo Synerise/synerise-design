@@ -68,9 +68,7 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
       opacity: 0;
       height: 0;
     }
-    ${Footer} {
-      display: none;
-    }
+    ${Footer},
     ${LogicWrapper} {
       display: none;
     }
