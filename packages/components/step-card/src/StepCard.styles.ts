@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Icon from '@synerise/ds-icon';
+
+const fadeout = keyframes`
+  from {
+    opacity: 1
+  }
+  to {
+    opacity: 0;
+  }
+`;
 
 export const Container = styled.div`
   display: flex;
@@ -11,6 +20,36 @@ export const Container = styled.div`
   border-radius: 3px;
   box-shadow: 0 4px 12px 0 #2329360a;
   min-width: 594px;
+`;
+
+export const RecentlyMoved = styled.span<{ duration: number }>`
+  animation: ${fadeout} 0.1s linear ${(props): number => (props.duration - 200) / 1000}s 1 forwards;
+`;
+
+export const CountDownWrapper = styled.div`
+  vertical-align: middle;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  color: inherit;
+`;
+
+export const MoveByOffsetLabel = styled.span``;
+
+export const CountDownSpinner = styled.g<{ duration: number }>`
+  stroke: ${(props): string => props.theme.palette['grey-500']};
+  stroke-width: 2px;
+  stroke-dasharray: 75;
+  transition: stroke-dashoffset ${(props): number => props.duration}s linear;
+`;
+
+export const MoveByOffset = styled.span<{ offset: number }>`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  ${MoveByOffsetLabel} {
+    display: ${(props): string => (props.offset === 0 ? 'none' : 'block')};
+  }
 `;
 
 export const CrudsWrapper = styled.div`
@@ -39,6 +78,9 @@ export const Header = styled.div`
   position: relative;
   cursor: grab;
   &:hover {
+    ${RecentlyMoved} {
+      display: none;
+    }
     ${CrudsWrapper} {
       opacity: 1;
       visibility: visible;

@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React, { useCallback, useMemo, ReactText } from 'react';
 import Subject from '@synerise/ds-subject';
 import ContextSelector from '@synerise/ds-context-selector';
+
 import { useIntl } from 'react-intl';
 import { DragHandleM } from '@synerise/ds-icon';
 import * as S from '../Condition.style';
@@ -10,8 +11,7 @@ import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
 import { SUBJECT } from '../Condition';
 
-// eslint-disable-next-line import/prefer-default-export
-export const ConditionStep: React.FC<T.ConditionStepProps> = ({
+export const ConditionStep = ({
   step,
   texts,
   index,
@@ -42,9 +42,9 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
   hoverDisabled,
   inputProps,
   readOnly = false,
-}) => {
+}: T.ConditionStepProps) => {
   const { formatMessage } = useIntl();
-  const text = React.useMemo(
+  const text = useMemo(
     () => ({
       stepNamePlaceholder: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PLACEHOLDER', defaultMessage: 'Step name' }),
       removeConditionRowTooltip: formatMessage({
@@ -70,20 +70,20 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [texts, formatMessage]
   );
 
-  const onActivate = React.useCallback(
+  const onActivate = useCallback(
     () => (setCurrentStep ? (): void => setCurrentStep(step.id) : undefined),
     [step.id, setCurrentStep]
   );
 
-  const onAddCondition = React.useCallback(
-    (stepId: React.ReactText) => {
+  const onAddCondition = useCallback(
+    (stepId: ReactText) => {
       addCondition && addCondition(stepId);
       onActivate && onActivate();
     },
     [addCondition, onActivate]
   );
 
-  const stepHeader = React.useMemo(
+  const stepHeader = useMemo(
     () => (
       <StepHeader
         index={index}
@@ -100,7 +100,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName, readOnly]
   );
 
-  const addConditionButton = React.useMemo(() => {
+  const addConditionButton = useMemo(() => {
     return (
       !readOnly &&
       addCondition &&
@@ -129,7 +129,7 @@ export const ConditionStep: React.FC<T.ConditionStepProps> = ({
     step.addConditionErrorText,
   ]);
 
-  const renderConditionRow = React.useCallback(
+  const renderConditionRow = useCallback(
     (condition, conditionIndex) => {
       const handleActivation =
         (conditionId: string): ((field: string) => void) =>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState, useCallback, useMemo, ReactText } from 'react';
 import { useIntl } from 'react-intl';
 import { ReactSortable } from 'react-sortablejs';
 
@@ -28,7 +28,7 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const Condition: React.FC<T.ConditionProps> = props => {
+const Condition = (props: T.ConditionProps) => {
   const {
     steps,
     addCondition,
@@ -58,7 +58,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     readOnly = false,
   } = props;
   const { formatMessage } = useIntl();
-  const text = React.useMemo(
+  const text = useMemo(
     () => ({
       addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
       conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
@@ -66,13 +66,13 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }),
     [texts, formatMessage]
   );
-  const [currentConditionId, setCurrentConditionId] = React.useState<React.ReactText>(DEFAULT_CONDITION);
-  const [currentStepId, setCurrentStepId] = React.useState<React.ReactText>(DEFAULT_STEP);
-  const [currentField, setCurrentField] = React.useState<string>(autoOpenedComponent);
+  const [currentConditionId, setCurrentConditionId] = useState<ReactText>(DEFAULT_CONDITION);
+  const [currentStepId, setCurrentStepId] = useState<ReactText>(DEFAULT_STEP);
+  const [currentField, setCurrentField] = useState<string>(autoOpenedComponent);
 
   const prevSteps = usePrevious(steps);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       autoOpenedComponent &&
       steps.length &&
@@ -86,7 +86,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const newConditionId =
       prevSteps &&
       steps &&
@@ -112,7 +112,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [currentConditionId, currentField, prevSteps, steps]);
 
-  const clearConditionRow = React.useCallback(
+  const clearConditionRow = useCallback(
     stepId => {
       const step = steps.find(s => s.id === stepId);
       if (step === undefined || step.conditions.length === 0) return;
@@ -141,8 +141,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [steps, removeCondition, addCondition, autoClearCondition, onChangeFactorValue, onChangeOperator, onChangeParameter]
   );
 
-  const selectSubject = React.useCallback(
-    (value, stepId: React.ReactText): void => {
+  const selectSubject = useCallback(
+    (value, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       setCurrentField(PARAMETER);
@@ -151,8 +151,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [clearConditionRow, onChangeSubject]
   );
 
-  const selectContext = React.useCallback(
-    (value, stepId: React.ReactText): void => {
+  const selectContext = useCallback(
+    (value, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       setCurrentField(PARAMETER);
@@ -161,8 +161,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [clearConditionRow, onChangeContext]
   );
 
-  const selectParameter = React.useCallback(
-    (stepId: React.ReactText, conditionId: React.ReactText, value): void => {
+  const selectParameter = useCallback(
+    (stepId: ReactText, conditionId: ReactText, value): void => {
       if (conditionId && onChangeParameter) {
         autoClearCondition && onChangeOperator && onChangeOperator(stepId, conditionId, undefined);
         autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
@@ -175,8 +175,8 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [autoClearCondition, onChangeFactorValue, onChangeOperator, onChangeParameter]
   );
 
-  const selectOperator = React.useCallback(
-    (stepId: React.ReactText, conditionId: React.ReactText, value): void => {
+  const selectOperator = useCallback(
+    (stepId: ReactText, conditionId: ReactText, value): void => {
       if (conditionId && onChangeOperator) {
         autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
         onChangeOperator(stepId, conditionId, value);
@@ -188,7 +188,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [autoClearCondition, onChangeFactorValue, onChangeOperator]
   );
 
-  const setStepConditionFactorType = React.useCallback(
+  const setStepConditionFactorType = useCallback(
     (stepId, conditionId, factorType): void => {
       setCurrentConditionId(conditionId);
       setCurrentStepId(stepId);
@@ -198,7 +198,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [onChangeFactorType]
   );
 
-  const setStepConditionFactorValue = React.useCallback(
+  const setStepConditionFactorValue = useCallback(
     (stepId, conditionId, value) => {
       setCurrentField(DEFAULT_FIELD);
       setCurrentStepId(stepId);
@@ -207,9 +207,9 @@ const Condition: React.FC<T.ConditionProps> = props => {
     [onChangeFactorValue]
   );
 
-  const draggableEnabled = React.useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
+  const draggableEnabled = useMemo(() => onChangeOrder && steps.length > 1, [steps, onChangeOrder]);
 
-  const handleAddStep = React.useCallback(() => {
+  const handleAddStep = useCallback(() => {
     const newStepId = addStep ? addStep() : undefined;
     if (newStepId) {
       setCurrentStepId(newStepId);
@@ -217,11 +217,11 @@ const Condition: React.FC<T.ConditionProps> = props => {
     }
   }, [addStep]);
 
-  const handleAddCondition = React.useMemo(() => {
+  const handleAddCondition = useMemo(() => {
     if (!addCondition) {
       return undefined;
     }
-    return (stepId: React.ReactText): void => {
+    return (stepId: ReactText): void => {
       const newConditionId = addCondition ? addCondition(stepId) : undefined;
       if (newConditionId) {
         setCurrentConditionId(newConditionId);
@@ -231,14 +231,14 @@ const Condition: React.FC<T.ConditionProps> = props => {
     };
   }, [addCondition]);
 
-  const handleClearActiveCondition = React.useCallback(() => {
+  const handleClearActiveCondition = useCallback(() => {
     onDeactivate && onDeactivate(currentStepId, currentConditionId);
     setCurrentConditionId(DEFAULT_CONDITION);
     setCurrentStepId(DEFAULT_STEP);
     setCurrentField(DEFAULT_FIELD);
   }, [currentConditionId, currentStepId, onDeactivate]);
 
-  return React.useMemo(() => {
+  return useMemo(() => {
     return (
       <S.Condition className="ds-conditions" data-popup-container>
         <ReactSortable {...SORTABLE_CONFIG} list={steps} setList={onChangeOrder || NOOP}>
@@ -297,6 +297,7 @@ const Condition: React.FC<T.ConditionProps> = props => {
     addStep,
     handleAddStep,
     text,
+    readOnly,
     renderAddStep,
     currentStepId,
     getPopupContainerOverride,
@@ -320,7 +321,6 @@ const Condition: React.FC<T.ConditionProps> = props => {
     showSuffix,
     hoverDisabled,
     inputProps,
-    readOnly,
   ]);
 };
 

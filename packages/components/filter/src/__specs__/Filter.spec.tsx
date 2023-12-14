@@ -160,6 +160,9 @@ describe('Filter component', () => {
     // ASSERT
     expect(getByText('Right side')).toBeTruthy();
   });
+  it.todo('Should render single stepcard with up / down reorder arrows disabled')
+  it.todo('Should render multiple stepcard with up / down reorder arrows enabled')
+  it.todo('Should change order when up / down reorder arrows clicked n-times')
 });
 
 
