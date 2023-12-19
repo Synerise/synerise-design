@@ -42,16 +42,21 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   typescript: {
-    // Overrides the default Typescript configuration to allow multi-package components to be documented via Autodocs.
     reactDocgen: 'react-docgen-typescript',
-    // reactDocgenTypescriptOptions: {
-    //   shouldExtractLiteralValuesFromEnum: true,
-    //   tsconfigPath: '../../config/typescript/tsconfig.base.json',
-      
-    //   propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    // },
-    skipCompiler: true,
-    check: false,
+    reactDocgenTypescriptOptions: {
+      // By default react-doc-gen-typescript filters node_modules type, this includes antd types
+      tsconfigPath: '../../config/typescript/tsconfig.base.json',
+      propFilter: (prop: any) => {
+        const res = /antd/.test(prop.parent?.fileName) || !/node_modules/.test(prop.parent?.fileName);
+        return prop.parent ? res : true;
+      },
+      // The following 2 options turns string types into string literals and allows
+      shouldExtractLiteralValuesFromEnum: true,
+      savePropValueAsString: true,
+    },
+    // skipCompiler: true,
+    // check: false,
+
   },
   staticDirs: ['../public'],
   async webpackFinal(config, { configType }) {

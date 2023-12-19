@@ -6,7 +6,7 @@ import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
 
 type AllButtonProps = ButtonProps &  { 
-  label?: string;
+  
   size?: 'small' | 'middle' | 'large';
   loading?: boolean | {delay?: number};
   block?: boolean;
@@ -15,8 +15,8 @@ type AllButtonProps = ButtonProps &  {
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<AllButtonProps> = {
   title: 'Components/Button/Button',
-  render: ({label, ...args }) => (
-    <Button {...args}>{label}</Button>
+  render: ({children, ...args }) => (
+    <Button {...args}>{children}</Button>
   ),
   component: Button,
   parameters: {
@@ -39,16 +39,22 @@ const meta: Meta<AllButtonProps> = {
       description: 'CSS JustifyContentProperty '
     },
     groupVariant: {
-      control: { type: 'inline-radio',
-      labels: {
+      control: {
+        type: 'inline-radio',
+        labels: {
           '': 'undefined',
         },
       },
       options: ['', 'left-rounded', 'squared', 'right-rounded']
     },
+    className: {
+      control: false
+    },
     size: {
       table: {
-        
+        defaultValue: {
+          summary: 'undefined'
+        }
       },
       control: { 
         type: 'inline-radio',
@@ -93,12 +99,14 @@ const meta: Meta<AllButtonProps> = {
       table: { category: 'Custom color button props'},
       options: ['blue', 'grey', 'red', 'green', 'yellow', 'pink', 'mars', 'orange', 'fern', 'cyan', 'purple', 'violet'],
     },
-    label: {
+    children: {
+      name: 'children',
       description: 'Button label',
       control: 'text',
       table: {
         type: {
           summary: 'ReactNode',
+
         }
       }
     }
@@ -113,7 +121,7 @@ type Story = StoryObj<AllButtonProps>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    label: 'Label',
+    children: 'Label',
     type: 'primary',
   },
 };
@@ -131,7 +139,7 @@ export const SingleIcon: Story = {
 export const SecondaryClicked: Story = {
   args: {
     type: 'secondary',
-    label: 'Button',
+    children: 'Label',
   },
   play: async ({canvasElement }) => {
     const canvas = within(canvasElement);
