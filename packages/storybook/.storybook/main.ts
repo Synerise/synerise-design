@@ -15,8 +15,6 @@ const config: StorybookConfig = {
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-onboarding'), 
     getAbsolutePath('@storybook/addon-interactions'),
     {
       name: '@storybook/addon-storysource',
@@ -43,9 +41,20 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  typescript: {
+    // Overrides the default Typescript configuration to allow multi-package components to be documented via Autodocs.
+    reactDocgen: 'react-docgen-typescript',
+    // reactDocgenTypescriptOptions: {
+    //   shouldExtractLiteralValuesFromEnum: true,
+    //   tsconfigPath: '../../config/typescript/tsconfig.base.json',
+      
+    //   propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    // },
+    skipCompiler: true,
+    check: false,
+  },
   staticDirs: ['../public'],
   async webpackFinal(config, { configType }) {
-    
     config.module = {
       ...(config.module || {}),
       rules: [
@@ -63,7 +72,7 @@ const config: StorybookConfig = {
                       replacements: [
                         {
                           original: '@synerise/ds-core(/dist)?(.*)',
-                          replacement: (importName, isDist, rest) => {
+                          replacement: (_importName, isDist, rest) => {
                             let result = '@synerise/ds-core/src';
                             return isDist ? `${result}${rest}` : `${result}/js`;
                           },

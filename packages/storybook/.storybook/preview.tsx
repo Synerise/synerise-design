@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import type { Preview } from '@storybook/react';
-import { DSProvider } from '@synerise/ds-core';
+
+import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
-import '@synerise/ds-core/dist/js/style';
 
 
 const preview: Preview = {
@@ -14,7 +14,7 @@ const preview: Preview = {
         title: 'Data Format',
         icon: 'circlehollow',
         items: ['EU', 'US'],
-        dynamicTitle: true,
+        
       },
     },
     locale: {
@@ -24,7 +24,7 @@ const preview: Preview = {
         title: 'Language',
         icon: 'circlehollow',
         items: ['pl', 'en', 'es', 'pt'],
-        dynamicTitle: true,
+        
       },
     },
   },
@@ -51,10 +51,38 @@ const preview: Preview = {
       );
     }
   ],
+  argTypes: {
+    // className: {
+    //   control: false,
+    //   table: {
+    //     type: {
+    //       summary: 'string',
+    //     }
+    //   }
+    // }
+  },
   parameters: {
     
+    layout: 'centered',
+    
     actions: { argTypesRegex: '^on[A-Z].*' },
+    backgrounds: {
+      default: 'white',
+      values: [
+        {
+          name: 'white',
+          value: '#ffffff',
+        },
+        {
+          name: 'grey',
+          value: theme.palette['grey-300'],
+        },
+      ],
+    },
     controls: {
+      sort: 'alpha',
+      expanded: true,
+      // presetColors: [{ color: '#ff4785', title: 'Coral' }, 'rgba(0, 159, 183, 1)', '#fe4a49'], // get all ds-core swatches
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
