@@ -12,7 +12,7 @@ const preview: Preview = {
       defaultValue: DEFAULT_DATA_FORMAT_NOTATION,
       toolbar: {
         title: 'Data Format',
-        icon: 'circlehollow',
+        icon: 'calendar',
         items: ['EU', 'US'],
         
       },
@@ -22,7 +22,7 @@ const preview: Preview = {
       defaultValue: 'en',
       toolbar: {
         title: 'Language',
-        icon: 'circlehollow',
+        icon: 'globe',
         items: ['pl', 'en', 'es', 'pt'],
         
       },
@@ -80,7 +80,7 @@ const preview: Preview = {
       ],
     },
     controls: {
-      sort: 'alpha',
+      sort: 'requiredFirst',
       expanded: true,
       // presetColors: [{ color: '#ff4785', title: 'Coral' }, 'rgba(0, 159, 183, 1)', '#fe4a49'], // get all ds-core swatches
       matchers: {

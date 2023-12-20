@@ -47,13 +47,16 @@ const config: StorybookConfig = {
       // By default react-doc-gen-typescript filters node_modules type, this includes antd types
       tsconfigPath: '../../config/typescript/tsconfig.base.json',
       propFilter: (prop: any) => {
-        const res = /antd/.test(prop.parent?.fileName) || !/node_modules/.test(prop.parent?.fileName);
+        const res = !/@types\/react/.test(prop.parent?.fileName);
+        prop.parent && res && console.log('prop.parent?.fileName', prop.parent?.fileName);
         return prop.parent ? res : true;
       },
-      // The following 2 options turns string types into string literals and allows
       shouldExtractLiteralValuesFromEnum: true,
       savePropValueAsString: true,
+      
     },
+    skipBabel: true,
+    check: false,
     // skipCompiler: true,
     // check: false,
 

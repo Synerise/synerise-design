@@ -20,10 +20,18 @@ const reactNodeAsString = {
   }
 }
 
+const excludedProps = ['animation'];
+const excludeRegexp = new RegExp(`(${excludedProps.join('|')})`, 'g');
+
 const meta: Meta < ComponentProps > = {
   title: "Components/Autocomplete",
   component: Autocomplete,
   decorators: [fixedWrapper400],
+  parameters: {
+    controls: {
+      exclude: excludeRegexp
+    }
+  },
   argTypes: {
     autoResize: {
       control: 'select',
@@ -33,11 +41,7 @@ const meta: Meta < ComponentProps > = {
         'min & max width': { minWidth: '100px', maxWidth:'300px' },
         'stretch to fit': { minWidth: '100px', stretchToFit: true }
       }
-    },
-    errorText: reactNodeAsString,
-    placeholder: reactNodeAsString,
-    label: reactNodeAsString,
-    description: reactNodeAsString
+    }
   }
 };
 
