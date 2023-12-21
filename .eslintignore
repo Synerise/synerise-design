@@ -13,6 +13,7 @@ config/
 **/icon/build/*.js
 **/flag/build/*.js
 packages/portal
+packages/portal-plugins/storybook-genie
 packages/storybook
 packages/docs-site
 __specs__
