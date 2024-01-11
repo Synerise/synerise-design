@@ -15,8 +15,8 @@ import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import { useTableLocale, calculatePixels } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
-import { useRowStar } from '../hooks/useRowStar/useRowStar';
-import { CreateRowStarColumnProps } from '../hooks/useRowStar/useRowStar.types';
+import { useRowStar , CreateRowStarColumnProps } from '../hooks/useRowStar';
+
 import { RowSelectionColumn } from '../RowSelection';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
@@ -99,7 +99,9 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const rowStarColumn = getRowStarColumn(propsForRowStar);
 
-  const selectedRecords = React.useMemo(() => {
+  const selectedRecords = getSelectedRecords();
+
+  function getSelectedRecords() {
     if (selection) {
       const { selectedRowKeys } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
@@ -118,11 +120,10 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             });
           }
         });
-
       return selectedRows;
     }
     return [];
-  }, [dataSource, getRowKey, selection]);
+  }
 
   const renderRowSelection = React.useCallback(
     (key: string, record: T): React.ReactNode => {
@@ -260,7 +261,9 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             width="100%"
             itemData={itemData}
             itemKey={(index): string => {
-              return String(getRowKey(data[index]));
+              const key = getRowKey(data[index]);
+              // @ts-ignore
+              return String(key instanceof String ? key.toLowerCase() : key);
             }}
             outerElementType={outerElement}
             overscanCount={1}

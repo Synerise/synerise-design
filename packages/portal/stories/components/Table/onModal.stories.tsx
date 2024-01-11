@@ -1,11 +1,9 @@
 import { VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
 import { Text } from '@synerise/ds-typography';
-
 import Table from '@synerise/ds-table';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import { withState } from '@dump247/storybook-state';
 import { boolean, number, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Modal from '@synerise/ds-modal';
@@ -17,14 +15,10 @@ const decorator = storyFn => <div style={{ padding: 20, width: '100vw', minWidth
 
 const dataSource = [...new Array(5000)].map((i, k) => {
   const name = k === 1 ? faker.lorem.sentences(8) : faker.name.findName();
-  
   return {
-    key: k + 1,
-    name: <Text 
-      size="medium" 
-      ellipsis={{ tooltip: name }} 
-    >{name}</Text>
-  }
+    key: String(k + 1),
+    name: <Text size="medium" ellipsis={{ tooltip: name }}>{name}</Text>
+  };
 });
 
 const columns = [
@@ -37,113 +31,131 @@ const columns = [
   },
 ];
 
-const stories = {
-  default: withState({
-    searchValue: '',
-    selectedRows: [],
-    starredRowKeys: [],
-    modalVisible: false,
-  })(({ store }) => {
-    const filteredDataSource = () => {
-      return !store.state.searchValue
-        ? dataSource
-        : dataSource.filter(record => {
-            return record.name.toLowerCase().includes(store.state.searchValue.toLowerCase());
-          });
-    };
+const TableOnModal: React.FC = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [selectedRowsMap, setSelectedRowsMap] = useState({});
+  const [starredRowKeys, setStarredRowKeys] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
-    const handleSelectRow = selectedRowKeys => {
-      store.set({ selectedRows: selectedRowKeys });
-    };
+  const filteredDataSource = () => {
+    return !searchValue
+      ? dataSource
+      : dataSource.filter((record) => {
+        let nameLowercase = '';
+        if (typeof record.name === 'string') {
+          nameLowercase = record.name.toLowerCase();
+        } else if (React.isValidElement(record.name) && typeof record.name.props.children === 'string') {
+          nameLowercase = record.name.props.children.toLowerCase();
+        }
+        return nameLowercase.includes(searchValue.toLowerCase());
+      });
+  };
 
-    const selectEven = () => {
-      const evenRows = filteredDataSource()
-        .map(row => row.key)
-        .filter((key, index) => index % 2);
-      store.set({ selectedRows: evenRows });
-    };
+  const handleSelectRow = (selectedRowKeys, dataSourceSubset) => {
+    const newSelectedRowsMap = {};
+    selectedRowKeys.forEach(key => {
+      const row = dataSourceSubset.find(row => row.key === key);
+      if (row) {
+        newSelectedRowsMap[key] = row;
+      }
+    });
+    setSelectedRowsMap(newSelectedRowsMap);
+  };
 
-    return (
-      <>
-        <Button type="primary" onClick={() => store.set({ modalVisible: true })}>
-          Show table
-        </Button>
-        <Modal
-          size="medium"
-          visible={store.state.modalVisible}
-          title={'Table'}
-          bodyStyle={{ padding: 0 }}
-          onCancel={() => {
-            store.set({ modalVisible: false });
+  return (
+    <>
+      <Button type="primary" onClick={() => setModalVisible(true)}>
+        Show table
+      </Button>
+      <Modal
+        size="medium"
+        visible={modalVisible}
+        title={'Table'}
+        bodyStyle={{ padding: 0 }}
+        onCancel={() => {
+          setModalVisible(false);
+          setSelectedRowsMap({});
+        }}
+      >
+        <VirtualTable
+          title={text('Table title', '')}
+          scroll={{ y: 500, x: 0 }}
+          initialWidth={792}
+          dataSource={filteredDataSource()}
+          columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
+          cellHeight={50}
+          rowKey={row => row.key}
+          headerButton={
+            boolean('Show header button', false) && (
+              <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
+                <Icon component={<AddM />} />
+                {text('Header button label', 'Add row')}
+              </Button>
+            )
+          }
+          selection={{
+            onChange: handleSelectRow,
+            selectedRowKeys: Object.keys(selectedRowsMap),
+            selections: [
+              Table.SELECTION_ALL,
+              Table.SELECTION_INVERT,
+              {
+                key: 'even',
+                label: 'Select even',
+                onClick: () => {
+                  const evenRowsMap = {};
+                  dataSource.forEach((row, index) => {
+                    if (index % 2 === 0) {
+                      evenRowsMap[row.key] = row;
+                    }
+                  });
+                  setSelectedRowsMap(evenRowsMap);
+                },
+              },
+            ],
+            limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
           }}
-        >
-          <VirtualTable
-            title={text('Table title', '')}
-            scroll={{ y: 500, x: 0 }}
-            initialWidth={792}
-            dataSource={filteredDataSource()}
-            columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
-            cellHeight={50}
-            rowKey={row => row.key}
-            headerButton={
-              boolean('Show header button', false) && (
-                <Button type="ghost" mode="icon-label" onClick={action('Header button action')}>
-                  <Icon component={<AddM />} />
-                  {text('Header button label', 'Add row')}
-                </Button>
-              )
+          rowStar={
+            boolean('Enable row star', undefined) && {
+              starredRowKeys: starredRowKeys,
+              onChange: (starredRowKeys): void => {
+                setStarredRowKeys(starredRowKeys);
+              },
             }
-            selection={{
-              onChange: handleSelectRow,
-              selectedRowKeys: store.state.selectedRows,
-              selections: [
-                Table.SELECTION_ALL,
-                Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                },
-              ],
-              limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
-            }}
-            rowStar={
-              boolean('Enable row star', undefined) && {
-                starredRowKeys: store.state.starredRowKeys,
-                onChange: (starredRowKeys): void => {
-                  store.set({ starredRowKeys });
-                },
-              }
+          }
+          onRowClick={record => {
+            const newSelectedRowsMap = { ...selectedRowsMap };
+            const key = record.key;
+            if (newSelectedRowsMap[key]) {
+              delete newSelectedRowsMap[key];
+            } else {
+              newSelectedRowsMap[key] = record;
             }
-            onRowClick={record => {
-              store.state.selectedRows.indexOf(record.key) >= 0 ||
-              (boolean('Show selection limit', false) &&
-                store.state.selectedRows.length >= number('Set selection limit', 5))
-                ? store.set({ selectedRows: store.state.selectedRows.filter(k => k !== record.key) })
-                : store.set({ selectedRows: [...store.state.selectedRows, record.key] });
-            }}
-            searchComponent={
-              <SearchInput
-                placeholder="Search"
-                clearTooltip="Clear"
-                onChange={value => {
-                  console.log('value', value);
-                  store.set({ searchValue: value });
-                }}
-                value={store.state.searchValue}
-                onClear={() => {
-                  console.log('clear');
-                  store.set({ searchValue: '' });
-                }}
-                closeOnClickOutside={true}
-                inputProps={{ autoFocus: false }}
-              />
-            }
-          />
-        </Modal>
-      </>
-    );
-  }),
+            setSelectedRowsMap(newSelectedRowsMap);
+          }}
+          searchComponent={
+            <SearchInput
+              placeholder="Search"
+              clearTooltip="Clear"
+              onChange={value => {
+                setSearchValue(value);
+              }}
+              value={searchValue}
+              onClear={() => {
+                setSearchValue('');
+              }}
+              closeOnClickOutside={true}
+              inputProps={{ autoFocus: false }}
+            />
+          }
+        />
+      </Modal>
+    </>
+  );
+};
+
+const stories = {
+  default: <TableOnModal />,
 };
 
 export default {
