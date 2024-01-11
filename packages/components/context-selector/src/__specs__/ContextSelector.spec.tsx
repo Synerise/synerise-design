@@ -3,7 +3,7 @@ import { CONTEXT_TEXTS, CONTEXT_ITEMS, CONTEXT_GROUPS } from './data/index.data'
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { ApiM } from '@synerise/ds-icon';
 import ContextSelector from '../ContextSelector';
-import { ContextProps } from './../ContextSelector.types';
+import { ContextProps } from '../ContextSelector.types';
 import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: ContextProps = {
@@ -17,9 +17,9 @@ const RENDER_CONTEXT_SELECTOR = (props?: Partial<ContextProps>) => <ContextSelec
 
 describe('Context selector component', () => {
   test('Should render', () => {
-    // ARRANGE
+
     const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR());
-    // ASSERT
+
     expect(getByText(CONTEXT_TEXTS.buttonLabel)).toBeTruthy();
   });
 
@@ -44,18 +44,15 @@ describe('Context selector component', () => {
     const handleActivate = jest.fn();
     const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR({ onActivate: handleActivate }));
 
-    // ACT
     userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
 
-    // ASSERT
     expect(handleActivate).toBeCalled();
   });
   test('should call onDeactivate', () => {
-    // ARRANGE
+
     const handleDeactivate = jest.fn();
     const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR({ onDeactivate: handleDeactivate }));
 
-    // ACT
     userEvent.click(getByText(CONTEXT_TEXTS.buttonLabel));
     userEvent.click(document.body);
 
@@ -88,5 +85,16 @@ describe('Context selector component', () => {
 
     expect(queryByText("Name 2")).toBeInTheDocument();
     expect(queryByText("Name 1")).not.toBeInTheDocument();
-  })
+  });
+
+  test('Should hide search field if hideSearchField is true', () => {
+    const {queryByPlaceholderText} = renderWithProvider(
+      RENDER_CONTEXT_SELECTOR({
+        hideSearchField: true,
+      })
+    );
+    const searchField = queryByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder);
+
+    expect(searchField).toBeNull();
+  });
 });
