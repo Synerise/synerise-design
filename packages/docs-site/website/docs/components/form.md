@@ -22,6 +22,9 @@ import Form from '@synerise/ds-form'
 
 ```
 
+## Deprecated Features
+The Form and EditableList components have been deprecated and replaced by EditableItemsList component. Please refer to the [EditableItemsList](../editable-items-list) documentation for more information on how to transition to the new component.
+
 ## Demo
 
 <iframe src="/storybook-static/iframe.html?id=components-form--default"></iframe>
