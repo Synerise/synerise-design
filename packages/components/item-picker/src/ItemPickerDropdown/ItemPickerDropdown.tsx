@@ -23,18 +23,28 @@ const ItemPickerDropdown: React.FC<Props> = ({
   isDropdownOpened,
   searchBarProps,
   scrollbarProps,
+  clearSearchQuery,
 }) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [scrollTop, setScrollTop] = React.useState<number>(0);
-  const handleChange = React.useCallback(
-    (item: MenuItemProps) => {
-      closeDropdown();
-      onChange(item);
-    },
-    [onChange, closeDropdown]
-  );
+
+  React.useEffect(() => {
+    if (clearSearchQuery && clearSearchQuery > 0) {
+      setSearchQuery('');
+    }
+  }, [clearSearchQuery]);
+
+  const handleClose = () => {
+    setSearchQuery('');
+    closeDropdown();
+  };
+
+  const handleChange = (item: MenuItemProps) => {
+    handleClose();
+    onChange(item);
+  };
 
   const filteredDataSource = React.useMemo(() => {
     return searchQuery
@@ -42,14 +52,14 @@ const ItemPickerDropdown: React.FC<Props> = ({
       : dataSource;
   }, [searchQuery, dataSource]);
 
-  const renderBottomAction = React.useMemo(() => {
+  const renderBottomAction = () => {
     const bottomAction = !closeOnBottomAction ? (
       dropdownBottomAction
     ) : (
-      <S.BottomActionWrapper onClick={closeDropdown}>{dropdownBottomAction}</S.BottomActionWrapper>
+      <S.BottomActionWrapper onClick={handleClose}>{dropdownBottomAction}</S.BottomActionWrapper>
     );
     return dropdownBottomAction && <S.DropdownFooter>{bottomAction}</S.DropdownFooter>;
-  }, [closeOnBottomAction, dropdownBottomAction, closeDropdown]);
+  };
 
   return (
     <S.DropdownWrapper>
@@ -85,7 +95,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
           />
         </S.StyledScrollbar>
       </S.DSMenu>
-      {renderBottomAction}
+      {renderBottomAction()}
     </S.DropdownWrapper>
   );
 };
