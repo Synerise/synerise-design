@@ -32,7 +32,7 @@ import EditableItemsList from '@synerise/ds-editable-items-list'
 | items          | Array of items to be rendered, each should have a unique id.             | T[]                         | -       |
 | addButtonLabel | Text or custom component for the "Add" button.                           | string \| ReactNode         | -       |
 | addButtonIcon  | Custom icon for the "Add" button.                                        | ReactElement                | -       |
-| addButtonProps | Additional props for the "Add" button. It can override default style.    | Partial<ButtonProps>        | -       |
+| addButtonProps | Additional props for the "Add" button. It can override default style.    | Partial&lt;ButtonProps&gt;        | -       |
 | onAdd          | Callback function called when the "Add" button is clicked.               | () => void                  | -       |
 | minRowLength   | The minimum number of rows to display.                                   | number                      | 1       |
 | maxRowLength   | The maximum number of rows allowed.                                      | number                      | -       |
