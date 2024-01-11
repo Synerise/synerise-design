@@ -81,9 +81,6 @@ import ContextSelector from '@synerise/ds-context-selector'
 
 ## API
 
-
-## API
-
 | Property                  | Description                                                   | Type                                                   | Default               | 
 | ---                       | ---                                                           | ---                                                    | ---                   | 
 | groups                    | Groups of items                                               | ContextGroup[]                                         | []                    | 
@@ -102,6 +99,7 @@ import ContextSelector from '@synerise/ds-context-selector'
 | onClickOutsideEvents      | Overwrite default events for document listener                | HandledEventsType[] \ undefined                        | -                     | 
 | onClickOutside            | Callback called when user click outside dropdown              | () => void \ undefined                                 | -                     | 
 | onSearch                  | Callback called when user enter any char in search input      | (query: string) => void                                | -                     | 
+| hideSearchField           | Whether to hide the search field in the dropdown              | boolean                                                | false                 |
 | onFetchData               | Callback called when user scrolls to the end of dropdown list | () => void                                             | -                     | 
 | onActivate                | Callback called when user opens dropdown                        | (fieldType: string) => void                                                              | -                | 
 | onDeactivate              | Callback called when user closes dropdown                       | () => void                                                                               | -                | 

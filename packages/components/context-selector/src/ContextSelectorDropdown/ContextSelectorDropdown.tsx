@@ -47,6 +47,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
   setDropdownVisible,
   value,
   visible,
+  hideSearchField = false,
   loading,
   menuItemHeight,
   dropdownWrapperStyles,
@@ -287,19 +288,21 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
           });
       }}
     >
-      <Dropdown.SearchInput
-        onSearchChange={handleSearch}
-        onClearInput={(): void => {
-          handleSearch('');
-          onSearch && onSearch('');
-        }}
-        placeholder={texts.searchPlaceholder}
-        value={searchQuery}
-        autofocus={!searchQuery || searchInputCanBeFocused}
-        autofocusDelay={50}
-        handleInputRef={(e): void => setSearchInputHandle(e)}
-        iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-      />
+      {!hideSearchField && (
+        <Dropdown.SearchInput
+          onSearchChange={handleSearch}
+          onClearInput={(): void => {
+            handleSearch('');
+            onSearch && onSearch('');
+          }}
+          placeholder={texts.searchPlaceholder}
+          value={searchQuery}
+          autofocus={!searchQuery || searchInputCanBeFocused}
+          autofocusDelay={50}
+          handleInputRef={(e): void => setSearchInputHandle(e)}
+          iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+        />
+      )}
       {searchQuery === '' && getTabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
