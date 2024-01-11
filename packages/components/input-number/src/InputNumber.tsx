@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ReactText } from 'react';
+import React, { useState, ReactText, useCallback, useMemo, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
@@ -9,10 +8,10 @@ import { useDataFormat } from '@synerise/ds-data-format';
 
 import './style/index.less';
 import * as S from './InputNumber.styles';
-import { Props } from './InputNumber.types';
+import { InputNumberProps } from './InputNumber.types';
 import { formatNumber, parseFormattedNumber } from './utils/inputNumber.utils';
 
-const InputNumber: React.FC<Props> = ({
+const InputNumber = ({
   label,
   description,
   errorText,
@@ -23,39 +22,51 @@ const InputNumber: React.FC<Props> = ({
   style,
   tooltip,
   tooltipConfig,
+  value,
+  defaultValue,
   valueFormatOptions,
   onChange,
   ...antdProps
-}) => {
+}: InputNumberProps) => {
   const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
+  const [localValue, setLocalValue] = useState<number | undefined>(value || defaultValue);
 
-  const id = React.useMemo(() => uuid(), []);
+  useEffect(() => {
+    if (value && value !== localValue) {
+      setLocalValue(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  const id = useMemo(() => uuid(), []);
   const showError = Boolean(error || errorText);
 
-  const formatter = React.useCallback(
-    (value: string | number | undefined): string => {
-      return formatNumber(value, formatValue, thousandDelimiter, decimalDelimiter, valueFormatOptions);
+  const formatter = useCallback(
+    (inputValue: string | number | undefined): string => {
+      const formatted = formatNumber(inputValue, formatValue, thousandDelimiter, decimalDelimiter, valueFormatOptions);
+      return formatted;
     },
     [formatValue, valueFormatOptions, thousandDelimiter, decimalDelimiter]
   );
 
-  const parser = React.useCallback(
-    (value: string | undefined): ReactText => {
-      return parseFormattedNumber(value, formatValue, thousandDelimiter, decimalDelimiter);
+  const parser = useCallback(
+    (inputValue: string | undefined): ReactText => {
+      return parseFormattedNumber(inputValue, formatValue, thousandDelimiter, decimalDelimiter);
     },
     [formatValue, thousandDelimiter, decimalDelimiter]
   );
 
-  const handleOnChange = React.useCallback(
-    (value: string | number | undefined): void => {
-      const formattedValue = formatter(value);
+  const handleOnChange = useCallback(
+    (changedValue: string | number | undefined): void => {
+      const formattedValue = formatter(changedValue);
       const parsedFormattedValue = parser(formattedValue);
       const valueAsNumber =
         typeof parsedFormattedValue === 'string' ? parseFloat(parsedFormattedValue) : parsedFormattedValue;
-      const resultValue = Number.isNaN(valueAsNumber) ? '' : valueAsNumber;
+      const resultValue = Number.isNaN(valueAsNumber) ? defaultValue : valueAsNumber;
+      setLocalValue(resultValue);
       onChange && onChange(resultValue);
     },
-    [onChange, formatter, parser]
+    [formatter, parser, defaultValue, onChange]
   );
 
   return (
@@ -91,6 +102,8 @@ const InputNumber: React.FC<Props> = ({
           autoComplete="off"
           formatter={formatter}
           parser={parser}
+          defaultValue={defaultValue}
+          value={localValue}
           decimalSeparator={decimalDelimiter}
         />
         {!!suffixel && <S.Suffixel>{suffixel}</S.Suffixel>}
