@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useEffect, useState, useRef, TransitionEvent } from 'react';
 import { useIntl } from 'react-intl';
-import { ReactSortable } from 'react-sortablejs';
+import { ReactSortable, MoveEvent } from 'react-sortablejs';
 import Logic from '@synerise/ds-logic';
 import Matching from '@synerise/ds-logic/dist/Matching/Matching';
 import Placeholder from '@synerise/ds-logic/dist/Placeholder/Placeholder';
@@ -18,8 +18,9 @@ const component = {
 
 const TRANSITION_DURATION = 0.5;
 const TRANSITION_DURATION_MAX = 1.5;
-const TOP_TRANSITION_ZINDEX = '10003';
-const BOTTOM_TRANSITION_ZINDEX = '10002';
+const TOP_TRANSITION_ZINDEX = 10003;
+const BOTTOM_TRANSITION_ZINDEX = 10002;
+const DRAGGING_TRANSITION_ZINDEX = 10004;
 
 const rearrangeItems = (sourceArray: Expression[], oldIndex: number, newIndex: number) => {
   sourceArray.splice(newIndex, 0, sourceArray.splice(oldIndex, 1)[0]);
@@ -60,6 +61,13 @@ const Filter = ({
     filter: '.ds-matching-toggle, .step-card-right-side',
     onStart: () => {
       movedExpressionId.current = null;
+    },
+    onChoose: (evt: MoveEvent) => {
+      // eslint-disable-next-line no-param-reassign
+      evt.item.style.zIndex = DRAGGING_TRANSITION_ZINDEX;
+    },
+    onUnchoose: (evt: MoveEvent) => {
+      evt.item.style.removeProperty('z-index');
     },
   };
 
@@ -261,7 +269,6 @@ const Filter = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          style={!readOnly && isActive(expression) ? { zIndex: 10001 } : undefined}
           onMouseDown={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
@@ -277,7 +284,7 @@ const Filter = ({
         </S.ExpressionWrapper>
       );
     },
-    [text.dropMeHere, isActive, componentProps, expressions.length, readOnly]
+    [text.dropMeHere, componentProps, expressions.length, readOnly]
   );
 
   return (
