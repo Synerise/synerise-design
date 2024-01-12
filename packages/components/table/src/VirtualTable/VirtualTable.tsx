@@ -15,7 +15,7 @@ import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import { useTableLocale, calculatePixels } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
-import { useRowStar , CreateRowStarColumnProps } from '../hooks/useRowStar';
+import { useRowStar, CreateRowStarColumnProps } from '../hooks/useRowStar';
 
 import { RowSelectionColumn } from '../RowSelection';
 

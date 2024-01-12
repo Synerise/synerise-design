@@ -8048,6 +8048,14 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-cruds@^0.3.40":
+  version "0.3.43"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-cruds/-/ds-cruds-0.3.43.tgz#2ccc36ef2f013e6e8c8bb58c256e3fea3950abda"
+  integrity sha1-LMw27y8BPm6Mi7WMJW4/6jlQq9o=
+  dependencies:
+    "@synerise/ds-icon" "^0.58.9"
+    "@synerise/ds-tooltip" "^0.14.13"
+
 "@synerise/ds-scrollbar@^0.6.5":
   version "0.6.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.6.14.tgz#0d2d80ce24d84d0649fe3ec6a8789f60fe91594a"

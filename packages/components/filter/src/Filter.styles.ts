@@ -48,7 +48,6 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: ${(props): number => 1000 - props.index};
   &.sortable-chosen {
     cursor: grabbing;
     width: 100%;

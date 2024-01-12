@@ -112,6 +112,6 @@ const Operators: React.FC<OperatorsProps> = ({
     </Dropdown>
   );
 
-  return <div data-popup-container>{content}</div>;
+  return content;
 };
 export default Operators;

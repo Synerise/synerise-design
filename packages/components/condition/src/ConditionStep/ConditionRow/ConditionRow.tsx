@@ -3,6 +3,7 @@ import Operators from '@synerise/ds-operators';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
+import { getPopupContainer } from '@synerise/ds-utils';
 import * as React from 'react';
 import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
 import { FACTOR, OPERATOR, PARAMETER } from '../../Condition';
@@ -43,11 +44,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   const conditionParameterErrorText = conditionParameter?.errorText;
   const conditionOperatorErrorText = conditionOperator?.errorText;
 
-  const rowHasError = !!(
-      conditionParameterErrorText ||
-      conditionOperatorErrorText ||
-      conditionFactorErrorText
-  );
+  const rowHasError = !!(conditionParameterErrorText || conditionOperatorErrorText || conditionFactorErrorText);
 
   const conditionErrorMessage = React.useMemo(() => {
     let errorText: React.ReactNode | string;
@@ -90,7 +87,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               <Factors
                 {...conditionParameter}
                 inputProps={inputProps}
-                getPopupContainerOverride={getPopupContainerOverride}
+                getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
                 onActivate={(): void => onActivate && onActivate(PARAMETER)}
                 onDeactivate={onDeactivate}
                 onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
@@ -111,7 +108,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               <S.ConditionWrapper>
                 <Operators
                   {...conditionOperator}
-                  getPopupContainerOverride={getPopupContainerOverride}
+                  getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
                   onActivate={(): void => onActivate && onActivate(OPERATOR)}
                   onDeactivate={onDeactivate}
                   onChange={(value): void => selectOperator(stepId, conditionId, value)}
@@ -134,7 +131,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                   <Factors
                     {...conditionFactor}
                     inputProps={inputProps}
-                    getPopupContainerOverride={getPopupContainerOverride}
+                    getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
                     onActivate={(): void => onActivate && onActivate(FACTOR)}
                     onDeactivate={onDeactivate}
                     setSelectedFactorType={(factorType): void =>
