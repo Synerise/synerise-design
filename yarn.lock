@@ -8055,7 +8055,6 @@
   dependencies:
     "@synerise/ds-icon" "^0.58.9"
     "@synerise/ds-tooltip" "^0.14.13"
-
 "@synerise/ds-scrollbar@^0.6.5":
   version "0.6.14"
   resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.6.14.tgz#0d2d80ce24d84d0649fe3ec6a8789f60fe91594a"
@@ -26028,7 +26027,7 @@ sort-scripts@^1.0.1:
   resolved "https://registry.npmjs.org/sort-scripts/-/sort-scripts-1.0.1.tgz"
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
 
-sortablejs@1.15.0, sortablejs@1.15.1:
+sortablejs@1.15.0:
   version "1.15.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/sortablejs/-/sortablejs-1.15.0.tgz#53230b8aa3502bb77a29e2005808ffdb4a5f7e2a"
   integrity sha1-UyMLiqNQK7d6KeIAWAj/20pffio=
