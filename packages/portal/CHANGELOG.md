@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.200.0](https://github.com/synerise/synerise-design/compare/portal@0.199.0...portal@0.200.0) (2024-01-15)
+
+
+### Bug Fixes
+
+* **table:** virtual table fixed ([a126848](https://github.com/synerise/synerise-design/commit/a1268486e88c6f7efdd803f63481cd45f4c21c85))
+
+
+### Features
+
+* **editable-items-list:** added new component editable-items-list ([35d3af8](https://github.com/synerise/synerise-design/commit/35d3af8604f1f58ed79dc016f0ee49505dc697d2))
+* **input-number:** handle defaultValue prop ([1b5a378](https://github.com/synerise/synerise-design/commit/1b5a3781db429748b2926d41969d8c298b3513e5))
+
+
+
+
+
 # [0.199.0](https://github.com/synerise/synerise-design/compare/portal@0.198.0...portal@0.199.0) (2023-12-14)
 
 

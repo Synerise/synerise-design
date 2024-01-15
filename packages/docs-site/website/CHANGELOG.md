@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.31.0...docs@0.32.0) (2024-01-15)
+
+
+### Features
+
+* **editable-items-list:** added new component editable-items-list ([35d3af8](https://gitlab.synerise.com/Frontend/synerise-design/commit/35d3af8604f1f58ed79dc016f0ee49505dc697d2))
+
+
+
+
+
 # [0.31.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.30.0...docs@0.31.0) (2023-12-13)
 
 

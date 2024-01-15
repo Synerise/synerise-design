@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.59.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.9...@synerise/ds-icon@0.59.0) (2024-01-15)
+
+
+### Features
+
+* **icon:** column disconnect icon added ([2406a4b](https://github.com/Synerise/synerise-design/commit/2406a4b38233954bfc4262c15894594f64959084))
+
+
+
+
+
 ## [0.58.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.8...@synerise/ds-icon@0.58.9) (2023-12-13)
 
 **Note:** Version bump only for package @synerise/ds-icon

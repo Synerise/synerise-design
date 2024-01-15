@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.0...@synerise/ds-filter@0.16.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/Synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+
+
+
+
+
 # [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.21...@synerise/ds-filter@0.16.0) (2023-12-14)
 
 

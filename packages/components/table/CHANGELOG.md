@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.3...@synerise/ds-table@0.47.4) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+* **table:** virtual table fixed ([a126848](https://github.com/synerise/synerise-design/commit/a1268486e88c6f7efdd803f63481cd45f4c21c85))
+
+
+
+
+
 ## [0.47.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.2...@synerise/ds-table@0.47.3) (2023-12-14)
 
 **Note:** Version bump only for package @synerise/ds-table

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.50...@synerise/ds-operators@0.10.51) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/Synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+
+
+
+
+
 ## [0.10.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.49...@synerise/ds-operators@0.10.50) (2023-12-13)
 
 **Note:** Version bump only for package @synerise/ds-operators
