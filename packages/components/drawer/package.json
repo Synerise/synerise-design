@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-drawer",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Drawer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -39,7 +39,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.23",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

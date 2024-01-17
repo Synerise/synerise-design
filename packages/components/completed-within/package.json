@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-completed-within",
-  "version": "0.5.81",
+  "version": "0.5.82",
   "description": "CompletedWithin UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,13 +33,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.10",
-    "@synerise/ds-dropdown": "^0.17.92",
-    "@synerise/ds-icon": "^0.59.0",
-    "@synerise/ds-input": "^0.19.13",
-    "@synerise/ds-input-number": "^0.9.0",
-    "@synerise/ds-select": "^0.15.31",
-    "@synerise/ds-tooltip": "^0.14.14",
+    "@synerise/ds-button": "^0.18.11",
+    "@synerise/ds-dropdown": "^0.17.93",
+    "@synerise/ds-icon": "^0.59.1",
+    "@synerise/ds-input": "^0.19.14",
+    "@synerise/ds-input-number": "^0.9.1",
+    "@synerise/ds-select": "^0.15.32",
+    "@synerise/ds-tooltip": "^0.14.15",
     "react-intl": "3.12.0"
   },
   "peerDependencies": {
@@ -49,7 +49,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.23",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/user-event": "^10.3.1"
   }
