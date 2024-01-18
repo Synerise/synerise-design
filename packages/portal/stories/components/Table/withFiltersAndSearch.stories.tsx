@@ -357,6 +357,7 @@ const stories = {
         <Table
           title={text('Table title', 'Filters and search')}
           dataSource={filteredDataSource()}
+          dataSourceFull={dataSource}
           tableLayout="fixed"
           scroll={{ x: 1200 }}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}

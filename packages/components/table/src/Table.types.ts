@@ -135,4 +135,5 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   hideTitlePart?: boolean;
   disableColumnNamesLineBreak?: boolean;
   onSort?: OnSortFn;
+  dataSourceFull?: T[];
 }

@@ -400,6 +400,7 @@ const stories = {
         "id": "aa845890-156d-4641-9366-d40280562d39",
         "parameter": {
           "value": {
+            "id": "aa845890-156d-4641-9366-d40280562d37",
             "name": "City",
           }
         },

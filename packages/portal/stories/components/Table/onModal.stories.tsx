@@ -82,6 +82,7 @@ const TableOnModal: React.FC = () => {
           scroll={{ y: 500, x: 0 }}
           initialWidth={792}
           dataSource={filteredDataSource()}
+          dataSourceFull={dataSource}
           columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
           cellHeight={50}
           rowKey={row => row.key}
