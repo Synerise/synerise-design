@@ -64,6 +64,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     rowStar,
     initialWidth = 0,
     dataSource = [],
+    dataSourceFull,
     expandable,
     locale,
     onListRefChange,
@@ -81,6 +82,8 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   }, [listRef, onListRefChange]);
 
   const { getRowKey } = useRowKey(rowKey);
+
+  const allData = dataSourceFull || dataSource;
 
   const propsForRowStar = {
     ...props,
@@ -105,21 +108,20 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     if (selection) {
       const { selectedRowKeys } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
-      dataSource &&
-        dataSource.forEach((row: T): void => {
-          const key = getRowKey(row);
-          if (key && selectedRowKeys.indexOf(key) >= 0) {
-            selectedRows = [...selectedRows, row];
-          }
-          if (row.children !== undefined && Array.isArray(row.children)) {
-            row.children.forEach((child: T) => {
-              const childKey = getRowKey(child);
-              if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
-                selectedRows = [...selectedRows, child];
-              }
-            });
-          }
-        });
+      allData.forEach((row: T): void => {
+        const key = getRowKey(row);
+        if (key && selectedRowKeys.indexOf(key) >= 0) {
+          selectedRows = [...selectedRows, row];
+        }
+        if (row.children !== undefined && Array.isArray(row.children)) {
+          row.children.forEach((child: T) => {
+            const childKey = getRowKey(child);
+            if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
+              selectedRows = [...selectedRows, child];
+            }
+          });
+        }
+      });
       return selectedRows;
     }
     return [];
@@ -305,7 +307,6 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
   // eslint-disable-next-line
   const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : props?.scroll;
-
   return (
     <RelativeContainer key="relative-container" ref={containerRef} style={relativeInlineStyle}>
       <ResizeObserver

@@ -43,10 +43,10 @@ const columns = [
 ];
 
 const VirtualizationWithState: React.FC = () => {
+  
   const [searchValue, setSearchValue] = React.useState<string>('');
-  const [starredRowKeys, setStarredRowKey] = React.useState([]);
-  const [selectedRowsMap, setSelectedRowsMap] = React.useState({});
-
+  const [starredRowKeys, setStarredRowKey] = React.useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
   const filteredDataSource = React.useCallback(() => {
     return !searchValue
@@ -56,27 +56,10 @@ const VirtualizationWithState: React.FC = () => {
       });
   }, [searchValue]);
 
-  const handleSelectRow = selectedRowKeys => {
-    const newSelectedRowsMap = { ...selectedRowsMap };
-    selectedRowKeys.forEach(key => {
-      const row = filteredDataSource().find(row => row.key === key);
-      if (row) {
-        newSelectedRowsMap[key] = row;
-      }
-    });
-    setSelectedRowsMap(newSelectedRowsMap);
+  const handleSelectionChange = (selectedRowKeys, selectedRows) => {
+    setSelectedRowKeys(selectedRowKeys);
   };
 
-  const selectEven = React.useCallback(() => {
-    const evenRowsMap = {};
-    filteredDataSource().forEach((row, index) => {
-      if (index % 2 === 0) {
-        const key = row.key;
-        evenRowsMap[key] = row;
-      }
-    });
-    setSelectedRowsMap(evenRowsMap);
-  }, [filteredDataSource]);
   const numberOfRows = number('Number of rows (maximum 5000)', filteredDataSource().length, {
     max: filteredDataSource().length,
   });
@@ -88,6 +71,7 @@ const VirtualizationWithState: React.FC = () => {
         scroll={{ y: 500, x: 0 }}
         initialWidth={792}
         dataSource={filteredDataSource().slice(0, numberOfRows) || []}
+        dataSourceFull={dataSource}
         columns={renderWithIconInHeaders(columns, boolean('Set icons in headers', false))}
         cellHeight={50}
         rowKey={row => row.key}
@@ -102,48 +86,42 @@ const VirtualizationWithState: React.FC = () => {
         }
         selection={
           boolean('Enable row selection', true) && {
-            onChange: handleSelectRow,
-            selectedRowKeys: Object.keys(selectedRowsMap),
+            onChange: handleSelectionChange,
+            selectedRowKeys: selectedRowKeys,
             selections: [
               Table.SELECTION_ALL,
-              Table.SELECTION_INVERT,
-              {
-                key: 'even',
-                label: 'Select even',
-                onClick: selectEven,
-              },
+              Table.SELECTION_INVERT
             ],
             limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
           }
         }
         rowStar={
-          boolean('Enable row star', undefined) && {
+          boolean('Enable row star', false) && {
             starredRowKeys: starredRowKeys,
             onChange: (starredRowKeys): void => {
               setStarredRowKey(starredRowKeys);
             },
           }
         }
-        onRowClick={record => {
-          const newSelectedRowsMap = { ...selectedRowsMap };
-          if (newSelectedRowsMap[record.key]) {
-            delete newSelectedRowsMap[record.key];
+        onRowClick={ record => {
+          const { key } = record;
+          const newSelectedRowKeys = [ ...selectedRowKeys ];
+          if (newSelectedRowKeys.indexOf(key) > -1) {
+            newSelectedRowKeys.splice(newSelectedRowKeys.indexOf(key), 1);
           } else {
-            newSelectedRowsMap[record.key] = record;
+            newSelectedRowKeys.push(key);
           }
-          setSelectedRowsMap(newSelectedRowsMap);
+          setSelectedRowKeys(newSelectedRowKeys);
         }}
         searchComponent={
           <SearchInput
             placeholder="Search"
             clearTooltip="Clear"
             onChange={value => {
-              console.log('value', value);
               setSearchValue(value);
             }}
             value={searchValue}
             onClear={() => {
-              console.log('clear');
               setSearchValue('');
             }}
             closeOnClickOutside={true}

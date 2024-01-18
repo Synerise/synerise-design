@@ -32,6 +32,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     itemsMenu,
     cellSize,
     dataSource,
+    dataSourceFull,
     roundedHeader,
     filters,
     searchComponent,
@@ -73,6 +74,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           itemsMenu={itemsMenu}
           selection={selection}
           dataSource={data}
+          dataSourceFull={dataSourceFull}
           searchComponent={searchComponent}
           filterComponent={filterComponent}
           headerButton={headerButton}
@@ -87,17 +89,18 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     selection,
     grouped,
     dataSource,
-    renderSelectionTitle,
     hideTitleBar,
     headerWithBorderTop,
     title,
     filters,
     itemsMenu,
+    dataSourceFull,
     searchComponent,
     filterComponent,
     headerButton,
     rowKey,
     tableLocale,
+    renderSelectionTitle,
     hideTitlePart,
   ]);
 

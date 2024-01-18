@@ -330,13 +330,6 @@ const stories = {
           });
     };
 
-    const selectEven = () => {
-      const evenRows = filteredDataSource()
-        .map(row => row.key)
-        .filter((key, index) => index % 2);
-      store.set({ selectedRows: evenRows });
-    };
-
     return (
       <Card
         withHeader={true}
@@ -348,6 +341,7 @@ const stories = {
           title={text('Table title', '')}
           headerWithBorderTop
           dataSource={filteredDataSource()}
+          dataSourceFull={dataSource}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           cellSize={select('Set cells size', CELL_SIZES, CELL_SIZES.default)}
@@ -394,11 +388,6 @@ const stories = {
               selections: [
                 Table.SELECTION_ALL,
                 Table.SELECTION_INVERT,
-                {
-                  key: 'even',
-                  label: 'Select even',
-                  onClick: selectEven,
-                },
               ],
               limit: boolean('Show selection limit', false) ? number('Set selection limit', 5) : undefined,
             }

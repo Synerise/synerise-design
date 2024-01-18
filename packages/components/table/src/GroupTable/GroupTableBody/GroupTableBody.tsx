@@ -58,7 +58,7 @@ function GroupTableBody<T extends unknown>({
                     indeterminate={selectedRowsNumber > 0 && selectedRowsNumber < allRowKeys.length}
                     onChange={(event): void => {
                       if (event.target.checked) {
-                        const selectedKeys = [...new Set([...selection?.selectedRowKeys, ...allRowKeys])];
+                        const selectedKeys = Array.from(new Set([...selection?.selectedRowKeys, ...allRowKeys]));
                         selection.onChange(
                           selectedKeys,
                           allItems.filter(item => selectedKeys.indexOf(getRowKey(item)) >= 0)
