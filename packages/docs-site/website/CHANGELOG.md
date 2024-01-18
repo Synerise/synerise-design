@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.0...docs@0.32.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](http://gitlab.synerise.com/Frontend/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
 # [0.32.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.31.0...docs@0.32.0) (2024-01-15)
 
 

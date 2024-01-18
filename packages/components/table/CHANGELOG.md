@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.5...@synerise/ds-table@0.47.6) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](https://github.com/synerise/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
 ## [0.47.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.4...@synerise/ds-table@0.47.5) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-table

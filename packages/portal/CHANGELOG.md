@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.200.1](https://github.com/synerise/synerise-design/compare/portal@0.200.0...portal@0.200.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](https://github.com/synerise/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
 # [0.200.0](https://github.com/synerise/synerise-design/compare/portal@0.199.0...portal@0.200.0) (2024-01-15)
 
 
