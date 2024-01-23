@@ -129,6 +129,8 @@ const stories = {
   WithLink: () => {
     const type = select('Set type', SECTION_COLOR_TYPES, 'negative')
     const withClose = boolean('Set close button', false);
+    const withLink = text('withLink', 'Click here to learn more')
+    const link = withLink && <a href="#">{withLink}</a>;
     return (
       <div
         style={{
@@ -144,7 +146,7 @@ const stories = {
           type={type}
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
-          withLink={text('withLink', 'Click here to learn more')}
+          withLink={link}
           withClose={withClose}
         />
       </div>

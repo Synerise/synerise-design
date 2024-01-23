@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import * as React from 'react';
 import { ColorType, CustomColorType } from './SectionMessage.types';
 
-export const AlertContent = styled.div<{withLink?: React.ReactNode}>`
+export const AlertContent = styled.div<{ withLink?: React.ReactNode }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${(props): string => props.withLink ? '12px 0 11px' : '12px 0'};
+  padding: ${(props): string => (props.withLink ? '12px 0 11px' : '12px 0')};
 `;
 export const AllContent = styled.div`
   display: flex;
@@ -18,8 +18,7 @@ export const Text = styled.div`
 `;
 export const IconWrapper = styled.div<{
   color?: ColorType;
-  customColorIcon?:
-    CustomColorType;
+  customColorIcon?: CustomColorType;
 }>`
   margin: 10px 12px;
   display: flex;
@@ -89,17 +88,17 @@ export const OrderWrapper = styled.div`
       display: block;
     }
     ${NumberWrapper} {
-        background-image: linear-gradient(
-          to right,
-          ${(props): string => props.theme.palette['grey-400']} 20%,
-          rgba(255, 255, 255, 0) 10%
-        );
-        background-color: transparent;
-        background-position: bottom left;
-        background-size: 5px 1px;
-        background-repeat: repeat-x;
-        color: ${(props): string => props.theme.palette['grey-700']};
-      }
+      background-image: linear-gradient(
+        to right,
+        ${(props): string => props.theme.palette['grey-400']} 20%,
+        rgba(255, 255, 255, 0) 10%
+      );
+      background-color: transparent;
+      background-position: bottom left;
+      background-size: 5px 1px;
+      background-repeat: repeat-x;
+      color: ${(props): string => props.theme.palette['grey-700']};
+    }
   }
 `;
 export const Wrapper = styled.div`
@@ -108,8 +107,7 @@ export const Wrapper = styled.div`
 `;
 export const Container = styled.div<{
   color?: ColorType;
-  customColor?:
-    CustomColorType;
+  customColor?: CustomColorType;
 }>`
   width: 100%;
   align-items: center;
@@ -132,8 +130,8 @@ export const WrapperSectionMessage = styled.div`
 `;
 
 export const AlertMessage = styled.span`
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 13px;
+  line-height: 1.39;
   font-weight: 500;
   max-width: 400px;
   overflow: hidden;
@@ -167,6 +165,9 @@ export const LinkWrapper = styled.span`
   color: inherit;
   text-decoration: underline;
   cursor: pointer;
+  a {
+    color: inherit;
+  }
 `;
 
 export const AlertShowMore = styled.span`
