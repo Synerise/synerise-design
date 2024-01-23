@@ -686,6 +686,8 @@ const stories = {
     const [value, setValue] = React.useState<string>('');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
+    const minRows = number('Min rows', 3);
+    const maxRows = number('Max rows', 6);
     const [isFocus, setFocus] = React.useState(false);
     const getErrorText = (hasError: boolean): string => {
       if (hasError) {
@@ -697,6 +699,7 @@ const stories = {
 
     return (
       <TextArea
+        autoSize={{minRows, maxRows}}
         rows={number('rows', 4)}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
