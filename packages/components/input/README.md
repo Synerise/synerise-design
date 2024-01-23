@@ -64,3 +64,13 @@ Same as Input api with additional props:
 | -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |
 | compact  | Whether use compact style                                                                               | boolean | `false` |
 | size     | The size of Input.Group specifies the size of the included Input fields. Available: large default small | string  | default |
+
+#### TextArea
+
+| Property | Description                                                                                             | Type    | Default |
+| -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |
+| autoSize  |   Autosizing the height to fit the content   | `{ minRows: number; maxRows: number; }` | - |
+| errorText      | Error message, if provided textarea will be set in error state                                                                                                        | string                                                                  | -         |
+| error          | If provided textarea will be set in error state, without error message                                                                                                | boolean                                                                 | -         |
+| resize         | 'resize' CSS property passed to the textarea component                                                                                                                | `none` / `both` / `horizontal` / `vertical` / `initial` / `inherit`     | -         |
+| wrapperStyle         | CSS properties passed to the textarea component wrapper                                                                                                                | `React.CSSProperties`     | -         |
