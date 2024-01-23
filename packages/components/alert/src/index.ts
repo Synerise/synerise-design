@@ -27,6 +27,7 @@ export { default as Notification } from './Notification/Notification';
 export { notificationOpen } from './Notification/Notification';
 
 export { default as SectionMessage } from './SectionMessage/SectionMessage';
+
 export type {
   Props as SectionMessageProps,
   ColorType as SectionMessageColorType,
