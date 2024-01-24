@@ -5,19 +5,26 @@ import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
 
+import { useEffect, useState } from 'react';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemLabelProps } from './ItemName.types';
 
 const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQuery }): React.ReactElement => {
   const [editedName, setName] = React.useState(item.name);
+  const [originalName, setOriginalName] = useState(item.name);
 
   const updateName = React.useCallback(() => {
-    onUpdate && onUpdate({ id: item.id, name: editedName });
-  }, [editedName, onUpdate, item.id]);
+    setName(originalName);
+    onUpdate && onUpdate({ id: item.id, name: originalName });
+  }, [originalName, onUpdate, item.id]);
 
   const editName = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   }, []);
+
+  useEffect(() => {
+    setOriginalName(item.name);
+  }, [editedName, item.name]);
 
   const inputProps = React.useMemo(() => {
     return {
