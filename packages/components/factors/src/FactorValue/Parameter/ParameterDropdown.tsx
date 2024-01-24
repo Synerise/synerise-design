@@ -7,7 +7,7 @@ import Result from '@synerise/ds-result';
 import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { v4 as uuid } from 'uuid';
-import Loader from '@synerise/ds-loader';
+import DropdownSkeleton from '@synerise/ds-skeleton';
 import { FixedSizeList, FixedSizeList as List } from 'react-window';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
@@ -203,9 +203,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       )}
       {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
       {loading ? (
-        <S.LoaderWrapper>
-          <Loader label={texts.parameter.loadingParameter} labelPosition="bottom" />
-        </S.LoaderWrapper>
+        <DropdownSkeleton size="M" />
       ) : (
         <S.ItemsList>
           {currentItems?.length ? (

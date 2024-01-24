@@ -6,12 +6,12 @@ import Tabs from '@synerise/ds-tabs';
 import { focusWithArrowKeys, getClosest, useOnClickOutside } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
-import Loader from '@synerise/ds-loader';
 import { theme } from '@synerise/ds-core';
 import { v4 as uuid } from 'uuid';
 import { VariableSizeList, VariableSizeList as List } from 'react-window';
 
 import { ItemSize } from '@synerise/ds-menu';
+import DropdownSkeleton from '@synerise/ds-skeleton';
 import * as S from '../ContextSelector.styles';
 import {
   ContextDropdownProps,
@@ -322,9 +322,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
       )}
 
       {loading ? (
-        <S.LoaderWrapper>
-          <Loader label={texts.loadingResults} labelPosition="bottom" />
-        </S.LoaderWrapper>
+        <DropdownSkeleton size="M" />
       ) : (
         <S.ItemsList>
           {activeItems?.length ? (
