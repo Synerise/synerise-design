@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.82...@synerise/ds-completed-within@0.6.0) (2024-01-24)
+
+
+### Features
+
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/Synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+
+
+
+
+
 ## [0.5.82](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.81...@synerise/ds-completed-within@0.5.82) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

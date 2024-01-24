@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.201.0](https://github.com/synerise/synerise-design/compare/portal@0.200.1...portal@0.201.0) (2024-01-24)
+
+
+### Bug Fixes
+
+* **alert:** fixed section message styles ([a7a8a61](https://github.com/synerise/synerise-design/commit/a7a8a619f934d24be76d572998d936866b1a08eb))
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+* **context-selector:** replace: skeleton instead of loader ([291e3bf](https://github.com/synerise/synerise-design/commit/291e3bf9c4abcd22aeda39dd3347e1bf7424b12d))
+
+
+
+
+
 ## [0.200.1](https://github.com/synerise/synerise-design/compare/portal@0.200.0...portal@0.200.1) (2024-01-18)
 
 

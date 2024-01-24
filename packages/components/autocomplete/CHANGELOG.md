@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.14...@synerise/ds-autocomplete@0.6.0) (2024-01-24)
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/Synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+
+
+
+
+
 ## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.13...@synerise/ds-autocomplete@0.5.14) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.56](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.55...@synerise/ds-switch@0.4.56) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-switch
+
+
+
+
+
 ## [0.4.55](https://github.com/synerise/synerise-design/compare/@synerise/ds-switch@0.4.54...@synerise/ds-switch@0.4.55) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-switch

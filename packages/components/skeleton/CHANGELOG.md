@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.3.19...@synerise/ds-skeleton@0.4.0) (2024-01-24)
+
+
+### Features
+
+* **context-selector:** replace: skeleton instead of loader ([291e3bf](https://github.com/Synerise/synerise-design/commit/291e3bf9c4abcd22aeda39dd3347e1bf7424b12d))
+
+
+
+
+
 ## [0.3.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.3.18...@synerise/ds-skeleton@0.3.19) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-skeleton

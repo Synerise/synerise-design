@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.18...@synerise/ds-factors@0.21.0) (2024-01-24)
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/Synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+* **context-selector:** replace: skeleton instead of loader ([291e3bf](https://github.com/Synerise/synerise-design/commit/291e3bf9c4abcd22aeda39dd3347e1bf7424b12d))
+
+
+
+
+
 ## [0.20.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.17...@synerise/ds-factors@0.20.18) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-factors

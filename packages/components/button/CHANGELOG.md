@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.11...@synerise/ds-button@0.19.0) (2024-01-24)
+
+
+### Features
+
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+
+
+
+
+
 ## [0.18.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.10...@synerise/ds-button@0.18.11) (2024-01-17)
 
 **Note:** Version bump only for package @synerise/ds-button
