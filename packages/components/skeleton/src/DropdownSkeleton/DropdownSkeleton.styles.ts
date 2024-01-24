@@ -34,7 +34,7 @@ export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L' }>`
 
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L' }>`
   display: flex;
-  margin: 15px 0px;
+  margin: 15px 0;
   border-radius: 2px;
   width: 100%;
   height: ${(props): string => SkeletonSize[props.size as string] || SIZE_WRAPPER_DEFAULT}px;

@@ -47,11 +47,3 @@ export const ErrorWrapper = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
   margin-top: 8px;
 `;
-
-export const LoaderWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 0;
-`;
