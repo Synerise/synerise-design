@@ -20,6 +20,7 @@ const AutocompleteWithState: React.FC = () => {
   const errorMessage = text('Error Text', 'Error');
   const hasError = boolean('Set validation state', false);
   const loading = boolean('Set loading indicator', false);
+  const readOnly = boolean('Set readOnly', false);
   const placeholder = text('Placeholder', 'Placeholder');
   const [isBlur, setBlur] = React.useState(false);
   const autoResize = boolean('Set autoResize', false);
@@ -73,6 +74,7 @@ const AutocompleteWithState: React.FC = () => {
     <Autocomplete
       placeholder={placeholder}
       onSearch={handleSearch}
+      readOnly={readOnly}
       autoResize={
         autoResize
           ? {

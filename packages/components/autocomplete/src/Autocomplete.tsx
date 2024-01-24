@@ -9,7 +9,7 @@ import { AutocompleteProps } from './Autocomplete.types';
 import * as S from './Autocomplete.styles';
 
 const Autocomplete = (props: AutocompleteProps) => {
-  const { className, label, description, errorText, disabled, error, handleInputRef, autoResize } = props;
+  const { className, label, description, errorText, disabled, error, handleInputRef, autoResize, readOnly } = props;
   const inputRef = useRef<Select | undefined>(undefined);
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const Autocomplete = (props: AutocompleteProps) => {
         {...props}
         // @ts-ignore
         ref={inputRef}
+        disabled={readOnly || disabled}
         dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
         getPopupContainer={getParentNode}
       />
@@ -50,7 +51,9 @@ const Autocomplete = (props: AutocompleteProps) => {
           <Label>{label}</Label>
         </S.LabelWrapper>
       )}
-      <S.ComponentWrapper error={!!errorText || error}>{renderAutoCompleteComponent()}</S.ComponentWrapper>
+      <S.ComponentWrapper readOnly={readOnly} error={!!errorText || error}>
+        {renderAutoCompleteComponent()}
+      </S.ComponentWrapper>
       {errorText && (
         <S.ErrorWrapper>
           <ErrorText>{errorText}</ErrorText>

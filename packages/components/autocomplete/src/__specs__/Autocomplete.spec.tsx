@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Autocomplete from '../index';
 
 const { Option } = Autocomplete;
@@ -26,45 +27,63 @@ afterAll(() => {
 
 describe('Autocomplete', () => {
   it('should render', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Autocomplete open value="first" label={LABEL} description={DESC} errorText={ERROR}>
         <Option value="first">{FIRST_OPTION}</Option>
       </Autocomplete>
     );
 
-    // ASSERT
-    expect(getByText(LABEL)).toBeTruthy();
-    expect(getByText(DESC)).toBeTruthy();
-    expect(getByText(ERROR)).toBeTruthy();
+    expect(screen.getByText(LABEL)).toBeTruthy();
+    expect(screen.getByText(DESC)).toBeTruthy();
+    expect(screen.getByText(ERROR)).toBeTruthy();
+  });
+
+  it('should open dropdown on input click', () => {
+    const onDropdownVisibleChange = jest.fn();
+    renderWithProvider(
+      <Autocomplete onDropdownVisibleChange={onDropdownVisibleChange} value="first" label={LABEL} description={DESC} errorText={ERROR}>
+        <Option value="first">{FIRST_OPTION}</Option>
+      </Autocomplete>
+    );
+    const input = screen.getByRole('combobox');
+    userEvent.click(input);
+    expect(onDropdownVisibleChange).toHaveBeenCalled();
+  });
+
+  it('should render readonly', () => {
+    const onDropdownVisibleChange = jest.fn();
+    renderWithProvider(
+      <Autocomplete onDropdownVisibleChange={onDropdownVisibleChange} readOnly value="first" label={LABEL} description={DESC} errorText={ERROR}>
+        <Option value="first">{FIRST_OPTION}</Option>
+      </Autocomplete>
+    );
+    const input = screen.getByRole('combobox');
+    expect(input).toBeDisabled();
+    userEvent.click(input);
+    expect(onDropdownVisibleChange).not.toHaveBeenCalled()
   });
 
   it('call on Change', () => {
-    // ARRANGE
     const options = ['red', 'green', 'blue'];
     const onChange = jest.fn();
-
-    const C = renderWithProvider(
+    
+    renderWithProvider(
       <Autocomplete value="red" onChange={onChange}>
         {options.map(o => (
           <Option key={o} value={o}>{o}</Option>
         ))}
       </Autocomplete>
     );
-    C.debug()
     const input = document.querySelector('.ant-select-selection-search-input') as HTMLInputElement;
 
-    // ACT
     fireEvent.change(input, { target: { value: 'test' } });
     const liBlue = document.querySelector('.ant-select-item-option:last-child') as HTMLInputElement;
     fireEvent.click(liBlue);
-    // ASSERT
     expect(onChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalledTimes(2);
   });
 
   it('should clear input value', async () => {
-    // ARRANGE
     const options = ['red', 'green', 'blue'];
 
     renderWithProvider(
@@ -76,16 +95,12 @@ describe('Autocomplete', () => {
     );
     const input = document.querySelector('.ant-select-selection-search-input') as HTMLInputElement;
 
-    // ACT
     fireEvent.change(input, { target: { value: RED } });
 
-    // ASSERT
     expect(input.value).toBe(RED);
 
     const clearBtn = document.querySelector('.ant-select-clear span') as HTMLInputElement;
-    // ACT
     fireEvent.click(clearBtn);
-    // ASSERT
     expect(clearBtn).toBeTruthy();
   });
 });
