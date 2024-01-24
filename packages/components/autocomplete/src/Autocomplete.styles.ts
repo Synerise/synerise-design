@@ -30,6 +30,14 @@ const error = (): FlattenInterpolation<ThemeProps> => css`
   background: ${(props): string => props.theme.palette['red-050']};
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
 `;
+
+const readonly = (): FlattenInterpolation<ThemeProps> => css`
+  background-color: ${(props): string => props.theme.palette.white};
+  color: ${(props): string => props.theme.palette['grey-700']};
+  input {
+    cursor: auto;
+  }
+`;
 export type AutoResizeProps = {
   autoResize?: boolean | { minWidth: string; maxWidth: string };
 };
@@ -95,10 +103,21 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidt
   }
 `;
 
-export const ComponentWrapper = styled.div<{ error?: boolean }>`
+export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean }>`
+&&& {
   .ant-select-auto-complete {
     
     ${(props): FlattenInterpolation<ThemeProps> => {
+      if (props.readOnly) {
+        return css`
+          .ant-select-selector {
+            &:hover {
+              ${readonly()}
+            }
+            ${readonly()}
+          }
+        `;
+      }
       if (props.error) {
         return css`
           .ant-select-selector {
@@ -127,4 +146,5 @@ export const ComponentWrapper = styled.div<{ error?: boolean }>`
       
     }   
   }
+}
 `;

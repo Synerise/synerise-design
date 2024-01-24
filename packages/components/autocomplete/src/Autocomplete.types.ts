@@ -8,6 +8,7 @@ export type OverrideProps = {
   label?: ReactNode | string;
   description?: ReactNode | string;
   error?: boolean;
+  readOnly?: boolean;
   handleInputRef?: (ref: MutableRefObject<Select | undefined>) => void;
   autoResize?: boolean | { minWidth: string; maxWidth: string };
 };
