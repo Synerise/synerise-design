@@ -38,6 +38,7 @@ import CompletedWithin from '@synerise/ds-completed-within'
 | periods     | Custom list of periods                                                       | CustomPeriod[]               | -                                    |
 | placeholder | Trigger button label                                                         | string                       | -                                    |
 | tooltip     | Content of tooltip                                                           | string                       | -                                    |
+| readOnly    | Whether value is editable                                                    | boolean                      | -                                    |
 
 ### CompletedWithinTexts
 

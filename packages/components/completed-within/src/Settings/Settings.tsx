@@ -7,19 +7,29 @@ import { SettingsProps } from './Settings.types';
 import * as S from './Settings.styles';
 import { Period } from '../CompletedWithin.types';
 
-const Settings: React.FC<SettingsProps> = ({ value, text, onPeriodChange, onValueChange, periods, maxValue }) => {
+const Settings: React.FC<SettingsProps> = ({
+  value,
+  text,
+  onPeriodChange,
+  onValueChange,
+  periods,
+  maxValue,
+  readOnly,
+}) => {
   return (
-    <S.Settings>
+    <S.Settings data-testid="completed-within-dropdown">
       <InputGroup size="default" label={text.header} resetMargin compact>
         <InputNumber
           size="small"
           raw
+          readOnly={readOnly}
           value={value.value}
           onChange={onValueChange}
           min={0}
           max={maxValue ?? Number.MAX_SAFE_INTEGER}
         />
         <Select
+          readOnly={readOnly}
           size={'default' as SizeType}
           value={value.period}
           placeholder={text.periodPlaceholder}

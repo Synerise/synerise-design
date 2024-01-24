@@ -27,4 +27,5 @@ export type CompletedWithinProps = {
   periods?: CustomPeriod[];
   placeholder?: string | undefined;
   tooltip?: string;
+  readOnly?: boolean;
 };
