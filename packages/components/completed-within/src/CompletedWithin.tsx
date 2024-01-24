@@ -18,6 +18,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
   periods,
   placeholder,
   tooltip,
+  readOnly,
 }) => {
   const intl = useIntl();
 
@@ -89,38 +90,53 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
       : placeholder;
   }, [getPeriods, hasValue, texts, value, placeholder]);
 
-  return (
-    <S.CompletedWithinWrapper withValue={hasValue}>
-      <Dropdown
-        overlay={
-          <Settings
-            value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
-            maxValue={maxValue}
-            onValueChange={setInnerValue}
-            onPeriodChange={setInnerPeriod}
-            text={texts}
-            periods={getPeriods}
-          />
-        }
-        trigger={['click']}
-        onVisibleChange={handleVisibleChange}
-        placement="topLeft"
-        overlayStyle={{ maxWidth: '238px', minWidth: '238px' }}
+  const trigger = (
+    <Tooltip
+      type="largeSimple"
+      description={tooltip}
+      trigger={['hover']}
+      onVisibleChange={setTooltipVisible}
+      visible={!settingsVisible && tooltipVisible}
+    >
+      <S.TriggerButton
+        data-testid="completed-within-trigger"
+        readOnly={readOnly}
+        className="ds-completed-within"
+        type="tertiary"
+        mode={triggerMode}
       >
-        <Tooltip
-          type="largeSimple"
-          description={tooltip}
-          trigger={['hover']}
-          onVisibleChange={setTooltipVisible}
-          visible={!settingsVisible && tooltipVisible}
+        <Icon component={<ClockM />} />
+        {triggerLabel}
+      </S.TriggerButton>
+    </Tooltip>
+  );
+
+  return (
+    <S.CompletedWithinWrapper readOnly={readOnly} withValue={hasValue}>
+      {readOnly ? (
+        trigger
+      ) : (
+        <Dropdown
+          overlay={
+            <Settings
+              value={{ value: innerValue !== undefined ? Number(innerValue) : undefined, period: innerPeriod }}
+              maxValue={maxValue}
+              onValueChange={setInnerValue}
+              onPeriodChange={setInnerPeriod}
+              text={texts}
+              readOnly={readOnly}
+              periods={getPeriods}
+            />
+          }
+          trigger={['click']}
+          onVisibleChange={handleVisibleChange}
+          placement="topLeft"
+          overlayStyle={{ maxWidth: '238px', minWidth: '238px' }}
         >
-          <S.TriggerButton className="ds-completed-within" type="tertiary" mode={triggerMode}>
-            <Icon component={<ClockM />} />
-            {triggerLabel}
-          </S.TriggerButton>
-        </Tooltip>
-      </Dropdown>
-      {hasValue && (
+          {trigger}
+        </Dropdown>
+      )}
+      {hasValue && !readOnly && (
         <Tooltip title={texts.clear}>
           <S.ClearButton mode="single-icon" type="ghost" onClick={handleClear} data-testid="clear-button">
             <Icon component={<Close3S />} />

@@ -28,6 +28,7 @@ const stories = {
         maxValue={number('Max value', 100)}
         onSetValue={handleSetValue}
         placeholder={boolean('With placeholder', false) ? text('Placeholder', 'Completed within') : undefined}
+        readOnly={boolean('readOnly', false)}
         tooltip={
           boolean('Show tooltip', true)
             ? text('Tooltip', 'Filter by time elapsed between completing the first and last step in the funnel.')

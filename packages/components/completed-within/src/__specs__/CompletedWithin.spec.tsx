@@ -2,6 +2,7 @@ import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import CompletedWithin from '../CompletedWithin';
 import * as React from 'react';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 
 const TEXT = {
   clear: 'Clear',
@@ -10,24 +11,21 @@ const TEXT = {
   periodPlaceholder: 'Interval',
 };
 
-const PLACEHOLDER = 'Completed within';
+const PLACEHOLDER = 'Placeholder';
 
 describe('Completed within component', () => {
   it('Should render without value', () => {
-    // ARRANGE
     const handleSetValue = jest.fn();
     const { container } = renderWithProvider(
       <CompletedWithin text={TEXT} value={{ value: 0, period: undefined }} onSetValue={handleSetValue} />
     );
 
-    // ASSERT
     expect(container.querySelector('.clock-m')).toBeTruthy();
   });
 
   it('Should render with placeholder', () => {
-    // ARRANGE
     const handleSetValue = jest.fn();
-    const { container, getByText } = renderWithProvider(
+    const { container } = renderWithProvider(
       <CompletedWithin
         text={TEXT}
         value={{ value: 0, period: undefined }}
@@ -36,38 +34,43 @@ describe('Completed within component', () => {
       />
     );
 
-    // ASSERT
     expect(container.querySelector('.clock-m')).toBeTruthy();
-    expect(getByText(PLACEHOLDER)).toBeTruthy();
+    expect(screen.getByText(PLACEHOLDER)).toBeTruthy();
   });
 
   it('Should render with selected value', () => {
-    // ARRANGE
     const handleSetValue = jest.fn();
-    const { getByText, container } = renderWithProvider(
+    const { container } = renderWithProvider(
       <CompletedWithin text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
 
-    // ASSERT
-    expect(getByText('Completed within 2 DAYS')).toBeTruthy();
+    expect(screen.getByText('Completed within 2 DAYS')).toBeTruthy();
     expect(container.querySelector('.close-3-s')).toBeTruthy();
   });
 
-  it('Should render call handleSetValue with empty values', () => {
-    // ARRANGE
+  it('Should render readonly with selected value', () => {
     const handleSetValue = jest.fn();
-    const { queryByText, container } = renderWithProvider(
+    const { container } = renderWithProvider(
+      <CompletedWithin readOnly text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
+    );
+    
+    expect(screen.getByText('Completed within 2 DAYS')).toBeTruthy();
+    expect(container.querySelector('.close-3-s')).toBeFalsy();
+  });
+
+
+  it('Should render call handleSetValue with empty values', () => {
+    const handleSetValue = jest.fn();
+    const { container } = renderWithProvider(
       <CompletedWithin text={TEXT} value={{ value: 2, period: 'DAYS' }} onSetValue={handleSetValue} />
     );
     const clearIcon = container.querySelector('.close-3-s');
 
-    // ASSERT
-    expect(queryByText('Completed within 2 DAYS')).toBeTruthy();
+    expect(screen.queryByText('Completed within 2 DAYS')).toBeTruthy();
     expect(clearIcon).toBeTruthy();
 
     userEvent.click(clearIcon as HTMLElement);
 
-    // ASSERT
     expect(handleSetValue).toBeCalledWith({ value: undefined, period: undefined });
   });
 });
