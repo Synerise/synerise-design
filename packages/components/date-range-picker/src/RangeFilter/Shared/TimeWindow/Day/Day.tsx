@@ -60,7 +60,7 @@ const Day: React.FC<DayProps> = ({
       {restricted && (
         <Tooltip
           trigger={['hover']}
-          title={texts?.clear || 'Clear'}
+          title={texts.clear || 'Clear'}
           onVisibleChange={handleTooltipVisibleChange}
           getPopupContainer={getPopupContainer}
         >

@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
-import dayjs from 'dayjs';
 import { useIntl } from 'react-intl';
+import dayjs from 'dayjs';
 import {
   DEFAULT_RANGE_END,
   DEFAULT_RANGE_START,
@@ -16,6 +16,7 @@ import RangeFormContainer from '../../../Shared/TimeWindow/RangeFormContainer/Ra
 import { AddButton } from '../../../Shared';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import { getDefaultTexts } from '../../../../utils';
 
 const Daily = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -25,9 +26,13 @@ const Daily = ({
   valueSelectionMode = ['Hour', 'Range'],
   timeFormat,
   timePickerProps,
+  texts,
   errorTexts = [],
 }: DailyProps) => {
   const intl = useIntl();
+
+  const allTexts = React.useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
+
   const defaultDayValue = useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -99,7 +104,7 @@ const Daily = ({
               handleDayTimeChange(dateValueArray, index);
             }}
             dayKeys={[0]}
-            texts={EMPTY_OBJECT}
+            texts={allTexts}
             activeDays={[0]}
             getDayValue={(): DailySchedule => getDayValue(index)}
             onRangeDelete={disabled ? undefined : (): void => handleRangeDelete(index)}
@@ -112,12 +117,7 @@ const Daily = ({
             hideHeader
           />
         ))}
-      {value.length < maxEntries && !disabled && (
-        <AddButton
-          label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add range' })}
-          onClick={handleRangeAdd}
-        />
-      )}
+      {value.length < maxEntries && !disabled && <AddButton label={allTexts.addTime} onClick={handleRangeAdd} />}
     </S.NewFilterContainer>
   );
 };

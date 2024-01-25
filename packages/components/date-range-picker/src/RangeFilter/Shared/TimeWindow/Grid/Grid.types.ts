@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { DayKey, Days } from '../TimeWindow.types';
+import type { Texts } from '../../../../DateRangePicker.types';
 
 export type GridProps = {
   keys: number[];
@@ -20,9 +21,7 @@ export type GridProps = {
   onSelectAll: () => void;
   onUnselectAll: () => void;
   renderDay: (day: DayKey) => React.ReactNode;
-  texts?: GridTexts;
+  texts: GridTexts;
 };
 
-export type GridTexts = {
-  clear?: string | React.ReactNode;
-};
+export type GridTexts = Pick<Texts, 'clear' | 'selectAll' | 'unselectAll'>;

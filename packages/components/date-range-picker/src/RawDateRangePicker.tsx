@@ -9,12 +9,12 @@ import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
 import * as CONST from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
-import type { DateRangePickerProps, DateRangePickerProps as Props, State, AddonType } from './DateRangePicker.types';
+import type { DateRangePickerProps, State, AddonType, Texts } from './DateRangePicker.types';
 import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
-import { normalizeRange } from './utils';
+import { getDefaultTexts, normalizeRange } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
@@ -55,8 +55,11 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   }
   return value;
 }
+type RawDateRangePickerProps = Omit<DateRangePickerProps, 'texts'> & {
+  texts: Texts;
+};
 
-export class RawDateRangePicker extends PureComponent<DateRangePickerProps, State> {
+export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, State> {
   static defaultProps = {
     ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
     relativePast: true,
@@ -66,7 +69,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     isTruncateMs: true,
   };
 
-  constructor(props: DateRangePickerProps) {
+  constructor(props: RawDateRangePickerProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
@@ -76,7 +79,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     };
   }
 
-  componentDidUpdate(prevProps: Readonly<Props>): void {
+  componentDidUpdate(prevProps: Readonly<RawDateRangePickerProps>): void {
     const { value } = this.props;
     if (prevProps.value !== value) {
       this.handleRangeChange(value);
@@ -90,6 +93,11 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
   handleFilterApply = (filter?: FilterValue<FilterDefinition>): void => {
     const { value } = this.state;
     this.setState({ mode: MODES.DATE, value: { ...value, filter: filter as DateFilter } });
+  };
+
+  allTexts = () => {
+    const { texts, intl } = this.props;
+    return getDefaultTexts(intl, false, texts);
   };
 
   handleRangeChange = (range?: DateRange): void => {
@@ -175,13 +183,12 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
       relativePast,
       ranges,
       relativeModes,
-      texts,
-      intl,
       rangeUnits,
       showCustomRange,
       valueTransformer,
     } = this.props;
     const { value, visibleAddonKey } = this.state;
+    const allTexts = this.allTexts();
     const addons: AddonType[] = [];
     if (showRelativePicker && !!relativeModes && relativeModes?.length > 0) {
       const addonKey = 'relative-picker';
@@ -197,16 +204,16 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
                 value={value}
                 onChange={this.handleRangeChange}
                 relativeModes={relativeModes}
-                texts={texts}
+                texts={allTexts}
                 rangeUnits={rangeUnits}
                 showCustomRange={showCustomRange}
                 valueTransformer={valueTransformer}
               />
             }
             expanded={addonKey === visibleAddonKey}
-            title={texts?.relativeDateRange}
+            title={allTexts.relativeDateRange}
             onCollapseChange={(expanded): void => this.handleAddonCollapse(addonKey, expanded)}
-            collapsedSummary={rangeTranslationKey && texts[rangeTranslationKey]}
+            collapsedSummary={rangeTranslationKey && allTexts[rangeTranslationKey]}
           />
         ),
         key: addonKey,
@@ -215,15 +222,13 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     if (showFilter) {
       const addonKey = 'filter';
       const filterEnabled = (value.from && value.to) || isLifetime(value);
-      const label = value?.filter
-        ? intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.FILTER-ENABLED`, defaultMessage: 'Filter enabled' })
-        : intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.SELECT-DATE-FILTER`, defaultMessage: 'Select date filter' });
+      const label = value?.filter ? allTexts.filterEnabled : allTexts.selectDateFilter;
       addons.push({
         content: (
           <RangeFilterStatus
             onFilterRemove={this.handleRemoveFilterClick}
             filter={value.filter}
-            texts={texts}
+            texts={allTexts}
             disabled={!filterEnabled}
             label={label}
             onClick={this.handleModalOpenClick}
@@ -243,7 +248,6 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
       disabledDate,
       validate,
       forceAdjacentMonths,
-      texts,
       savedFilters,
       onFilterSave,
       intl,
@@ -262,11 +266,12 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
     }
     const { from, to, key } = value;
     const addons = this.getAddons();
+    const allTexts = this.allTexts();
     if (mode === MODES.FILTER)
       return (
         <Container>
           <RangeFilter
-            texts={texts}
+            texts={allTexts}
             value={value.filter}
             onCancel={this.handleFilterCancel}
             onApply={this.handleFilterApply}
@@ -308,7 +313,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
           onSwitchMode={this.handleSwitchMode}
           dateOnly={!showTime}
           canSwitchMode={canSwitchToTimePicker}
-          texts={texts}
+          texts={allTexts}
           forceAdjacentMonths={forceAdjacentMonths}
           intl={intl}
         />
@@ -328,7 +333,7 @@ export class RawDateRangePicker extends PureComponent<DateRangePickerProps, Stat
           canSwitchMode={isValid}
           message={!validator.valid ? validator.message : null}
           onSwitchMode={this.handleSwitchMode}
-          texts={texts}
+          texts={allTexts}
           value={value}
           showTime={showTime}
           format={format}
