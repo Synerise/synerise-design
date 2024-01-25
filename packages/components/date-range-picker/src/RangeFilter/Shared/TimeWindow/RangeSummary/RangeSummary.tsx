@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useIntl } from 'react-intl';
 import * as S from './RangeSummary.styles';
 import { RangeSummaryProps } from './RangeSummary.types';
 import { DayKey } from '../TimeWindow.types';
@@ -10,8 +9,8 @@ const RangeSummary: React.FC<RangeSummaryProps> = ({
   getDayLabel,
   monthlyFilterPeriod,
   monthlyFilter,
+  texts,
 }: RangeSummaryProps) => {
-  const intl = useIntl();
   const daysToDisplay = React.useMemo(() => {
     if (monthlyFilter && dayKeys.length > 1) {
       return <S.DayShortname>Days</S.DayShortname>;
@@ -26,7 +25,7 @@ const RangeSummary: React.FC<RangeSummaryProps> = ({
   }, [dayKeys, getDayLabel, monthlyFilter, monthlyFilterPeriod]);
   return (
     <S.TitleWrapper>
-      {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SET_TIME_FOR', defaultMessage: `Set time for:` })}
+      {texts.setTimeFor}
       {SPACE_UNICODE}
       {daysToDisplay}
     </S.TitleWrapper>

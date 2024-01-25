@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { range, rangeRight } from 'lodash';
 import { GridProps } from './Grid.types';
 import { Action, Header } from '../Header/Header';
@@ -13,6 +12,7 @@ const Grid: React.FC<GridProps> = ({
   numberOfDaysPerRow,
   rowLabelFormatter,
   title,
+  texts,
   showSelectAll,
   showUnselectAll,
   inverted,
@@ -30,19 +30,22 @@ const Grid: React.FC<GridProps> = ({
     actions.push({
       key: 'select-all',
       onClick: onSelectAll,
-      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.SELECT-ALL" defaultMessage="Select all" />,
+      label: <>{texts.selectAll}</>,
     });
   if (showUnselectAll)
     actions.push({
       key: 'unselect-all',
       onClick: onUnselectAll,
-      label: <FormattedMessage id="DS.DATE-RANGE-PICKER.UNSELECT-ALL" defaultMessage="Unselect all" />,
+      label: <>{texts.unselectAll}</>,
     });
-  let grid = React.useMemo(()=>(
-    <S.Days columns={numberOfColumns}>
-      {inverted ? reverseRange(keys, reverseGroup).map(renderDay) : keys.map(renderDay)}
-    </S.Days>
-  ),[numberOfColumns, inverted, keys, reverseGroup, renderDay]);
+  let grid = React.useMemo(
+    () => (
+      <S.Days columns={numberOfColumns}>
+        {inverted ? reverseRange(keys, reverseGroup).map(renderDay) : keys.map(renderDay)}
+      </S.Days>
+    ),
+    [numberOfColumns, inverted, keys, reverseGroup, renderDay]
+  );
   const numberOfRows = Math.ceil(numberOfDays / numberOfColumns);
 
   if (rowLabelFormatter) {

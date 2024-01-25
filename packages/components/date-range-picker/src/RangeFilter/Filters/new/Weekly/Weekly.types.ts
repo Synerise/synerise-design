@@ -3,6 +3,7 @@ import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/Ran
 import { FilterBaseProps } from '../Filters.types';
 import { WithDisabledProp } from '../../../RangeFilter.types';
 import { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import { Texts } from '../../../../DateRangePicker.types';
 
 export type WeeklyScheduleDayValue = DayOptions & {
   mode: DateLimitMode;
@@ -18,5 +19,6 @@ export type WeeklyProps = {
     [guid: string]: FilterErrorType[];
   };
   onChange: (value: WeeklyProps['value']) => void;
+  texts?: Partial<Texts>;
 } & FilterBaseProps &
   WithDisabledProp;

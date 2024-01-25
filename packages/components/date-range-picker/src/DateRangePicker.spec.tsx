@@ -138,7 +138,11 @@ const texts = {
   last6Months: 'last6Months',
   next6Months: 'next6Months',
   lastYear: 'lastYear',
-  nextYear: 'nextYear'
+  nextYear: 'nextYear',
+  change: 'change',
+  daily: 'daily',
+  monthly: 'monthly',
+  inverseSelection: 'Inverse selection'
 } as any;
 
 describe('DateRangePicker', () => {
@@ -819,15 +823,13 @@ describe('DateRangePicker', () => {
     
     const filterAddOn = screen.getByText(texts.filter);
     expect(filterAddOn).toBeInTheDocument();
-    
-    userEvent.click(filterAddOn);
 
-    const filterButton = screen.getByText('Change');
+    const filterButton = screen.getByText(texts.change);
     expect(filterButton).toBeInTheDocument();
     
     userEvent.click(filterButton);
 
-    const filterLabel = await screen.findByText('Everyday')
+    const filterLabel = await screen.findByText(texts.daily);
     expect(filterLabel).toBeInTheDocument();
 
     userEvent.click(filterLabel);
@@ -855,20 +857,18 @@ describe('DateRangePicker', () => {
     
     const filterAddOn = screen.getByText(texts.filter);
     expect(filterAddOn).toBeInTheDocument();
-    
-    userEvent.click(filterAddOn);
 
-    const filterButton = screen.getByText('Change');
+    const filterButton = screen.getByText(texts.change);
     expect(filterButton).toBeInTheDocument();
     
     userEvent.click(filterButton);
 
-    const filterLabel = await screen.findByText('Everyday')
+    const filterLabel = await screen.findByText(texts.daily)
     expect(filterLabel).toBeInTheDocument();
 
     userEvent.click(filterLabel);
     
-    const inverseLink = screen.getByText('Inverse selection');
+    const inverseLink = screen.getByText(texts.inverseSelection);
     expect(inverseLink).toBeInTheDocument();
 
     userEvent.click(inverseLink);
@@ -1114,7 +1114,7 @@ describe('DateRangePicker', () => {
     
     userEvent.click(filterButton);
 
-    const filterLabel = await screen.findByText('Every month')
+    const filterLabel = await screen.findByText(texts.monthly)
     expect(filterLabel).toBeInTheDocument();
 
     userEvent.click(filterLabel);

@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
-
 import RangeForm from './RangeForm/RangeForm';
 import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';
@@ -33,7 +31,7 @@ const RangeFormContainer = ({
   onRangePaste,
   onRangeCopy,
   onRangeDelete,
-  texts = {},
+  texts,
   onChange,
   valueSelectionModes = ['Range', 'Hour'],
   rangeDisplayMode,
@@ -174,12 +172,8 @@ const RangeFormContainer = ({
   );
 
   const invertedToggleLink = React.useMemo(() => {
-    return (
-      <S.InvertAction onClick={toggleInverted}>
-        <FormattedMessage id="DS.DATE-RANGE-PICKER.FILTER-INVERSE-SELECTION" defaultMessage="Inverse selection" />
-      </S.InvertAction>
-    );
-  }, [toggleInverted]);
+    return <S.InvertAction onClick={toggleInverted}>{texts.inverseSelection}</S.InvertAction>;
+  }, [texts.inverseSelection, toggleInverted]);
 
   const suffix = React.useMemo(() => {
     const { includeActions = true } = headerOptions;
@@ -219,6 +213,7 @@ const RangeFormContainer = ({
             <RangeSummary
               dayKeys={dayKeys as DayKey[]}
               getDayLabel={getDayLabel}
+              texts={texts}
               monthlyFilter={monthlyFilter}
               monthlyFilterPeriod={monthlyFilterPeriod}
             />

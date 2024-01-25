@@ -14,7 +14,7 @@ import * as S from '../../../RangeFilter.styles';
 import { MonthlyProps, MonthlySchedule, MonthlyScheduleDayValue } from './Monthly.types';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
-import { TimeWindowTexts, DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
+import { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
 
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
 import { canAddAnotherRange, haveActiveDaysCommonRange, range } from './utils';
@@ -36,6 +36,7 @@ import {
   MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_SHORT,
 } from '../../../constants';
 import { US_NOTATION_WEEK_DAYS_INDEXES } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
+import { getDefaultTexts } from '../../../../utils';
 
 const Monthly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -46,10 +47,13 @@ const Monthly = ({
   value,
   timePickerProps,
   disabled,
+  texts,
   periodType = DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH,
   countedFrom = COUNTED_FROM_ENUM.BEGINNING,
   errorTexts,
 }: MonthlyProps) => {
+  const intl = useIntl();
+  const allTexts = React.useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
   const defaultDayValue = React.useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
@@ -65,7 +69,7 @@ const Monthly = ({
   const [activeDays, setActiveDays] = React.useState<DayKey[]>([]);
   const ref = React.useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
-  const intl = useIntl();
+
   const { isSundayFirstWeekDay } = useDataFormat();
 
   const allKeys = React.useMemo(() => {
@@ -318,11 +322,11 @@ const Monthly = ({
           intl={intl}
           onToggle={handleToggleDay}
           onClear={removeDaySelection}
-          texts={EMPTY_OBJECT}
+          texts={allTexts}
         />
       );
     },
-    [activeDays, intl, getDayLabel, handleToggleDay, removeDaySelection, isDayRestricted, disabled]
+    [activeDays, getDayLabel, isDayRestricted, disabled, intl, handleToggleDay, removeDaySelection, allTexts]
   );
 
   const handleRangeAdd = React.useCallback((): void => {
@@ -343,13 +347,8 @@ const Monthly = ({
   }, [value, activeDays, defaultDayValue, onChange]);
 
   const renderGridTitle = React.useCallback(
-    count => (
-      <SelectionCount
-        selectedDayCount={count}
-        label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected' })}
-      />
-    ),
-    [intl]
+    count => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
+    [allTexts.selected]
   );
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
   const isAnyDaySelected = activeDays.length > 0;
@@ -371,7 +370,7 @@ const Monthly = ({
         intl={intl}
         numberOfDays={7}
         numberOfDaysPerRow={7}
-        texts={EMPTY_OBJECT}
+        texts={allTexts}
         title={renderGridTitle(activeDays.length)}
         {...getGridSettings()}
       />
@@ -385,7 +384,7 @@ const Monthly = ({
             onDayTimeChange={(dayValue, dayKey): void => {
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
-            texts={EMPTY_OBJECT as TimeWindowTexts}
+            texts={allTexts}
             onMultipleDayTimeChange={(dates): void => handleDayTimeChange(dates, activeDays, guid)}
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -404,31 +403,9 @@ const Monthly = ({
             monthlyFilterPeriod={periodType}
           />
         ))}
-      {isAnyDaySelected && !canAddRange && (
-        <SelectionHint
-          message={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.MAXIMUM-RANGES-MESSAGE',
-            defaultMessage: 'The maximum amount of ranges have been selected.',
-          })}
-        />
-      )}
-      {shouldRenderAddButton && (
-        <AddButton
-          label={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.ADD-TIME',
-            defaultMessage: 'Add range',
-          })}
-          onClick={handleRangeAdd}
-        />
-      )}
-      {!isAnyDaySelected && !disabled && (
-        <SelectionHint
-          message={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION',
-            defaultMessage: 'Select range.',
-          })}
-        />
-      )}
+      {isAnyDaySelected && !canAddRange && <SelectionHint message={allTexts.maximumRanges} />}
+      {shouldRenderAddButton && <AddButton label={allTexts.addTime} onClick={handleRangeAdd} />}
+      {!isAnyDaySelected && !disabled && <SelectionHint message={allTexts.selectDaysDescription} />}
     </S.NewFilterContainer>
   );
 };

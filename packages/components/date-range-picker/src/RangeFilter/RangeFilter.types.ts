@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IntlShape } from 'react-intl';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode, RangeDisplayMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
-import { Props as DateRangePickerProps, Texts } from '../DateRangePicker.types';
+import { DateRangePickerProps, Texts } from '../DateRangePicker.types';
 import { COUNTED_FROM_ENUM, DAYS_OF_PERIOD_ENUM } from './constants';
 
 export type FilterValue<T = FilterDefinition> = {
@@ -18,7 +18,7 @@ export type RangeFilterProps = {
   intl: IntlShape;
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
-  texts?: Texts;
+  texts: Texts;
   allowedFilterTypes?: string[];
   valueSelectionModes?: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;

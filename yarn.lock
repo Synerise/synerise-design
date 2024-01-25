@@ -8048,6 +8048,14 @@
     "@svgr/plugin-svgo" "^5.2.0"
     loader-utils "^1.2.3"
 
+"@synerise/ds-button@^0.18.0":
+  version "0.18.11"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-button/-/ds-button-0.18.11.tgz#f3da594b151a53a885016a6dd8f23e54b2ce39d2"
+  integrity sha1-89pZSxUaU6iFAWpt2PI+VLLOOdI=
+  dependencies:
+    "@synerise/ds-icon" "^0.59.1"
+    classnames "2.3.2"
+
 "@synerise/ds-cruds@^0.3.40":
   version "0.3.43"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-cruds/-/ds-cruds-0.3.43.tgz#2ccc36ef2f013e6e8c8bb58c256e3fea3950abda"
@@ -8055,10 +8063,21 @@
   dependencies:
     "@synerise/ds-icon" "^0.58.9"
     "@synerise/ds-tooltip" "^0.14.13"
+
+"@synerise/ds-icon@^0.58.0", "@synerise/ds-icon@^0.58.8", "@synerise/ds-icon@^0.58.9":
+  version "0.58.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.58.9.tgz#251bce88324cad2c848d489d7ba2f6704928b512"
+  integrity sha1-JRvOiDJMrSyEjUide6L2cEkotRI=
+
+"@synerise/ds-icon@^0.59.1":
+  version "0.59.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.59.1.tgz#50dd0113b423b9b5f64aa06b846729b4c0699180"
+  integrity sha1-UN0BE7QjubX2SqBrhGcptMBpkYA=
+
 "@synerise/ds-scrollbar@^0.6.5":
   version "0.6.14"
-  resolved "https://registry.yarnpkg.com/@synerise/ds-scrollbar/-/ds-scrollbar-0.6.14.tgz#0d2d80ce24d84d0649fe3ec6a8789f60fe91594a"
-  integrity sha512-hbbZMJrUuGq53JM2hHC1IiB7OVL5hb7VD2hM2TUopcODs5kdk70aswgid4Nj8PnN4l6kVZJrvpwRm+9vsSAidw==
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-scrollbar/-/ds-scrollbar-0.6.14.tgz#0d2d80ce24d84d0649fe3ec6a8789f60fe91594a"
+  integrity sha1-DS2AziTYTQZJ/j7GqHifYP6RWUo=
   dependencies:
     "@synerise/ds-icon" "^0.58.8"
     react-perfect-scrollbar "^1.5.8"
@@ -26027,7 +26046,7 @@ sort-scripts@^1.0.1:
   resolved "https://registry.npmjs.org/sort-scripts/-/sort-scripts-1.0.1.tgz"
   integrity sha512-58eys3wXg05rI51Gg/90Uvc0id0aboGLSzHm4nFvuD0MofSg/y8cyJ7ZqYuZ1eyj6AA8XwFTGaXA+6tApsMv4w==
 
-sortablejs@1.15.0:
+sortablejs@1.15.0, sortablejs@1.15.1:
   version "1.15.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/sortablejs/-/sortablejs-1.15.0.tgz#53230b8aa3502bb77a29e2005808ffdb4a5f7e2a"
   integrity sha1-UyMLiqNQK7d6KeIAWAj/20pffio=

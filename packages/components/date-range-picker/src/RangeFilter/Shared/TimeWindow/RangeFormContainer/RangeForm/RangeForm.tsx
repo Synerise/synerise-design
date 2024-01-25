@@ -68,7 +68,7 @@ const RangeForm = ({
     <TimePicker
       errorText={errorForFirstItem}
       disabled={disabled}
-      clearTooltip={texts?.clear}
+      clearTooltip={texts.clear}
       onChange={date => {
         onExactHourSelect(date);
         setStart(date);
@@ -141,7 +141,7 @@ const RangeForm = ({
         <TimePicker
           errorText={errorForFirstItem}
           disabled={disabled}
-          clearTooltip={texts?.clear}
+          clearTooltip={texts.clear}
           onChange={(date?: Date) => {
             setStart(date);
             onStartChange(date);
@@ -161,7 +161,7 @@ const RangeForm = ({
         <TimePicker
           errorText={errorForSecondItem}
           disabled={disabled}
-          clearTooltip={texts?.clear}
+          clearTooltip={texts.clear}
           onChange={(date?: Date) => {
             setEnd(date);
             onEndChange(date);
@@ -188,7 +188,7 @@ const RangeForm = ({
   };
 
   const getModeLabel = (modeName: DateLimitMode) => {
-    if (texts && texts[modeName]) return texts[modeName];
+    if (texts[modeName.toLocaleLowerCase()]) return texts[modeName.toLocaleLowerCase()];
     return intl.formatMessage(RANGE_FORM_INTL_KEYS[modeName]);
   };
 

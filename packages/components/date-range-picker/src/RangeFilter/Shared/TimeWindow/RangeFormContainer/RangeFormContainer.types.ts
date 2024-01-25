@@ -23,7 +23,7 @@ export type RangeFormContainerProps = {
   onRangeDelete?: () => void;
   valueSelectionModes: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
-  texts: Partial<TimeWindowTexts>;
+  texts: TimeWindowTexts;
   /**
    * @deprecated use `valueFormatOptions` instead
    */

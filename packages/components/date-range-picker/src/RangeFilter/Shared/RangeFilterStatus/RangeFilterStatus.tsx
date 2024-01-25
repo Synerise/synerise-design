@@ -13,7 +13,7 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
   const intl = useIntl();
   return (
     <S.Container>
-      <S.Title>{texts?.filter}</S.Title>
+      <S.Title>{texts.filter}</S.Title>
       {!filter ? (
         <S.CreatorButton label={label} disabled={disabled} onClick={onClick} block />
       ) : (
@@ -24,10 +24,8 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
           }}
           headerSuffix={
             <>
-              <S.SuffixText>
-                {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CHANGE', defaultMessage: 'Change' })}
-              </S.SuffixText>
-              <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE', defaultMessage: 'Remove' })}>
+              <S.SuffixText>{texts.change}</S.SuffixText>
+              <Tooltip title={texts.remove}>
                 <Icon
                   onClick={(event: MouseEvent<HTMLDivElement>) => {
                     event.stopPropagation();
@@ -41,7 +39,9 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
           }
           item={{
             id: 'filter-trigger',
-            name: intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
+            name:
+              texts[filter.type.toLocaleLowerCase()] ||
+              intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
             tag: (
               <S.BadgeWrapper>
                 <Badge status="active" flag pulsing>
@@ -50,7 +50,6 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
               </S.BadgeWrapper>
             ),
           }}
-          texts={{}}
         />
       )}
     </S.Container>

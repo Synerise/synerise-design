@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { WithTranslations } from '../../../../../DateRangePicker.types';
 import { RangeFormContainerProps } from '../RangeFormContainer.types';
 import { WithDisabledProp } from '../../../../RangeFilter.types';
+import { TimeWindowTexts } from '../../TimeWindow.types';
 
 export type DateLimitMode = 'Hour' | 'Range';
 export type RangeDisplayMode = 'timepicker' | 'slider';
@@ -18,8 +18,8 @@ export type RangeFormProps = {
   valueSelectionModes: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
   isInvertedRange?: boolean;
-} & WithTranslations &
-  WithDisabledProp &
+  texts: TimeWindowTexts;
+} & WithDisabledProp &
   Pick<RangeFormContainerProps, 'timePickerProps' | 'valueFormatOptions' | 'errorTexts'>;
 export type RangeFormTexts = {
   range: ReactNode | string;

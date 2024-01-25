@@ -115,7 +115,7 @@ const ParameterInput: React.FC<InputProps> = ({
             ? (): JSX.Element => (
                 <InformationCard
                   icon={parameterIcon}
-                  subtitle={parameter.id.toString()}
+                  subtitle={parameter.id?.toString()}
                   title={parameterName}
                   descriptionConfig={
                     parameter.description

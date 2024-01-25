@@ -262,7 +262,6 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       onRangePaste,
       onRangeClear,
       rangeClipboard,
-      intl,
       texts,
       valueSelectionModes,
       timePickerProps,
@@ -305,13 +304,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}
                 >
                   <S.DropdownLabel>
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.DAYS-OF" defaultMessage="Days of" />
+                    {texts.daysOf}
                     {SPACE_UNICODE}
                   </S.DropdownLabel>
                   {this.renderDaysOfField(item, key)}
                   <S.DropdownLabel>
                     {SPACE_UNICODE}
-                    <FormattedMessage id="DS.DATE-RANGE-PICKER.COUNTED-FROM" defaultMessage="counted from" />
+                    {texts.countedFrom}
                     {SPACE_UNICODE}
                   </S.DropdownLabel>
                   {this.renderCountedFromField(item, key)}
@@ -353,20 +352,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               ),
             }}
             texts={{
-              itemActionDeleteTooltip: intl.formatMessage({
-                id: 'DS.DATE-RANGE-PICKER.REMOVE',
-                defaultMessage: 'Remove',
-              }),
+              itemActionDeleteTooltip: texts.remove,
             }}
           />
         ))}
         <S.AddContainer>
           {!disabled && value.length < Number(maxEntries) && (
-            <Button.Creator
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-RULE', defaultMessage: 'Add rule' })}
-              onClick={this.handleAddRow}
-              block
-            />
+            <Button.Creator label={texts?.addRule} onClick={this.handleAddRow} block />
           )}
         </S.AddContainer>
       </S.MonthlyFilterWrapper>
