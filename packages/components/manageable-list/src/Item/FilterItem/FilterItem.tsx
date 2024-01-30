@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useCallback, ReactText } from 'react';
 import { withTheme } from 'styled-components';
 
 import Icon, {
@@ -25,7 +25,7 @@ import * as S from '../ContentItem/ContentItem.styles';
 import { SelectFilterItem, ItemHeader, DropdownMenu } from './FilterItem.styles';
 import { FilterItemProps } from './FilterItem.types';
 
-const FilterItem: React.FC<FilterItemProps> = ({
+const FilterItemComponent = ({
   item,
   selected,
   greyBackground,
@@ -38,26 +38,26 @@ const FilterItem: React.FC<FilterItemProps> = ({
   searchQuery,
   style,
 }: FilterItemProps) => {
-  const [editMode, setEditMode] = React.useState(false);
-  const [confirmDeleteVisible, setConfirmDeleteVisible] = React.useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [confirmDeleteVisible, setConfirmDeleteVisible] = useState(false);
 
-  const updateName = React.useCallback(
-    (updateParams: { id: React.ReactText; name: string }): void => {
+  const updateName = useCallback(
+    (updateParams: { id: ReactText; name: string }): void => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },
     [onUpdate]
   );
 
-  const enterEditMode = React.useCallback((): void => {
+  const enterEditMode = useCallback((): void => {
     setEditMode(true);
   }, []);
 
-  const handleRemove = React.useCallback((): void | boolean => {
+  const handleRemove = useCallback((): void | boolean => {
     return onRemove ? setConfirmDeleteVisible(true) : false;
   }, [onRemove]);
 
-  const handleDuplicate = React.useCallback((): void => {
+  const handleDuplicate = useCallback((): void => {
     return onDuplicate && onDuplicate({ id: item.id });
   }, [item.id, onDuplicate]);
 
@@ -162,4 +162,20 @@ const FilterItem: React.FC<FilterItemProps> = ({
   );
 };
 
-export default withTheme(FilterItem);
+const FilterItem = Object.assign(withTheme(FilterItemComponent), {
+  AdditionalSuffix: S.AdditionalSuffix,
+  ContentWrapper: S.ContentWrapper,
+  DraggerWrapper: S.DraggerWrapper,
+  DropdownTrigger: S.DropdownTrigger,
+  DropdownWrapper: S.DropdownWrapper,
+  FilterDropdownTrigger: S.FilterDropdownTrigger,
+  IconWrapper: S.IconWrapper,
+  ItemContainer: S.ItemContainer,
+  ItemHeader: S.ItemHeader,
+  ItemHeaderPrefix: S.ItemHeaderPrefix,
+  ItemHeaderSuffix: S.ItemHeaderSuffix,
+  MoveItemButtons: S.MoveItemButtons,
+  ToggleContentWrapper: S.ToggleContentWrapper,
+});
+
+export default FilterItem;
