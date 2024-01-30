@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 import List from '@synerise/ds-list';
 import Icon from '@synerise/ds-icon';
 import * as S from './SimpleItem.styles';
@@ -6,10 +6,10 @@ import ItemActions from '../ItemActions/ItemActions';
 import ItemName from '../ItemName/ItemName';
 import { Props } from './SimpleItem.types';
 
-const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions, selected }) => {
-  const [editMode, setEditMode] = React.useState(false);
+const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additionalActions, selected }: Props) => {
+  const [editMode, setEditMode] = useState(false);
 
-  const updateName = React.useCallback(
+  const updateName = useCallback(
     (updateParams): void => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
@@ -17,11 +17,11 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts
     [onUpdate]
   );
 
-  const handleSelect = React.useCallback(() => {
+  const handleSelect = useCallback(() => {
     !editMode && onSelect({ id: item.id });
   }, [onSelect, item.id, editMode]);
 
-  const enterEditMode = React.useCallback(() => {
+  const enterEditMode = useCallback(() => {
     setEditMode(true);
   }, []);
 
@@ -47,5 +47,13 @@ const SimpleItem: React.FC<Props> = ({ item, onRemove, onSelect, onUpdate, texts
     </S.ItemContainer>
   );
 };
+
+const SimpleItem = Object.assign(SimpleItemComponent, {
+  ItemContainer: S.ItemContainer,
+  ItemLabelWrapper: S.ItemLabelWrapper,
+  ItemLabelWithIcon: S.ItemLabelWithIcon,
+  ItemLabel: S.ItemLabel,
+  DescriptionIcon: S.DescriptionIcon,
+});
 
 export default SimpleItem;

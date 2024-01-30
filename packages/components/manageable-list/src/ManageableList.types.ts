@@ -42,6 +42,7 @@ export interface ManageableListProps<T extends object> {
   onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
   texts: Texts;
   expansionBehaviour?: string;
+  // @deprecated use item.expanded instead
   expandedIds?: React.ReactText[];
   changeOrderByButtons?: boolean;
   additionalActions?: AdditionalAction[];

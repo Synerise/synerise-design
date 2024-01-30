@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, prettyDOM, screen, waitFor, waitForDomChange } from '@testing-library/react';
+import { fireEvent, prettyDOM, screen, waitFor } from '@testing-library/react';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import FileM from '@synerise/ds-icon';
@@ -54,8 +54,7 @@ const texts = {
 
 describe('ManageableList with content items', () => {
   it('should render empty list', () => {
-    // ARRANGE
-    const { queryByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={[]}
         loading={false}
@@ -69,15 +68,13 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
-    expect(queryByTestId('show-more-button')).toBeNull();
-    expect(queryByTestId('list-item-name')).toBeNull();
+    expect(screen.getByTestId('add-item-button')).toBeTruthy();
+    expect(screen.queryByTestId('show-more-button')).toBeNull();
+    expect(screen.queryByTestId('list-item-name')).toBeNull();
   });
 
   it('should render', () => {
-    // ARRANGE
-    const { queryByTestId, queryAllByTestId, getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -92,16 +89,14 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
-    expect(queryByTestId('show-more-button')).toBeNull();
-    expect(queryAllByTestId('item-with-content').length).toBe(3);
+    expect(screen.getByTestId('add-item-button')).toBeTruthy();
+    expect(screen.queryByTestId('show-more-button')).toBeNull();
+    expect(screen.queryAllByTestId('item-with-content').length).toBe(3);
   });
 
   it('should call onItemAdd', () => {
-    // ARRANGE
     const onItemAdd = jest.fn();
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -115,21 +110,17 @@ describe('ManageableList with content items', () => {
         texts={texts}
       />
     );
-    const addItemButton = getByTestId('add-item-button').querySelector('button');
+    const addItemButton = screen.getByTestId('add-item-button').querySelector('button');
 
-    // ASSERT
-    expect(getByTestId('add-item-button')).toBeTruthy();
+    expect(screen.getByTestId('add-item-button')).toBeTruthy();
 
-    // ACT
     addItemButton && fireEvent.click(addItemButton);
 
-    // ASSERT
     expect(onItemAdd).toBeCalled();
   });
 
   it('should render handle expandedIds props', () => {
-    // ARRANGE
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         expandedIds={['00000000-0000-0000-0000-000000000000']}
@@ -145,16 +136,88 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    // ASSERT
-    expect(queryAllByTestId('item-content-wrapper').length).toBe(2);
-    expect(queryAllByTestId('item-toggle-content-wrapper').length).toBe(2);
+    expect(screen.queryAllByTestId('item-content-wrapper').length).toBe(2);
+    expect(screen.queryAllByTestId('item-toggle-content-wrapper').length).toBe(2);
+  });
+
+
+  it('should fire onExpand ', () => {
+    const onExpand = jest.fn();
+    const clickedIndex = 1;
+    const clickedItem = CONTENT_ITEMS[clickedIndex];
+    renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        onExpand={onExpand}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
+        onItemDuplicate={() => {}}
+        type="content"
+        texts={texts}
+      />
+    );
+    const item = screen.getByText(clickedItem.name);
+    fireEvent.click(item);
+    expect(onExpand).toHaveBeenCalledTimes(1);
+    expect(onExpand).toHaveBeenCalledWith(clickedItem.id, true);
+  });
+
+  it('should render item.expanded props', () => {
+    const itemsExpanded = CONTENT_ITEMS.map(item => ({
+      ...item,
+      expanded: true
+    }))
+    renderWithProvider(
+      <ManageableList
+        items={itemsExpanded}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
+        onItemDuplicate={() => {}}
+        type="content"
+        texts={texts}
+      />
+    );
+    
+    const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
+    animationWrappers.forEach( element => {
+      expect(element).toBeVisible();
+    })
+  });
+
+  it('should render items collapsed by default', () => {
+    const { container } = renderWithProvider(
+      <ManageableList
+        items={CONTENT_ITEMS}
+        loading={false}
+        maxToShowItems={5}
+        onItemAdd={() => {}}
+        onItemEdit={() => {}}
+        onItemSelect={() => {}}
+        onItemRemove={() => {}}
+        onItemDuplicate={() => {}}
+        type="content"
+        texts={texts}
+      />
+    );
+    screen.debug(container)
+    const animationWrappers = screen.queryAllByTestId('item-content-wrapper');
+    animationWrappers.forEach( element => {
+      expect(element).not.toBeVisible();
+    })
   });
 
   it('should render with action icons', () => {
-    // ARRANGE
     const onItemDuplicate = jest.fn();
     const onItemRemove = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -169,27 +232,24 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    const removeIcon = queryAllByTestId('list-item-remove')[0].querySelector('svg');
-    const duplicateIcon = queryAllByTestId('list-item-duplicate')[0].querySelector('svg');
+    const removeIcon = screen.queryAllByTestId('list-item-remove')[0].querySelector('svg');
+    const duplicateIcon = screen.queryAllByTestId('list-item-duplicate')[0].querySelector('svg');
 
-    // ACT
     removeIcon && fireEvent.click(removeIcon);
     duplicateIcon && fireEvent.click(duplicateIcon);
 
-    // ASSERT
     expect(onItemDuplicate).toBeCalled();
     expect(onItemRemove).toBeCalled();
-    expect(queryAllByTestId('list-item-remove').length).toBe(2);
-    expect(queryAllByTestId('list-item-edit').length).toBe(2);
-    expect(queryAllByTestId('list-item-duplicate').length).toBe(1);
+    expect(screen.queryAllByTestId('list-item-remove').length).toBe(2);
+    expect(screen.queryAllByTestId('list-item-edit').length).toBe(2);
+    expect(screen.queryAllByTestId('list-item-duplicate').length).toBe(1);
   });
 
   it('should render with change position buttons', () => {
-    // ARRANGE
     const onItemDuplicate = jest.fn();
     const onItemRemove = jest.fn();
     const onChangeOrder = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -206,8 +266,7 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    const items = queryAllByTestId('item-with-content');
-    // ASSERT
+    const items = screen.queryAllByTestId('item-with-content');
     expect(items[0].querySelector('.angle-bottom-s')).toBeTruthy();
     expect(items[0].querySelector('.angle-top-s')).toBeFalsy();
     expect(items[1].querySelector('.angle-bottom-s')).toBeTruthy();
@@ -217,11 +276,10 @@ describe('ManageableList with content items', () => {
   });
 
   it('should change order of list on click on moveToTopButton', () => {
-    // ARRANGE
     const onItemDuplicate = jest.fn();
     const onItemRemove = jest.fn();
     const onChangeOrder = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -238,29 +296,23 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    const items = queryAllByTestId('item-with-content');
-    // ASSERT
+    const items = screen.queryAllByTestId('item-with-content');
     expect(items[1].querySelector('.angle-top-s')).toBeTruthy();
     expect(items[2].querySelector('.angle-top-s')).toBeTruthy();
 
-    // ACT
-    fireEvent.click(items[1].querySelector('.angle-top-s'));
+    fireEvent.click(items[1].querySelector('.angle-top-s') as HTMLElement);
 
-    // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[0], CONTENT_ITEMS[2]]);
 
-    // ACT
-    fireEvent.click(items[2].querySelector('.angle-top-s'));
+    fireEvent.click(items[2].querySelector('.angle-top-s') as HTMLElement);
 
-    // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[2], CONTENT_ITEMS[0], CONTENT_ITEMS[1]]);
   });
   it('should change order of list on click on moveToTopButton', () => {
-    // ARRANGE
     const onItemDuplicate = jest.fn();
     const onItemRemove = jest.fn();
     const onChangeOrder = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(
+    renderWithProvider(
       <ManageableList
         items={CONTENT_ITEMS}
         loading={false}
@@ -277,21 +329,16 @@ describe('ManageableList with content items', () => {
       />
     );
 
-    const items = queryAllByTestId('item-with-content');
-    // ASSERT
+    const items = screen.queryAllByTestId('item-with-content');
     expect(items[0].querySelector('.angle-bottom-s')).toBeTruthy();
     expect(items[1].querySelector('.angle-bottom-s')).toBeTruthy();
 
-    // ACT
-    fireEvent.click(items[0].querySelector('.angle-bottom-s'));
+    fireEvent.click(items[0].querySelector('.angle-bottom-s') as HTMLElement);
 
-    // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[1], CONTENT_ITEMS[2], CONTENT_ITEMS[0]]);
 
-    // ACT
-    fireEvent.click(items[1].querySelector('.angle-bottom-s'));
+    fireEvent.click(items[1].querySelector('.angle-bottom-s') as HTMLElement);
 
-    // ARRANGE
     expect(onChangeOrder).toBeCalledWith([CONTENT_ITEMS[0], CONTENT_ITEMS[2], CONTENT_ITEMS[1]]);
   });
   it('should toggle content on click on header', async () => {
