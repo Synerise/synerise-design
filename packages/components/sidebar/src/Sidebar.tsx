@@ -7,24 +7,26 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import * as S from './Sidebar.styles';
 import { Panel } from './Panel/Panel';
-import { SidebarProps, PanelProps, CompareFnType } from './Sidebar.types';
+import { CompareFnType, PanelProps, SidebarProps } from './Sidebar.types';
 import { SidebarContext } from './Sidebar.context';
+
+const prependDots = (keys: string | number | (string | number)[]) => {
+  return keys && Array.isArray(keys) ? keys.map(el => `.${el}`) : `.${keys}`;
+};
 
 const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
   children,
-  order = '',
+  order = [],
   onChangeOrder,
   defaultActiveKey,
+  activeKey,
+  onChange,
+  ...collapseProps
 }) => {
-  const isDragDrop = !!order;
+  const isDragDrop = Array.isArray(order) && order.length > 0;
 
   const isActive: (checkActive?: boolean | undefined) => React.ReactElement = checkActive => {
-    return (
-      <Icon
-        color={checkActive ? theme.palette['grey-400'] : theme.palette['grey-800']}
-        component={checkActive ? <AngleUpS /> : <AngleDownS />}
-      />
-    );
+    return <Icon color={theme.palette['grey-600']} component={checkActive ? <AngleUpS /> : <AngleDownS />} />;
   };
 
   const compareByPositionOfKey: CompareFnType = React.useCallback(
@@ -32,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
       if (!isDragDrop) {
         return 1;
       }
-      return order.indexOf(a.props.id) > order.indexOf(b.props.id) ? 1 : -1;
+      return Array.isArray(order) && order.indexOf(a.props.id) > order.indexOf(b.props.id) ? 1 : -1;
     },
     [isDragDrop, order]
   );
@@ -49,22 +51,52 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
     onChangeOrder && onChangeOrder(orderedItems);
   };
 
-  const collapseContent = React.useMemo(
-    () => (
+  const handleOnChange = React.useCallback(
+    (keys: string | string[]) => {
+      const finalKeys = isDragDrop
+        ? (Array.isArray(keys) ? keys : [keys]).map(key => (key.startsWith('.') ? key.substring(1) : key))
+        : keys;
+      onChange && onChange(finalKeys);
+    },
+    [isDragDrop, onChange]
+  );
+
+  const antdActiveKey = isDragDrop && activeKey ? prependDots(activeKey) : activeKey;
+  const antdDefaultActiveKey = isDragDrop && defaultActiveKey ? prependDots(defaultActiveKey) : defaultActiveKey;
+
+  const collapseContent = React.useMemo(() => {
+    let activeKeysProp = {};
+    if (antdDefaultActiveKey !== undefined) {
+      activeKeysProp = { defaultActiveKey: antdDefaultActiveKey };
+    } else if (antdActiveKey !== undefined) {
+      activeKeysProp = { activeKey: antdActiveKey };
+    }
+    return (
       <S.AntdCollapse
+        {...activeKeysProp}
         className={isDragDrop ? 'is-drag-drop' : ''}
-        defaultActiveKey={defaultActiveKey && defaultActiveKey.map(el => `.${el}`)}
         expandIconPosition="right"
         expandIcon={(panelProps): React.ReactElement => {
           const checkActive = panelProps.isActive;
           return isActive(checkActive);
         }}
+        onChange={handleOnChange}
+        {...collapseProps}
       >
-        {(React.Children.toArray(children) as React.ReactElement<PanelProps>[]).sort(compareByPositionOfKey)}
+        {isDragDrop
+          ? (React.Children.toArray(children) as React.ReactElement<PanelProps>[]).sort(compareByPositionOfKey)
+          : children}
       </S.AntdCollapse>
-    ),
-    [isDragDrop, defaultActiveKey, children, compareByPositionOfKey]
-  );
+    );
+  }, [
+    antdDefaultActiveKey,
+    antdActiveKey,
+    isDragDrop,
+    handleOnChange,
+    collapseProps,
+    children,
+    compareByPositionOfKey,
+  ]);
 
   return isDragDrop ? (
     <DndProvider backend={HTML5Backend}>

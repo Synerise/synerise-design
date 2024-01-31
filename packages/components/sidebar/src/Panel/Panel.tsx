@@ -74,7 +74,7 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
       <S.AntdPanel
         header={
           <S.SidebarHeader>
-            <span>{header}</span>
+            <span data-testid={`header-${id}`}>{header}</span>
             {isDragDrop && (
               <S.SidebarHandle>
                 <Icon color={theme.palette['grey-400']} component={<DragHandleM />} />
@@ -82,8 +82,8 @@ export const Panel: React.FC<PanelProps> = ({ header, children, id, ...props }) 
             )}
           </S.SidebarHeader>
         }
+        {...props}
         key={id}
-        {...props} // eslint-disable-line
       >
         <S.SidebarContentWrapper>{children}</S.SidebarContentWrapper>
       </S.AntdPanel>

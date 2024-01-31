@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Sidebar from '@synerise/ds-sidebar';
 import { withState } from '@dump247/storybook-state';
 import Block from '@synerise/ds-block';
@@ -12,66 +11,84 @@ const wrapperStyles = {
   background: 'white',
   paddingBottom: '24px',
 };
+
 const data = [
   { text: 'Item 1' },
   { text: 'Item 2' },
   { text: 'Item 3' },
 ];
 
+const mockContent = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut consectetur ex harum in";
+
+const panelsData = [
+  { header: 'First name', id: 'first' },
+  { header: 'Second name', id: 'second' },
+  { header: 'Third name', id: 'third' },
+];
+
+const createSidebarPanels = () =>
+  panelsData.map(panel => (
+    <Sidebar.Panel header={panel.header} id={panel.id} key={panel.id}>
+      {mockContent}
+    </Sidebar.Panel>
+  ));
+
 const stories = {
   default: () => (
     <div style={wrapperStyles}>
       <Sidebar>
-        <Sidebar.Panel header={'First name'} id={'first'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut consectetur ex harum in
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Second name'} id={'second'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Third name'} id={'third'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
+        {createSidebarPanels()}
       </Sidebar>
     </div>
   ),
-  defaultActive: () => (
-    <div style={wrapperStyles}>
-      <Sidebar defaultActiveKey={['0', '2']}>
-        <Sidebar.Panel header={'First name'} id={'first'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut consectetur ex harum in
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Second name'} id={'second'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Third name'} id={'third'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
-      </Sidebar>
-    </div>
-  ),
+  defaultActive: () => {
+    const createPanel = (header, id) => (
+      <Sidebar.Panel header={header} id={id} key={id}>
+        {mockContent}
+      </Sidebar.Panel>
+    );
+
+    return (
+      <div style={wrapperStyles}>
+        <Sidebar defaultActiveKey={['1', '2']}>
+          {createPanel('First name', '1')}
+          {createPanel('Second name', '2')}
+          {createPanel('Third name', '3')}
+        </Sidebar>
+      </div>
+    );
+  },
+
+  setActiveKey: () => {
+    const createPanel = (header, id) => (
+      <Sidebar.Panel header={header} id={id} key={id}>
+        {mockContent}
+      </Sidebar.Panel>
+    );
+
+    const [activeKeys, setActiveKeys] = React.useState([]);
+
+    const handleChange = (keys) => {
+      console.log('onchange', keys);
+      setActiveKeys(keys);
+    }
+    return (
+      <div style={wrapperStyles}>
+        <Sidebar activeKey={activeKeys} onChange={handleChange}>
+          {createPanel('First name', '1')}
+          {createPanel('Second name', '2')}
+          {createPanel('Third name', '3')}
+        </Sidebar>
+      </div>
+    );
+  },
   dragAndDrop: withState({ currentOrder: ['second', 'third', 'first'] })(({ store }) => (
     <div style={wrapperStyles}>
       <Sidebar
         order={store.state.currentOrder}
-        onChangeOrder={order => {
-          store.set({ currentOrder: order });
-        }}
+        onChangeOrder={order => store.set({ currentOrder: order })}
       >
-        <Sidebar.Panel header={'First name'} id={'first'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aut consectetur ex harum in
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Second name'} id={'second'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
-        <Sidebar.Panel header={'Third name'} id={'third'}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolorem dolores eligendi, enim esse iste
-          labore, magnam molestiae mollitia possimus reprehenderit sunt tenetum omnis ratione totam.
-        </Sidebar.Panel>
+        {createSidebarPanels()}
       </Sidebar>
     </div>
   )),
@@ -79,18 +96,11 @@ const stories = {
     <div style={wrapperStyles}>
       <Sidebar defaultActiveKey={['0']}>
         <Sidebar.Panel header={'Collapse title'} id={'first'}>
-          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}>
-            Block name
-          </Block>
-          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}>
-            Block name
-          </Block>
-          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}>
-            Block name
-          </Block>
-          <Block isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}>
-            Block name
-          </Block>
+          {[...Array(4)].map((_, index) => (
+            <Block key={index} isDragging={false} icon={<Icon component={<EditM />} size={24} color={theme.palette['grey-600']} />}>
+              Block name
+            </Block>
+          ))}
         </Sidebar.Panel>
       </Sidebar>
     </div>
@@ -106,11 +116,10 @@ const stories = {
       <SidebarWithButton buttonLabel="Button" title="Section Name" dataSource={data}/>
     </div>
   ),
-
 };
 
 export default {
-name: 'Components/Sidebar',
+  name: 'Components/Sidebar',
   withoutCenter: true,
   config: {},
   stories,
