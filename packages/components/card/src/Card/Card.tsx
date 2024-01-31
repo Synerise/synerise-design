@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Icon from '@synerise/ds-icon';
 
 import AnimateHeight from 'react-animate-height';
@@ -6,7 +6,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import * as S from './Card.styles';
 import { CardProps } from './Card.types';
 
-const Card: React.FC<CardProps> = ({
+const Card = ({
   children,
   raised,
   disabled,
@@ -29,11 +29,28 @@ const Card: React.FC<CardProps> = ({
   background = 'white-shadow',
   hideContent,
   staticContent,
+  titleTag,
   showSideChildrenWhenHeaderHidden,
   ...props
-}) => {
+}: CardProps) => {
   const fatTitle = !description || (description && compactHeader);
-  const [headerActionsVisible, setHeaderActionsVisible] = React.useState(false);
+  const [headerActionsVisible, setHeaderActionsVisible] = useState(false);
+
+  const renderTitle = () => {
+    if (!title && !titleTag) {
+      return null;
+    }
+    return (
+      <S.TitleWrapper compact={compactHeader} description={Boolean(description)}>
+        {title && (
+          <S.Title level={4} fat={!!fatTitle}>
+            {title}
+          </S.Title>
+        )}
+        {titleTag && <S.TitleTag>{titleTag}</S.TitleTag>}
+      </S.TitleWrapper>
+    );
+  };
 
   return (
     <S.Container
@@ -61,11 +78,7 @@ const Card: React.FC<CardProps> = ({
             (renderBadge && renderBadge())}
 
           <S.HeaderContent compact={compactHeader} hasIconOrAvatar={Boolean(icon || avatar)}>
-            {title && (
-              <S.Title description={Boolean(description)} level={4} fat={!!fatTitle}>
-                {title}
-              </S.Title>
-            )}
+            {renderTitle()}
             {description && <S.Description>{description}</S.Description>}
           </S.HeaderContent>
 

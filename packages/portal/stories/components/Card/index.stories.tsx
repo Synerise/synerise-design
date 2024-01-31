@@ -2,6 +2,7 @@ import * as React from 'react';
 import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
+import Tags, { TagShape } from '@synerise/ds-tags';
 import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
 import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM, UserCircleM } from "@synerise/ds-icon";
 import { theme } from '@synerise/ds-core';
@@ -18,6 +19,11 @@ const backgrounds = {
 };
 
 const init = () => {
+  const tag = {
+    name: 'OPTIONAL',
+    color: theme.palette['grey-500']
+  }
+  const titleTag = <Tags asPill selected={[tag]} tagShape={TagShape.SMALL_SQUARE} />;
   const props = {
     title: text('Title', 'Card header'),
     description: text('Description', 'Description'),
@@ -30,6 +36,7 @@ const init = () => {
     compactHeader: boolean('Compact header', false),
     headerBorderBottom: boolean('Header with border bottom', false),
     content: text('Content', 'Example of card content'),
+    titleTag: boolean('show title tag', true) ? titleTag : undefined,
     background: select('Background style', backgrounds, 'white-shadow') as Backgrounds,
     showSideChildrenWhenHeaderHidden: boolean('Set Footer Active', false),
     "data-testid": text('data-testid','card-example-testid')
@@ -60,6 +67,7 @@ const renderCard = (
       icon={props.icon || (props.withIcon && IconComponent)}
       iconColor={props.iconColor}
       compactHeader={props.compactHeader}
+      titleTag={props.titleTag}
       onHeaderClick={() => {
         onExpansionChange && onExpansionChange(!hideContent);
         setHideContent(!hideContent);
