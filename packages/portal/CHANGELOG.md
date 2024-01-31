@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.202.0](https://github.com/synerise/synerise-design/compare/portal@0.201.0...portal@0.202.0) (2024-01-31)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added texts over translations ([7131f8c](https://github.com/synerise/synerise-design/commit/7131f8c5c923527544fb54b5bb9eb15585bec442))
+
+
+### Features
+
+* **card:** add optional tag next to title ([df51722](https://github.com/synerise/synerise-design/commit/df51722a57814174da067bfb57943432ca683d07))
+* **sidebar:** restyled ds-sidebar ([814a988](https://github.com/synerise/synerise-design/commit/814a9888acec71d669ffca240c980be39d8715cf))
+
+
+
+
+
 # [0.201.0](https://github.com/synerise/synerise-design/compare/portal@0.200.1...portal@0.201.0) (2024-01-24)
 
 

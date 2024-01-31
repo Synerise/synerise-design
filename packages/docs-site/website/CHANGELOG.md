@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.2...docs@0.33.0) (2024-01-31)
+
+
+### Features
+
+* **card:** add optional tag next to title ([df51722](http://gitlab.synerise.com/Frontend/synerise-design/commit/df51722a57814174da067bfb57943432ca683d07))
+
+
+
+
+
 ## [0.32.2](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.1...docs@0.32.2) (2024-01-24)
 
 **Note:** Version bump only for package docs
