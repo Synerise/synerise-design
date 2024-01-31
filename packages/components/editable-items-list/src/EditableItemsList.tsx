@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import Cruds from '@synerise/ds-cruds';
@@ -22,7 +22,7 @@ const EditableItemsList = <T extends { id: string }>({
   maxRowLength,
   deleteTooltip,
   onDelete,
-}: EditableItemsListProps<T>): ReactNode => {
+}: EditableItemsListProps<T>) => {
   const mergedAddButtonProps = {
     ...DEFAULT_ADD_BUTTON_PROPS,
     ...addButtonProps,
