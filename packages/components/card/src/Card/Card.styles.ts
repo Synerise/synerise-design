@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Title as DSTitle } from '@synerise/ds-typography';
+import { Container as TagsContainer } from '@synerise/ds-tags/dist/Tags.styles';
 import * as React from 'react';
 import { ThemePropsVars } from '@synerise/ds-core';
 import { Backgrounds } from './Card.types';
@@ -117,16 +118,29 @@ export const Header = styled.div<{
     `}
 `;
 
-export const Title = styled(DSTitle)<{ fat: boolean; description?: boolean }>`
+export const Title = styled(DSTitle)<{ fat: boolean }>`
   && {
     display: flex;
     align-items: center;
     min-height: ${(props): string => (props.fat ? '32px' : '20px')};
     margin: 0;
-    margin-bottom: ${(props): string => (props.description ? '6px' : '0')};
     line-height: 1.4;
   }
 `;
+
+export const TitleWrapper = styled.div<{ compact?: boolean; description?: boolean }>`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: ${(props): string => (props.description && !props.compact ? '6px' : '0')};
+
+  ${TagsContainer} {
+    margin-bottom: 0;
+  }
+`;
+
+export const TitleTag = styled.div``;
 
 export const Description = styled.div`
   && {

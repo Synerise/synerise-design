@@ -1,13 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Card from '../index';
-import { waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { ObjectAvatar } from '@synerise/ds-avatar';
+import Card from '../index';
 
 describe('Card', () => {
   it('should render', function() {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Card
         title="Card title"
         description="Card description"
@@ -15,14 +14,12 @@ describe('Card', () => {
       />
     );
 
-    // ASSERT
-    expect(getByText('Card title')).toBeTruthy();
-    expect(getByText('Card description')).toBeTruthy();
+    expect(screen.getByText('Card title')).toBeTruthy();
+    expect(screen.getByText('Card description')).toBeTruthy();
   });
 
   it('should render static content when hidden', function() {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Card
         title="Card title"
         description="Card description"
@@ -34,43 +31,51 @@ describe('Card', () => {
       />
     );
 
-    // ASSERT
-    expect(getByText('Some static content')).toBeTruthy();
+    expect(screen.getByText('Some static content')).toBeTruthy();
   });
 
   it('should render with content', async function() {
-    // ARRANGE
     const TEST_ID = 'test_id';
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Card hideContent={false} >
         <div data-testid={TEST_ID}>
           Content
         </div>
       </Card>
     );
-    // ASSERT
     await waitFor(async ()=>{
-      await expect(getByTestId(TEST_ID)).toBeTruthy();
+      await expect(screen.getByTestId(TEST_ID)).toBeTruthy();
     },{timeout:500})
   });
 
   it('should not render header', function() {
-    // ARRANGE
-    const { queryByText } = renderWithProvider(
+    renderWithProvider(
       <Card
         title="Card title"
         description="Card description"
       />
     );
 
-    // ASSERT
-    expect(queryByText('Card title')).toBeNull();
+    expect(screen.queryByText('Card title')).toBeNull();
+  });
+
+  it('should render title with tag', function() {
+    const TITLE_TAG = 'TITLE_TAG';
+    renderWithProvider(
+      <Card
+        title="Card title"
+        description="Card description"
+        withHeader
+        titleTag={<b>{TITLE_TAG}</b>}
+      />
+    );
+
+    expect(screen.getByText(TITLE_TAG)).toBeInTheDocument();
   });
 
   it('should render with header side content', function() {
-    // ARRANGE
     const TEST_ID = 'test';
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Card
         title="Card title"
         description="Card description"
@@ -81,8 +86,7 @@ describe('Card', () => {
       />
     );
 
-    // ASSERT
-    expect(getByTestId(TEST_ID)).toBeTruthy();
+    expect(screen.getByTestId(TEST_ID)).toBeTruthy();
   });
 
   it('should allow custom card badge', () => {
