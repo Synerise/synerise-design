@@ -4,11 +4,33 @@ import * as React from 'react';
 
 const { Panel } = Collapse;
 
+type PaletteColors = {
+  'grey-700': string;
+  'grey-400': string;
+  'grey-800': string;
+  'grey-200': string;
+  'grey-050': string;
+  'blue-050': string;
+  'blue-600': string;
+};
+
+type ThemeProps = {
+  theme: {
+    palette: PaletteColors;
+  };
+};
+
+const themePaletteGrey700 = (props: ThemeProps) => props.theme.palette['grey-700'];
+const themePaletteGrey800 = (props: ThemeProps) => props.theme.palette['grey-800'];
+const themePaletteBlue050 = (props: ThemeProps) => props.theme.palette['blue-050'];
+const themePaletteGrey200 = (props: ThemeProps) => props.theme.palette['grey-200'];
+const themePaletteGrey050 = (props: ThemeProps) => props.theme.palette['grey-050'];
+const themePaletteBlue600 = (props: ThemeProps) => props.theme.palette['blue-600'];
+
 export const SidebarHandle = styled.div`
   display: flex;
-  opacity: 0;
+  opacity: 1;
   transition: 0.2s ease-in-out;
-
   &::before {
     content: '';
     position: absolute;
@@ -35,64 +57,72 @@ export const PanelWrapper = styled.div`
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AntdCollapse = styled((Collapse as any) as React.ComponentType<CollapseProps>)`
+export const AntdCollapse = styled(Collapse as any as React.ComponentType<CollapseProps>)`
   &.ant-collapse {
-    background-color: rgba(11, 104, 255, 0.07);
+    background-color: ${themePaletteBlue050};
     border: none;
 
-    > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
-      color: ${(props): string => props.theme.palette['grey-700']};
-      font-size: 14px;
+    .ant-collapse-header {
+      padding: 19px 24px;
+      color: ${themePaletteGrey700};
       font-weight: 500;
-      line-height: 20px;
+      font-size: 14px;
+      background: white;
+
+      &:hover {
+        color: ${themePaletteGrey800};
+      }
+
+      &:active {
+        box-shadow: 0px 16px 32px 0px rgba(35, 41, 54, 0.1);
+      }
+    }
+
+    > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
       transition: 0.2s ease-in-out;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-
-      &:hover {
-        color: ${(props): string => props.theme.palette['grey-800']};
-      }
     }
 
-    .ant-collapse-content-active {
-      border-top: 0;
-    }
-
+    .ant-collapse-content-active,
     .ant-collapse-item-active {
       border-top: 0;
 
-      ${SidebarHeader} {
-        color: ${(props): string => props.theme.palette['grey-800']};
+      ${SidebarHeader}, ${SidebarHandle} {
+        color: ${themePaletteGrey700};
+        &:hover {
+          color: ${themePaletteGrey800};
+        }
       }
 
-      ${SidebarHandle} {
-        opacity: 1;
+      .ant-collapse-header {
+        background: ${themePaletteGrey050};
       }
     }
 
     .ant-collapse-content-box {
-      padding: 0px 24px 24px;
+      padding: 16px 24px;
     }
 
     .ant-collapse-item {
       position: relative;
-      background-color: #fff;
-      border-top: solid 1px ${(props): string => props.theme.palette['grey-200']};
+      border-top: solid 1px ${themePaletteGrey200};
       border-bottom: none;
+
+      .drag-handle-m:hover {
+        cursor: grabbing;
+      }
     }
   }
 
-  .ant-collapse-item:hover {
-    ${SidebarHandle} {
-      opacity: 1;
-    }
+  .ant-collapse-item:hover ${SidebarHandle} {
+    opacity: 1;
   }
 
   &.ant-collapse-icon-position-right > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px;
     user-select: none;
-
     .ant-collapse-arrow {
       right: 24px;
       position: absolute;
@@ -101,6 +131,13 @@ export const AntdCollapse = styled((Collapse as any) as React.ComponentType<Coll
 
   &.ant-collapse-icon-position-right.is-drag-drop > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px 18px 0;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: ${themePaletteGrey800};
+      box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+    }
   }
 `;
 
@@ -108,11 +145,45 @@ export const AntdPanel = styled(Panel)`
   .ant-collapse-content {
     background-color: white;
     border-radius: 0;
-    border-color: ${(props): string => props.theme.palette['grey-800']};
+    border-color: ${themePaletteGrey800};
   }
 `;
 
 export const SidebarContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+export const SidebarContainer = styled.div`
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 588px;
+
+  .ds-card-tags-sortable {
+    gap: 16px 12px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .sortable-chosen,
+  .sortable-drag,
+  .sortable-card-ghost-element {
+    cursor: grabbing;
+    box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+    opacity: 1;
+
+    &.sortable-card-ghost-element {
+      border: dashed 1px ${themePaletteBlue600};
+      background-color: ${themePaletteBlue050};
+      * {
+        visibility: hidden;
+      }
+    }
+  }
 `;
