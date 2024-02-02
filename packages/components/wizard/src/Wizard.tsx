@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import Layout from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header/dist/PageHeader';
 import Button from '@synerise/ds-button';
@@ -21,6 +22,7 @@ const Wizard = ({
   stepButtonProps,
   texts,
   visible,
+  className,
 }: WizardProps) => {
   const intl = useIntl();
 
@@ -30,7 +32,7 @@ const Wizard = ({
   const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
 
   return visible ? (
-    <S.WizardWrapper className="ds-wizard">
+    <S.WizardWrapper className={classnames(className, 'ds-wizard')}>
       <Layout
         fullPage
         header={
