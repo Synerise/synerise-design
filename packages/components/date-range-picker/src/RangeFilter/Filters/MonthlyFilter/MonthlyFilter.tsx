@@ -18,6 +18,7 @@ import {
 import * as S from './MonthlyFilter.styles';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
+import { getDefaultTexts } from '../../../utils';
 
 class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilterState> {
   static defaultProps = {
@@ -269,11 +270,15 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
       renderRangeFormSuffix,
       maxEntries,
       rangeDisplayMode,
+      intl,
     } = this.props;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
     const { min = 1 } = this.props as any;
     const { visible } = this.state;
     const data = [...value];
+
+    const allTexts = getDefaultTexts(intl, false, texts);
+
     /** if `min` is undefined, then entry can be always deleted, otherwise it's key has to be greated or equal than N */
     const deletableDueToEntriesLimit = (key: number): boolean => min === undefined || (min !== undefined && key >= min);
     return (
@@ -304,13 +309,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   className={visible[item.id] ? 'dropdown-header-visible' : 'dropdown-header'}
                 >
                   <S.DropdownLabel>
-                    {texts.daysOf}
+                    {allTexts.daysOf}
                     {SPACE_UNICODE}
                   </S.DropdownLabel>
                   {this.renderDaysOfField(item, key)}
                   <S.DropdownLabel>
                     {SPACE_UNICODE}
-                    {texts.countedFrom}
+                    {allTexts.countedFrom}
                     {SPACE_UNICODE}
                   </S.DropdownLabel>
                   {this.renderCountedFromField(item, key)}
@@ -322,7 +327,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                   <TimeWindow
                     disabled={disabled}
                     readOnly={!!disabled}
-                    texts={texts}
+                    texts={allTexts}
                     // eslint-disable-next-line react/no-array-index-key
                     key={`${item.period}_${key}`}
                     showSelectAll
@@ -352,13 +357,13 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
               ),
             }}
             texts={{
-              itemActionDeleteTooltip: texts.remove,
+              itemActionDeleteTooltip: allTexts.remove,
             }}
           />
         ))}
         <S.AddContainer>
           {!disabled && value.length < Number(maxEntries) && (
-            <Button.Creator label={texts?.addRule} onClick={this.handleAddRow} block />
+            <Button.Creator label={allTexts.addRule} onClick={this.handleAddRow} block />
           )}
         </S.AddContainer>
       </S.MonthlyFilterWrapper>
