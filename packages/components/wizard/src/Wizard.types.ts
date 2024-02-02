@@ -5,16 +5,17 @@ export type WizardProps = {
   stepper?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
-  title: ReactNode | string;
+  title: ReactNode;
   headerAction?: ReactNode;
   onClose: () => void;
   visible: boolean;
   contentWidth?: string;
+  className?: string;
   onPrevStep?: () => void;
   onNextStep?: () => void;
   texts?: {
-    prevButtonLabel: string | ReactNode;
-    nextButtonLabel: string | ReactNode;
+    prevButtonLabel: ReactNode;
+    nextButtonLabel: ReactNode;
   };
   stepButtonProps?: {
     prevButtonProps?: Partial<Omit<ButtonProps, 'onClick'>>;

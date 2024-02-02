@@ -8091,11 +8091,6 @@
     "@synerise/ds-icon" "^0.58.0"
     "@synerise/ds-scrollbar" "^0.6.5"
 
-"@synerise/ds-utils@^0.8.31":
-  version "0.8.31"
-  resolved "https://registry.npmjs.org/@synerise/ds-utils/-/ds-utils-0.8.31.tgz"
-  integrity sha512-tRL+iGny90Vt5W/m5cRMQrHt53HKx9YRG2whSKSv+TYijZEv2FfCrL073ASW20CK+m9MvKhrq5nFh9INUZWsSA==
-
 "@testing-library/dom@^7.0.2":
   version "7.2.1"
   resolved "https://registry.npmjs.org/@testing-library/dom/-/dom-7.2.1.tgz"

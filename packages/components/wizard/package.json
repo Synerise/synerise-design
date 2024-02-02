@@ -39,6 +39,7 @@
     "@synerise/ds-modal": "^0.17.17",
     "@synerise/ds-page-header": "^0.14.94",
     "@synerise/ds-utils": "^0.24.24",
+    "classnames": "2.3.2",
     "react-dom": "16.13.0",
     "react-intl": "3.12.0"
   },
