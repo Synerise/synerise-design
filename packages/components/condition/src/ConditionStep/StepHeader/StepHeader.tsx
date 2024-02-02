@@ -1,7 +1,7 @@
 import InlineEdit from '@synerise/ds-inline-edit';
 import * as React from 'react';
 import Cruds from '@synerise/ds-cruds';
-import { DragHandleM } from '@synerise/ds-icon/';
+import { DragHandleM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
 import { debounce } from 'lodash';
 

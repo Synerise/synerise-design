@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logic/src/Logic.types';
-import { StepCardProps } from '@synerise/ds-step-card/src/StepCard.types';
-import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/src/Matching/Matching.types';
+import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logic/dist/Logic.types';
+import { StepCardProps } from '@synerise/ds-step-card/dist/StepCard.types';
+import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/dist/Matching/Matching.types';
 
 export type LogicType = {
   type: 'LOGIC';

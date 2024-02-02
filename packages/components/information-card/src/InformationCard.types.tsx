@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { Color, Size } from '@synerise/ds-avatar/dist/Avatar.types';
-import { IconProps } from '@synerise/ds-icon/dist/cjs';
+import { IconProps } from '@synerise/ds-icon';
 
 export type BadgeData = {
   type?: string;
