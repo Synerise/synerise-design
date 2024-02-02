@@ -82,7 +82,7 @@ import Badge from '@synerise/ds-badge'
 | overflowCount      | Maximum number to show in the counter                              | number                                                                                               | 99      |
 | pulsing            | Enable pulsing animation                                           | boolean                                                                                              | `false` |
 | showZero           | Show the badge when the counter is zero                            | boolean                                                                                              | `false` |
-| status             | Set badge as a status dot                                          | `active` / `inactive` / `blocked` / `processing`                                                     | ''      |
+| status             | Set badge as a status dot                                          | `active` / `inactive` / `blocked` / `processing` / `warning`                                         | -       |
 | text               | If `status` is set, `text` sets the display text of the status dot | string                                                                                               | ''      |
 | textColor          | Customize text color in badge                                      | `green` / `grey` / `yellow` / `blue` / `pink`/ `mars`/ `orange`/ `fern`/ `cyan`/ `purple` / `violet` | -       |
 | textColorHue       | Customize brightness of color                                      | `900` / `800` / `700` / `600` / `500` / `400` / `300` / `200` / `100` / `050`                        | -       |
