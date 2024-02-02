@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
 import Divider from '@synerise/ds-divider';
-import Icon, { ArrowRuCircleM, SegmentM } from '@synerise/ds-icon/dist/cjs';
+import Icon, { ArrowRuCircleM, SegmentM } from '@synerise/ds-icon';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Card from '@synerise/ds-card';
 import SubtleForm from '@synerise/ds-subtle-form';
