@@ -15,8 +15,8 @@ import { RelativeContainer } from './VirtualTable.styles';
 import { Props } from './VirtualTable.types';
 import { useTableLocale, calculatePixels } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
-import { useRowStar } from '../hooks/useRowStar/useRowStar';
-import { CreateRowStarColumnProps } from '../hooks/useRowStar/useRowStar.types';
+import { useRowStar, CreateRowStarColumnProps } from '../hooks/useRowStar';
+
 import { RowSelectionColumn } from '../RowSelection';
 
 export const EXPANDED_ROW_PROPERTY = 'expandedChild';
@@ -64,6 +64,7 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     rowStar,
     initialWidth = 0,
     dataSource = [],
+    dataSourceFull,
     expandable,
     locale,
     onListRefChange,
@@ -82,6 +83,8 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const { getRowKey } = useRowKey(rowKey);
 
+  const allData = dataSourceFull || dataSource;
+
   const propsForRowStar = {
     ...props,
     rowStar: {
@@ -99,30 +102,30 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const rowStarColumn = getRowStarColumn(propsForRowStar);
 
-  const selectedRecords = React.useMemo(() => {
+  const selectedRecords = getSelectedRecords();
+
+  function getSelectedRecords() {
     if (selection) {
       const { selectedRowKeys } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
-      dataSource &&
-        dataSource.forEach((row: T): void => {
-          const key = getRowKey(row);
-          if (key && selectedRowKeys.indexOf(key) >= 0) {
-            selectedRows = [...selectedRows, row];
-          }
-          if (row.children !== undefined && Array.isArray(row.children)) {
-            row.children.forEach((child: T) => {
-              const childKey = getRowKey(child);
-              if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
-                selectedRows = [...selectedRows, child];
-              }
-            });
-          }
-        });
-
+      allData.forEach((row: T): void => {
+        const key = getRowKey(row);
+        if (key && selectedRowKeys.indexOf(key) >= 0) {
+          selectedRows = [...selectedRows, row];
+        }
+        if (row.children !== undefined && Array.isArray(row.children)) {
+          row.children.forEach((child: T) => {
+            const childKey = getRowKey(child);
+            if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
+              selectedRows = [...selectedRows, child];
+            }
+          });
+        }
+      });
       return selectedRows;
     }
     return [];
-  }, [dataSource, getRowKey, selection]);
+  }
 
   const renderRowSelection = React.useCallback(
     (key: string, record: T): React.ReactNode => {
@@ -260,7 +263,9 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             width="100%"
             itemData={itemData}
             itemKey={(index): string => {
-              return String(getRowKey(data[index]));
+              const key = getRowKey(data[index]);
+              // @ts-ignore
+              return String(key instanceof String ? key.toLowerCase() : key);
             }}
             outerElementType={outerElement}
             overscanCount={1}
@@ -302,7 +307,6 @@ function VirtualTable<T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
   // eslint-disable-next-line
   const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : props?.scroll;
-
   return (
     <RelativeContainer key="relative-container" ref={containerRef} style={relativeInlineStyle}>
       <ResizeObserver

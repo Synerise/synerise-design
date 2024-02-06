@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.6...@synerise/ds-data-format@0.4.7) (2024-01-17)
+
+
+### Bug Fixes
+
+* **data-format:** pass provider timezone to created intl objects ([627cf04](https://github.com/Synerise/synerise-design/commit/627cf04d943593e109a011e1efe3c8b02674a95b))
+
+
+
+
+
+## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.5...@synerise/ds-data-format@0.4.6) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](https://github.com/Synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+
+
+
+## [0.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.4...@synerise/ds-data-format@0.4.5) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-data-format
+
+
+
+
+
 ## [0.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.3...@synerise/ds-data-format@0.4.4) (2023-10-11)
 
 **Note:** Version bump only for package @synerise/ds-data-format

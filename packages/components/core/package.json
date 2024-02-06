@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-core",
-  "version": "0.40.7",
+  "version": "0.40.10",
   "description": "Core Components for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run vars && npm run copy && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "copy": "node ./build/copy.js",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
@@ -31,7 +31,7 @@
   },
   "types": "dist/js/index.js",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.4.4",
+    "@synerise/ds-data-format": "^0.4.7",
     "deepmerge": "^4.2.2",
     "flat": "^5.0.0",
     "intl-messageformat-parser": "^3.6.4",

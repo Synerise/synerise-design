@@ -1,8 +1,9 @@
-import { createIntl, createIntlCache, IntlShape } from 'react-intl';
+import { createIntl, createIntlCache, IntlShape, useIntl } from 'react-intl';
 
 export const useSingleIntl = (locale: string): { intl: IntlShape } => {
   const cache = createIntlCache();
-  const intl = createIntl({ locale }, cache);
+  const globalIntl = useIntl();
+  const intl = createIntl({ locale, timeZone: globalIntl.timeZone }, cache);
 
   return { intl };
 };

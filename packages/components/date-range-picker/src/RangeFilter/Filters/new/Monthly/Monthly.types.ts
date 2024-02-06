@@ -4,6 +4,7 @@ import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/Ran
 import { FilterBaseProps } from '../Filters.types';
 import { WithDisabledProp } from '../../../RangeFilter.types';
 import { FilterErrorType } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
+import { Texts } from '../../../../DateRangePicker.types';
 
 export type MonthlyScheduleDayValue = DayOptions & {
   mode: DateLimitMode;
@@ -52,5 +53,6 @@ export type MonthlyProps = {
   periodType: DAYS_OF_PERIOD_ENUM;
   countedFrom: COUNTED_FROM_ENUM;
   onChange: (value: MonthlyProps['value']) => void;
+  texts?: Partial<Texts>;
 } & FilterBaseProps &
   WithDisabledProp;

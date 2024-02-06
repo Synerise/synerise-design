@@ -6,6 +6,7 @@ import type { WithDataFormatProps } from '@synerise/ds-data-format';
 
 import { DayProps } from './Day/Day.types';
 import { FilterDefinition, WithDisabledProp } from '../../RangeFilter.types';
+import { Texts } from '../../../DateRangePicker.types';
 import { GridTexts } from './Grid/Grid.types';
 import { DateLimitMode, RangeDisplayMode } from './RangeFormContainer/RangeForm/RangeForm.types';
 
@@ -31,13 +32,21 @@ export type CustomDayConfig = {
   longLabel?: string;
 };
 
-export type TimeWindowTexts = {
-  clearRange: React.ReactNode | string;
-  copyRange: React.ReactNode | string;
-  pasteRange: React.ReactNode | string;
-  range: React.ReactNode | string;
-  hour: React.ReactNode | string;
-};
+export type TimeWindowTexts = Pick<
+  Texts,
+  | 'inverseSelection'
+  | 'selectDaysDescription'
+  | 'addTime'
+  | 'clearRange'
+  | 'copyRange'
+  | 'pasteRange'
+  | 'range'
+  | 'hour'
+  | 'selected'
+  | 'clear'
+  | 'setTimeFor'
+>;
+
 export type TimeWindowProps = {
   days: Days;
   monthlyFilter?: boolean;
@@ -67,7 +76,7 @@ export type TimeWindowProps = {
   rangeClipboard: Partial<FilterDefinition>;
   valueSelectionModes: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;
-  texts?: TimeWindowTexts & GridTexts;
+  texts: TimeWindowTexts & GridTexts;
   renderRangeFormSuffix?: () => React.ReactNode;
   timePickerProps?: Partial<TimePickerProps>;
 } & Partial<RangeActions> &

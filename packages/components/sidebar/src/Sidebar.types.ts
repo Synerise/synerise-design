@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { CollapseProps } from 'antd/lib/collapse';
 
-export type SidebarProps = {
+export type SidebarProps = CollapseProps & {
   children: React.ReactNode;
   order?: string[];
   onChangeOrder?: (order: Order) => void;
-  defaultActiveKey?: string[];
 };
 
 export type PanelProps = {

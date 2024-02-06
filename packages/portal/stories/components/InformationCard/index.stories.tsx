@@ -17,7 +17,7 @@ import {
   InformationCardProps,
 } from '@synerise/ds-information-card';
 
-import Icon, { NotificationsM, SegmentM, VarTypeStringM } from '@synerise/ds-icon/dist/cjs';
+import Icon, { NotificationsM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 
 import { default as ConditionStories, Transform } from '../../components/Condition/index.stories';
@@ -63,7 +63,7 @@ function defaultStory() {
     () => (
       <InformationCard
         title={text('Title', 'Title')}
-        subtitle="subtitle"
+        subtitle={text('Subtitle', 'Subtitle')}
         icon={icon}
         iconColor={iconColor}
         notice={notice}

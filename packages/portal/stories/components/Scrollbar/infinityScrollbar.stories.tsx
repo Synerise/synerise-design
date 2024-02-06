@@ -42,6 +42,7 @@ const stories = {
         maxHeight={250}
         absolute={boolean('Scrollbar over text', true)}
         loading={loading}
+        largeSize={boolean('Scrollbar large size', false)}
         hasMore={1000 > store.state.data.length}
         fetchData={fetchData}
         onYReachEnd={action('Reached end of Y scrollbar')}

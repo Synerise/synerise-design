@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-form",
-  "version": "0.5.59",
+  "version": "0.6.3",
   "description": "Form UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,13 +33,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-autocomplete": "^0.5.9",
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-cruds": "^0.3.40",
-    "@synerise/ds-divider": "^0.6.4",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-input": "^0.19.9",
-    "@synerise/ds-typography": "^0.13.3"
+    "@synerise/ds-autocomplete": "^0.6.1",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-cruds": "^0.4.3",
+    "@synerise/ds-divider": "^0.6.7",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-input": "^0.19.16",
+    "@synerise/ds-typography": "^0.14.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -48,7 +48,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

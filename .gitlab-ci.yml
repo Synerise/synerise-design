@@ -155,6 +155,20 @@ chromatic_publish:
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
     - (cd packages/storybook; npx chromatic ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN_NEW --storybook-build-dir ./storybook-static/)
 
+chromatic_publish_baseline:
+  stage: deploy
+  when: manual
+  only:
+    refs:
+      - master
+    variables:
+      - $CHROMATIC_PROJECT_TOKEN
+  script:
+    - test ! -e packages/portal/storybook-static && yarn install
+    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+    - test ! -e packages/portal/storybook-static && (yarn npx:lerna run build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+    - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --auto-accept-changes --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
+
 chromatic_publish_merge_to_dest_branch:
   stage: deploy
   when: manual

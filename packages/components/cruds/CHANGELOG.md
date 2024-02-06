@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.4.2...@synerise/ds-cruds@0.4.3) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.4.1...@synerise/ds-cruds@0.4.2) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.4.0...@synerise/ds-cruds@0.4.1) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.3.43...@synerise/ds-cruds@0.4.0) (2023-12-14)
+
+
+### Features
+
+* **filter:** reorder cruds in filter step conditions ([8d4019b](https://github.com/Synerise/synerise-design/commit/8d4019b49c7579000e093aabbcd31a75626d9c1c))
+
+
+
+
+
+## [0.3.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.3.42...@synerise/ds-cruds@0.3.43) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
+## [0.3.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.3.41...@synerise/ds-cruds@0.3.42) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
+## [0.3.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.3.40...@synerise/ds-cruds@0.3.41) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-cruds
+
+
+
+
+
 ## [0.3.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.3.39...@synerise/ds-cruds@0.3.40) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-cruds

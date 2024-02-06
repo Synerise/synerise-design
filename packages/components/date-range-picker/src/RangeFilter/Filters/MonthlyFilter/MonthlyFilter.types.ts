@@ -22,7 +22,7 @@ export type MonthlyFilterProps = {
   rangeDisplayMode?: RangeDisplayMode;
 } & WithDisabledProp &
   Partial<RangeActions> &
-  WithTranslations;
+  Partial<WithTranslations>;
 
 export type Month<T = DenormalizedFilter> = {
   id: string | number;

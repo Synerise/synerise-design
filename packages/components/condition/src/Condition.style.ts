@@ -335,7 +335,6 @@ export const ConditionRow = styled.div<{
   last?: boolean;
 }>`
   padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
-  z-index: ${(props): number => 10000 - props.index};
   display: flex;
 
   ${ConditionConnections} {

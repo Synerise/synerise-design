@@ -106,8 +106,7 @@ const TextInput: FC<InputProps> = ({
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
-          // fixme no readonly prop for autocomplete
-          // readOnly={readOnly}
+          readOnly={readOnly}
         >
           {autocompleteOptions?.map(option => (
             <Autocomplete.Option key={option} value={option}>

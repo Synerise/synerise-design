@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-wizard",
-  "version": "0.5.16",
+  "version": "0.6.0",
   "description": "Wizard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,12 +33,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-layout": "^0.13.39",
-    "@synerise/ds-modal": "^0.17.11",
-    "@synerise/ds-page-header": "^0.14.88",
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-layout": "^0.13.44",
+    "@synerise/ds-modal": "^0.17.18",
+    "@synerise/ds-page-header": "^0.14.95",
+    "@synerise/ds-utils": "^0.24.24",
+    "classnames": "2.3.2",
     "react-dom": "16.13.0",
     "react-intl": "3.12.0"
   },

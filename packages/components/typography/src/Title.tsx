@@ -14,11 +14,11 @@ const StyledElements = {
   7: H7,
 };
 
-const Title = ({ level = 1, withoutMargin, children, className, ellipsis }: Props) => {
+const Title = ({ level = 1, withoutMargin, children, className, ellipsis, ...antdProps }: Props) => {
   const TitleElement = StyledElements[level];
   const elementClassName = classNames('ds-title', className);
   const content = (
-    <TitleElement className={elementClassName} withoutMargin={Boolean(withoutMargin)}>
+    <TitleElement {...antdProps} className={elementClassName} withoutMargin={Boolean(withoutMargin)}>
       {children}
     </TitleElement>
   );

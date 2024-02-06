@@ -346,7 +346,7 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
         monthlyFilter={monthlyFilter}
         monthlyFilterPeriod={monthlyFilterPeriod}
         onRangeDelete={daily ? undefined : this.handleRangeDelete}
-        texts={(texts || {}) as TimeWindowTexts}
+        texts={texts as TimeWindowTexts}
         renderSuffix={renderRangeFormSuffix}
         timePickerProps={timePickerProps}
         valueSelectionModes={valueSelectionModes}
@@ -423,24 +423,14 @@ class TimeWindowBase extends PureComponent<TimeWindowProps, State> {
             texts={texts}
             {...rest}
             showSelectAll={keys.length > activeDays?.length}
-            title={
-              <SelectionCount
-                selectedDayCount={activeDays.length}
-                label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected: ' })}
-              />
-            }
+            title={<SelectionCount selectedDayCount={activeDays.length} label={texts.selected} />}
           />
         )}
         {shouldRenderRangeForm && this.renderRangeForm(rangeFormKey)}
-        {shouldRenderSelectionHint && (
-          <SelectionHint message={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION' })} />
-        )}
+        {shouldRenderSelectionHint && <SelectionHint message={texts.selectDaysDescription} />}
         {shouldRenderAddButton && (
           <S.AddButtonWrapper>
-            <AddButton
-              label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.ADD-TIME', defaultMessage: 'Add time' })}
-              onClick={this.handleRangeAdd}
-            />
+            <AddButton label={texts.addTime} onClick={this.handleRangeAdd} />
           </S.AddButtonWrapper>
         )}
       </S.TimeWindowContainer>

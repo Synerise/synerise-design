@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.59.1...@synerise/ds-icon@0.60.0) (2024-01-24)
+
+
+### Features
+
+* **icon:** new icons added ([185cd8a](https://github.com/Synerise/synerise-design/commit/185cd8adfa2769cb8a7bce0acdcaf2f8738750cd))
+
+
+
+
+
+## [0.59.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.59.0...@synerise/ds-icon@0.59.1) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
+# [0.59.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.9...@synerise/ds-icon@0.59.0) (2024-01-15)
+
+
+### Features
+
+* **icon:** column disconnect icon added ([2406a4b](https://github.com/Synerise/synerise-design/commit/2406a4b38233954bfc4262c15894594f64959084))
+
+
+
+
+
+## [0.58.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.8...@synerise/ds-icon@0.58.9) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
+## [0.58.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.7...@synerise/ds-icon@0.58.8) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-icon
+
+
+
+
+
 ## [0.58.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.58.6...@synerise/ds-icon@0.58.7) (2023-10-30)
 
 **Note:** Version bump only for package @synerise/ds-icon

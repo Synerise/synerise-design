@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.6.0...@synerise/ds-completed-within@0.6.1) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.82...@synerise/ds-completed-within@0.6.0) (2024-01-24)
+
+
+### Features
+
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/Synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+
+
+
+
+
+## [0.5.82](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.81...@synerise/ds-completed-within@0.5.82) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.81](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.80...@synerise/ds-completed-within@0.5.81) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.80](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.79...@synerise/ds-completed-within@0.5.80) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.79](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.78...@synerise/ds-completed-within@0.5.79) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
+## [0.5.78](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.77...@synerise/ds-completed-within@0.5.78) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-completed-within
+
+
+
+
+
 ## [0.5.77](https://github.com/Synerise/synerise-design/compare/@synerise/ds-completed-within@0.5.76...@synerise/ds-completed-within@0.5.77) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-completed-within

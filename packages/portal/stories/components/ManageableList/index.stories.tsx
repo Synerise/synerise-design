@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Key } from 'react';
 import ManageableList from '@synerise/ds-manageable-list';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
@@ -204,22 +204,9 @@ const stories = {
   }),
   accordion: withState({
     items: ACCORDION_ITEMS,
-    expandedIds: [],
   })(({ store }) => {
     const handleChangeOrder = newOrder => {
       store.set({ items: newOrder });
-    };
-
-    const addItem = (): void => {
-      store.set({
-        items: [
-          ...store.state.items,
-          {
-            ...EMPTY_CONTENT_ITEM,
-            id: Date.now(),
-          },
-        ],
-      });
     };
 
     const duplicateItem = (props): void => {
@@ -234,7 +221,57 @@ const stories = {
         ],
       });
     };
+
     const onExpand = (id, isExp) => {
+      const updatedItems = store.state.items.map( item => ({
+        ...item,
+        expanded: isExp && item.id === id
+      }));
+      store.set({
+        items: updatedItems
+      })
+      
+    };
+    return (
+      <ManageableList
+        maxToShowItems={5}
+        onItemRemove={props => removeItem(props, store)}
+        onItemEdit={props => editItem(props, store)}
+        onItemSelect={action('onItemSelect')}
+        onItemDuplicate={duplicateItem}
+        onChangeOrder={boolean('Change order available', false) ? handleChangeOrder : null}
+        type="content"
+        items={store.state.items}
+        loading={false}
+        addButtonDisabled={boolean('Disable add item button', false)}
+        changeOrderDisabled={boolean('Disable change order', false)}
+        greyBackground={boolean('Grey background', false)}
+        texts={getTexts()}
+        onExpand={onExpand}
+      />
+    );
+  }),
+  accordionDeprecated: withState({
+    items: ACCORDION_ITEMS,
+    expandedIds: [] as Key[],
+  })(({ store }) => {
+    const handleChangeOrder = newOrder => {
+      store.set({ items: newOrder });
+    };
+
+    const duplicateItem = (props): void => {
+      const itemForDuplication = store.state.items.find(item => item.id === props.id);
+      store.set({
+        items: [
+          ...store.state.items,
+          {
+            ...itemForDuplication,
+            id: Date.now(),
+          },
+        ],
+      });
+    };
+    const onExpand = (id: Key, _isExp: boolean) => {
       if (store.state.expandedIds.includes(id)) {
         store.set({
           expandedIds: [],

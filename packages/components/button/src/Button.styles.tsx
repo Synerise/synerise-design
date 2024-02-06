@@ -232,6 +232,21 @@ export const AntdButton = styled(
             }
           }
         }
+        &&.ant-btn-tertiary {
+          &:hover,
+          &:focus {
+            .btn-focus {
+              box-shadow: inset 0 0 0 0 ${props.theme.palette['grey-300']};
+            }
+            span,
+            svg {
+              color: ${props.theme.palette['grey-700']};
+            }
+            svg {
+              fill: ${props.theme.palette['grey-700']} !important;
+            }
+          }
+        }
       `}
     ${(props): FlattenInterpolation<ThemeProps> | false =>
       props.loading &&

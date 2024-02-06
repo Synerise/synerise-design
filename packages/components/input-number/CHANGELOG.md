@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.1...@synerise/ds-input-number@0.9.2) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.0...@synerise/ds-input-number@0.9.1) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.33...@synerise/ds-input-number@0.9.0) (2024-01-15)
+
+
+### Features
+
+* **input-number:** handle defaultValue prop ([1b5a378](https://github.com/Synerise/synerise-design/commit/1b5a3781db429748b2926d41969d8c298b3513e5))
+
+
+
+
+
+## [0.8.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.32...@synerise/ds-input-number@0.8.33) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.8.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.31...@synerise/ds-input-number@0.8.32) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
+## [0.8.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.30...@synerise/ds-input-number@0.8.31) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-input-number
+
+
+
+
+
 ## [0.8.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.8.29...@synerise/ds-input-number@0.8.30) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-input-number

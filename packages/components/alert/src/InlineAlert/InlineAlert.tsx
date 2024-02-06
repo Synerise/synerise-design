@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Icon, { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon';
+import Icon, { Check3M, WarningFillM, InfoM } from '@synerise/ds-icon';
 import { InlineAlertProps, InlineAlertType } from './InlineAlert.types';
 import * as S from './InlineAlert.styles';
 
 const ICONS: Record<InlineAlertType, React.ReactNode> = {
-  success: <Check2M />,
+  success: <Check3M />,
   alert: <WarningFillM />,
   warning: <WarningFillM />,
   info: <InfoM />,

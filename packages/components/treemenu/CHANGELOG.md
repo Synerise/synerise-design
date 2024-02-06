@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.23...@synerise/ds-treemenu@0.4.24) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.4.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.22...@synerise/ds-treemenu@0.4.23) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.4.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.21...@synerise/ds-treemenu@0.4.22) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.4.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.20...@synerise/ds-treemenu@0.4.21) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.4.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.19...@synerise/ds-treemenu@0.4.20) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
+## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.18...@synerise/ds-treemenu@0.4.19) (2023-12-11)
+
+
+### Bug Fixes
+
+* added missing sortablejs dependencies ([5e3e50f](https://github.com/Synerise/synerise-design/commit/5e3e50fc9f39c8cd7e7cba96c717a8f1198d9f9c))
+
+
+
+
+
+## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.17...@synerise/ds-treemenu@0.4.18) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
 ## [0.4.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.16...@synerise/ds-treemenu@0.4.17) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-treemenu

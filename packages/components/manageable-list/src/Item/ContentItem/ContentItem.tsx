@@ -14,7 +14,7 @@ import ItemMeta from '../ItemMeta/ItemMeta';
 import { ContentItemProps } from './ContentItem.types';
 import * as S from './ContentItem.styles';
 
-const ContentItem = ({
+const ContentItemComponent = ({
   onRemove,
   onUpdate,
   onDuplicate,
@@ -191,4 +191,20 @@ const ContentItem = ({
   );
 };
 
-export default withTheme(ContentItem);
+const ContentItem = Object.assign(withTheme(ContentItemComponent), {
+  AdditionalSuffix: S.AdditionalSuffix,
+  ContentWrapper: S.ContentWrapper,
+  DraggerWrapper: S.DraggerWrapper,
+  DropdownTrigger: S.DropdownTrigger,
+  DropdownWrapper: S.DropdownWrapper,
+  FilterDropdownTrigger: S.FilterDropdownTrigger,
+  IconWrapper: S.IconWrapper,
+  ItemContainer: S.ItemContainer,
+  ItemHeader: S.ItemHeader,
+  ItemHeaderPrefix: S.ItemHeaderPrefix,
+  ItemHeaderSuffix: S.ItemHeaderSuffix,
+  MoveItemButtons: S.MoveItemButtons,
+  ToggleContentWrapper: S.ToggleContentWrapper,
+});
+
+export default ContentItem;

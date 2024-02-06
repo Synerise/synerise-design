@@ -1,4 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { Text } from '@synerise/ds-typography';
 
 export const AvatarLabel = styled.div<{ onClick?: () => void }>`
   display: inline-flex;
@@ -24,8 +25,18 @@ export const Description = styled.div`
   justify-content: center;
 `;
 
-export const Title = styled.span<{
-  ellipsis: boolean;
+export const AvatarLink = styled.a`
+  display: flex;
+  min-width: 0;
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+`;
+
+export const Title = styled(Text)<{
+  hasEllipsis?: boolean;
   maxWidth: number | undefined;
   avatarSize?: string | 'large';
 }>`
@@ -34,11 +45,8 @@ export const Title = styled.span<{
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-700']};
   ${(props): FlattenSimpleInterpolation | false =>
-    props.ellipsis &&
+    Boolean(props.ellipsis) &&
     css`
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: block;
       max-width: ${props.maxWidth ? `${props.maxWidth}px` : '100%'};
     `};
 `;

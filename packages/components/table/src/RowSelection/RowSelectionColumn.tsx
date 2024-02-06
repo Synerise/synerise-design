@@ -88,6 +88,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
     <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
       <Button.Checkbox
         key={`checkbox-${recordKey}`}
+        data-testid="ds-table-selection-button"
         checked={isChecked}
         disabled={!isChecked && Boolean(limit !== undefined && limit <= selectedRowKeys.length)}
         indeterminate={isIndeterminate}

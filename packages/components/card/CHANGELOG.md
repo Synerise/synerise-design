@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.16.0...@synerise/ds-card@0.16.1) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.16...@synerise/ds-card@0.16.0) (2024-01-31)
+
+
+### Features
+
+* **card:** add optional tag next to title ([df51722](https://github.com/Synerise/synerise-design/commit/df51722a57814174da067bfb57943432ca683d07))
+
+
+
+
+
+## [0.15.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.15...@synerise/ds-card@0.15.16) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.15.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.14...@synerise/ds-card@0.15.15) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.15.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.13...@synerise/ds-card@0.15.14) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.15.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.12...@synerise/ds-card@0.15.13) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.15.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.11...@synerise/ds-card@0.15.12) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
+## [0.15.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.10...@synerise/ds-card@0.15.11) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-card
+
+
+
+
+
 ## [0.15.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.15.9...@synerise/ds-card@0.15.10) (2023-11-09)
 
 **Note:** Version bump only for package @synerise/ds-card

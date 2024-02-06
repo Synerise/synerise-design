@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.55...@synerise/ds-information-card@0.3.56) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/Synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
+## [0.3.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.54...@synerise/ds-information-card@0.3.55) (2024-01-31)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.53...@synerise/ds-information-card@0.3.54) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.52...@synerise/ds-information-card@0.3.53) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.51...@synerise/ds-information-card@0.3.52) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.50...@synerise/ds-information-card@0.3.51) (2023-12-14)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.49...@synerise/ds-information-card@0.3.50) (2023-12-13)
+
+
+### Bug Fixes
+
+* **information-card:** force word wrap inside infocard ([d31a68a](https://github.com/Synerise/synerise-design/commit/d31a68a5fdea003b58a4887c94d3b55e6084dca9))
+
+
+
+
+
+## [0.3.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.48...@synerise/ds-information-card@0.3.49) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
+## [0.3.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.47...@synerise/ds-information-card@0.3.48) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
 ## [0.3.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.46...@synerise/ds-information-card@0.3.47) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-information-card

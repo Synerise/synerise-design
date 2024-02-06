@@ -51,6 +51,7 @@ ManageableList UI Component
 | searchQuery          | Search query used to highlight list item name                                                        | string                                 | -         |
 | additionalActions    | Additional actions for single list item                                                              | AdditionalAction[]                     | -         |
 | styles               | Additional styles for ManageableList wrapper                                                         | React.CSSProperties                    | -         |
+| expandedIds (deprecated) | Array of item ids that should be rendered open                                                   | React.Key[]                            | -         |
 
 ### Texts
 
@@ -86,7 +87,8 @@ ManageableList UI Component
 | content                 | Content rendered in content type list                         | React.ReactNode | -       |
 | headerSuffix            | Component that will be rendered on the start of the item      | React.ReactNode | -       |
 | hideHeaderSuffixOnHover | Whether to hide suffixHeader on hover                         | boolean         | -       |
-| additionalSuffix  | Component that will be rendered on the end of the item suffix | React.ReactNode | -       |
+| expanded                | Render opened                                                 | boolean         | -       |
+| additionalSuffix        | Component that will be rendered on the end of the item suffix | React.ReactNode | -       |
 
 #### AdditionalAction
 

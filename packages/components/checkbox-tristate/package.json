@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-checkbox-tristate",
-  "version": "0.2.50",
+  "version": "0.2.56",
   "description": "Checkbox Tristate UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -22,7 +22,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -37,7 +37,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.11.50"
+    "@synerise/ds-checkbox": "^0.11.56"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -45,7 +45,7 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1"
   }

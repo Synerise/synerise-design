@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import Button from '@synerise/ds-button';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import Badge from '@synerise/ds-badge';
 import Icon, { CloseS, FilterM } from '@synerise/ds-icon';
@@ -14,9 +13,9 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
   const intl = useIntl();
   return (
     <S.Container>
-      <S.Title>{texts?.filter}</S.Title>
+      <S.Title>{texts.filter}</S.Title>
       {!filter ? (
-        <Button.Creator label={label} disabled={disabled} onClick={onClick} block />
+        <S.CreatorButton label={label} disabled={disabled} onClick={onClick} block />
       ) : (
         <ContentItem
           onClick={(event: MouseEvent<HTMLDivElement>) => {
@@ -25,10 +24,8 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
           }}
           headerSuffix={
             <>
-              <S.SuffixText>
-                {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CHANGE', defaultMessage: 'Change' })}
-              </S.SuffixText>
-              <Tooltip title={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.REMOVE', defaultMessage: 'Remove' })}>
+              <S.SuffixText>{texts.change}</S.SuffixText>
+              <Tooltip title={texts.remove}>
                 <Icon
                   onClick={(event: MouseEvent<HTMLDivElement>) => {
                     event.stopPropagation();
@@ -42,7 +39,9 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
           }
           item={{
             id: 'filter-trigger',
-            name: intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
+            name:
+              texts[filter.type.toLocaleLowerCase()] ||
+              intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.${filter.type}`, defaultMessage: 'Filter' }),
             tag: (
               <S.BadgeWrapper>
                 <Badge status="active" flag pulsing>
@@ -51,7 +50,6 @@ const RangeFilterStatus = ({ onFilterRemove, disabled, filter, label, onClick, t
               </S.BadgeWrapper>
             ),
           }}
-          texts={{}}
         />
       )}
     </S.Container>

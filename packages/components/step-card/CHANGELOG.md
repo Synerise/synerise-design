@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.3...@synerise/ds-step-card@0.10.4) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/Synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
+## [0.10.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.2...@synerise/ds-step-card@0.10.3) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.10.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.1...@synerise/ds-step-card@0.10.2) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.10.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.0...@synerise/ds-step-card@0.10.1) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.9.20...@synerise/ds-step-card@0.10.0) (2023-12-14)
+
+
+### Features
+
+* **filter:** reorder cruds in filter step conditions ([8d4019b](https://github.com/Synerise/synerise-design/commit/8d4019b49c7579000e093aabbcd31a75626d9c1c))
+
+
+
+
+
+## [0.9.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.9.19...@synerise/ds-step-card@0.9.20) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.9.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.9.18...@synerise/ds-step-card@0.9.19) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
+## [0.9.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.9.17...@synerise/ds-step-card@0.9.18) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-step-card
+
+
+
+
+
 ## [0.9.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.9.16...@synerise/ds-step-card@0.9.17) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-step-card

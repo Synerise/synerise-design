@@ -1,16 +1,15 @@
 import * as React from 'react';
 
-import { theme } from '@synerise/ds-core';
-import InlineEdit from '@synerise/ds-inline-edit/';
-import Icon, { CloseM, ArrowLeftM } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button/';
-import { withTheme } from 'styled-components';
-import Tooltip from '@synerise/ds-tooltip';
-import * as S from './PageHeader.styles';
 import { PageHeaderProps } from './PageHeader.types';
+import * as S from './PageHeader.styles';
+import { PageHeaderBack } from './PageHeaderBack';
+import { PageHeaderInlineEdit } from './PageHeaderInlineEdit';
+import { PageHeaderClamp } from './PageHeaderClamp';
+import { PageHeaderRightSide } from './PageHeaderRightSide';
 
-const PageHeader: React.FC<PageHeaderProps> = props => {
+const PageHeader = (props: PageHeaderProps) => {
   const {
+    goBackIcon,
     className,
     onGoBack,
     onClose,
@@ -24,75 +23,29 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
     inlineEdit,
     more,
     avatar,
-    goBackIcon,
     tooltip,
     tooltipIcon,
     handleTooltipClick,
   } = props;
 
-  const backIcon = goBackIcon || (
-    <Icon className="page-header__back" color={theme.palette['grey-600']} component={<ArrowLeftM />} size={24} />
-  );
-
   return (
     <S.MainContainer isolated={isolated} className={`${className || ''} ds-page-header`}>
       <S.PageHeaderContainer>
-        {onGoBack && (
-          <S.PageHeaderBack>
-            <Button type="ghost" mode="single-icon" onClick={onGoBack}>
-              {backIcon}
-            </Button>
-          </S.PageHeaderBack>
-        )}
+        {onGoBack && <PageHeaderBack onGoBack={onGoBack} goBackIcon={goBackIcon} />}
         {!!avatar && avatar}
-        {inlineEdit && (
-          <S.PageHeaderInlineEdit>
-            <InlineEdit
-              input={{
-                name: inlineEdit.name,
-                value: inlineEdit.value,
-                maxLength: inlineEdit.maxLength,
-                onChange: inlineEdit.handleOnChange,
-                onBlur: inlineEdit.handleOnBlur,
-                onEnterPress: inlineEdit.handleOnEnterPress,
-                placeholder: inlineEdit.placeholder,
-              }}
-              size={inlineEdit.size}
-              error={inlineEdit.error}
-              disabled={inlineEdit.disabled}
-              hideIcon={inlineEdit.hideIcon}
-              style={inlineEdit.style}
-            />
-          </S.PageHeaderInlineEdit>
-        )}
-        <S.PageHeaderClamp>
-          <S.PageHeaderTitle>{children || title}</S.PageHeaderTitle>
-          {tooltip !== undefined && tooltipIcon && (
-            <S.PageHeaderTooltipWraper>
-              <Tooltip {...tooltip}>
-                <Icon component={tooltipIcon} onClick={handleTooltipClick} />
-              </Tooltip>
-            </S.PageHeaderTooltipWraper>
-          )}
-        </S.PageHeaderClamp>
+        {inlineEdit && <PageHeaderInlineEdit inlineEdit={inlineEdit} />}
+        <PageHeaderClamp
+          tooltip={tooltip}
+          title={title}
+          tooltipIcon={tooltipIcon}
+          handleTooltipClick={handleTooltipClick}
+        >
+          {children}
+        </PageHeaderClamp>
+
         {!!more && <S.PageHeaderMore>{more}</S.PageHeaderMore>}
         {!!description && <S.PageHeaderDescription>{description}</S.PageHeaderDescription>}
-        <S.PageHeaderRightSide>
-          <div>
-            {rightSide && rightSide}
-            {onClose && (
-              <Button type="ghost" mode="single-icon">
-                <Icon
-                  className="page-header__close"
-                  color={theme.palette['grey-500']}
-                  component={<CloseM />}
-                  size={32}
-                  onClick={onClose}
-                />
-              </Button>
-            )}
-          </div>
-        </S.PageHeaderRightSide>
+        <PageHeaderRightSide onClose={onClose} rightSide={rightSide} />
       </S.PageHeaderContainer>
 
       {!!tabs && <S.PageHeaderTabsWrapper>{tabs}</S.PageHeaderTabsWrapper>}
@@ -102,5 +55,4 @@ const PageHeader: React.FC<PageHeaderProps> = props => {
   );
 };
 
-// @ts-ignore
-export default withTheme(PageHeader);
+export default PageHeader;

@@ -1,18 +1,21 @@
-import * as React from 'react';
-import { InputNumberProps } from 'antd/lib/input-number';
+import { ReactNode } from 'react';
+import { InputNumberProps as AntdInputNumberProps } from 'antd/lib/input-number';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import { NumberToFormatOptions } from '@synerise/ds-data-format';
 
-export interface Props extends InputNumberProps {
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
+export type InputNumberProps = AntdInputNumberProps & {
+  errorText?: ReactNode;
+  label?: ReactNode;
+  defaultValue?: number;
+  description?: ReactNode;
   error?: boolean;
-  prefixel?: React.ReactNode | string;
-  suffixel?: React.ReactNode | string;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
   raw?: boolean;
   tooltip?: string;
   tooltipConfig?: TooltipProps;
   valueFormatOptions?: NumberToFormatOptions;
-}
+};
+// @deprecated - use InputNumberProps
+export type Props = InputNumberProps;

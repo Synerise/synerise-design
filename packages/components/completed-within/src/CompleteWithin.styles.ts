@@ -33,7 +33,7 @@ export const ClearButton = styled(Button)`
   }
 `;
 
-export const CompletedWithinWrapper = styled.div<{ withValue: boolean }>`
+export const CompletedWithinWrapper = styled.div<{ withValue: boolean; readOnly?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -42,6 +42,7 @@ export const CompletedWithinWrapper = styled.div<{ withValue: boolean }>`
 
   ${(props): FlattenInterpolation<ThemeProps<boolean>> | false =>
     Boolean(props.withValue) &&
+    !props.readOnly &&
     css`
       &&& {
         ${TriggerButton} {

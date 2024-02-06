@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.54](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.53...@synerise/ds-operators@0.10.54) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.10.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.52...@synerise/ds-operators@0.10.53) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.10.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.51...@synerise/ds-operators@0.10.52) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.10.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.50...@synerise/ds-operators@0.10.51) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/Synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+
+
+
+
+
+## [0.10.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.49...@synerise/ds-operators@0.10.50) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.10.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.48...@synerise/ds-operators@0.10.49) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
+## [0.10.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.47...@synerise/ds-operators@0.10.48) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-operators
+
+
+
+
+
 ## [0.10.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.46...@synerise/ds-operators@0.10.47) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-operators

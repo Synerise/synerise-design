@@ -75,6 +75,7 @@ const stories = {
         texts={FACTORS_TEXTS}
         onDeactivate={action('onDeactivate')}
         readOnly={boolean('Set readOnly', false)}
+        loading={boolean('Set loading', false)}
         {...additionalProps}
       />
     );

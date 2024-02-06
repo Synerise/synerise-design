@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.8...@synerise/ds-table@0.47.9) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.7...@synerise/ds-table@0.47.8) (2024-01-31)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.6...@synerise/ds-table@0.47.7) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.5...@synerise/ds-table@0.47.6) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](https://github.com/synerise/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
+## [0.47.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.4...@synerise/ds-table@0.47.5) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.3...@synerise/ds-table@0.47.4) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+* **table:** virtual table fixed ([a126848](https://github.com/synerise/synerise-design/commit/a1268486e88c6f7efdd803f63481cd45f4c21c85))
+
+
+
+
+
+## [0.47.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.2...@synerise/ds-table@0.47.3) (2023-12-14)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.1...@synerise/ds-table@0.47.2) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+## [0.47.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.0...@synerise/ds-table@0.47.1) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
+# [0.47.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.43...@synerise/ds-table@0.47.0) (2023-12-06)
+
+
+### Features
+
+* **table:** ported avatar label solution from UL ([46dfcfe](https://github.com/synerise/synerise-design/commit/46dfcfe7a557aa45aa9b2d35a406da696428f61a))
+
+
+
+
+
 ## [0.46.43](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.46.42...@synerise/ds-table@0.46.43) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-table

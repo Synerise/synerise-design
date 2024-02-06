@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.1...@synerise/ds-factors@0.21.2) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.21.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.0...@synerise/ds-factors@0.21.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added texts over translations ([7131f8c](https://github.com/Synerise/synerise-design/commit/7131f8c5c923527544fb54b5bb9eb15585bec442))
+
+
+
+
+
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.18...@synerise/ds-factors@0.21.0) (2024-01-24)
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/Synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+* **context-selector:** replace: skeleton instead of loader ([291e3bf](https://github.com/Synerise/synerise-design/commit/291e3bf9c4abcd22aeda39dd3347e1bf7424b12d))
+
+
+
+
+
+## [0.20.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.17...@synerise/ds-factors@0.20.18) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.20.17](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.16...@synerise/ds-factors@0.20.17) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/Synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+
+
+
+
+
+## [0.20.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.15...@synerise/ds-factors@0.20.16) (2023-12-14)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.20.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.14...@synerise/ds-factors@0.20.15) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.20.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.13...@synerise/ds-factors@0.20.14) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-factors
+
+
+
+
+
+## [0.20.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.12...@synerise/ds-factors@0.20.13) (2023-12-06)
+
+
+### Bug Fixes
+
+* **factors:** change debounce logic in NumberInput ([436ccaf](https://github.com/Synerise/synerise-design/commit/436ccaf70e053b948fd8ba7dbf29263d5b352629))
+
+
+
+
+
 ## [0.20.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.20.11...@synerise/ds-factors@0.20.12) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-factors

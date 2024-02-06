@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.2...@synerise/ds-alert@0.8.3) (2024-01-24)
+
+
+### Bug Fixes
+
+* **alert:** fixed section message styles ([a7a8a61](https://github.com/Synerise/synerise-design/commit/a7a8a619f934d24be76d572998d936866b1a08eb))
+
+
+
+
+
+## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.1...@synerise/ds-alert@0.8.2) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.0...@synerise/ds-alert@0.8.1) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.51...@synerise/ds-alert@0.8.0) (2023-12-14)
+
+
+### Features
+
+* **filter:** reorder cruds in filter step conditions ([8d4019b](https://github.com/Synerise/synerise-design/commit/8d4019b49c7579000e093aabbcd31a75626d9c1c))
+
+
+
+
+
+## [0.7.51](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.50...@synerise/ds-alert@0.7.51) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
+## [0.7.50](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.49...@synerise/ds-alert@0.7.50) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-alert
+
+
+
+
+
 ## [0.7.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.7.48...@synerise/ds-alert@0.7.49) (2023-11-09)
 
 

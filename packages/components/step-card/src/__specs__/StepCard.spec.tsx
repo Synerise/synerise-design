@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import StepCard from './../StepCard';
-import { fireEvent } from '@testing-library/dom';
+import StepCard, { REORDER_THROTTLE } from './../StepCard';
+import { fireEvent, waitFor, screen } from '@testing-library/dom';
 
 const TEXTS = {
   matching: 'Matching',
@@ -19,12 +19,11 @@ const STEP_CARD_NAME = 'funnel';
 
 describe('StepCard', () => {
   it('Should render as matching with footer, name and content', () => {
-    // ARRANGE
     const handleChangeMatching = jest.fn();
     const handleChangeName = jest.fn();
     const handleDuplicate = jest.fn();
     const handleDelete = jest.fn();
-    const { getByText, queryByText } = renderWithProvider(
+    renderWithProvider(
       <StepCard
         matching={true}
         onChangeMatching={handleChangeMatching}
@@ -38,19 +37,17 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    // ASSERT
-    expect(getByText(TEXTS.matching)).toBeTruthy();
-    expect(queryByText(TEXTS.notMatching)).toBeFalsy();
-    expect(getByText(FOOTER_CONTENT)).toBeTruthy();
-    expect(getByText(CONTENT)).toBeTruthy();
+    expect(screen.getByText(TEXTS.matching)).toBeInTheDocument();
+    expect(screen.queryByText(TEXTS.notMatching)).not.toBeInTheDocument();
+    expect(screen.getByText(FOOTER_CONTENT)).toBeInTheDocument();
+    expect(screen.getByText(CONTENT)).toBeInTheDocument();
   });
   it('Should render with header right side slot', () => {
-    // ARRANGE
     const handleChangeMatching = jest.fn();
     const handleChangeName = jest.fn();
     const handleDuplicate = jest.fn();
     const handleDelete = jest.fn();
-    const { getByText, queryByText } = renderWithProvider(
+    renderWithProvider(
       <StepCard
         matching={true}
         onChangeMatching={handleChangeMatching}
@@ -64,11 +61,9 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    // ASSERT
-    expect(getByText(HEADER_RIGHT_SIDE_CONTENT)).toBeTruthy();
+    expect(screen.getByText(HEADER_RIGHT_SIDE_CONTENT)).toBeInTheDocument();
   });
   it('Should call duplicate callback', () => {
-    // ARRANGE
     const handleChangeMatching = jest.fn();
     const handleChangeName = jest.fn();
     const handleDuplicate = jest.fn();
@@ -87,16 +82,13 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    // ACT
     const duplicateIcon = container.querySelector('.duplicate-s');
     fireEvent.click(duplicateIcon as HTMLElement);
 
-    // ASSERT
     expect(handleDuplicate).toBeCalled();
   });
 
   it('Should call delete callback', () => {
-    // ARRANGE
     const handleChangeMatching = jest.fn();
     const handleChangeName = jest.fn();
     const handleDuplicate = jest.fn();
@@ -115,21 +107,149 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    // ACT
     const deleteIcon = container.querySelector('.trash-s');
     fireEvent.click(deleteIcon as HTMLElement);
 
-    // ASSERT
     expect(handleDelete).toBeCalled();
   });
-
-  it('Should call changeMatching callback', () => {
-    // ARRANGE
+  it('Should render move arrow cruds', async () => {
     const handleChangeMatching = jest.fn();
     const handleChangeName = jest.fn();
     const handleDuplicate = jest.fn();
     const handleDelete = jest.fn();
-    const { getByText } = renderWithProvider(
+    const handleMove = jest.fn();
+    const { container } = renderWithProvider(
+      <StepCard
+        matching={true}
+        onChangeMatching={handleChangeMatching}
+        name={STEP_CARD_NAME}
+        onChangeName={handleChangeName}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        onMove={handleMove}
+        expressionIndex={1}
+        expressionCount={3}
+        texts={TEXTS}
+        footer={FOOTER_CONTENT}
+      >
+        {CONTENT}
+      </StepCard>
+    );
+    
+    const moveUpArrow = container.querySelector('.moveup');
+    expect(moveUpArrow).toBeInTheDocument();
+    const moveDownArrow = container.querySelector('.movedown');
+    expect(moveDownArrow).toBeInTheDocument();
+    
+    
+  });
+  it('Should call move callback', async () => {
+    const handleChangeMatching = jest.fn();
+    const handleChangeName = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleDelete = jest.fn();
+    const handleMove = jest.fn();
+    const { container } = renderWithProvider(
+      <StepCard
+        matching={true}
+        onChangeMatching={handleChangeMatching}
+        name={STEP_CARD_NAME}
+        onChangeName={handleChangeName}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        onMove={handleMove}
+        expressionIndex={1}
+        expressionCount={3}
+        texts={TEXTS}
+        footer={FOOTER_CONTENT}
+      >
+        {CONTENT}
+      </StepCard>
+    );
+    
+    const moveUpArrow = container.querySelector('.moveup');
+    fireEvent.click(moveUpArrow as HTMLElement);
+    await waitFor(() => {
+      expect(handleMove).toBeCalled();
+    }, {
+      timeout: REORDER_THROTTLE * 1.5
+    });
+  });
+
+
+  it('Should not call move callback if moveup is clicked on first expression', async () => {
+    const handleChangeMatching = jest.fn();
+    const handleChangeName = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleDelete = jest.fn();
+    const handleMove = jest.fn();
+    const { container } = renderWithProvider(
+      <StepCard
+        matching={true}
+        onChangeMatching={handleChangeMatching}
+        name={STEP_CARD_NAME}
+        onChangeName={handleChangeName}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        onMove={handleMove}
+        expressionIndex={0}
+        expressionCount={3}
+        texts={TEXTS}
+        footer={FOOTER_CONTENT}
+      >
+        {CONTENT}
+      </StepCard>
+    );
+    
+    const moveUpArrow = container.querySelector('.moveup');
+    fireEvent.click(moveUpArrow as HTMLElement);
+    await waitFor(() => {
+      expect(handleMove).not.toBeCalled();
+    }, {
+      timeout: REORDER_THROTTLE * 1.5
+    });
+  });
+
+
+  it('Should not call move callback if movedown is clicked on last expression', async () => {
+    const handleChangeMatching = jest.fn();
+    const handleChangeName = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleDelete = jest.fn();
+    const handleMove = jest.fn();
+    const { container } = renderWithProvider(
+      <StepCard
+        matching={true}
+        onChangeMatching={handleChangeMatching}
+        name={STEP_CARD_NAME}
+        onChangeName={handleChangeName}
+        onDuplicate={handleDuplicate}
+        onDelete={handleDelete}
+        onMove={handleMove}
+        expressionIndex={2}
+        expressionCount={3}
+        texts={TEXTS}
+        footer={FOOTER_CONTENT}
+      >
+        {CONTENT}
+      </StepCard>
+    );
+    
+    const moveDownArrow = container.querySelector('.movedown');
+    fireEvent.click(moveDownArrow as HTMLElement);
+    await waitFor(() => {
+      expect(handleMove).not.toBeCalled();
+    }, {
+      timeout: REORDER_THROTTLE * 1.5
+    });
+  });
+
+  it('Should call changeMatching callback', () => {
+    const handleChangeMatching = jest.fn();
+    const handleChangeName = jest.fn();
+    const handleDuplicate = jest.fn();
+    const handleDelete = jest.fn();
+    renderWithProvider(
       <StepCard
         matching={true}
         onChangeMatching={handleChangeMatching}
@@ -143,10 +263,8 @@ describe('StepCard', () => {
         {CONTENT}
       </StepCard>
     );
-    // ACT
-    fireEvent.click(getByText(TEXTS.matching));
+    fireEvent.click(screen.getByText(TEXTS.matching));
 
-    // ASSERT
     expect(handleChangeMatching).toBeCalled();
   });
 });

@@ -9,7 +9,19 @@ import { ScrollbarProps } from '../Scrollbar.types';
 // eslint-disable-next-line import/prefer-default-export
 export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
   (
-    { absolute = false, children, classes, hasMore, loading, maxHeight, style, fetchData, onScroll, onYReachEnd },
+    {
+      absolute = false,
+      children,
+      classes,
+      hasMore,
+      loading,
+      maxHeight,
+      largeSize,
+      style,
+      fetchData,
+      onScroll,
+      onYReachEnd,
+    },
     forwardedRef
   ) => {
     const scrollRef = useRef<HTMLElement>();
@@ -73,9 +85,16 @@ export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
         onScrollUp={handleScrollUp}
         options={{ minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
+        className={`${largeSize ? 'large-size' : ''}`}
       >
-        <S.ScrollbarContent className={classes} style={{ maxHeight }} data-testid="virtual-scrollbar">
-          <S.ScrollbarWrapper ref={wrapperRef} absolute={absolute} loading={loading} style={style}>
+        <S.ScrollbarContent className={`${classes}`} style={{ maxHeight }} data-testid="virtual-scrollbar">
+          <S.ScrollbarWrapper
+            ref={wrapperRef}
+            absolute={absolute}
+            loading={loading}
+            style={style}
+            largeSize={largeSize}
+          >
             {children}
           </S.ScrollbarWrapper>
         </S.ScrollbarContent>

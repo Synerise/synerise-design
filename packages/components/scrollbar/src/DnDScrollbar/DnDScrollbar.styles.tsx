@@ -16,34 +16,61 @@ export const ScrollbarContent = styled.div`
     display: none;
   }
 `;
-export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boolean }>`
-  padding-right: ${(props): string => (props.absolute ? '' : '11px !important')};
+export const ScrollbarWrapper = styled.div<{ absolute?: boolean; loading?: boolean; largeSize?: boolean }>`
+  padding-right: ${(props): string => {
+    if (props.absolute) {
+      return '';
+    }
+    return props.largeSize ? '24px !important' : '11px !important';
+  }};
+  padding-bottom: ${(props): string => {
+    if (props.absolute) {
+      return '';
+    }
+    return props.largeSize ? '20px !important' : '11px !important';
+  }};
   & > * {
     opacity: ${(props): string => (props.loading ? '0.2' : '1')};
     transition: all 0.25s ease-in-out;
   }
 `;
 
-export const ThumbVertical = styled.div`
-  width: 3px;
-  background-color: ${props => props.theme.palette['grey-300']};
-  border-radius: 2px;
-  right: 4px;
+export const ThumbVertical = styled.div<{ largeSize?: boolean }>`
+  width: ${props => (props.largeSize ? '16px' : '3px')};
+  background-color: ${props => (props.largeSize ? props.theme.palette['blue-050'] : props.theme.palette['grey-300'])};
+  border-radius: 3px;
+  right: ${props => (props.largeSize ? '0' : '4px')};
   position: absolute;
+  border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none')};
+
+  &:hover,
+  &:active {
+    background-color: ${props => (props.largeSize ? props.theme.palette['blue-100'] : props.theme.palette['grey-500'])};
+    border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-400']}` : 'none')};
+  }
 `;
 
-export const ScrollbarTrackWrapper = styled.div`
+export const ScrollbarTrackWrapper = styled.div<{ largeSize?: boolean }>`
   display: block;
   height: 100%;
   position: absolute;
-  width: 11px;
+  width: ${props => (props.largeSize ? '24px' : '11px')};
   top: 0;
-  right: 0;
+  right: ${props => (props.largeSize ? '3px' : '0')};
   bottom: 0;
   user-select: none;
+
+  ${ThumbVertical} {
+    width: ${props => (props.largeSize ? '16px' : '3px')};
+    background-color: ${props => (props.largeSize ? props.theme.palette['blue-050'] : props.theme.palette['grey-300'])};
+    border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-300']}` : 'none')};
+  }
+
   &:hover {
     ${ThumbVertical} {
-      background-color: ${props => props.theme.palette['grey-500']};
+      background-color: ${props =>
+        props.largeSize ? props.theme.palette['blue-100'] : props.theme.palette['grey-500']};
+      border: ${props => (props.largeSize ? `1px solid ${props.theme.palette['grey-400']}` : 'none')};
     }
   }
 `;

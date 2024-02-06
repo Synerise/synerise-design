@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.202.1](https://github.com/synerise/synerise-design/compare/portal@0.202.0...portal@0.202.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
+# [0.202.0](https://github.com/synerise/synerise-design/compare/portal@0.201.0...portal@0.202.0) (2024-01-31)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added texts over translations ([7131f8c](https://github.com/synerise/synerise-design/commit/7131f8c5c923527544fb54b5bb9eb15585bec442))
+
+
+### Features
+
+* **card:** add optional tag next to title ([df51722](https://github.com/synerise/synerise-design/commit/df51722a57814174da067bfb57943432ca683d07))
+* **sidebar:** restyled ds-sidebar ([814a988](https://github.com/synerise/synerise-design/commit/814a9888acec71d669ffca240c980be39d8715cf))
+
+
+
+
+
+# [0.201.0](https://github.com/synerise/synerise-design/compare/portal@0.200.1...portal@0.201.0) (2024-01-24)
+
+
+### Bug Fixes
+
+* **alert:** fixed section message styles ([a7a8a61](https://github.com/synerise/synerise-design/commit/a7a8a619f934d24be76d572998d936866b1a08eb))
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+* **context-selector:** replace: skeleton instead of loader ([291e3bf](https://github.com/synerise/synerise-design/commit/291e3bf9c4abcd22aeda39dd3347e1bf7424b12d))
+
+
+
+
+
+## [0.200.1](https://github.com/synerise/synerise-design/compare/portal@0.200.0...portal@0.200.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](https://github.com/synerise/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
+# [0.200.0](https://github.com/synerise/synerise-design/compare/portal@0.199.0...portal@0.200.0) (2024-01-15)
+
+
+### Bug Fixes
+
+* **table:** virtual table fixed ([a126848](https://github.com/synerise/synerise-design/commit/a1268486e88c6f7efdd803f63481cd45f4c21c85))
+
+
+### Features
+
+* **editable-items-list:** added new component editable-items-list ([35d3af8](https://github.com/synerise/synerise-design/commit/35d3af8604f1f58ed79dc016f0ee49505dc697d2))
+* **input-number:** handle defaultValue prop ([1b5a378](https://github.com/synerise/synerise-design/commit/1b5a3781db429748b2926d41969d8c298b3513e5))
+
+
+
+
+
+# [0.199.0](https://github.com/synerise/synerise-design/compare/portal@0.198.0...portal@0.199.0) (2023-12-14)
+
+
+### Features
+
+* **filter:** reorder cruds in filter step conditions ([8d4019b](https://github.com/synerise/synerise-design/commit/8d4019b49c7579000e093aabbcd31a75626d9c1c))
+
+
+
+
+
+# [0.198.0](https://github.com/synerise/synerise-design/compare/portal@0.197.4...portal@0.198.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* **button:** creator block styles fixed ([2ecef7c](https://github.com/synerise/synerise-design/commit/2ecef7ce5bd12b9b6d3c52b913b66852babfa15d))
+* **card-select:** fixed vertical alignemtn in group of cards ([406952a](https://github.com/synerise/synerise-design/commit/406952a26ce2f5ddb32cc7945bf52d54d323134b))
+* **card-tabs:** change width for card and cards container ([5ccb79e](https://github.com/synerise/synerise-design/commit/5ccb79e506b1f7dfdc41cc9ecf46159e0fbd4abc))
+* **information-card:** force word wrap inside infocard ([d31a68a](https://github.com/synerise/synerise-design/commit/d31a68a5fdea003b58a4887c94d3b55e6084dca9))
+* **switch:** styled switch ([80d89fc](https://github.com/synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+### Features
+
+* **scrollbar:** added new design for scrollbar ([0fe6588](https://github.com/synerise/synerise-design/commit/0fe65884204bdc2fabae4b54d559f84e5761d7fb))
+
+
+
+
+
 ## [0.197.4](https://github.com/synerise/synerise-design/compare/portal@0.197.3...portal@0.197.4) (2023-11-16)
 
 **Note:** Version bump only for package portal

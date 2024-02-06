@@ -1,19 +1,17 @@
 import styled from 'styled-components';
 import { ButtonStyles } from '@synerise/ds-button';
-import { CardTabContainer } from './CardTab/CardTab.styles';
 
-// eslint-disable-next-line import/prefer-default-export
 export const CardTabsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  algin-items: flex-start;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  ${CardTabContainer} {
-    margin-right: 12px;
-    margin-bottom: 16px;
-  }
+  min-width: 588px;
+
   .ds-card-tags-sortable {
+    gap: 16px 12px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -46,4 +44,10 @@ export const CardTabsContainer = styled.div`
       }
     }
   }
+`;
+
+export const CardTabsAddButton = styled.span`
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
 `;

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-avatar",
-  "version": "0.15.13",
+  "version": "0.15.20",
   "description": "Avatar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,11 +33,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-badge": "^0.6.43",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-status": "^0.5.92",
-    "@synerise/ds-tooltip": "^0.14.10",
-    "@synerise/ds-typography": "^0.13.3"
+    "@synerise/ds-badge": "^0.6.49",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-status": "^0.5.99",
+    "@synerise/ds-tooltip": "^0.14.16",
+    "@synerise/ds-typography": "^0.14.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -46,7 +46,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

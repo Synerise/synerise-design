@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar-object",
-  "version": "0.6.104",
+  "version": "0.6.111",
   "description": "SidebarObject UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,18 +33,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-description": "^0.3.87",
-    "@synerise/ds-drawer": "^0.6.4",
-    "@synerise/ds-dropdown": "^0.17.88",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-inline-edit": "^0.6.88",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-result": "^0.6.37",
-    "@synerise/ds-scrollbar": "^0.6.13",
-    "@synerise/ds-subtle-form": "^0.9.84",
-    "@synerise/ds-tabs": "^0.13.86",
-    "@synerise/ds-utils": "^0.24.21"
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-description": "^0.3.93",
+    "@synerise/ds-drawer": "^0.6.7",
+    "@synerise/ds-dropdown": "^0.17.95",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-inline-edit": "^0.6.95",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-result": "^0.6.44",
+    "@synerise/ds-scrollbar": "^0.7.3",
+    "@synerise/ds-subtle-form": "^0.9.91",
+    "@synerise/ds-tabs": "^0.13.93",
+    "@synerise/ds-utils": "^0.24.24"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

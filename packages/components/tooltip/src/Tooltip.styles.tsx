@@ -24,13 +24,19 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
   line-height: 1.38;
   font-weight: ${(props): number => (props.tooltipType === 'default' ? 400 : 500)};
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: flex-start;
   text-align: inherit;
-  word-break: break-all;
   ${IconContainer} {
     align-self: flex-start;
   }
+`;
+
+export const TooltipTitleWrapper = styled.div`
+  white-space: break-spaces;
+  max-width: 100%;
+  width: fit-content;
 `;
 
 export const TooltipButton = styled.div`

@@ -32,8 +32,6 @@ import { utils } from '@synerise/ds-date-range-picker';
 
 import markdown from '@/date-range-picker/README.md';
 
-const { getDefaultTexts } = utils;
-
 configureActions({
   depth: 20
 })
@@ -128,7 +126,7 @@ const texts = {
   tomorrow: 'Tomorrow',
   weeks: 'Weeks',
   years: 'Years',
-  yesterday: 'Yesterday',
+  yesterday: 'Yesterday'
 };
 
 const optionValues: Record<string, DateRange> = {
@@ -239,7 +237,7 @@ const getButtonLabel = (range, showTime) => {
 }
 
 const stories = {
-  default: injectIntl(({ intl }) => {
+  default: () => {
     const initialValue = {
       ...optionValues[
         select(
@@ -311,6 +309,7 @@ const stories = {
       return enabledModes;
     };
     const useCustomTexts = boolean('Use custom texts', false);
+    const disableDSTranslations = boolean('Disable DS translations fallback', false)
     const datePicker = (
       <>
         <DateRangePicker
@@ -327,7 +326,8 @@ const stories = {
           showFilter={showFilter}
           showNowButton={boolean('Show NOW button', true)}
           filterValueSelectionModes={filterValueModes && getFilterSelectionModes(filterValueModes)}
-          texts={useCustomTexts && texts}
+          texts={useCustomTexts ? texts : undefined}
+          disableDefaultTexts={disableDSTranslations}
           popoverProps={{ placement: setPlacement, destroyTooltipOnHide: boolean('Destroy tooltip on hide', false) }}
           arrowColor={setCustomArrowColor && additionalMapper}
           forceAdjacentMonths={boolean('Set adjacent months', false)}
@@ -349,7 +349,7 @@ const stories = {
       );
     }
     return datePicker;
-  }),
+  },
   analytics: injectIntl(({ intl }) => {
     const initialValue = {
       key: 'custom',
@@ -418,7 +418,7 @@ const stories = {
     const DateRangePicker = injectIntl(RawDateRangePicker);
     
     const filterRangeDisplayAsSlider = boolean('Display range filter as slider', true);
-    const useCustomTexts = boolean('Use custom texts', false);
+    
 
     return (
       <DateRangePicker
@@ -428,7 +428,7 @@ const stories = {
         filterRangeDisplayMode={filterRangeDisplayAsSlider ? 'Slider' : 'TimePicker'}
         showNowButton={boolean('Show NOW button', true)}
         relativeModes={['PAST']}
-        texts={useCustomTexts && texts}
+        texts={texts}
         value={value}
         onApply={action('OnApply')}
       />

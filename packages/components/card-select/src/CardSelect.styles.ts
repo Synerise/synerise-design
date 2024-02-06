@@ -126,7 +126,7 @@ export const Container = styled.div<
   justify-content: ${(props): string => mapElementsPosition[props.elementsPosition]};
   border-color: ${getVar('white')};
   position: relative;
-  padding: ${(props): string => (props.size === 'small' ? '24px 16px 12px' : '24px')};
+  padding: ${(props): string => (props.size === 'small' ? '16px' : '24px')};
   cursor: pointer;
   &&:focus-within {
     box-shadow: 0px 0px 0px 2px ${getVar('blue-600')};
@@ -206,7 +206,7 @@ export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: bo
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const TickIcon = styled.div<{

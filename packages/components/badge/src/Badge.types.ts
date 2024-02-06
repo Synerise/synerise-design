@@ -22,7 +22,7 @@ export type Color = typeof color[number];
 
 export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '200' | '100' | '050';
 
-export type Status = 'active' | 'inactive' | 'blocked' | 'processing' | undefined;
+export type Status = 'active' | 'inactive' | 'blocked' | 'processing' | 'warning' | undefined;
 
 export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
   flag?: boolean;

@@ -30,6 +30,7 @@ const ContextSelector: React.FC<ContextProps> = ({
   onClickOutsideEvents,
   onClickOutside,
   onSearch,
+  hideSearchField = false,
   hasMoreItems,
   onFetchData,
   onActivate,
@@ -203,6 +204,7 @@ const ContextSelector: React.FC<ContextProps> = ({
               onClickOutsideEvents={onClickOutsideEvents}
               onClickOutside={onClickOutside}
               onSearch={onSearch}
+              hideSearchField={hideSearchField}
               hasMoreItems={hasMoreItems}
               onFetchData={onFetchData}
             />

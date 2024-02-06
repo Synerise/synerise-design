@@ -73,7 +73,7 @@ const SectionMessage = ({
   };
 
   return (
-    <S.Container color={color} customColor={customColor}>
+    <S.Container data-testid={`ds-section-message-${type}`} color={color} customColor={customColor}>
       <S.WrapperSectionMessage>
         <S.AllContent>
           <S.IconWrapper color={color} customColorIcon={customColorIcon}>

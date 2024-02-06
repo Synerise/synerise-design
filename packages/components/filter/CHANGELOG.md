@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.3...@synerise/ds-filter@0.16.4) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/Synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
+## [0.16.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.2...@synerise/ds-filter@0.16.3) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.16.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.1...@synerise/ds-filter@0.16.2) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.16.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.0...@synerise/ds-filter@0.16.1) (2024-01-15)
+
+
+### Bug Fixes
+
+* **filter:** fixed zindex issues ([71ce5bc](https://github.com/Synerise/synerise-design/commit/71ce5bcf25f2107fd1b43969d2c255e18c112b47))
+
+
+
+
+
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.21...@synerise/ds-filter@0.16.0) (2023-12-14)
+
+
+### Features
+
+* **filter:** reorder cruds in filter step conditions ([8d4019b](https://github.com/Synerise/synerise-design/commit/8d4019b49c7579000e093aabbcd31a75626d9c1c))
+
+
+
+
+
+## [0.15.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.20...@synerise/ds-filter@0.15.21) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
+## [0.15.20](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.19...@synerise/ds-filter@0.15.20) (2023-12-11)
+
+
+### Bug Fixes
+
+* added missing sortablejs dependencies ([5e3e50f](https://github.com/Synerise/synerise-design/commit/5e3e50fc9f39c8cd7e7cba96c717a8f1198d9f9c))
+
+
+
+
+
+## [0.15.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.18...@synerise/ds-filter@0.15.19) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-filter
+
+
+
+
+
 ## [0.15.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.15.17...@synerise/ds-filter@0.15.18) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-filter

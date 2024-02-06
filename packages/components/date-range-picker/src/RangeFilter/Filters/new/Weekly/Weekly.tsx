@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { RefObject, useRef, ReactNode, useEffect, useCallback, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
@@ -14,7 +14,6 @@ import { WeeklyProps, WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.ty
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
-import { TimeWindowTexts } from '../../../Shared/TimeWindow/TimeWindow.types';
 
 import { useShiftAndControlKeys } from '../hooks/useShiftAndControlKeys';
 import { canAddAnotherRange, haveActiveDaysCommonRange, range, removeEmptyEntries } from './utils';
@@ -31,6 +30,7 @@ import {
   EU_NOTATION_WEEK_DAYS_INDEXES,
   US_NOTATION_WEEK_DAYS_INDEXES,
 } from '../../../Shared/TimeWindow/constants/timeWindow.constants';
+import { getDefaultTexts } from '../../../../utils';
 
 const Weekly = ({
   maxEntries = DEFAULT_MAX_ENTRIES,
@@ -39,11 +39,14 @@ const Weekly = ({
   timeFormat,
   valueFormatOptions,
   value,
+  texts,
   timePickerProps,
   disabled,
   errorTexts,
 }: WeeklyProps) => {
-  const defaultDayValue = React.useMemo(
+  const intl = useIntl();
+  const allTexts = useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
+  const defaultDayValue = useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
       stop: DEFAULT_RANGE_END,
@@ -54,19 +57,19 @@ const Weekly = ({
     }),
     [valueSelectionMode]
   );
-  const [filteredSchedule, setFilteredSchedule] = React.useState<string[]>(Object.keys(value));
-  const [activeDays, setActiveDays] = React.useState<DayKey[]>([]);
-  const ref = React.useRef<HTMLDivElement>();
+  const [filteredSchedule, setFilteredSchedule] = useState<string[]>(Object.keys(value));
+  const [activeDays, setActiveDays] = useState<DayKey[]>([]);
+  const ref = useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
-  const intl = useIntl();
+
   const { isSundayFirstWeekDay } = useDataFormat();
 
-  const allKeys = React.useMemo(
+  const allKeys = useMemo(
     () => (isSundayFirstWeekDay ? US_NOTATION_WEEK_DAYS_INDEXES : EU_NOTATION_WEEK_DAYS_INDEXES),
     [isSundayFirstWeekDay]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     removeEmptyEntries(value);
     const entriesWithActiveDaysValue = activeDays.length
       ? Object.keys(value).filter(id =>
@@ -76,7 +79,7 @@ const Weekly = ({
     setFilteredSchedule(entriesWithActiveDaysValue);
   }, [value, activeDays]);
 
-  const handleDayTimeChange = React.useCallback(
+  const handleDayTimeChange = useCallback(
     (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
       const updatedSchedule = value;
       const [start, end, inverted] = dayValue;
@@ -105,7 +108,7 @@ const Weekly = ({
     },
     [value, onChange]
   );
-  const getDayValue = React.useCallback(
+  const getDayValue = useCallback(
     (dayKey: DayKey, guid: string): WeeklyScheduleDayValue => {
       if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
         return value[guid][dayKey];
@@ -114,7 +117,7 @@ const Weekly = ({
     },
     [value, defaultDayValue]
   );
-  const handleModeChange = React.useCallback(
+  const handleModeChange = useCallback(
     (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string): void => {
       const updatedSchedule = value;
       dayKeys.forEach(day => {
@@ -127,7 +130,7 @@ const Weekly = ({
     },
     [value, onChange]
   );
-  const handleRangeDelete = React.useCallback(
+  const handleRangeDelete = useCallback(
     (guid: string, activeDaysArray): void => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
@@ -138,37 +141,37 @@ const Weekly = ({
     [value, onChange]
   );
 
-  const dayFormatter = React.useCallback(
-    (dayKey: DayKey): React.ReactNode => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
+  const dayFormatter = useCallback(
+    (dayKey: DayKey) => intl.formatMessage({ id: `DS.DATE-RANGE-PICKER.WEEKDAYS-SHORT-${dayKey}` }),
     [intl]
   );
 
-  const checkDay = React.useCallback((dayKey: DayKey): void => {
+  const checkDay = useCallback((dayKey: DayKey): void => {
     setActiveDays([dayKey]);
   }, []);
 
-  const getDayLabel = React.useCallback(
-    (dayKey: DayKey): React.ReactNode => {
+  const getDayLabel = useCallback(
+    (dayKey: DayKey): ReactNode => {
       return dayFormatter(dayKey);
     },
     [dayFormatter]
   );
 
-  const excludeDayFromActive = React.useCallback(
+  const excludeDayFromActive = useCallback(
     (dayKey: DayKey) => {
       setActiveDays(activeDays.filter(day => day !== dayKey));
     },
     [activeDays]
   );
 
-  const isDayRestricted = React.useCallback(
+  const isDayRestricted = useCallback(
     (dayKey: DayKey): boolean => {
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value]
   );
 
-  const removeDaySelection = React.useCallback(
+  const removeDaySelection = useCallback(
     (dayKey: DayKey) => {
       const updatedSchedule = value;
       Object.keys(value).forEach(key => {
@@ -179,19 +182,19 @@ const Weekly = ({
     },
     [value, onChange, excludeDayFromActive]
   );
-  const uncheckActiveDay = React.useCallback(
+  const uncheckActiveDay = useCallback(
     (dayKey: DayKey): void => {
       removeDaySelection(dayKey);
     },
     [removeDaySelection]
   );
-  const handleSelectAll = React.useCallback((): void => {
+  const handleSelectAll = useCallback((): void => {
     setActiveDays(allKeys);
   }, [allKeys]);
-  const handleUnselectAll = React.useCallback((): void => {
+  const handleUnselectAll = useCallback((): void => {
     setActiveDays([]);
   }, []);
-  const checkActiveDay = React.useCallback(
+  const checkActiveDay = useCallback(
     (dayKey: DayKey): void => {
       if (!isDayRestricted(dayKey)) {
         checkDay(dayKey);
@@ -210,7 +213,7 @@ const Weekly = ({
     [checkDay, isDayRestricted, activeDays, controlKeyPressed, shiftKeyPressed]
   );
 
-  const handleToggleDay = React.useCallback(
+  const handleToggleDay = useCallback(
     (dayKey: DayKey, forcedState?: boolean): void => {
       if (typeof forcedState !== 'undefined') {
         if (controlKeyPressed && forcedState) {
@@ -225,7 +228,7 @@ const Weekly = ({
     [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay, excludeDayFromActive]
   );
 
-  const renderDay = React.useCallback(
+  const renderDay = useCallback(
     (dayKey: DayKey): JSX.Element => {
       const isActive = activeDays.includes(dayKey);
       return (
@@ -240,14 +243,14 @@ const Weekly = ({
           intl={intl}
           onToggle={handleToggleDay}
           onClear={removeDaySelection}
-          texts={EMPTY_OBJECT}
+          texts={allTexts}
         />
       );
     },
-    [activeDays, intl, getDayLabel, handleToggleDay, removeDaySelection, isDayRestricted, disabled]
+    [activeDays, getDayLabel, isDayRestricted, disabled, intl, handleToggleDay, removeDaySelection, allTexts]
   );
 
-  const handleRangeAdd = React.useCallback((): void => {
+  const handleRangeAdd = useCallback((): void => {
     const updatedDay = {};
     const guid = Object.keys(value).find(key => activeDays.every(day => value[key][day] === undefined));
     activeDays.forEach(day => {
@@ -264,14 +267,9 @@ const Weekly = ({
     onChange(updatedSchedule);
   }, [value, activeDays, defaultDayValue, onChange]);
 
-  const renderGridTitle = React.useCallback(
-    count => (
-      <SelectionCount
-        selectedDayCount={count}
-        label={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SELECTED', defaultMessage: 'Selected' })}
-      />
-    ),
-    [intl]
+  const renderGridTitle = useCallback(
+    count => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
+    [allTexts.selected]
   );
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
   const isAnyDaySelected = activeDays.length > 0;
@@ -280,7 +278,7 @@ const Weekly = ({
     return activeDays.length === 1 && errorTexts && errorTexts[guid] && errorTexts[guid][activeDays[0]];
   };
   return (
-    <S.NewFilterContainer ref={ref as React.RefObject<HTMLDivElement>}>
+    <S.NewFilterContainer ref={ref as RefObject<HTMLDivElement>}>
       <Grid
         reverseGroup={0}
         onUnselectAll={handleUnselectAll}
@@ -292,7 +290,7 @@ const Weekly = ({
         days={EMPTY_OBJECT}
         intl={intl}
         numberOfDays={7}
-        texts={EMPTY_OBJECT}
+        texts={allTexts}
         title={renderGridTitle(activeDays.length)}
       />
       {isAnyDaySelected &&
@@ -305,7 +303,7 @@ const Weekly = ({
             onDayTimeChange={(dayValue, dayKey): void => {
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
-            texts={EMPTY_OBJECT as TimeWindowTexts}
+            texts={allTexts}
             onMultipleDayTimeChange={(dates): void => handleDayTimeChange(dates, activeDays, guid)}
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -323,32 +321,11 @@ const Weekly = ({
             disabled={disabled}
           />
         ))}
-      {isAnyDaySelected && !canAddRange && (
-        <SelectionHint
-          message={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.MAXIMUM-RANGES-MESSAGE',
-            defaultMessage: 'The maximum amount of ranges have been selected.',
-          })}
-        />
-      )}
+      {isAnyDaySelected && !canAddRange && <SelectionHint message={allTexts.maximumRanges} />}
       {shouldRenderAddButton && (
-        <AddButton
-          data-testid="drp-filter-add-range"
-          label={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.ADD-TIME',
-            defaultMessage: 'Add range',
-          })}
-          onClick={handleRangeAdd}
-        />
+        <AddButton data-testid="drp-filter-add-range" label={allTexts.addTime} onClick={handleRangeAdd} />
       )}
-      {!isAnyDaySelected && !disabled && (
-        <SelectionHint
-          message={intl.formatMessage({
-            id: 'DS.DATE-RANGE-PICKER.SELECT-DAYS-DESCRIPTION',
-            defaultMessage: 'Select range.',
-          })}
-        />
-      )}
+      {!isAnyDaySelected && !disabled && <SelectionHint message={allTexts.selectDaysDescription} />}
     </S.NewFilterContainer>
   );
 };

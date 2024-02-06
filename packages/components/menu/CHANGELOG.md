@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.10...@synerise/ds-menu@0.18.11) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.18.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.9...@synerise/ds-menu@0.18.10) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.18.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.8...@synerise/ds-menu@0.18.9) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.18.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.7...@synerise/ds-menu@0.18.8) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.18.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.6...@synerise/ds-menu@0.18.7) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
+## [0.18.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.5...@synerise/ds-menu@0.18.6) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
 ## [0.18.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.4...@synerise/ds-menu@0.18.5) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-menu

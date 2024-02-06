@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.15...@synerise/ds-input@0.19.16) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.19.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.14...@synerise/ds-input@0.19.15) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.19.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.13...@synerise/ds-input@0.19.14) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.19.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.12...@synerise/ds-input@0.19.13) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.19.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.11...@synerise/ds-input@0.19.12) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
+## [0.19.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.10...@synerise/ds-input@0.19.11) (2023-12-11)
+
+
+### Bug Fixes
+
+* **input:** wordkaround for input group with single child ([72be45c](https://github.com/synerise/synerise-design/commit/72be45c44ec8a0b160c538bda8d90a3e2001919e))
+
+
+
+
+
+## [0.19.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.9...@synerise/ds-input@0.19.10) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-input
+
+
+
+
+
 ## [0.19.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.8...@synerise/ds-input@0.19.9) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-input

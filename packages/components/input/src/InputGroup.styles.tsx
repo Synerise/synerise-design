@@ -1,42 +1,51 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 
-export const InputGroupItem = styled.div`
-  &:not(:last-child) {
-    margin-right: 12px;
-  }
-  &:last-child {
-    flex-grow: 1;
-  }
-`;
+export const InputGroupItem = styled.div``;
 
 export const InputGroupWrapper = styled.div<{ compact?: boolean }>`
   &&& {
     display: flex;
     align-items: ${(props): string => (props.compact ? '' : 'stretch')};
 
-    ${(props): FlattenSimpleInterpolation | false =>
-      !!props.compact &&
-      css`
-        ${InputGroupItem}:not(:last-child) {
-          margin-right: -1px;
+    ${(props): FlattenSimpleInterpolation =>
+      props.compact
+        ? css`
 
-          .ant-input,
-          .ant-input-number,
-          .ant-select-selector {
-            border-top-right-radius: 0px;
-            border-bottom-right-radius: 0px;
+      ${InputGroupItem} {
+        
+        &:only-child {
+          flex-grow: 1;
+        }
+
+        &:not(:only-child) {
+          &:not(:last-child) {
+            margin-right: -1px;
+
+            .ant-input,
+            .ant-input-number,
+            .ant-select-selector {
+              border-top-right-radius: 0px;
+              border-bottom-right-radius: 0px;
+            }
+          }
+          &:last-child {
+            .ant-input,
+            .ant-input-number,
+            .ant-select-selector {
+              border-top-left-radius: 0px;
+              border-bottom-left-radius: 0px;
+            }
+            flex: auto;
           }
         }
-        ${InputGroupItem}:last-child {
-          .ant-input,
-          .ant-input-number,
-          .ant-select-selector {
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
-          }
-
-          flex-grow: 0;
-        }
-      `}
+      `
+        : css`
+            ${InputGroupItem}:last-child {
+              flex-grow: 1;
+            }
+            ${InputGroupItem}:not(:last-child) {
+              margin-right: 12px;
+            }
+          `}
   }
 `;

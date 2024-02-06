@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-cascader",
-  "version": "0.4.87",
+  "version": "0.4.94",
   "description": "Cascader UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,14 +33,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-core": "^0.40.7",
-    "@synerise/ds-divider": "^0.6.4",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-scrollbar": "^0.6.13",
-    "@synerise/ds-search": "^0.8.72",
-    "@synerise/ds-search-bar": "^0.6.51",
-    "@synerise/ds-utils": "^0.24.21"
+    "@synerise/ds-core": "^0.40.10",
+    "@synerise/ds-divider": "^0.6.7",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-scrollbar": "^0.7.3",
+    "@synerise/ds-search": "^0.8.78",
+    "@synerise/ds-search-bar": "^0.6.58",
+    "@synerise/ds-utils": "^0.24.24"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

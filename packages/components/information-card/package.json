@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-information-card",
-  "version": "0.3.47",
+  "version": "0.3.56",
   "description": "InformationCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0 --ignore-pattern dist",
@@ -34,19 +34,19 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "^0.7.49",
-    "@synerise/ds-avatar": "^0.15.13",
-    "@synerise/ds-badge": "^0.6.43",
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-card": "^0.15.10",
-    "@synerise/ds-description": "^0.3.87",
-    "@synerise/ds-divider": "^0.6.4",
-    "@synerise/ds-dropdown": "^0.17.88",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-subtle-form": "^0.9.84",
-    "@synerise/ds-tooltip": "^0.14.10",
-    "@synerise/ds-typography": "^0.13.3",
+    "@synerise/ds-alert": "^0.8.3",
+    "@synerise/ds-avatar": "^0.15.20",
+    "@synerise/ds-badge": "^0.6.49",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-card": "^0.16.1",
+    "@synerise/ds-description": "^0.3.93",
+    "@synerise/ds-divider": "^0.6.7",
+    "@synerise/ds-dropdown": "^0.17.95",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-subtle-form": "^0.9.91",
+    "@synerise/ds-tooltip": "^0.14.16",
+    "@synerise/ds-typography": "^0.14.3",
     "rc-trigger": "5.2.5"
   },
   "peerDependencies": {
@@ -55,7 +55,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-utils": "^0.24.24",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1"
   }

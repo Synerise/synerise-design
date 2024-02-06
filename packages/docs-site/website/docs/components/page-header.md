@@ -14,10 +14,11 @@ This component could be used as header of page with main title and navigation
 ## API
 
 | Property           | Description                              | Type                                                                    | Default |
-| -----------        | ---------------------------------------- | ------------------------                                                | ------- |
+| -----------        | ---------------------------------------- | ------------------------                                                |---------|
 | avatar             | Place for optional avatar component      | React.ReactNode                                                         | -       |
 | bar                | Place for optional node below header     | React.ReactNode                                                         | -       |
 | className          | Class added to the component             | string                                                                  | -       |
+| children           | The content of the component                    | React.ReactNode         | -       |
 | description        | Description of header                    | React.ReactNode / string                                                | -       |
 | goBackIcon         | Custom icon for "go back" button         | React.ReactNode                                                         | -       |
 | isolated           | Add horizontal line to separate content  | boolean                                                                 | `false` |

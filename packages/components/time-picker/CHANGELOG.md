@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.11...@synerise/ds-time-picker@0.9.12) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.10...@synerise/ds-time-picker@0.9.11) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.9...@synerise/ds-time-picker@0.9.10) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.8...@synerise/ds-time-picker@0.9.9) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.7...@synerise/ds-time-picker@0.9.8) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.6...@synerise/ds-time-picker@0.9.7) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
+## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.5...@synerise/ds-time-picker@0.9.6) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-time-picker
+
+
+
+
+
 ## [0.9.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.4...@synerise/ds-time-picker@0.9.5) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

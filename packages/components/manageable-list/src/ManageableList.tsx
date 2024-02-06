@@ -1,6 +1,5 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import List from '@synerise/ds-list';
-import * as _ from 'lodash';
 import { ReactSortable } from 'react-sortablejs';
 import { FormattedMessage } from 'react-intl';
 import * as S from './ManageableList.styles';
@@ -19,7 +18,7 @@ const SORTABLE_CONFIG = {
   forceFallback: true,
 };
 
-const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.Element = ({
+const ManageableListComponent = <T extends object>({
   className,
   onItemAdd,
   onItemSelect,
@@ -44,22 +43,20 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
   changeOrderByButtons = false,
   additionalActions,
   style,
-}) => {
-  const [stateExpandedIds, setExpandedIds] = React.useState(expandedIds);
-  const [allItemsVisible, setAllItemsVisible] = React.useState(false);
-  const [itemsToRender, setItemsToRender] = React.useState(items);
-  React.useEffect(() => {
-    setItemsToRender(items);
-  }, [items]);
+}: ManageableListProps<T>) => {
+  const [allItemsVisible, setAllItemsVisible] = useState(false);
 
-  React.useEffect(() => {
-    if (expandedIds && stateExpandedIds && !_.isEqual(expandedIds, stateExpandedIds)) {
-      setExpandedIds(expandedIds);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [expandedIds]);
+  const getExpandedIds = useCallback(() => {
+    return expandedIds !== undefined ? expandedIds : items.filter(item => item.expanded).map(item => item.id);
+  }, [expandedIds, items]);
 
-  const getTexts = React.useCallback(
+  const [allExpandedIds, setAllExpandedIds] = useState(getExpandedIds());
+
+  useEffect(() => {
+    setAllExpandedIds(getExpandedIds());
+  }, [expandedIds, items, getExpandedIds]);
+
+  const itemTexts = useMemo(
     (): Texts => ({
       addItemLabel: <FormattedMessage id="DS.MANAGABLE-LIST.ADD-ITEM" defaultMessage="Add item" />,
       showMoreLabel: <FormattedMessage id="DS.MANAGABLE-LIST.SHOW-MORE" defaultMessage="Show more" />,
@@ -97,22 +94,20 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
     [texts]
   );
 
-  const itemTexts = React.useMemo(() => getTexts(), [getTexts]);
-
-  const getItemsOverLimit = React.useMemo((): number => {
+  const getItemsOverLimit = useMemo(() => {
     return items.length - maxToShowItems;
   }, [items, maxToShowItems]);
 
-  const visibleItems = React.useMemo((): ItemProps[] => {
-    return allItemsVisible ? itemsToRender : itemsToRender.slice(0, maxToShowItems);
-  }, [allItemsVisible, maxToShowItems, itemsToRender]);
+  const visibleItems = useMemo(() => {
+    return allItemsVisible ? items : items.slice(0, maxToShowItems);
+  }, [allItemsVisible, maxToShowItems, items]);
 
-  const buttonLabel = React.useMemo(
+  const buttonLabel = useMemo(
     () => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel),
     [allItemsVisible, itemTexts.showLessLabel, itemTexts.showMoreLabel]
   );
 
-  const buttonLabelDiff = React.useMemo(
+  const buttonLabelDiff = useMemo(
     () =>
       allItemsVisible ? (
         <>
@@ -126,48 +121,37 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
     [allItemsVisible, getItemsOverLimit, itemTexts.less, itemTexts.more]
   );
 
-  const toggleAllItems = React.useCallback((): void => {
+  const toggleAllItems = useCallback(() => {
     setAllItemsVisible(!allItemsVisible);
   }, [allItemsVisible]);
 
-  const renderShowMoreButton = React.useCallback(() => {
-    return (
-      items.length > maxToShowItems && (
-        <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
-          <span>{buttonLabelDiff}</span>
-          <strong>{buttonLabel}</strong>
-        </S.ShowMoreButton>
-      )
-    );
-  }, [items, maxToShowItems, buttonLabelDiff, toggleAllItems, buttonLabel]);
-
-  const createItem = React.useCallback(() => {
+  const createItem = useCallback(() => {
     onItemAdd && onItemAdd();
   }, [onItemAdd]);
 
-  const onMoveTop = React.useCallback(
+  const onMoveTop = useCallback(
     item => {
-      const newOrder = [item, ...itemsToRender.filter(i => i.id !== item.id)];
+      const newOrder = [item, ...items.filter(i => i.id !== item.id)];
       onChangeOrder && onChangeOrder(newOrder);
     },
-    [itemsToRender, onChangeOrder]
+    [items, onChangeOrder]
   );
 
-  const onMoveBottom = React.useCallback(
+  const onMoveBottom = useCallback(
     item => {
-      const newOrder = [...itemsToRender.filter(i => i.id !== item.id), item];
+      const newOrder = [...items.filter(i => i.id !== item.id), item];
       onChangeOrder && onChangeOrder(newOrder);
     },
-    [itemsToRender, onChangeOrder]
+    [items, onChangeOrder]
   );
 
-  const getItem = React.useCallback(
-    (item: ItemProps, index: number): React.ReactNode => {
+  const getItem = useCallback(
+    (item: ItemProps, index: number) => {
       return (
         <Item
           key={item.id}
           isFirst={index === 0}
-          isLast={index + 1 === itemsToRender.length}
+          isLast={index + 1 === items.length}
           listType={type}
           onSelect={onItemSelect}
           onUpdate={onItemEdit}
@@ -184,13 +168,13 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
           texts={itemTexts}
           searchQuery={searchQuery}
           hideExpander={expanderDisabled}
-          expanded={!!stateExpandedIds && stateExpandedIds.includes(item.id)}
+          expanded={allExpandedIds && allExpandedIds.includes(item.id)}
           additionalActions={additionalActions}
         />
       );
     },
     [
-      itemsToRender,
+      items.length,
       type,
       onItemSelect,
       onItemEdit,
@@ -207,20 +191,10 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
       itemTexts,
       searchQuery,
       expanderDisabled,
-      stateExpandedIds,
+      allExpandedIds,
       additionalActions,
     ]
   );
-
-  const itemList = React.useMemo(() => {
-    return onChangeOrder && !changeOrderDisabled ? (
-      <ReactSortable {...SORTABLE_CONFIG} list={itemsToRender} setList={onChangeOrder}>
-        {itemsToRender.map(getItem)}
-      </ReactSortable>
-    ) : (
-      <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
-    );
-  }, [changeOrderDisabled, visibleItems, itemsToRender, onChangeOrder, loading, getItem]);
 
   return (
     <S.ManageableListContainer
@@ -237,13 +211,29 @@ const ManageableList: <T extends object>(props: ManageableListProps<T>) => JSX.E
           placeholder={placeholder}
         />
       )}
-      {itemList}
-      {renderShowMoreButton()}
+      {onChangeOrder && !changeOrderDisabled ? (
+        <ReactSortable {...SORTABLE_CONFIG} list={items} setList={onChangeOrder}>
+          {items.map(getItem)}
+        </ReactSortable>
+      ) : (
+        <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
+      )}
+      {items.length > maxToShowItems && (
+        <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
+          <span>{buttonLabelDiff}</span>
+          <strong>{buttonLabel}</strong>
+        </S.ShowMoreButton>
+      )}
       {type === ListType.CONTENT && Boolean(onItemAdd) && (
         <AddItem addItemLabel={itemTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
     </S.ManageableListContainer>
   );
 };
+
+const ManageableList = Object.assign(ManageableListComponent, {
+  ManageableListContainer: S.ManageableListContainer,
+  ShowMoreButton: S.ShowMoreButton,
+});
 
 export default ManageableList;

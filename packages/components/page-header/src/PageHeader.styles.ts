@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { macro } from '@synerise/ds-typography';
 
 export const MainContainer = styled.div<{ isolated?: boolean }>`
   background-color: #fff;
@@ -25,48 +24,6 @@ export const PageHeaderContainer = styled.div`
   align-content: center;
 `;
 
-export const PageHeaderBack = styled.div`
-  margin-right: 49px;
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 40px;
-    right: -25px;
-    background-color: ${(props): string => props.theme.palette['grey-300']};
-  }
-
-  && {
-    button {
-      display: flex;
-      align-items: center;
-      padding: 0 4px;
-    }
-  }
-`;
-
-export const PageHeaderRightSide = styled.div`
-  display: flex;
-  flex: 1 auto;
-  justify-content: flex-end;
-
-  > div {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-
-    > * {
-      margin-left: 8px;
-    }
-  }
-`;
-
 export const PageHeaderDescription = styled.div`
   margin: 0 24px;
   font-size: 13px;
@@ -74,37 +31,11 @@ export const PageHeaderDescription = styled.div`
   color: ${(props): string => props.theme.palette['grey-500']};
 `;
 
-export const PageHeaderClamp = styled.div`
-  ${macro.h600};
-  line-height: 26px;
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  color: ${(props): string => props.theme.palette['grey-800']};
-  align-items: center;
-`;
-
-export const PageHeaderTooltipWraper = styled.div`
-  .ds-icon {
-    margin-left: 8px;
-    svg {
-      color: ${(props): string => props.theme.palette['grey-600']};
-      fill: ${(props): string => props.theme.palette['grey-600']};
-    }
-  }
-`;
-
-export const PageHeaderTitle = styled.span`
-  display: block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
 export const PageHeaderTabsWrapper = styled.div`
   padding: 0 24px;
+
   &&& .ds-tabs {
-    padding: 0px;
+    padding: 0;
   }
 `;
 
@@ -117,11 +48,6 @@ export const PageHeaderBar = styled.div`
 
 export const PageHeaderMore = styled.div`
   padding: 0 24px;
-`;
-
-export const PageHeaderInlineEdit = styled.div`
-  display: flex;
-  margin-left: 14px;
 `;
 
 export const PageHeaderClose = styled.div`

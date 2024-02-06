@@ -11,7 +11,7 @@ import Icon, {
   UpdateDataM,
   NotificationsReceiveM,
   UserCheckM
-} from '@synerise/ds-icon/';
+} from '@synerise/ds-icon';
 import AlertInfo from '@synerise/ds-alert/dist/AlertInfo/AlertInfo';
 import Button from '@synerise/ds-button';
 import AlertSemanticColor from '@synerise/ds-alert/dist/ColorSemantic/AlertSemanticColor';

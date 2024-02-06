@@ -42,6 +42,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   scrollbarProps,
 }) => {
   const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
+  const clearSearchBarValue = React.useRef<number>();
 
   const onVisibilityChange = (state: boolean): void => {
     setDropdownOpened(state);
@@ -49,9 +50,11 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
     if (state && typeof onFocus === 'function') {
       onFocus();
     }
-
-    if (!state && typeof onBlur === 'function') {
-      onBlur();
+    if (!state) {
+      clearSearchBarValue.current = clearSearchBarValue.current ? (clearSearchBarValue.current += 1) : 1;
+      if (typeof onBlur === 'function') {
+        onBlur();
+      }
     }
   };
 
@@ -69,6 +72,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
     () => (
       <ItemPickerDropdown
         searchBarProps={searchBarProps}
+        clearSearchQuery={clearSearchBarValue.current}
         onChange={onChange}
         dataSource={dataSource}
         placeholder={searchPlaceholder}

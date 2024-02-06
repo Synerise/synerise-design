@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
+import '@synerise/ds-core/dist/js/style';
+import './style/index.less';
 import { MediumText, SmallText, XSmallText } from './CommonElements';
-
 import { Ellipsis, EllipsisProps } from './Ellipsis';
 
 export type TextSize = 'medium' | 'small' | 'xsmall';
@@ -9,6 +10,7 @@ type TextProps = {
   size?: TextSize;
   ellipsis?: EllipsisProps;
   children?: ReactNode;
+  className?: string;
 };
 
 const MapSizeToComponent = {
@@ -17,13 +19,18 @@ const MapSizeToComponent = {
   xsmall: XSmallText,
 };
 
-export const Text = ({ size = 'medium', children, ellipsis }: TextProps) => {
+export const Text = ({ size = 'medium', className, children, ellipsis }: TextProps) => {
   const Component = MapSizeToComponent[size];
-  const content = <Component className="ds-text">{children}</Component>;
+  const textClassNames = `ds-text ${!ellipsis && className}`;
+  const content = <Component className={textClassNames}>{children}</Component>;
   if (ellipsis === undefined) {
     return content;
   }
-  return <Ellipsis {...ellipsis}>{content}</Ellipsis>;
+  return (
+    <Ellipsis className={className} {...ellipsis}>
+      {content}
+    </Ellipsis>
+  );
 };
 
 export default Text;

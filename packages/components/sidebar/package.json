@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar",
-  "version": "0.4.89",
+  "version": "0.5.1",
   "description": "Sidebar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,11 +33,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-dropdown": "^0.17.88",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-dropdown": "^0.17.95",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-utils": "^0.24.24",
     "dnd-core": "10.0.2",
     "immutability-helper": "^3.0.1",
     "react-dnd": "^10.0.2",

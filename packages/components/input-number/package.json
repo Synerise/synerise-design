@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-input-number",
-  "version": "0.8.30",
+  "version": "0.9.2",
   "description": "Input-Number UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,10 +33,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.4.4",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-tooltip": "^0.14.10",
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-data-format": "^0.4.7",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-tooltip": "^0.14.16",
+    "@synerise/ds-utils": "^0.24.24",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

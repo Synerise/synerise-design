@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.33.0...docs@0.33.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* **badge:** added missinng warning type ([2215493](http://gitlab.synerise.com/Frontend/synerise-design/commit/22154930ef3322a4e6b2abffb2d0a465d4db7a95))
+
+
+
+
+
+# [0.33.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.2...docs@0.33.0) (2024-01-31)
+
+
+### Features
+
+* **card:** add optional tag next to title ([df51722](http://gitlab.synerise.com/Frontend/synerise-design/commit/df51722a57814174da067bfb57943432ca683d07))
+
+
+
+
+
+## [0.32.2](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.1...docs@0.32.2) (2024-01-24)
+
+**Note:** Version bump only for package docs
+
+
+
+
+
+## [0.32.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.0...docs@0.32.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* **table:** fix selection handler for filtered data ([8f56d41](http://gitlab.synerise.com/Frontend/synerise-design/commit/8f56d41465f833cf532c8bd1dc432889eb0bb17a))
+
+
+
+
+
+# [0.32.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.31.0...docs@0.32.0) (2024-01-15)
+
+
+### Features
+
+* **editable-items-list:** added new component editable-items-list ([35d3af8](https://gitlab.synerise.com/Frontend/synerise-design/commit/35d3af8604f1f58ed79dc016f0ee49505dc697d2))
+
+
+
+
+
+# [0.31.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.30.0...docs@0.31.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](http://gitlab.synerise.com/Frontend/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+### Features
+
+* **scrollbar:** added new design for scrollbar ([0fe6588](http://gitlab.synerise.com/Frontend/synerise-design/commit/0fe65884204bdc2fabae4b54d559f84e5761d7fb))
+
+
+
+
+
 # [0.30.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.29.5...docs@0.30.0) (2023-10-06)
 
 

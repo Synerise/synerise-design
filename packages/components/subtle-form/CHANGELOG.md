@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.91](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.90...@synerise/ds-subtle-form@0.9.91) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.90](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.89...@synerise/ds-subtle-form@0.9.90) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.89](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.88...@synerise/ds-subtle-form@0.9.89) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.88](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.87...@synerise/ds-subtle-form@0.9.88) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.87](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.86...@synerise/ds-subtle-form@0.9.87) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.86](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.85...@synerise/ds-subtle-form@0.9.86) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
+## [0.9.85](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.84...@synerise/ds-subtle-form@0.9.85) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-subtle-form
+
+
+
+
+
 ## [0.9.84](https://github.com/Synerise/synerise-design/compare/@synerise/ds-subtle-form@0.9.83...@synerise/ds-subtle-form@0.9.84) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-subtle-form

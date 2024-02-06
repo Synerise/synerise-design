@@ -474,11 +474,6 @@ const stories = {
       return store.state.dataSource;
     };
 
-    const selectEven = () => {
-      const evenRows = store.state.dataSource.map(row => row.key).filter((key, index) => index % 2);
-      store.set({ selectedRows: evenRows });
-    };
-
     return (
       <>
         <Table
@@ -487,6 +482,7 @@ const stories = {
           hideGroupExpander={boolean('Hide group expander', false)}
           initialGroupsCollapsed={boolean('Initial groups collapsed?', false)}
           dataSource={filteredDataSource()}
+          dataSourceFull={store.state.dataSource}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}
           roundedHeader={boolean('Rounded header', false)}

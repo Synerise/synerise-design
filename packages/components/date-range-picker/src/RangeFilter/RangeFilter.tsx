@@ -119,16 +119,14 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     return (
       <S.Container>
         <S.Header>
-          <S.Title>
-            {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.DATES_FILTER', defaultMessage: 'Date filter' })}
-          </S.Title>
+          <S.Title>{texts.datesFilter}</S.Title>
           {!!savedFilters?.length && (
             <FilterDropdown
               filters={savedFilters}
               onFilterSelect={this.handleSavedFilterSelect}
               onFilterRemove={this.handleSavedFilterRemove}
-              label={texts?.savedFiltersTrigger}
-              removeTooltip={texts?.remove}
+              label={texts.savedFiltersTrigger}
+              removeTooltip={texts.remove}
             />
           )}
         </S.Header>
@@ -141,10 +139,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                   type={activeType === key ? 'primary' : undefined}
                   onClick={(): void => this.handleTypeChange(key)}
                 >
-                  {intl.formatMessage({
-                    id: TYPES_DATA[key].labelTranslationKey,
-                    defaultMessage: TYPES_DATA[key].defaultLabel,
-                  })}
+                  {texts[key.toLowerCase()]}
                 </Button>
               ))}
             </ButtonGroup>
@@ -169,10 +164,10 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
         </S.Body>
         {!hideFooter && (
           <S.Footer data-testid="range-filter-footer">
-            {savedFilters && onFilterSave && <SaveFilterForm onFilterSave={this.handleFilterSave} />}
+            {savedFilters && onFilterSave && <SaveFilterForm texts={texts} onFilterSave={this.handleFilterSave} />}
             <S.FooterSeparator />
             <Button data-testid="range-filter-cancel-button" type="ghost" onClick={this.handleCancel}>
-              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CANCEL', defaultMessage: 'Cancel' })}
+              {texts.cancel}
             </Button>
             <Button
               data-testid="range-filter-apply-button"
@@ -180,7 +175,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
               disabled={!isValidValue(activeValue)}
               onClick={this.handleApply}
             >
-              {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.APPLY', defaultMessage: 'Apply' })}
+              {texts.apply}
             </Button>
           </S.Footer>
         )}

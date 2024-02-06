@@ -5,6 +5,7 @@ import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 export interface Props {
   onChange: (item: MenuItemProps) => void;
   placeholder: string;
+  clearSearchQuery?: number;
   dataSource: MenuItemProps[];
   closeDropdown: () => void;
   noResults: string;

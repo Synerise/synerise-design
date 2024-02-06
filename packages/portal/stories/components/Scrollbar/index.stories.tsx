@@ -12,6 +12,7 @@ const stories = {
         classes={'test'}
         absolute={boolean('Scrollbar over text', false)}
         loading={boolean('Show loading status', false)}
+        largeSize={boolean('Scrollbar large size', false)}
       >
         <div>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laborum nisi officia ut vitae? Architecto

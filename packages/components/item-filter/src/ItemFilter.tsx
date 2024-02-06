@@ -11,7 +11,7 @@ import Result from '@synerise/ds-result';
 import SearchBar from '@synerise/ds-search-bar';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { FixedSizeList, FixedSizeList as List, ListChildComponentProps } from 'react-window';
-import FilterItem from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem';
+import { FilterItem } from '@synerise/ds-manageable-list';
 import * as S from './ItemFIlter.styles';
 import { ItemFilterProps } from './ItemFilter.types';
 
@@ -20,7 +20,7 @@ const FILTER_ITEM_HEIGHT = 48;
 const FILTER_ITEM_MARGIN_BOTTOM = 16;
 const FILTER_LIST_PADDING = 24;
 
-const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
+const ItemFilter = ({
   visible,
   hide,
   removeItem,
@@ -52,7 +52,7 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
   fetchData,
   loading,
   search,
-}) => {
+}: ItemFilterProps & WrappedComponentProps) => {
   const listRef = React.createRef<FixedSizeList>();
 
   const [listHeight, setListHeight] = React.useState(0);
@@ -88,7 +88,6 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
         onUpdate={editItem}
         onRemove={removeItem}
         onDuplicate={duplicateItem}
-        // @ts-ignore
         item={item}
         selected={item.id === selectedItemId}
         searchQuery={search?.value}
@@ -97,12 +96,9 @@ const ItemFilter: React.FC<ItemFilterProps & WrappedComponentProps> = ({
           height: parseFloat(style.height as string) - FILTER_ITEM_MARGIN_BOTTOM,
           top: parseFloat(style.top as string) + 24,
         }}
-      >
-        {item.name}
-      </FilterItem>
+      />
     );
   };
-
   const handleScroll = ({ currentTarget }: React.SyntheticEvent<HTMLElement>): void => {
     const { scrollTop } = currentTarget;
     if (listRef.current !== null) {

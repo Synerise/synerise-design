@@ -7,6 +7,7 @@ export type ScrollbarAdditionalProps = {
   hasMore?: boolean;
   loading?: boolean;
   maxHeight?: string | number;
+  largeSize?: boolean;
   style?: React.CSSProperties;
   fetchData?: () => void;
   onScroll?: (e: React.UIEvent) => void;

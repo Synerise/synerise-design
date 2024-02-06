@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.6...@synerise/ds-date-range-picker@0.26.7) (2024-02-06)
+
+
+### Bug Fixes
+
+* **date-range-picker:** make texts optional ([5d33724](https://github.com/Synerise/synerise-design/commit/5d337248c423ef7b1caf17da6e0f0e56767cccf1))
+
+
+
+
+
+## [0.26.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.5...@synerise/ds-date-range-picker@0.26.6) (2024-01-31)
+
+
+### Bug Fixes
+
+* **date-range-picker:** added texts over translations ([7131f8c](https://github.com/Synerise/synerise-design/commit/7131f8c5c923527544fb54b5bb9eb15585bec442))
+
+
+
+
+
+## [0.26.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.4...@synerise/ds-date-range-picker@0.26.5) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.26.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.3...@synerise/ds-date-range-picker@0.26.4) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.26.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.2...@synerise/ds-date-range-picker@0.26.3) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.26.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.1...@synerise/ds-date-range-picker@0.26.2) (2023-12-13)
+
+
+### Bug Fixes
+
+* **button:** creator block styles fixed ([2ecef7c](https://github.com/Synerise/synerise-design/commit/2ecef7ce5bd12b9b6d3c52b913b66852babfa15d))
+
+
+
+
+
+## [0.26.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.0...@synerise/ds-date-range-picker@0.26.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** adds translationKey for lifetime option ([3c6764c](https://github.com/Synerise/synerise-design/commit/3c6764c937c29a6e0d52ca7a78e80d6ab70e7119))
+
+
+
+
+
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.25.5...@synerise/ds-date-range-picker@0.26.0) (2023-12-06)
+
+
+### Features
+
+* **date-range-picker:** adds getPopupContainer prop ([7d6a1db](https://github.com/Synerise/synerise-design/commit/7d6a1db80ace779e10236aee42e3f702afb7a55c))
+
+
+
+
+
 ## [0.25.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.25.4...@synerise/ds-date-range-picker@0.25.5) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

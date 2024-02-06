@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS } from '@synerise/ds-icon';
+import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS, ArrowDownS, ArrowUpS } from '@synerise/ds-icon';
 import * as S from './Cruds.styles';
 import SingleAction from './SingleAction';
 import { CrudsProps, CrudsSubComponents } from './Cruds.types';
@@ -12,16 +12,40 @@ const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
   onDuplicate,
   onMove,
   onRemove,
+  onMoveUp,
+  onMoveDown,
+  moveDownInactive,
+  moveUpInactive,
   addTooltip,
   editTooltip,
   duplicateTooltip,
   removeTooltip,
   moveTooltip,
+  moveUpTooltip,
+  moveDownTooltip,
   deleteTooltip,
   ...rest
 }) => {
   return (
     <S.CrudsContainer className="ds-cruds" {...rest}>
+      {onMoveUp && (
+        <SingleAction
+          title={moveUpTooltip}
+          inactive={moveUpInactive}
+          className="moveup"
+          onClick={onMoveUp}
+          icon={<ArrowUpS />}
+        />
+      )}
+      {onMoveDown && (
+        <SingleAction
+          title={moveDownTooltip}
+          inactive={moveDownInactive}
+          className="movedown"
+          onClick={onMoveDown}
+          icon={<ArrowDownS />}
+        />
+      )}
       {onAdd && <SingleAction title={addTooltip} className="add" onClick={onAdd} icon={<AddS />} />}
 
       {onEdit && <SingleAction title={editTooltip} className="edit" onClick={onEdit} icon={<EditS />} />}

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.11...@synerise/ds-button@0.19.0) (2024-01-24)
+
+
+### Features
+
+* **completed-within:** added readonly prop ([b5dd622](https://github.com/synerise/synerise-design/commit/b5dd622fc077ae212cc3302bee88d82651d300b3))
+
+
+
+
+
+## [0.18.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.10...@synerise/ds-button@0.18.11) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.18.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.9...@synerise/ds-button@0.18.10) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
+## [0.18.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.8...@synerise/ds-button@0.18.9) (2023-12-13)
+
+
+### Bug Fixes
+
+* **button:** creator block styles fixed ([2ecef7c](https://github.com/synerise/synerise-design/commit/2ecef7ce5bd12b9b6d3c52b913b66852babfa15d))
+
+
+
+
+
+## [0.18.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.7...@synerise/ds-button@0.18.8) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-button
+
+
+
+
+
 ## [0.18.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.18.6...@synerise/ds-button@0.18.7) (2023-10-30)
 
 **Note:** Version bump only for package @synerise/ds-button

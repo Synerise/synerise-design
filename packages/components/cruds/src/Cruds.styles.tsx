@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css, FlattenInterpolation } from 'styled-components';
+import { ThemeProps } from '@synerise/ds-core';
 
 export const CrudsContainer = styled.div`
   display: flex;
@@ -8,7 +9,9 @@ export const CrudsContainer = styled.div`
   .add,
   .duplicate,
   .edit,
-  .move {
+  .move,
+  .moveup,
+  .movedown {
     svg {
       fill: ${(props): string => props.theme.palette['grey-600']};
     }
@@ -17,7 +20,9 @@ export const CrudsContainer = styled.div`
   .add:hover,
   .duplicate:hover,
   .edit:hover,
-  .move:hover {
+  .move:hover,
+  .moveup:hover,
+  .movedown:hover {
     svg {
       fill: ${(props): string => props.theme.palette['blue-600']};
     }
@@ -30,4 +35,18 @@ export const CrudsContainer = styled.div`
     }
   }
 `;
-export const IconWrapper = styled.div``;
+
+export const IconWrapper = styled.div<{ inactive?: boolean }>`
+  ${(props): FlattenInterpolation<ThemeProps> | false =>
+    Boolean(props.inactive) &&
+    css`
+      &&,
+      &&:hover {
+        cursor: default;
+        svg {
+          pointer-events: none;
+          fill: ${props.theme.palette['grey-300']};
+        }
+      }
+    `}
+`;

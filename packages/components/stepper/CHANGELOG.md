@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.10...@synerise/ds-stepper@0.4.11) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
+## [0.4.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.9...@synerise/ds-stepper@0.4.10) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
+## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.8...@synerise/ds-stepper@0.4.9) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
+## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.7...@synerise/ds-stepper@0.4.8) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
+## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.6...@synerise/ds-stepper@0.4.7) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
+## [0.4.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.5...@synerise/ds-stepper@0.4.6) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
 ## [0.4.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.4.4...@synerise/ds-stepper@0.4.5) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-stepper

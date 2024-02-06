@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-items-roll",
-  "version": "0.6.88",
+  "version": "0.6.95",
   "description": "ItemsRoll UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,16 +33,16 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-core": "^0.40.7",
-    "@synerise/ds-divider": "^0.6.4",
-    "@synerise/ds-dropdown": "^0.17.88",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-popconfirm": "^0.10.20",
-    "@synerise/ds-search": "^0.8.72",
-    "@synerise/ds-tooltip": "^0.14.10",
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-core": "^0.40.10",
+    "@synerise/ds-divider": "^0.6.7",
+    "@synerise/ds-dropdown": "^0.17.95",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-popconfirm": "^0.10.25",
+    "@synerise/ds-search": "^0.8.78",
+    "@synerise/ds-tooltip": "^0.14.16",
+    "@synerise/ds-utils": "^0.24.24",
     "react-window": "^1.8.5"
   },
   "peerDependencies": {

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { getPopupContainer } from '@synerise/ds-utils';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { FactorsProps, InputProps } from '../../Factors.types';
 
@@ -11,6 +12,7 @@ const DateInput: React.FC<InputProps> = ({
   onActivate,
   error,
   readOnly = false,
+  getPopupContainerOverride,
 }) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
 
@@ -59,6 +61,7 @@ const DateInput: React.FC<InputProps> = ({
       readOnly={readOnly}
       dropdownProps={{
         visible: opened,
+        getPopupContainer: getPopupContainerOverride || getPopupContainer,
         onVisibleChange: handleVisibleChange,
       }}
     />

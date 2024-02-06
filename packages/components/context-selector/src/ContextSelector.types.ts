@@ -61,6 +61,7 @@ export type ContextProps = {
   onClickOutsideEvents?: HandledEventsType[];
   onClickOutside?: () => void;
   onSearch?: (query: string) => void;
+  hideSearchField?: boolean;
   onFetchData?: () => void;
   onOpen?: () => void;
   hasMoreItems?: boolean;
@@ -79,6 +80,7 @@ export type ContextDropdownProps = {
   value: ContextItem | undefined;
   onSetGroup?: (val: ContextItem | ContextGroup) => void;
   visible?: boolean;
+  hideSearchField?: boolean;
   loading?: boolean;
   menuItemHeight?: ItemSize;
   dropdownWrapperStyles?: CSSProperties;

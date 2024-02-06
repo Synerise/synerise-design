@@ -45,7 +45,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
+          <Tags tagShape={shape} selected={thisTag} asPill={boolean('asPill', false)} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -101,7 +101,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
+          <Tags tagShape={shape} selected={thisTag} removable={removable} asPill={boolean('asPill', false)} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -126,7 +126,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} disabled={disabled} />
+          <Tags tagShape={shape} asPill={boolean('asPill', false)} selected={thisTag} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -155,7 +155,7 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
+          <Tags asPill={boolean('asPill', false)} tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
         </div>
       </React.Fragment>
     );
@@ -255,6 +255,7 @@ const stories = {
           <h4>Tag group</h4>
           <Tags
             data={tags}
+            asPill={boolean('asPill', false)}
             tagShape={shape}
             selected={selected}
             disabled={disabled}

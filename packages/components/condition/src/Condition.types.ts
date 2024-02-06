@@ -1,23 +1,24 @@
-import * as React from 'react';
+import { ReactText, ReactNode } from 'react';
 import { SubjectItem, SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
 import { FactorsProps, FactorType, FactorValueType, InputProps } from '@synerise/ds-factors/dist/Factors.types';
 import { OperatorsItem, OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
 import { ContextGroup, ContextItem, ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
+import type { ConditionStepCrudActions } from './ConditionStep/ConditionStep.types';
 
 export type StepConditions = {
-  id: React.ReactText;
+  id: ReactText;
   parameter?: Omit<FactorsProps, 'onChangeValue'>;
   operator?: Omit<OperatorsProps, 'onChange'>;
   factor?: Omit<FactorsProps, 'onChangeValue' | 'setSelectedFactorType'>;
 };
 
 export type ConditionStep = {
-  id: React.ReactText;
+  id: ReactText;
   subject?: Omit<SubjectProps, 'onSelectItem'>;
   context?: Omit<ContextProps, 'onSelectItem'>;
   stepName?: string;
   conditions: StepConditions[];
-  addConditionErrorText?: React.ReactNode | string;
+  addConditionErrorText?: ReactNode;
 };
 
 export type ConditionTexts = {
@@ -25,7 +26,7 @@ export type ConditionTexts = {
   removeConditionRowTooltip: string;
   addFirstConditionRowButton: string;
   addConditionRowButton: string;
-  addStep: string | React.ReactNode;
+  addStep: ReactNode;
   dropLabel: string;
   moveTooltip: string;
   duplicateTooltip: string;
@@ -36,37 +37,27 @@ export type ConditionTexts = {
 export type ConditionProps = {
   steps: ConditionStep[];
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
-  addCondition?: (stepId: React.ReactText) => string | void;
-  renderAddStep?: () => React.ReactNode;
-  removeCondition?: (stepId: React.ReactText, conditionRowId: React.ReactText) => void;
-  removeStep?: (stepId: React.ReactText) => void;
-  duplicateStep?: (stepId: React.ReactText) => void;
+  addCondition?: (stepId: ReactText) => string | void;
+  renderAddStep?: () => ReactNode;
+  removeCondition?: (stepId: ReactText, conditionRowId: ReactText) => void;
   addStep?: () => string | void;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
   minConditionsLength: number;
   maxConditionsLength?: number | undefined;
   autoClearCondition?: boolean;
-  onChangeContext: (stepId: React.ReactText, value: ContextItem | ContextGroup | undefined) => void;
-  onChangeSubject: (stepId: React.ReactText, value: SubjectItem | undefined) => void;
-  onChangeParameter: (
-    stepId: React.ReactText,
-    conditionId: React.ReactText,
-    value: FactorValueType | undefined
-  ) => void;
-  onChangeOperator: (stepId: React.ReactText, conditionId: React.ReactText, value: OperatorsItem | undefined) => void;
-  onChangeFactorValue: (
-    stepId: React.ReactText,
-    conditionId: React.ReactText,
-    value: FactorValueType | undefined
-  ) => void;
-  onChangeFactorType: (stepId: React.ReactText, conditionId: React.ReactText, value: FactorType | undefined) => void;
-  onUpdateStepName?: (stepId: React.ReactText, value: string) => void;
+  onChangeContext: (stepId: ReactText, value: ContextItem | ContextGroup | undefined) => void;
+  onChangeSubject: (stepId: ReactText, value: SubjectItem | undefined) => void;
+  onChangeParameter: (stepId: ReactText, conditionId: ReactText, value: FactorValueType | undefined) => void;
+  onChangeOperator: (stepId: ReactText, conditionId: ReactText, value: OperatorsItem | undefined) => void;
+  onChangeFactorValue: (stepId: ReactText, conditionId: ReactText, value: FactorValueType | undefined) => void;
+  onChangeFactorType: (stepId: ReactText, conditionId: ReactText, value: FactorType | undefined) => void;
+  onUpdateStepName?: (stepId: ReactText, value: string) => void;
   type?: 'attribute' | 'event';
   showSuffix?: boolean;
   hoverDisabled?: boolean;
   autoOpenedComponent?: 'subject' | 'operator' | 'factor' | 'parameter' | 'context';
   inputProps?: Partial<InputProps>;
-  onDeactivate?: (currentStepId: React.ReactText, currentConditionId: React.ReactText) => void;
+  onDeactivate?: (currentStepId: ReactText, currentConditionId: ReactText) => void;
   readOnly?: boolean;
-};
+} & ConditionStepCrudActions;

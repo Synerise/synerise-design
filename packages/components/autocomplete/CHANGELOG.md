@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.6.0...@synerise/ds-autocomplete@0.6.1) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.14...@synerise/ds-autocomplete@0.6.0) (2024-01-24)
+
+
+### Features
+
+* **autocomplete:** add readonly prop ([e16133f](https://github.com/Synerise/synerise-design/commit/e16133f91e317c3019e844c615b77811c9ce2114))
+
+
+
+
+
+## [0.5.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.13...@synerise/ds-autocomplete@0.5.14) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.12...@synerise/ds-autocomplete@0.5.13) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.11...@synerise/ds-autocomplete@0.5.12) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.5.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.10...@synerise/ds-autocomplete@0.5.11) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
+## [0.5.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.9...@synerise/ds-autocomplete@0.5.10) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-autocomplete
+
+
+
+
+
 ## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.5.8...@synerise/ds-autocomplete@0.5.9) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

@@ -10,7 +10,7 @@ describe('Inline alert', () => {
     );
 
     // ASSERT
-    expect(container.querySelector('.check-2-m')).toBeTruthy();
+    expect(container.querySelector('.check-3-m')).toBeTruthy();
     expect(getByText('Inline success')).toBeTruthy();
   });
   it('Should render as alert', () => {

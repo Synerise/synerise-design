@@ -50,7 +50,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
 });
 
 const DEFAULT_STATE = {
-  expressions: [DEFAULT_EXPRESSION()],
+  expressions: [DEFAULT_EXPRESSION(), DEFAULT_EXPRESSION()],
   matching: true,
 };
 
@@ -400,6 +400,7 @@ const stories = {
         "id": "aa845890-156d-4641-9366-d40280562d39",
         "parameter": {
           "value": {
+            "id": "aa845890-156d-4641-9366-d40280562d37",
             "name": "City",
           }
         },

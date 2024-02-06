@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.3...@synerise/ds-collector@0.7.4) (2024-02-06)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.2...@synerise/ds-collector@0.7.3) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.1...@synerise/ds-collector@0.7.2) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.0...@synerise/ds-collector@0.7.1) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.34...@synerise/ds-collector@0.7.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* **switch:** styled switch ([80d89fc](https://github.com/Synerise/synerise-design/commit/80d89fcb49bf1b42b4beafd4763e31f689aa062c))
+
+
+### Features
+
+* **card-tabs:** updated card tabs layout ([d97deb3](https://github.com/Synerise/synerise-design/commit/d97deb3491fae7e4e5808590d722ab56211c7428))
+
+
+
+
+
+## [0.6.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.33...@synerise/ds-collector@0.6.34) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
+## [0.6.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.32...@synerise/ds-collector@0.6.33) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-collector
+
+
+
+
+
 ## [0.6.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.6.31...@synerise/ds-collector@0.6.32) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-collector

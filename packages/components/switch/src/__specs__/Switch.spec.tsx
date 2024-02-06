@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, screen } from '@testing-library/react';
 import Switch from '../index';
 
 describe('Switch', () => {
@@ -9,37 +9,37 @@ describe('Switch', () => {
 
   it('should render', () => {
     // ARRANGE
-    const { getByTestId } = renderWithProvider(<Switch label={LABEL_TEXT} data-testid={BUTTON_TESTID} />);
+    renderWithProvider(<Switch label={LABEL_TEXT} data-testid={BUTTON_TESTID} />);
 
     // ASSERT
-    expect(getByTestId(BUTTON_TESTID)).toBeTruthy();
+    expect(screen.getByTestId(BUTTON_TESTID)).toBeInTheDocument();
   });
 
   it('should render label', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<Switch label={LABEL_TEXT} />);
+    renderWithProvider(<Switch label={LABEL_TEXT} />);
 
     // ASSERT
-    expect(getByText(LABEL_TEXT)).toBeTruthy();
+    expect(screen.getByText(LABEL_TEXT)).toBeInTheDocument();
   });
 
   it('should render description', () => {
     // ARRANGE
-    const DESCRIPTION_TEXT = 'Destription text';
-    const { getByText } = renderWithProvider(<Switch label={LABEL_TEXT} description={DESCRIPTION_TEXT} />);
+    const DESCRIPTION_TEXT = 'Description text';
+    renderWithProvider(<Switch label={LABEL_TEXT} description={DESCRIPTION_TEXT} />);
 
     // ASSERT
-    expect(getByText(DESCRIPTION_TEXT)).toBeTruthy();
+    expect(screen.getByText(DESCRIPTION_TEXT)).toBeInTheDocument();
   });
 
   it('should handle error', () => {
     // ARRANGE
     const ERROR_TEXT = 'Error text';
-    const { getByText, container } = renderWithProvider(<Switch label={LABEL_TEXT} errorText={ERROR_TEXT} />);
+    const { container } = renderWithProvider(<Switch label={LABEL_TEXT} errorText={ERROR_TEXT} />);
 
     // ASSERT
-    expect(getByText(ERROR_TEXT)).toBeTruthy();
-    expect(container.querySelector('button.error')).toBeTruthy();
+    expect(screen.getByText(ERROR_TEXT)).toBeInTheDocument();
+    expect(container.querySelector('button.error')).toBeInTheDocument();
   });
 
   it('should handle disable', () => {
@@ -47,24 +47,43 @@ describe('Switch', () => {
     const { container } = renderWithProvider(<Switch label={LABEL_TEXT} disabled />);
 
     // ASSERT
-    expect(container.getElementsByTagName('button')[0].hasAttribute('disabled')).toBeTruthy();
+    expect(container.getElementsByTagName('button')[0]).toHaveAttribute('disabled');
   });
 
   it('should handle state change', () => {
     // ARRANGE
     const onChange = jest.fn();
-    const { getByTestId } = renderWithProvider(
-      <Switch
-        label={LABEL_TEXT}
-        onChange={e => onChange(e)}
-        data-testid={BUTTON_TESTID}
-      />
+    renderWithProvider(
+      <Switch label={LABEL_TEXT} onChange={e => onChange(e)} data-testid={BUTTON_TESTID} />
     );
 
     // ACT
-    fireEvent.click(getByTestId(BUTTON_TESTID));
+    fireEvent.click(screen.getByTestId(BUTTON_TESTID));
 
     // ASSERT
     expect(onChange).toHaveBeenCalledWith(true);
+  });
+
+  it('should display tooltip icon when tooltip is provided', () => {
+    // ARRANGE
+    const TOOLTIP_TEXT = 'Tooltip text';
+    const { container } = renderWithProvider(
+      <Switch label="Test Label" tooltip={TOOLTIP_TEXT} data-testid="switch-test-id" />
+    );
+
+    // ASSERT
+    const tooltipIcon = container.querySelector('.switch-label svg');
+    expect(tooltipIcon).toBeInTheDocument();
+  });
+
+  it('should not display tooltip icon when tooltip is null', () => {
+    // ARRANGE
+    const { container } = renderWithProvider(
+      <Switch label="Test Label" tooltip={null} data-testid="switch-test-id" />
+    );
+
+    // ASSERT
+    const tooltipIcon = container.querySelector('.switch-label svg');
+    expect(tooltipIcon).not.toBeInTheDocument();
   });
 });

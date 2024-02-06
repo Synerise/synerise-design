@@ -72,7 +72,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   showTime?: boolean;
   showCustomRange?: boolean;
   showNowButton?: boolean;
-  texts: Texts;
+  texts?: Partial<Texts>;
   validate?: (value: DateRange) => { valid: boolean; message?: string };
   value: DateRange;
   defaultValue?: DateRange;
@@ -89,6 +89,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   isTruncateMs?: boolean;
   filterValueSelectionModes?: DateLimitMode[];
   filterRangeDisplayMode?: RangeDisplayMode;
+  getPopupContainer?: (node: HTMLElement) => HTMLElement;
 }
 
 /**
@@ -109,7 +110,13 @@ export type Texts = {
   [k in TranslationsPlaceholders]: string;
 };
 
-export type TranslationsPlaceholders = 'endDatePlaceholder' | 'startDatePlaceholder' | 'selectDate' | 'selectTime';
+export type TranslationsPlaceholders =
+  | 'endDatePlaceholder'
+  | 'startDatePlaceholder'
+  | 'selectDate'
+  | 'selectTime'
+  | 'everyDay'
+  | 'filterName';
 export type Translations =
   | 'custom'
   | 'today'
@@ -160,10 +167,35 @@ export type Translations =
   | 'copyRange'
   | 'pasteRange'
   | 'range'
-  | 'hour';
+  | 'hour'
+  | 'filterEnabled'
+  | 'selectDateFilter'
+  | 'datesFilter'
+  | 'cancel'
+  | 'nthDayOfMonth'
+  | 'daysOf'
+  | 'countedFrom'
+  | 'addRule'
+  | 'addTime'
+  | 'change'
+  | 'weekly'
+  | 'monthly'
+  | 'daily'
+  | 'saveFilter'
+  | 'selected'
+  | 'selectDaysDescription'
+  | 'selectAll'
+  | 'unselectAll'
+  | 'inverseSelection'
+  | 'setTimeFor'
+  | 'week'
+  | 'month'
+  | 'beginning'
+  | 'ending'
+  | 'maximumRanges';
 
 export type WithTranslations = {
-  texts?: Texts;
+  texts: Texts;
 };
 
 export type AddonType = {

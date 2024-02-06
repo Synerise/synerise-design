@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { RefObject } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import { InfiniteScrollProps } from '../InfiniteScroll/constants';
 import { DSTableProps } from '../Table.types';
@@ -11,6 +11,6 @@ export interface Props<T> extends DSTableProps<T> {
     x?: number;
     y: number;
   };
-  onListRefChange?: (ref: React.RefObject<List>) => void;
+  onListRefChange?: (ref: RefObject<List>) => void;
   onRowClick?: (row: T) => void;
 }

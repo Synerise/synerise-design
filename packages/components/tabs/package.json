@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tabs",
-  "version": "0.13.86",
+  "version": "0.13.93",
   "description": "Tabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run build:js && npm run build:css && npm run defs",
     "build:css": "node ../../../scripts/style/less.js",
-    "build:js": "babel --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
     "build:watch": "npm run build:js -- --watch",
     "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
@@ -33,12 +33,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.18.7",
-    "@synerise/ds-dropdown": "^0.17.88",
-    "@synerise/ds-icon": "^0.58.7",
-    "@synerise/ds-menu": "^0.18.5",
-    "@synerise/ds-typography": "^0.13.3",
-    "@synerise/ds-utils": "^0.24.21",
+    "@synerise/ds-button": "^0.19.0",
+    "@synerise/ds-dropdown": "^0.17.95",
+    "@synerise/ds-icon": "^0.60.0",
+    "@synerise/ds-menu": "^0.18.11",
+    "@synerise/ds-typography": "^0.14.3",
+    "@synerise/ds-utils": "^0.24.24",
     "classnames": "2.3.2"
   },
   "peerDependencies": {

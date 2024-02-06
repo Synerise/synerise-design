@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.15...@synerise/ds-tooltip@0.14.16) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.14.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.14...@synerise/ds-tooltip@0.14.15) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.14.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.13...@synerise/ds-tooltip@0.14.14) (2024-01-15)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.14.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.12...@synerise/ds-tooltip@0.14.13) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.14.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.11...@synerise/ds-tooltip@0.14.12) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-tooltip
+
+
+
+
+
+## [0.14.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.10...@synerise/ds-tooltip@0.14.11) (2023-12-06)
+
+
+### Bug Fixes
+
+* **tooltip:** fixed tooltip styles ([e97be65](https://github.com/synerise/synerise-design/commit/e97be657bb21017dbd41b65f596cdc82177e6981))
+
+
+
+
+
 ## [0.14.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.9...@synerise/ds-tooltip@0.14.10) (2023-11-16)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

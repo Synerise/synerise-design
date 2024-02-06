@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.48...@synerise/ds-badge@0.6.49) (2024-02-06)
+
+
+### Bug Fixes
+
+* **badge:** added missinng warning type ([2215493](https://github.com/Synerise/synerise-design/commit/22154930ef3322a4e6b2abffb2d0a465d4db7a95))
+
+
+
+
+
+## [0.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.47...@synerise/ds-badge@0.6.48) (2024-01-24)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.46...@synerise/ds-badge@0.6.47) (2024-01-17)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.45...@synerise/ds-badge@0.6.46) (2023-12-13)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.44...@synerise/ds-badge@0.6.45) (2023-12-11)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
+## [0.6.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.43...@synerise/ds-badge@0.6.44) (2023-12-06)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.6.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.42...@synerise/ds-badge@0.6.43) (2023-11-09)
 
 **Note:** Version bump only for package @synerise/ds-badge

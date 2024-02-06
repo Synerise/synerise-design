@@ -1,19 +1,25 @@
-import * as React from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import SingleAction from './SingleAction';
 
 export interface CrudsProps {
-  addTooltip?: React.ReactNode | string;
-  editTooltip?: React.ReactNode | string;
-  duplicateTooltip?: React.ReactNode | string;
-  removeTooltip?: React.ReactNode | string;
-  moveTooltip?: React.ReactNode | string;
-  deleteTooltip?: React.ReactNode | string;
-  onDelete?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onAdd?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onEdit?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onDuplicate?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onMove?: (event?: React.MouseEvent<HTMLElement>) => void;
-  onRemove?: (event?: React.MouseEvent<HTMLElement>) => void;
+  addTooltip?: ReactNode;
+  moveUpTooltip?: ReactNode;
+  moveDownTooltip?: ReactNode;
+  moveUpInactive?: boolean;
+  moveDownInactive?: boolean;
+  editTooltip?: ReactNode;
+  duplicateTooltip?: ReactNode;
+  removeTooltip?: ReactNode;
+  moveTooltip?: ReactNode;
+  deleteTooltip?: ReactNode;
+  onDelete?: (event?: MouseEvent<HTMLElement>) => void;
+  onAdd?: (event?: MouseEvent<HTMLElement>) => void;
+  onEdit?: (event?: MouseEvent<HTMLElement>) => void;
+  onDuplicate?: (event?: MouseEvent<HTMLElement>) => void;
+  onMove?: (event?: MouseEvent<HTMLElement>) => void;
+  onMoveUp?: (event?: MouseEvent<HTMLElement>) => void;
+  onMoveDown?: (event?: MouseEvent<HTMLElement>) => void;
+  onRemove?: (event?: MouseEvent<HTMLElement>) => void;
 }
 
 export type CrudsSubComponents = { CustomAction: typeof SingleAction };

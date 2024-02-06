@@ -3,18 +3,17 @@ import Button from '@synerise/ds-button';
 import { RawInput } from '@synerise/ds-input';
 import Icon, { CheckM, CloseM } from '@synerise/ds-icon';
 
-import { useIntl } from 'react-intl';
 import { SaveFilterFormProps } from './SaveFilterForm.types';
 import * as S from './SaveFilterForm.styles';
 
-const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ onFilterSave }) => {
+const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ texts, onFilterSave }) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [name, setName] = React.useState<string>();
-  const intl = useIntl();
+
   const input = (
     <>
       <RawInput
-        placeholder={intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.FILTER-NAME', defaultMessage: 'Filter name' })}
+        placeholder={texts.filterName}
         value={name}
         onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
           setName(e.target.value);
@@ -49,7 +48,7 @@ const SaveFilterForm: React.FC<SaveFilterFormProps> = ({ onFilterSave }) => {
         input
       ) : (
         <Button type="ghost" onClick={(): void => setActive(!active)}>
-          {intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.SAVE-FILTER', defaultMessage: 'Save filter' })}
+          {texts.saveFilter}
         </Button>
       )}
     </S.Container>

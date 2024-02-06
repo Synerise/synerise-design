@@ -21,17 +21,8 @@ const DailyFilter = (props: Props) => {
     const { onChange } = props;
     onChange && onChange(value[0] as Days);
   };
-  const {
-    value,
-    intl,
-    onRangeCopy,
-    onRangePaste,
-    onRangeClear,
-    texts,
-    valueSelectionModes,
-    disabled,
-    rangeDisplayMode,
-  } = props;
+  const { value, onRangeCopy, onRangePaste, onRangeClear, texts, valueSelectionModes, disabled, rangeDisplayMode } =
+    props;
   const hideHeader = rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER;
   const headerOptions =
     rangeDisplayMode === RANGE_DISPLAY_MODES.SLIDER
@@ -49,7 +40,7 @@ const DailyFilter = (props: Props) => {
         headerOptions={headerOptions}
         numberOfDays={0}
         customDays={{
-          0: { label: intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.EVERY_DAY', defaultMessage: 'Every day' }) },
+          0: { label: texts.everyDay },
         }}
         // @ts-expect-error: Type 'string' is not assignable to type 'Days'.ts(2322)
         days={value[0] ? value[0] : value}

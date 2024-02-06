@@ -60,7 +60,7 @@ export type SelectedFactorType = {
 };
 
 export type FactorsTexts = {
-  dateRangePicker: DateRangeTexts;
+  dateRangePicker: Partial<DateRangeTexts>;
   datePicker: {
     apply: string;
     clearTooltip: string;

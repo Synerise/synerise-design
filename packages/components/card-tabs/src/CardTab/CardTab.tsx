@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, FC, MouseEvent, ChangeEvent } from 'react';
+import React, { useState, useMemo, useCallback, MouseEvent, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
@@ -9,7 +9,7 @@ import CardTabActions from './CardTabActions/CardTabActions';
 import CardTabDropdown from './CardTabDropdown/CardTabDropdown';
 import { CardTabProps, CardTabSuffixProps } from './CardTab.types';
 
-const CardTab: FC<CardTabProps> = props => {
+const CardTab = (props: CardTabProps) => {
   const {
     intl,
     id,
