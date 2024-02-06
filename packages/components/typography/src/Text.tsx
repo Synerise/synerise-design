@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
+import '@synerise/ds-core/dist/js/style';
+import './style/index.less';
 import { MediumText, SmallText, XSmallText } from './CommonElements';
-
 import { Ellipsis, EllipsisProps } from './Ellipsis';
 
 export type TextSize = 'medium' | 'small' | 'xsmall';
