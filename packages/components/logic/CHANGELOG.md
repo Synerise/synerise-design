@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.21...@synerise/ds-logic@0.8.22) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/Synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
 ## [0.8.21](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.20...@synerise/ds-logic@0.8.21) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-logic

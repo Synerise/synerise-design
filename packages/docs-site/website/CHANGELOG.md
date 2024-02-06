@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.33.0...docs@0.33.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* **badge:** added missinng warning type ([2215493](http://gitlab.synerise.com/Frontend/synerise-design/commit/22154930ef3322a4e6b2abffb2d0a465d4db7a95))
+
+
+
+
+
 # [0.33.0](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.32.2...docs@0.33.0) (2024-01-31)
 
 

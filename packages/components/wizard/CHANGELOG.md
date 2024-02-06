@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.5.22...@synerise/ds-wizard@0.6.0) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/Synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+### Features
+
+* **wizard:** add className prop to allow custom styling ([28c751a](https://github.com/Synerise/synerise-design/commit/28c751adad3e8dcd9e953ffe593698c863b2e74c))
+
+
+
+
+
 ## [0.5.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.5.21...@synerise/ds-wizard@0.5.22) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-wizard

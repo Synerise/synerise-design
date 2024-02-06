@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.49](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.48...@synerise/ds-badge@0.6.49) (2024-02-06)
+
+
+### Bug Fixes
+
+* **badge:** added missinng warning type ([2215493](https://github.com/Synerise/synerise-design/commit/22154930ef3322a4e6b2abffb2d0a465d4db7a95))
+
+
+
+
+
 ## [0.6.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.6.47...@synerise/ds-badge@0.6.48) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-badge

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.202.1](https://github.com/synerise/synerise-design/compare/portal@0.202.0...portal@0.202.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* fixed broken import paths ([ddc1908](https://github.com/synerise/synerise-design/commit/ddc1908740a4ff0832b31ddfe18967db541660a8))
+
+
+
+
+
 # [0.202.0](https://github.com/synerise/synerise-design/compare/portal@0.201.0...portal@0.202.0) (2024-01-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.6...@synerise/ds-date-range-picker@0.26.7) (2024-02-06)
+
+
+### Bug Fixes
+
+* **date-range-picker:** make texts optional ([5d33724](https://github.com/Synerise/synerise-design/commit/5d337248c423ef7b1caf17da6e0f0e56767cccf1))
+
+
+
+
+
 ## [0.26.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.5...@synerise/ds-date-range-picker@0.26.6) (2024-01-31)
 
 
