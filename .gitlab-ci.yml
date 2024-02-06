@@ -160,13 +160,14 @@ chromatic_publish_sb7_draft:
   only:
     refs:
       - merge_requests
+  variables:
+    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
   before_script:
     - cd packages/storybook
     - yarn install
   script:
-    - yarn chromatic
-  variables:
-    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
+  
     
 
 chromatic_publish_merge_to_dest_branch:
