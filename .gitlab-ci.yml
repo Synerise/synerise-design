@@ -165,6 +165,7 @@ chromatic_publish_sb7_draft:
   before_script:
     - cd packages/storybook
     - yarn install
+    - yarn build
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
   
