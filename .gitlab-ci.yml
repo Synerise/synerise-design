@@ -154,6 +154,21 @@ chromatic_publish:
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
 
 
+chromatic_publish_sb7_testing:
+  stage: test
+  when: manual
+  only:
+    refs:
+      - merge_requests
+  before_script:
+    - cd packages/storybook
+    - yarn install
+  script:
+    - yarn chromatic
+  variables:
+    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
+
+
 chromatic_publish_baseline:
   stage: deploy
   when: manual
