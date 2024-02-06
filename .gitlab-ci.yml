@@ -163,9 +163,9 @@ chromatic_publish_sb7_draft:
   variables:
     CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
   before_script:
-    - cd packages/storybook
-    - yarn install
+    - yarn install --frozen-lockfile
     - yarn build
+    - cd packages/storybook
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
   
