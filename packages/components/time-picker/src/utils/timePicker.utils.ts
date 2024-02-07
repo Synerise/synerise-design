@@ -32,7 +32,7 @@ export const handleTimeChange = (
     unitConfig
       .filter(unitDefinition => unitDefinition.unit !== unit)
       .forEach(unitDefinition => (dateBuilder = dateBuilder[unitDefinition.unit](0)));
-    if (use12HourClock && clockMode === PM) {
+    if (use12HourClock && clockMode === PM && unit !== HOUR) {
       dateBuilder = dateBuilder.set(HOUR, HOUR_12);
     }
   }
