@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.12...@synerise/ds-time-picker@0.9.13) (2024-02-07)
+
+
+### Bug Fixes
+
+* **time-picker:** fixed picking time in 12hr clock mode ([ab9127d](https://github.com/Synerise/synerise-design/commit/ab9127db11196064fb8a04dfa3f939a87e7dded7))
+
+
+
+
+
 ## [0.9.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.11...@synerise/ds-time-picker@0.9.12) (2024-02-06)
 
 **Note:** Version bump only for package @synerise/ds-time-picker
