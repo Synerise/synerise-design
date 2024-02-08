@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './EmptyStates.styles';
 import { EmptyStatesProps, EmptyStatesSize } from './EmptyStates.types';
@@ -8,7 +8,7 @@ const mapSizeToPx = {
   [EmptyStatesSize.MEDIUM]: 96,
 };
 
-const EmptyStates: React.FC<EmptyStatesProps> = ({
+const EmptyStates = ({
   size = EmptyStatesSize.SMALL,
   label,
   labelPosition = 'right',
@@ -16,21 +16,28 @@ const EmptyStates: React.FC<EmptyStatesProps> = ({
   button,
   fontSize,
   customIcon,
+  className,
   mode,
-}) => {
+}: EmptyStatesProps) => {
   return (
-    <S.EmptyStatesWrapper mode={mode} className="ds-empty-states" labelPosition={labelPosition}>
-      <S.EmptyStatesIconContainer size={size}>
-        <S.StatusIconContainer>
-          <Icon component={customIcon} size={mapSizeToPx[size]} />
-        </S.StatusIconContainer>
-      </S.EmptyStatesIconContainer>
+    <S.EmptyStatesWrapper mode={mode} className={`ds-empty-states ${className}`} labelPosition={labelPosition}>
+      {customIcon && (
+        <S.EmptyStatesIconContainer size={size}>
+          <S.StatusIconContainer>
+            <Icon data-testid="empty-states-custom-icon" component={customIcon} size={mapSizeToPx[size]} />
+          </S.StatusIconContainer>
+        </S.EmptyStatesIconContainer>
+      )}
       {text && (
-        <S.HeaderWrapper size={size} fontSize={fontSize}>
+        <S.HeaderWrapper data-testid="empty-states-header" size={size} fontSize={fontSize}>
           {text}
         </S.HeaderWrapper>
       )}
-      <S.TextWrapper labelPosition={labelPosition}>{label}</S.TextWrapper>
+      {label && (
+        <S.TextWrapper data-testid="empty-states-label" labelPosition={labelPosition}>
+          {label}
+        </S.TextWrapper>
+      )}
       {button && <S.ButtonWrapper>{button}</S.ButtonWrapper>}
     </S.EmptyStatesWrapper>
   );

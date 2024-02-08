@@ -30,7 +30,7 @@ import EmptyStates from '@synerise/ds-empty-states'
 | ---------------- | ---------------------------------- | --------------------------------------- | ----------- |
 | size             | Changing size on Icon              | 'Xl' / 'L'                              | M           |
 | label            | text of empty states               | string / React.ReactNode                | -           |
-| labelPosition    | Defines the position of text       | right / bottom                          | bottom      |
+| labelPosition    | Defines the position of text       | right / bottom                          | right       |
 | text             | text of Header                     | string / React.ReactNode                | -           |
 | type             | type of icon                       | `Add` / `NoResults` / `SearchNoResults` | -           |
 | button           | render button                      | string / React.ReactNode                | -           |

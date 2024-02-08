@@ -1,32 +1,37 @@
-import * as React from 'react';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { screen } from '@testing-library/react';
 import EmptyStates from '../index';
 
 describe('EmptyStates', () => {
-  it('should render', function() {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <EmptyStates
-        type='Add'
-        size='L'
-        labelPosition='bottom'
-        label='Loading...'
-      />
-    );
-    // ASSERT
-    expect(container.querySelector('.ds-empty-states')).toBeTruthy();
-  });
   it('should render label', function() {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <EmptyStates
-        type='Add'
-        size='L'
         labelPosition='bottom'
-        label ='No results'
+        label='No results'
       />
     );
-    // ASSERT
-    expect(getByText('No results')).toBeTruthy();
+    expect(screen.getByText('No results')).toBeInTheDocument();
+  })
+
+  it('should render icon', function() {
+    renderWithProvider(
+      <EmptyStates
+        labelPosition='bottom'
+        label='No results'
+        customIcon={<>ICON</>}
+      />
+    );
+    expect(screen.getByTestId('empty-states-custom-icon')).toBeInTheDocument();
+  })
+
+  it('should render without icon', function() {
+    renderWithProvider(
+      <EmptyStates
+        labelPosition='bottom'
+        label='No results'
+      />
+    );
+    expect(screen.queryByTestId('empty-states-custom-icon')).not.toBeInTheDocument();
   })
 });
