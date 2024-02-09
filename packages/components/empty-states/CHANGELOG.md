@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.34](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.33...@synerise/ds-empty-states@0.2.34) (2024-02-09)
+
+
+### Bug Fixes
+
+* **empty-states:** conditional rendering of optional props ([a6870cc](https://github.com/Synerise/synerise-design/commit/a6870ccfc98f778ff93647a2e30262524a9e5737))
+
+
+
+
+
 ## [0.2.33](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.32...@synerise/ds-empty-states@0.2.33) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-empty-states
