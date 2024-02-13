@@ -46,6 +46,7 @@ const Filter = ({
   renderHeaderRightSide,
   visibilityConfig = { isStepCardHeaderVisible: true },
   readOnly = false,
+  getMoveByLabel,
 }: FilterProps) => {
   const previousExpressions = usePrevious(expressions);
   const [activeExpressionId, setActiveExpressionId] = useState<string | null>(null);
@@ -144,6 +145,8 @@ const Filter = ({
         notEvent: formatMessage({ id: 'DS.MATCHING.EXPRESSION-TYPE.NOT_EVENT', defaultMessage: 'event' }),
         namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
         moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
+        moveUpTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE_UP' }),
+        moveDownTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE_DOWN' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
         duplicateTooltip: formatMessage({ id: 'DS.STEP-CARD.DUPLICATE' }),
         ...texts?.step,
@@ -227,6 +230,7 @@ const Filter = ({
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
           headerRightSide: renderStepHeaderRightSide && renderStepHeaderRightSide(expression, index),
+          getMoveByLabel,
           texts: {
             ...text.step,
             ...contextTypeTexts,
@@ -238,11 +242,11 @@ const Filter = ({
     [
       activeExpressionId,
       getContextTypeTexts,
+      getMoveByLabel,
       handleMove,
       isActive,
       isLimitExceeded,
       logicOptions,
-      movedExpressionId,
       onChangeLogic,
       onChangeStepMatching,
       onChangeStepName,

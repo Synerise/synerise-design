@@ -29,4 +29,5 @@ export type StepCardProps = {
   isHeaderVisible?: boolean;
   readOnly?: boolean;
   headerRightSide?: ReactNode;
+  getMoveByLabel?: (moveByOffset: number) => string;
 };

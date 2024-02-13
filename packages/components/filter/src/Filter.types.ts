@@ -40,6 +40,7 @@ export type FilterProps = {
   logicOptions?: LogicOperator[];
   readOnly?: boolean;
   renderHeaderRightSide?: (expressions: Expression[]) => React.ReactNode;
+  getMoveByLabel?: (moveByOffset: number) => string;
   texts?: {
     matching?: MatchingTexts;
     step?: {
@@ -55,6 +56,8 @@ export type FilterProps = {
       notEvent?: string;
       namePlaceholder?: string;
       moveTooltip?: string;
+      moveUpTooltip?: string;
+      moveDownTooltip?: string;
       deleteTooltip?: string;
       duplicateTooltip?: string;
     };
