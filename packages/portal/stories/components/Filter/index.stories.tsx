@@ -85,7 +85,7 @@ const stories = {
         expressions,
       });
     };
-    
+
     const handleChangeStepMatching = (id, matching) => {
       const expressions = store.state.expressions.map(exp => {
         if (exp.id === id) {
@@ -226,21 +226,21 @@ const stories = {
     };
 
     const readOnly = boolean('Set readOnly', false);
-    
+
     const expressionRefs = {};
     store.state.expressions.forEach(exp => {
       expressionRefs[exp.id] = React.createRef();
     });
 
-    const jumpToExpression = (expressionId) => {
+    const jumpToExpression = expressionId => {
       if (expressionRefs[expressionId] && expressionRefs[expressionId].current) {
         expressionRefs[expressionId].current.scrollIntoView();
       }
-    }
+    };
 
-    const renderHeaderRightSide = (expressions) => {
+    const renderHeaderRightSide = expressions => {
       return (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
           {expressions.map((expression, index) => {
             if (expression.type === 'STEP') {
               return (
@@ -250,19 +250,15 @@ const stories = {
                     name={String.fromCharCode(index + 65)}
                     color={theme.palette['grey-200']}
                     onClick={(): void => {
-                      jumpToExpression(expression.id)
+                      jumpToExpression(expression.id);
                     }}
                   />
-                  {expression.logic && index + 1 < expressions.length && (
-                    <>
-                      {expression.logic?.data?.value}
-                    </>
-                  )}
+                  {expression.logic && index + 1 < expressions.length && <>{expression.logic?.data?.value}</>}
                 </>
               );
             }
           })}
-        </>
+        </div>
       );
     };
 
@@ -292,7 +288,6 @@ const stories = {
       );
     };
 
-
     const renderStepHeaderRightSide = (expression, index): React.ReactNode => {
       return (
         <Tag
@@ -302,7 +297,7 @@ const stories = {
           asPill
         />
       );
-    }
+    };
 
     const handleAddStep = subject => {
       store.set({ expressions: [...store.state.expressions, DEFAULT_EXPRESSION(subject)] });
@@ -315,7 +310,7 @@ const stories = {
     const handleChangeOrder = expressions => {
       store.set({ expressions });
     };
-    
+
     const showStepTags = boolean('Show step card tags', true);
 
     const maxConditionsLimit = number('Set max conditions limit', 0);
@@ -394,68 +389,74 @@ const stories = {
     );
   }),
   minWidth: () => {
-    const [exprs, setExprs] = React.useState(DEFAULT_STATE.expressions)
+    const [exprs, setExprs] = React.useState(DEFAULT_STATE.expressions);
     React.useEffect(() => {
       const cond = {
-        "id": "aa845890-156d-4641-9366-d40280562d39",
-        "parameter": {
-          "value": {
-            "id": "aa845890-156d-4641-9366-d40280562d37",
-            "name": "City",
-          }
+        id: 'aa845890-156d-4641-9366-d40280562d39',
+        parameter: {
+          value: {
+            id: 'aa845890-156d-4641-9366-d40280562d37',
+            name: 'City',
+          },
         },
-        "operator": {
-          "value": {
-            "id": "DATE_EQUAL",
-            "value": "DATE_EQUAL",
-            "logic": "EQUAL",
-            "name": "Equal",
-            "groupId": "DATE_ONE",
-            "group": "DATE_ONE",
-            "groupName": "Date",
-            "availableFactors": [
-              "date",
-              "parameter",
-              "dynamicKey"
-            ]
-          }
+        operator: {
+          value: {
+            id: 'DATE_EQUAL',
+            value: 'DATE_EQUAL',
+            logic: 'EQUAL',
+            name: 'Equal',
+            groupId: 'DATE_ONE',
+            group: 'DATE_ONE',
+            groupName: 'Date',
+            availableFactors: ['date', 'parameter', 'dynamicKey'],
+          },
         },
-        "factor": {
-          "selectedFactorType": "",
-          "defaultFactorType": "text",
-          "value": "123456789"
-        }
-      }
-      exprs[0].expressionSteps[0].conditions.push(cond)
-    }, [])
-    return (<>
-      <Filter
-       expressions={exprs}
-       onChangeOrder={console.info}
-       addFilterComponent={<button onClick={(ev, subj = 'subj') => {
-        setExprs([...exprs, DEFAULT_EXPRESSION(subj)])
-       }}>+</button>}
-       renderStepContent={(expr, hoverDisabled) => {
-        const idx = exprs.indexOf(expr)
-        function updateSteps(steps) {
-          console.info(steps)
-          const newExprs = [...exprs];
-          newExprs[idx] = {...newExprs[idx], expressionSteps: steps}
-          setExprs(newExprs)
-          return newExprs
-        }
-        return (<ConditionExample
-          onChange={updateSteps}
-          steps={expr.expressionSteps}
-          hoverDisabled={hoverDisabled}
-          readOnly={false}
-        />)
-       }}
-       texts={{
-        addFilter: 'Add filter',
-       }}
-      />
-    </>)
+        factor: {
+          selectedFactorType: '',
+          defaultFactorType: 'text',
+          value: '123456789',
+        },
+      };
+      exprs[0].expressionSteps[0].conditions.push(cond);
+    }, []);
+    return (
+      <>
+        <Filter
+          expressions={exprs}
+          onChangeOrder={console.info}
+          addFilterComponent={
+            <button
+              onClick={(ev, subj = 'subj') => {
+                setExprs([...exprs, DEFAULT_EXPRESSION(subj)]);
+              }}
+            >
+              +
+            </button>
+          }
+          renderStepContent={(expr, hoverDisabled) => {
+            const idx = exprs.indexOf(expr);
+            function updateSteps(steps) {
+              console.info(steps);
+              const newExprs = [...exprs];
+              newExprs[idx] = { ...newExprs[idx], expressionSteps: steps };
+              setExprs(newExprs);
+              return newExprs;
+            }
+            return (
+              <ConditionExample
+                onChange={updateSteps}
+                steps={expr.expressionSteps}
+                hoverDisabled={hoverDisabled}
+                readOnly={false}
+              />
+            );
+          }}
+          texts={{
+            addFilter: 'Add filter',
+          }}
+        />
+      </>
+    );
   },
 };
 
