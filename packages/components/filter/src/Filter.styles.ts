@@ -10,23 +10,22 @@ export const FilterWrapper = styled.div`
 `;
 
 export const FilterHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   width: 100%;
+  display: flex;
   margin-bottom: 24px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const FilterHeaderRightSide = styled.div`
-  align-self: flex-end;
-  flex: 0 0 auto;
+  flex: 1;
+  overflow-x: hidden;
 `;
 
 export const MatchingWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-content: flex-end;
+  flex: 0 0 auto;
+  margin-right: 24px;
 `;
 
 export const ConditionsLimit = styled.div`
@@ -117,6 +116,7 @@ export const FilterTitle = styled.div`
   text-align: left;
   user-select: none;
   margin-bottom: 24px;
+  flex: 0 0 auto;
   &:first-letter {
     text-transform: uppercase;
   }
