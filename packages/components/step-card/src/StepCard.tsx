@@ -29,6 +29,7 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
       headerRightSide,
       isHeaderVisible = true,
       readOnly = false,
+      getMoveByLabel,
     },
     ref
   ) => {
@@ -139,7 +140,9 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
       };
     });
 
-    const moveByOffsetLabel = `Move ${Math.abs(moveByOffset)} ${moveByOffset < 0 ? 'up' : 'down'}...`;
+    const moveByOffsetLabel = getMoveByLabel
+      ? getMoveByLabel(moveByOffset)
+      : `Move ${Math.abs(moveByOffset)} ${moveByOffset < 0 ? 'up' : 'down'}...`;
 
     const renderRightSide = () => {
       return (

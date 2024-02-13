@@ -334,6 +334,13 @@ const stories = {
           <Filter
             maxConditionsLimit={maxConditionsLimit}
             expressions={store.state.expressions}
+            getMoveByLabel={offset => {
+              if (offset < 0) {
+                return `Move ${Math.abs(offset)} up...`;
+              } else {
+                return `Move ${Math.abs(offset)} down...`;
+              }
+            }}
             addFilterComponent={({ isLimitExceeded }) => (
               <ContextSelector
                 disabled={isLimitExceeded}
@@ -370,6 +377,8 @@ const stories = {
                 moveTooltip: 'Move',
                 deleteTooltip: 'Delete',
                 duplicateTooltip: 'Duplicate',
+                moveUpTooltip: 'Move up',
+                moveDownTooltip: 'Move down',
               },
               matching: {
                 matching: 'matching',
