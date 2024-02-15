@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.203.0](https://github.com/synerise/synerise-design/compare/portal@0.202.1...portal@0.203.0) (2024-02-15)
+
+
+### Features
+
+* **filter:** updates styles for brackets ([0a3ba5f](https://github.com/synerise/synerise-design/commit/0a3ba5f90cb120347de5d06669147263cd8d7575))
+
+
+
+
+
 ## [0.202.1](https://github.com/synerise/synerise-design/compare/portal@0.202.0...portal@0.202.1) (2024-02-06)
 
 

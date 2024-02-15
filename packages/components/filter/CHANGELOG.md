@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.4...@synerise/ds-filter@0.17.0) (2024-02-15)
+
+
+### Features
+
+* **filter:** updates styles for brackets ([0a3ba5f](https://github.com/Synerise/synerise-design/commit/0a3ba5f90cb120347de5d06669147263cd8d7575))
+
+
+
+
+
 ## [0.16.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.3...@synerise/ds-filter@0.16.4) (2024-02-06)
 
 

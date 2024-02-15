@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.45](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.13.44...@synerise/ds-layout@0.13.45) (2024-02-15)
+
+
+### Bug Fixes
+
+* TC-1592 scroll malfunctioning in campaing view in Synerise ([6ca94d4](https://github.com/synerise/synerise-design/commit/6ca94d4f4d04b478b3f8fe0c3958b7cd5a8d49e9))
+
+
+
+
+
 ## [0.13.44](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.13.43...@synerise/ds-layout@0.13.44) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-layout
