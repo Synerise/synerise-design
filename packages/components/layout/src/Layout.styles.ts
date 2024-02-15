@@ -11,8 +11,6 @@ export const CloseIcon = styled(Icon)`
 
 export const LayoutContainer = styled.div`
   height: 100%;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
 `;
 
