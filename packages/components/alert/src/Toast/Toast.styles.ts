@@ -1,6 +1,7 @@
 import styled, { keyframes, Keyframes } from 'styled-components';
 import * as React from 'react';
 import { ThemeProps } from '@synerise/ds-core';
+import { hexToRgba } from '@synerise/ds-utils';
 import 'animate.css';
 import { ColorIconType, ColorType, CustomColorType } from './Toast.types';
 
@@ -80,7 +81,7 @@ export const AlertContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 12px 0;
 `;
 export const AllContent = styled.div`
@@ -96,7 +97,7 @@ export const IconWrapper = styled.div<{
   colorIcon?: ColorIconType;
   customColorIcon?: CustomColorType;
 }>`
-  margin: 10px 12px;
+  margin: 12px;
   display: flex;
   svg {
     color: ${(props): string =>
@@ -219,7 +220,8 @@ export const Container = styled.div<{
   background-color: ${(props): string =>
     props.customColor ? props.theme.palette[`${props.customColor}-600`] : getColorBackground(props)};
   border-radius: 4px;
-  box-shadow: ${(props): string => (props.color ? `0px 16px 32px 5px ${props.theme.palette[`grey-200`]}` : 'none')};
+  box-shadow: ${(props): string =>
+    props.color ? `0px 16px 32px 5px ${hexToRgba(props.theme.palette['grey-900'], 0.2)}` : 'none'};
 `;
 export const WrapperSectionMessage = styled.div`
   display: flex;
@@ -229,8 +231,8 @@ export const WrapperSectionMessage = styled.div`
 `;
 
 export const AlertMessage = styled.span<{ customColorText?: CustomColorType; color?: ColorType }>`
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 500;
   max-width: 400px;
   overflow: hidden;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Icon, { CloseM, WarningFillM, Check3M, HelpFillM, InfoFillM, AngleDownS } from '@synerise/ds-icon';
 
 import * as S from './Toast.styles';
@@ -14,7 +14,7 @@ const ICONS: Record<ToastType, React.ReactNode> = {
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const Toast: React.FC<Props> = ({
+const Toast = ({
   icon,
   type,
   message,
@@ -34,7 +34,7 @@ const Toast: React.FC<Props> = ({
   show,
   button,
 }: Props) => {
-  const renderMessage = React.useMemo(() => {
+  const renderMessage = useMemo(() => {
     return (
       <S.AlertContent>
         {message && (
@@ -63,12 +63,12 @@ const Toast: React.FC<Props> = ({
       </S.AlertContent>
     );
   }, [message, description, expandedContent, customColorText, color, expanded, button]);
-  const renderIcon = React.useMemo(() => {
+  const renderIcon = useMemo(() => {
     if (icon) return icon;
     if (ICONS[type]) return ICONS[type];
     return DEFAULT_ICON;
   }, [icon, type]);
-  const expandContent = React.useCallback(() => {
+  const expandContent = useCallback(() => {
     onExpand && onExpand(!expanded);
   }, [onExpand, expanded]);
 
