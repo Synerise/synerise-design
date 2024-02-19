@@ -1,16 +1,14 @@
+import React, { useRef, useState, useEffect, useCallback, ChangeEvent } from 'react';
+import { debounce } from 'lodash';
 import InlineEdit from '@synerise/ds-inline-edit';
-import * as React from 'react';
 import Cruds from '@synerise/ds-cruds';
 import { DragHandleM } from '@synerise/ds-icon';
 import { NOOP } from '@synerise/ds-utils';
-import { debounce } from 'lodash';
 
 import * as S from '../../Condition.style';
-
 import * as T from './StepHeader.types';
 
-// eslint-disable-next-line import/prefer-default-export
-export const StepHeader: React.FC<T.StepHeaderProps> = ({
+export const StepHeader = ({
   stepName,
   stepId,
   texts,
@@ -20,22 +18,22 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
   index,
   draggableEnabled,
   readOnly = false,
-}) => {
-  const onChangeNameDebounce = React.useRef(debounce(updateStepName || NOOP, 300)).current;
-  const [localName, setLocalName] = React.useState(stepName);
+}: T.StepHeaderProps) => {
+  const onChangeNameDebounce = useRef(debounce(updateStepName || NOOP, 300)).current;
+  const [localName, setLocalName] = useState(stepName);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLocalName(stepName);
   }, [stepName]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       onChangeNameDebounce.cancel();
     };
   }, [onChangeNameDebounce]);
 
-  const handleChangeName = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeName = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
       setLocalName(event.target.value);
       onChangeNameDebounce(stepId, event.target.value);
     },
@@ -76,7 +74,9 @@ export const StepHeader: React.FC<T.StepHeaderProps> = ({
       <S.LeftSide>
         {dragHandleElement}
         <S.StepName className="ds-condition-step-name">
-          <S.StepIndexWrapper readOnly={readOnly}>{`${index + 1}`}</S.StepIndexWrapper>
+          <S.StepIndexWrapper>
+            {texts.stepNamePrefix} {`${index + 1}`}
+          </S.StepIndexWrapper>
           {stepNameElement}
         </S.StepName>
       </S.LeftSide>

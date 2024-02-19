@@ -62,6 +62,7 @@ const Condition = (props: T.ConditionProps) => {
     () => ({
       addStep: formatMessage({ id: 'DS.CONDITION.ADD-STEP', defaultMessage: 'and then...' }),
       conditionSuffix: formatMessage({ id: 'DS.CONDITION.SUFFIX', defaultMessage: 'and' }),
+      stepNamePrefix: formatMessage({ id: 'DS.CONDITION.STEP_NAME-PREFIX', defaultMessage: 'Step' }),
       ...texts,
     }),
     [texts, formatMessage]
