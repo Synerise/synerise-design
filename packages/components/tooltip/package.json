@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tooltip",
-  "version": "0.14.16",
+  "version": "0.14.17",
   "description": "Tooltip UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.19.0",
     "@synerise/ds-icon": "^0.60.0",
-    "@synerise/ds-scrollbar": "^0.7.3"
+    "@synerise/ds-scrollbar": "^0.8.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

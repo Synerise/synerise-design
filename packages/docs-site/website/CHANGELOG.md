@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.33.1...docs@0.34.0) (2024-02-19)
+
+
+### Features
+
+* **layout:** add useNativeScroll prop for main content column ([699f3b2](https://gitlab.synerise.com/Frontend/synerise-design/commit/699f3b2980f816905046b69c36f1cc0ca7a2d98b))
+
+
+
+
+
 ## [0.33.1](http://gitlab.synerise.com/Frontend/synerise-design/compare/docs@0.33.0...docs@0.33.1) (2024-02-06)
 
 

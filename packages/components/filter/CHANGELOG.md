@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.17.0...@synerise/ds-filter@0.17.1) (2024-02-19)
+
+
+### Bug Fixes
+
+* **filter:** fixes z-index of .ghost-element ([b27386b](https://github.com/Synerise/synerise-design/commit/b27386bb5f1f421d89919c23470bba08dbecb342))
+
+
+
+
+
 # [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.16.4...@synerise/ds-filter@0.17.0) (2024-02-15)
 
 

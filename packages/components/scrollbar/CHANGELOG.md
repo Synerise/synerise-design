@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.7.3...@synerise/ds-scrollbar@0.8.0) (2024-02-19)
+
+
+### Features
+
+* **layout:** add useNativeScroll prop for main content column ([699f3b2](https://github.com/Synerise/synerise-design/commit/699f3b2980f816905046b69c36f1cc0ca7a2d98b))
+
+
+
+
+
 ## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.7.2...@synerise/ds-scrollbar@0.7.3) (2024-01-24)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

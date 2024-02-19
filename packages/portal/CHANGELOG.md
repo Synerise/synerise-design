@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.204.0](https://github.com/synerise/synerise-design/compare/portal@0.203.0...portal@0.204.0) (2024-02-19)
+
+
+### Features
+
+* **layout:** add useNativeScroll prop for main content column ([699f3b2](https://github.com/synerise/synerise-design/commit/699f3b2980f816905046b69c36f1cc0ca7a2d98b))
+
+
+
+
+
 # [0.203.0](https://github.com/synerise/synerise-design/compare/portal@0.202.1...portal@0.203.0) (2024-02-15)
 
 
