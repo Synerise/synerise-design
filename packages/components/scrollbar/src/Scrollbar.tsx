@@ -2,11 +2,11 @@ import * as React from 'react';
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import * as S from './Scrollbar.styles';
-import { ScrollbarProps } from './Scrollbar.types';
+import { ScrollbarProps, VirtualScrollbarProps } from './Scrollbar.types';
 import { DnDScrollbar } from './DnDScrollbar';
 import { VirtualScrollbar } from './VirtualScrollbar';
 
-const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps>(
+const Scrollbar = React.forwardRef<HTMLElement, ScrollbarProps | VirtualScrollbarProps>(
   ({ children, className, loading, withDnd, fetchData, ...props }, forwardedRef) => {
     const Component = withDnd ? DnDScrollbar : VirtualScrollbar;
     const scrollbar = (

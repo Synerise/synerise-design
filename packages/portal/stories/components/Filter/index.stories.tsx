@@ -330,7 +330,7 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        <Layout mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
+        <Layout useNativeScroll={boolean('Use native scroll', false)} mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
           <Filter
             maxConditionsLimit={maxConditionsLimit}
             expressions={store.state.expressions}

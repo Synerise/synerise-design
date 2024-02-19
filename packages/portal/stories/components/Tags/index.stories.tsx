@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 
 import Tags, { TagShape } from '@synerise/ds-tags';
 import { theme } from '@synerise/ds-core';
-import Icon, { Add3M} from '@synerise/ds-icon';
+import Icon, { Add3M } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
 import { getColorText } from '@synerise/ds-tags/dist/Tag/Tag.styles';
 
@@ -45,7 +45,13 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} asPill={boolean('asPill', false)} removable={removable} disabled={disabled} />
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            asPill={boolean('asPill', false)}
+            removable={removable}
+            disabled={disabled}
+          />
         </div>
       </React.Fragment>
     );
@@ -73,9 +79,9 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             outlined={''}
             style={{
-              ...{ boxShadow: `0 0 0 1px ${getColorText(theme,colors)}`},
+              ...{ boxShadow: `0 0 0 1px ${getColorText(theme, colors)}` },
               backgroundColor: 'transparent',
-              color: getColorText(theme,colors),
+              color: getColorText(theme, colors),
               alignItems: 'center',
               margin: '0px',
             }}
@@ -87,10 +93,10 @@ const stories = {
             overflowCount={number('overflowCount', 99)}
             outlined={''}
             style={{
-              ...{ boxShadow: `0 0 0 1px ${getColorText(theme,colors)}`},
+              ...{ boxShadow: `0 0 0 1px ${getColorText(theme, colors)}` },
               margin: '0px',
               backgroundColor: 'transparent',
-              color: getColorText(theme,colors),
+              color: getColorText(theme, colors),
               alignItems: 'center',
             }}
           />
@@ -101,7 +107,13 @@ const stories = {
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags tagShape={shape} selected={thisTag} removable={removable} asPill={boolean('asPill', false)} disabled={disabled} />
+          <Tags
+            tagShape={shape}
+            selected={thisTag}
+            removable={removable}
+            asPill={boolean('asPill', false)}
+            disabled={disabled}
+          />
         </div>
       </React.Fragment>
     );
@@ -148,14 +160,20 @@ const stories = {
         id: 0,
         name: 'Tag name 4',
         color: colors,
-        prefixel: <Icon className="icon1" component={<Add3M />} size={20} color={getColorText(theme,colors)} />,
+        prefixel: <Icon className="icon1" component={<Add3M />} size={20} color={getColorText(theme, colors)} />,
       },
     ];
 
     return (
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Tags asPill={boolean('asPill', false)} tagShape={shape} selected={thisTag} removable={removable} disabled={disabled} />
+          <Tags
+            asPill={boolean('asPill', false)}
+            tagShape={shape}
+            selected={thisTag}
+            removable={removable}
+            disabled={disabled}
+          />
         </div>
       </React.Fragment>
     );
@@ -262,7 +280,7 @@ const stories = {
             addable={addable}
             creatable={creatable}
             removable={removable}
-            overlayStyle={{width: '283px'}}
+            overlayStyle={{ width: '283px' }}
             maxHeight={200}
             texts={{
               clearTooltip: 'Clear',
@@ -298,7 +316,7 @@ const stories = {
 };
 
 export default {
-name: 'Components/Tags',
+  name: 'Components/Tags',
   stories,
   Component: Tags,
 };

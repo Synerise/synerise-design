@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { boolean } from '@storybook/addon-knobs';
 import Layout, { Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
 import Grid from '@synerise/ds-grid';
@@ -13,7 +13,10 @@ const stories = {
   withGrid: () => {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
-        <Layout header={<PageHeader title={'Page name'} onGoBack={() => {}} />}>
+        <Layout
+          header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
+          useNativeScroll={boolean('Use native scroll for main content', true)}
+        >
           <Grid>
             <Grid.Item xxl={6} xl={4} lg={3} md={4} sm={4} xs={2}>
               <Card>

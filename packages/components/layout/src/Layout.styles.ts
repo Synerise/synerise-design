@@ -3,15 +3,12 @@ import { hexToRgba } from '@synerise/ds-utils';
 import { mediaQuery } from '@synerise/ds-core';
 import Icon from '@synerise/ds-icon';
 
+const DEFAULT_TOP_OFFSET = 55;
+
 export const ArrowIcon = styled(Icon)``;
 
 export const CloseIcon = styled(Icon)`
   display: none;
-`;
-
-export const LayoutContainer = styled.div`
-  height: 100%;
-  overflow: hidden;
 `;
 
 export const LayoutContent = styled.div`
@@ -71,6 +68,39 @@ export const LayoutMainInner = styled.div<{ fullPage: boolean }>`
   ${mediaQuery.from.medium`padding: 24px;`};
   && {
     padding: ${(props): string => (props.fullPage ? '0' : '24px')};
+  }
+`;
+
+export const LayoutContainer = styled.div<{
+  nativeScroll?: boolean;
+  fillViewport?: boolean;
+  viewportTopOffset?: number;
+}>`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  ${props =>
+    props.fillViewport &&
+    css`
+      position: absolute;
+      width: 100%;
+      height: calc(100vh - ${props.viewportTopOffset !== undefined ? props.viewportTopOffset : DEFAULT_TOP_OFFSET}px);
+    `};
+
+  ${LayoutMain} {
+    ${props =>
+      props.nativeScroll &&
+      css`
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      `};
+  }
+  ${LayoutMainInner} {
+    overflow: ${props => (props.nativeScroll ? 'auto' : 'hidden')};
+    ${props => props.nativeScroll && 'flex-grow: 1'};
   }
 `;
 

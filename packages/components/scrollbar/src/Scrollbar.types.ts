@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ScrollBarProps } from 'react-perfect-scrollbar';
 
 export type ScrollbarAdditionalProps = {
   absolute?: boolean;
@@ -17,4 +18,8 @@ export type ScrollbarAdditionalProps = {
 
 export type ScrollbarProps = ScrollbarAdditionalProps & {
   children: React.ReactNode | string;
+};
+
+export type VirtualScrollbarProps = ScrollbarProps & {
+  scrollbarOptions?: ScrollBarProps['options'];
 };

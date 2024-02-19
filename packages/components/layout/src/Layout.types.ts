@@ -1,6 +1,6 @@
-import * as React from 'react';
+import { ReactNode, CSSProperties, Ref } from 'react';
 
-export interface Style<T> {
+export interface ColumnProps<T> {
   left?: T;
   leftInner?: T;
   main?: T;
@@ -10,30 +10,34 @@ export interface Style<T> {
 }
 
 export type SidebarProps = {
-  content: React.ReactNode;
+  content: ReactNode;
   opened: boolean;
   onChange: (isOpened: boolean) => void;
   width?: number;
 };
 
 export type LayoutProps = {
-  header?: React.ReactNode;
-  subheader?: React.ReactNode;
+  nativeScroll?: boolean;
+  nativeScrollRef?: Ref<HTMLDivElement>;
+  header?: ReactNode;
+  subheader?: ReactNode;
   left?: SidebarProps;
   right?: SidebarProps;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  styles?: Style<React.CSSProperties>;
+  styles?: ColumnProps<CSSProperties>;
   fullPage?: boolean;
+  fillViewport?: boolean;
+  viewportTopOffset?: number;
   sidebarAnimationDisabled?: boolean;
   /**
    * Left sidebar: render visibility of show/hide button. Accepts function returning `ReactNode` (see source code).
    */
-  renderLeftSidebarControls?: boolean | (() => React.ReactNode);
+  renderLeftSidebarControls?: boolean | (() => ReactNode);
   /**
    * Right sidebar: render visibility of show/hide button. Accepts function returning `ReactNode` (see source code).
    */
-  renderRightSidebarControls?: boolean | (() => React.ReactNode);
+  renderRightSidebarControls?: boolean | (() => ReactNode);
   leftSidebarWithDnd?: boolean;
   rightSidebarWithDnd?: boolean;
   mainSidebarWithDnd?: boolean;
