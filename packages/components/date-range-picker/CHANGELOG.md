@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.9...@synerise/ds-date-range-picker@0.26.10) (2024-02-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** set body timezone request ([35755ee](https://github.com/Synerise/synerise-design/commit/35755ee22bd740621577f65278e8919b71d53813))
+
+
+
+
+
 ## [0.26.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.8...@synerise/ds-date-range-picker@0.26.9) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

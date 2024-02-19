@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.7...@synerise/ds-data-format@0.4.8) (2024-02-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** set body timezone request ([35755ee](https://github.com/Synerise/synerise-design/commit/35755ee22bd740621577f65278e8919b71d53813))
+
+
+
+
+
 ## [0.4.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.6...@synerise/ds-data-format@0.4.7) (2024-01-17)
 
 

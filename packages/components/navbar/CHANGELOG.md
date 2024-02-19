@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.7.23...@synerise/ds-navbar@0.7.24) (2024-02-19)
+
+**Note:** Version bump only for package @synerise/ds-navbar
+
+
+
+
+
 ## [0.7.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-navbar@0.7.22...@synerise/ds-navbar@0.7.23) (2024-02-06)
 
 **Note:** Version bump only for package @synerise/ds-navbar

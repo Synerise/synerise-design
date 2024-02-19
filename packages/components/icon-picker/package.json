@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-icon-picker",
-  "version": "0.3.96",
+  "version": "0.3.97",
   "description": "IconPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -30,11 +30,11 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.19.0",
-    "@synerise/ds-dropdown": "^0.17.96",
-    "@synerise/ds-icon": "^0.60.0",
-    "@synerise/ds-scrollbar": "^0.8.0",
-    "@synerise/ds-utils": "^0.24.24"
+    "@synerise/ds-button": "^0.19.1",
+    "@synerise/ds-dropdown": "^0.17.97",
+    "@synerise/ds-icon": "^0.60.1",
+    "@synerise/ds-scrollbar": "^0.8.1",
+    "@synerise/ds-utils": "^0.24.25"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

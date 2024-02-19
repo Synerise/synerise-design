@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.4...@synerise/ds-factors@0.21.5) (2024-02-19)
+
+
+### Bug Fixes
+
+* **date-range-picker:** set body timezone request ([35755ee](https://github.com/Synerise/synerise-design/commit/35755ee22bd740621577f65278e8919b71d53813))
+
+
+
+
+
 ## [0.21.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.3...@synerise/ds-factors@0.21.4) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-factors
