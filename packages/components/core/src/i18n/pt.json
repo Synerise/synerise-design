@@ -358,6 +358,7 @@
         },
         "CONDITION": {
             "STEP_NAME-PLACEHOLDER": "Nome do passo",
+            "STEP_NAME-PREFIX": "Passo",
             "REMOVE-CONDITION-ROW-TOOLTIP": "Excluir",
             "ADD-FIRST-CONDITION-ROW-BUTTON": "Adicionar condição",
             "ADD-CONDITION-ROW-BUTTON": "Adicionar condição",

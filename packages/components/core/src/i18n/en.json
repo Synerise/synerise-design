@@ -370,6 +370,7 @@
         },
         "CONDITION": {
             "STEP_NAME-PLACEHOLDER": "Step name",
+            "STEP_NAME-PREFIX": "Step",
             "REMOVE-CONDITION-ROW-TOOLTIP": "Delete",
             "ADD-FIRST-CONDITION-ROW-BUTTON": "Add condition",
             "ADD-CONDITION-ROW-BUTTON": "Add condition",

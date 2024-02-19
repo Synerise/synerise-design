@@ -332,6 +332,7 @@
       "REMOVE-CONDITION-ROW-TOOLTIP": "Usuń",
       "ADD-STEP": "Dodaj krok",
       "STEP_NAME-PLACEHOLDER": "Nazwa kroku",
+      "STEP_NAME-PREFIX": "Krok",
       "DROP-LABEL": "Upuść mnie tutaj",
       "MOVE-TOOLTIP": "Przenieś",
       "DUPLICATE-TOOLTIP": "Duplikuj",

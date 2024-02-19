@@ -57,9 +57,10 @@ export const StepName = styled.div`
   }
 `;
 
-export const StepIndexWrapper = styled.span<{ readOnly?: boolean }>`
+export const StepIndexWrapper = styled.span`
   font-size: 13px;
-  font-weight: ${({ readOnly }): string => (readOnly ? '500' : '400')};
+  font-weight: 500;
+  margin-right: 8px;
 `;
 
 export const Condition = styled.div`

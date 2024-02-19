@@ -32,6 +32,7 @@ export type ConditionTexts = {
   duplicateTooltip: string;
   removeTooltip: string;
   conditionSuffix: string;
+  stepNamePrefix: string;
 };
 
 export type ConditionProps = {
