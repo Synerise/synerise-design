@@ -1,13 +1,13 @@
 import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'react';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 import { debounce } from 'lodash';
 import { useCombinedRefs } from '@synerise/ds-utils';
 import './style/index.less';
 import * as S from './VirtualScrollbar.styles';
-import { ScrollbarProps } from '../Scrollbar.types';
+import { VirtualScrollbarProps } from '../Scrollbar.types';
 
 // eslint-disable-next-line import/prefer-default-export
-export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
+export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
   (
     {
       absolute = false,
@@ -20,6 +20,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
       style,
       fetchData,
       onScroll,
+      scrollbarOptions,
       onYReachEnd,
     },
     forwardedRef
@@ -83,7 +84,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, ScrollbarProps>(
         }} // workaround: https://github.com/goldenyz/react-perfect-scrollbar/issues/94#issuecomment-619131257
         onScroll={onScroll}
         onScrollUp={handleScrollUp}
-        options={{ minScrollbarLength: 48 }}
+        options={{ ...scrollbarOptions, minScrollbarLength: 48 }}
         onYReachEnd={handleReachEnd}
         className={`${largeSize ? 'large-size' : ''}`}
       >

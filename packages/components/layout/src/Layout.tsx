@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { AngleLeftS, AngleRightS, CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -7,7 +7,7 @@ import * as T from './Layout.types';
 
 const DEFAULT_SIDEBAR_WIDTH = 320;
 
-const Layout: React.FC<T.LayoutProps> = ({
+const Layout = ({
   header,
   left,
   right,
@@ -16,26 +16,44 @@ const Layout: React.FC<T.LayoutProps> = ({
   styles,
   subheader,
   fullPage = false,
+  nativeScroll,
+  nativeScrollRef,
+  fillViewport,
+  viewportTopOffset,
   sidebarAnimationDisabled,
   renderLeftSidebarControls = false,
   renderRightSidebarControls = false,
   leftSidebarWithDnd = false,
   rightSidebarWithDnd = false,
   mainSidebarWithDnd = false,
-}) => {
-  const leftSidebarWidth = React.useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
-  const rightSidebarWidth = React.useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
-  const showLeftSidebar = React.useMemo(
-    () => left?.opened || !renderLeftSidebarControls,
-    [left, renderLeftSidebarControls]
-  );
-  const showRightSidebar = React.useMemo(
+}: T.LayoutProps) => {
+  const leftSidebarWidth = useMemo(() => left?.width || DEFAULT_SIDEBAR_WIDTH, [left]);
+  const rightSidebarWidth = useMemo(() => right?.width || DEFAULT_SIDEBAR_WIDTH, [right]);
+  const showLeftSidebar = useMemo(() => left?.opened || !renderLeftSidebarControls, [left, renderLeftSidebarControls]);
+  const showRightSidebar = useMemo(
     () => right?.opened || !renderRightSidebarControls,
     [right, renderRightSidebarControls]
   );
 
+  const mainColumnInner = nativeScroll ? (
+    <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner} ref={nativeScrollRef}>
+      {children}
+    </S.LayoutMainInner>
+  ) : (
+    <Scrollbar absolute withDnd={mainSidebarWithDnd}>
+      <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
+        {children}
+      </S.LayoutMainInner>
+    </Scrollbar>
+  );
+
   return (
-    <S.LayoutContainer className={`ds-layout ${className || ''}`}>
+    <S.LayoutContainer
+      fillViewport={fillViewport}
+      viewportTopOffset={viewportTopOffset}
+      nativeScroll={nativeScroll}
+      className={`ds-layout ${className || ''}`}
+    >
       {header ? <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader> : null}
       <S.LayoutContent>
         <S.LayoutBody>
@@ -82,11 +100,7 @@ const Layout: React.FC<T.LayoutProps> = ({
             rightSidebarWidth={rightSidebarWidth}
           >
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
-            <Scrollbar absolute withDnd={mainSidebarWithDnd}>
-              <S.LayoutMainInner fullPage={fullPage} style={styles && styles.mainInner}>
-                {children}
-              </S.LayoutMainInner>
-            </Scrollbar>
+            {mainColumnInner}
           </S.LayoutMain>
           <>
             {right ? (

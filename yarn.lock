@@ -6490,6 +6490,19 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@ofsajd/perfect-scrollbar@1.0.0":
+  version "1.0.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@ofsajd/perfect-scrollbar/-/perfect-scrollbar-1.0.0.tgz#2cf8de3d7147bd43f29b7e82ee3603a53b0258da"
+  integrity sha1-LPjePXFHvUPym36C7jYDpTsCWNo=
+
+"@ofsajd/react-perfect-scrollbar@1.0.0":
+  version "1.0.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@ofsajd/react-perfect-scrollbar/-/react-perfect-scrollbar-1.0.0.tgz#769435dde66d4dc57ea3f352899d257414e29459"
+  integrity sha1-dpQ13eZtTcV+o/NSiZ0ldBTilFk=
+  dependencies:
+    "@ofsajd/perfect-scrollbar" "1.0.0"
+    prop-types "^15.6.1"
+
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.10"
   resolved "https://registry.npmjs.org/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.10.tgz"

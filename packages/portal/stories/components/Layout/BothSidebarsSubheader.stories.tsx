@@ -18,6 +18,7 @@ const stories = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
+          useNativeScroll={boolean('Use native scroll for main content', true)}
           left={{
             content: <S.Placeholder></S.Placeholder>,
             opened: leftOpened,
@@ -34,7 +35,7 @@ const stories = {
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
               <Card>
-                <S.Placeholder />
+                <S.Placeholder height={1000} />
               </Card>
             </Grid.Item>
           </Grid>
