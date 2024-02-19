@@ -12,6 +12,7 @@ import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
 import * as CONST from '../constants';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+import { toIsoStringWithoutZone } from "../utils";
 
 const Footer: React.FC<Props> = ({
   canApply,
@@ -38,7 +39,10 @@ const Footer: React.FC<Props> = ({
       if (format || typeof date === 'string') {
         return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
       }
-      return formatValue(date, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+
+      const parseDate = new Date(toIsoStringWithoutZone(date));
+
+      return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
     [footerFormat, format, formatValue, intl.locale, valueFormatOptions, showTime]
   );

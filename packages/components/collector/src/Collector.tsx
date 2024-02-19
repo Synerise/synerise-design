@@ -284,12 +284,12 @@ const Collector = ({
   const handleInput = disableSearch
     ? undefined
     : (event: ChangeEvent<HTMLInputElement>) => {
-      
-      const isPasteEvent = 'inputType' in event.nativeEvent &&
-        event.nativeEvent.inputType === 'insertFromPaste' &&
-        allowMultipleValues &&
-        allowPaste && 
-        event.target.value.includes(valuesSeparator);
+        const isPasteEvent =
+          'inputType' in event.nativeEvent &&
+          event.nativeEvent.inputType === 'insertFromPaste' &&
+          allowMultipleValues &&
+          allowPaste &&
+          event.target.value.includes(valuesSeparator);
 
         if (!isPasteEvent) {
           onSearchValueChange && onSearchValueChange(event.target.value);
@@ -338,19 +338,21 @@ const Collector = ({
         disabled={!!disabled}
         displayLookupKey={displayLookupKey}
       />
-      <S.SearchWrapper><S.Input
-        onPaste={handlePaste}
-        onKeyPress={handleKeyPress}
-        onKeyDown={handleKeyDown}
-        ref={inputRef}
-        value={value}
-        onInput={handleInput}
-        disabled={disabled}
-        transparent={!!disableSearch}
-        hidden={!!disableSearch && !!selectedValues.length}
-        placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
-        hasValues={!!selectedValues?.length}
-      /></S.SearchWrapper>
+      <S.SearchWrapper>
+        <S.Input
+          onPaste={handlePaste}
+          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
+          ref={inputRef}
+          value={value}
+          onInput={handleInput}
+          disabled={disabled}
+          transparent={!!disableSearch}
+          hidden={!!disableSearch && !!selectedValues.length}
+          placeholder={selectedValues && selectedValues.length ? undefined : texts?.placeholder}
+          hasValues={!!selectedValues?.length}
+        />
+      </S.SearchWrapper>
     </S.MainContent>
   );
 

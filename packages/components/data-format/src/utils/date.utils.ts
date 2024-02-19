@@ -18,7 +18,7 @@ export const getDatesRange = (start: Date, end: Date, interval: dayjs.UnitType):
   const endDate = dayjs(end);
   const diffInUnits = endDate.diff(startDate, interval);
   return Array.from(Array(diffInUnits + 1).keys()).map(i => {
-    return startDate.add(i, interval).toDate();
+    return startDate.add(i, interval as dayjs.ManipulateType).toDate();
   });
 };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { debounce } from 'lodash';
-import {ReactText, useEffect, useRef} from "react";
+import { ReactText, useEffect, useRef } from 'react';
 import { InputProps } from '../../Factors.types';
 
 const NumberInput: React.FC<InputProps> = ({
@@ -25,9 +25,9 @@ const NumberInput: React.FC<InputProps> = ({
   }, [value]);
 
   const debouncedOnChange = useRef(
-      debounce((inputValue: ReactText | undefined): void => {
-        onChangeRef.current && onChangeRef.current(inputValue);
-      }, 300)
+    debounce((inputValue: ReactText | undefined): void => {
+      onChangeRef.current && onChangeRef.current(inputValue);
+    }, 300)
   ).current;
 
   useEffect(() => {

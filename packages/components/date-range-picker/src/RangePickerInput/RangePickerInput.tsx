@@ -1,13 +1,10 @@
 import * as React from 'react';
-import fnsIsValid from 'date-fns/isValid';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
 
-// eslint-disable-next-line import/no-named-default
-import { default as fnsFormat } from '../dateUtils/format';
 import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
@@ -17,7 +14,6 @@ import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeD
 
 const RangePickerInput: React.FC<RangePickerInputProps> = ({
   value,
-  format,
   valueFormatOptions,
   showTime,
   onChange,
@@ -63,15 +59,10 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
 
   const getText = React.useCallback(
     (dateToDisplay): string => {
-      if (!dateToDisplay || !fnsIsValid(dateToDisplay)) return '';
-      let dateValue = dateToDisplay;
-      if (typeof dateToDisplay === 'string') {
-        dateValue = new Date(dateToDisplay);
-        return fnsFormat(dateValue, format || showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-      }
-      return formatValue(dateToDisplay, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+      const dateValue = new Date(dateToDisplay);
+      return formatValue(dateValue, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [format, showTime, formatValue, valueFormatOptions]
+    [showTime, formatValue, valueFormatOptions]
   );
 
   const renderFromDate = React.useCallback(() => {

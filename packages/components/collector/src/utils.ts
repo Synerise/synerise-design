@@ -3,7 +3,10 @@ import { CollectorValue } from './Collector.types';
 
 const INPUT_MIN_WIDTH = 150;
 export const arrayToLowerCase = (array: CollectorValue[] = [], lookupKey: string): CollectorValue[] =>
-  array.map(element => ({ ...element, [lookupKey]:  element[lookupKey] && (element[lookupKey] as string).toLowerCase() }));
+  array.map(element => ({
+    ...element,
+    [lookupKey]: element[lookupKey] && (element[lookupKey] as string).toLowerCase(),
+  }));
 
 export const scrollWithHorizontalArrow = (
   ref: React.RefObject<HTMLElement>,
@@ -17,7 +20,6 @@ export const scrollWithHorizontalArrow = (
     ref?.current && ref.current.scrollBy({ left: scrollStep, behavior: 'smooth' });
   }
 };
-
 
 export const filterOutNullishArrayItems = <T extends unknown>(array: (T | null | '' | undefined)[]) => {
   const filtered: T[] = array.filter(val => Boolean(val)) as T[];
@@ -41,6 +43,6 @@ export const filterValueSuggestions = (
   return suggestions.filter(
     item =>
       (item[lookupKey] as string).toLowerCase().includes(searchValue.toLowerCase()) &&
-      !selectedLowerCase.find(x=> x[lookupKey] && item[lookupKey] && x[lookupKey]===item[lookupKey].toLowerCase())
+      !selectedLowerCase.find(x => x[lookupKey] && item[lookupKey] && x[lookupKey] === item[lookupKey].toLowerCase())
   );
 };

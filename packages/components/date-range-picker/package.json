@@ -54,6 +54,7 @@
     "@synerise/ds-tooltip": "^0.14.17",
     "@synerise/ds-utils": "^0.24.24",
     "date-fns": "^2.16.1",
+    "date-fns-tz": "1.1.4",
     "dayjs": "^1.8.35",
     "lodash": "^4.17.20",
     "ramda": "^0.27.0",
