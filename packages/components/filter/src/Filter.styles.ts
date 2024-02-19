@@ -57,6 +57,9 @@ export const ExpressionWrapper = styled.div<{ index: number }>`
     justify-content: center;
     padding: 0;
     box-shadow: 0 16px 32px 0 #23293619;
+    &&&&.ghost-element {
+      z-index: 100 !important;
+    }
     ${DragIcon} {
       visibility: visible;
       opacity: 1;
