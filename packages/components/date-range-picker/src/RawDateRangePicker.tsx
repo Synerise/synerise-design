@@ -14,7 +14,7 @@ import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
 import Footer from './Footer/Footer';
-import { getDefaultTexts, normalizeRange } from './utils';
+import { getDefaultTexts, normalizeRange, toIsoString } from './utils';
 import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
@@ -131,8 +131,9 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
   };
 
   handleApply = (): void => {
+    const { intl } = this.props;
     const { value } = this.state;
-    const { forceAbsolute, onApply, valueTransformer } = this.props;
+    const { forceAbsolute, onApply } = this.props;
     if (forceAbsolute && value.type === RELATIVE) {
       onApply &&
         onApply({
@@ -149,11 +150,13 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
     if (onApply) {
       const valueToEmit = {
         ...value,
-        from: value.type === ABSOLUTE && value.from instanceof Date ? value.from.toISOString() : undefined,
-        to: value.type === ABSOLUTE && value.to instanceof Date ? value.to.toISOString() : undefined,
+        from:
+          value.type === ABSOLUTE && value.from instanceof Date ? toIsoString(value.from, intl.timeZone) : undefined,
+        to: value.type === ABSOLUTE && value.to instanceof Date ? toIsoString(value.to, intl.timeZone) : undefined,
         type: value.type,
       } as DateRange;
-      onApply(valueTransformer?.(valueToEmit) ?? valueToEmit);
+
+      onApply(valueToEmit);
     }
   };
 
@@ -306,7 +309,7 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
       <Container className={containerClass}>
         <RangePicker
           showNowButton={showNowButton}
-          value={value}
+          value={normalizeRange(value)}
           onChange={this.handleRangeChange}
           mode={mode}
           disabledDate={disabledDate}

@@ -105,7 +105,7 @@ export const Input = styled(BorderLessInput)<
   min-width: unset;
   line-height: 18px;
   width: calc(100% - 12px);
-  
+
   ${(props): FlattenSimpleInterpolation | false =>
     props.hidden &&
     css`
@@ -120,7 +120,7 @@ export const Input = styled(BorderLessInput)<
 `;
 
 export const SearchWrapper = styled.div`
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 `;
 
 export { Value as CollectorValue };

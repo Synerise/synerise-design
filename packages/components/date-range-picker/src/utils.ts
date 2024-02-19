@@ -1,6 +1,6 @@
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
-import { legacyParse } from '@date-fns/upgrade/v2';
+import { getTimezoneOffset } from 'date-fns-tz';
 
 import { omit } from 'lodash';
 
@@ -13,6 +13,34 @@ import END_OF from './dateUtils/endOf';
 import { Texts } from './DateRangePicker.types';
 
 export { START_OF, END_OF };
+
+const rmvTZOffset = (dateString: string | Date) => {
+  const date = dateString.toString();
+  const finalDate = date.replace(/[+-]\d\d:\d\d$/, '');
+
+  return finalDate;
+};
+
+const pad = (num: number) => (num < 10 ? '0' : '') + num;
+
+export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
+  if (!timeZone) return new Date(date).toISOString();
+
+  const timeZoneOffset = getTimezoneOffset(timeZone, date);
+  const dif = timeZoneOffset >= 0 ? '+' : '-';
+
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
+    date.getMinutes()
+  )}:${pad(date.getSeconds())}${dif}${pad(Math.floor(Math.abs(timeZoneOffset) / 60 / 60 / 1000))}:${pad(
+    Math.abs(timeZoneOffset) % 60
+  )}`;
+}
+
+export function toIsoStringWithoutZone(date: Date) {
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
+    date.getMinutes()
+  )}:${pad(date.getSeconds())}`;
+}
 
 export const normalizeRange = (range: DateRange): DateRange => {
   if (!range || !range.type) {
@@ -57,14 +85,18 @@ export const normalizeRange = (range: DateRange): DateRange => {
     return normalizedRange as DateRange;
   }
   const keys = Object.keys(range);
-  const from = range.from ? legacyParse(range.from) : undefined;
-  const to = range.to ? legacyParse(range.to) : undefined;
   const dropNonAbsolute = (dateRange: DateRange): DateRange =>
     omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
-  const absoluteRange = { ...dropNonAbsolute(range), from, to };
+  const absoluteRange = {
+    ...dropNonAbsolute(range),
+    from: range.from ? new Date(rmvTZOffset(range?.from)) : undefined,
+    to: range.to ? new Date(rmvTZOffset(range?.to)) : undefined,
+  };
+
   if (!keys.includes('from') && !keys.includes('to')) {
     absoluteRange.translationKey = 'allTime';
   }
+
   return absoluteRange;
 };
 

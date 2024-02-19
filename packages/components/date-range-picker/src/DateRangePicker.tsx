@@ -67,7 +67,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   };
 
   const handleRangePickerInputClick = readOnly ? undefined : (): void => setPopupVisible(undefined);
-
   const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
     <RangePickerInput
       onClick={handleRangePickerInputClick}
