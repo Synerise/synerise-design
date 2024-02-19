@@ -51,7 +51,7 @@ import Layout from '@synerise/ds-layout'
 | mainSidebarWithDnd         | Set withDnd in main sidebar scrollbar                             | boolean             | false   |
 | rightSidebarWithDnd        | Set withDnd in right sidebar scrollbar                            | boolean             | false   |
 | nativeScroll               | Set main column to use native browser scroll                      | boolean             | false   |
-| nativeScrollRef            | ref to pass to scrollable element                                 | Ref<HTMLDivElement> | -       |
+| nativeScrollRef            | ref to pass to scrollable element                                 | Ref&lt;HTMLDivElement&gt; | -       |
 | fillViewport               | sets layout to absolute with calc(100vh - viewportTopOffset) height | boolean           | false   |
 | viewportTopOffset          | top viewport offset (if fillViewport is true)                     | number              | 55      |
 
