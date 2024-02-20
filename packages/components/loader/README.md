@@ -35,4 +35,5 @@ import Loader from '@synerise/ds-loader'
 | percent          | percent number of loader     | number / React.ReactNode  | -           |
 | percentFormatter | prop to keep in order        | React.ReactNode           | -           |
 | mode             | prop to set loader in center | absolute / undefined      | -           |
+| className        | css class name               | string                    | -           |
 

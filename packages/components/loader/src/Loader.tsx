@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LoaderProps } from './Loader.types';
 import * as S from './Loader.styles';
 
-const Loader: React.FC<LoaderProps> = ({
+const Loader = ({
   size = 'M',
   label,
   labelPosition = 'right',
@@ -12,9 +12,10 @@ const Loader: React.FC<LoaderProps> = ({
   text,
   fontSize,
   mode,
-}) => {
+  className,
+}: LoaderProps) => {
   return (
-    <S.LoaderWrapper mode={mode} className="ds-loader" labelPosition={labelPosition}>
+    <S.LoaderWrapper mode={mode} className={`ds-loader ${className}`} labelPosition={labelPosition}>
       <S.Wrapper size={size}>
         <S.Loader size={size} color={color} />
       </S.Wrapper>
