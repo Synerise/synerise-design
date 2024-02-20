@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 export enum LoaderSize {
   'S' = 12,
@@ -13,12 +13,13 @@ export enum FontSize {
 export type LoaderProps = {
   size?: 'S' | 'M' | 'L';
   fontSize?: 'small' | 'medium';
-  text?: string | React.ReactNode;
-  label?: string | React.ReactNode;
+  text?: ReactNode;
+  label?: ReactNode;
   labelPosition?: 'bottom' | 'right';
   mode?: 'absolute';
-  percent?: number | React.ReactNode;
-  percentFormatter?: (percent?: number | React.ReactNode) => React.ReactNode;
+  percent?: ReactNode;
+  className?: string;
+  percentFormatter?: (percent?: ReactNode) => ReactNode;
   color?:
     | string
     | 'blue'
