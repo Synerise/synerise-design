@@ -41,7 +41,7 @@ const Card = ({
       return null;
     }
     return (
-      <S.TitleWrapper compact={compactHeader} description={Boolean(description)}>
+      <S.TitleWrapper data-testid="card-title" compact={compactHeader} description={Boolean(description)}>
         {title && (
           <S.Title level={4} fat={!!fatTitle}>
             {title}
@@ -59,6 +59,7 @@ const Card = ({
       style={style}
       className={`ds-card ${className || ''}`}
       lively={lively}
+      data-testid="card-wrapper"
       background={background}
       /** Necessary for passing down data-* attributes */
       {...props}
@@ -79,7 +80,7 @@ const Card = ({
 
           <S.HeaderContent compact={compactHeader} hasIconOrAvatar={Boolean(icon || avatar)}>
             {renderTitle()}
-            {description && <S.Description>{description}</S.Description>}
+            {description && <S.Description data-testid="card-description">{description}</S.Description>}
           </S.HeaderContent>
 
           {headerSideChildren && (
@@ -94,7 +95,7 @@ const Card = ({
 
       {staticContent && (
         <AnimateHeight className="static-content-card-animation" duration={300} height={hideContent ? 'auto' : 0}>
-          <S.ChildrenContainer>
+          <S.ChildrenContainer data-testid="card-static-content">
             <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
               {staticContent}
             </S.PaddingWrapper>
@@ -103,7 +104,7 @@ const Card = ({
       )}
 
       <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
-        <S.ChildrenContainer>
+        <S.ChildrenContainer data-testid="card-content">
           <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
             {children}
           </S.PaddingWrapper>
