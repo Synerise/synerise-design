@@ -35,6 +35,7 @@ export type InformationCardProps = {
    * description in a tooltip shown when user (note renderBadge has to be provided)
    */
   avatarTooltipText?: string;
+  className?: string;
   /**
    * subtitle's value to be copied when clicking on the copy button
    */

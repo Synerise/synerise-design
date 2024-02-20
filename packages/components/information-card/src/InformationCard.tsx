@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, PropsWithChildren, useState, ReactNode } from 'react';
 
 import { Text } from '@synerise/ds-typography';
 import Button from '@synerise/ds-button';
@@ -24,7 +24,7 @@ import 'rc-trigger/assets/index.less';
 /**
  * Custom builder for badgeSlots with icon
  */
-export function buildIconBadge(data: BadgeData): JSX.Element {
+export function buildIconBadge(data: BadgeData) {
   const avatarExtra = { object: {} as ObjectAvatarProps['object'] };
   if (data.avatarTooltipText) {
     avatarExtra.object = {
@@ -40,7 +40,7 @@ export function buildIconBadge(data: BadgeData): JSX.Element {
   );
 }
 
-const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
+const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
   (
     {
       actionButton,
@@ -59,11 +59,12 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
       icon: iconElement = <SegmentM />,
       iconColor,
       descriptionConfig,
+      className,
       ...props
     },
     ref
-  ): JSX.Element => {
-    const copyableSlot = (content: string): JSX.Element => (
+  ) => {
+    const copyableSlot = (content: string) => (
       <RowWrapper copyable>
         <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
           <span>{content}</span>
@@ -79,11 +80,17 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
     );
 
     return (
-      <S.InfoCardWrapper ref={ref} aria-label="information card" className="ds-info-card" asTooltip={asTooltip}>
+      <S.InfoCardWrapper
+        data-testid="information-card"
+        ref={ref}
+        aria-label="information card"
+        className={`ds-info-card ${className}`}
+        asTooltip={asTooltip}
+      >
         <Card
           background="white"
           // @ts-ignore
-          renderBadge={(): React.ReactNode => {
+          renderBadge={() => {
             return (
               renderBadge !== null && (
                 <div style={{ marginRight: '16px' }}>
@@ -120,14 +127,14 @@ const InformationCard = React.forwardRef<HTMLDivElement, InformationCardProps>(
   }
 );
 
-export function buildInitialsBadge(name: string): JSX.Element {
+export function buildInitialsBadge(name: string) {
   return <Initials name={name} />;
 }
 
 /**
  * helper for wrapping a notice
  */
-export function buildExtraInfo(message: string, level?: InlineAlertType): JSX.Element {
+export function buildExtraInfo(message: string, level?: InlineAlertType) {
   return (
     <S.ExtraInfo>
       <Alert.InlineAlert type={level || 'warning'} message={message} />
@@ -138,19 +145,19 @@ export function buildExtraInfo(message: string, level?: InlineAlertType): JSX.El
 /**
  * Helper for returning initials. Handles cases such as John Smith, J. Smith, JS.
  */
-export function getInitials(name: string): string {
+export function getInitials(name: string) {
   const hasTokens = name.indexOf(' ') !== -1;
   return name.substring(0, hasTokens ? 1 : 2) + (hasTokens ? name.charAt(name.lastIndexOf(' ') + 1) : '');
 }
 
-type InitialsProps = React.PropsWithChildren<{
+type InitialsProps = PropsWithChildren<{
   name?: string;
 }>;
 
 /**
  * Wrapper for obtaining an avatar based on initials
  */
-export function Initials({ name, children }: InitialsProps): JSX.Element {
+export function Initials({ name, children }: InitialsProps) {
   return (
     <Badge>
       <Avatar size="medium" shape="circle" backgroundColor="blue">
@@ -161,18 +168,18 @@ export function Initials({ name, children }: InitialsProps): JSX.Element {
 }
 
 type DescriptionFieldProps = {
-  extraInformation?: React.ReactNode;
+  extraInformation?: ReactNode;
   descriptionConfig?: SubtleTextAreaProps | string | null;
 };
 
 /**
  * Returns default information card's description section.
  */
-function DescriptionField({ extraInformation = undefined, descriptionConfig }: DescriptionFieldProps): JSX.Element {
+function DescriptionField({ extraInformation = undefined, descriptionConfig }: DescriptionFieldProps) {
   // note: if popover containing this information card will have
   // `destroyTooltipOnHide` (or `keepParent`) set to false, then description state hook will be getting reset
-  const [description, setDescription] = React.useState<string>('');
-  const renderDescription = (): React.ReactNode => {
+  const [description, setDescription] = useState<string>('');
+  const renderDescription = () => {
     if (descriptionConfig) {
       return typeof descriptionConfig === 'string' ? (
         <S.NonEditableWrapper>{descriptionConfig}</S.NonEditableWrapper>
@@ -180,9 +187,9 @@ function DescriptionField({ extraInformation = undefined, descriptionConfig }: D
         <SubtleForm.TextArea
           minRows={1}
           value={description}
-          onChange={(v): void => {
-            descriptionConfig.onChange && descriptionConfig.onChange(v);
-            setDescription(v);
+          onChange={value => {
+            descriptionConfig.onChange && descriptionConfig.onChange(value);
+            setDescription(value);
           }}
           placeholder="placeholder"
           suffixTooltip="Edit"
@@ -190,7 +197,7 @@ function DescriptionField({ extraInformation = undefined, descriptionConfig }: D
           {...(descriptionConfig.error
             ? {
                 error: descriptionConfig.error,
-                errorText: (isErr: boolean, text: string): string => (isErr ? text : ''),
+                errorText: (isErr: boolean, text: string) => (isErr ? text : ''),
               }
             : {})}
           disabled={descriptionConfig.disabled}
@@ -201,7 +208,7 @@ function DescriptionField({ extraInformation = undefined, descriptionConfig }: D
   };
 
   return (
-    <S.DescriptionWrapper>
+    <S.DescriptionWrapper data-testid="information-card-description">
       <S.AlertWrapper>{extraInformation}</S.AlertWrapper>
       {descriptionConfig && renderDescription()}
     </S.DescriptionWrapper>
@@ -212,10 +219,10 @@ function DescriptionField({ extraInformation = undefined, descriptionConfig }: D
  * Tooltip helper for action button in footer
  */
 function withTooltip(
-  Component: React.ReactNode,
+  Component: ReactNode,
   actionButtonTooltipText: string,
   props?: Omit<TooltipProps, 'tooltipTypes'>
-): JSX.Element {
+) {
   // type is related to ds-tooltip's: shouldRenderDescription (it makes use of description prop only if tooltip type!=='default')
   return (
     <Tooltip type={'default' as tooltipTypes} title={actionButtonTooltipText} {...props}>
@@ -235,11 +242,11 @@ function Footer({
 }: { text: InformationCardProps['footerText'] } & Pick<
   InformationCardProps,
   'actionButton' | 'actionButtonTooltipText' | 'actionButtonTooltipText' | 'actionButtonCallback'
->): JSX.Element {
+>) {
   return (
     <>
       <Divider marginTop={8} marginBottom={0} dashed />
-      <S.Flex style={{ alignItems: 'center' }}>
+      <S.Flex data-testid="information-card-footer" style={{ alignItems: 'center' }}>
         <S.FlexGrow>{text && <Text size="xsmall">{text}</Text>}</S.FlexGrow>
         <S.ActionButtonContainer>
           {(actionButton &&
