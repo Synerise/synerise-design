@@ -12,16 +12,12 @@
   "workspaces": [
     "packages/components/*",
     "packages/portal",
-    "packages/portal-plugins/*",
-    "packages/docs-site/website"
+    "packages/portal-plugins/*"
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
-    "docs-build": "npx styleguidist build",
-    "docs-dev": "npx styleguidist server",
-    "docs-watch": "cd packages/docs-site/website && yarn docs-watch",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
@@ -29,13 +25,12 @@
     "storybook": "yarn run build && cd packages/portal && yarn run storybook",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "types": "yarn npx:lerna run types --parallel",
-    "update-docs": "node ./scripts/docs/componentmd.js",
     "zeplin": "cd config/zeplin && zeplin connect"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn run update-docs && git add *.md && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
