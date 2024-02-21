@@ -31,38 +31,31 @@ const Toast = ({
   expanded,
   onExpand,
   onCloseClick,
-  show,
   button,
+  className,
 }: Props) => {
-  const renderMessage = useMemo(() => {
-    return (
-      <S.AlertContent>
-        {message && (
-          <S.AlertMessage customColorText={customColorText} color={color}>
-            {message}
-          </S.AlertMessage>
-        )}
-        <S.Text customColorText={customColorText} color={color}>
-          {description && (
-            <S.AlertDescription
-              expandedContent={expandedContent}
-              button={button}
-              customColorText={customColorText}
-              color={color}
-            >
-              {description}
-            </S.AlertDescription>
-          )}
-        </S.Text>
-        {expandedContent && expanded && (
-          <S.ListWrapper description={description} visible={expanded}>
-            {expandedContent}
-          </S.ListWrapper>
-        )}
-        {button}
-      </S.AlertContent>
-    );
-  }, [message, description, expandedContent, customColorText, color, expanded, button]);
+  const noToastContent = !button && !description && !expandedContent;
+  const toastContent = (description || expandedContent || button) && (
+    <S.AlertContent hasBottomMargin={Boolean(button || description || (expandedContent && expanded))}>
+      {description && (
+        <S.AlertDescription
+          expandedContent={expandedContent}
+          button={button}
+          customColorText={customColorText}
+          color={color}
+        >
+          {description}
+        </S.AlertDescription>
+      )}
+      {expandedContent && (
+        <S.ListWrapper description={description} visible={expanded}>
+          {expandedContent}
+        </S.ListWrapper>
+      )}
+      {button}
+    </S.AlertContent>
+  );
+
   const renderIcon = useMemo(() => {
     if (icon) return icon;
     if (ICONS[type]) return ICONS[type];
@@ -73,22 +66,24 @@ const Toast = ({
   }, [onExpand, expanded]);
 
   return (
-    <S.Container
-      expander={expander}
-      expandedContent={expandedContent}
-      withClose={withClose}
-      visible={show}
-      onCloseClick={onCloseClick}
-      color={color}
-      customColor={customColor}
-    >
+    <S.Container color={color} customColor={customColor} className={className}>
+      {(customIcon || renderIcon) && (
+        <S.IconWrapper colorIcon={colorIcon} customColorIcon={customColorIcon}>
+          {customIcon || <Icon component={renderIcon} />}
+        </S.IconWrapper>
+      )}
+
       <S.WrapperSectionMessage>
-        <S.AllContent>
-          <S.IconWrapper colorIcon={colorIcon} customColorIcon={customColorIcon}>
-            {customIcon || <Icon component={renderIcon} />}
-          </S.IconWrapper>
-          {renderMessage}
-        </S.AllContent>
+        <S.AlertMessage
+          noToastContent={noToastContent}
+          hasClose={!!withClose}
+          hasExpander={!!expander}
+          customColorText={customColorText}
+          color={color}
+        >
+          {message}
+        </S.AlertMessage>
+
         <S.ButtonWrapper>
           {expander && (
             <S.IconExpanderWrapper
@@ -106,6 +101,8 @@ const Toast = ({
             </S.IconCloseWrapper>
           )}
         </S.ButtonWrapper>
+
+        {toastContent}
       </S.WrapperSectionMessage>
     </S.Container>
   );

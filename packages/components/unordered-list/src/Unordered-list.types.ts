@@ -1,18 +1,19 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 export type UnorderedListItem = {
   id: string;
-  label: React.ReactNode | string;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
+  label: ReactNode;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
   index: number;
   subMenu?: UnorderedListItem[];
   subMenuProps?: Omit<ListProps, 'data'>;
-  text?: React.ReactNode | string;
+  text?: ReactNode;
 };
 
 export type ListProps = {
   data: UnorderedListItem[];
-  indexFormatter?: (index: number) => React.ReactNode | string;
-  text?: React.ReactNode | string;
+  indexFormatter?: (index: number) => ReactNode;
+  text?: ReactNode;
+  className?: string;
 };

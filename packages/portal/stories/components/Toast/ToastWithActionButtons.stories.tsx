@@ -1,4 +1,4 @@
-import { select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import Icon, {
   Check3M, DuplicateS,
   InfoFillM,
@@ -113,6 +113,7 @@ const stories = {
           message={message}
           type={type}
           expander
+          withClose={boolean('with close button', true)}
           expanded={opened}
           onExpand={setOpened}
           color={additionalAlertMapper[type].color}
