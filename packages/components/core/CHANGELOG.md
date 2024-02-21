@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.11...@synerise/ds-core@0.40.12) (2024-02-21)
+
+
+### Bug Fixes
+
+* **condition:** updated step name prefix styles ([b6b53fe](https://github.com/synerise/synerise-design/commit/b6b53feabe10428ab9e11ce9ebd7167dd881cd11))
+
+
+
+
+
 ## [0.40.11](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.10...@synerise/ds-core@0.40.11) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-core

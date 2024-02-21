@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.16.3...@synerise/ds-card@0.16.4) (2024-02-21)
+
+
+### Bug Fixes
+
+* **card:** added testids and classname ([74b5a0a](https://github.com/Synerise/synerise-design/commit/74b5a0a56adf2f08963f6c46b93328524680d519))
+
+
+
+
+
 ## [0.16.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.16.2...@synerise/ds-card@0.16.3) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-card

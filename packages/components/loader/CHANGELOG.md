@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.53...@synerise/ds-loader@0.3.0) (2024-02-21)
+
+
+### Features
+
+* **loader:** added styled support (classname prop) ([28e947f](https://github.com/Synerise/synerise-design/commit/28e947ff79aef883ca7efbc0f78779188b8c4e98))
+
+
+
+
+
 ## [0.2.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-loader@0.2.52...@synerise/ds-loader@0.2.53) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-loader

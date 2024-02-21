@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.21.8...@synerise/ds-condition@0.21.9) (2024-02-21)
+
+
+### Bug Fixes
+
+* **condition:** updated step name prefix styles ([b6b53fe](https://github.com/Synerise/synerise-design/commit/b6b53feabe10428ab9e11ce9ebd7167dd881cd11))
+
+
+
+
+
 ## [0.21.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.21.7...@synerise/ds-condition@0.21.8) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-condition

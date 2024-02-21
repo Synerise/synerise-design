@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.205.0](https://github.com/synerise/synerise-design/compare/portal@0.204.0...portal@0.205.0) (2024-02-21)
+
+
+### Features
+
+* **wizard:** navigation in footer, editable header ([e4c70fa](https://github.com/synerise/synerise-design/commit/e4c70fa734e0557d236d0fee36d0b9b83a99ad09))
+
+
+
+
+
 # [0.204.0](https://github.com/synerise/synerise-design/compare/portal@0.203.0...portal@0.204.0) (2024-02-19)
 
 

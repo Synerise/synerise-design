@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.58](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.57...@synerise/ds-radio@0.11.58) (2024-02-21)
+
+**Note:** Version bump only for package @synerise/ds-radio
+
+
+
+
+
 ## [0.11.57](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.56...@synerise/ds-radio@0.11.57) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-radio

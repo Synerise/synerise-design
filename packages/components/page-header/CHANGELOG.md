@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.14.97...@synerise/ds-page-header@0.15.0) (2024-02-21)
+
+
+### Features
+
+* **wizard:** navigation in footer, editable header ([e4c70fa](https://github.com/synerise/synerise-design/commit/e4c70fa734e0557d236d0fee36d0b9b83a99ad09))
+
+
+
+
+
 ## [0.14.97](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.14.96...@synerise/ds-page-header@0.14.97) (2024-02-19)
 
 **Note:** Version bump only for package @synerise/ds-page-header

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-navbar",
-  "version": "0.7.24",
+  "version": "0.7.25",
   "description": "Navbar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -42,7 +42,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.24.25",
+    "@synerise/ds-utils": "^0.24.26",
     "@testing-library/jest-dom": "5.1.1"
   }
 }
