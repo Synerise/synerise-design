@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Layout from '@synerise/ds-layout';
-import PageHeader from '@synerise/ds-page-header/dist/PageHeader';
+import PageHeader from '@synerise/ds-page-header';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';
 import { useIntl } from 'react-intl';
@@ -13,7 +13,9 @@ const Wizard = ({
   stepper,
   contentWidth,
   headerAction,
+  footerAction,
   footer,
+  footerLeft,
   title,
   onClose,
   children,
@@ -23,13 +25,40 @@ const Wizard = ({
   texts,
   visible,
   className,
+  navigationInFooter,
+  headerInlineEdit,
+  headerAvatar,
 }: WizardProps) => {
   const intl = useIntl();
 
+  const prevButtonType = navigationInFooter ? 'secondary' : 'ghost';
+
   const prevButtonProps = stepButtonProps?.prevButtonProps
     ? stepButtonProps.prevButtonProps
-    : { type: 'ghost', mode: 'icon-label' };
+    : { type: prevButtonType, mode: 'icon-label' };
   const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
+
+  const navButtons = (
+    <>
+      {onPrevStep ? (
+        <Button {...prevButtonProps} onClick={onPrevStep}>
+          <Icon component={<ArrowLeftCircleM />} />{' '}
+          {texts?.prevButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
+        </Button>
+      ) : (
+        <S.ButtonPlaceholder />
+      )}
+      {onNextStep && (
+        <Button {...nextButtonProps} onClick={onNextStep}>
+          {texts?.nextButtonLabel || intl.formatMessage({ id: 'DS.WIZARD.NEXT-BUTTON', defaultMessage: 'Next step' })}
+        </Button>
+      )}
+    </>
+  );
+
+  const hasFooter = Boolean(footer || footerLeft || navigationInFooter);
+
+  const editableTitle = headerInlineEdit !== undefined;
 
   return visible ? (
     <S.WizardWrapper className={classnames(className, 'ds-wizard')}>
@@ -37,7 +66,9 @@ const Wizard = ({
         fullPage
         header={
           <PageHeader
-            title={title}
+            inlineEdit={headerInlineEdit}
+            avatar={editableTitle && headerAvatar}
+            title={!editableTitle && title}
             onClose={onClose}
             rightSide={
               <S.WizardHeader withHeaderAction={!!headerAction}>
@@ -48,29 +79,22 @@ const Wizard = ({
           />
         }
       >
-        <S.WizardContainer withFooter={Boolean(footer)}>
+        <S.WizardContainer withFooter={hasFooter}>
           <S.WizardContent contentWidth={contentWidth}>
             {children}
-            <S.WizardButtons>
-              {onPrevStep ? (
-                <Button {...prevButtonProps} onClick={onPrevStep}>
-                  <Icon component={<ArrowLeftCircleM />} />{' '}
-                  {texts?.prevButtonLabel ||
-                    intl.formatMessage({ id: 'DS.WIZARD.PREV-BUTTON', defaultMessage: 'Back' })}
-                </Button>
-              ) : (
-                <S.ButtonPlaceholder />
-              )}
-              {onNextStep && (
-                <Button {...nextButtonProps} onClick={onNextStep}>
-                  {texts?.nextButtonLabel ||
-                    intl.formatMessage({ id: 'DS.WIZARD.NEXT-BUTTON', defaultMessage: 'Next step' })}
-                </Button>
-              )}
-            </S.WizardButtons>
+            {!navigationInFooter && <S.WizardButtons>{navButtons}</S.WizardButtons>}
           </S.WizardContent>
         </S.WizardContainer>
-        {footer && <S.WizardFooter>{footer}</S.WizardFooter>}
+        {hasFooter && (
+          <S.WizardFooter>
+            {(footerLeft || footer) && <S.FooterLeftSide>{footerLeft || footer}</S.FooterLeftSide>}
+            {navigationInFooter && (
+              <S.FooterRightSide>
+                {footerAction} {navButtons}
+              </S.FooterRightSide>
+            )}
+          </S.WizardFooter>
+        )}
       </Layout>
     </S.WizardWrapper>
   ) : null;

@@ -1,6 +1,10 @@
 import * as React from 'react';
 
 import Wizard from '@synerise/ds-wizard';
+import { ObjectAvatar } from '@synerise/ds-avatar';
+import {
+  MailM,
+} from '@synerise/ds-icon';
 import { boolean, text, object } from '@storybook/addon-knobs';
 import Stepper from '@synerise/ds-stepper';
 import Radio from '@synerise/ds-radio';
@@ -8,7 +12,7 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
-import Icon, { AcademyM, ChatM, HelpM } from '@synerise/ds-icon';
+import Icon, { AcademyM, ArrowLeftCircleM, ChatM, HelpM, SettingsM } from '@synerise/ds-icon';
 
 const steps = [
   {
@@ -74,6 +78,18 @@ const DEFAULT_STATE = {
   visible: false,
 };
 
+const inlineEditProps = {
+  name: 'name-of-input',
+  value: 'Wizard title',
+  maxLength: 60,
+  handleOnChange: action('onChange'),
+  handleOnBlur: () => action('onBlur'),
+  handleOnEnterPress: () => action('onEnterPress'),
+  placeholder: 'Example text',
+  size: 'normal',
+}
+
+
 const stories = {
   default: withState(DEFAULT_STATE)(({ store }) => {
     const setActiveStep = index => store.set({ activeStep: index });
@@ -82,14 +98,23 @@ const stories = {
     const handleClose = () => store.set({ visible: false });
     const handleShow = () => store.set({ visible: true });
     const stepButtonProps = object('stepButtonProps', {});
+    const editableTitle = boolean('Editable header? ', false);
+    const headerAvatar = editableTitle ? <ObjectAvatar iconComponent={<Icon component={<MailM />} color={theme.palette['red-600']} />} badgeStatus="active" /> : undefined;
+    const headerInlineEdit = editableTitle ? inlineEditProps : undefined;
+    const headerAction = boolean('Skip button in header? ', false);
+    const footerAction = boolean('Skip button in footer? ', false);
     return (
       <>
         <Wizard
           visible={store.state.visible}
           title={text('Set wizard title', 'Wizard title')}
+          headerAvatar={headerAvatar}
+          headerInlineEdit={headerInlineEdit}
+          navigationInFooter={boolean('Navigation in footer?', true)}
           onClose={handleClose}
-          headerAction={<Button onClick={action('header action')}>Save and skip wizard</Button>}
-          onPrevStep={store.state.activeStep === 0 ? null : handlePrevStep}
+          headerAction={headerAction && <Button onClick={action('header action')}>Save and skip wizard</Button>}
+          footerAction={footerAction && <Button type="secondary" onClick={action('footer action')}>Skip wizard</Button>}
+          onPrevStep={store.state.activeStep === 0 ? undefined : handlePrevStep}
           onNextStep={store.state.activeStep === 3 ? handleClose : handleNextStep}
           contentWidth={'588px'}
           texts={{
@@ -113,7 +138,7 @@ const stories = {
               ))}
             </Stepper>
           }
-          footer={
+          footerLeft={
             <>
               <Button mode="icon-label" type="ghost" onClick={action('AI Search help')}>
                 <Icon component={<AcademyM />} /> AI Search Help
@@ -133,6 +158,7 @@ const stories = {
       </>
     );
   }),
+
   onModal: withState(DEFAULT_STATE)(({ store }) => {
     const setActiveStep = index => store.set({ activeStep: index });
     const handlePrevStep = () => store.set({ activeStep: store.state.activeStep - 1 });
@@ -194,6 +220,12 @@ const stories = {
       </>
     );
   }),
+
+
+  
+
+  
+
 };
 
 export default {
