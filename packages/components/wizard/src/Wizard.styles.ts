@@ -52,6 +52,15 @@ export const WizardContainer = styled.div<{ contentWidth?: string; withFooter: b
   padding-bottom: ${(props): string => (props.withFooter ? '80px' : '0')};
 `;
 
+export const WizardButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 48px 0 0;
+`;
+
 export const WizardContent = styled.div<{ contentWidth?: string }>`
   width: ${(props): string => (props.contentWidth ? props.contentWidth : '100%')};
   max-width: calc(100% - 48px);
@@ -69,15 +78,6 @@ export const ModalWizardContent = styled.div`
   justify-content: flex-start;
 `;
 
-export const WizardButtons = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin: 48px 0 0;
-`;
-
 export const ButtonPlaceholder = styled.span``;
 
 export const ModalWizardButtons = styled.div`
@@ -88,18 +88,38 @@ export const ModalWizardButtons = styled.div`
   width: 100%;
 `;
 
+export const FooterLeftSide = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+export const FooterRightSide = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  ${ButtonPlaceholder} {
+    display: none;
+  }
+`;
+
 export const WizardFooter = styled.div`
   display: flex;
+  justify-content: space-between;
   width: calc(100% - 48px);
   padding: 15px 0;
   margin: 0 24px;
-  background-color: ${(props): string => props.theme.palette.white};
-  border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
+  background-color: ${props => props.theme.palette.white};
+  border-top: 1px solid ${props => props.theme.palette['grey-200']};
   position: fixed;
   bottom: 0;
   left: 0;
   & > * {
     margin-right: 8px;
+  }
+
+  ${FooterLeftSide}:empty, ${FooterRightSide}:empty {
+    display: none;
   }
 `;
 

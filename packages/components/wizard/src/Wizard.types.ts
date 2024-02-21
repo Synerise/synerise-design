@@ -1,12 +1,18 @@
 import { ReactNode } from 'react';
 import { ButtonProps } from '@synerise/ds-button';
+import type { PageHeaderProps } from '@synerise/ds-page-header';
 
 export type WizardProps = {
   stepper?: ReactNode;
+
+  // @deprecated
   footer?: ReactNode;
+
+  footerLeft?: ReactNode;
   children?: ReactNode;
   title: ReactNode;
   headerAction?: ReactNode;
+  footerAction?: ReactNode;
   onClose: () => void;
   visible: boolean;
   contentWidth?: string;
@@ -21,4 +27,7 @@ export type WizardProps = {
     prevButtonProps?: Partial<Omit<ButtonProps, 'onClick'>>;
     nextButtonProps?: Partial<Omit<ButtonProps, 'onClick'>>;
   };
+  headerInlineEdit?: PageHeaderProps['inlineEdit'];
+  headerAvatar?: PageHeaderProps['avatar'];
+  navigationInFooter?: boolean;
 };
