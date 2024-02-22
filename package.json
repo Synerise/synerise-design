@@ -12,12 +12,16 @@
   "workspaces": [
     "packages/components/*",
     "packages/portal",
-    "packages/portal-plugins/*"
+    "packages/portal-plugins/*",
+    "packages/docs-site/website"
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn npx:lerna run build",
     "component:create": "node ./scripts/create-component/index.js",
+    "docs-build": "npx styleguidist build",
+    "docs-dev": "npx styleguidist server",
+    "docs-watch": "cd packages/docs-site/website && yarn docs-watch",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
