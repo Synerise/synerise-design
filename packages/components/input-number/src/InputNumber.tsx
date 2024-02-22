@@ -29,10 +29,10 @@ const InputNumber = ({
   ...antdProps
 }: InputNumberProps) => {
   const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
-  const [localValue, setLocalValue] = useState<number | undefined>(value || defaultValue);
+  const [localValue, setLocalValue] = useState<number | undefined>(value ?? defaultValue);
 
   useEffect(() => {
-    if (value && value !== localValue) {
+    if (value !== undefined && value !== localValue) {
       setLocalValue(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
