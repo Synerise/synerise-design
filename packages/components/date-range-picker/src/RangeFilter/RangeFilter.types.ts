@@ -18,7 +18,7 @@ export type RangeFilterProps = {
   intl: IntlShape;
   savedFilters?: SavedFilter[];
   onFilterSave?: (filters: SavedFilter[]) => void;
-  texts: Texts;
+  texts?: Partial<Texts>;
   allowedFilterTypes?: string[];
   valueSelectionModes?: DateLimitMode[];
   rangeDisplayMode?: RangeDisplayMode;

@@ -11,6 +11,7 @@ import { FilterDefinition, FilterValue, RangeFilterProps, RangeFilterState } fro
 import FilterDropdown from './Shared/FilterDropdown/FilterDropdown';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import SaveFilterForm from './Shared/SaveFilterForm/SaveFilterForm';
+import { getDefaultTexts } from '../utils';
 
 class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState> {
   static defaultProps = {
@@ -112,6 +113,8 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
       rangeDisplayMode,
     } = this.props;
 
+    const allTexts = getDefaultTexts(intl, false, texts);
+
     const buttonSource = allowedFilterTypes?.length ? allowedFilterTypes : Object.values(TYPES);
     buttonSource.sort((a: string, b: string) => {
       return Object.values(TYPES).indexOf(a) < Object.values(TYPES).indexOf(b) ? -1 : 1;
@@ -119,14 +122,14 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
     return (
       <S.Container>
         <S.Header>
-          <S.Title>{texts.datesFilter}</S.Title>
+          <S.Title>{allTexts.datesFilter}</S.Title>
           {!!savedFilters?.length && (
             <FilterDropdown
               filters={savedFilters}
               onFilterSelect={this.handleSavedFilterSelect}
               onFilterRemove={this.handleSavedFilterRemove}
-              label={texts.savedFiltersTrigger}
-              removeTooltip={texts.remove}
+              label={allTexts.savedFiltersTrigger}
+              removeTooltip={allTexts.remove}
             />
           )}
         </S.Header>
@@ -139,7 +142,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
                   type={activeType === key ? 'primary' : undefined}
                   onClick={(): void => this.handleTypeChange(key)}
                 >
-                  {texts[key.toLowerCase()]}
+                  {allTexts[key.toLowerCase()]}
                 </Button>
               ))}
             </ButtonGroup>
@@ -148,7 +151,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
             {Component && (
               <Component
                 intl={intl}
-                texts={texts}
+                texts={allTexts}
                 rangeDisplayMode={rangeDisplayMode}
                 value={definition}
                 onChange={(def: FilterDefinition): void => {
@@ -164,10 +167,10 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
         </S.Body>
         {!hideFooter && (
           <S.Footer data-testid="range-filter-footer">
-            {savedFilters && onFilterSave && <SaveFilterForm texts={texts} onFilterSave={this.handleFilterSave} />}
+            {savedFilters && onFilterSave && <SaveFilterForm texts={allTexts} onFilterSave={this.handleFilterSave} />}
             <S.FooterSeparator />
             <Button data-testid="range-filter-cancel-button" type="ghost" onClick={this.handleCancel}>
-              {texts.cancel}
+              {allTexts.cancel}
             </Button>
             <Button
               data-testid="range-filter-apply-button"
@@ -175,7 +178,7 @@ class RangeFilter extends React.PureComponent<RangeFilterProps, RangeFilterState
               disabled={!isValidValue(activeValue)}
               onClick={this.handleApply}
             >
-              {texts.apply}
+              {allTexts.apply}
             </Button>
           </S.Footer>
         )}
