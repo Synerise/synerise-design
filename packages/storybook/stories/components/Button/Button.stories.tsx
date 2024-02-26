@@ -1,16 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 import Icon, { AngleDownM, AngleDownS, CheckM, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
 
-type AllButtonProps = ButtonProps &  { 
-  
+type AllButtonProps = ButtonProps &  {
   size?: 'small' | 'middle' | 'large';
   loading?: boolean | {delay?: number};
   block?: boolean;
-} 
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<AllButtonProps> = {
@@ -24,7 +23,7 @@ const meta: Meta<AllButtonProps> = {
       exclude: ['href', 'target', 'htmlType'],
     }
   },
-  
+
   argTypes: {
     icon: {
       control: 'select',
@@ -56,7 +55,7 @@ const meta: Meta<AllButtonProps> = {
           summary: 'undefined'
         }
       },
-      control: { 
+      control: {
         type: 'inline-radio',
         labels: {
           '': 'default',
@@ -64,10 +63,10 @@ const meta: Meta<AllButtonProps> = {
       },
       options: ['', 'large']
     },
-    
+
     block: {
       description: 'Display as a block element',
-      
+
       control: 'boolean',
       type: 'boolean'
     },
@@ -92,9 +91,9 @@ const meta: Meta<AllButtonProps> = {
     mode: {
       control: 'select',
       options: ['single-icon', 'split', 'two-icons', 'label-icon', 'icon-label'],
-      
+
     },
-    color: { 
+    color: {
       control: 'select',
       table: { category: 'Custom color button props'},
       options: ['blue', 'grey', 'red', 'green', 'yellow', 'pink', 'mars', 'orange', 'fern', 'cyan', 'purple', 'violet'],
