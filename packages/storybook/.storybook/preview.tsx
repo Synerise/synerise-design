@@ -3,6 +3,7 @@ import type { Preview } from '@storybook/react';
 
 import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
+import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 
 
 const preview: Preview = {
@@ -14,7 +15,7 @@ const preview: Preview = {
         title: 'Data Format',
         icon: 'calendar',
         items: ['EU', 'US'],
-        
+
       },
     },
     locale: {
@@ -24,26 +25,26 @@ const preview: Preview = {
         title: 'Language',
         icon: 'globe',
         items: ['pl', 'en', 'es', 'pt'],
-        
+
       },
     },
   },
-  decorators: [  
+  decorators: [
     (Story, storyContext) => {
-      
+
       const optionalUserDefinedDataFormatConfig = {
         startWeekDayNotation: storyContext.globals.dataFormat,
         dateFormatNotation: storyContext.globals.dataFormat,
         timeFormatNotation: storyContext.globals.dataFormat,
         numberFormatNotation: storyContext.globals.dataFormat
       }
-      
+
       const DSProviderProps = {
         code: 'en_GB',
         ...optionalUserDefinedDataFormatConfig,
         locale: storyContext.globals.locale,
       };
-      
+
       return (
         <DSProvider {...DSProviderProps}>
           { Story() }
@@ -62,9 +63,9 @@ const preview: Preview = {
     // }
   },
   parameters: {
-    
+
     layout: 'centered',
-    
+
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: {
       default: 'white',
@@ -88,6 +89,17 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      page: () => (
+        <>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <Stories />
+        </>
+      ),
+    }
   },
 };
 
