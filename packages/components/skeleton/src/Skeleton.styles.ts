@@ -21,11 +21,6 @@ export const loadingAnimation = (width?: 'M' | 'L'): Keyframes => keyframes`
      opacity: 0.1;
   }
 `;
-export const Container = styled.div`
-  width: 100%;
-  overflow: hidden;
-  padding: 12px;
-`;
 
 const SIZE_WRAPPER_DEFAULT = 16;
 export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L' }>`
@@ -39,10 +34,8 @@ export const SkeletonBar = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L
 `;
 
 export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L'; height?: number }>`
-  display: flex;
   border-right: transparent;
   border-left: transparent;
-  margin: 15px 0;
   border-radius: ${(props): string => (props.width === 'M' ? '4px' : '2px')};
   width: 100%;
   height: ${(props): number => {
@@ -53,4 +46,13 @@ export const Wrapper = styled.div<{ size?: 'S' | 'M' | 'L'; width?: 'M' | 'L'; h
   }}px;
   background-color: ${(props): string => props.theme.palette[`grey-050`]};
   overflow: hidden;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  overflow: hidden;
+  padding: 12px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
 `;

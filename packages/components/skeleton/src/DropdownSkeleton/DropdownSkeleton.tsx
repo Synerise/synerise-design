@@ -1,14 +1,12 @@
-import * as React from 'react';
+import React, { useMemo, memo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { DropdownSkeletonProps } from './DropdownSkeleton.types';
 import * as S from './DropdownSkeleton.styles';
 
-const DropdownSkeleton: React.FC<DropdownSkeletonProps> = ({ size = 'M', numberOfSkeletons = 3 }) => {
-  const tiles = React.useMemo(() => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })), [
-    numberOfSkeletons,
-  ]);
+const DropdownSkeleton = ({ size = 'M', numberOfSkeletons = 3, className }: DropdownSkeletonProps) => {
+  const tiles = useMemo(() => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })), [numberOfSkeletons]);
   return (
-    <S.Container>
+    <S.Container className={className}>
       {tiles.map(tile => (
         <S.Wrapper key={tile.id} size={size}>
           <S.SkeletonBar size={size} />
@@ -17,4 +15,4 @@ const DropdownSkeleton: React.FC<DropdownSkeletonProps> = ({ size = 'M', numberO
     </S.Container>
   );
 };
-export default React.memo(DropdownSkeleton);
+export default memo(DropdownSkeleton);
