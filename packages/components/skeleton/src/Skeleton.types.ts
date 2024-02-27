@@ -17,4 +17,5 @@ export type SkeletonProps = {
   height?: number;
   numberOfSkeletons?: number;
   width?: 'M' | 'L';
+  className?: string;
 };

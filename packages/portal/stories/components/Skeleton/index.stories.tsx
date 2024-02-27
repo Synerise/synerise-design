@@ -13,13 +13,14 @@ const stories = {
     const size = select('Size', SkeletonSizes, 'M');
     const numberOfSkeletons = number('Number of skeletons', 2);
     const usePredefinedHeight = boolean('use pixel height', false);
+    const isInline = boolean('inline skeleton (no redundant margin)', false);
     let height: number | undefined;
     if (usePredefinedHeight) {
         height = number('Height (overwrites height defined by size)', 24);
     }
     return (
       <div style={{width: '150px'}}>
-      <Skeleton size={size} height={height} numberOfSkeletons={numberOfSkeletons}/>
+      <Skeleton inline={isInline} size={size} height={height} numberOfSkeletons={numberOfSkeletons}/>
       </div>
     )
   },

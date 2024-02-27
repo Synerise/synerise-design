@@ -7,4 +7,5 @@ export enum SkeletonSize {
 export type CheckboxSkeletonProps = {
   size?: 'S' | 'M' | 'L';
   numberOfSkeletons?: number;
+  className?: string;
 };

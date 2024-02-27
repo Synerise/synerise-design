@@ -1,15 +1,13 @@
-import * as React from 'react';
+import React, { useMemo, memo } from 'react';
 import { v4 as uuid } from 'uuid';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxSkeletonProps } from './CheckboxSkeleton.types';
 import * as S from './CheckboxSkeleton.styles';
 
-const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({ size = 'M', numberOfSkeletons = 2 }) => {
-  const tiles = React.useMemo(() => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })), [
-    numberOfSkeletons,
-  ]);
+const CheckboxSkeleton = ({ size = 'M', numberOfSkeletons = 2, className }: CheckboxSkeletonProps) => {
+  const tiles = useMemo(() => Array.from({ length: numberOfSkeletons }, () => ({ id: uuid() })), [numberOfSkeletons]);
   return (
-    <S.Container>
+    <S.Container className={className}>
       <Checkbox />
       <S.SkeletonWrapper>
         {tiles.map(tile => (
@@ -21,4 +19,4 @@ const CheckboxSkeleton: React.FC<CheckboxSkeletonProps> = ({ size = 'M', numberO
     </S.Container>
   );
 };
-export default React.memo(CheckboxSkeleton);
+export default memo(CheckboxSkeleton);
