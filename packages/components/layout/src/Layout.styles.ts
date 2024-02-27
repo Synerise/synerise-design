@@ -100,7 +100,12 @@ export const LayoutContainer = styled.div<{
   }
   ${LayoutMainInner} {
     overflow: ${props => (props.nativeScroll ? 'auto' : 'hidden')};
-    ${props => props.nativeScroll && 'flex-grow: 1'};
+    ${props =>
+      props.nativeScroll &&
+      `
+      flex-grow: 1;
+      position: relative;
+    `};
   }
 `;
 
