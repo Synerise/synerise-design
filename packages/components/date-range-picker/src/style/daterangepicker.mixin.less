@@ -1,9 +1,13 @@
-.ant-popover.ds-date-range-popover > .ant-popover-content > .ant-popover-arrow {
-  display: none;
+.ant-popover.ds-date-range-popover > .ant-popover-content > .ant-popover-inner {
+  background: transparent;
+  box-shadow: none;
+  > .ant-popover-inner-content {
+    padding: 0;
+  }
 }
-.ant-popover.ds-date-range-popover > .ant-popover-content {
-  margin: -5px 0;
-}
-.ant-dropdown {
-  box-shadow: 0 16px 32px 0 rgba(35, 41, 54, 0.1);
+
+.ant-popover.ds-date-range-popover > .ant-popover-arrow.ant-popover-arrow.ant-popover-arrow.ant-popover-arrow {
+  display: none !important;
+  visibility: hidden;
+  pointer-events: none;
 }

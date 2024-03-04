@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+import DSContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+
+export const ContentItem = styled(DSContentItem)`
+  margin-bottom: 0;
+`;
 
 export const BadgeWrapper = styled.div`
   margin-right: 16px;
