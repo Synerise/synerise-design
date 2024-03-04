@@ -103,6 +103,7 @@ export interface State {
   value: DateRange;
   filter?: FilterDefinition;
   visibleAddonKey?: string | undefined;
+  alignContentToTop?: boolean;
 }
 export type Texts = {
   [k in Translations]: string | ReactNode;

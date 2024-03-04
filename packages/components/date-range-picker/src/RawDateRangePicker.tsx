@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
 import fnsStartOfSecond from 'date-fns/startOfSecond';
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { Container, Separator, Addon } from './DateRangePicker.styles';
+import { Container, Separator, Addon, PopupWrapper } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
 import * as CONST from './constants';
@@ -57,6 +57,7 @@ export function defaultValueTransformer(value: DateRange): DateRange {
 }
 type RawDateRangePickerProps = Omit<DateRangePickerProps, 'texts'> & {
   texts: Texts;
+  alignContentToTop?: boolean;
 };
 
 export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, State> {
@@ -245,6 +246,8 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
 
   render(): JSX.Element {
     const {
+      showRelativePicker,
+      showFilter,
       showTime,
       format,
       valueFormatOptions,
@@ -261,6 +264,7 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
       filterValueSelectionModes,
       filterRangeDisplayMode,
       showNowButton = true,
+      alignContentToTop,
     } = this.props;
     const { value, mode } = this.state;
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
@@ -270,8 +274,20 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
     const { from, to, key } = value;
     const addons = this.getAddons();
     const allTexts = this.allTexts();
-    if (mode === MODES.FILTER)
+
+    function isRelative(dateRange: DateRange): dateRange is RelativeDateRange {
+      const isLegacyCustom = Object.keys(value).includes('key') && key === undefined;
       return (
+        (dateRange.key &&
+          (CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) ||
+            dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
+        isLegacyCustom
+      );
+    }
+
+    let content: ReactNode | undefined;
+    if (mode === MODES.FILTER) {
+      content = (
         <Container>
           <RangeFilter
             texts={allTexts}
@@ -286,64 +302,62 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
           />
         </Container>
       );
+    } else {
+      const validator = validate ? validate(value) : { valid: true };
+      const isValidAbsolute = !Object.keys(value).includes('key') && Boolean(from && to);
 
-    const validator = validate ? validate(value) : { valid: true };
-    const isValidAbsolute = !Object.keys(value).includes('key') && Boolean(from && to);
-    function isRelative(dateRange: DateRange): dateRange is RelativeDateRange {
-      const isLegacyCustom = Object.keys(value).includes('key') && key === undefined;
-      return (
-        (dateRange.key &&
-          (CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) ||
-            dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
-        isLegacyCustom
+      const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
+      const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);
+      // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
+      const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
+      const canSwitchToTimePicker =
+        isValid && !isLifetime(value) && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
+
+      content = (
+        <Container className={containerClass}>
+          <RangePicker
+            showNowButton={showNowButton}
+            value={normalizeRange(value)}
+            onChange={this.handleRangeChange}
+            mode={mode}
+            disabledDate={disabledDate}
+            onSwitchMode={this.handleSwitchMode}
+            dateOnly={!showTime}
+            canSwitchMode={canSwitchToTimePicker}
+            texts={allTexts}
+            forceAdjacentMonths={forceAdjacentMonths}
+            intl={intl}
+          />
+          {addons.length > 0 && <Separator />}
+          {addons.map(
+            (addon, index: number): ReactNode => (
+              <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
+                {addon.content}
+              </Addon>
+            )
+          )}
+          <Footer
+            canApply={isValid || isLifetime(value)}
+            onApply={this.handleApply}
+            dateOnly={!showTime}
+            mode={mode}
+            canSwitchMode={isValid}
+            message={!validator.valid ? validator.message : null}
+            onSwitchMode={this.handleSwitchMode}
+            texts={allTexts}
+            value={value}
+            showTime={showTime}
+            format={format}
+            valueFormatOptions={valueFormatOptions}
+            {...footerProps}
+          />
+        </Container>
       );
     }
-    const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
-    const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);
-    // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
-    const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
-    const canSwitchToTimePicker =
-      isValid && !isLifetime(value) && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
-
     return (
-      <Container className={containerClass}>
-        <RangePicker
-          showNowButton={showNowButton}
-          value={normalizeRange(value)}
-          onChange={this.handleRangeChange}
-          mode={mode}
-          disabledDate={disabledDate}
-          onSwitchMode={this.handleSwitchMode}
-          dateOnly={!showTime}
-          canSwitchMode={canSwitchToTimePicker}
-          texts={allTexts}
-          forceAdjacentMonths={forceAdjacentMonths}
-          intl={intl}
-        />
-        {addons.length > 0 && <Separator />}
-        {addons.map(
-          (addon, index: number): ReactNode => (
-            <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
-              {addon.content}
-            </Addon>
-          )
-        )}
-        <Footer
-          canApply={isValid || isLifetime(value)}
-          onApply={this.handleApply}
-          dateOnly={!showTime}
-          mode={mode}
-          canSwitchMode={isValid}
-          message={!validator.valid ? validator.message : null}
-          onSwitchMode={this.handleSwitchMode}
-          texts={allTexts}
-          value={value}
-          showTime={showTime}
-          format={format}
-          valueFormatOptions={valueFormatOptions}
-          {...footerProps}
-        />
-      </Container>
+      <PopupWrapper alignContentToTop={alignContentToTop} hasFilter={showFilter} hasRelativePicker={showRelativePicker}>
+        {content}
+      </PopupWrapper>
     );
   }
 }

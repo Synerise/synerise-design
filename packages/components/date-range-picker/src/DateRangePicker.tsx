@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState, useRef, useMemo, useEffect } from 'react';
 import { isEqual } from 'lodash';
 import './style/index.less';
 import { useIntl } from 'react-intl';
@@ -9,7 +9,7 @@ import RangePickerInput from './RangePickerInput/RangePickerInput';
 import { DateFilter, DateRange } from './date.types';
 import { getDefaultTexts } from './utils';
 
-const DateRangePicker: React.FC<DateRangePickerProps> = props => {
+const DateRangePicker = (props: DateRangePickerProps) => {
   const {
     value,
     defaultValue,
@@ -30,28 +30,45 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   } = props;
   const intl = useIntl();
   const selectedRange = value || defaultValue;
-  const [popupVisible, setPopupVisible] = React.useState<boolean | undefined>(false);
-  const [selectedDate, setSelectedDate] = React.useState(selectedRange);
-  const [inputActive, setInputActive] = React.useState<boolean>();
+  const [popupVisible, setPopupVisible] = useState<boolean | undefined>(false);
+  const [selectedDate, setSelectedDate] = useState(selectedRange);
+  const [inputActive, setInputActive] = useState<boolean>();
+  const [isTopAligned, setIsTopAligned] = useState<boolean>(true);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const allTexts = React.useMemo(
-    () => getDefaultTexts(intl, disableDefaultTexts, texts),
-    [texts, disableDefaultTexts, intl]
-  );
-  React.useEffect((): void => {
+  const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
+  useEffect((): void => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
     }
   }, [popupVisible]);
 
-  React.useEffect((): void => {
+  useEffect((): void => {
     if (!isEqual(selectedRange, selectedDate)) {
       setSelectedDate(selectedRange);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedRange]);
 
-  const onApplyCallback = React.useCallback(
+  const checkContentAlignement = useCallback(() => {
+    if (wrapperRef.current) {
+      const popoverDomElement = wrapperRef.current.querySelector('.ds-date-range-popover');
+
+      if (popoverDomElement) {
+        const classNames = Array.from(popoverDomElement.classList);
+        const placementClassName = classNames.find(className => className.startsWith('ant-popover-placement-'));
+        const placement = placementClassName && placementClassName.split('-').pop()?.toLocaleLowerCase();
+        const topAligned = placement?.indexOf('bottom') === -1;
+        setIsTopAligned(topAligned);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    checkContentAlignement();
+  }, [checkContentAlignement]);
+
+  const onApplyCallback = useCallback(
     (range: Partial<DateFilter> | undefined): void => {
       const finalDateRange = range === undefined && defaultValue !== undefined ? defaultValue : range;
       onApply && onApply(finalDateRange);
@@ -84,7 +101,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
   if (readOnly) return <>{triggerElement}</>;
 
   return (
-    <S.PickerWrapper arrowColor={arrowColor}>
+    <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
       <S.PopoverWrapper
         content={
           <RawDateRangePicker
@@ -94,6 +111,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
             value={selectedDate}
             texts={allTexts}
             forceAdjacentMonths={forceAdjacentMonths}
+            alignContentToTop={isTopAligned}
           />
         }
         getPopupContainer={
@@ -105,6 +123,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = props => {
         overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
         overlayClassName="ds-date-range-popover"
         onVisibleChange={(visibility: boolean): void => {
+          visibility && checkContentAlignement();
           setInputActive(visibility);
           onVisibleChange && onVisibleChange(visibility);
         }}

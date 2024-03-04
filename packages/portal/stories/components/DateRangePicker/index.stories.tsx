@@ -59,12 +59,16 @@ const CUSTOM_COLORS = [
 const POPOVER_PLACEMENT = {
   topLeft: 'topLeft',
   topRight: 'topRight',
+  top: 'top',
   bottomLeft: 'bottomLeft',
   bottomRight: 'bottomRight',
+  bottom: 'bottom',
   leftTop: 'leftTop',
+  left: 'left',
   leftBottom: 'leftBottom',
   rightTop: 'rightTop',
   rightBottom: 'rightBottom',
+  right: 'right'
 };
 
 export const TIME_PICKER_PROPS: Partial<TimePickerProps> = {
@@ -350,69 +354,7 @@ const stories = {
     }
     return datePicker;
   },
-  analytics: injectIntl(({ intl }) => {
-    const initialValue = {
-      key: 'custom',
-      translationKey: 'custom',
-      type: RELATIVE,
-      future: false,
-      offset: { type: CONST.DAYS, value: 1 },
-      duration: { type: CONST.DAYS, value: 30 },
-    } as DateRange;
-    
-    const showValue = boolean('Print current value', false);
-    const [value, setValue] = React.useState<DateRange>(initialValue);
-    if (value) {
-      value.translationKey = value.translationKey ?? value.key?.toLowerCase();
-    }
-    const showTime = boolean('Set showTime', true);
-    
-    const forceAbsolute = boolean('Force absolute date on apply', false);
-    const showRelativePicker = boolean('Set relative picker add on', true);
-    const showFilter = boolean('Show filter add on', true);
-    const disableAbsoluteTimepickerInRelative = boolean(
-      'Disable time-picker for relative dates (so no hidden convertion to an absolute date)',
-      false
-    );
-    const rangePickerInputProps = {
-      preferRelativeDesc: boolean('Prefer descriptive relative dates', true),
-    };
-    
-    const readOnly = boolean('Set readOnly', false);
-    
-    return (
-      <>
-        <DateRangePicker
-          onApply={v => {
-            action('OnApply')(v);
-            setValue(v);
-          }}
-          showTime={showTime}
-          value={value}
-          relativeFuture
-          filterRangeDisplayMode={'slider'}
-          forceAbsolute={forceAbsolute}
-          showRelativePicker={showRelativePicker}
-          showFilter={showFilter}
-          showNowButton={false}
-          filterValueSelectionModes={['Range']}
-          
-          forceAdjacentMonths={boolean('Set adjacent months', false)}
-          relativeModes={['PAST']}
-          disableAbsoluteTimepickerInRelative={disableAbsoluteTimepickerInRelative}
-          rangePickerInputProps={rangePickerInputProps}
-          popoverTrigger={
-            <Button type="tertiary" mode="label-icon">
-              { getButtonLabel(value, showTime) }
-              <Icon component={<CalendarM />} />
-            </Button>
-          } 
-          readOnly={readOnly}
-        />
-        {showValue && <pre>{JSON.stringify(value, null, 2)}</pre>}
-      </>
-    );
-  }),
+  
   lifetimeByDefault: () => {
     const value = ABSOLUTE_PRESETS.find(e => e.key === CONST.ALL_TIME);
     const DateRangePicker = injectIntl(RawDateRangePicker);
