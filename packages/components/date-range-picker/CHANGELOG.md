@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.12...@synerise/ds-date-range-picker@0.26.13) (2024-03-04)
+
+
+### Bug Fixes
+
+* **date-range-picker:** popup jumping fix - transparency workaround ([fccbeb6](https://github.com/Synerise/synerise-design/commit/fccbeb6db40b013956a1ac8a311df1a4be8ebdf2))
+
+
+
+
+
 ## [0.26.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.11...@synerise/ds-date-range-picker@0.26.12) (2024-02-23)
 
 

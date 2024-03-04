@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.4.3...@synerise/ds-skeleton@0.5.0) (2024-03-04)
+
+
+### Features
+
+* **skeleton:** added prop to fix double margin ([2548dec](https://github.com/Synerise/synerise-design/commit/2548decf2ae2c5fa981667a5c5bb83a4fc551657))
+
+
+
+
+
 ## [0.4.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-skeleton@0.4.2...@synerise/ds-skeleton@0.4.3) (2024-02-21)
 
 **Note:** Version bump only for package @synerise/ds-skeleton

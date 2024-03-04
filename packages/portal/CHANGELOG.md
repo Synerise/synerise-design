@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.206.0](https://github.com/synerise/synerise-design/compare/portal@0.205.0...portal@0.206.0) (2024-03-04)
+
+
+### Bug Fixes
+
+* **date-range-picker:** popup jumping fix - transparency workaround ([fccbeb6](https://github.com/synerise/synerise-design/commit/fccbeb6db40b013956a1ac8a311df1a4be8ebdf2))
+
+
+### Features
+
+* **skeleton:** added prop to fix double margin ([2548dec](https://github.com/synerise/synerise-design/commit/2548decf2ae2c5fa981667a5c5bb83a4fc551657))
+
+
+
+
+
 # [0.205.0](https://github.com/synerise/synerise-design/compare/portal@0.204.0...portal@0.205.0) (2024-02-21)
 
 
