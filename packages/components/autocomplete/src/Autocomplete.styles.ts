@@ -1,4 +1,6 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
+import { AutoResizeProp } from '@synerise/ds-input';
+import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
 
 import { ThemeProps } from '@synerise/ds-core';
 
@@ -38,27 +40,14 @@ const readonly = (): FlattenInterpolation<ThemeProps> => css`
     cursor: auto;
   }
 `;
-export type AutoResizeProps = {
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
-};
-function autoresizeConfObjToCss({
-  autoResize,
-}: {
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
-}): string {
-  if (!autoResize) return '';
-  if (typeof autoResize === 'object') {
-    return `max-width: ${autoResize.maxWidth}; min-width: ${autoResize.minWidth}`;
-  }
-  return `max-width: 400px; min-width: 150px;`;
-}
 
-export const AutocompleteWrapper = styled.div<{ autoResize?: boolean | { minWidth: string; maxWidth: string } }>`
+export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
   .ant-select-auto-complete {
     width: ${(props): string => (props.autoResize ? '100%' : '200px')};
-    ${(props: AutoResizeProps): string => autoresizeConfObjToCss(props)};
+    ${(props): string => autoresizeConfObjToCss(props)};
     grid-area: 1 / 1;
   }
+
   .ant-select > span {
     position: absolute;
     left: 0;
@@ -130,6 +119,9 @@ export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean
       }
       return css`
         &.ant-select {
+          .ant-select-selector {
+            padding: 0 10px;
+          }
           .ant-input {
             transition: ease-in-out all 0.3s;
             &:focus {

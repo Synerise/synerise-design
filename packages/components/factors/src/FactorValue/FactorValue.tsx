@@ -80,8 +80,11 @@ const FactorValue: React.FC<FactorValueProps> = ({
     readOnly,
     getMenuEntryProps,
   ]);
-
-  return <S.FactorInput withoutTypeSelector={withoutTypeSelector}>{inputType}</S.FactorInput>;
+  return (
+    <S.FactorInput inputType={selectedFactorType} inputTextType={textType} withoutTypeSelector={withoutTypeSelector}>
+      {inputType}
+    </S.FactorInput>
+  );
 };
 
 export default FactorValue;

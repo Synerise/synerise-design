@@ -17,6 +17,7 @@ import { InputProps, TextAreaProps } from 'antd/lib/input';
 import './style/index.less';
 import { StyledComponent } from 'styled-components';
 import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+import { useResizeToFit } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './Input.styles';
 import Label from './Label/Label';
@@ -59,6 +60,7 @@ const enhancedInput =
     const id = useMemo(() => uuid(), []);
 
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
+
     const [inputAddonHeight, setInputAddonHeight] = useState<number>(0);
 
     useEffect(() => {
@@ -126,6 +128,45 @@ const enhancedInput =
       [antdInputProps, handleChange]
     );
 
+    const stretchToFit = typeof autoResize === 'object' && Boolean(autoResize.stretchToFit);
+    const paddingDiff = useRef<number>();
+
+    const { observe, disconnect, elementRef } = useResizeToFit<HTMLDivElement>({
+      onResize: (width: number) => {
+        if (inputRef.current && paddingDiff.current) {
+          // @ts-ignore
+          inputRef.current.input.style.maxWidth = `${width - paddingDiff.current}px`;
+        }
+      },
+      autoObserve: true,
+    });
+
+    useEffect(() => {
+      if (inputRef.current) {
+        // @ts-ignore
+        const { paddingLeft, paddingRight } = getComputedStyle(inputRef.current.input);
+        paddingDiff.current = parseFloat(paddingLeft) + parseFloat(paddingRight);
+      }
+    }, [paddingDiff]);
+
+    useEffect(() => {
+      if (elementRef.current) {
+        if (stretchToFit) {
+          observe();
+        } else {
+          disconnect();
+          // @ts-ignore
+          if (inputRef.current && inputRef.current.input) {
+            // @ts-ignore
+            inputRef.current.input.style.removeProperty('max-width');
+          }
+        }
+      }
+      return () => {
+        disconnect();
+      };
+    }, [disconnect, observe, stretchToFit, elementRef]);
+
     return (
       <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
         {(label || counterLimit) && (
@@ -138,7 +179,7 @@ const enhancedInput =
             )}
           </S.ContentAbove>
         )}
-        <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
+        <S.InputWrapper ref={elementRef} icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
           {(icon1 || icon2) && (
             <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
               <S.IconsFlexContainer type={type}>

@@ -8092,7 +8092,7 @@
 
 "@types/react-dom@18.2.7":
   version "18.2.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-18.2.7.tgz"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-18.2.7.tgz#67222a08c0a6ae0a0da33c3532348277c70abb63"
   integrity sha1-ZyIqCMCmrgoNozw1MjSCd8cKu2M=
   dependencies:
     "@types/react" "*"
@@ -8156,7 +8156,7 @@
 
 "@types/react@18.2.21":
   version "18.2.21"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-18.2.21.tgz"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-18.2.21.tgz#774c37fd01b522d0b91aed04811b58e4e0514ed9"
   integrity sha1-d0w3/QG1ItC5Gu0EgRtY5OBRTtk=
   dependencies:
     "@types/prop-types" "*"

@@ -116,10 +116,6 @@ export const RightSide = styled.div`
 export const Body = styled.div`
   padding: 0 0 24px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
 
   .ds-conditions {
     &:first-of-type {

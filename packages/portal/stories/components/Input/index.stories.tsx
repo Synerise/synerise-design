@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Input,
   TextArea,
@@ -7,6 +7,7 @@ import {
   MaskedInput,
   InputMultivalue,
   RawMaskedInput,
+  AutoResizeProp,
 } from '@synerise/ds-input';
 
 import Icon, { FileM, LaptopM, SearchM } from '@synerise/ds-icon';
@@ -28,7 +29,7 @@ import { SelectValue } from 'antd/es/select';
 import Result from '@synerise/ds-result';
 import { Modal } from '../Modal/withHeaders/withHeaders.styles';
 
-const renderWithHighlightedText = (highlight, item): React.ReactNode => {
+const renderWithHighlightedText = (highlight, item) => {
   if (highlight && typeof item === 'string') {
     const index = item.toLowerCase().indexOf(highlight.toLowerCase());
     if (index === -1) {
@@ -102,10 +103,10 @@ function renderAddonComponent(suffixElementType: string, labelText?: string) {
 }
 const stories = {
   default: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const validationState = boolean('Set validation state', false);
     const message = text('Error Text', 'Error');
-    const [isFocus, setFocus] = React.useState(false);
+    const [isFocus, setFocus] = useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
     const readOnly = boolean('Read only', false);
 
@@ -139,20 +140,20 @@ const stories = {
     );
   },
   inputGroup: () => {
-    const [dateMaskKey, setDateMaskKey] = React.useState<string>('---- ----');
+    const [dateMaskKey, setDateMaskKey] = useState<string>('---- ----');
     const size = knobSelect('Set size', sizes as any, 'default');
-    const [value, setValue] = React.useState<string>('');
-    const [dropdownVisible, setDropdownVisible] = React.useState(false);
+    const [value, setValue] = useState<string>('');
+    const [dropdownVisible, setDropdownVisible] = useState(false);
     const inputOptionMask = { '---- ----': '1111-1111', '--- --- ---': '111-111-111' };
-    const [searchQuery, setSearchQuery] = React.useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>('');
     const countries = [
       { name: 'Argentina +123', code: 'AR', prefix: '+123' },
       { name: 'Albania +456', code: 'Al', prefix: '+456' },
       { name: 'Austria +78', code: 'AT', prefix: '+78' },
       { name: 'Brazil +123', code: 'BR', prefix: '+123' },
     ];
-    const [results, setResults] = React.useState<Country[]>(countries);
-    const ref = React.useRef<HTMLDivElement>(null);
+    const [results, setResults] = useState<Country[]>(countries);
+    const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
@@ -164,7 +165,7 @@ const stories = {
         {country.prefix}
       </div>
     );
-    const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
+    const [prefix, setPrefix] = useState(renderPrefix(countries[3]));
     type Country = { name: string; code: string; prefix: string };
     const phoneNumberSelect = (
       <Select
@@ -289,7 +290,7 @@ const stories = {
       Object.keys(inputGroupElementsRight)[0]
     );
     const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
-    React.useEffect(() => {
+    useEffect(() => {
       setValue('');
       if (dateMask !== dateMaskKey) {
         setDateMaskKey(dateMask);
@@ -311,13 +312,13 @@ const stories = {
     );
   },
   withFlags: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const size = knobSelect('Set size', sizes as any, 'default');
-    const [dropdownVisible, setDropdownVisible] = React.useState(false);
-    const [searchQuery, setSearchQuery] = React.useState<string>('');
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [searchQuery, setSearchQuery] = useState<string>('');
     const inputOptionMask = { '---- ----': '1111-1111', '--- --- ---': '111-111-111' };
     const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
-    React.useEffect(() => {
+    useEffect(() => {
       setValue('');
     }, [dateMask]);
     const countries = [
@@ -326,8 +327,8 @@ const stories = {
       { name: 'Austria +78', code: 'AT', prefix: '+78' },
       { name: 'Brazil +123', code: 'BR', prefix: '+123' },
     ];
-    const [results, setResults] = React.useState<Country[]>(countries);
-    const ref = React.useRef<HTMLDivElement>(null);
+    const [results, setResults] = useState<Country[]>(countries);
+    const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
@@ -339,7 +340,7 @@ const stories = {
         {country.prefix}
       </div>
     );
-    const [prefix, setPrefix] = React.useState(renderPrefix(countries[3]));
+    const [prefix, setPrefix] = useState(renderPrefix(countries[3]));
     type Country = { name: string; code: string; prefix: string };
 
     const phoneNumberSelect = (
@@ -417,13 +418,13 @@ const stories = {
     );
   },
   inputWithMask: () => {
-    const [creditCardvalue, setCreditCardvalue] = React.useState<string>('');
-    const [dateValue, setDateValue] = React.useState<string>('');
-    const [birthdateValue, setBirthdateValue] = React.useState<string>('');
-    const [phoneValue, setPhoneValue] = React.useState<string>('');
-    const [phonePrefixValue, setPhonePrefixValue] = React.useState<string>('');
-    const [passwordValue, setPasswordValue] = React.useState<string>('');
-    const [zipCardValue, setZipCardValue] = React.useState<string>('');
+    const [creditCardvalue, setCreditCardvalue] = useState<string>('');
+    const [dateValue, setDateValue] = useState<string>('');
+    const [birthdateValue, setBirthdateValue] = useState<string>('');
+    const [phoneValue, setPhoneValue] = useState<string>('');
+    const [phonePrefixValue, setPhonePrefixValue] = useState<string>('');
+    const [passwordValue, setPasswordValue] = useState<string>('');
+    const [zipCardValue, setZipCardValue] = useState<string>('');
     const inputOptionMask = {
       'DD-MM-YYYY': '11-11-1111',
       'DD-MM-YYYY h:mm A': '11-11-1111 1:11 PM',
@@ -441,7 +442,7 @@ const stories = {
       'ddd, MMMM D, YYYY H:mm': '111, 1111 11, 1111 11:11',
     };
     const dateMask = select('SelectDateMask', Object.keys(inputOptionMask), 'DD-MM-YYYY');
-    React.useEffect(() => {
+    useEffect(() => {
       setDateValue('');
     }, [dateMask]);
 
@@ -499,7 +500,7 @@ const stories = {
     );
   },
   inputWithIcons: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const size = knobSelect('Set size', sizes as any, 'default');
     const hasDescription = boolean('Set Description', false);
     const hasCounter = boolean('Set Counter', false);
@@ -508,12 +509,12 @@ const stories = {
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
-    const [isFocus, setFocus] = React.useState(false);
-    const getCounter = (hasCounter: boolean): number | null => {
+    const [isFocus, setFocus] = useState(false);
+    const getCounter = (hasCounter: boolean) => {
       if (hasCounter) {
         return counterLimitWords;
       } else {
-        return null;
+        return undefined;
       }
     };
     const getDescription = (hasDescription: boolean): string => {
@@ -553,20 +554,20 @@ const stories = {
         }}
         value={value}
         icon1={<Icon component={<FileM />} />}
-        icon1Tooltip={hasIconTooltip && <span>icon1</span>}
+        icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
         icon2={<Icon component={<FileM />} />}
-        icon2Tooltip={hasIconTooltip && <span>icon2</span>}
+        icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
       />
     );
   },
   inputAutoresizeInModal: () => {
-    const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState<string>('');
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState<string>('');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
-    const [isFocus, setFocus] = React.useState(false);
+    const [isFocus, setFocus] = useState(false);
     const autoResize = boolean('Set autoResize', true);
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
@@ -616,13 +617,26 @@ const stories = {
     )
   },
   inputWithAutoresize: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const hasDescription = boolean('Set Description', true);
     const descriptionMessage = text('Description', 'Description');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
-    const [isFocus, setFocus] = React.useState(false);
-    const autoResize = boolean('Set autoResize', true);
+    const [isFocus, setFocus] = useState(false);
+
+    let containerWidth = 0;
+    const autoResize = boolean('Set autoResize', true, 'autoresize');
+    const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
+    const autoResizeProp: AutoResizeProp = {
+      minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
+      stretchToFit: autoResizeStretchToParent
+    }
+    if (autoResizeStretchToParent) {
+      containerWidth = number('Set input container width', 400, undefined, 'autoresize')
+    }
+    else {
+      autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
+    }
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
         return descriptionMessage;
@@ -638,10 +652,11 @@ const stories = {
         return '';
       }
     };
-
+    
     return (
+      <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
       <Input
-        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+        autoResize={autoResize ? autoResizeProp : undefined}
         placeholder={text('Placeholder', 'Placeholder')}
         label={renderLabel(text('Label', 'Label'))}
         description={descriptionMessage && getDescription(hasDescription)}
@@ -659,10 +674,11 @@ const stories = {
         }}
         value={value}
       />
+      </div>
     );
   },
   inputWithPrefixAndSuffix: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const prefixType = select('Set prefix type', addonType, addonType.avatar);
     const prefixLabelText = text('Set prefix label text', 'Prefix');
     const suffixType = select('Set suffix type', addonType, addonType.label);
@@ -683,12 +699,12 @@ const stories = {
     );
   },
   textarea: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const minRows = number('Min rows', 3);
     const maxRows = number('Max rows', 6);
-    const [isFocus, setFocus] = React.useState(false);
+    const [isFocus, setFocus] = useState(false);
     const getErrorText = (hasError: boolean): string => {
       if (hasError) {
         return errorMessage;
@@ -722,10 +738,10 @@ const stories = {
     );
   },
   textareaWithIcons: () => {
-    const [value, setValue] = React.useState<string>('');
+    const [value, setValue] = useState<string>('');
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
-    const [isFocus, setFocus] = React.useState(false);
+    const [isFocus, setFocus] = useState(false);
     const hasIconTooltip = boolean('Set Icon Tooltip', false);
     const getErrorText = (hasError: boolean): string => {
       if (hasError) {
@@ -756,9 +772,9 @@ const stories = {
           setFocus(true);
         }}
         icon1={<Icon component={<FileM />} />}
-        icon1Tooltip={hasIconTooltip && <span>icon1</span>}
+        icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
         icon2={<Icon component={<FileM />} />}
-        icon2Tooltip={hasIconTooltip && <span>icon2</span>}
+        icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
       />
     );
   },
@@ -767,7 +783,7 @@ const stories = {
     const values = ['Option A', 'Option B', 'Option C'];
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
-    const [isFocus, setFocus] = React.useState(false);
+    const [isFocus, setFocus] = useState(false);
 
     const getErrorText = (hasError: boolean): string => {
       if (hasError) {

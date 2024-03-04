@@ -6,7 +6,7 @@ import { theme } from '@synerise/ds-core';
 import { getPopupContainer } from '@synerise/ds-utils';
 import * as React from 'react';
 import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
-import { FACTOR, OPERATOR, PARAMETER } from '../../Condition';
+import { FACTOR, OPERATOR, PARAMETER } from '../../constants';
 import * as S from '../../Condition.style';
 import * as T from './ConditionRow.types';
 
@@ -34,7 +34,6 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   onActivate,
   hasPriority,
   texts,
-  stepType,
   onDeactivate,
   // error,
   inputProps,
@@ -58,9 +57,40 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
     return errorText ? <S.ErrorWrapper>{errorText}</S.ErrorWrapper> : <></>;
   }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText]);
 
+  const removeConditionTrigger = !readOnly && removeCondition && conditionsNumber > minConditionLength && (
+    <S.RemoveIconWrapper
+      onClick={(): void => removeCondition(stepId, conditionId)}
+      className="ds-conditions-remove-row"
+    >
+      <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
+        <Icon component={<CloseS />} color={theme.palette['red-600']} />
+      </Tooltip>
+    </S.RemoveIconWrapper>
+  );
+
+  const renderConditionParameterWrapper = Boolean(conditionParameter);
+  const renderConditionOperatorWrapper = Boolean(
+    (!conditionParameter ||
+      (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
+      conditionOperator
+  );
+  const renderConditionFactorWrapper = Boolean(
+    conditionFactor !== undefined && conditionOperator?.value && conditionFactor?.availableFactorTypes !== null
+  );
+
+  let lastConditionWrapper = '';
+  if (renderConditionFactorWrapper) {
+    lastConditionWrapper = 'factor';
+  } else if (renderConditionOperatorWrapper) {
+    lastConditionWrapper = 'operator';
+  } else if (renderConditionParameterWrapper) {
+    lastConditionWrapper = 'parameter';
+  }
+
   return (
     <S.ConditionRow
-      stepType={stepType}
+      data-testid="condition-row"
+      onlyChild={maxConditionLength === 1}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       key={`condition-row-${conditionId}`}
       index={index}
@@ -82,8 +112,11 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
       />
       <S.ConditionRowLine>
         <S.ConditionRowDefinition>
-          <S.ConditionWrapper>
-            {conditionParameter && (
+          <S.ConditionWrapper
+            data-testid="condition-parameter-wrapper"
+            withRemoveTrigger={lastConditionWrapper === 'parameter'}
+          >
+            {renderConditionParameterWrapper && (
               <Factors
                 {...conditionParameter}
                 inputProps={inputProps}
@@ -101,65 +134,60 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 error={Boolean(conditionParameter.errorText)}
               />
             )}
+            {lastConditionWrapper === 'parameter' && removeConditionTrigger}
           </S.ConditionWrapper>
-          {(!conditionParameter ||
-            (conditionParameter?.value && (conditionParameter?.value as ParameterValueType).name !== '')) &&
-            conditionOperator && (
-              <S.ConditionWrapper>
-                <Operators
-                  {...conditionOperator}
+          {renderConditionOperatorWrapper && (
+            <S.ConditionWrapper
+              data-testid="condition-operator-wrapper"
+              withRemoveTrigger={lastConditionWrapper === 'operator'}
+            >
+              <Operators
+                {...conditionOperator}
+                getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
+                onActivate={(): void => onActivate && onActivate(OPERATOR)}
+                onDeactivate={onDeactivate}
+                onChange={(value): void => selectOperator(stepId, conditionId, value)}
+                opened={
+                  hasPriority &&
+                  stepId === currentStepId &&
+                  conditionId === currentConditionId &&
+                  currentField === OPERATOR
+                }
+                readOnly={readOnly}
+                errorText={conditionOperator.errorText}
+              />
+              {lastConditionWrapper === 'operator' && removeConditionTrigger}
+            </S.ConditionWrapper>
+          )}
+          {renderConditionFactorWrapper && (
+            <S.ConditionWrapper
+              data-testid="condition-factor-wrapper"
+              withRemoveTrigger={lastConditionWrapper === 'factor'}
+            >
+              {conditionFactor?.withCustomFactor || (
+                <Factors
+                  {...conditionFactor}
+                  inputProps={inputProps}
                   getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
-                  onActivate={(): void => onActivate && onActivate(OPERATOR)}
+                  onActivate={(): void => onActivate && onActivate(FACTOR)}
                   onDeactivate={onDeactivate}
-                  onChange={(value): void => selectOperator(stepId, conditionId, value)}
+                  setSelectedFactorType={(factorType): void =>
+                    setStepConditionFactorType(stepId, conditionId, factorType)
+                  }
+                  onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
+                  factorKey={conditionId}
+                  error={Boolean(conditionFactor.errorText)}
                   opened={
                     hasPriority &&
                     stepId === currentStepId &&
                     conditionId === currentConditionId &&
-                    currentField === OPERATOR
+                    currentField === FACTOR
                   }
                   readOnly={readOnly}
-                  errorText={conditionOperator.errorText}
                 />
-              </S.ConditionWrapper>
-            )}
-          {conditionFactor !== undefined &&
-            conditionOperator?.value &&
-            conditionFactor?.availableFactorTypes !== null && (
-              <S.ConditionWrapper fullWidth>
-                {conditionFactor?.withCustomFactor || (
-                  <Factors
-                    {...conditionFactor}
-                    inputProps={inputProps}
-                    getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
-                    onActivate={(): void => onActivate && onActivate(FACTOR)}
-                    onDeactivate={onDeactivate}
-                    setSelectedFactorType={(factorType): void =>
-                      setStepConditionFactorType(stepId, conditionId, factorType)
-                    }
-                    onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
-                    factorKey={conditionId}
-                    error={Boolean(conditionFactor.errorText)}
-                    opened={
-                      hasPriority &&
-                      stepId === currentStepId &&
-                      conditionId === currentConditionId &&
-                      currentField === FACTOR
-                    }
-                    readOnly={readOnly}
-                  />
-                )}
-              </S.ConditionWrapper>
-            )}
-          {!readOnly && removeCondition && conditionsNumber > minConditionLength && (
-            <S.RemoveIconWrapper
-              onClick={(): void => removeCondition(stepId, conditionId)}
-              className="ds-conditions-remove-row"
-            >
-              <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
-                <Icon component={<CloseS />} color={theme.palette['red-600']} />
-              </Tooltip>
-            </S.RemoveIconWrapper>
+              )}
+              {lastConditionWrapper === 'factor' && removeConditionTrigger}
+            </S.ConditionWrapper>
           )}
         </S.ConditionRowDefinition>
         {conditionErrorMessage}

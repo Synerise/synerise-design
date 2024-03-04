@@ -22,6 +22,7 @@ const INPUT_PROPS_BLACKLIST = [
   'onAutosize',
   'placeholderIsMinWidth',
   'autoResize',
+  'refPropName',
 ];
 
 const cleanInputProps = inputProps => {
@@ -76,10 +77,10 @@ class AutosizeInput extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-  inputRef = el => {
+  inputRef = (el, originalElement) => {
     this.input = el;
     if (typeof this.props.inputRef === 'function') {
-      this.props.inputRef(el);
+      this.props.inputRef(el, originalElement);
     }
   };
   placeHolderSizerRef = el => {
@@ -91,7 +92,7 @@ class AutosizeInput extends Component {
     if (!el) return;
     const input = el.previousElementSibling;
     const ref = transformRef(input);
-    this.inputRef(ref);
+    this.inputRef(ref, input);
     this.copyInputStyles();
   };
   copyInputStyles() {
@@ -170,6 +171,7 @@ class AutosizeInput extends Component {
       boxSizing: 'content-box',
       width: `${this.state.inputWidth}px`,
       minHeight: `${30 - 12 * 2}px`,
+      transition: 'width 0s ease 0s',
       ...this.props.inputStyle,
     };
     const defaultRenderInput = props => <input {...props} />;

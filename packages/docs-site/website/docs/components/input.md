@@ -19,7 +19,7 @@ Input UI Component
 
 ## API
 
-#### Input
+### Input
 
 | Property       | Description                                                                                                                                                        | Type                                                                    | Default   |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------- |
@@ -46,9 +46,32 @@ Input UI Component
 | tooltipConfig  | Config of tooltip                                                                                                                                                  | [TooltipProps](https://design.synerise.com/docs/components/tooltip#api) | -         |
 | type           | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)(use `Input.TextArea` instead of `type="textarea"`) | string                                                                  | `text`    |
 | value          | The input content value                                                                                                                                            | string                                                                  |           |
-| autoResize     | 'resize' width of the input based on width of the text in input                                                                                                    | boolean                                                                 | `false`   |
+| autoResize     | 'resize' width of the input based on width of the text in input                                                                                                    |  AutoResizeProp (see below)                                                                | `undefined`   |
 
-#### MaskedInput
+#### AutoResizeProp
+
+```
+type AutoResizeProp = `boolean` | {
+    minWidth: string; 
+    maxWidth?: string; 
+    stretchToFit?: boolean 
+};
+```
+
+Setting `stretchToFit: true` will make the field stretch to fit the containing element. The component observes the width of the wrapper and adjusts the maxWidth accordingly.  
+**Important** if the Input is within a flex-item then there is necessary CSS that needs to be applied to the flex-item containers in order for the flex-item to grow to fill the allowed space, but at the same time not stretch the flex container (identical issue happens when text-overflow needs to happen inside a flex-item). 
+
+```css
+$flexItemSurroundingTheInput {
+    min-width: 0;
+    flex-grow: 1
+}
+```
+
+See https://css-tricks.com/flexbox-truncated-text/ for more details.
+
+
+### MaskedInput
 
 Same as Input api with additional props:
 
@@ -58,7 +81,7 @@ Same as Input api with additional props:
 | placeholderChar  | Customized placeholder character used to fill in editable parts of the pattern. | string                                                            | '\_'    |
 | formatCharacters | Customized format character definitions for use in the pattern.                 | Object (https://github.com/insin/inputmask-core#formatcharacters) | -       |
 
-#### InputGroup
+### InputGroup
 
 | Property | Description                                                                                             | Type    | Default |
 | -------- | ------------------------------------------------------------------------------------------------------- | ------- | ------- |

@@ -22,6 +22,7 @@ const TextInput: FC<InputProps> = ({
   onDeactivate,
   error,
   inputProps,
+  getPopupContainerOverride,
   readOnly = false,
 }) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
@@ -106,6 +107,7 @@ const TextInput: FC<InputProps> = ({
           error={localError || error}
           handleInputRef={setInputRef}
           defaultOpen
+          getPopupContainer={getPopupContainerOverride}
           readOnly={readOnly}
         >
           {autocompleteOptions?.map(option => (

@@ -3,6 +3,7 @@ import Button from '@synerise/ds-button';
 import * as React from 'react';
 import Menu from '@synerise/ds-menu';
 import { InputGroup } from '@synerise/ds-input';
+import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
 // import 'antd/lib/input/style/index.css' // this style might be in imported scopes as we use input; not needed here, but worth to mention this
 
@@ -49,6 +50,9 @@ export const InputSelectGroup = styled(InputGroup)<InputGroupProps>`
       width: 122px;
     }
     height: 32px;
+    ${InputGroupItem} {
+      min-width: unset;
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { injectIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
@@ -12,9 +12,9 @@ import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
 import * as CONST from '../constants';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
-import { toIsoStringWithoutZone } from "../utils";
+import { toIsoStringWithoutZone } from '../utils';
 
-const Footer: React.FC<Props> = ({
+const Footer = ({
   canApply,
   onApply,
   intl,
@@ -30,11 +30,11 @@ const Footer: React.FC<Props> = ({
   showTime,
   displayDateContainerClass = 'ds-date-range-picker-value',
   ...rest
-}) => {
+}: Props) => {
   const { formatValue } = useDataFormat();
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
 
-  const footerDateToString = React.useCallback(
+  const footerDateToString = useCallback(
     (date: Date | string) => {
       if (format || typeof date === 'string') {
         return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
@@ -47,7 +47,7 @@ const Footer: React.FC<Props> = ({
     [footerFormat, format, formatValue, intl.locale, valueFormatOptions, showTime]
   );
 
-  const ChosenRange = React.useMemo(() => {
+  const ChosenRange = useMemo(() => {
     if (value?.key === CONST.ALL_TIME || (value && isLifetime(value))) {
       return (
         <S.ChosenRange className="ds-date-range-picker-value">

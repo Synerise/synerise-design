@@ -1,5 +1,5 @@
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import * as React from 'react';
 
 import Button from '@synerise/ds-button';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
@@ -11,7 +11,7 @@ import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 
-const ParameterInput: React.FC<InputProps> = ({
+const ParameterInput = ({
   value,
   onChange,
   onParamsClick,
@@ -25,13 +25,13 @@ const ParameterInput: React.FC<InputProps> = ({
   readOnly = false,
   error,
   getMenuEntryProps,
-}) => {
+}: InputProps) => {
   // @ts-ignore
   const { buttonIcon, buttonLabel, loading, ...restParameters } = parameters;
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const parameter = React.useMemo(() => value as ParameterValueType, [value]);
-  const { parameterIcon, parameterName } = React.useMemo(
+  const parameter = useMemo(() => value as ParameterValueType, [value]);
+  const { parameterIcon, parameterName } = useMemo(
     () => ({
       parameterIcon: parameter?.icon || buttonIcon,
       parameterName: parameter?.name || buttonLabel,
@@ -39,20 +39,20 @@ const ParameterInput: React.FC<InputProps> = ({
     [parameter, buttonIcon, buttonLabel]
   );
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     val => {
       onChange(val);
     },
     [onChange]
   );
 
-  const handleOnClick = React.useCallback(() => {
+  const handleOnClick = useCallback(() => {
     onParamsClick && onParamsClick();
     setDropdownVisible(true);
     onActivate && onActivate();
   }, [onParamsClick, onActivate]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDropdownVisible(Boolean(opened));
     if (opened) {
       onParamsClick && onParamsClick();
@@ -61,12 +61,12 @@ const ParameterInput: React.FC<InputProps> = ({
     // eslint-disable-next-line
   }, [opened]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     !preventAutoloadData && onParamsClick && onParamsClick();
     // eslint-disable-next-line
   }, []);
 
-  const onDropdownVisibilityChange = React.useCallback(
+  const onDropdownVisibilityChange = useCallback(
     (newValue: boolean) => {
       newValue && onActivate && onActivate();
       if (!newValue) {
@@ -77,13 +77,13 @@ const ParameterInput: React.FC<InputProps> = ({
     [onActivate, onDeactivate]
   );
 
-  const triggerMode = React.useMemo(() => {
-    if (value) {
+  const triggerMode = useMemo(() => {
+    if (parameterIcon) {
       return readOnly ? 'icon-label' : 'two-icons';
     }
 
     return readOnly ? 'simple' : 'label-icon';
-  }, [value, readOnly]);
+  }, [parameterIcon, readOnly]);
 
   const triggerButton = (
     <Button
@@ -112,7 +112,7 @@ const ParameterInput: React.FC<InputProps> = ({
             getPopupContainer: getPopupContainerOverride || getPopupContainer,
           } as MenuItemProps['hoverTooltipProps'],
           renderHoverTooltip: parameter?.name
-            ? (): JSX.Element => (
+            ? () => (
                 <InformationCard
                   icon={parameterIcon}
                   subtitle={parameter.id?.toString()}

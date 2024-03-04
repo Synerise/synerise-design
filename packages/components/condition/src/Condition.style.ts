@@ -1,9 +1,9 @@
-import styled, { FlattenInterpolation, css } from 'styled-components';
+import styled, { FlattenSimpleInterpolation, FlattenInterpolation, css } from 'styled-components';
 import { IconWrapper } from '@synerise/ds-inline-edit/dist/InlineEdit.styles';
 import Icon from '@synerise/ds-icon';
 import Cruds from '@synerise/ds-cruds';
 import { ThemeProps } from '@synerise/ds-core';
-import { ConditionRowProps } from './ConditionStep/ConditionRow';
+import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 
 export const ErrorWrapper = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
@@ -27,14 +27,14 @@ export const StepConditionCruds = styled(Cruds)`
   opacity: 0;
 `;
 
-export const StepConditions = styled.div<{ withoutStepName: boolean }>`
+export const StepConditions = styled.div<{ withCruds?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 0;
   padding: 0 24px;
-  width: ${(props): string => (props.withoutStepName ? 'calc(100% - 48px)' : '100%')};
+  width: ${(props): string => (props.withCruds ? 'calc(100% - 48px)' : '100%')};
 
   ${DragIcon} {
     left: 0;
@@ -65,10 +65,7 @@ export const StepIndexWrapper = styled.span`
 
 export const Condition = styled.div`
   padding: 12px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: block;
   min-width: 575px;
   width: 100%;
 
@@ -77,13 +74,7 @@ export const Condition = styled.div`
   }
 `;
 
-export const ConditionStepWrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  width: 100%;
-`;
+export const ConditionStepWrapper = styled.div``;
 
 export const And = styled.div`
   display: contents;
@@ -130,10 +121,7 @@ export const DraggedLabel = styled.span`
 `;
 
 export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefined; hoverDisabled?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  
   padding: 12px 0 12px;
   position: relative;
 
@@ -176,7 +164,7 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
   }
   background-color: ${(props): string => (props.active ? props.theme.palette['grey-050'] : 'transparent')};
   &:hover {
-    background-color: ${(props): string => (props.hoverDisabled ? 'transparent' : props.theme.palette['grey-050'])};
+    ${(props): string | false => !props.hoverDisabled && `background-color: ${props.theme.palette['grey-050']}`};
     ${StepCruds} {
       opacity: 1;
       visibility: visible;
@@ -260,8 +248,6 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
 }
 `;
 
-export const ConditionWrapper = styled.div<{ fullWidth?: boolean }>``;
-
 export const Subject = styled.div``;
 
 export const RemoveIconWrapper = styled.span`
@@ -269,7 +255,7 @@ export const RemoveIconWrapper = styled.span`
   pointer-events: none;
   opacity: 0;
   transition: all 0.3s ease;
-  width: 32px;
+  width: 24px;
   height: 32px;
   display: flex;
   align-items: center;
@@ -277,11 +263,29 @@ export const RemoveIconWrapper = styled.span`
   margin-left: 8px;
 `;
 
+export const ConditionWrapper = styled.div<{ withRemoveTrigger?: boolean }>`
+  ${(props): FlattenSimpleInterpolation | false =>
+    Boolean(props.withRemoveTrigger) &&
+    css`
+      & {
+        display: flex;
+        > * {
+          min-width: 0;
+        }
+      }
+      ${RemoveIconWrapper} {
+        flex: 0 0 24px;
+      }
+    `};
+
+  ${InputGroupItem} {
+    min-width: 0;
+  }
+`;
+
 export const ConditionRows = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
 `;
 
 export const ConditionRowDefinition = styled.div`
@@ -291,7 +295,10 @@ export const ConditionRowDefinition = styled.div`
   justify-content: flex-start;
 `;
 
-export const ConditionRowLine = styled.div``;
+export const ConditionRowLine = styled.div`
+  flex-grow: 1;
+  min-width: 0;
+`;
 
 export const AddConditionRow = styled.div`
   display: flex;
@@ -332,12 +339,13 @@ export const ConditionConnections = styled.span<{ first?: boolean; last?: boolea
 export const ConditionRow = styled.div<{
   withError: boolean;
   index: number;
-  stepType: ConditionRowProps['stepType'];
+  onlyChild?: boolean;
   last?: boolean;
 }>`
-  padding-bottom: ${(props): string => (props.stepType === 'event' ? '16px' : '0')};
+  padding-bottom: ${(props): string => (props.onlyChild ? '0' : '16px')};
   display: flex;
-
+  flex-grow: 1;
+  
   ${ConditionConnections} {
     height: ${(props): string => (props.withError ? 'auto' : '32px')};
     ${props =>
@@ -353,6 +361,11 @@ export const ConditionRow = styled.div<{
     margin-right: 8px;
     &:last-of-type {
       margin-right: 0;
+      flex-grow: 1;
+      min-width: 0;
+    }
+    &:only-of-type {
+      flex-grow: 0;
     }
   }
 

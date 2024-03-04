@@ -57,4 +57,27 @@ import Autocomplete from '@synerise/ds-autocomplete'
 | errorText                              | error message, if provided input will be set in error state                                                                                                                                                                                              | string                                                                                                                  | -                                                   |
 | label                                  | input label                                                                                                                                                                                                                                              | string                                                                                                                  | -                                                   |
 | description                            | input description                                                                                                                                                                                                                                        | string                                                                                                                  | -                                                   |
-| autoResize                             | 'resize' width of the input based on width of the text in input                                                                                                                                                                                          | boolean / { minWidth: string; maxWidth: string }                                                                        | `false` | minWidth: '', maxWidth: ''                | 
+| autoResize                             | 'resize' width of the input based on width of the text in input                                                                                                                                                                                          | AutoResizeProp                                                                        | undefined                |
+
+
+#### AutoResizeProp
+
+```
+type AutoResizeProp = `boolean` | {
+    minWidth: string; 
+    maxWidth?: string; 
+    stretchToFit?: boolean 
+};
+```
+
+Setting `stretchToFit: true` will make the field stretch to fit the containing element. The component observes the width of the wrapper and adjusts the maxWidth accordingly.  
+**Important** if the Input is within a flex-item then there is necessary CSS that needs to be applied to the flex-item containers in order for the flex-item to grow to fill the allowed space, but at the same time not stretch the flex container (identical issue happens when text-overflow needs to happen inside a flex-item). 
+
+```css
+$flexItemSurroundingTheInput {
+    min-width: 0;
+    flex-grow: 1
+}
+```
+
+See https://css-tricks.com/flexbox-truncated-text/ for more details.

@@ -268,6 +268,7 @@ const Filter = ({
 
       return (
         <S.ExpressionWrapper
+          data-testid="condition-step"
           onTransitionEnd={handleTransitionEnd}
           ref={element => (expressionRefs.current[expression.id] = element)}
           key={expression.id}
@@ -277,7 +278,7 @@ const Filter = ({
         >
           <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
           {expression.logic && index + 1 < expressions.length && (
-            <S.LogicWrapper>
+            <S.LogicWrapper data-testid="condition-logic">
               <LogicComponent
                 {...expression.logic.data}
                 {...componentProps(expression.logic, index)}

@@ -1,27 +1,29 @@
-import * as React from 'react';
+import { ReactNode, ReactElement, MutableRefObject } from 'react';
 import { InputProps, TextAreaProps } from 'antd/lib/input';
 import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 import { TooltipProps } from 'antd/lib/tooltip';
+import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
+
+export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 
 export interface Props {
   error?: boolean;
   className?: string;
-  tooltip?: React.ReactNode;
+  tooltip?: ReactNode;
   tooltipConfig?: TooltipExtendedProps & TooltipProps;
-  errorText?: React.ReactNode | string;
-  label?: React.ReactNode | string;
-  description?: React.ReactNode | string;
+  errorText?: ReactNode;
+  label?: ReactNode;
+  description?: ReactNode;
   counterLimit?: number;
-  icon1?: React.ReactElement;
-  icon1Tooltip?: React.ReactElement;
-  icon2?: React.ReactElement;
-  icon2Tooltip?: React.ReactElement;
+  icon1?: ReactElement;
+  icon1Tooltip?: ReactElement;
+  icon2?: ReactElement;
+  icon2Tooltip?: ReactElement;
   resetMargin?: boolean;
-  handleInputRef?: (ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  handleInputRef?: (ref: MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
+  autoResize?: AutoResizeProp;
 }
 
 export type EnhancedProps = Props & (InputProps | TextAreaProps | MaskedInputProps);

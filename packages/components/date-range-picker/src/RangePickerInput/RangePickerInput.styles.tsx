@@ -6,6 +6,7 @@ import { Label as DSLabel } from '@synerise/ds-input';
 export const Container = styled.div``;
 
 export const ClearIconWrapper = styled.div`
+  margin-left: 3px;
   .ds-icon > svg {
     fill: ${(props): string => props.theme.palette['red-600']};
   }
@@ -17,6 +18,7 @@ export const ClearIconWrapper = styled.div`
 `;
 
 export const DefaultIconWrapper = styled.div`
+  margin-left: 3px;
   &&:hover {
     .ds-icon > svg {
       fill: ${(props): string => props.theme.palette['grey-600']};

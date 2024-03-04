@@ -17,8 +17,8 @@ const InputGroup = ({ children, label, errors, description, resetMargin, tooltip
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Input.Group {...antdInputGroupProps}>
         <S.InputGroupWrapper compact={antdInputGroupProps.compact}>
-          {Children.map(childrenArray, child => (
-            <S.InputGroupItem>{child}</S.InputGroupItem>
+          {Children.map(childrenArray, (child, index) => (
+            <S.InputGroupItem className={`ds-input-group-item ds-input-group-item-${index}`}>{child}</S.InputGroupItem>
           ))}
         </S.InputGroupWrapper>
       </Input.Group>

@@ -11,22 +11,17 @@ import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
 import * as S from './Condition.style';
-
-const DEFAULT_FIELD = '';
-const DEFAULT_CONDITION = '';
-const DEFAULT_STEP = '';
-export const OPERATOR = 'operator';
-export const PARAMETER = 'parameter';
-export const FACTOR = 'factor';
-export const SUBJECT = 'subject';
-const SORTABLE_CONFIG = {
-  ghostClass: 'steps-list-ghost-element',
-  className: 'steps-list',
-  handle: '.step-drag-handler',
-  filter: '.ds-condition-step-name, .ds-cruds',
-  animation: 150,
-  forceFallback: true,
-};
+import {
+  SORTABLE_CONFIG,
+  DEFAULT_CONDITION,
+  DEFAULT_FIELD,
+  DEFAULT_STEP,
+  OPERATOR,
+  FACTOR,
+  PARAMETER,
+  SUBJECT,
+  DEFAULT_INPUT_PROPS,
+} from './constants';
 
 const Condition = (props: T.ConditionProps) => {
   const {
@@ -275,7 +270,7 @@ const Condition = (props: T.ConditionProps) => {
                 onDeactivate={handleClearActiveCondition}
                 showSuffix={showSuffix}
                 hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
-                inputProps={inputProps}
+                inputProps={{ ...DEFAULT_INPUT_PROPS, ...inputProps }}
                 readOnly={readOnly}
               />
             );

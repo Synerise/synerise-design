@@ -157,6 +157,9 @@ export const DEFAULT_CONDITION_ROW = () => ({
     value: undefined,
   },
   factor: {
+    inputProps: {
+      autoResize: { stretchToFit: true, minWidth: '200px'}
+    },
     selectedFactorType: '',
     defaultFactorType: 'text',
     value: '',
