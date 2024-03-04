@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
 import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type { MenuItemProps } from '@synerise/ds-menu';
+import type { AutoResizeProp } from '@synerise/ds-input';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -105,7 +106,7 @@ export type FactorsProps = {
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
   textType?: 'autocomplete' | 'expansible' | 'default' | string;
-  autoResize?: boolean | { minWidth: string; maxWidth: string };
+  autoResize?: AutoResizeProp;
   autocompleteText?: {
     options: string[];
   };

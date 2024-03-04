@@ -12,13 +12,22 @@ export const IconWrapper = styled.span`
 `;
 
 export const InputWrapper = styled.div`
-  input {
-    padding: 0;
-    &:before {
-      display: none;
+  & {
+    position: relative;
+    display: flex;
+
+    > * {
+      min-width: 0;
     }
+
     input {
-      max-height: 30px;
+      padding: 0;
+      &:before {
+        display: none;
+      }
+      input {
+        max-height: 30px;
+      }
     }
   }
 `;

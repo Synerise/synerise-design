@@ -5,7 +5,9 @@ export const InputGroupItem = styled.div``;
 export const InputGroupWrapper = styled.div<{ compact?: boolean }>`
   &&& {
     display: flex;
-    align-items: ${(props): string => (props.compact ? '' : 'stretch')};
+    min-width: 0;
+
+    ${(props): string => (props.compact ? '' : 'align-items: stretch')};
 
     ${(props): FlattenSimpleInterpolation =>
       props.compact

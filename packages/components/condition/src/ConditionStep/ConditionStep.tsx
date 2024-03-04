@@ -9,7 +9,7 @@ import * as T from './ConditionStep.types';
 import { StepHeader } from './StepHeader';
 import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
-import { SUBJECT } from '../Condition';
+import { SUBJECT } from '../constants';
 
 export const ConditionStep = ({
   step,
@@ -39,7 +39,6 @@ export const ConditionStep = ({
   setCurrentStep,
   onDeactivate,
   showSuffix,
-  hoverDisabled,
   inputProps,
   readOnly = false,
 }: T.ConditionStepProps) => {
@@ -69,6 +68,8 @@ export const ConditionStep = ({
     }),
     [texts, formatMessage]
   );
+
+  const withCruds = !readOnly && (duplicateStep || removeStep);
 
   const onActivate = useCallback(
     () => (setCurrentStep ? (): void => setCurrentStep(step.id) : undefined),
@@ -211,18 +212,18 @@ export const ConditionStep = ({
       data-conditionSuffix={text.conditionSuffix}
       style={hasPriority ? { zIndex: 10001 } : undefined}
       active={step.id === currentStepId && currentField !== ''}
-      hoverDisabled={hoverDisabled}
+      hoverDisabled={Boolean(currentStepId)}
       showSuffix={showSuffix}
     >
       {!updateStepName && (
         <S.DraggedLabel>{step.subject?.selectedItem?.name || step.context?.selectedItem?.name}</S.DraggedLabel>
       )}
       {updateStepName && stepHeader}
-      <S.StepConditions withoutStepName={updateStepName === undefined}>
+      <S.StepConditions withCruds={Boolean(!updateStepName && withCruds)}>
         {draggableEnabled && !updateStepName && (
           <S.DragIcon className="step-drag-handler" component={<DragHandleM />} />
         )}
-        <S.Subject>
+        <S.Subject data-testid="condition-subject-or-context">
           {step.subject && (
             <Subject
               {...step.subject}
@@ -249,7 +250,7 @@ export const ConditionStep = ({
           {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
           {addConditionButton}
         </S.ConditionRows>
-        {!updateStepName && !readOnly && (
+        {!updateStepName && withCruds && (
           <S.StepConditionCruds
             onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
             onDelete={removeStep ? (): void => removeStep(step.id) : undefined}

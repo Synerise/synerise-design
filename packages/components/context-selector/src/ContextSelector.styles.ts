@@ -38,7 +38,7 @@ export const Title = styled.div`
 `;
 
 export const ItemWrapper = styled.span`
-  max-width: 200px;
+  max-width: 170px;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

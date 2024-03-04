@@ -18,6 +18,7 @@ import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from '../../ContextSelec
 import { FACTORS_TEXTS } from '../../Factors/data/index.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS, OPERATORS_TEXTS } from '../../Operators/data/index.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../../ContextSelector/data/client.data';
+import type { AutoResizeProp } from '@synerise/ds-input';
 
 
 type ConditionExampleProps = {
@@ -284,6 +285,16 @@ export const ConditionExample = React.forwardRef<HTMLDivElement, ConditionExampl
     );
   };
 
+  const autoResize = boolean('Set autoResize', true, 'autoresize');
+  const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
+  const autoResizeProp: AutoResizeProp = {
+    minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
+    stretchToFit: autoResizeStretchToParent
+  }
+  if (!autoResizeStretchToParent) {
+    autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
+  }
+
   return (
     <div ref={ref}>
       <Condition
@@ -302,14 +313,7 @@ export const ConditionExample = React.forwardRef<HTMLDivElement, ConditionExampl
         minConditionsLength={1}
         maxConditionsLength={10}
         autoClearCondition
-        inputProps={{
-          autoResize: boolean('Set width of autoResize', true)
-            ? {
-                maxWidth: `${number('Set autoResize max width', 450)}px`,
-                minWidth: `${number('Set autoResize min width', 144)}px`,
-              }
-            : undefined,
-        }}
+        inputProps={autoResize ? { autoResize: autoResizeProp } : undefined}
         addCondition={addStepCondition}
         removeCondition={removeStepCondition}
         onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}

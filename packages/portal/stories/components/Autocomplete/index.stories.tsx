@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { text, boolean, number } from '@storybook/addon-knobs';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
 import Loader from '@synerise/ds-loader';
 import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
-import { AutosizeInput } from '@synerise/ds-input';
+import { AutoResizeProp, AutosizeInput } from '@synerise/ds-input';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 
 const dataSource = ['First position', 'Second position'];
@@ -13,19 +13,19 @@ const renderLabel = (text: string) => {
   return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
 };
 
-const AutocompleteWithState: React.FC = () => {
-  const [value, setValue] = React.useState<string>('');
-  const [results, setResults] = React.useState<string[]>([]);
+const AutocompleteWithState = () => {
+  const [value, setValue] = useState<string>('');
+  const [results, setResults] = useState<string[]>([]);
   const description = text('Description', 'Description');
   const errorMessage = text('Error Text', 'Error');
   const hasError = boolean('Set validation state', false);
   const loading = boolean('Set loading indicator', false);
   const readOnly = boolean('Set readOnly', false);
   const placeholder = text('Placeholder', 'Placeholder');
-  const [isBlur, setBlur] = React.useState(false);
-  const autoResize = boolean('Set autoResize', false);
+  const [isBlur, setBlur] = useState(false);
+  
 
-  const renderWithHighlightedText = (highlight, item): React.ReactNode => {
+  const renderWithHighlightedText = (highlight, item) => {
     if (highlight && typeof item === 'string') {
       const index = item.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
       if (index === -1) {
@@ -56,7 +56,7 @@ const AutocompleteWithState: React.FC = () => {
     setResults(result);
   };
 
-  const getErrorText = (hasError: boolean): string => {
+  const getErrorText = (hasError: boolean) => {
     if (hasError) {
       return errorMessage;
     } else {
@@ -70,57 +70,69 @@ const AutocompleteWithState: React.FC = () => {
     return span.textContent || span.innerText;
   };
 
+
+  let containerWidth = 0;
+  const autoResize = boolean('Set autoResize', true, 'autoresize');
+  const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
+  const autoResizeProp: AutoResizeProp = {
+    minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
+    stretchToFit: autoResizeStretchToParent
+  }
+  if (autoResizeStretchToParent) {
+    containerWidth = number('Set container width', 400, undefined, 'autoresize')
+  }
+  else {
+    autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
+  }
+
   return (
-    <Autocomplete
-      placeholder={placeholder}
-      onSearch={handleSearch}
-      readOnly={readOnly}
-      autoResize={
-        autoResize
-          ? {
-              maxWidth: `${number('Set autoResize max width', 300)}px`,
-              minWidth: `${number('Set autoResize min width', 150)}px`,
-            }
-          : undefined
-      }
-      label={renderLabel(text('Label', 'Label'))}
-      errorText={!isBlur && getErrorText(hasError)}
-      error={!isBlur && hasError}
-      onBlur={() => {
-        action('I am blurred');
-        setBlur(false);
-      }}
-      onFocus={() => {
-        action('I am focused');
-        setBlur(true);
-      }}
-      onChange={(value: string) => {
-        setValue(extractContent(value));
-        handleSearch(extractContent(value));
-      }}
-      description={description}
-      value={value === 'undefined' ? '' : value}
-    >
-      {!loading &&
-        results.map(result => (
-          <Autocomplete.Option key={result}>
-            <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
+    <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
+      <Autocomplete
+        placeholder={placeholder}
+        onSearch={handleSearch}
+        readOnly={readOnly}
+        autoResize={
+          autoResize ? autoResizeProp : undefined
+        }
+        label={renderLabel(text('Label', 'Label'))}
+        errorText={!isBlur && getErrorText(hasError)}
+        error={!isBlur && hasError}
+        onBlur={() => {
+          action('I am blurred');
+          setBlur(false);
+        }}
+        onFocus={() => {
+          action('I am focused');
+          setBlur(true);
+        }}
+        onChange={(value: string) => {
+          setValue(extractContent(value));
+          handleSearch(extractContent(value));
+        }}
+        description={description}
+        value={value === 'undefined' ? '' : value}
+      >
+        {!loading &&
+          results.map(result => (
+            <Autocomplete.Option value={value} key={result}>
+              <span style={{ fontWeight: 400 }}>{renderWithHighlightedText(value, result)}</span>
+            </Autocomplete.Option>
+          ))}
+        {loading && (
+          <Autocomplete.Option value="">
+            <LoaderWrapper>
+              <Loader label="Loading..." />
+            </LoaderWrapper>{' '}
           </Autocomplete.Option>
-        ))}
-      {loading && (
-        <Autocomplete.Option>
-          <LoaderWrapper>
-            <Loader label="Loading..." />
-          </LoaderWrapper>{' '}
-        </Autocomplete.Option>
-      )}
-    </Autocomplete>
+        )}
+      </Autocomplete>
+    </div>
   );
 };
-const AutocompleteWithAutosize: React.FC = () => {
-  const [value, setValue] = React.useState<string>('');
-  const [search, setSearch] = React.useState<string>('');
-  const [options, setOptions] = React.useState<{ value: string }[]>([]);
+const AutocompleteWithAutosize = () => {
+  const [value, setValue] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
+  const [options, setOptions] = useState<{ value: string }[]>([]);
 
   return (<>
     <AutosizeInput

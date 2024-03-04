@@ -59,7 +59,17 @@ export const OPERATORS_ITEMS = [
     groupId: 'STRING_ONE',
     group: 'STRING_ONE',
     icon: <TextM />,
-    availableFactors: ['text', 'parameter', 'dynamicKey'],
+    availableFactors: [
+      'text',
+      'number',
+      'parameter',
+      'contextParameter',
+      'dynamicKey',
+      'formula',
+      'array',
+      'date',
+      'dateRange',
+    ],
   },
   {
     id: 'STRING_ONENOT_EQUAL',

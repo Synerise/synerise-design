@@ -8,6 +8,7 @@ import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data'
 import { action } from '@storybook/addon-actions';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
+import type { AutoResizeProp } from '@synerise/ds-input';
 
 const DEFAULT_STATE = {
   selectedFactorType: undefined,
@@ -38,21 +39,31 @@ const stories = {
           renderHoverTooltip: undefined,
         }),
       },
-    }[typeOfTooltip]
+    }[typeOfTooltip];
+
+    let containerWidth = 0;
+    const autoResize = boolean('Set autoResize', true, 'autoresize');
+    const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
+    const autoResizeProp: AutoResizeProp = {
+      minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
+      stretchToFit: autoResizeStretchToParent
+    }
+    if (autoResizeStretchToParent) {
+      containerWidth = number('Set container width', 400, undefined, 'autoresize')
+    }
+    else {
+      autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
+    }
 
     return (
+      <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
       <Factors
         error={boolean('Set validation state', false)}
         selectedFactorType={store.state.selectedFactorType}
         setSelectedFactorType={setSelectedFactor}
-        inputProps={{
-          autoResize: boolean('Set width of autoResize', true)
-            ? {
-                maxWidth: `${number('Set autoResize max width', 450)}px`,
-                minWidth: `${number('Set autoResize min width', 144)}px`,
-              }
-            : undefined,
-        }}
+        inputProps={
+          autoResize ? {autoResize: autoResizeProp} : undefined
+        }
         value={store.state.value}
         onChangeValue={changeHandler}
         textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
@@ -78,6 +89,7 @@ const stories = {
         loading={boolean('Set loading', false)}
         {...additionalProps}
       />
+      </div>
     );
   }),
 };

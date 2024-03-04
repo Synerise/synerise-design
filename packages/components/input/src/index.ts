@@ -15,5 +15,5 @@ export {
 } from './Input';
 export * as InputStyles from './Input.styles';
 export type { EnhancedProps };
-export type { Props as InputProps } from './Input.types';
+export type { Props as InputProps, AutoResizeProp } from './Input.types';
 export { default as AutosizeInput } from './autosize/autosize';

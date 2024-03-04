@@ -330,8 +330,10 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        <Layout useNativeScroll={boolean('Use native scroll', false)} mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
-          <Filter
+        
+        <Layout nativeScroll={boolean('Use native scroll', false)} mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
+          <div style={{width:'1000px'}}>
+            <Filter
             maxConditionsLimit={maxConditionsLimit}
             expressions={store.state.expressions}
             getMoveByLabel={offset => {
@@ -393,6 +395,7 @@ const stories = {
             }}
             readOnly={readOnly}
           />
+          </div>
         </Layout>
       </div>
     );
