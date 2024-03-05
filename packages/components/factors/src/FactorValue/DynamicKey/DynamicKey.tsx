@@ -20,19 +20,20 @@ const DynamicKey: React.FC<InputProps> = ({
     value: (value as DynamicKeyValueType).value,
   });
   const [localError, setLocalError] = React.useState(false);
-  const onChangeDebounce = React.useRef(debounce(onChange, 300)).current;
+  const onChangeRef = React.useRef(onChange);
 
-  React.useEffect(() => {
-    return () => {
-      onChangeDebounce.cancel();
-    };
-  }, [onChangeDebounce]);
+  const debouncedOnChange = React.useRef(
+    debounce((inputValue: DynamicKeyValueType): void => {
+      onChangeRef.current && onChangeRef.current(inputValue);
+    }, 300)
+  ).current;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newValue = { ...(value as DynamicKeyValueType) };
     newValue[event.target.name] = event.target.value;
     setLocalValue(newValue);
-    onChangeDebounce(newValue);
+    debouncedOnChange(newValue);
+
     if (!event.target.value.length) {
       setLocalError(true);
     } else {
@@ -41,8 +42,18 @@ const DynamicKey: React.FC<InputProps> = ({
   };
 
   React.useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [localValue, onChange]);
+
+  React.useEffect(() => {
     setLocalValue(value as DynamicKeyValueType);
   }, [value]);
+
+  React.useEffect(() => {
+    return () => {
+      debouncedOnChange.cancel();
+    };
+  }, [debouncedOnChange]);
 
   const trigger = (
     <>
