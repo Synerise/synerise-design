@@ -4,8 +4,6 @@ module.exports = {
   baseUrl: '/', // Base URL for your project */
   favicon: 'img/favicon.ico',
   plugins: [
-    '@docusaurus/plugin-content-blog',
-    '@docusaurus/plugin-content-pages',
     'docusaurus-plugin-sass',
   ],
   presets: [

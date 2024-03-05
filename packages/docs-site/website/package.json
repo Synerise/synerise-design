@@ -14,9 +14,7 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@docusaurus/core": "^2.0.0-alpha.48",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.48"
+    "@babel/plugin-transform-runtime": "^7.9.0"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.48",
