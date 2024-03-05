@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.13...@synerise/ds-date-range-picker@0.27.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/Synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.26.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.26.12...@synerise/ds-date-range-picker@0.26.13) (2024-03-04)
 
 

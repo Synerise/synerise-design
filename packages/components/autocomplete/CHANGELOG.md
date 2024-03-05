@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.6.4...@synerise/ds-autocomplete@0.7.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/Synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.6.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.6.3...@synerise/ds-autocomplete@0.6.4) (2024-02-21)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

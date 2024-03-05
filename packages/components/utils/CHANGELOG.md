@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.24.26...@synerise/ds-utils@0.25.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+* **utils:** horizontal overscroll blocking hook ([5896100](https://github.com/synerise/synerise-design/commit/5896100d514a910fbdf6614dab5de12b4701cd36))
+
+
+
+
+
 ## [0.24.26](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.24.25...@synerise/ds-utils@0.24.26) (2024-02-21)
 
 **Note:** Version bump only for package @synerise/ds-utils

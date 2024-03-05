@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.8...@synerise/ds-factors@0.22.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* **factors:** change debounce logic in DynamicKey ([81d09b2](https://github.com/Synerise/synerise-design/commit/81d09b23e6dba125ffaca838f4b428c90d66a9ba))
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/Synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.21.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.21.7...@synerise/ds-factors@0.21.8) (2024-03-04)
 
 **Note:** Version bump only for package @synerise/ds-factors

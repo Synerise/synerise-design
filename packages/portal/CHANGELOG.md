@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.207.0](https://github.com/synerise/synerise-design/compare/portal@0.206.0...portal@0.207.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 # [0.206.0](https://github.com/synerise/synerise-design/compare/portal@0.205.0...portal@0.206.0) (2024-03-04)
 
 

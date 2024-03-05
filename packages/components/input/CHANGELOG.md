@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.19...@synerise/ds-input@0.20.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.19.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.19.18...@synerise/ds-input@0.19.19) (2024-02-21)
 
 **Note:** Version bump only for package @synerise/ds-input

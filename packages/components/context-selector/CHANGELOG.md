@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.20.8...@synerise/ds-context-selector@0.21.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/Synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.20.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.20.7...@synerise/ds-context-selector@0.20.8) (2024-03-04)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

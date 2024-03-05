@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.8...@synerise/ds-step-card@0.11.0) (2024-03-05)
+
+
+### Features
+
+* **input:** support autoresize to stretch to parent ([329c866](https://github.com/Synerise/synerise-design/commit/329c866cb54921ad1260ae217cb8c471e43b986e))
+
+
+
+
+
 ## [0.10.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-step-card@0.10.7...@synerise/ds-step-card@0.10.8) (2024-02-21)
 
 **Note:** Version bump only for package @synerise/ds-step-card
