@@ -11,7 +11,7 @@ An avatar is an object used to represent a particular person in the application.
 
 ## Anatomy of avatars
 
-
+![Avatar](avatar/2.png)
 
 1. Avatars contain an image that represents a user, a customer or entity. hen an image of a person is not uploaded, the application displays their initials instead (**3**).
 2. To give users an idea about the status of a particular user, you can display a status on the avatar. For instance, an avatar can show if the user is active or inactive.
@@ -21,7 +21,7 @@ An avatar is an object used to represent a particular person in the application.
 
 Avatars are forms of proportional sides. Their shape is placed in a square or a circle.
 
-
+![Avatar](avatar/1.png)
 
 ### Shapes
 
@@ -55,7 +55,7 @@ We divide avatars into three types. Every type has its own use case. If a custom
 
 **Types of avatars:**
 
-
+![Avatar types](avatar/avatar-type.png)
 
 1. Avatar with a photo
 2. Avatar with initials
@@ -76,7 +76,7 @@ We divide avatars into three types. Every type has its own use case. If a custom
 
 We can present avatars as a single entity or in a group.
 
-
+![Avatar groups](avatar/avatar-groups.png)
 
 1. Single avatar
 2. Group avatar

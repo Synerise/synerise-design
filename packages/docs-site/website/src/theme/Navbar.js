@@ -1,5 +1,5 @@
 import React from 'react';
-import BrowserOnly from '@docusaurus/BrowserOnly';
+import ClientOnly from '@docusaurus/ClientOnly';
 
 const Navbar = () => {
   const [opened, setOpened] = React.useState(false);
@@ -109,7 +109,7 @@ const NavSubItem = ({ link, label, title }) => {
 };
 
 export default () => (
-  <BrowserOnly>
+  <ClientOnly>
     <Navbar />
-  </BrowserOnly>
+  </ClientOnly>
 );
