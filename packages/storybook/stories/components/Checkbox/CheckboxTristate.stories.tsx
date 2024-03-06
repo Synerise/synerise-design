@@ -1,31 +1,32 @@
-import React from 'react';
-import type {
-  Meta,
-  StoryObj
-} from '@storybook/react';
+import * as React from 'react';
+import { select } from '@storybook/addon-knobs';
+import CheckboxTristate, { CheckboxTristateChangeEvent, CheckboxTristateProps } from '@synerise/ds-checkbox-tristate';
 
-import CheckboxTristate from "@synerise/ds-checkbox-tristate";
+const checks = [false, true, undefined];
 
-import { CheckboxTristateProps } from "@synerise/ds-checkbox-tristate";
-
-const meta: Meta < CheckboxTristateProps > = {
+export default {
   title: 'Components/Checkbox/CheckboxTristate',
   component: CheckboxTristate,
-  argTypes: {
-
-  }
 };
-export default meta;
 
-type Story = StoryObj < CheckboxTristateProps > ;
-const StoryTemplate: Story = {
-  render: (args) => <CheckboxTristate {...args} />
+export const Default = (args: JSX.IntrinsicAttributes & CheckboxTristateProps & { children?: React.ReactNode; }) => <CheckboxTristate {...args}>Label</CheckboxTristate>;
+
+export const Controlled = (args: JSX.IntrinsicAttributes & CheckboxTristateProps & { children?: React.ReactNode; }) => (
+  <CheckboxTristate {...args}>
+    Controlled by knobs
+  </CheckboxTristate>
+);
+
+Controlled.args = {
+  checked: select('Set checked', checks, false),
+  onChange: (event: CheckboxTristateChangeEvent) => {
+    const checked = typeof Controlled.args.checked === 'string' ? undefined : Controlled.args.checked;
+    alert(`Tristate Checkbox is set to: ${checked}, 
+           onChange event wants to change it to: ${event.target.checked}`)
+  },
 };
-export const Primary = {
-  ...StoryTemplate,
-  args: {
-    checked: false,
-    defaultChecked: false,
-    onChange: () => {}
-  }
+
+export const DefaultChecked = (args: JSX.IntrinsicAttributes & CheckboxTristateProps & { children?: React.ReactNode; }) => <CheckboxTristate {...args}>Default true</CheckboxTristate>;
+DefaultChecked.args = {
+  defaultChecked: true,
 };

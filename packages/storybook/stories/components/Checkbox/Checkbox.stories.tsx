@@ -1,41 +1,59 @@
-import React from 'react';
-import type {
-  Meta,
-  StoryObj
-} from '@storybook/react';
+import * as React from 'react';
+import { boolean, text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+
 import Checkbox from '@synerise/ds-checkbox';
+import CheckboxSkeleton from '@synerise/ds-skeleton/dist/CheckboxSkeleton/CheckboxSkeleton';
 import { CheckboxProps } from '@synerise/ds-checkbox/dist/Checkbox.types';
 
-type ComponentProps = CheckboxProps & {
-  label?: string;
-}
-
-const meta: Meta < ComponentProps > = {
+export default {
   title: 'Components/Checkbox/Checkbox',
   component: Checkbox,
-  argTypes: {
-    children: {
-      control: 'text',
-      table: {
-        type: {
-          summary: 'ReactNode'
-        }
-      }
-    },
-  }
 };
-export default meta;
-type Story = StoryObj < ComponentProps > ;
-const StoryTemplate: Story = {
-  render: (args) => <Checkbox {...args}  />,
+
+export const Default = (args: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<Checkbox> & Readonly<CheckboxProps> & Readonly<{ children?: React.ReactNode; }>) => <Checkbox {...args} />;
+Default.args = {
+  onChange: action('changed'),
+  disabled: boolean('Disabled', false),
+  indeterminate: boolean('Set indeterminate state of checkbox', false),
+  description: text('Set description', ''),
+  errorText: text('Set error message', ''),
+  hasError: boolean('Has error', false),
+  children: text('Set checkbox label', 'Label'),
 };
-export const Primary = {
-  ...StoryTemplate,
-  args: {
-    description: "This is a checkbox component",
-    // errorText: "Some Error",
-    withoutPadding: false,
-    hasError: false,
-    children: 'Label'
-  }
-}
+
+export const Solo = (args: JSX.IntrinsicAttributes & JSX.IntrinsicClassAttributes<Checkbox> & Readonly<CheckboxProps> & Readonly<{ children?: React.ReactNode; }>) => <Checkbox {...args} />;
+Solo.args = {
+  onChange: action('changed'),
+  disabled: boolean('Disabled', false),
+  hasError: boolean('Has error', false),
+  indeterminate: boolean('Set indeterminate state of checkbox', false),
+};
+
+export const Group = (args: []) => (
+  <Checkbox.Group {...args}>
+    <Checkbox
+      disabled={boolean('Disabled', false)}
+      hasError={boolean('Has error', false)}
+      indeterminate={boolean('Set indeterminate state of checkbox', false)}
+      description={text('Set description', 'Description')}
+      errorText={text('Set error message', '')}
+      value="A"
+    >
+      {text('children', 'Label')}
+    </Checkbox>
+    <Checkbox
+      disabled={boolean('Disabled', false)}
+      hasError={boolean('Has error', false)}
+      indeterminate={boolean('Set indeterminate state of checkbox', false)}
+      description={text('Set description', 'Description')}
+      errorText={text('Set error message', '')}
+      value="B"
+    >
+      {text('Set checkbox label', 'Label')}
+    </Checkbox>
+  </Checkbox.Group>
+);
+
+export const CheckboxSkeletonStory = () => <CheckboxSkeleton size='M'/>;
+CheckboxSkeletonStory.storyName = 'Checkbox Skeleton';
