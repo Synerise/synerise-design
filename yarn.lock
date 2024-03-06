@@ -8452,15 +8452,6 @@
     "@storybook/global" "^5.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-storysource@7.6.5":
-  version "7.6.5"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/addon-storysource/-/addon-storysource-7.6.5.tgz#6052432322fb54c4462c2e792c2a232adb7b0043"
-  integrity sha1-YFJDIyL7VMRGLC55LCojKtt7AEM=
-  dependencies:
-    "@storybook/source-loader" "7.6.5"
-    estraverse "^5.2.0"
-    tiny-invariant "^1.3.1"
-
 "@storybook/addon-toolbars@6.5.16":
   version "6.5.16"
   resolved "https://registry.yarnpkg.com/@storybook/addon-toolbars/-/addon-toolbars-6.5.16.tgz#9de04f9cc64b68d6cb680aa1c4fbf874e11afa32"
@@ -9908,17 +9899,6 @@
     lodash "^4.17.21"
     prettier ">=2.2.1 <=2.3.0"
     regenerator-runtime "^0.13.7"
-
-"@storybook/source-loader@7.6.5":
-  version "7.6.5"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/source-loader/-/source-loader-7.6.5.tgz#5a4c86071ae8a8adc0dad4fd65574017162093ef"
-  integrity sha1-WkyGBxroqK3A2tT9ZVdAFxYgk+8=
-  dependencies:
-    "@storybook/csf" "^0.1.2"
-    "@storybook/types" "7.6.5"
-    estraverse "^5.2.0"
-    lodash "^4.17.21"
-    prettier "^2.8.0"
 
 "@storybook/store@6.5.16":
   version "6.5.16"

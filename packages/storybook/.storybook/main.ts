@@ -16,19 +16,6 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
-    {
-      name: '@storybook/addon-storysource',
-      options: {
-        rule: {
-          // test: [/\.stories\.jsx?$/], This is default
-          include: [resolve(__dirname, '../stories')], 
-        },
-        loaderOptions: {
-          prettierConfig: { printWidth: 80, singleQuote: false },
-          injectStoryParameters: false,
-        },
-      },
-    },
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),
@@ -39,7 +26,7 @@ const config: StorybookConfig = {
     },
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: true,
   },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
@@ -53,7 +40,7 @@ const config: StorybookConfig = {
       },
       shouldExtractLiteralValuesFromEnum: true,
       savePropValueAsString: true,
-      
+
     },
     skipBabel: true,
     check: false,
@@ -115,7 +102,7 @@ const config: StorybookConfig = {
         }
       ]
     };
-    
+
     config.resolve = {
       ...(config.resolve || {}),
       extensions: [
