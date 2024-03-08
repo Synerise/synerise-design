@@ -24,12 +24,13 @@ export type Color =
   | 'violet';
 
 export type CardTabTexts = {
-  changeNameTooltip?: string | ReactNode;
-  removeTooltip?: string | ReactNode;
-  duplicateTooltip?: string | ReactNode;
-  changeNameMenuItem?: string | ReactNode;
-  removeMenuItem?: string | ReactNode;
-  duplicateMenuItem?: string | ReactNode;
+  changeNameTooltip?: ReactNode;
+  previewTooltip?: ReactNode;
+  removeTooltip?: ReactNode;
+  duplicateTooltip?: ReactNode;
+  changeNameMenuItem?: ReactNode;
+  removeMenuItem?: ReactNode;
+  duplicateMenuItem?: ReactNode;
 };
 
 export type CardTabProps = {
@@ -52,6 +53,7 @@ export type CardTabProps = {
   onChangeName?: (id: number, name: string) => void;
   onDuplicateTab?: (id: number) => void;
   onRemoveTab?: (id: number) => void;
+  onPreviewTab?: (id: number) => void;
   texts?: CardTabTexts;
   itemData?: unknown;
   actionsAsDropdown?: boolean;

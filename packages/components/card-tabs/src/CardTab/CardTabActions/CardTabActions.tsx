@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { FC } from 'react';
 
 import Cruds from '@synerise/ds-cruds';
 
+import type { CardTabActionsProps } from './CardTabActions.types';
 import * as S from '../CardTab.styles';
-import { Props } from './CardTabActions.types';
 
-const CardTabActions: FC<Props> = ({ onChangeName, enterEditNameMode, onDuplicateTab, onRemoveTab, texts }) => {
+const CardTabActions = ({
+  onChangeName,
+  enterEditNameMode,
+  onDuplicateTab,
+  onRemoveTab,
+  onPreviewTab,
+  texts,
+}: CardTabActionsProps) => {
   return (
     <S.CardTabSuffix data-testid="card-tab-suffix" className="ds-card-tabs__suffix-nodrag">
       <Cruds
@@ -16,6 +22,8 @@ const CardTabActions: FC<Props> = ({ onChangeName, enterEditNameMode, onDuplicat
         duplicateTooltip={texts?.duplicateTooltip}
         onRemove={onRemoveTab}
         removeTooltip={texts?.removeTooltip}
+        onPreview={onPreviewTab}
+        previewTooltip={texts?.previewTooltip}
       />
     </S.CardTabSuffix>
   );

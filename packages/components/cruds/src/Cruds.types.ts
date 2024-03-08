@@ -3,6 +3,7 @@ import SingleAction from './SingleAction';
 
 export interface CrudsProps {
   addTooltip?: ReactNode;
+  previewTooltip?: ReactNode;
   moveUpTooltip?: ReactNode;
   moveDownTooltip?: ReactNode;
   moveUpInactive?: boolean;
@@ -14,6 +15,7 @@ export interface CrudsProps {
   deleteTooltip?: ReactNode;
   onDelete?: (event?: MouseEvent<HTMLElement>) => void;
   onAdd?: (event?: MouseEvent<HTMLElement>) => void;
+  onPreview?: () => void;
   onEdit?: (event?: MouseEvent<HTMLElement>) => void;
   onDuplicate?: (event?: MouseEvent<HTMLElement>) => void;
   onMove?: (event?: MouseEvent<HTMLElement>) => void;

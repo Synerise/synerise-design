@@ -59,9 +59,11 @@ import SingleAction from '@synerise/ds-cruds/dist/SingleAction'
 | editTooltip      | Tooltip of the edit button                                                   | React.ReactNode / string                       | -       |
 | moveTooltip      | Tooltip of the move button                                                   | React.ReactNode / string                       | -       |
 | removeTooltip    | Tooltip of the remove button                                                 | React.ReactNode / string                       | -       |
-| onAdd            | Callback executed after clicking the add button.                             | (event: React.MouseEvent) => void | -       |
-| onDuplicate      | Callback executed after clicking the duplicate button.                       | (event: React.MouseEvent) => void | -       |
-| onDelete         | Callback executed after clicking the delete button.                          | (event: React.MouseEvent) => void | -       |
-| onEdit           | Callback executed after clicking the edit button.                            | (event: React.MouseEvent) => void | -       |
-| onMove           | Callback executed after clicking the move button.                            | (event: React.MouseEvent) => void | -       |
-| onRemove         | Callback executed after clicking the remove button.                          | (event: React.MouseEvent) => void | -       |
+| previewTooltip   | Tooltip of the preview button                                                | React.ReactNode / string                       | -       |
+| onAdd            | Callback executed after clicking the add button.                             | (event: React.MouseEvent) => void              | -       |
+| onDuplicate      | Callback executed after clicking the duplicate button.                       | (event: React.MouseEvent) => void              | -       |
+| onDelete         | Callback executed after clicking the delete button.                          | (event: React.MouseEvent) => void              | -       |
+| onEdit           | Callback executed after clicking the edit button.                            | (event: React.MouseEvent) => void              | -       |
+| onMove           | Callback executed after clicking the move button.                            | (event: React.MouseEvent) => void              | -       |
+| onRemove         | Callback executed after clicking the remove button.                          | (event: React.MouseEvent) => void              | -       |
+| onPreview        | Callback executed after clicking the preview button.                         | (event: React.MouseEvent) => void              | -       |

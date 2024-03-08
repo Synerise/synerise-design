@@ -29,6 +29,7 @@ const CardTab = (props: CardTabProps) => {
     onSelectTab,
     onDuplicateTab,
     onRemoveTab,
+    onPreviewTab,
     texts,
     color = 'yellow',
     colorDot,
@@ -99,6 +100,8 @@ const CardTab = (props: CardTabProps) => {
     };
   }, [id, onRemoveTab]);
 
+  const handlePreview = onPreviewTab && (() => onPreviewTab(id));
+
   const handleSelect = useCallback(
     (event: MouseEvent<HTMLElement>): void => {
       !!event && event.stopPropagation();
@@ -108,8 +111,8 @@ const CardTab = (props: CardTabProps) => {
   );
 
   const showCardActions = useCallback((): boolean => {
-    return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab) && !suffixIcon && !renderSuffix;
-  }, [onChangeName, onDuplicateTab, onRemoveTab, suffixIcon, renderSuffix]);
+    return (!!onChangeName || !!onDuplicateTab || !!onRemoveTab || !!onPreviewTab) && !suffixIcon && !renderSuffix;
+  }, [onChangeName, onDuplicateTab, onRemoveTab, onPreviewTab, suffixIcon, renderSuffix]);
 
   const suffixProps: CardTabSuffixProps = {
     ...props,
@@ -147,6 +150,7 @@ const CardTab = (props: CardTabProps) => {
           onChangeName={onChangeName ? handleEditName : undefined}
           onDuplicateTab={handleDuplicate}
           onRemoveTab={handleRemove}
+          onPreviewTab={handlePreview}
           texts={getTexts}
         />
       );

@@ -78,11 +78,13 @@ const stories = {
             onSelectTab={handleSelect}
             onChangeName={renameEnabled ? handleChangeName : undefined}
             onRemoveTab={boolean('Removing enabled', true) ? action('Remove tab') : undefined}
+            onPreviewTab={boolean('Previewing enabled', true) ? action('Preview tab') : undefined}
             onDuplicateTab={boolean('Duplicate enabled', true) ? action('Duplicate tab') : undefined}
             texts={{
               changeNameMenuItem: text('Set rename menu item', 'Rename'),
               removeMenuItem: text('Set remove menu item', 'Remove'),
               duplicateMenuItem: text('Set duplicate menu item', 'Duplicate'),
+              previewTooltip:'Preview',
             }}
             invalid={invalid}
             invalidName={invalidName}
@@ -233,6 +235,7 @@ const stories = {
               onSelectTab={handleSelect}
               onChangeName={renameEnabled ? handleChangeName : undefined}
               onRemoveTab={boolean('Removing enabled', true) ? handleRemove : undefined}
+              onPreviewTab={boolean('Previewing enabled', true) ? action('Preview tab') : undefined}
               onDuplicateTab={
                 boolean('Enable not displaying "duplicate" action if reached cards limit', true)
                   ? isTabsLimitNotExceeded
@@ -244,6 +247,7 @@ const stories = {
                 changeNameMenuItem: 'Rename',
                 removeMenuItem: 'Remove',
                 duplicateMenuItem: 'Duplicate',
+                previewTooltip:'Preview',
               }}
               actionsAsDropdown={suffixType === 'menu'}
               invalid={invalid}
