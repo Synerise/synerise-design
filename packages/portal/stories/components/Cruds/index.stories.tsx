@@ -12,6 +12,7 @@ const CRUDS_OPTIONS = {
   Delete: 'Delete',
   Remove: 'Remove',
   Move: 'Move',
+  Preview: 'Preview'
 };
 
 const getCrudsKnobs = () => ({
@@ -49,6 +50,8 @@ const stories = {
     moveTooltip="Move"
     onRemove={crudProps.type === 'Remove' ? action('onRemove event triggered') : null}
     removeTooltip="Remove"
+    onPreview={crudProps.type === 'Preview' ? action('onRemove event triggered') : null}
+    previewTooltip="Remove"
   />
 </div>
 );

@@ -95,6 +95,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | invalidName    | Flag of tabs with invalid name                                                  | boolean                                                                                                |`false`   |
 | draggable      | Shows drag handler on the left side of tab                                      | boolean                                                                                                |`false`   |
 | onSelectTab    | Callback fired when user clicks on the tab                                      | (id: number) => void                                                                                   | -        |
+| onPreviewTab   | Callback fired when user clicks on the preview tab icon                         | (id: number) => void                                                                                   | -        |
 | onRemoveTab    | Callback fired when user clicks on the remove tab icon                          | (id: number) => void                                                                                   | -        |
 | onDuplicateTab | Callback fired when user clicks on the duplicate tab icon                       | (id: number) => void                                                                                   | -        |
 | onChangeName   | Callback fired when the edit name input blur                                    | (id: number, newName: string)                                                                          | -        |
@@ -111,6 +112,7 @@ import CardTabs from '@synerise/ds-card-tabs'
 | ----------------- | ----------------- | ------------------------ | ----------- |
 | changeNameTooltip | Rename tooltip    | string / React.ReactNode | 'Rename'    |
 | duplicateTooltip  | Duplicate tooltip | string / React.ReactNode | 'Duplicate' |
+| previewTooltip    | Remove tooltip    | string / React.ReactNode | 'Remove'    |
 | removeTooltip     | Remove tooltip    | string / React.ReactNode | 'Remove'    |
 | changeNameMenuItem | Rename menu label    | string / React.ReactNode | 'Rename'    |
 | duplicateMenuItem  | Duplicate menu label | string / React.ReactNode | 'Duplicate' |
