@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.208.0](https://github.com/synerise/synerise-design/compare/portal@0.207.0...portal@0.208.0) (2024-03-09)
+
+
+### Features
+
+* **card-tabs:** add preview option to cruds and card-tabs ([f7cb671](https://github.com/synerise/synerise-design/commit/f7cb671da0cf0a6429e958c8575d91a4fc9020eb))
+
+
+
+
+
 # [0.207.0](https://github.com/synerise/synerise-design/compare/portal@0.206.0...portal@0.207.0) (2024-03-05)
 
 

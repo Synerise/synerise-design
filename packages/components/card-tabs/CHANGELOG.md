@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.15.9...@synerise/ds-card-tabs@0.16.0) (2024-03-09)
+
+
+### Features
+
+* **card-tabs:** add preview option to cruds and card-tabs ([f7cb671](https://github.com/Synerise/synerise-design/commit/f7cb671da0cf0a6429e958c8575d91a4fc9020eb))
+
+
+
+
+
 ## [0.15.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-tabs@0.15.8...@synerise/ds-card-tabs@0.15.9) (2024-03-05)
 
 **Note:** Version bump only for package @synerise/ds-card-tabs
