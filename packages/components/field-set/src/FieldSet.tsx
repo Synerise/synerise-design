@@ -3,9 +3,9 @@ import Divider from '@synerise/ds-divider';
 import * as S from './FieldSet.styles';
 import { FieldSetProps } from './FieldSet.types';
 
-const FieldSet = ({ prefix, title, description, component, button, onTitleClick }: FieldSetProps) => {
+const FieldSet = ({ className, prefix, title, description, component, button, onTitleClick }: FieldSetProps) => {
   return (
-    <S.ContainerWrapper className="ds-field-set">
+    <S.ContainerWrapper className={`ds-field-set ${className}`}>
       <S.HeaderWrapper>
         <S.ButtonWrapper>{prefix}</S.ButtonWrapper>
         <S.FieldSetTitle description={Boolean(description)}>

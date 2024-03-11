@@ -1,10 +1,11 @@
-import * as React from 'react';
+import { ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 
 export type FieldSetProps = {
-  component?: React.ReactNode;
-  prefix?: React.ReactNode;
-  title?: string;
-  description?: string;
-  button?: React.ReactNode;
-  onTitleClick?: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  component?: ReactNode;
+  prefix?: ReactNode;
+  title?: ReactNode;
+  description?: ReactNode;
+  button?: ReactNode;
+  onTitleClick?: (ev: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
+  className?: string;
 };
