@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { findAllByTestId, screen } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import Tabs from '../Tabs';
 import { SearchM } from '@synerise/ds-icon';
+import Tabs from '../Tabs';
 
 const tabs = [
   {
@@ -43,44 +44,34 @@ afterAll(() => {
 
 describe('Tabs component', () => {
   it('should render tabs container', () => {
-    // ARRANGE
     const content = <div style={{width: '800px'}}><Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} /></div>;
-    const { getByTestId } = renderWithProvider(content);
+    renderWithProvider(content);
 
-    // ASSERT
-    expect(getByTestId('tabs-container')).toBeTruthy();
+    expect(screen.getByTestId('tabs-container')).toBeTruthy();
   });
 
   it('should render dropdown', () => {
-    // ARRANGE
     const handleConfigurationAction = jest.fn();
     const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: 'Button label', action: handleConfigurationAction}} /></div>;
-    const { baseElement } = renderWithProvider(content, { container: document.body});
+    const { baseElement } = renderWithProvider(content);
 
-    // ASSERT
     expect(baseElement.getElementsByClassName('ant-dropdown')).toBeTruthy();
   });
 
   it('should render configuration action button ', () => {
-    // ARRANGE
     const handleConfigurationAction = jest.fn();
     const LABEL = 'Button label';
     const content = <div style={{width: '800px'}}><Tabs tabs={[]} activeTab={0} handleTabClick={() => {}} configuration={{label: LABEL, action: handleConfigurationAction}} /></div>;
-    const { baseElement } = renderWithProvider(content, { container: document.body });
-
-    // ASSERT
+    const { baseElement } = renderWithProvider(content);
     expect(baseElement.getElementsByClassName('ant-dropdown-trigger')).toBeTruthy();
   });
 
-  it('should render when number of tabs decreases', function() {
-    // ARRANGE
+  it('should render when number of tabs decreases', async function() {
     const filteredTabs =[tabs[0], tabs[1]];
-    const { getAllByTestId, rerender } = renderWithProvider(<Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} />);
+    const { rerender } = renderWithProvider(<Tabs tabs={tabs} activeTab={0} handleTabClick={() => {}} />);
 
-    // ACT
     rerender(<Tabs tabs={filteredTabs} activeTab={0} handleTabClick={() => {}} />);
-
-    // ASSERT
-    expect(getAllByTestId('tab-container').length).toBe(2);
+    const rederedTabs = await screen.findAllByTestId('tab-container');
+    expect(rederedTabs.length).toBe(2);
   });
 });
