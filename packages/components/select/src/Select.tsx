@@ -69,15 +69,11 @@ class Select extends Component<Props> {
           {!!suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
         </S.SelectWrapper>
 
-        {errorText && (
-          <S.ErrorWrapper description={Boolean(description)}>
-            <ErrorText>{errorText}</ErrorText>
-          </S.ErrorWrapper>
-        )}
-        {description && (
-          <S.DescWrapper withError={Boolean(errorText)}>
+        {(errorText || description) && (
+          <S.ContentBelow>
+            {errorText && <ErrorText>{errorText}</ErrorText>}
             {description && <Description disabled={antdProps.disabled}>{description}</Description>}
-          </S.DescWrapper>
+          </S.ContentBelow>
         )}
       </S.SelectContainer>
     );

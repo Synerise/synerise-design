@@ -43,6 +43,7 @@ export const SelectContainer = styled.div`
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  margin: 0 0 16px;
 `;
 
 export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
@@ -143,12 +144,8 @@ export const LabelWrapper = styled.div`
   margin: 0 0 8px 0;
 `;
 
-export const ErrorWrapper = styled.div<{ description?: boolean }>`
-  margin: ${(props): string => (props.description ? '8px 0 0' : '8px 0 16px')};
-`;
-
-export const DescWrapper = styled.div<{ withError?: boolean }>`
-  margin: ${(props): string => (props.withError ? '4px 0 16px' : '8px 0 16px')};
+export const ContentBelow = styled.div`
+  margin-top: 8px;
 `;
 
 export const Label = styled(DSLabel)`
