@@ -10,9 +10,10 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
-        docs: {
-          sidebarPath: require.resolve('./sidebars.json'),
-        },
+        // commenting out - we're currently skipping creating this file entirely
+        // docs: {
+          // sidebarPath: require.resolve('./sidebars.json'),
+        // },
         theme: {
           customCss: require.resolve('./static/css/custom.scss'),
         }
