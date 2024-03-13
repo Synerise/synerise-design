@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.39](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.38...@synerise/ds-select@0.15.39) (2024-03-13)
+
+
+### Bug Fixes
+
+* **select:** updated styles to match input ([aaea51f](https://github.com/synerise/synerise-design/commit/aaea51f40fc638308d840711131d665360dc4f17))
+
+
+
+
+
 ## [0.15.38](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.37...@synerise/ds-select@0.15.38) (2024-03-05)
 
 **Note:** Version bump only for package @synerise/ds-select

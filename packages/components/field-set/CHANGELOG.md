@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.15...@synerise/ds-field-set@0.2.16) (2024-03-13)
+
+
+### Bug Fixes
+
+* **field-set:** changed types + classname support ([617b635](https://github.com/Synerise/synerise-design/commit/617b6356dc200e90c862afcb1745d516dc53e6ab))
+
+
+
+
+
 ## [0.2.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.14...@synerise/ds-field-set@0.2.15) (2024-03-05)
 
 **Note:** Version bump only for package @synerise/ds-field-set

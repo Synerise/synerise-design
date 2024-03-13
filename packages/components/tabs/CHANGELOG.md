@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.98](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.97...@synerise/ds-tabs@0.13.98) (2024-03-13)
+
+**Note:** Version bump only for package @synerise/ds-tabs
+
+
+
+
+
 ## [0.13.97](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.96...@synerise/ds-tabs@0.13.97) (2024-03-05)
 
 **Note:** Version bump only for package @synerise/ds-tabs
