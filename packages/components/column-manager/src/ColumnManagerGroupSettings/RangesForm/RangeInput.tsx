@@ -1,18 +1,23 @@
-import * as React from 'react';
+import React, { ReactText, useMemo, ChangeEvent } from 'react';
+import { MaskedInput, InputProps } from '@synerise/ds-input';
 import InputNumber from '@synerise/ds-input-number';
-import { MaskedInput } from '@synerise/ds-input';
-import { Props } from '@synerise/ds-input/dist/Input.types';
 import { Props as NumberInputProps } from '@synerise/ds-input-number/dist/InputNumber.types';
 import * as S from './RangesForm.styles';
 
-type RangeInputProps = Omit<Props, 'value' | 'onChange'> &
+type RangeInputProps = Omit<InputProps, 'value' | 'onChange'> &
   Omit<NumberInputProps, 'value' | 'onChange'> & {
-    value: React.ReactText | undefined;
-    onChange: (value: number | string | undefined) => void;
+    value: ReactText | undefined;
+    onChange: (value: ReactText | undefined) => void;
   };
 
-const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, ...inputProps }): JSX.Element => {
-  const inputMask = React.useMemo(() => {
+type NullableNumber = number | undefined;
+
+const isInputOfNumberType = (type: string | undefined, value: ReactText | undefined): value is NullableNumber => {
+  return type === 'number' && (typeof value === 'number' || typeof value === 'undefined');
+};
+
+const RangeInput = ({ type, value, onChange, handleInputRef, ...inputProps }: RangeInputProps) => {
+  const inputMask = useMemo(() => {
     switch (type) {
       case 'text':
         return 'A';
@@ -23,19 +28,19 @@ const RangeInput: React.FC<RangeInputProps> = ({ type, onChange, ...inputProps }
     }
   }, [type]);
 
-  return type === 'number' ? (
+  return isInputOfNumberType(type, value) ? (
     <S.InputNumberWrapper>
-      {/*
-      // @ts-ignore */}
-      <InputNumber {...inputProps} onChange={(value): void => onChange(value)} />
+      <InputNumber {...inputProps} value={value} onChange={val => onChange(val)} />
     </S.InputNumberWrapper>
   ) : (
     <MaskedInput
       {...inputProps}
+      handleInputRef={handleInputRef}
+      value={value}
       mask={inputMask}
       placeholderChar="_"
       resetMargin
-      onChange={(event: React.ChangeEvent<HTMLInputElement>): void => onChange(event.target.value)}
+      onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
     />
   );
 };

@@ -1,39 +1,30 @@
-import React, {
-  cloneElement,
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  ChangeEvent,
-  ComponentType,
-  ReactNode,
-  useMemo,
-  ReactElement,
-  FunctionComponent,
-} from 'react';
-import '@synerise/ds-core/dist/js/style';
+import React, { useEffect, useRef, useCallback, ChangeEvent, useMemo, ReactElement } from 'react';
 import { v4 as uuid } from 'uuid';
-import { InputProps, TextAreaProps } from 'antd/lib/input';
-import './style/index.less';
 import { StyledComponent } from 'styled-components';
-import { MaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+
+import AntdInput, { InputProps as AntdInputProps } from 'antd/lib/input';
+import AntdMaskedInput from 'antd-mask-input';
+import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+import '@synerise/ds-core/dist/js/style';
+
+import './style/index.less';
+
 import { useResizeToFit } from '@synerise/ds-utils';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+
 import * as S from './Input.styles';
-import Label from './Label/Label';
+import { ContentAboveElement, ContentBelowElement, ElementIcons } from './components';
 import Textarea from './Textarea/Textarea';
-import { EnhancedProps, Props } from './Input.types';
+import { BaseProps, InputProps as DSInputProps, TextareaProps } from './Input.types';
 import AutosizeInput from './autosize/autosize';
+import { useInputAddonHeight, useElementFocus } from './hooks';
+import { getCharCount } from './utils';
 
 const VERTICAL_BORDER_OFFSET = 2;
 
-const enhancedInput =
-  <P extends object>(
-    WrappedComponent:
-      | FunctionComponent
-      | StyledComponent<ComponentType<InputProps | TextAreaProps | MaskedInputProps>, { error?: string }>,
-    { type }: { type: string }
-  ): ComponentType<P & EnhancedProps> =>
+const createInputComponent =
+  <E extends AntdInput | AntdMaskedInput, T extends AntdInputProps | AntdMaskedInputProps>(
+    WrappedComponent: StyledComponent<React.ComponentType<AntdInputProps | AntdMaskedInputProps>, { error?: string }>
+  ): React.ComponentType<BaseProps & T> =>
   ({
     className,
     errorText,
@@ -53,22 +44,27 @@ const enhancedInput =
     suffixel,
     error,
     ...antdInputProps
-  }): ReactElement => {
-    const [charCount, setCharCount] = useState<number>(0);
+  }) => {
+    const id = useMemo(() => uuid(), []);
+    const charCount = getCharCount(antdInputProps.value, counterLimit);
+    const InputComponent = autoResize ? AutosizeInput : WrappedComponent;
 
     const hasErrorMessage = Boolean(errorText);
-    const id = useMemo(() => uuid(), []);
 
-    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>();
-
-    const [inputAddonHeight, setInputAddonHeight] = useState<number>(0);
+    const inputRef = useRef<E>(null);
+    const externalRef = useRef<HTMLInputElement | null>(null);
+    const handleIconsClick = useElementFocus(inputRef);
+    const { inputAddonHeight } = useInputAddonHeight(inputRef);
 
     useEffect(() => {
-      handleInputRef && handleInputRef(inputRef);
+      if (inputRef && inputRef.current) {
+        externalRef.current = inputRef.current.input;
+      }
+      handleInputRef && handleInputRef(externalRef);
     }, [inputRef, handleInputRef]);
 
     const handleChange = useCallback(
-      (e: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>) => {
+      (e: ChangeEvent<HTMLInputElement>) => {
         const { value: newValue } = e.currentTarget;
 
         if (counterLimit && newValue.length > counterLimit) return;
@@ -78,55 +74,35 @@ const enhancedInput =
       [antdInputProps, counterLimit]
     );
 
-    const handleIconsClick = useCallback(() => {
-      inputRef.current && inputRef.current.focus();
-    }, [inputRef]);
-
-    useEffect(() => {
-      if (counterLimit && antdInputProps.value && antdInputProps.value.toString().length > counterLimit) return;
-
-      setCharCount(antdInputProps.value ? antdInputProps.value.toString().length : 0);
-    }, [antdInputProps.value, counterLimit]);
-
-    useEffect(() => {
-      // @ts-ignore
-      inputRef.current && setInputAddonHeight(inputRef?.current?.input?.offsetHeight);
-    }, [inputRef]);
-
-    const renderInputComponent = useMemo(
-      () => (): ReactNode => {
-        const Component = autoResize ? AutosizeInput : WrappedComponent;
-        return (
-          <Component
-            {...antdInputProps}
-            {...(autoResize ? { renderInput: WrappedComponent, autoResize } : {})}
-            className={hasErrorMessage || error ? 'error' : undefined}
-            addonBefore={
-              !!prefixel && (
-                <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                  {prefixel}
-                </S.AddonWrapper>
-              )
-            }
-            addonAfter={
-              !!suffixel && (
-                <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                  {suffixel}
-                </S.AddonWrapper>
-              )
-            }
-            error={hasErrorMessage || error}
-            onChange={handleChange}
-            value={antdInputProps.value}
-            id={id}
-            ref={inputRef}
-            autoComplete="off"
-          />
-        );
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [antdInputProps, handleChange]
-    );
+    const renderInputComponent = () => {
+      return (
+        <InputComponent
+          {...antdInputProps}
+          {...(autoResize ? { renderInput: WrappedComponent, autoResize } : {})}
+          className={hasErrorMessage || error ? 'error' : undefined}
+          addonBefore={
+            !!prefixel && (
+              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {prefixel}
+              </S.AddonWrapper>
+            )
+          }
+          addonAfter={
+            !!suffixel && (
+              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {suffixel}
+              </S.AddonWrapper>
+            )
+          }
+          error={hasErrorMessage || error}
+          onChange={handleChange}
+          value={antdInputProps.value}
+          id={id}
+          ref={inputRef}
+          autoComplete="off"
+        />
+      );
+    };
 
     const stretchToFit = typeof autoResize === 'object' && Boolean(autoResize.stretchToFit);
     const paddingDiff = useRef<number>();
@@ -169,58 +145,118 @@ const enhancedInput =
 
     return (
       <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
-        {(label || counterLimit) && (
-          <S.ContentAbove>
-            <Label label={label} id={id} tooltip={tooltip} tooltipConfig={tooltipConfig} />
-            {counterLimit && (
-              <S.Counter data-testid="counter">
-                {charCount}/{counterLimit}
-              </S.Counter>
-            )}
-          </S.ContentAbove>
-        )}
+        <ContentAboveElement
+          label={label}
+          counterLimit={counterLimit}
+          id={id}
+          tooltip={tooltip}
+          tooltipConfig={tooltipConfig}
+          charCount={charCount}
+        />
         <S.InputWrapper ref={elementRef} icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
-          {(icon1 || icon2) && (
-            <S.IconsWrapper onClick={handleIconsClick} disabled={antdInputProps.disabled}>
-              <S.IconsFlexContainer type={type}>
-                <Tooltip title={icon1Tooltip}>
-                  <S.IconWrapper className={className}>
-                    {icon1 &&
-                      cloneElement(icon1, {
-                        className: 'icon icon1',
-                        ...(icon2 && { style: { marginRight: '4px' } }),
-                      })}
-                  </S.IconWrapper>
-                </Tooltip>
-                <Tooltip title={icon2Tooltip}>
-                  <S.IconWrapper className={className}>
-                    {icon2 && cloneElement(icon2, { className: 'icon icon2' })}
-                  </S.IconWrapper>
-                </Tooltip>
-              </S.IconsFlexContainer>
-            </S.IconsWrapper>
-          )}
+          <ElementIcons
+            handleIconsClick={handleIconsClick}
+            disabled={antdInputProps.disabled}
+            icon1={icon1}
+            icon2={icon2}
+            icon1Tooltip={icon1Tooltip}
+            icon2Tooltip={icon2Tooltip}
+            className={className}
+            type="input"
+          />
           {renderInputComponent()}
         </S.InputWrapper>
-        {(hasErrorMessage || description) && (
-          <S.ContentBelow>
-            {hasErrorMessage && <S.ErrorText>{errorText}</S.ErrorText>}
-            {description && <S.Description>{description}</S.Description>}
-          </S.ContentBelow>
-        )}
+        <ContentBelowElement description={description} errorText={errorText} />
       </S.OuterWrapper>
     );
   };
 
-export const TextArea = Object.assign(enhancedInput(Textarea, { type: 'textArea' }), { displayName: 'TextArea' });
-export const Input = Object.assign(enhancedInput(S.AntdInput, { type: 'input' }), { displayName: 'Input' });
-export const MaskedInput = Object.assign(enhancedInput(S.AntdMaskedInput, { type: 'input' }), {
-  displayName: 'MaskedInput',
-});
+export const Input = createInputComponent<AntdInput, AntdInputProps>(S.AntdInput);
+export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
+
+export const TextArea = ({
+  className,
+  errorText,
+  label,
+  description,
+  counterLimit,
+  tooltip,
+  tooltipConfig,
+  icon1,
+  icon1Tooltip,
+  autoResize,
+  icon2,
+  icon2Tooltip,
+  resetMargin,
+  handleInputRef,
+  prefixel,
+  suffixel,
+  error,
+  ...antdTextareaProps
+}: TextareaProps) => {
+  const id = useMemo(() => uuid(), []);
+  const charCount = getCharCount(antdTextareaProps.value, counterLimit);
+  const hasErrorMessage = Boolean(errorText);
+
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const handleIconsClick = useElementFocus(ref);
+
+  useEffect(() => {
+    handleInputRef && handleInputRef(ref);
+  }, [ref, handleInputRef]);
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      const { value: newValue } = e.currentTarget;
+      if (counterLimit && newValue.length > counterLimit) {
+        return;
+      }
+      antdTextareaProps.onChange && antdTextareaProps.onChange(e);
+    },
+    [antdTextareaProps, counterLimit]
+  );
+
+  return (
+    <S.OuterWrapper autoResize={autoResize} className={className} resetMargin={resetMargin}>
+      <ContentAboveElement
+        label={label}
+        counterLimit={counterLimit}
+        id={id}
+        tooltip={tooltip}
+        tooltipConfig={tooltipConfig}
+        charCount={charCount}
+      />
+      <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
+        <ElementIcons
+          handleIconsClick={handleIconsClick}
+          disabled={antdTextareaProps.disabled}
+          icon1Tooltip={icon1Tooltip}
+          icon1={icon1}
+          icon2={icon2}
+          icon2Tooltip={icon2Tooltip}
+          className={className}
+          type="textArea"
+        />
+        <Textarea
+          {...antdTextareaProps}
+          className={hasErrorMessage || error ? 'error' : undefined}
+          error={hasErrorMessage || error}
+          onChange={handleChange}
+          value={antdTextareaProps.value}
+          id={id}
+          // ref={ref}
+          autoComplete="off"
+        />
+      </S.InputWrapper>
+      <ContentBelowElement description={description} errorText={errorText} />
+    </S.OuterWrapper>
+  );
+};
+
 export const RawMaskedInput = S.AntdMaskedInput;
 export { default as InputGroup } from './InputGroup';
 
-export const RawInput = (props: Props & (InputProps | TextAreaProps)): ReactElement => {
+export const RawInput = (props: DSInputProps): ReactElement => {
   const { error } = props;
   return <S.AntdInput className={error ? 'error' : ''} {...props} />;
 };

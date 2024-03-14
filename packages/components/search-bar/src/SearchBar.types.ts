@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { InputProps } from '@synerise/ds-input';
 
-export interface SearchBarProps {
+export interface SearchBarProps extends Pick<InputProps, 'handleInputRef'> {
   onSearchChange: (value: string) => void;
   onClearInput?: () => void;
   placeholder: string;
@@ -12,5 +13,4 @@ export interface SearchBarProps {
   autofocusDelay?: number;
   disabled?: boolean;
   borderRadius?: boolean | undefined;
-  handleInputRef?: (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>) => void;
 }

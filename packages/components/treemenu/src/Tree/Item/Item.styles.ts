@@ -2,7 +2,7 @@
 import Menu from '@synerise/ds-menu';
 import styled, { FlattenSimpleInterpolation, FlattenInterpolation, css } from 'styled-components';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
+import { BaseProps as DSInputProps } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 import { SuffixWraper } from '@synerise/ds-menu/dist/Elements/Item/Text/Text.styles';
 

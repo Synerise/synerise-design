@@ -1,5 +1,13 @@
-import * as React from 'react';
-import { FC, useCallback, useEffect, useMemo, useState, useRef, MutableRefObject, ReactText, ReactNode } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useRef,
+  MutableRefObject,
+  ReactText,
+  ReactNode,
+} from 'react';
 import { debounce } from 'lodash';
 import { Select } from 'antd';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
@@ -11,7 +19,7 @@ import { InputProps } from '../../Factors.types';
 import * as S from './Text.styles';
 import TextModal from './TextModal';
 
-const TextInput: FC<InputProps> = ({
+const TextInput = ({
   value,
   onChange,
   texts,
@@ -24,10 +32,9 @@ const TextInput: FC<InputProps> = ({
   inputProps,
   getPopupContainerOverride,
   readOnly = false,
-}) => {
+}: InputProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
-  const [inputRef, setInputRef] =
-    useState<MutableRefObject<HTMLInputElement | Select | HTMLTextAreaElement | undefined>>();
+  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | Select | null | undefined>>();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
   const onChangeRef = useRef(onChange);

@@ -1,10 +1,11 @@
 import React, { MutableRefObject, forwardRef, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import BaseAntInput from 'antd/lib/input';
+import BaseAntInput, { InputProps } from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
 import MaskedInput from 'antd-mask-input';
-import { SizeType } from 'antd/es/config-provider/SizeContext';
+import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import { ThemeProps } from '@synerise/ds-core';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { AutoResizeProp } from './Input.types';
 
 const errorInputStyle = (props: ThemeProps) => `
@@ -133,12 +134,9 @@ export const IconWrapper = styled.div`
 `;
 
 export const AntdInput = styled(
-  forwardRef<BaseAntInput, { error?: boolean; size?: SizeType }>(
+  forwardRef<BaseAntInput, InputProps & { error?: boolean; size?: SizeType }>(
     // eslint-disable-next-line
-    ({ error, ...props }, ref) => (
-      // eslint-disable-next-line
-      <BaseAntInput autoComplete="off" {...props} ref={ref} />
-    )
+    ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
   )
 )<{ error?: boolean; readOnly?: boolean }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
@@ -179,12 +177,9 @@ export const AntdInput = styled(
 `;
 
 export const AntdMaskedInput = styled(
-  forwardRef<MaskedInput, { error?: boolean; mask: string }>(
+  forwardRef<MaskedInput, AntdMaskedInputProps & { error?: boolean }>(
     // eslint-disable-next-line
-    ({ error, mask, ...props }, ref) => (
-      // eslint-disable-next-line
-      <MaskedInput autoComplete="off" {...props} ref={ref} mask={mask} />
-    )
+    ({ error, ...props }, ref) => <MaskedInput autoComplete="off" {...props} ref={ref} />
   )
 )<{ error?: boolean }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
@@ -203,10 +198,7 @@ export const AntdMaskedInput = styled(
 export const AntdTextArea = styled(
   forwardRef<TextArea, { error?: boolean }>(
     // eslint-disable-next-line
-    ({ error, ...props }, ref) => (
-      // eslint-disable-next-line
-      <BaseAntInput.TextArea autoComplete="off" {...props} ref={ref} />
-    )
+    ({ error, ...props }, ref) => <BaseAntInput.TextArea autoComplete="off" {...props} ref={ref} />
   )
 )<{ error?: boolean }>`
   ${props => (props.error ? errorInputStyle(props) : '')};

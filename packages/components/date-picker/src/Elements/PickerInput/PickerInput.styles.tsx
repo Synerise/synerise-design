@@ -1,7 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Input as DSInput } from '@synerise/ds-input';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
-import { InputProps as AntdInputProps } from 'antd/lib/input';
+import { Input as DSInput, InputProps } from '@synerise/ds-input';
 import { ThemeProps } from '@synerise/ds-core';
 
 export const Prefixel = styled.div`
@@ -22,7 +20,7 @@ const activeStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
   background: ${props.theme.palette['blue-050']};
 `;
 
-export const Input = styled(DSInput)<DSInputProps & AntdInputProps & { active: boolean }>`
+export const Input = styled(DSInput)<InputProps & { active: boolean }>`
   & {
     .ant-input {
       min-width: 150px;

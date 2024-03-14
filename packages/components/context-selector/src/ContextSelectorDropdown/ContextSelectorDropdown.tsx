@@ -66,8 +66,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
 
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
-  const [searchInputHandle, setSearchInputHandle] =
-    React.useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
+  const [searchInputHandle, setSearchInputHandle] = React.useState<React.MutableRefObject<HTMLInputElement | null>>();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = React.useState<ContextGroup | undefined>(undefined);
@@ -299,7 +298,7 @@ const ContextSelectorDropdown: React.FC<ContextDropdownProps> = ({
           value={searchQuery}
           autofocus={!searchQuery || searchInputCanBeFocused}
           autofocusDelay={50}
-          handleInputRef={(e): void => setSearchInputHandle(e)}
+          handleInputRef={ref => setSearchInputHandle(ref)}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       )}
