@@ -21,8 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   autofocusDelay,
 }) => {
   const [isFocused, setFocus] = React.useState(false);
-  const [inputRef, setInputRef] =
-    React.useState<React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>>();
+  const [inputRef, setInputRef] = React.useState<React.MutableRefObject<HTMLInputElement | null>>();
 
   React.useEffect(() => {
     if (inputRef) {

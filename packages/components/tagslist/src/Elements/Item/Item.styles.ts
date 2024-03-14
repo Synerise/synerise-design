@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Menu from '@synerise/ds-menu';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
+import { BaseProps as DSInputProps } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
 
 export type TagsListItemType = {

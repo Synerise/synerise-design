@@ -10,8 +10,7 @@ import {
 } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import DSScrollbar from '@synerise/ds-scrollbar';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Props as DSInputProps } from '@synerise/ds-input/dist/Input.types';
-import { InputProps } from 'antd/lib/input';
+import { InputProps } from '@synerise/ds-input';
 import Value from '@synerise/ds-input/dist/InputMultivalue/Elements/Value';
 import Button from '@synerise/ds-button';
 
@@ -98,7 +97,7 @@ export const RightSide = styled.div<{ gradientOverlap?: boolean; focus?: boolean
   }
 `;
 export const Input = styled(BorderLessInput)<
-  DSInputProps & InputProps & { disabled?: boolean; hasValues?: boolean; transparent: boolean; hidden: boolean }
+  InputProps & { disabled?: boolean; hasValues?: boolean; transparent: boolean; hidden: boolean }
 >`
   margin: ${(props): string => (props.hasValues ? '6px 0 6px 12px' : '4px 0 4px 12px')};
   padding: 1px 0;

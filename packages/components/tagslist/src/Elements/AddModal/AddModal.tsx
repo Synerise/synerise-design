@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Icon, { Settings2M, InfoFillS, SearchM, Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import Menu from '@synerise/ds-menu';
@@ -105,7 +104,7 @@ const AddModal: React.FC<AddModalProps> = ({
     setOverlayVisible(!overlayVisible);
   };
 
-  const focus = (inputRef: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | undefined>): void => {
+  const focus = (inputRef: React.MutableRefObject<HTMLInputElement | null>): void => {
     overlayVisible && inputRef.current && inputRef.current.focus();
   };
 
@@ -114,45 +113,43 @@ const AddModal: React.FC<AddModalProps> = ({
       .filter(item => {
         return !search ? true : item.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
       })
-      .map(
-        (item: TagsListItem): React.ReactNode => {
-          const itemOnClick = (): void => {
-            let checked: boolean | undefined = true;
+      .map((item: TagsListItem): React.ReactNode => {
+        const itemOnClick = (): void => {
+          let checked: boolean | undefined = true;
 
-            if (tristate && item.id in selectedTags && selectedTags[item.id] === undefined) {
-              checked = false;
-            } else if (tristate && item.id in selectedTags && selectedTags[item.id] === true) {
-              checked = undefined;
-            } else if (selectedTags[item.id]) {
-              checked = false;
-            }
+          if (tristate && item.id in selectedTags && selectedTags[item.id] === undefined) {
+            checked = false;
+          } else if (tristate && item.id in selectedTags && selectedTags[item.id] === true) {
+            checked = undefined;
+          } else if (selectedTags[item.id]) {
+            checked = false;
+          }
 
-            const newSelectedTags = {
-              ...selectedTags,
-              [item.id]: checked,
-            };
-
-            if (checked === false) delete newSelectedTags[item.id];
-
-            setSelectedTags(newSelectedTags);
+          const newSelectedTags = {
+            ...selectedTags,
+            [item.id]: checked,
           };
 
-          const tristateChecked = item.id in selectedTags ? selectedTags[item.id] : false;
-          const thisChecked = !tristate ? selectedTags[item.id] : tristateChecked;
+          if (checked === false) delete newSelectedTags[item.id];
 
-          return (
-            <S.TagItem
-              highlight={search}
-              key={`${item.id}-${item.name}`}
-              prefixel={<CheckboxComponent checked={thisChecked} />}
-              suffixel={item.description && <TagInfo info={item.description} />}
-              onClick={itemOnClick}
-            >
-              {item.name}
-            </S.TagItem>
-          );
-        }
-      );
+          setSelectedTags(newSelectedTags);
+        };
+
+        const tristateChecked = item.id in selectedTags ? selectedTags[item.id] : false;
+        const thisChecked = !tristate ? selectedTags[item.id] : tristateChecked;
+
+        return (
+          <S.TagItem
+            highlight={search}
+            key={`${item.id}-${item.name}`}
+            prefixel={<CheckboxComponent checked={thisChecked} />}
+            suffixel={item.description && <TagInfo info={item.description} />}
+            onClick={itemOnClick}
+          >
+            {item.name}
+          </S.TagItem>
+        );
+      });
 
     if (!rendered.length) return <Result description="No results" type="no-results" />;
 
