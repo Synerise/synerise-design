@@ -5,28 +5,29 @@ import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
 
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemLabelProps } from './ItemName.types';
 
-const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQuery }): React.ReactElement => {
-  const [editedName, setName] = React.useState(item.name);
-  const [originalName, setOriginalName] = useState(item.name);
+const ItemName = ({ item, onUpdate, editMode, searchQuery }: ItemLabelProps) => {
+  const [editedName, setEditedName] = useState(item.name);
 
-  const updateName = React.useCallback(() => {
-    setName(originalName);
-    onUpdate && onUpdate({ id: item.id, name: originalName });
-  }, [originalName, onUpdate, item.id]);
+  const updateName = useCallback(() => {
+    onUpdate && onUpdate({ id: item.id, name: editedName });
+  }, [editedName, onUpdate, item.id]);
 
-  const editName = React.useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
-    setName(event.target.value);
+  const editName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    setEditedName(event.target.value);
   }, []);
 
   useEffect(() => {
-    setOriginalName(item.name);
-  }, [editedName, item.name]);
+    if (item.name !== editedName) {
+      setEditedName(item.name);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editMode]);
 
-  const inputProps = React.useMemo(() => {
+  const inputProps = useMemo(() => {
     return {
       name: 'list-item-name-input',
       value: editedName,
@@ -35,7 +36,7 @@ const ItemName: React.FC<ItemLabelProps> = ({ item, onUpdate, editMode, searchQu
     };
   }, [editedName, updateName, editName]);
 
-  const name = React.useMemo(() => {
+  const name = useMemo(() => {
     if (searchQuery) {
       const escapedQuery = escapeRegEx(searchQuery);
       const startOfQuery = item.name.toLowerCase().search(escapedQuery.toLowerCase());
