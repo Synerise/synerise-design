@@ -14,23 +14,28 @@ const decorator = storyFn => (
 );
 
 const removeItem = (props, store): void => {
+  action('onItemRemove')(props)
   store.set({
     items: store.state.items.filter(item => item.id !== props.id),
   });
 };
 
-const editItem = (props, store): void => {
-  store.set({
-    items: store.state.items.map(item => {
-      if (item.id === props.id) {
-        item.name = props.name;
-      }
-      return item;
-    }),
-  });
+const editItem = (props, store, updateStore = true): void => {
+  action('onItemEdit')(props)
+  if (updateStore) {
+    store.set({
+      items: store.state.items.map(item => {
+        if (item.id === props.id) {
+          item.name = props.name;
+        }
+        return item;
+      }),
+    });
+}
 };
 
 const setSelectedItem = (props, store): void => {
+  action('onItemSelect')(props)
   store.set({
     selectedItemId: props.id,
   });
@@ -60,25 +65,26 @@ const stories = {
     items: ITEMS,
     selectedId: undefined,
   })(({ store }) => {
-    const addItem = ({ name }): void => {
+    const addItem = (props): void => {
+      action('onItemAdd')(props)
       store.set({
         items: [
           ...store.state.items,
           {
             ...EMPTY_ITEM,
             id: Date.now(),
-            name,
+            name: props.name,
           },
         ],
       });
     };
-
+    const updateEditedName = boolean('Save edited name (mock name validation pass / fail)', true);
     return (
       <ManageableList
         maxToShowItems={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
-        onItemEdit={props => editItem(props, store)}
+        onItemEdit={props => editItem(props, store, updateEditedName)}
         onItemSelect={({ id }) => store.set({ selectedId: id })}
         selectedItemId={store.state.selectedId}
         items={store.state.items}
@@ -144,8 +150,9 @@ const stories = {
     };
 
     const onRemove = props => removeItem(props, store);
-    const onEdit = props => editItem(props, store);
+    const onEdit = props => editItem(props, store, updateEditedName);
     const texts = getTexts();
+    const updateEditedName = boolean('Save edited name (mock name validation pass / fail)', true);
     return (
       <ManageableList
         maxToShowItems={5}
