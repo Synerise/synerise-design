@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.27.1...@synerise/ds-date-range-picker@0.27.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* **date-range-picker:** arrow needs to be hidden ([b6a71b4](https://github.com/Synerise/synerise-design/commit/b6a71b445435004d8a639bbea9ac0ed521f4334a))
+
+
+
+
+
 ## [0.27.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.27.0...@synerise/ds-date-range-picker@0.27.1) (2024-03-13)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

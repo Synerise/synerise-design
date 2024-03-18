@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.208.1](https://github.com/synerise/synerise-design/compare/portal@0.208.0...portal@0.208.1) (2024-03-18)
+
+
+### Bug Fixes
+
+* **manageable-list:** fixed name editing ([d69c21a](https://github.com/synerise/synerise-design/commit/d69c21aa0c0e210d477efb2b0b3f6f407a58dee8))
+
+
+
+
+
 # [0.208.0](https://github.com/synerise/synerise-design/compare/portal@0.207.0...portal@0.208.0) (2024-03-09)
 
 

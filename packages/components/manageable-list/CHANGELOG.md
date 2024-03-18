@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.31...@synerise/ds-manageable-list@0.26.32) (2024-03-18)
+
+
+### Bug Fixes
+
+* **manageable-list:** fixed name editing ([d69c21a](https://github.com/Synerise/synerise-design/commit/d69c21aa0c0e210d477efb2b0b3f6f407a58dee8))
+
+
+
+
+
 ## [0.26.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.30...@synerise/ds-manageable-list@0.26.31) (2024-03-13)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

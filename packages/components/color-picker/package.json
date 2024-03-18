@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-color-picker",
-  "version": "0.3.59",
+  "version": "0.3.60",
   "description": "Color-Picker Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,9 +36,9 @@
     "@synerise/ds-button": "^0.19.3",
     "@synerise/ds-divider": "^0.6.10",
     "@synerise/ds-icon": "^0.60.3",
-    "@synerise/ds-input": "^0.20.0",
-    "@synerise/ds-select": "^0.15.39",
-    "@synerise/ds-tags": "^0.8.33",
+    "@synerise/ds-input": "^0.20.1",
+    "@synerise/ds-select": "^0.15.40",
+    "@synerise/ds-tags": "^0.8.34",
     "rc-select": "~11.4.0",
     "react-colorful": "^5.2.0"
   },
