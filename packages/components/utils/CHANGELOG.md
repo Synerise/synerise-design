@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.25.0...@synerise/ds-utils@0.26.0) (2024-03-20)
+
+
+### Features
+
+* **table:** sticky virtualised table ([4733821](https://github.com/synerise/synerise-design/commit/47338215ed6355a90edf7350e6002c96c9f83809))
+
+
+
+
+
 # [0.25.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.24.26...@synerise/ds-utils@0.25.0) (2024-03-05)
 
 

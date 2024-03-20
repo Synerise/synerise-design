@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.8.3...@synerise/ds-scrollbar@0.9.0) (2024-03-20)
+
+
+### Features
+
+* **table:** sticky virtualised table ([4733821](https://github.com/Synerise/synerise-design/commit/47338215ed6355a90edf7350e6002c96c9f83809))
+
+
+
+
+
 ## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.8.2...@synerise/ds-scrollbar@0.8.3) (2024-03-05)
 
 **Note:** Version bump only for package @synerise/ds-scrollbar

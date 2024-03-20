@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.48.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.17...@synerise/ds-table@0.48.0) (2024-03-20)
+
+
+### Features
+
+* **table:** sticky virtualised table ([4733821](https://github.com/synerise/synerise-design/commit/47338215ed6355a90edf7350e6002c96c9f83809))
+
+
+
+
+
 ## [0.47.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.47.16...@synerise/ds-table@0.47.17) (2024-03-18)
 
 **Note:** Version bump only for package @synerise/ds-table

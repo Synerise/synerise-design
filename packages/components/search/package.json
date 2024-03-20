@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-search",
-  "version": "0.8.82",
+  "version": "0.8.83",
   "description": "Search UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,12 +33,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.19.3",
-    "@synerise/ds-icon": "^0.60.3",
-    "@synerise/ds-menu": "^0.18.15",
-    "@synerise/ds-scrollbar": "^0.8.3",
-    "@synerise/ds-tooltip": "^0.14.20",
-    "@synerise/ds-utils": "^0.25.0",
+    "@synerise/ds-button": "^0.19.4",
+    "@synerise/ds-icon": "^0.60.4",
+    "@synerise/ds-menu": "^0.18.16",
+    "@synerise/ds-scrollbar": "^0.9.0",
+    "@synerise/ds-tooltip": "^0.14.21",
+    "@synerise/ds-utils": "^0.26.0",
     "react-onclickoutside": "^6.9.0",
     "react-window": "^1.8.5"
   },

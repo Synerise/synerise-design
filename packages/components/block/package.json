@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-block",
-  "version": "0.4.52",
+  "version": "0.4.53",
   "description": "Block UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,7 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.60.3",
+    "@synerise/ds-icon": "^0.60.4",
     "@synerise/ds-typography": "^0.14.3"
   },
   "peerDependencies": {
@@ -43,7 +43,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.25.0",
+    "@synerise/ds-utils": "^0.26.0",
     "@testing-library/jest-dom": "5.1.1"
   }
 }

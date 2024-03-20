@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.209.0](https://github.com/synerise/synerise-design/compare/portal@0.208.1...portal@0.209.0) (2024-03-20)
+
+
+### Features
+
+* **table:** sticky virtualised table ([4733821](https://github.com/synerise/synerise-design/commit/47338215ed6355a90edf7350e6002c96c9f83809))
+
+
+
+
+
 ## [0.208.1](https://github.com/synerise/synerise-design/compare/portal@0.208.0...portal@0.208.1) (2024-03-18)
 
 

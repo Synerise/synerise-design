@@ -1,6 +1,6 @@
 {
   "name": "portal",
-  "version": "0.208.1",
+  "version": "0.209.0",
   "private": true,
   "homepage": "./",
   "repository": "synerise/synerise-design",
@@ -46,8 +46,8 @@
     "@storybook/addon-links": "^6.5.15",
     "@storybook/addon-notes": "5.3.21",
     "@storybook/addon-viewport": "6.2.9",
-    "@storybook/global": "5.0.0",
     "@storybook/addons": "6.2.9",
+    "@storybook/global": "5.0.0",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "5.2.0",
