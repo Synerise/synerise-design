@@ -2,14 +2,10 @@ import * as React from 'react';
 import Alert from '@synerise/ds-alert';
 import Button from '@synerise/ds-button';
 import Icon, { RefreshM } from '@synerise/ds-icon';
-import Loader from '@synerise/ds-loader';
 import { TableLocaleContext } from '../utils/locale';
-import { InfiniteScrollProps } from './constants';
+import { Loader } from './InfiniteLoaderItem.styles';
+import { InfiniteScrollProps, LoaderItemProps } from './InfiniteLoaderItem.types';
 import { infiniteScrollPropsToState } from './utils';
-
-export interface LoaderItemProps {
-  infiniteScroll: InfiniteScrollProps;
-}
 
 const LoadingItem = (): React.ReactElement => (
   <TableLocaleContext.Consumer>

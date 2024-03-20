@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import Scrollbar from '@synerise/ds-scrollbar';
 
 type ColWrapperProps = {
   width?: number | null;
@@ -23,6 +24,49 @@ const getColumnMinWidth = (props: ColWrapperProps): React.CSSProperties['minWidt
 
 export const RowWrapper = styled.div`
   display: inline-table;
+`;
+
+export const InnerListElement = styled.div`
+  background: ${props => props.theme.palette.white};
+`;
+export const VirtualListSpace = styled.div``;
+
+export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: number; listWidth: number }>`
+  ${props =>
+    props.isSticky &&
+    css`
+      width: ${props.listWidth}px;
+      overflow: overlay hidden;
+      scrollbar-color: transparent;
+      scrollbar-width: none;
+
+      ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      :after {
+        content: '';
+        width: 10px;
+        height: ${props.listHeight}px;
+        display: block;
+      }
+    `}
+
+  overscroll-behavior-x: contain;
+`;
+
+export const StickyScrollbar = styled(Scrollbar)<{ offset: number }>`
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  transform: translate(5px, ${props => props.offset}px);
+`;
+
+export const StickyScrollbarContent = styled.div<{ scrollWidth: number }>`
+  width: ${props => props.scrollWidth}px;
+  height: 10px;
 `;
 
 export const ColWrapper = styled.div<ColWrapperProps>`
@@ -53,6 +97,6 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   }
 `;
 
-export const RelativeContainer = styled.div`
-  position: relative;
+export const VirtualTableWrapper = styled.div<{ isSticky: boolean }>`
+  ${props => (props.isSticky ? '' : 'position: relative;')}
 `;

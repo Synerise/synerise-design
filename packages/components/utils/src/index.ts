@@ -9,6 +9,7 @@ export { default as useResize } from './useResize/useResize';
 export { default as useBreakpoint } from './useBreakpoint/useBreakpoint';
 export { default as useCombinedRefs } from './useCombinedRefs/useCombinedRefs';
 export { default as usePrevious } from './usePrevious/usePrevious';
+export { default as useElementInView } from './useElementInView/useElementInView';
 export { default as useOverscrollBlock } from './useOverscrollBlock/useOverscrollBlock';
 export { default as useResizeToFit } from './useResizeToFit/useResizeToFit';
 export * from './useTraceUpdate';

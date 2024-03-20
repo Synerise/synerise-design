@@ -33,6 +33,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     cellSize,
     dataSource,
     dataSourceFull,
+    dataSourceTotalCount,
     roundedHeader,
     filters,
     searchComponent,
@@ -64,6 +65,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           return [...items];
         }, [])
       : dataSource;
+    const totalCount = dataSourceTotalCount || dataSource?.length || dataSourceFull?.length;
     return (
       !hideTitleBar && (
         <TableHeader
@@ -75,6 +77,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           selection={selection}
           dataSource={data}
           dataSourceFull={dataSourceFull}
+          dataSourceTotalCount={totalCount}
           searchComponent={searchComponent}
           filterComponent={filterComponent}
           headerButton={headerButton}
@@ -89,6 +92,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     selection,
     grouped,
     dataSource,
+    dataSourceTotalCount,
     hideTitleBar,
     headerWithBorderTop,
     title,
