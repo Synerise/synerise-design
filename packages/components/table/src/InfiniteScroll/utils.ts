@@ -1,4 +1,4 @@
-import { InfiniteScrollProps, InfiniteScrollState } from './constants';
+import { InfiniteScrollProps, InfiniteScrollState } from './InfiniteLoaderItem.types';
 
 export const infiniteScrollPropsToState = ({
   hasError,

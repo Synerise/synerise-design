@@ -7,3 +7,7 @@ import TreeTable from './TreeTable/TreeTable';
 
 export { default } from './Table';
 export { GroupedTable, VirtualTable, TableCell, ItemsMenu, TreeTable };
+
+export type { Props as VirtualTableProps, VirtualTableRef } from './VirtualTable/VirtualTable.types';
+
+export { default as BackToTopButton } from './InfiniteScroll/BackToTopButton';

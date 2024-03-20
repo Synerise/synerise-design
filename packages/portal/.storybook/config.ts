@@ -1,5 +1,6 @@
 import * as React from 'react';
 import '@formatjs/intl-relativetimeformat/polyfill';
+import { global } from "@storybook/global";
 import { configure, addDecorator, addParameters, storiesOf, DecoratorFn } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -15,6 +16,11 @@ import './style/index.css';
 import VIEWPORTS from './viewports';
 
 const req = require.context('../stories', true, /\.stories.tsx$/);
+
+try {
+  // prevent prev / next page using horizontal scroll/swipe
+  global.parent.document.documentElement.style.overscrollBehaviorX = 'contain';
+} catch(e) {}
 
 const withDSProvider = storyFn => {
   /**

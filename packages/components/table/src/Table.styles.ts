@@ -221,7 +221,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     &.ant-table-column-has-sorters {
       cursor: default;
     }
-    
+
     &.ant-table-column-has-sorters:hover {
       background-color: ${({ theme }): string => theme.palette['grey-050']};
       border-bottom: 2px solid ${({ theme }): string => theme.palette['grey-400']};
@@ -311,7 +311,7 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
     box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   }
 
-  .virtual-table .ant-table-container {
+  .virtual-table:not(.with-sticky-header) .ant-table-container {
     overflow: auto hidden;
   }
 

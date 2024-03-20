@@ -46,6 +46,7 @@
     "@storybook/addon-links": "^6.5.15",
     "@storybook/addon-notes": "5.3.21",
     "@storybook/addon-viewport": "6.2.9",
+    "@storybook/global": "5.0.0",
     "@storybook/addons": "6.2.9",
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",

@@ -1,20 +1,21 @@
-import * as React from 'react';
+import { ReactText, ReactNode } from 'react';
 import { Filter, Locale, RowSelection } from '../Table.types';
 
-export interface Props<T extends { key: React.ReactText }> {
-  title?: React.ReactNode;
+export type Props<T extends { key: ReactText }> = {
+  title?: ReactNode;
   filters?: Filter[];
   selectedRows?: number;
-  itemsMenu: React.ReactNode;
+  itemsMenu: ReactNode;
   selection?: RowSelection<T>;
   dataSource: T[];
   dataSourceFull?: T[];
-  searchComponent?: React.ReactNode;
-  filterComponent?: React.ReactNode;
+  searchComponent?: ReactNode;
+  filterComponent?: ReactNode;
   rowKey?: Function | string;
   withBorderTop?: boolean;
-  headerButton?: React.ReactNode;
+  headerButton?: ReactNode;
   locale: Locale;
-  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
+  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => ReactNode;
   hideTitlePart?: boolean;
-}
+  dataSourceTotalCount?: number;
+};

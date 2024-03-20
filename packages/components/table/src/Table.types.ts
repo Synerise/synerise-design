@@ -89,21 +89,19 @@ export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   childRender?: (value: unknown, row: T, index: number) => React.ReactNode;
 };
 
+export type CustomizeScrollBodyInfo = {
+  scrollbarSize: number;
+  ref: React.Ref<{
+    scrollLeft: number;
+  }>;
+  onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
+};
+
 type AntTableComponentsType<T> = AntTableProps<T>['components'];
 
 type DSTableComponentsType<T> = AntTableComponentsType<T> & {
   // This type has been copied from Ant and extended because it's not accessible directly
-  body?: (
-    data: T[],
-    info: {
-      scrollbarSize: number;
-      ref: React.Ref<{
-        scrollLeft: number;
-      }>;
-      onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
-    },
-    defaultTableProps?: DSTableProps<T>
-  ) => React.ReactNode;
+  body?: (data: T[], info: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => React.ReactNode;
 };
 
 export type SingleColumnSort = { columnKey: string; order: ColumnSortOrder };
@@ -136,4 +134,5 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   disableColumnNamesLineBreak?: boolean;
   onSort?: OnSortFn;
   dataSourceFull?: T[];
+  dataSourceTotalCount?: number;
 }

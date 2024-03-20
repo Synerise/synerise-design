@@ -3,7 +3,7 @@ import Icon, { ArrowUpCircleM } from '@synerise/ds-icon';
 import { ButtonProps } from '@synerise/ds-button';
 import * as S from './BackToTopButton.styles';
 
-export const BackToTopButton = (props: ButtonProps): React.ReactElement => (
+export const BackToTopButton = (props: ButtonProps & { isSticky?: boolean }): React.ReactElement => (
   <S.OffsetButton
     type="custom-color"
     mode="icon-label"

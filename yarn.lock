@@ -7423,6 +7423,11 @@
     lodash "^4.17.21"
     regenerator-runtime "^0.13.7"
 
+"@storybook/global@5.0.0":
+  version "5.0.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/global/-/global-5.0.0.tgz#b793d34b94f572c1d7d9e0f44fac4e0dbc9572ed"
+  integrity sha1-t5PTS5T1csHX2eD0T6xODbyVcu0=
+
 "@storybook/instrumenter@6.5.16", "@storybook/instrumenter@^6.4.0":
   version "6.5.16"
   resolved "https://registry.npmjs.org/@storybook/instrumenter/-/instrumenter-6.5.16.tgz"

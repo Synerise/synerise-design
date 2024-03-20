@@ -22,6 +22,7 @@ const TableHeader: React.FC<Props> = ({
   selection,
   dataSource,
   dataSourceFull,
+  dataSourceTotalCount,
   rowKey,
   withBorderTop,
   headerButton,
@@ -94,7 +95,7 @@ const TableHeader: React.FC<Props> = ({
           )}
           {!hideTitlePart && (
             <S.TitlePart>
-              <strong>{formatValue(dataSource.length)}</strong> <span>{locale.pagination.items}</span>
+              <strong>{formatValue(dataSourceTotalCount)}</strong> <span>{locale.pagination.items}</span>
             </S.TitlePart>
           )}
         </S.TitleContainer>
@@ -114,6 +115,7 @@ const TableHeader: React.FC<Props> = ({
     title,
     isTitleTruncated,
     hideTitlePart,
+    dataSourceTotalCount,
   ]);
 
   return (
