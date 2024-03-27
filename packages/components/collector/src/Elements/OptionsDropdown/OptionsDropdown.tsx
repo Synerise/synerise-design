@@ -1,11 +1,11 @@
 import * as React from 'react';
+
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
-
 import Icon, { Add3M } from '@synerise/ds-icon';
-
 import Divider from '@synerise/ds-divider';
 import ListItem from '@synerise/ds-list-item';
+
 import * as S from '../../Collector.styles';
 import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
@@ -32,6 +32,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   renderItem,
   dropdownItemHeight,
   scrollbarProps,
+  listHeader,
 }: OptionsDropdownProps) => {
   const [scrollTop, setScrollTop] = React.useState<number>(0);
   React.useEffect(() => {
@@ -57,6 +58,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
           <S.CustomContentWrapper>{customContent}</S.CustomContentWrapper>
         ) : (
           <S.DropdownContent>
+            {listHeader}
             <Scrollbar
               absolute
               onScroll={({ currentTarget }: React.SyntheticEvent): void => {

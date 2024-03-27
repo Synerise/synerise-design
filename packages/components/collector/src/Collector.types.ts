@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ButtonProps } from '@synerise/ds-button';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
@@ -38,6 +39,7 @@ export type CollectorProps = {
   allowPaste?: boolean;
   showCount?: boolean;
   valuesSeparator?: CollectorValuesSeparator;
+  listHeader?: React.ReactNode;
 };
 export type CollectorValuesSeparator = ';' | ',' | '|';
 export type CollectorTexts = {
