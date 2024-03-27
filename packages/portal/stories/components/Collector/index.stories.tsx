@@ -1,11 +1,13 @@
 import * as React from 'react';
 
-import Collector from '@synerise/ds-collector';
+import Collector, { CollectorValue } from '@synerise/ds-collector';
 import { boolean, text, select } from '@storybook/addon-knobs';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';
 import { action } from '@storybook/addon-actions';
+
+import { HeaderWrapper } from './stories.styles';
 
 const decorator = storyFn => <div style={{ width: '588px' }}>{storyFn()}</div>;
 const getSuggestions = () => {
@@ -47,12 +49,12 @@ const stories = {
   default: () => {
     const tooltipText = text('Set tooltip text', 'Tooltip');
     const labelText = text('Set label', 'Label');
-    const separators = [';','|',','];
-    const [selected, setSelected] = React.useState<any[]>([]);
+    const separators = [';', '|', ','];
+    const [selected, setSelected] = React.useState<CollectorValue[]>([]);
     const allowMultiple = boolean('Allow multiple values', true);
     const allowCustomValues = boolean('Allow custom values', true);
     const allowPaste = allowMultiple && boolean('Allow multi-item paste', true);
-    const valuesSeparator = allowPaste && select('Separator', separators, ';')
+    const valuesSeparator = allowPaste && select('Separator', separators, ';');
     return (
       <Collector
         keepSearchQueryOnSelect={boolean('Keep Search Query On Select', false)}
@@ -70,7 +72,7 @@ const stories = {
           text: value,
         })}
         onItemSelect={item => {
-          action('onItemSelect')(item)
+          action('onItemSelect')(item);
           if (!selected.find(i => i.text === item.text)) {
             setSelected([...selected, item]);
           }
@@ -78,14 +80,14 @@ const stories = {
         allowPaste={allowPaste}
         valuesSeparator={valuesSeparator}
         onMultipleItemsSelect={items => {
-          action('onMultipleItemsSelect')(items)
+          action('onMultipleItemsSelect')(items);
           const itemsToAdd = items.filter(item => {
-            return (!selected.find(i => i.text === item.text))
+            return !selected.find(i => i.text === item.text);
           });
           setSelected([...selected, ...itemsToAdd]);
         }}
         onItemDeselect={item => {
-          action('onItemDeselect')(item)
+          action('onItemDeselect')(item);
           setSelected(selected.filter(i => i.text !== item.text));
         }}
         onCancel={() => setSelected([])}
@@ -98,7 +100,10 @@ const stories = {
           toNavigate: 'to navigate',
         }}
         enableCustomFilteringSuggestions={boolean('Enable Custom Filtering Suggestions', false)}
-        onConfirm={(items) => { action('onConfirm')(items); setSelected([]); }}
+        onConfirm={items => {
+          action('onConfirm')(items);
+          setSelected([]);
+        }}
         scrollbarProps={
           boolean('additional scrollbar props', true)
             ? {
@@ -107,6 +112,29 @@ const stories = {
               }
             : {}
         }
+      />
+    );
+  },
+  listHeader: () => {
+    const [selected, setSelected] = React.useState<CollectorValue[]>([]);
+    return (
+      <Collector
+        selected={selected}
+        suggestions={getSuggestions().filter(suggestion => !selected.includes(suggestion))}
+        onItemSelect={item => {
+          action('onItemSelect')(item);
+          if (!selected.find(i => i.text === item.text)) {
+            setSelected([...selected, item]);
+          }
+        }}
+        texts={{
+          add: 'Add',
+          cancel: 'Cancel',
+          placeholder: 'Type value',
+          toSelect: 'to select',
+          toNavigate: 'to navigate',
+        }}
+        listHeader={<HeaderWrapper>Custom list header</HeaderWrapper>}
       />
     );
   },

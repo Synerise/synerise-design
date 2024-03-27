@@ -59,7 +59,7 @@ import Collector from '@synerise/ds-collector'
 | onCancel                         | Callback executed when user clicks "cancel" button                     | () => void                                    | ---     |
 | onItemSelect                     | Callback executed when user selects an item                            | (value: CollectorValue) => void               | ---     |
 | onItemDeselect                   | Callback executed when user removes already selected item              | (value: CollectorValue) => void               | ---     |
-| onMultipleItemsSelect            | Callback executed when user pastes multiple items                      | (values: CollectorValue[]) => void             | ---     |
+| onMultipleItemsSelect            | Callback executed when user pastes multiple items                      | (values: CollectorValue[]) => void            | ---     |
 | onItemAdd                        | Callback executed when user adds a custom item to the list.            | (itemName: React.ReactText) => CollectorValue | ---     |
 | onSearchValueChange              | Callback executed when user changes the value of the input             | (value: string) => void                       | ---     |
 | renderItem                       | Custom function for rendering a custom item inside dropdown            | (value: CollectorValue) => JSX.Element        | ---     |
@@ -71,7 +71,8 @@ import Collector from '@synerise/ds-collector'
 | scrollbarProps                   | Object with scrollbar configturaion                                    | ScrollbarAdditionalProps                      | -       |
 | allowPaste                       | Object with scrollbar configturaion                                    | boolean                                       | -       |
 | showCount                        | Display item counter above collector                                   | boolean                                       | -       |
-| valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `/` or `,`                | `;`       |
+| valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `/` or `,`      | `;`     |
+| listHeader                       | Custom header displayed at the top of the dropdown list                | React.ReactNode                               | -       |
 
 `CollectorValue = {[key:string]: any}`
 

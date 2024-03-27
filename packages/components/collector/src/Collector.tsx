@@ -61,6 +61,7 @@ const Collector = ({
   onSearchValueChange,
   allowPaste,
   showCount,
+  listHeader,
   valuesSeparator = DEFAULT_VALUES_SEPARATOR,
 }: CollectorProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -426,6 +427,7 @@ const Collector = ({
         width={getContainerWidth()}
         customContent={dropdownContent}
         texts={texts}
+        listHeader={listHeader}
       />
       {(showError || description) && (
         <S.ContentBelow>

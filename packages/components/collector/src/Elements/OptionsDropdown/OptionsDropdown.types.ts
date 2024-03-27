@@ -19,4 +19,5 @@ export type OptionsDropdownProps = {
   customContent?: React.ReactNode;
   dropdownItemHeight?: 'large';
   scrollbarProps?: ScrollbarAdditionalProps;
+  listHeader?: React.ReactNode;
 };
