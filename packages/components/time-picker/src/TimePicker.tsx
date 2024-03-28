@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { useCallback } from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { range } from 'lodash';
 import dayjs from 'dayjs';
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
@@ -30,7 +29,7 @@ dayjs.extend(customParseFormatPlugin);
 
 const defaultUnits = [HOUR, MINUTE, SECOND] as dayjs.UnitType[];
 
-const TimePicker: React.FC<TimePickerProps> = ({
+const TimePicker = ({
   placement,
   placeholder,
   trigger,
@@ -54,23 +53,24 @@ const TimePicker: React.FC<TimePickerProps> = ({
   clearTooltip = <FormattedMessage id="DS.TIME-PICKER.CLEAR-TOOLTIP" defaultMessage="Clear" />,
   raw,
   onClockModeChange,
-  intl,
   errorText,
-}) => {
+}: TimePickerProps) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
-  const [open, setOpen] = React.useState<boolean>(defaultOpen || false);
+  const [open, setOpen] = useState<boolean>(defaultOpen || false);
 
-  const is12HourClock: boolean = React.useMemo(() => {
+  const { formatMessage } = useIntl();
+
+  const is12HourClock: boolean = useMemo(() => {
     if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
     return use12HourClock;
   }, [is12HoursClockFromDataFormat, use12HourClock]);
 
-  const timeFormatByClockMode = React.useMemo(
+  const timeFormatByClockMode = useMemo(
     () => timeFormat ?? (is12HourClock ? 'hh:mm:ss A' : 'HH:mm:ss'),
     [timeFormat, is12HourClock]
   );
 
-  const getTimeString = React.useCallback(
+  const getTimeString = useCallback(
     (date: Date): string => {
       if (timeFormat) {
         return dayjs(date).format(timeFormatByClockMode);
@@ -151,7 +151,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
     [value, disabledHours, is12HourClock]
   );
 
-  const renderClockSwitch = (): React.ReactNode => {
+  const renderClockSwitch = () => {
     const currentClockMode = getClockModeFromDate(value);
     return (
       <S.Unit>
@@ -173,11 +173,10 @@ const TimePicker: React.FC<TimePickerProps> = ({
       </S.Unit>
     );
   };
-
   const overlay = (
     <S.OverlayContainer data-testid="tp-overlay-container" className={overlayClassName}>
       {unitsToRender.map((u, index) => (
-        <React.Fragment key={u.unit}>
+        <Fragment key={u.unit}>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Unit
             {...u}
@@ -186,7 +185,7 @@ const TimePicker: React.FC<TimePickerProps> = ({
             use12HourClock={is12HourClock}
           />
           {(index !== unitsToRender.length - 1 || is12HourClock) && <S.UnitSeperator />}
-        </React.Fragment>
+        </Fragment>
       ))}
 
       {is12HourClock && renderClockSwitch()}
@@ -196,12 +195,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
   const localValue = value;
   const dateString = localValue && getTimeString(localValue);
 
-  const clear = React.useCallback(() => {
+  const clear = useCallback(() => {
     setOpen(false);
     onChange && onChange(undefined, '');
   }, [setOpen, onChange]);
 
-  const timePickerIcon = React.useMemo(() => {
+  const timePickerIcon = useMemo(() => {
     return (alwaysOpen || open) && dateString ? (
       <S.ClearIcon
         component={
@@ -216,12 +215,12 @@ const TimePicker: React.FC<TimePickerProps> = ({
     );
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
-  const placeholderValue = React.useMemo((): string => {
+  const placeholderValue = useMemo((): string => {
     if (value) {
       return getTimeString(value);
     }
-    return placeholder || intl.formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, intl, value, getTimeString]);
+    return placeholder || formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
+  }, [placeholder, formatMessage, value, getTimeString]);
 
   if (raw) {
     return overlay;
@@ -259,4 +258,4 @@ TimePicker.defaultProps = {
   units: defaultUnits,
 };
 
-export default injectIntl(TimePicker);
+export default TimePicker;

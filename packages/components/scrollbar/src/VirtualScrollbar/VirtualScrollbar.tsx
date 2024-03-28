@@ -22,6 +22,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       onScroll,
       scrollbarOptions,
       onYReachEnd,
+      confineScroll,
     },
     forwardedRef
   ) => {
@@ -76,6 +77,19 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         setLastScrollTop(0);
       }
     }, [combinedScrollRef]);
+
+    useEffect(() => {
+      const handleWheel =
+        confineScroll &&
+        ((event: WheelEvent) => {
+          event.preventDefault();
+        });
+      const wrapper = wrapperRef.current;
+      wrapper && handleWheel && wrapper.addEventListener('wheel', handleWheel);
+      return () => {
+        wrapper && handleWheel && wrapper.removeEventListener('wheel', handleWheel);
+      };
+    }, [confineScroll]);
 
     return (
       <PerfectScrollbar

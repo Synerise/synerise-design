@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { useRef, useState, useCallback, useEffect, WheelEvent, MouseEvent, UIEvent } from 'react';
 import * as S from './DnDScrollbar.styles';
 import { ScrollbarProps } from '../Scrollbar.types';
 
 // eslint-disable-next-line import/prefer-default-export
-export const DnDScrollbar: React.FC<ScrollbarProps> = ({
+export const DnDScrollbar = ({
   children,
   classes,
   maxHeight,
@@ -14,27 +14,28 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
   onYReachEnd,
   fetchData,
   hasMore,
+  confineScroll,
   ...props
-}) => {
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const scrollTrackRef = React.useRef<HTMLDivElement>(null);
-  const scrollThumbRef = React.useRef<HTMLDivElement>(null);
-  const observer = React.useRef<ResizeObserver | null>(null);
-  const [thumbHeight, setThumbHeight] = React.useState(48);
-  const [scrollStartPosition, setScrollStartPosition] = React.useState<number>(0);
-  const [initialScrollTop, setInitialScrollTop] = React.useState<number>(0);
-  const [isDragging, setIsDragging] = React.useState(false);
+}: ScrollbarProps) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
+  const scrollThumbRef = useRef<HTMLDivElement>(null);
+  const observer = useRef<ResizeObserver | null>(null);
+  const [thumbHeight, setThumbHeight] = useState(48);
+  const [scrollStartPosition, setScrollStartPosition] = useState<number>(0);
+  const [initialScrollTop, setInitialScrollTop] = useState<number>(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleTrackClick = React.useCallback(
-    e => {
-      e.preventDefault();
-      e.stopPropagation();
+  const handleTrackClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
       const { current: trackCurrent } = scrollTrackRef;
       const { current: contentCurrent } = contentRef;
       if (trackCurrent && contentCurrent) {
-        const { clientY } = e;
-        const target = e.target as HTMLDivElement;
+        const { clientY } = event;
+        const target = event.target as HTMLDivElement;
         const rect = target.getBoundingClientRect();
         const trackTop = rect.top;
         const thumbOffset = -(thumbHeight / 2);
@@ -49,7 +50,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     [thumbHeight]
   );
 
-  const handleThumbPosition = React.useCallback(() => {
+  const handleThumbPosition = useCallback(() => {
     if (!contentRef.current || !scrollTrackRef.current || !scrollThumbRef.current) {
       return;
     }
@@ -61,16 +62,16 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     thumb.style.top = `${newTop}px`;
   }, [thumbHeight]);
 
-  const handleThumbMousedown = React.useCallback(e => {
-    e.stopPropagation();
-    setScrollStartPosition(e.clientY);
+  const handleThumbMousedown = useCallback(event => {
+    event.stopPropagation();
+    setScrollStartPosition(event.clientY);
     if (contentRef.current) setInitialScrollTop(contentRef.current.scrollTop);
     setIsDragging(true);
   }, []);
 
-  const handleThumbMouseup = React.useCallback(
-    e => {
-      e.stopPropagation();
+  const handleThumbMouseup = useCallback(
+    event => {
+      event.stopPropagation();
       if (isDragging) {
         setIsDragging(false);
       }
@@ -78,20 +79,20 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     [isDragging]
   );
 
-  const handleThumbMousemove = React.useCallback(
-    e => {
-      e.stopPropagation();
+  const handleThumbMousemove = useCallback(
+    event => {
+      event.stopPropagation();
       if (isDragging && contentRef.current !== null) {
         const { scrollHeight: contentScrollHeight, offsetHeight: contentOffsetHeight } = contentRef.current;
-        const deltaY = (e.clientY - scrollStartPosition) * (contentOffsetHeight / thumbHeight);
+        const deltaY = (event.clientY - scrollStartPosition) * (contentOffsetHeight / thumbHeight);
         contentRef.current.scrollTop = Math.min(initialScrollTop + deltaY, contentScrollHeight - contentOffsetHeight);
       }
     },
     [initialScrollTop, isDragging, scrollStartPosition, thumbHeight]
   );
 
-  const handleScroll = React.useCallback(
-    e => {
+  const handleScroll = useCallback(
+    (event: UIEvent<HTMLDivElement>) => {
       if (contentRef.current !== null) {
         const { scrollHeight, offsetHeight, scrollTop } = contentRef.current;
         const progress = Math.round(((scrollTop + offsetHeight) / scrollHeight) * 100) / 100;
@@ -100,13 +101,13 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
           fetchData && fetchData();
         }
       }
-      onScroll && onScroll(e);
+      onScroll && onScroll(event);
     },
     [fetchData, hasMore, onScroll, onYReachEnd]
   );
 
-  const handleResize = React.useCallback(
-    (trackSize: number): void => {
+  const handleResize = useCallback(
+    (trackSize: number) => {
       if (contentRef.current !== null) {
         const { clientHeight: clientHeightContent, scrollHeight: scrollHeightContent } = contentRef.current;
         if (clientHeightContent === scrollHeightContent) {
@@ -120,7 +121,13 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     [handleThumbPosition]
   );
 
-  React.useEffect(() => {
+  const handleWheel = (event: WheelEvent) => {
+    if (confineScroll) {
+      event.stopPropagation();
+    }
+  };
+
+  useEffect(() => {
     if (contentRef.current !== null && scrollTrackRef.current !== null && wrapperRef.current !== null) {
       const ref = wrapperRef.current;
       const content = contentRef.current;
@@ -141,7 +148,7 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
     return undefined;
   }, [handleResize, handleThumbPosition]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('mousemove', handleThumbMousemove);
     document.addEventListener('mouseup', handleThumbMouseup);
     document.addEventListener('mouseleave', handleThumbMouseup);
@@ -154,7 +161,13 @@ export const DnDScrollbar: React.FC<ScrollbarProps> = ({
 
   return (
     <S.ScrollbarContainer data-testid="dnd-scrollbar">
-      <S.ScrollbarContent ref={contentRef} {...props} style={{ maxHeight }} onScroll={handleScroll}>
+      <S.ScrollbarContent
+        ref={contentRef}
+        {...props}
+        style={{ maxHeight }}
+        onScroll={handleScroll}
+        onWheel={handleWheel}
+      >
         <S.ScrollbarWrapper ref={wrapperRef} loading={loading} absolute={absolute} largeSize={largeSize}>
           {children}
         </S.ScrollbarWrapper>

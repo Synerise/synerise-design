@@ -1,6 +1,5 @@
 import { ReactNode, CSSProperties } from 'react';
 import dayjs from 'dayjs';
-import { IntlShape } from 'react-intl';
 import { InputProps } from 'antd/es/input/Input';
 
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
@@ -25,7 +24,6 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   disabled?: boolean;
   dropdownProps?: Partial<DropdownProps>;
   inputProps?: Partial<InputProps>;
-  intl: IntlShape;
   onChange?: (value: Date | undefined, timeString: string) => void;
   onClockModeChange?: (mode: string) => void;
   overlayClassName?: string;
