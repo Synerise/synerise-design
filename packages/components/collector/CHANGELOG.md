@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.10...@synerise/ds-collector@0.8.0) (2024-03-28)
+
+
+### Features
+
+* **collector:** add collector dropdown list header ([19c4e4b](https://github.com/Synerise/synerise-design/commit/19c4e4ba47df85f4a64891964d99f178fd89fcf8))
+
+
+
+
+
 ## [0.7.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.7.9...@synerise/ds-collector@0.7.10) (2024-03-20)
 
 **Note:** Version bump only for package @synerise/ds-collector

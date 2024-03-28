@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.210.0](https://github.com/synerise/synerise-design/compare/portal@0.209.0...portal@0.210.0) (2024-03-28)
+
+
+### Features
+
+* **collector:** add collector dropdown list header ([19c4e4b](https://github.com/synerise/synerise-design/commit/19c4e4ba47df85f4a64891964d99f178fd89fcf8))
+
+
+
+
+
 # [0.209.0](https://github.com/synerise/synerise-design/compare/portal@0.208.1...portal@0.209.0) (2024-03-20)
 
 
