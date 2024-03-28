@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { CSSProperties, ReactNode, UIEvent } from 'react';
 import { ScrollBarProps } from 'react-perfect-scrollbar';
 
 export type ScrollbarAdditionalProps = {
@@ -9,15 +9,16 @@ export type ScrollbarAdditionalProps = {
   loading?: boolean;
   maxHeight?: string | number;
   largeSize?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   fetchData?: () => void;
-  onScroll?: (e: React.UIEvent) => void;
+  onScroll?: (event: UIEvent) => void;
   onYReachEnd?: () => void;
   withDnd?: boolean;
+  confineScroll?: boolean;
 };
 
 export type ScrollbarProps = ScrollbarAdditionalProps & {
-  children: React.ReactNode | string;
+  children?: ReactNode;
 };
 
 export type VirtualScrollbarProps = ScrollbarProps & {

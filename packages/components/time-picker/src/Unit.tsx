@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { debounce } from 'debounce';
 
@@ -24,18 +24,18 @@ const CELL_HEIGHT = 32;
 const DEBOUNCE_DELAY = 150;
 
 const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: UnitProps) => {
-  const selected: number | undefined = React.useMemo(
+  const selected: number | undefined = useMemo(
     () => getUnitSelectedNumber(value, unit, use12HourClock),
     [unit, use12HourClock, value]
   );
 
-  const [forceUpdate, setForceUpdate] = React.useState<boolean>(false);
-  const selectedCellRef = React.useRef<HTMLButtonElement>(null);
-  const unitContainerRef = React.useRef<HTMLDivElement>(null);
+  const [forceUpdate, setForceUpdate] = useState<boolean>(false);
+  const selectedCellRef = useRef<HTMLButtonElement>(null);
+  const unitContainerRef = useRef<HTMLDivElement>(null);
 
-  const [containerHeight, setContainerHeight] = React.useState<number>(300);
-  const [isFirstRender, setFirstRender] = React.useState<boolean>(true);
-  React.useEffect(() => {
+  const [containerHeight, setContainerHeight] = useState<number>(300);
+  const [isFirstRender, setFirstRender] = useState<boolean>(true);
+  useEffect(() => {
     if (isFirstRender) {
       setFirstRender(false);
       if (unitContainerRef.current) {
@@ -60,13 +60,13 @@ const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: Unit
   };
   const debouncedScrollHandler = debounce(scrollHandler, DEBOUNCE_DELAY);
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       debouncedScrollHandler.clear();
     };
   }, [debouncedScrollHandler]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedCellRef.current && unitContainerRef.current) {
       const offsetToParent = selectedCellRef.current.offsetTop - unitContainerRef.current.offsetTop;
       const scrollBehaviour = isFirstRender || !containerHeight ? 'auto' : 'smooth';
@@ -79,7 +79,7 @@ const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: Unit
 
   return (
     <S.Unit data-testid={`ds-time-picker-unit-${unit}`}>
-      <Scrollbar ref={unitContainerRef} onScroll={debouncedScrollHandler} maxHeight={192}>
+      <Scrollbar confineScroll ref={unitContainerRef} onScroll={debouncedScrollHandler} maxHeight={192}>
         {options.map(option => {
           const normalizedStringValue = option < 10 ? `0${option}` : option.toString();
           const isDisabled = disabled && disabled.includes(option);
