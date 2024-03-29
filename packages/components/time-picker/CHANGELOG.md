@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.19...@synerise/ds-time-picker@0.10.0) (2024-03-29)
+
+
+### Features
+
+* **scrollbar:** added prop to control wheel event bubbling ([ef0b8e9](https://github.com/Synerise/synerise-design/commit/ef0b8e939a5293b62b99f01553b6d78350957360))
+
+
+
+
+
 ## [0.9.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-time-picker@0.9.18...@synerise/ds-time-picker@0.9.19) (2024-03-20)
 
 **Note:** Version bump only for package @synerise/ds-time-picker

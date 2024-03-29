@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.6.11...@synerise/ds-divider@0.6.12) (2024-03-29)
+
+
+### Bug Fixes
+
+* **divider:** missing dependencies ([eee6c15](https://github.com/Synerise/synerise-design/commit/eee6c15df65e6241cfe99cd1450fdf0a7d0bd5b6))
+
+
+
+
+
 ## [0.6.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.6.10...@synerise/ds-divider@0.6.11) (2024-03-20)
 
 **Note:** Version bump only for package @synerise/ds-divider

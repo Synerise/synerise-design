@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.61...@synerise/ds-operators@0.10.62) (2024-03-29)
+
+
+### Bug Fixes
+
+* **operators:** lock dropdown height to longest tab ([6c6ba6f](https://github.com/Synerise/synerise-design/commit/6c6ba6fbf7517f9754730427b9520c2aacaad6ea))
+
+
+
+
+
 ## [0.10.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.60...@synerise/ds-operators@0.10.61) (2024-03-20)
 
 **Note:** Version bump only for package @synerise/ds-operators
