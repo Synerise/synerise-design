@@ -9,8 +9,9 @@ export const ContentPlaceholder = styled.div`
   height: 100px;
 `;
 
-export const ItemsList = styled(Menu)`
+export const ItemsList = styled(Menu)<{ contentHeight?: number }>`
   width: 100%;
+  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const SearchResult = styled.span`

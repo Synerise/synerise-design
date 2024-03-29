@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
@@ -6,7 +6,7 @@ import { theme } from '@synerise/ds-core';
 
 import { OperatorsGroup, OperatorsItem } from '../Operator.types';
 
-interface Props {
+type OperatorsDropdownItemProps = {
   item: OperatorsItem | OperatorsGroup;
   searchQuery: string;
   clearSearch?: () => void;
@@ -14,9 +14,9 @@ interface Props {
   select: (item: OperatorsItem | OperatorsGroup) => void;
   selected?: boolean;
   className: string;
-}
+};
 
-const OperatorsDropdownItem: React.FC<Props> = ({
+const OperatorsDropdownItem = ({
   item,
   clearSearch,
   searchQuery,
@@ -24,9 +24,9 @@ const OperatorsDropdownItem: React.FC<Props> = ({
   select,
   selected,
   className,
-}) => {
+}: OperatorsDropdownItemProps) => {
   return (
-    <Menu.Item
+    <Menu.Item // TODO change into listitem
       className={className}
       key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
