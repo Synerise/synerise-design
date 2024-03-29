@@ -35,7 +35,6 @@
   "dependencies": {
     "@date-fns/upgrade": "^1.0.3",
     "@synerise/ds-button": "^0.19.4",
-    "@synerise/ds-core": "^0.40.12",
     "@synerise/ds-data-format": "^0.4.8",
     "@synerise/ds-dropdown": "^0.17.101",
     "@synerise/ds-icon": "^0.60.4",
