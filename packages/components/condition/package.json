@@ -35,7 +35,6 @@
   "dependencies": {
     "@synerise/ds-button": "^0.19.4",
     "@synerise/ds-context-selector": "^0.21.3",
-    "@synerise/ds-core": "^0.40.12",
     "@synerise/ds-cruds": "^0.5.1",
     "@synerise/ds-factors": "^0.22.3",
     "@synerise/ds-icon": "^0.60.4",
