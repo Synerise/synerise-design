@@ -11,4 +11,6 @@ List of utils:
 - toCamelCase,
 - useBreakpoint,
 - useOnClickOutside,
-- useResize.
+- useResize,
+- useResizeObserver,
+- useResizeToFit.

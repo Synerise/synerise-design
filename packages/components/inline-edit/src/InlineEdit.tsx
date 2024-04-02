@@ -1,15 +1,14 @@
-import * as React from 'react';
-import AutosizeInput from 'react-input-autosize';
+import React, { useCallback, useRef, useState, KeyboardEvent, FocusEvent, ChangeEvent, useEffect } from 'react';
+
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { toCamelCase } from '@synerise/ds-utils';
+
+import AutosizeInput, { AutosizeInputRefType } from './autosize/autosize';
 import * as S from './InlineEdit.styles';
-import { attachWidthWatcher } from './utils';
 import { InlineEditProps } from './InlineEdit.types';
 
-const SAMPLE = String.fromCharCode(...[...Array(26).keys()].map(i => i + 65));
-
-const InlineEdit: React.FC<InlineEditProps> = ({
+const InlineEdit = ({
   className,
   style,
   size = 'normal',
@@ -19,19 +18,21 @@ const InlineEdit: React.FC<InlineEditProps> = ({
   tooltipTitle,
   error,
   input,
-}): React.ReactElement => {
-  const inputRef = React.useMemo(() => {
-    return React.createRef<HTMLInputElement>();
-  }, []);
+}: InlineEditProps) => {
+  const autoWidthRef = useRef<AutosizeInputRefType>(null);
+  const inputRef = useRef<HTMLInputElement | null>();
 
-  const fontStyleWatcher = React.useMemo(() => {
-    return React.createRef<HTMLDivElement>();
-  }, []);
-  const [scrolled, setScrolled] = React.useState<boolean>();
-  const handleScroll = React.useCallback((): void => {
-    if (inputRef?.current !== null) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const scrolledPixels = ((inputRef?.current as any).input as HTMLElement).scrollLeft;
+  useEffect(() => {
+    if (autoWidthRef.current) {
+      inputRef.current = autoWidthRef.current.inputRef.current;
+    }
+  });
+
+  const [scrolled, setScrolled] = useState<boolean>();
+
+  const handleScroll = useCallback((): void => {
+    if (inputRef.current) {
+      const scrolledPixels = inputRef.current.scrollLeft;
       if (scrolledPixels > 0) {
         setScrolled(true);
       } else {
@@ -40,53 +41,38 @@ const InlineEdit: React.FC<InlineEditProps> = ({
     }
   }, [inputRef]);
 
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      input.onChange(e);
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      input.onChange(event);
     },
     [input]
   );
 
-  const handleBlur = React.useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
-      input.onBlur && input.onBlur(e);
-
-      // @ts-ignore
-      inputRef.current.input && inputRef.current.input.scrollTo({ left: 0 });
+  const handleBlur = useCallback(
+    (event: FocusEvent<HTMLInputElement>) => {
+      input.onBlur && input.onBlur(event);
+      inputRef.current && inputRef.current.scrollTo({ left: 0 });
     },
     [input, inputRef]
   );
 
-  const handleKeyPress = React.useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === 'Enter') {
-        input.onEnterPress && input.onEnterPress(e);
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        input.onEnterPress && input.onEnterPress(event);
         inputRef.current && inputRef.current.blur();
       }
     },
     [input, inputRef]
   );
 
-  const handleFocusInput = React.useCallback(() => {
+  const handleFocusInput = useCallback(() => {
     inputRef.current && inputRef.current.focus();
   }, [inputRef]);
 
-  const updateInputWidth = React.useCallback(() => {
-    if (inputRef.current) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (inputRef.current as any).copyInputStyles();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (inputRef.current as any).updateInputWidth();
-    }
-  }, [inputRef]);
-
-  React.useEffect(() => {
+  useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
-    updateInputWidth();
-    if (fontStyleWatcher) {
-      attachWidthWatcher(fontStyleWatcher.current as HTMLDivElement, updateInputWidth);
-    }
-  }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
+  }, [autoFocus, inputRef]);
 
   return (
     <S.InPlaceEditableInputContainer
@@ -105,14 +91,15 @@ const InlineEdit: React.FC<InlineEditProps> = ({
         onKeyPress={handleKeyPress}
         disabled={disabled}
         name={input.name}
+        extraWidth={2}
         value={input.value || ''}
         onChange={handleChange}
         onBlur={handleBlur}
         autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
         onScroll={handleScroll}
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-        ref={inputRef as any}
+        wrapperClassName="autosize-input"
+        ref={autoWidthRef}
       />
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
@@ -121,12 +108,6 @@ const InlineEdit: React.FC<InlineEditProps> = ({
           </S.IconWrapper>
         </Tooltip>
       )}
-      <S.FontStyleWatcher
-        ref={fontStyleWatcher}
-        style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
-      >
-        {SAMPLE}
-      </S.FontStyleWatcher>
     </S.InPlaceEditableInputContainer>
   );
 };

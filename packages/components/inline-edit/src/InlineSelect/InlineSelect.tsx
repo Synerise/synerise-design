@@ -1,14 +1,13 @@
-import * as React from 'react';
-import AutosizeInput from 'react-input-autosize';
+import React, { useRef, useState, useEffect } from 'react';
 import { toCamelCase } from '@synerise/ds-utils';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
+import AutosizeInput, { AutosizeInputRefType } from '../autosize/autosize';
 import * as S from './InlineSelect.style';
-import { attachWidthWatcher } from '../utils';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
 import { InlineSelectProps } from './InlineSelect.types';
 
-const InlineSelect: React.FC<InlineSelectProps> = ({
+const InlineSelect = ({
   className,
   style,
   dropdownProps = {},
@@ -23,40 +22,29 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
   placeholder,
   dataSource,
   initialValue,
-}): React.ReactElement => {
-  const inputRef = React.useMemo(() => {
-    return React.createRef<HTMLInputElement>();
-  }, []);
+}: InlineSelectProps) => {
+  const autoWidthRef = useRef<AutosizeInputRefType>(null);
+  const inputRef = useRef<HTMLInputElement | null>();
 
-  const fontStyleWatcher = React.useMemo(() => {
-    return React.createRef<HTMLDivElement>();
-  }, []);
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(initialValue || placeholder || 'option');
+  const [opened, setOpened] = useState<boolean>(false);
+  const [pressed, setPressed] = useState<boolean>(false);
 
-  const updateInputWidth = React.useCallback(() => {
-    if (inputRef.current) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (inputRef.current as any).copyInputStyles();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (inputRef.current as any).updateInputWidth();
-    }
-  }, [inputRef]);
-
-  React.useEffect(() => {
-    updateInputWidth();
-    if (fontStyleWatcher) {
-      attachWidthWatcher(fontStyleWatcher.current as HTMLDivElement, updateInputWidth);
-    }
-  }, [autoFocus, fontStyleWatcher, inputRef, updateInputWidth]);
-
-  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(initialValue || placeholder || 'option');
-  const [opened, setOpened] = React.useState<boolean>(false);
-  const [pressed, setPressed] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    if (input?.value !== selectedValue) {
+  useEffect(() => {
+    if (input?.value && input.value !== selectedValue) {
       setSelectedValue(input?.value as string);
     }
-  }, [input, selectedValue]);
+  }, [input?.value, selectedValue]);
+
+  useEffect(() => {
+    if (autoWidthRef.current) {
+      inputRef.current = autoWidthRef.current.inputRef.current;
+    }
+  });
+  useEffect(() => {
+    autoFocus && inputRef.current && inputRef.current.focus();
+  }, [autoFocus, inputRef]);
+
   return (
     <Dropdown
       visible={!disabled && opened}
@@ -66,8 +54,8 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
       overlay={
         <SelectDropdown
           dataSource={dataSource}
-          onSelect={(item): void => setSelectedValue(item.text as string)}
-          closeDropdown={(): void => setOpened(false)}
+          onSelect={item => setSelectedValue(item.text as string)}
+          closeDropdown={() => setOpened(false)}
           style={dropdownOverlayStyle}
         />
       }
@@ -97,18 +85,15 @@ const InlineSelect: React.FC<InlineSelectProps> = ({
           autoComplete={input.autoComplete}
           placeholderIsMinWidth={false}
           style={inputStyle}
-          /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-          ref={inputRef as any}
+          extraWidth={2}
+          wrapperClassName="autosize-input"
+          ref={autoWidthRef}
         />
         {!hideIcon && (
           <S.IconWrapper size={size} expanded={opened}>
             <Icon component={<AngleDownS />} size={24} />
           </S.IconWrapper>
         )}
-        <S.FontStyleWatcher
-          ref={fontStyleWatcher}
-          style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none' }}
-        />
       </S.InPlaceEditableInputContainer>
     </Dropdown>
   );
