@@ -177,9 +177,11 @@ function TableSelection<T extends { key: React.ReactText; children?: T[] }>({
     return allRecordsCount === selectedKeysInDataSourceCount;
   }, [isEmpty, selection, dataSource, isShowingSubset, getSelectableChildren, getRowKey]);
 
+  const selectionTooltipTitle = !allSelected ? locale?.selectAllTooltip : locale?.unselectAll;
+
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>
-      <Tooltip title={locale?.selectAllTooltip}>
+      <Tooltip title={selectionTooltipTitle}>
         <Button.Checkbox
           disabled={isEmpty}
           data-testid="ds-table-batch-selection-button"

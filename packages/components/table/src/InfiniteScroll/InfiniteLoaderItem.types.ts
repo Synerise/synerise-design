@@ -1,4 +1,6 @@
-import { ReactElement, MouseEvent as ReactMouseEvent } from 'react';
+import { ReactElement } from 'react';
+
+export type LoaderItemPosition = 'TOP' | 'BOTTOM';
 
 export type InfiniteScrollState = {
   hasError: boolean;
@@ -9,12 +11,16 @@ export type InfiniteScrollState = {
 export type InfiniteScrollProps = InfiniteScrollState & {
   maxScroll?: number;
   showBackToTopButton?: boolean;
+  nextPage?: InfiniteScrollState;
+  prevPage?: InfiniteScrollState;
   render?: (state: InfiniteScrollState) => ReactElement;
-  onRetryButtonClick?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
-  onScrollEndReach: () => void;
+  onRetryButtonClick?: (position: LoaderItemPosition | undefined) => void;
+  onScrollEndReach?: () => void;
   onScrollTopReach?: () => void;
+  onBackToTop?: () => void;
 };
 
 export type LoaderItemProps = {
-  infiniteScroll: InfiniteScrollProps;
+  infiniteScroll: InfiniteScrollProps & InfiniteScrollState;
+  position?: LoaderItemPosition;
 };

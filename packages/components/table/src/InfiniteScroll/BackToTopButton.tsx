@@ -9,6 +9,7 @@ export const BackToTopButton = (props: ButtonProps & { isSticky?: boolean }): Re
     mode="icon-label"
     color="grey"
     icon={<Icon component={<ArrowUpCircleM />} />}
+    className="virtual-table-back-to-top-button"
     {...props}
   />
 );

@@ -131,7 +131,7 @@ export const Selection = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 64px;
+  max-width: 64px;
   margin-right: 24px;
   border-radius: 3px;
 

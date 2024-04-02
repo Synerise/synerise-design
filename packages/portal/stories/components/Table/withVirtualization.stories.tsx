@@ -15,7 +15,7 @@ const dataSource = [...new Array(5000)].map((i, k) => ({
   key: String(k + 1),
   name: faker.name.findName(),
   city: faker.address.city(),
-  number: String(faker.finance.amount())
+  number: String(faker.finance.amount()),
 }));
 const columns = [
   {
@@ -43,7 +43,6 @@ const columns = [
 ];
 
 const VirtualizationWithState: React.FC = () => {
-  
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [starredRowKeys, setStarredRowKey] = React.useState<React.Key[]>([]);
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
@@ -52,8 +51,8 @@ const VirtualizationWithState: React.FC = () => {
     return !searchValue
       ? dataSource
       : dataSource.filter(record => {
-        return typeof record.name === 'string' && record.name.toLowerCase().includes(searchValue.toLowerCase());
-      });
+          return typeof record.name === 'string' && record.name.toLowerCase().includes(searchValue.toLowerCase());
+        });
   }, [searchValue]);
 
   const handleSelectionChange = (selectedRowKeys, selectedRows) => {
@@ -65,7 +64,7 @@ const VirtualizationWithState: React.FC = () => {
   });
 
   return (
-    <div style={{ width: 792 }}>
+    <div style={{ width: '100%' }}>
       <VirtualTable
         title={text('Table title', 'Virtualized table')}
         scroll={{ y: 500, x: 0 }}
@@ -88,10 +87,7 @@ const VirtualizationWithState: React.FC = () => {
           boolean('Enable row selection', true) && {
             onChange: handleSelectionChange,
             selectedRowKeys: selectedRowKeys,
-            selections: [
-              Table.SELECTION_ALL,
-              Table.SELECTION_INVERT
-            ],
+            selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
             limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
           }
         }
@@ -103,9 +99,9 @@ const VirtualizationWithState: React.FC = () => {
             },
           }
         }
-        onRowClick={ record => {
+        onRowClick={record => {
           const { key } = record;
-          const newSelectedRowKeys = [ ...selectedRowKeys ];
+          const newSelectedRowKeys = [...selectedRowKeys];
           if (newSelectedRowKeys.indexOf(key) > -1) {
             newSelectedRowKeys.splice(newSelectedRowKeys.indexOf(key), 1);
           } else {
