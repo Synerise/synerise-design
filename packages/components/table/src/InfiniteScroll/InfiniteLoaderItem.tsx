@@ -4,7 +4,7 @@ import Button from '@synerise/ds-button';
 import Icon, { RefreshM } from '@synerise/ds-icon';
 import { TableLocaleContext } from '../utils/locale';
 import { Loader } from './InfiniteLoaderItem.styles';
-import { InfiniteScrollProps, LoaderItemProps } from './InfiniteLoaderItem.types';
+import { LoaderItemProps } from './InfiniteLoaderItem.types';
 import { infiniteScrollPropsToState } from './utils';
 
 const LoadingItem = (): React.ReactElement => (
@@ -26,7 +26,7 @@ const NoMoreItem = (): React.ReactElement => (
 );
 
 interface ErrorItemProps {
-  onRetryClick?: InfiniteScrollProps['onRetryButtonClick'];
+  onRetryClick?: () => void;
 }
 
 const ErrorItem = ({ onRetryClick }: ErrorItemProps): React.ReactElement => (
@@ -54,8 +54,12 @@ const ErrorItem = ({ onRetryClick }: ErrorItemProps): React.ReactElement => (
   </TableLocaleContext.Consumer>
 );
 
-const InfiniteLoaderItem = ({ infiniteScroll }: LoaderItemProps): React.ReactElement => {
+const InfiniteLoaderItem = ({ infiniteScroll, position }: LoaderItemProps): React.ReactElement => {
   const { hasMore, isLoading, hasError, onRetryButtonClick, render } = infiniteScroll;
+
+  const handleRetryClick = () => {
+    onRetryButtonClick && onRetryButtonClick(position);
+  };
 
   if (typeof render === 'function') {
     return render(infiniteScrollPropsToState(infiniteScroll));
@@ -65,7 +69,7 @@ const InfiniteLoaderItem = ({ infiniteScroll }: LoaderItemProps): React.ReactEle
     <>
       {isLoading && <LoadingItem />}
       {!isLoading && !hasMore && <NoMoreItem />}
-      {!isLoading && hasError && <ErrorItem onRetryClick={onRetryButtonClick} />}
+      {!isLoading && hasError && <ErrorItem onRetryClick={handleRetryClick} />}
     </>
   );
 };

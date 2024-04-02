@@ -4,7 +4,7 @@ export const infiniteScrollPropsToState = ({
   hasError,
   hasMore,
   isLoading,
-}: InfiniteScrollProps): InfiniteScrollState => ({
+}: InfiniteScrollProps & InfiniteScrollState): InfiniteScrollState => ({
   hasError,
   hasMore,
   isLoading,

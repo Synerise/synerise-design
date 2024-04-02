@@ -67,6 +67,7 @@ export type Locale = TableLocale & {
     groups?: string;
   };
   selectRowTooltip?: string;
+  selectVisible?: string;
   selectAllTooltip?: string;
   starRowTooltip?: string;
   selectionOptionsTooltip?: string;

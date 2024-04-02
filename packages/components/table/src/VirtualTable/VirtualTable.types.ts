@@ -1,5 +1,5 @@
 import { RefObject } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List, ListOnItemsRenderedProps } from 'react-window';
 import { InfiniteScrollProps } from '../InfiniteScroll/InfiniteLoaderItem.types';
 import { DSTableProps } from '../Table.types';
 
@@ -16,6 +16,8 @@ export type Props<T> = DSTableProps<T> & {
   };
   onListRefChange?: (ref: RefObject<List>) => void;
   onRowClick?: (row: T) => void;
+  onItemsRendered?: (props: ListOnItemsRenderedProps) => void;
+  onScrollToRecordIndex?: (recordIndex: number, callback?: () => void) => void;
 };
 
 export type VirtualTableRef = {

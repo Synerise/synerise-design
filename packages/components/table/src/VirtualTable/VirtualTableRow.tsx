@@ -2,12 +2,14 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { areEqual } from 'react-window';
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
-import { InfiniteScrollProps } from '../InfiniteScroll/InfiniteLoaderItem.types';
+import { InfiniteScrollProps, LoaderItemPosition } from '../InfiniteScroll/InfiniteLoaderItem.types';
 import { RowSelection, DSColumnType, DSTableProps } from '../Table.types';
 import { EXPANDED_ROW_PROPERTY } from './constants';
 import * as S from './VirtualTable.styles';
 import { RowStar } from '../hooks/useRowStar';
 import { getValueFromPath, calculatePixels } from '../utils';
+
+export const INFINITE_LOADED_ITEM_HEIGHT = 64;
 
 export interface VirtualTableRowProps<T> {
   data: {
@@ -50,26 +52,48 @@ function VirtualTableRow<T extends object>({
 
   const rowData = React.useMemo(() => dataSource[index], [dataSource, index]);
 
-  const infiniteLoader = React.useMemo(() => {
-    return (
-      infiniteScroll &&
-      index === dataSource.length - 1 && (
-        <S.RowWrapper
-          style={{ ...style, top: `${Number(style.top) + cellHeight}px`, height: '64px', padding: '16px 24px' }}
-        >
-          <InfiniteLoaderItem infiniteScroll={infiniteScroll} />
-        </S.RowWrapper>
-      )
-    );
-  }, [cellHeight, dataSource.length, index, infiniteScroll, style]);
+  const infiniteLoader = React.useCallback(
+    (position: LoaderItemPosition) => {
+      let isVisible = false;
+      let infiniteLoaderItemProps;
+      let { top } = style;
+
+      if (position === 'TOP') {
+        isVisible = Boolean(infiniteScroll && infiniteScroll.prevPage?.hasMore && index === 0);
+        infiniteLoaderItemProps = infiniteScroll?.prevPage;
+        top = `0px`;
+      }
+      if (position === 'BOTTOM') {
+        isVisible = Boolean(index === dataSource.length - 1);
+        infiniteLoaderItemProps = infiniteScroll?.nextPage;
+        const prevDataInfiniteLoaderHeight = infiniteScroll?.prevPage?.hasMore ? INFINITE_LOADED_ITEM_HEIGHT : 0;
+        top = `${Number(style.top) + cellHeight + prevDataInfiniteLoaderHeight}px`;
+      }
+      return (
+        infiniteLoaderItemProps &&
+        isVisible && (
+          <S.RowWrapper style={{ ...style, top, height: `${INFINITE_LOADED_ITEM_HEIGHT}px`, padding: '16px 24px' }}>
+            <InfiniteLoaderItem
+              infiniteScroll={{ ...infiniteScroll, ...infiniteLoaderItemProps }}
+              position={position}
+            />
+          </S.RowWrapper>
+        )
+      );
+    },
+    [cellHeight, dataSource.length, index, infiniteScroll, style]
+  );
+
+  const top = infiniteScroll?.prevPage?.hasMore ? `${Number(style.top) + INFINITE_LOADED_ITEM_HEIGHT}px` : style.top;
 
   return (
     <>
+      {infiniteLoader('TOP')}
       <S.RowWrapper
         className={classNames('virtual-table-row', {
           'ds-expanded-row': rowData[EXPANDED_ROW_PROPERTY],
         })}
-        style={style}
+        style={{ ...style, top }}
         onClick={(event): void => {
           event.stopPropagation();
           onRowClick && onRowClick(rowData);
@@ -104,7 +128,7 @@ function VirtualTableRow<T extends object>({
           );
         })}
       </S.RowWrapper>
-      {infiniteLoader}
+      {infiniteLoader('BOTTOM')}
     </>
   );
 }
