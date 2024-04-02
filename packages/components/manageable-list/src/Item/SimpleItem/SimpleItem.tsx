@@ -26,7 +26,7 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
   }, []);
 
   return (
-    <S.ItemContainer isSelected={!!selected}>
+    <S.ItemContainer data-active={!!selected} isSelected={!!selected}>
       <List.Item
         icon={<Icon className="ds-manageable-list-item-icon" component={item.icon} size={24} />}
         onSelect={handleSelect}
