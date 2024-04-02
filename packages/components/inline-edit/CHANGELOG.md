@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.103](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.102...@synerise/ds-inline-edit@0.6.103) (2024-04-02)
+
+
+### Bug Fixes
+
+* **inline-edit:** fixed autosize ([3dba994](https://github.com/Synerise/synerise-design/commit/3dba9947e3a0c43297fce8d66ba5be2514db4f4c))
+
+
+
+
+
 ## [0.6.102](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.101...@synerise/ds-inline-edit@0.6.102) (2024-03-29)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

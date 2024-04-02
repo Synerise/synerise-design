@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.26.1...@synerise/ds-utils@0.26.2) (2024-04-02)
+
+
+### Bug Fixes
+
+* **inline-edit:** fixed autosize ([3dba994](https://github.com/synerise/synerise-design/commit/3dba9947e3a0c43297fce8d66ba5be2514db4f4c))
+
+
+
+
+
 ## [0.26.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.26.0...@synerise/ds-utils@0.26.1) (2024-03-29)
 
 **Note:** Version bump only for package @synerise/ds-utils
