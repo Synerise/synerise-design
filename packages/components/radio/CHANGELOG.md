@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.63...@synerise/ds-radio@0.11.64) (2024-04-03)
+
+
+### Bug Fixes
+
+* **radio:** fixed label wrapping ([a220e26](https://github.com/synerise/synerise-design/commit/a220e26806c45fd72e6c15ec74cb6ca194099b17))
+
+
+
+
+
 ## [0.11.63](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.62...@synerise/ds-radio@0.11.63) (2024-04-02)
 
 **Note:** Version bump only for package @synerise/ds-radio
