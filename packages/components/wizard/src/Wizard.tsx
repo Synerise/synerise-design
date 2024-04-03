@@ -38,7 +38,7 @@ const Wizard = ({
     : { type: prevButtonType, mode: 'icon-label' };
   const nextButtonProps = stepButtonProps?.nextButtonProps ? stepButtonProps.nextButtonProps : { type: 'primary' };
 
-  const navButtons = (
+  const navButtons = (onPrevStep || onNextStep) && (
     <>
       {onPrevStep ? (
         <Button {...prevButtonProps} onClick={onPrevStep}>
@@ -56,7 +56,7 @@ const Wizard = ({
     </>
   );
 
-  const hasFooter = Boolean(footer || footerLeft || navigationInFooter);
+  const hasFooter = Boolean(footer || footerLeft || (navigationInFooter && navButtons) || footerAction);
 
   const editableTitle = headerInlineEdit !== undefined;
 
@@ -82,15 +82,15 @@ const Wizard = ({
         <S.WizardContainer withFooter={hasFooter}>
           <S.WizardContent contentWidth={contentWidth}>
             {children}
-            {!navigationInFooter && <S.WizardButtons>{navButtons}</S.WizardButtons>}
+            {(!navigationInFooter && navButtons) && <S.WizardButtons>{navButtons}</S.WizardButtons>}
           </S.WizardContent>
         </S.WizardContainer>
         {hasFooter && (
           <S.WizardFooter>
             {(footerLeft || footer) && <S.FooterLeftSide>{footerLeft || footer}</S.FooterLeftSide>}
-            {navigationInFooter && (
+            {(footerAction || (navigationInFooter && navButtons)) && (
               <S.FooterRightSide>
-                {footerAction} {navButtons}
+                {footerAction} {navigationInFooter && navButtons}
               </S.FooterRightSide>
             )}
           </S.WizardFooter>
