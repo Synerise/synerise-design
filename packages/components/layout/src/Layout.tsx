@@ -47,6 +47,9 @@ const Layout = ({
     </Scrollbar>
   );
 
+  const leftSidebarHasControls = left && renderLeftSidebarControls;
+  const rightSidebarHasControls = right && renderRightSidebarControls;
+
   return (
     <S.LayoutContainer
       fillViewport={fillViewport}
@@ -56,13 +59,14 @@ const Layout = ({
     >
       {header ? <S.LayoutHeader className="ds-layout__header">{header}</S.LayoutHeader> : null}
       <S.LayoutContent>
-        <S.LayoutBody>
+        <S.LayoutBody allowOverflow={!leftSidebarHasControls || !rightSidebarHasControls}>
           <>
             {left ? (
               <S.LayoutSidebarWrapper
                 opened={showLeftSidebar}
                 openedWidth={leftSidebarWidth}
                 animationDisabled={!!sidebarAnimationDisabled}
+                hasControlButton={!!leftSidebarHasControls}
               >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar"
@@ -90,15 +94,7 @@ const Layout = ({
               </S.LayoutSidebarWrapper>
             ) : null}
           </>
-          <S.LayoutMain
-            className="ds-layout__main"
-            data-popup-container
-            style={styles && styles.main}
-            leftOpened={showLeftSidebar}
-            rightOpened={showRightSidebar}
-            leftSidebarWidth={leftSidebarWidth}
-            rightSidebarWidth={rightSidebarWidth}
-          >
+          <S.LayoutMain className="ds-layout__main" data-popup-container style={styles && styles.main}>
             <S.LayoutSubheader>{subheader}</S.LayoutSubheader>
             {mainColumnInner}
           </S.LayoutMain>
@@ -109,6 +105,7 @@ const Layout = ({
                 right
                 openedWidth={rightSidebarWidth}
                 animationDisabled={!!sidebarAnimationDisabled}
+                hasControlButton={!!rightSidebarHasControls}
               >
                 <S.LayoutSidebar
                   className="ds-layout__sidebar ds-layout__sidebar--right"
