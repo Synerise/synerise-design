@@ -242,7 +242,7 @@ export const ConditionStep = ({
               onDeactivate={onDeactivate}
               opened={step.id === currentStepId && currentField === SUBJECT}
               onSelectItem={(value): void => selectContext(value, step.id)}
-              readOnly={readOnly}
+              readOnly={step.context.readOnly || readOnly}
             />
           )}
         </S.Subject>
