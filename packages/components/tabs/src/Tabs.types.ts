@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, RefObject } from 'react';
 
 export type TabsProps = {
   activeTab: number;
@@ -17,12 +17,12 @@ export type Configuration = {
 };
 
 export type TabItem = {
-  label?: string | React.ReactNode;
-  icon?: React.ReactNode;
+  label?: ReactNode;
+  icon?: ReactNode;
   disabled?: boolean;
-  suffixel?: React.ReactNode | React.ReactText;
+  suffixel?: ReactNode;
 };
 
 export type TabWithRef = TabItem & {
-  ref: React.RefObject<HTMLButtonElement>;
+  ref: RefObject<HTMLButtonElement>;
 };
