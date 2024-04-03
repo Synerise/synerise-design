@@ -13,6 +13,7 @@ export const TabsContainer = styled.div<{ block?: boolean }>`
   max-width: 100%;
   overflow-x: hidden;
   margin-bottom: -1px;
+  height: 38px;
 `;
 
 export const TabsDropdownContainer = styled.div`
@@ -46,8 +47,9 @@ export const ShowHiddenTabsTrigger = styled(Button)<ButtonProps>`
 
 export const HiddenTabs = styled.div`
   position: absolute;
-  width: 0;
+  display: flex;
   visibility: hidden;
+  pointer-events: none;
 `;
 export const DropdownMenu = styled(Menu)<AntdMenuProps>``;
 export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`

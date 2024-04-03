@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Icon from '@synerise/ds-icon';
 import classNames from 'classnames';
 import * as S from './Tab.styles';
 import { TabProps } from './Tab.types';
 
-const Tab: React.FC<TabProps> = ({
+const Tab = ({
   index,
   label,
   icon,
@@ -17,16 +17,16 @@ const Tab: React.FC<TabProps> = ({
   block,
   suffixel,
 }: TabProps) => {
-  const [isPressed, setPressed] = React.useState(false);
-  const handleClick = (): void => {
+  const [isPressed, setPressed] = useState(false);
+  const handleClick = () => {
     onClick(index);
   };
 
-  const handleMouseDown = (): void => {
+  const handleMouseDown = () => {
     setPressed(true);
   };
 
-  const handleMouseUp = (): void => {
+  const handleMouseUp = () => {
     setPressed(false);
   };
 
@@ -35,7 +35,7 @@ const Tab: React.FC<TabProps> = ({
     active: isActive,
     pressed: isPressed,
   });
-  const renderSuffixel = (): React.ReactNode => {
+  const renderSuffixel = () => {
     if (typeof suffixel === 'string' || typeof suffixel === 'number') {
       return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
     }

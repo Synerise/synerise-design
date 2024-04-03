@@ -1,54 +1,53 @@
-import * as React from 'react';
+import React, { useCallback, createRef, useMemo, useState, useRef, useEffect } from 'react';
+import { debounce } from 'lodash';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
-import { useResize } from '@synerise/ds-utils';
+import { useResizeObserver, NOOP } from '@synerise/ds-utils';
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
 import { TabsProps, TabWithRef } from './Tabs.types';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
 
-const Tabs: React.FC<TabsProps> = ({
-  activeTab,
-  tabs,
-  handleTabClick,
-  configuration,
-  underscore,
-  block,
-  visible = true,
-}) => {
-  const containerRef = React.useRef<HTMLDivElement>();
-  const { width } = useResize(containerRef, visible);
-  const [renderHelperTabs, setRenderHelperTabs] = React.useState(true);
-  const [items, setItems] = React.useState<TabWithRef[]>([]);
-  const [itemsWidths, setItemsWidths] = React.useState<number[]>([]);
-  const [visibleTabs, setVisibleTabs] = React.useState<TabWithRef[]>([]);
-  const [hiddenTabs, setHiddenTabs] = React.useState<TabWithRef[]>([]);
+const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }: TabsProps) => {
+  const [containerWidth, setContainerWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const helperContainerRef = useRef<HTMLDivElement>(null);
+  const { width } = useResizeObserver(containerRef);
+  const { width: helperWidth } = useResizeObserver(helperContainerRef);
+  const [items, setItems] = useState<TabWithRef[]>([]);
+  const [itemsWidths, setItemsWidths] = useState<number[]>([]);
+  const [visibleTabs, setVisibleTabs] = useState<TabWithRef[]>([]);
+  const [hiddenTabs, setHiddenTabs] = useState<TabWithRef[]>([]);
+  const debouncedEventHandler = useMemo(() => debounce((newWidth: number) => setContainerWidth(newWidth), 200), []);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    debouncedEventHandler(width);
+  }, [width, debouncedEventHandler]);
+  
+  useEffect(() => {
     const newTabs = tabs.map(tab => {
       return {
         ...tab,
-        ref: React.createRef<HTMLButtonElement>(),
+        ref: createRef<HTMLButtonElement>(),
       };
     });
-    setRenderHelperTabs(true);
     setItems(newTabs);
   }, [tabs]);
 
-  React.useEffect((): void => {
-    const itemsWithWidths: number[] = [];
-    items.forEach((item, index) => {
-      itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
-    });
-    setItemsWidths(itemsWithWidths);
-    setRenderHelperTabs(false);
-  }, [items]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (helperWidth > 0 && containerWidth > 0) {
+      const itemsWithWidths: number[] = [];
+      items.forEach((item, index) => {
+        itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
+      });
+      setItemsWidths(itemsWithWidths);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, helperWidth, containerWidth > 0]);
 
-  React.useEffect((): void => {
+  useEffect(() => {
     if (block) {
       setVisibleTabs(items);
       setHiddenTabs([]);
@@ -57,7 +56,7 @@ const Tabs: React.FC<TabsProps> = ({
       const visibleItems: TabWithRef[] = [];
       const hiddenItems: TabWithRef[] = [];
       itemsWidths.forEach((itemWidth, index) => {
-        if (containerRef && tabsWidth + itemWidth < width) {
+        if (containerRef && tabsWidth + itemWidth < containerWidth) {
           visibleItems.push(items[index]);
         } else {
           hiddenItems.push(items[index]);
@@ -68,13 +67,13 @@ const Tabs: React.FC<TabsProps> = ({
       setHiddenTabs(hiddenItems);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsWidths, width]);
+  }, [itemsWidths, containerWidth]);
 
-  const handleConfigurationAction = React.useCallback((): void => {
+  const handleConfigurationAction = useCallback(() => {
     configuration && configuration.action();
   }, [configuration]);
 
-  const renderHiddenTabs = React.useMemo(() => {
+  const renderHiddenTabs = useMemo(() => {
     return (
       <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
         {hiddenTabs.length > 0 && (
@@ -107,7 +106,7 @@ const Tabs: React.FC<TabsProps> = ({
     );
   }, [hiddenTabs, configuration, handleConfigurationAction, handleTabClick, visibleTabs.length]);
 
-  const renderDropdown = (): React.ReactElement => {
+  const renderDropdown = () => {
     return (
       <>
         {(hiddenTabs.length || configuration) && (
@@ -127,7 +126,7 @@ const Tabs: React.FC<TabsProps> = ({
     );
   };
 
-  const renderVisibleTabs = React.useMemo(() => {
+  const renderVisibleTabs = useMemo(() => {
     return (
       <>
         {visibleTabs
@@ -154,9 +153,9 @@ const Tabs: React.FC<TabsProps> = ({
     );
   }, [visibleTabs, activeTab, handleTabClick, underscore, block]);
 
-  const renderHelpers = React.useMemo(() => {
+  const renderHelpers = useMemo(() => {
     return (
-      <S.HiddenTabs className="ds-hidden-helper">
+      <S.HiddenTabs ref={helperContainerRef} className="ds-hidden-helper">
         {items.map((tab, index) => {
           const key = `tabs-tab-helper-${index}`;
           return (
@@ -180,17 +179,19 @@ const Tabs: React.FC<TabsProps> = ({
 
   return (
     <>
-      <S.TabsContainer
-        className="ds-tabs"
-        ref={containerRef as React.RefObject<HTMLDivElement>}
-        data-testid="tabs-container"
-        block={block}
-      >
-        {renderVisibleTabs}
-        {renderDropdown()}
-      </S.TabsContainer>
+      {tabs.length && (
+        <S.TabsContainer
+          className="ds-tabs"
+          ref={containerRef}
+          data-testid="tabs-container"
+          block={block}
+        >
+          {renderVisibleTabs}
+          {renderDropdown()}
+        </S.TabsContainer>
+      )}
       {/* rendering hidden tabs to measure their width */}
-      {!block && renderHelperTabs && renderHelpers}
+      {!block && renderHelpers}
     </>
   );
 };
