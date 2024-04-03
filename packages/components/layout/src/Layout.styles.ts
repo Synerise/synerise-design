@@ -37,25 +37,20 @@ export const LayoutSubheader = styled.div`
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
 `;
 
-export const LayoutBody = styled.div`
+export const LayoutBody = styled.div<{ allowOverflow?: boolean }>`
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 0;
   min-width: 0;
   position: relative;
   overflow: hidden;
   height: 100%;
-  ${mediaQuery.from.medium`flex-direction: row;`};
-  ${mediaQuery.to.small`min-width: 704px;`};
+  ${mediaQuery.to.small`min-width: 704px;}`};
+  ${props => props.allowOverflow && mediaQuery.to.small`overflow-x: auto;`};
 `;
 
-export const LayoutMain = styled.div<{
-  leftOpened: boolean;
-  rightOpened: boolean;
-  leftSidebarWidth: number;
-  rightSidebarWidth: number;
-}>`
+export const LayoutMain = styled.div`
   position: relative;
   max-width: 100%;
   width: 100%;
@@ -188,6 +183,7 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.04);
   width: ${(props): string => `${props.openedWidth}px`};
   max-width: 100%;
+
   ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`flex: 0 1 ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`}; width: ${(
     props: LayoutSidebarProps
@@ -208,16 +204,17 @@ export const LayoutSidebar = styled.div<LayoutSidebarProps>`
       max-width: 0;
     }
   `};
-  ${mediaQuery.to.medium`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: ${(props: LayoutSidebarProps): string => `${props.openedWidth}px`};
-  `}
+  
   }
 `;
 
-type LayoutSidebarWrapperProps = { opened: boolean; right?: boolean; openedWidth: number; animationDisabled: boolean };
+type LayoutSidebarWrapperProps = {
+  hasControlButton: boolean;
+  opened: boolean;
+  right?: boolean;
+  openedWidth: number;
+  animationDisabled: boolean;
+};
 
 export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
   position: relative;
@@ -246,11 +243,22 @@ export const LayoutSidebarWrapper = styled.div<LayoutSidebarWrapperProps>`
 
     }
   }
+  ${props =>
+    props.hasControlButton &&
+    css`
+      ${mediaQuery.to.medium`
+      position: absolute;
+      width: ${props.openedWidth}px;
+      transform: ${props.right ? `translateX(${props.openedWidth}px)` : `translateX(-${props.openedWidth}px)`};
 
-  ${mediaQuery.to.medium`position: absolute;`};
-  ${mediaQuery.to.medium`width: ${(props: LayoutSidebarWrapperProps): string => `${props.openedWidth}px`};`};
-  ${mediaQuery.to.medium`transform: ${(props: LayoutSidebarWrapperProps): string =>
-    props.right ? `translateX(${props.openedWidth}px)` : `translateX(-${props.openedWidth}px)`}`};
+      ${LayoutSidebar} {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: ${props.openedWidth}px;
+      }
+    `};
+    `};
 
   ${(props): FlattenSimpleInterpolation | false =>
     props.opened &&
