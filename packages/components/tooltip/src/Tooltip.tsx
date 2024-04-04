@@ -83,12 +83,13 @@ const Tooltip = ({
           <S.TooltipTitleWrapper>{type && shouldRenderTitle(type, title)}</S.TooltipTitleWrapper>
         </S.TooltipTitle>
         <S.TooltipDescription tooltipType={type}>
-          {type === 'largeScrollable' && (
+          {type === 'largeScrollable' ? (
             <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
               <>{shouldRenderDescription(description, type)}</>
             </Scrollbar>
+          ) : (
+            shouldRenderDescription(description, type)
           )}
-          {type !== 'largeScrollable' && shouldRenderDescription(description, type)}
         </S.TooltipDescription>
       </S.TooltipContent>
       {renderButton}
@@ -99,7 +100,9 @@ const Tooltip = ({
     <S.TooltipComponent onClick={captureClick} tooltipType={type}>
       <S.TooltipContent>
         <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
-        <S.TooltipTitle tooltipType={type}>{title}</S.TooltipTitle>
+        <S.TooltipTitle tooltipType={type}>
+          <S.TooltipTitleWrapper>{title}</S.TooltipTitleWrapper>
+        </S.TooltipTitle>
         <S.TooltipDescription tooltipType={type}>{description}</S.TooltipDescription>
       </S.TooltipContent>
       {renderButton}

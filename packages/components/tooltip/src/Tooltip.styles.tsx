@@ -7,7 +7,8 @@ export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipTyp
   line-height: 1.38;
   font-weight: normal;
   text-align: inherit;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  min-width: 0;
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'largeScrollable' &&
     css`
@@ -34,9 +35,9 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
 `;
 
 export const TooltipTitleWrapper = styled.div`
-  white-space: break-spaces;
-  max-width: 100%;
+  min-width: 0;
   width: fit-content;
+  overflow-wrap: break-word;
 `;
 
 export const TooltipButton = styled.div`
