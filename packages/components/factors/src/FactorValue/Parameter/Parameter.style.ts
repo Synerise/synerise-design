@@ -29,7 +29,7 @@ export const SearchResultHighlight = styled.span`
 `;
 
 export const Value = styled.span`
-  max-width: 100px;
+  max-width: 110px;
   text-overflow: ellipsis;
   overflow: hidden;
 `;
