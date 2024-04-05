@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-list-item",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "ListItem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,7 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-switch": "^0.4.65"
+    "@synerise/ds-switch": "^0.4.66"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

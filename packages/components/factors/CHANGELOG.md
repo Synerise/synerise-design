@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.22.6...@synerise/ds-factors@0.22.7) (2024-04-05)
+
+
+### Bug Fixes
+
+* **factors:** do not display empty icon wrapper in Parameter ([f528d53](https://github.com/Synerise/synerise-design/commit/f528d53c0dfa28b1ce2f0f7841ffa90d56cfbfc7))
+
+
+
+
+
 ## [0.22.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.22.5...@synerise/ds-factors@0.22.6) (2024-04-03)
 
 **Note:** Version bump only for package @synerise/ds-factors

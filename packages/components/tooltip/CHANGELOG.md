@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.24](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.23...@synerise/ds-tooltip@0.14.24) (2024-04-05)
+
+
+### Bug Fixes
+
+* **tooltip:** word breaking css ([474ea3e](https://github.com/synerise/synerise-design/commit/474ea3e25d18353b0db09158321c8840243521fe))
+
+
+
+
+
 ## [0.14.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.14.22...@synerise/ds-tooltip@0.14.23) (2024-04-02)
 
 **Note:** Version bump only for package @synerise/ds-tooltip
