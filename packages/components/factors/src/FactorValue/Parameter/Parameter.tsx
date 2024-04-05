@@ -93,7 +93,7 @@ const ParameterInput = ({
       onClick={!readOnly ? handleOnClick : undefined}
       readOnly={readOnly}
     >
-      <Icon component={parameterIcon} />
+      {parameterIcon && <Icon component={parameterIcon} />}
       <Value>{parameterName}</Value>
       {!readOnly && <Icon component={<AngleDownS />} />}
     </Button>
