@@ -40,6 +40,7 @@
     "@synerise/ds-search": "^0.8.85",
     "@synerise/ds-tooltip": "^0.14.23",
     "@synerise/ds-typography": "^0.14.3",
+    "@synerise/ds-utils": "^0.26.2",
     "react-input-autosize": "^2.2.2"
   },
   "peerDependencies": {
@@ -48,7 +49,6 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "@synerise/ds-utils": "^0.26.2",
     "@testing-library/jest-dom": "5.1.1",
     "@testing-library/react": "10.0.1",
     "@types/react-input-autosize": "2.2.1"
