@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo, useCallback, ReactElement, CSSProperties, useMemo } from 'react';
 import classNames from 'classnames';
 import { areEqual } from 'react-window';
 import InfiniteLoaderItem from '../InfiniteScroll/InfiniteLoaderItem';
@@ -24,7 +24,7 @@ export interface VirtualTableRowProps<T> {
     defaultTableProps?: DSTableProps<T>;
   };
   index: number;
-  style: React.CSSProperties;
+  style: CSSProperties;
 }
 
 const isColumnSortingActive = <T extends unknown>(columns: DSColumnType<T>[], column: DSColumnType<T>): boolean =>
@@ -37,22 +37,19 @@ function VirtualTableRow<T extends object>({
   index,
   style,
   data: { mergedColumns, onRowClick, selection, rowStar, dataSource, cellHeight, infiniteScroll, defaultTableProps },
-}: VirtualTableRowProps<T>): React.ReactElement {
-  const renderColumn = React.useCallback(
-    (column: DSColumnType<T>, rowData: T, columnIndex: number): React.ReactNode => {
-      if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
-        return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex);
-      }
-      return column.render
-        ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex)
-        : getValueFromPath(rowData, column.dataIndex);
-    },
-    []
-  );
+}: VirtualTableRowProps<T>): ReactElement {
+  const renderColumn = useCallback((column: DSColumnType<T>, rowData: T, columnIndex: number) => {
+    if (rowData[EXPANDED_ROW_PROPERTY] && column.childRender) {
+      return column.childRender(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex);
+    }
+    return column.render
+      ? column.render(getValueFromPath(rowData, column.dataIndex), rowData, columnIndex)
+      : getValueFromPath(rowData, column.dataIndex);
+  }, []);
 
-  const rowData = React.useMemo(() => dataSource[index], [dataSource, index]);
+  const rowData = useMemo(() => dataSource[index], [dataSource, index]);
 
-  const infiniteLoader = React.useCallback(
+  const infiniteLoader = useCallback(
     (position: LoaderItemPosition) => {
       let isVisible = false;
       let infiniteLoaderItemProps;
@@ -103,13 +100,20 @@ function VirtualTableRow<T extends object>({
           const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;
           const firstWithSelectionOrStar = (selection || rowStar) && columnIndex === 1;
           const firstWithoutSelectionAndStar = columnIndex === 0 && !selection && !rowStar;
+
           return (
             <S.ColWrapper
+              left={column.fixed === 'left' ? column.left : undefined}
+              right={column.fixed === 'right' ? column.right : undefined}
               className={classNames(
                 'virtual-table-cell',
                 {
                   'virtual-table-cell-last': columnIndex === mergedColumns.length - 1,
                   'ant-table-selection-column': columnIndex === 0 && selection,
+                  'ant-table-cell-fix-right': column.fixed === 'right',
+                  'ant-table-cell-fix-left': column.fixed === 'left',
+                  'ant-table-cell-fix-right-first': column.fixed === 'right' && column.fixedFirst,
+                  'ant-table-cell-fix-left-first': column.fixed === 'left' && column.fixedFirst,
                   'ds-expanded-row-first': rowData[EXPANDED_ROW_PROPERTY] && columnIndex === 0,
                   'ds-expanded-row-data':
                     rowData[EXPANDED_ROW_PROPERTY] &&
@@ -133,4 +137,4 @@ function VirtualTableRow<T extends object>({
   );
 }
 
-export default React.memo(VirtualTableRow, areEqual);
+export default memo(VirtualTableRow, areEqual);

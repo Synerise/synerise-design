@@ -29,7 +29,8 @@ const columns = [
     iconTooltip: { component: <InfoFillS /> },
     sorter: (a, b) => a.name.localeCompare(b.name),
     sortRender: 'string',
-    width: 200
+    fixed: 'left',
+    width: 200,
   },
   {
     title: 'Address',
@@ -37,7 +38,7 @@ const columns = [
     dataIndex: 'address',
     sorter: (a, b) => a.address.localeCompare(b.address),
     sortRender: 'string',
-    width: '300px'
+    width: 300
   },
   {
     title: 'City',
@@ -45,18 +46,19 @@ const columns = [
     dataIndex: 'city',
     sorter: (a, b) => a.city.localeCompare(b.city),
     sortRender: 'string',
-    width: '400px'
+    width: 400
   },
   {
     title: 'Number',
     key: 'number',
     dataIndex: 'number',
     sorter: (a, b) => a.number.localeCompare(b.number),
-    width: 120
+    width: 100
   },
   {
     title: 'Type',
     key: 'transactionType',
+    fixed: 'right',
     dataIndex: 'transactionType',
     sorter: (a, b) => a.transactionType.localeCompare(b.transactionType),
     sortRender: 'string',
@@ -66,9 +68,8 @@ const columns = [
 
 const VirtualizationWithState: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState<string>('');
-  const [starredRowKeys, setStarredRowKey] = React.useState<React.Key[]>([]);
-  const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
-
+  
+  
   const filteredDataSource = React.useCallback(() => {
     return !searchValue
       ? dataSource
@@ -77,16 +78,12 @@ const VirtualizationWithState: React.FC = () => {
         });
   }, [searchValue]);
 
-  const handleSelectionChange = (selectedRowKeys, selectedRows) => {
-    setSelectedRowKeys(selectedRowKeys);
-  };
-
   const numberOfRows = number('Number of rows (maximum 5000)', filteredDataSource().length, {
     max: filteredDataSource().length,
   });
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%'}}>
       <VirtualTable
         title={text('Table title', 'Virtualized table')}
         scroll={{ y: 500, x: 0 }}
@@ -105,32 +102,6 @@ const VirtualizationWithState: React.FC = () => {
             </Button>
           )
         }
-        selection={
-          boolean('Enable row selection', true) && {
-            onChange: handleSelectionChange,
-            selectedRowKeys: selectedRowKeys,
-            selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
-            limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
-          }
-        }
-        rowStar={
-          boolean('Enable row star', false) && {
-            starredRowKeys: starredRowKeys,
-            onChange: (starredRowKeys): void => {
-              setStarredRowKey(starredRowKeys);
-            },
-          }
-        }
-        onRowClick={record => {
-          const { key } = record;
-          const newSelectedRowKeys = [...selectedRowKeys];
-          if (newSelectedRowKeys.indexOf(key) > -1) {
-            newSelectedRowKeys.splice(newSelectedRowKeys.indexOf(key), 1);
-          } else {
-            newSelectedRowKeys.push(key);
-          }
-          setSelectedRowKeys(newSelectedRowKeys);
-        }}
         searchComponent={
           <SearchInput
             placeholder="Search"
@@ -155,7 +126,7 @@ const stories = {
 };
 
 export default {
-  name: 'Components/Table/Table with virtualization',
+  name: 'Components/Table/Virtual table & fixed columns',
   decorator,
   stories,
   Component: Table,

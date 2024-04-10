@@ -5,6 +5,8 @@ type ColWrapperProps = {
   width?: number | null;
   minWidth?: number | null;
   maxWidth?: number | null;
+  right?: number;
+  left?: number;
 };
 const numberToPixels = (num: number): string => `${num}px`;
 
@@ -73,6 +75,9 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   display: table-cell;
   vertical-align: middle;
 
+  ${props => props.left !== undefined && `left: ${props.left}`}px;
+  ${props => props.right !== undefined && `right: ${props.right}`}px;
+
   width: inherit;
   min-width: ${(props): ReturnType<typeof getColumnMinWidth> => getColumnMinWidth(props)};
   max-width: ${(props): ReturnType<typeof getColumnMaxWidth> => getColumnMaxWidth(props)};
@@ -99,4 +104,21 @@ export const ColWrapper = styled.div<ColWrapperProps>`
 
 export const VirtualTableWrapper = styled.div<{ isSticky: boolean }>`
   ${props => (props.isSticky ? '' : 'position: relative;')}
+
+  .ant-table-title {
+    position: sticky;
+    top: -97px;
+    z-index: 99;
+  }
+  .ant-table-title,
+  .ant-table-sticky-header {
+    transition: transform 1s ease-out;
+  }
+
+  &.ant-table-show-header {
+    .ant-table-title,
+    .ant-table-sticky-header {
+      transform: translateY(73px);
+    }
+  }
 `;

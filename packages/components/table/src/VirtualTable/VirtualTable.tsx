@@ -21,7 +21,7 @@ import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import OuterListElement from '../InfiniteScroll/OuterListElement';
 import DSTable from '../Table';
-import { RowType, DSTableProps, RowSelection, CustomizeScrollBodyInfo } from '../Table.types';
+import { RowType, DSTableProps, RowSelection, CustomizeScrollBodyInfo, DSColumnType } from '../Table.types';
 import VirtualTableRow, { INFINITE_LOADED_ITEM_HEIGHT, VirtualTableRowProps } from './VirtualTableRow';
 import * as S from './VirtualTable.styles';
 import { Props, VirtualTableRef } from './VirtualTable.types';
@@ -35,7 +35,7 @@ const relativeInlineStyle: CSSProperties = { position: 'relative' };
 
 const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   props: Props<T>,
-  ref: Ref<VirtualTableRef>
+  forwardedRef: Ref<VirtualTableRef>
 ) => {
   const {
     columns = [],
@@ -125,7 +125,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     }
   }, [listRef, infiniteScroll?.prevPage?.hasMore]);
 
-  useImperativeHandle(ref, () => ({
+  useImperativeHandle(forwardedRef, () => ({
     virtualListRef: listRef,
     outerListRef,
     horizontalScrollRef,
@@ -207,8 +207,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     [locale, rowKey, selectedRecords, selection]
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const virtualColumns = useMemo(() => {
+  const virtualColumns: DSColumnType<T>[] = useMemo(() => {
     return compact([
       !!selection && {
         width: 64,
@@ -244,6 +243,41 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     });
   }, [virtualColumns, tableWidth, initialWidth]);
 
+  const fixedColumns = useMemo(() => {
+    const fixedLeftColumns = mergedColumns.filter(({ fixed }) => fixed === 'left');
+    let cumulativeLeftOffset = 0;
+    const finalFixedLeftColumns = fixedLeftColumns.map((column, index) => {
+      const left = cumulativeLeftOffset;
+      if (column.width) {
+        cumulativeLeftOffset += column.width;
+      }
+      return {
+        ...column,
+        fixedFirst: index === fixedLeftColumns.length - 1,
+        left,
+      };
+    });
+    let cumulativeRightOffset = 0;
+    const fixedRightColumns = mergedColumns.filter(({ fixed }) => fixed === 'right');
+    const finalFixedRightColumns = fixedRightColumns
+      .reverse()
+      .map((column, index) => {
+        const right = cumulativeRightOffset;
+        if (column.width) {
+          cumulativeRightOffset += column.width;
+        }
+        return {
+          ...column,
+          fixedFirst: index === fixedRightColumns.length - 1,
+          right,
+        };
+      })
+      .reverse();
+    const remainingColumns = mergedColumns.filter(({ fixed }) => !fixed);
+
+    return [...finalFixedLeftColumns, ...remainingColumns, ...finalFixedRightColumns];
+  }, [mergedColumns]);
+
   const listInnerElementType = forwardRef<HTMLDivElement>(
     ({ style, ...rest }: HTMLAttributes<HTMLDivElement>, innerElementRef) => (
       <S.InnerListElement
@@ -276,7 +310,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       defaultTableProps: DSTableProps<T> | undefined
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ): VirtualTableRowProps<any>['data'] => ({
-      mergedColumns,
+      mergedColumns: fixedColumns,
       selection,
       rowStar,
       onRowClick,
@@ -285,20 +319,52 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       cellHeight,
       defaultTableProps,
     }),
-    [cellHeight, infiniteScroll, mergedColumns, onRowClick, rowStar, selection]
+    [cellHeight, infiniteScroll, fixedColumns, onRowClick, rowStar, selection]
   );
-
-  const handleStickyScrollbarScroll = useCallback((event: UIEvent) => {
-    if (customBodyOnScrollRef.current) {
-      customBodyOnScrollRef.current({ scrollLeft: event.currentTarget.scrollLeft });
-    }
-  }, []);
 
   const offsetScroll = sticky && sticky !== true ? (sticky as TableSticky).offsetScroll : 0;
 
+  const [connectObject] = useState<any>(() => {
+    const obj = {};
+    Object.defineProperty(obj, 'scrollLeft', {
+      get: () => {
+        if (outerListRef.current) {
+          return outerListRef.current?.scrollLeft;
+        }
+        return null;
+      },
+      set: (scrollLeft: number) => {
+        if (outerListRef.current) {
+          outerListRef.current.scrollTo({ left: scrollLeft });
+        }
+      },
+    });
+
+    return obj;
+  });
+
+  const handleStickyScrollbarScroll = useCallback(
+    (event: UIEvent) => {
+      if (sticky && customBodyOnScrollRef.current) {
+        customBodyOnScrollRef.current({ scrollLeft: event.currentTarget.scrollLeft });
+      } else {
+        connectObject.scrollLeft = event.currentTarget.scrollLeft;
+      }
+    },
+    [connectObject, sticky]
+  );
+
   const renderBody = useCallback(
     (rawData: T[], meta: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => {
-      customBodyOnScrollRef.current = meta.onScroll;
+      const { onScroll, ref } = meta;
+      customBodyOnScrollRef.current = onScroll;
+      // sticky header feature does NOT work without the ref assigned to a html node in the document.
+      // without sticky header the ref needs to point to the connect proxy in order for the header and body components to scroll in sync
+      // this gets resolved in antd 5.9.0, when antd supports virtualisation out of the box (but not infinite loader)
+      if (!sticky) {
+        // @ts-ignore
+        ref.current = connectObject;
+      }
 
       const renderVirtualList = (data: T[]) => {
         const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
@@ -339,8 +405,10 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
         const handleBodyScroll = (event: UIEvent) => {
           const { scrollLeft } = event.currentTarget;
-          const info = { scrollLeft, currentTarget: event.currentTarget as HTMLElement };
-          meta.onScroll(info);
+          if (sticky) {
+            const info = { scrollLeft, currentTarget: event.currentTarget as HTMLElement };
+            onScroll(info);
+          }
 
           if (horizontalScrollRef.current && horizontalScrollRef.current.scrollLeft !== scrollLeft) {
             horizontalScrollRef.current.scrollTo({ left: scrollLeft });
@@ -355,7 +423,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             listHeight={listHeight + HEADER_ROW_HEIGHT}
             onScroll={handleBodyScroll}
             // @ts-ignore
-            ref={meta.ref}
+            ref={sticky ? ref : undefined}
           >
             <List
               ref={listRef}
@@ -411,25 +479,26 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       return renderVirtualList(rawData);
     },
     [
-      cellHeight,
-      createItemData,
+      connectObject,
       expandable?.expandedRowKeys,
-      getRowKey,
-      infiniteScroll,
-      listInnerElementType,
-      loading,
-      outerElement,
+      cellHeight,
       scroll.y,
       sticky,
+      infiniteScroll,
+      createItemData,
       tableWidth,
-      offsetScroll,
       onItemsRendered,
+      outerElement,
+      listInnerElementType,
+      loading,
+      offsetScroll,
+      getRowKey,
     ]
   );
 
   const columnsSliceStartIndex = Number(!!selection) + Number(!!rowStar);
   // eslint-disable-next-line
-  const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : props?.scroll;
+  const scrollValue = !dataSource || dataSource?.length === 0 ? undefined : { ...props?.scroll, x: tableWidth };
 
   const classNames = React.useMemo(() => {
     const infiniteScrollTableClassName = infiniteScroll ? 'virtual-table-infinite-scroll' : '';
@@ -437,7 +506,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     return `virtual-table ${className} ${infiniteScrollTableClassName} ${stickyClassName}`;
   }, [className, infiniteScroll, sticky]);
 
-  const finalColumns = mergedColumns.slice(columnsSliceStartIndex);
+  const finalColumns = fixedColumns.slice(columnsSliceStartIndex);
 
   useEffect(() => {
     if (containerRef?.current) {
