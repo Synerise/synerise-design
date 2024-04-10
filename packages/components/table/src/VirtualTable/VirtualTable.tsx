@@ -380,6 +380,18 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           }
 
           const roundedOffset = Math.ceil(scrollOffset);
+
+          if (scrollDirection === 'forward' && containerRef.current) {
+            containerRef.current.classList.remove('ant-table-show-header');
+          }
+          if (scrollDirection === 'backward' && containerRef.current) {
+            if (roundedOffset <= 30) {
+              containerRef.current.classList.remove('ant-table-show-header');
+            } else {
+              containerRef.current.classList.add('ant-table-show-header');
+            }
+          }
+
           if (
             scrollDirection === 'forward' &&
             roundedOffset >= listMaxScroll - LOAD_DATA_OFFSET &&

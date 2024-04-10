@@ -112,7 +112,7 @@ export const VirtualTableWrapper = styled.div<{ isSticky: boolean }>`
   }
   .ant-table-title,
   .ant-table-sticky-header {
-    transition: transform 1s ease-out;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &.ant-table-show-header {
