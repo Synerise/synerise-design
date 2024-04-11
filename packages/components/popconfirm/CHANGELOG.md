@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.32](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.31...@synerise/ds-popconfirm@0.10.32) (2024-04-11)
+
+
+### Bug Fixes
+
+* **popconfirm:** fixed popconfirm zIndex ([9d7d1b7](https://github.com/Synerise/synerise-design/commit/9d7d1b79a3c23ba2613d9bdde425e27f9aea6be6))
+
+
+
+
+
 ## [0.10.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.30...@synerise/ds-popconfirm@0.10.31) (2024-04-02)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.12...@synerise/ds-core@0.40.13) (2024-04-11)
+
+
+### Bug Fixes
+
+* **popconfirm:** fixed popconfirm zIndex ([9d7d1b7](https://github.com/synerise/synerise-design/commit/9d7d1b79a3c23ba2613d9bdde425e27f9aea6be6))
+
+
+
+
+
 ## [0.40.12](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.11...@synerise/ds-core@0.40.12) (2024-02-21)
 
 

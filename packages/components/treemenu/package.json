@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-treemenu",
-  "version": "0.4.33",
+  "version": "0.4.34",
   "description": "Treemenu UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -40,7 +40,7 @@
     "@synerise/ds-input": "^0.20.5",
     "@synerise/ds-loader": "^0.3.4",
     "@synerise/ds-menu": "^0.18.19",
-    "@synerise/ds-popconfirm": "^0.10.31",
+    "@synerise/ds-popconfirm": "^0.10.32",
     "@synerise/ds-result": "^0.6.50",
     "@synerise/ds-scrollbar": "^0.10.1",
     "@synerise/ds-search": "^0.8.86",
