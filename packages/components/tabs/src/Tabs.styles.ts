@@ -5,7 +5,7 @@ import Menu from '@synerise/ds-menu';
 import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
-  padding-top: 5px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-items: ${(props): string | false => (props.block ? `center` : `flex-end`)};

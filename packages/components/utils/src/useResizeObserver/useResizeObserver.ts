@@ -1,16 +1,11 @@
 import { useEffect, useState, useRef, RefObject, useCallback } from 'react';
 
 const useResizeObserver = (elementRef: RefObject<HTMLElement | undefined>) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
+  const [dimensions, setDimensions] = useState<DOMRect>(new DOMRect());
   const resizeObserver = useRef(
-    new window.ResizeObserver(() => {
-      if (elementRef.current) {
-        setDimensions({
-          width: elementRef.current.clientWidth,
-          height: elementRef.current.clientHeight,
-        });
-      }
+    new window.ResizeObserver(entries => {
+      const { contentRect } = entries[0];
+      setDimensions(contentRect);
     })
   ).current;
 
