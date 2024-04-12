@@ -5,3 +5,4 @@ window.ResizeObserver =
     observe: jest.fn(),
     unobserve: jest.fn(),
   }));
+
