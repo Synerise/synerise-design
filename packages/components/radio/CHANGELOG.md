@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.65](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.64...@synerise/ds-radio@0.11.65) (2024-04-15)
+
+
+### Bug Fixes
+
+* **radio:** fix dot inside to be in center ([55d6f7c](https://github.com/synerise/synerise-design/commit/55d6f7c86a33ed92312a416e804b98175ddf944b))
+
+
+
+
+
 ## [0.11.64](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.63...@synerise/ds-radio@0.11.64) (2024-04-03)
 
 

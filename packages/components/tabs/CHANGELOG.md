@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.105](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.104...@synerise/ds-tabs@0.13.105) (2024-04-15)
+
+
+### Bug Fixes
+
+* **tabs:** tabs height and testing issues ([424707d](https://github.com/synerise/synerise-design/commit/424707d35bdfbea65621ff175fa7772996f24c77))
+
+
+
+
+
 ## [0.13.104](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.103...@synerise/ds-tabs@0.13.104) (2024-04-05)
 
 **Note:** Version bump only for package @synerise/ds-tabs

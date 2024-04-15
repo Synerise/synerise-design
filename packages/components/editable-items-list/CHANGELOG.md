@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-editable-items-list@0.1.9...@synerise/ds-editable-items-list@0.1.10) (2024-04-15)
+
+**Note:** Version bump only for package @synerise/ds-editable-items-list
+
+
+
+
+
 ## [0.1.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-editable-items-list@0.1.8...@synerise/ds-editable-items-list@0.1.9) (2024-04-02)
 
 **Note:** Version bump only for package @synerise/ds-editable-items-list
