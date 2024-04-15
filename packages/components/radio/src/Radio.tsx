@@ -18,7 +18,7 @@ const RadioComponent = ({ description, ...antdRadioButtonProps }: Props) => {
   return (
     <S.RadioWrapper>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <AntdRadio {...antdRadioButtonProps} />
+      <S.AntRadio {...antdRadioButtonProps} />
       <S.AdditionalData>
         {description && <S.Description disabled={antdRadioButtonProps.disabled}>{description}</S.Description>}
       </S.AdditionalData>
