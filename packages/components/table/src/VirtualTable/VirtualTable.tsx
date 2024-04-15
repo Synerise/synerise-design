@@ -87,7 +87,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     [dataSource, setFirstItem, onScrollToRecordIndex]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     try {
       if (!infiniteScroll?.prevPage || dataSource.length === 0) {
         return;
@@ -119,7 +119,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     }
   }, [dataSource, dataSource.length, rowKey, firstItem, infiniteScroll, updateFirstItem]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (listRef.current && infiniteScroll?.prevPage?.hasMore) {
       listRef.current.scrollTo(INFINITE_LOADED_ITEM_HEIGHT);
     }
@@ -526,6 +526,12 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       headerElement && setScrollWidth(headerElement.scrollWidth);
     }
   }, [finalColumns]);
+
+  useEffect(() => {
+    if (containerRef?.current) {
+      containerRef.current.classList.remove('ant-table-show-header');
+    }
+  }, [dataSource.length]);
 
   return (
     <S.VirtualTableWrapper

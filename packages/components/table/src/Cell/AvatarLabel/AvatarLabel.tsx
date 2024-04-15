@@ -33,12 +33,14 @@ const AvatarLabel = ({
         <S.Title {...titleEllipsisProps} hasEllipsis={ellipsis} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}
         </S.Title>
-        {labels?.map(
-          (label: string | React.ReactNode): React.ReactElement => (
-            <S.Label key={uuid()} textSize={textSize} ellipsis={Boolean(ellipsis)} maxWidth={maxWidth}>
-              {label}
-            </S.Label>
-          )
+        {labels?.length && (
+          <S.Labels textSize={textSize} ellipsis={Boolean(ellipsis)} maxWidth={maxWidth}>
+            {labels?.map(
+              (label: string | React.ReactNode): React.ReactElement => (
+                <S.Label key={uuid()}>{label}</S.Label>
+              )
+            )}
+          </S.Labels>
         )}
         {loader && <S.Loader>{loader}</S.Loader>}
       </S.Description>
