@@ -5,6 +5,8 @@ type ColWrapperProps = {
   width?: number | null;
   minWidth?: number | null;
   maxWidth?: number | null;
+  right?: number;
+  left?: number;
 };
 const numberToPixels = (num: number): string => `${num}px`;
 
@@ -73,7 +75,10 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   display: table-cell;
   vertical-align: middle;
 
-  width: inherit;
+  ${props => props.left !== undefined && `left: ${numberToPixels(props.left)}`};
+  ${props => props.right !== undefined && `right: ${numberToPixels(props.right)}`};
+
+  width: ${props => (props.width !== undefined && props.width !== null ? numberToPixels(props.width) : 'initial')};
   min-width: ${(props): ReturnType<typeof getColumnMinWidth> => getColumnMinWidth(props)};
   max-width: ${(props): ReturnType<typeof getColumnMaxWidth> => getColumnMaxWidth(props)};
   padding: 0 24px;

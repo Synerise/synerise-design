@@ -73,8 +73,17 @@
       opacity: 0;
     }
     .ds-expanded-row {
+      .ant-table-cell-fix-left,
+      .ant-table-cell-fix-right {
+        background-color: @grey-050;
+      }
       background-color: @grey-050;
+
       &:hover {
+        .ant-table-cell-fix-left,
+        .ant-table-cell-fix-right {
+          background-color: @grey-100;
+        }
         background-color: @grey-100;
       }
     }
@@ -97,7 +106,16 @@
   .virtual-table-row {
     border-bottom: 1px solid @gray-color-lighter-6;
     transition: background 0.3s;
-    &:hover {
+
+    .ant-table-cell-fix-left,
+    .ant-table-cell-fix-right {
+      transition: background 0.3s;
+      z-index: unset;
+    }
+
+    &:hover,
+    &:hover .ant-table-cell-fix-left,
+    &:hover .ant-table-cell-fix-right {
       background-color: @grey-050;
     }
   }
