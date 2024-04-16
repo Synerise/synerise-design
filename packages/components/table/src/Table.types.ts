@@ -90,11 +90,12 @@ export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   childRender?: (value: unknown, row: T, index: number) => React.ReactNode;
 };
 
+export type ScrollProxyType = {
+  scrollLeft: number;
+};
 export type CustomizeScrollBodyInfo = {
   scrollbarSize: number;
-  ref: React.Ref<{
-    scrollLeft: number;
-  }>;
+  ref: React.Ref<ScrollProxyType>;
   onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
 };
 
