@@ -5,6 +5,10 @@ import { macro } from '@synerise/ds-typography/';
 import React from 'react';
 
 export const RadioWrapper = styled.div`
+  .ant-radio-wrapper {
+    display: flex;
+  }
+
   & {
     display: block;
     margin-bottom: 15px;
