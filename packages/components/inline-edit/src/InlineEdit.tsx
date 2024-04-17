@@ -92,6 +92,7 @@ const InlineEdit = ({
         disabled={disabled}
         name={input.name}
         extraWidth={2}
+        readOnly={input.readOnly}
         value={input.value || ''}
         onChange={handleChange}
         onBlur={handleBlur}

@@ -10,6 +10,7 @@ export type InputProps = {
   placeholder?: string;
   maxLength?: number;
   autoComplete?: string;
+  readOnly?: boolean;
 };
 
 export interface InlineEditProps {
