@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.211.0](https://github.com/synerise/synerise-design/compare/portal@0.210.1...portal@0.211.0) (2024-04-17)
+
+
+### Features
+
+* **table:** support fixed columns in virtual table ([8d8b63f](https://github.com/synerise/synerise-design/commit/8d8b63f6820aa88e388110998ad5bcb16b9e2e9f))
+
+
+
+
+
 ## [0.210.1](https://github.com/synerise/synerise-design/compare/portal@0.210.0...portal@0.210.1) (2024-04-02)
 
 **Note:** Version bump only for package portal

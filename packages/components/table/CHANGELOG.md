@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.48.6...@synerise/ds-table@0.49.0) (2024-04-17)
+
+
+### Features
+
+* **table:** support fixed columns in virtual table ([8d8b63f](https://github.com/synerise/synerise-design/commit/8d8b63f6820aa88e388110998ad5bcb16b9e2e9f))
+
+
+
+
+
 ## [0.48.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.48.5...@synerise/ds-table@0.48.6) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-table
