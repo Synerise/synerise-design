@@ -73,6 +73,7 @@ import Collector from '@synerise/ds-collector'
 | showCount                        | Display item counter above collector                                   | boolean                                       | -       |
 | valuesSeparator                  | Multi-value paste delimiter (separator)                                | CollectorValuesSeparator `;`, `/` or `,`      | `;`     |
 | listHeader                       | Custom header displayed at the top of the dropdown list                | React.ReactNode                               | -       |
+| hideDropdownOnClickOutside       | Specify whether dropdown should be closed on click outside             | boolean                                       | `true`  |
 
 `CollectorValue = {[key:string]: any}`
 
