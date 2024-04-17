@@ -1,4 +1,7 @@
 const path = require('path');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const MONACO_DIR = path.resolve(__dirname, '../../../node_modules/monaco-editor');
+
 
 module.exports = async ({ config, mode }) => {
   config.resolve.alias['@'] = path.resolve(__dirname, '../../components');
@@ -19,6 +22,31 @@ module.exports = async ({ config, mode }) => {
         },
       },
     ],
+  });
+
+  // @synerise/ds-code-area monaco editor
+  
+  config.module.rules.push({
+    test: /\.ttf$/,
+    include: MONACO_DIR,
+    use: ['file-loader']
+  });
+  config.module.rules.push({
+    test: /\.js$/,
+    include: MONACO_DIR,
+    use: [{
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          [ '@babel/preset-env', { targets: "defaults" } ],
+        ],
+        plugins: [
+          '@babel/plugin-transform-nullish-coalescing-operator', 
+          '@babel/plugin-proposal-class-properties',
+          '@babel/plugin-proposal-optional-chaining'
+        ],
+      }
+    }]
   });
 
   config.module.rules.push({
@@ -60,8 +88,8 @@ module.exports = async ({ config, mode }) => {
       },
     ],
   });
-
+  
+  config.plugins.push(new MonacoWebpackPlugin())
   config.resolve.extensions.push('.ts', '.tsx');
-
   return config;
 };

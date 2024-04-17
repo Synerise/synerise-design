@@ -73,6 +73,7 @@ InlineEdit UI Component
 | disabled     | Disabled state of component                     | boolean      | `false` | -   |
 | maxLength    | Maximum characters inside the input element     | number       | `false` | -   |
 | name         | Native html name attribute                      | string       | -       | -   |
+| readOnly     | Readonly state of the Input component           | boolean      | -       | -   |
 | placeholder  | Default text component                          | string       | -       | -   |
 | onBlur       | Called when input blured                        | function     | -       | -   |
 | onEnterPress | Called when user press `Enter` in focused input | function     | -       | -   |
