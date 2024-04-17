@@ -7,6 +7,7 @@ export type AvatarLabelProps = {
   title: ReactNode;
   labels?: ReactNode[];
   icon?: ReactElement;
+  // @deprecated
   textSize?: 'small' | 'default';
   ellipsis?: boolean;
   maxWidth?: number;

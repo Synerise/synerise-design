@@ -1,4 +1,5 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
+import type { ReactNode, MouseEvent } from 'react';
 import { v4 as uuid } from 'uuid';
 import * as S from './AvatarLabel.styles';
 import { AvatarLabelProps } from './AvatarLabel.types';
@@ -10,7 +11,6 @@ const AvatarLabel = ({
   title,
   labels,
   icon,
-  textSize = 'default',
   ellipsis,
   maxWidth,
   avatarSize,
@@ -33,12 +33,12 @@ const AvatarLabel = ({
         <S.Title {...titleEllipsisProps} hasEllipsis={ellipsis} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}
         </S.Title>
-        {labels?.map(
-          (label: string | React.ReactNode): React.ReactElement => (
-            <S.Label key={uuid()} textSize={textSize} ellipsis={Boolean(ellipsis)} maxWidth={maxWidth}>
-              {label}
-            </S.Label>
-          )
+        {labels?.length && (
+          <S.Labels ellipsis={Boolean(ellipsis)} maxWidth={maxWidth}>
+            {labels?.map((label: string | ReactNode) => (
+              <S.Label key={uuid()}>{label}</S.Label>
+            ))}
+          </S.Labels>
         )}
         {loader && <S.Loader>{loader}</S.Loader>}
       </S.Description>

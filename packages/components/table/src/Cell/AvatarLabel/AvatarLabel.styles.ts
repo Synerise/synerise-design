@@ -23,15 +23,19 @@ export const Description = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  max-height: 40px;
+  overflow: hidden;
 `;
 
 export const AvatarLink = styled.a`
   display: flex;
   min-width: 0;
+  color: inherit;
   &:hover,
   &:active,
   &:focus {
     text-decoration: none;
+    color: inherit;
   }
 `;
 
@@ -42,8 +46,8 @@ export const Title = styled(Text)<{
 }>`
   font-size: 14px;
   line-height: 20px;
-  font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-700']};
+  font-weight: 500;
   ${(props): FlattenSimpleInterpolation | false =>
     Boolean(props.ellipsis) &&
     css`
@@ -51,12 +55,11 @@ export const Title = styled(Text)<{
     `};
 `;
 
-export const Label = styled.span<{ textSize: 'small' | 'default'; ellipsis: boolean; maxWidth: number | undefined }>`
+export const Labels = styled.span<{ ellipsis: boolean; maxWidth: number | undefined }>`
   font-size: 13px;
   line-height: 1.38;
-  color: ${(props): string => props.theme.palette['grey-700']};
   font-weight: 400;
-  margin-top: ${(props): string => (props.textSize === 'default' ? '4px' : '0px')};
+  color: ${(props): string => props.theme.palette['grey-700']};
   ${(props): FlattenSimpleInterpolation | false =>
     props.ellipsis &&
     css`
@@ -65,6 +68,8 @@ export const Label = styled.span<{ textSize: 'small' | 'default'; ellipsis: bool
       max-width: ${props.maxWidth ? `${props.maxWidth}px` : '100%'};
     `};
 `;
+
+export const Label = styled.span``;
 
 export const Icon = styled.div`
   margin-right: 8px;
