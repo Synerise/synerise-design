@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.105...@synerise/ds-inline-edit@0.7.0) (2024-04-17)
+
+
+### Features
+
+* **code-area:** new component ([2a94d6e](https://github.com/Synerise/synerise-design/commit/2a94d6ea3c830f803fbd10b00ae009d5e20575e2))
+
+
+
+
+
 ## [0.6.105](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.6.104...@synerise/ds-inline-edit@0.6.105) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit

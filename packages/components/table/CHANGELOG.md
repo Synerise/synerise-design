@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.49.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.0...@synerise/ds-table@0.49.1) (2024-04-17)
+
+
+### Bug Fixes
+
+* **table:** avatar label cell styles ([2602587](https://github.com/synerise/synerise-design/commit/2602587d1afc2a1b4bef67d1aed712c6ed6e2507))
+
+
+
+
+
 # [0.49.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.48.6...@synerise/ds-table@0.49.0) (2024-04-17)
 
 

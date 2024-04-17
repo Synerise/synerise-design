@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-item-filter",
-  "version": "0.8.118",
+  "version": "0.8.119",
   "description": "ItemFilter UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,7 +36,7 @@
     "@synerise/ds-button": "^0.19.7",
     "@synerise/ds-drawer": "^0.6.14",
     "@synerise/ds-icon": "^0.60.7",
-    "@synerise/ds-manageable-list": "^0.26.40",
+    "@synerise/ds-manageable-list": "^0.26.41",
     "@synerise/ds-result": "^0.6.51",
     "@synerise/ds-scrollbar": "^0.10.2",
     "@synerise/ds-search-bar": "^0.6.68",
