@@ -33,7 +33,7 @@ const AvatarLabel = ({
         <S.Title {...titleEllipsisProps} hasEllipsis={ellipsis} maxWidth={maxWidth} avatarSize={avatarSize}>
           {title}
         </S.Title>
-        {labels?.length && (
+        {labels && (
           <S.Labels ellipsis={Boolean(ellipsis)} maxWidth={maxWidth}>
             {labels?.map((label: string | ReactNode) => (
               <S.Label key={uuid()}>{label}</S.Label>
