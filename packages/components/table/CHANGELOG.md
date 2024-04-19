@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.49.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.2...@synerise/ds-table@0.49.3) (2024-04-19)
+
+
+### Bug Fixes
+
+* **table:** fixed useeffect dependencies ([68f534d](https://github.com/synerise/synerise-design/commit/68f534ddef8c97f9a30cf4c4b0627034b9e78b57))
+
+
+
+
+
 ## [0.49.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.1...@synerise/ds-table@0.49.2) (2024-04-18)
 
 
