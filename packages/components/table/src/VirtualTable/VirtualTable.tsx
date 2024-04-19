@@ -221,7 +221,6 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const mergedColumns: VirtualColumnType<T>[] = useMemo(() => {
     const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
-    const rowWidth = tableWidth || initialWidth;
     const definedWidth = virtualColumns.reduce((total: number, { width }) => {
       const widthInPx = calculatePixels(width) || 0;
       return total + widthInPx;
@@ -234,7 +233,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           width: calculatePixels(column.width),
         };
       }
-      const calculatedWidth = Math.floor((rowWidth - definedWidth) / widthColumnCount);
+      const calculatedWidth = Math.floor((tableWidth - definedWidth) / widthColumnCount);
       return {
         ...column,
         width: calculatedWidth > 0 ? calculatedWidth : 1,
@@ -305,7 +304,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       }
     );
     return [...fixedLeft, ...remaining, ...fixedRight];
-  }, [virtualColumns, tableWidth, initialWidth]);
+  }, [virtualColumns, tableWidth]);
 
   const listInnerElementType = forwardRef<HTMLDivElement>(
     ({ style, ...rest }: HTMLAttributes<HTMLDivElement>, innerElementRef) => (
@@ -550,7 +549,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       const headerElement = containerRef.current.querySelector<HTMLDivElement>('.ant-table-header');
       headerElement && setScrollWidth(headerElement.scrollWidth);
     }
-  }, [finalColumns.length]);
+  }, [tableWidth, mergedColumns.length, dataSource.length]);
 
   return (
     <S.VirtualTableWrapper
