@@ -62,6 +62,7 @@ const Collector = ({
   allowPaste,
   showCount,
   listHeader,
+  hideDropdownOnClickOutside = true,
   valuesSeparator = DEFAULT_VALUES_SEPARATOR,
 }: CollectorProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -136,6 +137,11 @@ const Collector = ({
     }
     return false;
   }, [createItem, value]);
+
+  useEffect(() => {
+    enableCustomFilteringSuggestions && setFilteredSuggestions(suggestions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [suggestions]);
 
   useEffect(() => {
     setSelectedValues(selected && allowMultipleValues ? selected : []);
@@ -241,9 +247,7 @@ const Collector = ({
       return;
     }
     const suggestionsIncludesCurrentValue = suggestionsIncludesItem(value);
-    filteredSuggestions.some(
-      suggestion => suggestion[filterLookupKey]?.trim()?.toLowerCase() === value.trim().toLowerCase()
-    );
+
     if (allowCustomValue || suggestionsIncludesCurrentValue) {
       const newValue = onItemAdd && onItemAdd(value);
       newValue && onConfirm && onConfirm([newValue]);
@@ -253,13 +257,11 @@ const Collector = ({
     allowMultipleValues,
     suggestionsIncludesItem,
     value,
-    filteredSuggestions,
     allowCustomValue,
     createItem,
     selectedValues,
     onConfirm,
     clear,
-    filterLookupKey,
     onItemAdd,
   ]);
 
@@ -300,7 +302,7 @@ const Collector = ({
       };
 
   useOnClickOutside(containerRef, () => {
-    setFocused(false);
+    hideDropdownOnClickOutside && setFocused(false);
   });
   const showError = error || !!errorText;
 

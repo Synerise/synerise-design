@@ -40,6 +40,7 @@ export type CollectorProps = {
   showCount?: boolean;
   valuesSeparator?: CollectorValuesSeparator;
   listHeader?: React.ReactNode;
+  hideDropdownOnClickOutside?: boolean;
 };
 export type CollectorValuesSeparator = ';' | ',' | '|';
 export type CollectorTexts = {
