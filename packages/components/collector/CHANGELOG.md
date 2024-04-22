@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.8.4...@synerise/ds-collector@0.9.0) (2024-04-22)
+
+
+### Features
+
+* **collector:** improve custom filtering suggestions ([72956dd](https://github.com/Synerise/synerise-design/commit/72956dd85332649a338973e282ece6a77ae8ffdf))
+
+
+
+
+
 ## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.8.3...@synerise/ds-collector@0.8.4) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-collector

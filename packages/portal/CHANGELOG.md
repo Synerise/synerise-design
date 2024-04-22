@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.213.0](https://github.com/synerise/synerise-design/compare/portal@0.212.0...portal@0.213.0) (2024-04-22)
+
+
+### Features
+
+* **status:** adds custom type for custom color ([732a6ca](https://github.com/synerise/synerise-design/commit/732a6ca0c38d03464f33679514e9026ebaf095ed))
+
+
+
+
+
 # [0.212.0](https://github.com/synerise/synerise-design/compare/portal@0.211.0...portal@0.212.0) (2024-04-17)
 
 

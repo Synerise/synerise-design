@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.109...@synerise/ds-status@0.6.0) (2024-04-22)
+
+
+### Features
+
+* **status:** adds custom type for custom color ([732a6ca](https://github.com/Synerise/synerise-design/commit/732a6ca0c38d03464f33679514e9026ebaf095ed))
+
+
+
+
+
 ## [0.5.109](https://github.com/Synerise/synerise-design/compare/@synerise/ds-status@0.5.108...@synerise/ds-status@0.5.109) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-status
