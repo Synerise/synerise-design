@@ -19,7 +19,7 @@ const typeOptions = {
   warning: 'warning',
   danger: 'danger',
   disabled: 'disabled',
-  customStatus: 'customStatus',
+  custom: 'custom',
 };
 const customColorOptions = {
   blue: theme.palette['blue-600'],
@@ -39,7 +39,7 @@ const customColorOptions = {
 const stories = {
   Status: () => {
     const type = select('Type', typeOptions, 'default');
-    const colors = type === 'customStatus' && select('Set custom status color', customColorOptions, customColorOptions.grey);
+    const colors = type === 'custom' && select('Set custom status color', customColorOptions, customColorOptions.grey);
     const label = text('Label', 'Draft')
     return(
       <React.Fragment>
