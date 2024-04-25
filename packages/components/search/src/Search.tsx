@@ -195,10 +195,12 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
 
   selectFilter(item: object): void {
     const { onValueChange, onParameterValueChange, filterLookupKey, textLookupConfig } = this.props;
+    const { focusInputTrigger } = this.state;
 
     onValueChange('');
     this.setState({
       label: item,
+      focusInputTrigger: !focusInputTrigger,
       moveCursorToEnd: true,
     });
 
@@ -315,7 +317,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
       inputProps,
       alwaysExpanded,
     } = this.props;
-    const { label, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
+    const { label, isListVisible, focusInputTrigger, toggleInputTrigger, moveCursorToEnd } = this.state;
 
     return (
       <SearchInput
@@ -345,7 +347,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
         disableInput={disableInput}
         inputProps={inputProps}
         alwaysExpanded={alwaysExpanded}
-        closeOnClickOutside={!alwaysExpanded}
+        closeOnClickOutside={!alwaysExpanded && !isListVisible}
       />
     );
   }
