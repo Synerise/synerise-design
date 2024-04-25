@@ -25,7 +25,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   useEffect(() => {
     debouncedEventHandler(width);
   }, [width, debouncedEventHandler]);
-  
+
   useEffect(() => {
     const newTabs = tabs.map(tab => {
       return {
@@ -36,22 +36,27 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
     setItems(newTabs);
   }, [tabs]);
 
+  const widthsAreNonZero = containerWidth > 0 && helperWidth > 0;
+
   useEffect(() => {
-    if (helperWidth > 0 && containerWidth > 0) {
+    if (widthsAreNonZero) {
       const itemsWithWidths: number[] = [];
       items.forEach((item, index) => {
         itemsWithWidths[index] = item.ref.current !== null ? item.ref.current.offsetWidth + MARGIN_BETWEEN_TABS : 0;
       });
       setItemsWidths(itemsWithWidths);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items, helperWidth, containerWidth > 0]);
+  }, [items, widthsAreNonZero]);
 
   useEffect(() => {
     if (block) {
       setVisibleTabs(items);
       setHiddenTabs([]);
-    } else {
+    }
+  }, [items, block]);
+
+  useEffect(() => {
+    if (!block) {
       let tabsWidth = DROPDOWN_TRIGGER_SIZE + MARGIN_BETWEEN_TABS;
       const visibleItems: TabWithRef[] = [];
       const hiddenItems: TabWithRef[] = [];
@@ -67,7 +72,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
       setHiddenTabs(hiddenItems);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsWidths, containerWidth]);
+  }, [block, itemsWidths, containerWidth]);
 
   const handleConfigurationAction = useCallback(() => {
     configuration && configuration.action();
@@ -180,12 +185,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   return (
     <>
       {tabs.length && (
-        <S.TabsContainer
-          className="ds-tabs"
-          ref={containerRef}
-          data-testid="tabs-container"
-          block={block}
-        >
+        <S.TabsContainer className="ds-tabs" ref={containerRef} data-testid="tabs-container" block={block}>
           {renderVisibleTabs}
           {renderDropdown()}
         </S.TabsContainer>
