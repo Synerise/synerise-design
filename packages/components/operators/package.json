@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-operators",
-  "version": "0.10.66",
+  "version": "0.10.67",
   "description": "Operators UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -39,7 +39,7 @@
     "@synerise/ds-menu": "^0.18.20",
     "@synerise/ds-result": "^0.6.51",
     "@synerise/ds-scrollbar": "^0.10.2",
-    "@synerise/ds-tabs": "^0.13.105",
+    "@synerise/ds-tabs": "^0.13.106",
     "@synerise/ds-tooltip": "^0.14.25",
     "@synerise/ds-utils": "^0.26.3",
     "react-intl": "3.12.0",

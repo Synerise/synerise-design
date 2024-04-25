@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tagslist",
-  "version": "0.9.34",
+  "version": "0.9.35",
   "description": "TagsList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -42,7 +42,7 @@
     "@synerise/ds-menu": "^0.18.20",
     "@synerise/ds-result": "^0.6.51",
     "@synerise/ds-scrollbar": "^0.10.2",
-    "@synerise/ds-search": "^0.8.87",
+    "@synerise/ds-search": "^0.8.88",
     "@synerise/ds-search-bar": "^0.6.68",
     "@synerise/ds-tooltip": "^0.14.25",
     "@synerise/ds-utils": "^0.26.3",

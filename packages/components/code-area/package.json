@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-code-area",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CodeArea UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,7 +36,7 @@
     "@synerise/ds-button": "^0.19.4",
     "@synerise/ds-core": "^0.40.12",
     "@synerise/ds-icon": "^0.60.4",
-    "@synerise/ds-inline-edit": "^0.7.0",
+    "@synerise/ds-inline-edit": "^0.7.1",
     "@synerise/ds-input": "^0.20.2",
     "@synerise/ds-tooltip": "^0.14.21",
     "@synerise/ds-typography": "^0.14.3",

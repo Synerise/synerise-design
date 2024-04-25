@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.88](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.87...@synerise/ds-search@0.8.88) (2024-04-25)
+
+
+### Bug Fixes
+
+* **search:** prevent toggling input if dropdown is open ([e601c44](https://github.com/Synerise/synerise-design/commit/e601c449acb9179229c41d7b0a8d053e4d5f810a))
+
+
+
+
+
 ## [0.8.87](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.86...@synerise/ds-search@0.8.87) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-search
