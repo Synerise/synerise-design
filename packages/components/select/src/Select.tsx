@@ -34,7 +34,7 @@ class Select extends Component<Props> {
     } = this.props;
     const { size } = antdProps;
     return (
-      <S.SelectContainer>
+      <S.SelectContainer className="ds-select-container">
         <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}
