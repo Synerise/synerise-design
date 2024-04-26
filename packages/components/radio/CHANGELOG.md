@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.67](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.66...@synerise/ds-radio@0.11.67) (2024-04-26)
+
+
+### Bug Fixes
+
+* **radio:** fix wrapper of radio to be in center ([1cea127](https://github.com/synerise/synerise-design/commit/1cea1278d7219edcd5e525bd45ccbe4182dfa43d))
+
+
+
+
+
 ## [0.11.66](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.65...@synerise/ds-radio@0.11.66) (2024-04-17)
 
 **Note:** Version bump only for package @synerise/ds-radio

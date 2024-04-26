@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.27.13...@synerise/ds-date-range-picker@0.27.14) (2024-04-26)
+
+
+### Bug Fixes
+
+* **date-range-picker:** add tooltip to button in date-range-picker ([d7c87fe](https://github.com/Synerise/synerise-design/commit/d7c87fe6a74c1bf4d5223d62f970c8b4e3c3c93e))
+
+
+
+
+
 ## [0.27.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.27.12...@synerise/ds-date-range-picker@0.27.13) (2024-04-25)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker
