@@ -5,10 +5,6 @@ import { macro } from '@synerise/ds-typography/';
 import React from 'react';
 
 export const RadioWrapper = styled.div`
-  .ant-radio-wrapper {
-    display: flex;
-  }
-
   & {
     display: block;
     margin-bottom: 15px;
@@ -18,22 +14,24 @@ export const RadioWrapper = styled.div`
 export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
+  margin: 4px 8px 16px 28px;
   ${macro.small}
 `;
 
-export const AdditionalData = styled.div`
-  margin: 4px 8px 15px 28px;
-`;
+// @deprecated - all styles are now defined in Description
+export const AdditionalData = styled.div``;
+
 export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
-  .ant-radio-inner {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .ant-radio {
+    height: 16px;
+  }
+  .ant-radio-inner::after {
+    top: unset;
+    left: unset;
   }
 
-  .ant-radio-inner::after {
-    position: unset;
+  .ant-radio-inner {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
