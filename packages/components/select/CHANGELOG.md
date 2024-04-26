@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.46](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.45...@synerise/ds-select@0.15.46) (2024-04-26)
+
+
+### Bug Fixes
+
+* **select:** add className to SelectContainer ([dcf78eb](https://github.com/synerise/synerise-design/commit/dcf78eb6b2d2fe01c91c659ca2447535357c3937))
+
+
+
+
+
 ## [0.15.45](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.44...@synerise/ds-select@0.15.45) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-select

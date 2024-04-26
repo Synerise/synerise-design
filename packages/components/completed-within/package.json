@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-completed-within",
-  "version": "0.6.13",
+  "version": "0.6.14",
   "description": "CompletedWithin UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,7 +38,7 @@
     "@synerise/ds-icon": "^0.60.7",
     "@synerise/ds-input": "^0.20.6",
     "@synerise/ds-input-number": "^0.9.12",
-    "@synerise/ds-select": "^0.15.45",
+    "@synerise/ds-select": "^0.15.46",
     "@synerise/ds-tooltip": "^0.14.25",
     "react-intl": "3.12.0"
   },
