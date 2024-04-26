@@ -22,6 +22,7 @@ const Day: React.FC<DayProps> = ({
   restricted,
   dayKey,
   texts,
+  intl,
   ...rest
 }: DayProps) => {
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -54,9 +55,25 @@ const Day: React.FC<DayProps> = ({
   const handleTooltipVisibleChange = React.useCallback((visible: boolean): void => setHovered(visible), []);
   return (
     <S.Container>
-      <Button {...rest} onMouseLeave={handleMouseLeave} block onClick={handleButtonClick} type={type} mode="label-icon">
-        <S.Content>{label}</S.Content>
-      </Button>
+      <Tooltip
+        trigger={['hover']}
+        title={
+          active
+            ? label
+            : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CLICK-TO-SELECT', defaultMessage: 'Click to select' })
+        }
+      >
+        <Button
+          {...rest}
+          onMouseLeave={handleMouseLeave}
+          block
+          onClick={handleButtonClick}
+          type={type}
+          mode="label-icon"
+        >
+          <S.Content>{label}</S.Content>
+        </Button>
+      </Tooltip>
       {restricted && (
         <Tooltip
           trigger={['hover']}

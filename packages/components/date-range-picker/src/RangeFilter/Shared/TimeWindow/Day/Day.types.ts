@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { WrappedComponentProps } from 'react-intl';
+import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { GridTexts } from '../Grid/Grid.types';
 import { DayKey } from '../TimeWindow.types';
 
@@ -12,4 +12,5 @@ export type DayProps = {
   onClear: (dayKey: DayKey) => void;
   readOnly?: boolean;
   texts: GridTexts;
+  intl: IntlShape;
 } & WrappedComponentProps;
