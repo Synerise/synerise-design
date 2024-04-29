@@ -4,6 +4,12 @@ export const InputGroupItem = styled.div``;
 
 export const InputGroupWrapper = styled.div<{ compact?: boolean }>`
   &&& {
+    ${InputGroupItem} {
+      .ds-select-container {
+        margin-bottom: 0;
+      }
+    }
+
     display: flex;
     min-width: 0;
 
