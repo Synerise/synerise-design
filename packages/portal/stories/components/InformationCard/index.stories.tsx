@@ -33,6 +33,11 @@ const knobHandlers = {
   select,
 };
 
+const renderAdditionalDescription = () => {
+  return <div>custom description</div>
+}
+
+
 function defaultStory() {
   const iconColor = select('Icon color', ['mars', 'grey'] as Color[], 'grey');
   // note that colors provide to an icon will be overwritten, if provided, by iconColor's prop value
@@ -43,6 +48,7 @@ function defaultStory() {
   const editable = boolean('Description editable', true);
   const disabled = boolean('Description disabled', false);
   const withNotice = boolean('With notice', false);
+  const withParameters = boolean('Show object parameters', true);
   let notice;
   if (withNotice) {
     notice = buildExtraInfo('Note: cannot be undone', 'warning');
@@ -69,13 +75,16 @@ function defaultStory() {
         notice={notice}
         avatarTooltipText={avatarTooltipText}
         descriptionConfig={descriptionConfig}
-      />
-    ),
-    'Menu item'
-  );
+        renderAdditionalDescription={withParameters ? renderAdditionalDescription : undefined}
+        />
+      ),
+      'Menu item'
+    );
+    
 }
 
 function minimalistic() {
+  const withParameters = boolean('Show object parameters', true);
   return wrapCardWithMenu(
     () => (
       <InformationCard
@@ -83,6 +92,7 @@ function minimalistic() {
         subtitle={text('Subtitle', 'object.key')}
         renderBadge={null}
         descriptionConfig={null}
+        renderAdditionalDescription={withParameters ? renderAdditionalDescription : undefined}
       />
     ),
     'Mini info'
@@ -389,6 +399,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
   }
   let descriptionProps;
   const hideDescription = boolean('Hide description', true);
+  const withParameters = boolean('Show object parameters', true);
   
   if (!hideDescription) {
     const hasEditableDescription = boolean('Editable description', true);
@@ -417,6 +428,7 @@ function InformationCardWithKnobs(props = {} as Partial<InformationCardProps>) {
       {...preset}
       {...props}
       descriptionConfig={!hideDescription ? descriptionProps : null}
+      renderAdditionalDescription={withParameters ? renderAdditionalDescription : undefined}
     />
   );
 }
