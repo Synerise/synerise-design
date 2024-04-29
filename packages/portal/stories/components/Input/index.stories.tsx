@@ -66,9 +66,7 @@ const addonType = {
   label: 'label',
   none: 'none',
 };
-const renderLabel = (text: string) => {
-  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
-};
+
 function renderAddonComponent(suffixElementType: string, labelText?: string) {
   switch (suffixElementType) {
     case addonType.icon:
@@ -118,7 +116,7 @@ const stories = {
           title: text('Tooltip title', 'This is example tooltip!'),
         }}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(validationState, message)}
         counterLimit={number('CounterLimit', 10)}
@@ -300,7 +298,7 @@ const stories = {
       <InputGroup
         size={size}
         tooltip={text('Tooltip', 'This is example tooltip!')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errors={array('Errors', [])}
         resetMargin={boolean('ResetMargin', false)}
@@ -406,7 +404,7 @@ const stories = {
       <InputGroup
         size={size}
         tooltip={text('Tooltip', 'This is example tooltip!')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errors={array('Errors', [])}
         resetMargin={boolean('ResetMargin', false)}
@@ -537,7 +535,7 @@ const stories = {
       <Input
         size={size}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={descriptionMessage && getDescription(hasDescription)}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -596,7 +594,7 @@ const stories = {
             <Input
               autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
             placeholder={text('Placeholder', 'Placeholder')}
-            label={renderLabel(text('Label', 'Label'))}
+            label={text('Label', 'Label')}
             description={descriptionMessage && getDescription(hasDescription)}
             errorText={!isFocus && getErrorText(hasError)}
             error={!isFocus && hasError}
@@ -658,7 +656,7 @@ const stories = {
       <Input
         autoResize={autoResize ? autoResizeProp : undefined}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={descriptionMessage && getDescription(hasDescription)}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -688,7 +686,7 @@ const stories = {
       <Input
         size={'default'}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         errorText={text('ErrorText', '')}
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
@@ -718,7 +716,7 @@ const stories = {
         autoSize={{minRows, maxRows}}
         rows={number('rows', 4)}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -755,7 +753,7 @@ const stories = {
       <TextArea
         rows={number('rows', 4)}
         placeholder={text('Placeholder', 'Placeholder')}
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}
@@ -795,7 +793,7 @@ const stories = {
 
     return (
       <InputMultivalue
-        label={renderLabel(text('Label', 'Label'))}
+        label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(hasError)}
         error={!isFocus && hasError}

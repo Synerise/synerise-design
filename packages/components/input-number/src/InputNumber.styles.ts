@@ -29,23 +29,6 @@ export const ContentAbove = styled.div`
   margin-bottom: 8px;
 `;
 
-export const Label = styled.label`
-  color: ${(props: ThemeProps): string => props.theme.palette['grey-800']};
-  font-weight: 500;
-  display: block;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  cursor: pointer;
-
-  .ds-icon > svg {
-    margin-top: -1px;
-    fill: ${(props): string => props.theme.palette['grey-400']};
-  }
-`;
-
 export const Description = styled.div`
   color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
 `;
