@@ -19,6 +19,7 @@ import Alert from '@synerise/ds-alert';
 
 import * as S from './InformationCard.styles';
 import { InformationCardProps, BadgeData } from './InformationCard.types';
+
 import 'rc-trigger/assets/index.less';
 
 /**
@@ -60,6 +61,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
       iconColor,
       descriptionConfig,
       className,
+      renderAdditionalDescription,
       ...props
     },
     ref
@@ -110,7 +112,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
           {(descriptionConfig !== null || notice) && (
             <DescriptionField extraInformation={notice || <></>} descriptionConfig={descriptionConfig} />
           )}
-
+          {renderAdditionalDescription && renderAdditionalDescription()}
           {(renderFooter && renderFooter()) ||
             ((footerText || actionButton) && (
               <Footer

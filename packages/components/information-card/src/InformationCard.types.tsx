@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
 
 import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { Color, Size } from '@synerise/ds-avatar/dist/Avatar.types';
@@ -18,7 +18,7 @@ export type InformationCardProps = {
   /**
    * custom jsx element for rendering in action button (bottom-right)
    */
-  actionButton?: boolean | (() => React.ReactNode);
+  actionButton?: boolean | (() => ReactNode);
   /**
    * default action button callback methodd
    */
@@ -56,11 +56,11 @@ export type InformationCardProps = {
   /**
    * additional feedback info to the user, when set to null - footer is hidden
    */
-  footerText?: string | React.ReactNode | null;
+  footerText?: ReactNode | null;
   /**
    * icon (note this needs to be pure SVG icon, it relies on `buildBadgeIcon` helper)
    */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /**
    * icon color to be applied to `icon` element
    */
@@ -69,7 +69,7 @@ export type InformationCardProps = {
    * additional information shown between subtitle and description section.
    * Can be used for warnings, errors, destructive actions, notices. See `buildExtraInfo` and alert `level` there.
    */
-  notice?: string | React.ReactNode;
+  notice?: ReactNode;
   /**
    * Custom render prop for displaying. If set to `null` - badge won't be shown.
    */
@@ -82,4 +82,8 @@ export type InformationCardProps = {
    * Title of the information-card. Can be copied.
    */
   title: string;
+  /**
+   * list of object parameters to display
+   */
+  renderAdditionalDescription?: () => ReactNode;
 };
