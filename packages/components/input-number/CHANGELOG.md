@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.12...@synerise/ds-input-number@0.9.13) (2024-04-29)
+
+
+### Bug Fixes
+
+* **input:** fixes styles for input / select / textarea labels ([51f9d6b](https://github.com/Synerise/synerise-design/commit/51f9d6bdf190a82d6e3b5ddb7437bfa81135d048))
+
+
+
+
+
 ## [0.9.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.11...@synerise/ds-input-number@0.9.12) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-input-number

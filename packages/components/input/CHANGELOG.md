@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.20.6...@synerise/ds-input@0.20.7) (2024-04-29)
+
+
+### Bug Fixes
+
+* **input:** fixes styles for input / select / textarea labels ([51f9d6b](https://github.com/synerise/synerise-design/commit/51f9d6bdf190a82d6e3b5ddb7437bfa81135d048))
+* **input:** overwrite select margins within input group ([02e4e55](https://github.com/synerise/synerise-design/commit/02e4e555115e145395678b9529ac754bdedfe769))
+
+
+
+
+
 ## [0.20.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.20.5...@synerise/ds-input@0.20.6) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-input

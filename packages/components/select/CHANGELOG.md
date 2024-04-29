@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.47](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.46...@synerise/ds-select@0.15.47) (2024-04-29)
+
+
+### Bug Fixes
+
+* **input:** fixes styles for input / select / textarea labels ([51f9d6b](https://github.com/synerise/synerise-design/commit/51f9d6bdf190a82d6e3b5ddb7437bfa81135d048))
+
+
+
+
+
 ## [0.15.46](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.45...@synerise/ds-select@0.15.46) (2024-04-26)
 
 

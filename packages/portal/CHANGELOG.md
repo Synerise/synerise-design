@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.214.0](https://github.com/synerise/synerise-design/compare/portal@0.213.0...portal@0.214.0) (2024-04-29)
+
+
+### Bug Fixes
+
+* **input:** fixes styles for input / select / textarea labels ([51f9d6b](https://github.com/synerise/synerise-design/commit/51f9d6bdf190a82d6e3b5ddb7437bfa81135d048))
+
+
+### Features
+
+* **information-card:** added list rendering ([ef358b6](https://github.com/synerise/synerise-design/commit/ef358b6fc05a4473669052207ab327b4f3478881))
+
+
+
+
+
 # [0.213.0](https://github.com/synerise/synerise-design/compare/portal@0.212.0...portal@0.213.0) (2024-04-22)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.14.3...@synerise/ds-typography@0.15.0) (2024-04-29)
+
+
+### Features
+
+* **information-card:** added list rendering ([ef358b6](https://github.com/synerise/synerise-design/commit/ef358b6fc05a4473669052207ab327b4f3478881))
+
+
+
+
+
 ## [0.14.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.14.2...@synerise/ds-typography@0.14.3) (2024-02-06)
 
 **Note:** Version bump only for package @synerise/ds-typography

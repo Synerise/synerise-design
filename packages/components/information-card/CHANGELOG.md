@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.70...@synerise/ds-information-card@0.4.0) (2024-04-29)
+
+
+### Features
+
+* **information-card:** added list rendering ([ef358b6](https://github.com/Synerise/synerise-design/commit/ef358b6fc05a4473669052207ab327b4f3478881))
+
+
+
+
+
 ## [0.3.70](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.3.69...@synerise/ds-information-card@0.3.70) (2024-04-26)
 
 **Note:** Version bump only for package @synerise/ds-information-card

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.49.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.7...@synerise/ds-table@0.49.8) (2024-04-29)
+
+
+### Bug Fixes
+
+* **table:** fixes table height in infinite scrolling mode ([58f9f96](https://github.com/synerise/synerise-design/commit/58f9f96c5dd22f5ebec47477da0bd05ca62d818b))
+
+
+
+
+
 ## [0.49.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.6...@synerise/ds-table@0.49.7) (2024-04-26)
 
 **Note:** Version bump only for package @synerise/ds-table
