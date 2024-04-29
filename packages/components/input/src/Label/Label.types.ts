@@ -1,12 +1,12 @@
-import * as React from 'react';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-import { TooltipProps } from 'antd/lib/tooltip';
+import type { ReactNode } from 'react';
+
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type LabelProps = {
   id?: string;
-  label?: React.ReactNode;
-  tooltip?: React.ReactNode;
-  tooltipConfig?: TooltipExtendedProps & TooltipProps;
+  label?: ReactNode;
+  tooltip?: ReactNode;
+  tooltipConfig?: TooltipProps;
   style?: object;
   className?: string;
 };

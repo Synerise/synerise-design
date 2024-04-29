@@ -2,8 +2,7 @@ import React, { useState, ReactText, useCallback, useMemo, useEffect } from 'rea
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
-import Tooltip from '@synerise/ds-tooltip';
-import Icon, { InfoFillS } from '@synerise/ds-icon';
+import { Label } from '@synerise/ds-input';
 import { useDataFormat } from '@synerise/ds-data-format';
 
 import './style/index.less';
@@ -73,22 +72,7 @@ const InputNumber = ({
     <S.InputNumberContainer>
       {label && !raw && (
         <S.ContentAbove>
-          <S.Label htmlFor={id}>
-            {label}
-            {(tooltip || tooltipConfig) && (
-              <Tooltip
-                title={tooltip}
-                placement="top"
-                trigger="hover"
-                transitionName="zoom-big-fast"
-                {...tooltipConfig}
-              >
-                <span>
-                  <Icon size={24} component={<InfoFillS />} />
-                </span>
-              </Tooltip>
-            )}
-          </S.Label>
+          <Label id={id} label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         </S.ContentAbove>
       )}
       <S.InputNumberWrapper prefixel={!!prefixel} suffixel={!!suffixel} style={style}>

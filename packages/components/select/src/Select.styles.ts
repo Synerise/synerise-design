@@ -8,9 +8,9 @@ import { Props } from './Select.types';
 const { OptGroup, Option } = Select;
 
 const errorStyle = (props: ThemeProps): string => `
-border-color: ${props.theme.palette['red-600']};
-box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-background: ${props.theme.palette['red-050']};
+  border-color: ${props.theme.palette['red-600']};
+  box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
+  background: ${props.theme.palette['red-050']};
 `;
 
 const searchIconWithCustomColor = (color: string): string => {
@@ -127,7 +127,7 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
   }
 
   &.error {
-    .ant-select-selector {
+    .ant-select-selector.ant-select-selector {
       ${(props): string => errorStyle(props)}
     }
     .ant-select-clear {

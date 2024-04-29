@@ -3,9 +3,6 @@ import { text, number, boolean, select, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import InputNumber from '@synerise/ds-input-number';
 
-const renderLabel = (text: string) => {
-  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
-};
 
 const commonProps = () => {
   const validationState = boolean('Set validation state', false);
@@ -18,7 +15,7 @@ const commonProps = () => {
     min: number('min', -100, undefined),
     max: number('max', Number.MAX_SAFE_INTEGER, undefined),
     onChange: (v) => action('onChange')(v),
-    label: renderLabel(text('label', 'Label')),
+    label: text('Label', 'Label'),
     description: text('description', 'Description'),
     errorText: !isFocus && getErrorText(validationState, message),
     error: !isFocus && validationState,
@@ -31,8 +28,7 @@ const commonProps = () => {
       title: text('Tooltip title', 'Input number tooltip'),
       description: text(
         'Tooltip description',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 
-        generalKnobs
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       ),
     },
     valueFormatOptions: valueFormatOptions,

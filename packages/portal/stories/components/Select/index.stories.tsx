@@ -29,9 +29,7 @@ const sizes = {
   default: 'default',
   large: 'large',
 };
-const renderLabel = (text: string) => {
-  return <div style={{ maxWidth: '200px', textOverflow: 'ellipsis', overflow: 'hidden' }}>{text}</div>;
-};
+
 const values = ['Option A', 'Option B', 'Option C'];
 const dropdownMenuStyles = {};
 const dropdownStyles = {};
@@ -109,7 +107,7 @@ const stories = {
       description: text('description', 'Description'),
       errorText: !isFocus && getErrorText(validationState, message),
       error: !isFocus && validationState,
-      label: renderLabel(text('Label', 'Label')),
+      label: text('Label', 'Label'),
       allowClear: boolean('allow clear', false),
       defaultActiveFirstOption: boolean('defaultActiveFirstOption', true),
       defaultValue: text('defaultValue', 'Option A'),
@@ -172,7 +170,7 @@ const stories = {
           errorText={getErrorText(validationState, message)}
           error={validationState}
           tooltip={text('Tooltip', 'This is example tooltip!')}
-          label={renderLabel(text('Label', 'Label'))}
+          label={text('Label', 'Label')}
           description={text('Description', 'Description')}
           onClick={(): void => setActive(true)}
           disabled={boolean('disabled', false)}
