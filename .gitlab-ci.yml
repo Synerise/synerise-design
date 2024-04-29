@@ -203,8 +203,8 @@ test_adding_comment:
   only:
     refs:
       - merge_requests
-    variables:
-      - $API_TOKEN
+  variables:
+    - $API_TOKEN
   allow_failure: true
   script:
     - !reference [.commit_comment, script]
