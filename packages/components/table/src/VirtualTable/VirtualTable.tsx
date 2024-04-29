@@ -306,13 +306,20 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     return [...fixedLeft, ...remaining, ...fixedRight];
   }, [virtualColumns, tableWidth]);
 
+  const infiniteLoaderOffset = useMemo(() => {
+    if (isSticky && infiniteScroll?.prevPage?.hasMore) {
+      return infiniteLoaderItemHeight * 2;
+    }
+    return infiniteLoaderItemHeight;
+  }, [isSticky, infiniteScroll?.prevPage?.hasMore]);
+
   const listInnerElementType = forwardRef<HTMLDivElement>(
     ({ style, ...rest }: HTMLAttributes<HTMLDivElement>, innerElementRef) => (
       <S.InnerListElement
         ref={innerElementRef}
         style={{
           ...style,
-          height: `${Number(style?.height) + infiniteLoaderItemHeight}px`,
+          height: `${Number(style?.height) + infiniteLoaderOffset}px`,
         }}
         {...rest}
       />
@@ -395,7 +402,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       }
 
       const renderVirtualList = (data: T[]) => {
-        const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderItemHeight;
+        const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderOffset;
 
         const listMaxScroll =
           stickyScrollThreshold && infiniteScroll?.maxScroll
@@ -522,6 +529,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       loading,
       offsetScroll,
       getRowKey,
+      infiniteLoaderOffset,
     ]
   );
 
