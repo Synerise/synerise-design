@@ -67,6 +67,7 @@ function VirtualTableRow<T extends object>({
         const prevDataInfiniteLoaderHeight = infiniteScroll?.prevPage?.hasMore ? INFINITE_LOADED_ITEM_HEIGHT : 0;
         top = `${Number(style.top) + cellHeight + prevDataInfiniteLoaderHeight}px`;
       }
+
       return (
         infiniteLoaderItemProps &&
         isVisible && (
