@@ -15,14 +15,6 @@ stages:
   - deploy
 
 
-.commit_comment:
-  script:
-    - export GITLAB_TOKEN="${API_KEY}"
-    - |
-      commit_comment() {
-        curl --location --request POST "https://gitlab.com/api/v4/projects/$CI_MERGE_REQUEST_PROJECT_ID/merge_requests/$CI_MERGE_REQUEST_IID/notes" --header "PRIVATE-TOKEN: $GITLAB_TOKEN" --header "Content-Type: application/json" --data-raw "{ \"body\": \"$1\" }"
-      }
-
 include:
   - template: Code-Quality.gitlab-ci.yml
   - project: 'Core/gitlab_templates'
@@ -195,18 +187,4 @@ chromatic_publish_merge_to_dest_branch:
     - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - test ! -e packages/portal/storybook-static && (yarn build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
-
-
-test_adding_comment:
-  stage: test
-  when: manual
-  only:
-    refs:
-      - merge_requests
-  variables:
-    - $API_TOKEN
-  allow_failure: true
-  script:
-    - !reference [.commit_comment, script]
-    - commit_comment "testing adding comment"
-    
+   
