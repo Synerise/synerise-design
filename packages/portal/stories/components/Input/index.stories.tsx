@@ -722,6 +722,7 @@ const stories = {
         error={!isFocus && hasError}
         counterLimit={number('CounterLimit', 100)}
         disabled={boolean('Disabled', false)}
+        readOnly={boolean('ReadOnly', false)}
         onBlur={() => {
           action('I am blurred');
           setFocus(false);

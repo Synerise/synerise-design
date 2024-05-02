@@ -7,6 +7,7 @@ export const TextareaWrapper = styled.div<{
   isDisabled: boolean;
   isFocused: boolean;
   hasError: boolean;
+  isReadOnly?: boolean;
 }>`
   position: relative;
   overflow: hidden;
@@ -14,6 +15,11 @@ export const TextareaWrapper = styled.div<{
   border-radius: 3px;
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   ${(props): FlattenSimpleInterpolation => {
+    if (props.isReadOnly)
+      return css`
+        border: 1px solid ${props.theme.palette['grey-300']};
+        background-color: ${props.theme.palette['grey-050']};
+      `;
     if (props.isDisabled)
       return css`
         border: 1px solid #dbe0e3;
