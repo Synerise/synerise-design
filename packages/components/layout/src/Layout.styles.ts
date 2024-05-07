@@ -59,7 +59,6 @@ export const LayoutMain = styled.div`
 `;
 
 export const LayoutMainInner = styled.div<{ fullPage: boolean }>`
-  ${mediaQuery.to.medium`flex: 0 0 auto;`};
   ${mediaQuery.from.medium`padding: 24px;`};
   && {
     padding: ${(props): string => (props.fullPage ? '0' : '24px')};
@@ -96,11 +95,12 @@ export const LayoutContainer = styled.div<{
   ${LayoutMainInner} {
     overflow: ${props => (props.nativeScroll ? 'auto' : 'hidden')};
     ${props =>
-      props.nativeScroll &&
+      props.nativeScroll
+        ? `
+        flex-grow: 1;
+        position: relative;
       `
-      flex-grow: 1;
-      position: relative;
-    `};
+        : `${mediaQuery.to.medium`flex: 0 0 auto;`};`};
   }
 `;
 
