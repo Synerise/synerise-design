@@ -82,6 +82,17 @@ export const Cell = styled.button<{ active?: boolean }>`
     && {
       cursor: not-allowed;
       background-color: ${(props): string => props.theme.palette.white};
+
+      ${props =>
+        props.active &&
+        `
+          background-color: ${props.theme.palette['blue-600']};
+          opacity: 0.2;
+          ${CellText}${CellText} {
+            opacity: 1;
+            color: ${props.theme.palette.white};
+          }
+      `}
     }
 
     ${CellText} {
