@@ -35,7 +35,7 @@ const stories = {
     return (
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout
-          useNativeScroll={boolean('Use native scroll for main content', true)}
+          nativeScroll={boolean('Use native scroll for main content', true)}
           header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
           renderLeftSidebarControls={boolean('Render left sidebar controls', true)}
           renderRightSidebarControls={boolean('Render right sidebar controls', true)}

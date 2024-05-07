@@ -29,7 +29,7 @@ const stories = {
     return (
       <div style={{ border: '1px dashed gray', height: 440 }}>
         <Layout
-          useNativeScroll={boolean('Use native scroll for main content', true)}
+          nativeScroll={boolean('Use native scroll for main content', true)}
           renderLeftSidebarControls={boolean('Render left sidebar controls', true)}
           renderRightSidebarControls={boolean('Render right sidebar controls', false)}
           header={

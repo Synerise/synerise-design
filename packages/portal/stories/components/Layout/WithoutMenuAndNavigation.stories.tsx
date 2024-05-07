@@ -9,7 +9,7 @@ const stories = {
     return (
       <Page>
         <Layout
-          useNativeScroll={boolean('Use native scroll for main content', true)}
+          nativeScroll={boolean('Use native scroll for main content', true)}
           header={<PageHeader title={'Page name'} onClose={() => {}} />} 
           fullPage={true}
         >

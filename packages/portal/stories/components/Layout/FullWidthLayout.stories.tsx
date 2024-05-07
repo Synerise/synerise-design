@@ -15,7 +15,7 @@ const stories = {
       <Page appMenu={<LayoutAppMenu />} navBar={<LayoutNavbar />}>
         <Layout 
           header={<PageHeader title={'Page name'} onGoBack={() => {}} />}
-          useNativeScroll={boolean('Use native scroll for main content', true)}
+          nativeScroll={boolean('Use native scroll for main content', true)}
         >
           <Grid>
             <Grid.Item xxl={24} xl={16} lg={12} md={8} sm={8} xs={4}>
