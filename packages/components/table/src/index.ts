@@ -11,4 +11,16 @@ export { GroupedTable, VirtualTable, TableCell, ItemsMenu, TreeTable };
 export { default as BackToTopButton } from './InfiniteScroll/BackToTopButton';
 
 export type { Props as VirtualTableProps, VirtualTableRef, VirtualColumnType } from './VirtualTable/VirtualTable.types';
-export type { RowSelection, SingleColumnSort, OnSortFn, Locale } from './Table.types';
+export type {
+  RowSelection,
+  RowType,
+  SingleColumnSort,
+  OnSortFn,
+  Locale,
+  DSColumnType,
+  DSTableProps,
+  ScrollProxyType,
+  Selection,
+  SelectionItem,
+  CustomizeScrollBodyInfo,
+} from './Table.types';

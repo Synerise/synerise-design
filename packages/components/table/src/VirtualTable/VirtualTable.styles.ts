@@ -10,17 +10,7 @@ type ColWrapperProps = {
 };
 const numberToPixels = (num: number): string => `${num}px`;
 
-const getColumnMaxWidth = (props: ColWrapperProps): React.CSSProperties['maxWidth'] => {
-  if (props.maxWidth) {
-    return numberToPixels(props.maxWidth);
-  }
-  return props.width ? numberToPixels(props.width) : 'initial';
-};
-
-const getColumnMinWidth = (props: ColWrapperProps): React.CSSProperties['minWidth'] => {
-  if (props.minWidth) {
-    return numberToPixels(props.minWidth);
-  }
+const getColumnWidth = (props: ColWrapperProps): React.CSSProperties['width'] => {
   return props.width ? numberToPixels(props.width) : 'initial';
 };
 
@@ -78,19 +68,23 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   ${props => props.left !== undefined && `left: ${numberToPixels(props.left)}`};
   ${props => props.right !== undefined && `right: ${numberToPixels(props.right)}`};
 
-  width: ${props => (props.width !== undefined && props.width !== null ? numberToPixels(props.width) : 'initial')};
-  min-width: ${(props): ReturnType<typeof getColumnMinWidth> => getColumnMinWidth(props)};
-  max-width: ${(props): ReturnType<typeof getColumnMaxWidth> => getColumnMaxWidth(props)};
+  ${(props) => {
+    const width = getColumnWidth(props);
+    return css`
+      width: ${width};
+      min-width: ${width};
+      max-width: ${width};
+    `
+  }}
+  
   padding: 0 24px;
 
   &.virtual-table-cell.ant-table-selection-column {
     padding: 0 8px 0 24px;
-    width: auto;
   }
 
   &.virtual-table-cell.ds-table-star-column {
     padding: 0 8px 0 24px;
-    width: auto;
 
     & > button {
       display: flex;

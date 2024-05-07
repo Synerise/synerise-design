@@ -67,6 +67,7 @@ export const Labels = styled.span<{ ellipsis: boolean; maxWidth: number | undefi
       overflow: hidden;
       max-width: ${props.maxWidth ? `${props.maxWidth}px` : '100%'};
     `};
+  color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
 export const Label = styled.span``;

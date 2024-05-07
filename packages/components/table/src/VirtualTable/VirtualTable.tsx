@@ -21,7 +21,7 @@ import type {
 import VirtualTableRow, { INFINITE_LOADED_ITEM_HEIGHT, VirtualTableRowProps } from './VirtualTableRow';
 import * as S from './VirtualTable.styles';
 import type { Props, VirtualTableRef, VirtualColumnType } from './VirtualTable.types';
-import { useTableLocale, calculatePixels } from '../utils';
+import { useTableLocale, calculateColumnWidths } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar, CreateRowStarColumnProps } from '../hooks/useRowStar';
 import { RowSelectionColumn } from '../RowSelection';
@@ -220,36 +220,21 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   }, [selection, renderRowSelection, rowStar, rowStarColumn, columns]);
 
   const mergedColumns: VirtualColumnType<T>[] = useMemo(() => {
-    const widthColumnCount = virtualColumns.filter(({ width }) => !width).length;
-    const definedWidth = virtualColumns.reduce((total: number, { width }) => {
-      const widthInPx = calculatePixels(width) || 0;
-      return total + widthInPx;
-    }, 0);
-
-    const columnsWithWidth = virtualColumns?.map(column => {
-      if (column.width) {
-        return {
-          ...column,
-          width: calculatePixels(column.width),
-        };
-      }
-      const calculatedWidth = Math.floor((tableWidth - definedWidth) / widthColumnCount);
-      return {
-        ...column,
-        width: calculatedWidth > 0 ? calculatedWidth : 1,
-      };
-    });
-
+    const columnWidths = calculateColumnWidths(virtualColumns, tableWidth);
     let cumulativeRightOffset = 0;
     let cumulativeLeftOffset = 0;
+    let firstFixedRightFound = false;
 
-    const { fixedLeft, remaining, fixedRight } = columnsWithWidth.reduce(
+    const { fixedLeft, remaining, fixedRight } = virtualColumns.reduce(
       (prev, column, index) => {
         const left = cumulativeLeftOffset;
         const right = cumulativeRightOffset;
+        const width = columnWidths[index];
         if (column.fixed === 'right') {
-          if (column.width) {
-            cumulativeRightOffset += column.width;
+          cumulativeRightOffset += width;
+          const fixedFirst = !firstFixedRightFound;
+          if (!firstFixedRightFound) {
+            firstFixedRightFound = true;
           }
           return {
             ...prev,
@@ -257,16 +242,15 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
               ...prev.fixedRight,
               {
                 ...column,
-                fixedFirst: index === columnsWithWidth.length - 1,
+                fixedFirst,
                 right,
+                width,
               },
             ],
           };
         }
         if (column.fixed === 'left') {
-          if (column.width) {
-            cumulativeLeftOffset += column.width;
-          }
+          cumulativeLeftOffset += width;
           const { fixedLeft: prevFixedLeft } = prev;
           const newFixedLeft = prevFixedLeft.length
             ? [
@@ -276,6 +260,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
                   ...column,
                   fixedFirst: true,
                   left,
+                  width,
                 },
               ]
             : [
@@ -284,6 +269,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
                   ...column,
                   fixedFirst: true,
                   left,
+                  width,
                 },
               ];
 
@@ -294,7 +280,13 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
         }
         return {
           ...prev,
-          remaining: [...prev.remaining, column],
+          remaining: [
+            ...prev.remaining,
+            {
+              ...column,
+              width,
+            },
+          ],
         };
       },
       {
@@ -304,7 +296,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       }
     );
     return [...fixedLeft, ...remaining, ...fixedRight];
-  }, [virtualColumns, tableWidth]);
+  }, [tableWidth, virtualColumns]);
 
   const infiniteLoaderOffset = useMemo(() => {
     if (isSticky && infiniteScroll?.prevPage?.hasMore) {
@@ -354,7 +346,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       cellHeight,
       defaultTableProps,
     }),
-    [cellHeight, infiniteScroll, mergedColumns, onRowClick, rowStar, selection]
+    [mergedColumns, selection, rowStar, onRowClick, infiniteScroll, cellHeight]
   );
 
   const offsetScroll = sticky && sticky !== true ? (sticky as TableSticky).offsetScroll : 0;
@@ -470,7 +462,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
               layout="vertical"
               itemCount={data.length}
               itemSize={cellHeight}
-              width="100%"
+              width={scrollWidth}
               itemData={itemData}
               itemKey={index => {
                 const key = getRowKey(data[index]);
@@ -523,6 +515,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       infiniteScroll,
       createItemData,
       tableWidth,
+      scrollWidth,
       onItemsRendered,
       outerElement,
       listInnerElementType,
@@ -547,8 +540,8 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   useEffect(() => {
     // trigger body component onScroll to toggle .ant-table-ping-left / .ant-table-ping-right classes that indicate where columns overflow
-    if (customBodyOnScrollRef.current && outerListRef.current) {
-      customBodyOnScrollRef.current({ currentTarget: outerListRef.current });
+    if (customBodyOnScrollRef.current && outerListRef.current && outerListRef.current.parentElement) {
+      customBodyOnScrollRef.current({ currentTarget: outerListRef.current.parentElement });
     }
   }, [tableWidth, scrollWidth]);
 
