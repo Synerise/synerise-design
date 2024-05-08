@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { IntlShape } from 'react-intl';
+import type { ReactNode, ReactElement } from 'react';
+import type { IntlShape } from 'react-intl';
 
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
-import { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { InputProps } from '@synerise/ds-input';
 
 export type Props = {
   autoFocus?: boolean;
@@ -23,18 +24,19 @@ export type Props = {
   onDropdownVisibleChange?: (visible: boolean) => void;
   onValueChange?: (date?: Date) => void;
   error?: boolean;
-  errorText?: string | React.ReactNode;
+  errorText?: ReactNode;
   popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
-  prefixel?: React.ReactNode | string;
-  suffixel?: React.ReactNode | string;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
   showTime?: boolean;
   texts: Texts;
-  renderTrigger?: () => React.ReactElement;
+  renderTrigger?: () => ReactElement;
   value?: Date;
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
   readOnly?: boolean;
+  inputProps?: Pick<InputProps, 'autoResize'>;
 };
 
 export type State = {
@@ -56,8 +58,8 @@ export type Modifier = {
   disabled: boolean;
 };
 export type Texts = {
-  apply: string | React.ReactNode;
-  now: string | React.ReactNode;
+  apply: ReactNode;
+  now: ReactNode;
   inputPlaceholder?: string;
-  clearTooltip?: string | React.ReactNode;
+  clearTooltip?: ReactNode;
 };

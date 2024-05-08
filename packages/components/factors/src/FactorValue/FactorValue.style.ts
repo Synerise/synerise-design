@@ -1,4 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { Container } from '@synerise/ds-date-picker/dist/Elements/PickerInput/PickerInput.styles';
 
 const DEFAULT_WIDTH = {
   'text-autocomplete': '147px',
@@ -17,16 +18,6 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
               min-width: 173px;
               input {
                 min-width: 123px;
-              }
-            }
-          `;
-        }
-        if (inputType === 'date') {
-          return css`
-            &&& {
-              width: 173px;
-              .ant-input {
-                width: 173px;
               }
             }
           `;
@@ -50,6 +41,10 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
       }
       return false;
     }};
+
+    ${Container} {
+      width: auto;
+    }
 
     .ds-autocomplete {
       display: flex;

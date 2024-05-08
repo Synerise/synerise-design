@@ -4,14 +4,12 @@ import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
 
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
-
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { Props } from './PickerInput.types';
+import { PickerInputProps } from './PickerInput.types';
 import * as S from './PickerInput.styles';
 import format from '../../format';
 
-const PickerInput: React.FC<Props> = ({
+const PickerInput = ({
   autoFocus,
   size,
   disabled,
@@ -32,7 +30,7 @@ const PickerInput: React.FC<Props> = ({
   prefixel,
   suffixel,
   ...rest
-}: Props) => {
+}: PickerInputProps) => {
   const { formatValue } = useDataFormat();
 
   const [hovered, setHovered] = React.useState<boolean>(false);
@@ -102,7 +100,7 @@ const PickerInput: React.FC<Props> = ({
           resetMargin
           readOnly={readOnly}
           type="text"
-          size={size as SizeType}
+          size={size}
           disabled={disabled}
           placeholder={placeholder}
           value={getText()}

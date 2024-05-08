@@ -1,10 +1,14 @@
-import * as React from 'react';
+import type { ReactNode, CSSProperties } from 'react';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
+import type { Props as DatePickerProps } from '../../DatePicker.types';
 
-import { DateToFormatOptions } from '@synerise/ds-data-format';
+type InputProps = DatePickerProps['inputProps'];
 
-export type Props = {
+// @deprecated - use PickerInputProps instead
+export type Props = InputProps & {
   autoFocus?: boolean;
-  size?: 'large' | 'default' | 'small';
+  size?: SizeType;
   /**
    * @deprecated use `valueFormatOptions` instead
    */
@@ -14,16 +18,18 @@ export type Props = {
   allowClear?: boolean;
   value?: Date | string;
   onChange?: (dateValue: Date | undefined | null, stringifiedDate: string) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
   onClick?: () => void;
   onClear?: () => void;
-  clearTooltip?: string | React.ReactNode;
+  clearTooltip?: ReactNode;
   highlight?: boolean;
   error?: boolean;
-  errorText?: string | React.ReactNode;
-  prefixel?: React.ReactNode | string;
-  suffixel?: React.ReactNode | string;
+  errorText?: ReactNode;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
 };
+
+export type PickerInputProps = Props;
