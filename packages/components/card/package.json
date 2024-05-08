@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card",
-  "version": "0.16.13",
+  "version": "0.16.14",
   "description": "Card UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.60.7",
-    "@synerise/ds-tags": "^0.8.40",
+    "@synerise/ds-tags": "^0.8.41",
     "@synerise/ds-typography": "^0.15.0",
     "@synerise/ds-utils": "^0.26.3",
     "react-animate-height": "^2.0.23",
@@ -46,6 +46,6 @@
     "react": ">=16.9.0 < 17.0.0"
   },
   "devDependencies": {
-    "@synerise/ds-avatar": "^0.15.32"
+    "@synerise/ds-avatar": "^0.15.33"
   }
 }

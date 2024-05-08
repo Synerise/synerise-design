@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.8...@synerise/ds-table@0.50.0) (2024-05-08)
+
+
+### Bug Fixes
+
+* **table:** avatar label cell styles ([9613e00](https://github.com/synerise/synerise-design/commit/9613e008950ebd402e754ea6157dd155d681f5eb))
+
+
+### Features
+
+* **table:** virtual table - responsive columns ([a43786e](https://github.com/synerise/synerise-design/commit/a43786e3dc0acbda31eae62efb0cc6e5f838d344))
+
+
+
+
+
 ## [0.49.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.49.7...@synerise/ds-table@0.49.8) (2024-04-29)
 
 

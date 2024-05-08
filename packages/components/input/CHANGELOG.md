@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.20.7...@synerise/ds-input@0.21.0) (2024-05-08)
+
+
+### Features
+
+* **input:** add readOnly styles to textarea ([39044b3](https://github.com/synerise/synerise-design/commit/39044b31e890a6d2d7e9c1eddb6dfec25a0f860f))
+
+
+
+
+
 ## [0.20.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.20.6...@synerise/ds-input@0.20.7) (2024-04-29)
 
 

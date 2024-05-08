@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.14.9...@synerise/ds-layout@0.14.10) (2024-05-08)
+
+
+### Bug Fixes
+
+* **layout:** fixed flex on small screens with native scroll ([2847d12](https://github.com/synerise/synerise-design/commit/2847d12bdcb66226ba23c5f173ed31892338dfce))
+
+
+
+
+
 ## [0.14.9](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.14.8...@synerise/ds-layout@0.14.9) (2024-04-15)
 
 **Note:** Version bump only for package @synerise/ds-layout

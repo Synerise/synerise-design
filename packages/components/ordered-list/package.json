@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-ordered-list",
-  "version": "0.3.80",
+  "version": "0.3.81",
   "description": "OrderedList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -27,7 +27,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.60.7",
-    "@synerise/ds-input": "^0.20.7",
+    "@synerise/ds-input": "^0.21.0",
     "@synerise/ds-utils": "^0.26.3"
   },
   "peerDependencies": {

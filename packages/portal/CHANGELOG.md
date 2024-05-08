@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.215.0](https://github.com/synerise/synerise-design/compare/portal@0.214.0...portal@0.215.0) (2024-05-08)
+
+
+### Bug Fixes
+
+* **layout:** fixed flex on small screens with native scroll ([2847d12](https://github.com/synerise/synerise-design/commit/2847d12bdcb66226ba23c5f173ed31892338dfce))
+
+
+### Features
+
+* **input:** add readOnly styles to textarea ([39044b3](https://github.com/synerise/synerise-design/commit/39044b31e890a6d2d7e9c1eddb6dfec25a0f860f))
+* **table:** virtual table - responsive columns ([a43786e](https://github.com/synerise/synerise-design/commit/a43786e3dc0acbda31eae62efb0cc6e5f838d344))
+
+
+
+
+
 # [0.214.0](https://github.com/synerise/synerise-design/compare/portal@0.213.0...portal@0.214.0) (2024-04-29)
 
 
