@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-search-bar",
-  "version": "0.6.70",
+  "version": "0.6.71",
   "description": "SearchBar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,10 +33,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.60.7",
-    "@synerise/ds-input": "^0.21.0",
-    "@synerise/ds-tooltip": "^0.14.25",
-    "@synerise/ds-utils": "^0.26.3"
+    "@synerise/ds-icon": "^0.60.8",
+    "@synerise/ds-input": "^0.21.1",
+    "@synerise/ds-tooltip": "^0.14.26",
+    "@synerise/ds-utils": "^0.26.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

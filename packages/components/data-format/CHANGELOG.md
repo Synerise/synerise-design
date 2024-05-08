@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.8...@synerise/ds-data-format@0.4.9) (2024-05-08)
+
+
+### Bug Fixes
+
+* **ds-data-format:** add timezone into timeParts ([7ced227](https://github.com/Synerise/synerise-design/commit/7ced22779112967d985e24e9ba7ae98b0eff5d45))
+
+
+
+
+
 ## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.4.7...@synerise/ds-data-format@0.4.8) (2024-02-19)
 
 
