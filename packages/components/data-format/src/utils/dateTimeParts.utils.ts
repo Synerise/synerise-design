@@ -23,13 +23,13 @@ import { DateToFormatOptions, Delimiter } from '../types';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
 const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-const getValueWithTimezone = (value: Date, intlObject: IntlShape) =>
-  dayjs(value)
+const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
+  return dayjs(value)
     .tz(intlObject?.timeZone || defaultTimezone, true)
     .format();
-
+};
+  
 export const getDateParts = (
   value: Date,
   dateFormatIntl: IntlShape,
@@ -40,12 +40,8 @@ export const getDateParts = (
     ...option,
   });
 
-export const getTimeParts = (
-  value: Date,
-  timeFormatIntl: IntlShape,
-  option?: FormatDateOptions
-): Intl.DateTimeFormatPart[] =>
-  timeFormatIntl.formatDateToParts(value, {
+export const getTimeParts = (value: Date, timeFormatIntl: IntlShape, option?: FormatDateOptions): Intl.DateTimeFormatPart[] =>
+  timeFormatIntl.formatDateToParts(getValueWithTimezone(value, timeFormatIntl), {
     ...DEFAULT_FORMAT_TIME_OPTIONS,
     ...option,
   });
