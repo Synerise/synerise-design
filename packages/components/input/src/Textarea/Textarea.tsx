@@ -13,6 +13,7 @@ const Textarea: React.FC<TextAreaProps> = ({
   onFocus,
   resize,
   autoSize,
+  readOnly,
   ...props
 }) => {
   const [focus, setFocus] = React.useState<boolean>(false);
@@ -24,12 +25,14 @@ const Textarea: React.FC<TextAreaProps> = ({
       hasError={Boolean(error)}
       resize={resize}
       style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
+      isReadOnly={readOnly}
     >
       <Scrollbar absolute classes="textarea-scrollbar">
         <Input.TextArea
           autoSize={autoSize}
           {...props}
           disabled={disabled}
+          readOnly={readOnly}
           onFocus={(e): void => {
             onFocus && onFocus(e);
             setFocus(true);
