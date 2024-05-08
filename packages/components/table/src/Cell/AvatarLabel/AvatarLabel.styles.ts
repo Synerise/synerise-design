@@ -23,8 +23,6 @@ export const Description = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  max-height: 40px;
-  overflow: hidden;
 `;
 
 export const AvatarLink = styled.a`
