@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { getPopupContainer } from '@synerise/ds-utils';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import DatePicker from '@synerise/ds-date-picker';
 import { FactorsProps, InputProps } from '../../Factors.types';
 
 const DateInput: React.FC<InputProps> = ({
@@ -59,6 +59,7 @@ const DateInput: React.FC<InputProps> = ({
       disabledSeconds={[]}
       error={error}
       readOnly={readOnly}
+      inputProps={{ autoResize: { minWidth: '123px' } }}
       dropdownProps={{
         visible: opened,
         getPopupContainer: getPopupContainerOverride || getPopupContainer,

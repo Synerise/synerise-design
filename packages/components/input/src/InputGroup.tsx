@@ -8,7 +8,7 @@ import { Props } from './InputGroup.types';
 const InputGroup = ({ children, label, errors, description, resetMargin, tooltip, ...antdInputGroupProps }: Props) => {
   const childrenArray = Children.toArray(children);
   return (
-    <InputStyles.OuterWrapper resetMargin={resetMargin}>
+    <InputStyles.OuterWrapper className="ds-input-group-outer-wrapper" resetMargin={resetMargin}>
       {label && (
         <InputStyles.ContentAbove>
           <Label label={label} tooltip={tooltip} />

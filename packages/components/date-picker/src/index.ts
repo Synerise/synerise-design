@@ -1,3 +1,4 @@
+export { default } from './DatePicker';
 export { default as RawDatePicker } from './RawDatePicker/RawDatePicker';
 export { default as DatePicker } from './DatePicker';
 export { default as MonthPicker } from './Elements/MonthPicker/MonthPicker';

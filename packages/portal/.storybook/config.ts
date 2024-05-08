@@ -25,15 +25,15 @@ try {
 const withDSProvider = storyFn => {
   /**
    * allows overwriting the default language in storybook with localeStorage entry
-   * window.localeStorage.setItem('lang', 'en')
+   * window.localStorage.setItem('lang', 'en')
    */
   const optionalUserDefinedLocale = localStorage.getItem('lang');
 
   /**
    * allows overwriting the default dataFormatConfig in storybook with localeStorage entry
-   * window.localeStorage.setItem("dataFormatConfig", {"startWeekDayNotation":"US","dateFormatNotation":"US","timeFormatNotation":"US","numberFormatNotation":"US"})
+   * window.localStorage.setItem("dataFormatConfig", JSON.toString({"startWeekDayNotation":"US","dateFormatNotation":"US","timeFormatNotation":"US","numberFormatNotation":"US"}))
    */
-  const optionalUserDefinedDataFormatConfig = JSON.parse(localStorage.getItem('dataFormatConfig'));
+  const optionalUserDefinedDataFormatConfig = JSON.parse(localStorage.getItem('dataFormatConfig') as string);
 
   const props = {
     code: 'en_GB',

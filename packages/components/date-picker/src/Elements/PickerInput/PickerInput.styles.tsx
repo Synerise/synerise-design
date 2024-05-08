@@ -23,7 +23,7 @@ const activeStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
 export const Input = styled(DSInput)<InputProps & { active: boolean }>`
   & {
     .ant-input {
-      min-width: 150px;
+      ${props => !props.autoResize && 'min-width: 150px'};
       ${(props): false | FlattenSimpleInterpolation => !!props.active && activeStyle(props)}
     }
   }

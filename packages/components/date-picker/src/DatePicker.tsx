@@ -29,6 +29,7 @@ const DatePicker: React.FC<Props> = ({
   hideNow,
   readOnly,
   renderTrigger,
+  inputProps,
   ...rest
 }) => {
   const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
@@ -66,6 +67,7 @@ const DatePicker: React.FC<Props> = ({
 
   const trigger = renderTrigger?.() || (
     <PickerInput
+      {...inputProps}
       disabled={disabled}
       autoFocus={!disabled && autoFocus}
       value={selectedDate}
