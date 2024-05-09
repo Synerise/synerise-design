@@ -1,4 +1,4 @@
-import React, { MutableRefObject, forwardRef, ReactNode } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntInput, { InputProps } from 'antd/lib/input';
 import TextArea from 'antd/lib/input/TextArea';
@@ -38,12 +38,30 @@ export function autoresizeConfObjToCss({ autoResize }: { autoResize?: AutoResize
   if (!autoResize) return '';
   if (typeof autoResize === 'object') {
     return `
-      ${autoResize.maxWidth !== undefined ? `max-width: ${autoResize.maxWidth};` : ''}
+      ${autoResize.maxWidth ? `max-width: ${autoResize.maxWidth};` : ''}
       min-width: ${autoResize.minWidth};
     `;
   }
   return `max-width: 400px; min-width: 150px;`;
 }
+
+export const InputWrapper = styled.div<{ icon1: boolean; icon2: boolean }>`
+  position: relative;
+  && .ant-input {
+    padding-right: ${props => {
+      if (props.icon1 && props.icon2) return '64px;';
+      if (props.icon1 || props.icon2) return '36px;';
+      return '12px';
+    }};
+    &::placeholder {
+      line-height: 1.29;
+    }
+  }
+  .ant-input-group-addon {
+    height: 100%;
+  }
+`;
+
 export const OuterWrapper = styled.div<{
   resetMargin?: boolean;
   autoResize?: AutoResizeProp;
@@ -61,33 +79,17 @@ export const OuterWrapper = styled.div<{
   input {
     ${(props: AutoResizeInputProps) => autoresizeConfObjToCss(props)}
   }
+  ${InputWrapper} {
+    ${props =>
+      props.autoResize &&
+      `
+      display: inline-block;
+    `}
+  }
 `;
 
 export const Wrapper = styled.div`
   margin-bottom: 24px;
-`;
-
-interface InputWrapperProps {
-  icon1: boolean;
-  icon2: boolean;
-  ref?: MutableRefObject<HTMLDivElement | null>;
-}
-
-export const InputWrapper = styled.div<InputWrapperProps>`
-  position: relative;
-  && .ant-input {
-    padding-right: ${props => {
-      if (props.icon1 && props.icon2) return '64px;';
-      if (props.icon1 || props.icon2) return '36px;';
-      return '12px';
-    }};
-    &::placeholder {
-      line-height: 1.29;
-    }
-  }
-  .ant-input-group-addon {
-    height: 100%;
-  }
 `;
 
 export const IconsWrapper = styled.div<{ disabled?: boolean }>`
@@ -143,6 +145,7 @@ export const AntdInput = styled(
 
   &&& {
     min-height: 32px;
+    transition: all 0.3s, width 0ms, min-width 0ms, max-width 0ms;
     grid-area: 1 / 1;
     color: ${props => props.theme.palette['grey-700']};
     z-index: 1;
@@ -197,7 +200,7 @@ export const AntdMaskedInput = styled(
 
 export const AntdTextArea = styled(
   forwardRef<TextArea, { error?: boolean }>(
-    // eslint-disable-next-line
+    // eslint-disable-next-line handle-callback-err
     ({ error, ...props }, ref) => <BaseAntInput.TextArea autoComplete="off" {...props} ref={ref} />
   )
 )<{ error?: boolean }>`

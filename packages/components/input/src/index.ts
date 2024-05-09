@@ -1,9 +1,7 @@
 export { default as Label } from './Label/Label';
 export {
   Input,
-  TextArea,
   RawInput,
-  RawTextArea,
   InputGroup,
   MaskedInput,
   InputMultivalue,
@@ -12,14 +10,17 @@ export {
   WrapperAutoResize,
 } from './Input';
 
+export { TextArea, RawTextArea } from './TextArea';
+export type { TextareaProps } from './TextArea.types';
+
 export * as InputStyles from './Input.styles';
 
+export type { BaseProps, EnhancedProps, InputProps, MaskedInputProps, AutoResizeProp } from './Input.types';
+
+export { default as AutosizeInput } from './AutosizeInput/AutosizeInput';
 export type {
-  BaseProps,
-  EnhancedProps,
-  InputProps,
-  TextareaProps,
-  MaskedInputProps,
-  AutoResizeProp,
-} from './Input.types';
-export { default as AutosizeInput } from './autosize/autosize';
+  AutosizeInputProps,
+  AutosizeWrapperProps,
+  AutosizeInputRefType,
+} from './AutosizeInput/AutosizeInput.types';
+export { AutosizeWrapper } from './AutosizeWrapper/AutosizeWrapper';

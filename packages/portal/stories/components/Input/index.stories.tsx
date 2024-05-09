@@ -633,7 +633,8 @@ const stories = {
       containerWidth = number('Set input container width', 400, undefined, 'autoresize')
     }
     else {
-      autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
+      const maxWidth = number('Set autoResize max width', 300, undefined, 'autoresize');
+      autoResizeProp.maxWidth = maxWidth !== 0 ? `${maxWidth}px` : undefined;
     }
     const getDescription = (hasDescription: boolean): string => {
       if (hasDescription) {
@@ -650,7 +651,8 @@ const stories = {
         return '';
       }
     };
-    
+    const hasIconTooltip = boolean('Set Icon Tooltip', false);
+
     return (
       <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
       <Input
@@ -671,6 +673,11 @@ const stories = {
           setFocus(true);
         }}
         value={value}
+
+        icon1={<Icon component={<FileM />} />}
+        icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
+        icon2={<Icon component={<FileM />} />}
+        icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
       />
       </div>
     );
@@ -741,7 +748,8 @@ const stories = {
     const errorMessage = text('Error Text', 'Error');
     const hasError = boolean('Set validation state', false);
     const [isFocus, setFocus] = useState(false);
-    const hasIconTooltip = boolean('Set Icon Tooltip', false);
+    const hasIcons = boolean('With icons', false);
+    const hasIconTooltip = hasIcons && boolean('Set Icon Tooltip', false);
     const getErrorText = (hasError: boolean): string => {
       if (hasError) {
         return errorMessage;
@@ -770,9 +778,9 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        icon1={<Icon component={<FileM />} />}
+        icon1={hasIcons ? <Icon component={<FileM />} /> : undefined}
         icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
-        icon2={<Icon component={<FileM />} />}
+        icon2={hasIcons ? <Icon component={<FileM />} /> : undefined}
         icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
       />
     );
