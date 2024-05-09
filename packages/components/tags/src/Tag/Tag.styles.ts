@@ -64,7 +64,6 @@ const addonStyles = (props: ThemeProps): string => `
 `;
 
 export const TagName = styled.span`
-  display: flex;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -297,6 +296,7 @@ export const Content = styled.div<{ iconHover?: boolean }>`
   align-items: center;
   flex-grow: 0;
   flex-shrink: 1;
+  max-width: 100%;
   ${(props): string | false =>
     !!props.iconHover &&
     `
