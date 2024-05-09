@@ -3,8 +3,8 @@ import React, { useCallback, useRef, useState, KeyboardEvent, FocusEvent, Change
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { toCamelCase } from '@synerise/ds-utils';
+import { AutosizeInput } from '@synerise/ds-input';
 
-import AutosizeInput, { AutosizeInputRefType } from './autosize/autosize';
 import * as S from './InlineEdit.styles';
 import { InlineEditProps } from './InlineEdit.types';
 
@@ -19,18 +19,11 @@ const InlineEdit = ({
   error,
   input,
 }: InlineEditProps) => {
-  const autoWidthRef = useRef<AutosizeInputRefType>(null);
-  const inputRef = useRef<HTMLInputElement | null>();
-
-  useEffect(() => {
-    if (autoWidthRef.current) {
-      inputRef.current = autoWidthRef.current.inputRef.current;
-    }
-  });
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [scrolled, setScrolled] = useState<boolean>();
 
-  const handleScroll = useCallback((): void => {
+  const handleScroll = useCallback(() => {
     if (inputRef.current) {
       const scrolledPixels = inputRef.current.scrollLeft;
       if (scrolledPixels > 0) {
@@ -84,24 +77,29 @@ const InlineEdit = ({
       scrolled={scrolled}
     >
       <AutosizeInput
-        id={input.name ? toCamelCase(input.name) : 'id'}
-        className="autosize-input"
-        placeholder={input.placeholder}
-        maxLength={input.maxLength}
-        onKeyPress={handleKeyPress}
-        disabled={disabled}
-        name={input.name}
         extraWidth={2}
-        readOnly={input.readOnly}
         value={input.value || ''}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        autoComplete={input.autoComplete}
         placeholderIsMinWidth={false}
-        onScroll={handleScroll}
         wrapperClassName="autosize-input"
-        ref={autoWidthRef}
-      />
+      >
+        <input
+          itemRef=""
+          onScroll={handleScroll}
+          id={input.name ? toCamelCase(input.name) : 'id'}
+          className="autosize-input"
+          placeholder={input.placeholder}
+          maxLength={input.maxLength}
+          onKeyPress={handleKeyPress}
+          disabled={disabled}
+          name={input.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          readOnly={input.readOnly}
+          value={input.value || ''}
+          autoComplete={input.autoComplete}
+          ref={inputRef}
+        />
+      </AutosizeInput>
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
           <S.IconWrapper disabled={disabled} onClick={handleFocusInput} size={size}>

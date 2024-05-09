@@ -5,8 +5,7 @@ import { escapeRegEx } from '@synerise/ds-utils';
 import { action } from '@storybook/addon-actions';
 import Loader from '@synerise/ds-loader';
 import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
-import { AutoResizeProp, AutosizeInput } from '@synerise/ds-input';
-import AntdAutoComplete from 'antd/lib/auto-complete';
+import { AutoResizeProp } from '@synerise/ds-input';
 
 const dataSource = ['First position', 'Second position'];
 const renderLabel = (text: string) => {
@@ -129,36 +128,10 @@ const AutocompleteWithState = () => {
     </div>
   );
 };
-const AutocompleteWithAutosize = () => {
-  const [value, setValue] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
-  const [options, setOptions] = useState<{ value: string }[]>([]);
-
-  return (<>
-    <AutosizeInput
-      renderInput={Autocomplete || AntdAutoComplete}
-      extraWidth={24}
-      options={options}
-      inputStyle={{
-        ...(number('Min width', 200) ? {minWidth: number('Min width', 200)} : {}),
-        ...(number('Max width', 0) ? {maxWidth: number('Max width', 0)} : {}),
-      }}
-      onSelect={val => setValue(val)}
-      onSearch={(text) => {
-        setOptions([text + ' sample value', `text: ${text}`].map(e => ({value: e})));
-        setSearch(text);
-      }}
-      textLenPropName="value"
-      value={search}
-      placeholder="input here"
-      description={value ? `Value: ${value}` : '(select an option)'}
-    ></AutosizeInput>
-  </>);
-};
 
 const stories = {
   default: () => <AutocompleteWithState />,
-  AutocompleteWithAutosize: () => <AutocompleteWithAutosize />,
+  
 };
 
 export default {

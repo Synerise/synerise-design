@@ -35,13 +35,13 @@
   "dependencies": {
     "@synerise/ds-dropdown": "^0.17.108",
     "@synerise/ds-icon": "^0.60.8",
+    "@synerise/ds-input": "^0.21.1",
     "@synerise/ds-menu": "^0.18.21",
     "@synerise/ds-scrollbar": "^0.10.3",
     "@synerise/ds-search": "^0.8.89",
     "@synerise/ds-tooltip": "^0.14.26",
     "@synerise/ds-typography": "^0.15.0",
-    "@synerise/ds-utils": "^0.26.4",
-    "react-input-autosize": "^2.2.2"
+    "@synerise/ds-utils": "^0.26.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -50,7 +50,6 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "10.0.1",
-    "@types/react-input-autosize": "2.2.1"
+    "@testing-library/react": "10.0.1"
   }
 }

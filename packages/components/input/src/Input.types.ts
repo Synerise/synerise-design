@@ -3,7 +3,6 @@ import { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from
 import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import { TooltipProps } from 'antd/lib/tooltip';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
-import { TextAreaProps } from './Textarea/Textarea.types';
 
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 
@@ -33,5 +32,5 @@ export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
   (AntdInputProps | AntdTextAreaProps | AntdMaskedInputProps);
 
 export type InputProps = BaseProps & AntdInputProps;
-export type TextareaProps = BaseProps<HTMLTextAreaElement> & TextAreaProps;
+
 export type MaskedInputProps = BaseProps & AntdMaskedInputProps;

@@ -1,5 +1,4 @@
 import React, {
-  InputHTMLAttributes,
   CSSProperties,
   useState,
   useEffect,
@@ -7,28 +6,11 @@ import React, {
   useLayoutEffect,
   forwardRef,
   useImperativeHandle,
-  ChangeEvent,
-  RefObject,
+  useCallback,
 } from 'react';
 import { useResizeObserver } from '@synerise/ds-utils';
-
-export type AutosizeInputProps = InputHTMLAttributes<HTMLInputElement> & {
-  extraWidth?: number | string;
-  minWidth?: number | string;
-  onAutosize?: (newWidth: number) => void;
-  placeholderIsMinWidth?: boolean;
-  value?: string | number;
-  wrapperClassName?: string;
-  wrapperStyle?: CSSProperties;
-};
-
-export type AutosizeInputRefType = {
-  inputRef: RefObject<HTMLInputElement>;
-  sizerRef: RefObject<HTMLDivElement>;
-  placeholderSizerRef: RefObject<HTMLDivElement>;
-  copyInputStyles: () => void;
-  updateInputWidth: () => void;
-};
+import type { AutosizeInputRefType, AutosizeInputProps } from './AutosizeInput.types';
+import { calculateInputWidth } from './utils';
 
 const sizerStyle: CSSProperties = {
   position: 'absolute',
@@ -40,38 +22,36 @@ const sizerStyle: CSSProperties = {
   whiteSpace: 'pre',
 };
 
-/**
- * Automatically sized input field.
- */
-export const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
+const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
   (
     {
       extraWidth = 16,
       wrapperClassName,
       wrapperStyle: wrapperStyleProp,
       onAutosize,
+      preAutosize,
       placeholderIsMinWidth,
       minWidth = 0,
+      handleInputRef,
+      children,
+      transformWrapperRef = (element: HTMLElement) => element,
+      transformRef = (element: HTMLElement) => element,
       ...props
     },
     forwardedRef
   ) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const inputWrapperRef = useRef<HTMLElement | null>(null);
     const sizerRef = useRef<HTMLDivElement>(null);
     const placeholderSizerRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const [input, setInput] = useState<string>('');
     const [inputWidth, setInputWidth] = useState(0);
 
     const { width: updatedSizerWidth } = useResizeObserver(sizerRef);
     const { width: updatedPlaceholderWidth } = useResizeObserver(placeholderSizerRef);
 
-    const usedValue = `${props.value ?? input}`;
-
-    const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-      setInput(event.target.value);
-      if (props.onChange) props.onChange(event);
-    };
+    const usedValue = props.value ?? props.defaultValue ?? '';
 
     const copyInputStyles = () => {
       if (inputRef.current) {
@@ -95,44 +75,62 @@ export const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps
       }
     };
 
+    const resize = useCallback(
+      (width: number) => {
+        preAutosize && preAutosize(width);
+        setInputWidth(width + +extraWidth);
+        onAutosize && onAutosize(width);
+      },
+      [extraWidth, onAutosize, preAutosize]
+    );
+
     const updateInputWidth = () => {
       const sizerWidth = sizerRef.current?.scrollWidth;
       const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
 
-      if (sizerWidth && usedValue.length) {
-        /* If the input field has content, update the sizer to match its width  */
+      const calculatedWidth = calculateInputWidth({
+        sizerWidth,
+        usedValue,
+        placeholderIsMinWidth,
+        placeholderWidth,
+        minWidth: +minWidth,
+        placeholder: props.placeholder,
+      });
 
-        let width = sizerWidth;
-
-        if (placeholderIsMinWidth && placeholderWidth && sizerWidth < placeholderWidth && placeholderSizerRef.current) {
-          width = placeholderWidth;
-        }
-
-        if (width < +minWidth) {
-          width = +minWidth;
-        }
-
-        if (width) {
-          setInputWidth(width + +extraWidth);
-          if (onAutosize) onAutosize(width);
-        }
-      } else if (props.placeholder && placeholderWidth) {
-        /* If no input value exists, check for placeholder value and update the sizer accordingly  */
-
-        setInputWidth(Math.max(+minWidth, placeholderWidth) + +extraWidth);
-
-        if (onAutosize) onAutosize(placeholderWidth);
-      } else if (sizerRef.current) {
-        /* If no input value or placeholder exists, update the sizer to the width of the "minWidth" + "extraWidth" prop (default is 16) */
-
-        setInputWidth(+minWidth + +extraWidth);
-        if (onAutosize) onAutosize(+minWidth);
+      if ((sizerWidth && usedValue && calculatedWidth) || (props.placeholder && placeholderWidth) || sizerRef.current) {
+        resize(calculatedWidth);
       }
     };
+
     /* Copy styles of the input field to the sizer, ensuring that the width of the input adjusts accordingly */
     useLayoutEffect(() => {
       copyInputStyles();
     }, []);
+
+    useEffect(() => {
+      if (inputWrapperRef.current) {
+        inputWrapperRef.current.style.width = `${inputWidth}px`;
+      }
+    }, [inputWidth]);
+
+    useEffect(() => {
+      if (sizerRef.current) {
+        const sizerSibling = sizerRef.current.nextElementSibling;
+        const inputElement = sizerSibling instanceof HTMLElement && transformRef(sizerSibling);
+        const inputWrapperElement = sizerSibling instanceof HTMLElement && transformWrapperRef(sizerSibling);
+        if (inputWrapperElement && inputWrapperElement instanceof HTMLElement) {
+          inputWrapperRef.current = inputWrapperElement;
+        }
+        if (inputElement) {
+          if (inputElement && inputElement instanceof HTMLInputElement) {
+            inputRef.current = inputElement;
+            inputRef.current.style.boxSizing = 'content-box';
+            handleInputRef && handleInputRef(inputElement, sizerSibling);
+            copyInputStyles();
+          }
+        }
+      }
+    }, [handleInputRef, transformRef, transformWrapperRef]);
 
     useEffect(updateInputWidth, [
       usedValue,
@@ -144,11 +142,14 @@ export const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps
       minWidth,
       updatedPlaceholderWidth,
       updatedSizerWidth,
+      preAutosize,
+      resize,
     ]);
 
     useImperativeHandle(forwardedRef, () => ({
       inputRef,
       sizerRef,
+      wrapperRef,
       placeholderSizerRef,
       copyInputStyles,
       updateInputWidth,
@@ -160,25 +161,12 @@ export const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps
       display: props.style?.display ?? 'inline-block',
     };
 
-    const inputStyle: CSSProperties = {
-      boxSizing: 'content-box',
-      width: inputWidth,
-      ...props.style,
-    };
-
     return (
-      <div className={wrapperClassName} style={wrapperStyle} data-testid="wrapper">
+      <div ref={wrapperRef} className={wrapperClassName} style={wrapperStyle} data-testid="wrapper">
         <div style={sizerStyle} ref={sizerRef} data-testid="sizer">
           {usedValue}
         </div>
-        <input
-          {...props}
-          ref={inputRef}
-          value={usedValue}
-          style={inputStyle}
-          onChange={handleInput}
-          data-testid="input"
-        />
+        {children}
         {props.placeholder ? (
           <div ref={placeholderSizerRef} style={sizerStyle} data-testid="placeholder-sizer">
             {props.placeholder}

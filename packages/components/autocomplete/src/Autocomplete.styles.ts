@@ -20,14 +20,14 @@ export const LoaderWrapper = styled.div`
 `;
 
 const active = (): FlattenInterpolation<ThemeProps> => css`
-  transition: ease-in-out all 0.2s;
+  transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
   border: 1px solid ${(props): string => props.theme.palette['blue-600']};
   background-color: ${(props): string => props.theme.palette['blue-050']};
 `;
 
 const error = (): FlattenInterpolation<ThemeProps> => css`
-  transition: ease-in-out all 0.2s;
+  transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
   box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['red-600']};
   background: ${(props): string => props.theme.palette['red-050']};
   border: 1px solid ${(props): string => props.theme.palette['red-600']};
@@ -123,7 +123,7 @@ export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean
             padding: 0 10px;
           }
           .ant-input {
-            transition: ease-in-out all 0.3s;
+            transition: ease-in-out all 0.3s, width 0s, min-width 0s, max-width 0s;
             &:focus {
               ${active()}
               &:hover {

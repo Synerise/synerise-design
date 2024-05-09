@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { toCamelCase } from '@synerise/ds-utils';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
-import AutosizeInput, { AutosizeInputRefType } from '../autosize/autosize';
+import { AutosizeInput } from '@synerise/ds-input';
 import * as S from './InlineSelect.style';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
 import { InlineSelectProps } from './InlineSelect.types';
@@ -10,6 +10,7 @@ import { InlineSelectProps } from './InlineSelect.types';
 const InlineSelect = ({
   className,
   style,
+  expanded,
   dropdownProps = {},
   dropdownOverlayStyle = {},
   inputStyle = {},
@@ -23,12 +24,10 @@ const InlineSelect = ({
   dataSource,
   initialValue,
 }: InlineSelectProps) => {
-  const autoWidthRef = useRef<AutosizeInputRefType>(null);
-  const inputRef = useRef<HTMLInputElement | null>();
-
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(initialValue || placeholder || 'option');
-  const [opened, setOpened] = useState<boolean>(false);
-  const [pressed, setPressed] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedValue, setSelectedValue] = useState(initialValue || placeholder || 'option');
+  const [isOpened, setIsOpened] = useState(Boolean(expanded));
+  const [isPressed, setIsPressed] = useState(false);
 
   useEffect(() => {
     if (input?.value && input.value !== selectedValue) {
@@ -37,25 +36,20 @@ const InlineSelect = ({
   }, [input?.value, selectedValue]);
 
   useEffect(() => {
-    if (autoWidthRef.current) {
-      inputRef.current = autoWidthRef.current.inputRef.current;
-    }
-  });
-  useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
   }, [autoFocus, inputRef]);
 
   return (
     <Dropdown
-      visible={!disabled && opened}
-      onVisibleChange={setOpened}
+      visible={!disabled && isOpened}
+      onVisibleChange={setIsOpened}
       placement="bottomRight"
       disabled={disabled}
       overlay={
         <SelectDropdown
           dataSource={dataSource}
           onSelect={item => setSelectedValue(item.text as string)}
-          closeDropdown={() => setOpened(false)}
+          closeDropdown={() => setIsOpened(false)}
           style={dropdownOverlayStyle}
         />
       }
@@ -69,28 +63,33 @@ const InlineSelect = ({
         disabled={disabled}
         error={error}
         tabIndex={0}
-        onMouseDown={(): void => setPressed(true)}
-        onMouseUp={(): void => setPressed(false)}
-        pressed={pressed}
-        dropdownOpened={opened}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
+        pressed={isPressed}
+        dropdownOpened={isOpened}
       >
         <AutosizeInput
-          id={input.name ? toCamelCase(input.name) : 'id'}
-          className="autosize-input"
-          placeholder={input.placeholder}
-          maxLength={input.maxLength}
-          disabled={disabled}
-          name={input.name}
           value={selectedValue || placeholder}
-          autoComplete={input.autoComplete}
           placeholderIsMinWidth={false}
-          style={inputStyle}
           extraWidth={2}
           wrapperClassName="autosize-input"
-          ref={autoWidthRef}
-        />
+        >
+          <input
+            ref={inputRef}
+            style={inputStyle}
+            id={input.name ? toCamelCase(input.name) : 'id'}
+            className="autosize-input"
+            placeholder={placeholder}
+            maxLength={input.maxLength}
+            disabled={disabled}
+            name={input.name}
+            readOnly={input.readOnly}
+            value={selectedValue || placeholder}
+            autoComplete="off"
+          />
+        </AutosizeInput>
         {!hideIcon && (
-          <S.IconWrapper size={size} expanded={opened}>
+          <S.IconWrapper size={size} expanded={isOpened}>
             <Icon component={<AngleDownS />} size={24} />
           </S.IconWrapper>
         )}

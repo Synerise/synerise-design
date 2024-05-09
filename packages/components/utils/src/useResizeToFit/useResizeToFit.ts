@@ -4,14 +4,13 @@ type useResizeToFitProps = {
   onResize: (width: number) => void;
   autoObserve?: boolean;
 };
+
 const useResizeToFit = <T extends HTMLElement = HTMLDivElement>({ onResize, autoObserve }: useResizeToFitProps) => {
   const elementRef = useRef<T>(null);
 
   const resizeObserver = useRef(
     new window.ResizeObserver(() => {
-      if (elementRef.current) {
-        onResize(elementRef.current.clientWidth);
-      }
+      elementRef.current && onResize(elementRef.current.clientWidth);
     })
   ).current;
 
