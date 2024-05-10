@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.215.1](https://github.com/synerise/synerise-design/compare/portal@0.215.0...portal@0.215.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* **date-picker:** added autoResize handling ([f3a759c](https://github.com/synerise/synerise-design/commit/f3a759c2b40664cc2d225cb4eaaefcbbf70321fe))
+* **input:** refactored autosize input solution ([449bd86](https://github.com/synerise/synerise-design/commit/449bd868b8d3b545ac582c556fa0ff607c77f853))
+
+
+
+
+
 # [0.215.0](https://github.com/synerise/synerise-design/compare/portal@0.214.0...portal@0.215.0) (2024-05-08)
 
 

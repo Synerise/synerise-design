@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.47...@synerise/ds-date-picker@0.10.48) (2024-05-10)
+
+
+### Bug Fixes
+
+* **date-picker:** added autoResize handling ([f3a759c](https://github.com/Synerise/synerise-design/commit/f3a759c2b40664cc2d225cb4eaaefcbbf70321fe))
+
+
+
+
+
 ## [0.10.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.46...@synerise/ds-date-picker@0.10.47) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-date-picker

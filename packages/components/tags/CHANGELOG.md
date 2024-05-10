@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.43](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.42...@synerise/ds-tags@0.8.43) (2024-05-10)
+
+
+### Bug Fixes
+
+* **tags:** ellipsis for name in tag ([7103a42](https://github.com/Synerise/synerise-design/commit/7103a42d71534aeab49be916e24d3a4b85066aaf))
+
+
+
+
+
 ## [0.8.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.41...@synerise/ds-tags@0.8.42) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-tags

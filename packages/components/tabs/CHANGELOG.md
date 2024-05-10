@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.110](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.109...@synerise/ds-tabs@0.13.110) (2024-05-10)
+
+
+### Bug Fixes
+
+* **tabs:** fixes containerWidth calc, prevent rendering 0 when tabs=[] ([13c383d](https://github.com/synerise/synerise-design/commit/13c383d97461a03146cfeb9e26e0ff61662a4dc4))
+
+
+
+
+
 ## [0.13.109](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.108...@synerise/ds-tabs@0.13.109) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-tabs

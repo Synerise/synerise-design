@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.22.18...@synerise/ds-factors@0.22.19) (2024-05-10)
+
+
+### Bug Fixes
+
+* **date-picker:** added autoResize handling ([f3a759c](https://github.com/Synerise/synerise-design/commit/f3a759c2b40664cc2d225cb4eaaefcbbf70321fe))
+
+
+
+
+
 ## [0.22.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.22.17...@synerise/ds-factors@0.22.18) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-factors

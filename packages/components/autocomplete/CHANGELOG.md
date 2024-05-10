@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.7.9...@synerise/ds-autocomplete@0.7.10) (2024-05-10)
+
+
+### Bug Fixes
+
+* **input:** refactored autosize input solution ([449bd86](https://github.com/Synerise/synerise-design/commit/449bd868b8d3b545ac582c556fa0ff607c77f853))
+
+
+
+
+
 ## [0.7.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.7.8...@synerise/ds-autocomplete@0.7.9) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-autocomplete

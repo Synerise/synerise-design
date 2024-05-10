@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.26.4...@synerise/ds-utils@0.26.5) (2024-05-10)
+
+
+### Bug Fixes
+
+* **input:** refactored autosize input solution ([449bd86](https://github.com/synerise/synerise-design/commit/449bd868b8d3b545ac582c556fa0ff607c77f853))
+
+
+
+
+
 ## [0.26.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.26.3...@synerise/ds-utils@0.26.4) (2024-05-08)
 
 **Note:** Version bump only for package @synerise/ds-utils
