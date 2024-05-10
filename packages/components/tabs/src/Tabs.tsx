@@ -27,6 +27,11 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   }, [width, debouncedEventHandler]);
 
   useEffect(() => {
+    containerRef.current && setContainerWidth(containerRef.current?.offsetWidth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [containerRef.current]);
+
+  useEffect(() => {
     const newTabs = tabs.map(tab => {
       return {
         ...tab,
@@ -184,12 +189,12 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
 
   return (
     <>
-      {tabs.length && (
+      {tabs.length > 0 ? (
         <S.TabsContainer className="ds-tabs" ref={containerRef} data-testid="tabs-container" block={block}>
           {renderVisibleTabs}
           {renderDropdown()}
         </S.TabsContainer>
-      )}
+      ) : null}
       {/* rendering hidden tabs to measure their width */}
       {!block && renderHelpers}
     </>
