@@ -68,15 +68,15 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   ${props => props.left !== undefined && `left: ${numberToPixels(props.left)}`};
   ${props => props.right !== undefined && `right: ${numberToPixels(props.right)}`};
 
-  ${(props) => {
+  ${props => {
     const width = getColumnWidth(props);
     return css`
       width: ${width};
       min-width: ${width};
       max-width: ${width};
-    `
+    `;
   }}
-  
+
   padding: 0 24px;
 
   &.virtual-table-cell.ant-table-selection-column {

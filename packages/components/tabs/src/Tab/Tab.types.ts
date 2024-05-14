@@ -1,4 +1,4 @@
-import { ReactNode, RefObject} from 'react';
+import { ReactNode, RefObject } from 'react';
 
 export type TabProps = {
   index: number;

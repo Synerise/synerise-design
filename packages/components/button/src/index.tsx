@@ -24,9 +24,15 @@ class Button extends React.Component<ButtonProps> {
 }
 
 export default Button;
+
+export type { CreatorProps } from './Creator/Creator.types';
+export type { StarButtonProps } from './Star/Star.types';
+export type { CheckboxButtonProps } from './Checkbox/Checkbox.types';
+export type { ExpanderProps } from './Expander/Expander.types';
 export type { Props as ButtonProps } from './Button.types';
-export { CreatorStatus } from './Creator/Creator.types';
+
 export { ExpanderSize } from './Expander/Expander.types';
+export { CreatorStatus } from './Creator/Creator.types';
 
 export const ButtonStyles = {
   Button: MainButtonStyles,

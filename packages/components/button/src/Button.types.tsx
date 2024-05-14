@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { ButtonProps } from 'antd/lib/button';
 import { JustifyContentProperty } from 'csstype';
-import * as React from 'react';
 
 export type Props = Omit<ButtonProps, 'type'> & {
   /**

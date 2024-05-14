@@ -26,6 +26,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
         {/* regenerating keys after every render to prevent from render lags on Chrome 84 */}
         {onLongPrev && !hidePrev ? (
           <S.NavButton
+            data-testid="datapicker-long-prev"
             disabled={inactivePrev}
             key={uuid()}
             mode="single-icon"
@@ -40,6 +41,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
         )}
         {onShortPrev && !hidePrev ? (
           <S.NavButton
+            data-testid="datapicker-short-prev"
             disabled={inactivePrev}
             key={uuid()}
             mode="single-icon"
@@ -57,6 +59,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
       <S.ArrowContainer>
         {onShortNext && !hideNext ? (
           <S.NavButton
+            data-testid="datapicker-short-next"
             disabled={inactiveNext}
             key={uuid()}
             mode="single-icon"
@@ -71,6 +74,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
         )}
         {onLongNext && !hideNext ? (
           <S.NavButton
+            data-testid="datapicker-long-next"
             disabled={inactiveNext}
             key={uuid()}
             mode="single-icon"

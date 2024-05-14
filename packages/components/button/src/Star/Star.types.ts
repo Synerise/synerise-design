@@ -15,8 +15,8 @@ type ButtonPropsOmitted = Omit<
   | 'onChange'
 >;
 
-export interface StarButtonProps extends ButtonPropsOmitted {
+export type StarButtonProps = ButtonPropsOmitted & {
   active?: boolean;
   hasError?: boolean;
   className?: string;
-}
+};

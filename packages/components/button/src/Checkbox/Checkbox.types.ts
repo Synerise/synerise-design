@@ -15,16 +15,16 @@ type ButtonPropsOmitted = Omit<
   | 'onChange'
 >;
 
-export interface CheckboxButtonProps extends ButtonPropsOmitted {
+export type CheckboxButtonProps = ButtonPropsOmitted & {
   checked?: boolean;
   defaultChecked?: boolean;
   hasError?: boolean;
   indeterminate?: boolean;
   onChange?: (checked: boolean) => void;
   className?: string;
-}
+};
 
-export interface ButtonCheckboxIconProps {
+export type ButtonCheckboxIconProps = {
   checked?: boolean;
   indeterminate?: boolean;
-}
+};

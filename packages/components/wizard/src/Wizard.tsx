@@ -82,7 +82,7 @@ const Wizard = ({
         <S.WizardContainer withFooter={hasFooter}>
           <S.WizardContent contentWidth={contentWidth}>
             {children}
-            {(!navigationInFooter && navButtons) && <S.WizardButtons>{navButtons}</S.WizardButtons>}
+            {!navigationInFooter && navButtons && <S.WizardButtons>{navButtons}</S.WizardButtons>}
           </S.WizardContent>
         </S.WizardContainer>
         {hasFooter && (

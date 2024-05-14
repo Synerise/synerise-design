@@ -3,10 +3,10 @@ export enum ExpanderSize {
   'M' = 32,
 }
 
-export interface ExpanderProps {
+export type ExpanderProps = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   size?: 'S' | 'M';
   disabled?: boolean;
   expanded?: boolean;
   className?: string;
-}
+};

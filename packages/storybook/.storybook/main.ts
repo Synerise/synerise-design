@@ -1,0 +1,110 @@
+import type { StorybookConfig } from '@storybook/react-webpack5';
+import { join, dirname } from 'path';
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
+
+const config: StorybookConfig = {
+  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@chromatic-com/storybook'),
+  ],
+  framework: {
+    name: getAbsolutePath('@storybook/react-webpack5'),
+    options: {
+      builder: {
+        useSWC: true,
+      },
+    },
+  },
+  docs: {
+    defaultName: 'Overview',
+    autodocs: 'tag',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: '../../config/typescript/tsconfig.base.json',
+      propFilter: (prop: any) => {
+        const res = !/@types\/react/.test(prop.parent?.fileName);
+        return prop.parent ? res : true;
+      },
+      shouldExtractLiteralValuesFromEnum: true,
+      savePropValueAsString: true,
+
+    },
+    skipBabel: true,
+    check: false,
+
+  },
+  staticDirs: ['../public'],
+  async webpackFinal(config, { configType }) {
+    config.module = {
+      ...(config.module || {}),
+      rules: [
+        ...(config.module?.rules || []),
+        {
+          test: /\.tsx?$/,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['babel-preset-react-app'],
+                plugins: configType !== 'PRODUCTION' ? [[
+                  'transform-rename-import',
+                    {
+                      replacements: [
+                        {
+                          original: '@synerise/ds-core(/dist)?(.*)',
+                          replacement: (_importName, isDist, rest) => {
+                            let result = '@synerise/ds-core/src';
+                            return isDist ? `${result}${rest}` : `${result}/js`;
+                          },
+                        },
+                        {
+                          original: '@synerise/ds-((?!core|icon)[a-z0-9-]+)(/dist)?(.*)',
+                          replacement: '@synerise/ds-$1/src$3',
+                        },
+                      ],
+                    },
+                  ]] : []
+              },
+            },
+          ],
+        },
+        {
+          test: /\.less$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'less-loader',
+              options: {
+                javascriptEnabled: true,
+              },
+            },
+          ],
+        }
+      ]
+    };
+
+    config.resolve = {
+      ...(config.resolve || {}),
+      extensions: [
+        ...(config.resolve?.extensions || []),
+        '.ts',
+        '.tsx'
+      ]
+    }
+    return config;
+  },
+};
+export default config;
