@@ -55,6 +55,7 @@ const Footer: React.FC<Props> = ({
         {!dateOnly && SwitchModeButton}
         <Tooltip title={message}>
           <Button
+            data-testid="date-picker-apply"
             disabled={!canApply}
             type="primary"
             onClick={(): void => {

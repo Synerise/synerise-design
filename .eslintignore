@@ -13,5 +13,6 @@ config/
 **/icon/build/*.js
 **/flag/build/*.js
 packages/portal
+packages/storybook
 packages/docs-site
 __specs__

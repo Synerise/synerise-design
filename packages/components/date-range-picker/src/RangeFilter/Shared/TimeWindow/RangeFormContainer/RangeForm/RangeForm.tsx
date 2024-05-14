@@ -213,7 +213,7 @@ const RangeForm = ({
   return (
     <S.Container>
       <S.Row justifyContent="flex-start" mode={rangeDisplayMode}>
-        {rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER && limitModeSelect}
+        {rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER && limitModeSelect()}
         {mode === FORM_MODES.HOUR ? singleHourPicker() : renderRangeUI()}
         {!!onRangeDelete && !disabled && (
           <S.RemoveIconWrapper onClick={onRangeDelete}>

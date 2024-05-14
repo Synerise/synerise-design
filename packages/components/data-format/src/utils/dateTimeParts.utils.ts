@@ -29,7 +29,7 @@ const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
     .tz(intlObject?.timeZone || defaultTimezone, true)
     .format();
 };
-  
+
 export const getDateParts = (
   value: Date,
   dateFormatIntl: IntlShape,
@@ -40,7 +40,11 @@ export const getDateParts = (
     ...option,
   });
 
-export const getTimeParts = (value: Date, timeFormatIntl: IntlShape, option?: FormatDateOptions): Intl.DateTimeFormatPart[] =>
+export const getTimeParts = (
+  value: Date,
+  timeFormatIntl: IntlShape,
+  option?: FormatDateOptions
+): Intl.DateTimeFormatPart[] =>
   timeFormatIntl.formatDateToParts(getValueWithTimezone(value, timeFormatIntl), {
     ...DEFAULT_FORMAT_TIME_OPTIONS,
     ...option,

@@ -39,9 +39,13 @@ const Picker: React.FC<DayPickerProps> = props => {
         <Navbar
           title={
             <>
-              <S.Link onClick={onMonthNameClick}>{fnsFormat(month, 'MMM', intl.locale)}</S.Link>
+              <S.Link data-testid="datapicker-nav-title-monthpicker-link" onClick={onMonthNameClick}>
+                {fnsFormat(month, 'MMM', intl.locale)}
+              </S.Link>
               {'  '}
-              <S.Link onClick={onYearNameClick}>{fnsFormat(month, 'yyyy', intl.locale)}</S.Link>
+              <S.Link data-testid="datapicker-nav-title-yearpicker-link" onClick={onYearNameClick}>
+                {fnsFormat(month, 'yyyy', intl.locale)}
+              </S.Link>
             </>
           }
           onLongPrev={hideLongPrev ? undefined : (): void => onMonthChange && onMonthChange(fnsAddYears(month, -1))}

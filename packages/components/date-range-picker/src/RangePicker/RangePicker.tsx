@@ -377,6 +377,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
             <S.DateTimeModeSwitch
               type="ghost"
               mode="label-icon"
+              data-testid="date-range-picker-select-time"
               disabled={!canSwitchMode}
               onClick={onSwitchMode}
               className="ds-date-time-switch"
