@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.84](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.83...@synerise/ds-ordered-list@0.3.84) (2024-05-16)
+
+**Note:** Version bump only for package @synerise/ds-ordered-list
+
+
+
+
+
 ## [0.3.83](https://github.com/Synerise/synerise-design/compare/@synerise/ds-ordered-list@0.3.82...@synerise/ds-ordered-list@0.3.83) (2024-05-10)
 
 **Note:** Version bump only for package @synerise/ds-ordered-list

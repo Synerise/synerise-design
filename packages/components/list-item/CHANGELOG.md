@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.0.23...@synerise/ds-list-item@0.0.24) (2024-05-16)
+
+**Note:** Version bump only for package @synerise/ds-list-item
+
+
+
+
+
 ## [0.0.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.0.22...@synerise/ds-list-item@0.0.23) (2024-05-10)
 
 **Note:** Version bump only for package @synerise/ds-list-item

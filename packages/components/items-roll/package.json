@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-items-roll",
-  "version": "0.6.112",
+  "version": "0.6.113",
   "description": "ItemsRoll UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,15 +33,15 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.19.9",
-    "@synerise/ds-divider": "^0.6.18",
-    "@synerise/ds-dropdown": "^0.17.109",
-    "@synerise/ds-icon": "^0.60.9",
-    "@synerise/ds-menu": "^0.18.22",
-    "@synerise/ds-popconfirm": "^0.10.36",
-    "@synerise/ds-search": "^0.8.90",
-    "@synerise/ds-tooltip": "^0.14.27",
-    "@synerise/ds-utils": "^0.26.5",
+    "@synerise/ds-button": "^0.20.0",
+    "@synerise/ds-divider": "^0.6.19",
+    "@synerise/ds-dropdown": "^0.17.110",
+    "@synerise/ds-icon": "^0.61.0",
+    "@synerise/ds-menu": "^0.18.23",
+    "@synerise/ds-popconfirm": "^0.10.37",
+    "@synerise/ds-search": "^0.8.91",
+    "@synerise/ds-tooltip": "^0.14.28",
+    "@synerise/ds-utils": "^0.26.6",
     "react-window": "^1.8.5"
   },
   "peerDependencies": {

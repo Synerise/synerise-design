@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.110...@synerise/ds-tabs@0.14.0) (2024-05-16)
+
+
+### Features
+
+* **storybook7:** SB7.5 install and config ([abfced9](https://github.com/synerise/synerise-design/commit/abfced90c2661903338bff0f7022149fbf7583b9))
+
+
+
+
+
 ## [0.13.110](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.13.109...@synerise/ds-tabs@0.13.110) (2024-05-10)
 
 

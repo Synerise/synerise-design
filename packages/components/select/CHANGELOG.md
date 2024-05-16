@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.50...@synerise/ds-select@0.16.0) (2024-05-16)
+
+
+### Features
+
+* **select:** fixed layout regression ([f75ac75](https://github.com/synerise/synerise-design/commit/f75ac75d35905259acd30b2e9f626ec5e3c7b4e3))
+
+
+
+
+
 ## [0.15.50](https://github.com/synerise/synerise-design/compare/@synerise/ds-select@0.15.49...@synerise/ds-select@0.15.50) (2024-05-10)
 
 **Note:** Version bump only for package @synerise/ds-select
