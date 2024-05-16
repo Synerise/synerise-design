@@ -38,12 +38,12 @@ const addonStyles = (props: ThemeProps): string => `
   line-height: 1.39;
  `;
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div<{ hasBottomMargin?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  margin: 0 0 16px;
+  margin: 0 0 ${props => (props.hasBottomMargin ? 16 : 0)}px;
 `;
 
 export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
