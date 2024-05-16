@@ -30,11 +30,13 @@ class Select extends Component<Props> {
       getPopupContainer = defaultGetPopupContainer,
       grey,
       dropdownClassName,
+      asFormElement,
       ...antdProps
     } = this.props;
     const { size } = antdProps;
+    const hasBottomMargin = asFormElement || Boolean(errorText || description);
     return (
-      <S.SelectContainer className="ds-select-container">
+      <S.SelectContainer className="ds-select-container" hasBottomMargin={hasBottomMargin}>
         <S.Label label={label} tooltip={tooltip} tooltipConfig={tooltipConfig} />
         <S.SelectWrapper
           grey={grey}

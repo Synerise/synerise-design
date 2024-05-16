@@ -17,5 +17,6 @@ export interface Props<T = SelectValue> extends Omit<SelectProps<T>, 'listHeight
   suffixel?: ReactNode;
   listHeight?: ReactText;
   grey?: boolean;
+  asFormElement?: boolean;
   selectorStyle?: CSSObject;
 }
