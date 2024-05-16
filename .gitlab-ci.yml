@@ -153,6 +153,7 @@ chromatic_publish:
     - yarn npx:lerna run pack:ci --since origin/master
     - (cd packages/portal/storybook-static/static; ls > index.txt)
     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
+  interruptible: true
 
 
 chromatic_publish_sb7:
@@ -168,6 +169,7 @@ chromatic_publish_sb7:
     - cd packages/storybook
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --exit-zero-on-changes
+  interruptible: true
   
     
 
@@ -180,7 +182,8 @@ chromatic_publish_baseline:
     variables:
       - $CHROMATIC_PROJECT_TOKEN_SB7
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --exit-zero-on-changes
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes
+  interruptible: true
 
 chromatic_publish_merge_to_dest_branch:
   stage: deploy
