@@ -181,6 +181,8 @@ chromatic_publish_baseline:
       - master
     variables:
       - $CHROMATIC_PROJECT_TOKEN_SB7
+  before_script:
+    - cd packages/storybook
   script:
     - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes
   interruptible: true
