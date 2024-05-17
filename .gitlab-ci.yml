@@ -176,6 +176,7 @@ chromatic_publish_sb7:
 chromatic_publish_baseline:
   stage: deploy
   when: manual
+  needs: ['build']
   only:
     refs:
       - master
