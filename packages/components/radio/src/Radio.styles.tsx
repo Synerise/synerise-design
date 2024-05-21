@@ -25,6 +25,9 @@ export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
   .ant-radio {
     height: 16px;
   }
+  .ant-radio + span {
+    flex-grow: 1;
+  }
   .ant-radio-inner::after {
     top: unset;
     left: unset;
