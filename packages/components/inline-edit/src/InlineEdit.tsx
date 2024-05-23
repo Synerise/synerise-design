@@ -79,6 +79,7 @@ const InlineEdit = ({
       <AutosizeInput
         extraWidth={2}
         value={input.value || ''}
+        placeholder={input.placeholder}
         placeholderIsMinWidth={false}
         wrapperClassName="autosize-input"
       >
