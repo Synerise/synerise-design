@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.11.0...@synerise/ds-date-picker@0.11.1) (2024-05-23)
+
+
+### Bug Fixes
+
+* **date-picker:** fixes height when autoResize prop is added ([47a5954](https://github.com/Synerise/synerise-design/commit/47a5954c2da3195ef7285016532834d566f5fefb))
+
+
+
+
+
 # [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-picker@0.10.48...@synerise/ds-date-picker@0.11.0) (2024-05-16)
 
 
