@@ -73,6 +73,9 @@
     "react-dom": "16.14.0",
     "sortablejs": "1.15.0"
   },
+  "volta": {
+    "node": "16.20.2"
+  },
   "dependencies": {
     "antd": "4.7.0",
     "invariant": "^2.2.4",
