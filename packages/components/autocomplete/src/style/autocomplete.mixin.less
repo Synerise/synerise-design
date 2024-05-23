@@ -1,4 +1,5 @@
-.ds-autocomplete-dropdown {
+.ds-autocomplete-dropdown.ds-autocomplete-dropdown {
+  padding: 8px;
   .ant-select-item-option {
     &.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
       color: @grey-700;
@@ -10,5 +11,8 @@
 .ds-autocomplete {
   .ant-select .ant-select-selector .ant-select-selection-search .ant-select-selection-search-input {
     padding-right: 10px;
+  }
+  .ant-select-single .ant-select-selector .ant-select-selection-search {
+    left: 10px;
   }
 }
