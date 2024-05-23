@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.7.7...@synerise/ds-inline-edit@0.7.8) (2024-05-23)
+
+
+### Bug Fixes
+
+* **inline-edit:** pass placeholder prop to autosize ([8d446b0](https://github.com/Synerise/synerise-design/commit/8d446b0495f4745047fc29dbbb913ebf8a5b5cba))
+
+
+
+
+
 ## [0.7.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-inline-edit@0.7.6...@synerise/ds-inline-edit@0.7.7) (2024-05-23)
 
 **Note:** Version bump only for package @synerise/ds-inline-edit
