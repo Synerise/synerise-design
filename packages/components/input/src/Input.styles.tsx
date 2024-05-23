@@ -140,11 +140,11 @@ export const AntdInput = styled(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
   )
-)<{ error?: boolean; readOnly?: boolean }>`
+)<{ error?: boolean; readOnly?: boolean; autoResize?: AutoResizeProp }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
-    min-height: 32px;
+    min-height: ${props => (props.autoResize ? '16' : '32')}px;
     transition: all 0.3s, width 0ms, min-width 0ms, max-width 0ms;
     grid-area: 1 / 1;
     color: ${props => props.theme.palette['grey-700']};
@@ -184,10 +184,11 @@ export const AntdMaskedInput = styled(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <MaskedInput autoComplete="off" {...props} ref={ref} />
   )
-)<{ error?: boolean }>`
+)<{ error?: boolean; autoResize?: AutoResizeProp }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
 
   && {
+    min-height: ${props => (props.autoResize ? '16' : '32')}px;
     color: ${props => props.theme.palette['grey-700']};
     z-index: 1;
     letter-spacing: 1.8px;

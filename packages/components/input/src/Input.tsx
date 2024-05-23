@@ -132,7 +132,6 @@ const createInputComponent =
             autoResize={!!autoResize}
           >
             <WrappedComponent
-              style={{ minHeight: '6px' }}
               autoResize={autoResize}
               {...antdInputProps}
               className={hasErrorMessage || error ? 'error' : undefined}

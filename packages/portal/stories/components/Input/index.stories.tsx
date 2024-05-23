@@ -416,6 +416,13 @@ const stories = {
     );
   },
   inputWithMask: () => {
+    const autoResize = boolean('Set autoResize', true, 'autoresize');
+    
+    const autoResizeProp: AutoResizeProp = autoResize && {
+      minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
+      maxWidth: `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`
+    }
+    
     const [creditCardvalue, setCreditCardvalue] = useState<string>('');
     const [dateValue, setDateValue] = useState<string>('');
     const [birthdateValue, setBirthdateValue] = useState<string>('');
@@ -445,18 +452,20 @@ const stories = {
     }, [dateMask]);
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', width: 400 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: 200 }}>
         <Input
           label="Password"
           value={passwordValue}
           onChange={e => setPasswordValue(e.target.value)}
           type="password"
+          autoResize={autoResizeProp}
           placeholder="Placeholder"
         />
 
         <MaskedInput
           label="Phone number"
           value={phoneValue}
+          autoResize={autoResizeProp}
           onChange={e => setPhoneValue(e.target.value)}
           mask="(+11) 111-111-111"
         />
@@ -464,6 +473,7 @@ const stories = {
         <MaskedInput
           label="Phone number with prefix"
           value={phonePrefixValue}
+          autoResize={autoResizeProp}
           onChange={e => setPhonePrefixValue(e.target.value)}
           mask="(+11) 1111-1111"
         />
@@ -471,6 +481,7 @@ const stories = {
         <MaskedInput
           label="Date"
           value={dateValue}
+          autoResize={autoResizeProp}
           onChange={e => setDateValue(e.target.value)}
           mask={inputOptionMask[dateMask]}
         />
@@ -478,6 +489,7 @@ const stories = {
         <MaskedInput
           label="Birthdate"
           value={birthdateValue}
+          autoResize={autoResizeProp}
           onChange={e => setBirthdateValue(e.target.value)}
           mask="11-11-1111"
         />
@@ -485,12 +497,14 @@ const stories = {
         <MaskedInput
           label="Credit card"
           value={creditCardvalue}
+          autoResize={autoResizeProp}
           onChange={e => setCreditCardvalue(e.target.value)}
           mask="1111-1111-1111-1111"
         />
         <MaskedInput
           label="Zip-code"
           value={zipCardValue}
+          autoResize={autoResizeProp}
           onChange={e => setZipCardValue(e.target.value)}
           mask="11-111"
         />
