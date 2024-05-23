@@ -19,7 +19,6 @@ const PickerInput = ({
   valueFormatOptions,
   onChange,
   showTime,
-  style,
   placeholder,
   onClear,
   onClick,
@@ -86,6 +85,7 @@ const PickerInput = ({
       ),
     [hovered, value, readOnly, clearTooltip, handleIconClick, highlight]
   );
+
   return (
     <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
@@ -105,7 +105,6 @@ const PickerInput = ({
           placeholder={placeholder}
           value={getText()}
           icon1={iconInput}
-          style={style}
           error={error}
           errorText={errorText}
           {...rest}
