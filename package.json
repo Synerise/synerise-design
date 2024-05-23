@@ -74,7 +74,8 @@
     "sortablejs": "1.15.0"
   },
   "volta": {
-    "node": "16.20.2"
+    "node": "16.20.2",
+    "yarn": "1.22.22"
   },
   "dependencies": {
     "antd": "4.7.0",
