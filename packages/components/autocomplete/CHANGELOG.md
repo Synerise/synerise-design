@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.8.2...@synerise/ds-autocomplete@0.8.3) (2024-05-24)
+
+
+### Bug Fixes
+
+* **autocomplete:** added select mixin import ([b332556](https://github.com/Synerise/synerise-design/commit/b332556e3dea53e50753c01b213d0a5a00cf5661))
+
+
+
+
+
 ## [0.8.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-autocomplete@0.8.1...@synerise/ds-autocomplete@0.8.2) (2024-05-23)
 
 
