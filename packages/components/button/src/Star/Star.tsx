@@ -6,7 +6,7 @@ import * as S from './Star.styles';
 import { StarButtonProps } from './Star.types';
 
 const StarButton = (props: StarButtonProps): React.ReactElement => {
-  const { hasError, active, ...restProps } = props;
+  const { hasError, active, type = 'ghost', ...restProps } = props;
 
   return (
     <Button
@@ -15,7 +15,7 @@ const StarButton = (props: StarButtonProps): React.ReactElement => {
       role="button"
       style={{ transition: 'none' }}
       tabIndex={0}
-      type="ghost"
+      type={type}
       {...restProps}
     >
       <S.IconWrapper active={active} error={hasError}>

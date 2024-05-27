@@ -19,4 +19,5 @@ export type StarButtonProps = ButtonPropsOmitted & {
   active?: boolean;
   hasError?: boolean;
   className?: string;
+  type?: string;
 };
