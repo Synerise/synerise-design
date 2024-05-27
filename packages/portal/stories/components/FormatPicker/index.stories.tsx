@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import FormatPicker from '@synerise/ds-format-picker';
 import { withState } from '@dump247/storybook-state';
+import { select } from '@storybook/addon-knobs';
+import { typeOptions } from '../Button/index.stories'
 
 const INITIAL_STATE = {
   format: {
@@ -54,6 +56,7 @@ const stories = {
         onCompactNumbersChange={handleCompactNumberChange}
         onFixedLengthChange={handleFixedLengthChange}
         onSetDefault={handleSetDefault}
+        buttonType={select('Set type', typeOptions, 'tertiary')}
       />
     );
   }),

@@ -45,4 +45,5 @@ export type FormatPickerProps = {
   onSetDefault: () => void;
   text?: FormatPickerTexts;
   currenciesConfig?: CurrencyConfig[];
+  buttonType?: string;
 };

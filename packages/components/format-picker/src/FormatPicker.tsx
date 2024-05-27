@@ -21,6 +21,7 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
   format,
   text,
   currenciesConfig,
+  buttonType = 'tertiary',
 }) => {
   const intl = useIntl();
 
@@ -61,7 +62,7 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
       }
       placement="topCenter"
     >
-      <Button type="tertiary" mode="icon-label">
+      <Button type={buttonType} mode="icon-label">
         <Icon component={<HashM />} />
         {`${texts.format} ${valueFormatter({ value, formatting: format, intl })}`}
       </Button>

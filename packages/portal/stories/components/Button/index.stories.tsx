@@ -10,7 +10,7 @@ import { withState } from '@dump247/storybook-state';
 import ButtonGroup from '@synerise/ds-button-group';
 import Skeleton from '@synerise/ds-skeleton';
 
-const typeOptions = {
+export const typeOptions = {
   Primary: 'primary',
   Secondary: 'secondary',
   TertiaryDark: 'tertiary',
