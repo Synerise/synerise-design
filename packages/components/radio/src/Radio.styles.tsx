@@ -14,12 +14,13 @@ export const RadioWrapper = styled.div`
 export const Description = styled.div<{ disabled?: boolean }>`
   color: ${(props: ThemeProps): string => props.theme.palette['grey-600']};
   ${(props): string => (props.disabled ? `opacity: 0.4;` : '')}
-  margin: 4px 8px 16px 28px;
   ${macro.small}
 `;
 
 // @deprecated - all styles are now defined in Description
-export const AdditionalData = styled.div``;
+export const AdditionalData = styled.div`
+  margin: 4px 8px 15px 28px;
+`;
 
 export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
   .ant-radio {

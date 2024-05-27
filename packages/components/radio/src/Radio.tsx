@@ -19,7 +19,9 @@ const RadioComponent = ({ description, ...antdRadioButtonProps }: Props) => {
     <S.RadioWrapper>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <S.AntRadio {...antdRadioButtonProps} />
-      {description && <S.Description disabled={antdRadioButtonProps.disabled}>{description}</S.Description>}
+      <S.AdditionalData>
+        {description && <S.Description disabled={antdRadioButtonProps.disabled}>{description}</S.Description>}
+      </S.AdditionalData>
     </S.RadioWrapper>
   );
 };
