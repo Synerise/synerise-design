@@ -1,0 +1,83 @@
+import { Meta, StoryObj } from '@storybook/react';
+
+import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
+import type { ContextProps } from '@synerise/ds-context-selector';
+
+import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
+import ContextSelectorMeta, {
+  BusinessContext,
+  ClientContext,
+  LargeItems,
+  FlatListDataStructure,
+} from './ContextSelector.stories';
+
+export default {
+  ...ContextSelectorMeta,
+  title: 'Components/Filter/ContextSelector/Tests',
+  tags: ['visualtests'],
+  parameters: {
+    chromatic: { diffThreshold: 0.15 },
+  },
+} as Meta<ContextProps>;
+
+type Story = StoryObj<ContextProps>;
+
+export const SelectItemFromCategory: Story = {
+  args: {
+    onSelectItem: fn(),
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const subGroupName =
+      CONTEXT_GROUPS[1].subGroups && CONTEXT_GROUPS[1].subGroups[0] && CONTEXT_GROUPS[1].subGroups[0].name;
+    if (subGroupName) {
+      await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
+
+      await waitFor(() => {
+        expect(canvas.queryAllByTestId('tab-container')).toHaveLength(2);
+      });
+
+      await userEvent.click(canvas.getAllByTestId('tab-container')[1]);
+
+      await waitFor(() => expect(canvas.getByText(subGroupName)).not.toHaveStyle({ pointerEvents: 'none' }));
+
+      await userEvent.click(canvas.getByText(subGroupName));
+
+      await waitFor(() => {
+        expect(canvas.getByTestId('dropdown-back-action-label')).toBeInTheDocument();
+      });
+
+      await userEvent.click(canvas.getAllByRole('menuitem')[3]);
+
+      expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]);
+    }
+  },
+};
+
+const play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
+  await waitFor(() =>
+    expect(canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder)).not.toHaveStyle({ pointerEvents: 'none' })
+  );
+};
+
+export const BusinessContextOpen: Story = {
+  ...BusinessContext,
+  play,
+};
+
+export const ClientContextOpen: Story = {
+  ...ClientContext,
+  play,
+};
+
+export const LargeItemsOpen: Story = {
+  ...LargeItems,
+  play,
+};
+
+export const FlatListDataStructureOpen: Story = {
+  ...FlatListDataStructure,
+  play,
+};

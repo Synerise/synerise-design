@@ -371,7 +371,7 @@ const Collector = ({
     <S.Container
       ref={containerRef}
       onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
-        focusWithArrowKeys(event, 'ds-search-item', focusInput);
+        focusWithArrowKeys(event, 'ds-list-item', focusInput);
         !value && scrollWithHorizontalArrow(mainContentRef, event);
       }}
     >

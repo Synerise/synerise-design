@@ -5,6 +5,10 @@ export const fixedWrapper200 = (Story, storyContext) => (
     <div style={{width: '200px'}}>{Story()}</div>
 );
 
+export const fixedWrapper300 = (Story, storyContext) => (
+    <div style={{width: '300px'}}>{Story()}</div>
+);
+
 export const fixedWrapper400 = (Story, storyContext) => (
     <div style={{width: '400px'}}>{Story()}</div>
 );
@@ -14,9 +18,10 @@ export const fixedWrapper588 = (Story, storyContext) => (
 );
 
 export const centeredPaddedWrapper = (Story, storyContext) => {
-    const height = storyContext.viewMode === 'story' ? '100vh' : '100px'
+    const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
+    const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw', height}}>{Story()}</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width, height}}>{Story()}</div>
     )
 };
 

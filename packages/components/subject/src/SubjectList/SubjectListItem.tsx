@@ -1,20 +1,20 @@
 import * as React from 'react';
 import Icon from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { SubjectItem } from '../Subject.types';
 
-interface Props {
+type Props = {
   item: SubjectItem;
   clearSearch: () => void;
   searchQuery: string;
   hideDropdown: () => void;
   select: (item: SubjectItem) => void;
   className: string;
-}
+};
 
-const SubjectListItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hideDropdown, select, className }) => {
+const SubjectListItem = ({ item, clearSearch, searchQuery, hideDropdown, select, className }: Props) => {
   return (
-    <Menu.Item
+    <ListItem
       className={className}
       highlight={searchQuery}
       onClick={(): void => {
@@ -25,7 +25,7 @@ const SubjectListItem: React.FC<Props> = ({ item, clearSearch, searchQuery, hide
       prefixel={<Icon component={item.icon} />}
     >
       {item.name}
-    </Menu.Item>
+    </ListItem>
   );
 };
 

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import Icon from '@synerise/ds-icon';
 import * as S from './BottomAction.styles';
-import { Props } from './BottomAction.types';
+import { BottomActionProps } from './BottomAction.types';
 
-const BottomAction: React.FC<Props> = ({ onClickAction, children, icon }) => (
+export const BottomAction = ({ onClickAction, children, icon }: BottomActionProps) => (
   <S.BottomAction onClick={onClickAction}>
     {icon && (
       <S.IconWrapper>

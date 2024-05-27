@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@chromatic-com/storybook'),
+    getAbsolutePath('storybook-addon-pseudo-states')
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-webpack5'),

@@ -16,10 +16,4 @@ describe('ListItem', () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
-  it('should apply selected class on click', () => {
-    const { container } = renderWithProvider(<ListItem>Selectable Item</ListItem>);
-    fireEvent.click(screen.getByText('Selectable Item'));
-    expect(container.firstChild).toHaveClass('selected');
-  });
-
 });

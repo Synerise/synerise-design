@@ -1,0 +1,51 @@
+import { Meta, StoryObj } from '@storybook/react';
+
+import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import type { SubjectProps } from '@synerise/ds-subject';
+
+import { SUBJECT_ITEMS, SUBJECT_TEXTS } from './data/index.data';
+import SubjectMeta from './Subject.stories';
+
+export default {
+  ...SubjectMeta,
+  title: 'Components/Filter/Subject/Tests',
+  tags: ['visualtests'],
+  parameters: {
+    chromatic: { diffThreshold: 0.15 }
+  }
+} as Meta<SubjectProps>;
+
+type Story = StoryObj<SubjectProps>;
+
+export const SelectSubject: Story = {
+  args: {
+    placeholder: 'Select',
+    onSelectItem: fn()
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.click(canvas.getByText(args.placeholder));
+
+    await canvas.findByPlaceholderText(SUBJECT_TEXTS.searchPlaceholder);
+
+    await waitFor(() => expect(canvas.getAllByRole('menuitem')[3]).not.toHaveStyle({ pointerEvents: 'none' }));
+
+    await userEvent.click(canvas.getAllByRole('menuitem')[3]);
+
+    expect(args.onSelectItem).toHaveBeenCalledWith(SUBJECT_ITEMS[3]);
+  },
+};
+
+export const Opened: Story = {
+    args: {
+      opened: true,
+    },
+    play: async ({ canvasElement }) => {
+      // wait to capture screenshot after dropdown renders open
+      const canvas = within(canvasElement);
+      await waitFor(() => canvas.findByPlaceholderText('Search'));
+    },
+  };
+  
+  

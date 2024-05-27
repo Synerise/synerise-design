@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 import Divider from '@synerise/ds-divider';
 import * as S from './BackAction.styles';
 import { DividerContainer } from '../../Cascader.styles';
-import { Props } from './BackAction.types';
+import { BackActionProps } from './BackAction.types';
 
-const BackAction: React.FC<Props> = ({ label, onClick }) => (
+export const BackAction = ({ label, onClick }: BackActionProps) => (
   <>
     <S.BackActionWrapper>
       <S.ContentWrapper onClick={onClick}>

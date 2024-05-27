@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Category } from '../../Cascader.types';
+import type { ReactNode, ReactText } from 'react';
+import type { Category } from '../../Cascader.types';
 
 export interface CategoriesListProps {
   rootCategory: Category;
   onCategoryClick: (item: Category) => void;
-  suffixel: React.ReactNode | string;
+  suffixel: ReactNode | string;
   onSuffixelClick: (item: Category) => void;
-  selectedIds: React.ReactText[];
+  selectedIds: ReactText[];
 }

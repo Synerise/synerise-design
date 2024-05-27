@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Menu from '@synerise/ds-menu';
+import React from 'react';
 import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
 import { Path } from '../../Cascader.types';
 import { BreadcrumbsListProps } from './BreadcrumbsList.types';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 const DEFAULT_VISIBLE_ROWS = 6;
 const DEFAULT_ROW_HEIGHT = 50;
 
-const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
+export const BreadcrumbsList = ({
   paths,
   highlight,
   width,
@@ -15,7 +15,7 @@ const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
   onBreadCrumbClick,
   rowHeight,
   scrollTop,
-}) => {
+}: BreadcrumbsListProps) => {
   const listPropsObject = { scrollTop };
   return renderSearchList<Path>({
     data: paths,
@@ -24,8 +24,8 @@ const BreadcrumbsList: React.FC<BreadcrumbsListProps> = ({
     width,
     rowHeight: rowHeight || DEFAULT_ROW_HEIGHT,
     onItemClick: onBreadCrumbClick,
-    itemRender: (item: Path): React.ReactElement => (
-      <Menu.Breadcrumb
+    itemRender: (item: Path) => (
+      <Breadcrumb
         gradientOverlap
         compact
         path={item.path}

@@ -1,67 +1,23 @@
-import React, { useState } from 'react';
-import StyledListItem, { StyledIconWrapper } from './ListItem.styles';
+import * as React from 'react';
+import '@synerise/ds-core/dist/js/style';
 
-export type ListItemProps = {
-  className?: string;
-  children?: React.ReactNode;
-  icon?: React.ReactNode;
-  danger?: boolean;
-  prefixCls?: string;
-  direction?: 'ltr' | 'rtl';
-  switch?: boolean;
-  title?: string;
-  noHover?: boolean;
-  size?: 'default' | 'large';
-  selectable?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+import { ListItemProps, itemTypes } from './ListItem.types';
+import { Text, Danger, Select } from './components';
+import { MenuDivider } from './ListItem.styles';
 
 const ListItem = (props: ListItemProps) => {
-  const {
-    className,
-    children,
-    icon,
-    danger,
-    prefixCls = 'ant-menu',
-    title,
-    noHover,
-    size,
-    selectable = true,
-    ...rest
-  } = props;
+  const { text, children, type, ...rest } = props;
 
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handleClick = () => {
-    setIsSelected(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsSelected(false);
-  };
-
-  const renderItemChildren = () => {
-    return <span className={`${prefixCls}-title-content`}>{children}</span>;
-  };
-
-  const listItemNode = (
-    <StyledListItem
-      className={`ds-search-item ${className} ${isSelected ? 'selected' : ''}`}
-      title={title || (typeof children === 'string' ? children : undefined)}
-      onClick={handleClick}
-      onMouseLeave={handleMouseLeave}
-      tabIndex={0}
-      noHover={noHover}
-      size={size}
-      selectable={selectable}
-      isSelected={isSelected}
-      {...rest}
-    >
-      {icon && <StyledIconWrapper>{icon}</StyledIconWrapper>}
-      {renderItemChildren()}
-    </StyledListItem>
-  );
-
-  return listItemNode;
+  switch (type) {
+    case itemTypes.DANGER:
+      return <Danger {...rest}>{text || children}</Danger>;
+    case itemTypes.SELECT:
+      return <Select {...rest}>{text || children}</Select>;
+    case itemTypes.DIVIDER:
+      return <MenuDivider level={rest.level} />;
+    default:
+      return <Text {...rest}>{text || children}</Text>;
+  }
 };
 
 export default ListItem;

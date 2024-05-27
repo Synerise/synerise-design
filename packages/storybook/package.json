@@ -32,6 +32,7 @@
     "@storybook/addon-links": "7.6.5",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "7.6.5",
+    "@storybook/icons": "^1.2.9",
     "@storybook/jest": "0.2.3",
     "@storybook/manager-api": "7.6.5",
     "@storybook/react": "7.6.5",
@@ -39,6 +40,7 @@
     "@storybook/test": "7.6.5",
     "@storybook/theming": "7.6.5",
     "chromatic": "10.1.0",
-    "storybook": "7.6.5"
+    "storybook": "7.6.5",
+    "storybook-addon-pseudo-states": "^3.1.1"
   }
 }
