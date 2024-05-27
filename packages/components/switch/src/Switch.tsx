@@ -9,7 +9,7 @@ import * as S from './Switch.styles';
 import { Props } from './Switch.types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ExtendedAntdSwitchComponent = AntdSwitch as any as ComponentType<
+export const ExtendedAntdSwitchComponent = AntdSwitch as any as ComponentType<
   AntdSwitchProps & { id: string; ref?: RefObject<HTMLInputElement> }
 >;
 

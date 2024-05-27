@@ -1,22 +1,22 @@
-import * as React from 'react';
+import type { ReactNode, ReactText, CSSProperties } from 'react';
 
 export type Texts = 'searchPlaceholder';
-export interface Category {
-  id: React.ReactText;
+export type Category = {
+  id: ReactText;
   name: string;
   path: string[];
-}
-export interface CascaderProps {
-  categorySuffix: string | React.ReactNode;
+};
+export type CascaderProps = {
+  categorySuffix: ReactNode;
   maxHeight?: number;
-  contentStyles?: React.CSSProperties;
+  contentStyles?: CSSProperties;
   onCategorySelect?: (item: Category, selected: boolean) => void;
   rootCategory: Category;
-  searchClearTooltip?: string | React.ReactNode;
+  searchClearTooltip?: ReactNode;
   searchInputPlaceholder?: string;
-  selectedCategoriesIds: React.ReactText[];
-}
-export interface Path {
-  id: React.ReactText;
+  selectedCategoriesIds: ReactText[];
+};
+export type Path = {
+  id: ReactText;
   path: string[];
-}
+};

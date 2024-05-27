@@ -1,6 +1,7 @@
 export { default as hexToRgba } from './hexToRgba/hexToRgba';
 export { default as toCamelCase } from './toCamelCase/toCamelCase';
 export { useOnClickOutside } from './useOnClickOutside/useOnClickOutside';
+export { renderWithHighlight } from './renderWithHighlight/renderWithHighlight';
 export { default as selectColorByLetter } from './selectColorByLetter/selectColorByLetter';
 export { default as focusWithArrowKeys } from './focusWithArrowKeys/focusWithArrowKeys';
 export { default as escapeRegEx } from './regex/regex';

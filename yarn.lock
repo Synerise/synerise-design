@@ -9783,6 +9783,11 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/global/-/global-5.0.0.tgz#b793d34b94f572c1d7d9e0f44fac4e0dbc9572ed"
   integrity sha1-t5PTS5T1csHX2eD0T6xODbyVcu0=
 
+"@storybook/icons@^1.2.9":
+  version "1.2.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@storybook/icons/-/icons-1.2.9.tgz#bb4a51a79e186b62e2dd0e04928b8617ac573838"
+  integrity sha1-u0pRp54Ya2Li3Q4EkouGF6xXODg=
+
 "@storybook/instrumenter@6.5.16", "@storybook/instrumenter@^6.4.0":
   version "6.5.16"
   resolved "https://registry.npmjs.org/@storybook/instrumenter/-/instrumenter-6.5.16.tgz"
@@ -11611,19 +11616,12 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@*":
-  version "16.9.5"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.5.tgz"
-  integrity sha512-BX6RQ8s9D+2/gDhxrj8OW+YD4R+8hj7FEM/OJHGNR0KipE1h1mSsf39YeyC81qafkq+N3rU3h3RFbLSwE5VqUg==
+"@types/react-dom@*", "@types/react-dom@16.9.24", "@types/react-dom@18.2.7":
+  version "16.9.24"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-16.9.24.tgz#4d193d7d011267fca842e8a10a2d738f92ec5c30"
+  integrity sha1-TRk9fQESZ/yoQuihCi1zj5LsXDA=
   dependencies:
-    "@types/react" "*"
-
-"@types/react-dom@18.2.7":
-  version "18.2.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-18.2.7.tgz"
-  integrity sha1-ZyIqCMCmrgoNozw1MjSCd8cKu2M=
-  dependencies:
-    "@types/react" "*"
+    "@types/react" "^16"
 
 "@types/react-highlight-words@^0.16.4":
   version "0.16.4"
@@ -11667,35 +11665,9 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
-  version "16.9.25"
-  resolved "https://registry.npmjs.org/@types/react/-/react-16.9.25.tgz"
-  integrity sha512-Dlj2V72cfYLPNscIG3/SMUOzhzj7GK3bpSrfefwt2YT9GLynvLCCZjbhyF6VsT0q0+aRACRX03TDJGb7cA0cqg==
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^2.2.0"
-
-"@types/react@18.2.21":
-  version "18.2.21"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-18.2.21.tgz"
-  integrity sha1-d0w3/QG1ItC5Gu0EgRtY5OBRTtk=
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@>=16":
-  version "18.2.39"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-18.2.39.tgz#744bee99e053ad61fe74eb8b897f3ab5b19a7e25"
-  integrity sha1-dEvumeBTrWH+dOuLiX86tbGafiU=
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^16":
+"@types/react@*", "@types/react@16.14.46", "@types/react@18.2.21", "@types/react@>=16", "@types/react@^16":
   version "16.14.46"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-16.14.46.tgz"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-16.14.46.tgz#42ac91aece416176e6b6127cd9ec9e381ea67e16"
   integrity sha1-QqyRrs5BYXbmthJ82eyeOB6mfhY=
   dependencies:
     "@types/prop-types" "*"
@@ -16574,7 +16546,7 @@ cssstyle@^2.0.0:
   dependencies:
     cssom "~0.3.6"
 
-csstype@2.6.9, csstype@^2.2.0, csstype@^2.5.7, csstype@^2.6.7:
+csstype@2.6.9, csstype@^2.5.7, csstype@^2.6.7:
   version "2.6.9"
   resolved "https://registry.npmjs.org/csstype/-/csstype-2.6.9.tgz"
   integrity sha512-xz39Sb4+OaTsULgUERcCk+TJj8ylkL4aSVDQiX/ksxbELSqwkgt4d4RD7fovIdgJGSuNYqwZEiVjYY5l0ask+Q==
@@ -32258,6 +32230,11 @@ store2@^2.14.2:
   version "2.14.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/store2/-/store2-2.14.2.tgz#56138d200f9fe5f582ad63bc2704dbc0e4a45068"
   integrity sha1-VhONIA+f5fWCrWO8JwTbwOSkUGg=
+
+storybook-addon-pseudo-states@^3.1.1:
+  version "3.1.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-addon-pseudo-states/-/storybook-addon-pseudo-states-3.1.1.tgz#4bbdb995ed636586ba744df37abab036158b2401"
+  integrity sha1-S725le1jZYa6dE3zerqwNhWLJAE=
 
 storybook@7.6.5:
   version "7.6.5"

@@ -1,24 +1,25 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { HomeM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+
 import Divider from '@synerise/ds-divider';
 import { theme } from '@synerise/ds-core';
 import * as S from '../../Cascader.styles';
-import BackAction from '../BackAction/BackAction';
-import { Props } from './Navigation.types';
+import { BackAction } from '../BackAction/BackAction';
+import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
+import { NavigationProps } from './Navigation.types';
 
-const Navigation: React.FC<Props> = ({
+export const Navigation = ({
   backActionVisible,
   onHomeIconClick,
   onPathClick,
   activeCategory,
   previousCategory,
   breadcrumbVisible,
-}) => {
-  const renderBreadcrumbs = (): React.ReactNode | null => {
+}: NavigationProps) => {
+  const renderBreadcrumbs = () => {
     return breadcrumbVisible && activeCategory ? (
       <>
-        <Menu.Breadcrumb
+        <Breadcrumb
           path={activeCategory.path}
           onPathClick={onPathClick}
           gradientOverlap
@@ -37,11 +38,11 @@ const Navigation: React.FC<Props> = ({
     ) : null;
   };
 
-  const renderBackAction = (): React.ReactNode | null => {
+  const renderBackAction = () => {
     return backActionVisible && previousCategory ? (
       <BackAction
         label={previousCategory.name}
-        onClick={(): void => {
+        onClick={() => {
           onPathClick(previousCategory.name);
         }}
       />

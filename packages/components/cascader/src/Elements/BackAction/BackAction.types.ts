@@ -1,6 +1,9 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
 
-export interface Props {
-  label: React.ReactNode;
+export type BackActionProps = {
+  label: ReactNode;
   onClick: () => void;
-}
+};
+
+// @deprecated - use BackActionProps instead
+export type Props = BackActionProps;

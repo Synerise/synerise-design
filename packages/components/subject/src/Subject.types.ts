@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type { ReactNode, ReactText } from 'react';
 
 export const ALL_TYPES = ['event', 'parameter', 'context'] as const;
 export type SubjectType = typeof ALL_TYPES[number] | string;
 
 export type SubjectItem = {
-  id: React.ReactText;
+  id: ReactText;
   name: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 };
 
 export type SubjectProps = {
@@ -14,8 +14,8 @@ export type SubjectProps = {
   onActivate?: (fieldType: string) => void;
   onDeactivate?: () => void;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
-  placeholder: string | React.ReactNode;
-  iconPlaceholder: React.ReactNode;
+  placeholder: ReactNode;
+  iconPlaceholder: ReactNode;
   onSelectItem: (item: SubjectItem) => void;
   selectedItem?: SubjectItem | undefined;
   type?: SubjectType;

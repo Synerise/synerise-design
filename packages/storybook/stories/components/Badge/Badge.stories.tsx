@@ -5,12 +5,13 @@ import Badge, { BadgeProps } from '@synerise/ds-badge';
 import Icon, { FileM, IconProps } from '@synerise/ds-icon';
 import Avatar, { AvatarProps } from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
+import { Status as StatusType } from '@synerise/ds-badge/dist/Badge.types';
+import { Size } from '@synerise/ds-avatar/dist/Avatar.types';
 
 import { statuses } from './constants';
 import { BOOLEAN_CONTROL, COLOR_CONTROL, COLOR_HUE_CONTROL, controlFromOptionsArray, fixedWrapper200, fixedWrapper400, NUMBER_CONTROL, STRING_CONTROL } from '../../utils';
 import { colorNames } from '../../constants/colors';
-import { Status as StatusType } from '@synerise/ds-badge/dist/Badge.types';
-import { Size } from '@synerise/ds-avatar/dist/Avatar.types';
+import { avatarImage } from '../../constants/images';
 
 
 export default {
@@ -267,7 +268,7 @@ export const StatusDotWithAvatar: StoryObj<{status: StatusType} & AvatarProps> =
       <Avatar
         size={size}
         shape={shape}
-        src={'https://www.w3schools.com/howto/img_avatar.png'}
+        src={avatarImage}
         hasStatus
       />
     </Badge>
@@ -392,7 +393,7 @@ export const StatusDotPulsingWithAvatar: StoryObj<Pick<BadgeProps, 'status' | 'p
         <Avatar
           size={size}
           shape={'circle' || shape}
-          src={'https://www.w3schools.com/howto/img_avatar.png'}
+          src={avatarImage}
           hasStatus
         />
       </Badge>

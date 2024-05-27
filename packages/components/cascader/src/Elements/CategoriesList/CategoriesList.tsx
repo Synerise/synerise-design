@@ -1,36 +1,36 @@
-import * as React from 'react';
-import Menu from '@synerise/ds-menu';
+import React, { MouseEvent, useCallback } from 'react';
+import ListItem from '@synerise/ds-list-item';
 import { theme } from '@synerise/ds-core';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import styled from 'styled-components';
 import { Category } from '../../Cascader.types';
-import { hasNestedCategories } from '../../utlis';
+import { hasNestedCategories } from '../../utils';
 import { CategoriesListProps } from './CategoriesList.types';
 
 const CategoriesSuffix = styled.div``;
 
-const CategoriesList: React.FC<CategoriesListProps> = ({
+export const CategoriesList = ({
   rootCategory,
   onCategoryClick,
   suffixel,
   onSuffixelClick,
   selectedIds,
-}) => {
-  const onCategoryClickHandler = React.useCallback(
+}: CategoriesListProps) => {
+  const onCategoryClickHandler = useCallback(
     item => {
       onCategoryClick && onCategoryClick(item);
     },
     [onCategoryClick]
   );
-  const onSuffixelClickHandler = React.useCallback(
-    (item, e: React.MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation();
+  const onSuffixelClickHandler = useCallback(
+    (item, event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
       onSuffixelClick && onSuffixelClick(item);
     },
     [onSuffixelClick]
   );
-  const renderSuffix = (item: Category): React.ReactNode => (
-    <CategoriesSuffix onClick={(e: React.MouseEvent<HTMLDivElement>): void => onSuffixelClickHandler(item, e)}>
+  const renderSuffix = (item: Category) => (
+    <CategoriesSuffix onClick={(event: MouseEvent<HTMLDivElement>) => onSuffixelClickHandler(item, event)}>
       {selectedIds.includes(item.id) ? <Icon color={theme.palette['green-600']} component={<CheckS />} /> : suffixel}
     </CategoriesSuffix>
   );
@@ -39,16 +39,16 @@ const CategoriesList: React.FC<CategoriesListProps> = ({
     <>
       {Object.keys(rootCategory)
         .filter(key => rootCategory[key]?.name)
-        .map((key): React.ReactNode => {
+        .map(key => {
           const item = rootCategory[key];
           return (
-            <Menu.Item
+            <ListItem
               text={item.name}
-              type={selectedIds && selectedIds.includes(item.id) ? '' : 'select'}
               key={`${item.id}`}
+              type={selectedIds.includes(item.id) ? undefined : 'select'}
               suffixel={renderSuffix(item)}
               parent={hasNestedCategories(item)}
-              onClick={(): void => onCategoryClickHandler(item)}
+              onClick={() => onCategoryClickHandler(item)}
             />
           );
         })}

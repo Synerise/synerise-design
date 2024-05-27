@@ -1,9 +1,9 @@
-import { DividerProps as AntDividerProps } from 'antd/lib/divider';
 import { ReactNode } from 'react';
+import { DividerProps as AntDividerProps } from 'antd/lib/divider';
 
-export interface DividerProps extends AntDividerProps {
+export type DividerProps = AntDividerProps & {
   marginTop?: number;
   marginBottom?: number;
   labelAbove?: ReactNode;
   labelBelow?: ReactNode;
-}
+};

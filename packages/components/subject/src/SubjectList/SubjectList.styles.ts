@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 
 export const SearchResult = styled.span`
   font-weight: 400;
@@ -11,6 +10,6 @@ export const SearchResultHighlight = styled.span`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
-export const ItemsList = styled(Menu)`
+export const ItemsList = styled.div`
   width: 100%;
 `;

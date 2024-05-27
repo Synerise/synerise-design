@@ -1,12 +1,11 @@
-import * as React from 'react';
+import React, { ReactText, RefObject, SyntheticEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import SearchBar from '@synerise/ds-search-bar';
-import Menu from '@synerise/ds-menu';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { useResize } from '@synerise/ds-utils';
 import * as S from './Cascader.styles';
 import { CascaderProps, Category, Path } from './Cascader.types';
-import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utlis';
+import { filterPaths, getAllPaths, hasNestedCategories, searchCategoryWithId } from './utils';
 import BreadcrumbsList from './Elements/BreadcrumbsList/BreadcrumbsList';
 import CategoriesList from './Elements/CategoriesList/CategoriesList';
 import Navigation from './Elements/Navigation/Navigation';
@@ -15,7 +14,7 @@ const VERTICAL_PADDING_OFFSET = 8;
 const BREADCRUMB_ITEM_HEIGHT = 50;
 const CATEGORY_ITEM_HEIGHT = 32;
 
-const Cascader: React.FC<CascaderProps> = ({
+export const Cascader = ({
   rootCategory,
   searchClearTooltip,
   searchInputPlaceholder,
@@ -24,17 +23,17 @@ const Cascader: React.FC<CascaderProps> = ({
   maxHeight,
   contentStyles,
   selectedCategoriesIds,
-}) => {
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [activeCategory, setActiveCategory] = React.useState<Category>(rootCategory);
-  const [paths, setPaths] = React.useState<Path[] | undefined>([]);
-  const [filteredPaths, setFilteredPaths] = React.useState<Path[] | undefined>([]);
-  const [enteredCategories, setEnteredCategories] = React.useState<Category[]>([]);
-  const [scrollTop, setScrollTop] = React.useState<number>(0);
-  const [selectedIds, setSelectedIds] = React.useState<React.ReactText[]>(selectedCategoriesIds || []);
+}: CascaderProps) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeCategory, setActiveCategory] = useState<Category>(rootCategory);
+  const [paths, setPaths] = useState<Path[] | undefined>([]);
+  const [filteredPaths, setFilteredPaths] = useState<Path[] | undefined>([]);
+  const [enteredCategories, setEnteredCategories] = useState<Category[]>([]);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [selectedIds, setSelectedIds] = useState<ReactText[]>(selectedCategoriesIds || []);
 
-  const searchResultsContainer = React.useRef<HTMLDivElement>();
-  const categoriesContainer = React.useRef<HTMLDivElement>();
+  const searchResultsContainer = useRef<HTMLDivElement>();
+  const categoriesContainer = useRef<HTMLDivElement>();
 
   const { height } = useResize(searchResultsContainer);
   const previousCategory = enteredCategories[enteredCategories.length - 2];
@@ -45,11 +44,11 @@ const Cascader: React.FC<CascaderProps> = ({
         CATEGORY_ITEM_HEIGHT +
       VERTICAL_PADDING_OFFSET
     : undefined;
-  const calculateVisibleRows = React.useMemo(() => {
+  const calculateVisibleRows = useMemo(() => {
     return Math.floor((height - VERTICAL_PADDING_OFFSET) / BREADCRUMB_ITEM_HEIGHT);
   }, [height]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const allPaths = getAllPaths(rootCategory, []);
     setPaths(allPaths);
     if (activeCategory.id === rootCategory.id || !activeCategory.id) {
@@ -57,11 +56,11 @@ const Cascader: React.FC<CascaderProps> = ({
     }
   }, [rootCategory, activeCategory.id]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedIds(selectedCategoriesIds);
   }, [selectedCategoriesIds]);
 
-  const onItemSelect = (item: Category): void => {
+  const onItemSelect = (item: Category) => {
     let newSelectedList;
     const itemAlreadySelected = selectedIds.indexOf(item.id) !== -1;
     if (!itemAlreadySelected) {
@@ -74,7 +73,7 @@ const Cascader: React.FC<CascaderProps> = ({
     setSelectedIds([...newSelectedList]);
   };
 
-  const onCategoryClick = (category: Category): void => {
+  const onCategoryClick = (category: Category) => {
     const entered = { id: category.id, name: category.name, path: category.path };
     const updatedEnteredCategories = [...enteredCategories, entered];
     const hasMoreCategories = hasNestedCategories(category);
@@ -86,7 +85,7 @@ const Cascader: React.FC<CascaderProps> = ({
     }
   };
 
-  const onPathClick = React.useCallback(
+  const onPathClick = useCallback(
     (pathName: string) => {
       const chosenCategory = enteredCategories.find(enteredCategory => enteredCategory.name === pathName);
       let updatedEnteredCategories;
@@ -106,12 +105,12 @@ const Cascader: React.FC<CascaderProps> = ({
     [rootCategory, enteredCategories]
   );
 
-  const onHomeIconClick = React.useCallback(() => {
+  const onHomeIconClick = useCallback(() => {
     setActiveCategory(rootCategory);
     setEnteredCategories([]);
   }, [rootCategory]);
 
-  const filterPathsBySearchQuery = React.useCallback(
+  const filterPathsBySearchQuery = useCallback(
     (value: string) => {
       if (paths) {
         const filtered = filterPaths(paths, value.toLowerCase());
@@ -120,81 +119,86 @@ const Cascader: React.FC<CascaderProps> = ({
     },
     [paths]
   );
+
+  const handleBreadCrumbClick = (breadcrumb: Path) => {
+    const selectedCategory = searchCategoryWithId(rootCategory, breadcrumb?.id);
+    selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category);
+  };
+
+  const backActionVisible = useMemo(
+    () => !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1,
+    [enteredCategories.length, previousCategory, searchQuery]
+  );
+
   return (
     <S.Wrapper className="ds-cascader">
       <S.InputWrapper>
         <SearchBar
-          onSearchChange={(value: string): void => {
+          onSearchChange={(value: string) => {
             setSearchQuery(value);
             filterPathsBySearchQuery(value);
           }}
           placeholder={searchInputPlaceholder || ''}
           value={searchQuery}
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-          onClearInput={(): void => setSearchQuery('')}
+          onClearInput={() => setSearchQuery('')}
           clearTooltip={searchClearTooltip}
         />
       </S.InputWrapper>
       <S.SearchResults
         visible={!isSearching || (filteredPaths && filteredPaths?.length > 0)}
-        ref={searchResultsContainer as React.RefObject<HTMLDivElement>}
+        ref={searchResultsContainer as RefObject<HTMLDivElement>}
         style={contentStyles}
       >
-        <Menu>
-          {isSearching && filteredPaths && (
+        {isSearching && filteredPaths && (
+          <S.CascaderScrollbar
+            maxHeight={maxHeight}
+            searching={isSearching}
+            absolute={isSearching}
+            onScroll={({ currentTarget }: SyntheticEvent) => {
+              setScrollTop(currentTarget.scrollTop);
+            }}
+          >
+            <BreadcrumbsList
+              width="calc(100% - 8px)"
+              visibleRows={calculateVisibleRows}
+              rowHeight={BREADCRUMB_ITEM_HEIGHT}
+              paths={filteredPaths}
+              highlight={searchQuery}
+              onBreadCrumbClick={handleBreadCrumbClick}
+              scrollTop={scrollTop}
+            />
+          </S.CascaderScrollbar>
+        )}
+        <Navigation
+          backActionVisible={backActionVisible}
+          breadcrumbVisible={!searchQuery && !!activeCategory.path}
+          onPathClick={onPathClick}
+          onHomeIconClick={onHomeIconClick}
+          previousCategory={previousCategory}
+          activeCategory={activeCategory}
+        />
+
+        {!searchQuery && (
+          <div ref={categoriesContainer as RefObject<HTMLDivElement>}>
             <S.CascaderScrollbar
-              maxHeight={maxHeight}
+              maxHeight={categoriesMaxHeight}
               searching={isSearching}
               absolute={isSearching}
-              onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+              onScroll={({ currentTarget }: SyntheticEvent) => {
                 setScrollTop(currentTarget.scrollTop);
               }}
             >
-              <BreadcrumbsList
-                width="calc(100% - 8px)"
-                visibleRows={calculateVisibleRows}
-                rowHeight={BREADCRUMB_ITEM_HEIGHT}
-                paths={filteredPaths}
-                highlight={searchQuery}
-                onBreadCrumbClick={(breadcrumb: Path): void => {
-                  const selectedCategory = searchCategoryWithId(rootCategory, breadcrumb?.id);
-                  selectedCategory ? onItemSelect(selectedCategory) : onItemSelect(breadcrumb as Category);
-                }}
-                scrollTop={scrollTop}
+              <CategoriesList
+                rootCategory={activeCategory}
+                onCategoryClick={onCategoryClick}
+                suffixel={categorySuffix}
+                onSuffixelClick={onItemSelect}
+                selectedIds={selectedIds}
               />
             </S.CascaderScrollbar>
-          )}
-          <Navigation
-            backActionVisible={
-              !searchQuery && !!previousCategory && !!previousCategory.name && enteredCategories.length > 1
-            }
-            breadcrumbVisible={!searchQuery && !!activeCategory.path}
-            onPathClick={onPathClick}
-            onHomeIconClick={onHomeIconClick}
-            previousCategory={previousCategory}
-            activeCategory={activeCategory}
-          />
-          {!searchQuery && (
-            <div ref={categoriesContainer as React.RefObject<HTMLDivElement>}>
-              <S.CascaderScrollbar
-                maxHeight={categoriesMaxHeight}
-                searching={isSearching}
-                absolute={isSearching}
-                onScroll={({ currentTarget }: React.SyntheticEvent): void => {
-                  setScrollTop(currentTarget.scrollTop);
-                }}
-              >
-                <CategoriesList
-                  rootCategory={activeCategory}
-                  onCategoryClick={onCategoryClick}
-                  suffixel={categorySuffix}
-                  onSuffixelClick={onItemSelect}
-                  selectedIds={selectedIds}
-                />
-              </S.CascaderScrollbar>
-            </div>
-          )}
-        </Menu>
+          </div>
+        )}
       </S.SearchResults>
     </S.Wrapper>
   );

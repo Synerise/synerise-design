@@ -1,10 +1,13 @@
-import { Category } from '../../Cascader.types';
+import type { Category } from '../../Cascader.types';
 
-export interface Props {
+export type NavigationProps = {
   breadcrumbVisible?: boolean;
   backActionVisible?: boolean;
   activeCategory: Category;
   previousCategory: Category;
   onHomeIconClick: () => void;
   onPathClick: (item: string) => void;
-}
+};
+
+// @deprecated - use NavigationProps instead
+export type Props = NavigationProps;

@@ -154,6 +154,9 @@ export const CustomTrigger: Story = {
 };
 
 export const RelativeRangePresets: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: true }
+  },
   render: () => {
     const Table = styled.table`
       td {

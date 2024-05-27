@@ -97,6 +97,17 @@ export const Primary = {
 };
 
 
+export const Suggestions = {
+  ...StoryTemplate,
+
+  play: async ({canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('combobox'));
+    await userEvent.type(canvas.getByRole('combobox'), 'pos');
+  }
+};
+
+
 export const Loading = {
   render: (args) => (<Autocomplete {...args}>
     <Autocomplete.Option value="">

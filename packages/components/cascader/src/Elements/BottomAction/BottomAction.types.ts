@@ -1,6 +1,10 @@
-import * as React from 'react';
+import type { ReactNode, ReactElement } from 'react';
 
-export interface Props {
+export type BottomActionProps = {
   onClickAction: () => void;
-  icon?: React.ReactElement;
-}
+  icon?: ReactElement;
+  children?: ReactNode;
+};
+
+// @deprecated - use BottomActionProps instead
+export type Props = BottomActionProps;

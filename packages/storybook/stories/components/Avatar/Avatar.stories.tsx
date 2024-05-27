@@ -12,9 +12,10 @@ import Badge from '@synerise/ds-badge';
 import type { BadgeStatus } from '@synerise/ds-badge';
 import Icon, { MailM, Thunder2M, UserCircleM } from '@synerise/ds-icon';
 
-import { sizes, shapes, backgroundColors, image as anonymImage } from './constants';
+import { sizes, shapes, backgroundColors } from './constants';
 import { statuses } from '../Badge/constants';
 import { reactNodeAsSelect, controlFromOptionsArray } from '../../utils';
+import { avatarImage } from '../../constants/images'
 
 export default {
   title: 'Components/Avatar/Avatar',
@@ -84,7 +85,7 @@ export const Default: StoryObj<AvatarStoryType> = {
     <Badge status={args.badgeStatus || 'active'}>
       <Avatar
         {...args}
-        src={args.useImage ? anonymImage : undefined}
+        src={args.useImage ? avatarImage : undefined}
         iconComponent={args.iconComponent}
         hasStatus
       >JJ</Avatar>
