@@ -46,6 +46,7 @@ import FormatPicker from '@synerise/ds-format-picker'
 | onFixedLengthChange    | Fixed length change handler    | (fixedLength) => void              | -       |
 | onSetDefault           | Set default value of format    | () => void                         | -       |
 | text                   | Set of custom labels           | Texts                              | -       |
+| buttonType             | type of button                 | string                             | -       |
 
 
 ### Texts
