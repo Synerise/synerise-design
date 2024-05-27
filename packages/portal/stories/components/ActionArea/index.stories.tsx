@@ -6,6 +6,19 @@ import { boolean, text, object } from '@storybook/addon-knobs';
 
 const stories = {
   default: () => (
+    <div
+    style={{
+      padding: '24px',
+      width: '100%',
+      position: 'absolute',
+      height: '100%',
+      top: 0,
+      left: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+    >
     <ActionArea
       label={text('Set label', 'Label')}
       description={text('Set description', 'Very long description')}
@@ -15,7 +28,11 @@ const stories = {
         type: 'secondary',
         disabled: true
       })}
-    />
+      isFullWidth={boolean('Set 100% width', false)}
+      isError={boolean('Set validation state', false)}
+      errorText={text('Error text', 'Error text')}
+      />
+    </div>
   ),
 };
 

@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 import { Description } from '@synerise/ds-typography';
 
-// eslint-disable-next-line import/prefer-default-export
-export const ActionAreaWrapper = styled.div`
+export const ActionAreaWrapper = styled.div<{ isFullWidth?: boolean }>`
   max-width: 100%;
-  width: 588px;
+  width: ${({ isFullWidth }) => (isFullWidth ? '100%;' : '588px;')};
+`;
+
+export const ActionAreaContent = styled.div<{ isError?: boolean }>`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 28px 24px;
   border-radius: 3px;
-  border: 1px dashed ${(props): string => props.theme.palette['grey-300']};
+  border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
+  ${({ isError, theme }) => isError && `border-color: ${theme.palette['red-600']};`}
   .ds-title {
     margin-bottom: 8px;
     text-align: center;
@@ -22,4 +26,9 @@ export const ActionAreaWrapper = styled.div`
     text-align: center;
     word-break: break-word;
   }
+`;
+
+export const ErrorText = styled.div`
+  margin-top: 8px;
+  color: ${({ theme }) => theme.palette['red-600']};
 `;
