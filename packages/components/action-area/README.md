@@ -33,4 +33,9 @@ import ActionArea from '@synerise/ds-action-area'
 | description | Description of ActionArea                        | `React.ReactNode`           | -       |
 | label       | Label of ActionArea                              | `React.ReactNode`           | -       |
 | buttonProps | optional additional button props                 | see ds-button               | -       |
+| isFullWidth | Set component width to 100% available space      | `boolean`                   | false   |
+| isError     | Set component state to invalid                   | `boolean`                   | false   |
+| errorText   | Text to display when is invalid state            | `React.ReactNode`           | -       |
+| className   | custom class name                                | `string`                    | -       |
+| style       | custom CSS style                                 | `React.CSSProperties`       | -       |
 

@@ -34,7 +34,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-button": "^0.20.0",
-    "@synerise/ds-typography": "^0.15.0"
+    "@synerise/ds-typography": "^0.15.0",
+    "classnames": "2.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

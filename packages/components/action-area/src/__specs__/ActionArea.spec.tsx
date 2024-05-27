@@ -58,4 +58,13 @@ describe('ActionArea', () => {
 
     expect(screen.getByRole('button')).toBeDisabled();
   });
+  it('Should render validation state', () => {
+    const action = jest.fn();
+    renderWithProvider(
+      <ActionArea description={DESCRIPTION} label={LABEL} action={action} actionLabel={ACTION_LABEL} isError errorText='Field required' />
+    );
+    
+    expect(screen.getByTestId('action-area-content')).toHaveStyle({borderColor:'#f52922'});
+    expect(screen.getByText('Field required')).toBeInTheDocument();
+  });
 });
