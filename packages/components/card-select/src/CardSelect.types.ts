@@ -1,10 +1,14 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
+import type { TagProps } from '@synerise/ds-tags';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
-export interface CardSelectProps {
-  icon?: React.ReactNode;
+type CardSelectTagProps = Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'>;
+
+export type CardSelectProps = {
+  icon?: ReactNode;
   raised?: boolean;
-  description?: string | React.ReactNode;
-  title?: string | React.ReactNode;
+  description?: ReactNode;
+  title?: ReactNode;
   value?: boolean;
   disabled?: boolean;
   tickVisible?: boolean;
@@ -14,10 +18,12 @@ export interface CardSelectProps {
   tickSize?: number;
   stretchToFit?: boolean;
   customTickVisible?: boolean;
-  customTickVisibleComponent?: React.ReactNode;
+  customTickVisibleComponent?: ReactNode;
+  tagProps?: CardSelectTagProps;
+  tagTooltipProps?: TooltipProps;
   theme: { [k: string]: string };
   onChange?: (value: boolean) => void;
   onClick?: () => void;
   elementsPosition?: string | 'left' | 'center' | 'right';
   error?: boolean;
-}
+};

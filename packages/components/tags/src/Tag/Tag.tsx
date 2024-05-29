@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import { Props, TagShape } from './Tag.types';
+import { TagProps, TagShape } from './Tag.types';
 import * as S from './Tag.styles';
 import { getColorText } from './Tag.styles';
 
-const Tag: React.FC<Props> = ({
+const Tag = ({
   id,
   name,
   className,
@@ -18,11 +18,13 @@ const Tag: React.FC<Props> = ({
   textColor,
   onRemove,
   onClick,
+  onMouseLeave,
+  onMouseOver,
   prefixel,
   suffixel,
   texts,
   asPill,
-}: Props) => {
+}: TagProps) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
   const isDefaultSquare = shape === TagShape.DEFAULT_SQUARE;
@@ -31,20 +33,32 @@ const Tag: React.FC<Props> = ({
     [TagShape.STATUS_ERROR, TagShape.STATUS_NEUTRAL, TagShape.STATUS_SUCCESS, TagShape.STATUS_WARNING].includes(shape);
   const isRemovable = removable && (isDefaultRound || isDefaultSquare);
   const isActionable = !disabled && isRemovable;
-  const [iconHover, setIconHover] = React.useState(false);
+  const [isIconHovered, setIsIconHovered] = useState(false);
 
-  const onRemoveCall = (): void | false => !!onRemove && !!id && onRemove(id);
-  const renderPrefixel = (): React.ReactNode => {
+  const onRemoveCall = () => !!onRemove && !!id && onRemove(id);
+  const renderPrefixel = () => {
     if (typeof prefixel === 'string' || typeof prefixel === 'number') {
-      return <S.PrefixWrapper iconHover={iconHover}>{prefixel}</S.PrefixWrapper>;
+      return <S.PrefixWrapper iconHover={isIconHovered}>{prefixel}</S.PrefixWrapper>;
     }
-    return <S.DefaultPrefixWrapper iconHover={iconHover}>{prefixel}</S.DefaultPrefixWrapper>;
+    return <S.DefaultPrefixWrapper iconHover={isIconHovered}>{prefixel}</S.DefaultPrefixWrapper>;
   };
-  const renderSuffixel = (): React.ReactNode => {
+  const renderSuffixel = () => {
     if (typeof suffixel === 'string' || typeof suffixel === 'number') {
       return <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>;
     }
     return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
+  };
+
+  const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
+    setIsIconHovered(true);
+    // eslint-disable-next-line no-unused-expressions
+    onMouseOver?.(event);
+  };
+
+  const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
+    setIsIconHovered(true);
+    // eslint-disable-next-line no-unused-expressions
+    onMouseLeave?.(event);
   };
 
   return (
@@ -62,25 +76,21 @@ const Tag: React.FC<Props> = ({
       preffixel={!!prefixel}
       suffixel={!!suffixel}
       hasImage={!!image}
-      iconHover={iconHover}
+      iconHover={isIconHovered}
       asPill={asPill}
     >
-      <S.Content iconHover={iconHover}>
+      <S.Content iconHover={isIconHovered}>
         {image && isDefaultType && <img src={image} alt="" />}
         {!!prefixel && renderPrefixel()}
         <S.TagName>{name}</S.TagName>
         {!!suffixel && renderSuffixel()}
         {isRemovable && (
-          <Tooltip title={texts?.deleteTooltip || 'Delete'} visible={iconHover}>
+          <Tooltip title={texts?.deleteTooltip || 'Delete'} visible={isIconHovered}>
             {/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events */}
             <S.RemoveButton
               onClick={onRemoveCall}
-              onMouseOver={(): void => {
-                setIconHover(true);
-              }}
-              onMouseLeave={(): void => {
-                setIconHover(false);
-              }}
+              onMouseOver={handleMouseOver}
+              onMouseLeave={handleMouseLeave}
               data-testid="remove-btn"
             >
               <Icon className="icon" component={<CloseS />} size={24} color={getColorText(theme, color)} />
