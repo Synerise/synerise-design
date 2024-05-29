@@ -1,0 +1,4 @@
+export const DEFAULT_TICK_SIZE_SMALL = 24;
+export const DEFAULT_TICK_SIZE_LARGE = 30;
+export const DEFAULT_ICON_SIZE_SMALL = 48;
+export const DEFAULT_ICON_SIZE_LARGE = 96;

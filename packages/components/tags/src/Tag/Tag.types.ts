@@ -1,6 +1,7 @@
+import { HTMLAttributes, ReactNode } from 'react';
 import { TagsTexts } from '../Tags.types';
 
-export interface Props {
+export type TagProps = {
   id?: string | number;
   name?: string;
   textColor?: string;
@@ -12,11 +13,14 @@ export interface Props {
   disabled?: boolean;
   onClick?: () => void;
   onRemove?: (tag: string | number) => void;
-  prefixel?: React.ReactNode | React.ReactText;
-  suffixel?: React.ReactNode | React.ReactText;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
   texts?: TagsTexts;
   asPill?: boolean;
-}
+} & HTMLAttributes<HTMLDivElement>;
+
+// @deprecated - use TagProps instead
+export type Props = TagProps;
 
 export enum TagShape {
   SINGLE_CHARACTER_ROUND = 'single_character_round',

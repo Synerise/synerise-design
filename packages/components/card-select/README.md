@@ -68,6 +68,17 @@ yarn add @synerise/ds-card-select
 | theme                      | Palette of colors                                                    | string             | -                                               |
 | elementsPosition           | Defines the position of the elements on the card                     | string             | `center`                                        |
 | width                      | Defines the width of Group of cards                                  | `large` / `small`  | `large`                                         |
+| tagProps                   | Defines a ribbon-style tag                                           | `TagProps`         | -                                               |
+| tagTooltipProps            | Defines tooltip for the ribbon tag                                   | `TooltipProps`     | -                                               |
+
+
+### TagProps
+
+accepts a subset of TagProps. See @synerise/ds-tags for API
+```
+Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'>
+```
+
 
 ### Methods
 

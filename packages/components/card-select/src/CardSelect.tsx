@@ -1,12 +1,20 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { Check3M } from '@synerise/ds-icon';
-
+import { TagShape } from '@synerise/ds-tags';
 import { useOnClickOutside } from '@synerise/ds-utils';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './CardSelect.styles';
 import { CardSelectProps } from './CardSelect.types';
+import {
+  DEFAULT_ICON_SIZE_LARGE,
+  DEFAULT_ICON_SIZE_SMALL,
+  DEFAULT_TICK_SIZE_LARGE,
+  DEFAULT_TICK_SIZE_SMALL,
+} from './constants';
 
-const CardSelect: React.FC<CardSelectProps> = ({
+const CardSelect = ({
   title,
   description,
   customTickVisible,
@@ -26,36 +34,46 @@ const CardSelect: React.FC<CardSelectProps> = ({
   onClick,
   theme,
   error,
-}) => {
-  const [pressed, setPressed] = React.useState<boolean>(false);
-  const wrapperRef = React.useRef(null);
-  const tickIconRef = React.useRef<HTMLDivElement>(null);
-  const handleClick = (): void => {
+  tagProps,
+  tagTooltipProps,
+}: CardSelectProps) => {
+  const [isPressed, setIsPressed] = useState(false);
+  const wrapperRef = useRef(null);
+  const tickIconRef = useRef<HTMLDivElement>(null);
+  const handleClick = () => {
     onClick ? onClick() : onChange && onChange(!value);
-    setPressed(true);
+    setIsPressed(true);
 
     setTimeout(() => {
       if (tickIconRef !== null && tickIconRef.current !== null) tickIconRef.current.blur();
     });
   };
-  let realIconSize = iconSize;
 
-  if (!realIconSize) {
-    realIconSize = size === 'small' ? 48 : 96;
-  }
-  let realTickSize = tickSize;
-  if (!realTickSize) {
-    realTickSize = size === 'small' ? 24 : 30;
-  }
+  const realIconSize = iconSize || (size === 'small' ? DEFAULT_ICON_SIZE_SMALL : DEFAULT_ICON_SIZE_LARGE);
+  const realTickSize = tickSize || (size === 'small' ? DEFAULT_TICK_SIZE_SMALL : DEFAULT_TICK_SIZE_LARGE);
+
+  const tagElement = tagProps && (
+    <S.TagRibbonAnchor>
+      <S.TagRibbon {...tagProps} shape={TagShape.DEFAULT_SQUARE} asPill />
+    </S.TagRibbonAnchor>
+  );
+  const tagElementWithTooltip = tagTooltipProps ? <Tooltip {...tagTooltipProps}>{tagElement}</Tooltip> : tagElement;
+
   useOnClickOutside(wrapperRef, () => {
-    pressed && setPressed(false);
+    isPressed && setIsPressed(false);
   });
   return (
-    <S.CardWrapper disabled={disabled} stretchToFit={stretchToFit}>
+    <S.CardWrapper
+      size={size}
+      disabled={disabled}
+      stretchToFit={stretchToFit}
+      hasTick={tickVisible || customTickVisible}
+    >
+      {tagElementWithTooltip}
       <S.Container
         error={!!error}
         ref={wrapperRef}
-        pressed={pressed}
+        pressed={isPressed}
         raised={raised}
         disabled={disabled}
         value={value}
@@ -87,7 +105,7 @@ const CardSelect: React.FC<CardSelectProps> = ({
           )}
         </S.Aside>
 
-        <S.Main size={size} disabled={disabled} hasTick={tickVisible || customTickVisible}>
+        <S.Main>
           {icon && (
             <S.IconWrapper size={size}>
               <Icon component={icon} size={realIconSize} />

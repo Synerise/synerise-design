@@ -1,28 +1,28 @@
-import * as React from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 import { Props as TagProps, TagShape } from './Tag/Tag.types';
 
-export interface TagsTexts {
-  addButtonLabel?: string | React.ReactNode;
+export type TagsTexts = {
+  addButtonLabel?: ReactNode;
   searchPlaceholder?: string;
-  manageLinkLabel?: string | React.ReactNode;
-  createTagButtonLabel?: string | React.ReactNode;
-  dropdownNoTags?: string | React.ReactNode;
-  clearTooltip?: string | React.ReactNode;
-  deleteTooltip?: string | React.ReactNode;
-  noResultsLabel?: string | React.ReactNode;
-}
+  manageLinkLabel?: ReactNode;
+  createTagButtonLabel?: ReactNode;
+  dropdownNoTags?: ReactNode;
+  clearTooltip?: ReactNode;
+  deleteTooltip?: ReactNode;
+  noResultsLabel?: ReactNode;
+};
 
-export interface ActionTaken {
+export type ActionTaken = {
   type: 'ADD' | 'REMOVE';
   tag: TagProps;
-}
+};
 
-export interface Props {
+export type TagsProps = {
   data?: Array<TagProps>;
   selected?: Array<TagProps>;
   tagShape?: TagShape;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   addable?: boolean;
   removable?: boolean;
   creatable?: boolean;
@@ -32,9 +32,12 @@ export interface Props {
   theme: { [k: string]: string };
   onCreate?: (name: string) => void;
   onSelectedChange?: (tags: Array<TagProps>, action: ActionTaken) => void;
-  overlayStyle?: React.CSSProperties;
+  overlayStyle?: CSSProperties;
   maxHeight?: number;
   overlayPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
   asPill?: boolean;
   onManageTagClick?: () => void;
-}
+};
+
+// @deprecated - use TagsProps instead
+export type Props = TagsProps;

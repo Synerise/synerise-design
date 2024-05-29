@@ -1,18 +1,33 @@
+import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
 import { ThemeProps } from '@synerise/ds-core';
-import * as React from 'react';
+import { Tag } from '@synerise/ds-tags';
+
+const TRANSITION = `
+  TRANSITION-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+  transition-property: border-color, background-color;
+`;
+const MAIN_PADDING = 8;
+const RADIO_WIDTH = 20;
+const RADIO_SMALL_WIDTH = 16;
+const RADIO_BORDER_WIDTH = 1;
+
+const TAG_LEFT_OFFSET = 32;
+const TAG_LEFT_OFFSET_TICK_SMALL = 44;
+const TAG_LEFT_OFFSET_TICK_LARGE = 68;
+
+const MAP_ELEMENTS_POSITION = {
+  left: 'flex-start',
+  right: 'flex-end',
+  center: 'center',
+};
 
 const getVar =
   (name: string) =>
   (props: ThemeProps): string =>
     props.theme.palette[name];
-
-const transition = `
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.2s;
-  transition-property: border-color, background-color;
-`;
 const getTransformValues = (props: ThemeProps & { elementsPosition: string; size?: string }): string => {
   if (props.size === 'small') {
     return 'translate(-2px,-2px)';
@@ -21,16 +36,6 @@ const getTransformValues = (props: ThemeProps & { elementsPosition: string; size
     return 'translate(3px,-3px)';
   }
   return 'translate( -3px, -3px)';
-};
-const mainPadding = 8;
-const radioWidth = 20;
-const radioSmallWidth = 16;
-const radioBorderWidth = 1;
-
-const mapElementsPosition = {
-  left: 'flex-start',
-  right: 'flex-end',
-  center: 'center',
 };
 
 const sizeCondition = (
@@ -42,11 +47,11 @@ const sizeCondition = (
 ): React.ReactText => (props.size === 'small' ? smallValue : mediumValue);
 
 export const RadioShape = styled.div<{ size?: string }>`
-  ${transition};
-  width: ${(props): string | number => sizeCondition(radioSmallWidth, radioWidth, props)}px;
-  height: ${(props): string | number => sizeCondition(radioSmallWidth, radioWidth, props)}px;
+  ${TRANSITION};
+  width: ${(props): string | number => sizeCondition(RADIO_SMALL_WIDTH, RADIO_WIDTH, props)}px;
+  height: ${(props): string | number => sizeCondition(RADIO_SMALL_WIDTH, RADIO_WIDTH, props)}px;
   border-radius: 50%;
-  border-width: ${radioBorderWidth}px;
+  border-width: ${RADIO_BORDER_WIDTH}px;
   border-style: solid;
   border-color: ${getVar('grey-300')};
   margin: 2px;
@@ -85,7 +90,7 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
 `;
 
 export const IconWrapper = styled.div<{ size?: string }>`
-  margin-bottom: ${(props): string | number => sizeCondition(0, mainPadding, props)}px;
+  margin-bottom: ${(props): string | number => sizeCondition(0, MAIN_PADDING, props)}px;
   text-align: center;
   width: 100%;
 `;
@@ -113,7 +118,7 @@ export const Container = styled.div<
     height: 100%;
   `}
 
-  ${transition};
+  ${TRANSITION};
   background-color: ${getVar('white')};
   border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
   ${is('error')`
@@ -123,7 +128,7 @@ export const Container = styled.div<
   `}
   display: flex;
   flex: 1;
-  justify-content: ${(props): string => mapElementsPosition[props.elementsPosition]};
+  justify-content: ${(props): string => MAP_ELEMENTS_POSITION[props.elementsPosition]};
   border-color: ${getVar('white')};
   position: relative;
   padding: ${(props): string => (props.size === 'small' ? '16px' : '24px')};
@@ -201,7 +206,20 @@ export const Container = styled.div<
   `};
 `;
 
-export const Main = styled.div<{ disabled?: boolean; size?: string; hasTick?: boolean }>`
+export const TagRibbonAnchor = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  height: 0;
+  overflow: visible;
+`;
+export const TagRibbon = styled(Tag)`
+  position: relative;
+  z-index: 1;
+  top: -12px;
+  right: 16px;
+  margin: 0;
+`;
+export const Main = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -234,11 +252,20 @@ export const TickIcon = styled.div<{
   `}
 `;
 
-export const CardWrapper = styled.div<{ disabled?: boolean; stretchToFit?: boolean }>`
+export const CardWrapper = styled.div<{ size?: string; disabled?: boolean; stretchToFit?: boolean; hasTick?: boolean }>`
+  position: relative;
   ${is('disabled')`
     cursor:not-allowed;
   `}
   ${is('stretchToFit')`
     height: 100%;
   `}
+
+
+  ${TagRibbonAnchor} {
+    padding-left: ${props => {
+      const withTickOffset = props.size === 'small' ? TAG_LEFT_OFFSET_TICK_SMALL : TAG_LEFT_OFFSET_TICK_LARGE;
+      return props.hasTick ? withTickOffset : TAG_LEFT_OFFSET;
+    }}px;
+  }
 `;

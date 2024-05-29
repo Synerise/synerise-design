@@ -25,6 +25,15 @@ export const centeredPaddedWrapper = (Story, storyContext) => {
     )
 };
 
+export const cardSelectWrapper = (Story, storyContext) => {
+    const height = storyContext.viewMode === 'story' ? '100vh' : '200px';
+    const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
+    return (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width, height}}>{Story()}</div>
+    )
+};
+
+
 export const buttonDecorator = (Story, storyContext) => {
     const lightTypes = ['tertiary-white', 'ghost-white'];
     const backgroundColor = lightTypes.includes(storyContext.args.type) ? theme.palette['grey-600'] : 'transparent';
