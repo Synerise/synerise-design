@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.4.60...@synerise/ds-block@0.4.61) (2024-05-29)
+
+**Note:** Version bump only for package @synerise/ds-block
+
+
+
+
+
 ## [0.4.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-block@0.4.59...@synerise/ds-block@0.4.60) (2024-05-16)
 
 **Note:** Version bump only for package @synerise/ds-block

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.73](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.72...@synerise/ds-radio@0.11.73) (2024-05-29)
+
+
+### Bug Fixes
+
+* **radio:** fix margins of radio-button ([a212403](https://github.com/synerise/synerise-design/commit/a2124036492011c7867e04334bb35bcd34ebb89e))
+
+
+
+
+
 ## [0.11.72](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.71...@synerise/ds-radio@0.11.72) (2024-05-22)
 
 

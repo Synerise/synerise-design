@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.23...@synerise/ds-menu@0.19.0) (2024-05-29)
+
+
+### Features
+
+* **list-item:** added prefix, suffix, ordered props ([3927035](https://github.com/Synerise/synerise-design/commit/39270352b6a681f3ac402edb6c2fb7a245883304))
+
+
+
+
+
 ## [0.18.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.22...@synerise/ds-menu@0.18.23) (2024-05-16)
 
 **Note:** Version bump only for package @synerise/ds-menu

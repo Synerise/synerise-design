@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.20.0...@synerise/ds-button@0.20.1) (2024-05-29)
+
+
+### Bug Fixes
+
+* **button:** add type to ButtonWithStar ([173e81b](https://github.com/synerise/synerise-design/commit/173e81b60667fd3334c9695aa9cfdf124f3a71c2))
+
+
+
+
+
 # [0.20.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.19.9...@synerise/ds-button@0.20.0) (2024-05-16)
 
 

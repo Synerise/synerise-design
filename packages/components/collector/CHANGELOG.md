@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.9.7...@synerise/ds-collector@0.10.0) (2024-05-29)
+
+
+### Features
+
+* **list-item:** added prefix, suffix, ordered props ([3927035](https://github.com/Synerise/synerise-design/commit/39270352b6a681f3ac402edb6c2fb7a245883304))
+
+
+
+
+
 ## [0.9.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.9.6...@synerise/ds-collector@0.9.7) (2024-05-23)
 
 **Note:** Version bump only for package @synerise/ds-collector
