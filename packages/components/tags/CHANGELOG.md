@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.46...@synerise/ds-tags@0.9.0) (2024-05-31)
+
+
+### Features
+
+* **card-select:** add tag as ribbon ([9c05c78](https://github.com/Synerise/synerise-design/commit/9c05c78c2972a2c9ba096d0a30a4fe8f57e6b57e))
+
+
+
+
+
 ## [0.8.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.8.45...@synerise/ds-tags@0.8.46) (2024-05-29)
 
 **Note:** Version bump only for package @synerise/ds-tags

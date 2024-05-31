@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.5.44...@synerise/ds-card-select@0.6.0) (2024-05-31)
+
+
+### Features
+
+* **card-select:** add tag as ribbon ([9c05c78](https://github.com/Synerise/synerise-design/commit/9c05c78c2972a2c9ba096d0a30a4fe8f57e6b57e))
+
+
+
+
+
 ## [0.5.44](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.5.43...@synerise/ds-card-select@0.5.44) (2024-05-29)
 
 **Note:** Version bump only for package @synerise/ds-card-select

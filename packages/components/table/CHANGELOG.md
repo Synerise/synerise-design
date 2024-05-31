@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.52.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.51.4...@synerise/ds-table@0.52.0) (2024-05-31)
+
+
+### Features
+
+* **table:** reveal table header in sticky virtual table ([315b0f8](https://github.com/synerise/synerise-design/commit/315b0f8b3068362881f23133966ac0a59003e253))
+
+
+
+
+
 ## [0.51.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.51.3...@synerise/ds-table@0.51.4) (2024-05-29)
 
 **Note:** Version bump only for package @synerise/ds-table
