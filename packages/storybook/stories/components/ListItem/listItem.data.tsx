@@ -10,6 +10,8 @@ import Icon, {
   FolderM,
   OptionHorizontalM,
   ShowM,
+  StarFillM,
+  StarM,
   TaskCheckM,
   TrashM,
   UserS,
@@ -28,6 +30,7 @@ import Avatar from '@synerise/ds-avatar';
 
 import { avatarImage } from '../../constants/images';
 import { controlFromOptionsArray } from '../../utils';
+import { RawSwitch } from '@synerise/ds-switch';
 
 export const suffixType = {
   renameAndDelete: 'rename,delete',
@@ -39,6 +42,7 @@ export const suffixType = {
   label: 'label',
   dropdown: 'dropdown',
   select: 'select',
+  star: 'star',
   rename: 'rename',
   none: 'none',
 };
@@ -148,6 +152,23 @@ const Rename = ({ onSelectEdit }) => {
     </Tooltip>
   );
 };
+
+const StarWithTooltip = () => {
+  const [checked, setChecked] = useState(false);
+  const iconComponent = checked ? <StarFillM /> : <StarM />;
+  const iconColor = checked ? theme.palette['yellow-600'] : theme.palette['grey-600'];
+  const handleClick = () => {
+    setChecked(!checked);
+  }
+  return (
+    <Tooltip type="default" title={'Star'}>
+      <div onClick={e => e.stopPropagation()}>
+        <Icon onClick={handleClick} color={iconColor} component={iconComponent} data-testid="star-icon" />
+      </div>
+    </Tooltip>
+  );
+};
+
 const RenameWithDelete = ({ onClickEdit }) => {
   return (
     <>
@@ -175,7 +196,7 @@ const SwitchWithTooltip = () => {
   const [checked, setChecked] = useState(false);
   return (
     <Tooltip type="default" trigger="hover" title={checked ? 'Switch off' : 'Switch on'}>
-      <ExtendedAntdSwitchComponent
+      <RawSwitch
         onChange={(value, event) => {
           event.stopPropagation();
           setChecked(value);
@@ -226,6 +247,8 @@ export function renderSuffix(
   clickSuffixCallback?: () => void
 ) {
   switch (suffixElementType) {
+    case suffixType.star:
+        return <StarWithTooltip />
     case suffixType.renameAndDelete:
       return <RenameWithDelete onClickEdit={clickSuffixCallback} />;
     case suffixType.rename:
