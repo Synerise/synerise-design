@@ -27,7 +27,7 @@ export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: nu
   ${props =>
     props.isSticky &&
     css`
-      width: ${props.listWidth}px;
+      width: ${numberToPixels(props.listWidth)};
       overflow: overlay hidden;
       scrollbar-color: transparent;
       scrollbar-width: none;
@@ -41,7 +41,7 @@ export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: nu
       :after {
         content: '';
         width: 10px;
-        height: ${props.listHeight}px;
+        height: ${numberToPixels(props.listHeight)};
         display: block;
       }
     `}
@@ -53,11 +53,11 @@ export const StickyScrollbar = styled(Scrollbar)<{ offset: number }>`
   position: sticky;
   bottom: 0;
   z-index: 2;
-  transform: translate(5px, ${props => props.offset}px);
+  transform: translate(5px, ${props => numberToPixels(props.offset)});
 `;
 
 export const StickyScrollbarContent = styled.div<{ scrollWidth: number }>`
-  width: ${props => props.scrollWidth}px;
+  width: ${props => numberToPixels(props.scrollWidth)};
   height: 10px;
 `;
 
@@ -96,6 +96,30 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   }
 `;
 
-export const VirtualTableWrapper = styled.div<{ isSticky: boolean }>`
-  ${props => (props.isSticky ? '' : 'position: relative;')}
+export const VirtualTableWrapper = styled.div<{ isSticky: boolean; isHeaderVisible?: boolean }>`
+  ${props =>
+    props.isSticky
+      ? css`
+          .ant-table-title {
+            position: sticky;
+            top: -96px;
+            z-index: 99;
+          }
+          .ant-table-title,
+          .ant-table-sticky-header {
+            transition: top 0.3s ease-in-out;
+          }
+          ${props.isHeaderVisible &&
+          css`
+            .ant-table-title {
+              top: -24px;
+            }
+            .ant-table-sticky-header {
+              top: 48px !important;
+            }
+          `};
+        `
+      : css`
+          position: relative;
+        `}
 `;
