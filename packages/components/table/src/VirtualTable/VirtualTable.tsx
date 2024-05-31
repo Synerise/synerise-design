@@ -1,4 +1,13 @@
-import React, { useCallback, useState, useRef, forwardRef, useEffect, useMemo, useImperativeHandle } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useImperativeHandle,
+  ReactText,
+} from 'react';
 import type { CSSProperties, HTMLAttributes, Ref, ReactElement, UIEvent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import type { ListOnScrollProps } from 'react-window';
@@ -57,15 +66,18 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const intl = useIntl();
   const tableLocale = useTableLocale(intl, locale);
   const listRef = useRef<List>(null);
+  const listScrollTopRef = useRef(0);
   const outerListRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const horizontalScrollRef = useRef<HTMLDivElement>(null);
   const customBodyOnScrollRef = useRef<CustomizeScrollBodyInfo['onScroll']>();
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const [firstItem, setFirstItem] = useState<T | null>(null);
+
   const hasInfiniteScroll = Boolean(infiniteScroll);
   const isSticky = Boolean(sticky);
   const stickyScrollThreshold = sticky && sticky.scrollThreshold;
-
-  const [firstItem, setFirstItem] = React.useState<T | null>(null);
+  const dataSourceEmpty = dataSource.length === 0;
 
   const updateFirstItem = useCallback(
     (findFirstItem: (item: T) => boolean): void => {
@@ -86,9 +98,15 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     [dataSource, setFirstItem, onScrollToRecordIndex]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (dataSourceEmpty) {
+      setIsHeaderVisible(false);
+    }
+  }, [dataSourceEmpty]);
+
+  useEffect(() => {
     try {
-      if (!infiniteScroll?.prevPage || dataSource.length === 0) {
+      if (!infiniteScroll?.prevPage || dataSourceEmpty) {
         return;
       }
       if (firstItem === null) {
@@ -116,9 +134,9 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     } catch (error) {
       throw new Error('Cannot find firs item');
     }
-  }, [dataSource, dataSource.length, rowKey, firstItem, infiniteScroll, updateFirstItem]);
+  }, [dataSource, dataSourceEmpty, rowKey, firstItem, infiniteScroll, updateFirstItem]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (listRef.current && infiniteScroll?.prevPage?.hasMore) {
       listRef.current.scrollTo(INFINITE_LOADED_ITEM_HEIGHT);
     }
@@ -190,6 +208,12 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const renderRowSelection = useCallback(
     (key: string, record: T) => {
       const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+      const handleChange = (keys: ReactText[], records: T[]) => {
+        if (isSticky && listScrollTopRef.current) {
+          setIsHeaderVisible(true);
+        }
+        onChange(keys, records);
+      };
       return (
         <RowSelectionColumn
           rowKey={rowKey}
@@ -197,13 +221,13 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           limit={limit}
           selectedRowKeys={selectedRowKeys}
           independentSelectionExpandedRows={independentSelectionExpandedRows}
-          onChange={onChange}
+          onChange={handleChange}
           selectedRecords={selectedRecords}
           tableLocale={locale}
         />
       );
     },
-    [locale, rowKey, selectedRecords, selection]
+    [isSticky, locale, rowKey, selectedRecords, selection]
   );
 
   const virtualColumns: DSColumnType<T>[] = useMemo(() => {
@@ -405,8 +429,16 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           if (loading || listMaxScroll <= 0) {
             return;
           }
-
           const roundedOffset = Math.ceil(scrollOffset);
+          listScrollTopRef.current = roundedOffset;
+
+          if (isSticky && scrollDirection === 'forward' && containerRef.current) {
+            setIsHeaderVisible(false);
+          }
+          if (isSticky && scrollDirection === 'backward' && containerRef.current) {
+            setIsHeaderVisible(roundedOffset > 0);
+          }
+
           if (
             scrollDirection === 'forward' &&
             roundedOffset >= listMaxScroll - LOAD_DATA_OFFSET &&
@@ -558,6 +590,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       style={isSticky ? {} : relativeInlineStyle}
       key="relative-container"
       ref={containerRef}
+      isHeaderVisible={isHeaderVisible}
     >
       <ResizeObserver
         onResize={({ offsetWidth }) => {
