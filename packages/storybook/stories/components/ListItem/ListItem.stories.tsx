@@ -224,9 +224,25 @@ export const Divider: Story = {
   },
 };
 
+
+
+export const WithStar: StoryObj<ListItemProps & { suffixType?: string }> = {
+  render: renderWithPrefixAndSuffix,
+  args: {
+    suffixType: 'star',
+    suffixVisibilityTrigger: 'hover',
+    prefixel: (
+      <Badge status="active">
+        <Avatar size="small" src={avatarImage} shape="circle" />
+      </Badge>
+    ),
+  },
+};
+
+
 export const WithTag: StoryObj<ListItemProps & { tagShape?: TagShape }> = {
   render: args => {
-    const tagName = args.tagShape.includes('single') ? 'A' : 'Tag';
+    const tagName = args.tagShape?.includes('single') ? 'A' : 'Tag';
     const suffixel = <Tag name={tagName} shape={args.tagShape} />;
     return renderListItem({
       ...args,
