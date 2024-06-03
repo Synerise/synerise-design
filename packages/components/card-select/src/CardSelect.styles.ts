@@ -3,6 +3,7 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import is, { isNot } from 'styled-is';
 import { ThemeProps } from '@synerise/ds-core';
 import { Tag } from '@synerise/ds-tags';
+import { CardSelectAlignType, CardSelectSizeType } from './CardSelect.types';
 
 const TRANSITION = `
   TRANSITION-timing-function: ease-in-out;
@@ -28,7 +29,9 @@ const getVar =
   (name: string) =>
   (props: ThemeProps): string =>
     props.theme.palette[name];
-const getTransformValues = (props: ThemeProps & { elementsPosition: string; size?: string }): string => {
+const getTransformValues = (
+  props: ThemeProps & { elementsPosition: CardSelectAlignType; size?: CardSelectSizeType }
+): string => {
   if (props.size === 'small') {
     return 'translate(-2px,-2px)';
   }
@@ -42,11 +45,11 @@ const sizeCondition = (
   smallValue: number | string,
   mediumValue: number | string,
   props: {
-    size?: string;
+    size?: CardSelectSizeType;
   }
 ): React.ReactText => (props.size === 'small' ? smallValue : mediumValue);
 
-export const RadioShape = styled.div<{ size?: string }>`
+export const RadioShape = styled.div<{ size?: CardSelectSizeType }>`
   ${TRANSITION};
   width: ${(props): string | number => sizeCondition(RADIO_SMALL_WIDTH, RADIO_WIDTH, props)}px;
   height: ${(props): string | number => sizeCondition(RADIO_SMALL_WIDTH, RADIO_WIDTH, props)}px;
@@ -60,7 +63,7 @@ export const RadioShape = styled.div<{ size?: string }>`
     border-color: ${getVar('grey-400')};
   }
 `;
-export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
+export const Title = styled.div<{ hasIcon: boolean; size?: CardSelectSizeType }>`
   text-align: center;
   color: ${getVar('grey-800')};
   font-weight: ${(props): string | number => sizeCondition('400', '500', props)};
@@ -72,9 +75,9 @@ export const Title = styled.div<{ hasIcon: boolean; size?: string }>`
     props.hasIcon &&
     css`
       margin-top: 4px;
-    `};
+    `}
 `;
-export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: string }>`
+export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; size?: CardSelectSizeType }>`
   && {
     font-size: 13px;
     text-align: center;
@@ -89,12 +92,12 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
   }
 `;
 
-export const IconWrapper = styled.div<{ size?: string }>`
+export const IconWrapper = styled.div<{ size?: CardSelectSizeType }>`
   margin-bottom: ${(props): string | number => sizeCondition(0, MAIN_PADDING, props)}px;
   text-align: center;
   width: 100%;
 `;
-export const Aside = styled.div<{ size?: string }>`
+export const Aside = styled.div<{ size?: CardSelectSizeType }>`
   display: flex;
   padding: 0;
   justify-content: center;
@@ -106,8 +109,8 @@ export const Container = styled.div<
     disabled?: boolean;
     raised?: boolean;
     value?: boolean;
-    size?: string;
-    elementsPosition: string | 'left' | 'center' | 'right';
+    size?: CardSelectSizeType;
+    elementsPosition: CardSelectAlignType;
     selected?: boolean;
     pressed?: boolean;
     stretchToFit?: boolean;
@@ -208,7 +211,6 @@ export const Container = styled.div<
 
 export const TagRibbonAnchor = styled.div`
   display: flex;
-  justify-content: flex-end;
   height: 0;
   overflow: visible;
 `;
@@ -216,7 +218,6 @@ export const TagRibbon = styled(Tag)`
   position: relative;
   z-index: 1;
   top: -12px;
-  right: 16px;
   margin: 0;
 `;
 export const Main = styled.div`
@@ -228,13 +229,13 @@ export const Main = styled.div`
 `;
 
 export const TickIcon = styled.div<{
-  size?: string;
+  size?: CardSelectSizeType;
   disabled?: boolean;
   selected?: boolean;
-  elementsPosition: string | 'left' | 'center' | 'right';
+  elementsPosition: CardSelectAlignType;
 }>`
   ${is('selected')`
-    transform: ${(props: ThemeProps & { elementsPosition: string; size?: string }): string =>
+    transform: ${(props: ThemeProps & { elementsPosition: CardSelectAlignType; size?: CardSelectSizeType }): string =>
       getTransformValues(props)}; 
   `}
 
@@ -252,7 +253,14 @@ export const TickIcon = styled.div<{
   `}
 `;
 
-export const CardWrapper = styled.div<{ size?: string; disabled?: boolean; stretchToFit?: boolean; hasTick?: boolean }>`
+export const CardWrapper = styled.div<{
+  size?: CardSelectSizeType;
+  disabled?: boolean;
+  stretchToFit?: boolean;
+  hasTick?: boolean;
+  hasIcon?: boolean;
+  elementsPosition?: CardSelectAlignType;
+}>`
   position: relative;
   ${is('disabled')`
     cursor:not-allowed;
@@ -261,11 +269,24 @@ export const CardWrapper = styled.div<{ size?: string; disabled?: boolean; stret
     height: 100%;
   `}
 
+  ${Title} {
+    ${props =>
+      props.hasTick &&
+      !props.hasIcon &&
+      css`
+        padding: 0 24px;
+      `}
+  }
 
   ${TagRibbonAnchor} {
-    padding-left: ${props => {
-      const withTickOffset = props.size === 'small' ? TAG_LEFT_OFFSET_TICK_SMALL : TAG_LEFT_OFFSET_TICK_LARGE;
-      return props.hasTick ? withTickOffset : TAG_LEFT_OFFSET;
-    }}px;
+    justify-content: ${(props): string => (props.elementsPosition === 'right' ? 'flex-start' : 'flex-end')};
+    padding-${(props): string => (props.elementsPosition === 'left' ? 'right' : 'left')}: ${props => {
+  const withTickOffset = props.size === 'small' ? TAG_LEFT_OFFSET_TICK_SMALL : TAG_LEFT_OFFSET_TICK_LARGE;
+  return props.hasTick ? withTickOffset : TAG_LEFT_OFFSET;
+}}px;
+  }
+
+  ${TagRibbon} {
+    ${(props): string => (props.elementsPosition === 'left' ? 'left' : 'right')}: 16px;
   }
 `;
