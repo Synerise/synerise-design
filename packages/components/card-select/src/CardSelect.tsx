@@ -45,7 +45,8 @@ const CardSelect = ({
     setIsPressed(true);
 
     setTimeout(() => {
-      if (tickIconRef !== null && tickIconRef.current !== null) tickIconRef.current.blur();
+      // eslint-disable-next-line no-unused-expressions
+      tickIconRef.current?.blur();
     });
   };
 
@@ -65,9 +66,12 @@ const CardSelect = ({
   return (
     <S.CardWrapper
       size={size}
+      className="ds-card-select-wrapper"
       disabled={disabled}
       stretchToFit={stretchToFit}
       hasTick={tickVisible || customTickVisible}
+      hasIcon={!!icon}
+      elementsPosition={elementsPosition}
     >
       {tagElementWithTooltip}
       <S.Container
@@ -117,6 +121,7 @@ const CardSelect = ({
               {title}
             </S.Title>
           ) : null}
+
           {description && size !== 'small' ? (
             <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
               {description}

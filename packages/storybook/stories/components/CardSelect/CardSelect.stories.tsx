@@ -7,7 +7,7 @@ import CardSelect from '@synerise/ds-card-select';
 import type { CardSelectProps } from '@synerise/ds-card-select';
 
 import { theme } from '@synerise/ds-core';
-import { cardSelectWrapper, reactNodeAsSelect, NUMBER_CONTROL, BOOLEAN_CONTROL, REACT_NODE_AS_STRING, controlFromOptionsArray } from '../../utils';
+import { cardSelectWrapper, reactNodeAsSelect, NUMBER_CONTROL, BOOLEAN_CONTROL, REACT_NODE_AS_STRING, controlFromOptionsArray, CLASSNAME_ARG_CONTROL } from '../../utils';
 
 type CardSelectStoryProps = CardSelectProps & { showTag?: boolean, showTagTooltip?: boolean }
 
@@ -39,8 +39,10 @@ export default {
   },
   args: {
     title: 'A/B Tests',
+    tickVisible: false,
   },
   argTypes: {
+    className: CLASSNAME_ARG_CONTROL,
     title: REACT_NODE_AS_STRING,
     description: REACT_NODE_AS_STRING,
     tickVisible: BOOLEAN_CONTROL,
@@ -100,6 +102,21 @@ export const WithTooltipOnTag: Story = {
     description: 'Method interprets user queries contextually for more meaningful results',
     tagProps,
     tagTooltipProps,
+  },
+};
+
+export const WithShadow: Story = {
+  parameters: {
+    controls: {
+      exclude: ['showTag', 'showTagTooltip']
+    }
+  },
+  args: {
+    title: 'Semantic search',
+    description: 'Method interprets user queries contextually for more meaningful results',
+    tagProps,
+    icon: <AbTestXl />,
+    raised: true
   },
 };
 

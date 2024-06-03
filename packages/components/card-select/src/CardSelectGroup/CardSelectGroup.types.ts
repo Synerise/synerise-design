@@ -1,8 +1,17 @@
-import * as React from 'react';
+import type { Key, ReactNode } from 'react';
+import { CardSelectProps } from '../CardSelect.types';
 
-export interface CardSelectGroupProps {
+type CardSelectPropsWithKey = Omit<CardSelectProps, 'key'> & {
+  key: Key;
+};
+
+export type CardSelectGroupProps = {
+  // @deprecated - use items prop instead
+  children?: ReactNode;
   className?: string;
-  children: React.ReactNode;
+  columns?: number | null;
+  items?: CardSelectPropsWithKey[];
+  size?: CardSelectProps['size'];
+  // @depracted - use size instead that drives BOTH items (CardSelect) size and gap size
   width?: 'small' | 'large';
-  columns?: number;
-}
+};
