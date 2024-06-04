@@ -7,6 +7,7 @@ export type TabsProps = {
   configuration?: Configuration;
   underscore?: boolean;
   block?: boolean;
+  // @deprecated
   visible?: boolean;
 };
 

@@ -84,8 +84,8 @@ const stories = {
    />
    return (
      <Tabs
-       underscore={false}
-       tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled, hasSufix && badgeComponent)}
+      tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled, hasSufix && badgeComponent)}
+      underscore={false}
        activeTab={store.state.activeTab}
        handleTabClick={(index: number) => store.set({ activeTab: index })}
      />)
@@ -108,7 +108,7 @@ const stories = {
     return (
       <Tabs
         underscore
-        tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled,hasSufix && badgeComponent)}
+        tabs={getTabsFromUserInput(array('Tab labels', defaultTabsArray), props().disabled, hasSufix && badgeComponent)}
         activeTab={store.state.activeTab}
         handleTabClick={(index: number) => store.set({ activeTab: index })}
       />)

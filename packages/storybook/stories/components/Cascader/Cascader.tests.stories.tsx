@@ -7,10 +7,9 @@ import type { CascaderProps } from '@synerise/ds-cascader';
 import CascaderMeta from './Cascader.stories';
 import * as mock from './data/mock.json';
 import { isKeyCategory, limitCategories } from './data/utils';
+import { sleep } from '../../utils';
 
 const root = mock.default;
-
-const wait = (duration = 300) => new Promise((resolve) => setTimeout(resolve, duration));
 
 type CascaderStoryProps = CascaderProps & { children: ReactNode; categoryLimit: number };
 
@@ -63,7 +62,7 @@ export const ShowHeaderBreadcrumb: Story = {
       
       return nextLevel;
     }
-    await wait(100);
+    await sleep(100);
     const rootLevel = limitCategories(root, args.categoryLimit);
     const level1 = await selectFromCategory(rootLevel);
     const level2 = await selectFromCategory(level1);
@@ -84,7 +83,7 @@ export const ListCategory: Story = {
 
     const subCategoryData = Object.entries(categoryData).filter(([key]) => isKeyCategory(categoryData, key));
 
-    await wait(100);
+    await sleep(100);
     await userEvent.click(canvas.getByText(categoryNames[2]));
 
     await waitFor(() => {
