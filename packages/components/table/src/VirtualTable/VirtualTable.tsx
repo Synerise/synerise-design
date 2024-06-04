@@ -55,6 +55,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     initialWidth = 0,
     dataSource = [],
     dataSourceFull,
+    dataSourceTotalCount,
     expandable,
     locale,
     loading,
@@ -609,6 +610,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           components={{
             body: renderBody,
           }}
+          dataSourceTotalCount={dataSourceTotalCount}
           locale={tableLocale}
         />
       </ResizeObserver>
