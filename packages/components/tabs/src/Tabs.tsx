@@ -1,14 +1,21 @@
 import React, { useCallback, createRef, useMemo, useState, useRef, useEffect } from 'react';
 import { debounce } from 'lodash';
+
+import { theme } from '@synerise/ds-core';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 import { useResizeObserver, NOOP } from '@synerise/ds-utils';
+
 import * as S from './Tabs.styles';
 import Tab from './Tab/Tab';
 import { TabsProps, TabWithRef } from './Tabs.types';
 
 const MARGIN_BETWEEN_TABS = 24;
 const DROPDOWN_TRIGGER_SIZE = 32;
+const DROPDOWN_OVERLAY_STYLE = {
+  boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)',
+  zIndex: parseInt(theme.variables['zindex-modal'], 10) - 1,
+};
 
 const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }: TabsProps) => {
   const [containerWidth, setContainerWidth] = useState(0);
@@ -19,6 +26,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
   const [items, setItems] = useState<TabWithRef[]>([]);
   const [itemsWidths, setItemsWidths] = useState<number[]>([]);
   const [visibleTabs, setVisibleTabs] = useState<TabWithRef[]>([]);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [hiddenTabs, setHiddenTabs] = useState<TabWithRef[]>([]);
   const debouncedEventHandler = useMemo(() => debounce((newWidth: number) => setContainerWidth(newWidth), 200), []);
 
@@ -81,7 +89,16 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
 
   const handleConfigurationAction = useCallback(() => {
     configuration && configuration.action();
+    setIsDropdownVisible(false);
   }, [configuration]);
+
+  const handleHiddenTabClick = useCallback(
+    (index: number) => {
+      setIsDropdownVisible(false);
+      handleTabClick(index);
+    },
+    [handleTabClick]
+  );
 
   const renderHiddenTabs = useMemo(() => {
     return (
@@ -92,7 +109,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
               <S.DropdownMenuItem
                 // eslint-disable-next-line react/no-array-index-key
                 key={`${item.label}-dropdown-${index}`}
-                onClick={(): void => handleTabClick(visibleTabs.length + index)}
+                onClick={() => handleHiddenTabClick(visibleTabs.length + index)}
                 disabled={item.disabled}
               >
                 {item.label}
@@ -114,7 +131,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
         )}
       </S.TabsDropdownContainer>
     );
-  }, [hiddenTabs, configuration, handleConfigurationAction, handleTabClick, visibleTabs.length]);
+  }, [hiddenTabs, configuration, handleConfigurationAction, handleHiddenTabClick, visibleTabs.length]);
 
   const renderDropdown = () => {
     return (
@@ -123,11 +140,18 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
           <Dropdown
             trigger={['click']}
             data-testid="tabs-dropdown"
+            visible={isDropdownVisible}
+            onVisibleChange={setIsDropdownVisible}
             overlay={renderHiddenTabs}
-            disabled={!!configuration?.disabled}
-            overlayStyle={{ boxShadow: '0 4px 12px 0 rgba(35, 41, 54, 0.07)' }}
+            disabled={!!configuration?.disabled && !hiddenTabs.length}
+            overlayStyle={DROPDOWN_OVERLAY_STYLE}
           >
-            <S.ShowHiddenTabsTrigger type="ghost" mode="single-icon" disabled={!!configuration?.disabled}>
+            <S.ShowHiddenTabsTrigger
+              data-testid="tabs-dropdown-trigger"
+              type="ghost"
+              mode="single-icon"
+              disabled={!!configuration?.disabled && !hiddenTabs.length}
+            >
               <Icon component={<OptionHorizontalM />} />
             </S.ShowHiddenTabsTrigger>
           </Dropdown>
@@ -189,8 +213,14 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
 
   return (
     <>
-      {tabs.length > 0 ? (
-        <S.TabsContainer className="ds-tabs" ref={containerRef} data-testid="tabs-container" block={block}>
+      {tabs.length > 0 || configuration ? (
+        <S.TabsContainer
+          className="ds-tabs"
+          ref={containerRef}
+          data-testid="tabs-container"
+          block={block}
+          data-popup-container
+        >
           {renderVisibleTabs}
           {renderDropdown()}
         </S.TabsContainer>

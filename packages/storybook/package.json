@@ -13,7 +13,7 @@
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
-    "chromatic": "chromatic"
+    "chromatic": "chromatic  --only-changed"
   },
   "eslintConfig": {
     "extends": "react-app"
