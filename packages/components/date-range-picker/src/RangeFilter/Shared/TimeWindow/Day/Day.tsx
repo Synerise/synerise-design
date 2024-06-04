@@ -55,14 +55,7 @@ const Day: React.FC<DayProps> = ({
   const handleTooltipVisibleChange = React.useCallback((visible: boolean): void => setHovered(visible), []);
   return (
     <S.Container>
-      <Tooltip
-        trigger={['hover']}
-        title={
-          active
-            ? label
-            : intl.formatMessage({ id: 'DS.DATE-RANGE-PICKER.CLICK-TO-SELECT', defaultMessage: 'Click to select' })
-        }
-      >
+      <Tooltip trigger={['hover']} title={active ? label : texts.clickToSelect || 'Click to select'}>
         <Button
           {...rest}
           onMouseLeave={handleMouseLeave}

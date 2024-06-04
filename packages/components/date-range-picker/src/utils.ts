@@ -115,6 +115,7 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     before: getIntlMessage(`DS.DATE-RANGE-PICKER.BEFORE`, intl, disableDefault),
     custom: getIntlMessage(`DS.DATE-RANGE-PICKER.CUSTOM`, intl, disableDefault),
     clear: getIntlMessage(`DS.DATE-RANGE-PICKER.CLEAR`, intl, disableDefault),
+    clickToSelect: getIntlMessage(`DS.DATE-RANGE-PICKER.CLICK-TO-SELECT`, intl, disableDefault, 'Click to select'),
     days: getIntlMessage(`DS.DATE-RANGE-PICKER.DAYS`, intl, disableDefault),
     emptyDateError: getIntlMessage(`DS.DATE-RANGE-PICKER.EMPTY-DATE-ERROR`, intl, disableDefault),
     endDate: getIntlMessage(`DS.DATE-RANGE-PICKER.END-DATE`, intl, disableDefault),
