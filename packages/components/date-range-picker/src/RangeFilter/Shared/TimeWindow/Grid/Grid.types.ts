@@ -24,4 +24,4 @@ export type GridProps = {
   texts: GridTexts;
 };
 
-export type GridTexts = Pick<Texts, 'clear' | 'selectAll' | 'unselectAll'>;
+export type GridTexts = Pick<Texts, 'clear' | 'selectAll' | 'unselectAll' | 'clickToSelect'>;

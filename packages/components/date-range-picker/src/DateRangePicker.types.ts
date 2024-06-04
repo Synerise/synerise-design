@@ -193,7 +193,8 @@ export type Translations =
   | 'month'
   | 'beginning'
   | 'ending'
-  | 'maximumRanges';
+  | 'maximumRanges'
+  | 'clickToSelect';
 
 export type WithTranslations = {
   texts: Texts;
