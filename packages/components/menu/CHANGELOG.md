@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.19.0...@synerise/ds-menu@0.19.1) (2024-06-05)
+
+
+### Bug Fixes
+
+* **menu:** fix focus and active state ([0d09b8e](https://github.com/Synerise/synerise-design/commit/0d09b8eed10cef19562646e3ec68a18f31bae644))
+
+
+
+
+
 # [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.18.23...@synerise/ds-menu@0.19.0) (2024-05-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.217.1](https://github.com/synerise/synerise-design/compare/portal@0.217.0...portal@0.217.1) (2024-06-05)
+
+
+### Bug Fixes
+
+* **tabs:** fixed displaying configuration ([7ac150a](https://github.com/synerise/synerise-design/commit/7ac150a157cf0fd24ee2fc34c186612c121414a5))
+
+
+
+
+
 # [0.217.0](https://github.com/synerise/synerise-design/compare/portal@0.216.1...portal@0.217.0) (2024-05-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.6.0...@synerise/ds-card-select@0.7.0) (2024-06-05)
+
+
+### Features
+
+* **card-select:** added items prop for rendering children ([838ae8d](https://github.com/Synerise/synerise-design/commit/838ae8db364a17589a7187f97e0a139c0bb673c5))
+
+
+
+
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card-select@0.5.44...@synerise/ds-card-select@0.6.0) (2024-05-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.52.0...@synerise/ds-table@0.53.0) (2024-06-05)
+
+
+### Features
+
+* **table:** display total count in virtual table ([94d8d5b](https://github.com/synerise/synerise-design/commit/94d8d5b1b6e0281d9386bf467fce0f5e80a33308))
+
+
+
+
+
 # [0.52.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.51.4...@synerise/ds-table@0.52.0) (2024-05-31)
 
 
