@@ -44,7 +44,14 @@ const TableHeader: React.FC<Props> = ({
 
   const renderLeftSide = React.useMemo(() => {
     if (selection?.limit)
-      return <TableLimit total={dataSource.length} selection={selection} itemsMenu={itemsMenu} locale={locale} />;
+      return (
+        <TableLimit
+          total={dataSourceTotalCount || dataSource.length}
+          selection={selection}
+          itemsMenu={itemsMenu}
+          locale={locale}
+        />
+      );
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
         {selection && (
