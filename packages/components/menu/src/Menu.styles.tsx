@@ -87,6 +87,16 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
       }
     }
   }
+  &&& .ant-menu-item-selected {
+    &:focus:not(:active) {
+      color: ${(props): string => props.theme.palette['blue-600']};
+      background: ${(props): string => props.theme.palette['blue-050']};
+      box-shadow: inset 0 0 0 2px ${(props): string => props.theme.palette['blue-600']};
+      &::before {
+        color: ${(props): string => props.theme.palette['blue-600']};
+      }
+    }
+  }
   && {
     .ant-menu-submenu-open {
       .ant-menu-inline,
@@ -171,9 +181,9 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       .ant-menu-submenu-title {
           &:focus,
           &:active {
-            background: ${(props): string => props.theme.palette['grey-050']};
+            background: ${(props): string => props.theme.palette['blue-050']};
             &::before {
-            color: ${(props): string => props.theme.palette['grey-600']};
+            color: ${(props): string => props.theme.palette['blue-600']};
           }
         }
         & > .ds-menu-prefix {
