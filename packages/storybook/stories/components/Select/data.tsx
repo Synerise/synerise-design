@@ -3,7 +3,7 @@ import Select from '@synerise/ds-select';
 import type { SelectProps} from '@synerise/ds-select';
 import Icon, { LaptopM } from '@synerise/ds-icon';
 
-import * as S from './styles';
+import * as S from '../Input/Input.styles';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { TagShape } from '@synerise/ds-tags';
