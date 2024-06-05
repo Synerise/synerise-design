@@ -1,6 +1,5 @@
-import React, { ReactNode, useState, FocusEvent } from 'react';
+import React, {  } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
 import Select from '@synerise/ds-select';
 import type { SelectProps} from '@synerise/ds-select';
@@ -10,10 +9,10 @@ import Scrollbar from '@synerise/ds-scrollbar';
 import Result from '@synerise/ds-result';
 
 
-import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, fixedWrapper200, fixedWrapper400, GETPOPUPCONTAINER_ARG_CONTROL, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, reactNodeAsSelect, REACT_NODE_AS_STRING, STRING_CONTROL, STYLE_ARG_CONTROL } from '../../utils';
+import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, fixedWrapper200, fixedWrapper400, GETPOPUPCONTAINER_ARG_CONTROL, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, REACT_NODE_AS_STRING, STRING_CONTROL, STYLE_ARG_CONTROL } from '../../utils';
 import { addonType, children, defaultRender, renderAddonComponent, values } from './data';
 
-const { Option, OptGroup } = Select;
+const { Option } = Select;
 
 
 export default {
@@ -147,14 +146,6 @@ export default {
     showSearch: {
       ...BOOLEAN_CONTROL
     },
-    // label={text('Set label', 'Label')}
-    // description={text('Set description', 'Very long description')}
-    // actionLabel={text('Set button label', 'Define')}
-    // action={action('handle action')}
-    // buttonProps={ boolean('Custom button', false) && object('Button props', {
-    //   type: 'secondary',
-    //   disabled: true
-    // })}
   }
 } as Meta<SelectProps>;
 
@@ -181,7 +172,6 @@ export const MultipleMode: Story = {
       defaultValue: 'a10',
       placeholder: 'Select options',
       getPopupContainer,
-      // onChange: action('OnChange'),
       dropdownRender: menu => <Scrollbar maxHeight={256}>{menu}</Scrollbar>,
       dropdownStyle: { paddingRight: '0' },
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
