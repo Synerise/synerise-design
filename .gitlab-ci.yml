@@ -44,6 +44,7 @@ build:
     - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
     - echo "email = $GITLAB_USER_EMAIL" >> .npmrc
     - (if [ "$CI_COMMIT_REF_NAME" == "master" ]; then npx lerna publish from-package --no-git-tag-version --yes;fi);
+  interruptible: true
 
 docs_build:
   stage: test
