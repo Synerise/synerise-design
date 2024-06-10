@@ -46,7 +46,7 @@ const SHORT_VALUE = 'Test';
 const runAutocompleteTest = async (canvasElement, value) => {
   const canvas = within(canvasElement);
   const input = canvas.getByRole('combobox');
-  const inputWrapper = canvas.getByTestId('autosize-input');
+  const inputWrapper = canvas.getByTestId('autocomplete-autosize-input');
   await userEvent.click(input);
   await userEvent.type(input, value);
   return {
