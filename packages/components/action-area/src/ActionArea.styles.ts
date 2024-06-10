@@ -14,6 +14,7 @@ export const ActionAreaContent = styled.div<{ isError?: boolean }>`
   justify-content: center;
   padding: 28px 24px;
   border-radius: 3px;
+  background-color: ${({ isError, theme }) => (isError ? theme.palette['red-050'] : 'none')};
   border: 1px dashed ${({ theme }) => theme.palette['grey-300']};
   ${({ isError, theme }) => isError && `border-color: ${theme.palette['red-600']};`}
   .ds-title {
