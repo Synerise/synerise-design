@@ -133,6 +133,7 @@ const createInputComponent =
           >
             <WrappedComponent
               autoResize={autoResize}
+              data-testid="input-autosize-input"
               {...antdInputProps}
               className={hasErrorMessage || error ? 'error' : undefined}
               addonBefore={

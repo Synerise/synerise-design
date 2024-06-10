@@ -91,7 +91,7 @@ const Autocomplete = (props: AutocompleteProps) => {
             dropdownClassName="ds-autocomplete-dropdown ps__child--consume"
             getPopupContainer={getPopupContainer || getParentNode}
             ref={antSelectRef}
-            data-testid="autosize-input"
+            data-testid="autocomplete-autosize-input"
           />
         </AutosizeWrapper>
       </S.ComponentWrapper>

@@ -79,6 +79,7 @@ const InlineSelect = ({
             style={inputStyle}
             id={input.name ? toCamelCase(input.name) : 'id'}
             className="autosize-input"
+            data-testid="inline-select-autosize-input"
             placeholder={placeholder}
             maxLength={input.maxLength}
             disabled={disabled}

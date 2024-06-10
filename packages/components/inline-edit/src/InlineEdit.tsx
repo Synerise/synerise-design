@@ -88,6 +88,7 @@ const InlineEdit = ({
           onScroll={handleScroll}
           id={input.name ? toCamelCase(input.name) : 'id'}
           className="autosize-input"
+          data-testid="inline-edit-autosize-input"
           placeholder={input.placeholder}
           maxLength={input.maxLength}
           onKeyPress={handleKeyPress}
