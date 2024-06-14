@@ -35,6 +35,7 @@ import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar, CreateRowStarColumnProps } from '../hooks/useRowStar';
 import { RowSelectionColumn } from '../RowSelection';
 import { EXPANDED_ROW_PROPERTY, HEADER_ROW_HEIGHT, LOAD_DATA_OFFSET } from './constants';
+import { getChildrenColumnName } from '../utils/getChildrenColumnName';
 
 const relativeInlineStyle: CSSProperties = { position: 'relative' };
 
@@ -74,6 +75,8 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   const customBodyOnScrollRef = useRef<CustomizeScrollBodyInfo['onScroll']>();
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
   const [firstItem, setFirstItem] = useState<T | null>(null);
+
+  const childrenColumnName = getChildrenColumnName(expandable?.childrenColumnName);
 
   const hasInfiniteScroll = Boolean(infiniteScroll);
   const isSticky = Boolean(sticky);
@@ -189,11 +192,13 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       let selectedRows: T[] = [];
       allData.forEach((row: T) => {
         const key = getRowKey(row);
+        const rowChildren = row[childrenColumnName];
+
         if (key && selectedRowKeys.indexOf(key) >= 0) {
           selectedRows = [...selectedRows, row];
         }
-        if (row.children !== undefined && Array.isArray(row.children)) {
-          row.children.forEach((child: T) => {
+        if (rowChildren !== undefined && Array.isArray(rowChildren)) {
+          rowChildren.forEach((child: T) => {
             const childKey = getRowKey(child);
             if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
               selectedRows = [...selectedRows, child];
@@ -225,10 +230,11 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           onChange={handleChange}
           selectedRecords={selectedRecords}
           tableLocale={locale}
+          childrenColumnName={childrenColumnName}
         />
       );
     },
-    [isSticky, locale, rowKey, selectedRecords, selection]
+    [isSticky, locale, rowKey, selectedRecords, selection, childrenColumnName]
   );
 
   const virtualColumns: DSColumnType<T>[] = useMemo(() => {
@@ -516,16 +522,18 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       if (expandable?.expandedRowKeys?.length) {
         const expandedRows = rawData.reduce((result: T[], currentRow: T) => {
           const key = getRowKey(currentRow);
+          const rowChildren = currentRow[childrenColumnName];
+
           if (
             key !== undefined &&
             expandable?.expandedRowKeys?.includes(key) &&
-            Array.isArray(currentRow.children) &&
-            currentRow.children.length
+            Array.isArray(rowChildren) &&
+            rowChildren.length
           ) {
             return [
               ...result,
               currentRow,
-              ...currentRow.children.map((child: T, index: number) => ({
+              ...rowChildren.map((child: T, index: number) => ({
                 ...child,
                 [EXPANDED_ROW_PROPERTY]: true,
                 index,
@@ -556,6 +564,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       offsetScroll,
       getRowKey,
       infiniteLoaderOffset,
+      childrenColumnName,
     ]
   );
 

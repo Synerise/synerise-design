@@ -29,6 +29,7 @@ const TableHeader: React.FC<Props> = ({
   locale,
   renderSelectionTitle,
   hideTitlePart,
+  childrenColumnName,
 }) => {
   const { formatValue } = useDataFormat();
   const titleRef = React.useRef<HTMLElement>(null);
@@ -61,6 +62,7 @@ const TableHeader: React.FC<Props> = ({
             dataSourceFull={dataSourceFull}
             selection={selection}
             locale={locale}
+            childrenColumnName={childrenColumnName}
           />
         )}
         {renderSelectionTitle ? (
@@ -83,6 +85,7 @@ const TableHeader: React.FC<Props> = ({
             dataSourceFull={dataSourceFull}
             selection={selection}
             locale={locale}
+            childrenColumnName={childrenColumnName}
           />
         )}
         <S.TitleContainer>
@@ -123,6 +126,7 @@ const TableHeader: React.FC<Props> = ({
     isTitleTruncated,
     hideTitlePart,
     dataSourceTotalCount,
+    childrenColumnName,
   ]);
 
   return (

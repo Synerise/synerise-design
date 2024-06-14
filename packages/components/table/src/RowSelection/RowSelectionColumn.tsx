@@ -15,53 +15,57 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
   selectedRecords,
   tableLocale,
   onChange,
+  childrenColumnName,
 }: RowSelectionProps<T>): React.ReactElement | null {
   const { getRowKey } = useRowKey(rowKey);
   const recordKey = getRowKey(record);
+  const rowChildren = record[childrenColumnName];
 
   const checkedChildren = React.useMemo(() => {
     return (
-      record.children?.filter((child: T) => {
+      rowChildren?.filter((child: T) => {
         const childKey = getRowKey(child);
         return childKey && selectedRowKeys.indexOf(childKey) >= 0;
       }) || []
     );
-  }, [getRowKey, record.children, selectedRowKeys]);
+  }, [getRowKey, rowChildren, selectedRowKeys]);
 
   const allChildrenSelected = React.useMemo(
     () =>
-      !!record.children?.every((child: T) => {
+      !!rowChildren?.every((child: T) => {
         const childKey = getRowKey(child);
         return childKey && selectedRowKeys.indexOf(childKey) >= 0;
       }),
-    [getRowKey, record.children, selectedRowKeys]
+    [getRowKey, rowChildren, selectedRowKeys]
   );
 
   const isIndeterminate = React.useMemo(() => {
-    if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
-      return checkedChildren.length > 0 && checkedChildren.length < (record.children?.length || 0);
+    if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
+      return checkedChildren.length > 0 && checkedChildren.length < (rowChildren?.length || 0);
     }
     return false;
-  }, [checkedChildren.length, independentSelectionExpandedRows, record.children]);
+  }, [checkedChildren.length, independentSelectionExpandedRows, rowChildren]);
 
   const isChecked: boolean = React.useMemo(() => {
-    if (Array.isArray(record.children) && !independentSelectionExpandedRows) {
+    if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
       return isChecked || allChildrenSelected;
     }
     return recordKey !== undefined && selectedRowKeys && selectedRowKeys.indexOf(recordKey) >= 0;
-  }, [allChildrenSelected, independentSelectionExpandedRows, record.children, recordKey, selectedRowKeys]);
+  }, [allChildrenSelected, independentSelectionExpandedRows, rowChildren, recordKey, selectedRowKeys]);
 
   const handleSelectionChange = React.useCallback(
     (isCheckedNext: boolean, changedRecord: T): void => {
       let selectedRows: T[] = selectedRecords;
+      const changedRecordChildren = changedRecord[childrenColumnName];
+
       if (isCheckedNext) {
-        if (Array.isArray(changedRecord.children) && !independentSelectionExpandedRows) {
-          selectedRows = [...selectedRows, ...changedRecord.children];
+        if (Array.isArray(changedRecordChildren) && !independentSelectionExpandedRows) {
+          selectedRows = [...selectedRows, ...changedRecordChildren];
         } else {
           selectedRows = [...selectedRows, changedRecord];
         }
-      } else if (Array.isArray(changedRecord.children) && !independentSelectionExpandedRows) {
-        const childrenKeys = changedRecord.children.map((child: T) => getRowKey(child));
+      } else if (Array.isArray(changedRecordChildren) && !independentSelectionExpandedRows) {
+        const childrenKeys = changedRecordChildren.map((child: T) => getRowKey(child));
         selectedRows = selectedRows.filter(child => childrenKeys.indexOf(getRowKey(child)) < 0);
       } else {
         selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
@@ -81,7 +85,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
           selectedRows
         );
     },
-    [getRowKey, independentSelectionExpandedRows, onChange, recordKey, selectedRecords]
+    [getRowKey, independentSelectionExpandedRows, onChange, recordKey, selectedRecords, childrenColumnName]
   );
 
   return recordKey !== undefined ? (
