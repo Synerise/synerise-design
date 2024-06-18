@@ -88,7 +88,7 @@ describe('TextArea', () => {
 
       expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
-      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); 
 
       expect(onChange).toHaveBeenCalledTimes(1);
     });

@@ -30,7 +30,7 @@ const RangeInput = ({ type, value, onChange, handleInputRef, ...inputProps }: Ra
 
   return isInputOfNumberType(type, value) ? (
     <S.InputNumberWrapper>
-      <InputNumber {...inputProps} value={value} onChange={val => onChange(val)} />
+      <InputNumber {...inputProps} value={value} onChange={onChange} />
     </S.InputNumberWrapper>
   ) : (
     <MaskedInput

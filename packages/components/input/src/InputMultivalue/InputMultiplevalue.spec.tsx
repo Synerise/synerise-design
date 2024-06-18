@@ -1,32 +1,34 @@
-import * as React from 'react';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { InputMultivalue } from '../index';
+import userEvent from '@testing-library/user-event';
 
 describe('Input', () => {
   const onChange = jest.fn();
 
   describe('Input multivalue', () => {
 
-    // FIX this test
-    it.skip('should trigger onChange', () => {
-      // ARRANGE
-      const PLACEHOLDER = 'S.BorderLessInput';
-      const INPUT_VALUE = 'valueA';
-      const { getByPlaceholderText, container } = renderWithProvider(
+    it('should trigger onChange', () => {
+      const INPUT_VALUE = 'valueC';
+      const values = ["valueA", "valueB"]
+      renderWithProvider(
         <InputMultivalue
           onChange={(values) => onChange(values)}
-          values={["valueA", "valueB"]}
+          values={values}
         />
       );
-      const input = getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
+      const input = screen.getByTestId('input-multivalue') as HTMLInputElement;
+      expect(input).toBeInTheDocument();
+      
+      userEvent.type(input, INPUT_VALUE);
+      fireEvent.keyDown(input, { 
+        key: 'Enter', 
+        keyCode: 13, 
+        which: 13 
+      });
 
-      // ACT
-      fireEvent.keyDown(input, INPUT_VALUE);
-      fireEvent.keyDown(container, 'Enter');
-
-      // ASSERT
-      expect(onChange).toBeCalledWith(INPUT_VALUE);
+      expect(onChange).toBeCalledWith([...values, INPUT_VALUE]);
     })
   })
 })
