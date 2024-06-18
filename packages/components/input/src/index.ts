@@ -23,4 +23,4 @@ export type {
   AutosizeWrapperProps,
   AutosizeInputRefType,
 } from './AutosizeInput/AutosizeInput.types';
-export { AutosizeWrapper } from './AutosizeWrapper/AutosizeWrapper';
+export { AutosizeWrapper } from './components/AutosizeWrapper';

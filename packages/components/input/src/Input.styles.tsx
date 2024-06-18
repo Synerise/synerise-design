@@ -1,11 +1,16 @@
 import React, { forwardRef, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+
 import BaseAntInput, { InputProps } from 'antd/lib/input';
-import TextArea from 'antd/lib/input/TextArea';
+import TextArea, { TextAreaProps } from 'antd/lib/input/TextArea';
+
 import MaskedInput from 'antd-mask-input';
 import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import { ThemeProps } from '@synerise/ds-core';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
+
+import { TextareaWrapper } from './Textarea/Textarea.styles';
+
 import type { AutoResizeProp } from './Input.types';
 
 const errorInputStyle = (props: ThemeProps) => `
@@ -45,12 +50,18 @@ export function autoresizeConfObjToCss({ autoResize }: { autoResize?: AutoResize
   return `max-width: 400px; min-width: 150px;`;
 }
 
-export const InputWrapper = styled.div<{ icon1: boolean; icon2: boolean }>`
+export const Wrapper = styled.div`
+  margin-bottom: 24px;
+`;
+
+export const InputWrapper = styled.div<{ icon1?: boolean; icon2?: boolean; icon3?: boolean }>`
   position: relative;
   && .ant-input {
     padding-right: ${props => {
-      if (props.icon1 && props.icon2) return '64px;';
-      if (props.icon1 || props.icon2) return '36px;';
+      const iconsCount = Number(props.icon1) + Number(props.icon2) + Number(props.icon3);
+      if (iconsCount === 3) return '92px;';
+      if (iconsCount === 2) return '64px;';
+      if (iconsCount === 1) return '36px;';
       return '12px';
     }};
     &::placeholder {
@@ -79,17 +90,12 @@ export const OuterWrapper = styled.div<{
   input {
     ${(props: AutoResizeInputProps) => autoresizeConfObjToCss(props)}
   }
-  ${InputWrapper} {
-    ${props =>
-      props.autoResize &&
-      `
+  ${props =>
+    props.autoResize &&
+    `
+    ${InputWrapper} {
       display: inline-block;
-    `}
-  }
-`;
-
-export const Wrapper = styled.div`
-  margin-bottom: 24px;
+    }`}
 `;
 
 export const IconsWrapper = styled.div<{ disabled?: boolean }>`
@@ -200,15 +206,44 @@ export const AntdMaskedInput = styled(
 `;
 
 export const AntdTextArea = styled(
-  forwardRef<TextArea, { error?: boolean }>(
-    // eslint-disable-next-line handle-callback-err
-    ({ error, ...props }, ref) => <BaseAntInput.TextArea autoComplete="off" {...props} ref={ref} />
+  forwardRef<TextArea, TextAreaProps & { error?: boolean }>(
+    // eslint-disable-next-line
+    ({ error, ...props }, ref) => <TextArea autoComplete="off" {...props} ref={ref} />
   )
 )<{ error?: boolean }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
 
   && {
     color: ${props => props.theme.palette['grey-700']};
+  }
+`;
+
+export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
+  position: relative;
+  overflow: visible;
+
+  ${TextareaWrapper} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    resize: none;
+    max-height: 124px;
+    min-width: 282px;
+
+    ${(props): FlattenSimpleInterpolation => {
+      if (props.expanded) {
+        return css`
+          pointer-events: initial;
+          display: block;
+        `;
+      }
+      return css`
+        pointer-events: none;
+        display: none;
+      `;
+    }}
   }
 `;
 

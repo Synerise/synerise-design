@@ -84,6 +84,7 @@ const InputMultivalue: React.FC<Props> = props => {
           onFocus={onFocus}
           disabled={disabled}
           maxLength={maxLength}
+          data-testid="input-multivalue"
         />
       </S.InputWrapper>
       {(showError || description) && (

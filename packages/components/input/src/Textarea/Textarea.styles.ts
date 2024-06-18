@@ -1,7 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ResizeProperty } from 'csstype';
 
-// eslint-disable-next-line import/prefer-default-export
 export const TextareaWrapper = styled.div<{
   resize?: ResizeProperty;
   isDisabled: boolean;

@@ -1,12 +1,18 @@
-import React, { cloneElement } from 'react';
+import React, { cloneElement, MouseEvent } from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Icon, { ResizeArrowM } from '@synerise/ds-icon';
 import { BaseProps } from '../Input.types';
 import * as S from '../Input.styles';
 
-type IconProps = Pick<BaseProps, 'icon1' | 'icon1Tooltip' | 'icon2' | 'icon2Tooltip' | 'className'> & {
+type IconProps = Pick<
+  BaseProps,
+  'icon1' | 'icon1Tooltip' | 'icon2' | 'icon2Tooltip' | 'className' | 'expandable' | 'expandableTooltip'
+> & {
   disabled?: boolean;
   handleIconsClick: () => void;
   type: string;
+  overflown?: boolean;
+  handleExpandIconClick?: (event: MouseEvent<HTMLDivElement>) => void;
 };
 
 export const ElementIcons = ({
@@ -18,13 +24,19 @@ export const ElementIcons = ({
   icon2Tooltip,
   className,
   type,
+  expandable,
+  overflown,
+  expandableTooltip,
+  handleExpandIconClick,
 }: IconProps) => {
-  if (!icon1 && !icon2) {
-    return null;
-  }
-  return (
+  return icon1 || icon2 || expandable ? (
     <S.IconsWrapper onClick={handleIconsClick} disabled={disabled}>
       <S.IconsFlexContainer type={type}>
+        <Tooltip title={expandableTooltip}>
+          <S.IconWrapper data-testid="inputExpandIcon" onClick={handleExpandIconClick} className={className}>
+            {expandable && overflown && <Icon className="icon icon3" component={<ResizeArrowM />} />}
+          </S.IconWrapper>
+        </Tooltip>
         <Tooltip title={icon1Tooltip}>
           <S.IconWrapper className={className}>
             {icon1 &&
@@ -41,5 +53,7 @@ export const ElementIcons = ({
         </Tooltip>
       </S.IconsFlexContainer>
     </S.IconsWrapper>
+  ) : (
+    <></>
   );
 };

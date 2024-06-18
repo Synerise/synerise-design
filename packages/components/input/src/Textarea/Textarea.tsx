@@ -1,50 +1,46 @@
-import * as React from 'react';
-import Input from 'antd/lib/input';
+import React, { Ref, forwardRef, useState } from 'react';
+import TextArea from 'antd/lib/input/TextArea';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Textarea.styles';
+import * as InputStyles from '../Input.styles';
 import { TextAreaProps } from './Textarea.types';
 
-const Textarea: React.FC<TextAreaProps> = ({
-  disabled,
-  error,
-  rows = 4,
-  wrapperStyle,
-  onBlur,
-  onFocus,
-  resize,
-  autoSize,
-  readOnly,
-  ...props
-}) => {
-  const [focus, setFocus] = React.useState<boolean>(false);
-  return (
-    <S.TextareaWrapper
-      className="ds-textarea"
-      isDisabled={Boolean(disabled)}
-      isFocused={focus}
-      hasError={Boolean(error)}
-      resize={resize}
-      style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
-      isReadOnly={readOnly}
-    >
-      <Scrollbar absolute classes="textarea-scrollbar">
-        <Input.TextArea
-          autoSize={autoSize}
-          {...props}
-          disabled={disabled}
-          readOnly={readOnly}
-          onFocus={(e): void => {
-            onFocus && onFocus(e);
-            setFocus(true);
-          }}
-          onBlur={(e): void => {
-            onBlur && onBlur(e);
-            setFocus(false);
-          }}
-        />
-      </Scrollbar>
-    </S.TextareaWrapper>
-  );
-};
+const Textarea = forwardRef(
+  (
+    { disabled, error, rows = 4, wrapperStyle, onBlur, onFocus, resize, autoSize, readOnly, ...props }: TextAreaProps,
+    ref: Ref<TextArea>
+  ) => {
+    const [focus, setFocus] = useState(false);
+    return (
+      <S.TextareaWrapper
+        className="ds-textarea"
+        isDisabled={Boolean(disabled)}
+        isFocused={focus}
+        isReadOnly={readOnly}
+        hasError={Boolean(error)}
+        resize={resize}
+        style={{ height: autoSize ? 'auto' : `${rows * 17}px`, ...wrapperStyle }}
+      >
+        <Scrollbar absolute classes="textarea-scrollbar">
+          <InputStyles.AntdTextArea
+            autoSize={autoSize}
+            {...props}
+            ref={ref}
+            disabled={disabled}
+            readOnly={readOnly}
+            onFocus={(e): void => {
+              onFocus && onFocus(e);
+              setFocus(true);
+            }}
+            onBlur={(e): void => {
+              onBlur && onBlur(e);
+              setFocus(false);
+            }}
+          />
+        </Scrollbar>
+      </S.TextareaWrapper>
+    );
+  }
+);
 
 export default Textarea;

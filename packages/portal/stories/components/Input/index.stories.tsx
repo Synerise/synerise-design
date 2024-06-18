@@ -50,7 +50,7 @@ const renderWithHighlightedText = (highlight, item) => {
   return item;
 };
 
-const decorator = storyFn => <div style={{ width: '400px' }}>{storyFn()}</div>;
+const decorator = storyFn => <div style={{ width: '300px' }}>{storyFn()}</div>;
 const sizes = ['default', 'large'];
 const getErrorText = (error: boolean, errorText: string): string => {
   if (error) {
@@ -107,7 +107,7 @@ const stories = {
     const [isFocus, setFocus] = useState(false);
     const size = knobSelect('Set size', sizes as any, 'default');
     const readOnly = boolean('Read only', false);
-
+    const autoResize = boolean('Set autoResize', true);
     return (
       <Input
         tooltipConfig={{
@@ -115,11 +115,12 @@ const stories = {
           type: select('Tooltip type', ['header-label', 'default', 'largeSimple'], 'header-label'),
           title: text('Tooltip title', 'This is example tooltip!'),
         }}
+        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
         placeholder={text('Placeholder', 'Placeholder')}
         label={text('Label', 'Label')}
         description={text('Description', 'Description')}
         errorText={!isFocus && getErrorText(validationState, message)}
-        counterLimit={number('CounterLimit', 10)}
+        counterLimit={number('CounterLimit', 50)}
         error={!isFocus && validationState}
         disabled={boolean('Disabled', false)}
         onChange={e => setValue(e.target.value)}
@@ -134,6 +135,8 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
+        expandableTooltip="Expand"
+        expandable={boolean('Set expandable', true)}
       />
     );
   },
@@ -569,6 +572,8 @@ const stories = {
         icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
         icon2={<Icon component={<FileM />} />}
         icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
+        expandableTooltip="Expand"
+        expandable={boolean('Set expandable', true)}
       />
     );
   },
@@ -605,8 +610,8 @@ const stories = {
         bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
         onOk={() => setOpen(open)}
         >
-            <Input
-              autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+          <Input
+            autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
             placeholder={text('Placeholder', 'Placeholder')}
             label={text('Label', 'Label')}
             description={descriptionMessage && getDescription(hasDescription)}
@@ -623,6 +628,8 @@ const stories = {
               setFocus(true);
             }}
             value={value}
+            expandableTooltip="Expand"
+            expandable={boolean('Set expandable', true)}
           />
           </Modal>
         </div>
@@ -686,6 +693,8 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
+        expandableTooltip="Expand"
+        expandable={boolean('Set expandable', true)}
         value={value}
 
         icon1={<Icon component={<FileM />} />}
@@ -696,6 +705,7 @@ const stories = {
       </div>
     );
   },
+
   inputWithPrefixAndSuffix: () => {
     const [value, setValue] = useState<string>('');
     const prefixType = select('Set prefix type', addonType, addonType.avatar);

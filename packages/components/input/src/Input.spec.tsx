@@ -9,8 +9,8 @@ import { Input } from './index';
 describe('Input', () => {
   const onChange = jest.fn();
   const PLACEHOLDER = 'placeholder';
-  
   const INPUT_VALUE = 'input value';
+  const TOOLTIP = 'tooltip text';
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -20,7 +20,7 @@ describe('Input', () => {
     it('should render', () => {
       renderWithProvider(<Input placeholder={PLACEHOLDER} value="" />);
 
-      expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
+      expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeInTheDocument();
     });
 
     it('should trigger onChange', () => {
@@ -43,21 +43,21 @@ describe('Input', () => {
       const LABEL = 'label';
       renderWithProvider(<Input label={LABEL} value="" />);
 
-      expect(screen.getByText(LABEL)).toBeTruthy();
+      expect(screen.getByText(LABEL)).toBeInTheDocument();
     });
 
     it('should show error', () => {
       const ERROR = 'error';
       renderWithProvider(<Input errorText={ERROR} value="" />);
 
-      expect(screen.getByText(ERROR)).toBeTruthy();
+      expect(screen.getByText(ERROR)).toBeInTheDocument();
     });
 
     it('should show description', () => {
       const DESCRIPTION = 'description';
       renderWithProvider(<Input description={DESCRIPTION} value="" />);
 
-      expect(screen.getByText(DESCRIPTION)).toBeTruthy();
+      expect(screen.getByText(DESCRIPTION)).toBeInTheDocument();
     });
 
     it('should count characters', () => {
@@ -91,7 +91,7 @@ describe('Input', () => {
 
       expect(onChange).toHaveBeenCalledWith(VALID_STRING);
 
-      fireEvent.change(input, { target: { value: INVALID_STRING } }); // should not call onChange event
+      fireEvent.change(input, { target: { value: INVALID_STRING } }); 
 
       expect(onChange).toHaveBeenCalledTimes(1);
     });
@@ -103,8 +103,8 @@ describe('Input', () => {
         <Input icon1={<div>{ICON_PLACEHOLDER_1}</div>} icon2={<div>{ICON_PLACEHOLDER_2}</div>} value="" />
       );
 
-      expect(screen.getByText(ICON_PLACEHOLDER_1)).toBeTruthy();
-      expect(screen.getByText(ICON_PLACEHOLDER_2)).toBeTruthy();
+      expect(screen.getByText(ICON_PLACEHOLDER_1)).toBeInTheDocument();
+      expect(screen.getByText(ICON_PLACEHOLDER_2)).toBeInTheDocument();
     });
   });
 
@@ -146,8 +146,8 @@ describe('Input', () => {
         />
       );
 
-      expect(screen.getByText(PREFIX)).toBeTruthy();
-      expect(screen.getByText(SUFFIX)).toBeTruthy();
+      expect(screen.getByText(PREFIX)).toBeInTheDocument();
+      expect(screen.getByText(SUFFIX)).toBeInTheDocument();
     })
 
     it.todo('[performance / integration] nested input does not get rerendered when props objects differ in object referentiality');
@@ -156,10 +156,35 @@ describe('Input', () => {
     it.todo('[UI] autosize sizer does not expand parent containers (e.g. modals)')
     it.todo('[UI] input with and without autoresize paddings and margins are the same (content-box vs border-box)')
     it.todo('[UI] autosize has no transition on width')
-    it.todo('[UI] autosize when resizing is aware of its parent size (problematic when)') // when what?
+    it.todo('[UI] autosize when resizing is aware of its parent size (problematic when inside modal)') 
     it.todo('[UI] resize accordingly to the input text width up to given width if prop autoResize')
   });
   
+  describe('Expandable input', () => {
+    beforeEach(() => {
+      jest.spyOn(HTMLInputElement.prototype, 'scrollWidth', 'get').mockReturnValue(200);
+      jest.spyOn(HTMLInputElement.prototype, 'clientWidth', 'get').mockReturnValue(100);
+    })
+
+    it('should render expand icon and texarea', () => {
+      renderWithProvider(<Input expandable value="" />);
+    
+      const input = screen.getByRole('textbox') as HTMLInputElement;
+      const textarea = screen.getByTestId('inputExpandTextarea') as HTMLTextAreaElement;
+      const trigger = screen.getByTestId('inputExpandIcon')
+      expect(trigger).toBeInTheDocument();
+      expect(input).toBeInTheDocument();
+      expect(textarea).toBeInTheDocument();
+    })
+    it('should show expand tooltip', async () => {
+      renderWithProvider(<Input expandable expandableTooltip={TOOLTIP} value="" />);
+      const trigger = screen.getByTestId('inputExpandIcon')
+      expect(trigger).toBeInTheDocument();
+
+      fireEvent.mouseOver(trigger);
+      expect(await screen.findByText(TOOLTIP)).toBeInTheDocument();  
+    });
+  })
   // autosize doesn't support masked input yet
   // it.todo('masked-input forwardsRef (requires antd>=4.19)')
   it.todo('[UI] autosize works for masked input')

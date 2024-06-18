@@ -1,23 +1,38 @@
-import React, { ComponentType, useEffect, useRef, useCallback, ChangeEvent, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  ChangeEvent,
+  ComponentType,
+  useMemo,
+  MouseEvent,
+  FocusEvent,
+  useCallback,
+} from 'react';
 import { v4 as uuid } from 'uuid';
 import { StyledComponent } from 'styled-components';
-
 import AntdInput, { InputProps as AntdInputProps } from 'antd/lib/input';
-import AntdMaskedInput from 'antd-mask-input';
+import AntdTextArea from 'antd/lib/input/TextArea';
 import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
-import '@synerise/ds-core/dist/js/style';
+import AntdMaskedInput from 'antd-mask-input';
+
 import { useResizeObserver } from '@synerise/ds-utils';
 
+import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-
 import * as S from './Input.styles';
-import { ContentAboveElement, ContentBelowElement, ElementIcons } from './components';
 
-import { BaseProps, InputProps as DSInputProps } from './Input.types';
+import {
+  ContentAboveElement,
+  ContentBelowElement,
+  ElementIcons,
+  AutosizeWrapper,
+  ExpandableWrapper,
+} from './components';
 import { useInputAddonHeight, useElementFocus } from './hooks';
 import { getCharCount } from './utils';
 
-import { AutosizeWrapper } from './AutosizeWrapper/AutosizeWrapper';
+import type { BaseProps, InputProps as DSInputProps } from './Input.types';
 import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
 
 const VERTICAL_BORDER_OFFSET = 2;
@@ -44,11 +59,15 @@ const createInputComponent =
     prefixel,
     suffixel,
     error,
+    expandable,
+    expandableTooltip,
     ...antdInputProps
   }) => {
     const id = useMemo(() => uuid(), []);
     const charCount = getCharCount(antdInputProps.value, counterLimit);
-
+    const expandableTextAreaRef = useRef<AntdTextArea | null>(null);
+    const [expanded, setExpanded] = useState(false);
+    const [overflown, setOverflown] = useState(false);
     const scrollLeftRef = useRef(0);
     const hasErrorMessage = Boolean(errorText);
     const paddingDiff = useRef<number>();
@@ -56,6 +75,7 @@ const createInputComponent =
     const autosizeRef = useRef<AutosizeInputRefType | null>(null);
     const externalRef = useRef<HTMLInputElement | null>(null);
     const elementRef = useRef<HTMLDivElement | null>(null);
+
     const handleIconsClick = useElementFocus(inputRef);
     const { inputAddonHeight } = useInputAddonHeight(inputRef);
     useResizeObserver(elementRef);
@@ -80,15 +100,58 @@ const createInputComponent =
         paddingDiff.current = parseFloat(paddingLeft) + parseFloat(paddingRight);
       }
     });
+    useEffect(() => {
+      if (!autoResize && expandable && inputRef && inputRef.current) {
+        setOverflown(inputRef.current.input.scrollWidth > inputRef.current.input.clientWidth);
+      }
+    }, [autoResize, expandable, expanded]);
+
+    const handleTextareaChange = (event: ChangeEvent<HTMLInputElement> & ChangeEvent<HTMLTextAreaElement>) => {
+      const { value: newValue } = event.currentTarget;
+      if (counterLimit && newValue.length > counterLimit) {
+        return;
+      }
+      antdInputProps.onChange && antdInputProps.onChange(event);
+    };
+
+    const handleExpandableTextareaBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
+      setExpanded(false);
+      if (inputRef.current) {
+        inputRef.current.input.value = event.target.value;
+        inputRef.current.input.focus();
+      }
+    };
+
+    const handleExpandIconClick = (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
+
+      if (inputRef.current && expandableTextAreaRef.current) {
+        // @ts-ignore
+        expandableTextAreaRef.current.value = inputRef.current.input.value;
+        expandableTextAreaRef.current.focus();
+      }
+      setExpanded(true);
+    };
+
+    useEffect(() => {
+      if (expanded) {
+        expandableTextAreaRef.current && expandableTextAreaRef.current.focus();
+      }
+    }, [expandableTextAreaRef, expanded]);
 
     const handleChange = useCallback(
-      (e: ChangeEvent<HTMLInputElement>) => {
-        const { value: newValue } = e.currentTarget;
+      (event: ChangeEvent<HTMLInputElement>) => {
+        const { value: newValue, scrollWidth, clientWidth } = event.currentTarget;
+        const isNowOverflown = scrollWidth > clientWidth;
+
+        if (!autoResize && expandable && isNowOverflown !== overflown) {
+          setOverflown(isNowOverflown);
+        }
         if (counterLimit && newValue.length > counterLimit) return;
 
-        antdInputProps.onChange && antdInputProps.onChange(e);
+        antdInputProps.onChange && antdInputProps.onChange(event);
       },
-      [antdInputProps, counterLimit]
+      [antdInputProps, autoResize, counterLimit, expandable, overflown]
     );
 
     const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
@@ -96,13 +159,56 @@ const createInputComponent =
       scrollLeftRef.current = inputRef.current?.input.scrollLeft || 0;
       inputRef.current && inputRef.current.input.style.removeProperty('max-width');
     };
-    const onAutosize = () => {
+
+    const onAutosize = (newWidth: number) => {
       const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
       if (stretchToFit && inputRef.current && parentRect?.width && paddingDiff.current) {
         inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
         inputRef.current.input.scrollLeft = scrollLeftRef.current;
       }
+
+      if (autoResize && inputRef.current && expandable) {
+        const style = window.getComputedStyle(inputRef.current.input);
+        const minWidth = parseInt(style.minWidth, 10);
+        setOverflown(newWidth > minWidth);
+      }
     };
+
+    const autoSizedComponent = (
+      <AutosizeWrapper
+        preAutosize={preAutosize}
+        onAutosize={onAutosize}
+        value={antdInputProps.value as string}
+        autoResize={!!autoResize}
+      >
+        <WrappedComponent
+          autoResize={autoResize}
+          data-testid="input-autosize-input"
+          {...antdInputProps}
+          className={hasErrorMessage || error ? 'error' : undefined}
+          addonBefore={
+            !!prefixel && (
+              <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {prefixel}
+              </S.AddonWrapper>
+            )
+          }
+          addonAfter={
+            !!suffixel && (
+              <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
+                {suffixel}
+              </S.AddonWrapper>
+            )
+          }
+          error={hasErrorMessage || error}
+          onChange={handleChange}
+          value={antdInputProps.value}
+          autoComplete="off"
+          id={id}
+          ref={inputRef}
+        />
+      </AutosizeWrapper>
+    );
 
     return (
       <S.OuterWrapper ref={elementRef} autoResize={autoResize} className={className} resetMargin={resetMargin}>
@@ -114,7 +220,7 @@ const createInputComponent =
           tooltipConfig={tooltipConfig}
           charCount={charCount}
         />
-        <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
+        <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)} icon3={!!expandable}>
           <ElementIcons
             handleIconsClick={handleIconsClick}
             disabled={antdInputProps.disabled}
@@ -124,41 +230,26 @@ const createInputComponent =
             icon2Tooltip={icon2Tooltip}
             className={className}
             type="input"
+            expandable={expandable}
+            overflown={overflown}
+            handleExpandIconClick={handleExpandIconClick}
+            expandableTooltip={expandableTooltip}
           />
-          <AutosizeWrapper
-            preAutosize={preAutosize}
-            onAutosize={onAutosize}
-            value={antdInputProps.value as string}
-            autoResize={!!autoResize}
-          >
-            <WrappedComponent
-              autoResize={autoResize}
-              data-testid="input-autosize-input"
-              {...antdInputProps}
-              className={hasErrorMessage || error ? 'error' : undefined}
-              addonBefore={
-                !!prefixel && (
-                  <S.AddonWrapper className="ds-input-prefix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                    {prefixel}
-                  </S.AddonWrapper>
-                )
-              }
-              addonAfter={
-                !!suffixel && (
-                  <S.AddonWrapper className="ds-input-suffix" height={inputAddonHeight - VERTICAL_BORDER_OFFSET}>
-                    {suffixel}
-                  </S.AddonWrapper>
-                )
-              }
-              error={hasErrorMessage || error}
-              onChange={handleChange}
+          {expandable ? (
+            <ExpandableWrapper
+              onChange={handleTextareaChange}
+              onBlur={handleExpandableTextareaBlur}
+              ref={expandableTextAreaRef}
               value={antdInputProps.value}
-              autoComplete="off"
-              id={id}
-              ref={inputRef}
-            />
-          </AutosizeWrapper>
+              expanded={expanded}
+            >
+              {autoSizedComponent}
+            </ExpandableWrapper>
+          ) : (
+            autoSizedComponent
+          )}
         </S.InputWrapper>
+
         <ContentBelowElement description={description} errorText={errorText} />
       </S.OuterWrapper>
     );
