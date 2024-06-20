@@ -7,7 +7,7 @@ import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
-export interface BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> {
+export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElement = HTMLInputElement> = {
   error?: boolean;
   className?: string;
   tooltip?: ReactNode;
@@ -16,6 +16,7 @@ export interface BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInpu
   label?: ReactNode;
   description?: ReactNode;
   counterLimit?: number;
+  renderCustomCounter?: (count: number) => ReactNode;
   icon1?: ReactElement;
   icon1Tooltip?: ReactElement;
   icon2?: ReactElement;
@@ -27,7 +28,7 @@ export interface BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInpu
   autoResize?: AutoResizeProp;
   expandable?: boolean;
   expandableTooltip?: ReactNode;
-}
+};
 /**
  * @deprecated use `InputProps`, `TextareaProps` or `MaskedInputProps` instead
  */
