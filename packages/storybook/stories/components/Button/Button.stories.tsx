@@ -5,15 +5,21 @@ import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
 
-import { buttonDecorator, BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, PREFIXCLS_ARG_CONTROL, reactNodeAsSelect, controlFromOptionsArray } from '../../utils';
+import {
+  buttonDecorator,
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  PREFIXCLS_ARG_CONTROL,
+  reactNodeAsSelect,
+  controlFromOptionsArray,
+} from '../../utils';
+import Tooltip from '@synerise/ds-tooltip';
 
 type Story = StoryObj<ButtonProps>;
 
 const meta: Meta<ButtonProps> = {
   title: 'Components/Button/Button',
-  render: ({children, ...args }) => (
-    <Button {...args}>{children}</Button>
-  ),
+  render: ({ children, ...args }) => <Button {...args}>{children}</Button>,
   tags: ['autodocs'],
   component: Button,
   decorators: [buttonDecorator],
@@ -21,7 +27,7 @@ const meta: Meta<ButtonProps> = {
     layout: 'fullscreen',
     controls: {
       exclude: ['href', 'target', 'htmlType', 'groupVariant', 'justifyContent', 'shape'],
-    }
+    },
   },
   argTypes: {
     activated: BOOLEAN_CONTROL,
@@ -31,41 +37,61 @@ const meta: Meta<ButtonProps> = {
     readOnly: BOOLEAN_CONTROL,
     loading: BOOLEAN_CONTROL,
     icon: {
-      ...reactNodeAsSelect(
-        ['AngleDownS', 'CheckS'], 
-        {
-          AngleDownS: <Icon component={<AngleDownS />} />,
-          CheckS: <Icon component={<CheckS />} />
-        }
-      ),
+      ...reactNodeAsSelect(['AngleDownS', 'CheckS'], {
+        AngleDownS: <Icon component={<AngleDownS />} />,
+        CheckS: <Icon component={<CheckS />} />,
+      }),
     },
     className: CLASSNAME_ARG_CONTROL,
     prefixCls: PREFIXCLS_ARG_CONTROL,
     size: {
       table: {
         defaultValue: {
-          summary: 'undefined'
-        }
+          summary: 'undefined',
+        },
       },
-      ...controlFromOptionsArray('inline-radio', ['', 'large'])
+      ...controlFromOptionsArray('inline-radio', ['', 'large']),
     },
 
     block: {
       description: 'Display as a block element',
-      ...BOOLEAN_CONTROL
+      ...BOOLEAN_CONTROL,
     },
 
     type: {
-      ...controlFromOptionsArray('select', ['primary', 'secondary', 'tertiary', 'tertiary-white', 'ghost-primary', 'ghost', 'ghost-white', 'custom-color', 'custom-color-ghost'])
+      ...controlFromOptionsArray('select', [
+        'primary',
+        'secondary',
+        'tertiary',
+        'tertiary-white',
+        'ghost-primary',
+        'ghost',
+        'ghost-white',
+        'custom-color',
+        'custom-color-ghost',
+      ]),
     },
     mode: {
       table: {
-        disable: true
+        disable: true,
       },
     },
     color: {
-      ...controlFromOptionsArray('select', ['blue', 'grey', 'red', 'green', 'yellow', 'pink', 'mars', 'orange', 'fern', 'cyan', 'purple', 'violet']),
-      table: { category: 'Custom color button props'},
+      ...controlFromOptionsArray('select', [
+        'blue',
+        'grey',
+        'red',
+        'green',
+        'yellow',
+        'pink',
+        'mars',
+        'orange',
+        'fern',
+        'cyan',
+        'purple',
+        'violet',
+      ]),
+      table: { category: 'Custom color button props' },
     },
     children: {
       name: 'children',
@@ -74,9 +100,9 @@ const meta: Meta<ButtonProps> = {
       table: {
         type: {
           summary: 'ReactNode',
-        }
-      }
-    }
+        },
+      },
+    },
   },
 };
 
@@ -85,8 +111,8 @@ export default meta;
 export const Simple: Story = {
   parameters: {
     controls: {
-      exclude: [ ...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
-    }
+      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
+    },
   },
   args: {
     children: 'Label',
@@ -99,10 +125,9 @@ export const IconSolo: Story = {
   args: {
     type: 'primary',
     mode: 'single-icon',
-    icon: <Icon component={<AngleDownS />} />
+    icon: <Icon component={<AngleDownS />} />,
   },
-}
-
+};
 
 export const IconLeft: Story = {
   ...IconSolo,
@@ -111,12 +136,11 @@ export const IconLeft: Story = {
     children: 'Label',
     mode: 'icon-label',
   },
-}
-
+};
 
 export const IconRight: Story = {
   ...IconLeft,
-  render: ({icon, children, ...args}) => (
+  render: ({ icon, children, ...args }) => (
     <Button {...args}>
       {children}
       {icon}
@@ -126,13 +150,11 @@ export const IconRight: Story = {
     ...IconLeft.args,
     mode: 'label-icon',
   },
-}
-
-
+};
 
 export const TwoIcons: Story = {
   ...IconLeft,
-  render: ({icon, children, ...args}) => (
+  render: ({ icon, children, ...args }) => (
     <Button {...args}>
       {icon}
       {children}
@@ -143,19 +165,18 @@ export const TwoIcons: Story = {
     ...IconLeft.args,
     mode: 'two-icons',
   },
-}
-
+};
 
 export const CustomLabel: Story = {
   parameters: {
     controls: {
-      exclude: [ ...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
-    }
+      exclude: [...meta?.parameters?.controls.exclude, 'icon', 'iconColor'],
+    },
   },
   argTypes: {
     children: {
-      control: false
-    }
+      control: false,
+    },
   },
   args: {
     children: (
@@ -165,6 +186,25 @@ export const CustomLabel: Story = {
         <span style={{ display: 'inline' }}>more</span>
       </span>
     ),
+    type: 'primary',
+  },
+};
+
+export const DisabledTooltip: Story = {
+  render: (args) => {
+    const buttonElement = <Button {...args} />;
+    const { disabled } = args;
+    return disabled ? (
+      <Tooltip title="This element is disabled">
+        <span data-testid="button-disabled-wrapper">{buttonElement}</span>
+      </Tooltip>
+    ) : (
+      buttonElement
+    );
+  },
+  args: {
+    children: 'Label',
+    disabled: true,
     type: 'primary',
   },
 };
