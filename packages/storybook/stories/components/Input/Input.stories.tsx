@@ -76,6 +76,15 @@ export const WithCounter: Story = {
   },
 };
 
+
+export const WithCustomCounter: Story = {
+  args: {
+    ...WithLabelAndDescription.args,
+    value: 'Sample text',
+    renderCustomCounter: (count: number) => <>{count} characters billed as 1 SMS</>,
+  },
+};
+
 export const WithError: Story = {
   args: {
     ...Default.args,

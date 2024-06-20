@@ -61,6 +61,7 @@ const createInputComponent =
     error,
     expandable,
     expandableTooltip,
+    renderCustomCounter,
     ...antdInputProps
   }) => {
     const id = useMemo(() => uuid(), []);
@@ -219,6 +220,7 @@ const createInputComponent =
           tooltip={tooltip}
           tooltipConfig={tooltipConfig}
           charCount={charCount}
+          renderCustomCounter={renderCustomCounter}
         />
         <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)} icon3={!!expandable}>
           <ElementIcons

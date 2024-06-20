@@ -288,6 +288,7 @@ export const Label = styled.label`
 
 export const Counter = styled.div`
   font-weight: 500;
+  color: ${props => props.theme.palette['grey-500']};
 `;
 
 export const Description = styled.div`
