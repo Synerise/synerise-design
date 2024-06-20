@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React, { useEffect, useState, MouseEvent, useMemo, useRef } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
 import Icon, { SpinnerM } from '@synerise/ds-icon';
 
 import * as S from './Button.styles';
-import { Props } from './Button.types';
+import { ButtonProps } from './Button.types';
 
 const RIPPLE_ANIMATION_OFFSET = 50;
 
-const Button: React.FC<Props> = ({
+const Button = ({
   type = 'secondary',
   mode,
   justifyContent = 'center',
@@ -21,11 +21,11 @@ const Button: React.FC<Props> = ({
   error,
   activated,
   ...antdProps
-}) => {
-  const rippleRef = React.useRef<HTMLSpanElement>(null);
-  const [rippleClassName, setRippleClassName] = React.useState('');
-  const [pressed, setPressed] = React.useState<boolean>(false);
-  React.useEffect(() => {
+}: ButtonProps) => {
+  const rippleRef = useRef<HTMLSpanElement>(null);
+  const [rippleClassName, setRippleClassName] = useState('');
+  const [pressed, setPressed] = useState<boolean>(false);
+  useEffect(() => {
     if (rippleClassName !== '') {
       setTimeout(() => {
         setRippleClassName('');
@@ -33,7 +33,7 @@ const Button: React.FC<Props> = ({
     }
   }, [rippleClassName]);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+  const handleClick = (event: MouseEvent<HTMLElement>): void => {
     const button = event.currentTarget.closest('.ant-btn');
     if (button) {
       const buttonBoundingRect = button.getBoundingClientRect();
@@ -48,7 +48,7 @@ const Button: React.FC<Props> = ({
     }
   };
 
-  const classNameString = React.useMemo((): string => {
+  const classNameString = useMemo((): string => {
     const modeStringifed = mode || '';
     const readOnlyStringifed = antdProps.readOnly ? 'read-only' : '';
     const classNameStringifed = className || '';

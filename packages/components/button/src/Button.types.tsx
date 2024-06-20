@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { ButtonProps } from 'antd/lib/button';
+import { ElementType, MouseEvent } from 'react';
+import { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import { JustifyContentProperty } from 'csstype';
 
-export type Props = Omit<ButtonProps, 'type'> & {
+export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   /**
    * Defines the type of the button. It affects the button color
    *
@@ -60,7 +60,7 @@ export type Props = Omit<ButtonProps, 'type'> & {
   /**
    * Sets the handler to handle `click` event
    */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
   iconColor?:
     | string
     | 'blue'
@@ -80,7 +80,10 @@ export type Props = Omit<ButtonProps, 'type'> & {
   readOnly?: boolean;
 };
 
+// @deprecated - use ButtonProps instead
+export type Props = ButtonProps;
+
 export type ButtonSubComponents = {
-  Expander: React.ElementType;
-  Creator: React.ElementType;
+  Expander: ElementType;
+  Creator: ElementType;
 };
