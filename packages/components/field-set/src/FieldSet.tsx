@@ -7,7 +7,7 @@ const FieldSet = ({ className, prefix, title, description, component, button, on
   return (
     <S.ContainerWrapper className={`ds-field-set ${className}`}>
       <S.HeaderWrapper>
-        <S.ButtonWrapper>{prefix}</S.ButtonWrapper>
+        {prefix && <S.ButtonWrapper>{prefix}</S.ButtonWrapper>}
         <S.FieldSetTitle description={Boolean(description)}>
           <S.Title onClick={onTitleClick} isClickable={Boolean(onTitleClick)} description={Boolean(description)}>
             {title}
@@ -16,8 +16,8 @@ const FieldSet = ({ className, prefix, title, description, component, button, on
         </S.FieldSetTitle>
       </S.HeaderWrapper>
       <Divider />
-      <S.ComponentWrapper>{component}</S.ComponentWrapper>
-      <S.ActionButton>{button}</S.ActionButton>
+      {component && <S.ComponentWrapper>{component}</S.ComponentWrapper>}
+      {button && <S.ActionButton>{button}</S.ActionButton>}
     </S.ContainerWrapper>
   );
 };

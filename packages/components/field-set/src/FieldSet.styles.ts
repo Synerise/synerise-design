@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Title = styled.div<{ description?: boolean; isClickable?: boolean }>`
   display: flex;
   line-height: 16px;
-  padding-bottom: ${(props): string => (props.description ? '8px' : '14px')};
+  padding-bottom: ${(props): string => (props.description ? '8px' : '0')};
   max-width: 800px;
   font-size: 16px;
   font-weight: 500;
@@ -12,7 +12,11 @@ export const Title = styled.div<{ description?: boolean; isClickable?: boolean }
   color: ${(props): string => props.theme.palette['grey-800']};
   cursor: ${(props): string => (props.isClickable ? 'pointer' : 'default')};
 `;
-export const ContainerWrapper = styled.div``;
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 export const HeaderWrapper = styled.div`
   display: flex;
 `;
@@ -34,13 +38,12 @@ export const FieldSetTitle = styled.div<{ description?: boolean }>`
 `;
 export const ComponentWrapper = styled.div`
   display: flex;
-  padding: 16px 0px;
+  flex-direction: column;
 `;
 
 export const Description = styled.div<{ description?: boolean }>`
   display: flex;
   line-height: 16px;
-  padding-bottom: ${(props): string => (props.description ? '16px' : '0')};
   font-size: 12px;
   word-wrap: break-word;
   text-align: center;
