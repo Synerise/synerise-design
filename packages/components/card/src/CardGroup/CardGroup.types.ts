@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 
 export interface CardGroupProps {
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   columns: number;
 }

@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './CardGroup.styles';
 import { CardGroupProps } from './CardGroup.types';
 
-const CardGroup: React.FC<CardGroupProps> = ({ className, children, columns }) => {
+const CardGroup = ({ className, children, columns }: CardGroupProps) => {
   return (
     <S.Container className={className} items={columns}>
       {children}
