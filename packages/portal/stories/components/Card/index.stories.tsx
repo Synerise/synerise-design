@@ -3,8 +3,8 @@ import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';
 import Tags, { TagShape } from '@synerise/ds-tags';
-import Card, { CardGroup, CardBadge } from '@synerise/ds-card';
-import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM, UserCircleM } from "@synerise/ds-icon";
+import Card, { CardGroup, CardBadge, CardSummary } from '@synerise/ds-card';
+import Icon, { CheckS, Check3M, FilterM, SearchM, UserM, WarningFillM, SegmentM, UserCircleM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import * as S from './stories.styles';
 import { Backgrounds, CardProps } from '@synerise/ds-card';
@@ -21,8 +21,8 @@ const backgrounds = {
 const init = () => {
   const tag = {
     name: 'OPTIONAL',
-    color: theme.palette['grey-500']
-  }
+    color: theme.palette['grey-500'],
+  };
   const titleTag = <Tags asPill selected={[tag]} tagShape={TagShape.SMALL_SQUARE} />;
   const props = {
     title: text('Title', 'Card header'),
@@ -39,7 +39,7 @@ const init = () => {
     titleTag: boolean('show title tag', true) ? titleTag : undefined,
     background: select('Background style', backgrounds, 'white-shadow') as Backgrounds,
     showSideChildrenWhenHeaderHidden: boolean('Set Footer Active', false),
-    "data-testid": text('data-testid','card-example-testid')
+    'data-testid': text('data-testid', 'card-example-testid'),
   };
   return { props };
 };
@@ -54,7 +54,7 @@ const renderCard = (
   React.useEffect(() => {
     setHideContent(hideContentInitial);
   }, [hideContentInitial]);
-  
+
   return (
     <Card
       lively={props.lively}
@@ -126,7 +126,6 @@ const stories = {
 
     const updateCollapsedState = (index, collapsed) =>
       setCollapsedCardsState({ ...collapsedCardsState, [index]: collapsed });
-
 
     return (
       <div

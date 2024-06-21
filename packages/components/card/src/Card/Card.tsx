@@ -5,6 +5,7 @@ import AnimateHeight from 'react-animate-height';
 import VisibilitySensor from 'react-visibility-sensor';
 import * as S from './Card.styles';
 import { CardProps } from './Card.types';
+import { ANIMATION_DURATION } from '../constants';
 
 const Card = ({
   children,
@@ -94,7 +95,11 @@ const Card = ({
       )}
 
       {staticContent && (
-        <AnimateHeight className="static-content-card-animation" duration={300} height={hideContent ? 'auto' : 0}>
+        <AnimateHeight
+          className="static-content-card-animation"
+          duration={ANIMATION_DURATION}
+          height={hideContent ? 'auto' : 0}
+        >
           <S.ChildrenContainer data-testid="card-static-content">
             <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
               {staticContent}
@@ -103,7 +108,7 @@ const Card = ({
         </AnimateHeight>
       )}
 
-      <AnimateHeight className="card-animation" duration={300} height={hideContent ? 0 : 'auto'}>
+      <AnimateHeight className="card-animation" duration={ANIMATION_DURATION} height={hideContent ? 0 : 'auto'}>
         <S.ChildrenContainer data-testid="card-content">
           <S.PaddingWrapper withoutPadding={withoutPadding} withHeader={withHeader}>
             {children}

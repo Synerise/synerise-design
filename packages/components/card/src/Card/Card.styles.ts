@@ -1,9 +1,10 @@
+import type { MouseEventHandler, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Title as DSTitle } from '@synerise/ds-typography';
 import { Container as TagsContainer } from '@synerise/ds-tags/dist/Tags.styles';
-import * as React from 'react';
 import { ThemePropsVars } from '@synerise/ds-core';
 import { Backgrounds } from './Card.types';
+import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
 
 const whiteBg = ['white', 'white-shadow'];
 const greyBg = ['grey', 'grey-shadow'];
@@ -26,7 +27,7 @@ export const HeaderSideChildren = styled.div`
   padding-left: 24px;
 `;
 
-export const IconContainer = styled.div<{ compact?: boolean; description?: React.ReactNode }>`
+export const IconContainer = styled.div<{ compact?: boolean; description?: ReactNode }>`
   display: flex;
   width: 24px;
   height: ${(props): string => (props.description && !props.compact ? '24px' : '32px')};
@@ -88,7 +89,7 @@ export const Container = styled.div<{
 `;
 
 export const Header = styled.div<{
-  onClick?: React.MouseEventHandler;
+  onClick?: MouseEventHandler;
   headerBorderBottom?: boolean;
   defaultHeaderBackgroundColor?: boolean;
 }>`
@@ -190,6 +191,9 @@ export const ChildrenContainer = styled.div``;
 export const PaddingWrapper = styled.div<{ withHeader?: boolean; withoutPadding?: boolean }>`
   padding: ${(props): string => (props.withoutPadding ? '0' : `24px`)};
   ${(props): string | false => !!props.withHeader && `padding-top: 0;`}
+  ${CardSummaryWrapper} {
+    margin: 0 48px;
+  }
 `;
 export const FooterContainer = styled.div`
   padding: 24px;

@@ -103,3 +103,22 @@ yarn add @synerise/ds-card
 | -------- | ----------------------------------- | ------------------------------------------- | --------- |
 | Icon     | Icon rendered in badge              | React.ReactNode                             | -         |
 | Status   | Defines the color of badge and icon | `success` / `error` / `warning` / `default` | `default` |
+
+#### CardSummary
+
+Renders a summary in a bulletted list form. Can be assigned to Card.staticContent prop
+
+| Property | Description                                 | Type                     | Default |
+| -------- | ------------------------------------------- | ------------------------ | ------- |
+| title    | Otional title rendered above bulletted list | `React.ReactNode`        | -       |
+| items    | Defines the color of badge and icon         | `CardSummaryItemProps[]` | -       |
+
+
+#### CardSummaryItemProps
+
+| Property          | Description                                                                    | Type                   | Default |
+| ----------------- | ------------------------------------------------------------------------------ | ---------------------- | ------- |
+| key               | Unique key                                                                     | `React.Key`            | -       |
+| label             | Optional label to display                                                      | `React.ReactNode`      | -       |
+| value             | Mandatory value to display                                                     | `React.ReactNode`      | -       |
+| summaryRowObjects | Optional array of react elements, renders 4 in a row in a toggleable container | `React.ReactElement[]` | -       |

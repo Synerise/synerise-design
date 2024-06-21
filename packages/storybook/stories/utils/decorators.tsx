@@ -9,6 +9,7 @@ export const fixedWrapper400 = (Story, storyContext) => <div style={{ width: '40
 
 export const fixedWrapper588 = (Story, storyContext) => <div style={{ width: '588px' }}>{Story()}</div>;
 
+
 export const centeredPaddedWrapper = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
