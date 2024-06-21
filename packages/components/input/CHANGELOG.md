@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.21.5...@synerise/ds-input@0.22.0) (2024-06-21)
+
+
+### Features
+
+* **input:** adds custom counter render prop ([761da40](https://github.com/synerise/synerise-design/commit/761da40bb7f40d1215ae36382dd57d083c8b4baf))
+
+
+
+
+
 ## [0.21.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.21.4...@synerise/ds-input@0.21.5) (2024-05-29)
 
 **Note:** Version bump only for package @synerise/ds-input

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.218.0](https://github.com/synerise/synerise-design/compare/portal@0.217.1...portal@0.218.0) (2024-06-21)
+
+
+### Features
+
+* **card:** added a summary subcomponent ([4ca43a2](https://github.com/synerise/synerise-design/commit/4ca43a2b057776f62d26f350eaa7e66521ff9f3d))
+
+
+
+
+
 ## [0.217.1](https://github.com/synerise/synerise-design/compare/portal@0.217.0...portal@0.217.1) (2024-06-05)
 
 

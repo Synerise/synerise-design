@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.26...@synerise/ds-field-set@0.2.27) (2024-06-21)
+
+
+### Bug Fixes
+
+* **field-set:** fix display in wrapper component ([fe04b8c](https://github.com/Synerise/synerise-design/commit/fe04b8c2c43c843dbfd6e85d24ae138262f8c661))
+
+
+
+
+
 ## [0.2.26](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.25...@synerise/ds-field-set@0.2.26) (2024-05-29)
 
 **Note:** Version bump only for package @synerise/ds-field-set

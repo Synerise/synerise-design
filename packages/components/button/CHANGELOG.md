@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.20.1...@synerise/ds-button@0.21.0) (2024-06-21)
+
+
+### Features
+
+* **button:** disabled tooltip for button ([74fca04](https://github.com/synerise/synerise-design/commit/74fca04c9c02088c8bc59e055c7ffae0469e6355))
+
+
+
+
+
 ## [0.20.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-button@0.20.0...@synerise/ds-button@0.20.1) (2024-05-29)
 
 

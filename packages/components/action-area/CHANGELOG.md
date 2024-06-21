@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.4.0...@synerise/ds-action-area@0.4.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* **action-area:** add background color on validation ([78b4ad8](https://github.com/Synerise/synerise-design/commit/78b4ad86719427b7e95a1b125600a02c76a3b2a8))
+
+
+
+
+
 # [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.3.25...@synerise/ds-action-area@0.4.0) (2024-05-29)
 
 

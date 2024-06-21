@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-input",
-  "version": "0.21.5",
+  "version": "0.22.0",
   "description": "Input UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -33,9 +33,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.62.0",
-    "@synerise/ds-scrollbar": "^0.11.0",
-    "@synerise/ds-tooltip": "^0.14.29",
+    "@synerise/ds-icon": "^0.62.1",
+    "@synerise/ds-scrollbar": "^0.11.1",
+    "@synerise/ds-tooltip": "^0.14.30",
     "@synerise/ds-typography": "^0.15.0",
     "@synerise/ds-utils": "^0.27.0",
     "antd-mask-input": "^0.1.13",
