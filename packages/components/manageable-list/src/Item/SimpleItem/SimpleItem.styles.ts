@@ -13,7 +13,6 @@ export const ItemLabel = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 24px;
-  max-width: 170px;
   user-select: none;
   &.full-width {
     max-width: unset;
@@ -89,4 +88,7 @@ export const ItemLabelWithIcon = styled.span`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
