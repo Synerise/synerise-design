@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.218.1](https://github.com/synerise/synerise-design/compare/portal@0.218.0...portal@0.218.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* **information-card:** updated ui and added actions and properties ([c30ed42](https://github.com/synerise/synerise-design/commit/c30ed4203511f2c29aeea6d8bc17a6fd6170ffe5))
+
+
+
+
+
 # [0.218.0](https://github.com/synerise/synerise-design/compare/portal@0.217.1...portal@0.218.0) (2024-06-21)
 
 

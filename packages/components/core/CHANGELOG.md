@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.15...@synerise/ds-core@0.40.16) (2024-06-24)
+
+
+### Bug Fixes
+
+* **information-card:** updated ui and added actions and properties ([c30ed42](https://github.com/synerise/synerise-design/commit/c30ed4203511f2c29aeea6d8bc17a6fd6170ffe5))
+
+
+
+
+
 ## [0.40.15](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.14...@synerise/ds-core@0.40.15) (2024-05-16)
 
 **Note:** Version bump only for package @synerise/ds-core

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.5.0...storybook7@0.5.1) (2024-06-24)
+
+
+### Bug Fixes
+
+* **information-card:** updated ui and added actions and properties ([c30ed42](https://github.com/Synerise/synerise-design/commit/c30ed4203511f2c29aeea6d8bc17a6fd6170ffe5))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.4.0...storybook7@0.5.0) (2024-06-21)
 
 
