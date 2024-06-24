@@ -141,6 +141,7 @@ const ContextSelector: React.FC<ContextProps> = ({
                         ? { value: selectedItem.description as string, disabled: true, label: undefined }
                         : undefined
                     }
+                    {...selectedItem.informationCardProps}
                   />
                 )
               : undefined,

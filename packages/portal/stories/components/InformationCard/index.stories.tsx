@@ -17,7 +17,7 @@ import {
   InformationCardProps,
 } from '@synerise/ds-information-card';
 
-import Icon, { NotificationsM, SegmentM, VarTypeStringM } from '@synerise/ds-icon';
+import Icon, { ClickM, MetricsM, NotificationsM, ReportM, SegmentM, TrashM, VarTypeStringM } from '@synerise/ds-icon';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 
 import { default as ConditionStories, Transform } from '../../components/Condition/index.stories';
@@ -36,6 +36,70 @@ const knobHandlers = {
 const renderAdditionalDescription = () => {
   return <div>custom description</div>
 }
+
+
+const SUMMARY_ITEMS = [
+  {
+    icon: <Icon component={<ClickM />} color="grey" />,
+    label: 621,
+    tooltip: 'Used in conditions over last 30d'
+  },
+  {
+    icon: <Icon component={<NotificationsM />} color="grey" />,
+    label: 43,
+    tooltip: 'Events occured over last 30d'
+  },
+]
+const PROPERTIES_LIST = [
+  {
+    label: 'Value',
+    value: '1234'
+  },
+  {
+    type: 'divider'
+  },
+  {
+    label: 'Retention',
+    value: '60 days'
+  },
+  { 
+    label: 'Created',
+    value: '2 days ago'
+  },
+  {
+    label: 'Updated',
+    value: '3 hours ago'
+  },
+  {
+    label: 'Author',
+    value: 'Mike Smith'
+  }
+]
+
+const ACTIONS_MENU_ITEMS: MenuItemProps[] = [
+  {
+    text: 'Create Segmentation',
+    prefixel: <Icon component={<SegmentM />} />
+  },
+  {
+    text: 'Create Metric',
+    prefixel: <Icon component={<MetricsM />} />
+  },
+  {
+    text: 'Create Report',
+    prefixel: <Icon component={<ReportM />} />
+    
+  },
+  {
+    type: 'divider',
+  },
+  {
+    type: 'danger',
+    text: 'Delete',
+    prefixel: <Icon component={<TrashM />} />
+  },
+];
+
 
 
 function defaultStory() {
@@ -272,6 +336,52 @@ function WithConditionFilter(): JSX.Element {
   } as Transform);
 }
 
+
+function WithPropertiesAndActionsMenu(): JSX.Element {
+  const storyDef = ConditionStories.stories.default;
+  return storyDef({
+    props: {
+      defaultDropdownVisibility: true,
+      defaultPopupVisible: true,
+    },
+    transformStep(step: ConditionStep) {
+      step.context.onClickOutside = () => {};
+      const items = [...step.context.items].map((item, idx): ContextItem => {
+        return {
+          hoverTooltipProps: {},
+          ...item,
+          renderHoverTooltip: () => <InformationCardWithKnobs title={item.name} subtitle={item.id} icon={item.icon} actionsMenu={ACTIONS_MENU_ITEMS} propertyListItems={PROPERTIES_LIST} summaryItems={SUMMARY_ITEMS} />,
+        };
+      });
+
+      items[0].hoverTooltipProps.defaultPopupVisible = boolean('By default display first tooltip', false);
+      console.log(step);
+      return {
+        ...step,
+        context: {
+          ...step.context,
+          items,
+        },
+        conditions: step.conditions.map(condition => ({
+          ...condition,
+          parameter: {
+            ...condition.parameter,
+            parameters: {
+              ...condition.parameter.parameters,
+              items: condition.parameter.parameters.items.map(item => ({
+                ...item,
+                renderHoverTooltip: () => (
+                  <InformationCardWithKnobs title={item.name} subtitle={item.id} icon={item.icon} actionsMenu={ACTIONS_MENU_ITEMS} propertyListItems={PROPERTIES_LIST} summaryItems={SUMMARY_ITEMS} />
+                ),
+              })),
+            },
+          },
+        })),
+      };
+    },
+  } as Transform);
+}
+
 function WithModal(): JSX.Element {
   const [isVisible, setIsVisible] = React.useState<boolean>(true);
   const dropdownSlot = WithDropdown(5);
@@ -442,6 +552,7 @@ const stories: Record<string, Story> = {
   withMenu: WithMenu,
   WithDropdown,
   WithConditionFilter,
+  WithPropertiesAndActionsMenu,
   WithModal,
 };
 

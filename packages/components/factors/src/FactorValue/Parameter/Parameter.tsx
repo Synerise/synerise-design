@@ -122,6 +122,7 @@ const ParameterInput = ({
                       ? { value: parameter.description as string, disabled: true, label: undefined }
                       : undefined
                   }
+                  {...parameter.informationCardProps}
                 />
               )
             : undefined,

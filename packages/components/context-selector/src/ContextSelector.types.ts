@@ -3,6 +3,7 @@ import { HandledEventsType } from '@synerise/ds-utils';
 import { ItemSize } from '@synerise/ds-menu';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { FactorsProps } from '@synerise/ds-factors';
+import { InformationCardProps } from '@synerise/ds-information-card';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -22,6 +23,7 @@ export type ContextItem = {
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
   subtitle?: string;
+  informationCardProps?: Partial<InformationCardProps>;
 };
 
 export type ContextGroup = {

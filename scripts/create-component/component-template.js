@@ -1,7 +1,9 @@
 const componentTemplate = name => {
-    return `import * as React from 'react';\n`+
+    return `import React from 'react';\n`+
+        ``+
         `export type ${name}Props = {};\n`+
-        `const ${name}: React.FC<${name}Props> = props => {\n`+
+        ``+
+        `const ${name} = (props: ${name}Props) => {\n`+
         `   return (\n`+
         `       <div>${name} example</div>\n`+
         `   );\n`+

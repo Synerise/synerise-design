@@ -1,0 +1,123 @@
+InformationCard;
+
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+
+import InformationCard, {
+  buildExtraInfo,
+} from '@synerise/ds-information-card';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+
+import { controlFromOptionsArray } from '../../utils';
+import { SegmentM } from '@synerise/ds-icon';
+
+import {
+  ACTIONS_MENU_ITEMS,
+  PROPERTIES_LIST,
+  renderExternalLinkButton,
+  renderPreviewButton,
+  SUMMARY_ITEMS,
+} from './InformationCard.data';
+
+
+export default {
+  title: 'Components/InformationCard',
+  component: InformationCard,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    actionButtonCallback: {
+      action: 'actionButtonCallback',
+    },
+  },
+  args: {
+    title: 'Title',
+    subtitle: 'Subtitle',
+    icon: <SegmentM color="mars" />,
+    iconColor: 'mars',
+
+    avatarTooltipText: 'Tooltip Text',
+    descriptionConfig: {},
+  },
+} as Meta<InformationCardProps>;
+
+type Story = StoryObj<InformationCardProps>;
+
+export const Default: Story = {};
+
+export const WithNotice: Story = {
+  args: {
+    notice: buildExtraInfo('Note: cannot be undone', 'warning'),
+  },
+};
+
+export const Minimalistic: Story = {
+  args: {
+    renderBadge: null,
+    descriptionConfig: null,
+  },
+};
+
+
+export const CustomFooter: Story = {
+  args: {
+    renderFooter: () => <>Custom footer element</>
+  },
+};
+
+export const FooterText: Story = {
+  args: {
+    footerText: 'Footer Text',
+    actionButton: true,
+  },
+};
+
+export const ActionButton: Story = {
+  args: {
+    actionButton: true,
+    actionButtonCallback: fn(),
+    actionButtonTooltipText: 'Action Button Tooltip Text',
+  },
+};
+
+export const CustomActionButton: Story = {
+  argTypes: {
+    actionButton: {
+      ...controlFromOptionsArray('inline-radio', ['external link', 'preview']),
+      mapping: {
+        'external link': renderExternalLinkButton,
+        preview: renderPreviewButton,
+      },
+    },
+  },
+  args: {
+    actionButton: renderPreviewButton,
+  },
+};
+
+export const CompleteExample: Story = {
+  argTypes: {
+    actionButton: {
+      ...controlFromOptionsArray('inline-radio', ['external link', 'preview']),
+      mapping: {
+        'external link': renderExternalLinkButton,
+        preview: renderPreviewButton,
+      },
+    },
+  },
+  args: {
+    descriptionConfig:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
+    actionsMenu: {
+      items: ACTIONS_MENU_ITEMS,
+      buttonLabel: 'Quick links',
+      navigationLabel: 'Quick links',
+    },
+    propertyListItems: PROPERTIES_LIST,
+    summaryItems: SUMMARY_ITEMS,
+    actionButton: renderPreviewButton,
+  },
+};

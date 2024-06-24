@@ -41,7 +41,7 @@ describe('Information card', () => {
         title={sampleTitle}
         subtitle={sampleSubtitle}
         descriptionConfig={{ value: sampleDesc }}
-      ></InformationCard>
+      />
     );
 
     // ASSERT

@@ -1,8 +1,11 @@
-import type { ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 import { SubtleTextAreaProps } from '@synerise/ds-subtle-form/dist/Elements/TextArea/TextArea.types';
 import { Color, Size } from '@synerise/ds-avatar/dist/Avatar.types';
 import { IconProps } from '@synerise/ds-icon';
+import { InformationCardPropertyListProps } from './InformationCardPropertyList/InformationCardPropertyList.types';
+import { InformationCardActionsProps } from './InformationCardActions/InformationCardActions.types';
+import { InformationCardSummaryProps } from './InformationCardSummary/InformationCardSummary.types';
 
 export type BadgeData = {
   type?: string;
@@ -27,6 +30,10 @@ export type InformationCardProps = {
    * default action button tooltip
    */
   actionButtonTooltipText?: string;
+  /**
+   * renders "Quick actions" button in footer that slides main content to reveal actionsMenu.items (menu)
+   */
+  actionsMenu?: Omit<InformationCardActionsProps, 'onHeaderClick' | 'maxHeight'>;
   /**
    * adjusts the styles to be displayed as a tooltip
    */
@@ -86,4 +93,7 @@ export type InformationCardProps = {
    * list of object parameters to display
    */
   renderAdditionalDescription?: () => ReactNode;
-};
+
+  propertyListItems?: InformationCardPropertyListProps['items'];
+  summaryItems?: InformationCardSummaryProps['items'];
+} & HTMLAttributes<HTMLDivElement>;
