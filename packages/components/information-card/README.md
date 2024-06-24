@@ -9,6 +9,7 @@ Information card shows details of an object or entity.
 It should be used as an additional information (details) provider when user is selecting something using menu or dropdown.
 
 ## Installation
+
 ```
 npm i @synerise/ds-information-card
 or
@@ -24,15 +25,18 @@ yarn workspace @synerise/ds-information-card build
 ```
 
 ## Usage
+
 ```js
-import InformationCard from '@synerise/ds-information-card'
-import Popover from 'antd/popover'
+import InformationCard from '@synerise/ds-information-card';
+import Popover from 'antd/popover';
 
 <Popover
-    defaultVisible={false}
-    placement="right"
-    content={() => <InformationCard title="Entity full name" subtitle="entity.id"/>}
->Entity short name</Popover>
+  defaultVisible={false}
+  placement="right"
+  content={() => <InformationCard title="Entity full name" subtitle="entity.id" />}
+>
+  Entity short name
+</Popover>;
 ```
 
 Generally, components require being capable of rendering this and usually an additional effort is required to get them to support rendering.
@@ -49,9 +53,11 @@ By default class is `ignore-click-outside` (so looking for `domElement.closest('
 
 <iframe src="/storybook-static/iframe.html?id=components-information-card--default"></iframe>
 
-## API| Property                    | Description                                                                                                                                                                          | Type                                                | Default |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|---------|
-| actionButton                | custom jsx element for rendering in action button (bottom-right)                                                                                                                     | `boolean` &#124;  `(() => ReactNode)`               | -       |
+## API
+
+| Property                    | Description                                                                                                                                                                          | Type                                                | Default |     |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ------- | --- |
+| actionButton                | custom jsx element for rendering in action button (bottom-right)                                                                                                                     | `boolean` &#124; `(() => ReactNode)`                | -       |
 | actionButtonCallback        | default action button callback method                                                                                                                                                | `() => void`                                        | -       |
 | actionButtonTooltipText     | default action button tooltip                                                                                                                                                        | `string`                                            | -       |
 | asTooltip                   | adjusts the styles to be displayed as a tooltip                                                                                                                                      | `boolean`                                           | -       |
@@ -69,3 +75,38 @@ By default class is `ignore-click-outside` (so looking for `domElement.closest('
 | renderFooter                | render prop for rendering the bottom part of (by default section with a small text and an optional action button on the right)                                                       | `() => JSX.Element`                                 | -       |
 | subtitle                    | Second line. Required prop. Can be copied.                                                                                                                                           | `string`                                            | -       |
 | title                       | Title of the information-card. Can be copied.                                                                                                                                        | `string`                                            | -       |
+| actionsMenu                 | Config for displaying "quick actions" - a button in footer that reveals a menu with links                                                                                            | `ActionsMenuProps`                                  | -       |
+| propertyListItems           | an array of object properties to list, can also include dividers                                                                                                                     | `InformationCardPropertyListItem[]`                 | -       |
+| summaryItems                | An array of (label + icon + optional tooltip) summary items to display below properties                                                                                              | `InformationCardSummaryItem[]`                      | -       |
+
+### ActionsMenuProps
+
+Quick actions menu
+
+| Property        | Description                         | Type                 | Default         |
+| --------------- | ----------------------------------- | -------------------- | --------------- |
+| items           | Array of menu items. See ds-menu    | `MenuItemProps[]`    | -               |
+| menuProps       | Menu props. See ds-menu             | `Partial<MenuProps>` | -               |
+| buttonLabel     | footer button label that shows menu | `ReactNode`          | 'Quick actions' |
+| navigationLabel | Back to content navigation label    | `ReactNode`          | 'Quick actions' |
+
+### InformationCardPropertyListItem
+
+Displays a list of properties (label & value)
+
+| Property | Description                      | Type        | Default |
+| -------- | -------------------------------- | ----------- | ------- |
+| label    | label to display in the list     | `ReactNode` | -       |
+| value    | valur to display in the list     | `ReactNode` | -       |
+| type     | Back to content navigation label | `divider`   | -       |
+
+### InformationCardSummaryItem
+
+Displays a list of icons with value and optional tooltip
+
+| Property     | Description                    | Type           | Default |
+| ------------ | ------------------------------ | -------------- | ------- |
+| icon         | Icon to render                 | `ReactNode`    | -       |
+| label        | Label to display               | `ReactNode`    | -       |
+| tooltip      | Tooltip text                   | `ReactNode`    | -       |
+| tooltipProps | Tooltip config, see ds-tooltip | `TooltipProps` | -       |

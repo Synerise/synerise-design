@@ -3,6 +3,7 @@ import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
 import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { AutoResizeProp } from '@synerise/ds-input';
+import { InformationCardProps } from '@synerise/ds-information-card';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -26,6 +27,7 @@ export type ParameterValueType = {
   id: React.ReactText;
   groupId?: React.ReactText;
   description?: string;
+  informationCardProps?: Partial<InformationCardProps>;
 };
 
 export type ParameterGroup = {

@@ -1,43 +1,85 @@
-import type { ReactHTML } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { CardStyles } from '@synerise/ds-card';
+import DSDivider from '@synerise/ds-divider';
+import { macro } from '@synerise/ds-typography';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
-import { ButtonStyles } from '@synerise/ds-button';
+
+const INFOCARD_WIDTH = 320;
 
 export const Flex = styled.div`
   display: flex;
 `;
 
-export const FlexGrow = styled.div<ReactHTML['div'] & { grow?: number }>`
-  flex-grow: ${({ grow = 1 }): number => grow};
-  margin-top: 16px;
-  margin-bottom: 8px;
+export const Divider = styled(DSDivider)`
+  border-color: ${props => props.theme.palette['grey-300']};
+  margin: 8px 0;
 `;
 
-export const ActionButtonContainer = styled.div`
-  margin: 8px 0 8px 0;
+export const FooterWrapper = styled(Flex)`
+  background: ${props => props.theme.palette['grey-050']};
+  border-top: solid 1px ${props => props.theme.palette['grey-100']};
+  padding: 8px;
+`;
+export const ActionsMenuItems = styled.div``;
+
+export const FlexGrow = styled.div<{ grow?: number }>`
+  flex-grow: ${({ grow = 1 }) => grow};
 `;
 
-export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boolean }>`
-  margin-left: ${(props): string => (props.asTooltip ? '0' : '8px')};
-  width: 294px;
+export const ActionButtonContainer = styled.div``;
+
+export const InfoCardSlidesWrapper = styled.div``;
+export const InfoCardSlide = styled.div<{ height?: number }>`
+  ${props => props.height && `max-height: ${props.height}px;`}
+`;
+
+export const InfoCardWrapper = styled.div<{
+  footerText?: string;
+  asTooltip?: boolean;
+  hasActionsMenu?: boolean;
+  isActionsMenuVisible?: boolean;
+  hasFooter?: boolean;
+}>`
+  margin-left: ${props => (props.asTooltip ? '0' : '8px')};
+  width: ${INFOCARD_WIDTH}px;
+  overflow: hidden;
+
+  ${InfoCardSlidesWrapper} {
+    width: ${props => (props.hasActionsMenu ? INFOCARD_WIDTH * 2 : INFOCARD_WIDTH)}px;
+    display: flex;
+    transition: left 0.3s;
+    position: relative;
+    left: ${props => (props.isActionsMenuVisible ? `-${INFOCARD_WIDTH}px` : '0')};
+  }
+  ${InfoCardSlide} {
+    width: ${INFOCARD_WIDTH}px;
+    height: min-content;
+  }
+
   overflow-wrap: anywhere;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: ${props => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
 
   ${CardStyles.Card.Container} {
-    background-color: white;
-    margin-bottom: 1px;
     font-weight: 400;
-    padding: 16px 16px 8px 16px; // right is 16px as divider ends there
-    border-radius: 3px;
-    box-shadow: ${(props): string => (props.asTooltip ? 'unset' : '0 16px 32px 0 rgba(35, 41, 54, 0.1)')}; // gray-900
+    ${props =>
+      !props.hasFooter &&
+      css`
+        padding-bottom: 8px;
+        margin-bottom: 1px;
+      `}
   }
 
   ${CardStyles.Card.PaddingWrapper} {
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
   ${CardStyles.Card.Header} {
-    padding: 0 0 1px 0;
-    margin-bottom: 8px;
+    padding: 16px 16px 1px 16px;
+    margin-bottom: 16px;
   }
   ${CardStyles.Card.IconContainer} {
     align-self: center;
@@ -47,14 +89,18 @@ export const InfoCardWrapper = styled.div<{ footerText?: string; asTooltip?: boo
   ${CardStyles.Card.HeaderContent} {
     margin: 0;
   }
+  ${CardStyles.Card.TitleWrapper} {
+    margin: 0;
+    height: 20px;
+  }
+  ${CardStyles.Card.Description} {
+    height: 16px;
+  }
   ${CardStyles.Card.Title}${CardStyles.Card.Title} {
     margin-bottom: 0;
     font-size: 14px;
   }
-  ${ButtonStyles.Button.AntdButton} {
-    width: 32px;
-    height: 32px;
-  }
+
   .ds-button {
     background: transparent;
   }
@@ -77,7 +123,9 @@ export const NonEditableWrapper = styled.div`
   }
 `;
 
-export const DescriptionWrapper = styled.div``;
+export const DescriptionWrapper = styled.div`
+  padding: 0 16px;
+`;
 
 /**
  * This component can be used to style container with popovers/tooltips to disable arrow.
@@ -102,3 +150,41 @@ export const ExtraInfo = styled.div`
 `;
 
 export const TooltipComponentClassName = S.TooltipComponent;
+
+export const InformationCardActionsWrapper = styled.div`
+  padding: 8px;
+`;
+
+export const InformationCardPropertyListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 8px;
+`;
+export const InformationCardPropertyItem = styled.div`
+  display: flex;
+  align-items: center;
+  height: 24px;
+  gap: 8px;
+`;
+
+export const InformationCardPropertyItemLabel = styled.span`
+  ${macro.small}
+`;
+export const InformationCardPropertyItemValue = styled.span`
+  ${macro.small}
+  font-weight: 500;
+`;
+
+export const InformationCardSummaryWrapper = styled(Flex)`
+  margin: 0 16px;
+  border-top: dashed 1px ${props => props.theme.palette['grey-300']};
+  padding-top: 16px;
+  padding-bottom: 8px;
+  gap: 4px;
+  flex-wrap: wrap;
+`;
+export const InformationCardSummaryItem = styled(Flex)`
+  font-weight: 500;
+  align-items: center;
+  gap: 4px;
+`;

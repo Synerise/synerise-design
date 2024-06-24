@@ -193,6 +193,9 @@
             "SHOW": "Show",
             "SHOW-LESS": "Show less"
         },
+        "INFORMATION-CARD": {
+            "QUICK-ACTIONS": "Quick actions"
+        },
         "DATE-PICKER": {
             "APPLY": "Apply",
             "SELECT-DATE": "Select date",

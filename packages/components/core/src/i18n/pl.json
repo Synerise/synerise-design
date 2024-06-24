@@ -79,6 +79,9 @@
       "COPY-VALUE": "Kopiuj wartość",
       "COPIED": "Skopiowano"
     },
+    "INFORMATION-CARD": {
+      "QUICK-ACTIONS": "Szybkie akcje"
+    },
     "ITEM-FILTER": {
       "ACTIVATE": "Aktywuj",
       "CANCEL": "Anuluj",
