@@ -106,6 +106,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
       ? css`
           cursor: not-allowed;
           opacity: 0.4;
+          svg {
+            fill: ${props.theme.palette['grey-600']};
+          }
           &:hover {
             ${ArrowRight} {
               opacity: 1;

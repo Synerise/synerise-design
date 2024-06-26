@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { CheckS } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { theme } from '@synerise/ds-core';
 
 import { ContextSelectorDropdownItemProps } from '../ContextSelector.types';
 
-const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = ({
+const ContextSelectorDropdownItem = ({
   item,
   clearSearch,
   searchQuery,
@@ -15,10 +15,10 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
   className,
   menuItemHeight,
   style,
-}) => {
+}: ContextSelectorDropdownItemProps) => {
   const { id, icon: _, ...itemProps } = item;
   return (
-    <Menu.Item
+    <ListItem
       style={style}
       className={className}
       key={item.name + item.id}
@@ -29,7 +29,7 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
           ? item.customSuffix
           : selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />
       }
-      onClick={(): void => {
+      onClick={() => {
         clearSearch && clearSearch();
         hideDropdown && hideDropdown();
         select && select(item);
@@ -39,7 +39,7 @@ const ContextSelectorDropdownItem: React.FC<ContextSelectorDropdownItemProps> = 
       {...itemProps}
     >
       {item.name}
-    </Menu.Item>
+    </ListItem>
   );
 };
 
