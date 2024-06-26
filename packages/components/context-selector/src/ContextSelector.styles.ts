@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -9,9 +8,9 @@ export const ContentPlaceholder = styled.div`
   height: 100px;
 `;
 
-export const ItemsList = styled(Menu)`
+export const ItemsList = styled.div`
   width: 100%;
-
+  background: ${props => props.theme.palette.white};
   .ds-context-selector-list {
     height: auto !important;
     max-height: 300px;
