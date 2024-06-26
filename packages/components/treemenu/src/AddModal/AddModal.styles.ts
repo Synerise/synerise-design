@@ -49,9 +49,6 @@ export const TagItem = styled(Menu.Item)`
 
 export const AddButtonWithPaste = styled(ButtonGroup)`
   margin: 0;
-  .ant-btn-group {
-    margin: 0;
-  }
 `;
 
 export const Loader = styled.div`
