@@ -6,7 +6,6 @@ import { IconContainer } from '@synerise/ds-icon';
 export const FilterButtonGroup = styled(ButtonGroup)`
   .ant-btn-group {
     width: auto;
-    margin: 0;
   }
 `;
 

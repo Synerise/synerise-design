@@ -13,9 +13,6 @@ export const FormatSettingsContainer = styled.div`
   .ds-title {
     margin-bottom: 8px;
   }
-  .ant-btn-group {
-    margin: 0;
-  }
 `;
 
 export const FormatSettingsWrapper = styled.div`

@@ -19,9 +19,7 @@ export const ToolbarWrapper = styled.div`
   background-color: ${(props): string => props.theme.palette['grey-050']};
 `;
 export const ToolbarButtons = styled(ButtonGroup)`
-  .ant-btn-group {
-    margin: 0px;
-  }
+  
 `;
 export const ViewPercent = styled.div`
   padding: 7px;
