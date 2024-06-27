@@ -330,17 +330,19 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     return infiniteLoaderItemHeight;
   }, [isSticky, infiniteScroll?.prevPage?.hasMore]);
 
-  const listInnerElementType = forwardRef<HTMLDivElement>(
-    ({ style, ...rest }: HTMLAttributes<HTMLDivElement>, innerElementRef) => (
-      <S.InnerListElement
-        ref={innerElementRef}
-        style={{
-          ...style,
-          height: `${Number(style?.height) + infiniteLoaderOffset}px`,
-        }}
-        {...rest}
-      />
-    )
+  const listInnerElementType = useMemo(
+    () =>
+      forwardRef<HTMLDivElement>(({ style, ...rest }: HTMLAttributes<HTMLDivElement>, innerElementRef) => (
+        <S.InnerListElement
+          ref={innerElementRef}
+          style={{
+            ...style,
+            height: `${Number(style?.height) + infiniteLoaderOffset}px`,
+          }}
+          {...rest}
+        />
+      )),
+    [infiniteLoaderOffset]
   );
 
   const scrollTo = useCallback((top: number) => {
