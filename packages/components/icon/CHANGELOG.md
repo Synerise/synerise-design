@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.62.1...@synerise/ds-icon@0.63.0) (2024-06-27)
+
+
+### Features
+
+* **icon:** clock failed icon added ([95f828f](https://github.com/Synerise/synerise-design/commit/95f828f7a0ccf87333396d2b67e258b1393371ae))
+
+
+
+
+
 ## [0.62.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.62.0...@synerise/ds-icon@0.62.1) (2024-06-21)
 
 **Note:** Version bump only for package @synerise/ds-icon

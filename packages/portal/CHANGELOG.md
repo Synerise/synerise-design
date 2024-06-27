@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.218.2](https://github.com/synerise/synerise-design/compare/portal@0.218.1...portal@0.218.2) (2024-06-27)
+
+
+### Bug Fixes
+
+* **button-group:** remove margin from button-group ([cfb42ac](https://github.com/synerise/synerise-design/commit/cfb42ac433aa99ef7ac4c133a74f7ed0e913b901))
+
+
+
+
+
 ## [0.218.1](https://github.com/synerise/synerise-design/compare/portal@0.218.0...portal@0.218.1) (2024-06-24)
 
 

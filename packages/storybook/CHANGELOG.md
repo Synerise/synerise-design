@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.5.1...storybook7@0.6.0) (2024-06-27)
+
+
+### Features
+
+* **field-set:** add stories for field-set ([c5e9814](https://github.com/Synerise/synerise-design/commit/c5e9814079e20d0f24e4e742fe539769e54977e5))
+
+
+
+
+
 ## [0.5.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.5.0...storybook7@0.5.1) (2024-06-24)
 
 

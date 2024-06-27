@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.17.0...@synerise/ds-card@0.18.0) (2024-06-27)
+
+
+### Features
+
+* **context-selector:** swapped Menu.Item to ListItem ([ee6c517](https://github.com/Synerise/synerise-design/commit/ee6c5176701112014c7cb2dc9b50f46e3330355a))
+
+
+
+
+
 # [0.17.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.16.20...@synerise/ds-card@0.17.0) (2024-06-21)
 
 

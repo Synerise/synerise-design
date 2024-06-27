@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.118](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.117...@synerise/ds-format-picker@0.3.118) (2024-06-27)
+
+
+### Bug Fixes
+
+* **button-group:** remove margin from button-group ([cfb42ac](https://github.com/Synerise/synerise-design/commit/cfb42ac433aa99ef7ac4c133a74f7ed0e913b901))
+
+
+
+
+
 ## [0.3.117](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.116...@synerise/ds-format-picker@0.3.117) (2024-06-21)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

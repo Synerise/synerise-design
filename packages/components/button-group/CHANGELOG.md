@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.7.2...@synerise/ds-button-group@0.7.3) (2024-06-27)
+
+
+### Bug Fixes
+
+* **button-group:** remove margin from button-group ([cfb42ac](https://github.com/Synerise/synerise-design/commit/cfb42ac433aa99ef7ac4c133a74f7ed0e913b901))
+
+
+
+
+
 ## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-button-group@0.7.1...@synerise/ds-button-group@0.7.2) (2024-06-21)
 
 **Note:** Version bump only for package @synerise/ds-button-group
