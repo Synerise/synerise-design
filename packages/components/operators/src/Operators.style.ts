@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -9,8 +8,9 @@ export const ContentPlaceholder = styled.div`
   height: 100px;
 `;
 
-export const ItemsList = styled(Menu)<{ contentHeight?: number }>`
+export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
+  backgorund: ${props => props.theme.palette.white};
   ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
