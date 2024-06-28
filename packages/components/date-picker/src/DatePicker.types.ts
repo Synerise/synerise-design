@@ -5,7 +5,7 @@ import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
 import type { InputProps } from '@synerise/ds-input';
 
-export type Props = {
+export type DatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
   disabledDates?: (date?: Date) => boolean;
@@ -38,6 +38,8 @@ export type Props = {
   readOnly?: boolean;
   inputProps?: Pick<InputProps, 'autoResize'>;
 };
+// @deprecated - use DatePickerProps instead
+export type Props = DatePickerProps;
 
 export type State = {
   mode: string;

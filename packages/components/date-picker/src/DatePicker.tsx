@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
-import { Props } from './DatePicker.types';
+import type { DatePickerProps } from './DatePicker.types';
 import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 
-const DatePicker: React.FC<Props> = ({
+const DatePicker = ({
   autoFocus,
   disabled,
   texts,
@@ -31,27 +31,26 @@ const DatePicker: React.FC<Props> = ({
   renderTrigger,
   inputProps,
   ...rest
-}) => {
-  const [dropVisible, setDropVisible] = React.useState(autoFocus || false);
-  const [selectedDate, setSelectedDate] = React.useState(value);
-  const ref = React.useRef<HTMLDivElement>(null);
+}: DatePickerProps) => {
+  const [dropVisible, setDropVisible] = useState(autoFocus || false);
+  const [selectedDate, setSelectedDate] = useState(value);
+  const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedDate(value);
   }, [value]);
 
-  const onValueChangeCallback = React.useCallback(
-    (val: Date | undefined): void => {
+  const onValueChangeCallback = useCallback(
+    (val: Date | undefined) => {
       onValueChange && onValueChange(val);
-      setSelectedDate(val);
     },
     [onValueChange]
   );
-  const onApplyCallback = React.useCallback(
-    (val: Date | undefined): void => {
+  const onApplyCallback = useCallback(
+    (val: Date | undefined) => {
       onApply && onApply(val);
       setSelectedDate(val);
       setDropVisible(false);
@@ -59,7 +58,7 @@ const DatePicker: React.FC<Props> = ({
     [onApply]
   );
 
-  const handleClear = React.useCallback((): void => {
+  const handleClear = useCallback(() => {
     setDropVisible(false);
     setSelectedDate(undefined);
     onClear && onClear();
@@ -74,7 +73,7 @@ const DatePicker: React.FC<Props> = ({
       showTime={showTime}
       onClick={
         !readOnly
-          ? (): void => {
+          ? () => {
               setDropVisible(!dropVisible);
             }
           : undefined

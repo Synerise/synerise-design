@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
 
 import Icon, { CalendarM, Close3S } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -32,9 +32,9 @@ const PickerInput = ({
 }: PickerInputProps) => {
   const { formatValue } = useDataFormat();
 
-  const [hovered, setHovered] = React.useState<boolean>(false);
+  const [hovered, setHovered] = useState(false);
 
-  const getText = React.useCallback((): string => {
+  const getText = useCallback(() => {
     if (!value) return '';
     if (dateFormat) {
       return format(legacyParse(value), dateFormat);
@@ -45,32 +45,32 @@ const PickerInput = ({
     return formatValue(value, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
   }, [value, dateFormat, showTime, formatValue, valueFormatOptions]);
 
-  const handleApply = React.useCallback(
-    (date?: Date | null): void => {
+  const handleApply = useCallback(
+    (date?: Date | null) => {
       if (!onChange) return;
       onChange(date, getText());
     },
     [onChange, getText]
   );
 
-  const handleIconClick = React.useCallback(
-    (e: React.MouseEvent<HTMLDivElement>): void => {
-      e.stopPropagation();
+  const handleIconClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
       onClear && onClear();
       handleApply(null);
     },
     [onClear, handleApply]
   );
 
-  const handleInputClick = React.useCallback(
-    (e: React.MouseEvent<HTMLDivElement>): void => {
-      e.stopPropagation();
+  const handleInputClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
       onClick && onClick();
     },
     [onClick]
   );
 
-  const iconInput = React.useMemo(
+  const iconInput = useMemo(
     () =>
       (hovered || highlight) && !readOnly && !!value ? (
         <S.ClearIconWrapper>
@@ -90,8 +90,8 @@ const PickerInput = ({
     <S.PickerInputWrapper prefixel={!!prefixel} suffixel={!!suffixel} className="ds-date-input">
       {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
       <S.Container
-        onMouseEnter={!disabled ? (): void => setHovered(true) : undefined}
-        onMouseLeave={!disabled ? (): void => setHovered(false) : undefined}
+        onMouseEnter={!disabled ? () => setHovered(true) : undefined}
+        onMouseLeave={!disabled ? () => setHovered(false) : undefined}
         onClick={!disabled ? handleInputClick : undefined}
       >
         <S.Input

@@ -16,16 +16,23 @@ export default {
   component: DatePicker,
   title: 'Components/Pickers/DatePicker',
   tags: ['autodocs'],
-  render: (args) => {
-    const [value, setValue] = useState<Date>();
-    return <DatePicker 
-      {...args}
-      onValueChange={(newValue) => { action('onChange')(newValue); setValue(newValue); }}
-      value={value} 
-    />
-  },
   parameters: {
     date: new Date('March 10, 2021 10:00:00'),
+  },
+  render: args => {
+    const [value, setValue] = useState<Date | undefined>(args.value);
+    return (
+      <div data-popup-container>
+        <DatePicker
+          {...args}
+          onApply={newValue => {
+            args.onApply?.(newValue);
+            setValue(newValue);
+          }}
+          value={value}
+        />
+      </div>
+    );
   },
   decorators: [fixedWrapper200],
   argTypes: {
