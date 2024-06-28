@@ -356,9 +356,9 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     listRef.current.scrollTo(top);
   }, []);
 
-  const scrollToTop = useCallback(() => {
+  const scrollToTop = () => {
     scrollTo(0);
-  }, [scrollTo]);
+  };
 
   const outerElement = useMemo(() => OuterListElement(containerRef, isSticky), [isSticky]);
 
@@ -429,13 +429,14 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
         const listMaxScroll =
           stickyScrollThreshold && infiniteScroll?.maxScroll
-            ? infiniteScroll?.maxScroll - stickyScrollThreshold
+            ? infiniteScroll.maxScroll - stickyScrollThreshold
             : listHeight;
 
         const handleListScroll = ({ scrollOffset, scrollDirection }: ListOnScrollProps) => {
-          if (loading || listMaxScroll <= 0) {
+          if (!infiniteScroll || loading || listMaxScroll <= 0) {
             return;
           }
+          const { onScrollTopReach, isLoading, onScrollEndReach } = infiniteScroll;
           const roundedOffset = Math.ceil(scrollOffset);
           listScrollTopRef.current = roundedOffset;
 
@@ -446,19 +447,22 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
             setIsHeaderVisible(roundedOffset > 0);
           }
 
+          if (isLoading) {
+            return;
+          }
+
           if (
             scrollDirection === 'forward' &&
             roundedOffset >= listMaxScroll - LOAD_DATA_OFFSET &&
-            typeof infiniteScroll?.onScrollEndReach === 'function'
+            typeof onScrollEndReach === 'function'
           ) {
-            infiniteScroll.onScrollEndReach();
-          }
-          if (
+            onScrollEndReach();
+          } else if (
             scrollDirection === 'backward' &&
             ((offsetScroll && roundedOffset <= offsetScroll + LOAD_DATA_OFFSET) || roundedOffset < LOAD_DATA_OFFSET) &&
-            typeof infiniteScroll?.onScrollTopReach === 'function'
+            typeof onScrollTopReach === 'function'
           ) {
-            infiniteScroll.onScrollTopReach();
+            onScrollTopReach();
           }
         };
 
