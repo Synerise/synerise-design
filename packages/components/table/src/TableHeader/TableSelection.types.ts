@@ -7,4 +7,5 @@ export interface Props<T extends { key: React.ReactText }> {
   dataSourceFull?: T[];
   locale?: Locale;
   rowKey?: Function | string;
+  childrenColumnName: string;
 }

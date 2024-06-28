@@ -10,6 +10,7 @@ import { DSColumnType, DSTableProps, RowSelection, RowType } from '../Table.type
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar } from '../hooks/useRowStar/useRowStar';
 import { RowSelectionColumn } from '../RowSelection';
+import { getChildrenColumnName } from '../utils/getChildrenColumnName';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
@@ -17,6 +18,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
+  const childrenColumnName = getChildrenColumnName(expandable?.childrenColumnName);
 
   const { getRowKey } = useRowKey(rowKey);
 
@@ -76,8 +78,10 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           if (key && selectedRowKeys.indexOf(key) >= 0) {
             selectedRows = [...selectedRows, row];
           }
-          if (row.children !== undefined && Array.isArray(row.children)) {
-            row.children.forEach((child: T) => {
+
+          const rowChildren = row[childrenColumnName];
+          if (rowChildren !== undefined && Array.isArray(rowChildren)) {
+            rowChildren.forEach((child: T) => {
               const childKey = getRowKey(child);
               if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
                 selectedRows = [...selectedRows, child];
@@ -89,7 +93,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
       return selectedRows;
     }
     return [];
-  }, [dataSource, getRowKey, selection]);
+  }, [dataSource, getRowKey, selection, childrenColumnName]);
 
   const renderRowSelection = React.useCallback(
     (key: string, record: T): React.ReactNode => {
@@ -104,10 +108,11 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           onChange={onChange}
           selectedRecords={selectedRecords}
           tableLocale={locale}
+          childrenColumnName={childrenColumnName}
         />
       );
     },
-    [locale, rowKey, selectedRecords, selection]
+    [locale, rowKey, selectedRecords, selection, childrenColumnName]
   );
 
   return (

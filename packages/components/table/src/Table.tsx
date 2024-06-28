@@ -13,6 +13,7 @@ import DefaultTable from './DefaultTable/DefaultTable';
 import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { useTableLocale, TableLocaleContext } from './utils/locale';
+import { getChildrenColumnName } from './utils/getChildrenColumnName';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -49,6 +50,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     renderSelectionTitle,
     hideTitlePart,
     disableColumnNamesLineBreak,
+    expandable,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -85,6 +87,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           locale={tableLocale}
           renderSelectionTitle={renderSelectionTitle}
           hideTitlePart={hideTitlePart}
+          childrenColumnName={getChildrenColumnName(expandable?.childrenColumnName)}
         />
       )
     );
@@ -106,6 +109,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     tableLocale,
     renderSelectionTitle,
     hideTitlePart,
+    expandable?.childrenColumnName,
   ]);
 
   const footerPagination = React.useMemo((): object => {

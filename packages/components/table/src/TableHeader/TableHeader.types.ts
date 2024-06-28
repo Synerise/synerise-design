@@ -18,4 +18,5 @@ export type Props<T extends { key: ReactText }> = {
   renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => ReactNode;
   hideTitlePart?: boolean;
   dataSourceTotalCount?: number;
+  childrenColumnName: string;
 };

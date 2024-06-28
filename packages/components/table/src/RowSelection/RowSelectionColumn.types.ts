@@ -11,4 +11,5 @@ export type RowSelectionProps<T> = {
   record: T;
   tableLocale: DSTableProps<T>['locale'];
   onChange: (selectedRowKeys: React.ReactText[], selectedRecords: T[]) => void;
+  childrenColumnName: string;
 };
