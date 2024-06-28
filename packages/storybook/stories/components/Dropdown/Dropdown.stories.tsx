@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, waitFor } from '@storybook/test';
 import Dropdown from '@synerise/ds-dropdown';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';

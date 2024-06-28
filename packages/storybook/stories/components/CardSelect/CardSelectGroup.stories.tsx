@@ -18,7 +18,7 @@ const generateItems = (count: number, args: Partial<CardSelectProps>, withDescri
     .fill(1)
     .map(_item => ({
       ...args,
-      description: withDescription ? faker.lorem.sentence(5) : undefined,
+      description: withDescription ? <div className="chromatic-ignore">{faker.lorem.sentence(4)}</div> : undefined,
       key: faker.string.uuid(),
     }));
 };

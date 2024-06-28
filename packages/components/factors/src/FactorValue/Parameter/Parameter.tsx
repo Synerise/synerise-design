@@ -135,7 +135,7 @@ const ParameterInput = ({
   return readOnly ? (
     trigger
   ) : (
-    <div data-popup-container>
+    <div data-popup-container data-testid="ds-factors-parameter">
       <Dropdown
         visible={dropdownVisible}
         getPopupContainer={getPopupContainerOverride || getPopupContainer}

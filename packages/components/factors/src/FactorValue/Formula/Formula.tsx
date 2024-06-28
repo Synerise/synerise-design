@@ -44,7 +44,7 @@ const FormulaInput = ({
   const handleClick = !readOnly ? (): void => setOpenFormulaModal(true) : undefined;
 
   return (
-    <S.FormulaButton withoutTypeSelector={withoutTypeSelector}>
+    <S.FormulaButton data-testid="ds-factors-formula" withoutTypeSelector={withoutTypeSelector}>
       <Button readOnly={readOnly} type="secondary" error={error} mode={triggerMode} onClick={handleClick}>
         {activeIcon}
         {label}

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 
-export const FactorTypeList = styled(Menu)`
+export const FactorTypeList = styled.div`
   padding: 8px;
-
+  background: ${props => props.theme.palette.white};
   .ds-factor-type {
     padding: 0;
   }

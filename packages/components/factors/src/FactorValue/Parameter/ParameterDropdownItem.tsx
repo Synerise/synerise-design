@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React, { CSSProperties } from 'react';
 import Icon from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { ParameterGroup, ParameterItem } from '../../Factors.types';
 
 export type DropdownItem = {
@@ -10,10 +10,10 @@ export type DropdownItem = {
   hideDropdown?: () => void;
   select: (item: ParameterItem | ParameterGroup) => void;
   className: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 };
 
-const ParameterDropdownItem: React.FC<DropdownItem> = ({
+const ParameterDropdownItem = ({
   item,
   clearSearch,
   searchQuery,
@@ -21,10 +21,10 @@ const ParameterDropdownItem: React.FC<DropdownItem> = ({
   select,
   className,
   style,
-}) => {
+}: DropdownItem) => {
   const { id, icon: _, ...itemProps } = item;
   return (
-    <Menu.Item
+    <ListItem
       {...itemProps}
       style={style}
       className={className}
@@ -38,7 +38,7 @@ const ParameterDropdownItem: React.FC<DropdownItem> = ({
       }}
     >
       {item.name}
-    </Menu.Item>
+    </ListItem>
   );
 };
 

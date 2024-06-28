@@ -78,7 +78,11 @@ const DynamicKey: React.FC<InputProps> = ({
     </>
   );
 
-  return <S.DynamicKey withoutTypeSelector={withoutTypeSelector}>{trigger}</S.DynamicKey>;
+  return (
+    <S.DynamicKey data-testid="ds-factors-dynamic-key" withoutTypeSelector={withoutTypeSelector}>
+      {trigger}
+    </S.DynamicKey>
+  );
 };
 
 export default DynamicKey;

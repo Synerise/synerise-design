@@ -142,36 +142,43 @@ const TextInput = ({
       );
     }
     return (
-      <S.InputWrapper>
-        <Input
-          {...inputProps}
-          handleInputRef={setInputRef}
-          placeholder={texts.valuePlaceholder}
-          icon1={
-            <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
-              {!readOnly && <Icon component={<FullScreenM />} color={theme.palette['grey-600']} />}
-            </S.IconWrapper>
-          }
+      <>
+        <S.InputWrapper>
+          <Input
+            {...inputProps}
+            handleInputRef={setInputRef}
+            placeholder={texts.valuePlaceholder}
+            icon1={
+              <S.IconWrapper onClick={(): void => setOpenExpanseEditor(true)}>
+                {!readOnly && (
+                  <Icon
+                    component={<FullScreenM data-testid="ds-factors-expansible-icon" />}
+                    color={theme.palette['grey-600']}
+                  />
+                )}
+              </S.IconWrapper>
+            }
+            value={localValue as string}
+            onChange={handleChange}
+            onBlur={onDeactivate}
+            error={localError || error}
+            readOnly={readOnly}
+          />
+        </S.InputWrapper>
+        <TextModal
+          visible={openExpanseEditor}
+          onCancel={(): void => setOpenExpanseEditor(false)}
           value={localValue as string}
-          onChange={handleChange}
-          onBlur={onDeactivate}
-          error={localError || error}
-          readOnly={readOnly}
+          onApply={handleApply}
+          texts={texts}
         />
-      </S.InputWrapper>
+      </>
     );
   };
 
   return (
-    <S.TextWrapper>
+    <S.TextWrapper data-testid={`ds-factors-${factorType}-${textType}`}>
       {renderInput(textType, factorType)}
-      <TextModal
-        visible={openExpanseEditor}
-        onCancel={(): void => setOpenExpanseEditor(false)}
-        value={localValue as string}
-        onApply={handleApply}
-        texts={texts}
-      />
     </S.TextWrapper>
   );
 };

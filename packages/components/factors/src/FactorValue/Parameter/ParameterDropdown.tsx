@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { createRef, CSSProperties, useRef, useState, useMemo, useCallback, ReactNode, UIEvent } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
@@ -8,12 +8,14 @@ import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { v4 as uuid } from 'uuid';
 import DropdownSkeleton from '@synerise/ds-skeleton';
-import { FixedSizeList, FixedSizeList as List } from 'react-window';
+import { FixedSizeList } from 'react-window';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem, { DropdownItem } from './ParameterDropdownItem';
 
-const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
+const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
+
+const ParameterDropdown = ({
   setSelected,
   texts,
   groups,
@@ -22,21 +24,21 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
   loading,
   onFetchData,
   hasMoreItems,
-}) => {
-  const listRef = React.createRef<FixedSizeList>();
-  const listStyle: React.CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
-  const defaultTab = React.useMemo(() => {
+}: ParameterDropdownProps) => {
+  const listRef = createRef<FixedSizeList>();
+
+  const defaultTab = useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
     return defaultIndex || 0;
   }, [groups]);
 
-  const overlayRef = React.useRef<HTMLDivElement>(null);
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [activeTab, setActiveTab] = React.useState<number>(defaultTab);
-  const [activeGroup, setActiveGroup] = React.useState<ParameterGroup | undefined>(undefined);
-  const [searchInputCanBeFocused, setSearchInputFocus] = React.useState(true);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<number>(defaultTab);
+  const [activeGroup, setActiveGroup] = useState<ParameterGroup | undefined>(undefined);
+  const [searchInputCanBeFocused, setSearchInputFocus] = useState(true);
 
-  const classNames = React.useMemo(() => {
+  const classNames = useMemo(() => {
     return `ds-parameter-item ds-parameter-item-${uuid()}`;
   }, []);
 
@@ -46,21 +48,21 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     }
   });
 
-  const currentTabItems = React.useMemo((): ParameterGroup | undefined => {
+  const currentTabItems = useMemo((): ParameterGroup | undefined => {
     return groups?.find((group: ParameterGroup, index) => {
       return activeTab === index;
     });
   }, [groups, activeTab]);
 
-  const handleClearSearch = React.useCallback(() => {
+  const handleClearSearch = useCallback(() => {
     setSearchQuery('');
   }, []);
 
-  const handleHideDropdown = React.useCallback(() => {
+  const handleHideDropdown = useCallback(() => {
     setDropdownVisible(false);
   }, [setDropdownVisible]);
 
-  const filteredItems = React.useMemo(() => {
+  const filteredItems = useMemo(() => {
     return items
       ?.filter((item: ParameterItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
       .map((item: ParameterItem) => {
@@ -75,7 +77,7 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
       });
   }, [items, searchQuery, classNames, handleClearSearch, handleHideDropdown, setSelected]);
 
-  const currentItems = React.useMemo((): React.ReactNode[] | undefined => {
+  const currentItems = useMemo((): ReactNode[] | undefined => {
     if (searchQuery) {
       return filteredItems;
     }
@@ -138,14 +140,14 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     activeTab,
   ]);
 
-  const handleSearch = React.useCallback(
+  const handleSearch = useCallback(
     value => {
       setSearchQuery(value);
     },
     [setSearchQuery]
   );
 
-  const getTabs = React.useMemo(() => {
+  const getTabs = useMemo(() => {
     return (
       groups?.map((group: ParameterGroup) => ({
         label: group.name,
@@ -154,12 +156,12 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
     );
   }, [groups]);
 
-  const getNoResultContainer = React.useMemo(
+  const getNoResultContainer = useMemo(
     () => <Result noSearchResults type="no-results" description={texts.parameter.noResults} />,
     [texts]
   );
 
-  const handleScroll = ({ currentTarget }: React.UIEvent): void => {
+  const handleScroll = ({ currentTarget }: UIEvent): void => {
     const { scrollTop } = currentTarget;
     if (listRef.current !== null) {
       listRef.current.scrollTo(scrollTop);
@@ -215,21 +217,18 @@ const ParameterDropdown: React.FC<ParameterDropdownProps> = ({
               onYReachEnd={onFetchData}
               onScroll={handleScroll}
             >
-              {/*
-            // @ts-ignore */}
-              <List
-                className="ds-factors-parameter-list"
+              <S.StyledList
                 width="100%"
                 height={300}
                 itemCount={currentItems.length}
                 itemSize={32}
-                style={listStyle}
+                style={LIST_STYLE}
                 ref={listRef}
               >
                 {({ index, style }) => (
                   <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />
                 )}
-              </List>
+              </S.StyledList>
             </Scrollbar>
           ) : (
             getNoResultContainer

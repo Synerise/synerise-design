@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
+import { FixedSizeList } from 'react-window';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -9,13 +9,8 @@ export const ContentPlaceholder = styled.div`
   height: 100px;
 `;
 
-export const ItemsList = styled(Menu)`
+export const ItemsList = styled.div`
   width: 100%;
-
-  .ds-factors-parameter-list {
-    height: auto !important;
-    max-height: 300px;
-  }
 `;
 
 export const SearchResult = styled.span`
@@ -32,4 +27,11 @@ export const Value = styled.span`
   max-width: 110px;
   text-overflow: ellipsis;
   overflow: hidden;
+`;
+
+export const StyledList = styled(FixedSizeList)`
+  overflowx: unset;
+  overflowy: unset;
+  height: auto !important;
+  max-height: 300px;
 `;
