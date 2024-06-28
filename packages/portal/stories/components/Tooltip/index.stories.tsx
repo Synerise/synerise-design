@@ -2,6 +2,7 @@ import * as React from 'react';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';
+import { Tag, TagShape } from '@synerise/ds-tags';
 import { UserAvatar } from '@synerise/ds-avatar';
 import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -60,6 +61,19 @@ const stories = {
     <div>
       <Tooltip {...props()} type="default" title={text('Set tooltip title', 'More than just example text')}>
         <span>Tooltip will show on mouse enter.</span>
+      </Tooltip>
+    </div>
+  ),
+  tagWithTooltip: () => (
+    <div>
+      <Tooltip {...props()} type="default" title={text('Set tooltip title', 'More than just example text')}>
+        <Tag
+          name="A"
+          shape={TagShape.SINGLE_CHARACTER_ROUND}
+          color={theme.palette['grey-100']}
+          textColor={theme.palette['grey-500']}
+          asPill
+        />
       </Tooltip>
     </div>
   ),

@@ -18,12 +18,11 @@ const Tag = ({
   textColor,
   onRemove,
   onClick,
-  onMouseLeave,
-  onMouseOver,
   prefixel,
   suffixel,
   texts,
   asPill,
+  ...htmlAttributes
 }: TagProps) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
   const isDefaultRound = shape === TagShape.DEFAULT_ROUND;
@@ -52,13 +51,13 @@ const Tag = ({
   const handleMouseOver = (event: MouseEvent<HTMLDivElement>) => {
     setIsIconHovered(true);
     // eslint-disable-next-line no-unused-expressions
-    onMouseOver?.(event);
+    htmlAttributes.onMouseOver?.(event);
   };
 
   const handleMouseLeave = (event: MouseEvent<HTMLDivElement>) => {
-    setIsIconHovered(true);
+    setIsIconHovered(false);
     // eslint-disable-next-line no-unused-expressions
-    onMouseLeave?.(event);
+    htmlAttributes.onMouseLeave?.(event);
   };
 
   return (
@@ -78,6 +77,7 @@ const Tag = ({
       hasImage={!!image}
       iconHover={isIconHovered}
       asPill={asPill}
+      {...htmlAttributes}
     >
       <S.Content iconHover={isIconHovered}>
         {image && isDefaultType && <img src={image} alt="" />}
