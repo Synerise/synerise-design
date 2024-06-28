@@ -38,6 +38,7 @@ export type ListItemProps = {
   highlight?: string;
   hoverTooltipProps?: TriggerProps & { ref?: React.LegacyRef<TriggerHandle> };
   key?: Key;
+  itemKey?: Key;
   level?: number;
   noHover?: boolean;
   onItemHover?: ListItemEventHandler<MouseEvent<HTMLDivElement>>;
@@ -55,6 +56,6 @@ export type ListItemProps = {
   title?: string;
   tooltipProps?: TooltipProps;
   type?: ItemType;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
 
 export type BasicItemProps = Omit<ListItemProps, 'type' | 'text' | 'level' | 'higher'>;

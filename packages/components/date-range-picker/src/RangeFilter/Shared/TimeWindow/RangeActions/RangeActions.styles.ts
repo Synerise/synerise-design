@@ -1,12 +1,10 @@
-import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import styled from 'styled-components';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
-export const ActionsMenu = styled(Menu)<AntdMenuProps>`
+export const ActionsMenu = styled.div`
   padding: 8px;
 `;
 
-export const ActionItem = styled(Menu.Item)<MenuItemProps>`
+export const ActionItem = styled(ListItem)`
   max-height: 32px;
 `;

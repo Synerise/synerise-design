@@ -15,3 +15,15 @@ export type {
 } from './RangeFilter/Filters/new/Weekly/Weekly.types';
 
 export { getDisabledTimeOptions } from './RangePicker/utils';
+
+export type {
+  AbsoluteDateRange,
+  RelativeDateRange,
+  DateRange,
+  DateRangePreset,
+  RelativeDateRangePreset,
+  AbsoluteDateRangePreset,
+} from './date.types';
+export type { DateRangePickerProps, Texts as DateRangePickerTexts } from './DateRangePicker.types';
+
+export { DEFAULT_RANGE_END, DEFAULT_RANGE_START } from './RangeFilter/constants';

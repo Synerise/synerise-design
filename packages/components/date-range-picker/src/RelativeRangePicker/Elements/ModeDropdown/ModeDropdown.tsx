@@ -11,7 +11,7 @@ const MODE_TRANSLATION_KEYS = {
   FUTURE: 'next',
   SINCE: 'since',
 };
-const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, modes, texts }: Props) => {
+const ModeDrop: React.FC<Props> = ({ currentGroup, onModeChange, modes, texts }: Props) => {
   const [dropVisible, setDropVisible] = React.useState<boolean>(false);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -28,7 +28,7 @@ const ModeDrop: React.FC<Props> = ({ currentRange, currentGroup, onModeChange, m
 
   const overlay = (
     <S.OverlayWrapper visible={dropVisible} ref={overlayRef} width={180}>
-      <S.DropMenu selectedKeys={currentRange ? [currentRange.key as string] : []}>
+      <S.DropMenu>
         {modes.map(mode => (
           <S.DropMenuItem
             key={mode}

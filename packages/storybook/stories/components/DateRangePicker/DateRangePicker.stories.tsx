@@ -3,6 +3,7 @@ import { injectIntl } from 'react-intl';
 import { Meta, StoryObj } from '@storybook/react';
 
 import DateRangePicker, { CONST, RawDateRangePicker, utils } from '@synerise/ds-date-range-picker';
+import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -17,10 +18,14 @@ export default {
   component: DateRangePicker,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   decorators: [centeredPaddedWrapper],
-  render: (args) => <DateRangePicker {...args} />,
+  render: ({ relativeModes, ...args }) => {
+    const relativeFuture = relativeModes?.includes('FUTURE');
+    const relativePast = relativeModes?.includes('PAST');
+    return <DateRangePicker {...args} relativeFuture={relativeFuture} relativePast={relativePast} />;
+  },
   argTypes: {
     ...generalArgTypes,
     ...datePickerArgTypes,
@@ -28,14 +33,13 @@ export default {
     ...filterArgTypes,
     intl: {
       table: {
-          disable: true
-      }
+        disable: true,
+      },
     },
   },
-  
-} as Meta<typeof DateRangePicker>;
+} as Meta<DateRangePickerProps>;
 
-type Story = StoryObj<typeof DateRangePicker>;
+type Story = StoryObj<DateRangePickerProps>;
 
 export const Default: Story = {
   args: {
@@ -46,116 +50,117 @@ export const Default: Story = {
   },
 };
 
-
 export const WithoutPopover: Story = {
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  render: (args) => {
+  render: args => {
     const Picker = injectIntl(RawDateRangePicker);
-    return <Picker texts={TEXTS} {...args} />
+    return <Picker texts={TEXTS} {...args} />;
   },
   args: {
     showRelativePicker: true,
     relativeModes: ['PAST'],
     showTime: true,
     showFilter: true,
-    disableAbsoluteTimepickerInRelative: true
+    disableAbsoluteTimepickerInRelative: true,
   },
 };
 
 export const RelativePickerOptions: Story = {
   parameters: {
     controls: {
-      include: Object.keys(relativeArgTypes)
-    }
+      include: Object.keys(relativeArgTypes),
+    },
   },
   args: {
     showRelativePicker: true,
-    relativeModes: ['PAST', 'FUTURE', 'SINCE']
+    relativeModes: ['PAST', 'FUTURE', 'SINCE'],
   },
 };
 
 export const GeneralOptions: Story = {
   parameters: {
     controls: {
-      include: Object.keys(generalArgTypes)
-    }
+      include: Object.keys(generalArgTypes),
+    },
   },
   args: {
     showNowButton: true,
-    showTime: true
+    showTime: true,
   },
 };
 
 export const DatePickerOptions: Story = {
   parameters: {
     controls: {
-      include: Object.keys(datePickerArgTypes)
-    }
+      include: Object.keys(datePickerArgTypes),
+    },
   },
   args: {
     showNowButton: true,
-    showTime: true
+    showTime: true,
   },
 };
 
 export const DateFilterOptions: Story = {
   parameters: {
     controls: {
-      include: Object.keys(filterArgTypes)
-    }
+      include: Object.keys(filterArgTypes),
+    },
   },
   args: {
     showFilter: true,
-    filterValueSelectionModes: ['Hour', 'Range']
+    filterValueSelectionModes: ['Hour', 'Range'],
   },
 };
 
 export const WithDefaultValue: Story = {
   args: {
-    value: ABSOLUTE_RANGE
+    value: ABSOLUTE_RANGE,
   },
 };
 
 export const WithStartDate: Story = {
   args: {
-    value: RANGE_WITH_START_DATE
+    value: RANGE_WITH_START_DATE,
   },
 };
 
 export const CustomTrigger: Story = {
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  render: (args) => {
+  render: args => {
     const [tooltipVisible, setTooltipVisible] = useState(false);
     const [dateRangeVisible, setDateRangeVisible] = useState(false);
-    
-    return <DateRangePicker 
-      {...args}
-      popoverTrigger= {
-        <Tooltip
-          trigger={['hover']}
-          onVisibleChange={setTooltipVisible}
-          visible={!dateRangeVisible && tooltipVisible}
-          placement={'bottom'}
-          description='Date range picker with custom trigger button and tooltip with description'
-          type="largeSimple"
-        >
-          <Button>Custom trigger</Button>
-        </Tooltip>
-      }
-    />
+
+    return (
+      <DateRangePicker
+        {...args}
+        popoverTrigger={
+          <Tooltip
+            trigger={['hover']}
+            onVisibleChange={setTooltipVisible}
+            visible={!dateRangeVisible && tooltipVisible}
+            placement={'bottom'}
+            description="Date range picker with custom trigger button and tooltip with description"
+            type="largeSimple"
+          >
+            <Button>Custom trigger</Button>
+          </Tooltip>
+        }
+      />
+    );
   },
   args: {
-    showTime: true
+    showTime: true,
   },
 };
 
 export const RelativeRangePresets: Story = {
   parameters: {
-    chromatic: { disableSnapshot: true }
+    chromatic: { disableSnapshot: true },
   },
   render: () => {
     const Table = styled.table`
@@ -212,14 +217,18 @@ export const RelativeRangePresets: Story = {
                     <div title={dateStr(dateRange?.to as Date)}>{dateRange?.to?.toLocaleString()}</div>
                   </td>
                   <td className="opacity">
-                    <div title={dateStr(dateRange?.to as Date)}>{utils.END_OF['MONTHS'](dateRange?.to as Date)?.toLocaleString()}</div>
+                    <div title={dateStr(dateRange?.to as Date)}>
+                      {utils.END_OF['MONTHS'](dateRange?.to as Date)?.toLocaleString()}
+                    </div>
                   </td>
                 </tr>
-              ) : <></>;
+              ) : (
+                <></>
+              );
             })}
           </tbody>
         </Table>
       </>
     );
-  }
-}
+  },
+};

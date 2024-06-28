@@ -1,7 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
+
 import Button from '@synerise/ds-button';
-import * as React from 'react';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { InputGroup } from '@synerise/ds-input';
 import { InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 import { Props as InputGroupProps } from '@synerise/ds-input/dist/InputGroup.types';
@@ -91,10 +92,10 @@ export const RangeFormColumn = styled.div`
 export const DatePickerWrapper = styled.div<{ error: boolean }>`
   width: 224px;
 `;
-export const DropMenu = styled(Menu)`
+export const DropMenu = styled.div`
   padding: 0 8px 0 0;
 `;
-export const DropMenuItem = styled(Menu.Item)`
+export const DropMenuItem = styled(ListItem)`
   max-height: 32px;
   .ds-icon {
     margin-right: -6px;
@@ -105,7 +106,7 @@ export const OverlayWrapper = styled.div<{ visible?: boolean; width?: number }>`
   bottom: 40px;
   padding: 8px 0 8px 8px;
   background-color: ${(props): string => props.theme.palette.white};
-  display: ${(props): string => (props.visible ? 'flex' : 'none')};
+  display: ${(props): string => (props.visible ? 'block' : 'none')};
   z-index: 15;
   box-shadow: 0 4px 12px 0 rgba(35, 41, 54, 0.09);
   ${(props): false | string => !!props.width && `width:${props.width}px;`}

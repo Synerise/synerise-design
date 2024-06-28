@@ -6,3 +6,4 @@ export { setOffsetValue } from './setOffsetValue.utils';
 export { getDefaultCustomRange } from './getDefaultCustomRange.utils';
 export { getCurrentGroupFromProps } from './getCurrentGroupFromProps.utils';
 export { isAbsolute } from './isAbsolute.utils';
+export { findRangeByKey } from './findRangeByKey.utils';

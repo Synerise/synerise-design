@@ -1,14 +1,16 @@
-import * as React from 'react';
+import React from 'react';
 import find from 'ramda/src/find';
 import { isEqual } from 'lodash';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { theme } from '@synerise/ds-core';
+import type { ListItemProps } from '@synerise/ds-list-item';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
 import { DateRange } from '../../../date.types';
 import { ALL_TIME } from '../../../constants';
+import { findRangeByKey } from '../../utils';
 
 const MAX_ITEMS_COUNT = 7;
 const ITEMS_HEIGHT = 32;
@@ -47,9 +49,10 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
     setDropVisible(false);
   });
 
-  const onMenuItemClick = React.useCallback(
-    ({ key }): void => {
-      onChange(find(range => range.key === key, ranges));
+  const onMenuItemClick: ListItemProps['onClick'] = React.useCallback(
+    (itemData): void => {
+      const range = findRangeByKey(ranges, itemData.key);
+      onChange(range);
       setDropVisible(false);
     },
     [onChange, ranges]
@@ -75,12 +78,14 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
         style={{ width: DROPDOWN_WIDTH - DROPDOWN_PADDING }}
         absolute
       >
-        <S.DropMenu onClick={onMenuItemClick} selectedKeys={[]}>
+        <S.DropMenu>
           {ranges.map(range => {
             const selected = currentRange?.key === range.key || (isLifetime(currentRange) && range.key === ALL_TIME);
             return (
               <S.DropMenuItem
+                onClick={onMenuItemClick}
                 key={range.key || range.id}
+                itemKey={range.key || range.id}
                 suffixel={selected && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
               >
                 {range.translationKey ? texts[range.translationKey] : range.key}

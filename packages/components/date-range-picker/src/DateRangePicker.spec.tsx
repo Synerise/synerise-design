@@ -916,7 +916,7 @@ describe('DateRangePicker', () => {
       const dropdown = moreButton.nextElementSibling;
       moreButton.click();
       
-      expect(dropdown).toHaveStyle('display:flex');
+      expect(dropdown).not.toHaveStyle('display:none');
       
       moreButton.click();
       
