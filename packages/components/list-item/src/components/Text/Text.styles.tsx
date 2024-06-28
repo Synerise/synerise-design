@@ -51,7 +51,6 @@ export const Highlight = styled.span``;
 const baseStyles = css<StyledListItemProps>`
   display: flex;
   align-items: center;
-  min-width: 200px;
   margin: 0;
   padding-left: ${props => (props.prefixel ? '8px' : '12px')};
   padding-right: 12px;

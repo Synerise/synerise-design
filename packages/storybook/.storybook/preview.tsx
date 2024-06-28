@@ -54,7 +54,7 @@ const preview: Preview = {
   parameters: {
 
     layout: 'centered',
-
+    mockingDate: new Date(2024, 3, 1),
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: {
       default: 'white',

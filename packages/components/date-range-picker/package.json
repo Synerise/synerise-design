@@ -45,7 +45,7 @@
     "@synerise/ds-input": "^0.22.1",
     "@synerise/ds-input-number": "^0.9.21",
     "@synerise/ds-manageable-list": "^0.26.57",
-    "@synerise/ds-menu": "^0.19.3",
+    "@synerise/ds-list-item": "^0.2.0",
     "@synerise/ds-scrollbar": "^0.11.2",
     "@synerise/ds-select": "^0.16.4",
     "@synerise/ds-slider": "^0.13.29",

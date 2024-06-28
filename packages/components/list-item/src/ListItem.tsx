@@ -7,7 +7,6 @@ import { MenuDivider } from './ListItem.styles';
 
 const ListItem = (props: ListItemProps) => {
   const { text, children, type, ...rest } = props;
-
   switch (type) {
     case itemTypes.DANGER:
       return <Danger {...rest}>{text || children}</Danger>;

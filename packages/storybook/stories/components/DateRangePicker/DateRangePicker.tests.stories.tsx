@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
+import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 
 import { DEFAULT_CUSTOM_RANGE, LIFETIME_VALUE, TEXTS as texts } from './constants';
 import { Default } from './DateRangePicker.stories';
@@ -16,9 +17,9 @@ export default {
   },
   render: (args) => <DateRangePicker {...args} />,
   
-} as Meta<typeof DateRangePicker>;
+} as Meta<DateRangePickerProps>;
 
-type Story = StoryObj<typeof DateRangePicker>;
+type Story = StoryObj<DateRangePickerProps>;
 
 export const TestSelectingLifetimePreset: Story = {
   ...Default,

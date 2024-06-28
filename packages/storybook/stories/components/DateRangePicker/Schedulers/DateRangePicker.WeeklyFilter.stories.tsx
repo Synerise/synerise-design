@@ -26,7 +26,6 @@ export const WeeklyFilter: Story = {
   render: (args) => {
     const [value, setValue] = useState<WeeklySchedule>({});
     return <WeeklyDateFilter 
-      // errorTexts={displayErrors && errorTexts}
       {...args}
       onChange={(newValue) => { action('onChange')(newValue); setValue(newValue); }}
       value={value} 

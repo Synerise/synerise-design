@@ -15,7 +15,7 @@ const Text = (props: BasicItemProps) => {
     checked,
     className,
     children,
-    key,
+    itemKey,
     title,
     noHover,
     size,
@@ -88,7 +88,7 @@ const Text = (props: BasicItemProps) => {
   };
 
   const itemData = {
-    key,
+    key: itemKey,
     item: removeHandlerProps(props),
   };
 
@@ -117,7 +117,6 @@ const Text = (props: BasicItemProps) => {
   const TextNode = (
     <S.Wrapper
       role="menuitem"
-      key={key}
       data-testid="ds-list-item"
       className={`ds-list-item ${className} ${checked ? 'ds-list-item-selected' : ''}`}
       tabIndex={disabled ? -1 : 0}
