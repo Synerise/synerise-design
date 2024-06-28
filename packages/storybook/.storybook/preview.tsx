@@ -4,6 +4,7 @@ import type { Preview } from '@storybook/react';
 import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
 import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
+import { mockDateDecorator } from 'storybook-mock-date-decorator';
 
 
 const preview: Preview = {
@@ -15,7 +16,6 @@ const preview: Preview = {
         title: 'Data Format',
         icon: 'calendar',
         items: ['EU', 'US'],
-
       },
     },
     locale: {
@@ -30,6 +30,7 @@ const preview: Preview = {
     },
   },
   decorators: [
+    mockDateDecorator,
     (Story, storyContext) => {
 
       const DSProviderProps = {
@@ -52,9 +53,7 @@ const preview: Preview = {
   ],
   
   parameters: {
-
     layout: 'centered',
-    mockingDate: new Date(2024, 3, 1),
     actions: { argTypesRegex: '^on[A-Z].*' },
     backgrounds: {
       default: 'white',

@@ -19,6 +19,7 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    date: new Date("March 10, 2021 10:00:00"),
   },
   decorators: [centeredPaddedWrapper],
   render: ({ relativeModes, ...args }) => {
