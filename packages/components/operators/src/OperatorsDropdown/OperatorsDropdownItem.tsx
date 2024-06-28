@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon, { CheckS } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { theme } from '@synerise/ds-core';
 
 import { OperatorsGroup, OperatorsItem } from '../Operator.types';
@@ -26,7 +26,7 @@ const OperatorsDropdownItem = ({
   className,
 }: OperatorsDropdownItemProps) => {
   return (
-    <Menu.Item // TODO change into listitem
+    <ListItem
       className={className}
       key={item.name + item.id}
       prefixel={searchQuery && <Icon component={item.icon} />}
@@ -39,7 +39,7 @@ const OperatorsDropdownItem = ({
       }}
     >
       {item.name}
-    </Menu.Item>
+    </ListItem>
   );
 };
 
