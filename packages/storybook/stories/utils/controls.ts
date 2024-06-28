@@ -1,5 +1,5 @@
 
-export const controlFromOptionsArray = (type: string, options: (string | number | undefined | null)[]) => {
+export const controlFromOptionsArray = (type: string, options: readonly (string | number | undefined | null)[]) => {
     return {
         control: type,
         options: [ ...options ]

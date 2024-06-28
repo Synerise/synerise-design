@@ -171,14 +171,14 @@ describe('Input', () => {
     
       const input = screen.getByRole('textbox') as HTMLInputElement;
       const textarea = screen.getByTestId('inputExpandTextarea') as HTMLTextAreaElement;
-      const trigger = screen.getByTestId('inputExpandIcon')
+      const trigger = screen.getByTestId('ds-input-icon-expand')
       expect(trigger).toBeInTheDocument();
       expect(input).toBeInTheDocument();
       expect(textarea).toBeInTheDocument();
     })
     it('should show expand tooltip', async () => {
       renderWithProvider(<Input expandable expandableTooltip={TOOLTIP} value="" />);
-      const trigger = screen.getByTestId('inputExpandIcon')
+      const trigger = screen.getByTestId('ds-input-icon-expand')
       expect(trigger).toBeInTheDocument();
 
       fireEvent.mouseOver(trigger);

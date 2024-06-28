@@ -32,11 +32,15 @@ export const ElementIcons = ({
   return icon1 || icon2 || expandable ? (
     <S.IconsWrapper onClick={handleIconsClick} disabled={disabled}>
       <S.IconsFlexContainer type={type}>
-        <Tooltip title={expandableTooltip}>
-          <S.IconWrapper data-testid="inputExpandIcon" onClick={handleExpandIconClick} className={className}>
-            {expandable && overflown && <Icon className="icon icon3" component={<ResizeArrowM />} />}
-          </S.IconWrapper>
-        </Tooltip>
+        {expandable && (
+          <Tooltip title={expandableTooltip}>
+            <S.IconWrapper onClick={handleExpandIconClick} className={className}>
+              {expandable && overflown && (
+                <Icon className="icon icon3" component={<ResizeArrowM data-testid="ds-input-icon-expand" />} />
+              )}
+            </S.IconWrapper>
+          </Tooltip>
+        )}
         <Tooltip title={icon1Tooltip}>
           <S.IconWrapper className={className}>
             {icon1 &&
@@ -48,7 +52,10 @@ export const ElementIcons = ({
         </Tooltip>
         <Tooltip title={icon2Tooltip}>
           <S.IconWrapper className={className}>
-            {icon2 && cloneElement(icon2, { className: 'icon icon2' })}
+            {icon2 &&
+              cloneElement(icon2, {
+                className: 'icon icon2',
+              })}
           </S.IconWrapper>
         </Tooltip>
       </S.IconsFlexContainer>

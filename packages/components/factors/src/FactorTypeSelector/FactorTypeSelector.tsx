@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { theme } from '@synerise/ds-core';
 import * as S from './FactorTypeSelector.styles';
 import { ALL_FACTOR_TYPES, FactorType, FactorTypeSelectorProps } from '../Factors.types';
 import { factorTypes } from '../Factors';
 
-const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
+const FactorTypeSelector = ({
   selectedFactorType,
   setSelectedFactorType,
   unavailableFactorTypes,
@@ -16,15 +16,15 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
   selectedFactor,
   texts,
   readOnly,
-}) => {
-  const typesList = React.useMemo(() => {
+}: FactorTypeSelectorProps) => {
+  const typesList = useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
     if (unavailableFactorTypes !== undefined) {
       list = [...list].filter(type => unavailableFactorTypes.indexOf(type) < 0);
     }
 
     return (list as FactorType[]).map((type: FactorType) => (
-      <Menu.Item
+      <ListItem
         className="ds-factor-type"
         key={factorTypes[type].name}
         prefixel={<Icon component={factorTypes[type].icon} />}
@@ -32,7 +32,7 @@ const FactorTypeSelector: React.FC<FactorTypeSelectorProps> = ({
         onClick={(): void => setSelectedFactorType(type)}
       >
         {texts[type]}
-      </Menu.Item>
+      </ListItem>
     ));
   }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
