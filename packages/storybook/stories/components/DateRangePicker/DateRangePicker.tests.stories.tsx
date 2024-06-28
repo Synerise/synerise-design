@@ -14,6 +14,7 @@ export default {
   tags: ['visualtests'],
   parameters: {
     layout: 'padded',
+    date: new Date("March 10, 2021 10:00:00"),
   },
   render: (args) => <DateRangePicker {...args} />,
   

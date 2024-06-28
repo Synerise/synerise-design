@@ -25616,6 +25616,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
+mockdate@^3.0.5:
+  version "3.0.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/mockdate/-/mockdate-3.0.5.tgz#789be686deb3149e7df2b663d2bc4392bc3284fb"
+  integrity sha1-eJvmht6zFJ598rZj0rxDkrwyhPs=
+
 modify-values@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/modify-values/-/modify-values-1.0.1.tgz"
@@ -32234,15 +32239,17 @@ store2@^2.14.2:
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/store2/-/store2-2.14.2.tgz#56138d200f9fe5f582ad63bc2704dbc0e4a45068"
   integrity sha1-VhONIA+f5fWCrWO8JwTbwOSkUGg=
 
-storybook-addon-mock-date@^0.6.0:
-  version "0.6.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-addon-mock-date/-/storybook-addon-mock-date-0.6.0.tgz#f72090ae9783f3a07e064e8ad945d3ce9c218019"
-  integrity sha1-9yCQrpeD86B+Bk6K2UXTzpwhgBk=
-
 storybook-addon-pseudo-states@^3.1.1:
   version "3.1.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-addon-pseudo-states/-/storybook-addon-pseudo-states-3.1.1.tgz#4bbdb995ed636586ba744df37abab036158b2401"
   integrity sha1-S725le1jZYa6dE3zerqwNhWLJAE=
+
+storybook-mock-date-decorator@^0.6.0:
+  version "1.0.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-mock-date-decorator/-/storybook-mock-date-decorator-1.0.2.tgz#7c360265147a59d36999896d6519702045e02147"
+  integrity sha1-fDYCZRR6WdNpmYltZRlwIEXgIUc=
+  dependencies:
+    mockdate "^3.0.5"
 
 storybook@7.6.5:
   version "7.6.5"
