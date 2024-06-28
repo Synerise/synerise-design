@@ -16,15 +16,20 @@ export default {
     date: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [fixedWrapper200],
-  render: (args) => {
+  render: args => {
     const [value, setValue] = useState<Date | undefined>(args.value);
-    return <div data-popup-container>
-      <DatePicker 
-        {...args}
-        onValueChange={(newValue) => { args.onValueChange && args.onValueChange(newValue); setValue(newValue); }}
-        value={value} 
-      />
-    </div>
+    return (
+      <div data-popup-container>
+        <DatePicker
+          {...args}
+          onApply={newValue => {
+            args.onApply?.(newValue);
+            setValue(newValue);
+          }}
+          value={value}
+        />
+      </div>
+    );
   },
   argTypes: {
     prefixel: {
