@@ -5,7 +5,7 @@ import * as S from '../Input.styles';
 
 type ContentAboveProps = Pick<BaseProps, 'tooltip' | 'tooltipConfig' | 'label' | 'renderCustomCounter'> & {
   counterLimit?: number;
-  charCount: number;
+  charCount?: number;
   id: string;
 };
 

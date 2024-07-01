@@ -16,7 +16,7 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   label?: ReactNode;
   description?: ReactNode;
   counterLimit?: number;
-  renderCustomCounter?: (count: number) => ReactNode;
+  renderCustomCounter?: (count?: number) => ReactNode;
   icon1?: ReactElement;
   icon1Tooltip?: ReactElement;
   icon2?: ReactElement;
