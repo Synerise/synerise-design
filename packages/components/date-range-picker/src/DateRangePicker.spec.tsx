@@ -487,7 +487,7 @@ describe('DateRangePicker', () => {
         texts={texts}
       />
     );
-    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day');
+    const getDayButton = () => container.querySelector('.DayPicker-Body .DayPicker-Day:not(.DayPicker-Day--today)');
     const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
     // @ts-ignore
     userEvent.click(getDayButton());
