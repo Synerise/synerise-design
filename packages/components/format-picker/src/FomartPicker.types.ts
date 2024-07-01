@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
 
 export type CurrencyType = 'USD' | 'EUR' | 'PLN' | 'JPY';
 
@@ -15,7 +15,7 @@ export type FormattingValue = {
 export type FormattingType = {
   format: FormattingDataFormat;
   icon: JSX.Element;
-  tooltip: string | React.ReactNode;
+  tooltip: ReactNode;
 };
 
 export type CurrencyConfig = {
@@ -24,14 +24,14 @@ export type CurrencyConfig = {
 };
 
 export type FormatPickerTexts = {
-  header?: string | React.ReactNode;
-  format?: string | React.ReactNode;
-  numeric?: string | React.ReactNode;
-  cash?: string | React.ReactNode;
-  percentage?: string | React.ReactNode;
-  setDefault?: string | React.ReactNode;
-  useSeparator?: string | React.ReactNode;
-  compactNumbers?: string | React.ReactNode;
+  header: ReactNode;
+  format: ReactNode;
+  numeric: ReactNode;
+  cash: ReactNode;
+  percentage: ReactNode;
+  setDefault: ReactNode;
+  useSeparator: ReactNode;
+  compactNumbers: ReactNode;
 };
 
 export type FormatPickerProps = {
@@ -43,7 +43,7 @@ export type FormatPickerProps = {
   onCompactNumbersChange: (useCompact: boolean) => void;
   onFixedLengthChange: (fixedLength: number) => void;
   onSetDefault: () => void;
-  text?: FormatPickerTexts;
+  text?: Partial<FormatPickerTexts>;
   currenciesConfig?: CurrencyConfig[];
   buttonType?: string;
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
-import { SuffixWraper } from '@synerise/ds-menu/dist/Elements/Item/Text/Text.styles';
+import DSListItem from '@synerise/ds-list-item';
+import { SuffixWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 import Button from '@synerise/ds-button';
 
 export const FormatSettingsContainer = styled.div`
@@ -75,20 +75,21 @@ export const DropdownValue = styled.span`
   color: ${(props): string => props.theme.palette['grey-700']};
 `;
 
-export const DropdownWrapper = styled(Menu)`
+export const DropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   padding: 8px;
+  background: ${props => props.theme.palette.white};
 `;
 
-export const MenuItem = styled(Menu.Item)`
+export const ListItem = styled(DSListItem)`
   font-weight: 500;
   width: 100%;
   color: ${(props): string => props.theme.palette['grey-700']};
-  ${SuffixWraper} {
+  ${SuffixWrapper} {
     color: ${(props): string => props.theme.palette['grey-500']};
     font-weight: 400;
   }

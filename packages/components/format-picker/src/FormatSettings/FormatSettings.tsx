@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Icon, { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon';
 import { IntlShape, useIntl } from 'react-intl';
 import { Title } from '@synerise/ds-typography';
@@ -17,17 +17,17 @@ const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): Formattin
   {
     format: 'numeric',
     icon: <HashM />,
-    tooltip: text?.numeric,
+    tooltip: text.numeric,
   },
   {
     format: 'percent',
     icon: <PercentM />,
-    tooltip: text?.percentage,
+    tooltip: text.percentage,
   },
   {
     format: 'cash',
     icon: <Coin2M />,
-    tooltip: text?.cash,
+    tooltip: text.cash,
   },
 ];
 
@@ -51,7 +51,7 @@ const getCurrenciesConfig = (currenciesConfig: CurrencyConfig[]): CurrencyConfig
   ...currenciesConfig,
 ];
 
-const FormatSettings: React.FC<FormatSettingsProps> = ({
+const FormatSettings = ({
   onCompactNumbersChange,
   onCurrencyChange,
   onDataFormatChange,
@@ -62,9 +62,9 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
   value,
   text,
   currenciesConfig,
-}) => {
+}: FormatSettingsProps) => {
   const intl = useIntl();
-  const handleDecreaseFixedLength = React.useCallback(() => {
+  const handleDecreaseFixedLength = useCallback(() => {
     if (format.fixedLength > 0) {
       onFixedLengthChange(format.fixedLength - 1);
     } else {
@@ -72,28 +72,31 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
     }
   }, [onFixedLengthChange, format]);
 
-  const handleIncreaseFixedLength = React.useCallback(() => {
+  const handleIncreaseFixedLength = useCallback(() => {
     onFixedLengthChange(format.fixedLength + 1);
   }, [onFixedLengthChange, format]);
 
-  const selectedCurrency = React.useMemo(() => {
+  const selectedCurrency = useMemo(() => {
     return getCurrenciesConfig(currenciesConfig || []).find(currency => currency.currency === format.currency);
   }, [currenciesConfig, format]);
 
   return (
-    <S.FormatSettingsContainer>
+    <S.FormatSettingsContainer data-testid="ds-format-picker-overlay">
       <S.FormatSettingsWrapper>
-        <Title level={6}>{text?.header}</Title>
+        <Title level={6}>{text.header}</Title>
         <S.FormatSettings>
-          <Radio.Group defaultValue={format.dataFormat} onChange={(e): void => onDataFormatChange(e.target.value)}>
+          <Radio.Group
+            defaultValue={format.dataFormat}
+            onChange={(event): void => onDataFormatChange(event.target.value)}
+          >
             <ButtonGroup>
-              {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
-              {getFormattingTypes(intl, text!).map(type => (
+              {getFormattingTypes(intl, text).map(type => (
                 <Tooltip key={type.format} trigger={['hover']} title={type.tooltip}>
                   <Button
                     type={type.format === format.dataFormat ? 'primary' : 'secondary'}
                     mode="icon"
-                    onClick={(): void => onDataFormatChange(type.format)}
+                    data-testid={`ds-format-picker-type-${type.format}`}
+                    onClick={() => onDataFormatChange(type.format)}
                   >
                     <Icon component={type.icon} />
                   </Button>
@@ -117,34 +120,34 @@ const FormatSettings: React.FC<FormatSettingsProps> = ({
               overlay={
                 <S.DropdownWrapper>
                   {getCurrenciesConfig(currenciesConfig || []).map(({ currency, label }) => (
-                    <S.MenuItem
+                    <S.ListItem
                       key={currency}
                       suffixel={valueFormatter({ value, formatting: { ...format, currency }, intl })}
                       onClick={(): void => onCurrencyChange(currency)}
                     >
                       {label}
-                    </S.MenuItem>
+                    </S.ListItem>
                   ))}
                 </S.DropdownWrapper>
               }
             >
-              <S.DropdownTrigger>
+              <S.DropdownTrigger data-testid="ds-format-picker-currency-trigger">
                 <S.DropdownValue>{selectedCurrency?.label}</S.DropdownValue>
                 <Icon component={<AngleDownS />} />
               </S.DropdownTrigger>
             </Dropdown>
           )}
-          <Checkbox onChange={(e): void => onUseSeparatorChange(e.target.checked)} checked={format.useSeparator}>
-            {text?.useSeparator}
+          <Checkbox onChange={event => onUseSeparatorChange(event.target.checked)} checked={format.useSeparator}>
+            {text.useSeparator}
           </Checkbox>
-          <Checkbox onChange={(e): void => onCompactNumbersChange(e.target.checked)} checked={format.compactNumbers}>
-            {text?.compactNumbers}
+          <Checkbox onChange={event => onCompactNumbersChange(event.target.checked)} checked={format.compactNumbers}>
+            {text.compactNumbers}
           </Checkbox>
         </S.FormatOptions>
       </S.FormatSettingsWrapper>
       <S.FormatFooter>
         <Button type="ghost" onClick={onSetDefault}>
-          {text?.setDefault}
+          {text.setDefault}
         </Button>
       </S.FormatFooter>
     </S.FormatSettingsContainer>
