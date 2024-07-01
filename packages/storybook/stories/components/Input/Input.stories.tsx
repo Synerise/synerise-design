@@ -81,7 +81,7 @@ export const WithCustomCounter: Story = {
   args: {
     ...WithLabelAndDescription.args,
     value: 'Sample text',
-    renderCustomCounter: (count: number) => <>{count} characters billed as 1 SMS</>,
+    renderCustomCounter: (count?: number) => count !== undefined && <>{count} characters billed as 1 SMS</>,
   },
 };
 
