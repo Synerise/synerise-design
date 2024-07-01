@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
@@ -8,9 +8,9 @@ import Icon, { HashM } from '@synerise/ds-icon';
 import FormatSettings from './FormatSettings/FormatSettings';
 import { valueFormatter } from './utils/valueFormatter';
 
-import { FormatPickerProps } from './FomartPicker.types';
+import { FormatPickerProps, FormatPickerTexts } from './FomartPicker.types';
 
-const FormatPicker: React.FC<FormatPickerProps> = ({
+const FormatPicker = ({
   onUseSeparatorChange,
   onFixedLengthChange,
   onDataFormatChange,
@@ -22,10 +22,10 @@ const FormatPicker: React.FC<FormatPickerProps> = ({
   text,
   currenciesConfig,
   buttonType = 'tertiary',
-}) => {
+}: FormatPickerProps) => {
   const intl = useIntl();
 
-  const texts = React.useMemo(
+  const texts: FormatPickerTexts = useMemo(
     () => ({
       header: intl.formatMessage({ id: 'DS.FORMAT-PICKER.HEADER', defaultMessage: 'Number format' }),
       format: intl.formatMessage({ id: 'DS.FORMAT-PICKER.FORMAT', defaultMessage: 'Format' }),

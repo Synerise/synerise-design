@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import type { ButtonProps } from '@synerise/ds-button';
+import Tooltip from '@synerise/ds-tooltip';
 
 import {
   buttonDecorator,
@@ -13,7 +14,8 @@ import {
   reactNodeAsSelect,
   controlFromOptionsArray,
 } from '../../utils';
-import Tooltip from '@synerise/ds-tooltip';
+
+import { BUTTON_CUSTOM_COLORS, BUTTON_TYPES } from './Button.constants';
 
 type Story = StoryObj<ButtonProps>;
 
@@ -59,17 +61,7 @@ const meta: Meta<ButtonProps> = {
     },
 
     type: {
-      ...controlFromOptionsArray('select', [
-        'primary',
-        'secondary',
-        'tertiary',
-        'tertiary-white',
-        'ghost-primary',
-        'ghost',
-        'ghost-white',
-        'custom-color',
-        'custom-color-ghost',
-      ]),
+      ...controlFromOptionsArray('select', BUTTON_TYPES),
     },
     mode: {
       table: {
@@ -77,20 +69,7 @@ const meta: Meta<ButtonProps> = {
       },
     },
     color: {
-      ...controlFromOptionsArray('select', [
-        'blue',
-        'grey',
-        'red',
-        'green',
-        'yellow',
-        'pink',
-        'mars',
-        'orange',
-        'fern',
-        'cyan',
-        'purple',
-        'violet',
-      ]),
+      ...controlFromOptionsArray('select', BUTTON_CUSTOM_COLORS),
       table: { category: 'Custom color button props' },
     },
     children: {
