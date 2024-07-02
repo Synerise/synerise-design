@@ -1,0 +1,23 @@
+import React from 'react';
+import Button from '@synerise/ds-button';
+import { ActionAreaWithCustomActionProps, ActionAreaWithStandardActionProps } from 'ActionArea.types';
+import type { ReactNode } from 'react';
+
+const isCustomActionArea = (
+  props: Partial<ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps>
+): props is ActionAreaWithCustomActionProps => {
+  return 'customAction' in props;
+};
+
+export const renderAction = (props: ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps): ReactNode => {
+  if (isCustomActionArea(props)) {
+    const { customAction } = props;
+    return customAction;
+  }
+  const { action, actionLabel, buttonProps } = props;
+  return (
+    <Button type="primary" onClick={action} {...buttonProps}>
+      {actionLabel}
+    </Button>
+  );
+};

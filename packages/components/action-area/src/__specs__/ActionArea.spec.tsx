@@ -1,6 +1,6 @@
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, screen } from '@testing-library/react';
-import * as React from 'react';
 import ActionArea from '../ActionArea';
 
 const LABEL = 'Label';
@@ -9,37 +9,31 @@ const ACTION_LABEL = 'Define';
 
 describe('ActionArea', () => {
   it('Should render without label', () => {
-    // ARRANGE
     const action = jest.fn();
     renderWithProvider(
       <ActionArea description={DESCRIPTION} action={action} actionLabel={ACTION_LABEL} />
     );
 
-    // ASSERT
     expect(screen.getByText(DESCRIPTION)).toBeTruthy();
     expect(screen.getByText(ACTION_LABEL)).toBeTruthy();
   });
 
   it('Should call action', () => {
-    // ARRANGE
     const action = jest.fn();
     renderWithProvider(
       <ActionArea description={DESCRIPTION} action={action} actionLabel={ACTION_LABEL} />
     );
 
-    // ASSERT
     fireEvent.click(screen.getByText(ACTION_LABEL));
     expect(action).toBeCalled();
   });
 
   it('Should render with label', () => {
-    // ARRANGE
     const action = jest.fn();
     renderWithProvider(
       <ActionArea description={DESCRIPTION} label={LABEL} action={action} actionLabel={ACTION_LABEL} />
     );
 
-    // ASSERT
     expect(screen.getByText(LABEL)).toBeTruthy();
   });
   it('Should render with secondary button', () => {
@@ -49,6 +43,15 @@ describe('ActionArea', () => {
     );
 
     expect(screen.getByRole('button')).toHaveClass('ant-btn-secondary')
+  });
+
+  it('Should render with custom action button', () => {
+    const CUSTOM_ACTION = 'Custom action';
+    renderWithProvider(
+      <ActionArea description={DESCRIPTION} label={LABEL} customAction={<>{CUSTOM_ACTION}</>} />
+    );
+
+    expect(screen.getByText(CUSTOM_ACTION)).toBeInTheDocument()
   });
   it('Should render with disabled button', () => {
     const action = jest.fn();
