@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '@synerise/ds-button';
-import { ActionAreaWithCustomActionProps, ActionAreaWithStandardActionProps } from 'ActionArea.types';
 import type { ReactNode } from 'react';
+import Button from '@synerise/ds-button';
+import { ActionAreaWithCustomActionProps, ActionAreaWithStandardActionProps } from './ActionArea.types';
 
 const isCustomActionArea = (
   props: Partial<ActionAreaWithCustomActionProps | ActionAreaWithStandardActionProps>

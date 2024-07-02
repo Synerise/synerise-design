@@ -34,7 +34,8 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@ofsajd/react-perfect-scrollbar": "1.0.0",
-    "@synerise/ds-icon": "^0.63.0"
+    "@synerise/ds-icon": "^0.63.0",
+    "lodash": "^4.7.15"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -4,7 +4,7 @@ import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowLeftM } from '@synerise/ds-icon';
 
-import { PageHeaderProps } from 'PageHeader.types';
+import { PageHeaderProps } from '../PageHeader.types';
 import * as S from './PageHeaderBack.styles';
 
 type PageHeaderBackProps = Pick<PageHeaderProps, 'goBackIcon' | 'onGoBack'>;

@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode, UIEvent } from 'react';
-import { ScrollBarProps } from 'react-perfect-scrollbar';
+import { ScrollBarProps } from '@ofsajd/react-perfect-scrollbar';
 
 export type ScrollbarAdditionalProps = {
   absolute?: boolean;

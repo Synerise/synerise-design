@@ -3,7 +3,7 @@ import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
-import { AllocationConfig } from 'Allocation/Allocation.types';
+import { AllocationConfig } from './Allocation/Allocation.types';
 
 type AntSliderProps = SliderSingleProps | SliderRangeProps;
 
