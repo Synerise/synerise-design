@@ -163,13 +163,13 @@ chromatic_publish_sb7:
     refs:
       - merge_requests
   variables:
-    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7
+    CHROMATIC_PROJECT_TOKEN: $CHROMATIC_PROJECT_TOKEN_SB7_2
   before_script:
     - yarn install --frozen-lockfile
     - yarn build
     - cd packages/storybook
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --exit-zero-on-changes
+    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7_2 --exit-zero-on-changes
   interruptible: true
   
     
@@ -182,11 +182,11 @@ chromatic_publish_baseline:
     refs:
       - master
     variables:
-      - $CHROMATIC_PROJECT_TOKEN_SB7
+      - $CHROMATIC_PROJECT_TOKEN_SB7_2
   script:
     - yarn install --frozen-lockfile
     - yarn build
-    - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
+    - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7_2 --auto-accept-changes)
   interruptible: true
 
 chromatic_publish_merge_to_dest_branch:
