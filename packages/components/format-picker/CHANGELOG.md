@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.118...@synerise/ds-format-picker@0.4.0) (2024-07-02)
+
+
+### Features
+
+* **format-picker:** menu item swapped for list-item ([c4c0fdb](https://github.com/Synerise/synerise-design/commit/c4c0fdb267f19a4a72af6ee00ad2acfc178d3573))
+
+
+
+
+
 ## [0.3.118](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.3.117...@synerise/ds-format-picker@0.3.118) (2024-06-27)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.4.2...@synerise/ds-action-area@0.5.0) (2024-07-02)
+
+
+### Features
+
+* **action-area:** custom action content prop ([8335792](https://github.com/Synerise/synerise-design/commit/8335792f917a4247ba33c2fe86b0d881c43ca036))
+
+
+
+
+
 ## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.4.1...@synerise/ds-action-area@0.4.2) (2024-06-27)
 
 **Note:** Version bump only for package @synerise/ds-action-area

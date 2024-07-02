@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.78...@synerise/ds-operators@0.11.0) (2024-07-02)
+
+
+### Features
+
+* **operators:** used list-item instead of menu ([c9f07bc](https://github.com/Synerise/synerise-design/commit/c9f07bc6f4932b3fb8dfd944b6ceaaaa16359ddc))
+
+
+
+
+
 ## [0.10.78](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.10.77...@synerise/ds-operators@0.10.78) (2024-06-27)
 
 **Note:** Version bump only for package @synerise/ds-operators

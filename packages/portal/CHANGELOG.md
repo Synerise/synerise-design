@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.218.3](https://github.com/synerise/synerise-design/compare/portal@0.218.2...portal@0.218.3) (2024-07-02)
+
+
+### Bug Fixes
+
+* **tags:** fixed spreading html attributes ([29a37bc](https://github.com/synerise/synerise-design/commit/29a37bca2cbf1f55dae75029f5e5b4cf3afd6afb))
+
+
+
+
+
 ## [0.218.2](https://github.com/synerise/synerise-design/compare/portal@0.218.1...portal@0.218.2) (2024-06-27)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.22.1...@synerise/ds-input@0.23.0) (2024-07-02)
+
+
+### Bug Fixes
+
+* **input:** charCount type reverted to optional ([c7088d3](https://github.com/synerise/synerise-design/commit/c7088d376df6ccf75df39bc2d926e5ad2f6e5edf))
+
+
+### Features
+
+* **factors:** swapped Menu.Item for ListItem ([8de560c](https://github.com/synerise/synerise-design/commit/8de560ce5bb969ad9ccb0ca2b7249a14a5f5f356))
+
+
+
+
+
 ## [0.22.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.22.0...@synerise/ds-input@0.22.1) (2024-06-27)
 
 **Note:** Version bump only for package @synerise/ds-input

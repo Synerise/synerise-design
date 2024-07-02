@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.6.0...storybook7@0.7.0) (2024-07-02)
+
+
+### Bug Fixes
+
+* **date-picker:** fixed display value in input ([72e58c2](https://github.com/Synerise/synerise-design/commit/72e58c2c3f2eb01f3e24163ba5f821adc1cec9f5))
+* **input:** charCount type reverted to optional ([c7088d3](https://github.com/Synerise/synerise-design/commit/c7088d376df6ccf75df39bc2d926e5ad2f6e5edf))
+* **storybook7:** date mock in stories ([a3dd8ec](https://github.com/Synerise/synerise-design/commit/a3dd8ecb100b18970b20fe49ea6e92796ef65ee2))
+
+
+### Features
+
+* **action-area:** custom action content prop ([8335792](https://github.com/Synerise/synerise-design/commit/8335792f917a4247ba33c2fe86b0d881c43ca036))
+* **date-range-picker:** swapped Menu.Item and ListItem ([38c5996](https://github.com/Synerise/synerise-design/commit/38c5996b4f0a4539a96e467b1133905dd325a160))
+* **factors:** swapped Menu.Item for ListItem ([8de560c](https://github.com/Synerise/synerise-design/commit/8de560ce5bb969ad9ccb0ca2b7249a14a5f5f356))
+* **format-picker:** menu item swapped for list-item ([c4c0fdb](https://github.com/Synerise/synerise-design/commit/c4c0fdb267f19a4a72af6ee00ad2acfc178d3573))
+
+
+
+
+
 # [0.6.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.5.1...storybook7@0.6.0) (2024-06-27)
 
 

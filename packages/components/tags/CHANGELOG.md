@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.9.2...@synerise/ds-tags@0.9.3) (2024-07-02)
+
+
+### Bug Fixes
+
+* **tags:** fixed spreading html attributes ([29a37bc](https://github.com/Synerise/synerise-design/commit/29a37bca2cbf1f55dae75029f5e5b4cf3afd6afb))
+
+
+
+
+
 ## [0.9.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.9.1...@synerise/ds-tags@0.9.2) (2024-06-27)
 
 **Note:** Version bump only for package @synerise/ds-tags

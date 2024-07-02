@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.28.8...@synerise/ds-date-range-picker@0.29.0) (2024-07-02)
+
+
+### Features
+
+* **date-range-picker:** swapped Menu.Item and ListItem ([38c5996](https://github.com/Synerise/synerise-design/commit/38c5996b4f0a4539a96e467b1133905dd325a160))
+
+
+
+
+
 ## [0.28.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.28.7...@synerise/ds-date-range-picker@0.28.8) (2024-06-27)
 
 

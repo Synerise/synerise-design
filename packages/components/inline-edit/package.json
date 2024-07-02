@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-inline-edit",
-  "version": "0.7.12",
+  "version": "0.7.13",
   "description": "InlineEdit UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,9 +33,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-dropdown": "^0.18.2",
+    "@synerise/ds-dropdown": "^0.18.3",
     "@synerise/ds-icon": "^0.63.0",
-    "@synerise/ds-input": "^0.22.1",
+    "@synerise/ds-input": "^0.23.0",
     "@synerise/ds-menu": "^0.19.3",
     "@synerise/ds-scrollbar": "^0.11.2",
     "@synerise/ds-search": "^0.8.95",

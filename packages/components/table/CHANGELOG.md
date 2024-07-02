@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.53.2...@synerise/ds-table@0.54.0) (2024-07-02)
+
+
+### Bug Fixes
+
+* **table:** infinite loader - trigger loading without scrolling ([4559290](https://github.com/synerise/synerise-design/commit/455929012ab463980f0dd5de7230636a0ee058b6))
+
+
+### Features
+
+* **table:** add custom name for children column ([e5b2089](https://github.com/synerise/synerise-design/commit/e5b2089e011a28eccfdc56843c268fc861677a07))
+
+
+
+
+
 ## [0.53.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.53.1...@synerise/ds-table@0.53.2) (2024-06-27)
 
 
