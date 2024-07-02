@@ -42,7 +42,8 @@
     "@synerise/ds-scrollbar": "^0.11.2",
     "@synerise/ds-search": "^0.8.95",
     "@synerise/ds-utils": "^0.27.0",
-    "classnames": "2.3.2"
+    "classnames": "2.3.2",
+    "react-intl": "^3.12.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -1,4 +1,4 @@
-import type { AutosizeInputProps } from 'AutosizeInput/AutosizeInput.types';
+import type { AutosizeInputProps } from '../AutosizeInput.types';
 
 type CalculateWidthProps = {
   sizerWidth?: number;

@@ -73,10 +73,8 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "antd": "4.7.0",
-    "react": ">=16.9.0 < 17.0.0",
+    "react": ">=16.9.0 <= 17.0.2",
+    "react-dom": "^16.14.0",
     "styled-components": "5.0.1"
-  },
-  "devDependencies": {
-    "@testing-library/react": "10.0.1"
   }
 }
