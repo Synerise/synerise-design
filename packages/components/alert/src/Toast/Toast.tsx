@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useCallback, useMemo, ReactNode } from 'react';
 import Icon, { CloseM, WarningFillM, Check3M, HelpFillM, InfoFillM, AngleDownS } from '@synerise/ds-icon';
 
 import * as S from './Toast.styles';
 import { Props, ToastType } from './Toast.types';
 
-const ICONS: Record<ToastType, React.ReactNode> = {
+const ICONS: Record<ToastType, ReactNode> = {
   success: <Check3M />,
   warning: <WarningFillM />,
   negative: <WarningFillM />,
@@ -14,7 +14,7 @@ const ICONS: Record<ToastType, React.ReactNode> = {
 
 const DEFAULT_ICON = <WarningFillM />;
 
-const Toast: React.FC<Props> = ({
+const Toast = ({
   icon,
   type,
   message,
@@ -31,64 +31,59 @@ const Toast: React.FC<Props> = ({
   expanded,
   onExpand,
   onCloseClick,
-  show,
   button,
+  className,
 }: Props) => {
-  const renderMessage = React.useMemo(() => {
-    return (
-      <S.AlertContent>
-        {message && (
-          <S.AlertMessage customColorText={customColorText} color={color}>
-            {message}
-          </S.AlertMessage>
-        )}
-        <S.Text customColorText={customColorText} color={color}>
-          {description && (
-            <S.AlertDescription
-              expandedContent={expandedContent}
-              button={button}
-              customColorText={customColorText}
-              color={color}
-            >
-              {description}
-            </S.AlertDescription>
-          )}
-        </S.Text>
-        {expandedContent && expanded && (
-          <S.ListWrapper description={description} visible={expanded}>
-            {expandedContent}
-          </S.ListWrapper>
-        )}
-        {button}
-      </S.AlertContent>
-    );
-  }, [message, description, expandedContent, customColorText, color, expanded, button]);
-  const renderIcon = React.useMemo(() => {
+  const hasToastContent = button || description || expandedContent;
+  const toastContent = hasToastContent && (
+    <S.AlertContent hasBottomMargin={Boolean(button || description || (expandedContent && expanded))}>
+      {description && (
+        <S.AlertDescription
+          expandedContent={expandedContent}
+          button={button}
+          customColorText={customColorText}
+          color={color}
+        >
+          {description}
+        </S.AlertDescription>
+      )}
+      {expandedContent && (
+        <S.ListWrapper description={description} visible={expanded}>
+          {expandedContent}
+        </S.ListWrapper>
+      )}
+      {button}
+    </S.AlertContent>
+  );
+
+  const renderIcon = useMemo(() => {
     if (icon) return icon;
     if (ICONS[type]) return ICONS[type];
     return DEFAULT_ICON;
   }, [icon, type]);
-  const expandContent = React.useCallback(() => {
+  const expandContent = useCallback(() => {
     onExpand && onExpand(!expanded);
   }, [onExpand, expanded]);
 
   return (
-    <S.Container
-      expander={expander}
-      expandedContent={expandedContent}
-      withClose={withClose}
-      visible={show}
-      onCloseClick={onCloseClick}
-      color={color}
-      customColor={customColor}
-    >
+    <S.Container color={color} customColor={customColor} className={className}>
+      {(customIcon || renderIcon) && (
+        <S.IconWrapper colorIcon={colorIcon} customColorIcon={customColorIcon}>
+          {customIcon || <Icon component={renderIcon} />}
+        </S.IconWrapper>
+      )}
+
       <S.WrapperSectionMessage>
-        <S.AllContent>
-          <S.IconWrapper colorIcon={colorIcon} customColorIcon={customColorIcon}>
-            {customIcon || <Icon component={renderIcon} />}
-          </S.IconWrapper>
-          {renderMessage}
-        </S.AllContent>
+        <S.AlertMessage
+          noToastContent={!hasToastContent}
+          hasClose={!!withClose}
+          hasExpander={!!expander}
+          customColorText={customColorText}
+          color={color}
+        >
+          {message}
+        </S.AlertMessage>
+
         <S.ButtonWrapper>
           {expander && (
             <S.IconExpanderWrapper
@@ -106,6 +101,8 @@ const Toast: React.FC<Props> = ({
             </S.IconCloseWrapper>
           )}
         </S.ButtonWrapper>
+
+        {toastContent}
       </S.WrapperSectionMessage>
     </S.Container>
   );

@@ -269,7 +269,6 @@ const stories = {
           >
         <div style={{paddingBottom: '20px'}}>
         <Toast
-          show={show1}
           onCloseClick={() => setShow1(show1 =>!show1)}
           message={message}
           type={type}
@@ -288,7 +287,6 @@ const stories = {
           >
             <div style={{paddingBottom: '20px'}}>
             <Toast
-              show={show2}
               onCloseClick={() => setShow2( show2 =>!show2)}
               message={message}
               type={type}
@@ -306,7 +304,6 @@ const stories = {
             onAnimationEnd={onAnimationEnd3}
           >
               <Toast
-                show={show3}
                 onCloseClick={() => setShow3(show3 =>!show3)}
                 message={message}
                 type={type}
