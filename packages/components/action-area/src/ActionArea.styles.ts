@@ -29,6 +29,8 @@ export const ActionAreaContent = styled.div<{ isError?: boolean }>`
   }
 `;
 
+export const ActionAreaAction = styled.div``;
+
 export const ErrorText = styled.div`
   margin-top: 8px;
   color: ${({ theme }) => theme.palette['red-600']};
