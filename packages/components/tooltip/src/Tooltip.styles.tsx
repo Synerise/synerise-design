@@ -9,6 +9,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipTyp
   text-align: inherit;
   overflow-wrap: break-word;
   min-width: 0;
+  max-width: 100%;
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'largeScrollable' &&
     css`
