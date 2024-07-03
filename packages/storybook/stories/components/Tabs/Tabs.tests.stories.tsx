@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
+import { within, userEvent, expect, fn } from '@storybook/test';
 import type { TabsProps } from '@synerise/ds-tabs';
-import { fixedWrapper300 } from '../../utils';
+import { fixedWrapper300, waitFor } from '../../utils';
 
 import ListItemMeta, { TabsWithConfiguration, TabsWithConfigurationDisabled } from './Tabs.stories';
 

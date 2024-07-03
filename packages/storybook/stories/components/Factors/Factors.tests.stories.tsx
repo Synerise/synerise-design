@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, waitFor, userEvent, expect } from '@storybook/test';
+import { within, userEvent, expect } from '@storybook/test';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
 import FactorsMeta, { Default } from './Factors.stories';
-import { centeredPaddedWrapper } from '../../utils';
+import { centeredPaddedWrapper, waitFor } from '../../utils';
 
 export default {
   ...FactorsMeta,

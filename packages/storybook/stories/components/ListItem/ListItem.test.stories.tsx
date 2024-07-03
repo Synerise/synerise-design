@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, waitFor, userEvent, fn, expect } from '@storybook/test';
+import { within, userEvent, expect } from '@storybook/test';
 import type { ListItemProps } from '@synerise/ds-list-item';
 
 import ListItemMeta, {
@@ -10,6 +10,8 @@ import ListItemMeta, {
   LabelOnly,
   PrefixAndSuffixOnHover,
 } from './ListItem.stories';
+
+import { waitFor } from '../../utils';
 
 export default {
   ...ListItemMeta,

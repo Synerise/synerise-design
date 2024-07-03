@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { action } from '@storybook/addon-actions';
-import { within, waitFor, expect } from '@storybook/test';
+import { within, expect } from '@storybook/test';
 
 import {
   BooleanM,
@@ -20,6 +20,7 @@ import {
   fixedWrapper588,
   BOOLEAN_CONTROL,
   fixedWrapper300,
+  waitFor
 } from '../../utils';
 import Badge from '@synerise/ds-badge';
 

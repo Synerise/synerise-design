@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { within, userEvent, expect, fn } from '@storybook/test';
 
 import DatePicker from '@synerise/ds-date-picker';
 
-import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING, waitFor } from '../../utils';
 import { baseArgs, texts } from './constants';
 import { getPopupContainer } from '@synerise/ds-utils';
 

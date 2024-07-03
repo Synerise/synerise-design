@@ -1,3 +1,3 @@
 export * from './controls';
 export * from './decorators';
-export * from './shared';
+export * from './test';

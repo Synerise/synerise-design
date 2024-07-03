@@ -1,12 +1,14 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
+import { within, userEvent, expect, fn } from '@storybook/test';
 
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
 
 import { DEFAULT_CUSTOM_RANGE, LIFETIME_VALUE, TEXTS as texts } from './constants';
 import { Default } from './DateRangePicker.stories';
+
+import { waitFor } from '../../utils';
 
 export default {
   title: 'Components/Pickers/DateRangePicker/Tests',

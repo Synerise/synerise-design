@@ -9,7 +9,7 @@ import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 import Loader from '@synerise/ds-loader';
 import { LoaderWrapper } from '@synerise/ds-autocomplete/dist/Autocomplete.styles';
 
-import { within, userEvent } from '@storybook/testing-library';
+import { within, userEvent } from '@storybook/test';
 
 import { fixedWrapper400 } from '../../utils';
 import { renderWithHighlightedText } from './utils';

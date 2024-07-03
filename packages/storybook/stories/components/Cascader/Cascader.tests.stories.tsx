@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, expect, waitFor, fn, userEvent } from '@storybook/test';
+import { within, expect, fn, userEvent } from '@storybook/test';
 import type { CascaderProps } from '@synerise/ds-cascader';
 
 import CascaderMeta from './Cascader.stories';
 import * as mock from './data/mock.json';
 import { isKeyCategory, limitCategories } from './data/utils';
-import { sleep } from '../../utils';
+import { waitFor, sleep } from '../../utils';
 
 const root = mock.default;
 
