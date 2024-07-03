@@ -1,12 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, waitFor, userEvent, fn, expect } from '@storybook/test';
+import { fn } from '@storybook/test';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import InformationCard from '@synerise/ds-information-card/dist/InformationCard';
 
-import InformationCardMeta, { CompleteExample, Default } from './InformationCard.stories';
+import InformationCardMeta, { CompleteExample } from './InformationCard.stories';
 import Dropdown from '@synerise/ds-dropdown';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Button from '@synerise/ds-button';

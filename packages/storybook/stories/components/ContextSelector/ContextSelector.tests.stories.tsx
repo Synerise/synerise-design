@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
+import { within, userEvent, expect, fn } from '@storybook/test';
 import type { ContextProps } from '@synerise/ds-context-selector';
 
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
@@ -10,6 +10,8 @@ import ContextSelectorMeta, {
   LargeItems,
   FlatListDataStructure,
 } from './ContextSelector.stories';
+
+import { waitFor } from '../../utils';
 
 export default {
   ...ContextSelectorMeta,

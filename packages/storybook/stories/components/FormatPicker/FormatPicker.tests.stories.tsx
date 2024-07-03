@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { userEvent, waitFor, configure, within, expect } from '@storybook/test';
+import { userEvent, within, expect } from '@storybook/test';
 
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
 
 import FormatPickerMeta from './FormatPicker.stories';
 
-configure({ asyncUtilTimeout: 5000 });
+import { waitFor } from '../../utils';
 
 export default {
   ...FormatPickerMeta,

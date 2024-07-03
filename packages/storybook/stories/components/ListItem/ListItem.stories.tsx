@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, within, userEvent, waitFor } from '@storybook/test';
 import { useArgs } from '@storybook/preview-api';
 
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
