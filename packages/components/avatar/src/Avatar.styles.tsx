@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Avatar, { AvatarProps } from 'antd/lib/avatar';
 import { macro } from '@synerise/ds-typography';
 import { ThemeProps } from '@synerise/ds-core';
+import { IconBadgeIcon } from '@synerise/ds-badge/dist/IconBadge/IconBadge.styles';
 
 export const TooltipGroup = styled.div`
   margin: 13px 8px;
@@ -44,6 +45,17 @@ const BADGE_POSITION = {
   squareextraLarge: '3px',
 };
 
+const ICON_BADGE_POSITION = {
+  circlesmall: '-10px',
+  circlemedium: '-8px',
+  circlelarge: '-2px',
+  circleextraLarge: '4px',
+  squaresmall: '-11px',
+  squaremedium: '-11px',
+  squarelarge: '-11px',
+  squareextraLarge: '-11px',
+};
+
 const FONT_SIZE = {
   small: 'xsAvatar',
   medium: 'small',
@@ -51,10 +63,19 @@ const FONT_SIZE = {
   extraLarge: 'xlAvatar',
 };
 
-const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+const applyIconBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+  const { shape = 'circle', size = 'medium' } = props;
   return css`
-    top: ${BADGE_POSITION[`${props.shape}${props.size}`] || '0'};
-    right: ${BADGE_POSITION[`${props.shape}${props.size}`] || '0'};
+    top: ${ICON_BADGE_POSITION[`${shape}${size}`] || '0'};
+    right: ${ICON_BADGE_POSITION[`${shape}${size}`] || '0'};
+  `;
+};
+
+const applyBadgePosition = (props: AvatarProps): FlattenSimpleInterpolation => {
+  const { shape = 'circle', size = 'medium' } = props;
+  return css`
+    top: ${BADGE_POSITION[`${shape}${size}`] || '0'};
+    right: ${BADGE_POSITION[`${shape}${size}`] || '0'};
   `;
 };
 
@@ -154,6 +175,10 @@ export default styled(({ backgroundColorHue, backgroundColor, onClick, hasStatus
           height: 10px;
           box-shadow: none;
           ${applyBadgePosition(props)};
+        }
+
+        & + ${IconBadgeIcon} {
+          ${applyIconBadgePosition(props)};
         }
       `};
 

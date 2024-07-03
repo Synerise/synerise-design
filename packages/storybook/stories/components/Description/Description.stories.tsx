@@ -4,7 +4,7 @@ import React from 'react';
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Icon, { AddM, DuplicateS, LockM, PlayM, UserM, VarTypeStringM } from '@synerise/ds-icon';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
-import { avatarImage } from '../../constants/images';
+import { AVATAR_IMAGE } from '../../constants/images';
 import Status from '@synerise/ds-status';
 import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
@@ -47,7 +47,7 @@ export const moreExamples: Story = {
     <DescriptionRow label="Label:" value={'Value'} />
     <DescriptionRow
       label="Author:"
-      prefixEl={<UserAvatar src={avatarImage} size="small" />}
+      prefixEl={<UserAvatar src={AVATAR_IMAGE} size="small" />}
       value={'James Giles Peterson'}
     />
     <DescriptionRow label="Tag:" value={<Status label="Draft" type="disabled" />} />
@@ -108,7 +108,7 @@ export const moreExamples: Story = {
     />
     <DescriptionRow
       label="Copy:"
-      prefixEl={<UserAvatar src={avatarImage} size="small" />}
+      prefixEl={<UserAvatar src={AVATAR_IMAGE} size="small" />}
       value={'James Giles Peterson'}
       copyValue={'James Giles Peterson'}
       texts={{ copyTooltip: 'Copy value', copiedTooltip: 'Copied!' }}

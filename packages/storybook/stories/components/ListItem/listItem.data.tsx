@@ -28,7 +28,7 @@ import * as S from './styles';
 import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 
-import { avatarImage } from '../../constants/images';
+import { AVATAR_IMAGE } from '../../constants/images';
 import { controlFromOptionsArray } from '../../utils';
 import { RawSwitch } from '@synerise/ds-switch';
 
@@ -231,7 +231,7 @@ export const renderPrefix = (prefixElementType: string, isChecked?: boolean, onC
     case prefixType.avatar:
       return (
         <Badge status="active">
-          <Avatar size="small" src={avatarImage} shape="circle" hasStatus />
+          <Avatar size="small" src={AVATAR_IMAGE} shape="circle" hasStatus />
         </Badge>
       );
     case prefixType.checkbox:

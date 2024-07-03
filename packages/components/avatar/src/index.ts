@@ -9,4 +9,5 @@ export type {
   ObjectAvatar as ObjectAvatarType,
   ObjectAvatarProps,
   TooltipObject,
+  Size as AvatarSize,
 } from './Avatar.types';
