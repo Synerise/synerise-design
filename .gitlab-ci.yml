@@ -1,4 +1,4 @@
-image: node:16.20.2
+image: artifactory.snrinternal.com/docker.io/node:16.20.2
 
 variables:
   APP: ds-docs
@@ -67,7 +67,7 @@ docs_build:
       - packages/docs-site/website/build/*
 
 docs_deploy:
-  image: docker:stable
+  image: artifactory.snrinternal.com/docker.io/docker:stable
   stage: build
   needs: ['docs_build']
   only:
@@ -93,7 +93,7 @@ docs_deploy:
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
 docs_deploy_from_tag:
-  image: docker:stable
+  image: artifactory.snrinternal.com/docker.io/docker:stable
   stage: build
   needs: ['docs_build']
   only:
