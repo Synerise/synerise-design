@@ -22,7 +22,7 @@ import {
 import { renderSuffix, suffixType, prefixType, renderPrefix, prefixArgTypes } from './listItem.data';
 
 import * as S from './styles';
-import { avatarImage } from '../../constants/images';
+import { AVATAR_IMAGE } from '../../constants/images';
 import Badge from '@synerise/ds-badge';
 
 type Story = StoryObj<ListItemProps>;
@@ -232,7 +232,7 @@ export const WithStar: StoryObj<ListItemProps & { suffixType?: string }> = {
     suffixVisibilityTrigger: 'hover',
     prefixel: (
       <Badge status="active">
-        <Avatar size="small" src={avatarImage} shape="circle" />
+        <Avatar size="small" src={AVATAR_IMAGE} shape="circle" />
       </Badge>
     ),
   },
@@ -337,7 +337,7 @@ export const WithSmallAvatarPrefix: StoryObj<ListItemProps & { prefixType?: stri
     size: 'large',
     prefixel: (
       <Badge status="active">
-        <Avatar size="small" src={avatarImage} shape="circle" />
+        <Avatar size="small" src={AVATAR_IMAGE} shape="circle" />
       </Badge>
     ),
   },
@@ -357,7 +357,7 @@ export const WithMediumAvatarPrefix: StoryObj<ListItemProps & { prefixType?: str
     size: 'large',
     prefixel: (
       <Badge status="active">
-        <Avatar size="medium" src={avatarImage} shape="circle" />
+        <Avatar size="medium" src={AVATAR_IMAGE} shape="circle" />
       </Badge>
     ),
   },

@@ -14,6 +14,7 @@ export { default as usePrevious } from './usePrevious/usePrevious';
 export { default as useElementInView } from './useElementInView/useElementInView';
 export { default as useOverscrollBlock } from './useOverscrollBlock/useOverscrollBlock';
 export { default as useResizeToFit } from './useResizeToFit/useResizeToFit';
+export * from './omitKeys/omitKeys';
 export * from './useTraceUpdate';
 export * from './getPopupContainer';
 

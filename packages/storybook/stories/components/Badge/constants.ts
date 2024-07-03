@@ -1,13 +1,9 @@
-// @ts-nocheck
-export const statuses = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
+import { controlFromOptionsArray } from "../../utils";
 
-
-// move to avatar new story
-export  { default as image } from './av-anonym-004.png';
-export const sizes = ['small', 'medium', 'large', 'extraLarge'] as const
-export const shapes = ['circle', 'square'] as const;
-
-export const backgroundColors = [
+export const STATUSES = ['active', 'inactive', 'blocked', 'processing', 'warning'] as const;
+// export const SIZES = ['small', 'medium', 'large', 'extraLarge'] as const
+// export const SHAPES = ['circle', 'square'] as const;
+export const BACKGROUND_COLORS = [
   'auto',
   'red',
   'green',
@@ -23,7 +19,7 @@ export const backgroundColors = [
   'violet',
 ] as const;
 
-export const iconColors = [
+export const ICON_COLORS = [
   'red-600',
   'green-600',
   'grey-600',
@@ -39,7 +35,7 @@ export const iconColors = [
   'white',
 ] as const;
 
-export const backgroundColorHue = [
+export const BACKGROUND_COLOR_HUE = [
   '900',
   '800',
   '700',
@@ -51,3 +47,13 @@ export const backgroundColorHue = [
   '100',
   '050',
 ] as const;
+
+export const AVATAR_ARG_TYPES = {
+  size: {
+    defaultValue: 'default',
+    ...controlFromOptionsArray('select', ['extraLarge', 'large', 'default', 'small']),
+  },
+  shape: {
+    defaultValue: 'circle',
+    ...controlFromOptionsArray('select', ['circle', 'square']),
+  },}
