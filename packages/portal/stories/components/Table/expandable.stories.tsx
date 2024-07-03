@@ -33,6 +33,7 @@ const stories = {
     };
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -84,6 +85,8 @@ const stories = {
       return result;
     };
 
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
+
     return (
       <Table
         title={text('Table title', 'Expandable table')}
@@ -114,6 +117,7 @@ const stories = {
           boolean('Enable row selection', false) && {
             onChange: handleSelectRow,
             selectedRowKeys: selectedRows,
+            checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
             selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
             independentSelectionExpandedRows: boolean('Enable independent selection of rows and expanded rows'),
           }

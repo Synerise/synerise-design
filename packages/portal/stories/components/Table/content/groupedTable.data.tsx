@@ -65,6 +65,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 34,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 1,
@@ -73,6 +75,8 @@ export const DATA_SOURCE = [
     city: 'Warszawa',
     age: 23,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 2,
@@ -81,6 +85,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 56,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 3,
@@ -89,6 +95,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 34,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 4,
@@ -97,6 +105,8 @@ export const DATA_SOURCE = [
     city: 'Warszawa',
     age: 23,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 5,
@@ -105,6 +115,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 56,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 10,
@@ -113,6 +125,8 @@ export const DATA_SOURCE = [
     city: 'Poznań',
     age: 18,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 11,
@@ -121,6 +135,8 @@ export const DATA_SOURCE = [
     city: 'Olsztyn',
     age: 89,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 12,
@@ -129,6 +145,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 56,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 13,
@@ -137,6 +155,8 @@ export const DATA_SOURCE = [
     city: 'Warszawa',
     age: 45,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 14,
@@ -145,6 +165,8 @@ export const DATA_SOURCE = [
     city: 'Łódź',
     age: 41,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 15,
@@ -153,6 +175,8 @@ export const DATA_SOURCE = [
     city: 'Katowice',
     age: 56,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 20,
@@ -161,6 +185,8 @@ export const DATA_SOURCE = [
     city: 'Poznań',
     age: 18,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 21,
@@ -169,6 +195,8 @@ export const DATA_SOURCE = [
     city: 'Wrocław',
     age: 41,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 22,
@@ -177,6 +205,8 @@ export const DATA_SOURCE = [
     city: 'Lublin',
     age: 64,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 23,
@@ -185,6 +215,8 @@ export const DATA_SOURCE = [
     city: 'Wrocałw',
     age: 15,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 24,
@@ -193,6 +225,8 @@ export const DATA_SOURCE = [
     city: 'Kraków',
     age: 72,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
   {
     key: 25,
@@ -201,6 +235,8 @@ export const DATA_SOURCE = [
     city: 'Warszawa',
     age: 33,
     last_activity: randomDate(),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
   },
 ];
 

@@ -50,6 +50,8 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   key: k + 1,
   name: faker.name.findName(),
   active: faker.random.boolean(),
+  disabled: Math.random() < 0.2,
+  unavailable: Math.random() < 0.1,
   country: faker.random.arrayElement([
     { code: 'us', name: 'USA' },
     { code: 'pl', name: 'Poland' },
@@ -219,6 +221,7 @@ const stories = {
     const { selectedRows, columns } = store.state;
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -330,6 +333,8 @@ const stories = {
           });
     };
 
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
+
     return (
       <Card
         withHeader={true}
@@ -385,6 +390,7 @@ const stories = {
             boolean('Enable row selection', false) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
+              checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
               selections: [
                 Table.SELECTION_ALL,
                 Table.SELECTION_INVERT,

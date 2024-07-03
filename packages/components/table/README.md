@@ -98,6 +98,15 @@ This type of table requires a specific type of dataSource which has to contain a
 | onChange                         | Callback executed when selection changes             | (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void | -       |
 | limit                            | Max length of selection rows array                   | number                                                          | -       |
 | independentSelectionExpandedRows | Allows to select parent and child rows independently | boolean                                                         | -       |
+| checkRowSelectionStatus          | Validator function record selection status           | (record: T) => SelectionStatus                                  | -       |
+
+#### SelectionStatus
+
+| Property               | Description                                            | Type                                                                       | Default |
+| ---------------        | ------------------------------------------------       | ---------------------------------------------------------------            | ------- |
+| unavailable            | Skips rendering checkbox if true                       | boolean                                                                    | -       |
+| disabled               | Renders checkbox in disabled state                     | boolean                                                                    | -       |
+
 
 #### RowStar
 

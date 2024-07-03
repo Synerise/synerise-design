@@ -3,7 +3,7 @@ import faker from 'faker';
 import Table from '@synerise/ds-table';
 import * as React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
 import Icon, { AddM, InfoFillS, VarTypeStringM } from '@synerise/ds-icon';
@@ -17,6 +17,8 @@ const dataSource = [...new Array(5000)].map((i, k) => ({
   city: faker.address.city(),
   address: faker.address.streetAddress(),
   number: String(faker.finance.amount()),
+  unavailable: Math.random() < 0.1,
+  disabled: Math.random() < 0.3,
   transactionType: faker.finance.transactionType(),
 }));
 
@@ -84,13 +86,22 @@ const VirtualizationWithState: React.FC = () => {
         });
   }, [searchValue]);
 
-  const handleSelectionChange = (selectedRowKeys, selectedRows) => {
+  const handleSelectionChange = (selectedRowKeys) => {
+    action('selection.onChange')(selectedRowKeys)
     setSelectedRowKeys(selectedRowKeys);
   };
 
   const numberOfRows = number('Number of rows (maximum 5000)', filteredDataSource().length, {
     max: filteredDataSource().length,
   });
+  const statusOptions = {
+    'random': (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable}),
+    'all disabled': (_record) => ({disabled: true, unavailable: _record.unavailable}),
+    'all unavailable': (_record) => ({disabled: _record.disabled, unavailable: true}),
+    'none': undefined
+  }
+
+
 
   return (
     <div style={{ width: '100%' }}>
@@ -116,7 +127,11 @@ const VirtualizationWithState: React.FC = () => {
           boolean('Enable row selection', true) && {
             onChange: handleSelectionChange,
             selectedRowKeys: selectedRowKeys,
-            selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
+            checkRowSelectionStatus: select('Pick selection status for rows?', statusOptions, statusOptions['none']),
+            selections: [
+              Table.SELECTION_ALL,
+              Table.SELECTION_INVERT
+            ],
             limit: boolean('Show limit', false) ? number('Set limit', 5) : undefined,
           }
         }

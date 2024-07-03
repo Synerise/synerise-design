@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Table from '../index';
-import { fireEvent, getByRole, getAllByTestId } from '@testing-library/react';
+import { fireEvent, screen, getByRole } from '@testing-library/react';
 import { Grid2M } from '@synerise/ds-icon';
 
 const props = {
@@ -64,25 +64,20 @@ const props = {
 
 describe('Table', () => {
   it('should render correctly', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
+    renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
 
-    // ASSERT
-    expect(getByText('Name')).toBeTruthy();
+    expect(screen.getByText('Name')).toBeTruthy();
   });
 
   it('should render "no data"', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Table dataSource={[]} columns={props.columns} locale={{ emptyText: 'No Data' }} />
     );
 
-    // ASSERT
-    expect(getByText('No Data')).toBeTruthy();
+    expect(screen.getByText('No Data')).toBeTruthy();
   });
 
   it('should updates columns when receiving props', () => {
-    // ARRANGE
     const columns = [
       {
         title: 'Col1',
@@ -90,35 +85,28 @@ describe('Table', () => {
         dataIndex: 'name',
       },
     ];
-    const { rerender, getByText, getAllByText } = renderWithProvider(<Table dataSource={[]} columns={columns} />);
+    const { rerender } = renderWithProvider(<Table dataSource={[]} columns={columns} />);
 
-    // ACT
     rerender(<Table columns={props.columns} dataSource={props.dataSource} />);
 
-    // ASSERT
-    expect(getByText('Age')).toBeTruthy();
-    expect(getAllByText('10 Downing Street')).toBeTruthy();
+    expect(screen.getByText('Age')).toBeTruthy();
+    expect(screen.getAllByText('10 Downing Street')).toBeTruthy();
   });
 
   it('should render title with results count', () => {
-    // ARRANGE
     const TEXT = 'test title 0 results';
-    const { getByText } = renderWithProvider(<Table dataSource={[]} columns={props.columns} title={TEXT} />);
+    renderWithProvider(<Table dataSource={[]} columns={props.columns} title={TEXT} />);
 
-    // ASSERT
-    expect(getByText(TEXT)).toBeTruthy();
+    expect(screen.getByText(TEXT)).toBeTruthy();
   });
 
   it('should not render pagination', () => {
-    // ARRANGE
     const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} />);
 
-    // ASSERT
     expect(container.querySelector('.ant-table-pagination')).toBeNull();
   });
 
   it('should render pagination with size changer and quick jumper', () => {
-    // ARRANGE
     const handleChange = jest.fn();
     const { container } = renderWithProvider(
       <Table
@@ -133,14 +121,12 @@ describe('Table', () => {
       />
     );
 
-    // ASSERT
     expect(container.querySelector('.ant-table-pagination')).toBeTruthy();
     expect(container.querySelector('.ant-pagination-options-size-changer')).toBeTruthy();
     expect(container.querySelector('.ant-pagination-options-quick-jumper')).toBeTruthy();
   });
 
   it('should call handleChange', () => {
-    // ARRANGE
     const handleChange = jest.fn();
     const { container } = renderWithProvider(
       <Table
@@ -155,16 +141,13 @@ describe('Table', () => {
       />
     );
 
-    // ACT
     const paginationItem = container.querySelector('.ant-pagination-item-2');
     paginationItem && fireEvent.click(paginationItem);
 
-    // ARRANGE
     expect(handleChange).toBeCalled();
   });
 
   it('should call onRow handlers', () => {
-    // ARRANGE
     const onClick = jest.fn();
     const onDoubleClick = jest.fn();
     const onContextMenu = jest.fn();
@@ -184,7 +167,6 @@ describe('Table', () => {
       />
     );
 
-    // ACT
     const row = container.querySelector('.ds-table-row');
     row && fireEvent.click(row);
     row && fireEvent.doubleClick(row);
@@ -192,7 +174,6 @@ describe('Table', () => {
     row && fireEvent.mouseLeave(row);
     row && fireEvent.mouseEnter(row);
 
-    // ARRANGE
     expect(onClick).toBeCalled();
     expect(onDoubleClick).toBeCalled();
     expect(onContextMenu).toBeCalled();
@@ -201,9 +182,7 @@ describe('Table', () => {
   });
 
   it('should show loading state of table', () => {
-    // ARRANGE
     const { container } = renderWithProvider(<Table dataSource={props.dataSource} columns={props.columns} loading />);
-    // ASSERT
     expect(container.querySelector('.spinner')).toBeTruthy();
   });
 
@@ -211,8 +190,7 @@ describe('Table', () => {
     const handleShowList = jest.fn();
     const handleShowFilter = jest.fn();
     const handleClear = jest.fn();
-    // ARRANGE
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Table
         dataSource={props.dataSource}
         columns={props.columns}
@@ -230,16 +208,14 @@ describe('Table', () => {
         ]}
       />
     );
-    // ASSERT
-    expect(getByTestId('filter-trigger-view')).toBeTruthy();
+    expect(screen.getByTestId('filter-trigger-view')).toBeTruthy();
   });
 
   it('should render filter with selected item', () => {
     const handleShowList = jest.fn();
     const handleShowFilter = jest.fn();
     const handleClear = jest.fn();
-    // ARRANGE
-    const { getByTestId, getByText } = renderWithProvider(
+    renderWithProvider(
       <Table
         dataSource={props.dataSource}
         columns={props.columns}
@@ -257,44 +233,37 @@ describe('Table', () => {
         ]}
       />
     );
-    const clearBtn = getByTestId('clear-button');
-    const showListBtn = getByTestId('show-list-button');
-    const showFilterBtn = getByTestId('filter-trigger-view');
+    const clearBtn = screen.getByTestId('clear-button');
+    const showListBtn = screen.getByTestId('show-list-button');
+    const showFilterBtn = screen.getByTestId('filter-trigger-view');
 
-    // ACT
     fireEvent.click(clearBtn);
     fireEvent.click(showFilterBtn);
     fireEvent.click(showListBtn);
 
-    // ASSERT
-    expect(getByText('Selected filter')).toBeTruthy();
+    expect(screen.getByText('Selected filter')).toBeTruthy();
     expect(handleClear).toBeCalled();
     expect(handleShowFilter).toBeCalled();
     expect(handleShowList).toBeCalled();
   });
 
   it('Should render results title', () => {
-    // ARRANGE
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'results' } }} />
     );
-    // ASSERT
-    expect(getByTestId('ds-table-title').textContent).toEqual('6 results');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 results');
   });
 
   it('Should render results title with custom locale', () => {
-    // ARRANGE
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
     );
-    // ASSERT
-    expect(getByTestId('ds-table-title').textContent).toEqual('6 records');
+    expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 records');
   });
 
   it('Should render with unchecked and disabled row selection checkbox', () => {
-    // ARRANGE
     const handleChangeSelection = jest.fn();
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       <Table
         dataSource={[]}
         columns={props.columns}
@@ -303,11 +272,25 @@ describe('Table', () => {
       />
     );
 
-    const rowSelectionCheckbox = getByRole(getByTestId('ds-table-title'), 'checkbox');
+    const rowSelectionCheckbox = getByRole(screen.getByTestId('ds-table-title'), 'checkbox');
 
-    // ASSERT
     expect(rowSelectionCheckbox).not.toBeChecked();
     expect(rowSelectionCheckbox).toBeDisabled();
+  });
+
+  it('Should render with selection checkboxes only for specific items', () => {
+    const handleChangeSelection = jest.fn();
+    const allowSelectionForKeys = ['2','4'];
+    renderWithProvider(
+      <Table
+        dataSource={props.dataSource}
+        columns={props.columns}
+        title="Title"
+        selection={{ selectedRowKeys: [], checkRowSelectionStatus: (record) => ({ unavailable: !allowSelectionForKeys.includes(record.key) }) , onChange: handleChangeSelection }}
+      />
+    );
+    const allButtons = screen.getAllByTestId('ds-table-selection-button')
+    expect(allButtons.length).toEqual(allowSelectionForKeys.length);
   });
 
   describe('row star', () => {
@@ -321,7 +304,7 @@ describe('Table', () => {
         />
       );
 
-      const buttonsPressedValues = getAllByTestId(container, 'ds-table-star-button').map(elem =>
+      const buttonsPressedValues = screen.getAllByTestId('ds-table-star-button').map(elem =>
         elem.getAttribute('aria-pressed')
       );
 
@@ -330,7 +313,7 @@ describe('Table', () => {
 
     it('should call onChange callback with updated starred keys after click', () => {
       const onChangeSpy = jest.fn();
-      const { getAllByTestId } = renderWithProvider(
+      renderWithProvider(
         <Table
           {...props}
           rowStar={{
@@ -340,7 +323,7 @@ describe('Table', () => {
         />
       );
 
-      const starButtons = getAllByTestId('ds-table-star-button');
+      const starButtons = screen.getAllByTestId('ds-table-star-button');
 
       fireEvent.click(starButtons[1]);
       expect(onChangeSpy).toHaveBeenCalledWith(['4', '2'], '2', true);

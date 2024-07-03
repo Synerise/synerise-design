@@ -1,11 +1,12 @@
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
+import type { ReactText } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
 import { RowSelectionProps } from './RowSelectionColumn.types';
 import { useRowKey } from '../hooks/useRowKey';
 import { RowType } from '../Table.types';
+import { getRecordSelectionStatus, isRecordSelectable } from '../utils';
 
-// eslint-disable-next-line import/prefer-default-export
 export function RowSelectionColumn<T extends object & RowType<T>>({
   rowKey,
   record,
@@ -15,57 +16,65 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
   selectedRecords,
   tableLocale,
   onChange,
+  checkRowSelectionStatus,
   childrenColumnName,
-}: RowSelectionProps<T>): React.ReactElement | null {
+}: RowSelectionProps<T>) {
   const { getRowKey } = useRowKey(rowKey);
   const recordKey = getRowKey(record);
   const rowChildren = record[childrenColumnName];
 
-  const checkedChildren = React.useMemo(() => {
+  const isSelectable = useCallback(
+    (item: T) => isRecordSelectable(item, checkRowSelectionStatus),
+    [checkRowSelectionStatus]
+  );
+
+  const checkedChildren = useMemo(() => {
     return (
       rowChildren?.filter((child: T) => {
         const childKey = getRowKey(child);
-        return childKey && selectedRowKeys.indexOf(childKey) >= 0;
+        return childKey && selectedRowKeys.indexOf(childKey) >= 0 && isSelectable(child);
       }) || []
     );
-  }, [getRowKey, rowChildren, selectedRowKeys]);
+  }, [isSelectable, getRowKey, rowChildren, selectedRowKeys]);
 
-  const allChildrenSelected = React.useMemo(
+  const allChildrenSelected = useMemo(
     () =>
-      !!rowChildren?.every((child: T) => {
+      !!rowChildren?.filter(isSelectable).every((child: T) => {
         const childKey = getRowKey(child);
         return childKey && selectedRowKeys.indexOf(childKey) >= 0;
       }),
-    [getRowKey, rowChildren, selectedRowKeys]
+    [getRowKey, isSelectable, rowChildren, selectedRowKeys]
   );
 
-  const isIndeterminate = React.useMemo(() => {
+  const isIndeterminate = useMemo(() => {
     if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
-      return checkedChildren.length > 0 && checkedChildren.length < (rowChildren?.length || 0);
+      const clickableChildren = rowChildren?.filter(isSelectable);
+      return checkedChildren.length > 0 && checkedChildren.length < (clickableChildren.length || 0);
     }
     return false;
-  }, [checkedChildren.length, independentSelectionExpandedRows, rowChildren]);
+  }, [checkedChildren.length, independentSelectionExpandedRows, isSelectable, rowChildren]);
 
-  const isChecked: boolean = React.useMemo(() => {
+  const isChecked: boolean = useMemo(() => {
     if (Array.isArray(rowChildren) && !independentSelectionExpandedRows) {
       return isChecked || allChildrenSelected;
     }
     return recordKey !== undefined && selectedRowKeys && selectedRowKeys.indexOf(recordKey) >= 0;
   }, [allChildrenSelected, independentSelectionExpandedRows, rowChildren, recordKey, selectedRowKeys]);
 
-  const handleSelectionChange = React.useCallback(
+  const handleSelectionChange = useCallback(
     (isCheckedNext: boolean, changedRecord: T): void => {
       let selectedRows: T[] = selectedRecords;
       const changedRecordChildren = changedRecord[childrenColumnName];
 
       if (isCheckedNext) {
         if (Array.isArray(changedRecordChildren) && !independentSelectionExpandedRows) {
-          selectedRows = [...selectedRows, ...changedRecordChildren];
+          const clickableChildren = changedRecordChildren.filter(isSelectable);
+          selectedRows = [...selectedRows, ...clickableChildren];
         } else {
           selectedRows = [...selectedRows, changedRecord];
         }
       } else if (Array.isArray(changedRecordChildren) && !independentSelectionExpandedRows) {
-        const childrenKeys = changedRecordChildren.map((child: T) => getRowKey(child));
+        const childrenKeys = changedRecordChildren.filter(isSelectable).map((child: T) => getRowKey(child));
         selectedRows = selectedRows.filter(child => childrenKeys.indexOf(getRowKey(child)) < 0);
       } else {
         selectedRows = selectedRows.filter(row => getRowKey(row) !== recordKey);
@@ -75,7 +84,7 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
 
       onChange &&
         onChange(
-          selectedRows.reduce((acc: React.ReactText[], current) => {
+          selectedRows.reduce((acc: ReactText[], current) => {
             const key = getRowKey(current);
             if (key !== undefined) {
               return [...acc, key];
@@ -85,21 +94,30 @@ export function RowSelectionColumn<T extends object & RowType<T>>({
           selectedRows
         );
     },
-    [getRowKey, independentSelectionExpandedRows, onChange, recordKey, selectedRecords, childrenColumnName]
+    [
+      getRowKey,
+      independentSelectionExpandedRows,
+      isSelectable,
+      onChange,
+      recordKey,
+      selectedRecords,
+      childrenColumnName,
+    ]
   );
+  const { unavailable, disabled } = getRecordSelectionStatus(checkRowSelectionStatus, record);
 
-  return recordKey !== undefined ? (
+  return recordKey !== undefined && !unavailable ? (
     <Tooltip title={tableLocale?.selectRowTooltip} mouseLeaveDelay={0}>
       <Button.Checkbox
         key={`checkbox-${recordKey}`}
         data-testid="ds-table-selection-button"
         checked={isChecked}
-        disabled={!isChecked && Boolean(limit !== undefined && limit <= selectedRowKeys.length)}
+        disabled={(!isChecked && Boolean(limit !== undefined && limit <= selectedRowKeys.length)) || disabled}
         indeterminate={isIndeterminate}
-        onClick={(e): void => {
-          e.stopPropagation();
+        onClick={event => {
+          event.stopPropagation();
         }}
-        onChange={(isCheckedNext): void => handleSelectionChange(isCheckedNext, record)}
+        onChange={isCheckedNext => handleSelectionChange(isCheckedNext, record)}
       />
     </Tooltip>
   ) : null;

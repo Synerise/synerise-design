@@ -28,6 +28,9 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   editable: faker.random.boolean() ? faker.name.findName() : undefined,
   checked: faker.random.boolean(),
   relations: RELATIONS,
+
+  unavailable: Math.random() < 0.1,
+  disabled: Math.random() < 0.3,
 }));
 const CELL_SIZES = {
   default: 'default',
@@ -40,12 +43,16 @@ const stories = {
     starredRowKeys: [],
   })(({ store }) => {
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
     const selectEven = () => {
       const evenRows = dataSource.map(row => row.key).filter((key, index) => index % 2);
       store.set({ selectedRows: evenRows });
     };
+    
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
+
     return (
       <Table
         title={text('Table title', 'Fixed columns')}
@@ -71,6 +78,7 @@ const stories = {
         selection={
           boolean('Enable row selection', true) && {
             onChange: handleSelectRow,
+            checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
             selectedRowKeys: store.state.selectedRows,
             selections: [
               Table.SELECTION_ALL,

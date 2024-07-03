@@ -171,6 +171,7 @@ const stories = {
     const { selectedRows, columns } = store.state;
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 

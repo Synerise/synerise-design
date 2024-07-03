@@ -17,6 +17,8 @@ const dataSource = [...new Array(5000)].map((i, k) => {
   const name = k === 1 ? faker.lorem.sentences(8) : faker.name.findName();
   return {
     key: String(k + 1),
+    unavailable: Math.random() < 0.1,
+    disabled: Math.random() < 0.3,
     name: <Text size="medium" ellipsis={{ tooltip: name }}>{name}</Text>
   };
 });
@@ -52,6 +54,7 @@ const TableOnModal: React.FC = () => {
   };
 
   const handleSelectRow = (selectedRowKeys, dataSourceSubset) => {
+    action('selection.onChange')(selectedRowKeys)
     const newSelectedRowsMap = {};
     selectedRowKeys.forEach(key => {
       const row = dataSourceSubset.find(row => row.key === key);
@@ -61,6 +64,8 @@ const TableOnModal: React.FC = () => {
     });
     setSelectedRowsMap(newSelectedRowsMap);
   };
+
+  const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
 
   return (
     <>
@@ -97,6 +102,7 @@ const TableOnModal: React.FC = () => {
           selection={{
             onChange: handleSelectRow,
             selectedRowKeys: Object.keys(selectedRowsMap),
+            checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
             selections: [
               Table.SELECTION_ALL,
               Table.SELECTION_INVERT,

@@ -184,9 +184,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const rowStarColumn = getRowStarColumn(propsForRowStar);
 
-  const selectedRecords = getSelectedRecords();
-
-  function getSelectedRecords() {
+  const selectedRecords = useMemo(() => {
     if (selection) {
       const { selectedRowKeys } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
@@ -209,11 +207,12 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       return selectedRows;
     }
     return [];
-  }
+  }, [allData, childrenColumnName, getRowKey, selection]);
 
   const renderRowSelection = useCallback(
     (key: string, record: T) => {
-      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange, checkRowSelectionStatus } =
+        selection as RowSelection<T>;
       const handleChange = (keys: ReactText[], records: T[]) => {
         if (isSticky && listScrollTopRef.current) {
           setIsHeaderVisible(true);
@@ -230,6 +229,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           onChange={handleChange}
           selectedRecords={selectedRecords}
           tableLocale={locale}
+          checkRowSelectionStatus={checkRowSelectionStatus}
           childrenColumnName={childrenColumnName}
         />
       );

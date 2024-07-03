@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TableProps } from 'rc-table/lib/Table';
-import { DSTableProps } from '../Table.types';
+import { DSTableProps, RowSelection } from '../Table.types';
 
 export type RowSelectionProps<T> = {
   rowKey: TableProps<T>['rowKey'];
@@ -10,6 +10,7 @@ export type RowSelectionProps<T> = {
   limit?: number;
   record: T;
   tableLocale: DSTableProps<T>['locale'];
-  onChange: (selectedRowKeys: React.ReactText[], selectedRecords: T[]) => void;
+  onChange: RowSelection<T>['onChange'];
+  checkRowSelectionStatus?: RowSelection<T>['checkRowSelectionStatus'];
   childrenColumnName: string;
 };
