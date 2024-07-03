@@ -216,6 +216,49 @@ describe('VirtualTable', () => {
       expect(buttonsPressedValues).toEqual(['false', 'true', 'false', 'true', 'false', 'false']);
     });
 
+    it('should render with correct rows with checkbox rendered', () => {
+      const handleChangeSelection = jest.fn();
+      const allowSelectionForKeys = ['2','4'];
+      renderWithProvider(
+        <VirtualTable {...sharedProps}
+          {...props}
+          selection={{
+            checkRowSelectionStatus: (record) => ({ unavailable: !allowSelectionForKeys.includes(record.key)}),
+            selectedRowKeys: [],
+            onChange: handleChangeSelection
+          }}
+        />
+      );
+
+      const allButtons = screen.getAllByTestId('ds-table-selection-button')
+
+      expect(allButtons.length).toEqual(allowSelectionForKeys.length);
+    });
+
+
+    it('should render with correct rows with checkbox disabled', () => {
+      const handleChangeSelection = jest.fn();
+      const disabledSelectionForKeys = ['2','4'];
+      renderWithProvider(
+        <VirtualTable {...sharedProps}
+          {...props}
+          selection={{
+            checkRowSelectionStatus: (record) => ({ disabled: disabledSelectionForKeys.includes(record.key)}),
+            selectedRowKeys: [],
+            onChange: handleChangeSelection
+          }}
+        />
+      );
+
+      const allButtons = screen.getAllByTestId('ds-table-selection-button')
+      const disabledButtons = allButtons.filter(button => button.hasAttribute('disabled'));
+      
+      expect(disabledButtons.length).toEqual(disabledSelectionForKeys.length);
+
+        
+      
+    });
+
 
     it('Should render with unchecked and disabled row selection checkbox', () => {
       const handleChangeSelection = jest.fn();

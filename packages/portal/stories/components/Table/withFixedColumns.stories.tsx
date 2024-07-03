@@ -19,6 +19,9 @@ const dataSource = [...new Array(55)].map((i, k) => ({
   system: faker.random.arrayElement(['OSX', 'Windows', 'Linux']),
   format: faker.random.arrayElement(['JPG', 'Zip', 'png']),
   lang: faker.random.arrayElement(['pl', 'en', 'es']),
+
+  unavailable: Math.random() < 0.1,
+  disabled: Math.random() < 0.3,
 }));
 
 const CELL_SIZES = {
@@ -33,6 +36,7 @@ const stories = {
     starredRowKeys: [],
   })(({ store }) => {
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -40,6 +44,8 @@ const stories = {
       const evenRows = dataSource.map(row => row.key).filter((key, index) => index % 2);
       store.set({ selectedRows: evenRows });
     };
+
+    const randomStatus = (record) => ({disabled: record.disabled, unavailable: record.unavailable});
 
     return (
       <Table
@@ -66,6 +72,7 @@ const stories = {
         selection={
           boolean('Enable row selection', true) && {
             onChange: handleSelectRow,
+            checkRowSelectionStatus: boolean('Selection unavailable for some rows?', true) ? randomStatus : undefined,
             selectedRowKeys: store.state.selectedRows,
             selections: [
               Table.SELECTION_ALL,

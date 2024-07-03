@@ -56,6 +56,9 @@ const dataSource = [...new Array(55)].map((i, k) => ({
     { code: 'ru', name: 'Russia' },
   ]),
   age: (Math.random() * 50 + 10).toFixed(0),
+
+  unavailable: Math.random() < 0.1,
+  disabled: Math.random() < 0.3,
 }));
 
 const saveFilter = (savedView: SavedView, store) => {
@@ -217,6 +220,7 @@ const stories = {
     const { selectedRows, columns, currentDataSource } = store.state;
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -351,6 +355,8 @@ const stories = {
         .filter((key, index) => index % 2);
       store.set({ selectedRows: evenRows });
     };
+    
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
 
     return (
       <>
@@ -403,6 +409,7 @@ const stories = {
             boolean('Enable row selection', false) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
+              checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
               fixed: true,
               selections: [
                 Table.SELECTION_ALL,

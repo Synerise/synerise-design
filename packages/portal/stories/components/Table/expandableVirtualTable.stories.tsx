@@ -37,6 +37,7 @@ const stories = {
     };
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -99,6 +100,8 @@ const stories = {
       }, 0);
     };
 
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
+
     return (
       <ModalProxy visible size="medium" title="VirtualTable with expandable rows" bodyStyle={{ padding: 0 }}>
         <VirtualTable
@@ -121,6 +124,7 @@ const stories = {
           selection={
             boolean('Enable row selection', false) && {
               onChange: handleSelectRow,
+              checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
               selectedRowKeys: selectedRows,
               selections: [Table.SELECTION_ALL, undefined, null, Table.SELECTION_INVERT],
               independentSelectionExpandedRows: boolean(

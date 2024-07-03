@@ -1,19 +1,19 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { compact, isEqual } from 'lodash';
 import Table from 'antd/lib/table';
 import { FormattedMessage } from 'react-intl';
 import Result from '@synerise/ds-result';
-import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
+import { usePrevious } from '@synerise/ds-utils';
+
 import { columnsToSortState, useSortState } from '../ColumnSortMenu/useSortState';
 import { columnWithSortButtons } from '../ColumnSortMenu/columnWithSortButtons';
 import { DSColumnType, DSTableProps, RowSelection, RowType } from '../Table.types';
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar } from '../hooks/useRowStar/useRowStar';
 import { RowSelectionColumn } from '../RowSelection';
-import { getChildrenColumnName } from '../utils/getChildrenColumnName';
+import { getChildrenColumnName, isRecordSelectable } from '../utils';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): React.ReactElement {
+function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
   const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns, onSort } = props;
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
@@ -22,17 +22,17 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
 
   const { getRowKey } = useRowKey(rowKey);
 
-  const starColumn = React.useMemo(() => {
+  const starColumn = useMemo(() => {
     return getRowStarColumn({ ...props, getRowKey });
   }, [getRowKey, getRowStarColumn, props]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isEqual(previousColumns, columns)) {
       sortStateApi.updateColumnsData(columnsToSortState(columns));
     }
   }, [columns, previousColumns, sortStateApi]);
 
-  const RenderRow = React.useCallback((row): JSX.Element => {
+  const RenderRow = useCallback(row => {
     const { children, ...rowProps } = row;
     const classNameWithLevel = row.className.split(' ').find((name: string) => name.includes('row-level'));
     let level;
@@ -68,14 +68,14 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
       })
       .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
-  const selectedRecords = React.useMemo((): T[] => {
+  const selectedRecords = useMemo((): T[] => {
     if (selection) {
-      const { selectedRowKeys } = selection as RowSelection<T>;
+      const { selectedRowKeys, checkRowSelectionStatus } = selection as RowSelection<T>;
       let selectedRows: T[] = [];
       dataSource &&
         dataSource.forEach((row: T): void => {
           const key = getRowKey(row);
-          if (key && selectedRowKeys.indexOf(key) >= 0) {
+          if (key && selectedRowKeys.indexOf(key) >= 0 && isRecordSelectable(row, checkRowSelectionStatus)) {
             selectedRows = [...selectedRows, row];
           }
 
@@ -83,7 +83,11 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           if (rowChildren !== undefined && Array.isArray(rowChildren)) {
             rowChildren.forEach((child: T) => {
               const childKey = getRowKey(child);
-              if (childKey && selectedRowKeys.indexOf(childKey) >= 0) {
+              if (
+                childKey &&
+                selectedRowKeys.indexOf(childKey) >= 0 &&
+                isRecordSelectable(child, checkRowSelectionStatus)
+              ) {
                 selectedRows = [...selectedRows, child];
               }
             });
@@ -93,11 +97,12 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
       return selectedRows;
     }
     return [];
-  }, [dataSource, getRowKey, selection, childrenColumnName]);
+  }, [childrenColumnName, dataSource, getRowKey, selection]);
 
-  const renderRowSelection = React.useCallback(
-    (key: string, record: T): React.ReactNode => {
-      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange } = selection as RowSelection<T>;
+  const renderRowSelection = useCallback(
+    (key: string, record: T) => {
+      const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange, checkRowSelectionStatus } =
+        selection as RowSelection<T>;
       return (
         <RowSelectionColumn
           rowKey={rowKey}
@@ -108,6 +113,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
           onChange={onChange}
           selectedRecords={selectedRecords}
           tableLocale={locale}
+          checkRowSelectionStatus={checkRowSelectionStatus}
           childrenColumnName={childrenColumnName}
         />
       );
@@ -116,7 +122,6 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>): Re
   );
 
   return (
-    // @ts-ignore
     <Table<T>
       {...props}
       data-popup-container

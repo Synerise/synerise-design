@@ -158,6 +158,7 @@ const stories = {
     };
 
     const handleSelectRow = selectedRowKeys => {
+      action('selection.onChange')(selectedRowKeys)
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -474,6 +475,8 @@ const stories = {
       return store.state.dataSource;
     };
 
+    const randomStatus = (_record) => ({disabled: _record.disabled, unavailable: _record.unavailable});
+
     return (
       <>
         <Table
@@ -547,6 +550,7 @@ const stories = {
             boolean('Enable row selection', true) && {
               onChange: handleSelectRow,
               selectedRowKeys: selectedRows,
+              checkRowSelectionStatus: boolean('Selection disabled / unavailable for some rows?', true) ? randomStatus : undefined,
               selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
             }
           }
