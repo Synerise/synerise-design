@@ -1,9 +1,9 @@
 import type { CSSProperties } from 'react';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
-import { InputProps } from '../InlineEdit.types';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { InputProps } from '../InlineEdit.types';
 
-export type InlineSelectProps = {
+export type InlineSelectProps<ItemType extends ListItemProps = ListItemProps> = {
   size?: 'normal' | 'small';
   tooltipTitle?: string;
   className?: string;
@@ -18,6 +18,7 @@ export type InlineSelectProps = {
   hideIcon?: boolean;
   expanded?: boolean;
   initialValue?: string;
+  onValueChange?: (item: ItemType) => void;
   placeholder?: string;
-  dataSource: MenuItemProps[];
+  dataSource: ItemType[];
 };

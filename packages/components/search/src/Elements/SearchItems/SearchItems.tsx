@@ -53,6 +53,7 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
   rowHeight,
   visibleRows,
   width,
+  renderInMenu = true,
 }) => {
   const listRef = React.useRef<List>(null);
 
@@ -78,29 +79,28 @@ const SearchItems: React.FC<SearchItemListProps<any>> = ({
       listRef.current.scrollTo(Math.max(0, listProps.scrollTop || 0));
     }
   }, [listProps]);
-  return (
-    <Menu>
-      {data && (
-        <List
-          height={getHeight()}
-          itemCount={data.length}
-          itemData={{
-            highlight,
-            itemRender,
-            items: data,
-            onItemClick,
-          }}
-          itemSize={rowHeight}
-          ref={listRef}
-          style={listStyle}
-          width={width}
-          {...listProps}
-        >
-          {rowRenderer}
-        </List>
-      )}
-    </Menu>
+
+  const list = data && (
+    <List
+      height={getHeight()}
+      itemCount={data.length}
+      itemData={{
+        highlight,
+        itemRender,
+        items: data,
+        onItemClick,
+      }}
+      itemSize={rowHeight}
+      ref={listRef}
+      style={listStyle}
+      width={width}
+      {...listProps}
+    >
+      {rowRenderer}
+    </List>
   );
+
+  return renderInMenu ? <Menu>{list}</Menu> : <>{list}</>;
 };
 
 export default SearchItems;

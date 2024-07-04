@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
@@ -11,12 +10,13 @@ export const DropdownWrapper = styled.div`
   min-width: 200px;
 `;
 
-export const DSMenu = styled(Menu)`
+export const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 8px ;
+  padding: 8px;
+  background: ${({ theme }) => theme.palette.white};
 `;
 export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
   && {

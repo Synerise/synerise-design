@@ -66,6 +66,39 @@ const ActionsMenu = ({ onSelectClick }) => {
     setDropdownVisible(false);
   });
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const menuItems = [
+    {
+      onClick: () => {
+        setDropdownVisible(!dropdownVisible);
+      },
+      prefixel: <Icon component={<EditM />} />,
+      text: 'Rename',
+    },
+    {
+      onClick: () => {
+        setDropdownVisible(!dropdownVisible);
+      },
+      prefixel: <Icon component={<DuplicateM />} />,
+      text: 'Duplicate',
+    },
+    {
+      onClick: () => {
+        onSelectClick();
+        setDropdownVisible(!dropdownVisible);
+      },
+      prefixel: <Icon component={<TaskCheckM />} />,
+      text: 'Select',
+    },
+    {
+      onClick: () => {
+        setDropdownVisible(!dropdownVisible);
+      },
+      type: 'danger',
+      prefixel: <Icon component={<TrashM />} />,
+      text: 'Delete',
+    },
+  ];
+
   return (
     <Dropdown
       visible={dropdownVisible}
@@ -73,42 +106,7 @@ const ActionsMenu = ({ onSelectClick }) => {
       align={{ offset: [-38, 8] }}
       overlay={
         <div style={{ width: '167px' }} ref={ref}>
-          <Menu asDropdownMenu style={{ width: '100%' }}>
-            <Menu.Item
-              onClick={(e): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<EditM />} />}
-            >
-              Rename
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<DuplicateM />} />}
-            >
-              Duplicate
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                onSelectClick();
-                setDropdownVisible(!dropdownVisible);
-              }}
-              prefixel={<Icon component={<TaskCheckM />} />}
-            >
-              Select
-            </Menu.Item>
-            <Menu.Item
-              onClick={(): void => {
-                setDropdownVisible(!dropdownVisible);
-              }}
-              type="danger"
-              prefixel={<Icon component={<TrashM />} />}
-            >
-              Delete
-            </Menu.Item>
-          </Menu>
+          <Menu asDropdownMenu style={{ width: '100%' }} dataSource={menuItems} />
         </div>
       }
     >
@@ -159,7 +157,7 @@ const StarWithTooltip = () => {
   const iconColor = checked ? theme.palette['yellow-600'] : theme.palette['grey-600'];
   const handleClick = () => {
     setChecked(!checked);
-  }
+  };
   return (
     <Tooltip type="default" title={'Star'}>
       <div onClick={e => e.stopPropagation()}>
@@ -248,7 +246,7 @@ export function renderSuffix(
 ) {
   switch (suffixElementType) {
     case suffixType.star:
-        return <StarWithTooltip />
+      return <StarWithTooltip />;
     case suffixType.renameAndDelete:
       return <RenameWithDelete onClickEdit={clickSuffixCallback} />;
     case suffixType.rename:
