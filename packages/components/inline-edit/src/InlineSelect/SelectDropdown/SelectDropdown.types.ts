@@ -1,11 +1,17 @@
-import * as React from 'react';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import type { CSSProperties } from 'react';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { InlineSelectProps } from '../InlineSelect.types';
 
-export interface Props {
-  dataSource: MenuItemProps[];
+export type SelectDropdownProps<ItemType extends ListItemProps = ListItemProps> = Pick<
+  InlineSelectProps<ItemType>,
+  'dataSource'
+> & {
   dropdownVisibleRows?: number;
   dropdownRowHeight?: number;
-  onSelect: (item: MenuItemProps) => void;
+  onSelect: (item: ItemType) => void;
   closeDropdown: () => void;
-  style?: React.CSSProperties;
-}
+  style?: CSSProperties;
+};
+
+// @deprecated
+export type Props = SelectDropdownProps;

@@ -23,17 +23,26 @@ const InlineSelect = ({
   placeholder,
   dataSource,
   initialValue,
+  onValueChange,
 }: InlineSelectProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [selectedValue, setSelectedValue] = useState(initialValue || placeholder || 'option');
   const [isOpened, setIsOpened] = useState(Boolean(expanded));
   const [isPressed, setIsPressed] = useState(false);
 
+  const { value, onChange, ...inputProps } = input;
+
+  const handleSelect = (item: typeof dataSource[number]) => {
+    // eslint-disable-next-line no-unused-expressions
+    onValueChange?.(item);
+    setSelectedValue(item.text as string);
+  };
+
   useEffect(() => {
-    if (input?.value && input.value !== selectedValue) {
-      setSelectedValue(input?.value as string);
+    if (value && value !== selectedValue) {
+      setSelectedValue(`${value}`);
     }
-  }, [input?.value, selectedValue]);
+  }, [value, selectedValue]);
 
   useEffect(() => {
     autoFocus && inputRef.current && inputRef.current.focus();
@@ -48,7 +57,7 @@ const InlineSelect = ({
       overlay={
         <SelectDropdown
           dataSource={dataSource}
-          onSelect={item => setSelectedValue(item.text as string)}
+          onSelect={handleSelect}
           closeDropdown={() => setIsOpened(false)}
           style={dropdownOverlayStyle}
         />
@@ -75,18 +84,16 @@ const InlineSelect = ({
           wrapperClassName="autosize-input"
         >
           <input
+            {...inputProps}
             ref={inputRef}
             style={inputStyle}
             id={input.name ? toCamelCase(input.name) : 'id'}
             className="autosize-input"
             data-testid="inline-select-autosize-input"
-            placeholder={placeholder}
-            maxLength={input.maxLength}
-            disabled={disabled}
-            name={input.name}
-            readOnly={input.readOnly}
             value={selectedValue || placeholder}
             autoComplete="off"
+            placeholder={placeholder}
+            disabled={disabled}
           />
         </AutosizeInput>
         {!hideIcon && (

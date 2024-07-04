@@ -1,26 +1,28 @@
-import * as React from 'react';
-import Menu from '@synerise/ds-menu';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import React, { UIEvent, useState, useCallback } from 'react';
+import ListItem from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import * as S from './SelectDropdown.style';
-import { Props } from './SelectDropdown.types';
+import { SelectDropdownProps } from './SelectDropdown.types';
 
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;
-const SelectDropdown: React.FC<Props> = ({
+const SelectDropdown = <ItemType extends ListItemProps>({
   dataSource,
   dropdownVisibleRows,
   dropdownRowHeight,
   onSelect,
   closeDropdown,
   style,
-}) => {
+}: SelectDropdownProps<ItemType>) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
-  const [scrollTop, setScrollTop] = React.useState<number>(0);
-  const handleChange = React.useCallback(
-    (item: MenuItemProps) => {
+  const [scrollTop, setScrollTop] = useState(0);
+  const handleItemClick: ListItemProps['onClick'] = useCallback(
+    item => {
       onSelect(item);
+      // eslint-disable-next-line no-unused-expressions
+      item.onClick?.(item);
       closeDropdown();
     },
     [onSelect, closeDropdown]
@@ -28,25 +30,26 @@ const SelectDropdown: React.FC<Props> = ({
 
   return (
     <S.DropdownWrapper style={style}>
-      <S.DSMenu>
+      <S.ListWrapper>
         <S.StyledScrollbar
           maxHeight={rowCount * rowHeight}
           absolute
-          onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
+          onScroll={(event: UIEvent) => setScrollTop(event.currentTarget.scrollTop)}
         >
           <SearchItems
             data={dataSource}
-            itemRender={(item: MenuItemProps): JSX.Element => <Menu.Item key={item?.text as string} {...item} />}
-            onItemClick={(i: MenuItemProps): void => handleChange(i)}
+            // eslint-disable-next-line react/jsx-handler-names
+            itemRender={(item: ItemType) => <ListItem key={item?.text as string} {...item} />}
+            onItemClick={handleItemClick}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}
             visibleRows={rowCount}
             listProps={{ scrollTop }}
-            // @ts-ignore
             width="100%"
+            renderInMenu={false}
           />
         </S.StyledScrollbar>
-      </S.DSMenu>
+      </S.ListWrapper>
     </S.DropdownWrapper>
   );
 };

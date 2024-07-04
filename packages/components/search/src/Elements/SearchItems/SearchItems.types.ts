@@ -14,4 +14,7 @@ export type SearchItemListProps<T> = {
   width: number | string;
   visibleRows?: number;
   height?: number;
+
+  // @deprecated
+  renderInMenu?: boolean;
 };
