@@ -1,9 +1,7 @@
-import * as React from 'react';
-import Menu from '@synerise/ds-menu';
+import React from 'react';
 import Result from '@synerise/ds-result';
 import { NOOP } from '@synerise/ds-utils';
 import invariant from 'invariant';
-
 import TagsListContext, { defaultValue } from './TagsListContext';
 import Item from './Elements/Item/Item';
 import Toolbar from './Elements/Toolbar';
@@ -120,7 +118,7 @@ const TagsList: React.FC<TagsListProps> = props => {
     handleOnChange(TagsListActions.Select, item);
   };
 
-  const renderItem = (item: TagsListItem): React.ReactNode => (
+  const renderItem = (item: TagsListItem) => (
     <Item
       item={item}
       key={`${item.id}-${item.name}`}
@@ -138,6 +136,7 @@ const TagsList: React.FC<TagsListProps> = props => {
           : undefined
       }
       onItemSelect={onItemSelect}
+      rootPrefixCls="ds-list-item"
       texts={texts}
     />
   );
@@ -176,10 +175,10 @@ const TagsList: React.FC<TagsListProps> = props => {
     };
 
   return (
-    <TagsListContainer>
+    <TagsListContainer data-testid="ds-tagslist-wrapper">
       <TagsListContext.Provider value={contextValue}>
         <Toolbar />
-        <Menu>{renderItemsList()}</Menu>
+        <div>{renderItemsList()}</div>
         {!searchQuery && (
           <ShowLessOrMore
             onShowMore={(more): void => {

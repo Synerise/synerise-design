@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { MouseEvent as ReactMouseEvent } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { EditM, OptionHorizontalM, Settings2M, StarFillM, StarM, TrashM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { NOOP } from '@synerise/ds-utils';
-import { MenuProps } from 'antd/lib/menu';
+
 import { TagVisibility, TagsListItem } from '../../TagsList.types';
 
 import Visibility, { CheckIcon } from './Visibility';
@@ -11,10 +11,9 @@ import Visibility, { CheckIcon } from './Visibility';
 import { ActionProps } from './Actions.types';
 import * as S from './Actions.styles';
 
-const triggerClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => event.stopPropagation();
-const dropdownMenuClick: MenuProps['onClick'] = (event): void => event.domEvent.stopPropagation();
+const stopClickPropagation = (event: ReactMouseEvent<HTMLElement, MouseEvent>) => event.stopPropagation();
 
-const Actions: React.FC<ActionProps> = ({
+const Actions = ({
   onVisibilityChange = NOOP,
   onFavouriteChange,
   onSettingsEnter,
@@ -24,10 +23,10 @@ const Actions: React.FC<ActionProps> = ({
   item,
   texts,
   visible,
-}) => {
+}: ActionProps) => {
   const { favourite } = item;
 
-  const handleVisibilityChange = (visibility: TagVisibility, thisItem: TagsListItem): void => {
+  const handleVisibilityChange = (visibility: TagVisibility, thisItem: TagsListItem) => {
     onVisibilityChange(visibility, thisItem);
     onDropdownToggle(false);
   };
@@ -40,10 +39,9 @@ const Actions: React.FC<ActionProps> = ({
       visible={visible}
       align={{ offset: [12, 16] }}
       overlay={
-        // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-        <S.DropdownMenu asDropdownMenu onClick={dropdownMenuClick}>
+        <S.DropdownMenu data-testid="ds-tagslist-actionsmenu" onClick={stopClickPropagation}>
           <Visibility texts={texts} item={item} onVisibilityChange={handleVisibilityChange} />
-          <Menu.Divider />
+          <ListItem type="divider" />
           {!!onFavouriteChange && (
             <S.DropdownMenuItem
               className="favourite"
@@ -53,8 +51,8 @@ const Actions: React.FC<ActionProps> = ({
                 </S.FavouriteIconWrapper>
               }
               suffixel={favourite ? <CheckIcon /> : null}
-              onClick={(e): void => {
-                e.domEvent.stopPropagation();
+              onClick={event => {
+                event.domEvent.stopPropagation();
                 onFavouriteChange();
                 onDropdownToggle(false);
               }}
@@ -65,8 +63,8 @@ const Actions: React.FC<ActionProps> = ({
           {!!onEdit && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<EditM />} />}
-              onClick={(e): void => {
-                e.domEvent.stopPropagation();
+              onClick={event => {
+                event.domEvent.stopPropagation();
                 onEdit();
                 onDropdownToggle(false);
               }}
@@ -77,22 +75,22 @@ const Actions: React.FC<ActionProps> = ({
           {!!onSettingsEnter && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<Settings2M />} />}
-              onClick={(e): void => {
-                e.domEvent.stopPropagation();
-                onSettingsEnter(e.domEvent);
+              onClick={event => {
+                event.domEvent.stopPropagation();
+                onSettingsEnter(event.domEvent);
                 onDropdownToggle(false);
               }}
             >
               {texts?.enterSettings}
             </S.DropdownMenuItem>
           )}
-          <Menu.Divider />
+          <ListItem type="divider" />
           {!!onDelete && (
             <S.DropdownMenuItem
               prefixel={<Icon component={<TrashM />} />}
               type="danger"
-              onClick={(e): void => {
-                e.domEvent.stopPropagation();
+              onClick={event => {
+                event.domEvent.stopPropagation();
                 onDelete(item);
                 onDropdownToggle(false);
               }}
@@ -103,7 +101,10 @@ const Actions: React.FC<ActionProps> = ({
         </S.DropdownMenu>
       }
     >
-      <S.DropdownTrigger component={<OptionHorizontalM />} onClick={triggerClick} />
+      <S.DropdownTrigger
+        component={<OptionHorizontalM data-testid="ds-tagslist-actionsmenu-trigger" />}
+        onClick={stopClickPropagation}
+      />
     </Dropdown>
   );
 };

@@ -1,41 +1,29 @@
-import * as React from 'react';
-import Icon, { Settings2M, InfoFillS, SearchM, Add3M } from '@synerise/ds-icon';
+import React, { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import Icon, { Settings2M, SearchM, Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import SearchBar from '@synerise/ds-search-bar';
 import Checkbox from '@synerise/ds-checkbox';
 import CheckboxTristate from '@synerise/ds-checkbox-tristate';
 import Loader from '@synerise/ds-loader';
-import Tooltip from '@synerise/ds-tooltip';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Result from '@synerise/ds-result';
-import generateHash from 'random-hash';
 
 import useTexts from '../../useTexts';
 import { TagsListItem, TagVisibility } from '../../TagsList.types';
 import { AddModalProps } from './AddModal.types';
 
 import * as S from './AddModal.styles';
+import { TagInfo } from './TagInfo';
 
 const DEFAULT_NAME = '';
 
-type TagInfoProps = {
-  info: string;
-};
-
-const TagInfo: React.FC<TagInfoProps> = ({ info }) => {
-  return (
-    <Tooltip title={info} mouseLeaveDelay={0}>
-      <S.TagInfoIcon component={<InfoFillS />} />
-    </Tooltip>
-  );
-};
-
 function getNewItem(name: string): TagsListItem {
   return {
-    id: generateHash(),
+    id: uuid(),
     name,
     canUpdate: true,
     canDelete: true,
@@ -43,7 +31,7 @@ function getNewItem(name: string): TagsListItem {
   };
 }
 
-const AddModal: React.FC<AddModalProps> = ({
+const AddModal = ({
   items: propItems,
   disabled = false,
   texts: propTexts,
@@ -54,14 +42,14 @@ const AddModal: React.FC<AddModalProps> = ({
   onManageTags = NOOP,
   onItemsAdd = NOOP,
   onVisibleChange = NOOP,
-}) => {
+}: AddModalProps) => {
   const CheckboxComponent = tristate ? CheckboxTristate : Checkbox;
-  const [search, setSearch] = React.useState(DEFAULT_NAME);
-  const [items, setItems] = React.useState(propItems || []);
-  const [selectedTags, setSelectedTags] = React.useState({});
-  const [newTagSelected, setNewTagSelected] = React.useState(false);
-  const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
-  const overlayRef = React.useRef<HTMLDivElement>(null);
+  const [search, setSearch] = useState(DEFAULT_NAME);
+  const [items, setItems] = useState(propItems || []);
+  const [selectedTags, setSelectedTags] = useState({});
+  const [newTagSelected, setNewTagSelected] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const texts = useTexts(propTexts);
 
   const selected = Object.keys(selectedTags).length || newTagSelected;
@@ -73,13 +61,13 @@ const AddModal: React.FC<AddModalProps> = ({
     }
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (propItems) setItems(propItems);
   }, [propItems]);
 
-  const handleSearchChange = (name: string): void => setSearch(name);
+  const handleSearchChange = (name: string) => setSearch(name);
 
-  const handleItemsAdd = (): void => {
+  const handleItemsAdd = () => {
     const add = Object.keys(selectedTags).map(id => {
       const newItem = { ...items.filter(thisItem => thisItem.id === id).shift() } as TagsListItem;
       newItem.checked = selectedTags[id];
@@ -97,24 +85,24 @@ const AddModal: React.FC<AddModalProps> = ({
     setSearch(DEFAULT_NAME);
   };
 
-  const toggleInput = (): void => {
+  const toggleInput = () => {
     setSearch(DEFAULT_NAME);
     setNewTagSelected(false);
     setSelectedTags({});
     setOverlayVisible(!overlayVisible);
   };
 
-  const focus = (inputRef: React.MutableRefObject<HTMLInputElement | null>): void => {
+  const focus = (inputRef: MutableRefObject<HTMLInputElement | null>) => {
     overlayVisible && inputRef.current && inputRef.current.focus();
   };
 
-  const renderItems = (): React.ReactNode => {
+  const renderedItems = useMemo(() => {
     const rendered = items
       .filter(item => {
         return !search ? true : item.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
       })
-      .map((item: TagsListItem): React.ReactNode => {
-        const itemOnClick = (): void => {
+      .map((item: TagsListItem) => {
+        const itemOnClick = () => {
           let checked: boolean | undefined = true;
 
           if (tristate && item.id in selectedTags && selectedTags[item.id] === undefined) {
@@ -142,6 +130,7 @@ const AddModal: React.FC<AddModalProps> = ({
           <S.TagItem
             highlight={search}
             key={`${item.id}-${item.name}`}
+            selected={thisChecked}
             prefixel={<CheckboxComponent checked={thisChecked} />}
             suffixel={item.description && <TagInfo info={item.description} />}
             onClick={itemOnClick}
@@ -154,16 +143,14 @@ const AddModal: React.FC<AddModalProps> = ({
     if (!rendered.length) return <Result description="No results" type="no-results" />;
 
     return rendered;
-  };
+  }, [CheckboxComponent, items, search, selectedTags, tristate]);
 
-  const renderedItems = renderItems();
-
-  const renderAddTag = (): React.ReactNode => {
+  const renderAddTag = () => {
     const perfectMatch = items.filter((item): boolean => {
       return item.name.toLowerCase().trim() === search.toLowerCase().trim();
     });
 
-    const onAddTagClick = (): void => {
+    const onAddTagClick = () => {
       const newItem = getNewItem(search);
       const newItems = [newItem, ...items];
       const newSelectedTags = {
@@ -183,7 +170,7 @@ const AddModal: React.FC<AddModalProps> = ({
           <S.TagItem onClick={onAddTagClick} prefixel={<Checkbox checked={newTagSelected} />}>
             Add: {search}
           </S.TagItem>
-          <Menu.Divider />
+          <ListItem type="divider" />
         </>
       );
     }
@@ -191,30 +178,29 @@ const AddModal: React.FC<AddModalProps> = ({
     return null;
   };
 
-  const selectedKeys = Object.keys(selectedTags).map(id => {
-    const item = items.find(row => row.id === id) || ({} as TagsListItem);
-    return `${item.id}-${item.name}`;
-  });
-
   const renderedList = loading ? (
     <S.Loader>
       <Loader color="blue" label={texts?.loading} labelPosition="bottom" size="M" />
     </S.Loader>
   ) : (
-    <S.TagItems asDropdownMenu selectedKeys={selectedKeys}>
+    <S.TagItems>
       {searchAddTag ? renderAddTag() : null}
       {renderedItems}
     </S.TagItems>
   );
 
-  const onClearInput = (): void => {
+  const onClearInput = () => {
     setSearch(DEFAULT_NAME);
   };
 
   return (
     <Dropdown
-      overlay={(): React.ReactElement => (
-        <Dropdown.Wrapper style={{ width: 'auto', minWidth: '250px' }} ref={overlayRef}>
+      overlay={
+        <Dropdown.Wrapper
+          data-testid="ds-tagslist-add-dropdown"
+          style={{ width: 'auto', minWidth: '250px' }}
+          ref={overlayRef}
+        >
           <SearchBar
             placeholder="Search"
             handleInputRef={focus}
@@ -245,7 +231,7 @@ const AddModal: React.FC<AddModalProps> = ({
             </div>
           </S.BottomAction>
         </Dropdown.Wrapper>
-      )}
+      }
       placement="bottomLeft"
       trigger={['click']}
       visible={overlayVisible}

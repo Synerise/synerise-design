@@ -16,7 +16,7 @@ const Search: React.FC = () => {
   const onClear = (): void => setSearchQuery('');
 
   return (
-    <SearchContainer ref={inputRef}>
+    <SearchContainer data-testid="ds-tagslist-search-wrapper" ref={inputRef}>
       <SearchInput
         onChange={onChange}
         value={searchQuery || ''}

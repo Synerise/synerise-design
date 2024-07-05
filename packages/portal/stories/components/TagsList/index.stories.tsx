@@ -42,7 +42,6 @@ function onManageTags(event: React.MouseEvent<HTMLElement, MouseEvent>) {
 const stories = {
   default: () => {
     const [dataSource, setDataSource] = React.useState(FOLDERS);
-
     return (
       <div data-popup-container>
         <TagsList 

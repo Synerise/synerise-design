@@ -83,7 +83,6 @@ export const Inner = styled.div`
 const selectedStyle = css<StyledListItemProps>`
   background: ${props => props.theme.palette['blue-050']};
   color: ${props => props.theme.palette['blue-600']};
-  border: 1px solid ${props => props.theme.palette['blue-600']};
 `;
 
 const highlightStyle = css`
@@ -192,6 +191,10 @@ export const Wrapper = styled.div<StyledListItemProps>`
     }
 
     ${props => props.selected && selectedStyle}
+
+    &.ant-menu-item-selected {
+      ${selectedStyle}
+    }
 
     ${props => props.highlight && highlightStyle}
     ${props => !props.ordered && orderedStyle}

@@ -7,6 +7,10 @@ import FormatPickerMeta from './FormatPicker.stories';
 
 import { waitFor } from '../../utils';
 
+const WAIT_FOR_OPTIONS = {
+  timeout: 800,
+};
+
 export default {
   ...FormatPickerMeta,
   title: 'Components/Pickers/FormatPicker/Tests',
@@ -27,15 +31,19 @@ export const CurrencyType: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement.parentElement!);
     await userEvent.click(canvas.getByRole('button'));
-    await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument());
-    await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible());
+    await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
+    await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible(), WAIT_FOR_OPTIONS);
 
     const modal = within(canvas.getByTestId('ds-format-picker-overlay'));
-    await waitFor(() =>
-      expect(modal.getByTestId('ds-format-picker-type-cash')).not.toHaveStyle({ pointerEvents: 'none' })
+    await waitFor(
+      () => expect(modal.getByTestId('ds-format-picker-type-cash')).not.toHaveStyle({ pointerEvents: 'none' }),
+      WAIT_FOR_OPTIONS
     );
     await userEvent.click(modal.getByTestId('ds-format-picker-type-cash'));
-    await waitFor(() => expect(modal.getByTestId('ds-format-picker-currency-trigger')).toBeInTheDocument());
+    await waitFor(
+      () => expect(modal.getByTestId('ds-format-picker-currency-trigger')).toBeInTheDocument(),
+      WAIT_FOR_OPTIONS
+    );
   },
 };
 
@@ -45,18 +53,22 @@ export const CurrencyDropdownOpen: Story = {
 
     await step('Open modal', async () => {
       await userEvent.click(canvas.getByRole('button'));
-      await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument());
-      await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible());
+      await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
+      await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible(), WAIT_FOR_OPTIONS);
     });
-    
+
     const modal = within(canvas.getByTestId('ds-format-picker-overlay'));
 
     await step('Select cash type', async () => {
-      await waitFor(() =>
-        expect(modal.getByTestId('ds-format-picker-type-cash')).not.toHaveStyle({ pointerEvents: 'none' })
+      await waitFor(
+        () => expect(modal.getByTestId('ds-format-picker-type-cash')).not.toHaveStyle({ pointerEvents: 'none' }),
+        WAIT_FOR_OPTIONS
       );
       await userEvent.click(modal.getByTestId('ds-format-picker-type-cash'));
-      await waitFor(() => expect(modal.getByTestId('ds-format-picker-currency-trigger')).toBeInTheDocument());
+      await waitFor(
+        () => expect(modal.getByTestId('ds-format-picker-currency-trigger')).toBeInTheDocument(),
+        WAIT_FOR_OPTIONS
+      );
     });
 
     await step('Open currency dropdown', async () => {
@@ -64,7 +76,7 @@ export const CurrencyDropdownOpen: Story = {
       await waitFor(() => {
         expect(modal.getByTestId('ds-format-picker-currency-trigger')).toBeInTheDocument();
         expect(canvas.getAllByRole('menuitem')).toHaveLength(4);
-      });
+      }, WAIT_FOR_OPTIONS);
     });
   },
 };

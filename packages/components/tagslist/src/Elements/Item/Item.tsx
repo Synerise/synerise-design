@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React, { SyntheticEvent, useCallback, useEffect, useRef, useState, KeyboardEvent, useMemo } from 'react';
 import Highlighter from 'react-highlight-words';
 
 import Checkbox from '@synerise/ds-checkbox';
 import { TagM, TagStarredM } from '@synerise/ds-icon';
 import { useOnClickOutside, NOOP } from '@synerise/ds-utils';
-import Tooltip from '@synerise/ds-tooltip';
 
 import { validateFolderName } from '../../utils';
 import useTagsListContext from '../../useTagsListContext';
@@ -13,7 +12,7 @@ import { ItemProps } from './Item.types';
 
 import * as S from './Item.styles';
 
-const ItemName: React.FC<{ itemName: string; query: string }> = ({ itemName, query }) => {
+const ItemName = ({ itemName, query }: { itemName: string; query: string }) => {
   if (query && itemName.toLowerCase().match(query.toLowerCase())) {
     return (
       <Highlighter
@@ -27,7 +26,7 @@ const ItemName: React.FC<{ itemName: string; query: string }> = ({ itemName, que
   return <span>{itemName}</span>;
 };
 
-const Item: React.FC<ItemProps> = ({
+const Item = ({
   item,
   onSettingsEnter,
   onDelete = NOOP,
@@ -39,20 +38,18 @@ const Item: React.FC<ItemProps> = ({
   checked = false,
   withCheckbox = true,
   rootPrefixCls,
-}) => {
+}: ItemProps) => {
   const { name, favourite } = item;
   const { searchQuery } = useTagsListContext();
 
-  const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
-  const [hovered, setHovered] = React.useState<boolean>(false);
-  const [itemName, setItemName] = React.useState<string>(name);
-  const [editMode, setEditMode] = React.useState<boolean>(false);
-  const [overflowed, setOverflowed] = React.useState<boolean>(false);
+  const [dropdownOpened, setDropdownOpened] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [itemName, setItemName] = useState(name);
+  const [editMode, setEditMode] = useState(false);
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const textRef = React.useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const confirmEdit = React.useCallback((): void => {
+  const confirmEdit = useCallback(() => {
     if (validateFolderName(itemName)) {
       const trimmedName = itemName.trim();
       onEdit && onEdit({ ...item, name: trimmedName });
@@ -63,37 +60,33 @@ const Item: React.FC<ItemProps> = ({
     setEditMode(false);
   }, [itemName, name, item, onEdit]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setItemName(name);
-    // Check if is overflowed
-    if (textRef.current && textRef.current?.offsetWidth < textRef.current?.scrollWidth) {
-      setOverflowed(true);
-    }
-  }, [name, textRef]);
+  }, [name]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef?.current !== null && inputRef.current.focus();
   }, [inputRef, editMode]);
 
-  const onMouseEnter = (): void => {
+  const onMouseEnter = () => {
     setHovered(true);
   };
 
-  const onMouseLeave = (): void => {
+  const onMouseLeave = () => {
     setHovered(false);
   };
 
-  const handleOnFavouriteChange = (): void => {
+  const handleOnFavouriteChange = () => {
     onFavouriteChange(item);
   };
 
   const handleOnEdit =
     onEdit &&
-    ((): void => {
+    (() => {
       setEditMode(true);
     });
 
-  const onDropdownToggle = (opened: boolean): void => {
+  const onDropdownToggle = (opened: boolean) => {
     setDropdownOpened(opened);
   };
 
@@ -103,13 +96,13 @@ const Item: React.FC<ItemProps> = ({
     }
   });
 
-  const onClick = (): void => {
+  const onClick = () => {
     onItemSelect(item);
   };
 
   const isHovered = !!(hovered || dropdownOpened);
 
-  const prefixel = React.useMemo(
+  const prefixel = useMemo(
     () => (
       <S.PrefixWrapper favourite={favourite}>
         {withCheckbox && <Checkbox checked={checked} />}
@@ -137,37 +130,28 @@ const Item: React.FC<ItemProps> = ({
 
   const className = checked || editMode || isHovered ? `${rootPrefixCls}-item-selected` : '';
 
-  const textComponent = React.useMemo(() => {
-    const inlineOnChange = (e: React.SyntheticEvent<HTMLInputElement>): void => setItemName(e.currentTarget.value);
-    const inlineOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-      if (e.key === 'Enter') {
+  const textComponent = useMemo(() => {
+    const inlineOnChange = (event: SyntheticEvent<HTMLInputElement>) => setItemName(event.currentTarget.value);
+    const inlineOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
         confirmEdit();
       }
     };
-
-    // This is stupid but Tooltip has problem with ForwardRef :/
-    const renderItemName = <ItemName itemName={itemName} query={searchQuery} />;
 
     return editMode ? (
       <S.InlineEditWrapper>
         <S.InlineEditInput value={itemName} onChange={inlineOnChange} onKeyDown={inlineOnKeyDown} ref={inputRef} />
       </S.InlineEditWrapper>
     ) : (
-      <S.TagsListText ref={textRef}>
-        {overflowed ? (
-          <Tooltip placement="topLeft" title={itemName}>
-            <span>{renderItemName}</span>
-          </Tooltip>
-        ) : (
-          renderItemName
-        )}
+      <S.TagsListText ellipsis={{ tooltip: itemName }}>
+        <ItemName itemName={itemName} query={searchQuery} />
       </S.TagsListText>
     );
-  }, [editMode, itemName, confirmEdit, inputRef, textRef, overflowed, searchQuery]);
+  }, [editMode, itemName, confirmEdit, inputRef, searchQuery]);
 
   return (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.TagsListItem
+      selected={checked}
       editMode={editMode}
       onClick={onClick}
       className={className}
@@ -177,7 +161,6 @@ const Item: React.FC<ItemProps> = ({
       withCheckbox={withCheckbox}
       suffixel={suffixel}
       text={textComponent}
-      // @ts-ignore: because onMouseLeave is not there :P just for clearance onMouseOut isn't there too
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}
     />

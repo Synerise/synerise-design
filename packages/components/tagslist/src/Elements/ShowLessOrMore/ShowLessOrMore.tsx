@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
-import generateHash from 'random-hash';
 import { Props } from './ShowLessOrMore.types';
 import * as S from './ShowLessOrMore.styles';
 
-const ShowLessOrMore: React.FC<Props> = ({
+const ShowLessOrMore = ({
   onShowMore,
   onShowLess,
   totalItemsCount,
@@ -17,19 +17,19 @@ const ShowLessOrMore: React.FC<Props> = ({
   const areAllItemsVisible = totalItemsCount === visibleItemsCount;
   const itemsOverLimit = totalItemsCount - visibleItemsCount;
 
-  const itemsToHide = React.useMemo(() => {
+  const itemsToHide = useMemo(() => {
     if (visibleItemsCount === maxItemsToShow) return 0;
     if (visibleItemsCount - maxItemsToShow < showMoreStep) return visibleItemsCount - maxItemsToShow;
     return showMoreStep;
   }, [showMoreStep, visibleItemsCount, maxItemsToShow]);
 
-  const renderShowMoreButton = React.useCallback(() => {
+  const renderShowMoreButton = useCallback(() => {
     const more = itemsOverLimit > showMoreStep ? showMoreStep : itemsOverLimit;
     const onClick = (): void => onShowMore(more);
 
     return (
       totalItemsCount > visibleItemsCount && (
-        <Button type="ghost" mode="icon-label" onClick={onClick} key={generateHash()}>
+        <Button data-testid="ds-tagslist-show-more" type="ghost" mode="icon-label" onClick={onClick} key={uuid()}>
           <Icon component={<ArrowDownCircleM />} />
           <S.Label>
             <span>{texts?.showMoreLabel}</span>
@@ -41,13 +41,13 @@ const ShowLessOrMore: React.FC<Props> = ({
     );
   }, [texts, visibleItemsCount, totalItemsCount, showMoreStep, itemsOverLimit, onShowMore]);
 
-  const renderShowLessButton = React.useCallback(() => {
+  const renderShowLessButton = useCallback(() => {
     const onClick = (): void => {
       onShowLess(itemsToHide);
     };
 
     return (
-      <Button type="ghost" mode="icon-label" onClick={onClick} key={generateHash()}>
+      <Button data-testid="ds-tagslist-show-less" type="ghost" mode="icon-label" onClick={onClick} key={uuid()}>
         <Icon component={<ArrowUpCircleM />} />
         <S.Label>
           <span>{texts?.showMoreLabel}</span>
