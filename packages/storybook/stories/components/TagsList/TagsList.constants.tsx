@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 import { CalendarM, ClockM, EditM, FolderAddM, StarM, StopM, TilesM } from '@synerise/ds-icon';
 import { TagsListItem, TagsListTexts, TagVisibility } from '@synerise/ds-tagslist';
 
+export const ADD_ITEMS_LOADING_TIMEOUT = 300;
+
 export const TOP_MENU_ITEMS: { icon: ReactNode; text: string }[] = [
   {
     icon: <TilesM />,

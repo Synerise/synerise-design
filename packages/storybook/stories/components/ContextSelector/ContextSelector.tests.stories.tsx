@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, userEvent, expect, fn } from '@storybook/test';
+import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
 import type { ContextProps } from '@synerise/ds-context-selector';
 
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
@@ -10,8 +10,6 @@ import ContextSelectorMeta, {
   LargeItems,
   FlatListDataStructure,
 } from './ContextSelector.stories';
-
-import { waitFor } from '../../utils';
 
 export default {
   ...ContextSelectorMeta,
@@ -23,6 +21,8 @@ export default {
 } as Meta<ContextProps>;
 
 type Story = StoryObj<ContextProps>;
+
+const TIMEOUT_OPTIONS = { timeout: 800 };
 
 export const SelectItemFromCategory: Story = {
   args: {
@@ -37,17 +37,20 @@ export const SelectItemFromCategory: Story = {
 
       await waitFor(() => {
         expect(canvas.queryAllByTestId('tab-container')).toHaveLength(2);
-      });
+      }, TIMEOUT_OPTIONS);
 
       await userEvent.click(canvas.getAllByTestId('tab-container')[1]);
 
-      await waitFor(() => expect(canvas.getByText(subGroupName)).not.toHaveStyle({ pointerEvents: 'none' }));
+      await waitFor(
+        () => expect(canvas.getByText(subGroupName)).not.toHaveStyle({ pointerEvents: 'none' }),
+        TIMEOUT_OPTIONS
+      );
 
       await userEvent.click(canvas.getByText(subGroupName));
 
       await waitFor(() => {
         expect(canvas.getByTestId('dropdown-back-action-label')).toBeInTheDocument();
-      });
+      }, TIMEOUT_OPTIONS);
 
       await userEvent.click(canvas.getAllByRole('menuitem')[3]);
 
@@ -59,8 +62,10 @@ export const SelectItemFromCategory: Story = {
 const play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.click(canvas.getByText(CONTEXT_TEXTS.buttonLabel));
-  await waitFor(() =>
-    expect(canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder)).not.toHaveStyle({ pointerEvents: 'none' })
+  await waitFor(
+    () =>
+      expect(canvas.getByPlaceholderText(CONTEXT_TEXTS.searchPlaceholder)).not.toHaveStyle({ pointerEvents: 'none' }),
+    TIMEOUT_OPTIONS
   );
 };
 

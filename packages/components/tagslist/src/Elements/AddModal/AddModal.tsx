@@ -179,7 +179,7 @@ const AddModal = ({
   };
 
   const renderedList = loading ? (
-    <S.Loader>
+    <S.Loader data-testid="ds-tagslist-addmodal-loading">
       <Loader color="blue" label={texts?.loading} labelPosition="bottom" size="M" />
     </S.Loader>
   ) : (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
-import { within, userEvent, expect, fn } from '@storybook/test';
+import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
 import { VarTypeStringM } from '@synerise/ds-icon';
 import Factors, { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
@@ -10,8 +10,7 @@ import {
   BOOLEAN_CONTROL,
   controlFromOptionsArray,
   fixedWrapper300,
-  flexColumnWrapper,
-  waitFor
+  flexColumnWrapper
 } from '../../utils';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './Factors.data';
 
