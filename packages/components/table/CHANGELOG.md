@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.55.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.54.0...@synerise/ds-table@0.55.0) (2024-07-05)
+
+
+### Bug Fixes
+
+* fixed missing dependencies ([f718fb7](https://github.com/synerise/synerise-design/commit/f718fb7e954a19857ea4b6bbd417e3fe290fd2dc))
+* **table:** fix remount virtual rows ([284e4ef](https://github.com/synerise/synerise-design/commit/284e4ef46188362b5e23c2fb2c1d18544f3c9680))
+
+
+### Features
+
+* **table:** added prop to exclude selection for rows ([2607c00](https://github.com/synerise/synerise-design/commit/2607c0048fa7abddfc249d7fc4eeb2b9142ae5c1))
+
+
+
+
+
 # [0.54.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.53.2...@synerise/ds-table@0.54.0) (2024-07-02)
 
 

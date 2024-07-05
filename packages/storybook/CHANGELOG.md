@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.7.0...storybook7@0.8.0) (2024-07-05)
+
+
+### Features
+
+* **alert:** add new stories of toast ([62b1721](https://github.com/Synerise/synerise-design/commit/62b1721c928eed36a66ef63cfc78ca72e9df7f6b))
+* **badge:** added IconBadge ([4f44b60](https://github.com/Synerise/synerise-design/commit/4f44b60b3eff77eb6c21b9ba0ec0cdf745100eff))
+* **inline-edit:** swapped Menu.Item for ListItem ([94c79a3](https://github.com/Synerise/synerise-design/commit/94c79a3eb3c731952c11418bcbd49b4af8c916d9))
+* **item-picker:** swapped Menu.Item for ListItem ([cb90ba7](https://github.com/Synerise/synerise-design/commit/cb90ba7532bd091b44f62f9bd7394e789c16597e))
+* **tagslist:** swapped Menu.Item for ListItem ([f7443fb](https://github.com/Synerise/synerise-design/commit/f7443fbd5c706a9d40d8dbb83b0b31e22c3254a5))
+
+
+
+
+
 # [0.7.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.6.0...storybook7@0.7.0) (2024-07-02)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.219.0](https://github.com/synerise/synerise-design/compare/portal@0.218.3...portal@0.219.0) (2024-07-05)
+
+
+### Bug Fixes
+
+* **list-item:** ellipsis for long labels ([14c1535](https://github.com/synerise/synerise-design/commit/14c1535d018537dea0d8927c4aa9a0b30eef1ccc))
+
+
+### Features
+
+* **table:** added prop to exclude selection for rows ([2607c00](https://github.com/synerise/synerise-design/commit/2607c0048fa7abddfc249d7fc4eeb2b9142ae5c1))
+* **tagslist:** swapped Menu.Item for ListItem ([f7443fb](https://github.com/synerise/synerise-design/commit/f7443fbd5c706a9d40d8dbb83b0b31e22c3254a5))
+
+
+
+
+
 ## [0.218.3](https://github.com/synerise/synerise-design/compare/portal@0.218.2...portal@0.218.3) (2024-07-02)
 
 

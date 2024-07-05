@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.63...@synerise/ds-item-picker@0.12.0) (2024-07-05)
+
+
+### Features
+
+* **item-picker:** swapped Menu.Item for ListItem ([cb90ba7](https://github.com/Synerise/synerise-design/commit/cb90ba7532bd091b44f62f9bd7394e789c16597e))
+
+
+
+
+
 ## [0.11.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.11.62...@synerise/ds-item-picker@0.11.63) (2024-07-02)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

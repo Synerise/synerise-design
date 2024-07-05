@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.9.46...@synerise/ds-tagslist@0.10.0) (2024-07-05)
+
+
+### Features
+
+* **tagslist:** swapped Menu.Item for ListItem ([f7443fb](https://github.com/Synerise/synerise-design/commit/f7443fbd5c706a9d40d8dbb83b0b31e22c3254a5))
+
+
+
+
+
 ## [0.9.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.9.45...@synerise/ds-tagslist@0.9.46) (2024-07-02)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

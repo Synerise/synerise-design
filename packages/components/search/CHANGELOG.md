@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.95...@synerise/ds-search@0.9.0) (2024-07-05)
+
+
+### Features
+
+* **inline-edit:** swapped Menu.Item for ListItem ([94c79a3](https://github.com/Synerise/synerise-design/commit/94c79a3eb3c731952c11418bcbd49b4af8c916d9))
+* **item-picker:** swapped Menu.Item for ListItem ([cb90ba7](https://github.com/Synerise/synerise-design/commit/cb90ba7532bd091b44f62f9bd7394e789c16597e))
+
+
+
+
+
 ## [0.8.95](https://github.com/Synerise/synerise-design/compare/@synerise/ds-search@0.8.94...@synerise/ds-search@0.8.95) (2024-06-27)
 
 **Note:** Version bump only for package @synerise/ds-search

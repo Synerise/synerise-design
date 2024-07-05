@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.3.0...@synerise/ds-list-item@0.4.0) (2024-07-05)
+
+
+### Bug Fixes
+
+* **list-item:** ellipsis for long labels ([14c1535](https://github.com/Synerise/synerise-design/commit/14c1535d018537dea0d8927c4aa9a0b30eef1ccc))
+* fixed missing dependencies ([f718fb7](https://github.com/Synerise/synerise-design/commit/f718fb7e954a19857ea4b6bbd417e3fe290fd2dc))
+
+
+### Features
+
+* **tagslist:** swapped Menu.Item for ListItem ([f7443fb](https://github.com/Synerise/synerise-design/commit/f7443fbd5c706a9d40d8dbb83b0b31e22c3254a5))
+
+
+
+
+
 # [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.2.0...@synerise/ds-list-item@0.3.0) (2024-07-02)
 
 

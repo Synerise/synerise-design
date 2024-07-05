@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.23](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.15.22...@synerise/ds-page-header@0.15.23) (2024-07-05)
+
+
+### Bug Fixes
+
+* fixed missing dependencies ([f718fb7](https://github.com/synerise/synerise-design/commit/f718fb7e954a19857ea4b6bbd417e3fe290fd2dc))
+
+
+
+
+
 ## [0.15.22](https://github.com/synerise/synerise-design/compare/@synerise/ds-page-header@0.15.21...@synerise/ds-page-header@0.15.22) (2024-07-02)
 
 **Note:** Version bump only for package @synerise/ds-page-header

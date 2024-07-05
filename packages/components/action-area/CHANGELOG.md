@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.5.0...@synerise/ds-action-area@0.5.1) (2024-07-05)
+
+
+### Bug Fixes
+
+* fixed missing dependencies ([f718fb7](https://github.com/Synerise/synerise-design/commit/f718fb7e954a19857ea4b6bbd417e3fe290fd2dc))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.4.2...@synerise/ds-action-area@0.5.0) (2024-07-02)
 
 

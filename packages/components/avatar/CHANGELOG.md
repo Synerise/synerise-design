@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.16.6...@synerise/ds-avatar@0.17.0) (2024-07-05)
+
+
+### Features
+
+* **badge:** added IconBadge ([4f44b60](https://github.com/synerise/synerise-design/commit/4f44b60b3eff77eb6c21b9ba0ec0cdf745100eff))
+
+
+
+
+
 ## [0.16.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.16.5...@synerise/ds-avatar@0.16.6) (2024-07-02)
 
 **Note:** Version bump only for package @synerise/ds-avatar
