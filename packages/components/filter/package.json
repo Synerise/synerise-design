@@ -44,11 +44,7 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "@synerise/ds-step-card": "*",
-    "react": ">=16.9.0 < 17.0.0",
+    "react": ">=16.9.0 <= 17.0.2",
     "styled-components": "5.0.1"
-  },
-  "devDependencies": {
-    "@testing-library/dom": "^7.0.2",
-    "@testing-library/jest-dom": "5.1.1"
   }
 }

@@ -22,7 +22,8 @@ module.exports = {
   },
   moduleFileExtensions: [...defaults.moduleFileExtensions, 'ts', 'tsx'],
   transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
-  testEnvironment: 'jest-environment-jsdom-fourteen',
+  testEnvironment: "jest-environment-jsdom-sixteen",
+
   // watchPlugins: [
   //   'jest-watch-typeahead/filename',
   //   'jest-watch-typeahead/testname'

@@ -42,11 +42,7 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "antd": "4.7.0",
-    "react": ">=16.9.0 < 17.0.0",
+    "react": ">=16.9.0 <= 17.0.2",
     "styled-components": "5.0.1"
-  },
-  "devDependencies": {
-    "@synerise/ds-utils": "^0.27.0",
-    "@testing-library/jest-dom": "5.1.1"
   }
 }

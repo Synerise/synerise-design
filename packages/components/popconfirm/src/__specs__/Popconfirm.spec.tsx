@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/react';
+import { waitFor, fireEvent, screen } from '@testing-library/react';
 
 import Popconfirm from '../Popconfirm';
 
@@ -17,55 +17,55 @@ const IMAGES = [
 
 describe('Popconfirm', () => {
   it('should render', () => {
-    // ARRANGE
-    const { getAllByText } = renderWithProvider(
+    
+    renderWithProvider(
       <Popconfirm title={TITLE}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getAllByText(TEXT)[0]);
+    
+    fireEvent.click(screen.getAllByText(TEXT)[0]);
 
-    //ASSERT
-    expect(getAllByText(TEXT)[0]).toBeInTheDocument();
-    expect(getAllByText(TITLE)[0]).toBeInTheDocument();
-    expect(getAllByText(OK)[0]).toBeInTheDocument();
-    expect(getAllByText(CANCEL)[0]).toBeInTheDocument();
+    
+    expect(screen.getAllByText(TEXT)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(TITLE)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(OK)[0]).toBeInTheDocument();
+    expect(screen.getAllByText(CANCEL)[0]).toBeInTheDocument();
   });
 
   it('should call onCancel when cancel clicked', () => {
-    // ARRANGE
+    
     const onCancel = jest.fn();
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <Popconfirm title={TITLE} cancelText={CANCEL} onCancel={onCancel}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getAllByText(TEXT)[0]);
-    fireEvent.click(getAllByText(CANCEL)[0]);
+    
+    fireEvent.click(screen.getAllByText(TEXT)[0]);
+    fireEvent.click(screen.getAllByText(CANCEL)[0]);
 
-    //ASSERT
+    
     expect(onCancel).toHaveBeenCalled();
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   it('should call onOk when OK clicked', () => {
-    // ARRANGE
+    
     const onConfirm = jest.fn();
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <Popconfirm title={TITLE} okText={OK} onConfirm={onConfirm}>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getAllByText(TEXT)[0]);
-    fireEvent.click(getAllByText(OK)[0]);
+    
+    fireEvent.click(screen.getAllByText(TEXT)[0]);
+    fireEvent.click(screen.getAllByText(OK)[0]);
 
-    //ASSERT
+    
     expect(onConfirm).toHaveBeenCalled();
     expect(onConfirm).toHaveBeenCalledTimes(1);
   });
@@ -73,93 +73,92 @@ describe('Popconfirm', () => {
 
 
   it('should have provided placement', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    
+    renderWithProvider(
       <Popconfirm title={TITLE} placement="bottomRight">
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
+    
+    fireEvent.click(screen.getByText(TEXT));
 
-    //ASSERT
+    
     expect(document.querySelector('button')).toBeInTheDocument();
   });
 
-  it('should trigger popconfirm on focus', () => {
-    // ARRANGE
-    const { getAllByText } = renderWithProvider(
+  it('should trigger popconfirm on focus', async () => {
+    renderWithProvider(
       <Popconfirm title={TITLE} trigger="focus">
         <button>{TEXT}</button>
       </Popconfirm>
     );
+    const trigger = screen.getByText(TEXT);
+    expect(trigger).toBeInTheDocument();
+    
+    fireEvent.focus(trigger);
 
-    // ACT
-    fireEvent.focus(getAllByText(TEXT)[0]);
-
-    //ASSERT
-    expect(getAllByText(OK)[0]).toBeInTheDocument();
-    expect(getAllByText(CANCEL)[0]).toBeInTheDocument();
+    await waitFor(() => {
+      expect( screen.getByText(OK)).toBeInTheDocument();
+      expect( screen.getByText(CANCEL)).toBeInTheDocument();
+    }, { timeout: 500})
   });
 
   it('should NOT show popconfirm when disabled', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       <Popconfirm title={TITLE} disabled>
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
+    
+    fireEvent.click(screen.getByText(TEXT));
 
-    //ASSERT
+    
     expect(document.querySelectorAll('button').length).toBe(1);
   });
 
   it('should have proper title', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    
+    renderWithProvider(
       <Popconfirm title={TITLE} okText="okText" cancelText="cancelText">
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
+    
+    fireEvent.click(screen.getByText(TEXT));
 
-    //ASSERT
-    expect(getByText(TITLE)).toBeInTheDocument();
+    
+    expect(screen.getByText(TITLE)).toBeInTheDocument();
   });
 
   it('should have proper description', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    
+    renderWithProvider(
       <Popconfirm title={TITLE} description={DESCRIPTION} okText="okText" cancelText="cancelText">
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
+    fireEvent.click(screen.getByText(TEXT));
 
-    //ASSERT
-    expect(getByText(DESCRIPTION)).toBeInTheDocument();
+    
+    expect(screen.getByText(DESCRIPTION)).toBeInTheDocument();
   });
 
   it('should have 3 slides in image carousel', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    
+    renderWithProvider(
       <Popconfirm title={TITLE} images={IMAGES} description={DESCRIPTION} okText="okText" cancelText="cancelText">
         <button>{TEXT}</button>
       </Popconfirm>
     );
 
-    // ACT
-    fireEvent.click(getByText(TEXT));
+    
+    fireEvent.click(screen.getByText(TEXT));
 
-    //ASSERT
+    
     expect(document.querySelectorAll('.slick-slide').length).toBe(3);
     expect(document.querySelectorAll('.slick-dots li').length).toBe(3);
   });

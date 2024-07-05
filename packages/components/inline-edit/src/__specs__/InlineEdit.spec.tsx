@@ -1,7 +1,6 @@
-import * as React from 'react';
-import '@testing-library/jest-dom/extend-expect';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, waitFor } from '@testing-library/react';
 import InlineEdit from '../';
 
 const PLACEHOLDER = 'Placeholder';
@@ -12,18 +11,18 @@ const onEnterPress = jest.fn();
 const onBlur = jest.fn();
 
 const setup = ({
-    disabled = false,
-    maxLength,
-    autoComplete,
-    name = 'name-of-input',
-    hideIcon,
-  }: {
-    disabled?: boolean,
-    maxLength?: number,
-    autoComplete?: string,
-    name?: string
-    hideIcon?: boolean
-  }) => {
+  disabled = false,
+  maxLength,
+  autoComplete,
+  name = 'name-of-input',
+  hideIcon,
+}: {
+  disabled?: boolean;
+  maxLength?: number;
+  autoComplete?: string;
+  name?: string;
+  hideIcon?: boolean;
+}) => {
   const utils = renderWithProvider(
     <InlineEdit
       input={{
@@ -41,149 +40,118 @@ const setup = ({
       disabled={disabled}
       hideIcon={hideIcon}
     />
-  )
+  );
   const input = utils.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
   return {
     input,
-    utils
-  }
-}
+    utils,
+  };
+};
 
 describe('InlineEdit', () => {
-
   it('should render', () => {
-    // ARRANGE
-    const { input } = setup({})
+    const { input } = setup({});
 
-    // ASSERT
-    expect(input).toBeTruthy()
+    expect(input).toBeTruthy();
   });
-
 
   it('should trigger onChange', () => {
-    // ARRANGE
-    const { input } = setup({})
+    const { input } = setup({});
 
-    // ACT
-    fireEvent.change(input, { target: { value: INPUT_VALUE_CHANGED } })
+    fireEvent.change(input, { target: { value: INPUT_VALUE_CHANGED } });
 
-    // ASSERT
     expect(onChange).toHaveBeenCalled();
-    expect(input.value).toBe(INPUT_VALUE)
+    expect(input.value).toBe(INPUT_VALUE);
   });
-  beforeEach(()=>{
+  beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
-  })
+  });
 
   const names = ['is-input-name', 'test_input', 'is_input_name', 'is-input_test-name'];
   const ids = ['isInputName', 'testInput', 'isInputName', 'isInputTestName'];
   names.map((name: string, i: number) => {
     it(`should have id of string ${name} wrote by camelCase`, () => {
-      // ARRANGE
       const { input } = setup({
-        name
+        name,
       });
 
-      // ASSERT
-      expect(input.id).toBe(ids[i])
+      expect(input.id).toBe(ids[i]);
     });
-  })
+  });
 
   it('should have name attribute', () => {
-    // ARRANGE
-    const { input } = setup({})
+    const { input } = setup({});
 
-    // ASSERT
-    expect(input.name).toBe('name-of-input')
+    expect(input.name).toBe('name-of-input');
   });
 
   it('should have disabled', () => {
-    // ARRANGE
     const { input } = setup({
-      disabled: true
-    })
+      disabled: true,
+    });
 
-    // ASSERT
-    expect(input).toBeDisabled()
+    expect(input).toBeDisabled();
   });
 
   it('should not have disabled', () => {
-    // ARRANGE
     const { input } = setup({
-      disabled: false
-    })
+      disabled: false,
+    });
 
-    // ASSERT
-    expect(input).not.toBeDisabled()
+    expect(input).not.toBeDisabled();
   });
 
   const maxLengths = [50, 100, 200];
   maxLengths.map((maxLength: number) => {
     it(`should have max-length ${maxLength}`, () => {
-        // ARRANGE
-        const { input } = setup({
-          maxLength
-        })
+      const { input } = setup({
+        maxLength,
+      });
 
-        // ASSERT
-        expect(input).toHaveAttribute('maxlength', String(maxLength))
+      expect(input).toHaveAttribute('maxlength', String(maxLength));
     });
-  })
+  });
 
   const autoCompleteAttrs = ['off', 'on'];
   autoCompleteAttrs.map((autoComplete: string) => {
     it(`should autoComplete ${autoComplete}`, () => {
-      // ARRANGE
       const { input } = setup({
-        autoComplete
-      })
+        autoComplete,
+      });
 
-      // ASSERT
-      expect(input).toHaveAttribute('autoComplete', autoComplete)
+      expect(input).toHaveAttribute('autoComplete', autoComplete);
     });
-  })
-
-
-  it('should have style', () => {
-    // ARRANGE
-    const { input } = setup({})
-
-    // ASSERT
-    expect(input).toHaveAttribute('style')
   });
 
-  it('shoud hide icon', () => {
-    // ARRANGE
+  it('should have style', () => {
+    const { input } = setup({});
+
+    expect(input).toHaveAttribute('style');
+  });
+
+  it('should hide icon', () => {
     const { utils } = setup({
       hideIcon: true,
     });
 
-    // ASSERT
     expect(utils.queryAllByTestId('inline-edit-icon').length).toBe(0);
   });
 
-  it('should fire onEnterPress', () => {
-    // ARRANGE
+  it('should fire onEnterPress', async () => {
     const { input } = setup({});
 
-    // ACT
     fireEvent.focus(input);
     fireEvent.keyPress(input, {key: 'Enter', keyCode: 13});
-
-    // ASSERT
-    expect(onEnterPress).toBeCalled();
+    
+    await waitFor(() => expect(onEnterPress).toBeCalled(), { timeout: 500 });
   });
 
-  it('should fire onBlur', () => {
-    // ARRANGE
-    const { input } = setup({});
+  it('should fire onBlur', async () => {
+    const { input, utils } = setup({});
 
-    // ACT
     fireEvent.focus(input);
     fireEvent.blur(input);
-
-    // ASSERT
-    expect(onBlur).toBeCalled();
+    await waitFor(() => expect(onBlur).toBeCalled(), { timeout: 500 });
   });
 });

@@ -4,9 +4,7 @@ import * as React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent } from '@testing-library/react';
 import InformationCard from '../index';
-import S from '../InformationCard.styles';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
-import { action } from '@storybook/addon-actions';
+import { NOOP, focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
@@ -17,7 +15,7 @@ const sampleDesc = 'sample description';
 
 function testComponentAdapter(renderFunction, options = { usingPortal: false }) {
   const rendered = renderWithProvider(renderFunction(), options.usingPortal ? { container: document.body } : undefined);
-  const { getByText, container } = rendered;
+  const { container } = rendered;
   return {
     ...rendered,
     // https://github.com/ant-design/ant-design/blob/4.7.3/components/divider/index.tsx#L21-L29
@@ -122,7 +120,7 @@ export function WithDropdown(numberOfElements = 1) {
     text: 'Show',
     hoverTooltipProps: popoverProps(visible),
     renderHoverTooltip: () => (
-      <InformationCard title="Show" subtitle="someElement.key" descriptionConfig={{ onChange: action('onChange') }} />
+      <InformationCard title="Show" subtitle="someElement.key" descriptionConfig={{ onChange: NOOP }} />
     ),
   });
   return (

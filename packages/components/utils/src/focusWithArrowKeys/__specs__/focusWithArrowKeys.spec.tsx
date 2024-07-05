@@ -1,7 +1,8 @@
-import focusWithArrowKeys from '../focusWithArrowKeys';
-import * as React from 'react';
-import { fireEvent } from '@testing-library/react';
+import React from 'react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
 import renderWithProvider from '../../testing/renderWithProvider/renderWithProvider';
+import focusWithArrowKeys from '../focusWithArrowKeys';
 
 describe('focusWithArrowKeys', () => {
   const fallback = jest.fn();
@@ -12,8 +13,9 @@ describe('focusWithArrowKeys', () => {
   const onFirstElementClick = jest.fn();
   const onSecondElementClick = jest.fn();
   const wrapperWithSimpleChildren = (
-    <div className={'wrapper'} onKeyDown={event => focusWithArrowKeys(event, 'focusable', fallback)}>
+    <div data-testid='wrapper' onKeyDown={event => focusWithArrowKeys(event, 'focusable', fallback)}>
       <button
+        data-testid="element-1"
         className="focusable"
         onFocus={onFirstElementFocus}
         onBlur={onFirstElementBlur}
@@ -22,6 +24,7 @@ describe('focusWithArrowKeys', () => {
         button 1
       </button>
       <button
+        data-testid="element-2"
         className="focusable"
         onFocus={onSecondElementFocus}
         onBlur={onSecondElementBlur}
@@ -32,9 +35,10 @@ describe('focusWithArrowKeys', () => {
     </div>
   );
   const wrapperWithNestedChildren = (
-    <div className={'wrapper'} onKeyDown={event => focusWithArrowKeys(event, 'focusable', fallback)}>
+    <div data-testid='wrapper' onKeyDown={event => focusWithArrowKeys(event, 'focusable', fallback)}>
       <div>
         <button
+          data-testid="element-1"
           className="focusable"
           onFocus={onFirstElementFocus}
           onBlur={onFirstElementBlur}
@@ -46,6 +50,7 @@ describe('focusWithArrowKeys', () => {
       <div>
         <div>
           <button
+            data-testid="element-2"
             className="focusable"
             onFocus={onSecondElementFocus}
             onBlur={onSecondElementBlur}
@@ -59,116 +64,134 @@ describe('focusWithArrowKeys', () => {
   );
 
   describe('without nested focusable elements', () => {
-    it('should focus on first element on arrow down press', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithSimpleChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
+    it('should focus on first element on arrow down press', async () => {
+      renderWithProvider(wrapperWithSimpleChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(onFirstElementFocus).toBeCalled();
-      expect(onSecondElementFocus).toBeCalledTimes(0);
+      await waitFor(() => {
+        expect(onFirstElementFocus).toBeCalled();
+        expect(onSecondElementFocus).toBeCalledTimes(0);
+      }, { timeout: 500 })
+      
+      
     });
-    it('should focus on next sibling when arrowDown pressed', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithSimpleChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should focus on next sibling when arrowDown pressed', async () => {
+      renderWithProvider(wrapperWithSimpleChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(onFirstElementBlur).toBeCalled();
-      expect(onSecondElementFocus).toBeCalled();
-      expect(onSecondElementBlur).toBeCalledTimes(0);
+      
+      await waitFor(() => {
+        expect(onFirstElementBlur).toBeCalled();
+        expect(onSecondElementFocus).toBeCalled();
+        expect(onSecondElementBlur).toBeCalledTimes(0);
+      }, {timeout: 500});
+
     });
-    it('should execute fallback when there in no next element to focus', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithSimpleChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute fallback when there in no next element to focus', async () => {
+      
+      renderWithProvider(wrapperWithSimpleChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(fallback).toBeCalled();
+      
+      await waitFor(() => {
+        expect(fallback).toBeCalled();
+      }, {timeout: 500});
     });
-    it('should execute fallback when there in no previous element to focus', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithSimpleChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute fallback when there in no previous element to focus', async () => {
+      
+      renderWithProvider(wrapperWithSimpleChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowUp', code: 'ArrowUp' });
-      // ASSERT
-      expect(fallback).toBeCalled();
+      
+      await waitFor(() => {
+        expect(fallback).toBeCalled();
+      }, {timeout: 500});
     });
-    it('should execute onClick on enter pressed', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithSimpleChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute onClick on enter pressed', async () => {
+      
+      renderWithProvider(wrapperWithSimpleChildren);
+      const wrapper = screen.getByTestId('wrapper')
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'Enter', code: 'Enter' });
-      // ASSERT
-      expect(onFirstElementClick).toBeCalledTimes(0);
-      expect(onSecondElementClick).toBeCalled();
+      
+      await waitFor(() => {
+        expect(onFirstElementClick).toBeCalledTimes(0);
+        expect(onSecondElementClick).toBeCalled();
+      }, {timeout: 500});
     });
   });
 
 
 
   describe('with nested focusable elements', () => {
-    it('should focus on first element on arrow down press', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithNestedChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should focus on first element on arrow down press', async () => {
+      
+      renderWithProvider(wrapperWithNestedChildren);
+      const wrapper = screen.getByTestId('wrapper')
+
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(onFirstElementFocus).toBeCalled();
+      
+      await waitFor(() => {
+        expect(onFirstElementFocus).toBeCalled();
+      }, { timeout: 500 })
     });
-    it('should focus on next sibling when arrowDown pressed', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithNestedChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should focus on next sibling when arrowDown pressed', async () => {
+      renderWithProvider(wrapperWithNestedChildren);
+      const wrapper = screen.getByTestId('wrapper')
+
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(onFirstElementBlur).toBeCalled();
-      expect(onSecondElementFocus).toBeCalled();
-      expect(onSecondElementBlur).toBeCalledTimes(0);
+
+      await waitFor(() => {
+        expect(onFirstElementBlur).toBeCalled();
+        expect(onSecondElementFocus).toBeCalled();
+        expect(onSecondElementBlur).toBeCalledTimes(0);
+      })
     });
-    it('should execute fallback when there in no next element to focus', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithNestedChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute fallback when there in no next element to focus', async () => {
+      
+      renderWithProvider(wrapperWithNestedChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
-      // ASSERT
-      expect(fallback).toBeCalled();
+      
+      await waitFor(() => {
+        expect(fallback).toBeCalled();
+      }, { timeout: 500 })
     });
-    it('should execute fallback when there in no previous element to focus', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithNestedChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute fallback when there in no previous element to focus', async () => {
+      
+      renderWithProvider(wrapperWithNestedChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowUp', code: 'ArrowUp' });
-      // ASSERT
-      expect(fallback).toBeCalled();
+      
+      await waitFor(() => {
+        expect(fallback).toBeCalled();
+      }, { timeout: 500 })
     });
-    it('should execute onClick on enter pressed', () => {
-      // ARRANGE
-      const { container } = renderWithProvider(wrapperWithNestedChildren);
-      const wrapper = container.querySelector('.wrapper') as HTMLElement;
-      // ACT
+    it('should execute onClick on enter pressed', async () => {
+      renderWithProvider(wrapperWithNestedChildren);
+      const wrapper = screen.getByTestId('wrapper')
+      
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'ArrowDown', code: 'ArrowDown' });
       fireEvent.keyDown(wrapper, { key: 'Enter', code: 'Enter' });
-      // ASSERT
-      expect(onFirstElementClick).toBeCalledTimes(0);
-      expect(onSecondElementClick).toBeCalled();
+      
+      await waitFor(() => {
+        expect(onFirstElementClick).toBeCalledTimes(0);
+        expect(onSecondElementClick).toBeCalled();
+      }, { timeout: 500 })
     });
   });
 });

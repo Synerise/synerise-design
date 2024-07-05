@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import CardTabs from '../CardTabs';
 import CardTab from '../CardTab/CardTab';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { FileM } from '@synerise/ds-icon';
 import { CardTabsItem } from '../CardTabs.types';
 import { prefixType } from '../CardTab/CardTab.types';
@@ -138,7 +138,7 @@ describe('Card Tabs', () => {
     expect(onDuplicate).toBeCalled();
   });
 
-  it('should call onChangeName function', () => {
+  it('should call onChangeName function', async () => {
     const onChangeName = jest.fn();
     const { container } = renderWithProvider(<CardTabs maxTabsCount={3}>
       { ITEMS.map((item: CardTabsItem, index: number) => <CardTab key={index} id={item.id} name={item.name} tag={item.tag} prefix={prefixType.TAG} onChangeName={onChangeName} />) }
@@ -157,7 +157,7 @@ describe('Card Tabs', () => {
       fireEvent.blur(input);
     }
 
-    expect(onChangeName).toBeCalled();
+    await waitFor(() => expect(onChangeName).toBeCalled());
   });
 
   it('should render disabled tabs', () => {
