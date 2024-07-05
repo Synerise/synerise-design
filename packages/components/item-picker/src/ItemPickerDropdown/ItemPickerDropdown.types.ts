@@ -1,19 +1,23 @@
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { ReactNode } from 'react';
+import { ListItemProps } from '@synerise/ds-list-item';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 
-export interface Props {
-  onChange: (item: MenuItemProps) => void;
+export type ItemPickerDropdownProps = {
+  onChange: (item: ListItemProps) => void;
   placeholder: string;
   clearSearchQuery?: number;
-  dataSource: MenuItemProps[];
+  dataSource: ListItemProps[];
   closeDropdown: () => void;
   noResults: string;
   dropdownVisibleRows?: number;
   dropdownRowHeight?: number;
-  dropdownBottomAction?: React.ReactNode;
+  dropdownBottomAction?: ReactNode;
   closeOnBottomAction?: boolean;
   isDropdownOpened: boolean;
   searchBarProps?: Partial<SearchBarProps>;
   scrollbarProps?: ScrollbarAdditionalProps;
-}
+};
+
+// @deprecated
+export type Props = ItemPickerDropdownProps;
