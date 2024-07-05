@@ -25,6 +25,7 @@ export type TriggerHandle = Component<TriggerProps> & { getPopupDomNode: () => H
 
 export type ListItemProps = {
   checked?: boolean;
+  selected?: boolean;
   children?: ReactNode;
   className?: string;
   copyable?: boolean;

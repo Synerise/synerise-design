@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Icon, { IconProps } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
+import Icon, { IconProps } from '@synerise/ds-icon';
+import ListItem from '@synerise/ds-list-item';
 
 export const AddItemLayout = styled.div`
   display: flex;
@@ -28,14 +28,15 @@ export const TagInfoIcon = styled(Icon)`
   }
 `;
 
-export const TagItems = styled(Menu)`
+export const TagItems = styled.div`
   &&& {
+    padding: 8px;
     width: auto;
     min-height: 176px;
   }
 `;
 
-export const TagItem = styled(Menu.Item)`
+export const TagItem = styled(ListItem)`
   &&&& {
     &:hover {
       ${TagInfoIcon} {

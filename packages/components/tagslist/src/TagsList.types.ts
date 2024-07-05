@@ -47,6 +47,7 @@ export type TagsListItem = {
   name: string;
   favourite?: boolean;
   checked?: boolean;
+  selected?: boolean;
   visibility?: TagVisibility;
   description?: string;
   canUpdate?: boolean;

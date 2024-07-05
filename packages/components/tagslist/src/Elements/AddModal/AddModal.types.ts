@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 import { TagsListItem, TagsListTexts } from '../../TagsList.types';
 
 export type AddModalProps = {
@@ -7,9 +7,9 @@ export type AddModalProps = {
   texts?: TagsListTexts;
   loading?: boolean;
   tristate?: boolean;
-  trigger?: React.ReactNode;
+  trigger?: ReactNode;
   searchAddTag?: boolean;
   onItemsAdd?: (items: TagsListItem[]) => void;
   onVisibleChange?: (visible: boolean) => void;
-  onManageTags?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onManageTags?: (event: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
 };

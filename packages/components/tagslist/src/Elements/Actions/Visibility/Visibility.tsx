@@ -1,6 +1,5 @@
-import React from 'react';
-import { MenuProps } from 'antd/lib/menu';
-
+import React, { memo, useState } from 'react';
+import type { ListItemProps } from '@synerise/ds-list-item';
 import Icon, { CheckS, ShowM, ShowCheckM, HideM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { NOOP } from '@synerise/ds-utils';
@@ -10,7 +9,7 @@ import { VisibilityProps } from '../Actions.types';
 
 import * as S from '../Actions.styles';
 
-export const CheckIcon: React.FC = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
+export const CheckIcon = () => <Icon color={theme.palette['green-600']} component={<CheckS />} />;
 
 const visibilityIcons = {
   [TagVisibility.Show]: ShowM,
@@ -18,20 +17,20 @@ const visibilityIcons = {
   [TagVisibility.Hide]: HideM,
 };
 
-const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOOP, item }) => {
+const Visibility = ({ texts, onVisibilityChange = NOOP, item }: VisibilityProps) => {
   const visibilities = {
     [TagVisibility.Show]: texts?.visibilityShow,
     [TagVisibility.Hide]: texts?.visibilityHide,
     [TagVisibility.ShowIfUsed]: texts?.visibilityShowIfUsed,
   };
 
-  const [stateVisibility, setVisibility] = React.useState(item.visibility);
+  const [stateVisibility, setVisibility] = useState(item.visibility);
 
   return (
     <>
       {Object.keys(visibilities).map((key: string) => {
         const text = visibilities[key];
-        const dropdownMenuItemClick: MenuProps['onClick'] = (event): void => {
+        const dropdownMenuItemClick: ListItemProps['onClick'] = (event): void => {
           event.domEvent.stopPropagation();
           const vis = key as TagVisibility;
           setVisibility(vis);
@@ -54,4 +53,4 @@ const Visibility: React.FC<VisibilityProps> = ({ texts, onVisibilityChange = NOO
   );
 };
 
-export default React.memo(Visibility);
+export default memo(Visibility);

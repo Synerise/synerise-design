@@ -1,5 +1,6 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
+import { Text } from '@synerise/ds-typography';
 import { BorderLessInput } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { BaseProps as DSInputProps } from '@synerise/ds-input';
 import Icon from '@synerise/ds-icon';
@@ -13,7 +14,7 @@ export type TagsListItemType = {
   withCheckbox?: boolean;
 };
 
-export const rootPrefix = ({ rootPrefixCls }: TagsListItemType): string => rootPrefixCls || 'ant-menu';
+export const rootPrefix = ({ rootPrefixCls }: TagsListItemType): string => rootPrefixCls || 'ds-list-item';
 
 export const applyDots = (color: string): FlattenSimpleInterpolation => css`
   background-color: transparent;
@@ -49,7 +50,7 @@ export const TagIcon = styled(Icon)`
   }
 `;
 
-export const TagsListItem = styled(Menu.Item)<TagsListItemType>`
+export const TagsListItem = styled(ListItem)<TagsListItemType>`
   &&&& {
     min-height: 32px;
     z-index: 1;
@@ -115,7 +116,7 @@ export const TagsListItem = styled(Menu.Item)<TagsListItemType>`
   }
 `;
 
-export const TagsListText = styled.div`
+export const TagsListText = styled(Text)`
   padding-right: 20px;
   overflow: hidden;
   display: block;

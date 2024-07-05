@@ -111,6 +111,7 @@
     "@types/debounce": "^1.2.1",
     "@types/enzyme": "3.10.13",
     "@types/jest": "29.5.4",
+    "@types/react-highlight-words": "^0.16.4",
     "@types/styled-components": "5.1.27",
     "@typescript-eslint/eslint-plugin": "4.9.1",
     "@typescript-eslint/parser": "4.9.1",
