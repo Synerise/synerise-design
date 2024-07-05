@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as React from 'react';
+import React from 'react';
+import { useIntl } from 'react-intl';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import { getDefaultTexts } from '@synerise/ds-date-picker/dist/utils/getDefaultTexts';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
 import { TimestampRangeProps as Props } from './TimestampRange.types';
@@ -28,6 +30,8 @@ const TimestampRange: React.FC<Props> = ({
   const [durationValue, setDurationValue] = React.useState<number>(currentRange?.duration?.value);
   const [durationUnit, setDurationUnit] = React.useState<string>(currentRange?.duration?.type);
   const [error, setError] = React.useState<boolean>(!timestamp);
+  const intl = useIntl();
+  const allTexts = getDefaultTexts(intl, texts);
   React.useEffect(() => {
     setError(!timestamp);
   }, [timestamp]);
@@ -55,6 +59,7 @@ const TimestampRange: React.FC<Props> = ({
     return (
       <S.DatePickerWrapper error={error}>
         <DatePicker
+          intl={intl}
           value={timestamp}
           onValueChange={(value): void => {
             setError(!value);
@@ -73,10 +78,10 @@ const TimestampRange: React.FC<Props> = ({
           disabledHours={[]}
           disabledMinutes={[]}
           texts={{
-            apply: texts.apply,
-            now: texts.now,
-            clearTooltip: texts.clear,
-            inputPlaceholder: texts.selectDate,
+            apply: allTexts.apply,
+            now: allTexts.now,
+            clearTooltip: allTexts.clearTooltip,
+            inputPlaceholder: allTexts.inputPlaceholder,
           }}
           showTime
           error={error}

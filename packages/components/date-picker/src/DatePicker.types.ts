@@ -9,17 +9,17 @@ export type DatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
   disabledDates?: (date?: Date) => boolean;
-  disabledHours: number[];
-  disabledMinutes: number[];
-  disabledSeconds: number[];
+  disabledHours?: number[];
+  disabledMinutes?: number[];
+  disabledSeconds?: number[];
   dropdownProps?: Partial<DropdownProps>;
   /**
    * @deprecated use `valueFormatOptions` instead
    */
   format?: string;
   valueFormatOptions?: DateToFormatOptions;
-  intl?: IntlShape;
-  onApply?: (date?: Date) => void;
+  intl: IntlShape;
+  onApply: (date?: Date) => void;
   onClear?: () => void;
   onDropdownVisibleChange?: (visible: boolean) => void;
   onValueChange?: (date?: Date) => void;
@@ -29,7 +29,7 @@ export type DatePickerProps = {
   prefixel?: ReactNode;
   suffixel?: ReactNode;
   showTime?: boolean;
-  texts: Texts;
+  texts?: Partial<Texts>;
   renderTrigger?: () => ReactElement;
   value?: Date;
   useStartOfDay?: boolean;
@@ -62,6 +62,6 @@ export type Modifier = {
 export type Texts = {
   apply: ReactNode;
   now: ReactNode;
-  inputPlaceholder?: string;
-  clearTooltip?: ReactNode;
+  inputPlaceholder: string;
+  clearTooltip: ReactNode;
 };

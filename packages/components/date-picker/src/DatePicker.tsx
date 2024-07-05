@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
@@ -7,6 +8,7 @@ import type { DatePickerProps } from './DatePicker.types';
 import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
+import { getDefaultTexts } from './utils/getDefaultTexts';
 
 const DatePicker = ({
   autoFocus,
@@ -35,6 +37,8 @@ const DatePicker = ({
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = useState(value);
   const ref = useRef<HTMLDivElement>(null);
+  const intl = useIntl();
+  const allTexts = getDefaultTexts(intl, texts);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
   });
@@ -81,10 +85,10 @@ const DatePicker = ({
       format={format}
       valueFormatOptions={valueFormatOptions}
       onClear={handleClear}
-      placeholder={texts.inputPlaceholder}
+      placeholder={allTexts.inputPlaceholder}
       prefixel={prefixel}
       suffixel={suffixel}
-      clearTooltip={texts.clearTooltip}
+      clearTooltip={allTexts.clearTooltip}
       highlight={!!dropVisible && !disabled}
       error={error}
       errorText={errorText}
@@ -101,7 +105,7 @@ const DatePicker = ({
           <RawDatePicker
             {...rest}
             showTime={showTime}
-            texts={texts}
+            texts={allTexts}
             onApply={onApplyCallback}
             onValueChange={onValueChangeCallback}
             value={selectedDate}
