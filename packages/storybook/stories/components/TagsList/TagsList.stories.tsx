@@ -11,7 +11,7 @@ import {
 import Menu from '@synerise/ds-menu';
 import { NOOP } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { ADD_TAGS, FOLDERS, TEXTS, TOP_MENU_ITEMS } from './TagsList.constants';
+import { ADD_ITEMS_LOADING_TIMEOUT, ADD_TAGS, FOLDERS, TEXTS, TOP_MENU_ITEMS } from './TagsList.constants';
 import { theme } from '@synerise/ds-core';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import { fn } from '@storybook/test';
@@ -69,13 +69,13 @@ export const ControlledInSidebar: Story = {
         setTimeout(() => {
           setAddItemsLoading(false);
           setAddItems(ADD_TAGS);
-        }, 1000);
+        }, ADD_ITEMS_LOADING_TIMEOUT);
 
       if (!visible)
         setTimeout(() => {
           setAddItemsLoading(true);
           setAddItems([]);
-        }, 1000);
+        }, ADD_ITEMS_LOADING_TIMEOUT);
       args.onAddDropdown?.(visible);
     };
 

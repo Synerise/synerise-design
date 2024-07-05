@@ -1,11 +1,13 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react';
+import { configure } from '@storybook/test';
 
 import { DSProvider, theme } from '@synerise/ds-core';
 import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
 import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 
+configure({asyncUtilTimeout: 3000});
 
 const preview: Preview = {
   globalTypes: {

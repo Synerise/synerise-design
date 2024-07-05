@@ -1,13 +1,13 @@
 import { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, expect, fn, userEvent } from '@storybook/test';
+import { within, waitFor, expect, fn, userEvent } from '@storybook/test';
 import type { CascaderProps } from '@synerise/ds-cascader';
 
 import CascaderMeta from './Cascader.stories';
 import * as mock from './data/mock.json';
 import { isKeyCategory, limitCategories } from './data/utils';
-import { waitFor, sleep } from '../../utils';
+import { sleep } from '../../utils';
 
 const root = mock.default;
 
@@ -51,11 +51,11 @@ export const ShowHeaderBreadcrumb: Story = {
       const nextLevel = filterCategoryData(level[nextLevelLabel]);
       const nextLevelEntries = Object.entries(nextLevel);
       
-      await userEvent.click(canvas.getByTitle(nextLevelLabel));
+      await userEvent.click(canvas.getByText(nextLevelLabel));
       await waitFor(() => {
         expect(canvas.getByText(nextLevelLabel)).toBeInTheDocument();
         nextLevelEntries.forEach(([name]) => {
-          expect(canvas.getByTitle(name)).toBeInTheDocument();
+          expect(canvas.getByText(name)).toBeInTheDocument();
         })
         expect(canvas.getAllByText(args.categorySuffix as string).length).toEqual(nextLevelEntries.length);
       });
