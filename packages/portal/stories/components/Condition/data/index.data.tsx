@@ -69,6 +69,12 @@ export const PARAMETER_ITEMS = [
     icon: <VarTypeNumberM />,
   },
   {
+    id: 5,
+    name: 'Attribute with very long name example',
+    groupId: 1,
+    icon: <VarTypeNumberM />,
+  },
+  {
     id: 110,
     name: 'First name',
     groupId: 3,

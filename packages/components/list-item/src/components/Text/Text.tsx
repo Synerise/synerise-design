@@ -16,7 +16,6 @@ const Text = (props: BasicItemProps) => {
     className,
     children,
     itemKey,
-    title,
     noHover,
     size,
     prefixel,
@@ -120,7 +119,6 @@ const Text = (props: BasicItemProps) => {
       data-testid="ds-list-item"
       className={`ds-list-item ${className} ${checked ? 'ds-list-item-selected' : ''}`}
       tabIndex={disabled ? -1 : 0}
-      title={title || (typeof children === 'string' ? children : undefined)}
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}

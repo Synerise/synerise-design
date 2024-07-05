@@ -53,7 +53,6 @@ export type ListItemProps = {
   suffixVisibilityTrigger?: 'hover' | 'default';
   text?: ReactNode;
   timeToHideTooltip?: number;
-  title?: string;
   tooltipProps?: TooltipProps;
   type?: ItemType;
 } & Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
