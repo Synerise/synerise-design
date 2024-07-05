@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useCallback, useMemo, useRef } from 'react';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import { Description } from '@synerise/ds-typography';
 import Dropdown from '@synerise/ds-dropdown';
@@ -8,7 +8,7 @@ import ItemPickerDropdown from './ItemPickerDropdown/ItemPickerDropdown';
 import Trigger from './ItemPickerTrigger/Trigger';
 import { ItemPickerProps } from './ItemPicker.types';
 
-const ItemPicker: React.FC<ItemPickerProps> = ({
+const ItemPicker = ({
   dataSource,
   intl,
   onChange,
@@ -40,11 +40,11 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
   yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),
   withClearConfirmation,
   scrollbarProps,
-}) => {
-  const [dropdownOpened, setDropdownOpened] = React.useState<boolean>(false);
-  const clearSearchBarValue = React.useRef<number>();
+}: ItemPickerProps) => {
+  const [dropdownOpened, setDropdownOpened] = useState(false);
+  const clearSearchBarValue = useRef<number>();
 
-  const onVisibilityChange = (state: boolean): void => {
+  const onVisibilityChange = (state: boolean) => {
     setDropdownOpened(state);
 
     if (state && typeof onFocus === 'function') {
@@ -58,17 +58,17 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
     }
   };
 
-  const openDropdown = React.useCallback(() => {
+  const openDropdown = useCallback(() => {
     setDropdownOpened(true);
     typeof onFocus === 'function' && onFocus();
   }, [setDropdownOpened, onFocus]);
 
-  const closeDropdown = React.useCallback(() => {
+  const closeDropdown = useCallback(() => {
     setDropdownOpened(false);
     typeof onBlur === 'function' && onBlur();
   }, [setDropdownOpened, onBlur]);
 
-  const dropdownOverlay = React.useMemo(
+  const dropdownOverlay = useMemo(
     () => (
       <ItemPickerDropdown
         searchBarProps={searchBarProps}
@@ -102,7 +102,7 @@ const ItemPicker: React.FC<ItemPickerProps> = ({
     ]
   );
 
-  const renderTrigger = React.useMemo(
+  const renderTrigger = useMemo(
     () => (
       <Trigger
         clear={clear}

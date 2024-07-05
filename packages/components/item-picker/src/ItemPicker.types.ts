@@ -1,31 +1,31 @@
-import * as React from 'react';
-import { IntlShape } from 'react-intl';
-import { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
-import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
+import type { ReactNode } from 'react';
+import type { IntlShape } from 'react-intl';
+import type { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
+import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
 export type ItemPickerSize = 'small' | 'large';
 
 export type ItemPickerProps = {
-  dataSource: MenuItemProps[];
+  dataSource: ListItemProps[];
   intl: IntlShape;
-  onChange: (item: MenuItemProps) => void;
+  onChange: (item: ListItemProps) => void;
   onClear?: () => void;
-  placeholder: string | React.ReactNode;
-  changeButtonLabel?: string | React.ReactNode;
-  clear?: string | React.ReactNode;
+  placeholder: ReactNode;
+  changeButtonLabel?: ReactNode;
+  clear?: ReactNode;
   clearConfirmTitle?: string;
   closeOnBottomAction?: boolean;
-  description?: string | React.ReactNode;
+  description?: ReactNode;
   disabled?: boolean;
   dropdownBottomAction?: React.ReactNode;
   dropdownProps?: Partial<DropdownProps>;
   dropdownRowHeight?: number;
   dropdownVisibleRows?: number;
   error?: boolean;
-  errorMessage?: string | React.ReactNode;
-  label?: string | React.ReactNode;
+  errorMessage?: ReactNode;
+  label?: ReactNode;
   onBlur?: () => void;
   onFocus?: () => void;
   noResults?: string;
@@ -33,9 +33,9 @@ export type ItemPickerProps = {
   placeholderIcon?: React.ReactNode;
   searchPlaceholder?: string;
   searchBarProps?: Partial<SearchBarProps>;
-  selectedItem?: MenuItemProps | undefined;
+  selectedItem?: ListItemProps | undefined;
   size?: ItemPickerSize;
-  tooltip?: string | React.ReactNode;
+  tooltip?: ReactNode;
   withClearConfirmation?: boolean;
   yesText?: string;
   scrollbarProps?: ScrollbarAdditionalProps;

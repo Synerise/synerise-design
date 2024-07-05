@@ -1,16 +1,16 @@
-import * as React from 'react';
+import React, { useState, useMemo, useEffect, UIEvent } from 'react';
 import SearchBar from '@synerise/ds-search-bar';
-import Menu from '@synerise/ds-menu';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import ListItem from '@synerise/ds-list-item';
+import type { ListItemProps } from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import * as S from './ItemPickerDropdown.style';
-import { Props } from './ItemPickerDropdown.types';
+import { ItemPickerDropdownProps } from './ItemPickerDropdown.types';
 
 const DEFAULT_ROW_HEIGHT = 32;
 const DEFAULT_VISIBLE_ROWS = 10;
-const ItemPickerDropdown: React.FC<Props> = ({
+const ItemPickerDropdown = ({
   onChange,
   placeholder,
   dataSource,
@@ -24,13 +24,13 @@ const ItemPickerDropdown: React.FC<Props> = ({
   searchBarProps,
   scrollbarProps,
   clearSearchQuery,
-}) => {
+}: ItemPickerDropdownProps) => {
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [scrollTop, setScrollTop] = React.useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [scrollTop, setScrollTop] = useState<number>(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (clearSearchQuery && clearSearchQuery > 0) {
       setSearchQuery('');
     }
@@ -41,12 +41,12 @@ const ItemPickerDropdown: React.FC<Props> = ({
     closeDropdown();
   };
 
-  const handleChange = (item: MenuItemProps) => {
+  const handleChange = (item: ListItemProps) => {
     handleClose();
     onChange(item);
   };
 
-  const filteredDataSource = React.useMemo(() => {
+  const filteredDataSource = useMemo(() => {
     return searchQuery
       ? dataSource.filter(item => item.text && String(item.text).toLowerCase().includes(searchQuery.toLowerCase()))
       : dataSource;
@@ -62,7 +62,7 @@ const ItemPickerDropdown: React.FC<Props> = ({
   };
 
   return (
-    <S.DropdownWrapper>
+    <S.DropdownWrapper data-testid="ds-item-picker-dropdown">
       <SearchBar
         iconLeft={<Icon component={<SearchM />} />}
         onSearchChange={setSearchQuery}
@@ -72,19 +72,19 @@ const ItemPickerDropdown: React.FC<Props> = ({
         autofocus={isDropdownOpened}
         {...searchBarProps}
       />
-      <S.DSMenu>
+      <S.ListWrapper>
         {filteredDataSource?.length === 0 && <Result type="no-results" description={noResults} />}
         <S.StyledScrollbar
           maxHeight={rowCount * rowHeight}
           absolute
-          onScroll={(e: React.UIEvent): void => setScrollTop(e.currentTarget.scrollTop)}
+          onScroll={(event: UIEvent): void => setScrollTop(event.currentTarget.scrollTop)}
           style={{ paddingRight: '8px' }}
           {...scrollbarProps}
         >
           <SearchItems
             data={filteredDataSource}
             highlight={searchBarProps?.value ?? searchQuery}
-            itemRender={(item: MenuItemProps): JSX.Element => <Menu.Item key={item?.text as string} {...item} />}
+            itemRender={(item: ListItemProps) => <ListItem key={item?.text as string} {...item} />}
             onItemClick={(i): void => handleChange(i)}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}
@@ -92,9 +92,10 @@ const ItemPickerDropdown: React.FC<Props> = ({
             listProps={{ scrollTop }}
             // @ts-ignore
             width="100%"
+            renderInMenu={false}
           />
         </S.StyledScrollbar>
-      </S.DSMenu>
+      </S.ListWrapper>
       {renderBottomAction()}
     </S.DropdownWrapper>
   );

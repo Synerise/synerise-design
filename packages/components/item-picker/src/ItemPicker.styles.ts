@@ -17,5 +17,5 @@ export const ItemPickerWrapper = styled.div<{ disabled?: boolean }>`
 `;
 
 export const Error = styled(Description)`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: ${props => props.theme.palette['red-600']};
 `;

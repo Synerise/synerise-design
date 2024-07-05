@@ -1,23 +1,26 @@
-import * as React from 'react';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { ReactNode } from 'react';
+import { ListItemProps } from '@synerise/ds-list-item';
 import { ItemPickerSize } from '../ItemPicker.types';
 
-export interface Props {
+export type ItemPickerTriggerProps = {
   openDropdown: () => void;
   closeDropdown: () => void;
   size: ItemPickerSize;
-  clear: string | React.ReactNode;
+  clear: ReactNode;
   onClear?: () => void;
   opened: boolean;
-  placeholder: string | React.ReactNode;
-  placeholderIcon?: React.ReactNode;
+  placeholder: ReactNode;
+  placeholderIcon?: ReactNode;
   error?: boolean;
   disabled?: boolean;
-  selected?: MenuItemProps;
-  changeButtonLabel?: string | React.ReactNode;
+  selected?: ListItemProps;
+  changeButtonLabel?: ReactNode;
   withChangeButton?: boolean;
   clearConfirmTitle: string;
   yesText: string;
   noText: string;
   withClearConfirmation: boolean;
-}
+};
+
+// @deprecated
+export type Props = ItemPickerTriggerProps;
