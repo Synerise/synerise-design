@@ -32294,8 +32294,8 @@ storybook-addon-pseudo-states@^3.1.1:
 
 storybook-mock-date-decorator@^1.0.2:
   version "1.0.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-mock-date-decorator/-/storybook-mock-date-decorator-1.0.2.tgz#7c360265147a59d36999896d6519702045e02147"
-  integrity sha1-fDYCZRR6WdNpmYltZRlwIEXgIUc=
+  resolved "https://registry.yarnpkg.com/storybook-mock-date-decorator/-/storybook-mock-date-decorator-1.0.2.tgz#7c360265147a59d36999896d6519702045e02147"
+  integrity sha512-aLM/mRtrgQIiBrgtaWI8r+Jo66pRvlxTYdRoZ3uX3+uMFHGvjIf2AJ7/fAJsQVhTwSQpQ3JBKMiBGqjgRXefYA==
   dependencies:
     mockdate "^3.0.5"
 

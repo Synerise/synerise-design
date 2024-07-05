@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
+import React from 'react';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import Footer from '../Elements/Footer/Footer';
@@ -15,8 +15,9 @@ import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/Day
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
 import { changeDayWithHoursPreserved } from '../utils';
 import { RawDatePickerProps } from './RawDatePicker.types';
+import { getDefaultTexts } from '../utils/getDefaultTexts';
 
-class RawDatePicker extends React.Component<RawDatePickerProps, State> {
+class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponentProps, State> {
   static defaultProps = {
     showTime: false,
     disabledHours: [],
@@ -40,12 +41,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
 
   getTexts(): Texts {
     const { texts, intl } = this.props;
-    const updatedTexts: Texts = {
-      apply: texts?.apply || <FormattedMessage id="DS.DATE-PICKER.APPLY" />,
-      now: texts?.now || <FormattedMessage id="DS.DATE-PICKER.NOW" />,
-      inputPlaceholder: texts?.inputPlaceholder || intl?.formatMessage({ id: 'DS.DATE-PICKER.SELECT-DATE' }) || '',
-    };
-    return updatedTexts;
+    return getDefaultTexts(intl, texts);
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
@@ -254,4 +250,4 @@ class RawDatePicker extends React.Component<RawDatePickerProps, State> {
   }
 }
 
-export default RawDatePicker;
+export default injectIntl(RawDatePicker);
