@@ -1,7 +1,8 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import Collector from './Collector';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { createEvent, fireEvent, screen } from '@testing-library/react';
+import { createEvent, fireEvent, waitFor, screen } from '@testing-library/react';
 
 const SUGGESTIONS = [{ text: 'Suggestion 1' }, { text: 'Suggestion 2' }, { text: 'Other' }];
 const SELECTED = [{ text: 'Suggestion 1' }, { text: 'Other' }];
@@ -16,7 +17,7 @@ describe('Collector', () => {
   const onCancelFn = jest.fn();
   const onSelectFn = jest.fn();
 
-  it('Should render suggestions', () => {
+  it('Should render suggestions', async () => {
     renderWithProvider(
       <Collector
         allowCustomValue
@@ -35,8 +36,10 @@ describe('Collector', () => {
         }}
       />
     );
-    screen.getByPlaceholderText(PLACEHOLDER).focus();
-    SUGGESTIONS.map(s => expect(screen.getByText(s['text'])).toBeInTheDocument());
+    userEvent.click(screen.getByPlaceholderText(PLACEHOLDER))
+    await waitFor(() => {
+      SUGGESTIONS.map(s => expect(screen.getByText(s['text'])).toBeInTheDocument());
+    }, {timeout: 500})
   });
   it('Should render selected values', () => {
     

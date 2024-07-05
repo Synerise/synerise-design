@@ -944,7 +944,7 @@ describe('DateRangePicker', () => {
     const moreLabel = screen.getByText(texts.more);
     expect(moreLabel).toBeInTheDocument();
 
-    const moreButton = screen.getByRole('button', {name: /more/i});
+    const moreButton = screen.getByTestId('relative-ranges-dropdown');
     expect(moreButton).toBeInTheDocument();
     expect(moreButton).toHaveClass('ant-btn-tertiary');
       

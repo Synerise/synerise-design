@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FormEvent, MutableRefObject, useEffect, useState } from 'react';
 import Icon, { Close3M } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import * as S from './SearchBar.styles';
 import { SearchBarProps } from './SearchBar.types';
 
-const SearchBar: React.FC<SearchBarProps> = ({
+const SearchBar = ({
   value,
   className,
   onSearchChange,
@@ -19,24 +19,31 @@ const SearchBar: React.FC<SearchBarProps> = ({
   borderRadius,
   handleInputRef,
   autofocusDelay,
-}) => {
-  const [isFocused, setFocus] = React.useState(false);
-  const [inputRef, setInputRef] = React.useState<React.MutableRefObject<HTMLInputElement | null>>();
+}: SearchBarProps) => {
+  const [isFocused, setFocus] = useState(false);
+  const [input, setInput] = useState<HTMLInputElement | null>();
+  const handleRef = (ref: MutableRefObject<HTMLInputElement | null>) => {
+    // eslint-disable-next-line no-unused-expressions
+    handleInputRef?.(ref);
+    if (ref.current) setInput(ref.current);
+  };
 
-  React.useEffect(() => {
-    if (inputRef) {
-      handleInputRef && handleInputRef(inputRef);
+  useEffect(() => {
+    if (input) {
       if (autofocus) {
         if (autofocusDelay) {
-          setTimeout(() => {
-            inputRef.current && inputRef.current.focus({ preventScroll: true });
-          }, 50);
-        } else {
-          inputRef.current && inputRef.current.focus({ preventScroll: true });
+          const timeout = setTimeout(() => {
+            input.focus({ preventScroll: true });
+          }, autofocusDelay);
+          return () => {
+            clearTimeout(timeout);
+          };
         }
+        input.focus({ preventScroll: true });
       }
     }
-  }, [autofocus, autofocusDelay, handleInputRef, inputRef]);
+    return undefined;
+  }, [autofocus, autofocusDelay, input]);
 
   return (
     <S.SearchBarWrapper
@@ -62,14 +69,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </S.ClearInputWrapper>
       )}
       <S.SearchBar
-        onChange={(e: React.FormEvent<HTMLInputElement>): void => onSearchChange(e.currentTarget.value)}
-        onFocus={(): void => setFocus(true)}
-        onBlur={(): void => setFocus(false)}
+        onChange={(event: FormEvent<HTMLInputElement>): void => onSearchChange(event.currentTarget.value)}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
         placeholder={placeholder}
         value={value}
         className={className}
         resetMargin
-        handleInputRef={setInputRef}
+        handleInputRef={handleRef}
         disabled={disabled}
         autoComplete="off"
       />
