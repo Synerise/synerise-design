@@ -204,6 +204,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
 `;
 
 export const Content = styled.div<{ highlight: boolean }>`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   min-width: 0;
   order: 2;
 `;
