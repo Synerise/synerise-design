@@ -9,7 +9,9 @@ export const fixedWrapper400 = (Story, storyContext) => <div style={{ width: '40
 
 export const fixedWrapper588 = (Story, storyContext) => <div style={{ width: '588px' }}>{Story()}</div>;
 
-export const flexColumnWrapper = (Story, storyContext) => <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>{Story()}</div>;
+export const flexColumnWrapper = (Story, storyContext) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
+);
 
 export const centeredPaddedWrapper = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
@@ -40,6 +42,26 @@ export const buttonDecorator = (Story, storyContext) => {
         width: '100%',
         height,
         backgroundColor: backgroundColor,
+      }}
+    >
+      {Story()}
+    </div>
+  );
+};
+
+export const cardTabsDecorator = (Story, storyContext) => {
+  const backgroundColor = Boolean(storyContext.args.greyBackground) ? theme.palette['grey-300'] : 'transparent';
+  const height = storyContext.viewMode === 'story' ? '100vh' : '250px';
+  const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: backgroundColor,
+        width,
+        height,
       }}
     >
       {Story()}

@@ -1,66 +1,55 @@
-import * as React from 'react';
-import { FC, useState, useRef, ReactElement, MouseEvent } from 'react';
+import React, { useState, useRef, MouseEvent } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Icon, { OptionVerticalM, EditM, DuplicateM, TrashM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
-import MenuItem from '@synerise/ds-menu/dist/Elements/Item/MenuItem';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { theme } from '@synerise/ds-core';
 
 import * as S from '../CardTab.styles';
 import { CardTabDropdownProps } from './CardTabDropdown.types';
 
-const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateHandler, removeHandler, texts }) => {
+const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, texts }: CardTabDropdownProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
-  const menuItems: ReactElement[] = [];
+  const menuItems: MenuItemProps[] = [];
 
   useOnClickOutside(ref, () => {
     setOpen(false);
   });
 
   if (editNameHandler) {
-    menuItems.push(
-      <MenuItem
-        onClick={(event): void => {
-          editNameHandler(event.domEvent);
-          setOpen(false);
-        }}
-        key="card-tabs-menu-item-rename"
-        prefixel={<Icon component={<EditM />} />}
-      >
-        {texts.changeNameMenuItem}
-      </MenuItem>
-    );
+    menuItems.push({
+      onClick: event => {
+        editNameHandler(event.domEvent);
+        setOpen(false);
+      },
+      key: 'card-tabs-menu-item-rename',
+      prefixel: <Icon component={<EditM />} />,
+      text: texts.changeNameMenuItem,
+    });
   }
   if (duplicateHandler) {
-    menuItems.push(
-      <MenuItem
-        onClick={(event): void => {
-          duplicateHandler(event.domEvent);
-          setOpen(false);
-        }}
-        key="card-tabs-menu-item-duplicate"
-        prefixel={<Icon component={<DuplicateM />} />}
-      >
-        {texts.duplicateMenuItem}
-      </MenuItem>
-    );
+    menuItems.push({
+      onClick: event => {
+        duplicateHandler(event.domEvent);
+        setOpen(false);
+      },
+      key: 'card-tabs-menu-item-duplicate',
+      prefixel: <Icon component={<DuplicateM />} />,
+      text: texts.duplicateMenuItem,
+    });
   }
   if (removeHandler) {
-    menuItems.push(
-      <MenuItem
-        prefixel={<Icon component={<TrashM />} />}
-        onClick={(event): void => {
-          removeHandler(event.domEvent);
-          setOpen(false);
-        }}
-        key="card-tabs-menu-item-delete"
-        type="danger"
-      >
-        {texts.removeMenuItem}
-      </MenuItem>
-    );
+    menuItems.push({
+      prefixel: <Icon component={<TrashM />} />,
+      onClick: event => {
+        removeHandler(event.domEvent);
+        setOpen(false);
+      },
+      key: 'card-tabs-menu-item-delete',
+      type: 'danger',
+      text: texts.removeMenuItem,
+    });
   }
 
   return (
@@ -70,16 +59,17 @@ const CardTabDropdown: FC<CardTabDropdownProps> = ({ editNameHandler, duplicateH
         placement="bottomLeft"
         trigger={['click']}
         overlay={
-          <div ref={ref}>
-            <Menu asDropdownMenu>{menuItems}</Menu>
+          <div data-testid="card-tabs-dropdown" ref={ref}>
+            <Menu asDropdownMenu dataSource={menuItems} />
           </div>
         }
       >
         <Icon
-          onClick={(event: MouseEvent): void => {
+          onClick={(event: MouseEvent) => {
             event.stopPropagation();
             setOpen(!open);
           }}
+          data-testid="ds-card-tabs-contextmenu"
           component={<OptionVerticalM />}
           color={theme.palette['grey-600']}
         />

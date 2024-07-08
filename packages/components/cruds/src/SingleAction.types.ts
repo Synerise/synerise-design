@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export type SingleActionProps = {
-  title: React.ReactNode | string;
+  title: ReactNode;
   className?: string;
   inactive?: boolean;
   onClick: () => void;
-  icon: React.ReactNode;
+  icon: ReactNode;
   iconSize?: number;
-};
+} & Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'className' | 'onClick'>;

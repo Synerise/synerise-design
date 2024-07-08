@@ -84,6 +84,7 @@ export const Description = styled.div<{ hasTitle?: boolean; hasIcon?: boolean; s
     max-width: 176px;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    flex-grow: 1;
     ${(props): FlattenSimpleInterpolation | undefined | false =>
       props.hasTitle &&
       css`
