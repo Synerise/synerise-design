@@ -37,6 +37,7 @@ const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
           className="moveup"
           onClick={onMoveUp}
           icon={<ArrowUpS />}
+          data-testid="ds-cruds-moveup"
         />
       )}
       {onMoveDown && (
@@ -46,18 +47,67 @@ const Cruds: React.FC<CrudsProps> & CrudsSubComponents = ({
           className="movedown"
           onClick={onMoveDown}
           icon={<ArrowDownS />}
+          data-testid="ds-cruds-movedown"
         />
       )}
-      {onAdd && <SingleAction title={addTooltip} className="add" onClick={onAdd} icon={<AddS />} />}
-
-      {onEdit && <SingleAction title={editTooltip} className="edit" onClick={onEdit} icon={<EditS />} />}
-      {onPreview && <SingleAction title={previewTooltip} className="preview" onClick={onPreview} icon={<ShowM />} />}
-      {onDuplicate && (
-        <SingleAction title={duplicateTooltip} className="duplicate" onClick={onDuplicate} icon={<DuplicateS />} />
+      {onAdd && (
+        <SingleAction title={addTooltip} className="add" onClick={onAdd} icon={<AddS />} data-testid="ds-cruds-add" />
       )}
-      {onDelete && <SingleAction title={deleteTooltip} className="delete" onClick={onDelete} icon={<TrashS />} />}
-      {onMove && <SingleAction title={moveTooltip} className="move" onClick={onMove} icon={<DragHandleM />} />}
-      {onRemove && <SingleAction title={removeTooltip} className="remove" onClick={onRemove} icon={<CloseS />} />}
+
+      {onEdit && (
+        <SingleAction
+          title={editTooltip}
+          className="edit"
+          onClick={onEdit}
+          icon={<EditS />}
+          data-testid="ds-cruds-edit"
+        />
+      )}
+      {onPreview && (
+        <SingleAction
+          title={previewTooltip}
+          className="preview"
+          onClick={onPreview}
+          icon={<ShowM />}
+          data-testid="ds-cruds-preview"
+        />
+      )}
+      {onDuplicate && (
+        <SingleAction
+          title={duplicateTooltip}
+          className="duplicate"
+          onClick={onDuplicate}
+          icon={<DuplicateS />}
+          data-testid="ds-cruds-duplicate"
+        />
+      )}
+      {onDelete && (
+        <SingleAction
+          title={deleteTooltip}
+          className="delete"
+          onClick={onDelete}
+          icon={<TrashS />}
+          data-testid="ds-cruds-delete"
+        />
+      )}
+      {onMove && (
+        <SingleAction
+          title={moveTooltip}
+          className="move"
+          onClick={onMove}
+          icon={<DragHandleM />}
+          data-testid="ds-cruds-move"
+        />
+      )}
+      {onRemove && (
+        <SingleAction
+          title={removeTooltip}
+          className="remove"
+          onClick={onRemove}
+          icon={<CloseS />}
+          data-testid="ds-cruds-remove"
+        />
+      )}
     </S.CrudsContainer>
   );
 };

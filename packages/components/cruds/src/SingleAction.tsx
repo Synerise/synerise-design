@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon';
 import * as S from './Cruds.styles';
 import { SingleActionProps } from './SingleAction.types';
 
-const SingleAction: React.FC<SingleActionProps> = ({ title, inactive, className, onClick, icon, iconSize }) => {
+const SingleAction = ({ title, inactive, className, onClick, icon, iconSize, ...htmlProps }: SingleActionProps) => {
   return (
     <Tooltip title={title}>
       <S.IconWrapper
         inactive={inactive}
         className={className}
-        onClick={(e): void => {
-          !!e && e.stopPropagation();
+        onClick={event => {
+          event.stopPropagation();
           onClick && onClick();
         }}
+        {...htmlProps}
       >
         <Icon component={icon} size={iconSize || 24} />
       </S.IconWrapper>
