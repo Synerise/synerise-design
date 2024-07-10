@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import DSListItem from '@synerise/ds-list-item';
 import { SuffixWrapper } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 import Button from '@synerise/ds-button';
+import ButtonGroup from '@synerise/ds-button-group';
 
 export const FormatSettingsContainer = styled.div`
   display: flex;
@@ -98,5 +99,10 @@ export const ListItem = styled(DSListItem)`
 export const FixedLengthButton = styled(Button)`
   &&& {
     padding: 4px;
+  }
+`;
+export const WrapperButtons = styled(ButtonGroup)`
+  &&& {
+    padding-left: 8px;
   }
 `;

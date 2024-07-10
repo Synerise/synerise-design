@@ -104,14 +104,14 @@ const FormatSettings = ({
               ))}
             </ButtonGroup>
           </Radio.Group>
-          <ButtonGroup buttonsPosition="right">
+          <S.WrapperButtons buttonsPosition="right">
             <S.FixedLengthButton type="secondary" mode="icon" onClick={handleDecreaseFixedLength}>
               <Icon component={<CommaDecM />} />
             </S.FixedLengthButton>
             <S.FixedLengthButton type="secondary" mode="icon" onClick={handleIncreaseFixedLength}>
               <Icon component={<CommaIncM />} />
             </S.FixedLengthButton>
-          </ButtonGroup>
+          </S.WrapperButtons>
         </S.FormatSettings>
         <S.FormatOptions>
           {format.dataFormat === 'cash' && (
