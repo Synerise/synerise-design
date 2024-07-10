@@ -11,7 +11,7 @@ export const ManageableListContainer = styled.div<ManageableListProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: ${({ listType }): string => (listType === ListType.CONTENT ? '24px' : '12px')};
+  padding: ${({ listType }): string => (listType === ListType.CONTENT ? '24px' : '0')};
   background-color: ${({ theme, greyBackground }): string =>
     greyBackground ? theme.palette['grey-050'] : theme.palette.white};
   & > div {
