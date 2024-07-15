@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.4.1...@synerise/ds-format-picker@0.4.2) (2024-07-15)
+
+
+### Bug Fixes
+
+* **format-picker:** fix spacing of buttons ([4fcbb6b](https://github.com/Synerise/synerise-design/commit/4fcbb6bcc49675cc60114844032154df692b949b))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.4.0...@synerise/ds-format-picker@0.4.1) (2024-07-05)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

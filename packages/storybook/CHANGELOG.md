@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.8.0...storybook7@0.9.0) (2024-07-15)
+
+
+### Bug Fixes
+
+* **storybook7:** card tabs stories ([537084e](https://github.com/Synerise/synerise-design/commit/537084e610b5a932ed208b27725c6feb2208ccd6))
+
+
+### Features
+
+* **alert:** new stories for broadcast-bar ([13a21da](https://github.com/Synerise/synerise-design/commit/13a21da898f810cf064b786f963a6797de7ad291))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.7.0...storybook7@0.8.0) (2024-07-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.60](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.59...@synerise/ds-manageable-list@0.26.60) (2024-07-15)
+
+
+### Bug Fixes
+
+* **manageable-list:** remove padding in simple item ([0b6bc3f](https://github.com/Synerise/synerise-design/commit/0b6bc3fe6b557a613d506ea0c28e006fc933426b))
+
+
+
+
+
 ## [0.26.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.58...@synerise/ds-manageable-list@0.26.59) (2024-07-05)
 
 

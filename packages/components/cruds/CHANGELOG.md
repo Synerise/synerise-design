@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.5.12...@synerise/ds-cruds@0.5.13) (2024-07-15)
+
+
+### Bug Fixes
+
+* **storybook7:** card tabs stories ([537084e](https://github.com/Synerise/synerise-design/commit/537084e610b5a932ed208b27725c6feb2208ccd6))
+
+
+
+
+
 ## [0.5.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.5.11...@synerise/ds-cruds@0.5.12) (2024-07-05)
 
 **Note:** Version bump only for package @synerise/ds-cruds
