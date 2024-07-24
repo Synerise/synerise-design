@@ -2,9 +2,7 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import InformationCard, {
-  buildExtraInfo,
-} from '@synerise/ds-information-card';
+import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 
 import { controlFromOptionsArray } from '../../utils';
@@ -18,8 +16,7 @@ import {
   SUMMARY_ITEMS,
 } from './InformationCard.data';
 
-
-export default {
+const InformationCardMeta = {
   title: 'Components/InformationCard',
   component: InformationCard,
   tags: ['autodocs'],
@@ -59,10 +56,9 @@ export const Minimalistic: Story = {
   },
 };
 
-
 export const CustomFooter: Story = {
   args: {
-    renderFooter: () => <>Custom footer element</>
+    renderFooter: () => <>Custom footer element</>,
   },
 };
 
@@ -107,6 +103,7 @@ export const CompleteExample: Story = {
     },
   },
   args: {
+    ...InformationCardMeta.args,
     descriptionConfig:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et risus ut lacus pulvinar tristique ac quis mi. Nulla sem ex, finibus ac neque et, ultricies fermentum sapien.',
     actionsMenu: {
@@ -119,3 +116,5 @@ export const CompleteExample: Story = {
     actionButton: renderPreviewButton,
   },
 };
+
+export default InformationCardMeta;
