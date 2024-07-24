@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.23.3...@synerise/ds-context-selector@0.24.0) (2024-07-24)
+
+
+### Features
+
+* **context-selector:** add renderAdditionalDescription prop ([a4fbd63](https://github.com/Synerise/synerise-design/commit/a4fbd639b408e6b3a14675b48911718ba2f77e1a))
+
+
+
+
+
 ## [0.23.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.23.2...@synerise/ds-context-selector@0.23.3) (2024-07-15)
 
 **Note:** Version bump only for package @synerise/ds-context-selector
