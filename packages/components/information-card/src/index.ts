@@ -9,3 +9,7 @@ export type {
 
 export { buildExtraInfo, buildIconBadge, buildInitialsBadge } from './InformationCard.utils';
 export type { InformationCardProps } from './InformationCard.types';
+
+export { InformationCardTooltip } from './InformationCardTooltip/InformationCardTooltip';
+export { TRIGGER_PLACEMENTS } from './InformationCardTooltip/InformationCard.constants';
+export type { InformationCardTooltipProps } from './InformationCardTooltip/InformationCardTooltip.types';
