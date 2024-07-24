@@ -24,6 +24,7 @@ export type ContextItem = {
   useCustomIcon?: boolean;
   subtitle?: string;
   informationCardProps?: Partial<InformationCardProps>;
+  renderAdditionalDescription?: () => ReactNode;
 };
 
 export type ContextGroup = {

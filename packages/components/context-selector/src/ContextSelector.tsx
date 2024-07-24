@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
-
 import Menu from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import InformationCard from '@synerise/ds-information-card';
@@ -136,6 +135,7 @@ const ContextSelector: React.FC<ContextProps> = ({
                     icon={selectedItem.icon}
                     subtitle={selectedItem.subtitle}
                     title={selectedItem.name}
+                    renderAdditionalDescription={selectedItem.renderAdditionalDescription}
                     descriptionConfig={
                       selectedItem.description
                         ? { value: selectedItem.description as string, disabled: true, label: undefined }
