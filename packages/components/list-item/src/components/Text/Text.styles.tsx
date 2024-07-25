@@ -74,6 +74,7 @@ export const ArrowRight = styled.div`
 
 export const Inner = styled.div`
   flex-grow: 1;
+  min-width: 0;
   &::after {
     content: '';
     flex-grow: 1;
