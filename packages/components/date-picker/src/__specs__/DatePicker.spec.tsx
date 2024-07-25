@@ -38,9 +38,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
         disabledDates={validator}
       />
     );
@@ -55,9 +52,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     await fireEvent.click(await getByText('Oct'));
@@ -74,9 +68,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     await fireEvent.click(await getByText('1996'));
@@ -93,9 +84,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     await fireEvent.click(await getByText('1996'));
@@ -113,9 +101,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const dayOne = (await container.querySelector('[data-attr="1"]')) as HTMLElement;
@@ -131,9 +116,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
@@ -151,9 +133,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
@@ -171,9 +150,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
@@ -191,9 +167,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
@@ -215,9 +188,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
         prefixel={PREFIX}
         suffixel={SUFFIX}
       />
@@ -236,9 +206,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
 
@@ -258,9 +225,6 @@ describe('RawDatePicker', () => {
         valueFormatOptions={{
           dateOptions: { month: 'numeric' },
         }}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     // ASSERT
@@ -279,9 +243,6 @@ describe('RawDatePicker', () => {
         valueFormatOptions={{
           dateOptions: { month: 'numeric' },
         }}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />,
       {},
       { notation: US_NOTATION }
@@ -298,9 +259,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />,
       {},
       { locale: 'pl' }
@@ -319,9 +277,6 @@ describe('RawDatePicker', () => {
           now: 'Now',
         }}
         value={new Date('1996-10-27T03:24:00')}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />,
       {},
       { locale: 'pl' }
@@ -355,9 +310,6 @@ describe('RawDatePicker', () => {
         }}
         value={defaultDay}
         disabledDates={disabledDates}
-        disabledHours={[]}
-        disabledMinutes={[]}
-        disabledSeconds={[]}
       />
     );
     const dayOne = (await container.querySelector('[data-attr="27"]')) as HTMLElement;

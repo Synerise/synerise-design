@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useIntl } from 'react-intl';
 import { getPopupContainer } from '@synerise/ds-utils';
 import DatePicker from '@synerise/ds-date-picker';
 import { FactorsProps, InputProps } from '../../Factors.types';
@@ -16,7 +15,6 @@ const DateInput: React.FC<InputProps> = ({
   getPopupContainerOverride,
 }) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
-  const intl = useIntl();
 
   useEffect(() => {
     setLocalValue(value);
@@ -49,7 +47,6 @@ const DateInput: React.FC<InputProps> = ({
 
   return (
     <DatePicker
-      intl={intl}
       onClear={handleClear}
       onValueChange={date => setLocalValue(date?.toDateString())}
       onApply={changeHandler}
@@ -57,9 +54,6 @@ const DateInput: React.FC<InputProps> = ({
       showTime
       useStartOfDay
       texts={texts.datePicker}
-      disabledHours={[]}
-      disabledMinutes={[]}
-      disabledSeconds={[]}
       error={error}
       readOnly={readOnly}
       inputProps={{ autoResize: { minWidth: '123px' } }}

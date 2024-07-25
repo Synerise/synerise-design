@@ -44,9 +44,6 @@ const stories = {
           dropdownProps={{ align: { offset: [0, 8] } }}
           activeProp={open}
           disabled={disabled}
-          disabledHours={[]}
-          disabledMinutes={[]}
-          disabledSeconds={[]}
           texts={
             {
               inputPlaceholder: replaceLettersWithUnderscore(format),

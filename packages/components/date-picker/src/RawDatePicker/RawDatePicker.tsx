@@ -4,7 +4,7 @@ import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import Footer from '../Elements/Footer/Footer';
 import * as S from '../DatePicker.styles';
-import { Props, State, Texts } from '../DatePicker.types';
+import { State, Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
 import MonthPicker from '../Elements/MonthPicker/MonthPicker';
 import YearPicker from '../Elements/YearPicker/YearPicker';
@@ -25,7 +25,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     disabledSeconds: [],
   };
 
-  constructor(props: Props) {
+  constructor(props: RawDatePickerProps & WrappedComponentProps) {
     super(props);
 
     // eslint-disable-next-line react/state-in-constructor
@@ -44,7 +44,7 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return getDefaultTexts(intl, texts);
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<Props>): null {
+  getSnapshotBeforeUpdate(prevProps: Readonly<RawDatePickerProps & WrappedComponentProps>): null {
     const { value } = this.props;
     const { mode } = this.state;
     if (prevProps?.value !== value) {

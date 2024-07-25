@@ -59,7 +59,6 @@ const TimestampRange: React.FC<Props> = ({
     return (
       <S.DatePickerWrapper error={error}>
         <DatePicker
-          intl={intl}
           value={timestamp}
           onValueChange={(value): void => {
             setError(!value);
@@ -74,9 +73,6 @@ const TimestampRange: React.FC<Props> = ({
           dropdownProps={{
             getPopupContainer: (node): HTMLElement => (node.parentElement != null ? node.parentElement : document.body),
           }}
-          disabledSeconds={[]}
-          disabledHours={[]}
-          disabledMinutes={[]}
           texts={{
             apply: allTexts.apply,
             now: allTexts.now,

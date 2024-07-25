@@ -78,9 +78,6 @@ const RangeForm = ({
       dropdownProps={{
         getPopupContainer,
       }}
-      disabledHours={[]}
-      disabledMinutes={[]}
-      disabledSeconds={[]}
       use12HourClock={is12HoursClock}
       valueFormatOptions={valueFormatOptions}
       {...timePickerProps}
