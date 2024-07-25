@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM } from '@synerise/ds-icon';
 import { Props } from './ShowLessOrMore.types';
@@ -25,11 +24,11 @@ const ShowLessOrMore = ({
 
   const renderShowMoreButton = useCallback(() => {
     const more = itemsOverLimit > showMoreStep ? showMoreStep : itemsOverLimit;
-    const onClick = (): void => onShowMore(more);
+    const onClick = () => onShowMore(more);
 
     return (
       totalItemsCount > visibleItemsCount && (
-        <Button data-testid="ds-tagslist-show-more" type="ghost" mode="icon-label" onClick={onClick} key={uuid()}>
+        <Button data-testid="ds-tagslist-show-more" type="ghost" mode="icon-label" onClick={onClick}>
           <Icon component={<ArrowDownCircleM />} />
           <S.Label>
             <span>{texts?.showMoreLabel}</span>
@@ -42,12 +41,10 @@ const ShowLessOrMore = ({
   }, [texts, visibleItemsCount, totalItemsCount, showMoreStep, itemsOverLimit, onShowMore]);
 
   const renderShowLessButton = useCallback(() => {
-    const onClick = (): void => {
-      onShowLess(itemsToHide);
-    };
+    const onClick = () => onShowLess(itemsToHide);
 
     return (
-      <Button data-testid="ds-tagslist-show-less" type="ghost" mode="icon-label" onClick={onClick} key={uuid()}>
+      <Button data-testid="ds-tagslist-show-less" type="ghost" mode="icon-label" onClick={onClick}>
         <Icon component={<ArrowUpCircleM />} />
         <S.Label>
           <span>{texts?.showMoreLabel}</span>
