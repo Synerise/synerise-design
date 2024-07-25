@@ -1,7 +1,7 @@
 import type { ReactNode, CSSProperties } from 'react';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
-import type { Props as DatePickerProps } from '../../DatePicker.types';
+import type { DatePickerProps } from '../../DatePicker.types';
 
 type InputProps = DatePickerProps['inputProps'];
 

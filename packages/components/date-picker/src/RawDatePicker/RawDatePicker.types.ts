@@ -1,3 +1,3 @@
-import {Props} from '../DatePicker.types';
+import { DatePickerProps } from '../DatePicker.types';
 
-export type RawDatePickerProps = Omit<Props, 'dropdownProps'>
+export type RawDatePickerProps = Omit<DatePickerProps, 'dropdownProps'>;

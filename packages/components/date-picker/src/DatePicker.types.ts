@@ -1,5 +1,5 @@
-import type { ReactNode, ReactElement } from 'react';
 import type { IntlShape } from 'react-intl';
+import type { ReactNode, ReactElement } from 'react';
 
 import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
@@ -18,7 +18,10 @@ export type DatePickerProps = {
    */
   format?: string;
   valueFormatOptions?: DateToFormatOptions;
-  intl: IntlShape;
+  /**
+   * @deprecated - will be dropped in 1.0
+   */
+  intl?: IntlShape;
   onApply: (date?: Date) => void;
   onClear?: () => void;
   onDropdownVisibleChange?: (visible: boolean) => void;
