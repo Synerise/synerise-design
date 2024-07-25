@@ -38,7 +38,9 @@ const Trigger: React.FC<Props> = ({
   const renderClear = React.useMemo(() => {
     const tooltip = (
       <Tooltip title={clear}>
-        <Icon component={<Close3S />} color={theme.palette['red-600']} />
+        <S.ClearIconWrapper>
+          <Icon component={<Close3S />} color={theme.palette['red-600']} />
+        </S.ClearIconWrapper>
       </Tooltip>
     );
 
@@ -68,10 +70,13 @@ const Trigger: React.FC<Props> = ({
 
   const renderAngleIcon = React.useMemo(() => {
     return (
-      !selected &&
-      size === 'small' && <Icon data-testid="angle-icon" component={<AngleDownS />} color={theme.palette['grey-600']} />
+      size === 'small' && (
+        <S.AngleIconWrapper>
+          <Icon data-testid="angle-icon" component={<AngleDownS />} color={theme.palette['grey-600']} />
+        </S.AngleIconWrapper>
+      )
     );
-  }, [size, selected]);
+  }, [size]);
 
   const handleChangeButtonClick = React.useCallback(
     (event: React.MouseEvent) => {
@@ -109,6 +114,7 @@ const Trigger: React.FC<Props> = ({
       error={error}
       onClick={handleOpen}
       selected={Boolean(selected)}
+      clearable={Boolean(onClear && renderClear)}
     >
       <S.Trigger size={size}>
         {selected ? (

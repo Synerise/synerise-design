@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, UIEvent } from 'react';
 import SearchBar from '@synerise/ds-search-bar';
-import ListItem from '@synerise/ds-list-item';
 import type { ListItemProps } from '@synerise/ds-list-item';
+import ListItem from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
