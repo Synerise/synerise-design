@@ -73,6 +73,7 @@ export const ArrowRight = styled.div`
 `;
 
 export const Inner = styled.div`
+  flex-grow: 1;
   &::after {
     content: '';
     flex-grow: 1;
@@ -99,6 +100,7 @@ const orderedStyle = css`
 `;
 
 export const Wrapper = styled.div<StyledListItemProps>`
+  display: flex;
   ${props =>
     props.disabled
       ? css`
