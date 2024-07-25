@@ -139,6 +139,7 @@ export const ShowMore: Story = {
     const canvas = within(canvasElement);
     const tagsListWrapper = within(canvas.getByTestId('ds-tagslist-wrapper'));
     const count = tagsListWrapper.getAllByRole('menuitem').length;
+    await waitFor(() => expect(tagsListWrapper.getByTestId('ds-tagslist-show-more')).not.toHaveStyle({ pointerEvents: 'none' }));
     await userEvent.click(tagsListWrapper.getByTestId('ds-tagslist-show-more'));
     await sleep(500);
     await waitFor(() => {
@@ -154,17 +155,19 @@ export const ShowLess: Story = {
     const tagsListWrapper = within(canvas.getByTestId('ds-tagslist-wrapper'));
 
     const count = tagsListWrapper.getAllByRole('menuitem').length;
+    await waitFor(() => expect(tagsListWrapper.getByTestId('ds-tagslist-show-more')).not.toHaveStyle({ pointerEvents: 'none' }));
     await userEvent.click(tagsListWrapper.getByTestId('ds-tagslist-show-more'));
     await waitFor(() => {
       expect(tagsListWrapper.getAllByRole('menuitem').length).toBe(count + 2);
     }, EXTENDED_TIMEOUT);
     expect(tagsListWrapper.getByTestId('ds-tagslist-show-less')).toBeInTheDocument();
-    // FIXME
-    // await userEvent.click(tagsListWrapper.getByTestId('ds-tagslist-show-less'));
-    // await waitFor(() => expect(tagsListWrapper.queryByTestId('ds-tagslist-show-less')).not.toBeInTheDocument(), EXTENDED_TIMEOUT);
-    // await waitFor(() => {
-    //   expect(tagsListWrapper.getAllByRole('menuitem').length).toBe(count);
-    // }, EXTENDED_TIMEOUT);
+    await waitFor(() => expect(tagsListWrapper.getByTestId('ds-tagslist-show-less')).not.toHaveStyle({ pointerEvents: 'none' }));
+    
+    await userEvent.click(tagsListWrapper.getByTestId('ds-tagslist-show-less'));
+    await waitFor(() => expect(tagsListWrapper.queryByTestId('ds-tagslist-show-less')).not.toBeInTheDocument(), EXTENDED_TIMEOUT);
+    await waitFor(() => {
+      expect(tagsListWrapper.getAllByRole('menuitem').length).toBe(count);
+    }, EXTENDED_TIMEOUT);
   },
 };
 
