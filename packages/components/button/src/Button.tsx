@@ -25,11 +25,17 @@ const Button = ({
   const rippleRef = useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = useState('');
   const [pressed, setPressed] = useState<boolean>(false);
+
+  // @ts-expect-error TS7030: Not all code paths return a value
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (rippleClassName !== '') {
-      setTimeout(() => {
+      const rippleAnimation = setTimeout(() => {
         setRippleClassName('');
       }, S.RIPPLE_ANIMATION_TIME - RIPPLE_ANIMATION_OFFSET);
+      return () => {
+        clearTimeout(rippleAnimation);
+      };
     }
   }, [rippleClassName]);
 
