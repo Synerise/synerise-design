@@ -1,16 +1,16 @@
+import React, { useState, useMemo, useCallback } from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 
-import * as React from 'react';
 import * as copy from 'copy-to-clipboard';
 import { useIntl } from 'react-intl';
 import * as S from './DescriptionRow.styles';
 import { CopyProps } from './Copy.types';
 import { RowTexts } from './DescriptionRow.types';
 
-const Copy: React.FC<CopyProps> = ({ copyValue, texts }) => {
+const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyProps) => {
   const { formatMessage } = useIntl();
-  const textsObj: RowTexts = React.useMemo(
+  const textsObj: RowTexts = useMemo(
     () =>
       texts || {
         copiedTooltip: formatMessage({ id: 'DS.DESCRIPTION.COPIED' }),
@@ -19,37 +19,39 @@ const Copy: React.FC<CopyProps> = ({ copyValue, texts }) => {
     [texts, formatMessage]
   );
 
-  const [tooltipVisible, setTooltipVisible] = React.useState<boolean>(false);
-  const [tooltipTitle, setTooltipTitle] = React.useState(textsObj.copyTooltip);
+  const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
+  const [tooltipTitle, setTooltipTitle] = useState(textsObj.copyTooltip);
 
-  const handleCopy = React.useCallback(() => {
+  const handleCopy = useCallback(() => {
     if (copyValue && copy(copyValue)) {
       setTooltipTitle(textsObj.copiedTooltip);
       setTooltipVisible(true);
     }
   }, [copyValue, setTooltipTitle, textsObj.copiedTooltip]);
 
-  const handleMouseEnter = React.useCallback(
-    e => {
-      e.stopPropagation();
+  const handleMouseEnter = useCallback(
+    event => {
+      event.stopPropagation();
       setTooltipTitle(textsObj.copyTooltip);
       setTooltipVisible(true);
+      onMouseEnter && onMouseEnter(event);
     },
-    [setTooltipVisible, textsObj]
+    [setTooltipVisible, textsObj, onMouseEnter]
   );
 
-  const handleMouseLeave = React.useCallback(
-    e => {
-      e.stopPropagation();
+  const handleMouseLeave = useCallback(
+    event => {
+      event.stopPropagation();
       setTooltipVisible(false);
+      onMouseLeave && onMouseLeave(event);
     },
-    [setTooltipVisible]
+    [setTooltipVisible, onMouseLeave]
   );
 
   return (
     <Tooltip title={tooltipTitle} visible={tooltipVisible}>
       <S.Copyable
-        className="ds-description-copy"
+        className={`ds-description-copy ${className}`}
         onClick={handleCopy}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

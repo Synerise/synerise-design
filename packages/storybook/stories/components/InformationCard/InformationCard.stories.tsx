@@ -5,7 +5,7 @@ import { fn } from '@storybook/test';
 import InformationCard, { buildExtraInfo } from '@synerise/ds-information-card';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 
-import { controlFromOptionsArray } from '../../utils';
+import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, REACT_NODE_AS_STRING, STRING_CONTROL, THEME_PALETTE_COLOR_NAMES_CONTROL } from '../../utils';
 import { SegmentM } from '@synerise/ds-icon';
 
 import {
@@ -24,6 +24,17 @@ const InformationCardMeta = {
     layout: 'centered',
   },
   argTypes: {
+    asTooltip: BOOLEAN_CONTROL,
+    notice: REACT_NODE_AS_STRING,
+    footerText: REACT_NODE_AS_STRING,
+    className: CLASSNAME_ARG_CONTROL,
+    iconColor: THEME_PALETTE_COLOR_NAMES_CONTROL,
+    avatarTooltipText: STRING_CONTROL,
+    subtitle: STRING_CONTROL,
+    descriptionConfig: STRING_CONTROL,
+    copyTooltip: STRING_CONTROL,
+    actionButtonTooltipText: STRING_CONTROL,
+    copiedTooltip: STRING_CONTROL,
     actionButtonCallback: {
       action: 'actionButtonCallback',
     },
@@ -33,7 +44,6 @@ const InformationCardMeta = {
     subtitle: 'Subtitle',
     icon: <SegmentM color="mars" />,
     iconColor: 'mars',
-
     avatarTooltipText: 'Tooltip Text',
     descriptionConfig: {},
   },
@@ -46,6 +56,12 @@ export const Default: Story = {};
 export const WithNotice: Story = {
   args: {
     notice: buildExtraInfo('Note: cannot be undone', 'warning'),
+  },
+};
+
+export const WithoutDescription: Story = {
+  args: {
+    descriptionConfig: null,
   },
 };
 

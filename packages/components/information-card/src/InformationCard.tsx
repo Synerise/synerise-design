@@ -2,7 +2,6 @@ import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import { SegmentM } from '@synerise/ds-icon';
 import Card from '@synerise/ds-card';
 import { useResizeObserver } from '@synerise/ds-utils';
-import Copy from '@synerise/ds-description/dist/Row/Copy';
 import { RowWrapper } from '@synerise/ds-description/dist/Row/DescriptionRow.styles';
 import 'rc-trigger/assets/index.less';
 
@@ -52,7 +51,7 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
       <RowWrapper copyable>
         <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
           <span>{content}</span>
-          <Copy
+          <S.Copyable
             copyValue={content}
             texts={{
               copyTooltip: copyTooltip ?? 'Copy to clipboard',
