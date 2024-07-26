@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.12.1...@synerise/ds-item-picker@0.12.2) (2024-07-26)
+
+
+### Bug Fixes
+
+* **item-picker:** display angle icon when vale selected ([320b3b0](https://github.com/Synerise/synerise-design/commit/320b3b055afaefc1070643b5d4c3241c2d6b4997))
+
+
+
+
+
 ## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-item-picker@0.12.0...@synerise/ds-item-picker@0.12.1) (2024-07-15)
 
 **Note:** Version bump only for package @synerise/ds-item-picker

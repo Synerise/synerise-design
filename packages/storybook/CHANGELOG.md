@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.9.0...storybook7@0.10.0) (2024-07-26)
+
+
+### Bug Fixes
+
+* **information-card:** change title and subtitle overflow ([82761e5](https://github.com/Synerise/synerise-design/commit/82761e5802dfefbc28b932b9250e825c4c96028e))
+
+
+### Features
+
+* **alert:** add new stories of notifications ([96a5f25](https://github.com/Synerise/synerise-design/commit/96a5f2572f2d74809c5ea04d3163f68e21007369))
+* **app-menu:** new stories of app-menu ([9936dc1](https://github.com/Synerise/synerise-design/commit/9936dc1e5c405aef41a0272b687f9f716a9e1f5f))
+* **information-card:** added infocard tooltip subcomponent ([688ae57](https://github.com/Synerise/synerise-design/commit/688ae57b90460c943a814a8980efe1093cb4215d))
+
+
+
+
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.8.0...storybook7@0.9.0) (2024-07-15)
 
 

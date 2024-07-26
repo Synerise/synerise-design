@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.219.1](https://github.com/synerise/synerise-design/compare/portal@0.219.0...portal@0.219.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **date-picker:** fixed types ([5980e37](https://github.com/synerise/synerise-design/commit/5980e376bb80aa9fd272907c5ee88e397f0dacce))
+
+
+
+
+
 # [0.219.0](https://github.com/synerise/synerise-design/compare/portal@0.218.3...portal@0.219.0) (2024-07-05)
 
 

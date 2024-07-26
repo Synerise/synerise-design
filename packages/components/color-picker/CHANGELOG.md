@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.80](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.79...@synerise/ds-color-picker@0.3.80) (2024-07-26)
+
+**Note:** Version bump only for package @synerise/ds-color-picker
+
+
+
+
+
 ## [0.3.79](https://github.com/Synerise/synerise-design/compare/@synerise/ds-color-picker@0.3.78...@synerise/ds-color-picker@0.3.79) (2024-07-15)
 
 **Note:** Version bump only for package @synerise/ds-color-picker

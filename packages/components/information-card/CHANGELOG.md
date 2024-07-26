@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.4.14...@synerise/ds-information-card@0.5.0) (2024-07-26)
+
+
+### Bug Fixes
+
+* **information-card:** change title and subtitle overflow ([82761e5](https://github.com/Synerise/synerise-design/commit/82761e5802dfefbc28b932b9250e825c4c96028e))
+
+
+### Features
+
+* **information-card:** added infocard tooltip subcomponent ([688ae57](https://github.com/Synerise/synerise-design/commit/688ae57b90460c943a814a8980efe1093cb4215d))
+
+
+
+
+
 ## [0.4.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.4.13...@synerise/ds-information-card@0.4.14) (2024-07-15)
 
 **Note:** Version bump only for package @synerise/ds-information-card

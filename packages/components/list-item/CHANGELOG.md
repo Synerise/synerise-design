@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.1...@synerise/ds-list-item@0.4.2) (2024-07-26)
+
+
+### Bug Fixes
+
+* **item-picker:** display angle icon when vale selected ([320b3b0](https://github.com/Synerise/synerise-design/commit/320b3b055afaefc1070643b5d4c3241c2d6b4997))
+* **list-item:** min-width to allow elipsis within flex child ([ef5b930](https://github.com/Synerise/synerise-design/commit/ef5b9300b3cb7ced14817f52522cf114f4be5486))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.0...@synerise/ds-list-item@0.4.1) (2024-07-15)
 
 **Note:** Version bump only for package @synerise/ds-list-item
