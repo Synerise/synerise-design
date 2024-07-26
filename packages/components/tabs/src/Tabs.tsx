@@ -189,7 +189,7 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
 
   const renderHelpers = useMemo(() => {
     return (
-      <S.HiddenTabs ref={helperContainerRef} className="ds-hidden-helper">
+      <S.HiddenTabs ref={helperContainerRef} data-testid="ds-tabs-hidden-helper" className="ds-hidden-helper">
         {items.map((tab, index) => {
           const key = `tabs-tab-helper-${index}`;
           return (
