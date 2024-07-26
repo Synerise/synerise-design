@@ -102,7 +102,12 @@ const Tags: React.FC<Props> = ({
       <S.DropdownContainer maxHeight={maxHeight} style={{ padding: '12px' }}>
         {isCreatable && (
           <>
-            <S.CreateTagDropdownButton type="ghost" onClick={onCreateNewTag} marginless={!isSeperated}>
+            <S.CreateTagDropdownButton
+              data-testid="ds-tags-create-button"
+              type="ghost"
+              onClick={onCreateNewTag}
+              marginless={!isSeperated}
+            >
               {addIcon}
               <span>{texts && texts.createTagButtonLabel}</span>
               <strong>{searchQuery}</strong>
@@ -113,7 +118,7 @@ const Tags: React.FC<Props> = ({
         )}
 
         {!emptyPool && (
-          <S.DropdownTagsContainer isCreatable={!!isCreatable}>
+          <S.DropdownTagsContainer data-testid="ds-tags-available-tags" isCreatable={!!isCreatable}>
             {selectablePool &&
               selectablePool.map(tag => (
                 // eslint-disable-next-line react/jsx-props-no-spreading
