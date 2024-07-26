@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import { IntlShape } from 'react-intl';
 import { Locale } from '../Table.types';
 
@@ -54,7 +54,7 @@ export const getDefaultLocale = (intl: IntlShape): Locale => ({
 });
 
 export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>
-  React.useMemo((): Locale => {
+  useMemo((): Locale => {
     return {
       ...getDefaultLocale(intl),
       ...locale,
@@ -62,4 +62,6 @@ export const useTableLocale = (intl: IntlShape, locale?: Locale): Locale =>
     };
   }, [intl, locale]);
 
-export const TableLocaleContext = React.createContext<Locale>({});
+export const TableLocaleContext = createContext<Locale>({});
+
+export const useTableLocaleContext = () => useContext(TableLocaleContext);

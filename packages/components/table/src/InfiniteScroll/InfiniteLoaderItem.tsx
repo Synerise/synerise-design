@@ -8,9 +8,11 @@ import { NoMoreItem } from './NoMoreItem';
 const InfiniteLoaderItem = ({ infiniteScroll, position }: LoaderItemProps) => {
   const { hasMore, isLoading, onScrollEndReach, hasError, onRetryButtonClick, render } = infiniteScroll;
 
-  const handleRetryClick = () => {
-    onRetryButtonClick && onRetryButtonClick(position);
-  };
+  const handleRetryClick = onRetryButtonClick
+    ? () => {
+        onRetryButtonClick(position);
+      }
+    : undefined;
 
   // @ts-expect-error TS7030: Not all code paths return a value
   // eslint-disable-next-line consistent-return
