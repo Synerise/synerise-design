@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { CardStyles } from '@synerise/ds-card';
+import { DescriptionCopyable } from '@synerise/ds-description';
 import DSDivider from '@synerise/ds-divider';
 import { macro } from '@synerise/ds-typography';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
@@ -8,6 +9,12 @@ const INFOCARD_WIDTH = 320;
 
 export const Flex = styled.div`
   display: flex;
+`;
+
+export const Copyable = styled(DescriptionCopyable)`
+  display: flex;
+  align-items: center;
+  height: 20px;
 `;
 
 export const Divider = styled(DSDivider)`
@@ -88,14 +95,12 @@ export const InfoCardWrapper = styled.div<{
   }
   ${CardStyles.Card.HeaderContent} {
     margin: 0;
+    gap: 2px;
   }
   ${CardStyles.Card.TitleWrapper} {
     margin: 0;
-    height: 20px;
   }
-  ${CardStyles.Card.Description} {
-    height: 16px;
-  }
+
   ${CardStyles.Card.Title}${CardStyles.Card.Title} {
     margin-bottom: 0;
     font-size: 14px;
