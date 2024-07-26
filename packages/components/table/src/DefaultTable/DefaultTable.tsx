@@ -14,7 +14,19 @@ import { RowSelectionColumn } from '../RowSelection';
 import { getChildrenColumnName, isRecordSelectable } from '../utils';
 
 function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
-  const { title, selection, rowStar, dataSource, rowKey, locale, expandable, components, columns, onSort } = props;
+  const {
+    title,
+    selection,
+    rowStar,
+    dataSource,
+    rowKey,
+    locale,
+    expandable,
+    components,
+    columns,
+    onSort,
+    emptyDataComponent,
+  } = props;
   const previousColumns = usePrevious(columns);
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
@@ -25,6 +37,18 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
   const starColumn = useMemo(() => {
     return getRowStarColumn({ ...props, getRowKey });
   }, [getRowKey, getRowStarColumn, props]);
+
+  const emptyData = useMemo(() => {
+    return emptyDataComponent !== undefined ? (
+      emptyDataComponent
+    ) : (
+      <Result
+        description={locale?.emptyText || <FormattedMessage id="DS.TABLE.EMPTY_TEXT" />}
+        type="no-results"
+        noSearchResults
+      />
+    );
+  }, [emptyDataComponent, locale?.emptyText]);
 
   useEffect(() => {
     if (!isEqual(previousColumns, columns)) {
@@ -137,13 +161,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
       }}
       locale={{
         ...locale,
-        emptyText: (
-          <Result
-            description={locale?.emptyText || <FormattedMessage id="DS.TABLE.EMPTY_TEXT" />}
-            type="no-results"
-            noSearchResults
-          />
-        ),
+        emptyText: emptyData,
       }}
       // @ts-ignore
       title={title}

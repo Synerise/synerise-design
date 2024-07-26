@@ -3,6 +3,7 @@ import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import Icon, {
+  AddL,
   AddM,
   DuplicateM,
   EditM,
@@ -36,6 +37,7 @@ import Search from '@synerise/ds-search';
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';
 import { renderWithIconInHeaders } from './helpers/helpers';
+import EmptyStates, { EmptyStatesSize } from '@synerise/ds-empty-states';
 
 const decorator = storyFn => (
   <div style={{ padding: 20, width: '100vw', minWidth: '100%', position: 'absolute', top: 0, left: 0 }}>
@@ -171,7 +173,7 @@ const stories = {
     const { selectedRows, columns } = store.state;
 
     const handleSelectRow = selectedRowKeys => {
-      action('selection.onChange')(selectedRowKeys)
+      action('selection.onChange')(selectedRowKeys);
       store.set({ selectedRows: selectedRowKeys });
     };
 
@@ -284,10 +286,26 @@ const stories = {
           });
     };
 
+    const customEmptyState = boolean('Use custom empty state component', false) ? (
+      <EmptyStates
+        text="Create first profile"
+        label="Lorem ipsum dolor sit amet"
+        button={
+          <Button mode="label" type="primary">
+            New profile
+          </Button>
+        }
+        labelPosition="bottom"
+        customIcon={<AddL />}
+        size={EmptyStatesSize.SMALL}
+      />
+    ) : undefined;
+    
     return (
       <>
         <Table
           title={text('Table title', 'Empty table')}
+          emptyDataComponent={customEmptyState}
           dataSource={filteredDataSource()}
           columns={renderWithIconInHeaders(getColumns(), boolean('Set icons in headers', false))}
           loading={boolean('Set loading state', false)}

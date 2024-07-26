@@ -1,5 +1,5 @@
+import { ReactNode, ReactText, Ref } from 'react';
 import { ColumnType, TableProps } from 'antd/lib/table';
-import * as React from 'react';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
@@ -27,15 +27,15 @@ export type SelectionItem =
 
 export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   fixed?: boolean;
-  selectedRowKeys: React.ReactText[];
+  selectedRowKeys: ReactText[];
   selections?: SelectionItem[];
-  onChange: (selectedRowKeys: React.ReactText[], selectedRows: T[]) => void;
+  onChange: (selectedRowKeys: ReactText[], selectedRows: T[]) => void;
   limit?: number;
   independentSelectionExpandedRows?: boolean;
   checkRowSelectionStatus?: (record: T) => { disabled?: boolean; unavailable?: boolean };
 };
 
-export interface Filter {
+export type Filter = {
   tooltips: {
     default: string;
     clear: string;
@@ -44,7 +44,7 @@ export interface Filter {
   };
   openedLabel: string;
   key: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   showList: () => void;
   show: () => void;
   handleClear: () => void;
@@ -52,7 +52,7 @@ export interface Filter {
     name: string;
   };
   disabled?: boolean;
-}
+};
 
 export type RowType<T> = {
   key?: string | number;
@@ -88,7 +88,7 @@ export type Locale = TableLocale & {
 export type DSColumnType<T> = Omit<ColumnType<T>, 'fixed'> & {
   fixed?: 'left' | 'right';
   sortRender?: SortRender<T>;
-  childRender?: (value: unknown, row: T, index: number) => React.ReactNode;
+  childRender?: (value: unknown, row: T, index: number) => ReactNode;
 };
 
 export type ScrollProxyType = {
@@ -96,7 +96,7 @@ export type ScrollProxyType = {
 };
 export type CustomizeScrollBodyInfo = {
   scrollbarSize: number;
-  ref: React.Ref<ScrollProxyType>;
+  ref: Ref<ScrollProxyType>;
   onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
 };
 
@@ -104,27 +104,28 @@ type AntTableComponentsType<T> = AntTableProps<T>['components'];
 
 type DSTableComponentsType<T> = AntTableComponentsType<T> & {
   // This type has been copied from Ant and extended because it's not accessible directly
-  body?: (data: T[], info: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => React.ReactNode;
+  body?: (data: T[], info: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => ReactNode;
 };
 
 export type SingleColumnSort = { columnKey: string; order: ColumnSortOrder };
 export type OnSortFn = (singleColumnSort: SingleColumnSort, sortState: ColumnsSortState) => void;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProps<T> {
-  title?: string | React.ReactNode;
+export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
+  title?: string | ReactNode;
   hideTitleBar?: boolean;
   headerWithBorderTop?: boolean;
-  itemsMenu?: string | React.ReactNode;
+  itemsMenu?: string | ReactNode;
   search?: string;
   cellSize?: string | 'medium' | 'small';
   roundedHeader?: boolean;
   selection?: RowSelection<T>;
   rowStar?: RowStar<T>;
   filters?: Filter[];
-  searchComponent?: React.ReactNode;
-  filterComponent?: React.ReactNode;
-  headerButton?: React.ReactNode;
+  searchComponent?: ReactNode;
+  filterComponent?: ReactNode;
+  emptyDataComponent?: ReactNode;
+  headerButton?: ReactNode;
   grouped?: boolean;
   hideGroupExpander?: boolean;
   initialGroupsCollapsed?: boolean;
@@ -132,10 +133,10 @@ export interface DSTableProps<T extends any & GroupType<T>> extends AntTableProp
   columns?: DSColumnType<T>[];
   locale?: Locale;
   components?: AntTableComponentsType<T> | DSTableComponentsType<T>;
-  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => React.ReactNode;
+  renderSelectionTitle?: (selection?: RowSelection<T>, filters?: Filter[]) => ReactNode;
   hideTitlePart?: boolean;
   disableColumnNamesLineBreak?: boolean;
   onSort?: OnSortFn;
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
-}
+};

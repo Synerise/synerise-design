@@ -254,6 +254,14 @@ describe('Table', () => {
     expect(screen.getByTestId('ds-table-title').textContent).toEqual('6 results');
   });
 
+  it('Should render custom empty component', () => {
+    const EMPTY_STATE = 'empty state'
+    renderWithProvider(
+      <Table dataSource={[]} columns={props.columns} emptyDataComponent={EMPTY_STATE} />
+    );
+    expect(screen.getByText(EMPTY_STATE)).toBeInTheDocument();
+  });
+
   it('Should render results title with custom locale', () => {
     renderWithProvider(
       <Table dataSource={props.dataSource} columns={props.columns} locale={{ pagination: { items: 'records' } }} />
