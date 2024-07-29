@@ -123,14 +123,19 @@ export const TabsDropdownHideAfterConfigurationClick: Story = {
       await waitFor(() => expect(hiddenTabsWrapper.getAllByTestId('tab-container')).toHaveLength(args.tabs.length));
     });
     
-    await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
-    await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
-    await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
+    await step('Open dropdown', async () => {
+      await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
+      await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
+      await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
+    })
 
-    const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
-    const label = args.configuration?.label || 'Manage tabs';
-    await waitFor(() => expect(dropdown.getByText(label)).not.toHaveStyle({ pointerEvents: 'none' }));
-    await userEvent.click(dropdown.getByText(label));
+    await step('Click configuration item', async () => {
+      const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
+      const label = args.configuration?.label || 'Manage tabs';
+      await waitFor(() => expect(dropdown.getByText(label)).not.toHaveStyle({ pointerEvents: 'none' }));
+      await userEvent.click(dropdown.getByText(label));
+    })
+
     expect(args.handleTabClick).not.toHaveBeenCalled();
     expect(args.configuration?.action).toHaveBeenCalled();
     await waitFor(
@@ -143,20 +148,30 @@ export const TabsDropdownHideAfterConfigurationClick: Story = {
 export const TabsDropdownHideAfterHiddenTabClick: Story = {
   ...TabsWithConfiguration,
   decorators: [fixedWrapper300],
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement, args, step }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
 
-    await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
-    await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
+    await step('Wait for hidden tabs to render', async () => {
+      await waitFor(() => expect(canvas.getByTestId('ds-tabs-hidden-helper')).toBeInTheDocument());
+      const hiddenTabsWrapper = within(canvas.getByTestId('ds-tabs-hidden-helper'));
+      await waitFor(() => expect(hiddenTabsWrapper.getAllByTestId('tab-container')).toHaveLength(args.tabs.length));
+    });
+    await step('Open dropdown', async () => {
+      await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
 
-    const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
+      await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
+      await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
+    });
+    await step('Click hidden tab item', async () => {
+      const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
 
-    await waitFor(
-      () => expect(dropdown.getAllByRole('menuitem')[0]).not.toHaveStyle({ pointerEvents: 'none' }),
-      WAIT_FOR_OPTIONS
-    );
-    await userEvent.click(dropdown.getAllByRole('menuitem')[0]);
+      await waitFor(
+        () => expect(dropdown.getAllByRole('menuitem')[0]).not.toHaveStyle({ pointerEvents: 'none' }),
+        WAIT_FOR_OPTIONS
+      );
+      await userEvent.click(dropdown.getAllByRole('menuitem')[0]);
+    });
+    
     expect(args.handleTabClick).toHaveBeenCalled();
     await waitFor(
       async () => expect(await canvas.findByTestId('tabs-dropdown-container')).not.toBeVisible(),
