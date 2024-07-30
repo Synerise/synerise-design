@@ -30,6 +30,15 @@ const preview: Preview = {
 
       },
     },
+    timeZone: {
+      description: 'Timezone',
+      toolbar: {
+        title: 'Timezone',
+        icon: 'time',
+        items: ['Europe/Warsaw', 'UTC', 'America/New_York', 'Asia/Tokyo', 'Australia/Darwin', 'US/Samoa'],
+
+      },
+    },
   },
   decorators: [
     mockDateDecorator,
@@ -44,6 +53,7 @@ const preview: Preview = {
           numberFormatNotation: storyContext.globals.dataFormat
         },
         locale: storyContext.globals.locale,
+        timeZone: storyContext.globals.timeZone,
       };
       
       return (
