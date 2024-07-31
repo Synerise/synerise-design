@@ -59,11 +59,11 @@ const DateInput = ({
       value={localValueAsDate}
       showTime
       useStartOfDay
-      includeTimezoneOffset={includeTimezoneOffset}
       texts={texts.datePicker}
       error={error}
       readOnly={readOnly}
       allowClear={allowClear}
+      includeTimezoneOffset={includeTimezoneOffset}
       inputProps={{ autoResize: { minWidth: '123px' } }}
       dropdownProps={{
         visible: opened,

@@ -11,32 +11,33 @@ import * as S from './DatePicker.styles';
 import { getDefaultTexts } from './utils/getDefaultTexts';
 import { getParsedValueFromProps } from './utils/timeZone.utils';
 
-const DatePicker = ({
-  autoFocus,
-  disabled,
-  texts,
-  format,
-  valueFormatOptions,
-  value,
-  onApply,
-  showTime,
-  onValueChange,
-  onClear,
-  errorText,
-  popoverPlacement,
-  prefixel,
-  error,
-  onDropdownVisibleChange,
-  dropdownProps,
-  suffixel,
-  hideNow,
-  readOnly,
-  renderTrigger,
-  inputProps,
-  allowClear = true,
-  includeTimezoneOffset,
-  ...rest
-}: DatePickerProps) => {
+const DatePicker = <ValueType extends Date | string = Date>(props: DatePickerProps<ValueType>) => {
+  const {
+    autoFocus,
+    disabled,
+    texts,
+    format,
+    valueFormatOptions,
+    value,
+    onApply,
+    showTime,
+    onValueChange,
+    onClear,
+    errorText,
+    popoverPlacement,
+    prefixel,
+    error,
+    onDropdownVisibleChange,
+    dropdownProps,
+    suffixel,
+    hideNow,
+    readOnly,
+    renderTrigger,
+    inputProps,
+    allowClear = true,
+    includeTimezoneOffset,
+    ...rest
+  } = props;
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = useState(value);
   const ref = useRef<HTMLDivElement>(null);
@@ -52,13 +53,13 @@ const DatePicker = ({
   }, [value]);
 
   const onValueChangeCallback = useCallback(
-    (val: typeof value) => {
+    (val: ValueType | undefined) => {
       onValueChange && onValueChange(val);
     },
     [onValueChange]
   );
   const onApplyCallback = useCallback(
-    (val: typeof value) => {
+    (val: ValueType | undefined) => {
       onApply && onApply(val);
       setSelectedDate(val);
       setDropVisible(false);
@@ -72,13 +73,15 @@ const DatePicker = ({
     onClear && onClear();
   }, [onClear]);
 
+  const pickerInputValue = selectedDate ? getParsedValueFromProps(selectedDate, includeTimezoneOffset) : selectedDate;
+
   const trigger = renderTrigger?.() || (
     <PickerInput
       {...inputProps}
       disabled={disabled}
       autoFocus={!disabled && autoFocus}
       allowClear={allowClear}
-      value={selectedDate ? getParsedValueFromProps({ value: selectedDate, includeTimezoneOffset }) : selectedDate}
+      value={pickerInputValue}  
       showTime={showTime}
       onClick={
         !readOnly
@@ -107,7 +110,7 @@ const DatePicker = ({
     <Dropdown
       overlay={
         <S.OverlayContainer ref={ref}>
-          <RawDatePicker
+          <RawDatePicker<ValueType>
             {...rest}
             includeTimezoneOffset={includeTimezoneOffset}
             showTime={showTime}
