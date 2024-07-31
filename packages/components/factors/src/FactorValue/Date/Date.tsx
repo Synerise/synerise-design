@@ -22,7 +22,7 @@ const DateInput = ({
   }, [value]);
 
   const changeHandler = useCallback(
-    (date: Date | undefined) => {
+    (date: Date | string | undefined) => {
       onChange(date);
     },
     [onChange]

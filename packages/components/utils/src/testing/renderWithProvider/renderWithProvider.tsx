@@ -14,12 +14,14 @@ const renderWithProvider = (
   props?: {
     locale?: string;
     notation?: DataFormatNotationType;
+    timeZone?: string;
   }
 ): RenderResult => {
   const rendered = render(
     <DSProvider
       locale={props?.locale ?? undefined}
       onErrorIntl={NOOP}
+      timeZone={props?.timeZone ?? undefined}
       {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
     >
       {node}

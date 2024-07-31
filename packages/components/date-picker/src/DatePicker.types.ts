@@ -5,10 +5,12 @@ import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
 import type { InputProps } from '@synerise/ds-input';
 
+export type DateString = string;
+
 export type DatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
-  disabledDates?: (date?: Date) => boolean;
+  disabledDates?: (date?: Date | DateString) => boolean;
   disabledHours?: number[];
   disabledMinutes?: number[];
   disabledSeconds?: number[];
@@ -22,11 +24,11 @@ export type DatePickerProps = {
    * @deprecated - will be dropped in 1.0
    */
   intl?: IntlShape;
-  onApply: (date?: Date) => void;
+  onApply: (date?: Date | DateString) => void;
   onClear?: () => void;
   onDropdownVisibleChange?: (visible: boolean) => void;
-  onValueChange?: (date?: Date) => void;
   allowClear?: boolean;
+  onValueChange?: (date?: Date | DateString) => void;
   error?: boolean;
   errorText?: ReactNode;
   popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';
@@ -35,12 +37,13 @@ export type DatePickerProps = {
   showTime?: boolean;
   texts?: Partial<Texts>;
   renderTrigger?: () => ReactElement;
-  value?: Date;
+  value?: Date | DateString;
   useStartOfDay?: boolean;
   useEndOfDay?: boolean;
   hideNow?: boolean;
   readOnly?: boolean;
   inputProps?: Pick<InputProps, 'autoResize'>;
+  includeTimezoneOffset?: boolean | string;
 };
 // @deprecated - use DatePickerProps instead
 export type Props = DatePickerProps;

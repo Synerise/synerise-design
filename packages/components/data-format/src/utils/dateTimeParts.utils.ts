@@ -1,5 +1,6 @@
 import { FormatDateOptions, IntlShape } from 'react-intl';
 import dayjs from 'dayjs';
+import { format } from 'date-fns-tz';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 
@@ -25,9 +26,13 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
-  return dayjs(value)
-    .tz(intlObject?.timeZone || defaultTimezone, true)
-    .format();
+  return format(value, 'yyyy-MM-dd HH:mm:ssXXX', { timeZone: intlObject?.timeZone || defaultTimezone });
+  //   const d = dayjs(value)
+  //   .tz(intlObject?.timeZone || defaultTimezone, true)
+  //   .format();
+  // console.log('getValueWithTimezone',nfsDate, d)
+  //   console.log('getValueWithTimezone', value, dayjs(value).hour(), dayjs(value).tz(intlObject?.timeZone || defaultTimezone, true).hour(), d, intlObject?.timeZone)
+  //     return d
 };
 
 export const getDateParts = (

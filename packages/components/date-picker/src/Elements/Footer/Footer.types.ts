@@ -8,6 +8,7 @@ export type Props = {
   canApply?: boolean;
   canSwitchMode?: boolean;
   onApply?: (date?: Date | undefined) => void;
+  getNowDate: () => Date;
   onSwitchMode?: () => void;
   message?: React.ReactNode | string;
   texts: Texts;
