@@ -9,7 +9,7 @@ const useElementInView = <T extends HTMLElement = HTMLElement>(
   options: IntersectionObserverOptions,
   rootElementRef?: MutableRefObject<HTMLDivElement | null | undefined>
 ) => {
-  const elementRef = useRef<T>();
+  const elementRef = useRef<T>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -32,6 +32,7 @@ const useElementInView = <T extends HTMLElement = HTMLElement>(
   });
 
   return {
+    isIntersecting: isVisible,
     elementRef,
     isVisible,
   };

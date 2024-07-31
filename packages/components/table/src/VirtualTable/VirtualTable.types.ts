@@ -22,6 +22,7 @@ export type Props<T> = DSTableProps<T> & {
   };
   sticky?: DSTableProps<T>['sticky'] & {
     scrollThreshold?: number;
+    getContainer: () => HTMLDivElement;
   };
   onListRefChange?: (ref: RefObject<List>) => void;
   onRowClick?: (row: T) => void;
