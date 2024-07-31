@@ -36,8 +36,6 @@ const PickerInput = ({
   const [hovered, setHovered] = useState(false);
 
   const getText = useCallback(() => {
-    // eslint-disable-next-line no-console
-    console.log('picker input value', value, dateFormat);
     if (!value) return '';
     if (dateFormat) {
       return format(legacyParse(value), dateFormat);
@@ -45,11 +43,7 @@ const PickerInput = ({
     if (typeof value === 'string') {
       return format(legacyParse(value), dateFormat || showTime ? 'MMM d, yyyy, HH:mm' : 'MMM d, yyyy');
     }
-    const formattedDateString = formatValue(value, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
-
-    // eslint-disable-next-line no-console
-    console.log('formattedDateString', formattedDateString);
-    return formattedDateString;
+    return formatValue(value, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
   }, [value, dateFormat, showTime, formatValue, valueFormatOptions]);
 
   const handleApply = useCallback(

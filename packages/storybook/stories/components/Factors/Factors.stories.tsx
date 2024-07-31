@@ -27,7 +27,7 @@ const FactorsMeta = {
     },
   },
   render: args => {
-    const [{ value, selectedFactorType }, updateArgs] = useArgs();
+    const [{ opened, value, selectedFactorType }, updateArgs] = useArgs();
     const handleSelectFactorType = factorType => {
       updateArgs({
         value: '',
@@ -36,9 +36,17 @@ const FactorsMeta = {
       args.setSelectedFactorType?.(factorType);
     };
     const handleChangeValue = newValue => {
-      updateArgs({ value: newValue });
+      updateArgs({ value: newValue, opened: false });
       args.onChangeValue?.(newValue);
     };
+    const handleActivate = () => {
+      updateArgs({ opened: true })
+      args.onActivate?.();
+    }
+    const handleDeactivate = () => {
+      updateArgs({ opened: false })
+      args.onDeactivate?.();
+    }
     return (
       <div data-popup-container>
         <Factors
@@ -47,6 +55,8 @@ const FactorsMeta = {
           onChangeValue={handleChangeValue}
           setSelectedFactorType={handleSelectFactorType}
           selectedFactorType={selectedFactorType}
+          onActivate={handleActivate}
+          onDeactivate={handleDeactivate}
         />
       </div>
     );
@@ -69,7 +79,7 @@ const FactorsMeta = {
     error: BOOLEAN_CONTROL,
     withoutTypeSelector: BOOLEAN_CONTROL,
     selectedFactorType: controlFromOptionsArray('select', ALL_FACTOR_TYPES),
-
+    includeTimezoneOffset: BOOLEAN_CONTROL
   },
   args: {
     value: '',

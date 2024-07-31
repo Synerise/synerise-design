@@ -120,6 +120,7 @@ export type FactorsProps = {
   value: FactorValueType;
   textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
   autoResize?: AutoResizeProp;
+  includeTimezoneOffset?: boolean | string;
   autocompleteText?: {
     options: string[];
   };
@@ -187,6 +188,7 @@ export type FactorValueProps = Pick<
   | 'autoResize'
   | 'readOnly'
   | 'getMenuEntryProps'
+  | 'includeTimezoneOffset'
 > & {
   texts: FactorsTexts;
   selectedFactor: SelectedFactorType;
@@ -209,6 +211,7 @@ export type InputProps = Pick<
   | 'autoResize'
   | 'readOnly'
   | 'getMenuEntryProps'
+  | 'includeTimezoneOffset'
 > & {
   texts: FactorsTexts;
   onChange: (value: FactorValueType) => void;

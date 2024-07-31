@@ -83,6 +83,9 @@ export const InactiveDates: Story = {
 
 
 export const WithProviderTimezone: Story = {
+  argTypes: {
+    includeTimezoneOffset: BOOLEAN_CONTROL
+  },
   args: {
     ...baseArgs,
     showTime: true,

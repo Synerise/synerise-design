@@ -5,10 +5,11 @@ import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import type { DatePickerProps } from './DatePicker.types';
-import RawDatePicker, { getParsedValueFromProps } from './RawDatePicker/RawDatePicker';
+import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 import { getDefaultTexts } from './utils/getDefaultTexts';
+import { getParsedValueFromProps } from './utils/timeZone.utils';
 
 const DatePicker = ({
   autoFocus,
