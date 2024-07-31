@@ -8,6 +8,7 @@ import '@testing-library/jest-dom/extend-expect'
 import './enzyme.js'
 
 import '../__mocks__/resizeObserverMock';
+import '../__mocks__/intersectionObserverMock';
 import '../__mocks__/domRectMock';
 
 Object.defineProperty(window, 'matchMedia', {

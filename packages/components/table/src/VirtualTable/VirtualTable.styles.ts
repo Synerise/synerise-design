@@ -49,10 +49,10 @@ export const VirtualListWrapper = styled.div<{ isSticky: boolean; listHeight: nu
   overscroll-behavior-x: contain;
 `;
 
-export const StickyScrollbar = styled(Scrollbar)<{ offset: number }>`
+export const StickyScrollbar = styled(Scrollbar)<{ offset: number; isStuck: boolean }>`
   position: sticky;
   bottom: 0;
-  z-index: 2;
+  z-index: ${props => (props.isStuck ? 2 : 0)};
   transform: translate(5px, ${props => numberToPixels(props.offset)});
 `;
 

@@ -14,7 +14,9 @@ import type { ListOnScrollProps } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
 import { compact } from 'lodash';
 import { useIntl } from 'react-intl';
-import type { TableSticky } from 'rc-table/lib/interface';
+
+import { useElementInView } from '@synerise/ds-utils';
+
 import { infiniteLoaderItemHeight } from '../InfiniteScroll/constants';
 import BackToTopButton from '../InfiniteScroll/BackToTopButton';
 import OuterListElement from '../InfiniteScroll/OuterListElement';
@@ -382,7 +384,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     [mergedColumns, selection, rowStar, onRowClick, infiniteScroll, cellHeight]
   );
 
-  const offsetScroll = sticky && sticky !== true ? (sticky as TableSticky).offsetScroll : 0;
+  const offsetScroll = sticky && sticky !== true ? sticky.offsetScroll : 0;
 
   const connectObject = useMemo(() => {
     const obj = {};
@@ -600,6 +602,14 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     }
   }, [tableWidth, mergedColumns.length, dataSource.length]);
 
+  const { isIntersecting: isStuck, elementRef } = useElementInView<HTMLDivElement>(
+    {
+      rootMargin: `0px 0px 12px 0px`,
+      threshold: 0,
+    },
+    containerRef
+  );
+
   return (
     <S.VirtualTableWrapper
       isSticky={isSticky}
@@ -634,12 +644,13 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       )}
       {isSticky && dataSource.length ? (
         <S.StickyScrollbar
+          isStuck={isStuck}
           offset={offsetScroll || 0}
           ref={horizontalScrollRef}
           onScroll={handleStickyScrollbarScroll}
           absolute
         >
-          <S.StickyScrollbarContent scrollWidth={scrollWidth} />
+          <S.StickyScrollbarContent ref={elementRef} scrollWidth={scrollWidth} />
         </S.StickyScrollbar>
       ) : null}
     </S.VirtualTableWrapper>
