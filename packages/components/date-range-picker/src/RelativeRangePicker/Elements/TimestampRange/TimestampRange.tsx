@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useIntl } from 'react-intl';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import DatePicker from '@synerise/ds-date-picker';
 import { getDefaultTexts } from '@synerise/ds-date-picker/dist/utils/getDefaultTexts';
 import * as S from '../../RelativeRangePicker.styles';
 import TimestampDuration from './TimestampDuration/TimestampDuration';
@@ -62,10 +62,10 @@ const TimestampRange: React.FC<Props> = ({
           value={timestamp}
           onValueChange={(value): void => {
             setError(!value);
-            onTimestampChange && onTimestampChange(value);
+            onTimestampChange && onTimestampChange(value as Date);
           }}
           onApply={(date): void => {
-            onTimestampChange && onTimestampChange(date);
+            onTimestampChange && onTimestampChange(date as Date);
           }}
           onClear={(): void => {
             onTimestampChange && onTimestampChange(getValueOnReset() as any); // FIXME cannot reselect date after clearing

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 
 import DatePicker from '@synerise/ds-date-picker';
 
@@ -16,13 +15,19 @@ export default {
   component: DatePicker,
   title: 'Components/Pickers/DatePicker',
   tags: ['autodocs'],
-  parameters: {
-    date: new Date('March 10, 2021 10:00:00'),
-  },
-  render: args => {
-    const [value, setValue] = useState<Date | undefined>(args.value);
+  // parameters: {
+  //   date: new Date('March 10, 2021 10:00:00'),
+  // },
+  render: (args, context) => {
+    const [value, setValue] = useState<Date | string | undefined>(args.value);
+    
     return (
       <div data-popup-container>
+        <>datepicker value:
+        <div> {JSON.stringify(value)}</div>
+          
+        </>
+        <hr />
         <DatePicker
           {...args}
           onApply={newValue => {
@@ -73,6 +78,24 @@ export const InactiveDates: Story = {
   args: {
     ...baseArgs,
     disabledDates,
+  },
+};
+
+
+export const WithProviderTimezone: Story = {
+  args: {
+    ...baseArgs,
+    showTime: true,
+    includeTimezoneOffset: true
+  },
+};
+
+
+export const WithSpecificTimezone: Story = {
+  args: {
+    ...baseArgs,
+    showTime: true,
+    includeTimezoneOffset: 'Asia/Tokyo'
   },
 };
 

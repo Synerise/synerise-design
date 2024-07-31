@@ -5,7 +5,7 @@ import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 
 import type { DatePickerProps } from './DatePicker.types';
-import RawDatePicker from './RawDatePicker/RawDatePicker';
+import RawDatePicker, { getParsedValueFromProps } from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 import { getDefaultTexts } from './utils/getDefaultTexts';
@@ -33,12 +33,14 @@ const DatePicker = ({
   renderTrigger,
   inputProps,
   allowClear = true,
+  includeTimezoneOffset,
   ...rest
 }: DatePickerProps) => {
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
   const [selectedDate, setSelectedDate] = useState(value);
   const ref = useRef<HTMLDivElement>(null);
   const intl = useIntl();
+
   const allTexts = getDefaultTexts(intl, texts);
   useOnClickOutside(ref, () => {
     !!dropVisible && setDropVisible(false);
@@ -49,13 +51,13 @@ const DatePicker = ({
   }, [value]);
 
   const onValueChangeCallback = useCallback(
-    (val: Date | undefined) => {
+    (val: typeof value) => {
       onValueChange && onValueChange(val);
     },
     [onValueChange]
   );
   const onApplyCallback = useCallback(
-    (val: Date | undefined) => {
+    (val: typeof value) => {
       onApply && onApply(val);
       setSelectedDate(val);
       setDropVisible(false);
@@ -73,9 +75,9 @@ const DatePicker = ({
     <PickerInput
       {...inputProps}
       disabled={disabled}
-      allowClear={allowClear}
       autoFocus={!disabled && autoFocus}
-      value={selectedDate}
+      allowClear={allowClear}
+      value={selectedDate ? getParsedValueFromProps({ value: selectedDate, includeTimezoneOffset }) : selectedDate}
       showTime={showTime}
       onClick={
         !readOnly
@@ -106,6 +108,7 @@ const DatePicker = ({
         <S.OverlayContainer ref={ref}>
           <RawDatePicker
             {...rest}
+            includeTimezoneOffset={includeTimezoneOffset}
             showTime={showTime}
             texts={allTexts}
             onApply={onApplyCallback}

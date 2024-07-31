@@ -19,6 +19,7 @@ describe('RawDatePicker', () => {
   it('should render', () => {
     const element = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -28,10 +29,11 @@ describe('RawDatePicker', () => {
     );
     expect(element).toBeTruthy();
   });
-  it('should validate all days visible after render', async () => {
+  it('should validate all days visible after render', () => {
     const validator = jest.fn();
     renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -43,9 +45,10 @@ describe('RawDatePicker', () => {
     );
     expect(validator).toBeCalledTimes(ROWS * WEEKDAYS);
   });
-  it('should proceed to MonthPicker when clicked on month', async () => {
-    const { getByText } = renderWithProvider(
+  it('should proceed to MonthPicker when clicked on month', () => {
+    renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -54,14 +57,15 @@ describe('RawDatePicker', () => {
         value={new Date('1996-10-27T03:24:00')}
       />
     );
-    await fireEvent.click(await getByText('Oct'));
-    expect(await getByText('Jan')).toBeTruthy();
-    expect(await getByText('Sep')).toBeTruthy();
-    expect(await getByText('Feb')).toBeTruthy();
+    fireEvent.click(screen.getByText('Oct'));
+    expect(screen.getByText('Jan')).toBeTruthy();
+    expect(screen.getByText('Sep')).toBeTruthy();
+    expect(screen.getByText('Feb')).toBeTruthy();
   });
-  it('should proceed to YearPicker when clicked on year', async () => {
-    const { getByText } = renderWithProvider(
+  it('should proceed to YearPicker when clicked on year', () => {
+    renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -70,14 +74,15 @@ describe('RawDatePicker', () => {
         value={new Date('1996-10-27T03:24:00')}
       />
     );
-    await fireEvent.click(await getByText('1996'));
-    expect(await getByText('1995')).toBeTruthy();
-    expect(await getByText('1997')).toBeTruthy();
-    expect(await getByText('2000')).toBeTruthy();
+    fireEvent.click(screen.getByText('1996'));
+    expect(screen.getByText('1995')).toBeTruthy();
+    expect(screen.getByText('1997')).toBeTruthy();
+    expect(screen.getByText('2000')).toBeTruthy();
   });
-  it('should proceed to DecadePicker when clicked on year range', async () => {
-    const { getByText } = renderWithProvider(
+  it('should proceed to DecadePicker when clicked on year range', () => {
+    renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -86,15 +91,16 @@ describe('RawDatePicker', () => {
         value={new Date('1996-10-27T03:24:00')}
       />
     );
-    await fireEvent.click(await getByText('1996'));
-    await fireEvent.click(await getByText('1990-1999'));
-    expect(await getByText('1900-1909')).toBeTruthy();
-    expect(await getByText('1930-1939')).toBeTruthy();
-    expect(await getByText('2000-2009')).toBeTruthy();
+    fireEvent.click(screen.getByText('1996'));
+    fireEvent.click(screen.getByText('1990-1999'));
+    expect(screen.getByText('1900-1909')).toBeTruthy();
+    expect(screen.getByText('1930-1939')).toBeTruthy();
+    expect(screen.getByText('2000-2009')).toBeTruthy();
   });
-  it('should proceed to TimePicker after choosing the day', async () => {
+  it('should proceed to TimePicker after choosing the day', () => {
     const { container, getByTestId } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -103,13 +109,14 @@ describe('RawDatePicker', () => {
         value={new Date('1996-10-27T03:24:00')}
       />
     );
-    const dayOne = (await container.querySelector('[data-attr="1"]')) as HTMLElement;
-    await dayOne.click();
-    expect(await getByTestId('tp-overlay-container')).toBeTruthy();
+    const dayOne = container.querySelector('[data-attr="1"]') as HTMLElement;
+    dayOne.click();
+    expect(getByTestId('tp-overlay-container')).toBeTruthy();
   });
-  it('should show previous year on left arrow click', async () => {
-    const { getByText, container } = renderWithProvider(
+  it('should show previous year on left arrow click', () => {
+    const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -120,13 +127,14 @@ describe('RawDatePicker', () => {
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toPreviousYear = navigationArrows[0];
-    await fireEvent.click(toPreviousYear as HTMLElement);
-    expect(await getByText('1995')).toBeTruthy();
+    fireEvent.click(toPreviousYear as HTMLElement);
+    expect(screen.getByText('1995')).toBeTruthy();
     expect(screen.queryByText('1996')).not.toBeInTheDocument();
   });
-  it('should show previous month on left arrow click', async () => {
-    const { getByText, container } = renderWithProvider(
+  it('should show previous month on left arrow click', () => {
+    const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -137,13 +145,14 @@ describe('RawDatePicker', () => {
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toPreviousMonth = navigationArrows[1];
-    await fireEvent.click(toPreviousMonth as HTMLElement);
-    expect(await getByText('Sep')).toBeTruthy();
+    fireEvent.click(toPreviousMonth as HTMLElement);
+    expect(screen.getByText('Sep')).toBeTruthy();
     expect(screen.queryByText('Oct')).not.toBeInTheDocument();
   });
-  it('should show next month on right arrow click', async () => {
-    const { getByText, container } = renderWithProvider(
+  it('should show next month on right arrow click', () => {
+    const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -154,13 +163,14 @@ describe('RawDatePicker', () => {
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextMonth = navigationArrows[2];
-    await fireEvent.click(toNextMonth as HTMLElement);
-    expect(await getByText('Nov')).toBeTruthy();
+    fireEvent.click(toNextMonth as HTMLElement);
+    expect(screen.getByText('Nov')).toBeTruthy();
     expect(screen.queryByText('Oct')).not.toBeInTheDocument();
   });
-  it('should show next year on right arrow click', async () => {
-    const { getByText, container } = renderWithProvider(
+  it('should show next year on right arrow click', () => {
+    const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -171,17 +181,17 @@ describe('RawDatePicker', () => {
     );
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextYear = navigationArrows[3];
-    await fireEvent.click(toNextYear as HTMLElement);
-    expect(await getByText('1997')).toBeTruthy();
+    fireEvent.click(toNextYear as HTMLElement);
+    expect(screen.getByText('1997')).toBeTruthy();
     expect(screen.queryByText('1996')).not.toBeInTheDocument();
   });
   it('should render prefix and suffix', () => {
-    // ARRANGE
     const PREFIX = 'Prefix value';
     const SUFFIX = 'Suffix value';
 
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <DatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -192,14 +202,13 @@ describe('RawDatePicker', () => {
         suffixel={SUFFIX}
       />
     );
-    // ASSERT
-    expect(getAllByText(PREFIX)[0]).toBeTruthy();
-    expect(getAllByText(SUFFIX)[0]).toBeTruthy();
+    expect(screen.getAllByText(PREFIX)[0]).toBeTruthy();
+    expect(screen.getAllByText(SUFFIX)[0]).toBeTruthy();
   });
   it('should render with default formatValueOptions', () => {
-    // ARRANGE
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <DatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -209,13 +218,12 @@ describe('RawDatePicker', () => {
       />
     );
 
-    // ASSERT
     expect(screen.getByDisplayValue('27 Oct 1996, 03:24')).toBeInTheDocument();
   });
   it('should render with custom formatValueOptions', () => {
-    // ARRANGE
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <DatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -227,13 +235,12 @@ describe('RawDatePicker', () => {
         }}
       />
     );
-    // ASSERT
     expect(screen.getByDisplayValue('27.10.1996, 03:24')).toBeInTheDocument();
   });
   it('should render correct with US notation', () => {
-    // ARRANGE
-    const { getAllByText } = renderWithProvider(
+    renderWithProvider(
       <DatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -247,12 +254,12 @@ describe('RawDatePicker', () => {
       {},
       { notation: US_NOTATION }
     );
-    // ASSERT
     expect(screen.getByDisplayValue('10/27/1996, 3:24 AM')).toBeInTheDocument();
   });
-  it('should render month picker using locale', async () => {
-    const { getByText } = renderWithProvider(
+  it('should render month picker using locale', () => {
+    renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -263,14 +270,14 @@ describe('RawDatePicker', () => {
       {},
       { locale: 'pl' }
     );
-    await fireEvent.click(await getByText('paź'));
-    
-    // ASSERT
-    expect(getByText('kwi')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('paź'));
+
+    expect(screen.getByText('kwi')).toBeInTheDocument();
   });
-  it('should render day picker using locale', async () => {
-    const { container, getByText } = renderWithProvider(
+  it('should render day picker using locale', () => {
+    renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -281,10 +288,10 @@ describe('RawDatePicker', () => {
       {},
       { locale: 'pl' }
     );
-    expect(await getByText('Śr')).toBeTruthy();
+    expect(screen.getByText('Śr')).toBeTruthy();
   });
 
-  it('should show prev and next arrows in TimePicker as disabled if following and previous days are disabled', async () => {
+  it('should show prev and next arrows in TimePicker as disabled if following and previous days are disabled', () => {
     const defaultDay = new Date('1996-10-27T03:24:00');
     const allowedDay = new Date(defaultDay.getTime());
     allowedDay.setHours(0);
@@ -300,9 +307,10 @@ describe('RawDatePicker', () => {
         return date.getTime() !== allowedDay.getTime();
       }
       return true;
-    }
-    const { container, getByTestId } = renderWithProvider(
+    };
+    const { container } = renderWithProvider(
       <RawDatePicker
+        onApply={jest.fn()}
         showTime={true}
         texts={{
           apply: 'Apply',
@@ -312,9 +320,9 @@ describe('RawDatePicker', () => {
         disabledDates={disabledDates}
       />
     );
-    const dayOne = (await container.querySelector('[data-attr="27"]')) as HTMLElement;
-    await dayOne.click();
-    await getByTestId('tp-overlay-container');
+    const dayOne = (container.querySelector('[data-attr="27"]')) as HTMLElement;
+    dayOne.click();
+    screen.getByTestId('tp-overlay-container');
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextDay = navigationArrows[1];
     const toPrevDay = navigationArrows[0];

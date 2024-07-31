@@ -20,6 +20,7 @@ const Footer: React.FC<Props> = ({
   message,
   texts,
   hideNow,
+  getNowDate,
   ...rest
 }) => {
   const SwitchModeButton = React.useMemo(
@@ -44,7 +45,8 @@ const Footer: React.FC<Props> = ({
           data-testid="range-now"
           type="tertiary"
           onClick={(): void => {
-            onApply && onApply(new Date());
+            const d = getNowDate();
+            onApply && onApply(d);
           }}
         >
           {texts.now}
