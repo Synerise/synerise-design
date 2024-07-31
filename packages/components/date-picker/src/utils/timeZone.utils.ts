@@ -1,4 +1,6 @@
-import { getTimezoneOffset } from 'date-fns-tz';
+import { IntlShape } from 'react-intl';
+import { utcToZonedTime, getTimezoneOffset } from 'date-fns-tz';
+import { RawDatePickerProps } from '../RawDatePicker/RawDatePicker.types';
 
 export const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();
@@ -27,3 +29,38 @@ export function toIsoStringWithoutZone(date: Date) {
     date.getMinutes()
   )}:${pad(date.getSeconds())}`;
 }
+
+export const applyTimezoneOffset = (
+  date: Date | undefined,
+  timezoneOffset: boolean | string | undefined,
+  intl?: IntlShape
+) => {
+  if (!timezoneOffset) {
+    return date;
+  }
+
+  const timezoneString = typeof timezoneOffset === 'string' ? timezoneOffset : intl?.timeZone;
+  return toIsoString(date as Date, timezoneString);
+};
+
+export const currentTimeInTimezone = (includeTimezoneOffset: boolean | string, intl: IntlShape) => {
+  const timezoneString = typeof includeTimezoneOffset === 'string' ? includeTimezoneOffset : intl?.timeZone;
+  if (!includeTimezoneOffset || !timezoneString) {
+    return new Date();
+  }
+  const now = new Date();
+  return utcToZonedTime(now.toISOString(), timezoneString);
+};
+
+export const getParsedValueFromProps = ({ value, includeTimezoneOffset }: Partial<RawDatePickerProps>): Date => {
+  if (!value) {
+    return new Date();
+  }
+  if (includeTimezoneOffset !== undefined) {
+    if (typeof value !== 'string') return value;
+
+    return new Date(rmvTZOffset(value));
+  }
+  // FIXME ????
+  return typeof value === 'string' ? new Date() : value;
+};

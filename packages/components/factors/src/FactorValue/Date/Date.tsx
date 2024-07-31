@@ -14,6 +14,7 @@ const DateInput = ({
   allowClear,
   readOnly = false,
   getPopupContainerOverride,
+  includeTimezoneOffset,
 }: InputProps) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
 
@@ -28,7 +29,12 @@ const DateInput = ({
     [onChange]
   );
 
-  const localValueAsDate = useMemo(() => (localValue ? new Date(String(localValue)) : undefined), [localValue]);
+  const localValueAsDate = useMemo(() => {
+    if (typeof localValue === 'string' || localValue instanceof Date) {
+      return localValue;
+    }
+    return localValue ? new Date(String(localValue)) : undefined;
+  }, [localValue]);
 
   const handleClear = useCallback(() => {
     onChange(undefined);
@@ -53,6 +59,7 @@ const DateInput = ({
       value={localValueAsDate}
       showTime
       useStartOfDay
+      includeTimezoneOffset={includeTimezoneOffset}
       texts={texts.datePicker}
       error={error}
       readOnly={readOnly}

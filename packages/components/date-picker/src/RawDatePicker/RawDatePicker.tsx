@@ -1,10 +1,9 @@
 import React from 'react';
-import { injectIntl, IntlShape, WrappedComponentProps } from 'react-intl';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
-import { utcToZonedTime } from 'date-fns-tz';
 
-import { toIsoString, rmvTZOffset } from '../utils/timeZone.utils';
+import { RawDatePickerProps } from './RawDatePicker.types';
 
 import Footer from '../Elements/Footer/Footer';
 import * as S from '../DatePicker.styles';
@@ -12,61 +11,14 @@ import { State, Texts } from '../DatePicker.types';
 import DayPicker from '../Elements/DayPicker/DayPicker';
 import MonthPicker from '../Elements/MonthPicker/MonthPicker';
 import YearPicker from '../Elements/YearPicker/YearPicker';
-import fnsFormat from '../format';
 import TimePicker from '../Elements/TimePicker/TimePicker';
+import fnsFormat from '../format';
 
 import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/DayPicker.styles';
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
 import { changeDayWithHoursPreserved } from '../utils';
-import { RawDatePickerProps } from './RawDatePicker.types';
+import { applyTimezoneOffset, currentTimeInTimezone, getParsedValueFromProps } from '../utils/timeZone.utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
-
-// export const parseDateString = (date: string | Date): Date => {
-//   if (typeof date !== 'string') return date;
-//   return legacyParse(date)
-// }
-
-export const applyTimezoneOffset = (
-  date: Date | undefined,
-  timezoneOffset: boolean | string | undefined,
-  intl?: IntlShape
-) => {
-  if (!timezoneOffset) {
-    return date;
-  }
-
-  const timezoneString = typeof timezoneOffset === 'string' ? timezoneOffset : intl?.timeZone;
-  return toIsoString(date as Date, timezoneString);
-};
-
-export const currentTimeInTimezone = (includeTimezoneOffset: boolean | string, intl: IntlShape) => {
-  if (!includeTimezoneOffset) {
-    return new Date();
-  }
-  const timezoneString = typeof includeTimezoneOffset === 'string' ? includeTimezoneOffset : intl?.timeZone;
-  if (!timezoneString) {
-    return new Date();
-  }
-  const now = new Date();
-  // console.log(timezoneString, utcToZonedTime(now, timezoneString))
-  // console.log(timezoneString, utcToZonedTime(now.toISOString(), timezoneString))
-  const nowThere = utcToZonedTime(now.toISOString(), timezoneString);
-
-  return nowThere;
-};
-
-export const getParsedValueFromProps = ({ value, includeTimezoneOffset }: Partial<RawDatePickerProps>): Date => {
-  if (!value) {
-    return new Date();
-  }
-  if (includeTimezoneOffset !== undefined) {
-    if (typeof value !== 'string') return value;
-
-    return new Date(rmvTZOffset(value));
-  }
-  // FIXME ????
-  return typeof value === 'string' ? new Date() : value;
-};
 
 class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponentProps, State> {
   static defaultProps = {

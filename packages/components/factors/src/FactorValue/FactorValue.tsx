@@ -26,6 +26,7 @@ const FactorValue = ({
   allowClear,
   readOnly = false,
   getMenuEntryProps,
+includeTimezoneOffset,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     const InputComponent: React.ElementType = selectedFactor.input;
@@ -55,6 +56,7 @@ const FactorValue = ({
         allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
+        includeTimezoneOffset={includeTimezoneOffset}
       />
     );
   }, [
@@ -82,6 +84,7 @@ const FactorValue = ({
     allowClear,
     readOnly,
     getMenuEntryProps,
+    includeTimezoneOffset,
   ]);
   return (
     <S.FactorInput inputType={selectedFactorType} inputTextType={textType} withoutTypeSelector={withoutTypeSelector}>

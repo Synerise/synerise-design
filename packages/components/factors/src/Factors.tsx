@@ -92,6 +92,7 @@ const Factors = ({
   inputProps,
   readOnly,
   getMenuEntryProps,
+  includeTimezoneOffset,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
 
@@ -145,6 +146,7 @@ const Factors = ({
         allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
+        includeTimezoneOffset={includeTimezoneOffset}
       />
     </S.Group>
   );
