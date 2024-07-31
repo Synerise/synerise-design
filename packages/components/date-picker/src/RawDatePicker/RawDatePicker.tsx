@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
@@ -20,7 +20,10 @@ import { changeDayWithHoursPreserved } from '../utils';
 import { applyTimezoneOffset, currentTimeInTimezone, getParsedValueFromProps } from '../utils/timeZone.utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 
-class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponentProps, State> {
+class RawDatePicker<ValueType extends Date | string = Date> extends React.Component<
+  RawDatePickerProps<ValueType> & WrappedComponentProps,
+  State
+> {
   static defaultProps = {
     showTime: false,
     disabledHours: [],
@@ -28,14 +31,14 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     disabledSeconds: [],
   };
 
-  constructor(props: RawDatePickerProps & WrappedComponentProps) {
+  constructor(props: RawDatePickerProps<ValueType> & WrappedComponentProps) {
     super(props);
     const { value, includeTimezoneOffset } = props;
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: 'date',
-      month: fnsStartOfMonth(props.value ? getParsedValueFromProps({ value, includeTimezoneOffset }) : new Date()),
-      value: props.value ? getParsedValueFromProps({ value, includeTimezoneOffset }) : undefined,
+      month: fnsStartOfMonth(props.value ? getParsedValueFromProps(value, includeTimezoneOffset) : new Date()),
+      value: props.value ? getParsedValueFromProps(value, includeTimezoneOffset) : undefined,
       changed: false,
       enteredTo: undefined,
       texts: this.getTexts(),
@@ -47,12 +50,12 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return getDefaultTexts(intl, texts);
   }
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<RawDatePickerProps & WrappedComponentProps>): null {
+  getSnapshotBeforeUpdate(prevProps: Readonly<RawDatePickerProps<ValueType> & WrappedComponentProps>): null {
     const { value, includeTimezoneOffset } = this.props;
     const { mode } = this.state;
     if (prevProps?.value !== value) {
       // console.log('value prop changed', prevProps?.value, value, getParsedValueFromProps({value, includeTimezoneOffset}));
-      const valueAsDate = (value && getParsedValueFromProps({ value, includeTimezoneOffset })) || undefined;
+      const valueAsDate = (value && getParsedValueFromProps(value, includeTimezoneOffset)) || undefined;
       this.setState({
         value: valueAsDate,
         month: fnsStartOfMonth(valueAsDate || new Date()),
@@ -63,20 +66,20 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     return null;
   }
 
-  handleChange = (value: Date | string | undefined): void => {
+  handleChange = (value: Date | undefined): void => {
     const { onValueChange, includeTimezoneOffset, intl } = this.props;
     const { mode, value: valueFromState } = this.state;
     if (mode === 'date' && !!valueFromState && !!value) {
       const dateToBeUpdated = changeDayWithHoursPreserved(
         valueFromState,
-        getParsedValueFromProps({ value, includeTimezoneOffset })
+        getParsedValueFromProps(value, includeTimezoneOffset)
       );
       this.setState({ value: dateToBeUpdated, changed: true });
-      onValueChange && onValueChange(applyTimezoneOffset(dateToBeUpdated, includeTimezoneOffset, intl));
+      onValueChange && onValueChange(applyTimezoneOffset(dateToBeUpdated, includeTimezoneOffset, intl) as ValueType);
     } else {
-      const parsedValue = getParsedValueFromProps({ value, includeTimezoneOffset });
+      const parsedValue = getParsedValueFromProps(value, includeTimezoneOffset);
       this.setState({ value: parsedValue, changed: true });
-      onValueChange && onValueChange(applyTimezoneOffset(parsedValue, includeTimezoneOffset, intl));
+      onValueChange && onValueChange(applyTimezoneOffset(parsedValue, includeTimezoneOffset, intl) as ValueType);
     }
   };
 
@@ -119,10 +122,10 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
     const { value } = this.state;
 
     if (date instanceof Date) {
-      onApply(applyTimezoneOffset(date, includeTimezoneOffset, intl));
+      onApply(applyTimezoneOffset(date, includeTimezoneOffset, intl) as ValueType);
       this.setState({ value: date });
     } else {
-      onApply(applyTimezoneOffset(value, includeTimezoneOffset, intl));
+      onApply(applyTimezoneOffset(value, includeTimezoneOffset, intl) as ValueType);
     }
     this.handleModeSwitch('date');
   };
@@ -266,4 +269,4 @@ class RawDatePicker extends React.Component<RawDatePickerProps & WrappedComponen
   }
 }
 
-export default injectIntl(RawDatePicker);
+export default injectIntl(RawDatePicker) as <T extends Date | string>(props: RawDatePickerProps<T>) => ReactElement;

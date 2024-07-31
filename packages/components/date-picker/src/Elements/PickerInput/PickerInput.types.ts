@@ -6,7 +6,7 @@ import type { DatePickerProps } from '../../DatePicker.types';
 type InputProps = DatePickerProps['inputProps'];
 
 // @deprecated - use PickerInputProps instead
-export type Props = InputProps & {
+export type PickerInputProps<ValueType extends Date | string = Date> = InputProps & {
   autoFocus?: boolean;
   size?: SizeType;
   /**
@@ -16,7 +16,7 @@ export type Props = InputProps & {
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   allowClear?: boolean;
-  value?: Date | string;
+  value?: ValueType;
   onChange?: (dateValue: Date | undefined | null, stringifiedDate: string) => void;
   style?: CSSProperties;
   placeholder?: string;
@@ -32,4 +32,4 @@ export type Props = InputProps & {
   suffixel?: ReactNode;
 };
 
-export type PickerInputProps = Props;
+export type Props = PickerInputProps;

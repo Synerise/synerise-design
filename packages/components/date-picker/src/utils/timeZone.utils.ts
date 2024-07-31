@@ -1,6 +1,5 @@
 import { IntlShape } from 'react-intl';
 import { utcToZonedTime, getTimezoneOffset } from 'date-fns-tz';
-import { RawDatePickerProps } from '../RawDatePicker/RawDatePicker.types';
 
 export const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();
@@ -52,7 +51,7 @@ export const currentTimeInTimezone = (includeTimezoneOffset: boolean | string, i
   return utcToZonedTime(now.toISOString(), timezoneString);
 };
 
-export const getParsedValueFromProps = ({ value, includeTimezoneOffset }: Partial<RawDatePickerProps>): Date => {
+export const getParsedValueFromProps = (value?: Date | string, includeTimezoneOffset?: string | boolean): Date => {
   if (!value) {
     return new Date();
   }

@@ -9,7 +9,7 @@ import { PickerInputProps } from './PickerInput.types';
 import * as S from './PickerInput.styles';
 import format from '../../format';
 
-const PickerInput = ({
+const PickerInput = <ValueType extends Date | string = Date>({
   autoFocus,
   size,
   disabled,
@@ -30,7 +30,7 @@ const PickerInput = ({
   suffixel,
   allowClear,
   ...rest
-}: PickerInputProps) => {
+}: PickerInputProps<ValueType>) => {
   const { formatValue } = useDataFormat();
 
   const [hovered, setHovered] = useState(false);
