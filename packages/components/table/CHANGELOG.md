@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.55.2...@synerise/ds-table@0.56.0) (2024-07-31)
+
+
+### Bug Fixes
+
+* **table:** adjust scrollbar zindex when unstuck ([902da6f](https://github.com/synerise/synerise-design/commit/902da6f82402d6b959b3827493147b8ed407062f))
+
+
+### Features
+
+* **table:** added custom empty state component prop ([4ce918a](https://github.com/synerise/synerise-design/commit/4ce918ad41d5ab33f4032c140c6880bd0ab0f886))
+
+
+
+
+
 ## [0.55.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.55.1...@synerise/ds-table@0.55.2) (2024-07-26)
 
 **Note:** Version bump only for package @synerise/ds-table

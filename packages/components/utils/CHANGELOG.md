@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.28.0...@synerise/ds-utils@0.28.1) (2024-07-31)
+
+
+### Bug Fixes
+
+* **table:** adjust scrollbar zindex when unstuck ([902da6f](https://github.com/synerise/synerise-design/commit/902da6f82402d6b959b3827493147b8ed407062f))
+
+
+
+
+
 # [0.28.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.27.0...@synerise/ds-utils@0.28.0) (2024-07-05)
 
 

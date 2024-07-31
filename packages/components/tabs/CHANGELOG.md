@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.14.10...@synerise/ds-tabs@0.15.0) (2024-07-31)
+
+
+### Features
+
+* **storybook7:** added tags stories ([2574ff8](https://github.com/synerise/synerise-design/commit/2574ff8d4cccb85c25752b0d3a32818d2910b6e4))
+
+
+
+
+
 ## [0.14.10](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.14.9...@synerise/ds-tabs@0.14.10) (2024-07-26)
 
 **Note:** Version bump only for package @synerise/ds-tabs

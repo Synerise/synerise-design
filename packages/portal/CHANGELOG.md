@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.220.0](https://github.com/synerise/synerise-design/compare/portal@0.219.1...portal@0.220.0) (2024-07-31)
+
+
+### Features
+
+* **table:** added custom empty state component prop ([4ce918a](https://github.com/synerise/synerise-design/commit/4ce918ad41d5ab33f4032c140c6880bd0ab0f886))
+
+
+
+
+
 ## [0.219.1](https://github.com/synerise/synerise-design/compare/portal@0.219.0...portal@0.219.1) (2024-07-26)
 
 

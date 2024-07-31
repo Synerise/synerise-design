@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-checkbox-tristate",
-  "version": "0.2.69",
+  "version": "0.2.70",
   "description": "Checkbox Tristate UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.12.2"
+    "@synerise/ds-checkbox": "^0.12.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

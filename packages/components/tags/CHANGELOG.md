@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.9.6...@synerise/ds-tags@0.10.0) (2024-07-31)
+
+
+### Features
+
+* **storybook7:** added tags stories ([2574ff8](https://github.com/Synerise/synerise-design/commit/2574ff8d4cccb85c25752b0d3a32818d2910b6e4))
+
+
+
+
+
 ## [0.9.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.9.5...@synerise/ds-tags@0.9.6) (2024-07-26)
 
 **Note:** Version bump only for package @synerise/ds-tags
