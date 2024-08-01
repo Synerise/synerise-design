@@ -9,7 +9,6 @@ import RawDatePicker from './RawDatePicker/RawDatePicker';
 import PickerInput from './Elements/PickerInput/PickerInput';
 import * as S from './DatePicker.styles';
 import { getDefaultTexts } from './utils/getDefaultTexts';
-import { getValueAsLocalDate, getTimeZone } from './utils/timeZone.utils';
 
 const DatePicker = <ValueType extends Date | string = Date>(props: DatePickerProps<ValueType>) => {
   const {
@@ -73,9 +72,7 @@ const DatePicker = <ValueType extends Date | string = Date>(props: DatePickerPro
     onClear && onClear();
   }, [onClear]);
 
-  const timeZone = getTimeZone(includeTimezoneOffset, intl);
-
-  const pickerInputValue = selectedDate ? getValueAsLocalDate(selectedDate, timeZone) : selectedDate;
+  const pickerInputValue = selectedDate ? new Date(selectedDate) : selectedDate;
 
   const trigger = renderTrigger?.() || (
     <PickerInput

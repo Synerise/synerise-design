@@ -71,15 +71,14 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
   handleChange = (value: Date | undefined): void => {
     const { onValueChange, includeTimezoneOffset, intl } = this.props;
     const { mode, value: valueFromState } = this.state;
-    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+
     if (mode === 'date' && !!valueFromState && !!value) {
-      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, getValueAsLocalDate(value, timeZone));
+      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, value);
       this.setState({ value: dateToBeUpdated, changed: true });
       onValueChange && onValueChange(applyTimezoneOffset(dateToBeUpdated, includeTimezoneOffset, intl) as ValueType);
     } else {
-      const parsedValue = getValueAsLocalDate(value, timeZone);
-      this.setState({ value: parsedValue, changed: true });
-      onValueChange && onValueChange(applyTimezoneOffset(parsedValue, includeTimezoneOffset, intl) as ValueType);
+      this.setState({ value, changed: true });
+      onValueChange && onValueChange(applyTimezoneOffset(value, includeTimezoneOffset, intl) as ValueType);
     }
   };
 

@@ -1,14 +1,6 @@
 import { IntlShape } from 'react-intl';
+import { getLocalDateInTimeZone } from '@synerise/ds-data-format';
 import { utcToZonedTime, getTimezoneOffset } from 'date-fns-tz';
-
-const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;
-
-export const removeTimeZoneOffset = (dateString: string | Date) => {
-  const date = dateString.toString();
-  const finalDate = date.replace(TIMEZONE_OFFSET_REGEX, '');
-
-  return finalDate;
-};
 
 const pad = (num: number) => (num < 10 ? '0' : '') + num;
 
@@ -25,29 +17,6 @@ export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
     date.getMinutes()
   )}:${pad(date.getSeconds())}${dif}${tzHours}:${tzMinutes}`;
 }
-
-export const extractTimeZoneOffset = (datestring: string) => {
-  const date = datestring.toString();
-
-  const found = date.match(TIMEZONE_OFFSET_REGEX);
-  return found && found[0];
-};
-
-export const getLocalDateInTimeZone = (dateIsoString: string, timezone: string) => {
-  // dateIsoString 2024-01-02T12:00:00-04:00
-  // timezone Europe/Warsaw +02:00
-  const dateTZOffset = extractTimeZoneOffset(dateIsoString); // -04:00
-  const dateWithoutOffset = removeTimeZoneOffset(dateIsoString); // 2024-01-02T12:00:00
-
-  const localDate = new Date(dateWithoutOffset);
-  const localTimezoneOffset = getTimezoneOffset(timezone, localDate); // +2
-  const dateTimezoneOffset = dateTZOffset ? getTimezoneOffset(dateTZOffset, localDate) : 0; // -4
-
-  const offsetDiff = localTimezoneOffset - dateTimezoneOffset;
-  localDate.setMilliseconds(localDate.getMilliseconds() + offsetDiff);
-
-  return localDate;
-};
 
 export const applyTimezoneOffset = (
   date: Date | undefined,
@@ -75,7 +44,7 @@ export const getValueAsLocalDate = (value?: Date | string, timeZone?: string): D
     return new Date();
   }
   if (timeZone !== undefined) {
-    if (typeof value !== 'string') return value;
+    if (typeof value !== 'string') return getLocalDateInTimeZone(value.toISOString(), timeZone);
     return getLocalDateInTimeZone(value, timeZone);
   }
   // FIXME ????
