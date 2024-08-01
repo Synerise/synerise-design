@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import DatePicker from '@synerise/ds-date-picker';
 
-import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper200, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
 import { baseArgs } from './constants';
 
 const disabledDates = (date?: Date): boolean => {
@@ -90,6 +90,21 @@ export const WithProviderTimezone: Story = {
     ...baseArgs,
     showTime: true,
     includeTimezoneOffset: true
+  },
+};
+
+
+
+export const WithProviderTimezonePopulated: Story = {
+  argTypes: {
+    value: STRING_CONTROL,
+    includeTimezoneOffset: BOOLEAN_CONTROL
+  },
+  args: {
+    ...baseArgs,
+    showTime: true,
+    includeTimezoneOffset: true,
+    value: '2024-02-02T14:20:00Z'
   },
 };
 
