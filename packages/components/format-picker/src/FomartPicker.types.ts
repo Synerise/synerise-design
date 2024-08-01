@@ -43,7 +43,9 @@ export type FormatPickerProps = {
   onCompactNumbersChange: (useCompact: boolean) => void;
   onFixedLengthChange: (fixedLength: number) => void;
   onSetDefault: () => void;
+  onFormattedValueChange?: (formattedValue: string) => void;
   text?: Partial<FormatPickerTexts>;
   currenciesConfig?: CurrencyConfig[];
   buttonType?: string;
+  disabled?: boolean;
 };
