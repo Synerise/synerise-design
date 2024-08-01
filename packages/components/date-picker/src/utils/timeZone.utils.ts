@@ -3,7 +3,7 @@ import { utcToZonedTime, getTimezoneOffset } from 'date-fns-tz';
 
 const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;
 
-export const rmvTZOffset = (dateString: string | Date) => {
+export const removeTimeZoneOffset = (dateString: string | Date) => {
   const date = dateString.toString();
   const finalDate = date.replace(TIMEZONE_OFFSET_REGEX, '');
 
@@ -13,7 +13,7 @@ export const rmvTZOffset = (dateString: string | Date) => {
 const pad = (num: number) => (num < 10 ? '0' : '') + num;
 
 export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
-  if (!timeZone) return new Date(date).toISOString();
+  if (!timeZone) return date.toISOString();
 
   const timeZoneOffset = getTimezoneOffset(timeZone, date);
   const dif = timeZoneOffset >= 0 ? '+' : '-';
@@ -26,7 +26,7 @@ export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
   )}:${pad(date.getSeconds())}${dif}${tzHours}:${tzMinutes}`;
 }
 
-export const extractTimezoneOffset = (datestring: string) => {
+export const extractTimeZoneOffset = (datestring: string) => {
   const date = datestring.toString();
 
   const found = date.match(TIMEZONE_OFFSET_REGEX);
@@ -36,8 +36,8 @@ export const extractTimezoneOffset = (datestring: string) => {
 export const getLocalDateInTimeZone = (dateIsoString: string, timezone: string) => {
   // dateIsoString 2024-01-02T12:00:00-04:00
   // timezone Europe/Warsaw +02:00
-  const dateTZOffset = extractTimezoneOffset(dateIsoString); // -04:00
-  const dateWithoutOffset = rmvTZOffset(dateIsoString); // 2024-01-02T12:00:00
+  const dateTZOffset = extractTimeZoneOffset(dateIsoString); // -04:00
+  const dateWithoutOffset = removeTimeZoneOffset(dateIsoString); // 2024-01-02T12:00:00
 
   const localDate = new Date(dateWithoutOffset);
   const localTimezoneOffset = getTimezoneOffset(timezone, localDate); // +2
@@ -49,12 +49,6 @@ export const getLocalDateInTimeZone = (dateIsoString: string, timezone: string) 
   return localDate;
 };
 
-export function toIsoStringWithoutZone(date: Date) {
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
-    date.getMinutes()
-  )}:${pad(date.getSeconds())}`;
-}
-
 export const applyTimezoneOffset = (
   date: Date | undefined,
   timezoneOffset: boolean | string | undefined,
@@ -63,8 +57,7 @@ export const applyTimezoneOffset = (
   if (!timezoneOffset) {
     return date;
   }
-
-  const timezoneString = typeof timezoneOffset === 'string' ? timezoneOffset : intl?.timeZone;
+  const timezoneString = getTimeZone(timezoneOffset, intl);
   return toIsoString(date as Date, timezoneString);
 };
 
