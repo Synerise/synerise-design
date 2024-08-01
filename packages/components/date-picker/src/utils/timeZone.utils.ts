@@ -1,9 +1,11 @@
 import { IntlShape } from 'react-intl';
 import { utcToZonedTime, getTimezoneOffset } from 'date-fns-tz';
 
+const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;
+
 export const rmvTZOffset = (dateString: string | Date) => {
   const date = dateString.toString();
-  const finalDate = date.replace(/[+-]\d\d:\d\d$/, '');
+  const finalDate = date.replace(TIMEZONE_OFFSET_REGEX, '');
 
   return finalDate;
 };
@@ -16,12 +18,36 @@ export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
   const timeZoneOffset = getTimezoneOffset(timeZone, date);
   const dif = timeZoneOffset >= 0 ? '+' : '-';
 
+  const tzHours = pad(Math.floor(Math.abs(timeZoneOffset) / 60 / 60 / 1000));
+  const tzMinutes = pad((Math.abs(timeZoneOffset) / 60 / 1000) % 60);
+
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
     date.getMinutes()
-  )}:${pad(date.getSeconds())}${dif}${pad(Math.floor(Math.abs(timeZoneOffset) / 60 / 60 / 1000))}:${pad(
-    Math.abs(timeZoneOffset) % 60
-  )}`;
+  )}:${pad(date.getSeconds())}${dif}${tzHours}:${tzMinutes}`;
 }
+
+export const extractTimezoneOffset = (datestring: string) => {
+  const date = datestring.toString();
+
+  const found = date.match(TIMEZONE_OFFSET_REGEX);
+  return found && found[0];
+};
+
+export const getLocalDateInTimeZone = (dateIsoString: string, timezone: string) => {
+  // dateIsoString 2024-01-02T12:00:00-04:00
+  // timezone Europe/Warsaw +02:00
+  const dateTZOffset = extractTimezoneOffset(dateIsoString); // -04:00
+  const dateWithoutOffset = rmvTZOffset(dateIsoString); // 2024-01-02T12:00:00
+
+  const localDate = new Date(dateWithoutOffset);
+  const localTimezoneOffset = getTimezoneOffset(timezone, localDate); // +2
+  const dateTimezoneOffset = dateTZOffset ? getTimezoneOffset(dateTZOffset, localDate) : 0; // -4
+
+  const offsetDiff = localTimezoneOffset - dateTimezoneOffset;
+  localDate.setMilliseconds(localDate.getMilliseconds() + offsetDiff);
+
+  return localDate;
+};
 
 export function toIsoStringWithoutZone(date: Date) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(
@@ -51,15 +77,24 @@ export const currentTimeInTimezone = (includeTimezoneOffset: boolean | string, i
   return utcToZonedTime(now.toISOString(), timezoneString);
 };
 
-export const getParsedValueFromProps = (value?: Date | string, includeTimezoneOffset?: string | boolean): Date => {
+export const getValueAsLocalDate = (value?: Date | string, timeZone?: string): Date => {
   if (!value) {
     return new Date();
   }
-  if (includeTimezoneOffset !== undefined) {
+  if (timeZone !== undefined) {
     if (typeof value !== 'string') return value;
-
-    return new Date(rmvTZOffset(value));
+    return getLocalDateInTimeZone(value, timeZone);
   }
   // FIXME ????
-  return typeof value === 'string' ? new Date() : value;
+  return typeof value === 'string' ? new Date(value) : value;
+};
+
+export const getTimeZone = (includeTimeZone?: boolean | string, intl?: IntlShape): string | undefined => {
+  if (!includeTimeZone) {
+    return undefined;
+  }
+  if (includeTimeZone === true) {
+    return intl?.timeZone || undefined;
+  }
+  return includeTimeZone;
 };

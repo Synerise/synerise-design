@@ -17,7 +17,7 @@ import fnsFormat from '../format';
 import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/DayPicker.styles';
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
 import { changeDayWithHoursPreserved } from '../utils';
-import { applyTimezoneOffset, currentTimeInTimezone, getParsedValueFromProps } from '../utils/timeZone.utils';
+import { applyTimezoneOffset, currentTimeInTimezone, getValueAsLocalDate, getTimeZone } from '../utils/timeZone.utils';
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 
 class RawDatePicker<ValueType extends Date | string = Date> extends React.Component<
@@ -33,12 +33,14 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
 
   constructor(props: RawDatePickerProps<ValueType> & WrappedComponentProps) {
     super(props);
-    const { value, includeTimezoneOffset } = props;
+    const { value, includeTimezoneOffset, intl } = props;
+
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: 'date',
-      month: fnsStartOfMonth(props.value ? getParsedValueFromProps(value, includeTimezoneOffset) : new Date()),
-      value: props.value ? getParsedValueFromProps(value, includeTimezoneOffset) : undefined,
+      month: fnsStartOfMonth(props.value ? getValueAsLocalDate(value, timeZone) : new Date()),
+      value: props.value ? getValueAsLocalDate(value, timeZone) : undefined,
       changed: false,
       enteredTo: undefined,
       texts: this.getTexts(),
@@ -51,11 +53,11 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
   }
 
   getSnapshotBeforeUpdate(prevProps: Readonly<RawDatePickerProps<ValueType> & WrappedComponentProps>): null {
-    const { value, includeTimezoneOffset } = this.props;
+    const { value, includeTimezoneOffset, intl } = this.props;
     const { mode } = this.state;
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
     if (prevProps?.value !== value) {
-      // console.log('value prop changed', prevProps?.value, value, getParsedValueFromProps({value, includeTimezoneOffset}));
-      const valueAsDate = (value && getParsedValueFromProps(value, includeTimezoneOffset)) || undefined;
+      const valueAsDate = (value && getValueAsLocalDate(value, timeZone)) || undefined;
       this.setState({
         value: valueAsDate,
         month: fnsStartOfMonth(valueAsDate || new Date()),
@@ -69,15 +71,13 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
   handleChange = (value: Date | undefined): void => {
     const { onValueChange, includeTimezoneOffset, intl } = this.props;
     const { mode, value: valueFromState } = this.state;
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
     if (mode === 'date' && !!valueFromState && !!value) {
-      const dateToBeUpdated = changeDayWithHoursPreserved(
-        valueFromState,
-        getParsedValueFromProps(value, includeTimezoneOffset)
-      );
+      const dateToBeUpdated = changeDayWithHoursPreserved(valueFromState, getValueAsLocalDate(value, timeZone));
       this.setState({ value: dateToBeUpdated, changed: true });
       onValueChange && onValueChange(applyTimezoneOffset(dateToBeUpdated, includeTimezoneOffset, intl) as ValueType);
     } else {
-      const parsedValue = getParsedValueFromProps(value, includeTimezoneOffset);
+      const parsedValue = getValueAsLocalDate(value, timeZone);
       this.setState({ value: parsedValue, changed: true });
       onValueChange && onValueChange(applyTimezoneOffset(parsedValue, includeTimezoneOffset, intl) as ValueType);
     }
