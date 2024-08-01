@@ -47,11 +47,11 @@ const FormatPicker = ({
 
   const formattedValue = useMemo(() => {
     return valueFormatter({ value, formatting: format, intl });
-  }, [value, format, intl])
+  }, [value, format, intl]);
 
   useEffect(() => {
-    onFormattedValueChange && onFormattedValueChange(formattedValue)
-  }, [formattedValue, onFormattedValueChange])
+    onFormattedValueChange && onFormattedValueChange(formattedValue);
+  }, [formattedValue, onFormattedValueChange]);
 
   return (
     <Dropdown
@@ -69,6 +69,7 @@ const FormatPicker = ({
           value={value}
           text={texts}
           currenciesConfig={currenciesConfig}
+          disabled={disabled}
         />
       }
       placement="topCenter"

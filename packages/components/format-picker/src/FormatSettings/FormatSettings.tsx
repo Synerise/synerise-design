@@ -9,9 +9,28 @@ import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
 import Dropdown from '@synerise/ds-dropdown';
 import * as S from './FormatSettings.styles';
-import { CurrencyConfig, FormatPickerTexts, FormattingType } from '../FomartPicker.types';
+import { FormatPickerTexts, FormattingType } from '../FomartPicker.types';
 import { FormatSettingsProps } from './FormatSettings.types';
 import { valueFormatter } from '../utils/valueFormatter';
+
+const DEFAULT_CURRENCIES_CONFIG = [
+  {
+    currency: 'USD',
+    label: 'Dollar (US)',
+  },
+  {
+    currency: 'EUR',
+    label: 'Euro (EU)',
+  },
+  {
+    currency: 'PLN',
+    label: 'Złoty (PL)',
+  },
+  {
+    currency: 'JPY',
+    label: 'Yen (JP)',
+  },
+];
 
 const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): FormattingType[] => [
   {
@@ -31,26 +50,6 @@ const getFormattingTypes = (intl: IntlShape, text: FormatPickerTexts): Formattin
   },
 ];
 
-const getCurrenciesConfig = (currenciesConfig: CurrencyConfig[]): CurrencyConfig[] => [
-  {
-    currency: 'USD',
-    label: 'Dollar (US)',
-  },
-  {
-    currency: 'EUR',
-    label: 'Euro (EU)',
-  },
-  {
-    currency: 'PLN',
-    label: 'Złoty (PL)',
-  },
-  {
-    currency: 'JPY',
-    label: 'Yen (JP)',
-  },
-  ...currenciesConfig,
-];
-
 const FormatSettings = ({
   onCompactNumbersChange,
   onCurrencyChange,
@@ -61,7 +60,8 @@ const FormatSettings = ({
   format,
   value,
   text,
-  currenciesConfig,
+  currenciesConfig = DEFAULT_CURRENCIES_CONFIG,
+  disabled,
 }: FormatSettingsProps) => {
   const intl = useIntl();
   const handleDecreaseFixedLength = useCallback(() => {
@@ -77,7 +77,7 @@ const FormatSettings = ({
   }, [onFixedLengthChange, format]);
 
   const selectedCurrency = useMemo(() => {
-    return getCurrenciesConfig(currenciesConfig || []).find(currency => currency.currency === format.currency);
+    return currenciesConfig.find(currency => currency.currency === format.currency);
   }, [currenciesConfig, format]);
 
   return (
@@ -97,6 +97,7 @@ const FormatSettings = ({
                     mode="icon"
                     data-testid={`ds-format-picker-type-${type.format}`}
                     onClick={() => onDataFormatChange(type.format)}
+                    disabled={disabled}
                   >
                     <Icon component={type.icon} />
                   </Button>
@@ -105,10 +106,10 @@ const FormatSettings = ({
             </ButtonGroup>
           </Radio.Group>
           <S.WrapperButtons buttonsPosition="right">
-            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleDecreaseFixedLength}>
+            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleDecreaseFixedLength} disabled={disabled}>
               <Icon component={<CommaDecM />} />
             </S.FixedLengthButton>
-            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleIncreaseFixedLength}>
+            <S.FixedLengthButton type="secondary" mode="icon" onClick={handleIncreaseFixedLength} disabled={disabled}>
               <Icon component={<CommaIncM />} />
             </S.FixedLengthButton>
           </S.WrapperButtons>
@@ -117,9 +118,10 @@ const FormatSettings = ({
           {format.dataFormat === 'cash' && (
             <Dropdown
               trigger={['click']}
+              disabled={disabled}
               overlay={
                 <S.DropdownWrapper>
-                  {getCurrenciesConfig(currenciesConfig || []).map(({ currency, label }) => (
+                  {currenciesConfig.map(({ currency, label }) => (
                     <S.ListItem
                       key={currency}
                       suffixel={valueFormatter({ value, formatting: { ...format, currency }, intl })}
@@ -137,19 +139,29 @@ const FormatSettings = ({
               </S.DropdownTrigger>
             </Dropdown>
           )}
-          <Checkbox onChange={event => onUseSeparatorChange(event.target.checked)} checked={format.useSeparator}>
+          <Checkbox
+            onChange={event => onUseSeparatorChange(event.target.checked)}
+            checked={format.useSeparator}
+            disabled={disabled}
+          >
             {text.useSeparator}
           </Checkbox>
-          <Checkbox onChange={event => onCompactNumbersChange(event.target.checked)} checked={format.compactNumbers}>
+          <Checkbox
+            onChange={event => onCompactNumbersChange(event.target.checked)}
+            checked={format.compactNumbers}
+            disabled={disabled}
+          >
             {text.compactNumbers}
           </Checkbox>
         </S.FormatOptions>
       </S.FormatSettingsWrapper>
-      <S.FormatFooter>
-        <Button type="ghost" onClick={onSetDefault}>
-          {text.setDefault}
-        </Button>
-      </S.FormatFooter>
+      {onSetDefault && (
+        <S.FormatFooter>
+          <Button type="ghost" onClick={onSetDefault} disabled={disabled}>
+            {text.setDefault}
+          </Button>
+        </S.FormatFooter>
+      )}
     </S.FormatSettingsContainer>
   );
 };
