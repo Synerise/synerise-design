@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type CurrencyType = 'USD' | 'EUR' | 'PLN' | 'JPY';
+export type CurrencyType = string;
 
 export type FormattingDataFormat = 'numeric' | 'percent' | 'cash';
 
@@ -42,7 +42,7 @@ export type FormatPickerProps = {
   onUseSeparatorChange: (useSeparator: boolean) => void;
   onCompactNumbersChange: (useCompact: boolean) => void;
   onFixedLengthChange: (fixedLength: number) => void;
-  onSetDefault: () => void;
+  onSetDefault?: () => void;
   onFormattedValueChange?: (formattedValue: string) => void;
   text?: Partial<FormatPickerTexts>;
   currenciesConfig?: CurrencyConfig[];
