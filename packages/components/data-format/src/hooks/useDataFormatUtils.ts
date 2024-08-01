@@ -23,6 +23,7 @@ import {
   addPrefix,
   addSuffix,
   changeNamingConvention,
+  getLocalDateInTimeZone,
 } from '../utils';
 import {
   DATE,
@@ -120,32 +121,36 @@ export const useDataFormatUtils = (): {
 
   const getFormattedDate = useCallback(
     (value: Date, dateFormatIntl: IntlShape, timeFormatIntl: IntlShape, options?: DateToFormatOptions): string => {
+      const valueInTimezone = dateFormatIntl.timeZone
+        ? getLocalDateInTimeZone(value.toISOString(), dateFormatIntl.timeZone)
+        : value;
+
       if (options?.targetFormat === DATETIME) {
-        return convertDateToDateTimeString(value, dateFormatIntl, timeFormatIntl, languageIntl, options);
+        return convertDateToDateTimeString(valueInTimezone, dateFormatIntl, timeFormatIntl, languageIntl, options);
       }
 
       if (options?.targetFormat === TIME) {
-        return convertDateToTimeString(value, timeFormatIntl, options);
+        return convertDateToTimeString(valueInTimezone, timeFormatIntl, options);
       }
 
       if (options?.targetFormat === WEEKDAY_LONG) {
-        return convertDateToWeekdayLongString(value, dateFormatIntl, languageIntl, options);
+        return convertDateToWeekdayLongString(valueInTimezone, dateFormatIntl, languageIntl, options);
       }
 
       if (options?.targetFormat === WEEKDAY_SHORT) {
-        return convertDateToWeekdayShortString(value, dateFormatIntl, languageIntl, options);
+        return convertDateToWeekdayShortString(valueInTimezone, dateFormatIntl, languageIntl, options);
       }
 
       if (options?.targetFormat === MONTH_LONG) {
-        return convertDateToMonthLongString(value, dateFormatIntl, languageIntl, options);
+        return convertDateToMonthLongString(valueInTimezone, dateFormatIntl, languageIntl, options);
       }
 
       if (options?.targetFormat === MONTH_SHORT) {
-        return convertDateToMonthShortString(value, dateFormatIntl, languageIntl, options);
+        return convertDateToMonthShortString(valueInTimezone, dateFormatIntl, languageIntl, options);
       }
 
       if (options?.targetFormat === DATE || !options?.targetFormat) {
-        return convertDateToDateString(value, dateFormatIntl, languageIntl, options);
+        return convertDateToDateString(valueInTimezone, dateFormatIntl, languageIntl, options);
       }
 
       return value?.toString() ?? '';

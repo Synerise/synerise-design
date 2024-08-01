@@ -15,3 +15,5 @@ export const DEFAULT_DATA_FORMAT_CONFIG: DataFormatConfig = {
 };
 
 export const DEFAULT_DATA_FORMAT_INTL: IntlShape = createIntl({ locale: DEFAULT_DATA_FORMAT_NOTATION });
+
+export const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;

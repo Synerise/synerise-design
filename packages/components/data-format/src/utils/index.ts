@@ -13,6 +13,7 @@ export {
   translateDateTimeParts,
   getMonthLongDateParts,
   getMonthShortDateParts,
+  getLocalDateInTimeZone,
 } from './dateTimeParts.utils';
 
 export {
