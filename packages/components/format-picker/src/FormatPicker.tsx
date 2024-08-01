@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
@@ -17,11 +17,13 @@ const FormatPicker = ({
   onCurrencyChange,
   onCompactNumbersChange,
   onSetDefault,
+  onFormattedValueChange,
   value,
   format,
   text,
   currenciesConfig,
   buttonType = 'tertiary',
+  disabled,
 }: FormatPickerProps) => {
   const intl = useIntl();
 
@@ -43,9 +45,18 @@ const FormatPicker = ({
     [text, intl]
   );
 
+  const formattedValue = useMemo(() => {
+    return valueFormatter({ value, formatting: format, intl });
+  }, [value, format, intl])
+
+  useEffect(() => {
+    onFormattedValueChange && onFormattedValueChange(formattedValue)
+  }, [formattedValue, onFormattedValueChange])
+
   return (
     <Dropdown
       trigger={['click']}
+      disabled={disabled}
       overlay={
         <FormatSettings
           onCurrencyChange={onCurrencyChange}
@@ -62,9 +73,9 @@ const FormatPicker = ({
       }
       placement="topCenter"
     >
-      <Button type={buttonType} mode="icon-label">
+      <Button type={buttonType} mode="icon-label" disabled={disabled}>
         <Icon component={<HashM />} />
-        {`${texts.format} ${valueFormatter({ value, formatting: format, intl })}`}
+        {`${texts.format} ${formattedValue}`}
       </Button>
     </Dropdown>
   );
