@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.4.4...@synerise/ds-format-picker@0.5.0) (2024-08-01)
+
+
+### Features
+
+* **format-picker:** add disabled and onFormattedValueChange props ([fb6c748](https://github.com/Synerise/synerise-design/commit/fb6c748e6a80e9ade59999066e9272d7acd3542d))
+* **format-picker:** changes onSetDefault to optional prop ([9cec904](https://github.com/Synerise/synerise-design/commit/9cec904a3212eb5f8e64a16f0bd1964350a4aa7c))
+
+
+
+
+
 ## [0.4.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.4.3...@synerise/ds-format-picker@0.4.4) (2024-07-31)
 
 **Note:** Version bump only for package @synerise/ds-format-picker

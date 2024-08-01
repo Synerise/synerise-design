@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.221.0](https://github.com/synerise/synerise-design/compare/portal@0.220.0...portal@0.221.0) (2024-08-01)
+
+
+### Features
+
+* **format-picker:** changes onSetDefault to optional prop ([9cec904](https://github.com/synerise/synerise-design/commit/9cec904a3212eb5f8e64a16f0bd1964350a4aa7c))
+
+
+
+
+
 # [0.220.0](https://github.com/synerise/synerise-design/compare/portal@0.219.1...portal@0.220.0) (2024-07-31)
 
 
