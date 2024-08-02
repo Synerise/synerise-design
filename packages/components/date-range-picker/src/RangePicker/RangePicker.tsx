@@ -30,6 +30,7 @@ import { AbsoluteDateRange, DateFilter, RelativeDateRange } from '../date.types'
 import { RangePickerProps as Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
+import { toIsoString } from '../utils';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
@@ -182,7 +183,8 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
       if (typeof date === 'string') {
         return fnsFormat(legacyParse(date), TOOLTIP_FORMAT, intl.locale);
       }
-      return formatValue(date, { ...getDefaultDataTimeOptions(true) });
+      const localDate = new Date(toIsoString(date, intl?.timeZone));
+      return formatValue(localDate, { ...getDefaultDataTimeOptions(true) });
     };
 
     return (

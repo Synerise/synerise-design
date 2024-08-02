@@ -12,7 +12,7 @@ import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
 import * as CONST from '../constants';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
-import { toIsoStringWithoutZone } from '../utils';
+import { toIsoString } from '../utils';
 
 const Footer = ({
   canApply,
@@ -39,12 +39,10 @@ const Footer = ({
       if (format || typeof date === 'string') {
         return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
       }
-
-      const parseDate = new Date(toIsoStringWithoutZone(date));
-
+      const parseDate = new Date(toIsoString(date, intl?.timeZone));
       return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [footerFormat, format, formatValue, intl.locale, valueFormatOptions, showTime]
+    [format, intl?.timeZone, intl.locale, formatValue, showTime, valueFormatOptions, footerFormat]
   );
 
   const ChosenRange = useMemo(() => {

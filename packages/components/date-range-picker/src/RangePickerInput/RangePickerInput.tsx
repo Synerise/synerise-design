@@ -1,4 +1,6 @@
+
 import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
+import { useIntl } from 'react-intl';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -8,7 +10,7 @@ import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-form
 import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
-import { normalizeRange } from '../utils';
+import { normalizeRange, toIsoString } from '../utils';
 import type { DateRange } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
@@ -40,6 +42,7 @@ const RangePickerInput = ({
   const showError = error || !!errorText;
   const hasValue = dateRangeValue?.from && dateRangeValue?.to;
 
+  const intl = useIntl();
   const handleIconMouseEnter = useCallback(() => setHovered(true), []);
   const handleIconMouseLeave = useCallback(() => setHovered(false), []);
 
@@ -53,10 +56,10 @@ const RangePickerInput = ({
 
   const getText = useCallback(
     (dateToDisplay): string => {
-      const dateValue = new Date(dateToDisplay);
-      return formatValue(dateValue, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
+      const realDate = new Date(toIsoString(dateToDisplay, intl?.timeZone));
+      return formatValue(realDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [showTime, formatValue, valueFormatOptions]
+    [intl?.timeZone, formatValue, showTime, valueFormatOptions]
   );
 
   const renderFromDate = useCallback(() => {
