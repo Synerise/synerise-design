@@ -24,6 +24,7 @@ import {
   SECOND,
   DISABLE_CLOCK_MODE_HOUR,
 } from './constants/timePicker.constants';
+import { toIsoString } from './utils/timeZone.utils';
 
 dayjs.extend(customParseFormatPlugin);
 
@@ -56,9 +57,9 @@ const TimePicker = ({
   errorText,
 }: TimePickerProps) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
-  const [open, setOpen] = useState<boolean>(defaultOpen || false);
+  const [open, setOpen] = useState(defaultOpen || false);
 
-  const { formatMessage } = useIntl();
+  const { formatMessage, timeZone } = useIntl();
 
   const is12HourClock: boolean = useMemo(() => {
     if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
@@ -75,8 +76,8 @@ const TimePicker = ({
       if (timeFormat) {
         return dayjs(date).format(timeFormatByClockMode);
       }
-
-      return formatValue(date, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
+      const localisedDate = new Date(toIsoString(date, timeZone));
+      return formatValue(localisedDate, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [timeFormat, timeFormatByClockMode, formatValue]
