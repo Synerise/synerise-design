@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import moment, { Moment } from 'moment';
 import dayjs, { Dayjs } from 'dayjs';
+import { getLocalDateInTimeZone } from '../utils/timeZone.utils';
 
 import {
   CommonFormatOptions,
@@ -23,7 +24,6 @@ import {
   addPrefix,
   addSuffix,
   changeNamingConvention,
-  getLocalDateInTimeZone,
 } from '../utils';
 import {
   DATE,

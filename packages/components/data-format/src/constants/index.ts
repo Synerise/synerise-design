@@ -4,7 +4,6 @@ export {
   DEFAULT_DATA_FORMAT_NOTATION,
   EU_NOTATION,
   US_NOTATION,
-  TIMEZONE_OFFSET_REGEX,
 } from './dataFormatConfig.constants';
 
 export {

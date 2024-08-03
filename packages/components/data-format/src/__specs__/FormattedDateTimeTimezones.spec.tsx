@@ -58,7 +58,6 @@ describe('FormattedDateTime TimezoneTesting', () => {
     'should render properly datetime with EU notation in TZ $timeZone',
     ({ timeZone, EUDate, EUTime }) => {
       renderWithProvider(<FormattedDateTime value={TZ_DATE_TO_FORMAT} />, {}, { timeZone, notation: EU_NOTATION });
-
       expect(screen.getByText(`${EUDate}, ${EUTime}`)).toBeTruthy();
     }
   );
@@ -67,7 +66,6 @@ describe('FormattedDateTime TimezoneTesting', () => {
     'should render properly datetime with US notation in TZ $timeZone',
     ({ timeZone, USDate, USTime }) => {
       renderWithProvider(<FormattedDateTime value={TZ_DATE_TO_FORMAT} />, {}, { timeZone, notation: US_NOTATION });
-
       expect(screen.getByText(`${USDate}, ${USTime}`)).toBeTruthy();
     }
   );

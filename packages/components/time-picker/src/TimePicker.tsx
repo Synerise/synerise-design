@@ -8,6 +8,7 @@ import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { useDataFormat } from '@synerise/ds-data-format';
+import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
@@ -24,7 +25,6 @@ import {
   SECOND,
   DISABLE_CLOCK_MODE_HOUR,
 } from './constants/timePicker.constants';
-import { toIsoString } from './utils/timeZone.utils';
 
 dayjs.extend(customParseFormatPlugin);
 
