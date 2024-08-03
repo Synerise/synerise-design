@@ -5,6 +5,7 @@ import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { ArrowRightS } from '@synerise/ds-icon';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import * as S from './Footer.styles';
 import { Props } from './Footer.types';
@@ -12,7 +13,6 @@ import fnsFormat from '../dateUtils/format';
 import getDateFromString from '../dateUtils/getDateFromString';
 import * as CONST from '../constants';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
-import { toIsoString } from '../utils';
 
 const Footer = ({
   canApply,

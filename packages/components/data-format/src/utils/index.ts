@@ -13,7 +13,6 @@ export {
   translateDateTimeParts,
   getMonthLongDateParts,
   getMonthShortDateParts,
-  getLocalDateInTimeZone,
 } from './dateTimeParts.utils';
 
 export {
@@ -32,3 +31,12 @@ export {
 } from './dataFormat.utils';
 
 export { getConstantDatesAndFormattingOptions } from './date.utils';
+
+export {
+  applyTimezoneOffset,
+  currentTimeInTimezone,
+  getValueAsLocalDate,
+  getTimeZone,
+  dateStringTimeZoneParts,
+  removeTimeZoneOffset,
+} from './timeZone.utils';

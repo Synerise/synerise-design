@@ -19,6 +19,7 @@ import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
 import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { getDefaultDataTimeOptions, withDataFormat, WithDataFormatProps } from '@synerise/ds-data-format';
+import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
@@ -30,7 +31,6 @@ import { AbsoluteDateRange, DateFilter, RelativeDateRange } from '../date.types'
 import { RangePickerProps as Props, State, Side as SideType } from './RangePicker.types';
 import getDateFromString from '../dateUtils/getDateFromString';
 import { getSidesState, getDisabledTimeOptions, getModifiers } from './utils';
-import { toIsoString } from '../utils';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};

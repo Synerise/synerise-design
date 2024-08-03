@@ -3,6 +3,13 @@ import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { DayModifiers, Modifiers } from 'react-day-picker';
 import { legacyParse } from '@date-fns/upgrade/v2';
 
+import {
+  applyTimezoneOffset,
+  currentTimeInTimezone,
+  getValueAsLocalDate,
+  getTimeZone,
+} from '@synerise/ds-data-format/dist/utils';
+
 import { RawDatePickerProps } from './RawDatePicker.types';
 
 import Footer from '../Elements/Footer/Footer';
@@ -17,7 +24,7 @@ import fnsFormat from '../format';
 import { DayBackground, DayText, DayForeground } from '../Elements/DayPicker/DayPicker.styles';
 import { fnsStartOfMonth, fnsSetYear, fnsSetMonth, fnsSetDate, fnsStartOfDay, fnsEndOfDay, fnsAddDays } from '../fns';
 import { changeDayWithHoursPreserved } from '../utils';
-import { applyTimezoneOffset, currentTimeInTimezone, getValueAsLocalDate, getTimeZone } from '../utils/timeZone.utils';
+
 import { getDefaultTexts } from '../utils/getDefaultTexts';
 
 class RawDatePicker<ValueType extends Date | string = Date> extends React.Component<

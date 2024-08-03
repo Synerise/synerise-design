@@ -6,11 +6,12 @@ import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
 import { getDefaultDataTimeOptions, useDataFormat } from '@synerise/ds-data-format';
+import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
-import { normalizeRange, toIsoString } from '../utils';
+import { normalizeRange } from '../utils';
 import type { DateRange } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 

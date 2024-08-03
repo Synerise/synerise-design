@@ -1,5 +1,5 @@
 import { FormatDateOptions, IntlShape } from 'react-intl';
-import { format, getTimezoneOffset } from 'date-fns-tz';
+import { getValueWithTimezone } from './timeZone.utils';
 import {
   DEFAULT_FORMAT_DATE_OPTIONS,
   DEFAULT_FORMAT_TIME_OPTIONS,
@@ -15,45 +15,8 @@ import {
   WEEKDAY_SHORT,
   LONG,
   SHORT,
-  TIMEZONE_OFFSET_REGEX,
 } from '../constants';
 import { DateToFormatOptions, Delimiter } from '../types';
-
-const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
-  return format(value, "yyyy-MM-dd'T'HH:mm:ssxxx", { timeZone: intlObject?.timeZone || defaultTimezone });
-};
-
-export const removeTimeZoneOffset = (dateString: string | Date) => {
-  const date = dateString.toString();
-  const finalDate = date.replace(TIMEZONE_OFFSET_REGEX, '');
-
-  return finalDate;
-};
-
-export const extractTimeZoneOffset = (datestring: string) => {
-  const date = datestring.toString();
-
-  const found = date.match(TIMEZONE_OFFSET_REGEX);
-  return found && found[0];
-};
-
-export const getLocalDateInTimeZone = (dateIsoString: string, timezone: string) => {
-  // dateIsoString 2024-01-02T12:00:00-04:00
-  // timezone Europe/Warsaw +02:00
-  const dateTZOffset = extractTimeZoneOffset(dateIsoString); // -04:00
-  const dateWithoutOffset = removeTimeZoneOffset(dateIsoString); // 2024-01-02T12:00:00
-
-  const localDate = new Date(dateWithoutOffset);
-  const localTimezoneOffset = getTimezoneOffset(timezone, localDate); // +2
-  const dateTimezoneOffset = dateTZOffset ? getTimezoneOffset(dateTZOffset, localDate) : 0; // -4
-
-  const offsetDiff = localTimezoneOffset - dateTimezoneOffset;
-  localDate.setMilliseconds(localDate.getMilliseconds() + offsetDiff);
-
-  return localDate;
-};
 
 export const getDateParts = (
   value: Date,

@@ -9,7 +9,7 @@ export type { UseDataFormatProps } from './hooks';
 export { withDataFormat } from './hocs/withDataFormat';
 export type { WithDataFormatProps } from './hocs/withDataFormat';
 
-export { getDataFormatConfigFromNotation, getDefaultDataTimeOptions, getLocalDateInTimeZone } from './utils';
+export { getDataFormatConfigFromNotation, getDefaultDataTimeOptions } from './utils';
 
 export * from './constants';
 
