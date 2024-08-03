@@ -76,7 +76,8 @@ const TimePicker = ({
       if (timeFormat) {
         return dayjs(date).format(timeFormatByClockMode);
       }
-      const localisedDate = new Date(toIsoString(date, timeZone));
+      // if intl.timezone is set then offset the local date to be "local in $timezone"
+      const localisedDate = timeZone ? new Date(toIsoString(date, timeZone)) : date;
       return formatValue(localisedDate, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
