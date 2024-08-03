@@ -23,7 +23,7 @@ const EU_FORMATTED_TIME = '15:40';
 describe('FormattedDateTime', () => {
   it('should render properly datetime with default notation', () => {
     renderWithProvider(<FormattedDateTime value={DATE_TO_FORMAT} />);
-    console.log('DATE_TO_FORMAT', DATE_TO_FORMAT);
+    
     expect(screen.getByText(`${EU_FORMATTED_DATE}, ${EU_FORMATTED_TIME}`)).toBeTruthy();
   });
 
