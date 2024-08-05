@@ -41,10 +41,9 @@ export const ComponentWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Description = styled.div<{ description?: boolean }>`
+export const Description = styled.div`
   display: flex;
   line-height: 16px;
   font-size: 12px;
   word-wrap: break-word;
-  text-align: center;
 `;
