@@ -1,13 +1,9 @@
-import * as React from 'react';
-import SubMenu from './SubMenu/SubMenu';
-import Item from './Item/Item';
+import { ReactNode, ReactNodeArray } from 'react';
 
 export type AppMenuProps = {
   className?: string;
   activeItem: string;
-  footer: React.ReactElement;
-  children: React.ReactNodeArray;
+  footer?: ReactNode;
+  children: ReactNodeArray;
   top?: number;
 };
-
-export type AppMenuSubComponents = { SubMenu: typeof SubMenu; Item: typeof Item };

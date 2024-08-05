@@ -5,15 +5,9 @@ import MenuContext from './MenuContext/MenuContext';
 import Item from './Item/Item';
 import NavigableItems from './NavigableItems/NavigableItems';
 import * as S from './AppMenu.styles';
-import { AppMenuProps, AppMenuSubComponents } from './AppMenu.types';
+import { AppMenuProps } from './AppMenu.types';
 
-const AppMenu: React.FC<AppMenuProps> & AppMenuSubComponents = ({
-  className,
-  children,
-  footer,
-  activeItem: activeId,
-  top = 0,
-}) => {
+const AppMenu = ({ className, children, footer, activeItem: activeId, top = 0 }: AppMenuProps) => {
   const [isOpened, setOpened] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(activeId);
   const ref = React.useRef<HTMLDivElement>(null);
