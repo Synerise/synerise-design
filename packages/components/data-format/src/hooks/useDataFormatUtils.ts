@@ -119,11 +119,11 @@ export const useDataFormatUtils = (): {
     [languageIntl, numberFormatNotation, getThousandDelimiterFromNotation, getDecimalDelimiterFromNotation]
   );
 
+  const { timeZone: globalTimeZone } = useIntl();
+
   const getFormattedDate = useCallback(
     (value: Date, dateFormatIntl: IntlShape, timeFormatIntl: IntlShape, options?: DateToFormatOptions): string => {
-      const valueInTimezone = dateFormatIntl.timeZone
-        ? getLocalDateInTimeZone(value.toISOString(), dateFormatIntl.timeZone)
-        : value;
+      const valueInTimezone = globalTimeZone ? getLocalDateInTimeZone(value.toISOString(), globalTimeZone) : value;
 
       if (options?.targetFormat === DATETIME) {
         return convertDateToDateTimeString(valueInTimezone, dateFormatIntl, timeFormatIntl, languageIntl, options);
@@ -155,7 +155,7 @@ export const useDataFormatUtils = (): {
 
       return value?.toString() ?? '';
     },
-    [languageIntl]
+    [languageIntl, globalTimeZone]
   );
 
   const getFormattedDateFromMoment = useCallback(

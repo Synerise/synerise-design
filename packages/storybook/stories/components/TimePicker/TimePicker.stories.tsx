@@ -66,6 +66,36 @@ export default {
 
 export const Default: Story = {};
 
+export const WithProviderTimezone: StoryObj<TimePickerProps<string>> = {
+  argTypes: {
+    includeTimezoneOffset: BOOLEAN_CONTROL,
+  },
+  args: {
+    includeTimezoneOffset: true,
+  },
+};
+
+export const WithProviderTimezonePopulated: StoryObj<TimePickerProps<string>> = {
+  argTypes: {
+    value: STRING_CONTROL,
+    includeTimezoneOffset: BOOLEAN_CONTROL,
+  },
+  args: {
+    includeTimezoneOffset: true,
+    value: '2024-02-02T14:20:00Z',
+  },
+};
+
+export const WithSpecificTimezone: StoryObj<TimePickerProps<string>> = {
+  argTypes: {
+    value: STRING_CONTROL,
+    includeTimezoneOffset: STRING_CONTROL,
+  },
+  args: {
+    includeTimezoneOffset: 'Asia/Tokyo',
+  },
+};
+
 export const Raw: Story = {
   args: {
     raw: true,
