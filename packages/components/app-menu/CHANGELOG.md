@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.66](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.65...@synerise/ds-app-menu@0.6.66) (2024-08-05)
+
+
+### Bug Fixes
+
+* **app-menu:** make footer optional ([fbd35aa](https://github.com/Synerise/synerise-design/commit/fbd35aa26c53e85c731dd14ca87cd14866a874f7))
+
+
+
+
+
 ## [0.6.65](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.64...@synerise/ds-app-menu@0.6.65) (2024-07-31)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

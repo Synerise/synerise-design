@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.28...@synerise/ds-field-set@0.2.29) (2024-08-05)
+
+
+### Bug Fixes
+
+* **field-set:** remove centering field set description ([1a38256](https://github.com/Synerise/synerise-design/commit/1a3825605dcd0e78b6a51471082e917576760388))
+
+
+
+
+
 ## [0.2.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.27...@synerise/ds-field-set@0.2.28) (2024-07-05)
 
 **Note:** Version bump only for package @synerise/ds-field-set

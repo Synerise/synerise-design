@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-wizard",
-  "version": "0.8.11",
+  "version": "0.8.12",
   "description": "Wizard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.21.4",
     "@synerise/ds-icon": "^0.64.1",
-    "@synerise/ds-layout": "^0.14.19",
+    "@synerise/ds-layout": "^0.15.0",
     "@synerise/ds-modal": "^0.17.35",
     "@synerise/ds-page-header": "^0.15.26",
     "@synerise/ds-utils": "^0.28.1",

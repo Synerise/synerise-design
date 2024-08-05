@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.14.19...@synerise/ds-layout@0.15.0) (2024-08-05)
+
+
+### Features
+
+* **layout:** add className prop to Page component ([2ee7788](https://github.com/synerise/synerise-design/commit/2ee7788c245e8767f577d0b6d24490cb7fe5007a))
+
+
+
+
+
 ## [0.14.19](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.14.18...@synerise/ds-layout@0.14.19) (2024-07-31)
 
 **Note:** Version bump only for package @synerise/ds-layout
