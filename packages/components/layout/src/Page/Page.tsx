@@ -1,14 +1,15 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 import * as S from './Page.styles';
 
-type LayoutProps = {
+type PageProps = {
   navBar?: React.ReactNode;
   appMenu?: React.Component;
   children: JSX.Element;
+  className?: string;
 };
 
-const Page: React.FC<LayoutProps> = ({ navBar, appMenu, children }) => {
-  const renderAppMenu = React.useMemo(() => {
+const Page = ({ navBar, appMenu, children, className }: PageProps) => {
+  const renderAppMenu = useMemo(() => {
     if (appMenu) {
       // @ts-ignore
       return React.cloneElement(appMenu, {
@@ -17,8 +18,9 @@ const Page: React.FC<LayoutProps> = ({ navBar, appMenu, children }) => {
     }
     return null;
   }, [appMenu, navBar]);
+
   return (
-    <S.PageContainer>
+    <S.PageContainer className={className}>
       {navBar}
       <S.ContentWrapper withNavBar={Boolean(navBar)}>
         <S.MenuWrapper withAppMenu={Boolean(appMenu)}>{renderAppMenu}</S.MenuWrapper>
