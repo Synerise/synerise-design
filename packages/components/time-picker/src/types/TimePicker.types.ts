@@ -15,7 +15,13 @@ export type TimePickerDisabledUnits = {
   disabledHours?: number[];
 };
 
-export type TimePickerProps = TimePickerDisabledUnits & {
+type ValueRelatedProps<ValueType extends Date | string> = {
+  onChange: (date: ValueType | undefined, timeString: string) => void;
+  value?: ValueType;
+  includeTimezoneOffset?: ValueType extends string ? boolean | string : never;
+};
+
+export type TimePickerProps<ValueType extends Date | string = Date> = ValueRelatedProps<ValueType> & {
   alwaysOpen?: boolean;
   className?: string;
   clearTooltip?: string | ReactNode;
@@ -24,7 +30,6 @@ export type TimePickerProps = TimePickerDisabledUnits & {
   disabled?: boolean;
   dropdownProps?: Partial<DropdownProps>;
   inputProps?: Partial<InputProps>;
-  onChange?: (value: Date | undefined, timeString: string) => void;
   onClockModeChange?: (mode: string) => void;
   overlayClassName?: string;
   placeholder?: string;
@@ -41,6 +46,5 @@ export type TimePickerProps = TimePickerDisabledUnits & {
    */
   use12HourClock?: boolean;
   valueFormatOptions?: DateToFormatOptions;
-  value?: Date;
   errorText?: ReactNode;
-};
+} & TimePickerDisabledUnits;

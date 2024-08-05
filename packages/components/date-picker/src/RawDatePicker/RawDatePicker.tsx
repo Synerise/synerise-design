@@ -98,7 +98,8 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
     const { useStartOfDay, useEndOfDay, showTime, includeTimezoneOffset, intl } = this.props;
 
     if (modifiers.disabled) return;
-    const now = includeTimezoneOffset ? currentTimeInTimezone(includeTimezoneOffset, intl) : new Date();
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+    const now = timeZone ? currentTimeInTimezone(timeZone) : new Date();
     let nextDateWithCurrentTime = isChanged && value ? value : now;
 
     nextDateWithCurrentTime = fnsSetYear(nextDateWithCurrentTime, day.getFullYear());
@@ -119,7 +120,8 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
 
   getNowDate = (): Date => {
     const { includeTimezoneOffset, intl } = this.props;
-    return includeTimezoneOffset ? currentTimeInTimezone(includeTimezoneOffset, intl) : new Date();
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+    return timeZone ? currentTimeInTimezone(timeZone) : new Date();
   };
 
   handleApply = (date: Date | undefined): void => {

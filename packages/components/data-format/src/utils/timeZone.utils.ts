@@ -72,11 +72,7 @@ export function toIsoString(date: Date, timeZone: string | undefined = 'UTC') {
   )}:${pad(date.getSeconds())}${dif}${tzHours}:${tzMinutes}`;
 }
 
-export const currentTimeInTimezone = (includeTimezoneOffset: boolean | string, intl: IntlShape) => {
-  const timezoneString = typeof includeTimezoneOffset === 'string' ? includeTimezoneOffset : intl?.timeZone;
-  if (!includeTimezoneOffset || !timezoneString) {
-    return new Date();
-  }
+export const currentTimeInTimezone = (timezoneString: string) => {
   const now = new Date();
   return utcToZonedTime(now.toISOString(), timezoneString);
 };

@@ -8,7 +8,7 @@ import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { useDataFormat } from '@synerise/ds-data-format';
-import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
+import { toIsoString, getTimeZone, getLocalDateInTimeZone } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
@@ -30,7 +30,7 @@ dayjs.extend(customParseFormatPlugin);
 
 const defaultUnits = [HOUR, MINUTE, SECOND] as dayjs.UnitType[];
 
-const TimePicker = ({
+const TimePicker = <ValueType extends Date | string = Date>({
   placement,
   placeholder,
   trigger,
@@ -55,11 +55,21 @@ const TimePicker = ({
   raw,
   onClockModeChange,
   errorText,
-}: TimePickerProps) => {
+  includeTimezoneOffset,
+}: TimePickerProps<ValueType>) => {
   const { formatValue, is12HoursClock: is12HoursClockFromDataFormat } = useDataFormat();
   const [open, setOpen] = useState(defaultOpen || false);
 
-  const { formatMessage, timeZone } = useIntl();
+  const intl = useIntl();
+  const { formatMessage } = intl;
+
+  const valueAsDate = useMemo(() => {
+    if (value instanceof Date || value === undefined) {
+      return value;
+    }
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+    return timeZone ? getLocalDateInTimeZone(value, timeZone) : new Date(value);
+  }, [value, includeTimezoneOffset, intl]);
 
   const is12HourClock: boolean = useMemo(() => {
     if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
@@ -76,12 +86,11 @@ const TimePicker = ({
       if (timeFormat) {
         return dayjs(date).format(timeFormatByClockMode);
       }
-      // if intl.timezone is set then offset the local date to be "local in $timezone"
-      const localisedDate = timeZone ? new Date(toIsoString(date, timeZone)) : date;
+      const timeZone = getTimeZone(includeTimezoneOffset, intl);
+      const localisedDate = timeZone || intl.timeZone ? new Date(toIsoString(date, intl.timeZone)) : date;
       return formatValue(localisedDate, { targetFormat: 'time', second: 'numeric', ...valueFormatOptions });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [timeFormat, timeFormatByClockMode, formatValue]
+    [timeFormat, includeTimezoneOffset, intl, formatValue, valueFormatOptions, timeFormatByClockMode]
   );
 
   const unitConfig: UnitConfig[] = [
@@ -108,22 +117,32 @@ const TimePicker = ({
   const availableUnits = units?.length ? units : defaultUnits;
   const unitsToRender = unitConfig.filter(u => availableUnits && availableUnits.includes(u.unit));
 
-  const onVisibleChange = (visible: boolean): void => {
-    setOpen(visible);
-    !visible && onChange && onChange(value as Date, getTimeString(value as Date));
+  const getDateToEmit = (date: Date): ValueType => {
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+    const dateToEmit = (timeZone && date ? toIsoString(date, timeZone) : date) as ValueType;
+    return dateToEmit;
   };
 
-  const handleChange = (
-    unit: dayjs.UnitType | undefined,
-    newValue: number | undefined,
-    clockModeChanged = false
-  ): void => {
-    let clockMode = getClockModeFromDate(value);
+  const onVisibleChange = (visible: boolean): void => {
+    setOpen(visible);
+    !visible && onChange && valueAsDate && onChange(getDateToEmit(valueAsDate), getTimeString(valueAsDate));
+  };
+
+  const handleChange = (unit: dayjs.UnitType | undefined, newValue: number | undefined, clockModeChanged = false) => {
+    let clockMode = getClockModeFromDate(valueAsDate);
     if (clockModeChanged) {
       clockMode = getOppositeClockMode(clockMode);
     }
-    const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, is12HourClock, clockMode, unitConfig);
-    onChange && onChange(newDate, getTimeString(newDate));
+    const newDate = handleTimeChange(
+      valueAsDate,
+      unit,
+      newValue,
+      clockModeChanged,
+      is12HourClock,
+      clockMode,
+      unitConfig
+    );
+    onChange && onChange(getDateToEmit(newDate), getTimeString(newDate));
   };
 
   const toggleClockModeChange = (): void => {
@@ -132,7 +151,7 @@ const TimePicker = ({
 
   const isAmOrPmModeDisabled = useCallback(
     (mode: ClockModes): boolean => {
-      const clockMode = getClockModeFromDate(value);
+      const clockMode = getClockModeFromDate(valueAsDate);
       if (!is12HourClock) {
         return false;
       }
@@ -150,11 +169,11 @@ const TimePicker = ({
       }
       return false;
     },
-    [value, disabledHours, is12HourClock]
+    [valueAsDate, disabledHours, is12HourClock]
   );
 
   const renderClockSwitch = () => {
-    const currentClockMode = getClockModeFromDate(value);
+    const currentClockMode = getClockModeFromDate(valueAsDate);
     return (
       <S.Unit>
         {Object.values(CLOCK_MODES).map(mode => (
@@ -182,7 +201,7 @@ const TimePicker = ({
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Unit
             {...u}
-            value={value}
+            value={valueAsDate}
             onSelect={(newValue): void => handleChange(u.unit, newValue)}
             use12HourClock={is12HourClock}
           />
@@ -194,8 +213,7 @@ const TimePicker = ({
     </S.OverlayContainer>
   );
 
-  const localValue = value;
-  const dateString = localValue && getTimeString(localValue);
+  const dateString = valueAsDate && getTimeString(valueAsDate);
 
   const clear = useCallback(() => {
     setOpen(false);
@@ -218,8 +236,8 @@ const TimePicker = ({
   }, [open, dateString, clear, clearTooltip, alwaysOpen, disabled]);
 
   const placeholderValue = useMemo((): string => {
-    if (value) {
-      return getTimeString(value);
+    if (valueAsDate) {
+      return getTimeString(valueAsDate);
     }
     return placeholder || formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
   }, [placeholder, formatMessage, value, getTimeString]);
