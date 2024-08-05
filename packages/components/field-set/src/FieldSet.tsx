@@ -12,7 +12,7 @@ const FieldSet = ({ className, prefix, title, description, component, button, on
           <S.Title onClick={onTitleClick} isClickable={Boolean(onTitleClick)} description={Boolean(description)}>
             {title}
           </S.Title>
-          <S.Description description={Boolean(description)}>{description}</S.Description>
+          <S.Description>{description}</S.Description>
         </S.FieldSetTitle>
       </S.HeaderWrapper>
       <Divider />
