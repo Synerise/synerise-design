@@ -48,7 +48,7 @@
     "@synerise/ds-tooltip": "^0.14.34",
     "@synerise/ds-typography": "^0.15.1",
     "@synerise/ds-utils": "^0.28.1",
-    "moment": "^2.25.3",
+    "moment": "^2.30.1",
     "react-animate-height": "^2.0.23",
     "react-intl": "3.12.0",
     "react-sortablejs": "^6.0.0",
