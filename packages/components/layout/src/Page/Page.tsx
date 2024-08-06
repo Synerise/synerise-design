@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { Component, ReactNode, useMemo } from 'react';
 import * as S from './Page.styles';
 
 type PageProps = {
-  navBar?: React.ReactNode;
-  appMenu?: React.Component;
-  children: JSX.Element;
+  navBar?: ReactNode;
+  appMenu?: Component;
+  children: ReactNode;
   className?: string;
 };
 
