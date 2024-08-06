@@ -1,10 +1,7 @@
-import dayjs from 'dayjs';
+import { AM, HOUR_12, PM } from '../constants/timePicker.constants';
 
-import { AM, HOUR, HOUR_12, PM } from '../constants/timePicker.constants';
-
-export const getClockModeFromDate = (date: Date | undefined): string => {
-  const initialDate = dayjs(date);
-  const initialHour = initialDate.get(HOUR);
+export const getClockModeFromDate = (date: Date): string => {
+  const initialHour = date.getHours();
   return initialHour >= HOUR_12 ? PM : AM;
 };
 
