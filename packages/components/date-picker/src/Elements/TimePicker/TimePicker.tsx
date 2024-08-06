@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { useDataFormat, getDefaultDataTimeOptions } from '@synerise/ds-data-format';
+import DSTimePicker from '@synerise/ds-time-picker';
+
 import Navbar from '../Navbar/Navbar';
 import * as S from './TimePicker.styles';
 import { TimePickerProps } from './TimePicker.types';
@@ -32,7 +34,7 @@ const TimePicker = ({
         />
       )}
       <S.Container key="ds-time-picker-body" className="ds-time-picker">
-        <S.Picker
+        <DSTimePicker
           value={value}
           onChange={onChange}
           disabledHours={disabledHours}

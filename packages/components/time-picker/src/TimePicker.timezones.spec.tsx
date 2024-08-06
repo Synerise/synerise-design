@@ -19,7 +19,7 @@ export const TEST_CASES = [
     USTime: '4:00:00',
   }, 
   {
-    id: 'Provider timeZone 1',
+    id: 'Regression - Provider timeZone, Timepicker using local value',
     initialDate: (new Date(INITIAL_DATE_TIME_STRING)).toISOString(),
     providerTimeZone: 'Asia/Tokyo',
     includeTimezoneOffset: undefined,
