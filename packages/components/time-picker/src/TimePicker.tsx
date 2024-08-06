@@ -8,7 +8,12 @@ import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { useDataFormat } from '@synerise/ds-data-format';
-import { toIsoString, getTimeZone, getLocalDateInTimeZone } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
+import {
+  currentTimeInTimezone,
+  toIsoString,
+  getTimeZone,
+  getLocalDateInTimeZone,
+} from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import Unit, { UnitConfig } from './Unit';
 import * as S from './TimePicker.styles';
@@ -71,6 +76,11 @@ const TimePicker = <ValueType extends Date | string = Date>({
     return timeZone ? getLocalDateInTimeZone(value, timeZone) : new Date(value);
   }, [value, includeTimezoneOffset, intl]);
 
+  const now = useMemo(() => {
+    const timeZone = getTimeZone(includeTimezoneOffset, intl);
+    return timeZone ? currentTimeInTimezone(timeZone) : new Date();
+  }, [includeTimezoneOffset, intl]);
+
   const is12HourClock: boolean = useMemo(() => {
     if (use12HourClock === undefined) return is12HoursClockFromDataFormat;
     return use12HourClock;
@@ -129,7 +139,7 @@ const TimePicker = <ValueType extends Date | string = Date>({
   };
 
   const handleChange = (unit: dayjs.UnitType | undefined, newValue: number | undefined, clockModeChanged = false) => {
-    let clockMode = getClockModeFromDate(valueAsDate);
+    let clockMode = getClockModeFromDate(valueAsDate || now);
     if (clockModeChanged) {
       clockMode = getOppositeClockMode(clockMode);
     }
@@ -151,7 +161,7 @@ const TimePicker = <ValueType extends Date | string = Date>({
 
   const isAmOrPmModeDisabled = useCallback(
     (mode: ClockModes): boolean => {
-      const clockMode = getClockModeFromDate(valueAsDate);
+      const clockMode = getClockModeFromDate(valueAsDate || now);
       if (!is12HourClock) {
         return false;
       }
@@ -169,11 +179,11 @@ const TimePicker = <ValueType extends Date | string = Date>({
       }
       return false;
     },
-    [valueAsDate, disabledHours, is12HourClock]
+    [valueAsDate, now, is12HourClock, disabledHours]
   );
 
   const renderClockSwitch = () => {
-    const currentClockMode = getClockModeFromDate(valueAsDate);
+    const currentClockMode = getClockModeFromDate(valueAsDate || now);
     return (
       <S.Unit>
         {Object.values(CLOCK_MODES).map(mode => (
@@ -240,7 +250,7 @@ const TimePicker = <ValueType extends Date | string = Date>({
       return getTimeString(valueAsDate);
     }
     return placeholder || formatMessage({ id: 'DS.TIME-PICKER.PLACEHOLDER' });
-  }, [placeholder, formatMessage, value, getTimeString]);
+  }, [valueAsDate, placeholder, formatMessage, getTimeString]);
 
   if (raw) {
     return overlay;
