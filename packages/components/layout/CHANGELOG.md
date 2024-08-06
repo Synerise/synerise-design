@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.15.0...@synerise/ds-layout@0.15.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* **layout:** fix Page children type ([ce470e8](https://github.com/synerise/synerise-design/commit/ce470e82388d91d79f5b779ec9543128e6e0b021))
+
+
+
+
+
 # [0.15.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-layout@0.14.19...@synerise/ds-layout@0.15.0) (2024-08-05)
 
 

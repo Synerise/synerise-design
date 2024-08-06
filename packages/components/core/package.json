@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-core",
-  "version": "0.40.18",
+  "version": "0.40.19",
   "description": "Core Components for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -31,7 +31,7 @@
   },
   "types": "dist/js/index.js",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.5.1",
+    "@synerise/ds-data-format": "^0.5.2",
     "deepmerge": "^4.2.2",
     "flat": "^5.0.2",
     "intl-messageformat-parser": "^3.6.4",
