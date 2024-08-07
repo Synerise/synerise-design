@@ -5,7 +5,7 @@ import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { DateToFormatOptions } from '@synerise/ds-data-format';
 import type { InputProps } from '@synerise/ds-input';
 
-type SharedDatePickerProps = {
+export type BaseDatePickerProps = {
   autoFocus?: boolean;
   disabled?: boolean;
 
@@ -45,14 +45,14 @@ type ValueRelatedProps<ValueType extends Date | string> = {
   onApply: (date?: ValueType) => void;
   value?: ValueType;
   onValueChange?: (date?: ValueType) => void;
-  includeTimezoneOffset?: ValueType extends string ? boolean | string : never;
+  includeTimezoneOffset?: ValueType extends string ? true | string : never;
 };
 
-export type DatePickerProps<ValueType extends Date | string = Date> = SharedDatePickerProps &
-  ValueRelatedProps<ValueType>;
+export type DatePickerProps<ValueType extends Date | string = Date> = ValueRelatedProps<ValueType> &
+  BaseDatePickerProps;
 
 // @deprecated - use DatePickerProps instead
-export type Props = DatePickerProps;
+export type Props<ValueType extends Date | string = Date> = DatePickerProps<ValueType>;
 
 export type State = {
   mode: string;
