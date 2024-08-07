@@ -10,6 +10,7 @@ export { CardSummary } from './CardSummary/CardSummary';
 export type { CardSummaryProps } from './CardSummary/CardSummary.types';
 export type { Backgrounds, CardProps } from './Card/Card.types';
 export type { CardGroupProps } from './CardGroup/CardGroup.types';
+export type { CardBadgeProps, BadgeStatus } from './CardBadge/CardBadge.types';
 
 export const CardStyles = {
   Card: MainCardStyles,
