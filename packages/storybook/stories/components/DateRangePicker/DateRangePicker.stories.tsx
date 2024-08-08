@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
 import { injectIntl } from 'react-intl';
 import { Meta, StoryObj } from '@storybook/react';
 
-import DateRangePicker, { CONST, RawDateRangePicker, utils } from '@synerise/ds-date-range-picker';
-import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
+import DateRangePicker, {
+  CONST,
+  RawDateRangePicker,
+  utils,
+  DateRangePickerProps,
+} from '@synerise/ds-date-range-picker';
+
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { datePickerArgTypes, filterArgTypes, generalArgTypes, relativeArgTypes } from './argTypes';
 import { ABSOLUTE_RANGE, RANGE_WITH_START_DATE, TEXTS } from './constants';
-import { useState } from 'react';
 import { centeredPaddedWrapper } from '../../utils';
-import styled from 'styled-components';
 
 export default {
   title: 'Components/Pickers/DateRangePicker',
@@ -19,7 +24,7 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    date: new Date("March 10, 2021 10:00:00"),
+    date: new Date('March 10, 2021 10:00:00'),
   },
   decorators: [centeredPaddedWrapper],
   render: ({ relativeModes, ...args }) => {
@@ -175,7 +180,6 @@ export const RelativeRangePresets: Story = {
       }
     `;
     const presets = [...CONST.RELATIVE_PRESETS, ...CONST.ABSOLUTE_PRESETS];
-    const now = new Date();
     const dateStr = (date?: Date) => {
       try {
         return JSON.stringify(

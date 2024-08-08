@@ -1,13 +1,8 @@
-import DateRangePicker, { DailyDateFilter, WeeklyDateFilter, RawDateRangePicker } from '@synerise/ds-date-range-picker';
+import DateRangePicker, { DailyDateFilter, WeeklyDateFilter } from '@synerise/ds-date-range-picker';
 import { ArgTypes } from '@storybook/types';
 import {
-  STYLE_ARG_CONTROL,
-  CLASSNAME_ARG_CONTROL,
-  stringWithNoControl,
-  PREFIXCLS_ARG_CONTROL,
   STRING_CONTROL,
   BOOLEAN_CONTROL,
-  REACT_NODE_AS_STRING,
   NUMBER_CONTROL,
   controlFromOptionsArray,
   tableConfig,

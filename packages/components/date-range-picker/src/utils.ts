@@ -1,6 +1,6 @@
 import fnsMin from 'date-fns/min';
 import fnsMax from 'date-fns/max';
-import { removeTimeZoneOffset } from '@synerise/ds-data-format/dist/utils';
+import { getValueAsLocalDate } from '@synerise/ds-data-format/dist/utils';
 
 import { omit } from 'lodash';
 
@@ -14,7 +14,7 @@ import { Texts } from './DateRangePicker.types';
 
 export { START_OF, END_OF };
 
-export const normalizeRange = (range: DateRange): DateRange => {
+export const normalizeRange = (range: DateRange, timeZone?: string): DateRange => {
   if (!range || !range.type) {
     return { type: ABSOLUTE, from: undefined };
   }
@@ -61,8 +61,8 @@ export const normalizeRange = (range: DateRange): DateRange => {
     omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
   const absoluteRange = {
     ...dropNonAbsolute(range),
-    from: range.from ? new Date(removeTimeZoneOffset(range?.from)) : undefined,
-    to: range.to ? new Date(removeTimeZoneOffset(range?.to)) : undefined,
+    from: range.from ? getValueAsLocalDate(range?.from, timeZone) : undefined,
+    to: range.to ? getValueAsLocalDate(range?.to, timeZone) : undefined,
   };
 
   if (!keys.includes('from') && !keys.includes('to')) {

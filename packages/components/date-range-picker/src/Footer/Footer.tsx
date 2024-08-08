@@ -54,11 +54,11 @@ const Footer = ({
       );
     }
     return (
-      <S.ChosenRange className={displayDateContainerClass}>
-        {!!value && !!value.from ? footerDateToString(value?.from) : texts.startDatePlaceholder}
+      <S.ChosenRange className={displayDateContainerClass} data-testid="ds-date-range-picker-footer">
+        <span>{!!value && !!value.from ? footerDateToString(value?.from) : texts.startDatePlaceholder}</span>
         <S.InvisibleTextContent>{' – '}</S.InvisibleTextContent>
         <Icon component={<ArrowRightS />} />
-        {!!value && !!value.to ? footerDateToString(value?.to) : texts.endDatePlaceholder}
+        <span>{!!value && !!value.to ? footerDateToString(value?.to) : texts.endDatePlaceholder}</span>
       </S.ChosenRange>
     );
   }, [value, texts, displayDateContainerClass, footerDateToString]);

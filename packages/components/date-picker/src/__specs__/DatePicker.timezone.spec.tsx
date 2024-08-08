@@ -20,9 +20,9 @@ type TestCase = {
   providerTZOffset?: string;
   USDateTime: string;
   EUDateTime: string;
-  includeTimezoneOffset?: boolean | string;
+  includeTimezoneOffset?: true | string;
 };
-export const TEST_CASES_WITHOUT_TZ_OFFSET = [
+export const TEST_CASES_WITHOUT_TZ_OFFSET: TestCase[] = [
   {
     id: 'Regression - DatePicker using local time',
     initialDate: new Date(INITIAL_DATE_TIME_STRING),
@@ -38,7 +38,7 @@ export const TEST_CASES_WITHOUT_TZ_OFFSET = [
     EUDateTime: '10 Oct 2024, 00:00',
   },
 ];
-export const TEST_CASES = [
+export const TEST_CASES: TestCase[]= [
   {
     id: 'Provider timeZone 2',
     providerTZOffset: '+02:00',
@@ -89,7 +89,7 @@ export const TEST_CASES = [
 describe('DatePicker TimezoneTesting', () => {
   it.each([...TEST_CASES, ...TEST_CASES_WITHOUT_TZ_OFFSET])(
     'renders correct value in US notation',
-    async ({ id, providerTimeZone, includeTimezoneOffset, providerTZOffset, USDateTime, initialDate }: TestCase) => {
+    async ({ id, providerTimeZone, includeTimezoneOffset, providerTZOffset, USDateTime, initialDate }) => {
       const onApply = jest.fn();
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;
       renderWithProvider(
@@ -112,7 +112,7 @@ describe('DatePicker TimezoneTesting', () => {
   );
   it.each([...TEST_CASES, ...TEST_CASES_WITHOUT_TZ_OFFSET])(
     'renders correct value in EU notation',
-    async ({ id, providerTimeZone, includeTimezoneOffset, providerTZOffset, EUDateTime, initialDate }: TestCase) => {
+    async ({ id, providerTimeZone, includeTimezoneOffset, providerTZOffset, EUDateTime, initialDate }) => {
       const onApply = jest.fn();
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;
       const tzProp =
@@ -143,7 +143,7 @@ describe('DatePicker TimezoneTesting', () => {
 
   it.each(TEST_CASES)(
     'uses NOW value in timezone',
-    async ({ providerTimeZone, includeTimezoneOffset, providerTZOffset, initialDate }: TestCase) => {
+    async ({ providerTimeZone, includeTimezoneOffset, providerTZOffset, initialDate }) => {
       const onApply = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1];
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;
@@ -175,7 +175,7 @@ describe('DatePicker TimezoneTesting', () => {
   );
   it.each(TEST_CASES_WITHOUT_TZ_OFFSET)(
     'uses NOW value in timezone',
-    async ({ providerTimeZone, providerTZOffset, initialDate }: TestCase) => {
+    async ({ providerTimeZone, providerTZOffset, initialDate }) => {
       const onApply = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1];
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;
@@ -211,7 +211,7 @@ describe('DatePicker TimezoneTesting', () => {
       expectedTZOffset,
       providerTZOffset,
       initialDate,
-    }: TestCase) => {
+    }) => {
       const onApply = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1];
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;
@@ -254,7 +254,7 @@ describe('DatePicker TimezoneTesting', () => {
 
   it.each(TEST_CASES_WITHOUT_TZ_OFFSET)(
     'correct values in onApply - without timezone offsets, onApply param is Date',
-    async ({ providerTimeZone, providerTZOffset, initialDate }: TestCase) => {
+    async ({ providerTimeZone, providerTZOffset, initialDate }) => {
       const onApply = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1];
       const value = initialDate ? initialDate : `${INITIAL_DATE_TIME_STRING}${providerTZOffset}`;

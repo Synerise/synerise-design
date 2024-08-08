@@ -1,4 +1,3 @@
-
 import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -37,8 +36,9 @@ const RangePickerInput = ({
   preferRelativeDesc = false,
 }: RangePickerInputProps) => {
   const { formatValue } = useDataFormat();
+  const { timeZone } = useIntl();
 
-  const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
+  const dateRangeValue = value ? normalizeRange(value as DateRange, timeZone) : value;
   const [hovered, setHovered] = useState(false);
   const showError = error || !!errorText;
   const hasValue = dateRangeValue?.from && dateRangeValue?.to;
