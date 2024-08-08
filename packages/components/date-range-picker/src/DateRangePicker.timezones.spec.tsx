@@ -38,8 +38,8 @@ type TestCase = {
 
 const ABSOLUTE_VALUE: AbsoluteDateRange = {
   type: ABSOLUTE,
-  from: '2018-10-09T00:00:00+02:00', // Summer Time
-  to: '2018-12-08T23:59:59+01:00', // Winter Time
+  from: '2018-10-09T00:00:00+02:00', // PL Summer Time 
+  to: '2018-12-08T23:59:59+01:00', // PL Winter Time
 };
 
 const TEXTS = {
