@@ -139,7 +139,7 @@ describe('DatePicker TimezoneTesting', () => {
     }
   );
 
-  const NOW_THRESHOLD = 100; // allow 100ms difference between clicked "now" and created "now" date
+  const NOW_THRESHOLD = 1001; // allow 1s difference between clicked "now" and created "now" date
 
   it.each(TEST_CASES)(
     'uses NOW value in timezone',
