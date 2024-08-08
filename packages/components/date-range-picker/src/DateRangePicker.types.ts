@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { WrappedComponentProps } from 'react-intl';
+
 import { PopoverProps } from 'antd/lib/popover';
 
 import { DateToFormatOptions } from '@synerise/ds-data-format';
@@ -39,7 +39,7 @@ export type AdditionalMapper = {
   rightTop: CustomColorArrow;
   rightBottom: CustomColorArrow;
 };
-export type DateRangePickerProps = WrappedComponentProps & {
+export type DateRangePickerProps = {
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.
    */

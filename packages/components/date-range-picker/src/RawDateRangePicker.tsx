@@ -1,6 +1,6 @@
 import React, { ReactNode, PureComponent } from 'react';
 import { omitBy, isUndefined } from 'lodash';
-import { injectIntl } from 'react-intl';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
 import fnsStartOfSecond from 'date-fns/startOfSecond';
 import { legacyParse } from '@date-fns/upgrade/v2';
@@ -56,10 +56,11 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   }
   return value;
 }
-type RawDateRangePickerProps = Omit<DateRangePickerProps, 'texts'> & {
-  texts: Texts;
-  alignContentToTop?: boolean;
-};
+type RawDateRangePickerProps = WrappedComponentProps &
+  Omit<DateRangePickerProps, 'texts'> & {
+    texts: Texts;
+    alignContentToTop?: boolean;
+  };
 
 export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, State> {
   static defaultProps = {
@@ -73,10 +74,11 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
 
   constructor(props: RawDateRangePickerProps) {
     super(props);
+    const { intl } = props;
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
       mode: MODES.DATE,
-      value: normalizeRange(props.value),
+      value: normalizeRange(props.value, intl.timeZone),
       visibleAddonKey: 'relative-picker',
     };
   }
