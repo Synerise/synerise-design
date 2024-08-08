@@ -33,16 +33,17 @@ const Footer = ({
 }: Props) => {
   const { formatValue } = useDataFormat();
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
+  const { locale, timeZone } = intl;
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
       if (format || typeof date === 'string') {
-        return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
+        return fnsFormat(getDateFromString(date), footerFormat, locale);
       }
-      const parseDate = new Date(toIsoString(date, intl?.timeZone));
+      const parseDate = timeZone ? new Date(toIsoString(date, timeZone)) : date;
       return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [format, intl?.timeZone, intl.locale, formatValue, showTime, valueFormatOptions, footerFormat]
+    [format, timeZone, locale, formatValue, showTime, valueFormatOptions, footerFormat]
   );
 
   const ChosenRange = useMemo(() => {

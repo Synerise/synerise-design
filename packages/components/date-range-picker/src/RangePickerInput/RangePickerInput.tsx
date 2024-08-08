@@ -57,7 +57,7 @@ const RangePickerInput = ({
 
   const getText = useCallback(
     (dateToDisplay): string => {
-      const realDate = new Date(toIsoString(dateToDisplay, intl?.timeZone));
+      const realDate = new Date(toIsoString(dateToDisplay, intl.timeZone));
       return formatValue(realDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
     [intl?.timeZone, formatValue, showTime, valueFormatOptions]

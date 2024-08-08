@@ -1,5 +1,5 @@
 import { FormatDateOptions, IntlShape } from 'react-intl';
-import { getValueWithTimezone } from './timeZone.utils';
+import { dateToIsoWithOffset } from './timeZone.utils';
 import {
   DEFAULT_FORMAT_DATE_OPTIONS,
   DEFAULT_FORMAT_TIME_OPTIONS,
@@ -23,7 +23,7 @@ export const getDateParts = (
   dateFormatIntl: IntlShape,
   option?: FormatDateOptions
 ): Intl.DateTimeFormatPart[] =>
-  dateFormatIntl.formatDateToParts(getValueWithTimezone(value, dateFormatIntl), {
+  dateFormatIntl.formatDateToParts(dateToIsoWithOffset(value, dateFormatIntl), {
     ...DEFAULT_FORMAT_DATE_OPTIONS,
     ...option,
   });
@@ -33,7 +33,7 @@ export const getTimeParts = (
   timeFormatIntl: IntlShape,
   option?: FormatDateOptions
 ): Intl.DateTimeFormatPart[] =>
-  timeFormatIntl.formatDateToParts(getValueWithTimezone(value, timeFormatIntl), {
+  timeFormatIntl.formatDateToParts(dateToIsoWithOffset(value, timeFormatIntl), {
     ...DEFAULT_FORMAT_TIME_OPTIONS,
     ...option,
   });

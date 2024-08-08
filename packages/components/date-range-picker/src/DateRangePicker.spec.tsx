@@ -76,9 +76,7 @@ const ABSOLUTE_VALUE = {
   to: '2018-12-08T23:59:59+01:00',
 };
 const ABSOLUTE_VALUE_WITH_FILTER = {
-  type: ABSOLUTE,
-  from: '2018-10-09T00:00:00+02:00',
-  to: '2018-12-08T23:59:59+01:00',
+  ...ABSOLUTE_VALUE,
   filter: { ...WEEKLY_FILTER }
 };
 const ABSOLUTE_VALUE_WITH_DAILY_FILTER = {
@@ -100,7 +98,7 @@ const LIFETIME_VALUE_WITH_FILTER = {
 
 const displayDateContainerClass = 'ds-date-range-picker-value';
 
-export const RANGES: RelativeDateRange[] = [
+const RANGES: RelativeDateRange[] = [
   {
     key: 'MY_RANGE',
     translationKey: 'myRange',

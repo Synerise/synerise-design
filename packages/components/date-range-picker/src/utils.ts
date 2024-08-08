@@ -61,8 +61,8 @@ export const normalizeRange = (range: DateRange, timeZone?: string): DateRange =
     omit(dateRange, ['offset', 'duration', 'future']) as DateRange;
   const absoluteRange = {
     ...dropNonAbsolute(range),
-    from: range.from ? getValueAsLocalDate(range?.from, timeZone) : undefined,
-    to: range.to ? getValueAsLocalDate(range?.to, timeZone) : undefined,
+    from: range.from ? getValueAsLocalDate(range.from, timeZone) : undefined,
+    to: range.to ? getValueAsLocalDate(range.to, timeZone) : undefined,
   };
 
   if (!keys.includes('from') && !keys.includes('to')) {
