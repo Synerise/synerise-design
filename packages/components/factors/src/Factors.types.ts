@@ -120,7 +120,7 @@ export type FactorsProps = {
   value: FactorValueType;
   textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
   autoResize?: AutoResizeProp;
-  includeTimezoneOffset?: boolean | string;
+  includeTimezoneOffset?: true | string;
   autocompleteText?: {
     options: string[];
   };

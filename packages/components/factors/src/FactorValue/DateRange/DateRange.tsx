@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import DateRangePicker from '@synerise/ds-date-range-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 import { DateFilter, DateRange } from '@synerise/ds-date-range-picker/dist/date.types';
-import { useIntl } from 'react-intl';
 import { InputProps } from '../../Factors.types';
 
 const DateRangeInput = ({
@@ -15,8 +14,6 @@ const DateRangeInput = ({
   allowClear,
   readOnly = false,
 }: InputProps) => {
-  const intl = useIntl();
-
   const changeHandler = useCallback(
     (date: Partial<DateFilter> | undefined) => {
       onChange(date);
@@ -35,7 +32,6 @@ const DateRangeInput = ({
 
   return (
     <DateRangePicker
-      intl={intl}
       onApply={changeHandler}
       showTime
       getPopupContainer={getPopupContainerOverride || getPopupContainer}
