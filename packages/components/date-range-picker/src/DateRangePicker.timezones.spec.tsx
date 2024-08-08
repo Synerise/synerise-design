@@ -285,6 +285,8 @@ describe('DateRangePicker TimezoneTesting', () => {
     }
   );
 
+  it.todo('Click on specific days & click "apply": onApply param should have updated range with provider timezone offset');
+  it.todo('Time mode should show "from" and "to" time in provider timezone');
   it.todo('NOW button should set to current time in provider timezone'); // FIXME useFakeTimers
 
   it.todo('TODAY relative range should render footer value using current day in provider timezone'); // FIXME component needs fixing
