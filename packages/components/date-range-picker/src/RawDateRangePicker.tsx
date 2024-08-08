@@ -111,9 +111,9 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
     if (range.from && !fnsIsValid(range?.from)) {
       return;
     }
-    const { onValueChange, valueTransformer, isTruncateMs } = this.props;
+    const { onValueChange, valueTransformer, isTruncateMs, intl } = this.props;
     const { value, mode } = this.state;
-    const newValue = normalizeRange({ ...range, filter: value.filter });
+    const newValue = normalizeRange({ ...range, filter: value.filter }, intl.timeZone);
     if (isTruncateMs) {
       if (newValue.from !== undefined) {
         newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
@@ -271,7 +271,7 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
     } = this.props;
     const { value, mode } = this.state;
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
-      const absolute = normalizeRange(value);
+      const absolute = normalizeRange(value, intl.timeZone);
       Object.assign(value, { from: absolute.from, to: absolute.to });
     }
     const { from, to, key } = value;
@@ -320,7 +320,7 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
         <Container className={containerClass}>
           <RangePicker
             showNowButton={showNowButton}
-            value={normalizeRange(value)}
+            value={normalizeRange(value, intl.timeZone)}
             onChange={this.handleRangeChange}
             mode={mode}
             disabledDate={disabledDate}
