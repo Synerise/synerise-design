@@ -5,13 +5,13 @@ export const TIMEZONE_OFFSET_REGEX = /([+-]\d\d:\d\d)|([Z])$/;
 
 const defaultTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-export const getValueWithTimezone = (value: Date, intlObject: IntlShape) => {
+export const dateToIsoWithOffset = (value: Date, intlObject: IntlShape): string => {
   return format(value, "yyyy-MM-dd'T'HH:mm:ssxxx", { timeZone: intlObject?.timeZone || defaultTimezone });
 };
-/// SAME AS ABOVE ???
+
 export const applyTimezoneOffset = (
   date: Date | undefined,
-  timezoneOffset: boolean | string | undefined,
+  timezoneOffset: true | string | undefined,
   intl?: IntlShape
 ) => {
   if (!timezoneOffset) {
@@ -23,7 +23,7 @@ export const applyTimezoneOffset = (
 };
 
 export const removeTimeZoneOffset = (dateString: string | Date) => {
-  const date = dateString.toString();
+  const date = dateString instanceof Date ? dateString.toISOString() : dateString;
   const finalDate = date.replace(TIMEZONE_OFFSET_REGEX, '');
 
   return finalDate;
@@ -96,7 +96,6 @@ export const getValueAsLocalDate = (value?: Date | string, timeZone?: string): D
     if (typeof value !== 'string') return getLocalDateInTimeZone(value.toISOString(), timeZone);
     return getLocalDateInTimeZone(value, timeZone);
   }
-  // FIXME ????
   return typeof value === 'string' ? new Date(value) : value;
 };
 
