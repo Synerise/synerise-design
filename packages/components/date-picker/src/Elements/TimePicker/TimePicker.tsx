@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useIntl } from 'react-intl';
+import { applyTimezoneOffset } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 import { useDataFormat, getDefaultDataTimeOptions } from '@synerise/ds-data-format';
 import DSTimePicker from '@synerise/ds-time-picker';
 
@@ -17,10 +19,19 @@ const TimePicker = ({
   onChange,
   onShortNext,
   onShortPrev,
+  includeTimezoneOffset,
 }: TimePickerProps) => {
   const { is12HoursClock, formatValue } = useDataFormat();
-  const navbarDate = formatValue(value, { ...getDefaultDataTimeOptions(), targetFormat: 'date', month: 'short' });
+  const intl = useIntl();
 
+  const valueInTimezone = includeTimezoneOffset && applyTimezoneOffset(value, includeTimezoneOffset, intl);
+  const localisedDate1 = valueInTimezone ? new Date(valueInTimezone) : value;
+
+  const navbarDate = formatValue(localisedDate1, {
+    ...getDefaultDataTimeOptions(),
+    targetFormat: 'date',
+    month: 'short',
+  });
   return (
     <>
       {!!value && (

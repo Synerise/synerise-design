@@ -99,7 +99,12 @@ const Unit = ({ options, disabled, value, unit, onSelect, use12HourClock }: Unit
               active={isSelected}
               ref={isSelected ? selectedCellRef : null}
             >
-              <S.CellText>{normalizedStringValue}</S.CellText>
+              <S.CellText
+                {...(isSelected ? { 'data-selected': true } : {})}
+                data-testid={`ds-time-picker-${unit}-${normalizedStringValue}`}
+              >
+                {normalizedStringValue}
+              </S.CellText>
             </S.Cell>
           );
         })}

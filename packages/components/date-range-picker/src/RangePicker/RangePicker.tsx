@@ -19,7 +19,7 @@ import { fnsDifferenceInYears } from '@synerise/ds-date-picker/dist/fns';
 import localeUtils from '@synerise/ds-date-picker/dist/localeUtils';
 import fnsFormat from '@synerise/ds-date-picker/dist/format';
 import { getDefaultDataTimeOptions, withDataFormat, WithDataFormatProps } from '@synerise/ds-data-format';
-import { toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
+import { currentTimeInTimezone, toIsoString } from '@synerise/ds-data-format/dist/utils/timeZone.utils';
 
 import { Range } from '../RelativeRangePicker/RelativeRangePicker.styles';
 import { fnsStartOfDay, fnsEndOfDay, fnsIsSameMonth, fnsIsAfter, fnsAddMinutes, fnsAddDays } from '../fns';
@@ -285,6 +285,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         return (
           <TimePicker
             key={`time-picker-${side}`}
+            includeTimezoneOffset
             value={getDateFromString(from)}
             onChange={this.handleFromTimeChange}
             disabledHours={getDisabledTimeOptions(from, 'HOURS', null, to, is12HoursClock)}
@@ -307,6 +308,7 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
         return (
           <TimePicker
             key={`time-picker-${side}`}
+            includeTimezoneOffset
             value={getDateFromString(to)}
             onChange={this.handleToTimeChange}
             disabledHours={getDisabledTimeOptions(to, 'HOURS', from, null, is12HoursClock)}
@@ -347,19 +349,23 @@ class RangePicker extends PureComponent<Props & WithDataFormatProps, State> {
   };
 
   render(): JSX.Element {
-    const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, texts } = this.props;
+    const { mode, onChange, value, canSwitchMode, dateOnly, onSwitchMode, texts, intl } = this.props;
     const { showNowButton = true } = this.props;
     return (
       <>
         <S.Sides>
-          <S.Side mode={mode}>{this.renderSide(COLUMNS.LEFT as SideType)}</S.Side>
-          <S.Side mode={mode}>{this.renderSide(COLUMNS.RIGHT as SideType)}</S.Side>
+          <S.Side mode={mode} data-testid="ds-date-range-picker-side-left">
+            {this.renderSide(COLUMNS.LEFT as SideType)}
+          </S.Side>
+          <S.Side mode={mode} data-testid="ds-date-range-picker-side-right">
+            {this.renderSide(COLUMNS.RIGHT as SideType)}
+          </S.Side>
         </S.Sides>
         <S.PickerFooter>
           {showNowButton && (
             <Range
               onClick={({ currentTarget }: UIEvent): void => {
-                const now = new Date();
+                const now = intl.timeZone ? currentTimeInTimezone(intl.timeZone) : new Date();
                 const literallyNow: AbsoluteDateRange = {
                   ...value,
                   translationKey: 'now',
