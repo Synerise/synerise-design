@@ -185,7 +185,7 @@ const TimePicker = <ValueType extends Date | string = Date>({
   const renderClockSwitch = () => {
     const currentClockMode = getClockModeFromDate(valueAsDate || now);
     return (
-      <S.Unit>
+      <S.Unit data-testid="ds-time-picker-unit-meridiem">
         {Object.values(CLOCK_MODES).map(mode => (
           <S.Cell
             key={mode}
@@ -198,7 +198,7 @@ const TimePicker = <ValueType extends Date | string = Date>({
             }}
             disabled={isAmOrPmModeDisabled(mode)}
           >
-            <S.CellText>{mode}</S.CellText>
+            <S.CellText {...(currentClockMode === mode ? { 'data-selected': true } : {})}>{mode}</S.CellText>
           </S.Cell>
         ))}
       </S.Unit>

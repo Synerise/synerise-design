@@ -213,7 +213,7 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
 
   renderTimePicker = (): React.ReactNode => {
     const { value } = this.state;
-    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates } = this.props;
+    const { disabledHours, disabledMinutes, disabledSeconds, disabledDates, includeTimezoneOffset } = this.props;
     const prevDay = fnsAddDays(legacyParse(value), -1);
     const nextDay = fnsAddDays(legacyParse(value), 1);
     const inactivePrev = disabledDates ? disabledDates(prevDay) : false;
@@ -221,6 +221,7 @@ class RawDatePicker<ValueType extends Date | string = Date> extends React.Compon
     return (
       <TimePicker
         value={value}
+        includeTimezoneOffset={includeTimezoneOffset}
         onChange={this.handleChange}
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}

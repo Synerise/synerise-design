@@ -55,7 +55,9 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
           <S.ArrowPlaceholder className="arrow-placeholder short-prev" />
         )}
       </S.ArrowContainer>
-      <S.Text>{onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}</S.Text>
+      <S.Text data-testid="ds-date-picker-nav-title">
+        {onTitleClick ? <S.Link onClick={onTitleClick}>{title}</S.Link> : title}
+      </S.Text>
       <S.ArrowContainer>
         {onShortNext && !hideNext ? (
           <S.NavButton
