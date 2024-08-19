@@ -1,6 +1,13 @@
 import { ReactNode } from 'react';
-import { RadioProps } from 'antd/lib/radio';
+import { RadioProps as AntdRadioProps, RadioGroupProps as AntdRadioGroupProps } from 'antd/lib/radio';
 
-export interface Props extends RadioProps {
+export type RadioProps = AntdRadioProps & {
   description?: ReactNode;
-}
+};
+// @deprecated, use RadioProps instead
+export type Props = RadioProps;
+
+export type RadioGroupProps = AntdRadioGroupProps & {
+  fullWidth?: boolean;
+  big?: boolean;
+};
