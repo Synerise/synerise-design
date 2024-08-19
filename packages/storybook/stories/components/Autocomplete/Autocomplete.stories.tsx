@@ -17,7 +17,7 @@ import { renderWithHighlightedText } from './utils';
 const excludedProps = ['animation'];
 const excludeRegexp = new RegExp(`(${excludedProps.join('|')})`, 'g');
 const meta: Meta<AutocompleteProps> = {
-  title: "Components/Autocomplete",
+  title: "Components/InputElements/Autocomplete",
   component: Autocomplete,
   decorators: [fixedWrapper400],
   parameters: {

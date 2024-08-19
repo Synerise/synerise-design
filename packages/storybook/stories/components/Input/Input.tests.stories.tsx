@@ -7,7 +7,7 @@ import InputMeta from './Input.stories';
 
 export default {
   ...InputMeta,
-  title: 'Components/Input/Tests',
+  title: 'Components/InputElements/Tests',
   tags: ['visualtests'],
 } as Meta<InputProps>;
 

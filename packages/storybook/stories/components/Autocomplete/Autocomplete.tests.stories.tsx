@@ -11,7 +11,7 @@ import { fixedWrapper400, fixedWrapper200 } from '../../utils';
 const excludedProps = ['animation'];
 const excludeRegexp = new RegExp(`(${excludedProps.join('|')})`, 'g');
 const meta: Meta<AutocompleteProps> = {
-  title: "Components/Autocomplete/Tests",
+  title: "Components/InputElements/Tests",
   component: Autocomplete,
   parameters: {
     controls: {
