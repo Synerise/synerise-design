@@ -34,7 +34,6 @@
     "@storybook/addon-links": "7.6.5",
     "@storybook/blocks": "7.6.5",
     "@storybook/icons": "^1.2.9",
-    "@storybook/jest": "0.2.3",
     "@storybook/manager-api": "7.6.5",
     "@storybook/react": "7.6.5",
     "@storybook/react-webpack5": "7.6.5",
