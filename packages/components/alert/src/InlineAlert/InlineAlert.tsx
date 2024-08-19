@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Icon, { Check3M, WarningFillM, InfoM } from '@synerise/ds-icon';
+import React, { useMemo, ReactNode } from 'react';
+import Icon, { Check3M, WarningFillM, InfoFillM } from '@synerise/ds-icon';
 import { InlineAlertProps, InlineAlertType } from './InlineAlert.types';
 import * as S from './InlineAlert.styles';
 
-const ICONS: Record<InlineAlertType, React.ReactNode> = {
+const ICONS: Record<InlineAlertType, ReactNode> = {
   success: <Check3M />,
   alert: <WarningFillM />,
   warning: <WarningFillM />,
-  info: <InfoM />,
+  info: <InfoFillM />,
 };
 
-const InlineAlert: React.FC<InlineAlertProps> = ({ type = 'warning', message }) => {
-  const icon = React.useMemo(() => {
+const InlineAlert = ({ type = 'warning', message }: InlineAlertProps) => {
+  const icon = useMemo(() => {
     return ICONS[type];
   }, [type]);
   return (

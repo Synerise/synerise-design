@@ -23,10 +23,10 @@ export const InlineAlertWrapper = styled.span<{ type: InlineAlertType }>`
   justify-content: flex-start;
   flex-direction: row;
   svg {
-    color: ${(props): string => props.theme.palette[COLORS[props.type]]};
-    fill: ${(props): string => props.theme.palette[COLORS[props.type]]};
+    color: ${props => props.theme.palette[COLORS[props.type]]};
+    fill: ${props => props.theme.palette[COLORS[props.type]]};
   }
   ${Message} {
-    color: ${(props): string => props.theme.palette[COLORS[props.type]]};
+    color: ${props => props.theme.palette['grey-600']};
   }
 `;

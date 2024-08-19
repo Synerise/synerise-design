@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IconAlertType } from './IconAlert.types';
 
 const COLORS: Record<IconAlertType, string> = {
@@ -7,12 +7,7 @@ const COLORS: Record<IconAlertType, string> = {
   alert: 'red-600',
   info: 'grey-600',
 };
-const COLORS_TEXT: Record<IconAlertType, string> = {
-  success: 'green-700',
-  warning: 'yellow-700',
-  alert: 'red-700',
-  info: 'grey-700',
-};
+
 const COLORS_HOVER: Record<IconAlertType, string> = {
   success: 'green-700',
   warning: 'yellow-700',
@@ -35,32 +30,32 @@ export const IconAlertWrapper = styled.span<{ type: IconAlertType; hoverButton?:
   justify-content: flex-start;
   flex-direction: row;
   &:hover {
-    cursor: ${(props): string => (props.hoverButton ? 'pointer' : 'auto')};
+    cursor: ${props => (props.hoverButton ? 'pointer' : 'auto')};
     svg {
-      color: ${(props): string =>
+      color: ${props =>
         props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
-      fill: ${(props): string =>
+      fill: ${props =>
         props.hoverButton ? props.theme.palette[COLORS_HOVER[props.type]] : props.theme.palette[COLORS[props.type]]};
     }
   }
   &:active {
     svg {
-      color: ${(props): string => props.theme.palette[COLORS[props.type]]};
-      fill: ${(props): string => props.theme.palette[COLORS[props.type]]};
+      color: ${props => props.theme.palette[COLORS[props.type]]};
+      fill: ${props => props.theme.palette[COLORS[props.type]]};
     }
   }
   svg {
-    color: ${(props): string => props.theme.palette[COLORS[props.type]]};
-    fill: ${(props): string => props.theme.palette[COLORS[props.type]]};
+    color: ${props => props.theme.palette[COLORS[props.type]]};
+    fill: ${props => props.theme.palette[COLORS[props.type]]};
   }
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${props =>
     !!props.disabled &&
     css`
       pointer-events: none;
       opacity: 0.4;
     `};
   ${Message} {
-    color: ${(props): string => props.theme.palette[COLORS_TEXT[props.type]]};
+    color: ${props => props.theme.palette['grey-600']};
   }
 `;
 export const EmphasisWrapper = styled.span`
