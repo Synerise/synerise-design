@@ -39,3 +39,7 @@ export interface FileUploaderProps {
   onUpload?: (files: FileWithContent[]) => void;
   retry?: boolean;
 }
+
+export type ItemUploaderProps = Omit<FileUploaderProps, 'mode'> & {
+  mode: 'single' | 'multi';
+};

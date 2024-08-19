@@ -9,7 +9,7 @@ import * as S from './ItemUploader.styles';
 
 import { FileViewAvatarTexts } from '../AvatarUploader/FileViewAvatar/FileViewAvatar.types';
 import FileViewItem from './UploaderButton/FileViewItem';
-import { ItemUploaderProps, FileContent } from './ItemUploader.types';
+import { ItemUploaderProps, FileContent } from '../FileUploader.types';
 
 function readAsText(file: File): Promise<FileContent> {
   return new Promise(resolve => {
