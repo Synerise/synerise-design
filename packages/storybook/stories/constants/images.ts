@@ -1,2 +1,22 @@
-// @ts-ignore
-export { default as AVATAR_IMAGE } from './av-anonym-004.png';
+// @ts-nocheck
+export { default as AVATAR_IMAGE } from './avatars/av-anonym-004.png';
+export { default as avatar1 } from './avatars/av-anonym-001.png';
+export { default as avatar2 } from './avatars/av-anonym-002.png';
+export { default as avatar3 } from './avatars/av-anonym-003.png';
+export { default as avatar4 } from './avatars/av-anonym-004.png';
+export { default as avatar5 } from './avatars/av-anonym-005.png';
+export { default as avatar6 } from './avatars/av-anonym-006.png';
+export { default as avatar7 } from './avatars/av-anonym-007.png';
+export { default as avatar8 } from './avatars/av-anonym-008.png';
+export { default as avatar9 } from './avatars/av-anonym-009.png';
+export { default as avatar10 } from './avatars/av-anonym-010.png';
+export { default as avatar11 } from './avatars/av-anonym-011.png';
+export { default as avatar12 } from './avatars/av-anonym-012.png';
+export { default as avatar13 } from './avatars/av-anonym-013.png';
+export { default as avatar14 } from './avatars/av-anonym-014.png';
+export { default as avatar15 } from './avatars/av-anonym-015.png';
+export { default as avatar16 } from './avatars/av-anonym-016.png';
+export { default as avatar17 } from './avatars/av-anonym-017.png';
+export { default as avatar18 } from './avatars/av-anonym-018.png';
+export { default as avatar19 } from './avatars/av-anonym-019.png';
+export { default as avatar20 } from './avatars/av-anonym-020.png';
