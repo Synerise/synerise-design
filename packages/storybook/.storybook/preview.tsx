@@ -92,6 +92,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      source: { type: 'code' },
       page: () => (
         <>
           <Title />
@@ -101,9 +102,8 @@ const preview: Preview = {
           <Stories />
         </>
       ),
-    }
+    },
   },
 };
 
 export default preview;
-

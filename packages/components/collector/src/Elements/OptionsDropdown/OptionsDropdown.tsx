@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { SyntheticEvent, useEffect, useState, useCallback } from 'react';
 
 import Scrollbar from '@synerise/ds-scrollbar';
 import SearchItems from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
@@ -11,12 +11,12 @@ import { OptionsDropdownProps } from './OptionsDropdown.types';
 import NavigationHint from '../NavigationHint/NavigationHint';
 import { CollectorValue } from '../../Collector.types';
 
-const gerRowHeight = (size?: string): number => {
+const getRowHeight = (size?: string) => {
   if (size === 'large') return 54;
   return 32;
 };
 
-const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
+const OptionsDropdown = ({
   showAddButton,
   options,
   visible,
@@ -34,11 +34,11 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   scrollbarProps,
   listHeader,
 }: OptionsDropdownProps) => {
-  const [scrollTop, setScrollTop] = React.useState<number>(0);
-  React.useEffect(() => {
+  const [scrollTop, setScrollTop] = useState(0);
+  useEffect(() => {
     setScrollTop(0);
   }, [visible]);
-  const renderItemFn = React.useCallback(
+  const renderItemFn = useCallback(
     (itemValue: CollectorValue) => {
       return renderItem ? (
         renderItem(itemValue)
@@ -52,7 +52,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
   );
   const shouldRenderList = !!options?.length;
   return (
-    <S.DropdownWrapper onClick={onClick}>
+    <S.DropdownWrapper onClick={onClick} data-testid="ds-collector-dropdown">
       {visible &&
         (customContent ? (
           <S.CustomContentWrapper>{customContent}</S.CustomContentWrapper>
@@ -61,7 +61,7 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
             {listHeader}
             <Scrollbar
               absolute
-              onScroll={({ currentTarget }: React.SyntheticEvent): void => {
+              onScroll={({ currentTarget }: SyntheticEvent): void => {
                 setScrollTop(currentTarget.scrollTop);
               }}
               {...scrollbarProps}
@@ -93,9 +93,10 @@ const OptionsDropdown: React.FC<OptionsDropdownProps> = ({
                   visibleRows={6}
                   onItemClick={onSelect}
                   itemRender={renderItemFn}
-                  rowHeight={gerRowHeight(dropdownItemHeight)}
+                  rowHeight={getRowHeight(dropdownItemHeight)}
                   width={width}
                   listProps={{ scrollTop }}
+                  renderInMenu={false}
                 />
               )}
             </Scrollbar>
