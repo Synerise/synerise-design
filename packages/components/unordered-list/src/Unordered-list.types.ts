@@ -11,9 +11,12 @@ export type UnorderedListItem = {
   text?: ReactNode;
 };
 
-export type ListProps = {
+export type UnorderedListProps = {
   data: UnorderedListItem[];
   indexFormatter?: (index: number) => ReactNode;
   text?: ReactNode;
   className?: string;
 };
+
+// @deprecated - use UnorderedListProps instead
+export type ListProps = UnorderedListProps;
