@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.22...@synerise/ds-alert@0.8.23) (2024-08-19)
+
+
+### Bug Fixes
+
+* **alert:** inlineAlert and IconAlert text color updated ([7c330cb](https://github.com/Synerise/synerise-design/commit/7c330cba6f5a8516d94c21417e3584ad65630cf7))
+
+
+
+
+
 ## [0.8.22](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.21...@synerise/ds-alert@0.8.22) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-alert

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.124...@synerise/ds-items-roll@0.7.0) (2024-08-19)
+
+
+### Features
+
+* **storybook7:** added progressbar stories ([6af1017](https://github.com/Synerise/synerise-design/commit/6af10173b6e9bf15af85c2c4f5de54493ac4d934))
+
+
+
+
+
 ## [0.6.124](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.6.123...@synerise/ds-items-roll@0.6.124) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

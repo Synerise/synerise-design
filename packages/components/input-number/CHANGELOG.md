@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.27...@synerise/ds-input-number@0.10.0) (2024-08-19)
+
+
+### Features
+
+* **storybook7:** input number stories ([f7c2020](https://github.com/Synerise/synerise-design/commit/f7c20207aba2643076de53d1104697813b15da54))
+
+
+
+
+
 ## [0.9.27](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.9.26...@synerise/ds-input-number@0.9.27) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-input-number

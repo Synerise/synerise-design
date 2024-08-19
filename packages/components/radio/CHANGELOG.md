@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.76...@synerise/ds-radio@0.12.0) (2024-08-19)
+
+
+### Features
+
+* **storybook7:** added radio stories ([e915c0e](https://github.com/synerise/synerise-design/commit/e915c0ecb933a57899d7e2fc0c1de9d2b620a8cc))
+
+
+
+
+
 ## [0.11.76](https://github.com/synerise/synerise-design/compare/@synerise/ds-radio@0.11.75...@synerise/ds-radio@0.11.76) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-radio

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.18.6...@synerise/ds-card@0.19.0) (2024-08-19)
+
+
+### Features
+
+* **card:** export BadgeStatus ([ef08f17](https://github.com/Synerise/synerise-design/commit/ef08f17c42688d565582f1c6326b5ea9bd4cd685))
+
+
+
+
+
 ## [0.18.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-card@0.18.5...@synerise/ds-card@0.18.6) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-card

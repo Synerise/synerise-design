@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.46](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.45...@synerise/ds-popconfirm@0.10.46) (2024-08-19)
+
+**Note:** Version bump only for package @synerise/ds-popconfirm
+
+
+
+
+
 ## [0.10.45](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.44...@synerise/ds-popconfirm@0.10.45) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

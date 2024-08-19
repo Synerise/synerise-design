@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.11.0...storybook7@0.12.0) (2024-08-19)
+
+
+### Bug Fixes
+
+* **alert:** inlineAlert and IconAlert text color updated ([7c330cb](https://github.com/Synerise/synerise-design/commit/7c330cba6f5a8516d94c21417e3584ad65630cf7))
+* **file-uploader:** moved types to single file ([c8d609a](https://github.com/Synerise/synerise-design/commit/c8d609a5490cdd7a83761c50c9ee6dff6adca1ca))
+
+
+### Features
+
+* **storybook7:** added icon picker stories ([df89be9](https://github.com/Synerise/synerise-design/commit/df89be987ddeccd654229970f88339f3227c20c2))
+* **storybook7:** added progressbar stories ([6af1017](https://github.com/Synerise/synerise-design/commit/6af10173b6e9bf15af85c2c4f5de54493ac4d934))
+* **storybook7:** added radio stories ([e915c0e](https://github.com/Synerise/synerise-design/commit/e915c0ecb933a57899d7e2fc0c1de9d2b620a8cc))
+* **storybook7:** added wizard stories ([b292096](https://github.com/Synerise/synerise-design/commit/b292096d661dc2af6d081e5a9fed41707e7a9010))
+* **storybook7:** input number stories ([f7c2020](https://github.com/Synerise/synerise-design/commit/f7c20207aba2643076de53d1104697813b15da54))
+* **storybook7:** textarea stories ([e8529d2](https://github.com/Synerise/synerise-design/commit/e8529d24a2824d3d8d11af7ce9409030e0d67383))
+
+
+
+
+
 # [0.11.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.10.0...storybook7@0.11.0) (2024-07-31)
 
 

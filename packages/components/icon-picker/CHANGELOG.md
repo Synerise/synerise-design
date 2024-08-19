@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.3.120...@synerise/ds-icon-picker@0.4.0) (2024-08-19)
+
+
+### Features
+
+* **storybook7:** added icon picker stories ([df89be9](https://github.com/Synerise/synerise-design/commit/df89be987ddeccd654229970f88339f3227c20c2))
+
+
+
+
+
 ## [0.3.120](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon-picker@0.3.119...@synerise/ds-icon-picker@0.3.120) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-icon-picker
