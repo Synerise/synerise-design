@@ -4,7 +4,11 @@ import * as ItemUploaderStyles from './ItemUploader/ItemUploader.styles';
 import * as AvatarUploaderStyles from './AvatarUploader/AvatarUploader.styles';
 
 export { default } from './FileUploader';
-export type { FileUploaderProps } from './FileUploader.types';
+export { default as AvatarUploader } from './AvatarUploader/AvatarUploader';
+export { default as ItemUploader } from './ItemUploader/ItemUploader';
+
+export type { ItemUploaderProps } from './ItemUploader/ItemUploader.types';
+export type { FileUploaderProps, ExtendedFile, FileWithContent } from './FileUploader.types';
 
 export const FileUploaderStyles = {
   FileUploader: Styles,
