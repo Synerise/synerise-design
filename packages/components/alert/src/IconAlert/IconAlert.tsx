@@ -1,16 +1,16 @@
-import Icon, { Check2M, WarningFillM, InfoM } from '@synerise/ds-icon';
-import * as React from 'react';
+import React, { ReactNode, useMemo } from 'react';
+import Icon, { Check3M, WarningFillM, InfoFillM } from '@synerise/ds-icon';
 import { IconAlertProps, IconAlertType } from './IconAlert.types';
 import * as S from './IconAlert.styles';
 
-const ICONS: Record<IconAlertType, React.ReactNode> = {
-  success: <Check2M />,
+const ICONS: Record<IconAlertType, ReactNode> = {
+  success: <Check3M />,
   alert: <WarningFillM />,
   warning: <WarningFillM />,
-  info: <InfoM />,
+  info: <InfoFillM />,
 };
 
-const IconAlert: React.FC<IconAlertProps> = ({
+const IconAlert = ({
   type = 'warning',
   iconAlert,
   message,
@@ -20,8 +20,8 @@ const IconAlert: React.FC<IconAlertProps> = ({
   disabled,
   customIcon,
   ...rest
-}) => {
-  const icon = React.useMemo(() => {
+}: IconAlertProps) => {
+  const icon = useMemo(() => {
     return ICONS[type];
   }, [type]);
   return (
