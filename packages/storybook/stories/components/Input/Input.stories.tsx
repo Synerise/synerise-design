@@ -22,7 +22,7 @@ const defaultRender = (args: InputProps) => {
 };
 
 export default {
-  title: 'Components/Input',
+  title: 'Components/InputElements/Input',
   component: Input,
   tags: ['autodocs'],
   parameters: {
