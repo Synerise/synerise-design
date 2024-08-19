@@ -1,0 +1,81 @@
+import { Meta, StoryObj } from '@storybook/react';
+import InputNumber, { InputNumberProps } from '@synerise/ds-input-number';
+import {
+  BOOLEAN_CONTROL,
+  CLASSNAME_ARG_CONTROL,
+  fixedWrapper300,
+  NUMBER_CONTROL,
+  PREFIXCLS_ARG_CONTROL,
+  REACT_NODE_AS_STRING,
+  STRING_CONTROL,
+  STYLE_ARG_CONTROL,
+} from '../../utils';
+
+type Story = StoryObj<InputNumberProps>;
+export default {
+  component: InputNumber,
+  title: 'Components/Input/InputNumber',
+  tags: ['autodocs'],
+  decorators: [fixedWrapper300],
+  argTypes: {
+    className: CLASSNAME_ARG_CONTROL,
+    style: STYLE_ARG_CONTROL,
+    decimalSeparator: STRING_CONTROL,
+    defaultValue: NUMBER_CONTROL,
+    value: NUMBER_CONTROL,
+    min: NUMBER_CONTROL,
+    max: NUMBER_CONTROL,
+    step: NUMBER_CONTROL,
+    precision: NUMBER_CONTROL,
+    tabIndex: NUMBER_CONTROL,
+    disabled: BOOLEAN_CONTROL,
+    raw: BOOLEAN_CONTROL,
+    readOnly: BOOLEAN_CONTROL,
+    error: BOOLEAN_CONTROL,
+    errorText: REACT_NODE_AS_STRING,
+    tooltip: REACT_NODE_AS_STRING,
+    id: STRING_CONTROL,
+    onStep: {
+      action: 'onStep',
+    },
+    onChange: {
+      action: 'onChange',
+    },
+    onPressEnter: {
+      action: 'onPressEnter',
+    },
+    prefixCls: PREFIXCLS_ARG_CONTROL,
+  },
+  args: {},
+} as Meta<InputNumberProps>;
+
+export const Default: Story = {};
+
+export const WithLabelAndDescription: Story = {
+  args: {
+    label: 'Label',
+    description: 'Description',
+  },
+};
+
+export const WithDefaultVaue: Story = {
+  args: {
+    defaultValue: 40,
+  },
+};
+
+export const WithTooltip: Story = {
+  args: {
+    ...WithLabelAndDescription.args,
+    tooltip: 'Tooltip text',
+  },
+};
+
+export const WithErrorMessage: Story = {
+  args: {
+    label: 'Label',
+    description: 'Description',
+    error: true,
+    errorText: 'An error occurred',
+  },
+};
