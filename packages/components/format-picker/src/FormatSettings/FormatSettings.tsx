@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
-import Icon, { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon';
 import { IntlShape, useIntl } from 'react-intl';
+
+import Icon, { AngleDownS, Coin2M, CommaDecM, CommaIncM, HashM, PercentM } from '@synerise/ds-icon';
 import { Title } from '@synerise/ds-typography';
 import Tooltip from '@synerise/ds-tooltip';
 import Radio from '@synerise/ds-radio';
@@ -8,10 +9,10 @@ import ButtonGroup from '@synerise/ds-button-group';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
 import Dropdown from '@synerise/ds-dropdown';
+
 import * as S from './FormatSettings.styles';
 import { FormatPickerTexts, FormattingType } from '../FomartPicker.types';
 import { FormatSettingsProps } from './FormatSettings.types';
-import { valueFormatter } from '../utils/valueFormatter';
 
 const DEFAULT_CURRENCIES_CONFIG = [
   {
@@ -57,13 +58,14 @@ const FormatSettings = ({
   onFixedLengthChange,
   onUseSeparatorChange,
   onSetDefault,
+  getFormattedValue,
   format,
-  value,
   text,
   currenciesConfig = DEFAULT_CURRENCIES_CONFIG,
   disabled,
 }: FormatSettingsProps) => {
   const intl = useIntl();
+
   const handleDecreaseFixedLength = useCallback(() => {
     if (format.fixedLength > 0) {
       onFixedLengthChange(format.fixedLength - 1);
@@ -124,7 +126,7 @@ const FormatSettings = ({
                   {currenciesConfig.map(({ currency, label }) => (
                     <S.ListItem
                       key={currency}
-                      suffixel={valueFormatter({ value, formatting: { ...format, currency }, intl })}
+                      suffixel={getFormattedValue({ currency })}
                       onClick={(): void => onCurrencyChange(currency)}
                     >
                       {label}
