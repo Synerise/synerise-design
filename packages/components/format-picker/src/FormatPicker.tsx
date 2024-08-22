@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { HashM } from '@synerise/ds-icon';
+import { NumberToFormatOptions, useDataFormat } from '@synerise/ds-data-format';
 
 import FormatSettings from './FormatSettings/FormatSettings';
-import { valueFormatter } from './utils/valueFormatter';
 
 import { FormatPickerProps, FormatPickerTexts } from './FomartPicker.types';
 
@@ -26,6 +26,7 @@ const FormatPicker = ({
   disabled,
 }: FormatPickerProps) => {
   const intl = useIntl();
+  const { formatValue } = useDataFormat();
 
   const texts: FormatPickerTexts = useMemo(
     () => ({
@@ -45,13 +46,39 @@ const FormatPicker = ({
     [text, intl]
   );
 
-  const formattedValue = useMemo(() => {
-    return valueFormatter({ value, formatting: format, intl });
-  }, [value, format, intl]);
+  const getFormattedValue = useCallback(
+    (overrideOptions?: NumberToFormatOptions) => {
+      const { useSeparator, compactNumbers, currency, dataFormat, fixedLength } = format;
+      let options: NumberToFormatOptions = { useGrouping: useSeparator };
+
+      if (compactNumbers) {
+        options = { notation: 'compact' };
+      }
+
+      if (dataFormat === 'cash' && currency) {
+        options = { ...options, currency, style: 'currency' };
+      }
+
+      if (dataFormat === 'percent') {
+        options = { ...options, suffix: compactNumbers ? ' %' : '%' };
+      }
+
+      if (typeof fixedLength === 'number') {
+        options = {
+          ...options,
+          minimumFractionDigits: fixedLength,
+          maximumFractionDigits: fixedLength,
+          ...overrideOptions,
+        };
+      }
+      return formatValue(value, options);
+    },
+    [value, format, formatValue]
+  );
 
   useEffect(() => {
-    onFormattedValueChange && onFormattedValueChange(formattedValue);
-  }, [formattedValue, onFormattedValueChange]);
+    onFormattedValueChange && onFormattedValueChange(getFormattedValue());
+  }, [getFormattedValue, onFormattedValueChange]);
 
   return (
     <Dropdown
@@ -66,17 +93,17 @@ const FormatPicker = ({
           onUseSeparatorChange={onUseSeparatorChange}
           onSetDefault={onSetDefault}
           format={format}
-          value={value}
           text={texts}
           currenciesConfig={currenciesConfig}
           disabled={disabled}
+          getFormattedValue={getFormattedValue}
         />
       }
       placement="topCenter"
     >
       <Button type={buttonType} mode="icon-label" disabled={disabled}>
         <Icon component={<HashM />} />
-        {`${texts.format} ${formattedValue}`}
+        {`${texts.format} ${getFormattedValue()}`}
       </Button>
     </Dropdown>
   );
