@@ -37,7 +37,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.12.4"
+    "@synerise/ds-checkbox": "^0.12.4",
+    "@synerise/ds-utils": "^0.28.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

@@ -48,6 +48,7 @@
     "@synerise/ds-subtle-form": "^0.9.120",
     "@synerise/ds-tooltip": "^0.14.35",
     "@synerise/ds-typography": "^0.15.1",
+    "@synerise/ds-utils": "^0.28.2",
     "rc-trigger": "5.2.5",
     "react-intl": "3.12.0"
   },

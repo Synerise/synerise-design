@@ -10805,15 +10805,7 @@
     "@synerise/ds-icon" "^0.59.1"
     classnames "2.3.2"
 
-"@synerise/ds-cruds@^0.3.40":
-  version "0.3.43"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-cruds/-/ds-cruds-0.3.43.tgz"
-  integrity sha1-LMw27y8BPm6Mi7WMJW4/6jlQq9o=
-  dependencies:
-    "@synerise/ds-icon" "^0.58.9"
-    "@synerise/ds-tooltip" "^0.14.13"
-
-"@synerise/ds-icon@^0.58.0", "@synerise/ds-icon@^0.58.8", "@synerise/ds-icon@^0.58.9":
+"@synerise/ds-icon@^0.58.0", "@synerise/ds-icon@^0.58.8":
   version "0.58.9"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@synerise/ds-icon/-/ds-icon-0.58.9.tgz"
   integrity sha1-JRvOiDJMrSyEjUide6L2cEkotRI=
@@ -11455,11 +11447,6 @@
   version "4.1.2"
   resolved "https://registry.npmjs.org/@types/npmlog/-/npmlog-4.1.2.tgz"
   integrity sha512-4QQmOF5KlwfxJ5IGXFIudkeLCdMABz03RcUXu+LCb24zmln8QW6aDjuGl4d4XPVLf2j+FnjelHTP7dvceAFbhA==
-
-"@types/numeral@^2.0.2":
-  version "2.0.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/numeral/-/numeral-2.0.2.tgz"
-  integrity sha1-jqLE9OZMDMlIrX2jdfb4J3eKeRI=
 
 "@types/overlayscrollbars@^1.12.0":
   version "1.12.0"
@@ -16547,6 +16534,11 @@ csstype@^2.6.5:
   version "2.6.10"
   resolved "https://registry.npmjs.org/csstype/-/csstype-2.6.10.tgz"
   integrity sha512-D34BqZU4cIlMCY93rZHbrq9pjTAQJ3U8S8rfBqjwHxkGPThWFjzZDQpgMJY0QViLxth6ZKYiwFBo14RdN44U/w==
+
+csstype@^2.6.9:
+  version "2.6.21"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/csstype/-/csstype-2.6.21.tgz#2efb85b7cc55c80017c66a5ad7cbd931fda3a90e"
+  integrity sha1-LvuFt8xVyAAXxmpa18vZMf2jqQ4=
 
 csstype@^3.0.2:
   version "3.1.2"
@@ -26504,11 +26496,6 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
-
-numeral@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.npmjs.org/numeral/-/numeral-2.0.6.tgz"
-  integrity sha1-StCAk21EPCVhrtnyGX7//iX05QY=
 
 nwsapi@^2.0.7, nwsapi@^2.1.3, nwsapi@^2.2.0:
   version "2.2.0"

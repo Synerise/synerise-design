@@ -35,6 +35,7 @@
     "deepmerge": "^4.2.2",
     "flat": "^5.0.2",
     "intl-messageformat-parser": "^3.6.4",
+    "less-vars-loader": "1.1.0",
     "react-intl": "3.12.0"
   },
   "peerDependencies": {
