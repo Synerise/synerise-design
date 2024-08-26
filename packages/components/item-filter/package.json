@@ -42,6 +42,7 @@
     "@synerise/ds-search-bar": "^0.6.84",
     "@synerise/ds-tabs": "^0.15.2",
     "@synerise/ds-typography": "^0.15.1",
+    "@synerise/ds-utils": "0.28.2",
     "react-intl": "3.12.0",
     "react-window": "^1.8.5"
   },
