@@ -115,8 +115,10 @@ export type FactorsProps = {
   parameters?: {
     buttonLabel: string | React.ReactNode;
     buttonIcon: React.ReactNode;
+    selectedButtonColored?: boolean;
     groups?: ParameterGroup[];
     items: ParameterItem[];
+    // @deprecated
     showAllGroup?: boolean;
   };
   onParamsClick?: () => void;

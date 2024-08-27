@@ -1,5 +1,6 @@
 import React from 'react';
 import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
+import { FactorValueType, ParameterItem, ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
 
 export const FACTORS_TEXTS = {
   datePicker: {
@@ -54,7 +55,7 @@ export const FACTORS_GROUPS = [
   }
 ];
 
-export const FACTORS_ITEMS = [
+export const FACTORS_ITEMS: ParameterItem[] = [
   {
     id: 0,
     name: 'First name',
@@ -164,3 +165,9 @@ export const FACTORS_ITEMS = [
     icon: <VarTypeStringM />,
   },
 ]
+
+export const SELECTED_PARAMETER: FactorValueType = {
+  ...FACTORS_ITEMS[0],
+  icon: <VarTypeStringM />,
+  type: ''  
+}

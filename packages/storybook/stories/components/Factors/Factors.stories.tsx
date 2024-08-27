@@ -12,7 +12,7 @@ import {
   fixedWrapper300,
   flexColumnWrapper
 } from '../../utils';
-import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './Factors.data';
+import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS, SELECTED_PARAMETER } from './Factors.data';
 
 const FactorsMeta = {
   title: 'Components/Filter/Factors',
@@ -91,6 +91,20 @@ export default FactorsMeta;
 type Story = StoryObj<FactorsProps>;
 
 export const Default: Story = {};
+
+export const ParameterType: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'parameter',
+    value: SELECTED_PARAMETER,
+    parameters: {
+      buttonLabel: 'Parameter',
+      buttonIcon: <VarTypeStringM />,
+      groups: FACTORS_GROUPS,
+      items: FACTORS_ITEMS,
+    }
+  }
+};
 
 export const Open: Story = {
   args: {

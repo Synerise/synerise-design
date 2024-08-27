@@ -151,10 +151,10 @@ Type of value depends on current factor type and can contain values: `string` \ 
 
 ### ParameterOptions
 
-| Property     | Description                | Type                     | Default | 
-| ---          | ---                        | ---                      | ---     | 
-| buttonIcon   | Icon in button             | React.ReactNode          | -       | 
-| buttonLabel  | Label of button            | string \ React.ReactNode | -       | 
-| groups       | Array of parameter groups  | ParameterGroup[]         | -       | 
-| items        | Array of parameters        | ParameterItem[]          | -       | 
-| showAllGroup | Whether to show all groups | boolean                  | false   | 
+| Property              | Description                                                | Type                     | Default |
+|-----------------------|------------------------------------------------------------|--------------------------|---------|
+| buttonIcon            | Icon in button                                             | React.ReactNode          | -       |
+| buttonLabel           | Label of button                                            | string \ React.ReactNode | -       |
+| groups                | Array of parameter groups                                  | ParameterGroup[]         | -       |
+| items                 | Array of parameters                                        | ParameterItem[]          | -       |
+| selectedButtonColored | Whether to use green custom color if parameter is selected | boolean                  | -       |
