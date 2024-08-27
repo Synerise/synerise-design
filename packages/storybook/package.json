@@ -10,6 +10,7 @@
     "url": "https://github.com/Synerise/synerise-design.git"
   },
   "scripts": {
+    "build-docs": "yarn build-storybook",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
