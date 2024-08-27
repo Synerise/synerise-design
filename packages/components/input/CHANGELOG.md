@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.23.6...@synerise/ds-input@0.24.0) (2024-08-27)
+
+
+### Features
+
+* **storybook7:** added collector stories ([1e4f777](https://github.com/synerise/synerise-design/commit/1e4f777f50363e34e21ff7d1b4b4fead31741b7b))
+
+
+
+
+
 ## [0.23.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.23.5...@synerise/ds-input@0.23.6) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-input

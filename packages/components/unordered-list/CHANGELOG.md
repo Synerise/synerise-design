@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.94...@synerise/ds-unordered-list@0.3.0) (2024-08-27)
+
+
+### Features
+
+* **storybook7:** added unordered list stories ([2fe435b](https://github.com/Synerise/synerise-design/commit/2fe435b9ab01dd26fe3712c7ea22b060997fa8f1))
+
+
+
+
+
 ## [0.2.94](https://github.com/Synerise/synerise-design/compare/@synerise/ds-unordered-list@0.2.93...@synerise/ds-unordered-list@0.2.94) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-unordered-list

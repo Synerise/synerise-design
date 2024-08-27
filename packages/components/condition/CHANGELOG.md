@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.22.39...@synerise/ds-condition@0.22.40) (2024-08-27)
+
+
+### Bug Fixes
+
+* **factors:** btn color for selected parameter factor ([ef17cbb](https://github.com/Synerise/synerise-design/commit/ef17cbb394078fa27bad346c6f926521ad892aa4))
+
+
+
+
+
 ## [0.22.39](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.22.38...@synerise/ds-condition@0.22.39) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-condition

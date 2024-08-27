@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.6.62...@synerise/ds-result@0.7.0) (2024-08-27)
+
+
+### Features
+
+* **storybook7:** added result stories ([e74cfb9](https://github.com/Synerise/synerise-design/commit/e74cfb914c6f613019e58ee2890ecb853b9ef406))
+
+
+
+
+
 ## [0.6.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.6.61...@synerise/ds-result@0.6.62) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-result

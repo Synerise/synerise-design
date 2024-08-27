@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.42](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.41...@synerise/ds-logic@0.8.42) (2024-08-27)
+
+
+### Bug Fixes
+
+* **logic:** logic matching  colors ([a179764](https://github.com/Synerise/synerise-design/commit/a17976408b1fb2497150483bf31a5e474adf78de))
+
+
+
+
+
 ## [0.8.41](https://github.com/Synerise/synerise-design/compare/@synerise/ds-logic@0.8.40...@synerise/ds-logic@0.8.41) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-logic

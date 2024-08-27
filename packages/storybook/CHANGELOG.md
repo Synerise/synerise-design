@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.12.0...storybook7@0.13.0) (2024-08-27)
+
+
+### Bug Fixes
+
+* **factors:** btn color for selected parameter factor ([ef17cbb](https://github.com/Synerise/synerise-design/commit/ef17cbb394078fa27bad346c6f926521ad892aa4))
+* **logic:** logic matching  colors ([a179764](https://github.com/Synerise/synerise-design/commit/a17976408b1fb2497150483bf31a5e474adf78de))
+
+
+### Features
+
+* **color-picker:** add new stories of color-picker ([33b6175](https://github.com/Synerise/synerise-design/commit/33b61752242ebf08d945a5703dec066040c3e225))
+* **storybook7:** added collector stories ([1e4f777](https://github.com/Synerise/synerise-design/commit/1e4f777f50363e34e21ff7d1b4b4fead31741b7b))
+* **storybook7:** added result stories ([e74cfb9](https://github.com/Synerise/synerise-design/commit/e74cfb914c6f613019e58ee2890ecb853b9ef406))
+* **storybook7:** added unordered list stories ([2fe435b](https://github.com/Synerise/synerise-design/commit/2fe435b9ab01dd26fe3712c7ea22b060997fa8f1))
+
+
+
+
+
 # [0.12.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.11.0...storybook7@0.12.0) (2024-08-19)
 
 

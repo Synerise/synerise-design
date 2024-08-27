@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.10.10...@synerise/ds-collector@0.11.0) (2024-08-27)
+
+
+### Features
+
+* **storybook7:** added collector stories ([1e4f777](https://github.com/Synerise/synerise-design/commit/1e4f777f50363e34e21ff7d1b4b4fead31741b7b))
+
+
+
+
+
 ## [0.10.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-collector@0.10.9...@synerise/ds-collector@0.10.10) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-collector

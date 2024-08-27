@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.5.2...@synerise/ds-format-picker@0.5.3) (2024-08-27)
+
+
+### Bug Fixes
+
+* **format-picker:** use ds-data-format to format value preview ([6926f1b](https://github.com/Synerise/synerise-design/commit/6926f1ba2eb9a2314365a5203e26f67777fc4fa1))
+
+
+
+
+
 ## [0.5.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-format-picker@0.5.1...@synerise/ds-format-picker@0.5.2) (2024-08-19)
 
 **Note:** Version bump only for package @synerise/ds-format-picker
