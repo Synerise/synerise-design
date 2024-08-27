@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react';
+
 export type MatchingTexts = {
   matching: string;
   notMatching: string;
@@ -9,4 +11,4 @@ export type MatchingProps = {
   onChange: (matching: boolean) => void;
   texts?: MatchingTexts;
   readOnly?: boolean;
-};
+} & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
