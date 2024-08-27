@@ -27,12 +27,12 @@ const ParameterInput = ({
   getMenuEntryProps,
 }: InputProps) => {
   // @ts-ignore
-  const { buttonIcon, buttonLabel, loading, ...restParameters } = parameters;
+  const { buttonIcon, buttonLabel, selectedButtonColored, loading, ...restParameters } = parameters;
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
   const parameter = useMemo(() => value as ParameterValueType, [value]);
-  const { parameterIcon, parameterName } = useMemo(
+  const { parameterIcon, parameterName, isSelected } = useMemo(
     () => ({
+      isSelected: Boolean(parameter?.icon || parameter?.name),
       parameterIcon: parameter?.icon || buttonIcon,
       parameterName: parameter?.name || buttonLabel,
     }),
@@ -88,7 +88,8 @@ const ParameterInput = ({
   const triggerButton = (
     <Button
       error={error}
-      type="secondary"
+      type={isSelected && selectedButtonColored ? 'custom-color' : 'secondary'}
+      color={isSelected && selectedButtonColored ? 'green' : undefined}
       mode={triggerMode}
       onClick={!readOnly ? handleOnClick : undefined}
       readOnly={readOnly}

@@ -1,17 +1,18 @@
+import React, { ReactNode, useMemo } from 'react';
+
 import Factors from '@synerise/ds-factors';
 import Operators from '@synerise/ds-operators';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { getPopupContainer } from '@synerise/ds-utils';
-import * as React from 'react';
 import { ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
+
 import { FACTOR, OPERATOR, PARAMETER } from '../../constants';
 import * as S from '../../Condition.style';
 import * as T from './ConditionRow.types';
 
-// eslint-disable-next-line import/prefer-default-export
-export const ConditionRow: React.FC<T.ConditionRowProps> = ({
+export const ConditionRow = ({
   index,
   conditionId,
   conditionParameter,
@@ -35,18 +36,17 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   hasPriority,
   texts,
   onDeactivate,
-  // error,
   inputProps,
   readOnly = false,
-}) => {
+}: T.ConditionRowProps) => {
   const conditionFactorErrorText = conditionFactor?.errorText;
   const conditionParameterErrorText = conditionParameter?.errorText;
   const conditionOperatorErrorText = conditionOperator?.errorText;
 
   const rowHasError = !!(conditionParameterErrorText || conditionOperatorErrorText || conditionFactorErrorText);
 
-  const conditionErrorMessage = React.useMemo(() => {
-    let errorText: React.ReactNode | string;
+  const conditionErrorMessage = useMemo(() => {
+    let errorText: ReactNode | string;
     if (conditionParameterErrorText) {
       errorText = conditionParameterErrorText;
     } else if (conditionOperatorErrorText) {
@@ -58,10 +58,7 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   }, [conditionOperatorErrorText, conditionFactorErrorText, conditionParameterErrorText]);
 
   const removeConditionTrigger = !readOnly && removeCondition && conditionsNumber > minConditionLength && (
-    <S.RemoveIconWrapper
-      onClick={(): void => removeCondition(stepId, conditionId)}
-      className="ds-conditions-remove-row"
-    >
+    <S.RemoveIconWrapper onClick={() => removeCondition(stepId, conditionId)} className="ds-conditions-remove-row">
       <Tooltip title={texts.removeConditionRowTooltip} trigger={['hover']}>
         <Icon component={<CloseS />} color={theme.palette['red-600']} />
       </Tooltip>
@@ -86,6 +83,19 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
   } else if (renderConditionParameterWrapper) {
     lastConditionWrapper = 'parameter';
   }
+
+  const conditionFactorProps = useMemo(() => {
+    return {
+      ...conditionFactor,
+      parameters: conditionFactor?.parameters && {
+        ...conditionFactor.parameters,
+        selectedButtonColored:
+          conditionFactor.parameters?.selectedButtonColored === undefined
+            ? true
+            : conditionFactor.parameters?.selectedButtonColored,
+      },
+    };
+  }, [conditionFactor]);
 
   return (
     <S.ConditionRow
@@ -121,9 +131,9 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
                 {...conditionParameter}
                 inputProps={inputProps}
                 getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
-                onActivate={(): void => onActivate && onActivate(PARAMETER)}
+                onActivate={() => onActivate && onActivate(PARAMETER)}
                 onDeactivate={onDeactivate}
-                onChangeValue={(value): void => selectParameter(stepId, conditionId, value)}
+                onChangeValue={value => selectParameter(stepId, conditionId, value)}
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&
@@ -144,9 +154,9 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
               <Operators
                 {...conditionOperator}
                 getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
-                onActivate={(): void => onActivate && onActivate(OPERATOR)}
+                onActivate={() => onActivate && onActivate(OPERATOR)}
                 onDeactivate={onDeactivate}
-                onChange={(value): void => selectOperator(stepId, conditionId, value)}
+                onChange={value => selectOperator(stepId, conditionId, value)}
                 opened={
                   hasPriority &&
                   stepId === currentStepId &&
@@ -166,17 +176,15 @@ export const ConditionRow: React.FC<T.ConditionRowProps> = ({
             >
               {conditionFactor?.withCustomFactor || (
                 <Factors
-                  {...conditionFactor}
+                  {...conditionFactorProps}
                   inputProps={inputProps}
                   getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
-                  onActivate={(): void => onActivate && onActivate(FACTOR)}
+                  onActivate={() => onActivate && onActivate(FACTOR)}
                   onDeactivate={onDeactivate}
-                  setSelectedFactorType={(factorType): void =>
-                    setStepConditionFactorType(stepId, conditionId, factorType)
-                  }
-                  onChangeValue={(value): void => setStepConditionFactorValue(stepId, conditionId, value)}
+                  setSelectedFactorType={factorType => setStepConditionFactorType(stepId, conditionId, factorType)}
+                  onChangeValue={value => setStepConditionFactorValue(stepId, conditionId, value)}
                   factorKey={conditionId}
-                  error={Boolean(conditionFactor.errorText)}
+                  error={Boolean(conditionFactorProps.errorText)}
                   opened={
                     hasPriority &&
                     stepId === currentStepId &&
