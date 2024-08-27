@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactNode, CSSProperties, SVGProps } from 'react';
 import { IntlShape } from 'react-intl';
 import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
@@ -25,16 +25,17 @@ export type Texts =
 export type ItemsRollGroup = string;
 
 export type ItemsRollProps = {
-  intl: IntlShape;
+  // @deprecated
+  intl?: IntlShape;
   items: ItemRollElement[];
   onSearch?: (value: string) => void;
   onSearchClear?: () => void;
   searchValue?: string;
   searchPlaceholder?: string;
   actions?: ItemRollElement[];
-  changeSelectionIcon?: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  changeSelectionIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   changeSelectionDropdownProps?: DropdownProps;
-  customSidebarActions?: React.ReactNode;
+  customSidebarActions?: ReactNode;
   className?: string;
   groups?: ItemsRollGroup[];
   hideSearch?: boolean;
@@ -43,10 +44,10 @@ export type ItemsRollProps = {
   onChangeSelection?: () => void;
   onItemRemove?: (id: string, group?: ItemsRollGroup) => void;
   onItemClick?: (id: string, group?: ItemsRollGroup) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   showMoreStep?: number;
   texts?: {
-    [k in Texts]?: string | React.ReactNode;
+    [k in Texts]?: string | ReactNode;
   };
   useFooter?: boolean;
   useVirtualizedList?: boolean;

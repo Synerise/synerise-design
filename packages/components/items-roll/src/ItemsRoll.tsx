@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { Footer, Header, List } from './ItemsRollComponents';
 import * as S from './ItemsRoll.styles';
 import { ItemsRollProps } from './ItemsRoll.types';
 
-const ItemsRoll: React.FC<ItemsRollProps> = ({
+export const ItemsRoll = ({
   actions,
   changeSelectionIcon,
   changeSelectionDropdownProps,
@@ -13,7 +13,6 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
   customSidebarActions,
   groups,
   hideSearch,
-  intl,
   items,
   maxToShowItems = 10,
   onClearAll,
@@ -31,7 +30,9 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
   useVirtualizedList,
   virtualizedRowWidth,
   virtualizedRowHeight,
-}) => {
+}: ItemsRollProps) => {
+  const intl = useIntl();
+
   const defaultTexts = {
     changeSelectionLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CHANGE-SELECTION' }),
     clearAllLabel: intl.formatMessage({ id: 'DS.ITEMS-ROLL.CLEAR-ALL' }),
@@ -123,5 +124,4 @@ const ItemsRoll: React.FC<ItemsRollProps> = ({
     </S.Wrapper>
   );
 };
-
-export default injectIntl(ItemsRoll);
+export default ItemsRoll;
