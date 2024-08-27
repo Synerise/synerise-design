@@ -1,11 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
+
 import { MatchingProps } from './Matching.types';
 import * as S from './Matching.styles';
 
 const MATCHING_TOGGLE = '#MATCHING_TOGGLE#';
 
-const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange, texts, readOnly = false }) => {
+const Matching = ({
+  matching = true,
+  sentence,
+  onChange,
+  texts,
+  readOnly = false,
+  ...htmlAttributes
+}: MatchingProps) => {
   const intl = useIntl();
 
   const text = React.useMemo(() => {
@@ -43,7 +51,7 @@ const Matching: React.FC<MatchingProps> = ({ matching = true, sentence, onChange
     return getToggle;
   }, [getToggle, sentence]);
 
-  return <S.MatchingWrapper>{getLabelWithToggle}</S.MatchingWrapper>;
+  return <S.MatchingWrapper {...htmlAttributes}>{getLabelWithToggle}</S.MatchingWrapper>;
 };
 
 export default Matching;
