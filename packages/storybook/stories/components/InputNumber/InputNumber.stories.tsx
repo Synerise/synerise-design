@@ -14,7 +14,7 @@ import {
 type Story = StoryObj<InputNumberProps>;
 export default {
   component: InputNumber,
-  title: 'Components/Input/InputNumber',
+  title: 'Components/InputElements/InputNumber',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
   argTypes: {

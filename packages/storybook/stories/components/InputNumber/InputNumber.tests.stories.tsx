@@ -9,11 +9,11 @@ import StoriesMeta from './InputNumber.stories';
 
 export default {
   ...StoriesMeta,
-  title: 'Components/Input/Tests',
+  title: 'Components/InputElements/Tests',
   tags: ['visualtests'],
 } as Meta<InputProps>;
 
-export const NumberInputFocus: StoryObj<InputNumberProps> = {
+export const InputNumberFocus: StoryObj<InputNumberProps> = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = canvas.getByRole('spinbutton');
@@ -22,7 +22,7 @@ export const NumberInputFocus: StoryObj<InputNumberProps> = {
     await waitFor(() => expect(input).toHaveFocus());
   },
 };
-export const NumberInputHover: StoryObj<InputNumberProps> = {
+export const InputNumberHover: StoryObj<InputNumberProps> = {
   parameters: {
     pseudo: { hover: true },
   },

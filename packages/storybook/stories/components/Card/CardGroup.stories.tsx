@@ -33,5 +33,5 @@ export default {
 } as Meta<CardGroupProps>;
 
 export const Group: Story = {
-    storyName: 'Card Group'
+    name: 'Card Group'
 };
