@@ -5,7 +5,7 @@ import Avatar from '@synerise/ds-avatar';
 import { theme } from '@synerise/ds-core';
 import Flag from '@synerise/ds-flag';
 
-import { avatarImage } from '../../constants/images';
+import { AVATAR_IMAGE } from '../../constants/images';
 
 export const ICONS = {
   none: null,
@@ -22,7 +22,7 @@ export const FLAT_DATA_SOURCE: MenuItemProps[] = [
   {
     text: 'iPhone X',
     prefixel: (
-      <Avatar src={avatarImage} size="small">
+      <Avatar src={AVATAR_IMAGE} size="small">
         M
       </Avatar>
     ),
@@ -53,7 +53,7 @@ export const FLAT_DATA_SOURCE: MenuItemProps[] = [
   {
     text: 'iPhone 14',
     prefixel: (
-      <Avatar src={avatarImage} size="small">
+      <Avatar src={AVATAR_IMAGE} size="small">
         M
       </Avatar>
     ),

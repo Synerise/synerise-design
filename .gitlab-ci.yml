@@ -167,9 +167,8 @@ chromatic_publish_sb7:
   before_script:
     - yarn install --frozen-lockfile
     - yarn build
-    - cd packages/storybook
   script:
-    - yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --exit-zero-on-changes
+    - yarn storybook:chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
   interruptible: true
   
     
