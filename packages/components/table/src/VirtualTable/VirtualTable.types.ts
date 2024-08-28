@@ -12,7 +12,7 @@ export type VirtualColumnType<T> = DSColumnType<T> & {
   right?: number;
 };
 
-export type Props<T> = DSTableProps<T> & {
+export type VirtualTableProps<T> = DSTableProps<T> & {
   cellHeight: number;
   infiniteScroll?: InfiniteScrollProps;
   initialWidth: number;
@@ -22,6 +22,7 @@ export type Props<T> = DSTableProps<T> & {
   };
   sticky?: DSTableProps<T>['sticky'] & {
     scrollThreshold?: number;
+    offsetHeader?: number;
     getContainer: () => HTMLDivElement;
   };
   onListRefChange?: (ref: RefObject<List>) => void;
@@ -37,3 +38,6 @@ export type VirtualTableRef = {
   scrollToTop: () => void;
   scrollTo: (top: number) => void;
 };
+
+// @deprecated - use VirtualTableProps instead
+export type Props<T> = VirtualTableProps<T>;

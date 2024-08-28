@@ -31,7 +31,7 @@ import type {
 } from '../Table.types';
 import VirtualTableRow, { INFINITE_LOADED_ITEM_HEIGHT, VirtualTableRowProps } from './VirtualTableRow';
 import * as S from './VirtualTable.styles';
-import type { Props, VirtualTableRef, VirtualColumnType } from './VirtualTable.types';
+import type { VirtualTableRef, VirtualColumnType, VirtualTableProps } from './VirtualTable.types';
 import { useTableLocale, calculateColumnWidths } from '../utils';
 import { useRowKey } from '../hooks/useRowKey';
 import { useRowStar, CreateRowStarColumnProps } from '../hooks/useRowStar';
@@ -42,7 +42,7 @@ import { getChildrenColumnName } from '../utils/getChildrenColumnName';
 const relativeInlineStyle: CSSProperties = { position: 'relative' };
 
 const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
-  props: Props<T>,
+  props: VirtualTableProps<T>,
   forwardedRef: Ref<VirtualTableRef>
 ) => {
   const {
@@ -158,6 +158,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const [tableWidth, setTableWidth] = useState(initialWidth);
   const [scrollWidth, setScrollWidth] = useState(initialWidth);
+  const [titleBarHeight, setTitleBarHeight] = useState(0);
   const { getRowStarColumn } = useRowStar(rowStar?.starredRowKeys || []);
 
   // deprecated, verify if not used and remove
@@ -385,6 +386,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   );
 
   const offsetScroll = sticky && sticky !== true ? sticky.offsetScroll : 0;
+  const offsetStickyHeader = sticky && sticky !== true ? sticky.offsetHeader : 0;
 
   const connectObject = useMemo(() => {
     const obj = {};
@@ -598,7 +600,9 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   useEffect(() => {
     if (containerRef?.current) {
       const headerElement = containerRef.current.querySelector<HTMLDivElement>('.ant-table-header');
+      const titleElement = containerRef.current.querySelector<HTMLDivElement>('.ant-table-title');
       headerElement && setScrollWidth(headerElement.scrollWidth);
+      titleElement && setTitleBarHeight(titleElement.clientHeight);
     }
   }, [tableWidth, mergedColumns.length, dataSource.length]);
 
@@ -609,10 +613,11 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     },
     containerRef
   );
-
   return (
     <S.VirtualTableWrapper
       isSticky={isSticky}
+      titleBarTop={offsetStickyHeader || 0}
+      titleBarHeight={titleBarHeight}
       style={isSticky ? {} : relativeInlineStyle}
       key="relative-container"
       ref={containerRef}
@@ -658,5 +663,5 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 };
 
 export default forwardRef(VirtualTable) as <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
-  p: Props<T> & { ref?: Ref<VirtualTableRef> }
+  p: VirtualTableProps<T> & { ref?: Ref<VirtualTableRef> }
 ) => ReactElement;
