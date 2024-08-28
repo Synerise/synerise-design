@@ -48,9 +48,9 @@ const stories = {
   default: () => {
     const size = select('Size', iconSizes,'M')
     const labelPosition = select('Position of elements', ['right','bottom'],'right');
-    const showText = boolean ('Show Loading text',true, );
+    const showText = boolean ('Show Loading text', false);
     const loadingText = text('Loading', 'Loading...');
-    const showPercent = boolean ('Show percent text',false , );
+    const showPercent = boolean ('Show percent text', false);
 
     const getLoading = (showText: boolean): string | null => {
       if (showText) {
