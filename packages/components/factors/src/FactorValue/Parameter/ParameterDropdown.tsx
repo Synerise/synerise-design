@@ -170,6 +170,7 @@ const ParameterDropdown = ({
 
   return (
     <Dropdown.Wrapper
+      data-testid="ds-factors-parameter-dropdown-wrapper"
       style={{ width: '300px' }}
       ref={overlayRef}
       onKeyDown={(e): void => {
