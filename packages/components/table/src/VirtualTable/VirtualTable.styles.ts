@@ -96,13 +96,18 @@ export const ColWrapper = styled.div<ColWrapperProps>`
   }
 `;
 
-export const VirtualTableWrapper = styled.div<{ isSticky: boolean; isHeaderVisible?: boolean }>`
+export const VirtualTableWrapper = styled.div<{
+  isSticky: boolean;
+  titleBarHeight: number;
+  titleBarTop: number;
+  isHeaderVisible?: boolean;
+}>`
   ${props =>
     props.isSticky
       ? css`
           .ant-table-title {
             position: sticky;
-            top: -96px;
+            top: ${props.titleBarTop - props.titleBarHeight}px;
             z-index: 99;
           }
           .ant-table-title,
@@ -112,10 +117,10 @@ export const VirtualTableWrapper = styled.div<{ isSticky: boolean; isHeaderVisib
           ${props.isHeaderVisible &&
           css`
             .ant-table-title {
-              top: -24px;
+              top: ${props.titleBarTop}px;
             }
             .ant-table-sticky-header {
-              top: 48px !important;
+              top: ${props.titleBarTop + props.titleBarHeight}px !important;
             }
           `};
         `
