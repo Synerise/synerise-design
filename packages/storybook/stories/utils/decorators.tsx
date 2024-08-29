@@ -12,6 +12,25 @@ export const fixedWrapper588 = (Story, storyContext) => <div style={{ width: '58
 export const flexColumnWrapper = (Story, storyContext) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
 );
+export const footerWrapper = (Story, storyContext) => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      padding: '0 16px',
+      background: '#fff'
+    }}
+  >
+    {Story()}
+  </div>
+);
 
 export const centeredPaddedWrapper = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
