@@ -29,12 +29,11 @@ export interface Props extends Omit<AlertProps, 'type' | 'message'> {
   showMoreLabel?: React.ReactNode;
   onShowMore?: () => void;
   onClose?: () => void;
-  newClient?: boolean | React.ReactNode;
+  suffixel?: React.ReactNode;
   moreButtons?: boolean | React.ReactNode;
   withEmphasis?: React.ReactNode;
   withLink?: React.ReactNode;
   unorderedList?: React.ReactNode;
   withClose?: React.ReactNode;
   customIcon?: React.ReactElement;
-  textButton?: string;
 }

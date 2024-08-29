@@ -3,14 +3,12 @@ import type { ReactNode } from 'react';
 import Icon, {
   CloseM,
   WarningFillM,
-  UserAddM,
   Check3M,
   HelpFillM,
   UserUpM,
   UpdateDataM,
   NotificationsReceiveM,
 } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
 import * as S from './SectionMessage.styles';
 import { Props, AlertTypes } from './SectionMessage.types';
 
@@ -34,7 +32,7 @@ const SectionMessage = ({
   showMoreLabel,
   onShowMore,
   onClose,
-  newClient,
+  suffixel,
   moreButtons,
   withEmphasis,
   withLink,
@@ -44,7 +42,6 @@ const SectionMessage = ({
   customColor,
   customColorIcon,
   customIcon,
-  textButton,
 }: Props) => {
   const renderMessage = useMemo(() => {
     return (
@@ -82,12 +79,7 @@ const SectionMessage = ({
           {renderMessage}
         </S.AllContent>
         <S.ButtonWrapper>
-          {newClient && (
-            <Button type="ghost" mode="icon-label">
-              <Icon component={<UserAddM />} />
-              {textButton}
-            </Button>
-          )}
+          {suffixel && <S.SuffixWrapper>{suffixel}</S.SuffixWrapper>}
           {withClose && (
             <S.IconCloseWrapper onClick={handleClose}>
               <Icon component={<CloseM />} />
