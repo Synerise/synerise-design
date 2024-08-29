@@ -4,7 +4,7 @@ import Icon, {
   CheckS, DuplicateS,
   HelpFillM,
   NotificationsReceiveM,
-  UpdateDataM,
+  UpdateDataM, UserAddM,
   UserUpM,
   WarningFillM,
 } from '@synerise/ds-icon';
@@ -217,8 +217,10 @@ const stories = {
           type={type}
           color={additionalAlertMapper[type].color}
           description={text('Description', 'This is a simple message')}
-          textButton='Add client'
-          newClient={true}
+          suffixel={<Button type="ghost" mode="icon-label">
+            <Icon component={<UserAddM />} />
+            {'Add client'}
+          </Button>}
           withClose={withClose}
         />
         <div style={{padding: '10px'}}/>
@@ -479,7 +481,10 @@ const stories = {
           customColor={customColor}
           customColorIcon={customColorIcon}
           customIcon={props.customIcon ? <Icon  component={<IconComp />}/> : null}
-          newClient={showButton}
+          suffixel={showButton && (<Button type="ghost" mode="icon-label">
+            <Icon component={<UserAddM />} />
+            {'Add client'}
+          </Button>)}
           moreButtons={showButtons && (<ButtonsWrapper>
             <FirstButtonWrapper>
               <Button type="secondary" mode="label">

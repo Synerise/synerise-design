@@ -68,6 +68,11 @@ export const ButtonsWrapper = styled.div`
   padding: 16px 0 0 0;
   display: flex;
 `;
+
+export const SuffixWrapper = styled.div`
+  display: flex;
+`;
+
 export const IconOrderWrapper = styled.div`
   display: none;
   margin: -4px 0;
