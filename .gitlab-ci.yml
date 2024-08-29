@@ -3,6 +3,10 @@ image: artifactory.snrinternal.com/docker.io/node:16.20.2
 variables:
   APP: ds-docs
   NODE_OPTIONS: --max-old-space-size=4096
+  GITOPS: "true"
+  MODULE: "documentation"
+  LIBRARY_PIPELINE: "NO"
+  APP_NAME_OVERRIDE: ds-docs
 
 cache:
   key: ds
@@ -12,14 +16,15 @@ cache:
 stages:
   - test
   - build
+  - k8s-deploy-stg
+  - k8s-deploy-prod
   - deploy
-
 
 include:
   - template: Code-Quality.gitlab-ci.yml
   - project: 'Core/gitlab_templates'
     ref: master
-    file: '/core_deploy_kapitan.yml'
+    file: '/ai_deploy_kapitan.yml'
 
 build:
   stage: test
@@ -118,28 +123,17 @@ docs_deploy_from_tag:
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
-k8s-deploy-branch-release:
-  extends: .k8s-deploy-branch-stage
-  stage: deploy
-  variables:
-    APPLICATION: ${APP}
-    NAMESPACE: jsons
-    CURRENT_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  only:
-    - dev
-
-k8s-deploy-prod:
-  extends: .k8s-deploy-tag-prod
-  stage: deploy
+k8s-prod-gitops:
+  extends: .autodeploy-template
+  stage: k8s-deploy-prod
   when: manual
   only:
     refs:
       - tags
       - master
   variables:
-    APPLICATION: ${APP}
-    NAMESPACE: default
-    CURRENT_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}
+    AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+    ENV: p001
 
 chromatic_publish:
   stage: deploy
