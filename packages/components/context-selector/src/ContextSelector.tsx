@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
@@ -11,7 +11,7 @@ import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDr
 import { ContextProps } from './ContextSelector.types';
 import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
 
-const ContextSelector: React.FC<ContextProps> = ({
+const ContextSelector = ({
   defaultDropdownVisibility,
   selectedItem,
   onSelectItem,
@@ -42,32 +42,32 @@ const ContextSelector: React.FC<ContextProps> = ({
   errorText,
   readOnly = false,
   getMenuEntryProps,
-}) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(defaultDropdownVisibility ?? false);
-  React.useEffect(() => {
+}: ContextProps) => {
+  const [dropdownVisible, setDropdownVisible] = useState(defaultDropdownVisibility ?? false);
+  useEffect(() => {
     setDropdownVisible(defaultDropdownVisibility ?? false);
   }, [defaultDropdownVisibility]);
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     val => {
       setDropdownVisible(false);
       onSelectItem(val);
     },
     [onSelectItem]
   );
-  const handleOnSetGroup = React.useCallback(
+  const handleOnSetGroup = useCallback(
     val => {
       onSetGroup && onSetGroup(val);
     },
     [onSetGroup]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (opened) {
       setDropdownVisible(true);
     }
   }, [opened]);
 
-  const triggerMode = React.useMemo(() => {
+  const triggerMode = useMemo(() => {
     if (selectedItem) {
       return readOnly ? 'icon-label' : 'two-icons';
     }
@@ -75,17 +75,17 @@ const ContextSelector: React.FC<ContextProps> = ({
     return readOnly ? 'simple' : 'label-icon';
   }, [selectedItem, readOnly]);
 
-  const triggerColor = React.useMemo(() => {
+  const triggerColor = useMemo(() => {
     if (!selectedItem) return 'blue';
     return type === 'event' ? 'cyan' : 'green';
   }, [selectedItem, type]);
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     onOpen && onOpen();
     setDropdownVisible(true);
   }, [onOpen]);
 
-  const triggerButton = React.useMemo(() => {
+  const triggerButton = useMemo(() => {
     const { buttonLabel } = texts;
     const hasError = Boolean(errorText);
 
@@ -130,7 +130,8 @@ const ContextSelector: React.FC<ContextProps> = ({
               getPopupContainer: getPopupContainerOverride || getPopupContainer,
             } as MenuItemProps['hoverTooltipProps'],
             renderHoverTooltip: selectedItem
-              ? (): JSX.Element => (
+              ? selectedItem.renderHoverTooltip ||
+                ((): JSX.Element => (
                   <InformationCard
                     icon={selectedItem.icon}
                     subtitle={selectedItem.subtitle}
@@ -143,7 +144,7 @@ const ContextSelector: React.FC<ContextProps> = ({
                     }
                     {...selectedItem.informationCardProps}
                   />
-                )
+                ))
               : undefined,
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ...getMenuEntryProps?.(selectedItem as any),
@@ -165,7 +166,7 @@ const ContextSelector: React.FC<ContextProps> = ({
     getMenuEntryProps,
   ]);
 
-  const onDropdownVisibilityChange = React.useCallback(
+  const onDropdownVisibilityChange = useCallback(
     (value: boolean) => {
       if (value) {
         onActivate && onActivate('');

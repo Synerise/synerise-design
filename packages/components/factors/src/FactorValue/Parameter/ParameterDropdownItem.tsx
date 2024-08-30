@@ -22,14 +22,14 @@ const ParameterDropdownItem = ({
   className,
   style,
 }: DropdownItem) => {
-  const { id, icon: _, ...itemProps } = item;
+  const { id, icon, ...itemProps } = item;
   return (
     <ListItem
       {...itemProps}
       style={style}
       className={className}
       key={item.name + item.id}
-      prefixel={<Icon component={item.icon} />}
+      prefixel={<Icon component={icon} />}
       highlight={searchQuery}
       onClick={(): void => {
         clearSearch && clearSearch();

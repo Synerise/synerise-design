@@ -4,6 +4,7 @@ import { ItemSize } from '@synerise/ds-menu';
 import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 import type { FactorsProps } from '@synerise/ds-factors';
 import { InformationCardProps } from '@synerise/ds-information-card';
+import { ListItemProps } from '@synerise/ds-list-item';
 
 export type ContextTexts = {
   buttonLabel: string;
@@ -12,7 +13,7 @@ export type ContextTexts = {
   noResults: string;
 };
 
-export type ContextItem = {
+export type ContextItem = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
   id: ReactText | null;
   name: string;
   icon: ReactNode;

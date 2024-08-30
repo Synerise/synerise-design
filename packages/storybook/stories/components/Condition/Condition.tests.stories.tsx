@@ -3,13 +3,13 @@ import { within, userEvent, expect, waitFor, fn, fireEvent } from '@storybook/te
 import type { ConditionMeta, ConditionStory } from './Condition.types';
 import StoriesMeta from './Condition.stories';
 import {
-  PARAMETER_ITEMS,
   STEPS_POPULATED,
   STEPS_POPULATED_FACTOR_ERRORS,
   STEPS_POPULATED_OPERATOR_ERRORS,
   STEPS_POPULATED_PARAMETER_ERRORS,
   SUBJECT_ITEMS,
 } from './Condition.data';
+import { FACTORS_ITEMS as PARAMETER_ITEMS } from '../Factors/Factors.data';
 import { sleep } from '../../utils';
 
 export default {
@@ -67,9 +67,9 @@ export const PopulateStep: ConditionStory = {
     userEvent.click(canvas.getByText(SUBJECT_ITEMS[3].name));
 
     await waitFor(() => expect(args.onChangeContext).toHaveBeenCalled());
-    await canvas.findByText(PARAMETER_ITEMS[5].name);
-    await waitFor(() => expect(canvas.getByText(PARAMETER_ITEMS[5].name)).not.toHaveStyle({pointerEvents: 'none'}))
-    userEvent.click(canvas.getByText(PARAMETER_ITEMS[5].name));
+    await canvas.findAllByText(PARAMETER_ITEMS[5].name);
+    await waitFor(() => expect(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]).not.toHaveStyle({pointerEvents: 'none'}))
+    userEvent.click(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]);
     await waitFor(() => expect(args.onChangeParameter).toHaveBeenCalled());
     const operatorsDropdown = await canvas.findByTestId('ds-operators-dropdown-wrapper');
     const operatorsTabs = await within(operatorsDropdown).findAllByTestId('tab-container');
