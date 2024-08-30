@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.13.0...storybook7@0.14.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* **context-selector:** reuse renderHoverTooltip for selected item ([57e8a14](https://github.com/Synerise/synerise-design/commit/57e8a148e70bccd54c6d4540fb36c14d492f110b))
+
+
+### Features
+
+* **footer:** new stories for Footer ([b4a70d0](https://github.com/Synerise/synerise-design/commit/b4a70d0d96219b507714487696b94c8a6f3f21f6))
+* **storybook7:** condition stories ([50c3613](https://github.com/Synerise/synerise-design/commit/50c36138dfd1097fe3b1182047eded4bbea584e9))
+
+
+
+
+
 # [0.13.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.12.0...storybook7@0.13.0) (2024-08-27)
 
 

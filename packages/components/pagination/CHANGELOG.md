@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.59](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.7.58...@synerise/ds-pagination@0.7.59) (2024-08-30)
+
+**Note:** Version bump only for package @synerise/ds-pagination
+
+
+
+
+
 ## [0.7.58](https://github.com/synerise/synerise-design/compare/@synerise/ds-pagination@0.7.57...@synerise/ds-pagination@0.7.58) (2024-08-27)
 
 **Note:** Version bump only for package @synerise/ds-pagination

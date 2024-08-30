@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.24...@synerise/ds-alert@0.8.25) (2024-08-30)
+
+
+### Bug Fixes
+
+* **alert:** fixes to section message ([b8e40ce](https://github.com/Synerise/synerise-design/commit/b8e40ceb26fc53e91660047e9953600cf09c653d))
+
+
+
+
+
 ## [0.8.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-alert@0.8.23...@synerise/ds-alert@0.8.24) (2024-08-27)
 
 **Note:** Version bump only for package @synerise/ds-alert

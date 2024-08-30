@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.3...@synerise/ds-table@0.56.4) (2024-08-30)
+
+
+### Bug Fixes
+
+* **table:** virtual table sticky header offsets ([177720d](https://github.com/synerise/synerise-design/commit/177720d7d92140f497c7c2234904dae73065348e))
+
+
+
+
+
 ## [0.56.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.2...@synerise/ds-table@0.56.3) (2024-08-27)
 
 **Note:** Version bump only for package @synerise/ds-table

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.22.40...@synerise/ds-condition@0.23.0) (2024-08-30)
+
+
+### Features
+
+* **storybook7:** condition stories ([50c3613](https://github.com/Synerise/synerise-design/commit/50c36138dfd1097fe3b1182047eded4bbea584e9))
+
+
+
+
+
 ## [0.22.40](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.22.39...@synerise/ds-condition@0.22.40) (2024-08-27)
 
 

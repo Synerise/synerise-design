@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.24.5...@synerise/ds-context-selector@0.24.6) (2024-08-30)
+
+
+### Bug Fixes
+
+* **context-selector:** reuse renderHoverTooltip for selected item ([57e8a14](https://github.com/Synerise/synerise-design/commit/57e8a148e70bccd54c6d4540fb36c14d492f110b))
+
+
+
+
+
 ## [0.24.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.24.4...@synerise/ds-context-selector@0.24.5) (2024-08-27)
 
 **Note:** Version bump only for package @synerise/ds-context-selector
