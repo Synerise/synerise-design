@@ -112,8 +112,9 @@ const ParameterInput = ({
             popupPlacement: 'top',
             getPopupContainer: getPopupContainerOverride || getPopupContainer,
           } as MenuItemProps['hoverTooltipProps'],
-          renderHoverTooltip: parameter?.name
-            ? () => (
+          renderHoverTooltip: isSelected
+            ? parameter?.renderHoverTooltip ||
+              (() => (
                 <InformationCard
                   icon={parameterIcon}
                   subtitle={parameter.id?.toString()}
@@ -125,7 +126,7 @@ const ParameterInput = ({
                   }
                   {...parameter.informationCardProps}
                 />
-              )
+              ))
             : undefined,
           ...getMenuEntryProps?.(parameter),
         },

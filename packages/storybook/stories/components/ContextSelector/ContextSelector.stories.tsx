@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
-import ContextSelector from '@synerise/ds-context-selector';
-import type { ContextProps, ContextItem } from '@synerise/ds-context-selector';
+import ContextSelector, { ContextProps, ContextItem } from '@synerise/ds-context-selector';
 
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS, FLAT_LIST_ITEMS } from './data/client.data';

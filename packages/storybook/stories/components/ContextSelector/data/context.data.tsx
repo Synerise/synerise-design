@@ -1,5 +1,8 @@
-import { ApiM, FolderM, FormM, MegaphoneM, WebhookM } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
+import Icon, { ApiM, FolderM, FormM, MegaphoneM, NotificationsM, SegmentM, WebhookM } from '@synerise/ds-icon';
+import type { ContextItem } from '@synerise/ds-context-selector';
+import { getPopupContainer } from '@synerise/ds-utils';
+import InformationCard, { InformationCardTooltip } from '@synerise/ds-information-card';
 
 export const CONTEXT_TEXTS = {
   buttonLabel: 'Choose',
@@ -34,15 +37,41 @@ export const CONTEXT_GROUPS = [
     ],
   },
 ];
+const infocardProps = {
+  title: 'Title',
+  subtitle: 'Subtitle',
+  icon: <SegmentM color="mars" />,
+  iconColor: 'mars',
+  avatarTooltipText: 'Tooltip Text',
+  descriptionConfig: {},
+};
 
-export const CONTEXT_ITEMS = [
+export const generateInfoCard = (item: ContextItem) => {
+  const randomCount = Math.floor(Math.random() * 100);
+  return {
+    ...item,
+    renderHoverTooltip: () => (
+      <InformationCard
+        icon={item.icon}
+        title={item.name}
+        subtitle={item.subtitle}
+        renderAdditionalDescription={item.renderAdditionalDescription}
+        propertyListItems={[{ label: 'Count', value: randomCount }]}
+        descriptionConfig={item.description ? { label: item.description, disabled: true } : undefined}
+        {...item.informationCardProps}
+      />
+    ),
+  };
+};
+
+const CONTEXT_ITEMS_DATA = [
   {
     name: 'Schema builder app',
     id: 'SCHEMA_BUILDER_APP',
     icon: <ApiM />,
     groupId: 'RECENT',
     groupName: 'Internal apps',
-    disabled: true,
+    subtitle: 'Infocard Subtitle',
   },
   {
     name: 'Unnamed schema',
@@ -196,3 +225,5 @@ export const CONTEXT_ITEMS = [
     groupId: 'ALL',
   },
 ];
+
+export const CONTEXT_ITEMS = CONTEXT_ITEMS_DATA.map(generateInfoCard);

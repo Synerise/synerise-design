@@ -1,6 +1,24 @@
 import React from 'react';
 import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import { FactorValueType, ParameterItem, ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
+import InformationCard from '@synerise/ds-information-card';
+
+const generateInfoCard = (item: ParameterValueType) => {
+  const randomCount = Math.floor(Math.random() * 100);
+  return {
+    ...item,
+    renderHoverTooltip: () => (
+      <InformationCard
+        icon={item.icon}
+        title={item.name}
+        propertyListItems={[{ label: 'Some property', value: randomCount }]}
+        descriptionConfig={item.description ? { label: item.description, disabled: true } : undefined}
+        {...item.informationCardProps}
+      />
+    ),
+  };
+};
+
 
 export const FACTORS_TEXTS = {
   datePicker: {
@@ -55,7 +73,7 @@ export const FACTORS_GROUPS = [
   }
 ];
 
-export const FACTORS_ITEMS: ParameterItem[] = [
+export const FACTORS_ITEMS_DATA: ParameterItem[] = [
   {
     id: 0,
     name: 'First name',
@@ -165,6 +183,8 @@ export const FACTORS_ITEMS: ParameterItem[] = [
     icon: <VarTypeStringM />,
   },
 ]
+
+export const FACTORS_ITEMS: ParameterItem[] = FACTORS_ITEMS_DATA.map(generateInfoCard);
 
 export const SELECTED_PARAMETER: FactorValueType = {
   ...FACTORS_ITEMS[0],

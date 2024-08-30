@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
-import { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
+import type { ReactText, ReactNode, ElementType } from 'react';
+import type { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
+import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { AutoResizeProp } from '@synerise/ds-input';
-import { InformationCardProps } from '@synerise/ds-information-card';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { ListItemProps } from '@synerise/ds-list-item';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -18,31 +19,31 @@ export const ALL_FACTOR_TYPES = [
 ] as const;
 export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
 export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
-export type DynamicKeyValueType = { key: React.ReactText; value: React.ReactText };
+export type DynamicKeyValueType = { key: ReactText; value: ReactText };
 export type FormulaValueType = { name: string; value: string };
-export type ParameterValueType = {
+export type ParameterValueType = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
   type: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   name: string;
-  id: React.ReactText;
-  groupId?: React.ReactText;
+  id: ReactText;
+  groupId?: ReactText;
   description?: string;
   informationCardProps?: Partial<InformationCardProps>;
 };
 
 export type ParameterGroup = {
-  id: React.ReactText;
+  id: ReactText;
   name: string;
   defaultGroup?: boolean;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   subGroups?: ParameterGroup[];
 };
 
 export type ParameterItem = {
-  id: React.ReactText;
+  id: ReactText;
   name: string;
-  groupId: React.ReactText;
-  icon?: React.ReactNode;
+  groupId: ReactText;
+  icon?: ReactNode;
   disabled?: boolean;
 };
 
@@ -58,8 +59,8 @@ export type FactorValueType =
 
 export type SelectedFactorType = {
   name: string;
-  icon: React.ReactNode;
-  input: React.ElementType;
+  icon: ReactNode;
+  input: ElementType;
 };
 
 export type FactorsTexts = {
@@ -93,9 +94,9 @@ export type FactorsTexts = {
 };
 
 export type FactorsProps = {
-  factorKey?: React.ReactText;
+  factorKey?: ReactText;
   error?: boolean;
-  errorText?: React.ReactNode | string;
+  errorText?: ReactNode;
   withoutTypeSelector?: boolean;
   setSelectedFactorType?: (factor: FactorType) => void;
   unavailableFactorTypes?: FactorType[];
@@ -113,8 +114,8 @@ export type FactorsProps = {
     options: string[];
   };
   parameters?: {
-    buttonLabel: string | React.ReactNode;
-    buttonIcon: React.ReactNode;
+    buttonLabel: ReactNode;
+    buttonIcon: ReactNode;
     selectedButtonColored?: boolean;
     groups?: ParameterGroup[];
     items: ParameterItem[];
@@ -122,12 +123,12 @@ export type FactorsProps = {
     showAllGroup?: boolean;
   };
   onParamsClick?: () => void;
-  formulaEditor?: React.ReactNode;
+  formulaEditor?: ReactNode;
   texts?: Partial<FactorsTexts>;
   opened?: boolean;
   loading?: boolean;
   preventAutoloadData?: boolean;
-  withCustomFactor?: React.ReactNode;
+  withCustomFactor?: ReactNode;
   inputProps?: Partial<InputProps>;
   readOnly?: boolean;
   getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
@@ -193,7 +194,7 @@ export type InputProps = Pick<
   onChange: (value: FactorValueType) => void;
   factorType: FactorType;
   onParamsClick?: () => void;
-  formulaEditor?: React.ReactNode;
+  formulaEditor?: ReactNode;
   loading?: boolean;
   preventAutoloadData?: boolean;
 };
@@ -223,5 +224,5 @@ export type FormulaModalProps = {
   visible: boolean;
   onCancel: () => void;
   texts: FactorsTexts;
-  formulaEditor?: React.ReactNode;
+  formulaEditor?: ReactNode;
 };
