@@ -126,7 +126,7 @@ const FormatSettings = ({
                   {currenciesConfig.map(({ currency, label }) => (
                     <S.ListItem
                       key={currency}
-                      suffixel={getFormattedValue({ currency })}
+                      suffixel={`${text.currencyMenuItemPrefix} ${getFormattedValue({ currency })}`}
                       onClick={(): void => onCurrencyChange(currency)}
                     >
                       {label}
