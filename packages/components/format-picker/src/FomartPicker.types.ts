@@ -32,6 +32,7 @@ export type FormatPickerTexts = {
   setDefault: ReactNode;
   useSeparator: ReactNode;
   compactNumbers: ReactNode;
+  currencyMenuItemPrefix: string;
 };
 
 export type FormatPickerProps = {

@@ -37,6 +37,7 @@ const FormatPicker = ({
       percentage: intl.formatMessage({ id: 'DS.FORMAT-PICKER.PERCENTAGE', defaultMessage: 'Percentage' }),
       setDefault: intl.formatMessage({ id: 'DS.FORMAT-PICKER.SET-DEFAULT', defaultMessage: 'Set default' }),
       useSeparator: intl.formatMessage({ id: 'DS.FORMAT-PICKER.USE-SEPARATOR', defaultMessage: 'Use 1000 separator' }),
+      currencyMenuItemPrefix: intl.formatMessage({ id: 'DS.FORMAT-PICKER.EG', defaultMessage: 'e.g.' }),
       compactNumbers: intl.formatMessage({
         id: 'DS.FORMAT-PICKER.COMPACT-NUMBERS',
         defaultMessage: 'Use compact numbers',
