@@ -37,7 +37,12 @@ const FactorTypeSelector = ({
   }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
 
   const trigger = (
-    <S.TriggerButton mode="single-icon" className="ds-factors-type-selector" readOnly={readOnly}>
+    <S.TriggerButton
+      mode="single-icon"
+      className="ds-factors-type-selector"
+      data-testid="ds-factors-type-selector"
+      readOnly={readOnly}
+    >
       <Icon component={selectedFactor.icon} />
     </S.TriggerButton>
   );

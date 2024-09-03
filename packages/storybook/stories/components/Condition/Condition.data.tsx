@@ -1,13 +1,16 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
+import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
+import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import type { OperatorsItem } from '@synerise/ds-operators';
 
 import { CONTEXT_ITEMS, CONTEXT_GROUPS, CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';
+
 import { FACTORS_TEXTS, FACTORS_GROUPS as PARAMETER_GROUPS, FACTORS_ITEMS as PARAMETER_ITEMS } from '../Factors/Factors.data';
+
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((_i, index) => ({
   id: index,
@@ -113,11 +116,12 @@ export const DEFAULT_CONTEXT_VALUE = {
   texts: CONTEXT_TEXTS,
 };
 
-export const DEFAULT_STEP = (): ConditionStep => ({
+export const DEFAULT_STEP = (subject?:  ContextItem | ContextGroup): ConditionStep => ({
   id: uuid(),
   stepName: '',
   context: {
     ...DEFAULT_CONTEXT_VALUE,
+    selectedItem: subject as ContextItem
   },
   conditions: [],
 });
@@ -141,6 +145,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[1],
           },
         },
@@ -163,6 +168,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[4],
           },
         },
@@ -185,6 +191,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[12],
           },
         },
@@ -207,6 +214,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[5],
           },
         },
@@ -223,6 +231,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[3], 
           },
         },
@@ -237,6 +246,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'parameter',
           value: {
+            type: '',
             ...PARAMETER_ITEMS[14],
           },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[7]),
@@ -247,6 +257,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[11], 
           },
         },
@@ -269,6 +280,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[10], 
           },
         },
@@ -283,6 +295,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'contextParameter',
           value: {
+            type: '',
             ...PARAMETER_ITEMS[12], 
           },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
@@ -293,6 +306,7 @@ export const STEPS_POPULATED = [
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
+            type: '',
             ...PARAMETER_ITEMS[13],
           },
         },
