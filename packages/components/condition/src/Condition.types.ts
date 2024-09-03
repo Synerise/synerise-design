@@ -41,7 +41,7 @@ export type ConditionProps = {
   addCondition?: (stepId: ReactText) => string | void;
   renderAddStep?: () => ReactNode;
   removeCondition?: (stepId: ReactText, conditionRowId: ReactText) => void;
-  addStep?: () => string | void;
+  addStep?: () => ReactText | void;
   onChangeOrder?: (newOrder: ConditionStep[]) => void;
   texts?: Partial<ConditionTexts>;
   minConditionsLength: number;

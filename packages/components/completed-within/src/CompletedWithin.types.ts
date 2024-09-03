@@ -1,22 +1,23 @@
-import * as React from 'react';
+import type { ReactNode } from 'react';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
 
 export type CompletedWithinTexts = {
-  clear: string | React.ReactNode;
-  header: string | React.ReactNode;
-  completedLabel: string | React.ReactNode;
-  periodPlaceholder: string | React.ReactNode;
+  clear: ReactNode;
+  header: ReactNode;
+  completedLabel: ReactNode;
+  periodPlaceholder: ReactNode;
 };
 
-export type Period = 'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'MONTHS' | 'YEARS' | string | undefined;
+export type Period = LiteralStringUnion<'SECONDS' | 'MINUTES' | 'HOURS' | 'DAYS' | 'MONTHS' | 'YEARS'> | undefined;
 
 export type CustomPeriod = {
   value: Period;
-  label: string | React.ReactNode;
+  label: ReactNode;
 };
 
 export type PeriodValue = {
   period: Period;
-  value: number | undefined;
+  value?: number;
 };
 
 export type CompletedWithinProps = {
@@ -25,7 +26,7 @@ export type CompletedWithinProps = {
   maxValue?: PeriodValue['value'];
   onSetValue: (value: PeriodValue) => void;
   periods?: CustomPeriod[];
-  placeholder?: string | undefined;
+  placeholder?: string;
   tooltip?: string;
   readOnly?: boolean;
 };
