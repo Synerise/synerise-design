@@ -70,9 +70,7 @@ describe('Table', () => {
   });
 
   it('should render "no data"', () => {
-    renderWithProvider(
-      <Table dataSource={[]} columns={props.columns} locale={{ emptyText: 'No Data' }} />
-    );
+    renderWithProvider(<Table dataSource={[]} columns={props.columns} locale={{ emptyText: 'No Data' }} />);
 
     expect(screen.getByText('No Data')).toBeTruthy();
   });
@@ -255,10 +253,8 @@ describe('Table', () => {
   });
 
   it('Should render custom empty component', () => {
-    const EMPTY_STATE = 'empty state'
-    renderWithProvider(
-      <Table dataSource={[]} columns={props.columns} emptyDataComponent={EMPTY_STATE} />
-    );
+    const EMPTY_STATE = 'empty state';
+    renderWithProvider(<Table dataSource={[]} columns={props.columns} emptyDataComponent={EMPTY_STATE} />);
     expect(screen.getByText(EMPTY_STATE)).toBeInTheDocument();
   });
 
@@ -288,16 +284,20 @@ describe('Table', () => {
 
   it('Should render with selection checkboxes only for specific items', () => {
     const handleChangeSelection = jest.fn();
-    const allowSelectionForKeys = ['2','4'];
+    const allowSelectionForKeys = ['2', '4'];
     renderWithProvider(
       <Table
         dataSource={props.dataSource}
         columns={props.columns}
         title="Title"
-        selection={{ selectedRowKeys: [], checkRowSelectionStatus: (record) => ({ unavailable: !allowSelectionForKeys.includes(record.key) }) , onChange: handleChangeSelection }}
+        selection={{
+          selectedRowKeys: [],
+          checkRowSelectionStatus: record => ({ unavailable: !allowSelectionForKeys.includes(record.key) }),
+          onChange: handleChangeSelection,
+        }}
       />
     );
-    const allButtons = screen.getAllByTestId('ds-table-selection-button')
+    const allButtons = screen.getAllByTestId('ds-table-selection-button');
     expect(allButtons.length).toEqual(allowSelectionForKeys.length);
   });
 
@@ -312,9 +312,9 @@ describe('Table', () => {
         />
       );
 
-      const buttonsPressedValues = screen.getAllByTestId('ds-table-star-button').map(elem =>
-        elem.getAttribute('aria-pressed')
-      );
+      const buttonsPressedValues = screen
+        .getAllByTestId('ds-table-star-button')
+        .map(elem => elem.getAttribute('aria-pressed'));
 
       expect(buttonsPressedValues).toEqual(['false', 'false', 'true', 'true', 'false', 'true']);
     });
@@ -341,6 +341,13 @@ describe('Table', () => {
 
       fireEvent.click(starButtons[1]);
       expect(onChangeSpy).toHaveBeenCalledWith([], '2', false);
+    });
+  });
+
+  describe('skeleton', () => {
+    it('Should render skeleton when loading initial data', () => {
+      renderWithProvider(<Table {...props} dataSource={undefined} loading />);
+      expect(screen.getByTestId('ds-table-skeleton')).toBeInTheDocument()
     });
   });
 });

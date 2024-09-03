@@ -498,6 +498,12 @@ const stories = {
       </>
     );
   }),
+  skeleton: () => {
+    return <Table
+      title={text('Table title', 'Empty table')}
+      loading={true}
+      dataSource={[]} />
+  }
 };
 
 export default {
