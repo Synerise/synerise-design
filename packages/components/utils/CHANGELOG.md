@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.28.2...@synerise/ds-utils@0.29.0) (2024-09-03)
+
+
+### Features
+
+* **storybook7:** added filter stories ([eb4f165](https://github.com/synerise/synerise-design/commit/eb4f165077eac361d4c4e4deab48842edd191825))
+
+
+
+
+
 ## [0.28.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.28.1...@synerise/ds-utils@0.28.2) (2024-08-06)
 
 **Note:** Version bump only for package @synerise/ds-utils

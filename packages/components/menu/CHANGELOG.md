@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.19.11...@synerise/ds-menu@0.19.12) (2024-09-03)
+
+**Note:** Version bump only for package @synerise/ds-menu
+
+
+
+
+
 ## [0.19.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.19.10...@synerise/ds-menu@0.19.11) (2024-08-30)
 
 **Note:** Version bump only for package @synerise/ds-menu
