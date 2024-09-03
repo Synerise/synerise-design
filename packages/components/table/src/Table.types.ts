@@ -139,4 +139,5 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   onSort?: OnSortFn;
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
+  maxHeight?: number;
 };
