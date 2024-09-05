@@ -17,7 +17,7 @@ export const TableSkeletonBody = ({ rows = 10, ...htmlAttributes }: TableSkeleto
       <S.TableSkeletonRow data-testid="ds-table-skeleton-row" key={`ds-skeleton-row-${index}`}>
         <S.TableSkeletonLeft>
           <TableSkeletonBar width={SKELETON_BAR_TINY} />
-          <SkeletonAvatar shape="circle" size="M" />
+          <SkeletonAvatar shape="square" size="M" />
           <TableSkeletonBar width={SKELETON_BAR_WIDE} />
         </S.TableSkeletonLeft>
         <S.TableSkeletonRight>

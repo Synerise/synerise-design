@@ -7,8 +7,9 @@ const rowCss = css`
   justify-content: space-between;
 `;
 
-export const TableSkeletonWrapper = styled.div`
+export const TableSkeletonWrapper = styled.div<{ maxHeight?: number }>`
   background: ${props => props.theme.palette.white};
+  ${props => props.maxHeight !== undefined && `height: ${props.maxHeight}px`};
   z-index: 10;
 `;
 
