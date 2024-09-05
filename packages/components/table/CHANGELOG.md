@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.5...@synerise/ds-table@0.56.6) (2024-09-05)
+
+
+### Bug Fixes
+
+* **table:** tweaks to skeleton ([f84301b](https://github.com/synerise/synerise-design/commit/f84301b1bd733adb733b1ae3690c77c793dfe89e))
+
+
+
+
+
 ## [0.56.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.4...@synerise/ds-table@0.56.5) (2024-09-03)
 
 **Note:** Version bump only for package @synerise/ds-table
