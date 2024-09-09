@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FixedSizeList } from 'react-window';
+import DropdownSkeleton from '@synerise/ds-skeleton';
 
 export const TabsWrapper = styled.div`
   width: 100%;
@@ -9,8 +10,9 @@ export const ContentPlaceholder = styled.div`
   height: 100px;
 `;
 
-export const ItemsList = styled.div`
+export const ItemsList = styled.div<{ contentHeight?: number }>`
   width: 100%;
+  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;
 
 export const SearchResult = styled.span`
@@ -34,4 +36,8 @@ export const StyledList = styled(FixedSizeList)`
   overflowy: unset;
   height: auto !important;
   max-height: 300px;
+`;
+
+export const Skeleton = styled(DropdownSkeleton)<{ contentHeight?: number }>`
+  ${props => props.contentHeight !== undefined && `height: ${props.contentHeight}px;`}
 `;

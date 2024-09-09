@@ -121,6 +121,11 @@ export type FactorsProps = {
     items: ParameterItem[];
     // @deprecated
     showAllGroup?: boolean;
+    dropdownDimensionsConfig?: {
+      defaultHeight?: number;
+      lowerHeight?: number;
+      threshold?: number;
+    };
   };
   onParamsClick?: () => void;
   formulaEditor?: ReactNode;
@@ -216,6 +221,7 @@ export type ParameterDropdownProps = {
   loading?: boolean;
   onFetchData?: () => void;
   hasMoreItems?: boolean;
+  outerHeight?: number;
 };
 
 export type FormulaModalProps = {

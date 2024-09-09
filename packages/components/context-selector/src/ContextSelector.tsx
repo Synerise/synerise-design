@@ -10,6 +10,7 @@ import type { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuIte
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextProps } from './ContextSelector.types';
 import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
+import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
 
 const ContextSelector = ({
   defaultDropdownVisibility,
@@ -42,8 +43,29 @@ const ContextSelector = ({
   errorText,
   readOnly = false,
   getMenuEntryProps,
+  dropdownDimensionsConfig,
 }: ContextProps) => {
   const [dropdownVisible, setDropdownVisible] = useState(defaultDropdownVisibility ?? false);
+  const dimensionsConfig = {
+    defaultHeight: DROPDOWN_HEIGHT,
+    lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+    threshold: DROPDOWN_HEIGHT_THRESHOLD,
+    ...dropdownDimensionsConfig,
+  };
+  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+
+  useEffect(() => {
+    const checkViewportHeight = () =>
+      setOuterHeight(
+        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+      );
+    checkViewportHeight();
+    window.addEventListener('resize', checkViewportHeight);
+    return () => {
+      window.removeEventListener('resize', checkViewportHeight);
+    };
+  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+
   useEffect(() => {
     setDropdownVisible(defaultDropdownVisibility ?? false);
   }, [defaultDropdownVisibility]);
@@ -209,6 +231,7 @@ const ContextSelector = ({
               hideSearchField={hideSearchField}
               hasMoreItems={hasMoreItems}
               onFetchData={onFetchData}
+              outerHeight={outerHeight}
             />
           }
         >

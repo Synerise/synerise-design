@@ -1,4 +1,7 @@
-import React, { createRef, CSSProperties, useRef, useState, useMemo, useCallback, ReactNode, UIEvent } from 'react';
+import React, { createRef, useRef, useState, useMemo, useCallback, ReactNode, UIEvent } from 'react';
+import { v4 as uuid } from 'uuid';
+import { FixedSizeList } from 'react-window';
+
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
@@ -6,14 +9,11 @@ import { focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-
 import Result from '@synerise/ds-result';
 import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
-import { v4 as uuid } from 'uuid';
-import DropdownSkeleton from '@synerise/ds-skeleton';
-import { FixedSizeList } from 'react-window';
 import * as S from './Parameter.style';
+
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem, { DropdownItem } from './ParameterDropdownItem';
-
-const LIST_STYLE: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
+import { DROPDOWN_HEIGHT, SEARCH_HEGIHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, LIST_STYLE } from './constants';
 
 const ParameterDropdown = ({
   setSelected,
@@ -24,9 +24,9 @@ const ParameterDropdown = ({
   loading,
   onFetchData,
   hasMoreItems,
+  outerHeight = DROPDOWN_HEIGHT,
 }: ParameterDropdownProps) => {
   const listRef = createRef<FixedSizeList>();
-
   const defaultTab = useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
     return defaultIndex || 0;
@@ -161,30 +161,39 @@ const ParameterDropdown = ({
     [texts]
   );
 
-  const handleScroll = ({ currentTarget }: UIEvent): void => {
+  const handleScroll = ({ currentTarget }: UIEvent) => {
     const { scrollTop } = currentTarget;
     if (listRef.current !== null) {
       listRef.current.scrollTo(scrollTop);
     }
   };
 
+  const hasTabs = getTabs.length > 1;
+  const hasSearch = Boolean(searchQuery);
+
+  const dropdownContentHeight = useMemo(() => {
+    const fixedContentHeight =
+      SEARCH_HEGIHT + (!hasSearch && hasTabs ? TABS_HEIGHT : 0) + (activeGroup ? SUBGROUP_HEADER_HEIGHT : 0);
+    return outerHeight - fixedContentHeight;
+  }, [activeGroup, hasSearch, hasTabs, outerHeight]);
+
   return (
     <Dropdown.Wrapper
       data-testid="ds-factors-parameter-dropdown-wrapper"
       style={{ width: '300px' }}
       ref={overlayRef}
-      onKeyDown={(e): void => {
+      onKeyDown={event => {
         setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         searchQuery &&
-          focusWithArrowKeys(e, classNames.split(' ')[1], () => {
+          focusWithArrowKeys(event, classNames.split(' ')[1], () => {
             setSearchInputFocus(true);
           });
       }}
     >
       <Dropdown.SearchInput
         onSearchChange={handleSearch}
-        onClearInput={(): void => handleSearch('')}
+        onClearInput={() => handleSearch('')}
         placeholder={texts.parameter.searchPlaceholder}
         value={searchQuery}
         autofocus={!searchQuery || searchInputCanBeFocused}
@@ -197,18 +206,18 @@ const ParameterDropdown = ({
             block
             tabs={getTabs}
             activeTab={activeTab}
-            handleTabClick={(index: number): void => {
+            handleTabClick={(index: number) => {
               setActiveTab(index);
               setActiveGroup(undefined);
             }}
           />
         </S.TabsWrapper>
       )}
-      {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={(): void => setActiveGroup(undefined)} />}
+      {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={() => setActiveGroup(undefined)} />}
       {loading ? (
-        <DropdownSkeleton size="M" />
+        <S.Skeleton contentHeight={dropdownContentHeight} size="M" numberOfSkeletons={3} />
       ) : (
-        <S.ItemsList>
+        <S.ItemsList contentHeight={dropdownContentHeight}>
           {currentItems?.length ? (
             <Scrollbar
               absolute
@@ -217,6 +226,7 @@ const ParameterDropdown = ({
               hasMore={hasMoreItems}
               onYReachEnd={onFetchData}
               onScroll={handleScroll}
+              maxHeight={dropdownContentHeight}
             >
               <S.StyledList
                 width="100%"

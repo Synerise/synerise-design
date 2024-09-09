@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
@@ -10,8 +10,9 @@ import Tooltip from '@synerise/ds-tooltip';
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
 import { OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
+import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
 
-const Operators: React.FC<OperatorsProps> = ({
+const Operators = ({
   value,
   onChange,
   groups,
@@ -23,10 +24,19 @@ const Operators: React.FC<OperatorsProps> = ({
   onDeactivate,
   readOnly = false,
   errorText,
-}) => {
+  dropdownDimensionsConfig,
+}: OperatorsProps) => {
+  const dimensionsConfig = {
+    defaultHeight: DROPDOWN_HEIGHT,
+    lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+    threshold: DROPDOWN_HEIGHT_THRESHOLD,
+    ...dropdownDimensionsConfig,
+  };
+
   const { formatMessage } = useIntl();
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
-  const text = React.useMemo(
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
+  const text = useMemo(
     () => ({
       buttonLabel: formatMessage({ id: 'DS.OPERATORS.BUTTON_LABEL', defaultMessage: 'Choose' }),
       searchPlaceholder: formatMessage({ id: 'DS.OPERATORS.SEARCH_PLACEHOLDER', defaultMessage: 'Search' }),
@@ -35,26 +45,26 @@ const Operators: React.FC<OperatorsProps> = ({
     }),
     [texts, formatMessage]
   );
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     val => {
       onChange(val);
     },
     [onChange]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDropdownVisible(Boolean(opened));
     if (opened) {
       onActivate && onActivate();
     }
   }, [onActivate, opened]);
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     onActivate && onActivate();
     setDropdownVisible(true);
   }, [onActivate]);
 
-  const onDropdownVisibilityChange = React.useCallback(
+  const onDropdownVisibilityChange = useCallback(
     (newValue: boolean) => {
       newValue && onActivate && onActivate();
       !newValue && onDeactivate && onDeactivate();
@@ -62,7 +72,7 @@ const Operators: React.FC<OperatorsProps> = ({
     [onActivate, onDeactivate]
   );
 
-  const triggerMode = React.useMemo(() => {
+  const triggerMode = useMemo(() => {
     if (value) {
       return readOnly ? 'icon-label' : 'two-icons';
     }
@@ -90,6 +100,18 @@ const Operators: React.FC<OperatorsProps> = ({
     </Tooltip>
   );
 
+  useEffect(() => {
+    const checkViewportHeight = () =>
+      setOuterHeight(
+        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+      );
+    checkViewportHeight();
+    window.addEventListener('resize', checkViewportHeight);
+    return () => {
+      window.removeEventListener('resize', checkViewportHeight);
+    };
+  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+
   const content = readOnly ? (
     dropdownTrigger
   ) : (
@@ -105,6 +127,7 @@ const Operators: React.FC<OperatorsProps> = ({
           groups={groups}
           items={items}
           texts={text}
+          outerHeight={outerHeight}
         />
       }
     >

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
-import Dropdown from '@synerise/ds-dropdown';
 
+import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
@@ -10,6 +10,7 @@ import InformationCard from '@synerise/ds-information-card';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
+import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
 
 const ParameterInput = ({
   value,
@@ -24,11 +25,20 @@ const ParameterInput = ({
   onDeactivate,
   readOnly = false,
   error,
+  loading,
   getMenuEntryProps,
 }: InputProps) => {
   // @ts-ignore
-  const { buttonIcon, buttonLabel, selectedButtonColored, loading, ...restParameters } = parameters;
+  const { buttonIcon, buttonLabel, selectedButtonColored, dropdownDimensionsConfig, ...restParameters } = parameters;
+  const dimensionsConfig = {
+    defaultHeight: DROPDOWN_HEIGHT,
+    lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
+    threshold: DROPDOWN_HEIGHT_THRESHOLD,
+    ...dropdownDimensionsConfig,
+  };
+
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [outerHeight, setOuterHeight] = useState(dimensionsConfig.defaultHeight);
   const parameter = useMemo(() => value as ParameterValueType, [value]);
   const { parameterIcon, parameterName, isSelected } = useMemo(
     () => ({
@@ -134,6 +144,18 @@ const ParameterInput = ({
     />
   );
 
+  useEffect(() => {
+    const checkViewportHeight = () =>
+      setOuterHeight(
+        window.innerHeight < dimensionsConfig.threshold ? dimensionsConfig.lowerHeight : dimensionsConfig.defaultHeight
+      );
+    checkViewportHeight();
+    window.addEventListener('resize', checkViewportHeight);
+    return () => {
+      window.removeEventListener('resize', checkViewportHeight);
+    };
+  }, [dimensionsConfig.defaultHeight, dimensionsConfig.lowerHeight, dimensionsConfig.threshold]);
+
   return readOnly ? (
     trigger
   ) : (
@@ -149,6 +171,7 @@ const ParameterInput = ({
             {...restParameters}
             texts={texts}
             loading={loading}
+            outerHeight={outerHeight}
           />
         }
       >
