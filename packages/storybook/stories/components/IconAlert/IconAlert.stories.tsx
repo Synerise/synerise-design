@@ -39,6 +39,20 @@ export const Default: Story = {
   },
 };
 
+export const withLink: Story = {
+  args: {
+    type: 'success',
+    withLink: 'Reset the screen!'
+  },
+};
+
+export const withEmphasis: Story = {
+  args: {
+    type: 'success',
+    withEmphasis: 'There was a problem with your request.',
+  },
+};
+
 export const AllTypes: Story = {
   render: args => {
     return (
