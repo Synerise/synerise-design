@@ -12,8 +12,8 @@ import { theme } from '@synerise/ds-core';
 import OperatorsDropdownItem from './OperatorsDropdownItem';
 import OperatorsDropdownGroupName from './OperatorsDropdownGroupName';
 import * as S from '../Operators.style';
-import { calculateGroupHeight, groupByGroupName } from '../utils';
-import { NO_GROUP_NAME, SCROLLABLE_HEIGHT, TABS_HEIGHT, PADDING, DEFAULT_TAB_INDEX } from '../constants';
+import { groupByGroupName } from '../utils';
+import { NO_GROUP_NAME, DROPDOWN_HEIGHT, TABS_HEIGHT, PADDING, DEFAULT_TAB_INDEX, SEARCH_HEIGHT } from '../constants';
 import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
 
 const OperatorsDropdown = ({
@@ -23,6 +23,7 @@ const OperatorsDropdown = ({
   items,
   setDropdownVisible,
   value,
+  outerHeight = DROPDOWN_HEIGHT,
 }: OperatorsDropdownProps) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -100,16 +101,6 @@ const OperatorsDropdown = ({
     [items, searchQuery, setDropdownVisible, setSelected, value, classNames]
   );
 
-  const maxHeight = useMemo(() => {
-    return (
-      groups?.reduce((currentMax: number, group: OperatorsGroup) => {
-        const groupHeight = calculateGroupHeight(group, items);
-        return Math.max(currentMax, groupHeight);
-      }, 0) +
-      2 * PADDING
-    );
-  }, [items, groups]);
-
   const currentItems = useMemo(() => {
     if (searchQuery) {
       return filteredItems;
@@ -164,10 +155,9 @@ const OperatorsDropdown = ({
 
   const hasTabs = getTabs.length > 1;
 
-  let lockedTabContentHeight: number | undefined;
-  if (hasTabs && maxHeight > 0) {
-    lockedTabContentHeight = Math.min(maxHeight, SCROLLABLE_HEIGHT) + (searchQuery ? TABS_HEIGHT : 0);
-  }
+  const dropdownContentHeight = useMemo(() => {
+    return outerHeight - (!searchQuery && hasTabs ? TABS_HEIGHT : 0) - SEARCH_HEIGHT;
+  }, [hasTabs, searchQuery, outerHeight]);
 
   return (
     <Dropdown.Wrapper
@@ -205,8 +195,8 @@ const OperatorsDropdown = ({
           />
         </S.TabsWrapper>
       )}
-      <S.ItemsList contentHeight={lockedTabContentHeight}>
-        <Scrollbar absolute maxHeight={lockedTabContentHeight} style={{ padding: PADDING }}>
+      <S.ItemsList contentHeight={dropdownContentHeight}>
+        <Scrollbar absolute maxHeight={dropdownContentHeight} style={{ padding: PADDING }}>
           {currentItems?.length ? (
             currentItems
           ) : (

@@ -36,7 +36,6 @@ const DateRangeInput = ({
     <DateRangePicker
       intl={intl}
       onApply={changeHandler}
-      onValueChange={changeHandler}
       showTime
       getPopupContainer={getPopupContainerOverride || getPopupContainer}
       showFilter

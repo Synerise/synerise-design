@@ -73,6 +73,11 @@ export type ContextProps = {
   dropdownProps?: Omit<DropdownProps, 'trigger' | 'getPopupContainer' | 'onVisibleChange' | 'visible' | 'overlay'>;
   errorText?: ReactNode | string;
   getMenuEntryProps?: FactorsProps['getMenuEntryProps'];
+  dropdownDimensionsConfig?: {
+    defaultHeight?: number;
+    lowerHeight?: number;
+    threshold?: number;
+  };
 };
 
 export type ContextDropdownProps = {
@@ -94,6 +99,7 @@ export type ContextDropdownProps = {
   onFetchData?: () => void;
   hasMoreItems?: boolean;
   style?: CSSProperties;
+  outerHeight?: number;
 };
 
 export type ContextSelectorDropdownItemProps = {

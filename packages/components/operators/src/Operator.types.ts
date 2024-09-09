@@ -40,6 +40,11 @@ export type OperatorsProps = {
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   readOnly?: boolean;
   errorText?: ReactNode;
+  dropdownDimensionsConfig?: {
+    defaultHeight?: number;
+    lowerHeight?: number;
+    threshold?: number;
+  };
 };
 
 export type OperatorsDropdownProps = {
@@ -49,4 +54,5 @@ export type OperatorsDropdownProps = {
   items: OperatorsItem[];
   texts: OperatorTexts;
   value: OperatorsItem | undefined;
+  outerHeight?: number;
 };
