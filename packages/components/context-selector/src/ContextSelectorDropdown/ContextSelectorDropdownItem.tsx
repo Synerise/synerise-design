@@ -15,6 +15,7 @@ const ContextSelectorDropdownItem = ({
   className,
   menuItemHeight,
   style,
+  label,
 }: ContextSelectorDropdownItemProps) => {
   const { id, icon: _, ...itemProps } = item;
   return (
@@ -38,7 +39,7 @@ const ContextSelectorDropdownItem = ({
       description={item.description}
       {...itemProps}
     >
-      {item.name}
+      {label || item.name}
     </ListItem>
   );
 };

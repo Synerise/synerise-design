@@ -26,6 +26,7 @@ const TIMEOUT_OPTIONS = { timeout: 800 };
 
 export const SelectItemFromCategory: Story = {
   args: {
+    ...BusinessContext.args,
     onSelectItem: fn(),
   },
   play: async ({ args, canvasElement }) => {

@@ -32,6 +32,11 @@ const DEFAULT_PROPS: FactorsProps = {
 const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
 describe('Factors component', () => {
+
+  beforeEach(() => {
+    Element.prototype.scrollTo = jest.fn();
+  });
+  
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_FACTORS());
 

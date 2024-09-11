@@ -6,6 +6,7 @@ export const CONTEXT_TEXTS = {
   searchPlaceholder: 'Search',
   noResults: 'No results',
   loadingResults: 'Loading results',
+  showMore: 'Show more'
 };
 
 export const CONTEXT_GROUPS = [

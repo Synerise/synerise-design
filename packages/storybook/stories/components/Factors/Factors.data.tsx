@@ -19,58 +19,65 @@ const generateInfoCard = (item: ParameterValueType) => {
   };
 };
 
-
 export const FACTORS_TEXTS = {
   datePicker: {
     apply: 'Apply',
-      clearTooltip: 'Clear',
-      inputPlaceholder: 'Select date',
-      now: 'Now',
+    clearTooltip: 'Clear',
+    inputPlaceholder: 'Select date',
+    now: 'Now',
   },
   dynamicKey: {
     keyPlaceholder: 'Key',
-      valuePlaceholder: 'Value',
+    valuePlaceholder: 'Value',
   },
   formula: {
     buttonPlaceholder: 'Formula',
-    defaultName: 'Formula'
+    defaultName: 'Formula',
   },
   parameter: {
     searchPlaceholder: 'Search',
     noResults: 'No results',
     loadingParameter: 'Loading parameters',
+    showMore: 'Show more'
   },
   valuePlaceholder: 'Value',
-    modalApply: 'Apply',
-    modalCancel: 'Cancel',
-    modalTitle: 'Value'
-}
+  modalApply: 'Apply',
+  modalCancel: 'Cancel',
+  modalTitle: 'Value',
+};
 
 export const FACTORS_GROUPS = [
   {
-    name: 'Recent',
-    id: 1,
-    defaultGroup: true,
-  },{
     name: 'All',
+    id: 0,
+    allowEmpty: true,
+    defaultGroup: true,
+  },
+  {
+    name: 'Attributes',
+    id: 1,
+  },
+  {
+    name: 'Others',
     id: 2,
-    subGroups: [{
-      name: 'Attributes',
-      id: 3,
-      icon: <FolderM />
-    },
+    subGroups: [
+      {
+        name: 'Specials',
+        id: 3,
+        icon: <FolderM />,
+      },
       {
         name: 'Expressions',
         id: 4,
-        icon: <FolderM />
+        icon: <FolderM />,
       },
       {
         name: 'Aggregates',
-        id: 3,
-        icon: <FolderM />
+        id: 5,
+        icon: <FolderM />,
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const FACTORS_ITEMS_DATA: ParameterItem[] = [
@@ -106,34 +113,38 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
   },
   {
     id: 110,
-    name: 'First name',
+    name: 'TIMESTAMP',
     groupId: 3,
     icon: <VarTypeStringM />,
   },
   {
     id: 4,
     name: 'Attribute #1',
-    groupId: 3,
+    groupId: 1,
     icon: <VarTypeStringM />,
   },
   {
     id: 5,
     name: 'Attribute #2',
-    groupId: 3,
+    groupId: 1,
     icon: <VarTypeStringM />,
   },
   {
     id: 6,
     name: 'Attribute #3',
-    groupId: 3,
+    groupId: 1,
     icon: <VarTypeStringM />,
   },
   {
     id: 7,
     name: 'Attribute #4',
-    groupId: 3,
+    groupId: 5,
     icon: <VarTypeStringM />,
   },
+];
+
+export const FACTORS_ITEMS_ADDITONAL_DATA = [
+
   {
     id: 8,
     name: 'Expression #1',
@@ -182,12 +193,12 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
     groupId: 5,
     icon: <VarTypeStringM />,
   },
-]
+].map(generateInfoCard);
 
-export const FACTORS_ITEMS: ParameterItem[] = FACTORS_ITEMS_DATA.map(generateInfoCard);
+export const FACTORS_ITEMS: ParameterItem[] = [...FACTORS_ITEMS_DATA].map(generateInfoCard);
 
 export const SELECTED_PARAMETER: FactorValueType = {
   ...FACTORS_ITEMS[0],
   icon: <VarTypeStringM />,
-  type: ''  
-}
+  type: '',
+};

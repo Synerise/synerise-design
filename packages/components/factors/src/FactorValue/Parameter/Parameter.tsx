@@ -10,7 +10,7 @@ import InformationCard from '@synerise/ds-information-card';
 import { InputProps, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
-import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
+import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './Parameter.constants';
 
 const ParameterInput = ({
   value,
@@ -172,6 +172,7 @@ const ParameterInput = ({
             texts={texts}
             loading={loading}
             outerHeight={outerHeight}
+            value={isSelected ? parameter : undefined}
           />
         }
       >

@@ -11,7 +11,13 @@ export const itemTypes = {
   SELECT: 'select',
 } as const;
 
-type ItemType = typeof itemTypes[keyof typeof itemTypes];
+export const itemSizes = {
+  DEFAULT: 'default',
+  LARGE: 'large',
+} as const;
+
+export type ItemType = typeof itemTypes[keyof typeof itemTypes];
+export type ItemSize = typeof itemSizes[keyof typeof itemSizes];
 
 type ItemData<EventType> = {
   key?: Key;
@@ -49,7 +55,7 @@ export type ListItemProps = {
   prefixel?: ReactNode | AddonRenderer;
   prefixVisibilityTrigger?: 'hover' | 'default';
   renderHoverTooltip?: () => JSX.Element;
-  size?: 'default' | 'large';
+  size?: ItemSize;
   suffixel?: ReactNode | AddonRenderer;
   suffixVisibilityTrigger?: 'hover' | 'default';
   text?: ReactNode;

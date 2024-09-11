@@ -1,4 +1,5 @@
 import type { ReactText, ReactNode, ElementType } from 'react';
+
 import type { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
 import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
 import type { MenuItemProps } from '@synerise/ds-menu';
@@ -36,6 +37,7 @@ export type ParameterGroup = {
   name: string;
   defaultGroup?: boolean;
   icon?: ReactNode;
+  allowEmpty?: boolean;
   subGroups?: ParameterGroup[];
 };
 
@@ -83,6 +85,7 @@ export type FactorsTexts = {
     searchPlaceholder: string;
     noResults: string;
     loadingParameter: string;
+    showMore: string;
   };
   valuePlaceholder: string;
   modalApply: string;
@@ -119,6 +122,7 @@ export type FactorsProps = {
     selectedButtonColored?: boolean;
     groups?: ParameterGroup[];
     items: ParameterItem[];
+    renderEmptyGroups?: boolean;
     // @deprecated
     showAllGroup?: boolean;
     dropdownDimensionsConfig?: {
@@ -217,11 +221,14 @@ export type ParameterDropdownProps = {
   setSelected: (val: ParameterItem) => void;
   groups?: ParameterGroup[];
   items?: ParameterItem[];
+  value?: ParameterValueType;
   texts: FactorsTexts;
   loading?: boolean;
   onFetchData?: () => void;
   hasMoreItems?: boolean;
   outerHeight?: number;
+  renderEmptyGroups?: boolean;
+  maxSearchResultsInGroup?: number;
 };
 
 export type FormulaModalProps = {

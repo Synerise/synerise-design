@@ -1,19 +1,10 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 import { ParameterGroup, ParameterItem } from '../../Factors.types';
+import { DropdownItem } from './Parameter.types';
 
-export type DropdownItem = {
-  item: ParameterItem | ParameterGroup;
-  searchQuery: string;
-  clearSearch?: () => void;
-  hideDropdown?: () => void;
-  select: (item: ParameterItem | ParameterGroup) => void;
-  className: string;
-  style?: CSSProperties;
-};
-
-const ParameterDropdownItem = ({
+const ParameterDropdownItem = <ItemType extends ParameterItem | ParameterGroup>({
   item,
   clearSearch,
   searchQuery,
@@ -21,7 +12,8 @@ const ParameterDropdownItem = ({
   select,
   className,
   style,
-}: DropdownItem) => {
+  label,
+}: DropdownItem<ItemType>) => {
   const { id, icon, ...itemProps } = item;
   return (
     <ListItem
@@ -37,7 +29,7 @@ const ParameterDropdownItem = ({
         select && select(item);
       }}
     >
-      {item.name}
+      {label || item.name}
     </ListItem>
   );
 };
