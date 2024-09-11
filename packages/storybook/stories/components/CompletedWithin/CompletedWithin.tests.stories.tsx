@@ -1,0 +1,41 @@
+import { Meta, StoryObj } from '@storybook/react';
+
+import { within, waitFor, userEvent, fn, expect } from '@storybook/test';
+import type { CompletedWithinProps } from '@synerise/ds-completed-within';
+
+import CompletedWithinMeta from './CompletedWithin.stories';
+
+
+export default {
+  ...CompletedWithinMeta,
+  title: 'Components/Filter/CompletedWithin/Tests',
+  tags: ['visualtests'],
+} as Meta<CompletedWithinProps>;
+
+type Story = StoryObj<CompletedWithinProps>;
+
+export const PopupOpen: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.click(canvas.getByRole('button'));
+    await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
+  },
+};
+
+export const SelectNumber: Story = {
+  args: {
+    onSetValue: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.click(canvas.getByRole('button'));
+    await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
+    await waitFor(() => expect(canvas.getByRole('spinbutton')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await userEvent.type(canvas.getByRole('spinbutton'), '4')
+    await userEvent.click(canvas.getByRole('combobox'));
+    await waitFor(() => expect(canvas.getByText('Days')).not.toHaveStyle({ pointerEvents: 'none' }));
+    await userEvent.click(canvas.getByText('Days'));
+    await userEvent.click(canvasElement.parentElement!);
+    await waitFor(() => expect(args.onSetValue).toHaveBeenCalled());
+  },
+};
