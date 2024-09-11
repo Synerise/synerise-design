@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.221.4](https://github.com/synerise/synerise-design/compare/portal@0.221.3...portal@0.221.4) (2024-09-11)
+
+
+### Bug Fixes
+
+* **context-selector:** updated search logic ([dfadc02](https://github.com/synerise/synerise-design/commit/dfadc02928651905f31c58a374d48368b8375eb3))
+
+
+
+
+
 ## [0.221.3](https://github.com/synerise/synerise-design/compare/portal@0.221.2...portal@0.221.3) (2024-09-03)
 
 **Note:** Version bump only for package portal

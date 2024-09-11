@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.15.0...storybook7@0.16.0) (2024-09-11)
+
+
+### Bug Fixes
+
+* **alert:** New stories for icon alert ([f102c4e](https://github.com/Synerise/synerise-design/commit/f102c4e7a72adcb1d692a05a09b937b480e6ad8f))
+* **context-selector:** updated search logic ([dfadc02](https://github.com/Synerise/synerise-design/commit/dfadc02928651905f31c58a374d48368b8375eb3))
+
+
+### Features
+
+* **completed-within:** new stories for completedWithin ([7fe9008](https://github.com/Synerise/synerise-design/commit/7fe900895fc05eed554233eddaceabc896d2c93e))
+* **empty-states:** add new stories of empty-states ([9688e9b](https://github.com/Synerise/synerise-design/commit/9688e9b9f925ec45c5f26ea346b75134cb2e41ac))
+
+
+
+
+
 # [0.15.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.14.0...storybook7@0.15.0) (2024-09-03)
 
 

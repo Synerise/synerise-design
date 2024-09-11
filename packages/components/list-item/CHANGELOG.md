@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.8...@synerise/ds-list-item@0.4.9) (2024-09-11)
+
+
+### Bug Fixes
+
+* **context-selector:** updated search logic ([dfadc02](https://github.com/Synerise/synerise-design/commit/dfadc02928651905f31c58a374d48368b8375eb3))
+
+
+
+
+
 ## [0.4.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.7...@synerise/ds-list-item@0.4.8) (2024-09-03)
 
 **Note:** Version bump only for package @synerise/ds-list-item

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.25.0...@synerise/ds-factors@0.25.1) (2024-09-11)
+
+
+### Bug Fixes
+
+* **context-selector:** updated search logic ([dfadc02](https://github.com/Synerise/synerise-design/commit/dfadc02928651905f31c58a374d48368b8375eb3))
+* **factors:** make all dropdowns same fixed height ([40e86d1](https://github.com/Synerise/synerise-design/commit/40e86d183dddb925c2b75c499615c1455b93b7c4))
+
+
+
+
+
 # [0.25.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.24.0...@synerise/ds-factors@0.25.0) (2024-09-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.12.1...@synerise/ds-operators@0.12.2) (2024-09-11)
+
+
+### Bug Fixes
+
+* **factors:** make all dropdowns same fixed height ([40e86d1](https://github.com/Synerise/synerise-design/commit/40e86d183dddb925c2b75c499615c1455b93b7c4))
+
+
+
+
+
 ## [0.12.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.12.0...@synerise/ds-operators@0.12.1) (2024-09-03)
 
 **Note:** Version bump only for package @synerise/ds-operators
