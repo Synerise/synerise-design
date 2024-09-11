@@ -1,6 +1,7 @@
 import { ReactNode, ReactText, Ref } from 'react';
 import { ColumnType, TableProps } from 'antd/lib/table';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
+import { TableSkeletonProps } from 'TableSkeleton/TableSkeleton.types';
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { RowStar } from './hooks/useRowStar';
@@ -140,4 +141,5 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
   maxHeight?: number;
+  skeletonProps?: Pick<TableSkeletonProps, 'headerHeight' | 'subheaderHeight' | 'rowHeight'>;
 };

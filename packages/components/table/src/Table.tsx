@@ -54,6 +54,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     disableColumnNamesLineBreak,
     expandable,
     maxHeight,
+    skeletonProps,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -153,7 +154,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
 
   const defaultTableContent = useMemo(() => {
     return loading && !dataSource?.length ? (
-      <TableSkeleton maxHeight={maxHeight} />
+      <TableSkeleton maxHeight={maxHeight} {...skeletonProps} />
     ) : (
       <DefaultTable<T>
         scroll={{ x: 'auto' }}
@@ -164,7 +165,17 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
         pagination={dataSource?.length && pagination ? footerPagination : false}
       />
     );
-  }, [dataSource?.length, footerPagination, loading, pagination, props, renderHeader, maxHeight, tableLocale]);
+  }, [
+    dataSource?.length,
+    skeletonProps,
+    footerPagination,
+    loading,
+    pagination,
+    props,
+    renderHeader,
+    maxHeight,
+    tableLocale,
+  ]);
 
   return (
     <TableLocaleContext.Provider value={tableLocale}>
