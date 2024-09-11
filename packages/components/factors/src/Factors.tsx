@@ -188,6 +188,7 @@ const Factors: React.FC<FactorsProps> = ({
           id: 'DS.FACTORS.PARAMETER.LOADING_PARAMETERS',
           defaultMessage: 'Loading parameters',
         }),
+        showMore: formatMessage({ id: 'DS.FACTORS.PARAMETER.SHOW_MORE', defaultMessage: 'Show more' }),
       },
       valuePlaceholder: formatMessage({ id: 'DS.FACTORS.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
       modalApply: formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),

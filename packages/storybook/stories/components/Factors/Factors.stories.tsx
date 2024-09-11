@@ -4,15 +4,14 @@ import { useArgs } from '@storybook/preview-api';
 import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 
 import { VarTypeStringM } from '@synerise/ds-icon';
-import Factors, { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
-import type { FactorsProps } from '@synerise/ds-factors';
+import Factors, { ALL_FACTOR_TYPES, FactorsProps } from '@synerise/ds-factors';
 import {
   BOOLEAN_CONTROL,
   controlFromOptionsArray,
   fixedWrapper300,
   flexColumnWrapper
 } from '../../utils';
-import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS, SELECTED_PARAMETER } from './Factors.data';
+import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_ITEMS_ADDITONAL_DATA, FACTORS_TEXTS, SELECTED_PARAMETER } from './Factors.data';
 
 const FactorsMeta = {
   title: 'Components/Filter/Factors',
@@ -92,6 +91,21 @@ type Story = StoryObj<FactorsProps>;
 
 export const Default: Story = {};
 
+export const ParameterTypeRenderEmptyGroups: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'parameter',
+    value: SELECTED_PARAMETER,
+    parameters: {
+      buttonLabel: 'Parameter',
+      buttonIcon: <VarTypeStringM />,
+      groups: FACTORS_GROUPS,
+      items: FACTORS_ITEMS,
+      renderEmptyGroups: true
+    }
+  }
+};
+
 export const ParameterType: Story = {
   args: {
     ...FactorsMeta.args,
@@ -102,6 +116,21 @@ export const ParameterType: Story = {
       buttonIcon: <VarTypeStringM />,
       groups: FACTORS_GROUPS,
       items: FACTORS_ITEMS,
+    }
+  }
+};
+
+
+export const ParameterTypeSearch: Story = {
+  args: {
+    ...FactorsMeta.args,
+    selectedFactorType: 'parameter',
+    value: SELECTED_PARAMETER,
+    parameters: {
+      buttonLabel: 'Parameter',
+      buttonIcon: <VarTypeStringM />,
+      groups: FACTORS_GROUPS,
+      items: [...FACTORS_ITEMS, ...FACTORS_ITEMS_ADDITONAL_DATA],
     }
   }
 };

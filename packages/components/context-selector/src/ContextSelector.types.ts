@@ -1,16 +1,16 @@
-import { CSSProperties, ReactNode, ReactText } from 'react';
-import { HandledEventsType } from '@synerise/ds-utils';
-import { ItemSize } from '@synerise/ds-menu';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { CSSProperties, ReactNode, ReactText } from 'react';
+import type { HandledEventsType } from '@synerise/ds-utils';
+import type { DropdownProps } from '@synerise/ds-dropdown';
 import type { FactorsProps } from '@synerise/ds-factors';
-import { InformationCardProps } from '@synerise/ds-information-card';
-import { ListItemProps } from '@synerise/ds-list-item';
+import type { InformationCardProps } from '@synerise/ds-information-card';
+import type { ListItemProps, ItemSize } from '@synerise/ds-list-item';
 
 export type ContextTexts = {
   buttonLabel: string;
   searchPlaceholder: string;
   loadingResults: string;
   noResults: string;
+  showMore: string;
 };
 
 export type ContextItem = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
@@ -42,6 +42,7 @@ export type ContextGroup = {
 };
 
 export type ContextItemsInSubGroup = ContextItem & { isGroup?: boolean };
+
 export type ContextProps = {
   disabled?: boolean;
   readOnly?: boolean;
@@ -100,29 +101,20 @@ export type ContextDropdownProps = {
   hasMoreItems?: boolean;
   style?: CSSProperties;
   outerHeight?: number;
+  maxSearchResultsInGroup?: number;
 };
 
 export type ContextSelectorDropdownItemProps = {
-  item: ContextItem | ContextGroup;
-  searchQuery: string;
+  className: string;
   clearSearch?: () => void;
   hideDropdown?: () => void;
+  item: ContextItem | ContextGroup;
+  menuItemHeight?: ItemSize;
+  searchQuery?: string;
   select: (item: ContextItem | ContextGroup) => void;
   selected?: boolean;
-  className: string;
-  menuItemHeight?: ItemSize;
   style?: CSSProperties;
-};
-
-export type ListItem = {
-  className: string;
-  item: ContextItem | ContextGroup;
-  searchQuery: string;
-  select: (item: ContextItem | ContextGroup) => void;
-  menuItemHeight?: ItemSize;
-  selected?: boolean;
-  clearSearch?: () => void;
-  hideDropdown?: () => void;
+  label?: ReactNode;
 };
 
 export type ListTitle = {
@@ -130,4 +122,4 @@ export type ListTitle = {
   type?: string;
 };
 
-export type DropdownItemProps = ListTitle | ListItem;
+export type DropdownItemProps = ListTitle | ContextSelectorDropdownItemProps;

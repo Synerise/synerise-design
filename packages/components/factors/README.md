@@ -33,6 +33,7 @@ import Factors from '@synerise/ds-factors'
       groups: [{
                   name: 'Recent',
                   id: 1,
+                  allowEmpty: true,
                   defaultGroup: true,
                 },{
                   name: 'All',
@@ -151,10 +152,11 @@ Type of value depends on current factor type and can contain values: `string` \ 
 
 ### ParameterOptions
 
-| Property              | Description                                                | Type                     | Default |
-|-----------------------|------------------------------------------------------------|--------------------------|---------|
-| buttonIcon            | Icon in button                                             | React.ReactNode          | -       |
-| buttonLabel           | Label of button                                            | string \ React.ReactNode | -       |
-| groups                | Array of parameter groups                                  | ParameterGroup[]         | -       |
-| items                 | Array of parameters                                        | ParameterItem[]          | -       |
-| selectedButtonColored | Whether to use green custom color if parameter is selected | boolean                  | -       |
+| Property                | Description                                                | Type                     | Default |
+|-------------------------|------------------------------------------------------------|--------------------------|---------|
+| buttonIcon              | Icon in button                                             | React.ReactNode          | -       |
+| buttonLabel             | Label of button                                            | string \ React.ReactNode | -       |
+| groups                  | Array of parameter groups                                  | ParameterGroup[]         | -       |
+| items                   | Array of parameters                                        | ParameterItem[]          | -       |
+| selectedButtonColored   | Whether to use green custom color if parameter is selected | boolean                  | -       |
+| maxSearchResultsInGroup | How many search results should be shown per group          | number                   | 4       |

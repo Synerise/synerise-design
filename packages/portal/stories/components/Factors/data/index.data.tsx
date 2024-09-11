@@ -29,11 +29,12 @@ export const FACTORS_TEXTS = {
 
 export const FACTORS_GROUPS = [
   {
-    name: 'Recent',
+    name: 'All',
     id: 1,
+    allowEmpty: true,
     defaultGroup: true,
   },{
-    name: 'All',
+    name: 'Profiles',
     id: 2,
     subGroups: [{
       name: 'Attributes',

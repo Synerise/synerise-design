@@ -16,6 +16,11 @@ const DEFAULT_PROPS: ContextProps = {
 const RENDER_CONTEXT_SELECTOR = (props?: Partial<ContextProps>) => <ContextSelector {...DEFAULT_PROPS} {...props} />;
 
 describe('Context selector component', () => {
+
+  beforeEach(() => {
+    Element.prototype.scrollTo = jest.fn();
+  });
+  
   test('Should render', () => {
 
     const { getByText } = renderWithProvider(RENDER_CONTEXT_SELECTOR());

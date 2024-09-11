@@ -22,6 +22,7 @@ export const PARAMETER_GROUPS = [
   {
     name: 'Recent',
     id: 1,
+    allowEmpty: true,
     defaultGroup: true,
   },
   {
@@ -193,6 +194,7 @@ export const FACTORS_GROUPS = [
   {
     name: 'Recent',
     id: 1,
+    allowEmpty: true,
     defaultGroup: true,
   },
   {

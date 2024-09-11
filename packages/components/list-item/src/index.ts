@@ -1,3 +1,4 @@
 export { default } from './ListItem';
 export { HoverTooltip } from './components';
-export type { ListItemProps, BasicItemProps } from './ListItem.types';
+export { itemSizes, itemTypes } from './ListItem.types';
+export type { ListItemProps, BasicItemProps, ItemSize, ItemType } from './ListItem.types';

@@ -1,8 +1,7 @@
 import React, {
-  UIEvent,
-  createRef,
   CSSProperties,
   MutableRefObject,
+  UIEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -10,16 +9,23 @@ import React, {
   useState,
 } from 'react';
 import { v4 as uuid } from 'uuid';
-import { VariableSizeList, VariableSizeList as List } from 'react-window';
+import { VariableSizeList } from 'react-window';
 
 import Dropdown from '@synerise/ds-dropdown';
-import Icon, { SearchM } from '@synerise/ds-icon';
+import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, getClosest, useOnClickOutside } from '@synerise/ds-utils';
+import {
+  focusWithArrowKeys,
+  getClosest,
+  useOnClickOutside,
+  useSearchResults,
+  getActiveTabGroup,
+  getGroupName,
+} from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { theme } from '@synerise/ds-core';
-import { ItemSize } from '@synerise/ds-menu';
+import { itemSizes } from '@synerise/ds-list-item';
 
 import * as S from '../ContextSelector.styles';
 import {
@@ -30,6 +36,7 @@ import {
   DropdownItemProps,
 } from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
+
 import {
   NO_GROUP_NAME,
   ITEM_SIZE,
@@ -59,15 +66,17 @@ const ContextSelectorDropdown = ({
   onFetchData,
   hasMoreItems,
   outerHeight = DROPDOWN_HEIGHT,
+  maxSearchResultsInGroup = 4,
 }: ContextDropdownProps) => {
-  const listRef = createRef<VariableSizeList>();
   const listStyle: CSSProperties = { overflowX: 'unset', overflowY: 'unset' };
   const defaultTab = useMemo(() => {
     const defaultIndex = groups?.findIndex((group: ContextGroup) => group.defaultGroup);
     return defaultIndex || 0;
   }, [groups]);
 
+  const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollBarRef = useRef<HTMLDivElement>(null);
 
   const [searchInputHandle, setSearchInputHandle] = useState<MutableRefObject<HTMLInputElement | null>>();
   const [searchQuery, setSearchQuery] = useState('');
@@ -108,18 +117,17 @@ const ContextSelectorDropdown = ({
   }, [setDropdownVisible]);
 
   const currentTabItems = useMemo((): ContextGroup | undefined => {
-    return groups?.find((group: ContextGroup, index: number) => {
-      return activeTab === index;
-    });
+    return groups ? getActiveTabGroup(activeTab, groups) : undefined;
   }, [groups, activeTab]);
 
   const groupByGroupName = useCallback(
-    (activeItems): DropdownItemProps[] => {
-      const itemsNumber = activeItems.length;
+    (dropdownItems: (ContextItemsInSubGroup | ContextGroup)[], maxItemsInGroup?: number): DropdownItemProps[] => {
+      const itemsNumber = dropdownItems?.length;
       const groupedItems = {};
 
       for (let i = 0; i < itemsNumber; i += 1) {
-        const item = activeItems[i];
+        const item = dropdownItems[i];
+        // @ts-ignore
         const groupName = item.groupName || NO_GROUP_NAME;
         const group = groupedItems[groupName] || [];
         group.push(item);
@@ -134,7 +142,8 @@ const ContextSelectorDropdown = ({
             title: key,
           });
         }
-        groupedItems[key].forEach((item: ContextItemsInSubGroup) => {
+        const groupItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
+        groupItems.forEach((item: ContextItemsInSubGroup) => {
           const resultItem = item.isGroup
             ? {
                 className: classNames,
@@ -147,6 +156,7 @@ const ContextSelectorDropdown = ({
                 className: classNames,
                 item,
                 searchQuery,
+                clearSearch,
                 hideDropdown,
                 select: setSelected,
                 selected: Boolean(value) && item.id === value?.id,
@@ -154,39 +164,48 @@ const ContextSelectorDropdown = ({
               };
           resultItems.push(resultItem);
         });
+        if (maxItemsInGroup && groupedItems[key].length > maxItemsInGroup) {
+          const anyItem = groupItems[0];
+          resultItems.push({
+            className: classNames,
+            select: handleOnSetGroup,
+            menuItemHeight,
+            label: <S.ShowMoreItem>{texts.showMore}</S.ShowMoreItem>,
+            item: {
+              isGroup: true,
+              id: anyItem.groupId,
+              name: getGroupName(anyItem.groupId, groups) || '',
+              icon: <ArrowRightCircleM />,
+            } as ContextGroup,
+          });
+        }
       });
       return resultItems;
     },
-    [activeGroup, classNames, searchQuery, handleOnSetGroup, menuItemHeight, hideDropdown, setSelected, value]
+    [
+      activeGroup,
+      classNames,
+      searchQuery,
+      handleOnSetGroup,
+      menuItemHeight,
+      clearSearch,
+      hideDropdown,
+      setSelected,
+      value,
+      texts.showMore,
+      groups,
+    ]
   );
 
-  const searchResults = useMemo(() => {
-    const result = [];
-    const itemsNumber = items.length;
-    for (let i = 0; i < itemsNumber; i += 1) {
-      const item = items[i];
-
-      const searchQueryInLowerCase = searchQuery.toLowerCase();
-      const isMatchingName = item.name?.toLowerCase().includes(searchQueryInLowerCase);
-      const isMatchingSubtitle = item.subtitle?.toLowerCase().includes(searchQueryInLowerCase);
-      const matching = !searchQuery || isMatchingName || isMatchingSubtitle;
-
-      if (matching) {
-        result.push({
-          className: classNames,
-          item,
-          searchQuery,
-          clearSearch,
-          hideDropdown,
-          select: setSelected,
-          selected: Boolean(value) && item.id === value?.id,
-          menuItemHeight,
-        });
-      }
-    }
-
-    return result;
-  }, [classNames, clearSearch, hideDropdown, items, menuItemHeight, searchQuery, setSelected, value]);
+  const { searchResults } = useSearchResults(
+    items,
+    groups,
+    activeTab,
+    groupByGroupName,
+    activeGroup,
+    searchQuery,
+    maxSearchResultsInGroup
+  );
 
   const hasSubgroups = useMemo(() => Boolean(currentTabItems?.subGroups), [currentTabItems]);
 
@@ -195,7 +214,7 @@ const ContextSelectorDropdown = ({
       return searchResults;
     }
     if (hasSubgroups && !activeGroup) {
-      const subGroups = currentTabItems?.subGroups
+      const subGroups = hasSubgroups
         ? currentTabItems?.subGroups?.map(group => ({
             ...group,
             isGroup: true,
@@ -211,7 +230,7 @@ const ContextSelectorDropdown = ({
         return prev;
       }, []);
 
-      return groupByGroupName([...subGroups, ...subItems]);
+      return groupByGroupName([...(subGroups || []), ...subItems]);
     }
 
     if (activeGroup) {
@@ -225,16 +244,17 @@ const ContextSelectorDropdown = ({
     }
     return groupByGroupName(items);
   }, [
-    activeGroup,
-    activeTab,
-    currentTabItems,
-    groupByGroupName,
-    groups,
-    hasSubgroups,
-    items,
     onSearch,
     searchQuery,
+    hasSubgroups,
+    activeGroup,
+    activeTab,
+    groups,
+    groupByGroupName,
+    items,
     searchResults,
+    currentTabItems?.subGroups,
+    currentTabItems?.id,
   ]);
 
   useEffect(() => {
@@ -275,8 +295,9 @@ const ContextSelectorDropdown = ({
   const getItemSize = (index: number) => {
     const item = activeItems[index];
     if (isListTitle(item)) return ITEM_SIZE.title;
-    return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[ItemSize.DEFAULT];
+    return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[itemSizes.DEFAULT];
   };
+
 
   const dropdownContentHeight = useMemo(() => {
     return (
@@ -286,6 +307,13 @@ const ContextSelectorDropdown = ({
       SEARCH_HEIGHT
     );
   }, [activeGroup, hasTabs, outerHeight, searchQuery]);
+
+  useEffect(() => {
+    if (scrollBarRef.current && listRef.current) {
+      scrollBarRef.current.scrollTo({ top: 0 });
+      listRef.current.resetAfterIndex(0);
+    }
+  }, [searchQuery, activeGroup, activeTab]);
 
   return (
     <Dropdown.Wrapper
@@ -316,7 +344,7 @@ const ContextSelectorDropdown = ({
           iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
         />
       )}
-      {searchQuery === '' && hasTabs && (
+      {hasTabs && (
         <S.TabsWrapper>
           <Tabs
             block
@@ -330,10 +358,7 @@ const ContextSelectorDropdown = ({
           />
         </S.TabsWrapper>
       )}
-      {activeGroup && !searchQuery && (
-        <Dropdown.BackAction label={activeGroup.name} onClick={() => setActiveGroup(undefined)} />
-      )}
-
+      {activeGroup && <Dropdown.BackAction label={activeGroup.name} onClick={() => setActiveGroup(undefined)} />}
       {loading ? (
         <S.Skeleton contentHeight={dropdownContentHeight} size="M" numberOfSkeletons={3} />
       ) : (
@@ -346,10 +371,11 @@ const ContextSelectorDropdown = ({
               hasMore={hasMoreItems}
               onYReachEnd={onFetchData}
               onScroll={handleScroll}
+              ref={scrollBarRef}
             >
               {/*
             // @ts-ignore */}
-              <List
+              <VariableSizeList
                 className="ds-context-selector-list"
                 key={`list-${activeGroup}-${activeTab}`}
                 width="100%"
@@ -367,7 +393,7 @@ const ContextSelectorDropdown = ({
                     <ContextSelectorDropdownItem style={style} {...item} />
                   );
                 }}
-              </List>
+              </VariableSizeList>
             </Scrollbar>
           ) : (
             getNoResultContainer

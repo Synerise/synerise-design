@@ -1,19 +1,26 @@
-import React, { createRef, useRef, useState, useMemo, useCallback, ReactNode, UIEvent } from 'react';
+import React, { useRef, useState, useMemo, useCallback, UIEvent, useEffect } from 'react';
+import { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
-import { FixedSizeList } from 'react-window';
 
 import Dropdown from '@synerise/ds-dropdown';
-import Icon, { SearchM } from '@synerise/ds-icon';
+import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
-import { focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
+import { useSearchResults, getGroupName, focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
-import * as S from './Parameter.style';
+import { itemSizes } from '@synerise/ds-list-item';
 
+import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
-import ParameterDropdownItem, { DropdownItem } from './ParameterDropdownItem';
-import { DROPDOWN_HEIGHT, SEARCH_HEGIHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, LIST_STYLE } from './constants';
+import ParameterDropdownItem from './ParameterDropdownItem';
+import { useGroups } from './useGroups';
+import type { MixedDropdownItemProps, ParameterDropdownTitleProps, DropdownItem } from './Parameter.types';
+import {  DROPDOWN_HEIGHT, SEARCH_HEGIHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, ITEM_SIZE, LIST_STYLE, NO_GROUP_NAME } from './Parameter.constants';
+
+const isListTitle = (element?: MixedDropdownItemProps): element is ParameterDropdownTitleProps => {
+  return (element as ParameterDropdownTitleProps).title !== undefined;
+};
 
 const ParameterDropdown = ({
   setSelected,
@@ -25,14 +32,15 @@ const ParameterDropdown = ({
   onFetchData,
   hasMoreItems,
   outerHeight = DROPDOWN_HEIGHT,
+  value,
+  renderEmptyGroups = false,
+  maxSearchResultsInGroup = 4,
 }: ParameterDropdownProps) => {
-  const listRef = createRef<FixedSizeList>();
-  const defaultTab = useMemo(() => {
-    const defaultIndex = groups?.findIndex((group: ParameterGroup) => group.defaultGroup);
-    return defaultIndex || 0;
-  }, [groups]);
-
+  const listRef = useRef<VariableSizeList>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollBarRef = useRef<HTMLDivElement>(null);
+
+  const { visibleGroups, tabs, defaultTab } = useGroups(items, groups, renderEmptyGroups);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTab, setActiveTab] = useState<number>(defaultTab);
   const [activeGroup, setActiveGroup] = useState<ParameterGroup | undefined>(undefined);
@@ -49,37 +57,110 @@ const ParameterDropdown = ({
   });
 
   const currentTabItems = useMemo((): ParameterGroup | undefined => {
-    return groups?.find((group: ParameterGroup, index) => {
+    return visibleGroups?.find((_group: ParameterGroup, index: number) => {
       return activeTab === index;
     });
-  }, [groups, activeTab]);
+  }, [visibleGroups, activeTab]);
 
-  const handleClearSearch = useCallback(() => {
+  const clearSearch = useCallback(() => {
     setSearchQuery('');
   }, []);
 
-  const handleHideDropdown = useCallback(() => {
+  const handleOnSetGroup = useCallback((item: ParameterGroup) => {
+    setActiveGroup(item);
+  }, []);
+
+  const hideDropdown = useCallback(() => {
     setDropdownVisible(false);
   }, [setDropdownVisible]);
 
-  const filteredItems = useMemo(() => {
-    return items
-      ?.filter((item: ParameterItem) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
-      .map((item: ParameterItem) => {
-        return {
-          className: classNames,
-          item,
-          searchQuery,
-          clearSearch: handleClearSearch,
-          hideDropdown: handleHideDropdown,
-          select: setSelected,
-        };
-      });
-  }, [items, searchQuery, classNames, handleClearSearch, handleHideDropdown, setSelected]);
+  const groupByGroupName = useCallback(
+    (dropdownItems: (ParameterItem | ParameterGroup)[], maxItemsInGroup?: number): MixedDropdownItemProps[] => {
+      const itemsNumber = dropdownItems?.length;
+      const groupedItems = {};
 
-  const currentItems = useMemo((): ReactNode[] | undefined => {
+      for (let i = 0; i < itemsNumber; i += 1) {
+        const item = dropdownItems[i];
+        // @ts-ignore
+        const groupName = item.groupName || NO_GROUP_NAME;
+        const group = groupedItems[groupName] || [];
+        group.push(item);
+        groupedItems[groupName] = group;
+      }
+
+      const resultItems: MixedDropdownItemProps[] = [];
+      Object.keys(groupedItems).forEach((key: string) => {
+        if (key !== NO_GROUP_NAME && !activeGroup) {
+          resultItems.push({
+            type: 'title',
+            title: key,
+          });
+        }
+        const groupItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
+        groupItems.forEach((item: ParameterItem) => {
+          const resultItem = !item.groupId
+            ? {
+                className: classNames,
+                item,
+                searchQuery,
+                select: handleOnSetGroup,
+              }
+            : {
+                className: classNames,
+                item,
+                searchQuery,
+                clearSearch,
+                hideDropdown,
+                select: setSelected,
+                selected: value && item.id === value?.id,
+              };
+          resultItems.push(resultItem);
+        });
+        if (maxItemsInGroup && groupedItems[key].length > maxItemsInGroup) {
+          const anyItem = groupItems[0];
+          resultItems.push({
+            className: classNames,
+            select: handleOnSetGroup,
+            searchQuery,
+            label: <S.ShowMoreItem>{texts.parameter.showMore}</S.ShowMoreItem>,
+            item: {
+              isGroup: true,
+              id: anyItem.groupId,
+              name: getGroupName(anyItem.groupId, groups || []) || '',
+              icon: <ArrowRightCircleM />,
+            } as ParameterGroup,
+          });
+        }
+      });
+      return resultItems;
+    },
+    [
+      activeGroup,
+      classNames,
+      searchQuery,
+      handleOnSetGroup,
+      clearSearch,
+      hideDropdown,
+      setSelected,
+      value,
+      texts.parameter.showMore,
+      groups,
+    ]
+  );
+
+  const { searchResults } = useSearchResults(
+    items || [],
+    groups || [],
+    activeTab,
+    groupByGroupName,
+    activeGroup,
+    searchQuery,
+    maxSearchResultsInGroup
+  );
+
+  const currentItems = useMemo((): MixedDropdownItemProps[] | undefined => {
     if (searchQuery) {
-      return filteredItems;
+      return searchResults;
     }
     const hasSubgroups = Boolean(currentTabItems?.subGroups);
     if (hasSubgroups && !activeGroup) {
@@ -100,20 +181,20 @@ const ParameterDropdown = ({
             className: classNames,
             item,
             searchQuery,
-            hideDropdown: handleHideDropdown,
+            hideDropdown,
             select: setSelected,
           };
         });
     }
-    if (activeTab && groups && groups[activeTab]) {
+    if (activeTab && visibleGroups && visibleGroups[activeTab]) {
       return items
-        ?.filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
+        ?.filter((item: ParameterItem) => item.groupId === (visibleGroups[activeTab] as ParameterGroup).id)
         .map((item: ParameterItem) => {
           return {
             className: classNames,
             item,
             searchQuery,
-            hideDropdown: handleHideDropdown,
+            hideDropdown,
             select: setSelected,
           };
         });
@@ -123,7 +204,7 @@ const ParameterDropdown = ({
         className: classNames,
         item,
         searchQuery,
-        hideDropdown: handleHideDropdown,
+        hideDropdown,
         select: setSelected,
       };
     });
@@ -131,30 +212,21 @@ const ParameterDropdown = ({
     searchQuery,
     currentTabItems,
     activeGroup,
-    groups,
+    visibleGroups,
     items,
-    filteredItems,
+    searchResults,
     classNames,
-    handleHideDropdown,
+    hideDropdown,
     setSelected,
     activeTab,
   ]);
 
   const handleSearch = useCallback(
-    value => {
-      setSearchQuery(value);
+    (newSearchQuery: string) => {
+      setSearchQuery(newSearchQuery);
     },
     [setSearchQuery]
   );
-
-  const getTabs = useMemo(() => {
-    return (
-      groups?.map((group: ParameterGroup) => ({
-        label: group.name,
-        icon: group.icon,
-      })) || []
-    );
-  }, [groups]);
 
   const getNoResultContainer = useMemo(
     () => <Result noSearchResults type="no-results" description={texts.parameter.noResults} />,
@@ -163,12 +235,25 @@ const ParameterDropdown = ({
 
   const handleScroll = ({ currentTarget }: UIEvent) => {
     const { scrollTop } = currentTarget;
-    if (listRef.current !== null) {
+    if (listRef.current) {
       listRef.current.scrollTo(scrollTop);
     }
   };
 
-  const hasTabs = getTabs.length > 1;
+  useEffect(() => {
+    if (scrollBarRef.current && listRef.current) {
+      scrollBarRef.current.scrollTo({ top: 0 });
+      listRef.current.resetAfterIndex(0);
+    }
+  }, [searchQuery, activeGroup, activeTab]);
+
+  const getItemSize = (index: number) => {
+    const item = currentItems && currentItems[index];
+    if (isListTitle(item)) return ITEM_SIZE.title;
+    return ITEM_SIZE[itemSizes.DEFAULT];
+  };
+
+  const hasTabs = tabs.length > 1;
   const hasSearch = Boolean(searchQuery);
 
   const dropdownContentHeight = useMemo(() => {
@@ -200,11 +285,11 @@ const ParameterDropdown = ({
         autofocusDelay={50}
         iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
       />
-      {searchQuery === '' && getTabs.length > 1 && (
+      {tabs.length > 1 && (
         <S.TabsWrapper>
           <Tabs
             block
-            tabs={getTabs}
+            tabs={tabs}
             activeTab={activeTab}
             handleTabClick={(index: number) => {
               setActiveTab(index);
@@ -227,18 +312,23 @@ const ParameterDropdown = ({
               onYReachEnd={onFetchData}
               onScroll={handleScroll}
               maxHeight={dropdownContentHeight}
+              ref={scrollBarRef}
             >
               <S.StyledList
                 width="100%"
                 height={300}
                 itemCount={currentItems.length}
-                itemSize={32}
+                itemSize={getItemSize}
                 style={LIST_STYLE}
                 ref={listRef}
               >
-                {({ index, style }) => (
-                  <ParameterDropdownItem style={style} {...(currentItems[index] as DropdownItem)} />
-                )}
+                {({ index, style }) => {
+                  const listItem = currentItems[index];
+                  if (isListTitle(listItem)) {
+                    return <S.Title style={style}>{listItem.title}</S.Title>;
+                  }
+                  return <ParameterDropdownItem style={style} {...(listItem as DropdownItem<typeof listItem.item>)} />;
+                }}
               </S.StyledList>
             </Scrollbar>
           ) : (

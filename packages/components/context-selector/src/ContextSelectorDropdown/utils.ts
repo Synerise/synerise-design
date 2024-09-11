@@ -1,4 +1,4 @@
-import type { ContextGroup, ContextItem, DropdownItemProps, ListTitle } from 'ContextSelector.types';
+import type { ContextGroup, ContextItem, DropdownItemProps, ListTitle } from '../ContextSelector.types';
 
 export const isListTitle = (element: DropdownItemProps): element is ListTitle => {
   return (element as ListTitle).title !== undefined;

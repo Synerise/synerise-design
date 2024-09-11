@@ -4,8 +4,13 @@ import { Meta, StoryObj } from '@storybook/react';
 import ContextSelector, { ContextProps, ContextItem } from '@synerise/ds-context-selector';
 
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
-import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS, FLAT_LIST_ITEMS } from './data/client.data';
-import { ItemSize } from '@synerise/ds-menu';
+import {
+  CONTEXT_CLIENT_GROUPS,
+  CONTEXT_CLIENT_ITEMS,
+  CONTEXT_DEFAULT_GROUPS,
+  CONTEXT_DEFAULT_ITEMS,
+  FLAT_LIST_ITEMS,
+} from './data/client.data';
 
 export default {
   title: 'Components/Filter/ContextSelector',
@@ -37,22 +42,33 @@ export default {
     onSelectItem: {
       action: 'onSelectItem',
     },
+    items: {
+      control: false
+    },
+    groups: {
+      control: false
+    }
   },
   args: {
     texts: CONTEXT_TEXTS,
-    items: CONTEXT_ITEMS,
-    groups: CONTEXT_GROUPS,
     onClickOutsideEvents: undefined,
+    
   },
 } as Meta<ContextProps>;
 
 type Story = StoryObj<ContextProps>;
 
-export const BusinessContext: Story = {};
+export const BusinessContext: Story = {
+  args: {
+    items: CONTEXT_ITEMS,
+    groups: CONTEXT_GROUPS,
+  },
+};
 
 export const LargeItems: Story = {
   args: {
-    menuItemHeight: 'large' as ItemSize,
+    ...BusinessContext.args,
+    menuItemHeight: 'large',
   },
 };
 
@@ -60,6 +76,22 @@ export const ClientContext: Story = {
   args: {
     items: CONTEXT_CLIENT_ITEMS,
     groups: CONTEXT_CLIENT_GROUPS,
+  },
+};
+
+export const StandardSearch: Story = {
+  args: {
+    items: CONTEXT_CLIENT_ITEMS,
+    groups: CONTEXT_CLIENT_GROUPS,
+    onSearch: undefined,
+  },
+};
+
+export const DefaultContext: Story = {
+  args: {
+    items: CONTEXT_DEFAULT_ITEMS,
+    groups: CONTEXT_DEFAULT_GROUPS,
+    onSearch: undefined,
   },
 };
 

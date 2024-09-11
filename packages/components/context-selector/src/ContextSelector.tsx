@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
 import Button from '@synerise/ds-button';
 import Icon, { Add3M, AngleDownS } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Dropdown from '@synerise/ds-dropdown';
 import InformationCard from '@synerise/ds-information-card';
 import { getPopupContainer } from '@synerise/ds-utils';
-import type { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
 
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
 import { ContextProps } from './ContextSelector.types';

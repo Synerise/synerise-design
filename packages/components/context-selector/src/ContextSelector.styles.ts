@@ -44,6 +44,10 @@ export const ItemWrapper = styled.span`
   text-overflow: ellipsis;
 `;
 
+export const ShowMoreItem = styled.div`
+  font-weight: 500;
+`;
+
 export const ErrorWrapper = styled.div`
   color: ${(props): string => props.theme.palette['red-600']};
   margin-top: 8px;
