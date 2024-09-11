@@ -9,12 +9,13 @@ import { SKELETON_BAR_TINY, SKELETON_BAR_WIDE } from '../constants';
 
 type TableSkeletonBodyProps = HTMLAttributes<HTMLDivElement> & {
   rows: number;
+  rowHeight?: number;
 };
 
-export const TableSkeletonBody = ({ rows = 10, ...htmlAttributes }: TableSkeletonBodyProps) => (
+export const TableSkeletonBody = ({ rows = 10, rowHeight, ...htmlAttributes }: TableSkeletonBodyProps) => (
   <S.TableSkeletonBody {...htmlAttributes}>
     {Array.from({ length: rows }, (_, index) => (
-      <S.TableSkeletonRow data-testid="ds-table-skeleton-row" key={`ds-skeleton-row-${index}`}>
+      <S.TableSkeletonRow rowHeight={rowHeight} data-testid="ds-table-skeleton-row" key={`ds-skeleton-row-${index}`}>
         <S.TableSkeletonLeft>
           <TableSkeletonBar width={SKELETON_BAR_TINY} />
           <SkeletonAvatar shape="square" size="M" />
