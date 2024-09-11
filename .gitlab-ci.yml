@@ -34,7 +34,6 @@ build:
     KUBERNETES_MEMORY_LIMIT: 22Gi
   except:
     refs:
-      - tags
       - container
   tags:
     - vms
@@ -55,7 +54,6 @@ docs_build:
   stage: test
   only:
     refs:
-      - tags
       - master
       - dev
   script:
@@ -98,30 +96,30 @@ docs_deploy:
     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-latest
     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
-docs_deploy_from_tag:
-  image: artifactory.snrinternal.com/docker.io/docker:stable
-  stage: build
-  needs: ['docs_build']
-  only:
-    refs:
-      - tags
-  allow_failure: true
-  script:
-    - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
-    - echo "Sanitized branch name ${SANITY_BRANCH}"
-    - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
-    - cd packages/docs-site
-    - pwd
-    - docker build -t ds-docs .
-    - echo "Push commit image"
+# docs_deploy_from_tag:
+#   image: artifactory.snrinternal.com/docker.io/docker:stable
+#   stage: build
+#   needs: ['docs_build']
+#   only:
+#     refs:
+#       - tags
+#   allow_failure: true
+#   script:
+#     - SANITY_BRANCH=$CI_COMMIT_REF_SLUG
+#     - echo "Sanitized branch name ${SANITY_BRANCH}"
+#     - docker login $QUAY_REPO_HOST -u "$QUAY_REPO_USER" -p "$QUAY_REPO_PASS"
+#     - cd packages/docs-site
+#     - pwd
+#     - docker build -t ds-docs .
+#     - echo "Push commit image"
 
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
+#     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"-"${CI_COMMIT_SHA}"
+#     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME}"
 
-    - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
-    - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
+#     - docker tag ds-docs quay.io/synerise/ds-docs:"$SANITY_BRANCH"
+#     - docker push quay.io/synerise/ds-docs:"$SANITY_BRANCH"
+#     - echo "Image pushed to remote repository from branch ${CI_COMMIT_REF_NAME} for commit ${CI_COMMIT_SHA}"
 
 k8s-prod-gitops:
   extends: .autodeploy-template
