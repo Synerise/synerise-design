@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Badge from '@synerise/ds-badge';
 import * as S from './StatusLabel.styles';
-import { Props } from './StatusLabel.types';
+import { StatusLabelProps } from './StatusLabel.types';
 
-const StatusLabelCell: React.FC<Props> = ({ status, label, customColor }: Props) => {
+const StatusLabelCell = ({ status, label, customColor, ...htmlAttributes }: StatusLabelProps) => {
   return (
-    <S.StatusLabel>
+    <S.StatusLabel {...htmlAttributes}>
       <Badge customColor={customColor} status={status} />
       <S.Label>{label}</S.Label>
     </S.StatusLabel>

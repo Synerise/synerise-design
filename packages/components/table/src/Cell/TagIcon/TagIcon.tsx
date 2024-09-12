@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './TagIcon.styles';
-import { Props } from './TagIcon.types';
+import { TagIconProps } from './TagIcon.types';
 
-const TagIconCell: React.FC<Props> = ({ children }: Props) => <S.TagIcon> {children} </S.TagIcon>;
+const TagIconCell = ({ children, ...htmlAttributes }: TagIconProps) => (
+  <S.TagIcon {...htmlAttributes}> {children} </S.TagIcon>
+);
 
 export default TagIconCell;

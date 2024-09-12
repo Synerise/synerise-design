@@ -1,26 +1,27 @@
-import * as React from 'react';
+import React, { useState, useMemo } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from './LabelsWithShowMore.styles';
-import { Props } from './LabelsWithShowMore.types';
+import { LabelsWithShowMoreProps } from './LabelsWithShowMore.types';
 import DetailsModal from './Modal/Modal';
 import { DataSourceType } from './Modal/Modal.types';
 
-const LabelsWithShowMore: React.FC<Props<DataSourceType>> = ({
+const LabelsWithShowMore = ({
   items,
   numberOfVisibleItems,
   renderItem,
   labelKey,
   texts,
   loading,
-}) => {
-  const [modalVisible, setModalVisible] = React.useState(false);
+  ...htmlAttributes
+}: LabelsWithShowMoreProps<DataSourceType>) => {
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const diff = React.useMemo(() => {
+  const diff = useMemo(() => {
     return items.length - numberOfVisibleItems;
   }, [items, numberOfVisibleItems]);
 
-  const labels = React.useMemo(() => {
+  const labels = useMemo(() => {
     return items
       .slice(0, numberOfVisibleItems)
       .map(item => item[labelKey])
@@ -28,7 +29,7 @@ const LabelsWithShowMore: React.FC<Props<DataSourceType>> = ({
   }, [items, labelKey, numberOfVisibleItems]);
 
   return (
-    <S.CellWrapper>
+    <S.CellWrapper {...htmlAttributes}>
       <S.Labels>{labels}</S.Labels>
       {diff > 0 && (
         <Tooltip title={`${texts.tooltip}`}>

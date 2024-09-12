@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React, { useMemo } from 'react';
 
 import { withTheme } from 'styled-components';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import * as S from './StarCell.styles';
-import { Props } from './StarCell.types';
+import { StarCellProps } from './StarCell.types';
 
-const StartCell: React.FC<Props> = ({ children, active, onClick, theme, starTooltip }: Props) => {
-  const icon = React.useMemo(() => {
+const StarCell = ({ children, active, onClick, theme, starTooltip, ...htmlAttributes }: StarCellProps) => {
+  const icon = useMemo(() => {
     return active ? (
       <Icon component={<StarFillM />} color={theme.palette['yellow-600']} />
     ) : (
@@ -16,7 +16,7 @@ const StartCell: React.FC<Props> = ({ children, active, onClick, theme, starTool
   }, [active, theme.palette]);
 
   return (
-    <S.StarCell>
+    <S.StarCell {...htmlAttributes}>
       <Tooltip align={{ offset: [0, 8] }} title={starTooltip}>
         <S.StarredIcon active={active} component={icon} onClick={onClick} />
       </Tooltip>
@@ -25,4 +25,4 @@ const StartCell: React.FC<Props> = ({ children, active, onClick, theme, starTool
   );
 };
 
-export default withTheme(StartCell);
+export default withTheme(StarCell);

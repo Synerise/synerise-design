@@ -1,6 +1,15 @@
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export interface Props {
-  value: string;
-  confirmMessage: string;
-  tooltipTimeout: number;
-}
+export type CopyableCellProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    value: string;
+    confirmMessage: string;
+    tooltipTimeout: number;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = CopyableCellProps;

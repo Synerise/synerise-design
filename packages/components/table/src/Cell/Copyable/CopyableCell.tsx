@@ -1,27 +1,34 @@
-import * as React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import * as copy from 'copy-to-clipboard';
 
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import * as S from './Copyable.styles';
-import { Props } from './Copyable.types';
+import { CopyableCellProps } from './Copyable.types';
 
-const CopyableCell: React.FC<Props> = ({ value, confirmMessage, tooltipTimeout = 2000 }: Props) => {
-  const [tooltipVisible, setTooltipVisible] = React.useState(false);
+const DEFAULT_TIMEOUT = 2000;
 
-  React.useEffect(() => {
+const CopyableCell = ({
+  value,
+  confirmMessage,
+  tooltipTimeout = DEFAULT_TIMEOUT,
+  ...htmlAttributes
+}: CopyableCellProps) => {
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setTooltipVisible(false);
     }, tooltipTimeout);
     return (): void => clearTimeout(timer);
   }, [tooltipVisible, setTooltipVisible, tooltipTimeout]);
 
-  const handleCopy = React.useCallback(() => {
+  const handleCopy = useCallback(() => {
     if (copy(value)) setTooltipVisible(true);
   }, [value]);
 
   return (
-    <S.Copyable>
+    <S.Copyable {...htmlAttributes}>
       <span>{value}</span>
       <Tooltip visible={tooltipVisible} title={confirmMessage} placement="left">
         <Icon onClick={handleCopy} component={<CopyClipboardM />} />

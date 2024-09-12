@@ -1,6 +1,15 @@
 import { IconProps } from '@synerise/ds-icon';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export interface Props {
-  label: string;
-  icon: IconProps;
-}
+export type IconLabelProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    label: string;
+    icon: IconProps;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = IconLabelProps;

@@ -1,11 +1,20 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export interface Props {
-  children: React.ReactNode | React.ReactNode[];
-  active?: boolean;
-  onClick?: () => void;
-  theme: {
-    [k: string]: string;
-  };
-  starTooltip?: React.ReactNode;
-}
+export type StarCellProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    children: ReactNode | ReactNode[];
+    active?: boolean;
+    onClick?: () => void;
+    theme: {
+      [key: string]: string;
+    };
+    starTooltip?: ReactNode;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = StarCellProps;

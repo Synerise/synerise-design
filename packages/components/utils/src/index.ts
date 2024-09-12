@@ -22,4 +22,4 @@ export * from './getPopupContainer';
 export const NOOP = (): void => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 export type { HandledEventsType } from './useOnClickOutside/useOnClickOutside';
 
-export type { LiteralStringUnion } from './types/types';
+export type { LiteralStringUnion, WithHTMLAttributes } from './types/types';
