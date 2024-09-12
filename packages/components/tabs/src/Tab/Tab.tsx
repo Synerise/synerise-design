@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import Icon from '@synerise/ds-icon';
 import classNames from 'classnames';
+
+import Icon from '@synerise/ds-icon';
+import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './Tab.styles';
 import { TabProps } from './Tab.types';
 
@@ -16,6 +19,8 @@ const Tab = ({
   className,
   block,
   suffixel,
+  tooltip,
+  tooltipProps,
 }: TabProps) => {
   const [isPressed, setPressed] = useState(false);
   const handleClick = () => {
@@ -42,6 +47,16 @@ const Tab = ({
     return <S.DefaultSuffixWrapper>{suffixel}</S.DefaultSuffixWrapper>;
   };
 
+  const tabContent = (
+    <S.BlockContentWrapper block={block}>
+      <S.TabContent className="tab-content" data-testid="ds-tabs-tab-content">
+        {icon && <Icon data-testid="ds-tabs-tab-icon" component={icon} size={24} />}
+        {label && <S.TabLabel data-testid="ds-tabs-tab-label">{label}</S.TabLabel>}
+        {!!suffixel && renderSuffixel()}
+      </S.TabContent>
+    </S.BlockContentWrapper>
+  );
+
   return (
     <S.TabContainer
       className={containerClasses}
@@ -56,13 +71,13 @@ const Tab = ({
       data-testid="tab-container"
       block={block}
     >
-      <S.BlockContentWrapper block={block}>
-        <S.TabContent className="tab-content">
-          {icon && <Icon component={icon} size={24} />}
-          {label && <S.TabLabel>{label}</S.TabLabel>}
-          {!!suffixel && renderSuffixel()}
-        </S.TabContent>
-      </S.BlockContentWrapper>
+      {tooltip ? (
+        <Tooltip title={tooltip} {...tooltipProps}>
+          {tabContent}
+        </Tooltip>
+      ) : (
+        tabContent
+      )}
     </S.TabContainer>
   );
 };

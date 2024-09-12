@@ -1,15 +1,12 @@
-import { ReactNode, RefObject } from 'react';
+import type { RefObject } from 'react';
+import type { TabItem } from '../Tabs.types';
 
-export type TabProps = {
+export type TabProps = TabItem & {
   index: number;
-  label?: ReactNode;
-  icon?: ReactNode;
   underscore?: boolean;
   isActive?: boolean;
-  disabled?: boolean;
   className?: string;
   onClick: (index: number) => void;
   forwardedRef: RefObject<HTMLButtonElement>;
   block?: boolean;
-  suffixel?: ReactNode;
 };
