@@ -15,6 +15,7 @@ const AvatarLabel = ({
   maxWidth,
   avatarSize,
   loader,
+  ...htmlAttributes
 }: AvatarLabelProps) => {
   const titleEllipsisProps = ellipsis ? { ellipsis: { tooltip: title } } : {};
 
@@ -46,7 +47,7 @@ const AvatarLabel = ({
   );
 
   return (
-    <S.AvatarLabel onClick={avatarAction}>
+    <S.AvatarLabel {...htmlAttributes} onClick={avatarAction}>
       {avatarLink ? (
         <S.AvatarLink href={avatarLink} onClick={handleLinkClick}>
           {cellContent}

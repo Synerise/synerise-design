@@ -1,6 +1,15 @@
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export interface Props {
-  value: string | undefined;
-  onChange: (newValue: string) => void;
-  placeholder?: string;
-}
+export type EditableCellProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    value?: string;
+    onChange: (newValue: string) => void;
+    placeholder?: string;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = EditableCellProps;

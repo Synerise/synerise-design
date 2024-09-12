@@ -1,5 +1,13 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export interface Props {
-  children: React.ReactNode | React.ReactNode[];
-}
+export type TagIconProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    children: ReactNode | ReactNode[];
+  }
+>;
+/**
+ *  @deprecated
+ */
+export type Props = TagIconProps;

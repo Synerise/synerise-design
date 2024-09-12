@@ -1,8 +1,17 @@
+import { ReactNode } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 import { Color, Status } from '@synerise/ds-badge/dist/Badge.types';
-import * as React from 'react';
 
-export type Props = {
-  status?: Status;
-  label: string | React.ReactNode;
-  customColor: Color;
-};
+export type StatusLabelProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    status?: Status;
+    label: ReactNode;
+    customColor?: Color;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = StatusLabelProps;

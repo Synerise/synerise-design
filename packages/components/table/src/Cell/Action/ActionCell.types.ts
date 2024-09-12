@@ -1,8 +1,17 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ContentAlign = 'left' | 'right' | 'center';
-export interface Props {
-  children: React.ReactNode | React.ReactNode[];
-  gapSize?: number;
-  contentAlign?: ContentAlign;
-}
+export type ActionCellProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    children: ReactNode | ReactNode[];
+    gapSize?: number;
+    contentAlign?: ContentAlign;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props = ActionCellProps;

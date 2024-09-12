@@ -1,20 +1,20 @@
-import * as React from 'react';
+import React, { useMemo, useCallback, useState, ChangeEvent } from 'react';
 
 import Icon, { EditNolineS } from '@synerise/ds-icon';
 import { Input } from '@synerise/ds-input';
-import { ChangeEvent } from 'react';
+
 import * as S from './EditableCell.styles';
-import { Props } from './EditableCell.types';
+import { EditableCellProps } from './EditableCell.types';
 
-const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) => {
-  const [editMode, setEditMode] = React.useState(false);
-  const [editValue, setEditValue] = React.useState(value || '');
+const EditableCell = ({ value, onChange, placeholder, ...htmlAttributes }: EditableCellProps) => {
+  const [editMode, setEditMode] = useState(false);
+  const [editValue, setEditValue] = useState(value || '');
 
-  const enterEditMode = React.useCallback(() => {
+  const enterEditMode = useCallback(() => {
     setEditMode(true);
   }, [setEditMode]);
 
-  const render = React.useMemo(() => {
+  const render = useMemo(() => {
     return editMode ? (
       // eslint-disable-next-line react/jsx-handler-names
       <Input
@@ -36,7 +36,7 @@ const EditableCell: React.FC<Props> = ({ value, onChange, placeholder }: Props) 
     );
   }, [editMode, value, enterEditMode, editValue, setEditValue, onChange, placeholder]);
 
-  return <S.EditableCell>{render}</S.EditableCell>;
+  return <S.EditableCell {...htmlAttributes}>{render}</S.EditableCell>;
 };
 
 export default EditableCell;

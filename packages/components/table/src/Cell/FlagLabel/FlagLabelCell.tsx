@@ -1,11 +1,11 @@
+import React from 'react';
 import DSFlag from '@synerise/ds-flag';
-import * as React from 'react';
 import * as S from './FlagLabelCell.styles';
-import { Props } from './FlagLabelCell.types';
+import { FlagLabelProps } from './FlagLabelCell.types';
 
-const FlagLabelCell: React.FC<Props> = ({ countryCode, label }: Props) => {
+const FlagLabelCell = ({ countryCode, label, ...htmlAttributes }: FlagLabelProps) => {
   return (
-    <S.FlagLabel>
+    <S.FlagLabel {...htmlAttributes}>
       <DSFlag country={countryCode} size={20} />
       <span>{label}</span>
     </S.FlagLabel>

@@ -1,18 +1,27 @@
-import * as React from 'react';
+import { ReactNode, Component } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type ShowMoreTexts = {
-  tooltip: string | React.ReactNode;
+  tooltip: ReactNode;
   searchPlaceholder: string;
   searchClear: string;
-  modalTitle: string | React.ReactNode;
-  records: string | React.ReactNode;
+  modalTitle: ReactNode;
+  records: ReactNode;
 };
 
-export type Props<T extends object> = {
-  items: T[];
-  numberOfVisibleItems: number;
-  labelKey: string;
-  renderItem: (label: string, item: T) => JSX.Element | React.Component;
-  texts: ShowMoreTexts;
-  loading?: boolean;
-};
+export type LabelsWithShowMoreProps<T extends object> = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    items: T[];
+    numberOfVisibleItems: number;
+    labelKey: string;
+    renderItem: (label: string, item: T) => JSX.Element | Component;
+    texts: ShowMoreTexts;
+    loading?: boolean;
+  }
+>;
+
+/**
+ *  @deprecated
+ */
+export type Props<T extends object> = LabelsWithShowMoreProps<T>;
