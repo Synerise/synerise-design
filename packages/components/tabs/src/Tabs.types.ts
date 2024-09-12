@@ -1,4 +1,5 @@
-import { ReactNode, RefObject } from 'react';
+import type { ReactNode, RefObject } from 'react';
+import type { TooltipProps } from '@synerise/ds-tooltip';
 
 export type TabsProps = {
   activeTab: number;
@@ -18,6 +19,8 @@ export type Configuration = {
 };
 
 export type TabItem = {
+  tooltip?: ReactNode;
+  tooltipProps?: TooltipProps;
   label?: ReactNode;
   icon?: ReactNode;
   disabled?: boolean;

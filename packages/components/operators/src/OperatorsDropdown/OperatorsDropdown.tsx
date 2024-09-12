@@ -149,6 +149,7 @@ const OperatorsDropdown = ({
     return (
       groups?.map((group: OperatorsGroup) => ({
         icon: group.icon,
+        tooltip: group.tooltip,
       })) || []
     );
   }, [groups]);

@@ -2,25 +2,14 @@ import React, { ReactNode } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { action } from '@storybook/addon-actions';
-import { within, expect, waitFor } from '@storybook/test';
+import { within, expect, waitFor, userEvent } from '@storybook/test';
 
-import {
-  BooleanM,
-  CalendarM,
-  HashM,
-  ListM,
-  SearchM,
-  TextM,
-} from '@synerise/ds-icon';
+import { BooleanM, CalendarM, HashM, ListM, SearchM, TextM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
 import type { TabsProps, TabsConfiguration } from '@synerise/ds-tabs';
 
 import { theme } from '@synerise/ds-core';
-import {
-  fixedWrapper588,
-  BOOLEAN_CONTROL,
-  fixedWrapper300,
-} from '../../utils';
+import { fixedWrapper588, BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
 import Badge from '@synerise/ds-badge';
 
 type Story = StoryObj<TabsProps>;
@@ -43,18 +32,23 @@ const labelsAndIcons = [
 const icons = [
   {
     icon: <CalendarM />,
+    tooltip: 'Date',
   },
   {
     icon: <TextM />,
+    tooltip: 'Text',
   },
   {
     icon: <HashM />,
+    tooltip: 'Number',
   },
   {
     icon: <BooleanM />,
+    tooltip: 'Boolean',
   },
   {
     icon: <ListM />,
+    tooltip: 'Array',
   },
 ];
 
@@ -164,6 +158,19 @@ export const WithIcons: Story = {
   },
 };
 
+export const WithIconsAndTooltip: Story = {
+  args: {
+    tabs: icons,
+    block: true,
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    await waitFor(async () => expect(await canvas.findAllByTestId('ds-tabs-tab-icon')).toHaveLength(args.tabs.length));
+    const buttons = await canvas.findAllByTestId('ds-tabs-tab-icon');
+    userEvent.hover(buttons[0]);
+    await waitFor(async () => expect(await canvas.findByText(args.tabs[0].tooltip)).toBeVisible());
+  },
+};
 export const WithIconsAndLabels: Story = {
   args: {
     tabs: labelsAndIcons,

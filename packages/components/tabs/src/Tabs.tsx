@@ -167,19 +167,17 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
           .filter(tab => Boolean(tab))
           .map((tab, index) => {
             const key = `tabs-tab-${index}`;
+            const { ref, ...tabProps } = tab;
             return (
               <Tab
                 underscore={underscore}
-                forwardedRef={tab.ref}
+                forwardedRef={ref}
                 key={key}
                 index={index}
-                label={tab.label}
-                icon={tab.icon}
+                block={block}
                 onClick={handleTabClick}
                 isActive={index === activeTab}
-                disabled={tab.disabled}
-                block={block}
-                suffixel={tab.suffixel}
+                {...tabProps}
               />
             );
           })}
@@ -192,18 +190,17 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
       <S.HiddenTabs ref={helperContainerRef} data-testid="ds-tabs-hidden-helper" className="ds-hidden-helper">
         {items.map((tab, index) => {
           const key = `tabs-tab-helper-${index}`;
+          const { ref, ...tabProps } = tab;
           return (
             <Tab
               className="hidden"
               underscore={underscore}
-              forwardedRef={tab.ref}
+              forwardedRef={ref}
               key={key}
               index={index}
               onClick={NOOP}
-              label={tab.label}
-              icon={tab.icon}
               block={block}
-              suffixel={tab.suffixel}
+              {...tabProps}
             />
           );
         })}
