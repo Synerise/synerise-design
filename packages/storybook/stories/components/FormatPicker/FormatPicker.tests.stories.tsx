@@ -18,17 +18,22 @@ export default {
 type Story = StoryObj<FormatPickerProps>;
 
 export const OpenedModal: Story = {
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
+    await waitFor(() => expect(args.onFormattedValueChange).toHaveBeenCalled());
     await userEvent.click(canvas.getByRole('button'));
     await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument());
   },
 };
 
 export const CurrencyType: Story = {
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
+
+    await waitFor(() => expect(args.onFormattedValueChange).toHaveBeenCalled());
+    
     await userEvent.click(canvas.getByRole('button'));
+
     await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
     await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible(), WAIT_FOR_OPTIONS);
 
@@ -46,10 +51,11 @@ export const CurrencyType: Story = {
 };
 
 export const CurrencyDropdownOpen: Story = {
-  play: async ({ canvasElement, step }) => {
+  play: async ({ canvasElement, step, args }) => {
     const canvas = within(canvasElement.parentElement!);
 
     await step('Open modal', async () => {
+      await waitFor(() => expect(args.onFormattedValueChange).toHaveBeenCalled());
       await userEvent.click(canvas.getByRole('button'));
       await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
       await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeVisible(), WAIT_FOR_OPTIONS);
