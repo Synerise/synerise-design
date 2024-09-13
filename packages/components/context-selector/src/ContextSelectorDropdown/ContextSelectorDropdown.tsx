@@ -116,6 +116,15 @@ const ContextSelectorDropdown = ({
     setDropdownVisible(false);
   }, [setDropdownVisible]);
 
+  const handleSelect = useCallback(
+    (parameter: ContextItem | ContextGroup) => {
+      setSelected(parameter);
+      setActiveGroup(undefined);
+      setActiveTab(defaultTab);
+    },
+    [defaultTab, setSelected]
+  );
+
   const currentTabItems = useMemo((): ContextGroup | undefined => {
     return groups ? getActiveTabGroup(activeTab, groups) : undefined;
   }, [groups, activeTab]);
@@ -158,7 +167,7 @@ const ContextSelectorDropdown = ({
                 searchQuery,
                 clearSearch,
                 hideDropdown,
-                select: setSelected,
+                select: handleSelect,
                 selected: Boolean(value) && item.id === value?.id,
                 menuItemHeight,
               };
@@ -190,7 +199,7 @@ const ContextSelectorDropdown = ({
       menuItemHeight,
       clearSearch,
       hideDropdown,
-      setSelected,
+      handleSelect,
       value,
       texts.showMore,
       groups,
@@ -297,7 +306,6 @@ const ContextSelectorDropdown = ({
     if (isListTitle(item)) return ITEM_SIZE.title;
     return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[itemSizes.DEFAULT];
   };
-
 
   const dropdownContentHeight = useMemo(() => {
     return (
