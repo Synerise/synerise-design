@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.16.0...storybook7@0.17.0) (2024-09-13)
+
+
+### Features
+
+* **context-selector:** reset tabs on item select ([34b398a](https://github.com/Synerise/synerise-design/commit/34b398a4e5cdf948031ec1ab311acf712674b2a8))
+* **tabs:** add tooltip prop ([798cd81](https://github.com/Synerise/synerise-design/commit/798cd819be1b2bd55883302da4cb1290278d1919))
+
+
+
+
+
 # [0.16.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.15.0...storybook7@0.16.0) (2024-09-11)
 
 

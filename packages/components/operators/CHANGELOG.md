@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.12.2...@synerise/ds-operators@0.13.0) (2024-09-13)
+
+
+### Features
+
+* **tabs:** add tooltip prop ([798cd81](https://github.com/Synerise/synerise-design/commit/798cd819be1b2bd55883302da4cb1290278d1919))
+
+
+
+
+
 ## [0.12.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.12.1...@synerise/ds-operators@0.12.2) (2024-09-11)
 
 

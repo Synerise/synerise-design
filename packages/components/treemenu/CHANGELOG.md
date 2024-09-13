@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.59](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.58...@synerise/ds-treemenu@0.4.59) (2024-09-13)
+
+**Note:** Version bump only for package @synerise/ds-treemenu
+
+
+
+
+
 ## [0.4.58](https://github.com/Synerise/synerise-design/compare/@synerise/ds-treemenu@0.4.57...@synerise/ds-treemenu@0.4.58) (2024-09-11)
 
 **Note:** Version bump only for package @synerise/ds-treemenu

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar-object",
-  "version": "0.6.150",
+  "version": "0.6.151",
   "description": "SidebarObject UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -33,18 +33,18 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.21.9",
-    "@synerise/ds-description": "^0.3.116",
-    "@synerise/ds-drawer": "^0.6.22",
-    "@synerise/ds-dropdown": "^0.18.13",
-    "@synerise/ds-icon": "^0.65.4",
-    "@synerise/ds-inline-edit": "^0.8.9",
-    "@synerise/ds-menu": "^0.19.13",
-    "@synerise/ds-result": "^0.7.3",
-    "@synerise/ds-scrollbar": "^0.11.9",
-    "@synerise/ds-subtle-form": "^0.9.124",
-    "@synerise/ds-tabs": "^0.15.6",
-    "@synerise/ds-utils": "^0.29.1"
+    "@synerise/ds-button": "^0.21.10",
+    "@synerise/ds-description": "^0.3.117",
+    "@synerise/ds-drawer": "^0.6.23",
+    "@synerise/ds-dropdown": "^0.18.14",
+    "@synerise/ds-icon": "^0.65.5",
+    "@synerise/ds-inline-edit": "^0.8.10",
+    "@synerise/ds-menu": "^0.19.14",
+    "@synerise/ds-result": "^0.7.4",
+    "@synerise/ds-scrollbar": "^0.11.10",
+    "@synerise/ds-subtle-form": "^0.9.125",
+    "@synerise/ds-tabs": "^0.16.0",
+    "@synerise/ds-utils": "^0.29.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

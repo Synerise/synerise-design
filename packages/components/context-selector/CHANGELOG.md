@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.24.8...@synerise/ds-context-selector@0.25.0) (2024-09-13)
+
+
+### Features
+
+* **context-selector:** reset tabs on item select ([34b398a](https://github.com/Synerise/synerise-design/commit/34b398a4e5cdf948031ec1ab311acf712674b2a8))
+
+
+
+
+
 ## [0.24.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.24.7...@synerise/ds-context-selector@0.24.8) (2024-09-11)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.56.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.7...@synerise/ds-table@0.56.8) (2024-09-13)
+
+
+### Bug Fixes
+
+* **table:** allow htmlattributes on cell divs ([f4cf677](https://github.com/synerise/synerise-design/commit/f4cf6773add2a4e8ce62dc83d42ae93f2c8d27b0))
+* **table:** skeleton dimensions ([1f14222](https://github.com/synerise/synerise-design/commit/1f1422234ad298e8dd406e59bf98982d0e40ad97))
+
+
+
+
+
 ## [0.56.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.6...@synerise/ds-table@0.56.7) (2024-09-11)
 
 **Note:** Version bump only for package @synerise/ds-table
