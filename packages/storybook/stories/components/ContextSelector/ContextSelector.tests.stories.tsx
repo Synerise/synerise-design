@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { within, userEvent, expect, waitFor, fn } from '@storybook/test';
 import type { ContextProps } from '@synerise/ds-context-selector';
+import { theme } from '@synerise/ds-core';
 
 import { CONTEXT_GROUPS, CONTEXT_ITEMS, CONTEXT_TEXTS } from './data/context.data';
 import ContextSelectorMeta, {
@@ -30,7 +31,7 @@ export const SelectItemFromCategory: Story = {
     onSelectItem: fn(),
   },
   play: async ({ args, canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement.parentElement!);
     const subGroupName =
       CONTEXT_GROUPS[1].subGroups && CONTEXT_GROUPS[1].subGroups[0] && CONTEXT_GROUPS[1].subGroups[0].name;
     if (subGroupName) {
@@ -56,6 +57,13 @@ export const SelectItemFromCategory: Story = {
       await userEvent.click(canvas.getAllByRole('menuitem')[3]);
 
       expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]);
+
+      await waitFor(() => expect(canvas.getByText(CONTEXT_ITEMS[9].name)).toBeInTheDocument());
+
+      await userEvent.click(canvas.getByText(CONTEXT_ITEMS[9].name));
+
+      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toBeInTheDocument());
+      await waitFor(async () => expect(await canvas.findByText(CONTEXT_GROUPS[0].name)).toHaveStyle({color: theme.palette['blue-600']}));
     }
   },
 };
