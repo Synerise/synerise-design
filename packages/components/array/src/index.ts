@@ -1,1 +1,1 @@
-export { default } from './DsArray';
+export { default } from './Array';

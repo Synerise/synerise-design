@@ -3,7 +3,23 @@ import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 type ArrayTextsString = 'placeholder' | 'copyTooltip' | 'copiedTooltip';
 
-type ArrayTextsReactNode = 'addButton' | 'values' | 'show' | 'more' | 'less';
+type ArrayModalTextsNode = 'modalTitle';
+type ArrayTriggerTextsNode = 'buttonPlaceholder' | 'values';
+type ArrayTextsReactNode =
+  | ArrayModalTextsNode
+  | ArrayTriggerTextsNode
+  | 'addButton'
+  | 'values'
+  | 'show'
+  | 'more'
+  | 'less';
+
+type ArrayTriggerTexts = {
+  [key in ArrayTriggerTextsNode]: ReactNode;
+};
+type ArrayModalTexts = {
+  [key in ArrayModalTextsNode]: ReactNode;
+};
 
 export type ArrayTexts = {
   [key in ArrayTextsString]: string;
@@ -11,7 +27,10 @@ export type ArrayTexts = {
   [key in ArrayTextsReactNode]: ReactNode;
 };
 
-export type ArrayTriggerProps = Pick<ArrayProps, 'value' | 'readOnly' | 'disabled'>;
+export type ArrayTriggerProps = Pick<ArrayProps, 'value' | 'readOnly' | 'disabled'> & {
+  onClick: () => void;
+  texts: ArrayTriggerTexts;
+};
 
 export type ArrayItem = string;
 
@@ -21,6 +40,7 @@ export type ArrayProps = WithHTMLAttributes<
     getPopupContainer: (node: HTMLElement) => HTMLElement;
     readOnly?: boolean;
     disabled?: boolean;
+    open?: boolean;
     value: ArrayItem[];
     onValueChange: (value: ArrayItem[]) => void;
     renderCustomTrigger?: (triggerProps: ArrayTriggerProps) => ReactNode;
@@ -28,4 +48,8 @@ export type ArrayProps = WithHTMLAttributes<
   }
 >;
 
-export type ArrayModalProps = {} & Pick<ArrayProps, 'value' | 'onValueChange'>;
+export type ArrayModalProps = {
+  visible?: boolean;
+  texts: ArrayModalTexts;
+  hideModal: () => void;
+} & Pick<ArrayProps, 'value' | 'onValueChange'>;

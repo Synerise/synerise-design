@@ -1,6 +1,7 @@
 import { ElementType, MouseEvent } from 'react';
 import { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import { JustifyContentProperty } from 'csstype';
+import { LiteralStringUnion } from '@synerise/ds-utils';
 
 export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   /**
@@ -24,7 +25,7 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
    *
    * @default simple
    */
-  mode?: 'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label' | string;
+  mode?: LiteralStringUnion<'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label'>;
   /**
    * Defines color of `custom-color` button.
    *
