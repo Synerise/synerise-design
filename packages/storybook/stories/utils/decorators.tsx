@@ -1,6 +1,7 @@
 import React from 'react';
+import type { Decorator } from '@storybook/react'
+import Card from '@synerise/ds-card';
 import { theme } from '@synerise/ds-core';
-import { Decorator } from '@storybook/react';
 
 export const fixedWrapper200: Decorator = (Story) => <div style={{ width: '200px' }}>{Story()}</div>;
 
@@ -92,3 +93,8 @@ export const cardTabsDecorator: Decorator = (Story, storyContext) => {
     </div>
   );
 };
+
+export const cardDecorator: Decorator = (Story, storyContext) => {
+  const decoratorProps = storyContext?.args?.decoratorProps || {};
+  return <Card {...decoratorProps}>{Story()}</Card>
+}

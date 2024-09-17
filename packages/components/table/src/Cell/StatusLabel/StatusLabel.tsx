@@ -1,7 +1,8 @@
 import React from 'react';
 import Badge from '@synerise/ds-badge';
+
 import * as S from './StatusLabel.styles';
-import { StatusLabelProps } from './StatusLabel.types';
+import type { StatusLabelProps } from './StatusLabel.types';
 
 const StatusLabelCell = ({ status, label, customColor, ...htmlAttributes }: StatusLabelProps) => {
   return (

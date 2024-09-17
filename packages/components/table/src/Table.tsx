@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
+import { useIntl } from 'react-intl';
 import '@synerise/ds-core/dist/js/style';
-import './style/index.less';
 import Icon, { AngleLeftS, AngleRightS, SpinnerM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
-import { useIntl } from 'react-intl';
 import Skeleton from '@synerise/ds-skeleton';
 import { useDataFormat } from '@synerise/ds-data-format';
 
+import './style/index.less';
 import * as S from './Table.styles';
 import { DSTableProps } from './Table.types';
 import TableHeader from './TableHeader/TableHeader';
@@ -25,7 +25,6 @@ const ITEM_RENDER_TYPE = {
   next: 'next',
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
   const intl = useIntl();
   const {

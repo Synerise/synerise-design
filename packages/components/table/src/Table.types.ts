@@ -2,6 +2,8 @@ import { ReactNode, ReactText, Ref } from 'react';
 import { ColumnType, TableProps } from 'antd/lib/table';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
 import { TableSkeletonProps } from 'TableSkeleton/TableSkeleton.types';
+import { LiteralStringUnion } from '@synerise/ds-utils';
+
 import DSTable from './Table';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { RowStar } from './hooks/useRowStar';
@@ -118,7 +120,7 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   headerWithBorderTop?: boolean;
   itemsMenu?: string | ReactNode;
   search?: string;
-  cellSize?: string | 'medium' | 'small';
+  cellSize?: LiteralStringUnion<'medium' | 'small'>;
   roundedHeader?: boolean;
   selection?: RowSelection<T>;
   rowStar?: RowStar<T>;
