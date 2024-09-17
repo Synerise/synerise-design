@@ -298,8 +298,10 @@ const Filter = ({
         {texts?.overwritten?.filterTitle ? (
           <S.FilterTitle>{texts.overwritten.filterTitle}</S.FilterTitle>
         ) : (
-          <S.MatchingWrapper>
-            <div>{matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}</div>
+          <S.MatchingAndConditionsWrapper>
+            <S.MatchingWrapper>
+              {matching && <Matching {...matching} texts={text.matching} readOnly={readOnly} />}
+            </S.MatchingWrapper>
             {!!maxConditionsLimit && (
               <S.ConditionsLimit>
                 {text.conditionsLimit}:{' '}
@@ -308,7 +310,7 @@ const Filter = ({
                 </S.ConditionsLimitResults>
               </S.ConditionsLimit>
             )}
-          </S.MatchingWrapper>
+          </S.MatchingAndConditionsWrapper>
         )}
 
         {renderHeaderRightSide && (
