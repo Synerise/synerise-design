@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.8...@synerise/ds-table@0.57.0) (2024-09-17)
+
+
+### Features
+
+* **storybook7:** table stories ([e90a78b](https://github.com/synerise/synerise-design/commit/e90a78bc5673f1869e0cd9ffd98c9f1f82bf148e))
+
+
+
+
+
 ## [0.56.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.56.7...@synerise/ds-table@0.56.8) (2024-09-13)
 
 

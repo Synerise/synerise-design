@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.17.0...storybook7@0.18.0) (2024-09-17)
+
+
+### Features
+
+* **storybook7:** items roll stories ([04f1d95](https://github.com/Synerise/synerise-design/commit/04f1d95b5b8f62c1e1a881f31ec8f70ae87bae88))
+* **storybook7:** table stories ([e90a78b](https://github.com/Synerise/synerise-design/commit/e90a78bc5673f1869e0cd9ffd98c9f1f82bf148e))
+
+
+
+
+
 # [0.17.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.16.0...storybook7@0.17.0) (2024-09-13)
 
 
