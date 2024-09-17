@@ -35,7 +35,7 @@
   "dependencies": {
     "@synerise/ds-tooltip": "0.14.2",
     "classnames": "2.3.2",
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
