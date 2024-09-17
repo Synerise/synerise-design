@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { NOOP } from '@synerise/ds-utils';
 
 import { TreeMenuProps } from './TreeMenu.types';

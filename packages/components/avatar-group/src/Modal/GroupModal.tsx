@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ModalProxy from '@synerise/ds-modal';
 import { VirtualTable, TableCell } from '@synerise/ds-table';
 import Avatar from '@synerise/ds-avatar';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { groupBy, merge } from 'lodash';
 import { DSColumnType, OnSortFn } from '../Table.types';
 

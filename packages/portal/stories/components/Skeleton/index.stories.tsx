@@ -1,5 +1,5 @@
 import { boolean, number, select } from '@storybook/addon-knobs';
-import * as React from 'react';
+import React from 'react';
 import Skeleton from '@synerise/ds-skeleton';
 
 

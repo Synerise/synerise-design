@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 import Button from 'antd/lib/button';

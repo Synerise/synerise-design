@@ -1,5 +1,5 @@
 import { GroupProps } from 'antd/es/input';
-import * as React from 'react';
+import React from 'react';
 
 export interface Props extends GroupProps {
   label?: React.ReactNode;

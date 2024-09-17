@@ -1,5 +1,5 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import * as React from 'react';
+import React from 'react';
 import Logic from '../Logic';
 import userEvent from '@testing-library/user-event';
 

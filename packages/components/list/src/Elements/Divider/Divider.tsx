@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Divider from '@synerise/ds-divider';
 
 import * as S from './Divider.styles';

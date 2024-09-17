@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import Icon, { EditM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';

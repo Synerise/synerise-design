@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RowSelection } from '../../Table.types';
 import { GroupColumnsType, GroupType } from '../GroupTable.types';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Modal from '@synerise/ds-modal';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowLeftCircleM } from '@synerise/ds-icon';

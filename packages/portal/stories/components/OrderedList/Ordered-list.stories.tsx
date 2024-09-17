@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import OrderedList from '@synerise/ds-ordered-list';
 import { boolean, select, text } from '@storybook/addon-knobs';

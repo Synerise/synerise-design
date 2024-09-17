@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { ClickM } from '@synerise/ds-icon';
 import { Text } from '@synerise/ds-typography';
 import { theme } from '@synerise/ds-core';

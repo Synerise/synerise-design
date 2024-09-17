@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import MainButton from './Button';
 import { Props as ButtonProps } from './Button.types';
 import CheckboxButton from './Checkbox/Checkbox';

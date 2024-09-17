@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useBreakpoint } from '@synerise/ds-utils';
 import { DimensionsWithBreakpoint } from '@synerise/ds-utils/dist/useBreakpoint/useBreakpoint';
 import * as S from './Grid.styles';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon';
 

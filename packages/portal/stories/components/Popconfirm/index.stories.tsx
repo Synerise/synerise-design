@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { text, boolean, select, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 

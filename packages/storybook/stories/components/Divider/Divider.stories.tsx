@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Divider from '@synerise/ds-divider';

@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import * as React from 'react';
+import React from 'react';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import { IconContainer } from '@synerise/ds-icon';
 import { ItemSize } from '../MenuItem.types';

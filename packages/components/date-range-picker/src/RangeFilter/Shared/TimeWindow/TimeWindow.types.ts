@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { WrappedComponentProps } from 'react-intl';
 
 import type { TimePickerProps } from '@synerise/ds-time-picker';

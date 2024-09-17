@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './RangeSummary.styles';
 import { RangeSummaryProps } from './RangeSummary.types';
 import { DayKey } from '../TimeWindow.types';

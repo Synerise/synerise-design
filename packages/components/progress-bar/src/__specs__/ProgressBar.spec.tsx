@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ProgressBar from '../index';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 

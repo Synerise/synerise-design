@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FixedSizeList } from 'react-window';
 
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';

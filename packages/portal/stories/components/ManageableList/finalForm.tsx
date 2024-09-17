@@ -4,7 +4,7 @@ import InputNumber from '@synerise/ds-input-number';
 import { TextArea } from '@synerise/ds-input';
 import Radio from '@synerise/ds-radio';
 import Form from '@synerise/ds-form';
-import * as React from 'react';
+import React from 'react';
 import ManageableList from '@synerise/ds-manageable-list';
 import { action } from '@storybook/addon-actions';
 

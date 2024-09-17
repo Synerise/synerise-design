@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ListItem from '@synerise/ds-list-item';
 import DSFlag from '@synerise/ds-flag';
 

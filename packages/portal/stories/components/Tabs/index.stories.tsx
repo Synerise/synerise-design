@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';

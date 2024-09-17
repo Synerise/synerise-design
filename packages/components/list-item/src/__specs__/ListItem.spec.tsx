@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import ListItem from '../ListItem';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';

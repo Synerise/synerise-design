@@ -1,5 +1,5 @@
 import { BooleanM, CalendarM, HashM, ListM, TextM } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 
 export const OPERATORS_TEXTS = {
   buttonLabel: 'Choose',

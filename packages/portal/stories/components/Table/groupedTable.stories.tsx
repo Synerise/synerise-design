@@ -2,7 +2,7 @@ import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
 import Table, { ItemsMenu, TableCell } from '@synerise/ds-table';
-import * as React from 'react';
+import React from 'react';
 import { COLUMNS, DATA_SOURCE, EMPTY_VIEW, VIEWS, CATEGORIES } from './content/groupedTable.data';
 import Button from '@synerise/ds-button';
 import Icon, {
@@ -20,7 +20,7 @@ import Icon, {
   VarTypeNumberM,
 } from '@synerise/ds-icon';
 import ColumnManager, { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager';
-import * as moment from 'moment';
+import moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import { GROUP_BY } from '@synerise/ds-column-manager/dist/ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import Search from '@synerise/ds-search/dist/Search';

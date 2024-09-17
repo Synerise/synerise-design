@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { fireEvent } from '@testing-library/dom';
 import { RenderResult } from '@testing-library/react';
 

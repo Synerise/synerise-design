@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as copy from 'copy-to-clipboard';
+import React from 'react';
+import copy from 'copy-to-clipboard';
 import { DuplicateS } from '@synerise/ds-icon';
 
 import CopyAction from '../../CopyAction/CopyAction';

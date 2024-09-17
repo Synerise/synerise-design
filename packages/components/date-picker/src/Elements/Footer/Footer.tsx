@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { injectIntl } from 'react-intl';
 import { v4 as uuid } from 'uuid';
 import Button from '@synerise/ds-button';

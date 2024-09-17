@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SubtleFieldProps, SubtleFormSubComponents } from './SubtleForm.types';
 import { SubtleTextAreaProps } from './Elements/TextArea/TextArea.types';
 import { SubtleSelectProps } from './Elements/Select/Select.types';

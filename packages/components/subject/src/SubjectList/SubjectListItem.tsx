@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
 import { SubjectItem } from '../Subject.types';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { InfoM } from '@synerise/ds-icon';
 

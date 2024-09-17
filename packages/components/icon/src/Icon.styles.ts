@@ -1,5 +1,5 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
-import * as React from 'react';
+import React from 'react';
 
 export const defaultSize = 24;
 
@@ -24,9 +24,11 @@ export const IconContainer = styled.div<Props>`
         width: ${props.size || defaultSize}px;
         height: ${props.size || defaultSize}px;
         ${props.onClick && 'cursor: pointer;'};
-        ${props.stroke &&
+        ${
+          props.stroke &&
           css`
             stroke: ${props.color};
-          `};
+          `
+        };
       `};
 `;

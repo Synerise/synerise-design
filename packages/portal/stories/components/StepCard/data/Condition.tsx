@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState, useCallback, ReactText, FC } from 'react';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';

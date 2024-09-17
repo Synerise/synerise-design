@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Wizard from '@synerise/ds-wizard';
 import { ObjectAvatar } from '@synerise/ds-avatar';

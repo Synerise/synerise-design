@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { GroupSettings } from '../ColumnManager.types';
 import { Column } from '../ColumnManagerItem/ColumManagerItem.types';
 

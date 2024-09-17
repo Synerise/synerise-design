@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { select, boolean, text } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';

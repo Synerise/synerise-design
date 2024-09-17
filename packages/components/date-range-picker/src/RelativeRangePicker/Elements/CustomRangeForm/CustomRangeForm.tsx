@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import set from 'ramda/src/set';
 import lensPath from 'ramda/src/lensPath';
 import { Props } from './CustomRangeForm.types';

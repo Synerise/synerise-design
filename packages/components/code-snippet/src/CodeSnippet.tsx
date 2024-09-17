@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import InlineCode from './CodeTypes/InlineCode/InlineCode';
 import SingleCode from './CodeTypes/SingleCode/SingleCode';

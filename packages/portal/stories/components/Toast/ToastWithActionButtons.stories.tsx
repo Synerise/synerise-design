@@ -4,7 +4,7 @@ import Icon, {
   InfoFillM,
   WarningFillM,
 } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';
 import UnorderedList from '@synerise/ds-unordered-list';

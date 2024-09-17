@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Subject from '@synerise/ds-subject';
 import { AggregateM, NotificationsM, VarTypeStringM, WebhookM } from '@synerise/ds-icon';

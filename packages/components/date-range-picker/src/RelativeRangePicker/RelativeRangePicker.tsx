@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import * as S from './RelativeRangePicker.styles';
 import * as CONST from '../constants';

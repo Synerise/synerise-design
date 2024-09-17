@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Alert from '@synerise/ds-alert';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';

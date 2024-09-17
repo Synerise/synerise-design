@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import hljs from 'highlight.js/lib/core';
 import * as S from './Highlight.styles';
 import { HighlightProps } from './Highlight.types';

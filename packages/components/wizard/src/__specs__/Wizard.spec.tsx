@@ -1,6 +1,6 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { screen } from '@testing-library/react';
-import * as React from 'react';
+import React from 'react';
 import Wizard from '../Wizard';
 import userEvent from '@testing-library/user-event';
 

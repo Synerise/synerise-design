@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AntdSwitch, { SwitchProps } from 'antd/lib/switch';
 import Avatar, { ObjectAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';

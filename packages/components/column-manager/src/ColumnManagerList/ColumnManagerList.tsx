@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import * as S from './ColumnManager.style';
 import ColumnManagerItem from '../ColumnManagerItem/ColumnManagerItem';

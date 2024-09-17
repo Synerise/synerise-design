@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { ArrowDownCircleM, CloseM, DuplicateM, OptionHorizontalM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';

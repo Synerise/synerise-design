@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useDataFormat } from '../hooks';
 import { NumberToFormatOptions } from '../types';

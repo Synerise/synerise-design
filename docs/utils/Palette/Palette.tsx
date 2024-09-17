@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax

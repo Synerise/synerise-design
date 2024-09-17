@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import * as copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';

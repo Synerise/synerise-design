@@ -1,5 +1,5 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import * as React from 'react';
+import React from 'react';
 import IconAlert from '../IconAlert/IconAlert';
 import Icon, { AnonymousM } from '@synerise/ds-icon';
 

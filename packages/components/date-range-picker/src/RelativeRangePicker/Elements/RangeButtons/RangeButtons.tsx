@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from '../../RelativeRangePicker.styles';
 import { Props } from './RangeButtons.types';
 import { isLifetime } from '../RangeDropdown/RangeDropdown';

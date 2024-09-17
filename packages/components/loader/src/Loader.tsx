@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { LoaderProps } from './Loader.types';
 import * as S from './Loader.styles';
 

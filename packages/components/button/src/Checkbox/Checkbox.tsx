@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { CheckboxIndeterminateM, CheckboxSelectedFillM } from '@synerise/ds-icon';
 
 import Button from '../Button';

@@ -1,7 +1,7 @@
 import { remapCopyValueFromText, simpleText } from '../dataset';
 import Menu from '@synerise/ds-menu';
 import { ItemWithoutHover } from '../stories.styles';
-import * as React from 'react';
+import React from 'react';
 import { attachKnobsToDataSource } from '../index.stories';
 
 const withoutHover = () => {

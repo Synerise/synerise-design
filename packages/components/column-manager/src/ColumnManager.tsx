@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import Typography from 'antd/lib/typography';
 import Drawer from '@synerise/ds-drawer';

@@ -1,5 +1,5 @@
 import styled, { css, SimpleInterpolation } from 'styled-components';
-import * as React from 'react';
+import React from 'react';
 import { FLAG_SIZE_RATIO } from './Flag';
 
 type Props = {

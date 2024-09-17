@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Condition from '@synerise/ds-condition';
 import { withState } from '@dump247/storybook-state';
 import Icon, { Add3M, VarTypeStringM } from '@synerise/ds-icon';

@@ -14,7 +14,7 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
-import * as React from 'react';
+import React from 'react';
 import { dataSource } from './content/tabletree.data';
 import Checkbox from '@synerise/ds-checkbox';
 import { renderWithIconInHeaders } from './helpers/helpers';

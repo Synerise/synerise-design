@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ExtendedAntdSwitchComponent, simpleText } from '../dataset';
 import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
 

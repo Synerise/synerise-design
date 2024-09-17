@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { LaptopM, MobileM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';

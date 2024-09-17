@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Input } from '@synerise/ds-input';
 import Icon, { Add3M } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';

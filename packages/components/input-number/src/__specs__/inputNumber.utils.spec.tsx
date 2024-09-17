@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { formatNumber, parseFormattedNumber } from '../utils/inputNumber.utils';
 import { renderHook } from '@testing-library/react-hooks';
 import { DataFormatNotationType, useDataFormat } from '@synerise/ds-data-format';

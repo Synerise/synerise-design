@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import OverlayExample1 from './OverlayExample1';
 import { useOnClickOutside } from '@synerise/ds-utils';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IconProps } from '@synerise/ds-icon';
 import { IconTooltipCell } from '@synerise/ds-table/dist/Cell';
 

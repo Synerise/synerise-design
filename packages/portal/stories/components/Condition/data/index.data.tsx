@@ -1,5 +1,5 @@
 import { ExpressionM, FolderM, NotificationsM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 import { v4 as uuid } from 'uuid';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((i, index) => ({

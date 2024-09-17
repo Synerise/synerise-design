@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ButtonProps } from '@synerise/ds-button';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';

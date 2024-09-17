@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ColumnTitleProps } from 'antd/lib/table/interface';
 import { DSColumnType, OnSortFn } from '../Table.types';
 import { SortStateAPI } from './useSortState';

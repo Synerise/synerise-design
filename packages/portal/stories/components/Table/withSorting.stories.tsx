@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import faker from 'faker';
 import { select, text, number } from '@storybook/addon-knobs';
 import Table from '@synerise/ds-table';

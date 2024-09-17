@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Modal, { buildModalFooter } from "@synerise/ds-modal/dist/Modal";
 import Button from '@synerise/ds-button';
 import { propsWithKnobs } from '../index.stories';

@@ -1,7 +1,7 @@
 import { VirtualTable } from '@synerise/ds-table';
 import faker from 'faker';
 import Table from '@synerise/ds-table';
-import * as React from 'react';
+import React from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import { boolean, number, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';

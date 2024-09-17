@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { select, boolean, number } from '@storybook/addon-knobs';
 import { v4 as uuid } from 'uuid';
 

@@ -1,19 +1,10 @@
-import * as React from 'react';
+import React, { ReactText, useEffect, useRef, useState } from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { debounce } from 'lodash';
-import { ReactText, useEffect, useRef } from 'react';
 import { InputProps } from '../../Factors.types';
 
-const NumberInput: React.FC<InputProps> = ({
-  error,
-  value,
-  onChange,
-  texts,
-  opened,
-  onDeactivate,
-  readOnly = false,
-}) => {
-  const [localValue, setLocalValue] = React.useState<string | number | undefined>(value as number);
+const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, readOnly = false }: InputProps) => {
+  const [localValue, setLocalValue] = useState<string | number | undefined>(value as number);
   const onChangeRef = useRef(onChange);
 
   useEffect(() => {

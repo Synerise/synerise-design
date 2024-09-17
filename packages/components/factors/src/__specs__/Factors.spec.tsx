@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { VarTypeStringM } from '@synerise/ds-icon';
 import Factors from './../Factors';
 import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';

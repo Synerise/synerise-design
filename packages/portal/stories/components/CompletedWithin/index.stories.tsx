@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import CompletedWithin from '@synerise/ds-completed-within';
 import { withState } from '@dump247/storybook-state';

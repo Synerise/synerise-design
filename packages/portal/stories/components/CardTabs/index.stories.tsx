@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import range from 'lodash/range';
 import CardTabs from '@synerise/ds-card-tabs';
 import { withState } from '@dump247/storybook-state';

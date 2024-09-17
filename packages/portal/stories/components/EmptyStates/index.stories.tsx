@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import EmptyStates from '@synerise/ds-empty-states';
 import { boolean, select, text} from '@storybook/addon-knobs';

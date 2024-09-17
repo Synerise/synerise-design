@@ -1,7 +1,7 @@
 import { FolderM, FileM } from '@synerise/ds-icon';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import  { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
-import * as React from 'react';
+import React from 'react';
 import { theme } from '@synerise/ds-core';
 
 import avatarImage from '../Avatar/av-anonym-004.png';

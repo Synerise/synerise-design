@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { XYCoord } from 'dnd-core';
 import Icon, { DragHandleM } from '@synerise/ds-icon';

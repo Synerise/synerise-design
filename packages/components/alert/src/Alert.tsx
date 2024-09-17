@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './style/index.less';
 import Icon, { Check2M, Close2M, NotificationsM } from '@synerise/ds-icon';
 

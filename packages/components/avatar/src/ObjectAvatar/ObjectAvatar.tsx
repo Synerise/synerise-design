@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { MailM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 

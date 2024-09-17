@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';

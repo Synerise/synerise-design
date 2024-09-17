@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import ActionArea from '@synerise/ds-action-area';
 import { action } from '@storybook/addon-actions';

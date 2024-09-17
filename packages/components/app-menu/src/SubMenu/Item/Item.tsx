@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 import SubMenuContext from '../SubMenuContext/SubMenuContext';
 import * as S from './Item.styles';
 import { ItemProps, SubComponents } from './Item.types';
-
 
 const Item: React.FC<ItemProps> & SubComponents = ({ children, active }) => {
   const subMenuContext = React.useContext(SubMenuContext);

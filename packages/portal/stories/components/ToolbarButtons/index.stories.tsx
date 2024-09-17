@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './ToolbarButtons.styles';
 import Tooltip from '@synerise/ds-tooltip';
 import Button from '@synerise/ds-button';

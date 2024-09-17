@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Cruds from '@synerise/ds-cruds';
 import { action } from '@storybook/addon-actions';

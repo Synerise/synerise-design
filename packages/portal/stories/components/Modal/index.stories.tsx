@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 import Modal from '@synerise/ds-modal';

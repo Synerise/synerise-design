@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Badge from '@synerise/ds-badge';

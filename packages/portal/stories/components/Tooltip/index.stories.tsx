@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { boolean, text, select, number } from '@storybook/addon-knobs';
 
 import Tooltip from '@synerise/ds-tooltip';

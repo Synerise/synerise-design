@@ -1,7 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import Select from 'antd/lib/select';
 import { ThemeProps } from '@synerise/ds-core';
-import * as React from 'react';
+import React from 'react';
 import { Label as DSLabel } from '@synerise/ds-input';
 import { Props } from './Select.types';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Footer from '@synerise/ds-footer';
 import Button from '@synerise/ds-button';
 import Icon, { AcademyM, ChatM, LifebuoyM } from '@synerise/ds-icon';

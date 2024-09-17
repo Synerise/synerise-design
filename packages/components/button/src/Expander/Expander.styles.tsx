@@ -1,5 +1,5 @@
 import styled, { keyframes, css, FlattenSimpleInterpolation, Keyframes } from 'styled-components';
-import * as React from 'react';
+import React from 'react';
 import { ThemeProps } from '@synerise/ds-core';
 import { IconContainer } from '@synerise/ds-icon';
 import Button from '../Button';

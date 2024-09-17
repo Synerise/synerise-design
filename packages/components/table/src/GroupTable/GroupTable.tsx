@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { flow } from 'lodash';
 import Table from 'antd/lib/table';
 import { DSTableProps, DSColumnType } from '../Table.types';

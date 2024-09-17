@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon, { InfoFillS } from '@synerise/ds-icon';
 

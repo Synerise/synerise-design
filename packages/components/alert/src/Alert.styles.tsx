@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Alert from 'antd/lib/alert';
 import styled, { css, FlattenInterpolation, ThemeProps } from 'styled-components';
 import { ThemePropsVars } from '@synerise/ds-core';

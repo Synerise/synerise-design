@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Field, Form as FinalForm } from 'react-final-form';
 
 import InputNumber from "@synerise/ds-input-number";

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IntlShape, WrappedComponentProps } from 'react-intl';
 import { GridTexts } from '../Grid/Grid.types';
 import { DayKey } from '../TimeWindow.types';

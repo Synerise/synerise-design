@@ -20,13 +20,13 @@ import Icon, {
 } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
-import * as React from 'react';
+import React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import ColumnManager from '@synerise/ds-column-manager/dist/ColumnManager';
 import { SavedView } from '@synerise/ds-column-manager/dist/ColumnManager.types';
-import * as moment from 'moment';
+import moment from 'moment';
 import ItemFilter from '@synerise/ds-item-filter/dist/ItemFilter';
 import Result from '@synerise/ds-result';
 import ModalProxy from '@synerise/ds-modal';

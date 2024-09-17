@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { text, number, boolean, select, object } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import InputNumber from '@synerise/ds-input-number';

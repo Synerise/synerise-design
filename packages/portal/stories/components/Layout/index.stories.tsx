@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import range from 'lodash/range';
 import { boolean, number } from '@storybook/addon-knobs';
 

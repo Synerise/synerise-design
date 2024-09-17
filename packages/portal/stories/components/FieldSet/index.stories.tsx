@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import FieldSet from '@synerise/ds-field-set';
 import { boolean, text } from '@storybook/addon-knobs';

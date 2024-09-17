@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ColumnType } from 'antd/lib/table';
 import { DSTableProps, DSColumnType } from '../../Table.types';
 

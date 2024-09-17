@@ -3,7 +3,7 @@ import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import Icon, { Add3M, AngleDownS, BookM, HelpM, NotificationsActiveM } from '@synerise/ds-icon';
 import Navbar from '@synerise/ds-navbar';
-import * as React from 'react';
+import React from 'react';
 
 const logoSrc = 'https://app.synerise.com/spa/assets/images/logo.svg';
 

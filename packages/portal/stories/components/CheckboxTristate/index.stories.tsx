@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import CheckboxTristate, { CheckboxTristateChangeEvent } from '@synerise/ds-checkbox-tristate';
 import { select, text } from '@storybook/addon-knobs';
 

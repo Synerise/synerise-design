@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import TagsList, { AddModal, DEFAULT_STEP, DEFAULT_ITEMS_VISIBLE } from '@synerise/ds-tagslist';
 import { TagsListActions, TagsListItem } from '@synerise/ds-tagslist/dist/TagsList.types';

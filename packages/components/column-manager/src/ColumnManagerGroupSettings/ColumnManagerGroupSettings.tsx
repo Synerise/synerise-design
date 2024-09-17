@@ -1,5 +1,5 @@
 import Modal from '@synerise/ds-modal';
-import * as React from 'react';
+import React from 'react';
 import Select from '@synerise/ds-select';
 import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Stepper from '@synerise/ds-stepper';
 import { withState } from '@dump247/storybook-state';

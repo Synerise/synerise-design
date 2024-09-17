@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './DescriptionRow.styles';
 import Star from './Star';
 import Copy from './Copy';

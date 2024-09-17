@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import RangeForm from './RangeForm/RangeForm';
 import { RANGE_DISPLAY_MODES } from './RangeForm/RangeForm.constants';
 import { getDateFromDayValue, getDefaultFilterForLimitMode } from '../utils';

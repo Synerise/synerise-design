@@ -1,5 +1,5 @@
 import ColumnManagerGroupSettings from '../ColumnManagerGroupSettings/ColumnManagerGroupSettings';
-import * as React from 'react';
+import React from 'react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { GroupSettingsProps, GROUP_BY } from '../ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';
 import { fireEvent } from '@testing-library/react';

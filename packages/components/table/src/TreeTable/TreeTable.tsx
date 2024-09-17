@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 
 import classNames from 'classnames';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { Title } from '@synerise/ds-typography';
 import { LogicProps, LogicSubComponents } from './Logic.types';

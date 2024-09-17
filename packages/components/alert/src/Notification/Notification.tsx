@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { notification } from 'antd';
 import { NotificationInstance } from 'antd/lib/notification';

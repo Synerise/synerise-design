@@ -1,5 +1,5 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import * as React from 'react';
+import React from 'react';
 import Filter from '../Filter';
 import { fireEvent } from '@testing-library/dom';
 import Button from '@synerise/ds-button';

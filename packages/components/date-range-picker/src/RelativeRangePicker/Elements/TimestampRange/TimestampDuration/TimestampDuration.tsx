@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
 import * as S from '../../../RelativeRangePicker.styles';

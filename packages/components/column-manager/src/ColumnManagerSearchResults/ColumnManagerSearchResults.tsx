@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Result from '@synerise/ds-result';
 import * as S from '../ColumnManagerList/ColumnManager.style';
 import { SearchResults } from './ColumnMangerSearchResults.styles';

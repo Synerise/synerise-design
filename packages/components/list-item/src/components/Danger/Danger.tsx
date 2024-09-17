@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import * as S from './Danger.styles';
 import type { BasicItemProps } from '../../ListItem.types';

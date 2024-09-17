@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Factors from '@synerise/ds-factors';
 import { withState } from '@dump247/storybook-state';

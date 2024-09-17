@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InputProps } from '@synerise/ds-input';
 
 export interface SearchBarProps extends Pick<InputProps, 'handleInputRef'> {

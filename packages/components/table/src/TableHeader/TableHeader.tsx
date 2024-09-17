@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import { useDataFormat } from '@synerise/ds-data-format';
 import * as S from '../Table.styles';

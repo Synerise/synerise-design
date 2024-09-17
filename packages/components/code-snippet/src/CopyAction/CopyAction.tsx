@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';

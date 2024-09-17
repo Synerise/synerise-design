@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ValuesProps } from './Values.types';
 import * as S from '../../Collector.styles';
 

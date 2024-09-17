@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Collector, { CollectorValue } from '@synerise/ds-collector';
 import { boolean, text, select } from '@storybook/addon-knobs';

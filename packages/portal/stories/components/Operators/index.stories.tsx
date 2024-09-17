@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Operators from '@synerise/ds-operators';
 import { withState } from '@dump247/storybook-state';

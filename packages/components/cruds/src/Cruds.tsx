@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AddS, CloseS, DragHandleM, DuplicateS, EditS, TrashS, ArrowDownS, ArrowUpS, ShowM } from '@synerise/ds-icon';
 import * as S from './Cruds.styles';
 import SingleAction from './SingleAction';

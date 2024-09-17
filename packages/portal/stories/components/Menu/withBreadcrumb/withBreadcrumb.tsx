@@ -1,6 +1,6 @@
 import Menu from '@synerise/ds-menu';
 import { array, text } from '@storybook/addon-knobs';
-import * as React from 'react';
+import React from 'react';
 import { getDefaultProps } from '../index.stories';
 
 const withBreadcrumb = () => {

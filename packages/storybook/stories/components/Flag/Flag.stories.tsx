@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import DSFlag, { countryCodes } from '@synerise/ds-flag';
 import { FlagWrapper, FlagItem } from './Flag.stories.styles';

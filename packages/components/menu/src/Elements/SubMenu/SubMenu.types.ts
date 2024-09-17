@@ -1,5 +1,5 @@
 import { MenuProps } from 'antd/lib/menu';
-import * as React from 'react';
+import React from 'react';
 import { MenuItemProps } from '../Item/MenuItem.types';
 
 export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {

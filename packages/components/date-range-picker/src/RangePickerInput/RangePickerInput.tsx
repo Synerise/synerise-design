@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';

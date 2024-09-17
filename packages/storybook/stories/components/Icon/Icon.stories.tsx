@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Icon from '@synerise/ds-icon';
 import type { IconProps } from '@synerise/ds-icon';

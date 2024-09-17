@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { FC } from 'react';
+import React from 'react';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import * as S from '../CardTab.styles';
 import { prefixType } from '../CardTab.types';
 import { Props } from './CardTabPrefix.types';
 
-const CardTabPrefix: FC<Props> = ({ prefix, draggable, tag, prefixIcon, colorDot }) => {
+const CardTabPrefix = ({ prefix, draggable, tag, prefixIcon, colorDot }: Props) => {
   const className = prefix === prefixType.HANDLE ? 'persistent' : '';
   return (
     <S.CardTabPrefix data-testid="card-tab-prefix">

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import IconPicker from '@synerise/ds-icon-picker';
 import Button from '@synerise/ds-button';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export type NavbarProps = {
   title?: React.ReactNode | React.ReactText;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox/Checkbox';
 import { CheckboxTristateChangeEvent, CheckboxTristateProps } from './CheckboxTristate.types';

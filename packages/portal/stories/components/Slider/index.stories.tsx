@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean, number, select, object } from '@storybook/addon-knobs';
 import { defaultColorsOrder } from '@synerise/ds-core';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './Navbar.styles';
 import { NavbarProps } from './Navbar.types';
 

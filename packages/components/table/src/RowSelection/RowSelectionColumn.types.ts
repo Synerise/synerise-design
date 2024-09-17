@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TableProps } from 'rc-table/lib/Table';
 import { DSTableProps, RowSelection } from '../Table.types';
 

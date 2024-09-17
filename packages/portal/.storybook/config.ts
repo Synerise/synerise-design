@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import '@formatjs/intl-relativetimeformat/polyfill';
 import { global } from "@storybook/global";
 import { configure, addDecorator, addParameters, storiesOf, DecoratorFn } from '@storybook/react';

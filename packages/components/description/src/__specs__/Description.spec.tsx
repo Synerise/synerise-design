@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Description from '../Description';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { DescriptionRow } from '../index';

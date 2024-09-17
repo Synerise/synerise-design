@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';
 
 import * as S from './NavigableItems.styles';

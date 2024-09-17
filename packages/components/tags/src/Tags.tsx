@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';

@@ -1,5 +1,5 @@
 import { COLUMNS_WITH_AVATARS_LINK, COLUMNS_WITH_SKELETON, RELATIONS } from './content/withAllCellTypes.data';
-import * as React from 'react';
+import React from 'react';
 import faker from 'faker';
 import { Column, renderWithIconInHeaders } from './helpers/helpers';
 import { boolean, select, text } from '@storybook/addon-knobs';

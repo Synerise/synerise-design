@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';

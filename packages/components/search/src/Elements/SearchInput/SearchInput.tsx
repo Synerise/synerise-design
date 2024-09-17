@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import Input from 'antd/lib/input';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';

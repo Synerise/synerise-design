@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { decorator, getDefaultProps } from '../index.stories';
 import { text } from '@storybook/addon-knobs';
 import * as S from './withUserInfo.styles';

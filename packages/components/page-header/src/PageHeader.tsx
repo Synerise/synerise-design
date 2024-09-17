@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { PageHeaderProps } from './PageHeader.types';
 import * as S from './PageHeader.styles';

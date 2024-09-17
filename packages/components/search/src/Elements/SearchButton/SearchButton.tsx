@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 

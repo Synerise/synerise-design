@@ -1,6 +1,6 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
 import UnorderedList from '@synerise/ds-unordered-list';
-import * as React from 'react';
+import React from 'react';
 import OrderedListSkeleton from '@synerise/ds-skeleton/dist/OrderedListSkeleton/OrderedListSkeleton';
 import OrderedList from '@synerise/ds-ordered-list';
 
