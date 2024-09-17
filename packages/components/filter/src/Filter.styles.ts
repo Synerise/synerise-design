@@ -23,9 +23,13 @@ export const FilterHeaderRightSide = styled.div`
   overflow-x: hidden;
 `;
 
-export const MatchingWrapper = styled.div`
+export const MatchingAndConditionsWrapper = styled.div`
   flex: 0 0 auto;
   margin-right: 24px;
+`;
+
+export const MatchingWrapper = styled.div`
+  text-wrap: nowrap;
 `;
 
 export const ConditionsLimit = styled.div`
