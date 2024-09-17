@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';

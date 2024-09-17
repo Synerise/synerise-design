@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
 import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
 import { action } from '@storybook/addon-actions';

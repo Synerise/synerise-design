@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { DataFormatConfig } from '../types';
 import { DataFormatConfigContext, DataFormatIntlsContext } from '../contexts';

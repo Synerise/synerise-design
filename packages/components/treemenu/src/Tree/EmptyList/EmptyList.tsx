@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { InformationNoSearchResultL } from '@synerise/ds-icon';
 import { Description } from '@synerise/ds-typography';
 import { theme } from '@synerise/ds-core';

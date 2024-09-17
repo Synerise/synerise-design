@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FilterElement } from '../IconPicker.types';
 
 export type ListProps = {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { legacyParse } from '@date-fns/upgrade/v2';
 import fnsFormat from '../../format';

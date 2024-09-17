@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import ItemPicker from '@synerise/ds-item-picker';
 import { boolean, select, text } from '@storybook/addon-knobs';

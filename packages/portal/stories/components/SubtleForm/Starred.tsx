@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { BorderLessInput, InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import Icon, { StarFillM, StarM } from '@synerise/ds-icon';

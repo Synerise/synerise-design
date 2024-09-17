@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import Status from '@synerise/ds-status';
 import { TagShape } from '@synerise/ds-tags';

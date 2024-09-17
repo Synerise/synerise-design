@@ -1,5 +1,5 @@
 import { copyable, remapCopyValueFromText } from '../dataset';
-import * as React from 'react';
+import React from 'react';
 import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
 
 const withCopyable = () => {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type startOf from './dateUtils/startOf';
 import type endOf from './dateUtils/endOf';
 

@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { UserAvatar } from '@synerise/ds-avatar';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as S from './ItemMeta.styles';
 import { Props } from './ItemMeta.types';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { CloseM, WarningFillM, Check3M, ErrorFillM } from '@synerise/ds-icon';
 import * as S from './BroadcastBar.styles';
 import { BroadcastBarTypes, Props } from './BroadcastBar.types';

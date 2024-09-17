@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { fireEvent, waitFor } from '@testing-library/react';
 import Select from '../Select';

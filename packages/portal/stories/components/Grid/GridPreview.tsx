@@ -1,7 +1,7 @@
 import { boolean } from '@storybook/addon-knobs';
 import Grid from '@synerise/ds-grid';
 import * as S from './Grid.styles';
-import * as React from 'react';
+import React from 'react';
 
 const GridPreview = () => (
   <S.FixedGrid visible={boolean('Show grid', true)}>

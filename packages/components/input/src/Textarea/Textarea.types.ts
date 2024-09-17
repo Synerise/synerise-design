@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
 import { ResizeProperty } from 'csstype';
 

@@ -1,5 +1,5 @@
 import { AlertProps } from 'antd/lib/alert';
-import * as React from 'react';
+import React from 'react';
 import { AlertType } from '../ColorSemantic/AlertSemanticColor.types';
 
 export type AlertTypes = Exclude<AlertType, 'informative'>;

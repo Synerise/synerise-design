@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Description, { DescriptionRow } from '@synerise/ds-description';
 import Status from '@synerise/ds-status';

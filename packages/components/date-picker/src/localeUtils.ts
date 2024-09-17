@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import MomentLocaleUtils from 'react-day-picker/moment';
 import type { LocaleUtils } from 'react-day-picker/types';
 

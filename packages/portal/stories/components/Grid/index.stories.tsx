@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Grid from '@synerise/ds-grid';
 import Description, { DescriptionRow } from '@synerise/ds-description';

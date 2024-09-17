@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './Stepper.styles';
 import { StepperProps, ORIENTATIONS, StepperSubComponents } from './Stepper.types';
 import Step from './Step/Step';

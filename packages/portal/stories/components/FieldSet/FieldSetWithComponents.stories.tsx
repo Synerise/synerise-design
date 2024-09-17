@@ -4,7 +4,7 @@ import FieldSet from '@synerise/ds-field-set';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import Button from '@synerise/ds-button';
 import Icon, { AddS, CheckS } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import { action } from '@storybook/addon-actions';
 import Radio from '@synerise/ds-radio';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
 import { CollectorTexts, CollectorValue } from '../../Collector.types';

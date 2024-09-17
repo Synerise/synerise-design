@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import onClickOutside from 'react-onclickoutside';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { focusWithArrowKeys } from '@synerise/ds-utils';

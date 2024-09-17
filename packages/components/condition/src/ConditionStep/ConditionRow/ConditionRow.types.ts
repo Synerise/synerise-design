@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FactorsProps, InputProps } from '@synerise/ds-factors/dist/Factors.types';
 import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
 import { ConditionProps, ConditionTexts } from '../../Condition.types';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { SearchM } from '@synerise/ds-icon';

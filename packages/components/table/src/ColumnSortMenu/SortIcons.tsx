@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withTheme } from 'styled-components';
 import Icon, { CheckS, SortAscendingM, SortDescendingM, ArrangeM, SortAzM, SortZaM } from '@synerise/ds-icon';
 import { ThemeProps } from '@synerise/ds-core';

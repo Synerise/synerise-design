@@ -5,7 +5,7 @@ import { ItemsMenu, TableCell } from '@synerise/ds-table';
 import Icon, { AddM, EditM, FileDownloadM, InfoFillS, TrashM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 import Table from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
-import * as React from 'react';
+import React from 'react';
 import { dataSource } from './content/expandable.data';
 import { renderWithIconInHeaders } from './helpers/helpers';
 

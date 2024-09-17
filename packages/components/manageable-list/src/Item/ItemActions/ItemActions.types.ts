@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AdditionalAction } from '../../ManageableList.types';
 import { ItemProps } from '../Item.types';
 

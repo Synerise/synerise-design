@@ -1,5 +1,5 @@
 import {text, boolean, select, number} from '@storybook/addon-knobs';
-import * as React from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Autocomplete from '@synerise/ds-autocomplete';
 import { EditableList } from '@synerise/ds-form';

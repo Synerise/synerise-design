@@ -7,7 +7,7 @@ import {
   isValidTextColor,
 } from '../utils';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import * as React from 'react';
+import React from 'react';
 import { fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup);

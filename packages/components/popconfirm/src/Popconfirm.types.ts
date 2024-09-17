@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { PopconfirmProps } from 'antd/lib/popconfirm';
 import { ConfirmMessageProps } from './ConfirmMessage/ConfirmMessage.types';
 

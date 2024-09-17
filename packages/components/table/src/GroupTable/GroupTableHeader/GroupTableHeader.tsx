@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Props } from './GroupTableHeader.types';
 
 function GroupTableHeader<T extends unknown>({ header, activeColumnKey, sortColumn }: Props<T>): JSX.Element {

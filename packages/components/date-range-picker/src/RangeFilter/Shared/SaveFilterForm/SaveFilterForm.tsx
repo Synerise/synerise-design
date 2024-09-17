@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import { RawInput } from '@synerise/ds-input';
 import Icon, { CheckM, CloseM } from '@synerise/ds-icon';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import Icon, {

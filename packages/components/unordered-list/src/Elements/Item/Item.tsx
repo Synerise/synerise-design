@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './Item.styles';
 import { ListProps, UnorderedListItem } from '../../Unordered-list.types';
 import UnorderedList from '../../Unordered-list';

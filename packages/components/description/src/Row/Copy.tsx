@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 
-import * as copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 import { useIntl } from 'react-intl';
 import * as S from './DescriptionRow.styles';
 import { CopyProps } from './Copy.types';

@@ -1,5 +1,5 @@
 import { ColumnsType } from 'antd/lib/table';
-import * as React from 'react';
+import React from 'react';
 import { GroupType as GroupByType } from '@synerise/ds-column-manager/dist/ColumnManager.types';
 
 export type SortOrderType = 'ascend' | 'descend' | boolean;

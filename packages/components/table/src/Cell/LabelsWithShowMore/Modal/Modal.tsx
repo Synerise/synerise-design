@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Modal from '@synerise/ds-modal';
 import SearchInput from '@synerise/ds-search/dist/Elements/SearchInput/SearchInput';
 import VirtualTable from '../../../VirtualTable/VirtualTable';

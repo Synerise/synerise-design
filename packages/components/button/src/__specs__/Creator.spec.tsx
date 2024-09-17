@@ -1,5 +1,5 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import * as React from 'react';
+import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { theme } from '@synerise/ds-core';
 

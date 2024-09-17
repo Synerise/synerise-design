@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { select, text, boolean, array, number } from '@storybook/addon-knobs';
 import { withState } from '@dump247/storybook-state';

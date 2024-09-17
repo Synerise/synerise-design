@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { injectIntl, WrappedComponentProps } from 'react-intl';
 import { range } from 'lodash';
 import { legacyParse } from '@date-fns/upgrade/v2';

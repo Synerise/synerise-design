@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useRef } from 'react';
 import { boolean } from '@storybook/addon-knobs';
 

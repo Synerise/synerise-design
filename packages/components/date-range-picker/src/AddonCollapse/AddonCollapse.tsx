@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import * as S from './AddonCollapse.styles';
 import { Props } from './AddonCollapse.types';

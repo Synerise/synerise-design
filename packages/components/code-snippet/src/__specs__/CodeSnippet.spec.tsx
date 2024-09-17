@@ -1,5 +1,5 @@
 import CodeSnippet from './../CodeSnippet';
-import * as React from 'react';
+import React from 'react';
 import { CodeSnippetType } from '../CodeSnippet.types';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 

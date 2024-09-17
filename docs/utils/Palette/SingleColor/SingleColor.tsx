@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Card from '@synerise/ds-card';
 import { hexToRgba } from '@synerise/ds-utils';
 // @ts-ignore

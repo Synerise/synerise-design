@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { escapeRegEx } from '@synerise/ds-utils';

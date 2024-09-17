@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
 import Filter from '@synerise/ds-filter';
 import { Tag, TagShape } from '@synerise/ds-tags';

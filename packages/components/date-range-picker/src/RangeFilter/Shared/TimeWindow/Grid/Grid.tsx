@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { range, rangeRight } from 'lodash';
 import { GridProps } from './Grid.types';
 import { Action, Header } from '../Header/Header';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
 import Badge from 'antd/lib/badge';
 import { macro } from '@synerise/ds-typography';

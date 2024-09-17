@@ -1,5 +1,5 @@
 import { text } from '@storybook/addon-knobs';
-import * as React from 'react';
+import React from 'react';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Menu from '@synerise/ds-menu';

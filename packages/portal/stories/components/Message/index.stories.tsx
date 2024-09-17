@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import message from '@synerise/ds-message';
 import Button from '@synerise/ds-button';

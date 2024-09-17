@@ -18,7 +18,7 @@ import { Tag } from '@synerise/ds-tags';
 import Avatar, { ObjectAvatar, UserAvatar } from '@synerise/ds-avatar';
 import Switch from '@synerise/ds-switch/dist/Switch';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
-import * as React from 'react';
+import React from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import { theme, DefaultColor, defaultColorsOrder } from '@synerise/ds-core';
 import { IconLabelCell, LabelsWithShowMore } from '@synerise/ds-table/dist/Cell';

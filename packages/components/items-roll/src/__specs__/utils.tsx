@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { FileDownloadM, FileTypeTableM } from '@synerise/ds-icon';
 
 import { ItemRollElement, ItemsRollProps } from '../ItemsRoll.types';

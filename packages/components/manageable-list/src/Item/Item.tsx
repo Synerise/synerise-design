@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ListType } from '../ManageableList.types';
 import ContentItem from './ContentItem/ContentItem';
 import SimpleItem from './SimpleItem/SimpleItem';

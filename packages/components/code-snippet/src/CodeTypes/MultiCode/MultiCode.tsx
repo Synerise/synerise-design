@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import AnimateHeight from 'react-animate-height';
-import * as copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 import Icon, { DuplicateS, ArrowDownCircleM } from '@synerise/ds-icon';
 import Scrollbar from '@synerise/ds-scrollbar';
 
@@ -68,10 +68,10 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   );
 
   const isButtonVisible = React.useMemo((): boolean => allRows > rows + 1, [rows, allRows]);
-  const extraHeightOption = React.useMemo((): number | string => (isButtonVisible ? initialContentHeight : 'auto'), [
-    isButtonVisible,
-    initialContentHeight,
-  ]);
+  const extraHeightOption = React.useMemo(
+    (): number | string => (isButtonVisible ? initialContentHeight : 'auto'),
+    [isButtonVisible, initialContentHeight]
+  );
 
   const multilineStructureContent = React.useMemo(
     () => (

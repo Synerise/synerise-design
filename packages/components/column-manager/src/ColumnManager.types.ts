@@ -1,5 +1,5 @@
 import { ItemFilterProps } from '@synerise/ds-item-filter/dist/ItemFilter.types';
-import * as React from 'react';
+import React from 'react';
 import { IntlFormatters } from 'react-intl';
 import { Column } from './ColumnManagerItem/ColumManagerItem.types';
 import { Range, GroupSettingsTexts } from './ColumnManagerGroupSettings/ColumnManagerGroupSettings.types';

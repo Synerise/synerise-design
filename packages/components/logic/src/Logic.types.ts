@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Matching from './Matching/Matching';
 
 export type LogicOperatorValue = 'AND' | 'OR' | string;

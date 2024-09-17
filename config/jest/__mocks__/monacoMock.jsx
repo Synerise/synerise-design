@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const MonacoEditor = React.forwardRef(({ onChange, value, 'data-testid': dataTestId }, ref) => {
   return (

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { cloneDeep } from 'lodash';
 import ButtonGroup from '@synerise/ds-button-group';
 import { injectIntl } from 'react-intl';

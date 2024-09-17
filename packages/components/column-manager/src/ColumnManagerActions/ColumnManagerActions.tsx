@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@synerise/ds-button';
 import Modal from '@synerise/ds-modal';
 import { Input, TextArea } from '@synerise/ds-input';

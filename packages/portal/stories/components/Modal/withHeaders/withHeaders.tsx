@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { propsWithKnobs, sizes } from '../index.stories';
 import { boolean, select, text } from '@storybook/addon-knobs';
 import * as S from './withHeaders.styles';

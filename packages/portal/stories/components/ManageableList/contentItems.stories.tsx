@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ManageableList from '@synerise/ds-manageable-list';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './FactorValue.style';
 import { FactorValueProps } from '../Factors.types';
 

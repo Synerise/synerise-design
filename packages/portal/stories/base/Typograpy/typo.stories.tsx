@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Typography, { Title, Text, Paragraph } from '@synerise/ds-typography';
 import Table from '@synerise/ds-table';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { EditS, DuplicateS, CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';

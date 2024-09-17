@@ -1,5 +1,5 @@
 import { boolean, select, text } from '@storybook/addon-knobs';
-import * as React from 'react';
+import React from 'react';
 import Icon, {
   Add3M, AngleDownS, BookM,
   Check3M, ErrorFillM, HelpM, NotificationsActiveM,

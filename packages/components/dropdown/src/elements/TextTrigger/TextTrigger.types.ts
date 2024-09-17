@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export type TextTriggerProps = {
   value: string | React.ReactNode | undefined;
@@ -7,5 +7,4 @@ export type TextTriggerProps = {
   onClick: () => void;
   onFocus?: () => void;
   expanded?: boolean;
-
 };

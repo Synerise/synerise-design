@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Label } from '@synerise/ds-typography';
 import '@synerise/ds-core/dist/js/style';
 import { defaultColorsOrder } from '@synerise/ds-core';

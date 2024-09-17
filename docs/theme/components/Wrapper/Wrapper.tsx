@@ -1,5 +1,5 @@
 import '../../index.less';
-import * as React from 'react';
+import React from 'react';
 import { DSProvider } from '@synerise/ds-core';
 
 interface Props {

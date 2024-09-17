@@ -1,6 +1,6 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import CompletedWithin from '../CompletedWithin';
-import * as React from 'react';
+import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 

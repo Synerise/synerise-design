@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import DSFlag, {countryCodes} from '@synerise/ds-flag';
 import { number, select } from '@storybook/addon-knobs';
 

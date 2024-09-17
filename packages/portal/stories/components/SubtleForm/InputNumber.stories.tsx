@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import Select from '@synerise/ds-select';
 import { Cities } from './dataset';

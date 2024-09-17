@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { text, boolean } from '@storybook/addon-knobs';
 import Switch from '@synerise/ds-switch';
 import markdown from '@/radio/README.md';

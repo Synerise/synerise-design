@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FormattedDate, FormattedTime } from 'react-intl';
 
 const ParsedDate: React.FC<{ date: Date }> = (props: { date: Date }) => {

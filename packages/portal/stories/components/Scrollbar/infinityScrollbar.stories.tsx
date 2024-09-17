@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { boolean, number } from '@storybook/addon-knobs';
 import faker from 'faker';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Label from '@synerise/ds-input/dist/Label/Label';
 import * as S from './Unordered-list.styles';
 import Item from './Elements/Item/Item';

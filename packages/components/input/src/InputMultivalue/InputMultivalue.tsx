@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './InputMultivalue.styles';
 import Value from './Elements/Value';
 import { Props } from './InputMultivalue.types';

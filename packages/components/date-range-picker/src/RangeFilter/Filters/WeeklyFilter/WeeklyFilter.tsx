@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { WeeklyFilterProps } from './WeeklyFilter.types';
 import * as S from '../../RangeFilter.styles';

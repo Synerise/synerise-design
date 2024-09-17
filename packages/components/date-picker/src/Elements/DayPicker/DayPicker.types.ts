@@ -1,5 +1,5 @@
 import { IntlShape } from 'react-intl';
-import * as React from 'react';
+import React from 'react';
 import { DayModifiers, Modifier, Modifiers } from 'react-day-picker/types/Modifiers';
 import MomentLocaleUtils from 'react-day-picker/moment';
 

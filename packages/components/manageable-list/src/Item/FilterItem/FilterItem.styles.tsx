@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import * as React from 'react';
+import React from 'react';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 

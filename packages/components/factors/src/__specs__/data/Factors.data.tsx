@@ -1,5 +1,5 @@
 import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 
 export const FACTORS_TEXTS = {
   datePicker: {

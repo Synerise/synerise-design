@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { flatten } from 'flat';
 import * as merge from 'deepmerge';

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as moment from 'moment';
+import React from 'react';
+import moment from 'moment';
 import ColumnManager from '@synerise/ds-column-manager';
 import { action } from '@storybook/addon-actions';
 import { Column } from '@synerise/ds-column-manager/dist/ColumnManagerItem/ColumManagerItem.types';

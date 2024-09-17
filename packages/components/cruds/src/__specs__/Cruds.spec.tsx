@@ -1,5 +1,5 @@
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import * as React from 'react';
+import React from 'react';
 import Cruds from '../Cruds';
 import { fireEvent } from '@testing-library/react';
 import { Settings2S } from '@synerise/ds-icon';

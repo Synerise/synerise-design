@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import AppMenu from '@synerise/ds-app-menu';
 import Icon, {

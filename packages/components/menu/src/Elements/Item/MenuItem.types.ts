@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { MenuProps } from 'antd/lib/menu';
 import type { TriggerProps } from 'rc-trigger';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';

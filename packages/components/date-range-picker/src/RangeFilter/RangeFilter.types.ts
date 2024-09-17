@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IntlShape } from 'react-intl';
 import { SavedFilter } from './Shared/FilterDropdown/FilterDropdown.types';
 import { DateLimitMode, RangeDisplayMode } from './Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';

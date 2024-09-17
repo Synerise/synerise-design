@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { BadgeStatus } from '@synerise/ds-badge';
 import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';

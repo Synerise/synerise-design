@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import {

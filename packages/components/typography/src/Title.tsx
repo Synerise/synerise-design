@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { H1, H2, H3, H4, H5, H6, H7 } from './CommonElements';
 import { Props } from './Title.types';

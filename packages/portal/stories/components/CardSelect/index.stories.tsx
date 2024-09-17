@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import faker from 'faker';
 import { select, number, boolean } from '@storybook/addon-knobs';
 import CardSelect from '@synerise/ds-card-select';

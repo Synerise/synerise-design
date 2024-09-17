@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon, { ArrowUpCircleM } from '@synerise/ds-icon';
 import { ButtonProps } from '@synerise/ds-button';
 import * as S from './BackToTopButton.styles';

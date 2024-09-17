@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './style/index.less';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, AngleUpS } from '@synerise/ds-icon';

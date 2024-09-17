@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';

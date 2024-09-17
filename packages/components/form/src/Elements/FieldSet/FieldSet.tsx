@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Divider from '@synerise/ds-divider';
 import * as S from './FieldSet.styles';
 import { FieldSetProps } from './FieldSet.types';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 // @ts-ignore
 import colors from '!less-vars-loader!@synerise/ds-core/src/style/colors.less';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Icon from '@synerise/ds-icon';
 import selectColorByLetter, { ColorObject } from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
 

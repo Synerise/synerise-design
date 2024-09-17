@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import 'rc-trigger/assets/index.less';
 import classNames from 'classnames';
 import { useTheme } from 'styled-components';
-import * as copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 import Trigger from 'rc-trigger';
 import { HoverEventHandler } from 'rc-menu/lib/interface';
 

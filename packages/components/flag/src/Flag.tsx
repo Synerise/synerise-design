@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './Flag.styles';
 import * as Flags from './icons';
 import { FlagProps } from './Flag.types';

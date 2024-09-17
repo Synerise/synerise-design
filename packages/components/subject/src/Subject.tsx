@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { ShowM } from '@synerise/ds-icon';
 import SubjectTrigger from './SubjectTrigger/SubjectTrigger';

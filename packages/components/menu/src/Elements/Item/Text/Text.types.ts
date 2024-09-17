@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { MenuProps } from 'antd/lib/menu';
 import { MenuItemProps } from '../MenuItem.types';
 

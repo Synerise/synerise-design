@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import SubMenu from './SubMenu/SubMenu';
 import MenuContext from './MenuContext/MenuContext';

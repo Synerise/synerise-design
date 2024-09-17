@@ -2,7 +2,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import { prefixType, renderPrefixIcon, renderSuffix, submenu, suffixType } from '../dataset';
 import { getDefaultProps } from '../index.stories';
 
-import * as React from 'react';
+import React from 'react';
 import Menu from '@synerise/ds-menu';
 import { useOnClickOutside } from '@synerise/ds-utils';
 

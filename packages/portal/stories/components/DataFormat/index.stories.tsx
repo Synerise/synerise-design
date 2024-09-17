@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { FormattedDate, FormattedDateTime, FormattedNumber, FormattedTime } from '@synerise/ds-data-format';
 import { object, number, text } from '@storybook/addon-knobs';

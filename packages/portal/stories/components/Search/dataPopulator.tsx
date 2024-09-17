@@ -1,7 +1,7 @@
 import faker from 'faker';
 import Badge from '@synerise/ds-badge';
 import Avatar, { UserAvatar } from '@synerise/ds-avatar';
-import * as React from 'react';
+import React from 'react';
 import { VarTypeListM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
 
 import { image } from '../Avatar/constants';

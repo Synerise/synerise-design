@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RowSelection, Locale } from '../Table.types';
 
 export interface Props<T extends { key: React.ReactText }> {

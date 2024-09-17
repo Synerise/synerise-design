@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Locale, RowSelection } from '../../Table.types';
 
 export interface TableLimitProps<T extends { key: React.ReactText }> {

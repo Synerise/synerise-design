@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './IconPicker.styles';

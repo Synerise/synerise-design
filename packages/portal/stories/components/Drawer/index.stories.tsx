@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
 import Tabs from '@synerise/ds-tabs';

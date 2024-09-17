@@ -1,7 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Logic from '../Logic';
 import userEvent from '@testing-library/user-event';
-import * as React from 'react';
+import React from 'react';
 import { screen } from '@testing-library/react';
 
 describe('Matching component', () => {

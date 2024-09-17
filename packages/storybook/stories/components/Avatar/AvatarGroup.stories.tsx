@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Meta } from '@storybook/react';
 import AvatarGroup from '@synerise/ds-avatar-group';
 import Menu from '@synerise/ds-menu';

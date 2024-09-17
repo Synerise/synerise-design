@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Drawer from 'antd/lib/drawer';
 import styled from 'styled-components';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Layout, { Page } from '@synerise/ds-layout';
 import Grid from '@synerise/ds-grid';

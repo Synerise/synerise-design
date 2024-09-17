@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 import Tooltip from '@synerise/ds-tooltip';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { InfoFillS } from '@synerise/ds-icon';
 import { escapeRegEx } from '@synerise/ds-utils';
 
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import * as S from '../SimpleItem/SimpleItem.styles';
 import { ItemLabelProps } from './ItemName.types';
 

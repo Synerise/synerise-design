@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from "react";
 import { boolean, number, text } from '@storybook/addon-knobs';
 import EditableItemsList from '@synerise/ds-editable-items-list';

@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { HexColorPicker as ReactColorful } from 'react-colorful';
 import Divider from '@synerise/ds-divider';
 import Tags, { TagShape, Tag } from '@synerise/ds-tags';
 import Icon, { FormulaPlusM, CopyClipboardM } from '@synerise/ds-icon';
-import * as copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 import Tooltip from '@synerise/ds-tooltip';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';

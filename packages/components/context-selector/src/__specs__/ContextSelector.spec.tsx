@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { CONTEXT_TEXTS, CONTEXT_ITEMS, CONTEXT_GROUPS } from './data/index.data';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { ApiM } from '@synerise/ds-icon';

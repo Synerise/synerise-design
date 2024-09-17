@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { InputProps } from 'antd/lib/input';
 
 export type SearchInputProps = {

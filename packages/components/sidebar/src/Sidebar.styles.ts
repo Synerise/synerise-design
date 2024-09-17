@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Collapse, { CollapseProps } from 'antd/lib/collapse';
-import * as React from 'react';
+import React from 'react';
 
 const { Panel } = Collapse;
 

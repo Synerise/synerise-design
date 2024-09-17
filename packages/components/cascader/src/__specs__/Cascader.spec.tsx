@@ -1,7 +1,7 @@
 import { Category } from '../Cascader.types';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Cascader from '../Cascader';
-import * as React from 'react';
+import React from 'react';
 const mock = {
   id: 0,
   name: 'Home',

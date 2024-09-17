@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import StepCard from '@synerise/ds-step-card';
 import { Tag, TagShape } from '@synerise/ds-tags';

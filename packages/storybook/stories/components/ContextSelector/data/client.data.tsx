@@ -9,7 +9,7 @@ import {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 
 export const CONTEXT_DEFAULT_GROUPS = [
   {

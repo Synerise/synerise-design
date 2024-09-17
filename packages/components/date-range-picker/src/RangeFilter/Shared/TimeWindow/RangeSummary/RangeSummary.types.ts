@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { DayKey } from '../TimeWindow.types';
 import { Texts } from '../../../../DateRangePicker.types';
 

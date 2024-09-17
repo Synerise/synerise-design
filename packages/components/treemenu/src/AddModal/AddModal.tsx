@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Icon, { Add3M, SearchM, FileM, PasteClipboardM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -70,30 +70,28 @@ const AddModal: React.FC<AddModalProps> = ({
       .filter(item => {
         return !search ? true : items[item].name.toLowerCase().indexOf(search.toLowerCase()) > -1;
       })
-      .map(
-        (item: string): React.ReactNode => {
-          const thisItem = items[item];
-          thisItem.type = item;
-          const ThisComponent = thisItem.component || {};
-          const ThisIconComponent = ThisComponent.Icon || thisItem.icon || FileM;
+      .map((item: string): React.ReactNode => {
+        const thisItem = items[item];
+        thisItem.type = item;
+        const ThisComponent = thisItem.component || {};
+        const ThisIconComponent = ThisComponent.Icon || thisItem.icon || FileM;
 
-          const itemOnClick = (): void => {
-            setOverlayVisible(false);
-            onItemAdd(thisItem, context);
-          };
+        const itemOnClick = (): void => {
+          setOverlayVisible(false);
+          onItemAdd(thisItem, context);
+        };
 
-          return (
-            <S.TagItem
-              highlight={search}
-              key={`${thisItem.key}-${thisItem.name}`}
-              prefixel={<Icon component={<ThisIconComponent />} />}
-              onClick={itemOnClick}
-            >
-              {thisItem.name}
-            </S.TagItem>
-          );
-        }
-      );
+        return (
+          <S.TagItem
+            highlight={search}
+            key={`${thisItem.key}-${thisItem.name}`}
+            prefixel={<Icon component={<ThisIconComponent />} />}
+            onClick={itemOnClick}
+          >
+            {thisItem.name}
+          </S.TagItem>
+        );
+      });
 
     if (!rendered.length) return <Result description={texts.noResults} type="no-results" />;
 

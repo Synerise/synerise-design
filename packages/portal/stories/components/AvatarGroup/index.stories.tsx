@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import AvatarGroup from '@synerise/ds-avatar-group';
 import { boolean, number, select, text } from '@storybook/addon-knobs';

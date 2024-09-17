@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export type InputProps = {
   name?: string;

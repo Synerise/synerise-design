@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ModalProxy from '@synerise/ds-modal';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { FormulaModalProps } from '../../Factors.types';

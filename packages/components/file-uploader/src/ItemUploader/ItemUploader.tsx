@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';

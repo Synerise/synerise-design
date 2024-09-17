@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { simpleText } from '../dataset';
 import { attachKnobsToDataSource, decorator, getDefaultProps } from '../index.stories';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';

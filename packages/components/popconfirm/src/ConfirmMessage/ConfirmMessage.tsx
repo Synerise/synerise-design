@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AntdTooltip from 'antd/lib/tooltip';
 import * as S from './ConfirmMessage.style';
 import { ConfirmMessageProps } from './ConfirmMessage.types';

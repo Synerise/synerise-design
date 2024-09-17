@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export type Props = {
   onItemAdd?: (addParams: { name: string }) => void;

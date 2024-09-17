@@ -16,7 +16,7 @@ import Icon, {
   SettingsColorM,
   SettingsGreyM,
 } from '@synerise/ds-icon';
-import * as React from 'react';
+import React from 'react';
 
 const LayoutAppMenu = (props) => (
     <AppMenu {...props} activeItem='campaigns' footer={(

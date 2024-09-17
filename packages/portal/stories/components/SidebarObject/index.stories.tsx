@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SidebarObject from '@synerise/ds-sidebar-object';
 import { boolean, select } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';

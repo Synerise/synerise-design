@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 
 import { DSProvider } from '@synerise/ds-core';

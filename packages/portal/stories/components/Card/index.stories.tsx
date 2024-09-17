@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import range from 'lodash/range';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Button from '@synerise/ds-button';

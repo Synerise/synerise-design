@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SubtleForm from '@synerise/ds-subtle-form';
 import { replaceLettersWithUnderscore } from '@synerise/ds-subtle-form/dist/Elements/DatePicker/utils';
 import { boolean, text } from '@storybook/addon-knobs';

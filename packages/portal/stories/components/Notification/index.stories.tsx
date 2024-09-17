@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import rcNotificationsApi from "antd/es/notification";
 import {boolean, number, select, text} from '@storybook/addon-knobs';
 import {action} from '@storybook/addon-actions';

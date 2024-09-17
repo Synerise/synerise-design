@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type PageHeaderProps = {

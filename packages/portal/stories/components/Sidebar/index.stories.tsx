@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Sidebar from '@synerise/ds-sidebar';
 import { withState } from '@dump247/storybook-state';
 import Block from '@synerise/ds-block';

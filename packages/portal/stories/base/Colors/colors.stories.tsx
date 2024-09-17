@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import groupBy from 'ramda/es/groupBy';
 // @ts-ignore
 import './index.css';

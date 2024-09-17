@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import SearchBar from '@synerise/ds-search-bar';
 import Icon, { SearchM } from '@synerise/ds-icon';

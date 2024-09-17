@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import ContextSelector from '@synerise/ds-context-selector';
 import { withState } from '@dump247/storybook-state';

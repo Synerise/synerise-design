@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as React from 'react';
+import React from 'react';
 import { SuffixWraper } from '../Text/Text.styles';
 import Text from '../Text/Text';
 
@@ -9,8 +9,7 @@ export const SelectItem = styled(({ children, disabled, ...rest }) => (
   <Text disabled={disabled} {...rest}>
     {children}
   </Text>
-))// Safari doesn't support animating opacity yet, therefore I am using filter property to simulate fading
-`
+))` // Safari doesn't support animating opacity yet, therefore I am using filter property to simulate fading
   & {
     ${SuffixWraper} > * {
       filter: opacity(0);

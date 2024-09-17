@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import ProgressBar from '@synerise/ds-progress-bar';
 import { theme } from '@synerise/ds-core';
 import { select, text, number, boolean } from '@storybook/addon-knobs';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Popconfirm from 'antd/lib/popconfirm';
 import Button, { ButtonProps } from '@synerise/ds-button';

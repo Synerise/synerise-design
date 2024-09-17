@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import useTreeMenuContext from '../useTreeMenuContext';
 import Search from './Search';

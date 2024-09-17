@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';

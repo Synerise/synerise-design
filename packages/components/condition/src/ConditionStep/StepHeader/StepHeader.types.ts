@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ConditionProps, ConditionTexts } from '../../Condition.types';
 
 export type StepHeaderProps = {

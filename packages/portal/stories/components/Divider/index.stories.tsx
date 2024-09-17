@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { text, select, number, boolean } from '@storybook/addon-knobs';
 import Divider from '@synerise/ds-divider';
 

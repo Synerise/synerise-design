@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import Tooltip from '../index';

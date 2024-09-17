@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import type { DataFormatNotationType } from '@synerise/ds-data-format';
 import { fireEvent } from '@testing-library/react';

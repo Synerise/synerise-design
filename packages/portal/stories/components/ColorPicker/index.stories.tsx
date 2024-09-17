@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { boolean, number, text, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import ColorPicker from '@synerise/ds-color-picker';

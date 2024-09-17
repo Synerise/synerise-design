@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import random from 'lodash/random';
 import { boolean, text, select, number, array } from '@storybook/addon-knobs';
 

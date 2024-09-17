@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import Logic from '@synerise/ds-logic';
 import { withState } from '@dump247/storybook-state';

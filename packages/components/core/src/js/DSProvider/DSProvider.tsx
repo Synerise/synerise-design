@@ -1,5 +1,5 @@
 import '../style';
-import * as React from 'react';
+import React from 'react';
 
 import { DataFormatConfigProvider, DataFormatConfigProviderProps } from '@synerise/ds-data-format';
 

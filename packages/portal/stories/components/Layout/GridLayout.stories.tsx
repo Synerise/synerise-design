@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { boolean } from '@storybook/addon-knobs';
 import Layout, { Page } from '@synerise/ds-layout';
 import PageHeader from '@synerise/ds-page-header';
