@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, WrappedComponentProps } from 'react-intl';
 import Typography from 'antd/lib/typography';
 import Drawer from '@synerise/ds-drawer';
 import Button from '@synerise/ds-button';
@@ -27,8 +27,8 @@ const DEFAULT_STATE: State = {
   groupSettings: undefined,
 };
 
-class ColumnManager extends React.Component<ColumnManagerProps, State> {
-  constructor(props: ColumnManagerProps) {
+class ColumnManager extends React.Component<ColumnManagerProps & WrappedComponentProps, State> {
+  constructor(props: ColumnManagerProps & WrappedComponentProps) {
     super(props);
     // eslint-disable-next-line react/state-in-constructor
     this.state = {
@@ -40,7 +40,10 @@ class ColumnManager extends React.Component<ColumnManagerProps, State> {
     };
   }
 
-  static getDerivedStateFromProps(props: ColumnManagerProps, state: State): Partial<State> | null {
+  static getDerivedStateFromProps(
+    props: ColumnManagerProps & WrappedComponentProps,
+    state: State
+  ): Partial<State> | null {
     if (props.itemFilterConfig && props.itemFilterConfig.selectedItemId !== state.selectedFilterId) {
       const visible = props.columns.filter((column: Column) => column.visible);
       const hidden = props.columns.filter((column: Column) => !column.visible);

@@ -1,4 +1,5 @@
 import React, { Key, useEffect, useMemo, useRef, useState } from 'react';
+import { FixedSizeList } from 'react-window';
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { action } from '@storybook/addon-actions';
@@ -9,15 +10,16 @@ import Table, { VirtualTableProps, VirtualTable, VirtualTableRef } from '@syneri
 import { SearchInput } from '@synerise/ds-search';
 
 import { COLUMNS, DATA_SOURCE, FIXED_COLUMNS } from './VirtualTable.data';
-import { renderWithIconInHeaders } from './Table.utils';
-import { FixedSizeList } from 'react-window';
-import { BOOLEAN_CONTROL, NUMBER_CONTROL } from '../../utils';
+import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
+import { useInfiniteScroll } from './useInfiniteScroll';
+import { fixedWrapper1000 } from '../../../utils';
 
 type RowType = typeof DATA_SOURCE[number];
+
 type VirtualTableType = VirtualTableProps<RowType>;
 type Story = StoryObj<VirtualTableType>;
 
-const defaultRender = args => {
+const defaultRender: Meta<VirtualTableType>['render'] = args => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
   const [starredRowKeys, setStarredRowKey] = useState<string[]>([]);
@@ -79,20 +81,17 @@ const defaultRender = args => {
 };
 
 export default {
-  title: 'Components/Table/VirtualTable',
-  tags: ['autodocs'],
+  ...TableMeta,
   parameters: {
-    layout: 'padded',
+    ...TableMeta.parameters,
   },
+  title: 'Components/Table/VirtualTable',
   render: defaultRender,
   argTypes: {
-    maxHeight: NUMBER_CONTROL,
-    loading: BOOLEAN_CONTROL,
-    onRowClick: {
-      action: 'onRowClick',
-    },
+    ...TableMeta.argTypes,
   },
   args: {
+    ...TableMeta.args,
     dataSourceFull: DATA_SOURCE,
     scroll: { y: 500, x: 0 },
     initialWidth: 792,
@@ -110,14 +109,14 @@ export const Default: Story = {};
 export const Empty: Story = {
   args: {
     dataSourceFull: [],
-  }
+  },
 };
 
 export const Skeleton: Story = {
   args: {
     dataSourceFull: [],
-    loading: true
-  }
+    loading: true,
+  },
 };
 
 export const ColumnsWithIcons: Story = {
@@ -140,8 +139,6 @@ export const WithSelection: Story = {
     selection: {
       onChange: fn(),
       selectedRowKeys: [],
-
-      // checkRowSelectionStatus: select('Pick selection status for rows?', statusOptions, statusOptions['none']),
       selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
       limit: 5,
     },
@@ -149,6 +146,7 @@ export const WithSelection: Story = {
 };
 
 export const WithFixedColumns: Story = {
+  decorators: [fixedWrapper1000],
   args: {
     columns: FIXED_COLUMNS,
   },
@@ -169,7 +167,7 @@ const PADDING = 20;
 const DEFAULT_SCROLLABLE_HEIGHT = 800;
 
 export const WithStickyHeader: Story = {
-  render: args => {
+  render: (args, context) => {
     const [scrollableHeight, setScrollableHeight] = useState(DEFAULT_SCROLLABLE_HEIGHT);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const virtualListRef = useRef<FixedSizeList | null>(null);
@@ -215,24 +213,78 @@ export const WithStickyHeader: Story = {
         }}
         ref={containerRef}
       >
-        {defaultRender({
-          ...args,
-          ref: virtualTableRefs,
-          scroll: {
-            y: scrollableHeight,
+        {defaultRender(
+          {
+            ...args,
+            ref: virtualTableRefs,
+            scroll: {
+              y: scrollableHeight,
+            },
+            sticky: {
+              offsetHeader: -PADDING,
+              offsetScroll: PADDING - 4,
+              scrollThreshold: STICKY_SCROLL_THRESHOLD,
+              getContainer: () => containerRef && containerRef.current,
+            },
           },
-          sticky: {
-            offsetHeader: -PADDING,
-            offsetScroll: PADDING - 4,
-            scrollThreshold: STICKY_SCROLL_THRESHOLD,
-            getContainer: () => containerRef && containerRef.current,
-          },
-        })}
+          context
+        )}
       </div>
     );
   },
   args: {
     ...WithSelection.args,
     ...WithRowStar.args,
+  },
+};
+
+type InfiniteScrollRowType = {
+  name: string;
+  price: string;
+  color: string;
+};
+
+const renderColumn = value => <div className="chromatic-ignore">{value}</div>;
+
+export const WithInfiniteScroll: StoryObj<VirtualTableProps<InfiniteScrollRowType>> = {
+  render: args => {
+    const { dataSource, prevPage, nextPage, fakeFetchNextPageData, fakeFetchPrevPageData } = useInfiniteScroll();
+    return (
+      <div style={{ width: '100%' }}>
+        <VirtualTable
+          {...args}
+          infiniteScroll={{
+            hasError: false,
+            hasMore: false,
+            isLoading: false,
+
+            nextPage,
+            prevPage,
+            showBackToTopButton: true,
+            onRetryButtonClick: () => {
+              fakeFetchNextPageData();
+            },
+            onScrollTopReach: () => {
+              if (prevPage.hasMore) {
+                fakeFetchPrevPageData();
+              }
+            },
+            onScrollEndReach: () => {
+              if (nextPage.hasMore) {
+                fakeFetchNextPageData();
+              }
+            },
+          }}
+          dataSource={dataSource}
+        />
+      </div>
+    );
+  },
+  args: {
+    columns: [
+      { title: 'Name', key: 'name', dataIndex: 'name', render: renderColumn },
+      { title: 'Price', key: 'price', dataIndex: 'price', render: renderColumn },
+      { title: 'Color', key: 'color', dataIndex: 'color', render: renderColumn },
+    ],
   },
 };
