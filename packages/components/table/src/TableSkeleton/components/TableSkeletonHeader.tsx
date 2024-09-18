@@ -4,7 +4,7 @@ import { SKELETON_BAR_STANDARD } from '../constants';
 import * as S from '../TableSkeleton.styles';
 import { TableSkeletonBar } from './TableSkeletonBar';
 
-export const TableSkeletonHeader = (props: HTMLAttributes<HTMLDivElement> & { headerHeight?: number }) => {
+export const TableSkeletonHeader = (props: HTMLAttributes<HTMLDivElement> & { headerHeight: number }) => {
   return (
     <S.TableSkeletonHeader {...props}>
       <S.TableSkeletonLeft>

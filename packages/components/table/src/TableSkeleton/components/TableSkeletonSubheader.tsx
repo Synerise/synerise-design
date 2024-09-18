@@ -5,7 +5,7 @@ import { TableSkeletonBar } from './TableSkeletonBar';
 import { TableSkeletonRowRight } from './TableSkeletonRowRight';
 import { SKELETON_BAR_WIDE } from '../constants';
 
-export const TableSkeletonSubheader = (props: HTMLAttributes<HTMLDivElement> & { subheaderHeight?: number }) => {
+export const TableSkeletonSubheader = (props: HTMLAttributes<HTMLDivElement> & { subheaderHeight: number }) => {
   return (
     <S.TableSkeletonSubHeader {...props}>
       <S.TableSkeletonLeft>

@@ -1,8 +1,8 @@
 export const DEFAULT_ROW_COUNT = 10;
-export const ROW_HEIGHT = 40;
-export const GAP = 36;
-export const PADDING = 36;
-export const TABLE_HEADER = 76 + 78;
+
+export const HEADER_HEIGHT = 73;
+export const SUBHEADER_HEIGHT = 64;
+export const ROW_HEIGHT = 73;
 
 export const SKELETON_BAR_TINY = 16;
 export const SKELETON_BAR_STANDARD = 72;

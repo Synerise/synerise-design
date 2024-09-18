@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import DSSkeleton from '@synerise/ds-skeleton';
 
-const HEADER_HEIGHT = 73;
-const SUBHEADER_HEIGHT = 64;
-const ROW_HEIGHT = 73;
-
 const rowCss = css`
   display: flex;
   flex-direction: row;
@@ -17,10 +13,10 @@ export const TableSkeletonWrapper = styled.div<{ maxHeight?: number }>`
   z-index: 10;
 `;
 
-export const TableSkeletonHeader = styled.div<{ headerHeight?: number }>`
+export const TableSkeletonHeader = styled.div<{ headerHeight: number }>`
   ${rowCss}
   padding: 0 18px;
-  height: ${props => props.headerHeight || HEADER_HEIGHT}px;
+  height: ${props => props.headerHeight}px;
 `;
 
 export const Skeleton = styled(DSSkeleton)`
@@ -30,12 +26,12 @@ export const SkeletonWrapper = styled.div<{ width?: number }>`
   width: ${props => props.width}px;
 `;
 
-export const TableSkeletonSubHeader = styled.div<{ subheaderHeight?: number }>`
+export const TableSkeletonSubHeader = styled.div<{ subheaderHeight: number }>`
   ${rowCss}
   border-top: solid 1px ${props => props.theme.palette['grey-200']};
   border-bottom: solid 1px ${props => props.theme.palette['grey-200']};
   padding: 0 18px 0 84px;
-  height: ${props => props.subheaderHeight || SUBHEADER_HEIGHT}px;
+  height: ${props => props.subheaderHeight}px;
 `;
 
 export const TableSkeletonLeft = styled.div`
@@ -57,7 +53,7 @@ export const TableSkeletonBody = styled.div`
   padding: 0 18px;
 `;
 
-export const TableSkeletonRow = styled.div<{ rowHeight?: number }>`
+export const TableSkeletonRow = styled.div<{ rowHeight: number }>`
   ${rowCss}
-  height: ${props => props.rowHeight || ROW_HEIGHT}px;
+  height: ${props => props.rowHeight}px;
 `;

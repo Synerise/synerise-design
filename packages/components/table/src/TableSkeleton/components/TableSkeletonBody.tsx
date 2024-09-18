@@ -9,7 +9,7 @@ import { SKELETON_BAR_TINY, SKELETON_BAR_WIDE } from '../constants';
 
 type TableSkeletonBodyProps = HTMLAttributes<HTMLDivElement> & {
   rows: number;
-  rowHeight?: number;
+  rowHeight: number;
 };
 
 export const TableSkeletonBody = ({ rows = 10, rowHeight, ...htmlAttributes }: TableSkeletonBodyProps) => (
