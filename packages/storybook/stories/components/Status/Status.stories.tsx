@@ -8,7 +8,7 @@ import {
   centeredPaddedWrapper,
   CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
-  controlFromOptionsArray,
+  controlFromOptionsArray, BOOLEAN_CONTROL,
 } from '../../utils';
 import { theme }from '@synerise/ds-core';
 
@@ -36,11 +36,12 @@ export default {
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
     label: REACT_NODE_AS_STRING,
-    type: {...controlFromOptionsArray('select', ['default', 'primary', 'success', 'warning', 'danger', 'disabled', 'custom'])},
+    type: {...controlFromOptionsArray('select', ['default', 'primary', 'success', 'warning', 'danger', 'info', 'disabled', 'custom'])},
     color: {
       ...controlFromOptionsArray('select', Object.keys(COLOR_OPTIONS)),
       mapping: COLOR_OPTIONS
     },
+    dashed: BOOLEAN_CONTROL,
   },
 } as Meta<typeof Status>;
 
@@ -50,6 +51,7 @@ export const Default: Story = {
   args: {
     label: 'Status',
     type: 'primary',
+    dashed: false,
   },
 };
 

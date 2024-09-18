@@ -288,6 +288,7 @@ type TagProps = {
   hasImage?: boolean;
   iconHover?: boolean;
   asPill?: boolean;
+  dashed?: boolean;
 } & ThemeProps;
 
 export const Content = styled.div<{ iconHover?: boolean }>`

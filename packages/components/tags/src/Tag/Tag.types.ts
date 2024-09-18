@@ -17,6 +17,7 @@ export type TagProps = {
   suffixel?: ReactNode;
   texts?: TagsTexts;
   asPill?: boolean;
+  dashed?: boolean;
 } & HTMLAttributes<HTMLDivElement>;
 
 // @deprecated - use TagProps instead

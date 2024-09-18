@@ -3,7 +3,7 @@ import { TagShape } from '@synerise/ds-tags';
 import * as S from './Status.styles';
 import { StatusProps } from './Status.types';
 
-const Status = ({ type = 'primary', onClick, className, label, color }: StatusProps) => {
+const Status = ({ type = 'primary', onClick, className, label, color, dashed }: StatusProps) => {
   return (
     <S.StatusTag
       onClick={onClick}
@@ -12,6 +12,7 @@ const Status = ({ type = 'primary', onClick, className, label, color }: StatusPr
       type={type}
       name={label}
       color={color}
+      dashed={dashed}
       asPill
     />
   );
