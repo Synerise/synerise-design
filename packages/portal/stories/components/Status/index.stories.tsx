@@ -18,6 +18,7 @@ const typeOptions = {
   success: 'success',
   warning: 'warning',
   danger: 'danger',
+  info: 'info',
   disabled: 'disabled',
   custom: 'custom',
 };
@@ -40,11 +41,12 @@ const stories = {
   Status: () => {
     const type = select('Type', typeOptions, 'default');
     const colors = type === 'custom' && select('Set custom status color', customColorOptions, customColorOptions.grey);
-    const label = text('Label', 'Draft')
+    const label = text('Label', 'Draft');
+    const dashed = boolean('Dashed pill', true)
     return(
       <React.Fragment>
         <div style={{ padding: 24 }}>
-          <Status label={label} type={type as StatusType} color={colors}/>
+          <Status dashed={dashed} label={label} type={type as StatusType} color={colors}/>
         </div>
       </React.Fragment>
     );

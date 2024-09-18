@@ -22,6 +22,7 @@ const Tag = ({
   suffixel,
   texts,
   asPill,
+  dashed,
   ...htmlAttributes
 }: TagProps) => {
   const isDefaultType = shape && [TagShape.DEFAULT_ROUND, TagShape.DEFAULT_SQUARE].includes(shape);
@@ -77,6 +78,7 @@ const Tag = ({
       hasImage={!!image}
       iconHover={isIconHovered}
       asPill={asPill}
+      dashed={dashed}
       {...htmlAttributes}
     >
       <S.Content iconHover={isIconHovered}>
