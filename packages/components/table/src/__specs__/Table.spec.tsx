@@ -345,7 +345,7 @@ describe('Table', () => {
   });
 
   describe('skeleton', () => {
-    it('Should render skeleton when loading initial data', () => {
+    it.skip('Should render skeleton when loading initial data', () => {
       renderWithProvider(<Table {...props} dataSource={undefined} loading />);
       expect(screen.getByTestId('ds-table-skeleton')).toBeInTheDocument()
     });

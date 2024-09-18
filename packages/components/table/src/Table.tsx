@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import '@synerise/ds-core/dist/js/style';
 import Icon, { AngleLeftS, AngleRightS, SpinnerM } from '@synerise/ds-icon';
@@ -15,7 +15,6 @@ import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { useTableLocale, TableLocaleContext } from './utils/locale';
 import { getChildrenColumnName } from './utils/getChildrenColumnName';
-import { TableSkeleton } from './TableSkeleton/TableSkeleton';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -52,8 +51,6 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     hideTitlePart,
     disableColumnNamesLineBreak,
     expandable,
-    maxHeight,
-    skeletonProps,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
@@ -151,31 +148,6 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     };
   }, [pagination, formatValue, grouped, tableLocale, hideTitlePart]);
 
-  const defaultTableContent = useMemo(() => {
-    return loading && !dataSource?.length ? (
-      <TableSkeleton maxHeight={maxHeight} {...skeletonProps} />
-    ) : (
-      <DefaultTable<T>
-        scroll={{ x: 'auto' }}
-        tableLayout="auto"
-        {...props}
-        locale={tableLocale}
-        title={renderHeader}
-        pagination={dataSource?.length && pagination ? footerPagination : false}
-      />
-    );
-  }, [
-    dataSource?.length,
-    skeletonProps,
-    footerPagination,
-    loading,
-    pagination,
-    props,
-    renderHeader,
-    maxHeight,
-    tableLocale,
-  ]);
-
   return (
     <TableLocaleContext.Provider value={tableLocale}>
       <S.TableWrapper
@@ -183,7 +155,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
         hideColumnNames={hideColumnNames}
         disableColumnNamesLineBreak={disableColumnNamesLineBreak}
       >
-        {!!(loading && dataSource?.length) && (
+        {loading && (
           <S.Spinner className="spinner">
             <Icon component={<SpinnerM />} color="#6a7580" />
           </S.Spinner>
@@ -197,7 +169,14 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
             pagination={dataSource?.length && pagination ? footerPagination : false}
           />
         ) : (
-          defaultTableContent
+          <DefaultTable<T>
+            scroll={{ x: 'auto' }}
+            tableLayout="auto"
+            {...props}
+            locale={tableLocale}
+            title={renderHeader}
+            pagination={dataSource?.length && pagination ? footerPagination : false}
+          />
         )}
       </S.TableWrapper>
     </TableLocaleContext.Provider>
