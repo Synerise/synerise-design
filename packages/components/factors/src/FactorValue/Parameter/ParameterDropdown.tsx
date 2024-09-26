@@ -243,6 +243,10 @@ const ParameterDropdown = ({
     hideDropdown,
     setSelected,
     activeTab,
+    groupByGroupName,
+    recentItems,
+    texts.parameter.allItemsGroupName,
+    texts.parameter.recentItemsGroupName,
   ]);
 
   const handleSearch = useCallback(
