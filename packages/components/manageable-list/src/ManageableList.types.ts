@@ -1,5 +1,5 @@
-import React from 'react';
-import { ItemProps } from './Item/Item.types';
+import type { CSSProperties, ReactNode, ReactText } from 'react';
+import type { ItemProps } from './Item/Item.types';
 
 export enum ExpansionBehaviour {
   DEFAULT = 'default',
@@ -14,20 +14,20 @@ export enum ListType {
 }
 
 export type AdditionalAction = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   color?: string;
   onClick: (item: ItemProps) => void;
   tooltip: string;
 };
 
-export interface ManageableListProps<T extends object> {
+export type ManageableListProps<T extends object> = {
   className?: string;
   maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
-  onItemRemove?: (removeParams: { id: React.ReactText }) => void;
-  onItemEdit?: (editParams: { id: React.ReactText; name: string }) => void;
-  onItemSelect: (selectParams: { id: React.ReactText }) => void;
-  onItemDuplicate?: (duplicateParams: { id: React.ReactText }) => void;
+  onItemRemove?: (removeParams: { id: ReactText }) => void;
+  onItemEdit?: (editParams: { id: ReactText; name: string }) => void;
+  onItemSelect: (selectParams: { id: ReactText }) => void;
+  onItemDuplicate?: (duplicateParams: { id: ReactText }) => void;
   onChangeOrder?: (newOrder: ItemProps<T>[]) => void;
   items: ItemProps<T>[];
   loading: boolean;
@@ -39,34 +39,41 @@ export interface ManageableListProps<T extends object> {
   selectedItemId?: string;
   searchQuery?: string;
   expanderDisabled?: boolean;
-  onExpand?: (id: React.ReactText, isExpanded: boolean) => void;
+  onExpand?: (id: ReactText, isExpanded: boolean) => void;
   texts: Texts;
   expansionBehaviour?: string;
   // @deprecated use item.expanded instead
-  expandedIds?: React.ReactText[];
+  expandedIds?: ReactText[];
   changeOrderByButtons?: boolean;
   additionalActions?: AdditionalAction[];
-  style?: React.CSSProperties;
-}
+  style?: CSSProperties;
+  renderCustomToggleButton?: (props: {
+    onClick: () => void;
+    total: number;
+    limit: number;
+    allItemsVisible: boolean;
+  }) => ReactNode;
+};
+
 export type Texts = {
-  addItemLabel?: string | React.ReactNode;
-  showMoreLabel?: string | React.ReactNode;
-  showLessLabel?: string | React.ReactNode;
-  more?: string | React.ReactNode;
-  less?: string | React.ReactNode;
-  activateItemTitle?: string | React.ReactNode;
-  activate?: string | React.ReactNode;
-  cancel?: string | React.ReactNode;
-  deleteConfirmationTitle?: string | React.ReactNode;
-  deleteConfirmationDescription?: string | React.ReactNode;
-  deleteConfirmationYes?: string | React.ReactNode;
-  deleteConfirmationNo?: string | React.ReactNode;
-  itemActionRename?: string | React.ReactNode;
-  itemActionRenameTooltip?: string | React.ReactNode;
-  itemActionDuplicate?: string | React.ReactNode;
-  itemActionDuplicateTooltip?: string | React.ReactNode;
-  itemActionDelete?: string | React.ReactNode;
-  itemActionDeleteTooltip?: string | React.ReactNode;
-  moveToTopTooltip?: string | React.ReactNode;
-  moveToBottomTooltip?: string | React.ReactNode;
+  addItemLabel?: ReactNode;
+  showMoreLabel?: ReactNode;
+  showLessLabel?: ReactNode;
+  more?: ReactNode;
+  less?: ReactNode;
+  activateItemTitle?: ReactNode;
+  activate?: ReactNode;
+  cancel?: ReactNode;
+  deleteConfirmationTitle?: ReactNode;
+  deleteConfirmationDescription?: ReactNode;
+  deleteConfirmationYes?: ReactNode;
+  deleteConfirmationNo?: ReactNode;
+  itemActionRename?: ReactNode;
+  itemActionRenameTooltip?: ReactNode;
+  itemActionDuplicate?: ReactNode;
+  itemActionDuplicateTooltip?: ReactNode;
+  itemActionDelete?: ReactNode;
+  itemActionDeleteTooltip?: ReactNode;
+  moveToTopTooltip?: ReactNode;
+  moveToBottomTooltip?: ReactNode;
 };
