@@ -53,6 +53,7 @@ const ContextSelectorDropdown = ({
   onSetGroup,
   groups,
   items,
+  recentItems,
   setDropdownVisible,
   value,
   visible,
@@ -222,6 +223,7 @@ const ContextSelectorDropdown = ({
     if (!onSearch && searchQuery) {
       return searchResults;
     }
+
     if (hasSubgroups && !activeGroup) {
       const subGroups = hasSubgroups
         ? currentTabItems?.subGroups?.map(group => ({
@@ -251,6 +253,21 @@ const ContextSelectorDropdown = ({
         items?.filter((item: ContextItem) => item.groupId === (groups[activeTab] as ContextGroup).id)
       );
     }
+
+    if ((recentItems || []).length > 0) {
+      const recentItemsWithGroup = (recentItems || []).map(item => ({
+        ...item,
+        groupName: texts.recentItemsGroupName,
+      }));
+      const itemsWithAllGroup = (items || []).map(item => ({
+        ...item,
+        groupName: texts.allItemsGroupName,
+      }));
+      const result = groupByGroupName(recentItemsWithGroup.concat(itemsWithAllGroup));
+
+      return result;
+    }
+
     return groupByGroupName(items);
   }, [
     onSearch,
@@ -264,6 +281,7 @@ const ContextSelectorDropdown = ({
     searchResults,
     currentTabItems?.subGroups,
     currentTabItems?.id,
+    recentItems,
   ]);
 
   useEffect(() => {
