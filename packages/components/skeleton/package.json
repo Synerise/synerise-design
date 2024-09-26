@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-skeleton",
-  "version": "0.6.9",
+  "version": "0.6.10",
   "description": "Skeleton UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,8 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-checkbox": "^0.12.8",
-    "@synerise/ds-utils": "^0.29.3",
+    "@synerise/ds-checkbox": "^0.12.9",
+    "@synerise/ds-utils": "^0.29.4",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

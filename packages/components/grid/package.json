@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-grid",
-  "version": "0.3.69",
+  "version": "0.3.70",
   "description": "Grid UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^0.29.3"
+    "@synerise/ds-utils": "^0.29.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

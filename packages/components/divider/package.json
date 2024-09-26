@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-divider",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Divider UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,8 +34,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-typography": "^0.15.2",
-    "@synerise/ds-utils": "^0.29.3"
+    "@synerise/ds-typography": "^0.15.3",
+    "@synerise/ds-utils": "^0.29.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

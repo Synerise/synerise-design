@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-tags",
-  "version": "0.10.9",
+  "version": "0.10.10",
   "description": "Tags UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,14 +34,14 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.21.11",
-    "@synerise/ds-dropdown": "^0.18.15",
-    "@synerise/ds-icon": "^0.65.6",
-    "@synerise/ds-result": "^0.7.5",
-    "@synerise/ds-scrollbar": "^0.11.11",
-    "@synerise/ds-search-bar": "^0.6.90",
-    "@synerise/ds-tooltip": "^0.14.41",
-    "@synerise/ds-utils": "^0.29.3"
+    "@synerise/ds-button": "^0.21.12",
+    "@synerise/ds-dropdown": "^0.18.16",
+    "@synerise/ds-icon": "^0.65.7",
+    "@synerise/ds-result": "^0.7.6",
+    "@synerise/ds-scrollbar": "^0.11.12",
+    "@synerise/ds-search-bar": "^0.6.91",
+    "@synerise/ds-tooltip": "^0.14.42",
+    "@synerise/ds-utils": "^0.29.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
