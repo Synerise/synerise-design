@@ -24,7 +24,8 @@
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
     "prepublish": "npm run build",
     "test": "jest",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
     "dist/style/*",

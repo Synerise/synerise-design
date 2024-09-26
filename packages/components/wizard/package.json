@@ -25,7 +25,8 @@
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
     "dist/style/*",
@@ -40,7 +41,6 @@
     "@synerise/ds-page-header": "^0.15.34",
     "@synerise/ds-utils": "^0.29.3",
     "classnames": "2.3.2",
-    "react-dom": "16.13.0",
     "react-intl": "3.12.0"
   },
   "peerDependencies": {
