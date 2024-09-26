@@ -282,6 +282,8 @@ const ContextSelectorDropdown = ({
     currentTabItems?.subGroups,
     currentTabItems?.id,
     recentItems,
+    texts.recentItemsGroupName,
+    texts.allItemsGroupName,
   ]);
 
   useEffect(() => {
