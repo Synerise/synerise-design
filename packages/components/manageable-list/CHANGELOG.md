@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.72...@synerise/ds-manageable-list@0.27.0) (2024-09-26)
+
+
+### Features
+
+* **manageable-list:** customisable toggle button ([7e0a2e5](https://github.com/Synerise/synerise-design/commit/7e0a2e550885ed581b2c4ec90319432c543b24c7))
+
+
+
+
+
 ## [0.26.72](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.71...@synerise/ds-manageable-list@0.26.72) (2024-09-26)
 
 **Note:** Version bump only for package @synerise/ds-manageable-list

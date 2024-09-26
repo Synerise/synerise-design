@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.222.0](https://github.com/synerise/synerise-design/compare/portal@0.221.7...portal@0.222.0) (2024-09-26)
+
+
+### Features
+
+* **manageable-list:** customisable toggle button ([7e0a2e5](https://github.com/synerise/synerise-design/commit/7e0a2e550885ed581b2c4ec90319432c543b24c7))
+
+
+
+
+
 ## [0.221.7](https://github.com/synerise/synerise-design/compare/portal@0.221.6...portal@0.221.7) (2024-09-26)
 
 **Note:** Version bump only for package portal
