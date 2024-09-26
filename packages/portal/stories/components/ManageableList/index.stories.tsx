@@ -5,7 +5,8 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 import { EMPTY_CONTENT_ITEM, CONTENT_ITEMS, EMPTY_ITEM, FILTER_LIST_ITEMS, ITEMS, ACCORDION_ITEMS } from './index.data';
 import { theme } from '@synerise/ds-core';
-import { Settings2S } from '@synerise/ds-icon';
+import Icon, { ArrowDownCircleM, ArrowUpCircleM, IconContainer, Settings2S } from '@synerise/ds-icon';
+import Button from '@synerise/ds-button';
 
 const decorator = storyFn => (
   <div style={{ width: '600px' }}>
@@ -14,14 +15,14 @@ const decorator = storyFn => (
 );
 
 const removeItem = (props, store): void => {
-  action('onItemRemove')(props)
+  action('onItemRemove')(props);
   store.set({
     items: store.state.items.filter(item => item.id !== props.id),
   });
 };
 
 const editItem = (props, store, updateStore = true): void => {
-  action('onItemEdit')(props)
+  action('onItemEdit')(props);
   if (updateStore) {
     store.set({
       items: store.state.items.map(item => {
@@ -31,11 +32,11 @@ const editItem = (props, store, updateStore = true): void => {
         return item;
       }),
     });
-}
+  }
 };
 
 const setSelectedItem = (props, store): void => {
-  action('onItemSelect')(props)
+  action('onItemSelect')(props);
   store.set({
     selectedItemId: props.id,
   });
@@ -60,13 +61,24 @@ const getTexts = () => ({
   moveToBottomTooltip: text('Move to the bottom of list', 'Move to the bottom of list'),
 });
 
+const renderCustomToggleButton = ({ onClick, allItemsVisible, total, limit }) => {
+  const icon = allItemsVisible ? <ArrowUpCircleM /> : <ArrowDownCircleM />;
+  const label = allItemsVisible ? `Show ${total - limit} less` : `Show ${total - limit} more`;
+  return (
+    <Button onClick={onClick} type="ghost" mode="icon-label">
+      <Icon component={icon} />
+      {label}
+    </Button>
+  );
+};
+
 const stories = {
   default: withState({
     items: ITEMS,
     selectedId: undefined,
   })(({ store }) => {
     const addItem = (props): void => {
-      action('onItemAdd')(props)
+      action('onItemAdd')(props);
       store.set({
         items: [
           ...store.state.items,
@@ -78,6 +90,8 @@ const stories = {
         ],
       });
     };
+    const customToggleButton = boolean('Custom toggle button', true);
+
     const updateEditedName = boolean('Save edited name (mock name validation pass / fail)', true);
     return (
       <ManageableList
@@ -99,6 +113,7 @@ const stories = {
             onClick: action('additional action'),
           },
         ]}
+        renderCustomToggleButton={customToggleButton ? renderCustomToggleButton : undefined}
       />
     );
   }),
@@ -230,14 +245,13 @@ const stories = {
     };
 
     const onExpand = (id, isExp) => {
-      const updatedItems = store.state.items.map( item => ({
+      const updatedItems = store.state.items.map(item => ({
         ...item,
-        expanded: isExp && item.id === id
+        expanded: isExp && item.id === id,
       }));
       store.set({
-        items: updatedItems
-      })
-      
+        items: updatedItems,
+      });
     };
     return (
       <ManageableList

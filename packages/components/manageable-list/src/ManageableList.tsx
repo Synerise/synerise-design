@@ -43,6 +43,7 @@ const ManageableListComponent = <T extends object>({
   changeOrderByButtons = false,
   additionalActions,
   style,
+  renderCustomToggleButton,
 }: ManageableListProps<T>) => {
   const [allItemsVisible, setAllItemsVisible] = useState(false);
 
@@ -196,6 +197,22 @@ const ManageableListComponent = <T extends object>({
     ]
   );
 
+  const toggleMoreItemsButton =
+    items.length > maxToShowItems
+      ? (renderCustomToggleButton &&
+          renderCustomToggleButton({
+            onClick: toggleAllItems,
+            allItemsVisible,
+            total: items.length,
+            limit: maxToShowItems,
+          })) || (
+          <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
+            <span>{buttonLabelDiff}</span>
+            <strong>{buttonLabel}</strong>
+          </S.ShowMoreButton>
+        )
+      : null;
+
   return (
     <S.ManageableListContainer
       className={`ds-manageable-list ${className || ''}`}
@@ -218,12 +235,7 @@ const ManageableListComponent = <T extends object>({
       ) : (
         <List loading={loading} dataSource={visibleItems} renderItem={getItem} />
       )}
-      {items.length > maxToShowItems && (
-        <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
-          <span>{buttonLabelDiff}</span>
-          <strong>{buttonLabel}</strong>
-        </S.ShowMoreButton>
-      )}
+      {toggleMoreItemsButton}
       {type === ListType.CONTENT && Boolean(onItemAdd) && (
         <AddItem addItemLabel={itemTexts.addItemLabel} onItemAdd={createItem} disabled={addButtonDisabled} />
       )}
