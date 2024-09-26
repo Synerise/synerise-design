@@ -86,6 +86,8 @@ export type FactorsTexts = {
     noResults: string;
     loadingParameter: string;
     showMore: string;
+    recentItemsGroupName: string;
+    allItemsGroupName: string;
   };
   valuePlaceholder: string;
   modalApply: string;
@@ -122,6 +124,7 @@ export type FactorsProps = {
     selectedButtonColored?: boolean;
     groups?: ParameterGroup[];
     items: ParameterItem[];
+    recentItems?: ParameterItem[];
     renderEmptyGroups?: boolean;
     // @deprecated
     showAllGroup?: boolean;
@@ -221,6 +224,7 @@ export type ParameterDropdownProps = {
   setSelected: (val: ParameterItem) => void;
   groups?: ParameterGroup[];
   items?: ParameterItem[];
+  recentItems?: ParameterItem[];
   value?: ParameterValueType;
   texts: FactorsTexts;
   loading?: boolean;

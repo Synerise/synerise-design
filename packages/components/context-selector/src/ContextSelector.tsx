@@ -19,6 +19,7 @@ const ContextSelector = ({
   onSetGroup,
   groups,
   items,
+  recentItems,
   texts,
   opened,
   addMode,
@@ -220,6 +221,7 @@ const ContextSelector = ({
               onSetGroup={handleOnSetGroup}
               groups={groups}
               items={items}
+              recentItems={recentItems}
               texts={texts}
               visible={dropdownVisible}
               loading={loading}

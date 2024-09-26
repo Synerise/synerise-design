@@ -11,6 +11,8 @@ export type ContextTexts = {
   loadingResults: string;
   noResults: string;
   showMore: string;
+  recentItemsGroupName: string;
+  allItemsGroupName: string;
 };
 
 export type ContextItem = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverTooltipProps' | 'disabled'> & {
@@ -53,6 +55,7 @@ export type ContextProps = {
   onSelectItem: (item: ContextItem | ContextGroup | undefined) => void;
   groups: ContextGroup[];
   items: ContextItem[];
+  recentItems?: ContextItem[];
   texts: ContextTexts;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onSetGroup?: (item: ContextItem | ContextGroup | undefined) => void;
@@ -86,6 +89,7 @@ export type ContextDropdownProps = {
   setSelected: (val: ContextItem | ContextGroup) => void;
   groups: ContextGroup[];
   items: ContextItem[];
+  recentItems?: ContextItem[];
   texts: ContextTexts;
   value: ContextItem | undefined;
   onSetGroup?: (val: ContextItem | ContextGroup) => void;

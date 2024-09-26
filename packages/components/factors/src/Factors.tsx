@@ -189,6 +189,8 @@ const Factors: React.FC<FactorsProps> = ({
           defaultMessage: 'Loading parameters',
         }),
         showMore: formatMessage({ id: 'DS.FACTORS.PARAMETER.SHOW_MORE', defaultMessage: 'Show more' }),
+        recentItemsGroupName: formatMessage({ id: 'DS.FACTORS.PARAMETER.RECENT', defaultMessage: 'Recent' }),
+        allItemsGroupName: formatMessage({ id: 'DS.FACTORS.PARAMETER.ALL', defaultMessage: 'All' }),
       },
       valuePlaceholder: formatMessage({ id: 'DS.FACTORS.VALUE_PLACEHOLDER', defaultMessage: 'Value' }),
       modalApply: formatMessage({ id: 'DS.FACTORS.MODAL_APPLY', defaultMessage: 'Apply' }),

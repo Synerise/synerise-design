@@ -6,7 +6,9 @@ export const CONTEXT_TEXTS = {
   searchPlaceholder: 'Search',
   noResults: 'No results',
   loadingResults: 'Loading results',
-  showMore: 'Show more'
+  showMore: 'Show more',
+  recentItemsGroupName: 'Recent',
+  allItemsGroupName: 'All',
 };
 
 export const CONTEXT_GROUPS = [

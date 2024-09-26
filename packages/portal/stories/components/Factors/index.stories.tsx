@@ -23,18 +23,26 @@ const stories = {
       action('onChange')(val);
     };
 
-    const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card')
+    const typeOfTooltip = select('Popover type', ['information-card', 'tooltip', 'none'], 'information-card');
 
     const additionalProps: Record<string, FactorsProps> = {
       ['tooltip']: {
-        getMenuEntryProps: (arg) => ({
-          renderHoverTooltip: () => <span title={JSON.stringify(arg)}>Tooltip text <u>{arg.name}: {arg.id}</u></span>,
-          hoverTooltipProps: {
-            popupPlacement: 'bottom',
-          },
-        } as MenuItemProps),
+        getMenuEntryProps: arg =>
+          ({
+            renderHoverTooltip: () => (
+              <span title={JSON.stringify(arg)}>
+                Tooltip text{' '}
+                <u>
+                  {arg.name}: {arg.id}
+                </u>
+              </span>
+            ),
+            hoverTooltipProps: {
+              popupPlacement: 'bottom',
+            },
+          } as MenuItemProps),
       },
-      'none': {
+      none: {
         getMenuEntryProps: () => ({
           renderHoverTooltip: undefined,
         }),
@@ -46,49 +54,47 @@ const stories = {
     const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
     const autoResizeProp: AutoResizeProp = {
       minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
-      stretchToFit: autoResizeStretchToParent
-    }
+      stretchToFit: autoResizeStretchToParent,
+    };
     if (autoResizeStretchToParent) {
-      containerWidth = number('Set container width', 400, undefined, 'autoresize')
-    }
-    else {
+      containerWidth = number('Set container width', 400, undefined, 'autoresize');
+    } else {
       autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
     }
 
     return (
       <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
-      <Factors
-        error={boolean('Set validation state', false)}
-        selectedFactorType={store.state.selectedFactorType}
-        setSelectedFactorType={setSelectedFactor}
-        inputProps={
-          autoResize ? {autoResize: autoResizeProp} : undefined
-        }
-        value={store.state.value}
-        onChangeValue={changeHandler}
-        textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
-        defaultFactorType="text"
-        autocompleteText={{
-          options: ['First name', 'Last name', 'City', 'Age', 'Points'],
-        }}
-        unavailableFactorTypes={object(
-          'Unavailable factor types (text, number, parameter, contextParameter, dynamicKey, formula, array, date, dateRange)',
-          []
-        )}
-        parameters={{
-          buttonLabel: 'Parameter',
-          buttonIcon: <VarTypeStringM />,
-          groups: FACTORS_GROUPS,
-          items: FACTORS_ITEMS,
-        }}
-        withoutTypeSelector={boolean('Hide type selector', false)}
-        formulaEditor={<div>Formula editor</div>}
-        texts={FACTORS_TEXTS}
-        onDeactivate={action('onDeactivate')}
-        readOnly={boolean('Set readOnly', false)}
-        loading={boolean('Set loading', false)}
-        {...additionalProps}
-      />
+        <Factors
+          error={boolean('Set validation state', false)}
+          selectedFactorType={store.state.selectedFactorType}
+          setSelectedFactorType={setSelectedFactor}
+          inputProps={autoResize ? { autoResize: autoResizeProp } : undefined}
+          value={store.state.value}
+          onChangeValue={changeHandler}
+          textType={select('Select type of text input', ['autocomplete', 'expansible', 'default'], 'default')}
+          defaultFactorType="text"
+          autocompleteText={{
+            options: ['First name', 'Last name', 'City', 'Age', 'Points'],
+          }}
+          unavailableFactorTypes={object(
+            'Unavailable factor types (text, number, parameter, contextParameter, dynamicKey, formula, array, date, dateRange)',
+            []
+          )}
+          parameters={{
+            buttonLabel: 'Parameter',
+            buttonIcon: <VarTypeStringM />,
+            groups: FACTORS_GROUPS,
+            items: FACTORS_ITEMS,
+            recentItems: FACTORS_ITEMS.slice(0, 3),
+          }}
+          withoutTypeSelector={boolean('Hide type selector', false)}
+          formulaEditor={<div>Formula editor</div>}
+          texts={FACTORS_TEXTS}
+          onDeactivate={action('onDeactivate')}
+          readOnly={boolean('Set readOnly', false)}
+          loading={boolean('Set loading', false)}
+          {...additionalProps}
+        />
       </div>
     );
   }),

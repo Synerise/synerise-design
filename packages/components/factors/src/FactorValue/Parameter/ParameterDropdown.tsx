@@ -16,7 +16,15 @@ import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Fac
 import ParameterDropdownItem from './ParameterDropdownItem';
 import { useGroups } from './useGroups';
 import type { MixedDropdownItemProps, ParameterDropdownTitleProps, DropdownItem } from './Parameter.types';
-import {  DROPDOWN_HEIGHT, SEARCH_HEGIHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, ITEM_SIZE, LIST_STYLE, NO_GROUP_NAME } from './Parameter.constants';
+import {
+  DROPDOWN_HEIGHT,
+  SEARCH_HEGIHT,
+  TABS_HEIGHT,
+  SUBGROUP_HEADER_HEIGHT,
+  ITEM_SIZE,
+  LIST_STYLE,
+  NO_GROUP_NAME,
+} from './Parameter.constants';
 
 const isListTitle = (element?: MixedDropdownItemProps): element is ParameterDropdownTitleProps => {
   return (element as ParameterDropdownTitleProps).title !== undefined;
@@ -27,6 +35,7 @@ const ParameterDropdown = ({
   texts,
   groups,
   items,
+  recentItems,
   setDropdownVisible,
   loading,
   onFetchData,
@@ -199,6 +208,21 @@ const ParameterDropdown = ({
           };
         });
     }
+
+    if ((recentItems || []).length > 0) {
+      const recentItemsWithGroup = (recentItems || []).map(item => ({
+        ...item,
+        groupName: texts.parameter.recentItemsGroupName,
+      }));
+      const itemsWithAllGroup = (items || []).map(item => ({
+        ...item,
+        groupName: texts.parameter.allItemsGroupName,
+      }));
+      const result = groupByGroupName(recentItemsWithGroup.concat(itemsWithAllGroup));
+
+      return result;
+    }
+
     return items?.map((item: ParameterItem) => {
       return {
         className: classNames,

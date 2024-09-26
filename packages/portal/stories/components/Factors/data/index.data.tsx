@@ -4,28 +4,31 @@ import React from 'react';
 export const FACTORS_TEXTS = {
   datePicker: {
     apply: 'Apply',
-      clearTooltip: 'Clear',
-      inputPlaceholder: 'Select date',
-      now: 'Now',
+    clearTooltip: 'Clear',
+    inputPlaceholder: 'Select date',
+    now: 'Now',
   },
   dynamicKey: {
     keyPlaceholder: 'Key',
-      valuePlaceholder: 'Value',
+    valuePlaceholder: 'Value',
   },
   formula: {
     buttonPlaceholder: 'Formula',
-    defaultName: 'Formula'
+    defaultName: 'Formula',
   },
   parameter: {
     searchPlaceholder: 'Search',
     noResults: 'No results',
     loadingParameter: 'Loading parameters',
+    recentItemsGroupName: 'Recent',
+    allItemsGroupName: 'All items',
+    showMore: 'Show more',
   },
   valuePlaceholder: 'Value',
-    modalApply: 'Apply',
-    modalCancel: 'Cancel',
-    modalTitle: 'Value'
-}
+  modalApply: 'Apply',
+  modalCancel: 'Cancel',
+  modalTitle: 'Value',
+};
 
 export const FACTORS_GROUPS = [
   {
@@ -33,26 +36,28 @@ export const FACTORS_GROUPS = [
     id: 1,
     allowEmpty: true,
     defaultGroup: true,
-  },{
+  },
+  {
     name: 'Profiles',
     id: 2,
-    subGroups: [{
-      name: 'Attributes',
-      id: 3,
-      icon: <FolderM />
-    },
+    subGroups: [
+      {
+        name: 'Attributes',
+        id: 3,
+        icon: <FolderM />,
+      },
       {
         name: 'Expressions',
         id: 4,
-        icon: <FolderM />
+        icon: <FolderM />,
       },
       {
         name: 'Aggregates',
         id: 3,
-        icon: <FolderM />
+        icon: <FolderM />,
       },
-    ]
-  }
+    ],
+  },
 ];
 
 export const FACTORS_ITEMS = [
@@ -164,4 +169,4 @@ export const FACTORS_ITEMS = [
     groupId: 5,
     icon: <VarTypeStringM />,
   },
-]
+];
