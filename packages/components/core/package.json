@@ -27,6 +27,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u",
     "vars": "node ./build/vars.js"
   },
   "types": "dist/js/index.js",

@@ -25,7 +25,8 @@
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
-    "types": "tsc --noEmit"
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
     "dist/style/*",
@@ -74,7 +75,6 @@
     "@synerise/ds-core": "*",
     "antd": "4.7.0",
     "react": ">=16.9.0 <= 17.0.2",
-    "react-dom": "^16.14.0",
     "styled-components": "5.0.1"
   }
 }
