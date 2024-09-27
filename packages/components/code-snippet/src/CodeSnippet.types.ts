@@ -27,4 +27,5 @@ export interface CodeSnippetProps {
   wrap?: boolean;
   onExpand?: () => void;
   onCopy?: () => void;
+  customTriggerComponent?: React.ReactNode;
 }

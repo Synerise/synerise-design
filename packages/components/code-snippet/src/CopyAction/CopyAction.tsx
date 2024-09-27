@@ -12,6 +12,7 @@ const CopyAction: React.FC<CopyActionProps> = ({
   onClick,
   icon,
   iconSize,
+  customTriggerComponent,
   timeToHideTooltip = 3000,
 }) => {
   const [hideHoverTooltip, setHideHoverTooltip] = React.useState(false);
@@ -41,6 +42,7 @@ const CopyAction: React.FC<CopyActionProps> = ({
     <Tooltip title={tooltipTitleClick} trigger="click" timeToHideAfterClick={timeToHideTooltip}>
       <Tooltip title={tooltipTitleHover} overlayStyle={hideHoverTooltip ? { display: 'none' } : undefined}>
         <S.IconWrapper
+          customTriggerComponent={!!customTriggerComponent}
           ref={iconRef}
           className={className}
           onClick={(e): void => {
@@ -49,7 +51,7 @@ const CopyAction: React.FC<CopyActionProps> = ({
             onClick && onClick();
           }}
         >
-          <Icon component={icon} size={iconSize || 24} />
+          {customTriggerComponent || <Icon component={icon} size={iconSize || 24} />}
         </S.IconWrapper>
       </Tooltip>
     </Tooltip>

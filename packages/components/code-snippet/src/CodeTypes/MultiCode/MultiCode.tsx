@@ -26,6 +26,7 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
   rows = 6,
   onExpand,
   onCopy,
+  customTriggerComponent,
 }) => {
   const [expandedState, setExpandedState] = React.useState(false);
   const [scrollable, setScrollable] = React.useState(false);
@@ -108,9 +109,10 @@ const MultiCode: React.FC<CodeSnippetProps> = ({
           onCopy && onCopy();
         }}
         icon={<DuplicateS />}
+        customTriggerComponent={customTriggerComponent}
       />
     ),
-    [children, tooltipTitleHover, tooltipTitleClick, onCopy]
+    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent]
   );
 
   return (

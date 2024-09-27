@@ -4,6 +4,7 @@ import { text, select, boolean, number} from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import CodeSnippet from '@synerise/ds-code-snippet';
 import { CodeSnippetType } from '@synerise/ds-code-snippet/dist/CodeSnippet.types';
+import Button from '@synerise/ds-button';
 
 const exampleContent =`const registerButton = document.getElementById("registerButton");
 const emailInput = document.querySekector(".email-input");
@@ -25,6 +26,7 @@ const getPropsMulti = () => ({
   timeToHideTooltip:number("Time to hide tooltip(ms)",3000),
   onCopy:action('onCopy action'),
   onExpand:action('onExpand action'),
+  renderButton:boolean('render button',false),
 });
 
 const getPropsSingle = () => ({
@@ -33,6 +35,7 @@ const getPropsSingle = () => ({
   tooltipTitleClick:text("Tooltip hint on click",'Copied!'),
   fontSize: select('Set size', fontSizeOptions, fontSizeOptions.small),
   onCopy:action('onCopy action'),
+  renderButton:boolean('render button',false),
 });
 
 const getPropsInline = () => ({
@@ -64,7 +67,7 @@ const stories = {
       } as object;
       return (
         <div>
-        <CodeSnippet type={CodeSnippetType.SINGLE_LINE} {...props}/>
+        <CodeSnippet customTriggerComponent={props.renderButton ? <Button type={'custom-color'} color="green">Copy code</Button> : null} type={CodeSnippetType.SINGLE_LINE} {...props}/>
       </div>
     );
   },
@@ -77,7 +80,7 @@ const stories = {
     } as object;
     return (
       <div style={{maxWidth:'600px'}}>
-        <CodeSnippet type={CodeSnippetType.MULTI_LINE} {...props} />
+        <CodeSnippet customTriggerComponent={props.renderButton ? <Button type={'custom-color'} color="green">Copy code</Button> : null} type={CodeSnippetType.MULTI_LINE} {...props} />
       </div>
     );
   },
