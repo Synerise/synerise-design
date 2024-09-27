@@ -14,6 +14,7 @@ export interface SingleCodeProps {
   tooltipTitleClick?: string;
   fontSize?: FontSize;
   onCopy?: () => void;
+  customTriggerComponent?: React.ReactNode;
 }
 
 const SingleCode: React.FC<SingleCodeProps> = ({
@@ -23,6 +24,7 @@ const SingleCode: React.FC<SingleCodeProps> = ({
   tooltipTitleClick,
   className,
   onCopy,
+  customTriggerComponent,
 }) => {
   const iconElement = React.useMemo(
     () => (
@@ -35,10 +37,11 @@ const SingleCode: React.FC<SingleCodeProps> = ({
           onCopy && onCopy();
         }}
         icon={<DuplicateS />}
+        customTriggerComponent={customTriggerComponent}
         data-testid="ds-copy-code-snippet"
       />
     ),
-    [children, tooltipTitleHover, tooltipTitleClick, onCopy]
+    [children, tooltipTitleHover, tooltipTitleClick, onCopy, customTriggerComponent]
   );
 
   return (

@@ -1,8 +1,9 @@
 import React from 'react';
 
 export type CopyActionProps = {
-  tooltipTitleHover: React.ReactNode | string;
-  tooltipTitleClick: React.ReactNode | string;
+  tooltipTitleHover: React.ReactNode;
+  tooltipTitleClick: React.ReactNode;
+  customTriggerComponent?: React.ReactNode;
   className?: string;
   onClick: () => void;
   icon: React.ReactNode;

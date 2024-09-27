@@ -20,6 +20,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   className,
   onExpand,
   onCopy,
+  customTriggerComponent,
 }) => {
   switch (type) {
     case CodeSnippetType.SINGLE_LINE:
@@ -30,6 +31,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
           tooltipTitleClick={tooltipTitleClick}
           className={className}
           onCopy={onCopy}
+          customTriggerComponent={customTriggerComponent}
         >
           {children}
         </SingleCode>
@@ -49,6 +51,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
           rows={rows}
           onExpand={onExpand}
           onCopy={onCopy}
+          customTriggerComponent={customTriggerComponent}
         >
           {children}
         </MultiCode>
