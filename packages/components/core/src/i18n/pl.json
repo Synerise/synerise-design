@@ -1,5 +1,9 @@
 {
   "DS": {
+    "MENU": {
+      "SHOW-LESS": "Pokaż mniej",
+      "SHOW-MORE": "Pokaż więcej"
+    },
     "MANAGABLE-LIST": {
       "LESS": "mniej",
       "MORE": "więcej",

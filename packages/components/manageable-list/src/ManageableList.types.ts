@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode, ReactText } from 'react';
+import type { ExactlyOne } from '@synerise/ds-utils';
 import type { ItemProps } from './Item/Item.types';
 
 export enum ExpansionBehaviour {
@@ -22,7 +23,6 @@ export type AdditionalAction = {
 
 export type ManageableListProps<T extends object> = {
   className?: string;
-  maxToShowItems: number;
   onItemAdd?: (addParams?: { name: string }) => void;
   onItemRemove?: (removeParams: { id: ReactText }) => void;
   onItemEdit?: (editParams: { id: ReactText; name: string }) => void;
@@ -53,7 +53,17 @@ export type ManageableListProps<T extends object> = {
     limit: number;
     allItemsVisible: boolean;
   }) => ReactNode;
-};
+} & ExactlyOne<
+  {
+    /**
+     * @deprecated - use visibleItemsLimit prop instead
+     */
+    maxToShowItems: number;
+  },
+  {
+    visibleItemsLimit: number;
+  }
+>;
 
 export type Texts = {
   addItemLabel?: ReactNode;

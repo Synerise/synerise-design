@@ -159,7 +159,7 @@ const FormExample = () => {
               onExpand={expandCallback}
               expandedIds={expandedIds}
               type="content"
-              maxToShowItems={5}
+              visibleItemsLimit={5}
               onItemEdit={onAdd}
               items={items}
               loading={false}

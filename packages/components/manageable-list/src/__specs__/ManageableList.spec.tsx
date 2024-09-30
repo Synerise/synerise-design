@@ -112,7 +112,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={[]}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -134,7 +134,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={DEFAULT_ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -158,7 +158,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -182,7 +182,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -208,7 +208,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={onItemSelect}
@@ -233,7 +233,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={() => {}}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -259,7 +259,7 @@ describe('ManageableList', () => {
       <ManageableList
         items={DEFAULT_ITEMS}
         loading={false}
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={onItemAdd}
         onItemEdit={() => {}}
         onItemSelect={() => {}}
@@ -300,7 +300,7 @@ describe('ManageableList', () => {
         <ManageableList
           items={ITEMS}
           loading={false}
-          maxToShowItems={5}
+          visibleItemsLimit={5}
           onItemAdd={() => {}}
           onItemEdit={() => {}}
           onItemSelect={() => {}}

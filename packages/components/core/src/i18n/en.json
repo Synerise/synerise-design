@@ -1,5 +1,9 @@
 {
   "DS": {
+    "MENU": {
+      "SHOW-LESS": "Show less",
+      "SHOW-MORE": "Show more"
+    },
     "DESCRIPTION": {
       "COPY-VALUE": "Copy value",
       "COPIED": "Copied"
