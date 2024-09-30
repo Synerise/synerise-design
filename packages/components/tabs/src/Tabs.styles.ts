@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import Button, { ButtonProps } from '@synerise/ds-button';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import Menu from '@synerise/ds-menu';
-import { AntdMenuProps } from '@synerise/ds-menu/dist/Menu.types';
+import Menu, { AntdMenuProps, MenuItemProps } from '@synerise/ds-menu';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;

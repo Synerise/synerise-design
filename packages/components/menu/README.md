@@ -56,6 +56,8 @@ const items = [
 | asDropdownwMenu | Add additional styles for dropdown menu                                      | boolean         | `false` |
 | dataSource      | Array of items to display in menu                                            | MenuItemProps[] | -       |
 | ordered         | Determines if items should be displayed with index prefix (starting from 01) | boolean         | `false` |
+| maxToShowItems  | limits the number of items rendered. remaining are shown after button click  | number          | -       |
+| texts           | custom translations                                                          | MenuTexts       | -       |
 
 ### MenuItemProps
 
@@ -79,3 +81,10 @@ const items = [
 | subMenu                 | Array of nested items                                          | MenuItemProps[]                                         |           |
 | text                    | Text displayed inside the item                                 | string / React.ReactNode                                | -         |
 | type                    | Type of the item                                               | `default` / `select` / `danger`                         | `default` |
+
+### MenuTexts
+
+| Property | Description         | Type      | Default |
+|----------|---------------------|-----------|---------|
+| showLess | toggle button label | ReactNode | -       |
+| showMore | toggle button label | ReactNode | -       |

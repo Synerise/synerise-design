@@ -17,7 +17,7 @@ const SORTABLE_CONFIG = {
   group: 'column-manager',
   forceFallback: true,
 };
-
+const INITIALLY_VISIBLE_COUNT = 5;
 const ManageableListComponent = <T extends object>({
   className,
   onItemAdd,
@@ -27,7 +27,8 @@ const ManageableListComponent = <T extends object>({
   onItemEdit,
   onChangeOrder,
   items,
-  maxToShowItems = 5,
+  maxToShowItems = INITIALLY_VISIBLE_COUNT,
+  visibleItemsLimit = INITIALLY_VISIBLE_COUNT,
   loading,
   type = ListType.DEFAULT,
   addButtonDisabled = false,
@@ -46,6 +47,8 @@ const ManageableListComponent = <T extends object>({
   renderCustomToggleButton,
 }: ManageableListProps<T>) => {
   const [allItemsVisible, setAllItemsVisible] = useState(false);
+
+  const visibleLimit = visibleItemsLimit || maxToShowItems;
 
   const getExpandedIds = useCallback(() => {
     return expandedIds !== undefined ? expandedIds : items.filter(item => item.expanded).map(item => item.id);
@@ -96,12 +99,12 @@ const ManageableListComponent = <T extends object>({
   );
 
   const getItemsOverLimit = useMemo(() => {
-    return items.length - maxToShowItems;
-  }, [items, maxToShowItems]);
+    return items.length - visibleLimit;
+  }, [items, visibleLimit]);
 
   const visibleItems = useMemo(() => {
-    return allItemsVisible ? items : items.slice(0, maxToShowItems);
-  }, [allItemsVisible, maxToShowItems, items]);
+    return allItemsVisible ? items : items.slice(0, visibleLimit);
+  }, [allItemsVisible, visibleLimit, items]);
 
   const buttonLabel = useMemo(
     () => (allItemsVisible ? itemTexts.showLessLabel : itemTexts.showMoreLabel),
@@ -198,13 +201,13 @@ const ManageableListComponent = <T extends object>({
   );
 
   const toggleMoreItemsButton =
-    items.length > maxToShowItems
+    items.length > visibleLimit
       ? (renderCustomToggleButton &&
           renderCustomToggleButton({
             onClick: toggleAllItems,
             allItemsVisible,
             total: items.length,
-            limit: maxToShowItems,
+            limit: visibleLimit,
           })) || (
           <S.ShowMoreButton onClick={toggleAllItems} data-testid="show-more-button">
             <span>{buttonLabelDiff}</span>

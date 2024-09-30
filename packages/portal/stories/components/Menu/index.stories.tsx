@@ -34,9 +34,11 @@ import { v4 as uuid } from 'uuid';
 import withTag from './withTag/withTag';
 import withSkeleton from './withSkeleton/withSkeleton';
 import withTooltip from './withTooltip/withTooltip';
+import withMaxItems from './withMaxItems/withMaxItems';
+import withMaxItemsChildren from './withMaxItemsChildren/withMaxItemsChildren';
 
 export const decorator = props => {
-  const { dataSource, ...rest } = props;
+  const { dataSource, children, ...rest } = props;
   return (
     <div
       style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
@@ -44,9 +46,9 @@ export const decorator = props => {
     >
       <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
         <Menu {...props}>
-          {props.dataSource.map(item => (
+          {props.dataSource?.map(item => (
             <S.StyledMenuItem {...rest} {...item} key={!!item.key ? item.key : uuid()} className="ds-menu-item" />
-          ))}
+          )) || children}
         </Menu>
       </div>
     </div>
@@ -74,7 +76,7 @@ export const getDefaultProps = () => ({
 export const attachKnobsToDataSource = data =>
   data.map(item => ({
     ...item,
-    text: text('Set text', TEXT_PLACEHOLDER),
+    text: item.text || text('Set text', TEXT_PLACEHOLDER),
     disabled: boolean('Set disabled', false),
     ...(item.description && { description: text('Set description', DESCRIPTION_PLACEHOLDER) }),
     ...(item.copyable && { timeToHideTooltip: number('Time to hide tooltip(ms)', 3000) }),
@@ -104,6 +106,8 @@ const stories = {
   withTooltip,
   withUserInfo,
   withSkeleton,
+  withMaxItems,
+  withMaxItemsChildren
 };
 
 export default {

@@ -95,7 +95,7 @@ const stories = {
     const updateEditedName = boolean('Save edited name (mock name validation pass / fail)', true);
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={addItem}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store, updateEditedName)}
@@ -121,7 +121,7 @@ const stories = {
     const texts = getTexts();
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={action('onItemAdd')}
         onItemRemove={action('onItemRemove')}
         onItemEdit={action('onItemEdit')}
@@ -170,7 +170,7 @@ const stories = {
     const updateEditedName = boolean('Save edited name (mock name validation pass / fail)', true);
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemAdd={addItem}
         onItemRemove={onRemove}
         onItemEdit={onEdit}
@@ -207,7 +207,7 @@ const stories = {
 
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store)}
         onItemSelect={props => setSelectedItem(props, store)}
@@ -255,7 +255,7 @@ const stories = {
     };
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store)}
         onItemSelect={action('onItemSelect')}
@@ -305,7 +305,7 @@ const stories = {
     };
     return (
       <ManageableList
-        maxToShowItems={5}
+        visibleItemsLimit={5}
         onItemRemove={props => removeItem(props, store)}
         onItemEdit={props => editItem(props, store)}
         onItemSelect={action('onItemSelect')}

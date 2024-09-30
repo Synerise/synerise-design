@@ -56,34 +56,44 @@ export const prefixType = {
   checkbox: 'checkbox',
   none: 'none',
 };
-export const CheckboxWithTooltip = ({checked, onChecked}) => {
+export const CheckboxWithTooltip = ({ checked, onChecked }) => {
   return (
     <Tooltip type="default" title={'Checkbox'}>
-      <div style={{padding: '0 4px'}} onClick={(e)=> e.stopPropagation() }>
-        <Checkbox checked={checked} onChange={(e)=> onChecked(e.target.checked)} />
+      <div style={{ padding: '0 4px' }} onClick={e => e.stopPropagation()}>
+        <Checkbox checked={checked} onChange={e => onChecked(e.target.checked)} />
       </div>
     </Tooltip>
   );
 };
-export const Rename = ({onSelectEdit}) => {
+export const Rename = ({ onSelectEdit }) => {
   return (
     <Tooltip type="default" trigger="hover" title={'Rename'}>
       <S.HoverableIconWrapper>
-        <Icon onClick={(e): void => {
-          onSelectEdit();
-          e.stopPropagation();}} color={theme.palette['grey-600']} component={<EditS />} />
+        <Icon
+          onClick={(e): void => {
+            onSelectEdit();
+            e.stopPropagation();
+          }}
+          color={theme.palette['grey-600']}
+          component={<EditS />}
+        />
       </S.HoverableIconWrapper>
     </Tooltip>
   );
 };
-export const RenameWithDelete = ({onClickEdit}) => {
+export const RenameWithDelete = ({ onClickEdit }) => {
   return (
     <React.Fragment>
       <Tooltip type="default" trigger="hover" title={'Rename'}>
         <S.HoverableIconWrapper>
-          <Icon onClick={(e): void => {
-            onClickEdit();
-            e.stopPropagation();}} color={theme.palette['grey-600']} component={<EditS />} />
+          <Icon
+            onClick={(e): void => {
+              onClickEdit();
+              e.stopPropagation();
+            }}
+            color={theme.palette['grey-600']}
+            component={<EditS />}
+          />
         </S.HoverableIconWrapper>
       </Tooltip>
       <Tooltip type="default" trigger="hover" title={'Delete'}>
@@ -92,8 +102,8 @@ export const RenameWithDelete = ({onClickEdit}) => {
         </div>
       </Tooltip>
     </React.Fragment>
-  )
-}
+  );
+};
 export const SwitchWithTooltip = () => {
   const [checked, setChecked] = React.useState(false);
   return (
@@ -120,7 +130,7 @@ export const ActionsMenu = ({ onSelectClick }) => {
     <Dropdown
       visible={dropdownVisible}
       placement="bottomCenter"
-      align={{offset: [-38,8]}}
+      align={{ offset: [-38, 8] }}
       overlay={
         <DropdownWrapper style={{ width: '167px' }} ref={ref}>
           <Menu asDropdownMenu style={{ width: '100%' }}>
@@ -176,23 +186,22 @@ export const ActionsMenu = ({ onSelectClick }) => {
   );
 };
 
-
 export const suffixVisibilityTrigger = {
   default: VisibilityTrigger.NONE,
   hover: VisibilityTrigger.HOVER,
 };
-export const ExtendedAntdSwitchComponent = (AntdSwitch as any) as React.ComponentType<SwitchProps & { id: string }>;
+export const ExtendedAntdSwitchComponent = AntdSwitch as any as React.ComponentType<SwitchProps & { id: string }>;
 
-export function renderSuffix(suffixElementType: string, selectSuffixCallback?: () => void, clickSuffixCallback?: () => void,) {
+export function renderSuffix(
+  suffixElementType: string,
+  selectSuffixCallback?: () => void,
+  clickSuffixCallback?: () => void
+) {
   switch (suffixElementType) {
     case suffixType.renameAndDelete:
-      return (
-        <RenameWithDelete onClickEdit={clickSuffixCallback}/>
-      );
+      return <RenameWithDelete onClickEdit={clickSuffixCallback} />;
     case suffixType.rename:
-      return (
-        <Rename onSelectEdit={selectSuffixCallback}/>
-      );
+      return <Rename onSelectEdit={selectSuffixCallback} />;
     case suffixType.dropdown:
       return <ActionsMenu onSelectClick={selectSuffixCallback} />;
     case suffixType.delete:
@@ -245,7 +254,7 @@ export function renderSuffix(suffixElementType: string, selectSuffixCallback?: (
   }
 }
 
-export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: (value:boolean)=> void,) => {
+export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, onChecked?: (value: boolean) => void) => {
   switch (prefixIconType) {
     case prefixType.twoIcons:
       return (
@@ -274,7 +283,7 @@ export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, on
       );
       break;
     case prefixType.checkbox:
-      return (<CheckboxWithTooltip checked={isChecked} onChecked={onChecked} />);
+      return <CheckboxWithTooltip checked={isChecked} onChecked={onChecked} />;
       break;
     default:
       return null;
@@ -288,6 +297,19 @@ export const remapCopyValueFromText = data =>
   }));
 
 export const simpleText = [{ text: 'Option' }];
+
+export const multipleItems = [
+  { text: 'Option A' },
+  { text: 'Option B' },
+  { text: 'Option C' },
+  { text: 'Option D' },
+  { text: 'Option E' },
+  { text: 'Option F' },
+  { text: 'Option G' },
+  { text: 'Option H' },
+  { text: 'Option I' },
+];
+export const multipleItemsChildren = multipleItems.map(({ text }) => <Menu.Item key={text}>{text}</Menu.Item>);
 
 export const textWithIcon = [{ text: TEXT_PLACEHOLDER }];
 
@@ -312,9 +334,7 @@ export const submenu = [
 export const avatar = [
   {
     text: TEXT_PLACEHOLDER,
-    prefixel: (
-      <ObjectAvatar objectName="A" size="small" tooltip={false} />
-    ),
+    prefixel: <ObjectAvatar objectName="A" size="small" tooltip={false} />,
   },
 ];
 

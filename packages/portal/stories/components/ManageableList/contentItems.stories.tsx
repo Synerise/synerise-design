@@ -178,7 +178,7 @@ const grabberWithExpander = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
-      maxToShowItems={1}
+      visibleItemsLimit={1}
       onChangeOrder={NOOP}
       type="content"
       items={[defaultItem]}
@@ -196,7 +196,7 @@ const grabberWithOption = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
-      maxToShowItems={1}
+      visibleItemsLimit={1}
       onChangeOrder={NOOP}
       type="content"
       items={[defaultItem]}
@@ -211,7 +211,7 @@ const grabberWithRadios = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
-      maxToShowItems={1}
+      visibleItemsLimit={1}
       onChangeOrder={NOOP}
       type="content"
       items={[defaultItem]}
@@ -226,7 +226,7 @@ const grabberWithCruds = defaultItem => {
   return (
     <ListWithGrabber
       onItemSelect={NOOP}
-      maxToShowItems={1}
+      visibleItemsLimit={1}
       onChangeOrder={NOOP}
       type="content"
       items={[defaultItem]}
