@@ -1,15 +1,13 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-
 import { OrderedListSkeleton } from '@synerise/ds-skeleton';
-import UnorderedList, { UnorderedListProps } from '@synerise/ds-unordered-list';
-
-import { FORMATTERS, LIST_DATA } from './UnorderedList.data';
+import OrderedList, { OrderedListProps } from '@synerise/ds-ordered-list';
 import { controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import { FORMATTERS, LIST_ITEMS, LIST_ITEMS_SINGLE_LEVEL } from './OrderedList.data';
 
 export default {
-  component: UnorderedList,
-  title: 'Components/OrderedAndUnorderedList/UnorderedList',
+  component: OrderedList,
+  title: 'Components/OrderedAndUnorderedList/OrderedList',
   tags: ['autodocs'],
   decorators: [fixedWrapper300],
   argTypes: {
@@ -22,19 +20,25 @@ export default {
     },
   },
   args: {
-    data: LIST_DATA,
-  },
-} as Meta<UnorderedListProps>;
-
-export const Default: StoryObj<UnorderedListProps> = {
-  args: {
     text: 'List Header',
-    indexFormatter: FORMATTERS.dashed,
+    indexFormatter: FORMATTERS.decimal,
+    data: LIST_ITEMS_SINGLE_LEVEL,
+  },
+} as Meta<OrderedListProps>;
+
+type Story = StoryObj<OrderedListProps>;
+
+export const Default: Story = {};
+
+export const MultiLevelList: Story = {
+  args: {
+    data: LIST_ITEMS,
   },
 };
 
-export const Skeleton: StoryObj<UnorderedListProps> = {
+export const Skeleton: Story = {
   args: {
+    indexFormatter: FORMATTERS.empty,
     data: [
       {
         id: '0',
@@ -42,7 +46,5 @@ export const Skeleton: StoryObj<UnorderedListProps> = {
         label: <OrderedListSkeleton size="M" />,
       },
     ],
-    text: 'List Header',
-    indexFormatter: FORMATTERS.empty,
   },
 };
