@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.223.0](https://github.com/synerise/synerise-design/compare/portal@0.222.0...portal@0.223.0) (2024-10-01)
+
+
+### Bug Fixes
+
+* **code-snippet:** new button with prop renderCopyButton ([daf3803](https://github.com/synerise/synerise-design/commit/daf38032b6754da5900b65c5401e955438c6452b))
+
+
+### Features
+
+* **menu:** maxToShowItems props ([982d12c](https://github.com/synerise/synerise-design/commit/982d12cf00dfd271bd75e3228e0e231ab26dc7f1))
+
+
+
+
+
 # [0.222.0](https://github.com/synerise/synerise-design/compare/portal@0.221.7...portal@0.222.0) (2024-09-26)
 
 

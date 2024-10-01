@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.17](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.18.16...@synerise/ds-dropdown@0.18.17) (2024-10-01)
+
+
+### Bug Fixes
+
+* **dropdown:** add props from antd ([3a4f377](https://github.com/synerise/synerise-design/commit/3a4f3778451a9710a714d4fdbea1a47a08c45249))
+
+
+
+
+
 ## [0.18.16](https://github.com/synerise/synerise-design/compare/@synerise/ds-dropdown@0.18.15...@synerise/ds-dropdown@0.18.16) (2024-09-26)
 
 **Note:** Version bump only for package @synerise/ds-dropdown

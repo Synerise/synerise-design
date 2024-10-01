@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.27.0...@synerise/ds-manageable-list@0.28.0) (2024-10-01)
+
+
+### Features
+
+* **menu:** maxToShowItems props ([982d12c](https://github.com/Synerise/synerise-design/commit/982d12cf00dfd271bd75e3228e0e231ab26dc7f1))
+
+
+
+
+
 # [0.27.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-manageable-list@0.26.72...@synerise/ds-manageable-list@0.27.0) (2024-09-26)
 
 

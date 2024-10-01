@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-logic",
-  "version": "0.8.48",
+  "version": "0.8.49",
   "description": "Logic UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,9 +34,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.65.7",
-    "@synerise/ds-typography": "^0.15.3",
-    "@synerise/ds-utils": "^0.29.4",
+    "@synerise/ds-icon": "^0.65.8",
+    "@synerise/ds-typography": "^0.15.4",
+    "@synerise/ds-utils": "^0.30.0",
     "react-intl": "3.12.0"
   },
   "peerDependencies": {

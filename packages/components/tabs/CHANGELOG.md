@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.16.2...@synerise/ds-tabs@0.17.0) (2024-10-01)
+
+
+### Features
+
+* **menu:** maxToShowItems props ([982d12c](https://github.com/synerise/synerise-design/commit/982d12cf00dfd271bd75e3228e0e231ab26dc7f1))
+
+
+
+
+
 ## [0.16.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tabs@0.16.1...@synerise/ds-tabs@0.16.2) (2024-09-26)
 
 **Note:** Version bump only for package @synerise/ds-tabs

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-subtle-form",
-  "version": "0.9.127",
+  "version": "0.9.128",
   "description": "SubtleForm UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,12 +34,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-date-picker": "^0.11.18",
-    "@synerise/ds-icon": "^0.65.7",
-    "@synerise/ds-input": "^0.24.6",
-    "@synerise/ds-select": "^0.16.18",
-    "@synerise/ds-tooltip": "^0.14.42",
-    "@synerise/ds-utils": "^0.29.4",
+    "@synerise/ds-date-picker": "^0.11.19",
+    "@synerise/ds-icon": "^0.65.8",
+    "@synerise/ds-input": "^0.24.7",
+    "@synerise/ds-select": "^0.16.19",
+    "@synerise/ds-tooltip": "^0.14.43",
+    "@synerise/ds-utils": "^0.30.0",
     "calculate-size": "^1.1.1"
   },
   "peerDependencies": {
