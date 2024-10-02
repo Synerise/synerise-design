@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
+
+import Typography from '@synerise/ds-typography';
 import Drawer from '@synerise/ds-drawer';
-import Typography from 'antd/lib/typography';
 import Button from '@synerise/ds-button';
 import Icon, {
   AngleDownM,
@@ -13,13 +14,12 @@ import Icon, {
   OptionHorizontalM,
   TrashM,
 } from '@synerise/ds-icon';
-
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import { useOnClickOutside } from '@synerise/ds-utils';
+
 import { ButtonVariant, HeaderProps, HeaderType } from './Header.types';
 import * as S from './Header.style';
-import { DropdownWrapper } from './Header.style';
 
 const Header = ({
   avatar,
@@ -60,7 +60,7 @@ const Header = ({
             value: name,
             maxLength: 120,
             placeholder: texts.inlineEditPlaceholder,
-            onChange: (event): void => {
+            onChange: event => {
               onRename && onRename(event.target.value);
             },
             ...inlineEditInputProps,
@@ -70,8 +70,8 @@ const Header = ({
     }
     return <S.SingleTitle>{name}</S.SingleTitle>;
   };
-
-  const renderMenuDivider = Boolean(onEdit || onDelete || onDuplicate || onMove);
+  const renderMenu = !!(onEdit || onDelete || onDuplicate || onMove || onId);
+  const renderMenuDivider = !!((onEdit || onDelete || onDuplicate || onMove) && onId);
 
   const renderActionButtons = (typesOfButtons: typeof typeButtons) => {
     if (typesOfButtons === ButtonVariant.WITH_NAVIGATION) {
@@ -91,78 +91,80 @@ const Header = ({
               </Button>
             </S.ButtonWrapper>
           )}
-          <Dropdown
-            visible={dropdownVisible}
-            placement="bottomLeft"
-            overlay={
-              <DropdownWrapper ref={ref}>
-                <Menu asDropdownMenu style={{ width: '100%' }}>
-                  {onEdit && (
-                    <Menu.Item
-                      onClick={(): void => {
-                        setDropdownVisible(!dropdownVisible);
-                        onEdit(inputObject);
-                      }}
-                      prefixel={<Icon component={<EditM />} />}
-                    >
-                      {texts.editIcon}
-                    </Menu.Item>
-                  )}
-                  {onDuplicate && (
-                    <Menu.Item
-                      onClick={(): void => {
-                        setDropdownVisible(!dropdownVisible);
-                        onDuplicate(inputObject);
-                      }}
-                      prefixel={<Icon component={<DuplicateM />} />}
-                    >
-                      {texts.duplicateIcon}
-                    </Menu.Item>
-                  )}
-                  {onMove && (
-                    <Menu.Item
-                      onClick={(): void => {
-                        setDropdownVisible(!dropdownVisible);
-                        onMove(inputObject);
-                      }}
-                      prefixel={<Icon component={<FolderM />} />}
-                    >
-                      {texts.moveIcon}
-                    </Menu.Item>
-                  )}
-                  {onDelete && (
-                    <Menu.Item
-                      onClick={(): void => {
-                        setDropdownVisible(!dropdownVisible);
-                        onDelete(inputObject);
-                      }}
-                      type="danger"
-                      prefixel={<Icon component={<TrashM />} />}
-                    >
-                      {texts.deleteIcon}
-                    </Menu.Item>
-                  )}
-                  {renderMenuDivider && <Menu.Divider />}
-                  {onId && (
-                    <Menu.Item
-                      onClick={(): void => {
-                        setDropdownVisible(!dropdownVisible);
-                        onId(inputObject);
-                      }}
-                      style={{ padding: '0 12px' }}
-                      prefixel={<Icon component={<CopyClipboardM />} />}
-                    >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
-                  )}
-                </Menu>
-              </DropdownWrapper>
-            }
-          >
-            <S.ButtonWrapper>
-              <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
-                <Icon component={<OptionHorizontalM />} />
-              </Button>
-            </S.ButtonWrapper>
-          </Dropdown>
+          {renderMenu && (
+            <Dropdown
+              visible={dropdownVisible}
+              placement="bottomLeft"
+              overlay={
+                <S.DropdownWrapper ref={ref}>
+                  <Menu asDropdownMenu style={{ width: '100%' }}>
+                    {onEdit && (
+                      <Menu.Item
+                        onClick={() => {
+                          setDropdownVisible(!dropdownVisible);
+                          onEdit(inputObject);
+                        }}
+                        prefixel={<Icon component={<EditM />} />}
+                      >
+                        {texts.editIcon}
+                      </Menu.Item>
+                    )}
+                    {onDuplicate && (
+                      <Menu.Item
+                        onClick={() => {
+                          setDropdownVisible(!dropdownVisible);
+                          onDuplicate(inputObject);
+                        }}
+                        prefixel={<Icon component={<DuplicateM />} />}
+                      >
+                        {texts.duplicateIcon}
+                      </Menu.Item>
+                    )}
+                    {onMove && (
+                      <Menu.Item
+                        onClick={() => {
+                          setDropdownVisible(!dropdownVisible);
+                          onMove(inputObject);
+                        }}
+                        prefixel={<Icon component={<FolderM />} />}
+                      >
+                        {texts.moveIcon}
+                      </Menu.Item>
+                    )}
+                    {onDelete && (
+                      <Menu.Item
+                        onClick={() => {
+                          setDropdownVisible(!dropdownVisible);
+                          onDelete(inputObject);
+                        }}
+                        type="danger"
+                        prefixel={<Icon component={<TrashM />} />}
+                      >
+                        {texts.deleteIcon}
+                      </Menu.Item>
+                    )}
+                    {renderMenuDivider && <Menu.Divider />}
+                    {onId && (
+                      <Menu.Item
+                        onClick={() => {
+                          setDropdownVisible(!dropdownVisible);
+                          onId(inputObject);
+                        }}
+                        style={{ padding: '0 12px' }}
+                        prefixel={<Icon component={<CopyClipboardM />} />}
+                      >{`ID: ${inputObject[inputObjectIdKey]}`}</Menu.Item>
+                    )}
+                  </Menu>
+                </S.DropdownWrapper>
+              }
+            >
+              <S.ButtonWrapper data-testid="sidebar-object-dropdown-menu-trigger">
+                <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="ghost" mode="single-icon">
+                  <Icon component={<OptionHorizontalM />} />
+                </Button>
+              </S.ButtonWrapper>
+            </Dropdown>
+          )}
           <S.ButtonWrapper>
             <Button type="ghost" mode="single-icon" onClick={onCloseClick}>
               <Icon component={<CloseM />} />
