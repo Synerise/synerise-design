@@ -121,6 +121,7 @@ export default {
     conditionFooterRelativeDateRange: true,
     showStepTags: true,
     layoutNativeScroll: true,
+    maxConditionsLimit: 5
   },
 } as FilterMeta;
 
