@@ -26,6 +26,8 @@ export const FilterHeaderRightSide = styled.div`
 export const MatchingAndConditionsWrapper = styled.div`
   flex: 0 0 auto;
   margin-right: 24px;
+  display: flex;
+  align-items: baseline;
 `;
 
 export const MatchingWrapper = styled.div`
