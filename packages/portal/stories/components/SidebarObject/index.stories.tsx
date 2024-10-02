@@ -136,6 +136,11 @@ const stories = {
         content: <Menu>{renderVersionList}</Menu>,
       },
     ];
+    const renderEditMenuItem = boolean('render "Edit" menu item', true)
+    const renderDuplicateMenuItem = boolean('render "Duplicate" menu item', true)
+    const renderDeleteMenuItem = boolean('render "Delete" menu item', true)
+    const renderMoveMenuItem = boolean('render "Move" menu item', true)
+    const renderIdMenuItem = boolean('render ID menu item', true)
     return (
       <div>
         <Button onClick={() => setDrawerVisible(!drawerVisible)} type="primary">
@@ -157,11 +162,11 @@ const stories = {
             headerPreffix={renderStarred(showStarred) || renderBackIcon(showBackIcon, () => setDrawerVisible(false))}
             onArrowUp={showIcon ? () => {} : null}
             onArrowDown={showIcon ? () => {} : null}
-            onEdit={() => {}}
-            onDuplicate={() => {}}
-            onMove={() => {}}
-            onDelete={() => {}}
-            onId={() => {}}
+            onEdit={renderEditMenuItem ? () => {} : undefined}
+            onDuplicate={renderDuplicateMenuItem ? () => {} : undefined}
+            onMove={renderMoveMenuItem ? () => {} : undefined}
+            onDelete={renderDeleteMenuItem ? () => {} : undefined}
+            onId={renderIdMenuItem ? () => {} : undefined}
             headerTabs={showTabs ? TABS : []}
             activeTab={activeTab}
             handleTabClick={setActiveTab}

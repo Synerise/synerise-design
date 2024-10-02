@@ -1,8 +1,9 @@
 import React from 'react';
+
+import { screen } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import SidebarObject from '../index';
-
-
+import { ButtonVariant } from '../Elements/Header/Header.types';
 
 const TABS = [
   {
@@ -16,36 +17,56 @@ const TABS = [
   },
 ];
 describe('SidebarObject', () => {
-
-  it('should render headerTabs', function() {
-    // ARRANGE
-    const { container } = renderWithProvider(
+  it('should render headerTabs', function () {
+    renderWithProvider(
       <SidebarObject
-        name='Name'
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
+        name="Name"
+        texts={{ name: 'Text' }}
+        inputObject={{ Status: 'active', id: '123' }}
         headerTabs={TABS}
       />
     );
-    // ASSERT
-    expect(container.querySelector('.ds-tabs')).toBeTruthy();
-
-
+    expect(screen.getByTestId('tabs-container')).toBeInTheDocument();
+    expect(screen.getAllByTestId('tab-container')).toHaveLength(TABS.length);
   });
-  it('should render headerPreffix', function() {
-    // ARRANGE
-
-    const { container } = renderWithProvider(
+  it('should render headerPreffix', function () {
+    renderWithProvider(
       <SidebarObject
-        name='Name'
-        texts={{name: 'Text'}}
-        inputObject={{Status: 'active', id: "123"}}
+        name="Name"
+        texts={{ name: 'Text' }}
+        inputObject={{ Status: 'active', id: '123' }}
         headerTabs={TABS}
-        headerPreffix={<div className='buttons'/>}
+        headerPreffix={<div data-testid="header-prefix" />}
       />
     );
-    // ASSERT
-    expect(container.querySelector('.buttons')).toBeTruthy();
+    expect(screen.getByTestId('header-prefix')).toBeInTheDocument();
   });
 
+  it('should render dropdownMenu', function () {
+    renderWithProvider(
+      <SidebarObject
+        name="Name"
+        texts={{ name: 'Text' }}
+        inputObject={{ Status: 'active', id: '123' }}
+        headerTabs={TABS}
+        typeButtons={ButtonVariant.WITH_NAVIGATION}
+        onEdit={jest.fn()}
+        onDuplicate={jest.fn()}
+      />
+    );
+    expect(screen.getByTestId('sidebar-object-dropdown-menu-trigger')).toBeInTheDocument();
+  });
+
+  it('should not render dropdownMenu', function () {
+    renderWithProvider(
+      <SidebarObject
+        name="Name"
+        texts={{ name: 'Text' }}
+        inputObject={{ Status: 'active', id: '123' }}
+        typeButtons={ButtonVariant.WITH_NAVIGATION}
+        headerTabs={TABS}
+      />
+    );
+    expect(screen.queryByTestId('sidebar-object-dropdown-menu-trigger')).not.toBeInTheDocument();
+  });
 });
