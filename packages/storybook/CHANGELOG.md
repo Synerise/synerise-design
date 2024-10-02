@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/Synerise/synerise-design/compare/storybook7@0.18.3...storybook7@0.18.4) (2024-10-02)
+
+
+### Bug Fixes
+
+* **filter:** condition limit alignment ([38122cd](https://github.com/Synerise/synerise-design/commit/38122cdf4c174b850fde08854c585adebd1d7bb3))
+
+
+
+
+
 ## [0.18.3](https://github.com/Synerise/synerise-design/compare/storybook7@0.18.2...storybook7@0.18.3) (2024-10-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.18.29...@synerise/ds-filter@0.18.30) (2024-10-02)
+
+
+### Bug Fixes
+
+* **filter:** condition limit alignment ([38122cd](https://github.com/Synerise/synerise-design/commit/38122cdf4c174b850fde08854c585adebd1d7bb3))
+
+
+
+
+
 ## [0.18.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-filter@0.18.28...@synerise/ds-filter@0.18.29) (2024-10-01)
 
 **Note:** Version bump only for package @synerise/ds-filter
