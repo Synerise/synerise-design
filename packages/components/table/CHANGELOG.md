@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.57.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.57.5...@synerise/ds-table@0.57.6) (2024-10-09)
+
+
+### Bug Fixes
+
+* **table:** deleted unused icons ([9032407](https://github.com/synerise/synerise-design/commit/903240724e034f08b3b80e62df5559dc9bdb3db7))
+
+
+
+
+
 ## [0.57.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.57.4...@synerise/ds-table@0.57.5) (2024-10-01)
 
 **Note:** Version bump only for package @synerise/ds-table

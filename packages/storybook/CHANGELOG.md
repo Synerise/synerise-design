@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.18.4...storybook7@0.19.0) (2024-10-09)
+
+
+### Features
+
+* **grid:** new stories for Grid ([bc355c1](https://github.com/Synerise/synerise-design/commit/bc355c12e920f56c1f7075516a39ac1aee33d228))
+
+
+
+
+
 ## [0.18.4](https://github.com/Synerise/synerise-design/compare/storybook7@0.18.3...storybook7@0.18.4) (2024-10-02)
 
 
