@@ -1,9 +1,9 @@
-import React from 'react';
+import { ReactNode, ReactText } from 'react';
 import { Locale, RowSelection } from '../../Table.types';
 
-export interface TableLimitProps<T extends { key: React.ReactText }> {
+export type TableLimitProps<T extends { key: ReactText }> = {
   selection?: RowSelection<T>;
   total: number;
-  itemsMenu: React.ReactNode;
+  itemsMenu: ReactNode;
   locale: Locale;
-}
+};

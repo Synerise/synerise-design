@@ -111,7 +111,7 @@ describe('VirtualTable', () => {
   
   it('should show loading state of table', () => {
     const { container } = renderWithProvider(<VirtualTable {...sharedProps} dataSource={props.dataSource} columns={props.columns} loading />);
-    expect(container.querySelector('.spinner')).toBeTruthy();
+    expect(container.querySelector('.ds-table-skeleton-cell')).toBeInTheDocument();
   });
 
   it('should render filters', () => {
