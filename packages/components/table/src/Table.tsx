@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode, useCallback, useMemo } from 'react';
 import { useIntl } from 'react-intl';
+
 import '@synerise/ds-core/dist/js/style';
-import Icon, { AngleLeftS, AngleRightS, SpinnerM } from '@synerise/ds-icon';
+import Icon, { AngleLeftS, AngleRightS } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
 import Skeleton from '@synerise/ds-skeleton';
 import { useDataFormat } from '@synerise/ds-data-format';
@@ -15,6 +16,7 @@ import GroupTable from './GroupTable/GroupTable';
 import { GroupType } from './GroupTable/GroupTable.types';
 import { useTableLocale, TableLocaleContext } from './utils/locale';
 import { getChildrenColumnName } from './utils/getChildrenColumnName';
+import { getSkeletonProps } from './utils/getSkeletonProps';
 
 export const SELECTION_ALL = 'SELECTION_ALL';
 export const SELECTION_INVERT = 'SELECTION_INVERT';
@@ -24,7 +26,7 @@ const ITEM_RENDER_TYPE = {
   next: 'next',
 };
 
-function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
+const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const intl = useIntl();
   const {
     title,
@@ -51,12 +53,14 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     hideTitlePart,
     disableColumnNamesLineBreak,
     expandable,
+    columns,
+    skeletonProps,
   } = props;
 
   const tableLocale = useTableLocale(intl, locale);
   const { formatValue } = useDataFormat();
 
-  const renderHeader = React.useCallback((): React.ReactNode => {
+  const renderHeader = useCallback(() => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     const data = grouped
       ? // @ts-ignore
@@ -88,6 +92,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           renderSelectionTitle={renderSelectionTitle}
           hideTitlePart={hideTitlePart}
           childrenColumnName={getChildrenColumnName(expandable?.childrenColumnName)}
+          isLoading={loading}
         />
       )
     );
@@ -96,12 +101,12 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     grouped,
     dataSource,
     dataSourceTotalCount,
+    dataSourceFull,
     hideTitleBar,
     headerWithBorderTop,
     title,
     filters,
     itemsMenu,
-    dataSourceFull,
     searchComponent,
     filterComponent,
     headerButton,
@@ -110,11 +115,12 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     renderSelectionTitle,
     hideTitlePart,
     expandable?.childrenColumnName,
+    loading,
   ]);
 
-  const footerPagination = React.useMemo((): object => {
+  const footerPagination = useMemo(() => {
     return {
-      showTotal: (total: number, range: number[]): React.ReactNode =>
+      showTotal: (total: number, range: number[]) =>
         !hideTitlePart ? (
           <span>
             <strong>{formatValue(range[0])}</strong>-<strong>{formatValue(range[1])}</strong> of{' '}
@@ -127,7 +133,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
           </div>
         ),
       columnWidth: 72,
-      itemRender: (page: number, type: string, originalElement: React.ReactNode): React.ReactNode => {
+      itemRender: (page: number, type: string, originalElement: ReactNode) => {
         if (type === ITEM_RENDER_TYPE.prev) {
           return (
             <Button mode="single-icon" type="ghost">
@@ -148,6 +154,25 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
     };
   }, [pagination, formatValue, grouped, tableLocale, hideTitlePart]);
 
+  const tableContent = useMemo(() => {
+    const extraProps = loading
+      ? getSkeletonProps(skeletonProps, columns)
+      : {
+          pagination: pagination ? footerPagination : (false as const),
+        };
+
+    return (
+      <DefaultTable<T>
+        scroll={{ x: 'auto' }}
+        tableLayout="auto"
+        {...props}
+        locale={tableLocale}
+        title={renderHeader}
+        {...extraProps}
+      />
+    );
+  }, [columns, footerPagination, loading, pagination, props, renderHeader, skeletonProps, tableLocale]);
+
   return (
     <TableLocaleContext.Provider value={tableLocale}>
       <S.TableWrapper
@@ -155,12 +180,7 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
         hideColumnNames={hideColumnNames}
         disableColumnNamesLineBreak={disableColumnNamesLineBreak}
       >
-        {loading && (
-          <S.Spinner className="spinner">
-            <Icon component={<SpinnerM />} color="#6a7580" />
-          </S.Spinner>
-        )}
-        {grouped && dataSource?.length ? (
+        {!loading && grouped && dataSource?.length ? (
           // @ts-ignore
           <GroupTable<T>
             {...props}
@@ -169,19 +189,12 @@ function DSTable<T extends object>(props: DSTableProps<T>): React.ReactElement {
             pagination={dataSource?.length && pagination ? footerPagination : false}
           />
         ) : (
-          <DefaultTable<T>
-            scroll={{ x: 'auto' }}
-            tableLayout="auto"
-            {...props}
-            locale={tableLocale}
-            title={renderHeader}
-            pagination={dataSource?.length && pagination ? footerPagination : false}
-          />
+          tableContent
         )}
       </S.TableWrapper>
     </TableLocaleContext.Provider>
   );
-}
+};
 
 DSTable.SELECTION_ALL = SELECTION_ALL;
 DSTable.SELECTION_INVERT = SELECTION_INVERT;

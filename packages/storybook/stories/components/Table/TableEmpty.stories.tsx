@@ -17,7 +17,7 @@ type Story = StoryObj<StoryType>;
 type StoryType = DSTableProps<RowType> & {
   showIconsInHeader: boolean;
   showHeaderButton: boolean;
-  columnsData: Array<any>;
+  columnsData?: Array<any>;
 };
 
 const STORY_ARG_TYPE = { table: { category: 'Story options' } };
@@ -29,7 +29,7 @@ export default {
   },
   title: 'Components/Table/EmptyTable',
   render: ({ showIconsInHeader, showHeaderButton, columnsData, ...args }) => {
-    const columns = renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader);
+    const columns = columnsData !== undefined ? renderWithIconInHeaders<RowType>(columnsData, showIconsInHeader) : undefined;
     const headerButton = showHeaderButton && (
       <Button type="ghost" mode="icon-label" onClick={fn()}>
         <Icon component={<AddM />} />
@@ -75,5 +75,12 @@ export const EmptyTableCustom: Story = {
 export const Skeleton: Story = {
   args: {
     loading: true,
+  },
+};
+
+export const SkeletonUnknownColumns: Story = {
+  args: {
+    loading: true,
+    columnsData: undefined
   },
 };

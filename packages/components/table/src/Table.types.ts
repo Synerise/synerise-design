@@ -1,7 +1,6 @@
 import { ReactNode, ReactText, Ref } from 'react';
 import { ColumnType, TableProps } from 'antd/lib/table';
 import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
-import { TableSkeletonProps } from 'TableSkeleton/TableSkeleton.types';
 import { LiteralStringUnion } from '@synerise/ds-utils';
 
 import DSTable from './Table';
@@ -142,6 +141,10 @@ export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
   onSort?: OnSortFn;
   dataSourceFull?: T[];
   dataSourceTotalCount?: number;
-  maxHeight?: number;
-  skeletonProps?: Pick<TableSkeletonProps, 'headerHeight' | 'subheaderHeight' | 'rowHeight'>;
+  skeletonProps?: {
+    maxHeight?: number;
+    headerHeight?: number;
+    subheaderHeight?: number;
+    cellHeight?: number;
+  };
 };

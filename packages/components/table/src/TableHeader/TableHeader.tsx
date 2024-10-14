@@ -1,6 +1,7 @@
-import React from 'react';
-import Tooltip from '@synerise/ds-tooltip';
+import React, { useMemo } from 'react';
+
 import { useDataFormat } from '@synerise/ds-data-format';
+
 import * as S from '../Table.styles';
 import FilterTrigger from '../FilterTrigger/FilterTrigger';
 import { Filter } from '../Table.types';
@@ -8,11 +9,7 @@ import TableSelection from './TableSelection';
 import { Props } from './TableHeader.types';
 import { TableLimit } from './TableLimit';
 
-const isTruncated = (element?: HTMLElement): boolean | undefined =>
-  element && element.offsetWidth < element.scrollWidth;
-
-// @ts-ignore
-const TableHeader: React.FC<Props> = ({
+const TableHeader = ({
   title,
   filters,
   searchComponent,
@@ -30,20 +27,12 @@ const TableHeader: React.FC<Props> = ({
   renderSelectionTitle,
   hideTitlePart,
   childrenColumnName,
-}) => {
+  isLoading,
+}: // @ts-ignore
+Props) => {
   const { formatValue } = useDataFormat();
-  const titleRef = React.useRef<HTMLElement>(null);
-  const [isTitleTruncated, setIsTitleTruncated] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    const isElementTruncated = isTruncated(titleRef.current || undefined);
-
-    if (isElementTruncated !== undefined && isElementTruncated !== isTitleTruncated) {
-      setIsTitleTruncated(isElementTruncated);
-    }
-  }, [titleRef, isTitleTruncated, title]);
-
-  const renderLeftSide = React.useMemo(() => {
+  const renderLeftSide = useMemo(() => {
     if (selection?.limit)
       return (
         <TableLimit
@@ -66,7 +55,7 @@ const TableHeader: React.FC<Props> = ({
           />
         )}
         {renderSelectionTitle ? (
-          renderSelectionTitle(selection, filters)
+          <>{renderSelectionTitle(selection, filters)}</>
         ) : (
           <S.TitleContainer>
             <S.TitlePart>
@@ -78,7 +67,7 @@ const TableHeader: React.FC<Props> = ({
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
-        {selection && (
+        {selection && !isLoading && (
           <TableSelection
             rowKey={rowKey}
             dataSource={dataSource}
@@ -89,21 +78,25 @@ const TableHeader: React.FC<Props> = ({
           />
         )}
         <S.TitleContainer>
-          {title && (
+          {isLoading && (
+            <div style={{ width: '100px' }}>
+              <S.Skeleton width="L" numberOfSkeletons={1} />
+            </div>
+          )}
+
+          {!isLoading && title && (
             <>
-              <S.TitlePartEllipsis>
-                {isTitleTruncated ? (
-                  <Tooltip type="largeSimple" description={title} offset="small" autoAdjustOverflow>
-                    <strong ref={titleRef}>{title}</strong>
-                  </Tooltip>
-                ) : (
-                  <strong ref={titleRef}>{title}</strong>
-                )}
+              <S.TitlePartEllipsis
+                ellipsis={{
+                  tooltipProps: { description: title, type: 'largeSimple', offset: 'small', autoAdjustOverflow: true },
+                }}
+              >
+                {title}
               </S.TitlePartEllipsis>
               {!hideTitlePart && <S.TitleSeparator />}
             </>
           )}
-          {!hideTitlePart && (
+          {!isLoading && !hideTitlePart && (
             <S.TitlePart>
               <strong>{formatValue(dataSourceTotalCount)}</strong> <span>{locale.pagination.items}</span>
             </S.TitlePart>
@@ -113,20 +106,20 @@ const TableHeader: React.FC<Props> = ({
     );
   }, [
     selection,
+    dataSourceTotalCount,
     dataSource,
     itemsMenu,
     locale,
     selectedRows,
     rowKey,
     dataSourceFull,
+    childrenColumnName,
     renderSelectionTitle,
     filters,
     formatValue,
     title,
-    isTitleTruncated,
     hideTitlePart,
-    dataSourceTotalCount,
-    childrenColumnName,
+    isLoading,
   ]);
 
   return (

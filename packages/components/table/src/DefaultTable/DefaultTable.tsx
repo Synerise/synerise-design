@@ -151,7 +151,6 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
       data-popup-container
       columns={[
         ...prependedColumns,
-
         // @ts-ignore: decoratedColumns type is different in DSTableProps than AntTableProps
         ...decoratedColumns,
       ]}

@@ -1,8 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import { macro } from '@synerise/ds-typography';
+import { macro, Text } from '@synerise/ds-typography';
 import { CheckboxWrapper } from '@synerise/ds-checkbox/dist/Checkbox.styles';
 import Menu from '@synerise/ds-menu';
 import { IconContainer } from '@synerise/ds-icon';
+import DSSkeleton from '@synerise/ds-skeleton';
 
 export const Header = styled.div<{ withBorderTop?: boolean }>`
   background: #ffffff;
@@ -36,17 +37,8 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const TitlePartEllipsis = styled.span`
-  display: flex;
-  max-width: 100%;
-  min-width: 100px;
-
-  strong {
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+export const TitlePartEllipsis = styled(Text)`
+  font-weight: 500;
 `;
 
 export const TitlePart = styled.span`
@@ -325,4 +317,16 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
   & .ant-table th.ant-table-cell {
     white-space: ${(props): string => (props.disableColumnNamesLineBreak ? 'nowrap' : 'normal')};
   }
+`;
+
+export const Skeleton = styled(DSSkeleton)`
+  padding: 0;
+`;
+
+export const TableSkeletonCell = styled.div<{ height?: number; width?: string }>`
+  display: flex;
+  height: ${props => `${props.height}px` || 'auto'};
+  width: ${props => `${props.width}` || '50%'};
+  align-items: center;
+  justify-content: flex-start;
 `;

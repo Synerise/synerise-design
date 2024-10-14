@@ -10,7 +10,6 @@ import FlagLabelCell from './FlagLabel/FlagLabelCell';
 import StarCell from './Star/StarCell';
 import LabelsWithShowMore from './LabelsWithShowMore/LabelsWithShowMore';
 
-// eslint-disable-next-line import/prefer-default-export
 export {
   IconLabelCell,
   IconTooltipCell,

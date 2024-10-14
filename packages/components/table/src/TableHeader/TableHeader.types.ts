@@ -19,4 +19,5 @@ export type Props<T extends { key: ReactText }> = {
   hideTitlePart?: boolean;
   dataSourceTotalCount?: number;
   childrenColumnName: string;
+  isLoading?: boolean;
 };
