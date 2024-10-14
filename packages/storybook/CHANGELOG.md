@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.19.0...storybook7@0.20.0) (2024-10-14)
+
+
+### Features
+
+* **table:** render skeleton using columns ([c84ca2a](https://github.com/Synerise/synerise-design/commit/c84ca2a8a8aea9d492c38802d9eb357039dccf2f))
+
+
+
+
+
 # [0.19.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.18.4...storybook7@0.19.0) (2024-10-09)
 
 

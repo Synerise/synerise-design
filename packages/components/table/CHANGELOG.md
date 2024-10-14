@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.57.6...@synerise/ds-table@0.58.0) (2024-10-14)
+
+
+### Features
+
+* **table:** render skeleton using columns ([c84ca2a](https://github.com/synerise/synerise-design/commit/c84ca2a8a8aea9d492c38802d9eb357039dccf2f))
+
+
+
+
+
 ## [0.57.6](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.57.5...@synerise/ds-table@0.57.6) (2024-10-09)
 
 

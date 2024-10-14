@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.15.4...@synerise/ds-typography@0.16.0) (2024-10-14)
+
+
+### Features
+
+* **table:** render skeleton using columns ([c84ca2a](https://github.com/synerise/synerise-design/commit/c84ca2a8a8aea9d492c38802d9eb357039dccf2f))
+
+
+
+
+
 ## [0.15.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-typography@0.15.3...@synerise/ds-typography@0.15.4) (2024-10-01)
 
 **Note:** Version bump only for package @synerise/ds-typography
