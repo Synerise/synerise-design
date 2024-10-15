@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.20.0...storybook7@0.21.0) (2024-10-15)
+
+
+### Features
+
+* **factors:** allowClear prop in dp, drp and factors ([68e13d8](https://github.com/Synerise/synerise-design/commit/68e13d8e947c2c394ca2aab9f8cafe06e63f78b2))
+
+
+
+
+
 # [0.20.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.19.0...storybook7@0.20.0) (2024-10-14)
 
 

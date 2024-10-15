@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.25.8...@synerise/ds-factors@0.26.0) (2024-10-15)
+
+
+### Features
+
+* **factors:** allowClear prop in dp, drp and factors ([68e13d8](https://github.com/Synerise/synerise-design/commit/68e13d8e947c2c394ca2aab9f8cafe06e63f78b2))
+
+
+
+
+
 ## [0.25.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.25.7...@synerise/ds-factors@0.25.8) (2024-10-14)
 
 **Note:** Version bump only for package @synerise/ds-factors
