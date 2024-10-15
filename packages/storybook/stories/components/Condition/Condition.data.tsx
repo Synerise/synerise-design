@@ -51,7 +51,7 @@ export const DEFAULT_FACTOR_VALUE = {
   defaultFactorType: 'text',
   value: '',
   formulaEditor: <div>Formula editor</div>,
-
+  allowClear: false,
   autocompleteText: {
     options: ['First name', 'Last name', 'City', 'Age', 'Points'],
   },

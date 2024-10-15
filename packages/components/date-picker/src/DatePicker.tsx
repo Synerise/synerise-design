@@ -32,6 +32,7 @@ const DatePicker = ({
   readOnly,
   renderTrigger,
   inputProps,
+  allowClear = true,
   ...rest
 }: DatePickerProps) => {
   const [dropVisible, setDropVisible] = useState(autoFocus || false);
@@ -72,6 +73,7 @@ const DatePicker = ({
     <PickerInput
       {...inputProps}
       disabled={disabled}
+      allowClear={allowClear}
       autoFocus={!disabled && autoFocus}
       value={selectedDate}
       showTime={showTime}

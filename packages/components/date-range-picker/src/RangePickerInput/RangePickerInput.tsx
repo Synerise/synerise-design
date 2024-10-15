@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState, MouseEvent } from 'react';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -12,7 +12,7 @@ import { normalizeRange } from '../utils';
 import type { DateRange } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
-const RangePickerInput: React.FC<RangePickerInputProps> = ({
+const RangePickerInput = ({
   value,
   valueFormatOptions,
   showTime,
@@ -27,6 +27,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   disabled,
   readOnly,
   onFocus,
+  allowClear = true,
   onBlur,
   error,
   errorText,
@@ -35,29 +36,29 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   const { formatValue } = useDataFormat();
 
   const dateRangeValue = value ? normalizeRange(value as DateRange) : value;
-  const [hovered, setHovered] = React.useState<boolean>(false);
+  const [hovered, setHovered] = useState(false);
   const showError = error || !!errorText;
   const hasValue = dateRangeValue?.from && dateRangeValue?.to;
 
-  const handleIconMouseEnter = React.useCallback(() => setHovered(true), []);
-  const handleIconMouseLeave = React.useCallback(() => setHovered(false), []);
+  const handleIconMouseEnter = useCallback(() => setHovered(true), []);
+  const handleIconMouseLeave = useCallback(() => setHovered(false), []);
 
-  const handleClear = React.useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
+  const handleClear = useCallback(
+    (event: MouseEvent) => {
+      event.stopPropagation();
       onChange && onChange(undefined);
     },
     [onChange]
   );
 
-  const handleInputClick = React.useCallback(
-    e => {
-      onClick && onClick(e);
+  const handleInputClick = useCallback(
+    event => {
+      onClick && onClick(event);
     },
     [onClick]
   );
 
-  const getText = React.useCallback(
+  const getText = useCallback(
     (dateToDisplay): string => {
       const dateValue = new Date(dateToDisplay);
       return formatValue(dateValue, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
@@ -65,7 +66,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
     [showTime, formatValue, valueFormatOptions]
   );
 
-  const renderFromDate = React.useCallback(() => {
+  const renderFromDate = useCallback(() => {
     const isFromDateDefined = dateRangeValue && dateRangeValue.from;
     const text =
       dateRangeValue && isFromDateDefined ? (
@@ -76,7 +77,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
     return <S.DateWrapper highlight={active && !disabled && !isFromDateDefined && highlight}>{text}</S.DateWrapper>;
   }, [dateRangeValue, getText, active, disabled, texts, highlight]);
 
-  const renderEndDate = React.useCallback(() => {
+  const renderEndDate = useCallback(() => {
     const isEndDateDefined = dateRangeValue && dateRangeValue.to;
     const isFromDateDefined = dateRangeValue && dateRangeValue.from;
 
@@ -91,7 +92,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
     );
   }, [dateRangeValue, getText, active, texts, highlight]);
 
-  const placeholder = React.useMemo(() => {
+  const placeholder = useMemo(() => {
     if (isLifetime(value as typeof dateRangeValue)) {
       return <>{texts?.allTime || 'Lifetime'}</>;
     }
@@ -128,7 +129,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
         >
           {placeholder}
           <S.IconSeparator />
-          {!readOnly && hovered && hasValue ? (
+          {!readOnly && hovered && hasValue && allowClear ? (
             <Tooltip title={texts?.clear}>
               <S.ClearIconWrapper>
                 <Icon component={<Close3S />} onClick={handleClear} />

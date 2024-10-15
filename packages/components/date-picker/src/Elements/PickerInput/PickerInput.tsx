@@ -28,6 +28,7 @@ const PickerInput = ({
   errorText,
   prefixel,
   suffixel,
+  allowClear,
   ...rest
 }: PickerInputProps) => {
   const { formatValue } = useDataFormat();
@@ -72,7 +73,7 @@ const PickerInput = ({
 
   const iconInput = useMemo(
     () =>
-      (hovered || highlight) && !readOnly && !!value ? (
+      (hovered || highlight) && allowClear && !readOnly && !!value ? (
         <S.ClearIconWrapper>
           <Tooltip title={clearTooltip}>
             <Icon component={<Close3S />} onClick={handleIconClick} />
@@ -83,7 +84,7 @@ const PickerInput = ({
           <Icon component={<CalendarM />} />
         </S.DefaultIconWrapper>
       ),
-    [hovered, value, readOnly, clearTooltip, handleIconClick, highlight]
+    [hovered, highlight, allowClear, readOnly, value, clearTooltip, handleIconClick]
   );
 
   return (

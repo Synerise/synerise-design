@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon';
 import * as S from './style/Factors.style';
@@ -63,7 +63,7 @@ export const factorTypes = {
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = (): void => {};
 
-const Factors: React.FC<FactorsProps> = ({
+const Factors = ({
   selectedFactorType,
   setSelectedFactorType = NOOP,
   onChangeValue,
@@ -75,6 +75,7 @@ const Factors: React.FC<FactorsProps> = ({
   availableFactorTypes,
   parameters,
   autocompleteText,
+  allowClear = true,
   withoutTypeSelector = false,
   texts,
   formulaEditor,
@@ -89,9 +90,9 @@ const Factors: React.FC<FactorsProps> = ({
   inputProps,
   readOnly,
   getMenuEntryProps,
-}) => {
+}: FactorsProps) => {
   const { formatMessage } = useIntl();
-  const text = React.useMemo(
+  const text = useMemo(
     () => ({
       dateRangePicker: {
         after: formatMessage({ id: `DS.DATE-RANGE-PICKER.AFTER`, defaultMessage: 'after' }),
@@ -215,11 +216,11 @@ const Factors: React.FC<FactorsProps> = ({
     [texts, formatMessage]
   );
 
-  const factorType = React.useMemo(() => {
+  const factorType = useMemo(() => {
     return selectedFactorType || defaultFactorType;
   }, [selectedFactorType, defaultFactorType]);
 
-  const selectedFactor = React.useMemo(() => {
+  const selectedFactor = useMemo(() => {
     return factorTypes[factorType];
   }, [factorType]);
 
@@ -262,6 +263,7 @@ const Factors: React.FC<FactorsProps> = ({
         onActivate={onActivate}
         onDeactivate={onDeactivate}
         error={error}
+        allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
       />

@@ -11,6 +11,7 @@ const DateInput: React.FC<InputProps> = ({
   onDeactivate,
   onActivate,
   error,
+  allowClear,
   readOnly = false,
   getPopupContainerOverride,
 }) => {
@@ -56,6 +57,7 @@ const DateInput: React.FC<InputProps> = ({
       texts={texts.datePicker}
       error={error}
       readOnly={readOnly}
+      allowClear={allowClear}
       inputProps={{ autoResize: { minWidth: '123px' } }}
       dropdownProps={{
         visible: opened,
