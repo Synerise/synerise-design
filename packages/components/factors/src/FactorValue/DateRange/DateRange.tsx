@@ -12,6 +12,7 @@ const DateRangeInput = ({
   error,
   texts,
   onDeactivate,
+  allowClear,
   readOnly = false,
 }: InputProps) => {
   const intl = useIntl();
@@ -51,7 +52,7 @@ const DateRangeInput = ({
       showNowButton={false}
       filterRangeDisplayMode="slider"
       filterValueSelectionModes={['Range']}
-      rangePickerInputProps={{ readOnly, error }}
+      rangePickerInputProps={{ readOnly, error, allowClear }}
       readOnly={readOnly}
     />
   );

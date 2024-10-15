@@ -26,6 +26,7 @@ export type DatePickerProps = {
   onClear?: () => void;
   onDropdownVisibleChange?: (visible: boolean) => void;
   onValueChange?: (date?: Date) => void;
+  allowClear?: boolean;
   error?: boolean;
   errorText?: ReactNode;
   popoverPlacement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight';

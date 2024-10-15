@@ -64,6 +64,7 @@ const FactorsMeta = {
     readOnly: BOOLEAN_CONTROL,
     preventAutoloadData: BOOLEAN_CONTROL,
     opened: BOOLEAN_CONTROL,
+    allowClear: BOOLEAN_CONTROL,
     loading: BOOLEAN_CONTROL,
     error: BOOLEAN_CONTROL,
     withoutTypeSelector: BOOLEAN_CONTROL,
@@ -75,6 +76,7 @@ const FactorsMeta = {
     defaultFactorType: 'text',
     textType: 'default',
     opened: false,
+    allowClear: false,
     parameters: {
       buttonLabel: 'Parameter',
       buttonIcon: <VarTypeStringM />,

@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './FactorValue.style';
 import { FactorValueProps } from '../Factors.types';
 
-const FactorValue: React.FC<FactorValueProps> = ({
+const FactorValue = ({
   selectedFactorType,
   value,
   onChangeValue,
@@ -23,9 +23,10 @@ const FactorValue: React.FC<FactorValueProps> = ({
   onDeactivate,
   error,
   inputProps,
+  allowClear,
   readOnly = false,
   getMenuEntryProps,
-}) => {
+}: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     const InputComponent: React.ElementType = selectedFactor.input;
 
@@ -51,6 +52,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
         onActivate={onActivate}
         onDeactivate={onDeactivate}
         error={error}
+        allowClear={allowClear}
         readOnly={readOnly}
         getMenuEntryProps={getMenuEntryProps}
       />
@@ -67,6 +69,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     autocompleteText,
     parameters,
     withoutTypeSelector,
+    inputProps,
     formulaEditor,
     opened,
     loading,
@@ -76,7 +79,7 @@ const FactorValue: React.FC<FactorValueProps> = ({
     onActivate,
     onDeactivate,
     error,
-    inputProps,
+    allowClear,
     readOnly,
     getMenuEntryProps,
   ]);

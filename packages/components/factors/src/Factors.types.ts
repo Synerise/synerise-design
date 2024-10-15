@@ -138,6 +138,7 @@ export type FactorsProps = {
   formulaEditor?: ReactNode;
   texts?: Partial<FactorsTexts>;
   opened?: boolean;
+  allowClear?: boolean;
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: ReactNode;
@@ -176,6 +177,7 @@ export type FactorValueProps = Pick<
   | 'onActivate'
   | 'onDeactivate'
   | 'error'
+  | 'allowClear'
   | 'inputProps'
   | 'autoResize'
   | 'readOnly'
@@ -189,6 +191,7 @@ export type InputProps = Pick<
   FactorsProps,
   | 'value'
   | 'parameters'
+  | 'allowClear'
   | 'autocompleteText'
   | 'withoutTypeSelector'
   | 'textType'
