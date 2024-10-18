@@ -1,31 +1,32 @@
-import React from 'react';
-import { MenuProps } from 'antd/lib/menu';
-import { MenuItemProps } from '../MenuItem.types';
+import type { CSSProperties, ReactNode, ReactText } from 'react';
+import type { MenuProps } from 'antd/lib/menu';
+import type { MenuItemProps } from '../MenuItem.types';
 
-export type AddonRenderer = (hovered: boolean) => React.ReactNode;
+export type AddonRenderer = (hovered: boolean) => ReactNode;
 
-export interface BasicItemProps {
+export type BasicItemProps = {
   className?: string;
   parent?: boolean;
   disabled?: boolean;
-  prefixel?: React.ReactNode | AddonRenderer;
-  suffixel?: React.ReactNode | AddonRenderer;
+  prefixel?: ReactNode | AddonRenderer;
+  suffixel?: ReactNode | AddonRenderer;
   danger?: boolean;
-  actions?: React.ReactNode;
+  actions?: ReactNode;
+  children?: ReactNode;
   onClick?: MenuProps['onClick'];
-  description?: string | React.ReactNode;
+  description?: ReactNode;
   copyable?: boolean;
-  copyHint?: string | React.ReactNode;
+  copyHint?: string | ReactNode;
   copyValue?: string;
-  copyTooltip?: string | React.ReactNode;
+  copyTooltip?: ReactNode;
   highlight?: string;
-  style?: React.CSSProperties;
-  onItemHover?: (e: MouseEvent) => void;
+  style?: CSSProperties;
+  onItemHover?: (event: MouseEvent) => void;
   suffixVisibilityTrigger?: MenuItemProps['suffixVisibilityTrigger'];
   prefixVisibilityTrigger?: MenuItemProps['prefixVisibilityTrigger'];
   indentLevel?: number;
   ordered?: boolean;
-  key?: React.ReactText;
+  key?: ReactText;
   checked?: boolean;
   size?: 'default' | 'large';
   timeToHideTooltip?: number;

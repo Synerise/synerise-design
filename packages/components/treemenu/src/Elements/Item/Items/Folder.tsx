@@ -147,6 +147,7 @@ const Folder: React.FC<FolderProps> = ({
     <S.FolderItem
       onClick={handleExpandToggle}
       prefixel={prefixel}
+      // @ts-ignore
       suffixel={suffixel}
       suffixVisibilityTrigger="hover"
       {...props}

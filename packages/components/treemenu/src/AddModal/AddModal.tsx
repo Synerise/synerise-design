@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent as ReactMouseEvent, MutableRefObject } from 'react';
 
 import Icon, { Add3M, SearchM, FileM, PasteClipboardM } from '@synerise/ds-icon';
 import Button from '@synerise/ds-button';
@@ -17,7 +17,7 @@ import * as S from './AddModal.styles';
 
 const DEFAULT_NAME = '';
 
-const AddModal: React.FC<AddModalProps> = ({
+const AddModal = ({
   disabled = false,
   texts,
   children,
@@ -29,7 +29,7 @@ const AddModal: React.FC<AddModalProps> = ({
   hasClipboard,
   onItemPaste,
   ...restProps
-}) => {
+}: AddModalProps) => {
   const [search, setSearch] = React.useState(DEFAULT_NAME);
   const [items] = React.useState(itemTypes || []);
   const [overlayVisible, setOverlayVisible] = React.useState<boolean>(false);
@@ -51,8 +51,9 @@ const AddModal: React.FC<AddModalProps> = ({
     setOverlayVisible(!overlayVisible);
   };
 
-  const handleInputRef = React.useCallback(ref => {
-    setSearchRef(ref);
+  const handleInputRef = React.useCallback((ref: MutableRefObject<HTMLInputElement | null>) => {
+    // @ts-ignore
+    ref.current && setSearchRef(ref);
     ref.current && ref.current.focus();
   }, []);
 
@@ -118,7 +119,7 @@ const AddModal: React.FC<AddModalProps> = ({
   };
 
   const handleItemPaste = React.useCallback(
-    event => {
+    (event: ReactMouseEvent<HTMLElement>) => {
       event.stopPropagation();
       onItemPaste && onItemPaste();
     },

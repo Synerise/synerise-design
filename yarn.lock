@@ -6186,6 +6186,48 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@floating-ui/utils/-/utils-0.1.6.tgz"
   integrity sha1-IpWMBC4QtnRjmXvW6nEV/ijLyvk=
 
+"@formatjs/ecma402-abstract@2.2.0":
+  version "2.2.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/ecma402-abstract/-/ecma402-abstract-2.2.0.tgz#36f5bc0dac4ca77ca429fe44bd95b32d5ccd98dd"
+  integrity sha1-NvW8DaxMp3ykKf5EvZWzLVzNmN0=
+  dependencies:
+    "@formatjs/fast-memoize" "2.2.1"
+    "@formatjs/intl-localematcher" "0.5.5"
+    tslib "^2.7.0"
+
+"@formatjs/fast-memoize@2.2.1":
+  version "2.2.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/fast-memoize/-/fast-memoize-2.2.1.tgz#74575f18c6a789472517995ca9686e7a3f7c0b60"
+  integrity sha1-dFdfGManiUclF5lcqWhuej98C2A=
+  dependencies:
+    tslib "^2.7.0"
+
+"@formatjs/icu-messageformat-parser@2.7.10":
+  version "2.7.10"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-messageformat-parser/-/icu-messageformat-parser-2.7.10.tgz#d2e7b73121d950a19710b7bc3659188eafc43786"
+  integrity sha1-0ue3MSHZUKGXELe8NlkYjq/EN4Y=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/icu-skeleton-parser" "1.8.4"
+    tslib "^2.7.0"
+
+"@formatjs/icu-skeleton-parser@1.8.4":
+  version "1.8.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.8.4.tgz#8ca9c2efa2ef2f9e26c0502892a21699dcff8b4f"
+  integrity sha1-jKnC76LvL54mwFAokqIWmdz/i08=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    tslib "^2.7.0"
+
+"@formatjs/intl-displaynames@6.6.10":
+  version "6.6.10"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-displaynames/-/intl-displaynames-6.6.10.tgz#43d61c32e791baa8b96d928452c772949c0c6e1e"
+  integrity sha1-Q9YcMueRuqi5bZKEUsdylJwMbh4=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/intl-localematcher" "0.5.5"
+    tslib "^2.7.0"
+
 "@formatjs/intl-displaynames@^1.2.0":
   version "1.2.2"
   resolved "https://registry.npmjs.org/@formatjs/intl-displaynames/-/intl-displaynames-1.2.2.tgz"
@@ -6193,12 +6235,28 @@
   dependencies:
     "@formatjs/intl-utils" "^2.2.0"
 
+"@formatjs/intl-listformat@7.5.9":
+  version "7.5.9"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-listformat/-/intl-listformat-7.5.9.tgz#d924b5b623315eba7cf25c5dfc550b7704a682b2"
+  integrity sha1-2SS1tiMxXrp88lxd/FULdwSmgrI=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/intl-localematcher" "0.5.5"
+    tslib "^2.7.0"
+
 "@formatjs/intl-listformat@^1.3.7":
   version "1.4.2"
   resolved "https://registry.npmjs.org/@formatjs/intl-listformat/-/intl-listformat-1.4.2.tgz"
   integrity sha512-e4ooLDRkNpwlswXLTuSB34catJSWqnYVITBQl+rOLLAdIqVxowqX5ngWCAhaXGIMs58ohaZMor5ikJpUbPhgTA==
   dependencies:
     "@formatjs/intl-utils" "^2.2.0"
+
+"@formatjs/intl-localematcher@0.5.5":
+  version "0.5.5"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-localematcher/-/intl-localematcher-0.5.5.tgz#b24f100f30658104d5f6db35b0b8d97235298681"
+  integrity sha1-sk8QDzBlgQTV9ts1sLjZcjUphoE=
+  dependencies:
+    tslib "^2.7.0"
 
 "@formatjs/intl-pluralrules@1.5.2":
   version "1.5.2"
@@ -6225,6 +6283,19 @@
   version "2.2.0"
   resolved "https://registry.npmjs.org/@formatjs/intl-utils/-/intl-utils-2.2.0.tgz"
   integrity sha512-+Az7tR1av1DHZu9668D8uh9atT6vp+FFmEF8BrEssv0OqzpVjpVBGVmcgPzQP8k2PQjVlm/h2w8cTt0knn132w==
+
+"@formatjs/intl@2.10.8":
+  version "2.10.8"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl/-/intl-2.10.8.tgz#ccde738919ed8d5f0197c9d0755550765e0da530"
+  integrity sha1-zN5ziRntjV8Bl8nQdVVQdl4NpTA=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/fast-memoize" "2.2.1"
+    "@formatjs/icu-messageformat-parser" "2.7.10"
+    "@formatjs/intl-displaynames" "6.6.10"
+    "@formatjs/intl-listformat" "7.5.9"
+    intl-messageformat "10.7.0"
+    tslib "^2.7.0"
 
 "@formatjs/macro@^0.2.6":
   version "0.2.6"
@@ -11699,12 +11770,12 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@*", "@types/react-dom@18.2.7", "@types/react-dom@^17.0.11":
-  version "17.0.25"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-17.0.25.tgz#e0e5b3571e1069625b3a3da2b279379aa33a0cb5"
-  integrity sha1-4OWzVx4QaWJbOj2isnk3mqM6DLU=
+"@types/react-dom@*", "@types/react-dom@18.2.7", "@types/react-dom@^18":
+  version "18.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react-dom/-/react-dom-18.3.1.tgz#1e4654c08a9cdcfb6594c780ac59b55aad42fe07"
+  integrity sha1-HkZUwIqc3PtllMeArFm1Wq1C/gc=
   dependencies:
-    "@types/react" "^17"
+    "@types/react" "*"
 
 "@types/react-highlight-words@^0.16.4":
   version "0.16.4"
@@ -11748,13 +11819,12 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.2.21", "@types/react@>=16", "@types/react@^16", "@types/react@^17", "@types/react@^17.0.39":
-  version "17.0.80"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-17.0.80.tgz#a5dfc351d6a41257eb592d73d3a85d3b7dbcbb41"
-  integrity sha1-pd/DUdakElfrWS1z06hdO328u0E=
+"@types/react@*", "@types/react@18.2.21", "@types/react@>=16", "@types/react@^16", "@types/react@^18", "@types/react@^18.3.11":
+  version "18.3.11"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-18.3.11.tgz#9d530601ff843ee0d7030d4227ea4360236bd537"
+  integrity sha1-nVMGAf+EPuDXAw1CJ+pDYCNr1Tc=
   dependencies:
     "@types/prop-types" "*"
-    "@types/scheduler" "^0.16"
     csstype "^3.0.2"
 
 "@types/resize-observer-browser@^0.1.7":
@@ -11766,11 +11836,6 @@
   version "1.20.6"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/resolve/-/resolve-1.20.6.tgz"
   integrity sha1-5uYNrSnCyMIGwCbm3Y1tG92oULg=
-
-"@types/scheduler@^0.16":
-  version "0.16.8"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/scheduler/-/scheduler-0.16.8.tgz#ce5ace04cfeabe7ef87c0091e50752e36707deff"
-  integrity sha1-zlrOBM/qvn74fACR5QdS42cH3v8=
 
 "@types/semver-utils@^1.1.1":
   version "1.1.3"
@@ -22137,6 +22202,16 @@ intl-messageformat-parser@^3.6.2, intl-messageformat-parser@^3.6.4:
   dependencies:
     "@formatjs/intl-unified-numberformat" "^3.2.0"
 
+intl-messageformat@10.7.0:
+  version "10.7.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/intl-messageformat/-/intl-messageformat-10.7.0.tgz#66f3400e10bb423407b5ff476fcc1ead3a319ea2"
+  integrity sha1-ZvNADhC7QjQHtf9Hb8werToxnqI=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/fast-memoize" "2.2.1"
+    "@formatjs/icu-messageformat-parser" "2.7.10"
+    tslib "^2.7.0"
+
 intl-messageformat@^7.8.2:
   version "7.8.4"
   resolved "https://registry.npmjs.org/intl-messageformat/-/intl-messageformat-7.8.4.tgz"
@@ -30842,14 +30917,13 @@ react-docgen@^7.0.0:
     resolve "^1.22.1"
     strip-indent "^4.0.0"
 
-react-dom@^16.8.3, react-dom@^17.0.2:
-  version "17.0.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha1-7P+2hF462Nv83EmPDQqTlzZQLCM=
+react-dom@^16.8.3, react-dom@^17.0.2, react-dom@^18:
+  version "18.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
+  integrity sha1-wiZdeVEbV9R5s90/36UVNklMXLQ=
   dependencies:
     loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "^0.20.2"
+    scheduler "^0.23.2"
 
 react-dropzone@^10.2.1:
   version "10.2.1"
@@ -31007,6 +31081,22 @@ react-intl@3.12.0:
     intl-messageformat "^7.8.2"
     intl-messageformat-parser "^3.6.2"
     shallow-equal "^1.2.1"
+
+react-intl@^6.8.0:
+  version "6.8.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-intl/-/react-intl-6.8.0.tgz#611bd392850bd2bdbbd44ee41b1e3c4955d0f932"
+  integrity sha1-YRvTkoUL0r271E7kGx48SVXQ+TI=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.0"
+    "@formatjs/icu-messageformat-parser" "2.7.10"
+    "@formatjs/intl" "2.10.8"
+    "@formatjs/intl-displaynames" "6.6.10"
+    "@formatjs/intl-listformat" "7.5.9"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    "@types/react" "^18.3.11"
+    hoist-non-react-statics "^3.3.2"
+    intl-messageformat "10.7.0"
+    tslib "^2.7.0"
 
 react-is@17.0.2, react-is@^17.0.0, react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"
@@ -31486,13 +31576,12 @@ react-window@^1.8.7:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^17.0.2:
-  version "17.0.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha1-0LXMUW0p6z7uOD91tihkz7aAADc=
+react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^17.0.2, react@^18:
+  version "18.3.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
+  integrity sha1-SauJIAnFOTNiW9FrJTP8dUyrKJE=
   dependencies:
     loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 read-cmd-shim@^1.0.1:
   version "1.0.5"
@@ -32755,6 +32844,13 @@ scheduler@^0.20.2:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+scheduler@^0.23.2:
+  version "0.23.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/scheduler/-/scheduler-0.23.2.tgz#414ba64a3b282892e944cf2108ecc078d115cdc3"
+  integrity sha1-QUumSjsoKJLpRM8hCOzAeNEVzcM=
+  dependencies:
+    loose-envify "^1.1.0"
 
 schema-utils@2.7.0, schema-utils@^2.7.0:
   version "2.7.0"
@@ -35130,6 +35226,11 @@ tslib@^2.1.0, tslib@^2.4.0:
   version "2.6.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tslib/-/tslib-2.6.2.tgz"
   integrity sha1-cDrClCXns3zW/UVukkBNRtHz5K4=
+
+tslib@^2.7.0:
+  version "2.8.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tslib/-/tslib-2.8.0.tgz#d124c86c3c05a40a91e6fdea4021bd31d377971b"
+  integrity sha1-0STIbDwFpAqR5v3qQCG9MdN3lxs=
 
 tsutils@^3.17.1:
   version "3.17.1"

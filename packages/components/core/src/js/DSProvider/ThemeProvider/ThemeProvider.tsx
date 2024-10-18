@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ThemeProvider as ThemeProviderBase } from 'styled-components';
 
 import dsTheme, { ThemePropsVars } from './theme';
 
 export interface ThemeProviderProps {
   theme?: ThemePropsVars;
+  children?: ReactNode
 }
 
-const ThemeProvider: React.FC<ThemeProviderProps> = props => {
-  const { theme, children } = props;
+const ThemeProvider = (props: ThemeProviderProps) => {
+  const { theme = dsTheme, children } = props;
   return (
     <ThemeProviderBase
       theme={{
@@ -21,7 +22,4 @@ const ThemeProvider: React.FC<ThemeProviderProps> = props => {
   );
 };
 
-ThemeProvider.defaultProps = {
-  theme: dsTheme,
-};
 export default ThemeProvider;

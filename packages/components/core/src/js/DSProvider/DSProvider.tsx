@@ -9,9 +9,9 @@ import ThemeProvider from './ThemeProvider';
 import { LocaleProviderProps } from './LocaleProvider/LocaleProvider';
 import { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
-export interface DSProviderProps extends LocaleProviderProps, ThemeProviderProps, DataFormatConfigProviderProps {}
+export type DSProviderProps = LocaleProviderProps & ThemeProviderProps & DataFormatConfigProviderProps;
 
-const DSProvider: React.FC<DSProviderProps> = props => {
+const DSProvider = (props: DSProviderProps) => {
   const { locale, messages, timeZone, children, theme, dataFormatConfig } = props;
 
   return (

@@ -33,6 +33,7 @@ Props) => {
   const { formatValue } = useDataFormat();
 
   const renderLeftSide = useMemo(() => {
+    
     if (selection?.limit)
       return (
         <TableLimit

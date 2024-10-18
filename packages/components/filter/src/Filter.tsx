@@ -161,7 +161,8 @@ const Filter = ({
   );
 
   const getContextTypeTexts = useCallback(
-    expression => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (expression: any) => {
       const contextType = expression.expressionType;
       return {
         matching: contextType === 'attribute' ? text.step.have : text.step.performed,
@@ -174,7 +175,7 @@ const Filter = ({
   );
 
   const isActive = useCallback(
-    expression => {
+    (expression: Expression) => {
       return expression.id === activeExpressionId;
     },
     [activeExpressionId]
@@ -262,7 +263,8 @@ const Filter = ({
   );
 
   const renderExpression = useCallback(
-    (expression, index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (expression: any, index: number) => {
       const Component = component[expression.type];
       const LogicComponent = expression.logic && component[expression.logic.type];
 
@@ -277,7 +279,7 @@ const Filter = ({
           onMouseDown={(): void => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
-          {expression.logic && index + 1 < expressions.length && (
+          {expression.logic && index + 1 < expressions.length && LogicComponent && (
             <S.LogicWrapper data-testid="condition-logic">
               <LogicComponent
                 {...expression.logic.data}

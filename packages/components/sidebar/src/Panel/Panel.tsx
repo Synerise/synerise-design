@@ -8,7 +8,7 @@ import { PanelProps, DraggablePanelProps } from '../Sidebar.types';
 import { SidebarContext } from '../Sidebar.context';
 import * as S from '../Sidebar.styles';
 
-const DraggablePanel: React.FC<DraggablePanelProps> = ({ id, context, order, children }) => {
+const DraggablePanel = ({ id, context, order, children }: DraggablePanelProps) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const index = order ? order.indexOf(id) : 0;
 

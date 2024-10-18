@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import Button from '@synerise/ds-button';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 
@@ -11,7 +11,7 @@ export type ExtrasProps = {
   actions: ItemRollElement[];
 };
 
-const ItemMenu = styled(Menu)`
+const ItemMenu = styled.div`
   padding: 8px;
 `;
 
@@ -23,9 +23,9 @@ const Extras: React.FC<ExtrasProps> = ({ actions }) => {
       overlay={
         <ItemMenu data-testid="items-roll-action-menu">
           {actions.map(action => (
-            <Menu.Item {...action} key={action.id}>
+            <ListItem {...action} key={action.id}>
               {action.text}
-            </Menu.Item>
+            </ListItem>
           ))}
         </ItemMenu>
       }

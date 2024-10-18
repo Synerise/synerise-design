@@ -28,7 +28,7 @@ export default function Tree({
   hasClipboard,
   ...restProps
 }: TreeProps): ReactElement {
-  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(propExpandedKeys || []);
+  const [expandedKeys, setExpandedKeys] = useState<(string | number)[]>(propExpandedKeys || []);
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const itemGhostRef = useRef<HTMLDivElement>(null);
@@ -126,6 +126,7 @@ export default function Tree({
   return itemsToRender.length ? (
     <div>
       <Ghost ref={itemGhostRef} />
+      {/* @ts-ignore */}
       <SortableContainer
         hideSortableGhost
         helperClass="ds-tree-menu-helper"

@@ -15,7 +15,7 @@ const Tab = ({
   disabled,
   onClick,
   forwardedRef,
-  underscore,
+  underscore = true,
   className,
   block,
   suffixel,
@@ -82,8 +82,5 @@ const Tab = ({
   );
 };
 
-Tab.defaultProps = {
-  underscore: true,
-};
 
 export default Tab;

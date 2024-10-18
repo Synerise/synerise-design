@@ -1,7 +1,8 @@
-import React from 'react';
+import { ReactNode, ReactElement, CSSProperties } from 'react';
 
-export interface Props {
+export type Props = {
   onClickAction: () => void;
-  icon?: React.ReactElement;
-  style?: React.CSSProperties;
-}
+  icon?: ReactElement;
+  style?: CSSProperties;
+  children?: ReactNode;
+};

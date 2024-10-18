@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withTheme } from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Add3M, SearchM, SettingsM } from '@synerise/ds-icon';
@@ -8,16 +8,16 @@ import * as S from './Tags.styles';
 import Tag from './Tag/Tag';
 import { Props as TagProps } from './Tag/Tag.types';
 
-const Tags: React.FC<Props> = ({
-  data,
+const Tags = ({
+  data = [],
   tagShape,
   onSelectedChange,
   disabled,
   removable,
   addable,
   creatable,
-  texts,
-  selected,
+  texts = {},
+  selected = [],
   style,
   className,
   manageLink,
@@ -29,8 +29,8 @@ const Tags: React.FC<Props> = ({
   asPill,
   onManageTagClick,
 }: Props) => {
-  const [isAdding, setAddingState] = React.useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [isAdding, setAddingState] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const addIcon = (
     <S.AddIconWrapper>
@@ -189,12 +189,6 @@ const Tags: React.FC<Props> = ({
       </S.SelectedTags>
     </S.Container>
   );
-};
-
-Tags.defaultProps = {
-  texts: {},
-  data: [],
-  selected: [],
 };
 
 export default withTheme(Tags);

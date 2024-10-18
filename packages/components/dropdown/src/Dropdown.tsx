@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, Component} from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdDropdown, { DropDownProps as AntDropDownProps } from 'antd/lib/dropdown';
@@ -11,19 +11,20 @@ import TextTrigger from './elements/TextTrigger/TextTrigger';
 
 export type DropdownProps = AntDropDownProps & {
   destroyPopupOnHide?: boolean;
+  children?: ReactNode
 };
 
 const topPlacements = ['topLeft', 'topRight', 'topCenter'];
 
-class Dropdown extends React.Component<DropdownProps> {
+class Dropdown extends Component<DropdownProps> {
   static Wrapper: typeof Wrapper = Wrapper;
   static SearchInput: typeof SearchBar = SearchBar;
   static BottomAction: typeof BottomAction = BottomAction;
   static BackAction: typeof BackAction = BackAction;
-  static Button: typeof AntdDropdown.Button = AntdDropdown.Button;
+  static Button: typeof AntdDropdown.Button & { children?: ReactNode } = AntdDropdown.Button;
   static TextTrigger: typeof TextTrigger = TextTrigger;
 
-  render(): React.ReactNode {
+  render() {
     const { placement } = this.props;
     const offsetVertical = topPlacements.find(topPlacement => topPlacement === placement) !== undefined ? -8 : 8;
 

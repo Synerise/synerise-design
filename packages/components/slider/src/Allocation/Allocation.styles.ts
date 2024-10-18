@@ -1,5 +1,6 @@
+import type { ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation, StyledProps } from 'styled-components';
-import { SliderProps } from '../Slider.types';
+import type { SliderProps } from '../Slider.types';
 import { AntdSlider, createTracksStyles } from '../Slider.styles';
 import { buildDefaultTracksColorMap } from '../Slider';
 import type { DefinedCssRuleParameters, TrackProps } from './Allocation.types';
@@ -30,7 +31,7 @@ export const INDEX_MAP = {
   '9': 'fern-600',
 };
 
-export const AllocationSlider = styled(AntdSlider)<SliderProps & { blockedHandlersKeys: number[] }>`
+export const AllocationSlider = styled(AntdSlider)<SliderProps & { children?: ReactNode; blockedHandlersKeys: number[] }>`
   ${(props): FlattenSimpleInterpolation =>
     createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
 

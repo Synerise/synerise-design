@@ -18,9 +18,10 @@ const SelectDropdown = <ItemType extends ListItemProps>({
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
   const [scrollTop, setScrollTop] = useState(0);
-  const handleItemClick: ListItemProps['onClick'] = useCallback(
-    item => {
+  const handleItemClick = useCallback(
+    (item: ItemType) => {
       onSelect(item);
+      // @ts-ignore TODO expects ItemData from @synerise/ds-list-item
       // eslint-disable-next-line no-unused-expressions
       item.onClick?.(item);
       closeDropdown();

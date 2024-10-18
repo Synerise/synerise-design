@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import useTreeMenuContext from '../useTreeMenuContext';
 import Search from './Search';
 
 import * as S from './Toolbar.styles';
 
-const Toolbar: React.FC = ({ children }) => {
+const Toolbar = ({ children }: { children: ReactNode }) => {
   const { searchOpen } = useTreeMenuContext();
   const [addItemWidth, setAddItemWidth] = React.useState<number>(0);
   const addItemRef = React.useRef<HTMLDivElement>(null);

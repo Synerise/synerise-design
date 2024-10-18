@@ -1,8 +1,9 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export interface FieldSetProps {
+export type FieldSetProps = {
   className?: string;
-  heading: React.ReactNode;
-  description?: React.ReactNode;
+  heading: ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
   withLine?: boolean;
 }

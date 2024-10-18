@@ -134,17 +134,17 @@ const ManageableListComponent = <T extends object>({
   }, [onItemAdd]);
 
   const onMoveTop = useCallback(
-    item => {
+    (item: ItemProps) => {
       const newOrder = [item, ...items.filter(i => i.id !== item.id)];
-      onChangeOrder && onChangeOrder(newOrder);
+      onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
     [items, onChangeOrder]
   );
 
   const onMoveBottom = useCallback(
-    item => {
+    (item: ItemProps) => {
       const newOrder = [...items.filter(i => i.id !== item.id), item];
-      onChangeOrder && onChangeOrder(newOrder);
+      onChangeOrder && onChangeOrder(newOrder as ItemProps<T>[]);
     },
     [items, onChangeOrder]
   );

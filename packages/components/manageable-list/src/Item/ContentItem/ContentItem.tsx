@@ -48,7 +48,7 @@ const ContentItemComponent = ({
   }, [expanded]);
 
   const updateName = useCallback(
-    updateParams => {
+    (updateParams: { id: string | number; name: string }) => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },

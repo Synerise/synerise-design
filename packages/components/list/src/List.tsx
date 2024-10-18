@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, PureComponent, ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 import Radio from '@synerise/ds-radio';
@@ -9,7 +9,12 @@ import './style/index.less';
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
 import { ListPropsType } from './List.types';
 
-const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
+type RadioGroupWrapperProps = {
+  options?: RadioGroupProps ;
+  children?: ReactNode
+}
+
+const RadioGroupWrapper = ({ children, options }: RadioGroupWrapperProps) => (
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 
@@ -18,7 +23,7 @@ export const isNestedArray = <V extends any>(array: V[] | V[][]): boolean => {
   return !!array.length && array[0] instanceof Array;
 };
 
-class List<T> extends React.PureComponent<ListPropsType<T>> {
+class List<T> extends PureComponent<ListPropsType<T>> {
   static ItemWrapper: typeof ItemWrapper = ItemWrapper;
   static Item: typeof TextItem = TextItem;
   static Divider: typeof ListDivider = ListDivider;
@@ -28,7 +33,7 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
     this.uuidKey = uuid();
   }
 
-  render(): React.ReactNode {
+  render() {
     const { dataSource, radio, options, dashed, ...rest } = this.props;
     let ReadyList;
 
@@ -40,25 +45,25 @@ class List<T> extends React.PureComponent<ListPropsType<T>> {
           const isLastItem = dataSource.length === index + 1;
           if (index === 0) {
             return (
-              <React.Fragment key={uuid()}>
+              <Fragment key={uuid()}>
                 <AntdList {...rest} dataSource={singleDataSource} />
                 {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
-              </React.Fragment>
+              </Fragment>
             );
           }
 
           return (
-            <React.Fragment key={uuid()}>
+            <Fragment key={uuid()}>
               <AntdList {...rest} header={null} dataSource={singleDataSource} />
               {!isLastItem && <ListDivider dashed={!!dashed} data-testid="divider" />}
-            </React.Fragment>
+            </Fragment>
           );
         });
     } else {
       ReadyList = (
-        <React.Fragment key={this.uuidKey || uuid()}>
+        <Fragment key={this.uuidKey || uuid()}>
           <AntdList {...rest} dataSource={dataSource as T[]} />
-        </React.Fragment>
+        </Fragment>
       );
     }
 

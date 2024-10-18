@@ -17,7 +17,7 @@ const DROPDOWN_OVERLAY_STYLE = {
   zIndex: parseInt(theme.variables['zindex-modal'], 10) - 1,
 };
 
-const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, block }: TabsProps) => {
+const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore = true, block }: TabsProps) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const helperContainerRef = useRef<HTMLDivElement>(null);
@@ -226,10 +226,6 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
       {!block && renderHelpers}
     </>
   );
-};
-
-Tabs.defaultProps = {
-  underscore: true,
 };
 
 export default Tabs;

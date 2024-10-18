@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -105,6 +105,13 @@ const Trigger: React.FC<Props> = ({
     );
   }, [withChangeButton, changeButtonLabel, size, handleChangeButtonClick]);
 
+  const prefixel = useMemo(() => {
+    if (typeof selected?.prefixel === 'function') {
+      return selected.prefixel(false);
+    }
+    return selected?.prefixel;
+  }, [selected]);
+
   return (
     <S.TriggerWrapper
       tabIndex={selected ? undefined : 0}
@@ -120,7 +127,7 @@ const Trigger: React.FC<Props> = ({
         {selected ? (
           <>
             <S.Value>
-              {selected.prefixel && <S.Prefix data-testid="value-prefixel">{selected.prefixel}</S.Prefix>}
+              {selected?.prefixel && <S.Prefix data-testid="value-prefixel">{prefixel}</S.Prefix>}
               <S.ValueText>{selected.text}</S.ValueText>
             </S.Value>
             {renderChangeButton}

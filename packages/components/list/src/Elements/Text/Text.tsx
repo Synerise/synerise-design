@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { ReactNode, useCallback, KeyboardEvent, MouseEvent } from 'react';
 import * as S from './Text.styles';
 
-interface Props {
+type TextProps = {
   disabled?: boolean;
   icon?: JSX.Element;
   danger?: boolean;
-  actions?: React.ReactNode;
-  onSelect?: (e?: React.MouseEvent | React.KeyboardEvent) => void;
+  actions?: ReactNode;
+  onSelect?: (e?: MouseEvent | KeyboardEvent) => void;
+  children?: ReactNode;
   size?: S.ListItemType;
 }
 
-const Text: React.FC<Props> = ({ disabled, icon, onSelect, danger, actions, children, size = 'small' }) => {
-  const onKeyUpHandler = React.useCallback(
-    (event: React.KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect(event),
+const Text = ({ disabled, icon, onSelect, danger, actions, children, size = 'small' }: TextProps) => {
+  const onKeyUpHandler = useCallback(
+    (event: KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect(event),
     [onSelect]
   );
   return (

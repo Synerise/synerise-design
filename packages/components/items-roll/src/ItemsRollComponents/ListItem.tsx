@@ -1,28 +1,26 @@
-import React from 'react';
-import { NOOP } from '@synerise/ds-utils';
+import React, { useCallback } from 'react';
 
 import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
-import { ItemElementProps } from './ListItem.types';
+import type { ItemElementProps } from './ListItem.types';
 
-const ItemElement: React.FC<ItemElementProps> = ({
+const ItemElement = ({
   item,
   group,
   highlight,
   onItemClick,
   onItemRemove,
   removeTooltipLabel,
-}) => {
-  const onClick = React.useCallback(() => onItemClick && onItemClick(item.id, group), [onItemClick, item.id, group]);
-  const renderSuffixElement = (hovered: boolean): React.ReactNode =>
+}: ItemElementProps) => {
+  const onClick = useCallback(() => onItemClick && onItemClick(item.id, group), [onItemClick, item.id, group]);
+  const renderSuffixElement = (hovered: boolean) =>
     item.suffixel instanceof Function ? item.suffixel(hovered) : item.suffixel;
   return (
     <S.ListItem
       {...item}
       className="items-roll-list-item"
       highlight={highlight}
-      onItemHover={NOOP}
-      suffixel={(hovered: boolean): React.ReactNode => (
+      suffixel={(hovered: boolean) => (
         <S.SuffixelWrapper>
           {renderSuffixElement(hovered) || null}
           {onItemRemove && (

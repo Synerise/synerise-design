@@ -1,13 +1,14 @@
-import { ButtonGroupProps as AntButtonGroupProps } from 'antd/lib/button/button-group';
-import React from 'react';
+import type { ReactNode } from 'react';
+import type { ButtonGroupProps as AntButtonGroupProps } from 'antd/lib/button/button-group';
+import { LiteralStringUnion } from '@synerise/ds-utils';
 
-export interface ButtonGroupProps extends AntButtonGroupProps {
-  children?: React.ReactNode;
+export type ButtonGroupProps = AntButtonGroupProps & {
+  children?: ReactNode;
   title?: string;
   description?: string;
   fullWidth?: boolean;
-  buttonsPosition?: string | 'left' | 'center' | 'right';
+  buttonsPosition?: LiteralStringUnion<'left' | 'center' | 'right'>;
   disabled?: boolean;
   splitMode?: boolean;
   error?: boolean;
-}
+};

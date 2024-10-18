@@ -19,7 +19,7 @@ export const itemSizes = {
 export type ItemType = typeof itemTypes[keyof typeof itemTypes];
 export type ItemSize = typeof itemSizes[keyof typeof itemSizes];
 
-type ItemData<EventType> = {
+export type ItemData<EventType> = {
   key?: Key;
   item: Partial<BasicItemProps>;
   domEvent: EventType;

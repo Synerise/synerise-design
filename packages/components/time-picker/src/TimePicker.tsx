@@ -30,11 +30,11 @@ dayjs.extend(customParseFormatPlugin);
 const defaultUnits = [HOUR, MINUTE, SECOND] as dayjs.UnitType[];
 
 const TimePicker = ({
-  placement,
+  placement = 'bottomLeft',
   placeholder,
-  trigger,
+  trigger = ['click'],
   value,
-  units,
+  units = defaultUnits,
   defaultOpen,
   onChange,
   containerStyle = {},
@@ -252,10 +252,5 @@ const TimePicker = ({
   );
 };
 
-TimePicker.defaultProps = {
-  placement: 'bottomLeft',
-  trigger: ['click'],
-  units: defaultUnits,
-};
 
 export default TimePicker;

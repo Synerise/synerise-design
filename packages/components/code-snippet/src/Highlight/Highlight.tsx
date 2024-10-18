@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import hljs from 'highlight.js/lib/core';
 import * as S from './Highlight.styles';
 import { HighlightProps } from './Highlight.types';
 
-const Highlight: React.FC<HighlightProps> = ({ languages, style, children }) => {
-  const elementRef = React.useRef<HTMLDivElement>(null);
+const Highlight = ({ languages, style, children }: HighlightProps) => {
+  const elementRef = useRef<HTMLDivElement>(null);
 
-  const manageHighlight = React.useCallback(() => {
+  const manageHighlight = useCallback(() => {
     if (elementRef.current) {
       const elements = elementRef.current.querySelectorAll('pre code');
       languages.forEach(language => {
@@ -19,7 +19,7 @@ const Highlight: React.FC<HighlightProps> = ({ languages, style, children }) => 
     }
   }, [languages]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     manageHighlight();
   }, [manageHighlight]);
 

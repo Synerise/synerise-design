@@ -1,5 +1,5 @@
-import React from 'react';
-import { ItemRollElement, ItemsRollGroup } from '../ItemsRoll.types';
+import type { ReactNode } from 'react';
+import type { ItemRollElement, ItemsRollGroup } from '../ItemsRoll.types';
 
 export type ItemElementProps = {
   highlight?: string;
@@ -7,5 +7,5 @@ export type ItemElementProps = {
   group?: ItemsRollGroup;
   onItemClick?: (id: string, group?: ItemsRollGroup) => void;
   onItemRemove?: (id: string, group?: ItemsRollGroup) => void;
-  removeTooltipLabel: string | React.ReactNode;
+  removeTooltipLabel: ReactNode;
 };

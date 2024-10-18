@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListChildComponentProps } from 'react-window';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 import { NOOP } from '@synerise/ds-utils';
 
 import * as S from './ListItem.styles';
@@ -19,7 +19,7 @@ const ItemRenderer =
 
     return (
       <S.ListItem>
-        <Menu.Item
+        <ListItem
           className="items-roll-list-item"
           highlight={highlight}
           onItemHover={NOOP}
@@ -27,15 +27,17 @@ const ItemRenderer =
           style={style}
           suffixel={
             <S.SuffixelWrapper>
-              {suffixel}
-              {!!onItemRemove && (
-                <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
-              )}
+              <>
+                {suffixel}
+                {!!onItemRemove && (
+                  <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
+                )}
+              </>
             </S.SuffixelWrapper>
           }
         >
           {item.text}
-        </Menu.Item>
+        </ListItem>
       </S.ListItem>
     );
   };

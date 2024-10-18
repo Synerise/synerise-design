@@ -16,6 +16,7 @@ import { groupByGroupName } from '../utils';
 import { NO_GROUP_NAME, DROPDOWN_HEIGHT, TABS_HEIGHT, PADDING, DEFAULT_TAB_INDEX, SEARCH_HEIGHT } from '../constants';
 import { OperatorsDropdownProps, OperatorsGroup, OperatorsItem } from '../Operator.types';
 
+
 const OperatorsDropdown = ({
   texts,
   setSelected,
@@ -139,7 +140,7 @@ const OperatorsDropdown = ({
   ]);
 
   const handleSearch = useCallback(
-    val => {
+    (val: string) => {
       setSearchQuery(val);
     },
     [setSearchQuery]

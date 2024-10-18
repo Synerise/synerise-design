@@ -56,7 +56,7 @@ function DefaultTable<T extends object & RowType<T>>(props: DSTableProps<T>) {
     }
   }, [columns, previousColumns, sortStateApi]);
 
-  const RenderRow = useCallback(row => {
+  const RenderRow = useCallback((row) => {
     const { children, ...rowProps } = row;
     const classNameWithLevel = row.className.split(' ').find((name: string) => name.includes('row-level'));
     let level;

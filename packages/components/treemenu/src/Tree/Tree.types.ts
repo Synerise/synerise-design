@@ -8,7 +8,7 @@ import { ItemRef, ItemProps } from './Item/Item.types';
 export type TreeProps = Pick<SortableContainerProps, 'getContainer'> & {
   items: TreeData[];
   addItemList?: unknown;
-  expandedKeys?: React.Key[];
+  expandedKeys?: (string | number)[];
   draggable?: boolean;
   searchQuery?: string;
   texts: TreeMenuTexts;

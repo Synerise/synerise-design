@@ -3,7 +3,7 @@ import Icon from '@synerise/ds-icon';
 import * as S from './BottomAction.styles';
 import { Props } from './BottomAction.types';
 
-const BottomAction: React.FC<Props> = ({ onClickAction, children, style, icon, ...rest }) => (
+const BottomAction = ({ onClickAction, children, style, icon, ...rest }: Props) => (
   <S.BottomAction style={style} onClick={onClickAction} {...rest}>
     {icon && (
       <S.IconWrapper>

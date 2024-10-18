@@ -20,7 +20,7 @@
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn build:core && yarn build:all",
     "build-storybook": "cd packages/storybook && yarn build-storybook",
-    "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-{data-format,core}",
+    "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-{data-format,core,utils,grid,drawer,loader,flag,icon,empty-states,scrollbar,layout,popconfirm,tooltip,pagination,description,typography,block,cruds,badge,button,input,message,logic,radio,progress-bar,slider,button-group,skeleton,action-area,code-snippet,footer,editable-items-list,result,checkbox,divider,input-number,autocomplete,file-uploader,app-menu,list-item,navbar,ordered-list,dropdown,search,unordered-list,select,search-bar,switch,menu,form,modal,checkbox-tristate,field-set,format-picker,icon-picker,completed-within,list,subject,stepper,cascader,sidebar,tabs,collector,operators,items-roll,inline-edit,alert,time-picker,tags,code-area,card-tabs,wizard,avatar,filter,tagslist,card-select,color-picker,item-picker,status,step-card,card,page-header,manageable-list,treemenu,date-picker,item-filter,column-manager,subtle-form,date-range-picker}",
     "build:core": "yarn npx:lerna run build --scope=@synerise/ds-{data-format,core}",
     "component:create": "node ./scripts/create-component/index.js",
     "docs-build": "npx styleguidist build",
@@ -70,11 +70,11 @@
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "4.9.1",
     "**/@typescript-eslint/parser": "4.9.1",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "rc-util": "^5.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18",
+    "react-dom": "^18",
     "sortablejs": "1.15.0"
   },
   "volta": {

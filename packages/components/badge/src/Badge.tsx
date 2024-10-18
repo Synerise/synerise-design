@@ -4,7 +4,7 @@ import './style/index.less';
 import { BadgeProps } from './Badge.types';
 import AntdBadge from './Badge.styles';
 
-const Badge: React.FC<BadgeProps> = ({
+const Badge = ({
   flag,
   outlined,
   backgroundColor,
@@ -14,9 +14,8 @@ const Badge: React.FC<BadgeProps> = ({
   pulsing,
   customColor,
   ...antdProps
-}) => {
+}: BadgeProps) => {
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <AntdBadge
       flag={flag}
       outlined={outlined}

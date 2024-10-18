@@ -13,7 +13,7 @@ import { ObjectAvatarProps } from '../Avatar.types';
 export const DEFAULT_COLOR_HUE = '600';
 export const DEFAULT_COLOR = 'grey';
 
-const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
+const ObjectAvatar = ({
   backgroundColor,
   badgeStatus,
   iconComponent,
@@ -27,7 +27,7 @@ const ObjectAvatar: React.FC<ObjectAvatarProps> = ({
   disabled,
   style,
   ...restProps
-}) => {
+}: ObjectAvatarProps) => {
   const { name: objectName, description: objectDescription, status: objectStatus, avatar } = object || {};
   const defaultTooltip = {
     title: objectName || '',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement, ReactNode, useContext } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import SubMenuContext from '../SubMenu/SubMenuContext/SubMenuContext';
@@ -7,14 +7,15 @@ import Icon from './Icon/Icon';
 import * as S from './Item.styles';
 
 type ItemProps = {
-  subMenu?: React.ReactElement;
+  subMenu?: ReactElement;
+  children?: ReactNode;
   id: string;
   name: string;
   className?: string;
 };
 
-const Item: React.FC<ItemProps> & { Icon: typeof Icon } = ({ children, subMenu, id, name, className }) => {
-  const menuContext = React.useContext(MenuContext);
+const Item = ({ children, subMenu, id, name, className }: ItemProps & { Icon: typeof Icon }) => {
+  const menuContext = useContext(MenuContext);
 
   if (!menuContext) {
     throw Error('Cannot use item outside MenuContext');

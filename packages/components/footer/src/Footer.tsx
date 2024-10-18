@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import * as S from './Footer.styles';
 
 export type FooterProps = {
   style?: React.CSSProperties;
   className?: string;
+  children?: ReactNode;
 };
 
-const Footer: React.FC<FooterProps> = ({ children, className, style }) => (
+const Footer = ({ children, className, style }: FooterProps) => (
   <S.Footer style={style} className={className}>
     {children}
   </S.Footer>

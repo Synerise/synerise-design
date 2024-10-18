@@ -1,5 +1,6 @@
 import { BadgeProps as AntBadgeProps } from 'antd/lib/badge';
 import { DefaultColor } from '@synerise/ds-core';
+import { ReactNode } from 'react';
 
 export const color = [
   'red',
@@ -34,4 +35,5 @@ export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
   textColorHue?: ColorHue;
   pulsing?: boolean;
   customColor?: Color | DefaultColor;
+  children?: ReactNode;
 }

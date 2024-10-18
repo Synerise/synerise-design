@@ -10,7 +10,7 @@ import { SelectContainer, ContentAbove, MaskedDatePlaceholder } from './DatePick
 import { SubtleDatePickerProps } from './DatePicker.types';
 import { getFormattingString, replaceLettersWithUnderscore } from './utils';
 
-const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
+const SubtleDatePicker = ({
   value,
   suffix,
   suffixTooltip,
@@ -27,7 +27,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   onDropdownVisibleChange,
   disabled,
   ...rest
-}) => {
+}: SubtleDatePickerProps) => {
   const [active, setActive] = React.useState<boolean>(false);
   const [blurred, setBlurred] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   const { showTime } = rest;
   const dateFormattingString = React.useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
   const formatValue = React.useCallback(
-    (val): string => {
+    (val?: Date): string => {
       if (!val) return '';
       return format(val, dateFormattingString);
     },

@@ -76,6 +76,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   }, [dataSource]);
 
   const handleAdd = React.useCallback(
+    // @ts-ignore
     (item, context) => {
       const { expandedKeys, onItemExpandToggle } = restProps;
       const newItem = new TreeModel().parse({ ...initNewItem(), name: item.name, type: item.type, editMode: true });
@@ -91,23 +92,23 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   );
 
   const handleCopy = React.useCallback(
-    item => {
+    (item: TreeNode) => {
       setClipboard({ ...item.model });
     },
     [setClipboard]
   );
 
   const handleDelete = React.useCallback(
-    item => {
+    (item: TreeNode) => {
       const root = item.getPath().shift();
       item.drop();
-      onChange([...root.model.children]);
+      onChange([...root?.model.children]);
     },
     [onChange]
   );
 
   const handleCut = React.useCallback(
-    item => {
+    (item: TreeNode) => {
       setClipboard({ ...item.model });
       handleDelete(item);
     },
@@ -115,7 +116,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   );
 
   const handlePaste = React.useCallback(
-    item => {
+    (item?: TreeNode) => {
       let target = item;
       if (item === undefined) {
         target = treeRoot;
@@ -130,17 +131,18 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
           name: `${name.replace(/ \([0-9+]\)$/, '')} (${copyCount})`,
           children: updateChildrenKeys(clipboard.children),
         });
-        target.addChild(duplicateItem);
+        // eslint-disable-next-line no-unused-expressions
+        target?.addChild(duplicateItem);
 
         setCopyCount(copyCount + 1);
-        onChange([...target.getPath().shift()?.model.children]);
+        onChange([...target?.getPath().shift()?.model.children]);
       }
     },
     [clipboard, copyCount, treeRoot, onChange]
   );
 
   const handleDuplicate = React.useCallback(
-    (item): void => {
+    (item: TreeNode) => {
       const { name } = item.model;
       const id = uuid();
       const duplicateItem = new TreeModel().parse({
@@ -159,6 +161,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   );
 
   const handleRename = React.useCallback(
+    // @ts-ignore
     (item, newName, newItems) => {
       newItems && onChange(newItems);
     },
@@ -166,6 +169,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   );
 
   const handleVisibilityChange = React.useCallback(
+    // @ts-ignore
     (item, newItems) => {
       onChange(newItems);
     },
@@ -173,7 +177,7 @@ const TreeMenu: React.FC<TreeMenuProps> = ({
   );
 
   const handleDragEnd = React.useCallback(
-    newItems => {
+    (newItems: TreeData[]) => {
       onChange(newItems);
     },
     [onChange]

@@ -1,5 +1,6 @@
-import Modal from '@synerise/ds-modal';
 import React from 'react';
+import { SelectValue } from 'antd/lib/select';
+import Modal from '@synerise/ds-modal';
 import Select from '@synerise/ds-select';
 import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
 
@@ -187,8 +188,8 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
   }, [column]);
 
   const handleGroupTypeChange = React.useCallback(
-    (value): void => {
-      setGroupBy(value);
+    (value: SelectValue): void => {
+      setGroupBy(value as GroupType);
       setError(undefined);
     },
     [setGroupBy, setError]

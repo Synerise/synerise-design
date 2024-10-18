@@ -1,4 +1,5 @@
 /*  eslint @typescript-eslint/no-explicit-any: 0 */
+import type { ReactNode } from 'react';
 import { TreeMenuTexts, TreeNode } from '../TreeMenu.types';
 import { ItemProps } from '../Tree/Item/Item.types';
 
@@ -15,4 +16,5 @@ export type AddModalProps = {
   align?: any;
   hasClipboard?: boolean;
   onItemPaste?: (item?: TreeNode) => void;
+  children?: ReactNode
 };

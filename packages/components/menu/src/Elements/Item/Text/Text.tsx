@@ -59,7 +59,7 @@ function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, sty
   );
 }
 
-const Text: React.FC<BasicItemProps> = ({
+const Text = ({
   parent,
   disabled,
   prefixel,
@@ -86,7 +86,7 @@ const Text: React.FC<BasicItemProps> = ({
   size = 'default',
   onItemHover,
   ...rest
-}) => {
+}: BasicItemProps) => {
   const [hovered, setHovered] = React.useState(false);
   const [clicked, setClicked] = React.useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;

@@ -19,11 +19,11 @@ const CardSelect = ({
   description,
   customTickVisible,
   customTickVisibleComponent,
-  tickVisible,
+  tickVisible = true,
   stretchToFit,
   raised,
-  value,
-  size,
+  value = false,
+  size = 'medium',
   disabled,
   onChange,
   icon,
@@ -133,12 +133,6 @@ const CardSelect = ({
       </S.Container>
     </S.CardWrapper>
   );
-};
-
-CardSelect.defaultProps = {
-  tickVisible: true,
-  value: false,
-  size: 'medium',
 };
 
 export default withTheme(CardSelect);

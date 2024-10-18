@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 export type GridProps = {
   gutter?: number;
@@ -8,6 +8,7 @@ export type GridProps = {
 
 export type GridItemProps = {
   contentWrapper?: boolean;
+  children?: ReactNode;
   xxl?: number;
   xl?: number;
   lg?: number;

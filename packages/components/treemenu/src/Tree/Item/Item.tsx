@@ -205,6 +205,7 @@ const ItemContainer: React.FC<ItemProps> = ({
           highlight={searchQuery}
           className={selected ? 'ant-menu-item-selected' : ''}
           prefixel={prefixel}
+          // @ts-ignore
           suffixel={suffixel}
           selectedKeys={[itemKey]}
           suffixVisibilityTrigger={selected || editMode ? undefined : 'hover'}

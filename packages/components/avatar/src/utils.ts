@@ -18,7 +18,7 @@ export function getUserText(user: UserAvatar, src: string | null = '', text: str
 }
 
 export function isIconComponent(component: React.ReactNode | undefined): boolean {
-  return component ? (component as Function).name === Icon.name : false;
+  return component ? (component as unknown as Function).name === Icon.name : false;
 }
 
 export function getObjectName(name: string | null = '', text = ''): string | null {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntPagination, { PaginationProps } from 'antd/lib/pagination';
@@ -18,44 +18,49 @@ const ITEM_RENDER_TYPE = {
   jumpNext: 'jump-next',
 };
 
-const Pagination: React.FC<PaginationProps> = props => {
-  const renderItem = React.useCallback((current, type, originalElement) => {
-    switch (type) {
-      case ITEM_RENDER_TYPE.prev: {
-        return (
-          <Button mode="single-icon" type="ghost">
-            <Icon component={<AngleLeftS />} />
-          </Button>
-        );
+type Arguments = Parameters<Required<PaginationProps>['itemRender']>;
+
+const Pagination = (props: PaginationProps) => {
+  const renderItem: PaginationProps['itemRender'] = useCallback(
+    (_current: Arguments[0], type: Arguments[1], originalElement: Arguments[2]) => {
+      switch (type) {
+        case ITEM_RENDER_TYPE.prev: {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon component={<AngleLeftS />} />
+            </Button>
+          );
+        }
+        case ITEM_RENDER_TYPE.next: {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon component={<AngleRightS />} />
+            </Button>
+          );
+        }
+        case ITEM_RENDER_TYPE.jumpPrev: {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon className="default-icon" component={<OptionHorizontalM />} />
+              <Icon className="hover-icon" component={<DoubleAngleLeftS />} />
+            </Button>
+          );
+        }
+        case ITEM_RENDER_TYPE.jumpNext: {
+          return (
+            <Button mode="single-icon" type="ghost">
+              <Icon className="default-icon" component={<OptionHorizontalM />} />
+              <Icon className="hover-icon" component={<DoubleAngleRightS />} />
+            </Button>
+          );
+        }
+        default: {
+          return originalElement;
+        }
       }
-      case ITEM_RENDER_TYPE.next: {
-        return (
-          <Button mode="single-icon" type="ghost">
-            <Icon component={<AngleRightS />} />
-          </Button>
-        );
-      }
-      case ITEM_RENDER_TYPE.jumpPrev: {
-        return (
-          <Button mode="single-icon" type="ghost">
-            <Icon className="default-icon" component={<OptionHorizontalM />} />
-            <Icon className="hover-icon" component={<DoubleAngleLeftS />} />
-          </Button>
-        );
-      }
-      case ITEM_RENDER_TYPE.jumpNext: {
-        return (
-          <Button mode="single-icon" type="ghost">
-            <Icon className="default-icon" component={<OptionHorizontalM />} />
-            <Icon className="hover-icon" component={<DoubleAngleRightS />} />
-          </Button>
-        );
-      }
-      default: {
-        return originalElement;
-      }
-    }
-  }, []);
+    },
+    []
+  );
 
   return <AntPagination {...props} itemRender={renderItem} />;
 };

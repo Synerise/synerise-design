@@ -5,7 +5,7 @@ import '@synerise/ds-core/dist/js/style';
 import * as S from './Select.styles';
 import { BasicItemProps } from '../Text/Text.types';
 
-const Select: React.FC<BasicItemProps> = props => {
+const Select = (props:BasicItemProps) => {
   const { disabled, children, ...rest } = props;
   return (
     <S.SelectItem key={uuid()} disabled={disabled} {...rest}>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Collapse, { CollapseProps } from 'antd/lib/collapse';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 const { Panel } = Collapse;
 
@@ -141,7 +141,7 @@ export const AntdCollapse = styled(Collapse as any as React.ComponentType<Collap
   }
 `;
 
-export const AntdPanel = styled(Panel)`
+export const AntdPanel = styled(Panel)<{children?: ReactNode}>`
   .ant-collapse-content {
     background-color: white;
     border-radius: 0;

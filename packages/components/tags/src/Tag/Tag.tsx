@@ -13,7 +13,7 @@ const Tag = ({
   disabled,
   removable,
   image,
-  shape,
+  shape = TagShape.DEFAULT_ROUND,
   color,
   textColor,
   onRemove,
@@ -104,8 +104,5 @@ const Tag = ({
   );
 };
 
-Tag.defaultProps = {
-  shape: TagShape.DEFAULT_ROUND && TagShape.DEFAULT_SQUARE,
-};
 
 export default Tag;

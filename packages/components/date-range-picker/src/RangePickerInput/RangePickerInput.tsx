@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 
 import Icon, { ArrowRightS, CalendarM, Close3S } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -9,7 +9,7 @@ import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
-import type { DateRange } from '../date.types';
+import type { DateRange, NullableDateLimit } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
 const RangePickerInput: React.FC<RangePickerInputProps> = ({
@@ -43,7 +43,7 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   const handleIconMouseLeave = React.useCallback(() => setHovered(false), []);
 
   const handleClear = React.useCallback(
-    (e: React.MouseEvent) => {
+    (e: MouseEvent) => {
       e.stopPropagation();
       onChange && onChange(undefined);
     },
@@ -51,15 +51,15 @@ const RangePickerInput: React.FC<RangePickerInputProps> = ({
   );
 
   const handleInputClick = React.useCallback(
-    e => {
-      onClick && onClick(e);
+    (event: MouseEvent<HTMLDivElement>) => {
+      onClick && onClick(event);
     },
     [onClick]
   );
 
   const getText = React.useCallback(
-    (dateToDisplay): string => {
-      const dateValue = new Date(dateToDisplay);
+    (dateToDisplay?: NullableDateLimit): string => {
+      const dateValue = dateToDisplay ? new Date(dateToDisplay) : new Date();
       return formatValue(dateValue, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
     [showTime, formatValue, valueFormatOptions]

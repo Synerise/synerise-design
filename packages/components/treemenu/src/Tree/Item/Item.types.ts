@@ -5,7 +5,7 @@ import React from 'react';
 import { TreeMenuTexts, TreeNode } from '../../TreeMenu.types';
 import { WithChangeActions } from './Actions/Actions.types';
 
-export type ItemProps = Omit<MenuItemProps, 'onClick'> &
+export type ItemProps = Omit<MenuItemProps, keyof WithChangeActions | 'onClick'> &
   WithChangeActions & {
     item: TreeNode;
     addItemList: any;
