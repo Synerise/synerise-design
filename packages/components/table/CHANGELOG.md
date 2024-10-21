@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.59.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.58.0...@synerise/ds-table@0.59.0) (2024-10-21)
+
+
+### Features
+
+* **table:** wire up hideSelectAll prop ([096f816](https://github.com/synerise/synerise-design/commit/096f8168f0e586554ac0f5792e03a6bc71418129))
+
+
+
+
+
 # [0.58.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.57.6...@synerise/ds-table@0.58.0) (2024-10-14)
 
 

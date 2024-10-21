@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.8.23...@synerise/ds-wizard@0.8.24) (2024-10-21)
+
+**Note:** Version bump only for package @synerise/ds-wizard
+
+
+
+
+
 ## [0.8.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-wizard@0.8.22...@synerise/ds-wizard@0.8.23) (2024-10-14)
 
 **Note:** Version bump only for package @synerise/ds-wizard

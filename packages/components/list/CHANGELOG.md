@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.6.88...@synerise/ds-list@0.7.0) (2024-10-21)
+
+
+### Features
+
+* **storybook7:** added list stories ([913fa2e](https://github.com/Synerise/synerise-design/commit/913fa2ebf13111a67379b85521a2025ef3892527))
+
+
+
+
+
 ## [0.6.88](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list@0.6.87...@synerise/ds-list@0.6.88) (2024-10-14)
 
 **Note:** Version bump only for package @synerise/ds-list

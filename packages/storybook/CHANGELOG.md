@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.21.0...storybook7@0.22.0) (2024-10-21)
+
+
+### Bug Fixes
+
+* **storybook7:** added column manager stories ([55a9eb0](https://github.com/Synerise/synerise-design/commit/55a9eb083ce59ce4568657805204d9a5fea1a6d2))
+
+
+### Features
+
+* **storybook7:** added list stories ([913fa2e](https://github.com/Synerise/synerise-design/commit/913fa2ebf13111a67379b85521a2025ef3892527))
+* **table:** wire up hideSelectAll prop ([096f816](https://github.com/Synerise/synerise-design/commit/096f8168f0e586554ac0f5792e03a6bc71418129))
+
+
+
+
+
 # [0.21.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.20.0...storybook7@0.21.0) (2024-10-15)
 
 

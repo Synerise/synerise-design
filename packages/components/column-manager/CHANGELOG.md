@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.12.5...@synerise/ds-column-manager@0.12.6) (2024-10-21)
+
+
+### Bug Fixes
+
+* **storybook7:** added column manager stories ([55a9eb0](https://github.com/Synerise/synerise-design/commit/55a9eb083ce59ce4568657805204d9a5fea1a6d2))
+
+
+
+
+
 ## [0.12.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-column-manager@0.12.4...@synerise/ds-column-manager@0.12.5) (2024-10-14)
 
 **Note:** Version bump only for package @synerise/ds-column-manager
