@@ -44,6 +44,8 @@
     "chromatic": "10.1.0",
     "storybook": "7.6.5",
     "storybook-addon-pseudo-states": "^3.1.1",
-    "storybook-mock-date-decorator": "^1.0.2"
+    "storybook-mock-date-decorator": "^1.0.2",
+    "storybook-multilevel-sort": "^2.0.0",
+    "storybook-deeper-sort": "^1.1.4"
   }
 }
