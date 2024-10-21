@@ -1,6 +1,6 @@
 import styled, { css, FlattenInterpolation } from 'styled-components';
 
-export const GridContainer = styled.div<{ columns: number; gutter: number; style?: CSSStyleRule }>`
+export const GridContainer = styled.div<{ columns: number; gutter: number; }>`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(${(props): number => props.columns}, 1fr);

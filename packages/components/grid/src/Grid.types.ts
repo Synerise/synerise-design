@@ -1,9 +1,9 @@
-import React from 'react';
+import { CSSProperties, ReactNode} from 'react';
 
 export type GridProps = {
   gutter?: number;
-  style?: CSSStyleRule;
-  children?: React.ReactNode | React.ReactNode[];
+  style?: CSSProperties;
+  children?: ReactNode | ReactNode[];
 };
 
 export type GridItemProps = {
