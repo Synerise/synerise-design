@@ -32,8 +32,8 @@ export const sortRows = <T>(sortOrder: ColumnSortOrder, compareFn: CompareFn<T>,
 export const sortDataSourceRows = <T extends GroupType<T>>(
   sortStateApi: SortStateAPI,
   sortingColumns?: DSColumnType<T>[],
-  dataSource?: T[]
-): T[] => {
+  dataSource?: readonly T[]
+): readonly T[] => {
   if (!dataSource) {
     return [];
   }

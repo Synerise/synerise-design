@@ -63,7 +63,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
 }: GroupSettingsProps) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
-  const [interval, setIntervalValue] = React.useState<string | number | undefined>(undefined);
+  const [interval, setIntervalValue] = React.useState<string | number | null | undefined>(undefined);
   const [error, setError] = React.useState<React.ReactNode | undefined>(undefined);
 
   const clearState = React.useCallback(() => {

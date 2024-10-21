@@ -49,7 +49,7 @@ const CompletedWithin = ({
     }));
   }, [periods, intl]);
 
-  const [innerValue, setInnerValue] = useState<string | number | undefined>(value.value);
+  const [innerValue, setInnerValue] = useState<string | number | undefined | null>(value.value);
   const [innerPeriod, setInnerPeriod] = useState<Period>(value.period);
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
@@ -61,7 +61,7 @@ const CompletedWithin = ({
       setSettingsVisible(visible);
       setTooltipVisible(false);
       if (!visible && innerValue && innerPeriod) {
-        const newValue = maxValue && maxValue < parseFloat(`${innerValue}`) ? maxValue : innerValue;
+        const newValue = maxValue && maxValue < Number(innerValue) ? maxValue : innerValue;
         onSetValue({
           value: Number(newValue),
           period: innerPeriod,

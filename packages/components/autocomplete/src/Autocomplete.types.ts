@@ -1,6 +1,6 @@
 import type { ReactNode, MutableRefObject } from 'react';
 import type { AutoCompleteProps as OriginalProps } from 'antd/lib/auto-complete';
-import Select from 'antd/lib/select';
+import type { RefSelectProps } from 'antd/lib/select';
 import type { AutoResizeProp } from '@synerise/ds-input';
 
 export type OverrideProps = {
@@ -11,7 +11,7 @@ export type OverrideProps = {
   error?: boolean;
   getPopupContainer?: (node: HTMLElement) => HTMLElement;
   readOnly?: boolean;
-  handleInputRef?: (ref: MutableRefObject<Select | null>) => void;
+  handleInputRef?: (ref: MutableRefObject<RefSelectProps | null>) => void;
   autoResize?: AutoResizeProp;
   placeholder?: ReactNode;
 };

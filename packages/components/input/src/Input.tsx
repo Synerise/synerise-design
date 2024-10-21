@@ -10,10 +10,10 @@ import React, {
   useCallback,
 } from 'react';
 import { v4 as uuid } from 'uuid';
-import { StyledComponent } from 'styled-components';
-import AntdInput, { InputProps as AntdInputProps } from 'antd/lib/input';
-import AntdTextArea from 'antd/lib/input/TextArea';
-import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
+import type { StyledComponent } from 'styled-components';
+import type { InputProps as AntdInputProps, InputRef } from 'antd/lib/input';
+import type { TextAreaRef } from 'antd/lib/input/TextArea';
+import type { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import AntdMaskedInput from 'antd-mask-input';
 
 import { useResizeObserver } from '@synerise/ds-utils';
@@ -38,7 +38,7 @@ import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
 const VERTICAL_BORDER_OFFSET = 2;
 
 const createInputComponent =
-  <E extends AntdInput | AntdMaskedInput, T extends AntdInputProps | AntdMaskedInputProps>(
+  <E extends InputRef | AntdMaskedInput, T extends AntdInputProps | AntdMaskedInputProps>(
     WrappedComponent: StyledComponent<ComponentType<AntdInputProps | AntdMaskedInputProps>, { error?: string }>
   ): ComponentType<BaseProps & T> =>
   ({
@@ -66,7 +66,7 @@ const createInputComponent =
   }) => {
     const id = useMemo(() => uuid(), []);
     const charCount = getCharCount(antdInputProps.value, counterLimit);
-    const expandableTextAreaRef = useRef<AntdTextArea | null>(null);
+    const expandableTextAreaRef = useRef<TextAreaRef | null>(null);
     const [expanded, setExpanded] = useState(false);
     const [overflown, setOverflown] = useState(false);
     const scrollLeftRef = useRef(0);
@@ -96,13 +96,13 @@ const createInputComponent =
     }, [handleInputRef]);
 
     useEffect(() => {
-      if (inputRef.current) {
+      if (inputRef.current?.input) {
         const { paddingLeft, paddingRight } = getComputedStyle(inputRef.current.input);
         paddingDiff.current = parseFloat(paddingLeft) + parseFloat(paddingRight);
       }
     });
     useEffect(() => {
-      if (!autoResize && expandable && inputRef && inputRef.current) {
+      if (!autoResize && expandable && inputRef.current?.input) {
         setOverflown(inputRef.current.input.scrollWidth > inputRef.current.input.clientWidth);
       }
     }, [autoResize, expandable, expanded]);
@@ -117,7 +117,7 @@ const createInputComponent =
 
     const handleExpandableTextareaBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
       setExpanded(false);
-      if (inputRef.current) {
+      if (inputRef.current?.input) {
         inputRef.current.input.value = event.target.value;
         inputRef.current.input.focus();
       }
@@ -157,18 +157,18 @@ const createInputComponent =
 
     const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
     const preAutosize = () => {
-      scrollLeftRef.current = inputRef.current?.input.scrollLeft || 0;
-      inputRef.current && inputRef.current.input.style.removeProperty('max-width');
+      scrollLeftRef.current = inputRef.current?.input?.scrollLeft || 0;
+      inputRef.current?.input && inputRef.current.input.style.removeProperty('max-width');
     };
 
     const onAutosize = (newWidth: number) => {
       const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
-      if (stretchToFit && inputRef.current && parentRect?.width && paddingDiff.current) {
+      if (stretchToFit && inputRef.current?.input && parentRect?.width && paddingDiff.current) {
         inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
         inputRef.current.input.scrollLeft = scrollLeftRef.current;
       }
 
-      if (autoResize && inputRef.current && expandable) {
+      if (autoResize && inputRef.current?.input && expandable) {
         const style = window.getComputedStyle(inputRef.current.input);
         const minWidth = parseInt(style.minWidth, 10);
         setOverflown(newWidth > minWidth);
@@ -257,7 +257,7 @@ const createInputComponent =
     );
   };
 
-export const Input = createInputComponent<AntdInput, AntdInputProps>(S.AntdInput);
+export const Input = createInputComponent<InputRef, AntdInputProps>(S.AntdInput);
 export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
 
 export const RawMaskedInput = S.AntdMaskedInput;

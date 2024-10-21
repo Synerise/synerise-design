@@ -1,6 +1,6 @@
-import { ReactNode, MouseEvent } from 'react';
-import { IntlShape } from 'react-intl';
-import { DefaultColor } from '@synerise/ds-core';
+import type { ReactNode, MouseEvent, KeyboardEvent } from 'react';
+import type { IntlShape } from 'react-intl';
+import type { DefaultColor } from '@synerise/ds-core';
 
 export enum prefixType {
   TAG,
@@ -22,6 +22,8 @@ export type Color =
   | 'cyan'
   | 'purple'
   | 'violet';
+
+export type ListItemEventType = MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>
 
 export type CardTabTexts = {
   changeNameTooltip?: ReactNode;

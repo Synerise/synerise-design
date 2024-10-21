@@ -4,7 +4,7 @@ import React from 'react';
 
 export type Size = 'small' | 'medium' | 'large' | undefined;
 
-export type DataSource = BadgeProps & {
+export type DataSource = Omit<BadgeProps, 'children'> & {
   initials: string;
   avatarProps: AvatarProps;
   firstname: string;

@@ -10,14 +10,14 @@ import { RelativeUnits } from '../../../../date.types';
 
 export const setDurationType = set(lensPath(['duration', 'type']));
 const SELECT_DROPDOWN_OFFSET = -4;
-const DurationField: React.FC<Props> = ({
+const DurationField = ({
   currentGroup,
   currentRange,
   handleChange,
   handleDurationValueChange,
   rangeUnits,
   texts,
-}) => {
+}: Props) => {
   const { duration } = currentRange;
   React.useEffect(() => {
     if (duration?.value < 1) {

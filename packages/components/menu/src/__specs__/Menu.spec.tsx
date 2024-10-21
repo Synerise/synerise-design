@@ -268,7 +268,6 @@ describe('Menu item', () => {
           type={undefined}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          onItemHover={() => undefined}
           hoverTooltipProps={{
             ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
             mouseEnterDelay: 0,
@@ -293,7 +292,6 @@ describe('Menu item', () => {
           disabled={true}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          onItemHover={() => undefined}
           hoverTooltipProps={{
             ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
             mouseEnterDelay: 0,

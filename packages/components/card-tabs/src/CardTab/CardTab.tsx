@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, MouseEvent, ChangeEvent } from 'react';
+import React, { useState, useMemo, useCallback, ChangeEvent } from 'react';
 import Icon from '@synerise/ds-icon';
 import InlineEdit from '@synerise/ds-inline-edit/dist/InlineEdit';
 import { injectIntl } from 'react-intl';
@@ -7,7 +7,7 @@ import * as S from './CardTab.styles';
 import CardTabPrefix from './CardTabPrefix/CardTabPrefix';
 import CardTabActions from './CardTabActions/CardTabActions';
 import CardTabDropdown from './CardTabDropdown/CardTabDropdown';
-import { CardTabProps, CardTabSuffixProps } from './CardTab.types';
+import { CardTabProps, CardTabSuffixProps, ListItemEventType } from './CardTab.types';
 
 const CardTab = (props: CardTabProps) => {
   const {
@@ -56,7 +56,7 @@ const CardTab = (props: CardTabProps) => {
     if (onChangeName === undefined) {
       return undefined;
     }
-    return (event?: MouseEvent<HTMLElement>): void => {
+    return (event?: ListItemEventType): void => {
       !!event && event.stopPropagation();
       setEdited(true);
     };
@@ -84,7 +84,7 @@ const CardTab = (props: CardTabProps) => {
     if (onDuplicateTab === undefined) {
       return undefined;
     }
-    return (event?: MouseEvent<HTMLElement>): void => {
+    return (event?: ListItemEventType): void => {
       event && event.stopPropagation();
       onDuplicateTab && onDuplicateTab(id);
     };
@@ -94,7 +94,7 @@ const CardTab = (props: CardTabProps) => {
     if (onRemoveTab === undefined) {
       return undefined;
     }
-    return (event?: MouseEvent<HTMLElement>): void => {
+    return (event?: ListItemEventType): void => {
       event && event.stopPropagation();
       onRemoveTab && onRemoveTab(id);
     };
@@ -103,7 +103,7 @@ const CardTab = (props: CardTabProps) => {
   const handlePreview = onPreviewTab && (() => onPreviewTab(id));
 
   const handleSelect = useCallback(
-    (event: MouseEvent<HTMLElement>): void => {
+    (event: ListItemEventType): void => {
       !!event && event.stopPropagation();
       !edited && onSelectTab && onSelectTab(id);
     },

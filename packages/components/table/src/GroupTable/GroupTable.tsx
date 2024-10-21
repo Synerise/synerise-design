@@ -53,7 +53,7 @@ function GroupTable<T extends GroupType<T>>(
   );
   const sortStateApi = useSortState(columnsToSortState(columns), onSort);
 
-  const [data, setData] = React.useState<T[]>(dataSource || []);
+  const [data, setData] = React.useState<readonly T[]>(dataSource || []);
 
   React.useEffect(() => {
     setData(dataSource || []);

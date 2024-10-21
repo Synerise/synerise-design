@@ -25,7 +25,7 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
   return iconWithColor;
 };
 
-export const MenuDivider = styled.div`
+export const MenuDivider = styled.div<{level?: number}>`
   height: 1px;
   width: ${(props): string => (props?.level && props?.level > 1 ? '75%' : '100%')};
   margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')}

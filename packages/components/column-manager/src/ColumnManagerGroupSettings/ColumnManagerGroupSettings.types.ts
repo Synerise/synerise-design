@@ -43,11 +43,11 @@ export interface GroupSettingsProps {
 
 export interface Range {
   from: {
-    value: React.ReactText | undefined;
+    value: string | number | null | undefined;
     error: React.ReactNode | undefined;
   };
   to: {
-    value: React.ReactText | undefined;
+    value: string | number | null | undefined;
     error: React.ReactNode | undefined;
   };
 }

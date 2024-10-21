@@ -1,5 +1,4 @@
 import React from 'react';
-import { NOOP } from '@synerise/ds-utils';
 
 import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
@@ -21,7 +20,6 @@ const ItemElement: React.FC<ItemElementProps> = ({
       {...item}
       className="items-roll-list-item"
       highlight={highlight}
-      onItemHover={NOOP}
       suffixel={(hovered: boolean): React.ReactNode => (
         <S.SuffixelWrapper>
           {renderSuffixElement(hovered) || null}

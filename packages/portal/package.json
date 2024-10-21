@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@use-it/interval": "^1.0.0",
-    "antd": "4.7.0",
+    "antd": "4.24.0",
     "final-form": "4.18.7",
     "moment": "^2.30.1",
     "ramda": "0.27.0",

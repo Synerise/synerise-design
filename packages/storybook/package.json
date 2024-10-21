@@ -20,7 +20,7 @@
     "extends": "react-app"
   },
   "peerDependencies": {
-    "antd": "4.7.0",
+    "antd": "4.24.0",
     "invariant": "^2.2.4",
     "react": ">=16.9.0 <= 17.0.2",
     "react-dom": ">=16 <= 17.0.2",

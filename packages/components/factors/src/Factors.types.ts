@@ -57,6 +57,7 @@ export type ParameterItem = {
 export type FactorValueType =
   | string
   | number
+  | null
   | Date
   | undefined
   | DynamicKeyValueType

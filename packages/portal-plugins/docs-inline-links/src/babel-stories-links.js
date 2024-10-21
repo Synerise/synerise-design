@@ -2,7 +2,7 @@
   changes filename of a file with stories containing CamelCase directory name
   to a scoped package name following the format @scope/ds-kebab-case.
   Is it also the place where the fallback of inconsistent package names should take place.
-  E.g. component `ds-treemenu` does not have ~`Treemenu`~ in stories, but `TreeMenu`.
+  E.g. component `ds-fileuploader` does not have ~`Fileuploader`~ in stories, but `FileUploader`.
   Returns `null` if storyfile does not have a single mapped component.
  */
 function getModulePath(filename) {
@@ -19,8 +19,6 @@ function getModulePath(filename) {
     case '@synerise/ds-notification':
     case '@synerise/ds-icon-alert':
       return '@synerise/ds-alert';
-    case '@synerise/ds-tags-list':
-      return '@synerise/ds-tagslist';
     case '@synerise/ds-fileuploader':
       return '@synerise/ds-file-uploader';
     case '@synerise/ds-editable-list':
@@ -40,8 +38,6 @@ function getModulePath(filename) {
       return '@synerise/ds-alert';
     case '@synerise/ds-broadcast-bar':
       return '@synerise/ds-alert';
-    case '@synerise/ds-tree-menu':
-      return '@synerise/ds-treemenu';
     default:
       return path;
   }

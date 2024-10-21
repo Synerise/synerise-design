@@ -1,7 +1,6 @@
 import React from 'react';
 import { ListChildComponentProps } from 'react-window';
 import Menu from '@synerise/ds-menu';
-import { NOOP } from '@synerise/ds-utils';
 
 import * as S from './ListItem.styles';
 import { RemoveIcon } from './ItemRemoveIcon';
@@ -22,7 +21,6 @@ const ItemRenderer =
         <Menu.Item
           className="items-roll-list-item"
           highlight={highlight}
-          onItemHover={NOOP}
           onClick={onClick}
           style={style}
           suffixel={

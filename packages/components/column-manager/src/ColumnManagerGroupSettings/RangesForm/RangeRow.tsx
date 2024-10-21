@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, useCallback, useState } from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 
@@ -16,15 +16,15 @@ interface RangeRowProps {
   type: ColumnType;
   remove: (index: number) => void;
   texts: {
-    [k in GroupSettingsTexts]: string | React.ReactNode;
+    [k in GroupSettingsTexts]: string | ReactNode;
   };
 }
 
-const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type, remove, texts }: RangeRowProps) => {
-  const [from, setFrom] = React.useState<React.ReactText | undefined>(range.from.value);
-  const [to, setTo] = React.useState<React.ReactText | undefined>(range.to.value);
+const RangeRow = ({ range, setRange, index, first, type, remove, texts }: RangeRowProps) => {
+  const [from, setFrom] = useState<string | number | null | undefined>(range.from.value);
+  const [to, setTo] = useState<string | number | null | undefined>(range.to.value);
 
-  const handleBlur = React.useCallback((): void => {
+  const handleBlur = useCallback((): void => {
     setRange(
       {
         from: {
@@ -40,7 +40,7 @@ const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type
     );
   }, [from, to, setRange, index, range]);
 
-  const handleRemove = React.useCallback((): void => {
+  const handleRemove = useCallback((): void => {
     remove(index);
   }, [remove, index]);
 
@@ -52,7 +52,7 @@ const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type
           label={first ? texts.from : null}
           value={from}
           errorText={range.from.error}
-          onChange={(value: React.ReactText | undefined): void => setFrom(value)}
+          onChange={(value: string | number | null | undefined): void => setFrom(value)}
           onBlur={handleBlur}
         />
         <RangeInput
@@ -60,7 +60,7 @@ const RangeRow: React.FC<RangeRowProps> = ({ range, setRange, index, first, type
           label={first ? texts.to : null}
           value={to}
           errorText={range.to.error}
-          onChange={(value: React.ReactText | undefined): void => setTo(value)}
+          onChange={(value: string | number | null | undefined): void => setTo(value)}
           onBlur={handleBlur}
         />
       </S.RangeRowInputs>

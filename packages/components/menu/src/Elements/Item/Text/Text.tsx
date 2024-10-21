@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { useTheme } from 'styled-components';
 import copy from 'copy-to-clipboard';
 import Trigger from 'rc-trigger';
-import { HoverEventHandler } from 'rc-menu/lib/interface';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -84,7 +83,6 @@ const Text: React.FC<BasicItemProps> = ({
   hoverTooltipProps,
   renderHoverTooltip,
   size = 'default',
-  onItemHover,
   ...rest
 }) => {
   const [hovered, setHovered] = React.useState(false);
@@ -137,7 +135,7 @@ const Text: React.FC<BasicItemProps> = ({
   }, [rest.className, size]);
 
   const element = (
-    // @ts-ignore
+    
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
@@ -157,7 +155,6 @@ const Text: React.FC<BasicItemProps> = ({
       ordered={ordered}
       size={size}
       onClick={onClick}
-      onItemHover={onItemHover as unknown as HoverEventHandler}
       {...rest}
       data-name={typeof children === 'string' ? children : undefined}
       className={className}

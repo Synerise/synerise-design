@@ -14,7 +14,7 @@ export const INFINITE_LOADED_ITEM_HEIGHT = 64;
 
 export interface VirtualTableRowProps<T> {
   data: {
-    dataSource: T[];
+    dataSource: readonly T[];
     cellHeight: number;
     infiniteScroll: InfiniteScrollProps | undefined;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

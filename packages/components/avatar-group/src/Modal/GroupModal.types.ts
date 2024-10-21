@@ -4,5 +4,5 @@ export type GroupModalProps = GroupModalSettings & {
   visible: boolean;
   hideModal: () => void;
   showStatus: boolean;
-  dataSource: DataSource[];
+  dataSource: readonly DataSource[];
 };

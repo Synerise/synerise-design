@@ -8,10 +8,10 @@ import Text from './Text/Text';
 import Select from './Select/Select';
 import Danger from './Danger/Danger';
 import { MenuDivider } from '../../Menu.styles';
+import { MenuDividerProps } from '../../Menu.types';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
-const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
+
+const MenuItem: React.FC<SubMenuProps & MenuItemProps & MenuDividerProps> = props => {
   const {
     prefixel,
     suffixel,
@@ -25,7 +25,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
     type,
     indentLevel,
     timeToHideTooltip,
-    onItemHover,
+
     onClick,
     menuItemKey,
     onTitleClick,
@@ -43,7 +43,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
         description={description}
         indentLevel={indentLevel || 0}
         subMenu={subMenu}
-        onItemHover={onItemHover || NOOP}
         onClick={(menuInfo): void => {
           menuInfo.domEvent.stopPropagation();
           onClick && onClick(menuInfo);
@@ -64,7 +63,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP}
           onClick={(menuInfo): void => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
@@ -83,7 +81,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP}
           onClick={(menuInfo): void => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
@@ -106,7 +103,6 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps> = props => {
           description={description}
           timeToHideTooltip={timeToHideTooltip}
           indentLevel={indentLevel || 0}
-          onItemHover={onItemHover || NOOP}
           onClick={(menuInfo): void => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);

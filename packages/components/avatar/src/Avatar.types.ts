@@ -26,7 +26,8 @@ export type TooltipObject = TooltipProps & {
   email?: React.ReactNode;
 };
 
-export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon'> {
+export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon' | 'src'> {
+  src?: string;
   /**
    * Aligns a badge with the avatar
    */
@@ -67,7 +68,7 @@ type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponen
   badgeStatus?: BadgeStatus;
   text?: string;
   tooltip?: TooltipObject | boolean;
-  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
 export type ObjectAvatar = {

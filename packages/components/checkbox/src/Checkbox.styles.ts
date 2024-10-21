@@ -1,6 +1,7 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import BaseAntCheckbox from 'antd/lib/checkbox';
+import BaseAntCheckbox, { CheckboxProps } from 'antd/lib/checkbox';
 import { ThemeProps } from '@synerise/ds-core';
+
 
 const checkSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');
@@ -17,7 +18,13 @@ const soloCss = css`
   display: inline-block;
 `;
 
-export const AntdCheckbox = styled(BaseAntCheckbox)<Props & ThemeProps>`
+/**
+ * error TS4023: Exported variable 'AntdCheckbox' has or is using name 'CompoundedComponent' from external module "/Users/biedronne/Documents/Work/DS2/synerise-design/node_modules/antd/lib/checkbox/index" but cannot be named.
+ */
+type CompoundedComponent = React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>> & {
+  Group: typeof BaseAntCheckbox.Group;
+}
+export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<Props & ThemeProps>`
   && {
     display: flex;
     align-items: center;
