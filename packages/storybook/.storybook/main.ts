@@ -1,9 +1,26 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import { join, dirname } from 'path';
+import { configureSort } from 'storybook-multilevel-sort';
+import deeperSortSetup from "storybook-deeper-sort";
+
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
+deeperSortSetup(
+  ["Introduction", "Tokens", "Components", ["*", "Tests"]],
+);
+
+configureSort({
+  typeOrder: ['docs', 'story'],
+  storyOrder: {
+    '**': {
+      overview: null,
+      default: null,
+      
+    },
+  },
+});
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],

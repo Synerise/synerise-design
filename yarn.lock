@@ -30842,7 +30842,7 @@ react-docgen@^7.0.0:
     resolve "^1.22.1"
     strip-indent "^4.0.0"
 
-react-dom@^16.8.3, react-dom@^17.0.2:
+react-dom@^16.8.3, react-dom@^17.0.2, react-dom@^18.2.0:
   version "17.0.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha1-7P+2hF462Nv83EmPDQqTlzZQLCM=
@@ -31486,7 +31486,7 @@ react-window@^1.8.7:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^17.0.2:
+react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^17.0.2, react@^18.2.0:
   version "17.0.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha1-0LXMUW0p6z7uOD91tihkz7aAADc=
@@ -33805,12 +33805,25 @@ storybook-addon-pseudo-states@^3.1.1:
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-addon-pseudo-states/-/storybook-addon-pseudo-states-3.1.1.tgz"
   integrity sha1-S725le1jZYa6dE3zerqwNhWLJAE=
 
+storybook-deeper-sort@^1.1.4:
+  version "1.1.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-deeper-sort/-/storybook-deeper-sort-1.1.4.tgz#836801ce7bf7e592ce41a58b636ec73533e716c2"
+  integrity sha1-g2gBznv35ZLOQaWLY27HNTPnFsI=
+  dependencies:
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 storybook-mock-date-decorator@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/storybook-mock-date-decorator/-/storybook-mock-date-decorator-1.0.2.tgz#7c360265147a59d36999896d6519702045e02147"
   integrity sha512-aLM/mRtrgQIiBrgtaWI8r+Jo66pRvlxTYdRoZ3uX3+uMFHGvjIf2AJ7/fAJsQVhTwSQpQ3JBKMiBGqjgRXefYA==
   dependencies:
     mockdate "^3.0.5"
+
+storybook-multilevel-sort@^2.0.0:
+  version "2.0.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/storybook-multilevel-sort/-/storybook-multilevel-sort-2.0.0.tgz#e478901e3303a623176d6df51eabe652bae13f69"
+  integrity sha1-5HiQHjMDpiMXbW31HqvmUrrhP2k=
 
 storybook@7.6.5:
   version "7.6.5"

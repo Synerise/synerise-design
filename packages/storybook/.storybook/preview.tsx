@@ -7,7 +7,8 @@ import { DEFAULT_DATA_FORMAT_NOTATION } from '@synerise/ds-data-format';
 import { Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import { mockDateDecorator } from 'storybook-mock-date-decorator';
 
-configure({asyncUtilTimeout: 3000});
+configure({ asyncUtilTimeout: 3000 });
+
 
 const preview: Preview = {
   globalTypes: {
@@ -27,7 +28,6 @@ const preview: Preview = {
         title: 'Language',
         icon: 'globe',
         items: ['pl', 'en', 'es', 'pt'],
-
       },
     },
     timeZone: {
@@ -36,34 +36,28 @@ const preview: Preview = {
         title: 'Timezone',
         icon: 'time',
         items: ['Europe/Warsaw', 'UTC', 'America/New_York', 'Asia/Tokyo', 'Australia/Darwin', 'US/Samoa'],
-
       },
     },
   },
   decorators: [
     mockDateDecorator,
     (Story, storyContext) => {
-
       const DSProviderProps = {
         code: 'en_GB',
         dataFormatConfig: {
           startWeekDayNotation: storyContext.globals.dataFormat,
           dateFormatNotation: storyContext.globals.dataFormat,
           timeFormatNotation: storyContext.globals.dataFormat,
-          numberFormatNotation: storyContext.globals.dataFormat
+          numberFormatNotation: storyContext.globals.dataFormat,
         },
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
       };
-      
-      return (
-        <DSProvider {...DSProviderProps}>
-          { Story() }
-        </DSProvider>
-      );
-    }
+
+      return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
+    },
   ],
-  
+
   parameters: {
     layout: 'centered',
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -90,6 +84,9 @@ const preview: Preview = {
       matchers: {
         date: /Date$/i,
       },
+    },
+    options: {
+      storySort: (a, b) => globalThis.deeperSort(a, b),
     },
     docs: {
       source: { type: 'code' },
