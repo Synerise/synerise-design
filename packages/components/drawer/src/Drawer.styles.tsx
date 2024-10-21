@@ -2,7 +2,6 @@ import React from 'react';
 import Drawer from 'antd/lib/drawer';
 import styled from 'styled-components';
 
-// eslint-disable-next-line react/jsx-props-no-spreading
 export const AntdDrawer = styled(({ ...rest }) => <Drawer {...rest} />)`
   && {
     .ant-drawer-mask {

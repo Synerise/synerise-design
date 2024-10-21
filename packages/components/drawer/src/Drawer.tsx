@@ -21,8 +21,7 @@ class Drawer extends React.PureComponent<DrawerProps> {
   render(): React.ReactNode {
     const { title, closable, children, ...drawerProps } = this.props;
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <AntdDrawer {...drawerProps} closable={false} data-testid="ds-drawer">
+      <AntdDrawer {...drawerProps} closable={false}>
         {children}
       </AntdDrawer>
     );
