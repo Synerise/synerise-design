@@ -12,9 +12,7 @@ export const GridContext = React.createContext({
 const DEFAULT_GUTTER = 24;
 export const DEFAULT_COLUMNS_NUMBER = 24;
 
-const Grid: React.FC<GridProps> & {
-  Item: React.ElementType;
-} = ({ children, gutter = DEFAULT_GUTTER, style }) => {
+const Grid = ({ children, gutter = DEFAULT_GUTTER, style }: GridProps) => {
   const breakpointData: DimensionsWithBreakpoint = useBreakpoint();
 
   return (

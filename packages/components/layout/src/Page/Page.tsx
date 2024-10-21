@@ -1,9 +1,9 @@
-import React, { Component, ReactNode, useMemo } from 'react';
+import React, { ReactElement, ReactNode, useMemo } from 'react';
 import * as S from './Page.styles';
 
 type PageProps = {
   navBar?: ReactNode;
-  appMenu?: Component;
+  appMenu?: ReactElement;
   children: ReactNode;
   className?: string;
 };
@@ -11,7 +11,6 @@ type PageProps = {
 const Page = ({ navBar, appMenu, children, className }: PageProps) => {
   const renderAppMenu = useMemo(() => {
     if (appMenu) {
-      // @ts-ignore
       return React.cloneElement(appMenu, {
         top: navBar ? 56 : 0,
       });
