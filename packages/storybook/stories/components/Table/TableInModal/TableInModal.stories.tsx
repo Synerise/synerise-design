@@ -9,7 +9,7 @@ import Modal from '@synerise/ds-modal';
 import { SearchInput } from '@synerise/ds-search';
 
 import { renderWithIconInHeaders, TableMeta } from '../Table.utils';
-import { fixedWrapper1000, NUMBER_CONTROL } from '../../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper1000, NUMBER_CONTROL } from '../../../utils';
 import { COLUMNS, DATA_SOURCE } from './TableInModal.data';
 
 type RowType = typeof DATA_SOURCE[number];
@@ -19,6 +19,7 @@ type StoryType = VirtualTableProps<RowType> & {
   showHeaderButton: boolean;
   columnsData: Array<any>;
   selectionLimit: number;
+  selectionHideSelectAll: boolean;
 };
 
 export default {
@@ -28,7 +29,7 @@ export default {
   },
   title: 'Components/Table/InModal',
   decorators: [fixedWrapper1000],
-  render: ({ showIconsInHeader, showHeaderButton, selectionLimit, columnsData, dataSource, ...args }) => {
+  render: ({ showIconsInHeader, showHeaderButton, selectionLimit, selectionHideSelectAll, columnsData, dataSource, ...args }) => {
     const [searchValue, setSearchValue] = useState('');
     const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
     const [starredRowKeys, setStarredRowKeys] = useState<string[]>([]);
@@ -106,6 +107,7 @@ export default {
                 },
               ],
               limit: selectionLimit ? selectionLimit : undefined,
+              hideSelectAll: selectionHideSelectAll ? selectionHideSelectAll : undefined,
             }}
             rowStar={{
               starredRowKeys: starredRowKeys,
@@ -136,6 +138,7 @@ export default {
   argTypes: {
     ...TableMeta.argTypes,
     selectionLimit: NUMBER_CONTROL,
+    selectionHideSelectAll: BOOLEAN_CONTROL,
   },
   args: {
     ...TableMeta.args,
@@ -149,6 +152,16 @@ export const InModal: Story = {
   args: {
     columnsData: COLUMNS,
     selectionLimit: 5,
+    scroll: { y: 500, x: 0 },
+    initialWidth: 792,
+    cellHeight: 50,
+  },
+};
+
+export const HiddenBatchSelection: Story = {
+  args: {
+    columnsData: COLUMNS,
+    selectionHideSelectAll: true,
     scroll: { y: 500, x: 0 },
     initialWidth: 792,
     cellHeight: 50,

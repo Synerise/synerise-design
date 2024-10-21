@@ -28,12 +28,14 @@ const TableHeader = ({
   hideTitlePart,
   childrenColumnName,
   isLoading,
-}: // @ts-ignore
+}: 
+// @ts-ignore
 Props) => {
   const { formatValue } = useDataFormat();
 
   const renderLeftSide = useMemo(() => {
-    if (selection?.limit)
+    const { limit, hideSelectAll } = selection || {};
+    if (limit)
       return (
         <TableLimit
           total={dataSourceTotalCount || dataSource.length}
@@ -42,9 +44,10 @@ Props) => {
           locale={locale}
         />
       );
+      
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
-        {selection && (
+        {selection && !hideSelectAll && (
           <TableSelection
             rowKey={rowKey}
             dataSource={dataSource}
@@ -67,7 +70,7 @@ Props) => {
       </S.Left>
     ) : (
       <S.Left data-testid="ds-table-title">
-        {selection && !isLoading && (
+        {selection && !isLoading && !hideSelectAll && (
           <TableSelection
             rowKey={rowKey}
             dataSource={dataSource}
@@ -98,7 +101,7 @@ Props) => {
           )}
           {!isLoading && !hideTitlePart && (
             <S.TitlePart>
-              <strong>{formatValue(dataSourceTotalCount)}</strong> <span>{locale.pagination.items}</span>
+              <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong> <span>{locale?.pagination?.items}</span>
             </S.TitlePart>
           )}
         </S.TitleContainer>

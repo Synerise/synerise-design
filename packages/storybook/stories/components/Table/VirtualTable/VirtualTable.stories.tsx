@@ -112,6 +112,16 @@ export const Empty: Story = {
   },
 };
 
+export const HiddenBatchSelection: Story = {
+  args: {
+    selection: {
+      hideSelectAll: true,
+      onChange: fn(),
+      selectedRowKeys: [],
+    },
+  },
+};
+
 export const Skeleton: Story = {
   args: {
     dataSourceFull: [],
