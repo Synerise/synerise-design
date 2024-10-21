@@ -186,7 +186,7 @@ export const AntdInput = styled(
 `;
 
 export const AntdMaskedInput = styled(
-  forwardRef<MaskedInput, AntdMaskedInputProps & { error?: boolean }>(
+  forwardRef<InputRef, AntdMaskedInputProps & { error?: boolean }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <MaskedInput autoComplete="off" {...props} ref={ref} />
   )

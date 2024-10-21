@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, wait } from '@testing-library/react';
+import { fireEvent, screen, waitFor, wait } from '@testing-library/react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { ViewMeta } from '../ColumnManager.types';
 import ColumnManager from '../ColumnManager';
@@ -283,7 +283,7 @@ describe('ColumnManager', () => {
 
     // ACT
     fireEvent.click(getByText('Save view'));
-    await wait();
+    await waitFor(() => expect(screen.findByPlaceholderText('Name')).toBeInTheDocument())
 
     // ARRANGE
     const nameInput = getByPlaceholderText('Name');
@@ -306,7 +306,7 @@ describe('ColumnManager', () => {
 
     // ACT
     fireEvent.click(getByText('Save view'));
-    await wait();
+    await waitFor(() => expect(screen.findByTestId('ds-modal-apply')).toBeInTheDocument());
 
     // ARRANGE
     const modalApply = getByTestId('ds-modal-apply');

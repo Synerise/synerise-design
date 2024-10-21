@@ -4893,13 +4893,6 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@^7.2.0":
-  version "7.15.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/runtime/-/runtime-7.15.3.tgz"
-  integrity sha1-LhwogMoRjlsvmYgyK9inZWoyUCs=
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime@~7.5.4":
   version "7.5.5"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.5.5.tgz"
@@ -13244,10 +13237,12 @@ ansi-to-html@^0.6.11:
   dependencies:
     entities "^1.1.2"
 
-antd-mask-input@^0.1.13:
-  version "0.1.13"
-  resolved "https://registry.npmjs.org/antd-mask-input/-/antd-mask-input-0.1.13.tgz"
-  integrity sha512-Ox/fKrZsuGzXUiQDzgYRC7LjQ8eSo2Erh0Te1Y4vwnngnLQ1/EOhkC8fGOfSfJRCffxjMRIk5jazlhopqNGnuQ==
+antd-mask-input@^2.0.7:
+  version "2.0.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/antd-mask-input/-/antd-mask-input-2.0.7.tgz#202d706eb83571646835bf52e9bfe1d1e4ea5eaf"
+  integrity sha1-IC1wbrg1cWRoNb9S6b/h0eTqXq8=
+  dependencies:
+    imask "6.4.2"
 
 antd@4.24.0:
   version "4.24.0"
@@ -13504,11 +13499,6 @@ array-includes@^3.0.3, array-includes@^3.1.1:
     define-properties "^1.1.3"
     es-abstract "^1.17.0"
     is-string "^1.0.5"
-
-array-move@^3.0.1:
-  version "3.0.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/array-move/-/array-move-3.0.1.tgz"
-  integrity sha1-F5ZFzAmHtllTpPwGtt+QReS6lhg=
 
 array-tree-filter@^2.1.0:
   version "2.1.0"
@@ -19693,11 +19683,6 @@ find-file-up@^0.1.2:
     fs-exists-sync "^0.1.0"
     resolve-dir "^0.1.0"
 
-find-insert-index@0.0.1:
-  version "0.0.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/find-insert-index/-/find-insert-index-0.0.1.tgz"
-  integrity sha1-Fs00ZkwqwjOQWrKzl0W87HITYt4=
-
 find-pkg@^0.1.2:
   version "0.1.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/find-pkg/-/find-pkg-0.1.2.tgz"
@@ -21310,11 +21295,6 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.npmjs.org/hex-color-regex/-/hex-color-regex-1.1.0.tgz"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
-highlight-words-core@^1.2.0:
-  version "1.2.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight-words-core/-/highlight-words-core-1.2.2.tgz"
-  integrity sha1-Hv9tfZ8KIvFVBCoAeRI3eRse6qo=
-
 highlight.js@^10.1.1, highlight.js@~10.6.0:
   version "10.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/highlight.js/-/highlight.js-10.6.0.tgz"
@@ -21879,6 +21859,11 @@ image-size@~0.5.0:
   resolved "https://registry.npmjs.org/image-size/-/image-size-0.5.5.tgz"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
+imask@6.4.2:
+  version "6.4.2"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/imask/-/imask-6.4.2.tgz#f1c67e6961640bf5b09d7b4a34dcf4f9a3df7e22"
+  integrity sha1-8cZ+aWFkC/WwnXtKNNz0+aPffiI=
+
 immediate@^3.2.3:
   version "3.2.3"
   resolved "https://registry.npmjs.org/immediate/-/immediate-3.2.3.tgz"
@@ -22191,7 +22176,7 @@ intl-messageformat@10.7.6:
     "@formatjs/icu-messageformat-parser" "2.9.3"
     tslib "2"
 
-invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
+invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -26158,11 +26143,6 @@ memfs@^3.4.1, memfs@^3.4.12:
   resolved "https://registry.npmjs.org/memoize-one/-/memoize-one-5.1.1.tgz"
   integrity sha512-HKeeBpWvqiVJD57ZUAsJNm71eHTykffzcLZVYWiVfQeI1rJtuEaS7hQiEpWfVVk18donPwJEcFKIkCmPJNOhHA==
 
-memoize-one@^4.0.0:
-  version "4.1.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/memoize-one/-/memoize-one-4.1.0.tgz"
-  integrity sha1-ojh8WMA//yfKOQwxt2Snmt3z+QY=
-
 memoizerific@^1.11.3:
   version "1.11.3"
   resolved "https://registry.npmjs.org/memoizerific/-/memoizerific-1.11.3.tgz"
@@ -26260,11 +26240,6 @@ merge2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
-
-mergesort@0.0.1:
-  version "0.0.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/mergesort/-/mergesort-0.0.1.tgz"
-  integrity sha1-Nk7MMbKX3H9E5RHTZRdvHDnQj8I=
 
 messageformat-formatters@^2.0.1:
   version "2.0.1"
@@ -29833,7 +29808,7 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -30127,11 +30102,6 @@ randexp@0.4.6:
     discontinuous-range "1.0.0"
     ret "~0.1.10"
 
-random-hash@^4.0.1:
-  version "4.0.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/random-hash/-/random-hash-4.0.1.tgz"
-  integrity sha1-NC19FFAeZk8L7i2aE+6unJc8t1U=
-
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz"
@@ -30317,20 +30287,6 @@ rc-menu@8.10.7:
   version "8.10.7"
   resolved "https://registry.npmjs.org/rc-menu/-/rc-menu-8.10.7.tgz"
   integrity sha512-m/ypV7OjkkUsMdutzMUxEI8tWyi0Y1TQ5YkSDk7k2uv2aCKkHYEoDKsDAfcPeejo3HMo2z5unWE+jD+dCphraw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    mini-store "^3.0.1"
-    rc-motion "^2.0.1"
-    rc-trigger "^5.1.2"
-    rc-util "^5.7.0"
-    resize-observer-polyfill "^1.5.0"
-    shallowequal "^1.1.0"
-
-rc-menu@8.10.8:
-  version "8.10.8"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/rc-menu/-/rc-menu-8.10.8.tgz"
-  integrity sha1-w+shWLOYPkKmcZK6utnIEodV0mo=
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "2.x"
@@ -30999,15 +30955,6 @@ react-helmet@^6.0.0-beta:
     react-fast-compare "^2.0.4"
     react-side-effect "^2.1.0"
 
-react-highlight-words@^0.17.0:
-  version "0.17.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-highlight-words/-/react-highlight-words-0.17.0.tgz"
-  integrity sha1-55pVmi3jAVSDOdchYmTWzQ8e7W8=
-  dependencies:
-    highlight-words-core "^1.2.0"
-    memoize-one "^4.0.0"
-    prop-types "^15.5.8"
-
 react-icons@^3.8.0:
   version "3.9.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-3.9.0.tgz"
@@ -31325,15 +31272,6 @@ react-simple-code-editor@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npmjs.org/react-simple-code-editor/-/react-simple-code-editor-0.10.0.tgz"
   integrity sha512-bL5W5mAxSW6+cLwqqVWY47Silqgy2DKDTR4hDBrLrUqC5BXc29YVx17l2IZk5v36VcDEq1Bszu2oHm1qBwKqBA==
-
-react-sortable-hoc@^1.11.0:
-  version "1.11.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-sortable-hoc/-/react-sortable-hoc-1.11.0.tgz"
-  integrity sha1-/kAiNiu6/EuDb1EEuWdmCKQKJ48=
-  dependencies:
-    "@babel/runtime" "^7.2.0"
-    invariant "^2.2.4"
-    prop-types "^15.5.7"
 
 react-sortablejs@^6.0.0:
   version "6.0.0"
@@ -33280,14 +33218,6 @@ simplebar-react@^1.0.0-alpha.6:
     prop-types "^15.6.1"
     simplebar "^4.2.3"
 
-simplebar-react@^2.3.3:
-  version "2.3.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar-react/-/simplebar-react-2.3.3.tgz"
-  integrity sha1-k4xeag7MaOupqVMJfWLiYzjQCM4=
-  dependencies:
-    prop-types "^15.6.1"
-    simplebar "^5.3.3"
-
 simplebar@^4.2.3:
   version "4.2.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar/-/simplebar-4.2.3.tgz"
@@ -33299,18 +33229,6 @@ simplebar@^4.2.3:
     lodash.memoize "^4.1.2"
     lodash.throttle "^4.1.1"
     resize-observer-polyfill "^1.5.1"
-
-simplebar@^5.3.3:
-  version "5.3.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/simplebar/-/simplebar-5.3.6.tgz"
-  integrity sha1-2Tg1dqCab9CeGVQ/jpkGo+h8OJY=
-  dependencies:
-    "@juggle/resize-observer" "^3.3.1"
-    can-use-dom "^0.1.0"
-    core-js "^3.0.1"
-    lodash.debounce "^4.0.8"
-    lodash.memoize "^4.1.2"
-    lodash.throttle "^4.1.1"
 
 sisteransi@^1.0.4, sisteransi@^1.0.5:
   version "1.0.5"
@@ -35027,14 +34945,6 @@ tree-kill@^1.2.2:
   version "1.2.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tree-kill/-/tree-kill-1.2.2.tgz"
   integrity sha1-TKCakJLIi3OnzcXooBtQeweQoMw=
-
-tree-model@^1.0.7:
-  version "1.0.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/tree-model/-/tree-model-1.0.7.tgz"
-  integrity sha1-RbIweqLfwtqM62pjHB4rFVUNzog=
-  dependencies:
-    find-insert-index "0.0.1"
-    mergesort "0.0.1"
 
 trim-lines@^1.0.0:
   version "1.1.3"

@@ -14,7 +14,6 @@ import type { StyledComponent } from 'styled-components';
 import type { InputProps as AntdInputProps, InputRef } from 'antd/lib/input';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import type { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
-import AntdMaskedInput from 'antd-mask-input';
 
 import { useResizeObserver } from '@synerise/ds-utils';
 
@@ -38,7 +37,7 @@ import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
 const VERTICAL_BORDER_OFFSET = 2;
 
 const createInputComponent =
-  <E extends InputRef | AntdMaskedInput, T extends AntdInputProps | AntdMaskedInputProps>(
+  <T extends AntdInputProps | AntdMaskedInputProps>(
     WrappedComponent: StyledComponent<ComponentType<AntdInputProps | AntdMaskedInputProps>, { error?: string }>
   ): ComponentType<BaseProps & T> =>
   ({
@@ -72,7 +71,7 @@ const createInputComponent =
     const scrollLeftRef = useRef(0);
     const hasErrorMessage = Boolean(errorText);
     const paddingDiff = useRef<number>();
-    const inputRef = useRef<E>(null);
+    const inputRef = useRef<InputRef>(null);
     const autosizeRef = useRef<AutosizeInputRefType | null>(null);
     const externalRef = useRef<HTMLInputElement | null>(null);
     const elementRef = useRef<HTMLDivElement | null>(null);
@@ -112,6 +111,7 @@ const createInputComponent =
       if (counterLimit && newValue.length > counterLimit) {
         return;
       }
+      // @ts-ignore
       antdInputProps.onChange && antdInputProps.onChange(event);
     };
 
@@ -149,7 +149,7 @@ const createInputComponent =
           setOverflown(isNowOverflown);
         }
         if (counterLimit && newValue.length > counterLimit) return;
-
+        // @ts-ignore
         antdInputProps.onChange && antdInputProps.onChange(event);
       },
       [antdInputProps, autoResize, counterLimit, expandable, overflown]
@@ -257,8 +257,8 @@ const createInputComponent =
     );
   };
 
-export const Input = createInputComponent<InputRef, AntdInputProps>(S.AntdInput);
-export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
+export const Input = createInputComponent<AntdInputProps>(S.AntdInput);
+export const MaskedInput = createInputComponent<AntdMaskedInputProps>(S.AntdMaskedInput);
 
 export const RawMaskedInput = S.AntdMaskedInput;
 

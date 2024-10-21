@@ -55,8 +55,8 @@ class Select extends Component<Props> {
             getPopupContainer={getPopupContainer}
             listHeight={listHeight}
             size={size}
-            prefixel={!!prefixel}
-            suffixel={!!suffixel}
+            withPrefixel={!!prefixel}
+            withSuffixel={!!suffixel}
             clearIcon={
               <Tooltip title={clearTooltip}>
                 <span>

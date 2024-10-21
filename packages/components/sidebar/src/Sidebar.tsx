@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
       <S.AntdCollapse
         {...activeKeysProp}
         className={isDragDrop ? 'is-drag-drop' : ''}
-        expandIconPosition="right"
+        expandIconPosition="end"
         expandIcon={(panelProps): React.ReactElement => {
           const checkActive = panelProps.isActive;
           return isActive(checkActive);
