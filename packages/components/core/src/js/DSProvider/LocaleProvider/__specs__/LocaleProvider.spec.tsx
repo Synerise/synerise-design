@@ -4,13 +4,13 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import LocaleProvider from '../LocaleProvider';
 
 describe('LocaleProvider', () => {
-  const ExampleComponenent: React.FC<any> = () => (
+  const ExampleComponenent = () => (
     <>
       <FormattedMessage id="FOO.BAR.ITEM" />
       <FormattedMessage id="TEST" />
     </>
   );
-  const ExampleComponenentIntl = injectIntl(ExampleComponenent);
+  const ExampleComponentIntl = injectIntl(ExampleComponenent);
   const messages = {
     en: {
       TEST: 'Translated Test',
@@ -22,38 +22,32 @@ describe('LocaleProvider', () => {
     },
   };
 
-  it('should flat keys', function() {
-    // ARRANGE
+  it('should flat keys', async function() {
     const C = render(
       <LocaleProvider locale="en-GB" messages={messages}>
-        <ExampleComponenentIntl />
+        <ExampleComponentIntl />
       </LocaleProvider>
     );
-    // ASSERT
-    // render non-nested key
-    expect(C.findByText('Translated Test')).toBeTruthy();
-    // render nested key
-    expect(C.findByText('VALUE')).toBeTruthy();
+    
+    expect(await C.findByText('Translated Test')).toBeInTheDocument();
+    expect(await C.findByText('VALUE')).toBeInTheDocument();
   });
 
-  it.skip('should render key name if translation is missing', function() {
+  it('should render key name if translation is missing', function() {
     const mockedError = jest.fn();
-    console.error = mockedError;
-    // ARRANGE
+    
     const C = render(
-      <LocaleProvider locale="es" messages={messages}>
-        <ExampleComponenentIntl />
+      <LocaleProvider locale="es" messages={messages} onError={mockedError}>
+        <ExampleComponentIntl />
       </LocaleProvider>
     );
 
-    // ASSERT
-    expect(C.getByText('FOO.BAR.ITEM')).toBeTruthy();
+    expect(C.getByText('FOO.BAR.ITEM')).toBeInTheDocument();
     expect(mockedError).toHaveBeenCalled();
   });
 
   it('should render fallback translations', function() {
-    // ARRANGE
-
+    
     const messagesPl = {
       pl: {
         EXAMPLE: 'Example',
@@ -76,14 +70,11 @@ describe('LocaleProvider', () => {
 
     const C = render(
       <LocaleProvider locale="pl" messages={messagesPl} defaultMessages={messagesDefault}>
-        <ExampleComponenentIntl />
+        <ExampleComponentIntl />
       </LocaleProvider>
     );
 
-    C.debug();
-
-    // ASSERT
-    expect(C.getByText('PL_VALUE')).toBeTruthy();
-    expect(C.getByText('Fallback_1')).toBeTruthy();
+    expect(C.getByText('PL_VALUE')).toBeInTheDocument();
+    expect(C.getByText('Fallback_1')).toBeInTheDocument();
   });
 });

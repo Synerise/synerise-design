@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react';
+
+import React, { Component, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 import { OnErrorFn } from '@formatjs/intl';
+
 import { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
 import { flatten } from 'flat';
@@ -25,14 +27,14 @@ export type LocaleProviderProps = {
   onErrorIntl?: (error: onErrorFnParameters[0], { dsLocalesLoaded }: { dsLocalesLoaded: boolean }) => void;
 };
 
-interface LocaleProviderState {
+type LocaleProviderState = {
   dsLocales: NestedMessages;
   dsLocalesLoaded: boolean;
 }
 
 const DEFAULT_LANG = 'en-US';
 
-export default class LocaleProvider extends React.Component<LocaleProviderProps, LocaleProviderState> {
+export default class LocaleProvider extends Component<LocaleProviderProps, LocaleProviderState> {
   static defaultProps = { locale: DEFAULT_LANG, localeData: {} };
 
   state = {
@@ -53,9 +55,10 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
 
   getLangForCode = (code: string): string => code.substring(0, 2);
 
-  render(): React.ReactNode {
+  render(): ReactNode {
     const { defaultMessages = {}, messages = {}, locale, defaultLocale, timeZone, children, onErrorIntl } = this.props;
     const { dsLocales, dsLocalesLoaded } = this.state;
+
     const code = locale || DEFAULT_LANG;
     const lang = this.getLangForCode(code);
     const localeData = messages || {};
