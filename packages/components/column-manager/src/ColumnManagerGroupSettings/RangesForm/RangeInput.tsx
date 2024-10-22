@@ -20,11 +20,11 @@ const RangeInput = ({ type, value, onChange, handleInputRef, ...inputProps }: Ra
   const inputMask = useMemo(() => {
     switch (type) {
       case 'text':
-        return 'A';
+        return /^[A-Z]+$/;
       case 'date':
         return '11/11/1111';
       default:
-        return '1';
+        return /^\d+$/;
     }
   }, [type]);
 
@@ -35,10 +35,10 @@ const RangeInput = ({ type, value, onChange, handleInputRef, ...inputProps }: Ra
   ) : (
     <MaskedInput
       {...inputProps}
+      defaultValue=''
       handleInputRef={handleInputRef}
       value={value}
       mask={inputMask}
-      placeholderChar="_"
       resetMargin
       onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
     />
