@@ -35,8 +35,8 @@ export const SelectNumber: Story = {
 
     await userEvent.click(canvas.getByRole('button'));
     await sleep(3000)
-
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
+
     // await waitFor(() => expect(canvas.getByRole('spinbutton')).not.toHaveStyle({ pointerEvents: 'none' }));
     // await userEvent.type(canvas.getByRole('spinbutton'), '4')
     // await userEvent.click(canvas.getByRole('combobox'));

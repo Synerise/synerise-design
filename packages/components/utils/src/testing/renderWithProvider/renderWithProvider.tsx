@@ -18,6 +18,8 @@ const renderWithProvider = (
 ): RenderResult => {
   const rendered = render(
     <DSProvider
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onError={() => {}}
       locale={props?.locale ?? undefined}
       onErrorIntl={NOOP}
       {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
