@@ -133,7 +133,7 @@ const stories = {
       showSearch: boolean('showSearch', false),
       onChange: action('OnChange'),
       style: { width: '100%' },
-      children: values.map(opt => <Option value={opt}>{opt}</Option>),
+      children: values.map(opt => <Option disabled={boolean('disabled children', false)} value={opt}>{opt}</Option>),
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
     };
   },

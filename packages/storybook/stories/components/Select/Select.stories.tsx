@@ -149,16 +149,25 @@ export default {
   }
 } as Meta<SelectProps>;
 
-type Story = StoryObj<SelectProps>;
+type Story = StoryObj<SelectProps & { disabledChildren: boolean }>;
 
 
 export const Default: Story = {
+  render: ({disabledChildren,...args}) => {
+    const optionalDisabledChildren = disabledChildren ? values.map(opt => <Option disabled={disabledChildren} value={opt}>{opt}</Option>) : values.map(opt => <Option value={opt}>{opt}</Option>)
+    return (
+      <Select
+        {...args}
+        children={optionalDisabledChildren}
+      />
+    );
+      },
   args: {
     mode: undefined,
     label: 'Label',
     defaultValue: values[0],
     description: 'Description',
-    children: values.map(opt => <Option value={opt}>{opt}</Option>),
+    disabledChildren: false,
   },
 };
 

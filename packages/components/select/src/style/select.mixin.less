@@ -60,6 +60,16 @@
   color: @blue-600;
 }
 
+.@{ant-prefix}-select-item-option-disabled {
+  opacity: 0.4;
+  &:hover {
+    .@{ant-prefix}-select-item-option-content {
+      background-color: @grey-050;
+      color: @grey-700;
+    }
+  }
+}
+
 .@{ant-prefix}-select-dropdown-menu-item-selected {
   && {
     background: none;
@@ -155,6 +165,16 @@
       background-color: @grey-050;
       .@{ant-prefix}-select-item-option-content {
         color: @blue-600;
+      }
+    }
+  }
+  .@{ant-prefix}-select-item-option-disabled {
+    opacity: 0.4;
+    &:hover {
+      background-color: transparent;
+      .@{ant-prefix}-select-item-option-content {
+        background-color: transparent;
+        color: @grey-700;
       }
     }
   }
