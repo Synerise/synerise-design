@@ -604,7 +604,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
       headerElement && setScrollWidth(headerElement.scrollWidth);
       titleElement && setTitleBarHeight(titleElement.clientHeight);
     }
-  }, [tableWidth, mergedColumns.length, dataSource.length]);
+  }, [tableWidth, mergedColumns.length, dataSource.length, loading]);
 
   const { isIntersecting: isStuck, elementRef } = useElementInView<HTMLDivElement>(
     {
@@ -634,7 +634,6 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
           loading={loading}
           scroll={scrollValue}
           className={classNames}
-          // @ts-ignore
           columns={finalColumns}
           pagination={false}
           components={{
