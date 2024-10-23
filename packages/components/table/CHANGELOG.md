@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.59.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.59.0...@synerise/ds-table@0.59.1) (2024-10-23)
+
+**Note:** Version bump only for package @synerise/ds-table
+
+
+
+
+
 # [0.59.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.58.0...@synerise/ds-table@0.59.0) (2024-10-21)
 
 

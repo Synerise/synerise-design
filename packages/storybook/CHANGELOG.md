@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.22.0...storybook7@0.22.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* **select:** add disabled children ([a55cdbb](https://github.com/Synerise/synerise-design/commit/a55cdbb3907b233f95da585a86010bb59bde32c5))
+
+
+
+
+
 # [0.22.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.21.0...storybook7@0.22.0) (2024-10-21)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.223.2](https://github.com/synerise/synerise-design/compare/portal@0.223.1...portal@0.223.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* **select:** add disabled children ([a55cdbb](https://github.com/synerise/synerise-design/commit/a55cdbb3907b233f95da585a86010bb59bde32c5))
+
+
+
+
+
 ## [0.223.1](https://github.com/synerise/synerise-design/compare/portal@0.223.0...portal@0.223.1) (2024-10-02)
 
 
