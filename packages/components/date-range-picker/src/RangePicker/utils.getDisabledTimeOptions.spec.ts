@@ -19,7 +19,8 @@ const TEST_DATA_SET: TestDataObject[] = [
     granularity: 'HOURS',
     is12HoursClock: true,
     disabledResultArray: [10, 11, -1],
-  },{
+  },
+  {
     day: '2023-03-30T03:18:07',
     lowerLimit: null,
     upperLimit: '2023-03-30T05:41:54',
@@ -82,7 +83,7 @@ const TEST_DATA_SET: TestDataObject[] = [
     upperLimit: '2023-03-30T20:06:54',
     granularity: 'HOURS',
     is12HoursClock: false,
-    disabledResultArray: [20,21,22,23],
+    disabledResultArray: [20, 21, 22, 23],
   },
   {
     day: '2023-03-30T16:27:28',
@@ -99,6 +100,22 @@ const TEST_DATA_SET: TestDataObject[] = [
     granularity: 'HOURS',
     is12HoursClock: false,
     disabledResultArray: [0, 1, 2, 3],
+  },
+  {
+    day: '2023-03-29T22:40:40',
+    lowerLimit: '2023-03-30T02:29:24',
+    upperLimit: null,
+    granularity: 'HOURS',
+    is12HoursClock: false,
+    disabledResultArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  },
+  {
+    day: '2023-03-30T01:50:50',
+    lowerLimit: null,
+    upperLimit: '2023-03-29T22:29:24',
+    granularity: 'HOURS',
+    is12HoursClock: false,
+    disabledResultArray: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
   },
 ];
 
