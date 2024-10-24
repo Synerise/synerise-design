@@ -17,7 +17,7 @@ import {
 } from '@synerise/ds-time-picker';
 
 import { State } from './RangePicker.types';
-import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth } from '../fns';
+import { fnsEndOfDay, fnsIsSameMonth, fnsStartOfDay, fnsStartOfMonth, fnsIsBefore } from '../fns';
 import { TIME_OPTIONS } from '../constants';
 import SET from '../dateUtils/set';
 import GET from '../dateUtils/get';
@@ -30,6 +30,31 @@ const HOURS_GRANULARITY = 'HOURS';
 
 const getAmOrPmFromDate = (date: Date): ClockModes => {
   return dayjs(date).get(HOUR) >= HOUR_12 ? PM : AM;
+};
+
+const getInterval = (initialDate: Date, startDate?: Date, endDate?: Date): Interval => {
+  if (!startDate && !endDate) {
+    return {
+      start: fnsStartOfDay(initialDate),
+      end: fnsEndOfDay(initialDate),
+    };
+  }
+  if (!startDate && endDate) {
+    return {
+      start: fnsIsBefore(initialDate, endDate) ? fnsStartOfDay(initialDate) : fnsStartOfDay(endDate),
+      end: endDate,
+    };
+  }
+  if (!endDate && startDate) {
+    return {
+      start: startDate,
+      end: fnsIsBefore(initialDate, startDate) ? fnsEndOfDay(startDate) : fnsEndOfDay(initialDate),
+    };
+  }
+  return {
+    start: startDate as Date,
+    end: endDate as Date,
+  };
 };
 
 export const getDisabledTimeOptions = (
@@ -47,8 +72,9 @@ export const getDisabledTimeOptions = (
     return [];
   }
   const dayBuilder = dayjs(day);
+  const dayAsDate = typeof day === 'string' ? legacyParse(day) : day;
 
-  const dayClockMode = getAmOrPmFromDate(legacyParse(day));
+  const dayClockMode = getAmOrPmFromDate(dayAsDate);
 
   let disableMeridienToggle = false;
   if (is12HoursClock && granularity === HOURS_GRANULARITY) {
@@ -66,15 +92,14 @@ export const getDisabledTimeOptions = (
       }
     }
   }
-
-  const lowLimit = lowerLimit || fnsStartOfDay(legacyParse(day));
-  const upLimit = upperLimit || fnsEndOfDay(legacyParse(day));
-  const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](day, option));
+  
+  const intervalStartDate = lowerLimit ? legacyParse(lowerLimit) : undefined;
+  const intervalEndDate = upperLimit ? legacyParse(upperLimit) : undefined;
+  const interval = getInterval(dayAsDate, intervalStartDate, intervalEndDate);
+  const options = TIME_OPTIONS[granularity].map((option: number) => SET[granularity](dayAsDate, option));
 
   let result = options
-    .filter(
-      (opt: number) => !fnsIsWithinRange(legacyParse(opt), { start: legacyParse(lowLimit), end: legacyParse(upLimit) })
-    )
+    .filter((opt: Date) => !fnsIsWithinRange(opt, interval))
     .map((option: number) => GET[granularity](option));
 
   if (is12HoursClock && granularity === HOURS_GRANULARITY) {
