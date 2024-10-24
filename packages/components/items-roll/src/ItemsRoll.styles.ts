@@ -37,12 +37,13 @@ export const ShowButtonsWrapper = styled.div`
 
 export const ListWrapper = styled.div`
   &&& {
-    .ant-menu-inline {
+    .ant-menu-inline,
+    .-inline {
       border: none;
     }
     .ant-menu {
       .items-roll-list-item {
-        padding-left: 12px;
+        padding-left: 12px !important;
 
         :hover {
           svg {
@@ -69,11 +70,13 @@ export const ListWrapper = styled.div`
         }
       }
 
-      .ant-menu-item-group-list {
+      .ant-menu-item-group-list,
+      .-item-group-list {
         margin-left: -12px;
       }
 
-      .ant-menu-item-group-title {
+      .ant-menu-item-group-title,
+      .-item-group-title {
         font-size: 10px;
         text-transform: uppercase;
         color: ${({ theme }): string => theme.palette['grey-500']};
@@ -83,7 +86,8 @@ export const ListWrapper = styled.div`
         margin-left: -12px;
       }
 
-      .ant-menu-item-group:not(:first-child):before {
+      .ant-menu-item-group:not(:first-child):before,
+      .-item-group:not(:first-child):before {
         content: '';
         width: calc(100% + 12px);
         height: 1px;

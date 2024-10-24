@@ -45,7 +45,8 @@ export const StyledInlineEditMenu = styled(InlineEdit)<InlineEditProps>`
 export const MenuWrapper = styled.div`
   .ant-menu {
     .ds-menu-item {
-      .ant-menu-item-selected {
+      .ant-menu-item-selected,
+      .-item-selected {
         .ds-menu-prefix > .ds-icon {
           svg {
             fill: ${props => props.theme.palette['blue-600']};

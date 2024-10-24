@@ -18,7 +18,7 @@ export const CascaderScrollbar = styled(Scrollbar)<{ searching?: boolean }>`
 `;
 export const Wrapper = styled.div`
   && {
-    .ant-menu-inline {
+    .ant-menu-inline, .-inline {
       border-right: none;
     }
   }

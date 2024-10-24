@@ -12,7 +12,8 @@ export const DangerItem = styled(({ children, disabled, ...rest }) => (
   </Text>
 ))`
   &&& {
-    &.ant-menu-submenu-disabled {
+    &.ant-menu-submenu-disabled,
+    &.-submenu-disabled {
       color: ${(props): string => props.theme.palette['red-600']};
       svg {
         fill: ${(props): string => props.theme.palette['red-600']};

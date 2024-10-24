@@ -86,7 +86,6 @@ export const DropdownMenu = styled(Menu)`
   padding: 8px;
 `;
 export const DropdownMenuItem = styled(({ children, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Menu.Item {...rest}>{children}</Menu.Item>
 ))`
   &&& {
