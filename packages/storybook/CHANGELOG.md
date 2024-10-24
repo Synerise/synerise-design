@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/Synerise/synerise-design/compare/storybook7@0.22.1...storybook7@0.22.2) (2024-10-24)
+
+
+### Bug Fixes
+
+* **date-range-picker:** fixed disabled time options util ([c5d2fe8](https://github.com/Synerise/synerise-design/commit/c5d2fe81888069b90802dd6189eef5de6e26ec5f))
+
+
+
+
+
 ## [0.22.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.22.0...storybook7@0.22.1) (2024-10-23)
 
 
