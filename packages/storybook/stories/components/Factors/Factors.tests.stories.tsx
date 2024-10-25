@@ -5,7 +5,7 @@ import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
 import FactorsMeta, { Default } from './Factors.stories';
-import { centeredPaddedWrapper } from '../../utils';
+import { centeredPaddedWrapper, sleep } from '../../utils';
 
 export default {
   ...FactorsMeta,
@@ -67,8 +67,10 @@ export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
     await step('select new factor type', async () => {
       await waitFor(() => expect(canvas.getByText('Points')).not.toHaveStyle({ pointerEvents: 'none' }));
       return await userEvent.click(canvas.getByText('Points'));
+
     });
-    expect(args.onChangeValue).toHaveBeenCalledOnce();
+    await sleep(500);
+    await waitFor(() => expect(args.onChangeValue).toHaveBeenCalledOnce());
   },
 };
 
