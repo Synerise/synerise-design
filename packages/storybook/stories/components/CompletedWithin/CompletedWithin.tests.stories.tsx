@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { within, waitFor, userEvent, fn, expect } from '@storybook/test';
 import type { CompletedWithinProps } from '@synerise/ds-completed-within';
+import { sleep } from '../../utils';
 
 import CompletedWithinMeta from './CompletedWithin.stories';
 
@@ -30,10 +31,10 @@ export const SelectNumber: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await canvas.findByText(PLACEHOLDER);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await sleep(3000)
 
     await userEvent.click(canvas.getByRole('button'));
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await sleep(3000)
 
     await waitFor(() => expect(canvas.getByRole('spinbutton')).toBeVisible());
     // await waitFor(() => expect(canvas.getByRole('spinbutton')).not.toHaveStyle({ pointerEvents: 'none' }));

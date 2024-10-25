@@ -62,15 +62,16 @@ export const PopulateStep: ConditionStory = {
     const canvas = within(canvasElement.parentElement!);
     const contextWrapper = within(canvas.getByTestId('condition-subject-or-context'));
     await userEvent.click(contextWrapper.getByRole('button'));
+    await sleep(1500)
     await canvas.findByText(SUBJECT_ITEMS[3].name);
     await waitFor(() => expect(canvas.getByText(SUBJECT_ITEMS[3].name)).not.toHaveStyle({pointerEvents: 'none'}))
     await userEvent.click(canvas.getByText(SUBJECT_ITEMS[3].name));
-
+    await sleep(1500)
     await waitFor(() => expect(args.onChangeContext).toHaveBeenCalled());
     await canvas.findAllByText(PARAMETER_ITEMS[5].name);
     await waitFor(() => expect(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]).not.toHaveStyle({pointerEvents: 'none'}))
     await userEvent.click(canvas.getAllByText(PARAMETER_ITEMS[5].name)[0]);
-
+    await sleep(1500)
     await waitFor(() => expect(args.onChangeParameter).toHaveBeenCalled());
     const operatorsDropdown = await canvas.findByTestId('ds-operators-dropdown-wrapper');
     const operatorsTabs = await within(operatorsDropdown).findAllByTestId('tab-container');

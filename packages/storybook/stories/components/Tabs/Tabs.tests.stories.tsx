@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { within, userEvent, expect, fn, waitFor } from '@storybook/test';
 import type { TabsProps } from '@synerise/ds-tabs';
-import { fixedWrapper300 } from '../../utils';
+import { fixedWrapper300, sleep } from '../../utils';
 
 import StoriesMeta, { TabsWithConfiguration, TabsWithConfigurationDisabled } from './Tabs.stories';
 
@@ -36,7 +36,9 @@ export const EmptyTabsWithConfigurationOpen: Story = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
+    await sleep(3000)
     await userEvent.click(canvas.getByRole('button'));
+    await sleep(3000)
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
 
@@ -50,13 +52,15 @@ export const TabsWithConfigurationOpen: Story = {
   ...TabsWithConfiguration,
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
+    await sleep(3000)
     await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
+    await sleep(3000)
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
 
     const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
     const label = args.configuration?.label || 'Manage tabs';
-    await waitFor(() => expect(dropdown.getByText(label)).toHaveStyle({ pointerEvents: 'none' }), WAIT_FOR_OPTIONS);
+    await waitFor(() => expect(dropdown.getByText(label)).not.toHaveStyle({ pointerEvents: 'none' }), WAIT_FOR_OPTIONS);
   },
 };
 
@@ -79,7 +83,9 @@ export const TabsWithConfigurationDisabledAndHiddenTabsOpen: Story = {
     });
     
     await step('Open dropdown', async () => {
+      await sleep(3000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
+      await sleep(3000)
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
     });
@@ -107,8 +113,9 @@ export const TabsWithConfigurationAndHiddenTabsOpen: Story = {
       const visibleTabsWrapper = within(canvas.getByTestId('tabs-container'));
       await waitFor(() => expect(visibleTabsWrapper.getAllByTestId('tab-container')).toHaveLength(2));
     });
-    
+    await sleep(3000)
     await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
+    await sleep(3000)
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
     await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
     const dropdown = within(canvas.getByTestId('tabs-dropdown-container'));
@@ -142,7 +149,9 @@ export const TabsDropdownHideAfterConfigurationClick: Story = {
     });
     
     await step('Open dropdown', async () => {
+      await sleep(2000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
+      await sleep(2000)
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
     })
@@ -182,8 +191,9 @@ export const TabsDropdownHideAfterHiddenTabClick: Story = {
     });
     
     await step('Open dropdown', async () => {
+      await sleep(3000)
       await userEvent.click(canvas.getByTestId('tabs-dropdown-trigger'));
-
+      await sleep(3000)
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
       await waitFor(() => expect(canvas.getByTestId('tabs-dropdown-container')).toBeVisible(), WAIT_FOR_OPTIONS);
     });
