@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AntdTooltip from 'antd/lib/tooltip';
 import * as S from './ConfirmMessage.style';
 import { ConfirmMessageProps } from './ConfirmMessage.types';
 
-export const ConfirmMessage: React.FC<ConfirmMessageProps> = ({
+export const ConfirmMessage = ({
   children,
   placement = 'topLeft',
   title,
   onClick,
   displayDuration = 5000,
   icon,
-}) => {
-  const [visible, setVisible] = React.useState<boolean>(false);
+}: ConfirmMessageProps) => {
+  const [visible, setVisible] = useState<boolean>(false);
 
-  React.useEffect((): (() => void) => {
+  useEffect((): (() => void) => {
     const timeout = setTimeout(() => {
       setVisible(false);
     }, displayDuration);
@@ -26,11 +26,11 @@ export const ConfirmMessage: React.FC<ConfirmMessageProps> = ({
     setVisible(true);
   };
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = useCallback(() => {
     onClick && onClick(showMessage);
   }, [onClick]);
 
-  const content = React.useMemo(() => {
+  const content = useMemo(() => {
     return (
       <S.ConfirmMessage>
         {icon}

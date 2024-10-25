@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Carousel } from 'antd';
@@ -28,7 +28,7 @@ const Popconfirm: PopconfirmType = ({
   buttonsAlign,
   ...antdProps
 }) => {
-  const renderImageCarousel = React.useMemo(() => {
+  const renderImageCarousel = useMemo(() => {
     return (
       images?.length && (
         <Carousel autoplay={imagesAutoplay} autoplaySpeed={imagesAutoplaySpeed} effect="fade">
@@ -39,13 +39,13 @@ const Popconfirm: PopconfirmType = ({
       )
     );
   }, [images, imagesAutoplay, imagesAutoplaySpeed]);
-  const popupRef = React.useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = React.useState<boolean | undefined>(undefined);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState<boolean | undefined>(undefined);
   useOnClickOutside(popupRef, () => {
     setVisible(false);
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!visible && antdProps.visible) {
       setVisible(antdProps.visible);
     }
