@@ -1,16 +1,16 @@
-import React from 'react';
-import { InputProps } from '@synerise/ds-input';
+import type { ReactNode } from 'react';
+import type { InputProps } from '@synerise/ds-input';
 
-export interface SearchBarProps extends Pick<InputProps, 'handleInputRef'> {
+export type SearchBarProps = Pick<InputProps, 'handleInputRef'> & {
   onSearchChange: (value: string) => void;
   onClearInput?: () => void;
   placeholder: string;
   className?: string;
-  clearTooltip?: string | React.ReactNode;
+  clearTooltip?: ReactNode;
   value: string;
-  iconLeft?: React.ReactNode;
+  iconLeft?: ReactNode;
   autofocus?: boolean;
   autofocusDelay?: number;
   disabled?: boolean;
-  borderRadius?: boolean | undefined;
+  borderRadius?: boolean;
 }
