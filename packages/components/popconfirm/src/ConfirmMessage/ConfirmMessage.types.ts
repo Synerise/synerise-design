@@ -1,10 +1,11 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export interface ConfirmMessageProps {
+export type ConfirmMessageProps = {
   displayDuration?: number;
   title: string;
+  children?: ReactNode;
   onClick: (callback: () => void) => void;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   placement?:
     | 'top'
     | 'left'
