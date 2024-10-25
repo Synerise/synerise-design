@@ -23,6 +23,12 @@
     opacity: 0.4;
   }
 }
+.@{radio-prefix-cls}-wrapper {
+  align-items: unset;
+}
+.@{radio-prefix-cls}-wrapper::after {
+  display: none;
+}
 
 .@{radio-prefix-cls}-input:hover + .@{radio-prefix-cls}-inner {
   border-color: @grey-400;

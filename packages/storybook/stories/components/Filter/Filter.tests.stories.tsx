@@ -59,6 +59,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getByText(FILTER_TEXTS.addFilter));
       await waitFor(() => expect(canvas.findAllByText(CONTEXT_ITEM.name)));
       await waitFor(() => expect(canvas.getAllByText(CONTEXT_ITEM.name)[0]).not.toHaveStyle({ pointerEvents: 'none' }));
+      await sleep(SLEEP_TIME);
       await userEvent.click(canvas.getAllByText(CONTEXT_ITEM.name)[0]);
     });
     await sleep(SLEEP_TIME);
