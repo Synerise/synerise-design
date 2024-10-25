@@ -1,8 +1,10 @@
 import React, { FormEvent, MutableRefObject, useEffect, useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import Icon, { Close3M } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Tooltip from '@synerise/ds-tooltip';
-import { FormattedMessage } from 'react-intl';
+
 import * as S from './SearchBar.styles';
 import { SearchBarProps } from './SearchBar.types';
 
