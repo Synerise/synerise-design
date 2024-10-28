@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.5.15...@synerise/ds-information-card@0.5.16) (2024-10-28)
+
+**Note:** Version bump only for package @synerise/ds-information-card
+
+
+
+
+
 ## [0.5.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.5.14...@synerise/ds-information-card@0.5.15) (2024-10-23)
 
 **Note:** Version bump only for package @synerise/ds-information-card

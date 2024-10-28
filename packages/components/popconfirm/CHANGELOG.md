@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.56](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.55...@synerise/ds-popconfirm@0.10.56) (2024-10-28)
+
+
+### Bug Fixes
+
+* **storybook7:** added popconfirm stories ([73b98df](https://github.com/Synerise/synerise-design/commit/73b98dfba801b9d8fd14ee45c92adb761a04241e))
+
+
+
+
+
 ## [0.10.55](https://github.com/Synerise/synerise-design/compare/@synerise/ds-popconfirm@0.10.54...@synerise/ds-popconfirm@0.10.55) (2024-10-23)
 
 **Note:** Version bump only for package @synerise/ds-popconfirm

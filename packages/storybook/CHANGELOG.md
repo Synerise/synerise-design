@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.3](https://github.com/Synerise/synerise-design/compare/storybook7@0.22.2...storybook7@0.22.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* **storybook7:** added popconfirm stories ([73b98df](https://github.com/Synerise/synerise-design/commit/73b98dfba801b9d8fd14ee45c92adb761a04241e))
+
+
+
+
+
 ## [0.22.2](https://github.com/Synerise/synerise-design/compare/storybook7@0.22.1...storybook7@0.22.2) (2024-10-24)
 
 
