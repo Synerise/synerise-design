@@ -63,6 +63,7 @@ const FormatSettings = ({
   text,
   currenciesConfig = DEFAULT_CURRENCIES_CONFIG,
   disabled,
+  maxFixedLength,
 }: FormatSettingsProps) => {
   const intl = useIntl();
 
@@ -75,8 +76,10 @@ const FormatSettings = ({
   }, [onFixedLengthChange, format]);
 
   const handleIncreaseFixedLength = useCallback(() => {
-    onFixedLengthChange(format.fixedLength + 1);
-  }, [onFixedLengthChange, format]);
+    if (maxFixedLength === undefined || maxFixedLength > format.fixedLength) {
+      onFixedLengthChange(format.fixedLength + 1);
+    }
+  }, [onFixedLengthChange, format, maxFixedLength]);
 
   const selectedCurrency = useMemo(() => {
     return currenciesConfig.find(currency => currency.currency === format.currency);

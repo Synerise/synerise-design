@@ -82,9 +82,7 @@ function renderAddonComponent(suffixElementType: string, labelText?: string) {
         </Tooltip>
       );
     case addonType.avatar:
-      return (
-        <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />
-      );
+      return <S.AvatarWithMargin size="small" text="AK" backgroundColor="green" />;
     case addonType.tag:
       return (
         <S.TagAddon
@@ -115,7 +113,14 @@ const stories = {
           type: select('Tooltip type', ['header-label', 'default', 'largeSimple'], 'header-label'),
           title: text('Tooltip title', 'This is example tooltip!'),
         }}
-        autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 300)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+        autoResize={
+          autoResize
+            ? {
+                maxWidth: `${number('Set autoResize max width', 300)}px`,
+                minWidth: `${number('Set autoResize min width', 150)}px`,
+              }
+            : undefined
+        }
         placeholder={text('Placeholder', 'Placeholder')}
         label={text('Label', 'Label')}
         description={text('Description', 'Description')}
@@ -199,7 +204,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={(prefix as unknown) as SelectValue}
+        value={prefix as unknown as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -222,7 +227,6 @@ const stories = {
         onChange={e => setValue(e.target.value)}
         value={value}
         error={boolean('Set input error', false)}
-        
         mask={inputOptionMask[dateMaskKey]}
       />
     );
@@ -374,7 +378,7 @@ const stories = {
             <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
           </div>
         )}
-        value={(prefix as unknown) as SelectValue}
+        value={prefix as unknown as SelectValue}
         error={boolean('Set select error', false)}
         onClick={(): void => setDropdownVisible(!dropdownVisible)}
       >
@@ -398,7 +402,6 @@ const stories = {
         size={size}
         value={value}
         error={boolean('Set input error', false)}
-        
         mask={inputOptionMask[dateMask]}
       />
     );
@@ -420,12 +423,12 @@ const stories = {
   },
   inputWithMask: () => {
     const autoResize = boolean('Set autoResize', true, 'autoresize');
-    
+
     const autoResizeProp: AutoResizeProp = autoResize && {
       minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
-      maxWidth: `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`
-    }
-    
+      maxWidth: `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`,
+    };
+
     const [creditCardvalue, setCreditCardvalue] = useState<string>('');
     const [dateValue, setDateValue] = useState<string>('');
     const [birthdateValue, setBirthdateValue] = useState<string>('');
@@ -443,11 +446,11 @@ const stories = {
       'D MMMM, YYYY': '11 1111, 1111',
       'D MMMM, YYYY h:mm A': '11 1111, 1111, 1:11 PM',
       'D MMMM, YYYY H:mm': '11 1111, 1111, 11:11',
-      'MMMM D, YYYY': '1111 11, 1111',
-      'MMMM D, YYYY h:mm A': '1111 11, 1111 1:11 PM',
-      'MMMM D, YYYY H:mm': '1111 11, 1111 11:11 ',
-      'ddd, MMMM D, YYYY h:mm A': '111, 1111 11, 1111 1:11 PM',
-      'ddd, MMMM D, YYYY H:mm': '111, 1111 11, 1111 11:11',
+      'MMMM d, YYYY': '1111 11, 1111',
+      'MMMM d, YYYY h:mm A': '1111 11, 1111 1:11 PM',
+      'MMMM d, YYYY H:mm': '1111 11, 1111 11:11 ',
+      'ddd, MMMM d, YYYY h:mm A': '111, 1111 11, 1111 1:11 PM',
+      'ddd, MMMM d, YYYY H:mm': '111, 1111 11, 1111 11:11',
     };
     const dateMask = select('SelectDateMask', Object.keys(inputOptionMask), 'DD-MM-YYYY');
     useEffect(() => {
@@ -602,16 +605,24 @@ const stories = {
       }
     };
     return (
-        <div>
-          <Modal
-        size="small"
-        visible={true}
-        title={'Title'}
-        bodyStyle={{ padding: '20px 180px' }}onCancel={() => setOpen(!open)}
-        onOk={() => setOpen(open)}
+      <div>
+        <Modal
+          size="small"
+          visible={true}
+          title={'Title'}
+          bodyStyle={{ padding: '20px 180px' }}
+          onCancel={() => setOpen(!open)}
+          onOk={() => setOpen(open)}
         >
           <Input
-            autoResize={autoResize ? {maxWidth: `${number('Set autoResize max width', 1000)}px`, minWidth: `${number('Set autoResize min width', 150)}px`} : undefined}
+            autoResize={
+              autoResize
+                ? {
+                    maxWidth: `${number('Set autoResize max width', 1000)}px`,
+                    minWidth: `${number('Set autoResize min width', 150)}px`,
+                  }
+                : undefined
+            }
             placeholder={text('Placeholder', 'Placeholder')}
             label={text('Label', 'Label')}
             description={descriptionMessage && getDescription(hasDescription)}
@@ -631,9 +642,9 @@ const stories = {
             expandableTooltip="Expand"
             expandable={boolean('Set expandable', true)}
           />
-          </Modal>
-        </div>
-    )
+        </Modal>
+      </div>
+    );
   },
   inputWithAutoresize: () => {
     const [value, setValue] = useState<string>('');
@@ -648,12 +659,11 @@ const stories = {
     const autoResizeStretchToParent = boolean('Set autoResize max width to stretch to parent', true, 'autoresize');
     const autoResizeProp: AutoResizeProp = {
       minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
-      stretchToFit: autoResizeStretchToParent
-    }
+      stretchToFit: autoResizeStretchToParent,
+    };
     if (autoResizeStretchToParent) {
-      containerWidth = number('Set input container width', 400, undefined, 'autoresize')
-    }
-    else {
+      containerWidth = number('Set input container width', 400, undefined, 'autoresize');
+    } else {
       const maxWidth = number('Set autoResize max width', 300, undefined, 'autoresize');
       autoResizeProp.maxWidth = maxWidth !== 0 ? `${maxWidth}px` : undefined;
     }
@@ -676,32 +686,31 @@ const stories = {
 
     return (
       <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
-      <Input
-        autoResize={autoResize ? autoResizeProp : undefined}
-        placeholder={text('Placeholder', 'Placeholder')}
-        label={text('Label', 'Label')}
-        description={descriptionMessage && getDescription(hasDescription)}
-        errorText={!isFocus && getErrorText(hasError)}
-        error={!isFocus && hasError}
-        disabled={boolean('Disabled', false)}
-        onChange={e => setValue(e.target.value)}
-        onBlur={() => {
-          action('I am blurred');
-          setFocus(false);
-        }}
-        onFocus={() => {
-          action('I am focused');
-          setFocus(true);
-        }}
-        expandableTooltip="Expand"
-        expandable={boolean('Set expandable', true)}
-        value={value}
-
-        icon1={<Icon component={<FileM />} />}
-        icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
-        icon2={<Icon component={<FileM />} />}
-        icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
-      />
+        <Input
+          autoResize={autoResize ? autoResizeProp : undefined}
+          placeholder={text('Placeholder', 'Placeholder')}
+          label={text('Label', 'Label')}
+          description={descriptionMessage && getDescription(hasDescription)}
+          errorText={!isFocus && getErrorText(hasError)}
+          error={!isFocus && hasError}
+          disabled={boolean('Disabled', false)}
+          onChange={e => setValue(e.target.value)}
+          onBlur={() => {
+            action('I am blurred');
+            setFocus(false);
+          }}
+          onFocus={() => {
+            action('I am focused');
+            setFocus(true);
+          }}
+          expandableTooltip="Expand"
+          expandable={boolean('Set expandable', true)}
+          value={value}
+          icon1={<Icon component={<FileM />} />}
+          icon1Tooltip={hasIconTooltip ? <span>icon1</span> : undefined}
+          icon2={<Icon component={<FileM />} />}
+          icon2Tooltip={hasIconTooltip ? <span>icon2</span> : undefined}
+        />
       </div>
     );
   },
@@ -744,7 +753,7 @@ const stories = {
 
     return (
       <TextArea
-        autoSize={{minRows, maxRows}}
+        autoSize={{ minRows, maxRows }}
         rows={number('rows', 4)}
         placeholder={text('Placeholder', 'Placeholder')}
         label={text('Label', 'Label')}
@@ -841,8 +850,8 @@ const stories = {
           action('I am focused');
           setFocus(true);
         }}
-        onChange={(values) => {
-          action(JSON.stringify({type: 'onChange', values}));
+        onChange={values => {
+          action(JSON.stringify({ type: 'onChange', values }));
         }}
       />
     );

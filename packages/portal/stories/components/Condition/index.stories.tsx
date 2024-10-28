@@ -253,7 +253,7 @@ const stories = {
       );
     };
 
-    const validationGroupId = 'Error Validation'
+    const validationGroupId = 'Error Validation';
 
     const showContextErrorMessage = boolean('Show context selector error message', false, validationGroupId);
     let contextErrorMessage;
@@ -282,7 +282,7 @@ const stories = {
     const showAddConditionErrorMessage = boolean('Show "add condition" error message', false, validationGroupId);
     let addConditionErrorMessage;
     if (showAddConditionErrorMessage) {
-      addConditionErrorMessage = text('Condition error message','Parameter must be chosen', validationGroupId);
+      addConditionErrorMessage = text('Condition error message', 'Parameter must be chosen', validationGroupId);
     }
 
     return (
@@ -323,11 +323,11 @@ const stories = {
           autoClearCondition={boolean('Enable autoclear condition elements', true)}
           addCondition={boolean('Enable add condition', true) && addStepCondition}
           removeCondition={removeStepCondition}
-          onUpdateStepName={boolean('Show step name', true) ? updateStepName : undefined}
+          onUpdateStepName={boolean('Show step name', false) ? updateStepName : undefined}
           removeStep={removeStep}
           duplicateStep={duplicateStep}
           addStep={boolean('Enable default add step', false) ? addStep : undefined}
-          renderAddStep={boolean('Enable custom add step', true) ? renderCustomAddStep : undefined}
+          renderAddStep={boolean('Enable custom add step', false) ? renderCustomAddStep : undefined}
           onChangeOrder={boolean('Enable change order', true) && onChangeOrder}
           minConditionsLength={0}
           maxConditionsLength={5}

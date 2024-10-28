@@ -16,6 +16,7 @@ export type ConditionStep = {
   id: ReactText;
   subject?: Omit<SubjectProps, 'onSelectItem'>;
   context?: Omit<ContextProps, 'onSelectItem'>;
+  actionAttribute?: Omit<FactorsProps, 'onChangeValue' | 'selectedFactorType' | 'defaultFactorType'>;
   stepName?: string;
   conditions: StepConditions[];
   addConditionErrorText?: ReactNode;
@@ -33,6 +34,7 @@ export type ConditionTexts = {
   removeTooltip: string;
   conditionSuffix: string;
   stepNamePrefix: string;
+  emptyConditionLabel: string;
 };
 
 export type ConditionProps = {
@@ -54,6 +56,7 @@ export type ConditionProps = {
   onChangeFactorValue: (stepId: ReactText, conditionId: ReactText, value: FactorValueType | undefined) => void;
   onChangeFactorType: (stepId: ReactText, conditionId: ReactText, value: FactorType | undefined) => void;
   onUpdateStepName?: (stepId: ReactText, value: string) => void;
+  onChangeActionAttribute?: (stepId: ReactText, value: FactorValueType | undefined) => void;
   type?: 'attribute' | 'event';
   showSuffix?: boolean;
   hoverDisabled?: boolean;
@@ -61,4 +64,7 @@ export type ConditionProps = {
   inputProps?: Partial<InputProps>;
   onDeactivate?: (currentStepId: ReactText, currentConditionId: ReactText) => void;
   readOnly?: boolean;
+  singleStepCondition?: boolean;
+  showActionAttribute?: boolean;
+  showEmptyConditionPlaceholder?: boolean;
 } & ConditionStepCrudActions;

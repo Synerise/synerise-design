@@ -43,9 +43,9 @@ const stories = {
         return (
           /** workaround for an issue with displaying '-' instead of date range */
           <Button type="tertiary" mode="label-icon">
-            {fnsFormat(new Date(rangeValue.from), 'MMM D, YYYY')}
+            {fnsFormat(new Date(rangeValue.from), 'MMM d, yyyy')}
             {` - `}
-            {fnsFormat(new Date(rangeValue.to), 'MMM D, YYYY')}
+            {fnsFormat(new Date(rangeValue.to), 'MMM d, yyyy')}
             <Icon component={<CalendarM />} />
           </Button>
         );
@@ -97,12 +97,7 @@ const stories = {
           isHeaderVisible={boolean('Show header', true)}
           headerRightSide={
             boolean('Show tag in header', true) && (
-              <Tag
-                shape={TagShape.SINGLE_CHARACTER_ROUND}
-                name="A"
-                color={theme.palette['grey-200']}
-                asPill
-              />
+              <Tag shape={TagShape.SINGLE_CHARACTER_ROUND} name="A" color={theme.palette['grey-200']} asPill />
             )
           }
         >

@@ -113,8 +113,8 @@ export const RightSide = styled.div`
   }
 `;
 
-export const Body = styled.div`
-  padding: 0 0 24px;
+export const Body = styled.div<{ singleStepCondition: boolean }>`
+  padding: ${({ singleStepCondition }) => (singleStepCondition ? '0' : '0 0 24px')};
   width: 100%;
 
   .ds-conditions {
@@ -125,6 +125,12 @@ export const Body = styled.div`
       padding-bottom: 0;
     }
   }
+`;
+
+export const AdditionalFields = styled.div`
+  width: 100%;
+  padding: 24px 24px 12px;
+  border-top: 1px solid ${props => props.theme.palette['grey-200']};
 `;
 
 export const Footer = styled.div`

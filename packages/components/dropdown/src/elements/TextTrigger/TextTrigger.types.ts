@@ -7,4 +7,5 @@ export type TextTriggerProps = {
   onClick: () => void;
   onFocus?: () => void;
   expanded?: boolean;
+  isDisabled?: boolean;
 };

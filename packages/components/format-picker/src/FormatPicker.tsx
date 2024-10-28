@@ -24,6 +24,7 @@ const FormatPicker = ({
   currenciesConfig,
   buttonType = 'tertiary',
   disabled,
+  maxFixedLength,
 }: FormatPickerProps) => {
   const intl = useIntl();
   const { formatValue } = useDataFormat();
@@ -98,6 +99,7 @@ const FormatPicker = ({
           currenciesConfig={currenciesConfig}
           disabled={disabled}
           getFormattedValue={getFormattedValue}
+          maxFixedLength={maxFixedLength}
         />
       }
       placement="topCenter"

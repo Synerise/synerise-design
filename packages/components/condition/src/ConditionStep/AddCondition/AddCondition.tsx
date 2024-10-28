@@ -4,18 +4,14 @@ import Icon, { Add2M } from '@synerise/ds-icon';
 import * as S from '../../Condition.style';
 import * as T from './AddCondition.types';
 
-// eslint-disable-next-line import/prefer-default-export
-export const AddCondition: React.FC<T.AddConditionProps> = ({
+export const AddCondition = ({
   addCondition,
   stepId,
   conditionsNumber,
   texts,
-  selectedSubject,
-  selectedContext,
-  readOnly = false,
+  isDisabled = false,
   errorText,
-}) => {
-  const disabled = !(selectedSubject || selectedContext);
+}: T.AddConditionProps) => {
   return (
     <>
       <S.AddConditionRow>
@@ -24,17 +20,17 @@ export const AddCondition: React.FC<T.AddConditionProps> = ({
         <S.ConditionRowLine>
           <Button
             icon={<Icon component={<Add2M />} />}
-            error={!disabled && Boolean(errorText)}
+            error={!isDisabled && Boolean(errorText)}
             type="ghost"
             mode="icon-label"
             onClick={(): void => {
               addCondition && addCondition(stepId);
             }}
-            disabled={disabled}
+            disabled={isDisabled}
           >
-            {!readOnly && conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
+            {conditionsNumber > 0 ? texts.addConditionRowButton : texts.addFirstConditionRowButton}
           </Button>
-          {!disabled && errorText && <S.ErrorWrapper>{errorText}</S.ErrorWrapper>}
+          {!isDisabled && errorText && <S.ErrorWrapper>{errorText}</S.ErrorWrapper>}
         </S.ConditionRowLine>
       </S.AddConditionRow>
     </>

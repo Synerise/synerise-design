@@ -20,6 +20,7 @@ export type ConditionStepProps = {
   draggableEnabled?: boolean;
   selectSubject: (value: SubjectItem, stepId: ReactText) => void;
   selectContext: (value: ContextItem | ContextGroup | undefined, stepId: ReactText) => void;
+  selectActionAttribute: (value: FactorValueType | undefined, stepId: ReactText) => void;
   selectParameter: (stepId: ReactText, condition: ReactText, value: FactorValueType | undefined) => void;
   selectOperator: (stepId: ReactText, condition: ReactText, value: OperatorsItem | OperatorsGroup | undefined) => void;
   setStepConditionFactorType: (stepId: ReactText, condition: ReactText, factorType: FactorType | undefined) => void;
@@ -35,6 +36,9 @@ export type ConditionStepProps = {
   hoverDisabled?: boolean;
   inputProps?: Partial<InputProps>;
   readOnly?: boolean;
+  singleStepCondition?: boolean;
+  showActionAttribute?: boolean;
+  showEmptyConditionPlaceholder?: boolean;
 } & ConditionStepCrudActions;
 
 export type ConditionStepCrudActions = {

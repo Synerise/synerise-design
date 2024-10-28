@@ -19,4 +19,4 @@ export type ConfirmMessageProps = {
     | 'leftBottom'
     | 'rightTop'
     | 'rightBottom';
-}
+};

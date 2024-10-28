@@ -26,6 +26,7 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
   data: {
     name: '',
     matching: true,
+    additionalFields: <div>Additional fields</div>,
   },
   logic: {
     type: 'LOGIC',
@@ -51,6 +52,11 @@ const DEFAULT_EXPRESSION = (subject = undefined) => ({
 
 const DEFAULT_STATE = {
   expressions: [DEFAULT_EXPRESSION(), DEFAULT_EXPRESSION()],
+  matching: true,
+};
+
+const DEFAULT_SINGLE_STEP_STATE = {
+  expressions: [DEFAULT_EXPRESSION()],
   matching: true,
 };
 
@@ -183,9 +189,9 @@ const stories = {
         </Tooltip>
       ) : (
         <Button type="tertiary" mode="label-icon">
-          {fnsFormat(expression.footer.dateRange.from, 'MMM D, YYYY')}
+          {fnsFormat(expression.footer.dateRange.from, 'MMM d, yyyy')}
           {` - `}
-          {fnsFormat(expression.footer.dateRange.to, 'MMM D, YYYY')}
+          {fnsFormat(expression.footer.dateRange.to, 'MMM d, yyyy')}
           <Icon component={<CalendarM />} />
         </Button>
       );
@@ -315,6 +321,17 @@ const stories = {
 
     const maxConditionsLimit = number('Set max conditions limit', 0);
 
+    const expressions = () => {
+      const showAdditionalFileds = boolean('show additional fields', false);
+      return store.state.expressions.map(expression => ({
+        ...expression,
+        data: {
+          ...expression.data,
+          additionalFields: showAdditionalFileds ? expression.data.additionalFields : undefined,
+        },
+      }));
+    };
+
     return (
       <div
         style={{
@@ -330,46 +347,150 @@ const stories = {
           backgroundColor: theme.palette['grey-050'],
         }}
       >
-        
-        <Layout nativeScroll={boolean('Use native scroll', false)} mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}>
-          <div style={{width:'1000px'}}>
+        <Layout
+          nativeScroll={boolean('Use native scroll', false)}
+          mainSidebarWithDnd={boolean('Use scrollbar with drag and drop?', true)}
+        >
+          <div style={{ width: '1000px' }}>
             <Filter
+              maxConditionsLimit={maxConditionsLimit}
+              expressions={expressions()}
+              getMoveByLabel={offset => {
+                if (offset < 0) {
+                  return `Move ${Math.abs(offset)} up...`;
+                } else {
+                  return `Move ${Math.abs(offset)} down...`;
+                }
+              }}
+              addFilterComponent={({ isLimitExceeded }) => (
+                <ContextSelector
+                  disabled={isLimitExceeded}
+                  texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
+                  onSelectItem={handleAddStep}
+                  selectedItem={undefined}
+                  items={CONTEXT_CLIENT_ITEMS}
+                  groups={CONTEXT_CLIENT_GROUPS}
+                  addMode={true}
+                />
+              )}
+              onChangeLogic={handleChangeLogic}
+              onChangeOrder={handleChangeOrder}
+              onChangeStepMatching={handleChangeStepMatching}
+              onChangeStepName={handleChangeStepName}
+              onDeleteStep={handleDeleteStep}
+              onDuplicateStep={handleDuplicateStep}
+              renderStepFooter={renderStepFooter}
+              renderStepContent={renderStepContent}
+              renderStepHeaderRightSide={showStepTags && renderStepHeaderRightSide}
+              renderHeaderRightSide={showStepTags && renderHeaderRightSide}
+              matching={{
+                onChange: handleChangeMatching,
+                matching: store.state.matching,
+                sentence: 'find all items #MATCHING_TOGGLE# this condition',
+                readOnly,
+              }}
+              texts={{
+                step: {
+                  matching: 'Performed',
+                  notMatching: 'Not performed',
+                  conditionType: 'event',
+                  namePlaceholder: 'Unnamed',
+                  moveTooltip: 'Move',
+                  deleteTooltip: 'Delete',
+                  duplicateTooltip: 'Duplicate',
+                  moveUpTooltip: 'Move up',
+                  moveDownTooltip: 'Move down',
+                },
+                matching: {
+                  matching: 'matching',
+                  notMatching: 'not matching',
+                },
+                addFilter: 'Add filter',
+                dropMeHere: 'Drop me here',
+                conditionsLimit: 'Conditions limit',
+              }}
+              visibilityConfig={{
+                isStepCardHeaderVisible: boolean('Show step card header', false),
+              }}
+              readOnly={readOnly}
+            />
+          </div>
+        </Layout>
+      </div>
+    );
+  }),
+
+  singleStepFilter: withState(DEFAULT_SINGLE_STEP_STATE)(({ store }) => {
+    const readOnly = boolean('Set readOnly', false);
+    const isLoading = boolean('Set loading state', false);
+    const expressionRefs = {};
+    store.state.expressions.forEach(exp => {
+      expressionRefs[exp.id] = React.createRef();
+    });
+
+    const renderStepContent = (expression, hoverDisabled) => {
+      const handleChangeExpressionSteps = expressionSteps => {
+        const expressions = store.state.expressions.map(exp => {
+          if (exp.id === expression.id) {
+            return {
+              ...exp,
+              expressionSteps,
+            };
+          }
+          return exp;
+        });
+
+        store.set({ expressions });
+      };
+
+      return (
+        <ConditionExample
+          ref={expressionRefs[expression.id]}
+          onChange={handleChangeExpressionSteps}
+          steps={expression.expressionSteps}
+          hoverDisabled={hoverDisabled}
+          readOnly={readOnly}
+          singleStepCondition={true}
+          isLoading={isLoading}
+          showEmptyConditionPlaceholder={boolean('Show empty condition placeholder', true)}
+        />
+      );
+    };
+
+    const maxConditionsLimit = number('Set max conditions limit', 0);
+
+    const expressions = () => {
+      const showAdditionalFileds = boolean('show additional fields', false);
+      return store.state.expressions.map(expression => ({
+        ...expression,
+        data: {
+          ...expression.data,
+          additionalFields: showAdditionalFileds ? expression.data.additionalFields : undefined,
+        },
+      }));
+    };
+
+    return (
+      <div
+        style={{
+          padding: 24,
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          backgroundColor: theme.palette['grey-050'],
+        }}
+      >
+        <div style={{ width: '1000px' }}>
+          <Filter
             maxConditionsLimit={maxConditionsLimit}
-            expressions={store.state.expressions}
-            getMoveByLabel={offset => {
-              if (offset < 0) {
-                return `Move ${Math.abs(offset)} up...`;
-              } else {
-                return `Move ${Math.abs(offset)} down...`;
-              }
-            }}
-            addFilterComponent={({ isLimitExceeded }) => (
-              <ContextSelector
-                disabled={isLimitExceeded}
-                texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-                onSelectItem={handleAddStep}
-                selectedItem={undefined}
-                items={CONTEXT_CLIENT_ITEMS}
-                groups={CONTEXT_CLIENT_GROUPS}
-                addMode={true}
-              />
-            )}
-            onChangeLogic={handleChangeLogic}
-            onChangeOrder={handleChangeOrder}
-            onChangeStepMatching={handleChangeStepMatching}
-            onChangeStepName={handleChangeStepName}
-            onDeleteStep={handleDeleteStep}
-            onDuplicateStep={handleDuplicateStep}
-            // renderStepFooter={renderStepFooter}
+            expressions={expressions()}
+            singleStepCondition={true}
             renderStepContent={renderStepContent}
-            renderStepHeaderRightSide={showStepTags && renderStepHeaderRightSide}
-            renderHeaderRightSide={showStepTags && renderHeaderRightSide}
-            matching={{
-              onChange: handleChangeMatching,
-              matching: store.state.matching,
-              sentence: 'find all items #MATCHING_TOGGLE# this condition',
-              readOnly,
-            }}
             texts={{
               step: {
                 matching: 'Performed',
@@ -391,12 +512,11 @@ const stories = {
               conditionsLimit: 'Conditions limit',
             }}
             visibilityConfig={{
-              isStepCardHeaderVisible: boolean('Show step card header', true),
+              isStepCardHeaderVisible: false,
             }}
             readOnly={readOnly}
           />
-          </div>
-        </Layout>
+        </div>
       </div>
     );
   }),

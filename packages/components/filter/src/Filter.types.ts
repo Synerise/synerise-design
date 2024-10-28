@@ -1,6 +1,6 @@
 import React from 'react';
 import { LogicOperator, LogicOperatorValue, LogicProps } from '@synerise/ds-logic/dist/Logic.types';
-import { StepCardProps } from '@synerise/ds-step-card/dist/StepCard.types';
+import { StepCardProps } from '@synerise/ds-step-card';
 import { MatchingProps, MatchingTexts } from '@synerise/ds-logic/dist/Matching/Matching.types';
 
 export type LogicType = {
@@ -27,18 +27,19 @@ export type FilterProps = {
   maxConditionsLimit?: number;
   expressions: Expression[];
   matching?: MatchingProps;
-  onChangeOrder: (newOrder: Expression[]) => void;
-  onChangeLogic: (id: string, logic: LogicOperatorValue) => void;
-  onChangeStepMatching: (id: string, matching: boolean) => void;
-  onChangeStepName: (id: string, name: string) => void;
-  onDeleteStep: (id: string) => void;
-  onDuplicateStep: (id: string) => void;
+  onChangeOrder?: (newOrder: Expression[]) => void;
+  onChangeLogic?: (id: string, logic: LogicOperatorValue) => void;
+  onChangeStepMatching?: (id: string, matching: boolean) => void;
+  onChangeStepName?: (id: string, name: string) => void;
+  onDeleteStep?: (id: string) => void;
+  onDuplicateStep?: (id: string) => void;
   renderStepFooter?: (expression: Expression) => React.ReactNode;
   renderStepContent?: (expression: Expression, hoverDisabled?: boolean) => React.ReactNode;
   renderStepHeaderRightSide?: (expression: Expression, index: number) => React.ReactNode;
   addFilterComponent?: React.ReactNode | ((arg: addFilterComponentProps) => React.ReactNode);
   logicOptions?: LogicOperator[];
   readOnly?: boolean;
+  singleStepCondition?: boolean;
   renderHeaderRightSide?: (expressions: Expression[]) => React.ReactNode;
   getMoveByLabel?: (moveByOffset: number) => string;
   texts?: {

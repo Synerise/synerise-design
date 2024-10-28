@@ -4,7 +4,6 @@ import { OuterWrapper } from '@synerise/ds-input/dist/Input.styles';
 import { InputGroupWrapper, InputGroupItem } from '@synerise/ds-input/dist/InputGroup.styles';
 import { FactorInput } from '../FactorValue/FactorValue.style';
 
-// eslint-disable-next-line import/prefer-default-export
 export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
   &&& {
     display: flex;

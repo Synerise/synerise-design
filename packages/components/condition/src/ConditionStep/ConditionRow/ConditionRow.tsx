@@ -101,7 +101,7 @@ export const ConditionRow = ({
     <S.ConditionRow
       data-testid="condition-row"
       onlyChild={maxConditionLength === 1}
-      style={hasPriority ? { zIndex: 10001 } : undefined}
+      style={hasPriority ? { zIndex: 1001 } : undefined}
       key={`condition-row-${conditionId}`}
       index={index}
       withError={rowHasError}

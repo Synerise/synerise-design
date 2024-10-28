@@ -4,7 +4,13 @@ import Factors from '@synerise/ds-factors';
 import { withState } from '@dump247/storybook-state';
 import { boolean, number, object, select } from '@storybook/addon-knobs';
 import { VarTypeStringM } from '@synerise/ds-icon';
-import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/index.data';
+import {
+  FACTORS_GROUPS,
+  FACTORS_GROUPS_WITH_TABS,
+  FACTORS_ITEMS,
+  FACTORS_ITEMS_WITH_TABS,
+  FACTORS_TEXTS,
+} from './data/index.data';
 import { action } from '@storybook/addon-actions';
 import type { MenuItemProps } from '@synerise/ds-menu';
 import type { FactorsProps } from '@synerise/ds-factors/dist/Factors.types';
@@ -62,6 +68,16 @@ const stories = {
       autoResizeProp.maxWidth = `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`;
     }
 
+    const parametersDataSource = boolean('Show params with tabs', true)
+      ? {
+          groups: FACTORS_GROUPS_WITH_TABS,
+          items: FACTORS_ITEMS_WITH_TABS,
+        }
+      : {
+          groups: FACTORS_GROUPS,
+          items: FACTORS_ITEMS,
+        };
+
     return (
       <div style={containerWidth ? { width: `${containerWidth}px`, border: 'dashed 1px #ddd' } : undefined}>
         <Factors
@@ -83,8 +99,7 @@ const stories = {
           parameters={{
             buttonLabel: 'Parameter',
             buttonIcon: <VarTypeStringM />,
-            groups: FACTORS_GROUPS,
-            items: FACTORS_ITEMS,
+            ...parametersDataSource,
             recentItems: FACTORS_ITEMS.slice(0, 3),
           }}
           withoutTypeSelector={boolean('Hide type selector', false)}

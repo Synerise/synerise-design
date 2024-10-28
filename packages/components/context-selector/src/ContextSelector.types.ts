@@ -26,6 +26,8 @@ export type ContextItem = Pick<ListItemProps, 'renderHoverTooltip' | 'hoverToolt
   subGroups?: ContextGroup[];
   useCustomIcon?: boolean;
   subtitle?: string;
+  value?: ReactText | null;
+  excludeFromSearchResults?: boolean;
   informationCardProps?: Partial<InformationCardProps>;
   renderAdditionalDescription?: () => ReactNode;
 };
@@ -124,6 +126,10 @@ export type ContextSelectorDropdownItemProps = {
 export type ListTitle = {
   title?: string;
   type?: string;
+};
+
+export type ListDivider = {
+  type: 'divider';
 };
 
 export type DropdownItemProps = ListTitle | ContextSelectorDropdownItemProps;

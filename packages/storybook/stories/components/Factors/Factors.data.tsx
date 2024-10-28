@@ -38,7 +38,9 @@ export const FACTORS_TEXTS = {
     searchPlaceholder: 'Search',
     noResults: 'No results',
     loadingParameter: 'Loading parameters',
-    showMore: 'Show more'
+    showMore: 'Show more',
+    recentItemsGroupName: 'Recent', 
+    allItemsGroupName: 'All'
   },
   valuePlaceholder: 'Value',
   modalApply: 'Apply',

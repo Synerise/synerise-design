@@ -14,8 +14,9 @@ const getColumnWidth = (props: ColWrapperProps): React.CSSProperties['width'] =>
   return props.width ? numberToPixels(props.width) : 'initial';
 };
 
-export const RowWrapper = styled.div`
+export const RowWrapper = styled.div<{ onRowClickAvailable?: boolean }>`
   display: inline-table;
+  cursor: ${props => (props.onRowClickAvailable ? 'pointer' : 'default')};
 `;
 
 export const InnerListElement = styled.div`

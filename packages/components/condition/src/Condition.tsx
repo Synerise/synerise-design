@@ -21,6 +21,7 @@ import {
   PARAMETER,
   SUBJECT,
   DEFAULT_INPUT_PROPS,
+  ACTION_ATTRIBUTE,
 } from './constants';
 
 const Condition = (props: T.ConditionProps) => {
@@ -51,6 +52,10 @@ const Condition = (props: T.ConditionProps) => {
     inputProps,
     onDeactivate,
     readOnly = false,
+    singleStepCondition,
+    showActionAttribute,
+    onChangeActionAttribute,
+    showEmptyConditionPlaceholder = false,
   } = props;
   const { formatMessage } = useIntl();
   const text = useMemo(
@@ -141,20 +146,38 @@ const Condition = (props: T.ConditionProps) => {
     (value, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
-      setCurrentField(PARAMETER);
+      if (showActionAttribute) {
+        setCurrentField(ACTION_ATTRIBUTE);
+      } else {
+        setCurrentField(PARAMETER);
+      }
       onChangeSubject && onChangeSubject(stepId, value);
     },
-    [clearConditionRow, onChangeSubject]
+    [clearConditionRow, onChangeSubject, showActionAttribute]
   );
 
   const selectContext = useCallback(
     (value, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
-      setCurrentField(PARAMETER);
+      if (showActionAttribute) {
+        setCurrentField(ACTION_ATTRIBUTE);
+      } else {
+        setCurrentField(PARAMETER);
+      }
       onChangeContext && onChangeContext(stepId, value);
     },
-    [clearConditionRow, onChangeContext]
+    [clearConditionRow, onChangeContext, showActionAttribute]
+  );
+
+  const selectActionAttribute = useCallback(
+    (value, stepId) => {
+      clearConditionRow(stepId);
+      setCurrentStepId(stepId);
+      setCurrentField(PARAMETER);
+      onChangeActionAttribute && onChangeActionAttribute(stepId, value);
+    },
+    [onChangeActionAttribute, clearConditionRow]
   );
 
   const selectParameter = useCallback(
@@ -252,6 +275,7 @@ const Condition = (props: T.ConditionProps) => {
                 selectParameter={selectParameter}
                 selectContext={selectContext}
                 selectSubject={selectSubject}
+                selectActionAttribute={selectActionAttribute}
                 updateStepName={onUpdateStepName}
                 duplicateStep={duplicateStep}
                 removeStep={removeStep}
@@ -272,6 +296,9 @@ const Condition = (props: T.ConditionProps) => {
                 hoverDisabled={hoverDisabled || (currentStepId !== step.id && currentStepId !== undefined)}
                 inputProps={{ ...DEFAULT_INPUT_PROPS, ...inputProps }}
                 readOnly={readOnly}
+                singleStepCondition={singleStepCondition}
+                showActionAttribute={showActionAttribute}
+                showEmptyConditionPlaceholder={showEmptyConditionPlaceholder}
               />
             );
           })}
@@ -317,6 +344,10 @@ const Condition = (props: T.ConditionProps) => {
     showSuffix,
     hoverDisabled,
     inputProps,
+    singleStepCondition,
+    selectActionAttribute,
+    showActionAttribute,
+    showEmptyConditionPlaceholder,
   ]);
 };
 

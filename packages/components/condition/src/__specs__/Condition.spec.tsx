@@ -1,4 +1,6 @@
 import React from 'react';
+import { screen, fireEvent, prettyDOM } from '@testing-library/react';
+
 import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import {
@@ -11,7 +13,6 @@ import {
   SUBJECT_ITEMS,
 } from './data/index.data';
 import Condition from '../Condition';
-import { fireEvent } from '@testing-library/react';
 
 import { ConditionProps, ConditionStep, StepConditions } from '../Condition.types';
 
@@ -30,7 +31,7 @@ const DEFAULT_CONDITION_ROW: { [P in keyof StepConditions]: Partial<StepConditio
     value: undefined,
   },
   factor: {
-    selectedFactorType: '',
+    selectedFactorType: undefined,
     defaultFactorType: 'text',
     value: `text-6e35703c-7d60-4662-8803-4b346dccafed`,
   },
@@ -155,137 +156,108 @@ const RENDER_CONDITIONS = (props?: Partial<ConditionProps>) => {
 
 describe('Condition component', () => {
   test('Should render', () => {
-    // ARRANGE
     const { container } = renderWithProvider(RENDER_CONDITIONS());
 
-    // ASSERT
     expect(container.querySelector('.ds-conditions')).toBeTruthy();
   });
   test('Should update step name', () => {
-    // ARRANGE
     const NEW_STEP_NAME = 'First step';
     const STEP_ID = DEFAULT_STATE.steps[0].id;
     const onUpdateStepName = jest.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ onUpdateStepName }));
     const input = container.querySelector(`#conditionStepName${STEP_ID}`);
 
-    // ACT
     input && fireEvent.change(input, { target: { value: NEW_STEP_NAME } });
 
-    // ASSERT
     expect(onUpdateStepName).toBeCalledWith(STEP_ID, NEW_STEP_NAME);
   });
 
   test('Should not render add condition row button', () => {
-    // ARRANGE
-    const { queryByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition: undefined }));
-    const addConditionButton = queryByText(DEFAULT_TEXTS.addConditionRowButton);
+    renderWithProvider(RENDER_CONDITIONS({ addCondition: undefined }));
+    const addConditionButton = screen.queryByText(DEFAULT_TEXTS.addConditionRowButton);
 
-    // ASSERT
-    expect(addConditionButton).toBeFalsy();
+    expect(addConditionButton).not.toBeInTheDocument();
   });
 
   test('Should not render remove condition row button for single condition row', () => {
-    // ARRANGE
     const { container } = renderWithProvider(RENDER_CONDITIONS());
     const removeButton = container.querySelector('.ds-conditions-remove-row');
 
-    // ASSERT
     expect(removeButton).toBeFalsy();
   });
 
   test('Should call addCondition callback', () => {
-    // ARRANGE
     const addCondition = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_CONDITIONS({ addCondition }));
-    const addConditionButton = getByText(DEFAULT_TEXTS.addConditionRowButton);
+    renderWithProvider(RENDER_CONDITIONS({ addCondition }));
+    
+    const addConditionButton = screen.getByText(DEFAULT_TEXTS.addConditionRowButton);
 
-    // ACT
     fireEvent.click(addConditionButton);
 
-    // ASSERT
     expect(addCondition).toBeCalled();
   });
 
   test('Should call removeCondition callback', () => {
-    // ARRANGE
     const removeCondition = jest.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }));
     const removeButton = container.querySelector('.ds-conditions-remove-row');
 
-    // ACT
     removeButton && fireEvent.click(removeButton);
 
-    // ASSERT
     expect(removeCondition).toBeCalled();
   });
 
   test('Should render add step button and call addStep callback', () => {
-    // ARRANGE
     const addStep = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_CONDITIONS({ addStep }));
+    renderWithProvider(RENDER_CONDITIONS({ addStep }));
 
-    // ACT
-    fireEvent.click(getByText(DEFAULT_TEXTS.addStep));
-    // ASSERT
+    fireEvent.click(screen.getByText(DEFAULT_TEXTS.addStep));
     expect(addStep).toBeCalled();
   });
 
   test('Should render without add step button', () => {
-    // ARRANGE
-    const { queryByText } = renderWithProvider(RENDER_CONDITIONS({ addStep: undefined }));
+    renderWithProvider(RENDER_CONDITIONS({ addStep: undefined }));
 
-    // ASSERT
-    expect(queryByText(DEFAULT_TEXTS.addStep)).toBeFalsy();
+    expect(screen.queryByText(DEFAULT_TEXTS.addStep)).toBeFalsy();
   });
 
   test('Should render with drag handle icon', () => {
-    // ARRANGE
     const onChangeOrder = jest.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder }));
     const dragIcons = container.querySelectorAll('.drag-handle-m');
 
-    // ASSERT
     expect(dragIcons.length).toBe(2);
   });
 
   test('Should render without drag icon', () => {
-    // ARRANGE
     const { container } = renderWithProvider(RENDER_CONDITIONS({ steps: getSteps(2, 1), onChangeOrder: undefined }));
     const dragIcons = container.querySelectorAll('.drag-handle-m');
 
-    // ASSERT
     expect(dragIcons.length).toBe(0);
   });
 
   test('Should call remove step callback', () => {
-    // ARRANGE
     const removeStep = jest.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ removeStep }));
     const removeIcon = container.querySelector('.ds-cruds .delete');
 
-    // ACT
     fireEvent.click(removeIcon as HTMLElement);
 
-    // ASSERT
     expect(removeStep).toBeCalledWith(0);
   });
 
   test('Should call duplicate step callback', () => {
-    // ARRANGE
     const duplicateStep = jest.fn();
     const { container } = renderWithProvider(RENDER_CONDITIONS({ duplicateStep }));
     const duplicateIcon = container.querySelector('.ds-cruds .duplicate');
 
-    // ACT
     fireEvent.click(duplicateIcon as HTMLElement);
 
-    // ASSERT
     expect(duplicateStep).toBeCalledWith(0);
   });
 
   test('rendering only parameter if there are no operator and factor provided', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -317,11 +289,11 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Parameter label')).toBeTruthy();
+    expect(screen.getByText('Parameter label')).toBeTruthy();
   });
 
   test('rendering only operator if there are no parameter and factor provided', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -352,11 +324,11 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Operator name')).toBeTruthy();
+    expect(screen.getByText('Operator name')).toBeTruthy();
   });
 
   test('not rendering operator if there is also parameter provided but without value', () => {
-    const { getByText, queryByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -400,12 +372,12 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Parameter label')).toBeTruthy();
-    expect(queryByText('Operator name')).toBeFalsy();
+    expect(screen.getByText('Parameter label')).toBeTruthy();
+    expect(screen.queryByText('Operator name')).toBeFalsy();
   });
 
   test('rendering operator and parameter if there is parameter value set', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -449,12 +421,12 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Parameter label')).toBeTruthy();
-    expect(getByText('Operator name')).toBeTruthy();
+    expect(screen.getByText('Parameter label')).toBeTruthy();
+    expect(screen.getByText('Operator name')).toBeTruthy();
   });
 
   test('not rendering factor if there is operator but without value', () => {
-    const { getByText, queryByDisplayValue } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -505,12 +477,12 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Parameter label')).toBeTruthy();
-    expect(queryByDisplayValue('factor value')).toBeFalsy();
+    expect(screen.getByText('Parameter label')).toBeTruthy();
+    expect(screen.queryByDisplayValue('factor value')).toBeFalsy();
   });
 
   test('rendering factor if there is operator with value set', () => {
-    const { getByText, queryByDisplayValue } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -569,12 +541,12 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('Parameter label')).toBeTruthy();
-    expect(queryByDisplayValue('factor value')).toBeTruthy();
+    expect(screen.getByText('Parameter label')).toBeTruthy();
+    expect(screen.queryByDisplayValue('factor value')).toBeTruthy();
   });
 
   test('rendering custom factor component', () => {
-    const { getByText, queryByDisplayValue } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -634,30 +606,25 @@ describe('Condition component', () => {
       })
     );
 
-    expect(getByText('With custom factor')).toBeTruthy();
-    expect(queryByDisplayValue('Factor label')).toBeFalsy();
-    expect(queryByDisplayValue('factor value')).toBeFalsy();
+    expect(screen.getByText('With custom factor')).toBeTruthy();
+    expect(screen.queryByDisplayValue('Factor label')).toBeFalsy();
+    expect(screen.queryByDisplayValue('factor value')).toBeFalsy();
   });
   it('should not render step name', () => {
-    // ARRANGE
     const { container } = renderWithProvider(RENDER_CONDITIONS({ onUpdateStepName: undefined }));
 
-    // ASSERT
     expect(container.querySelector('.ds-condition-step-header')).toBeNull();
   });
   it('should render custom add step component', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({ renderAddStep: () => <span>CUSTOM ADD STEP BUTTON</span> })
     );
 
-    // ASSERT
-    expect(getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
+    expect(screen.getByText('CUSTOM ADD STEP BUTTON')).toBeTruthy();
   });
 
   it('should render tooltip on selectedItem mouseOver', async () => {
-    // ARRANGE
-    const { getByText, findByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_CONDITIONS({
         steps: [
           {
@@ -690,7 +657,7 @@ describe('Condition component', () => {
         ],
       })
     );
-    fireEvent.mouseOver(getByText('TEST_SELECTED_ITEM'));
-    expect(await findByText('TEST_SELECTED_ITEM_SUBTITLE')).toBeInTheDocument();
+    fireEvent.mouseOver(screen.getByText('TEST_SELECTED_ITEM'));
+    expect(await screen.findByText('TEST_SELECTED_ITEM_SUBTITLE')).toBeInTheDocument();
   });
 });

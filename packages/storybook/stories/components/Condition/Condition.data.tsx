@@ -5,12 +5,16 @@ import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import type { OperatorsItem } from '@synerise/ds-operators';
+import type { DefinedFactorTypes } from '@synerise/ds-factors/dist/Factors.types'
 
 import { CONTEXT_ITEMS, CONTEXT_GROUPS, CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';
 
-import { FACTORS_TEXTS, FACTORS_GROUPS as PARAMETER_GROUPS, FACTORS_ITEMS as PARAMETER_ITEMS } from '../Factors/Factors.data';
-
+import {
+  FACTORS_TEXTS,
+  FACTORS_GROUPS as PARAMETER_GROUPS,
+  FACTORS_ITEMS as PARAMETER_ITEMS,
+} from '../Factors/Factors.data';
 
 export const SUBJECT_ITEMS = [...new Array(30)].map((_i, index) => ({
   id: index,
@@ -42,6 +46,22 @@ export const DEFAULT_CONDITION_ROW = (): StepConditions => ({
     ...DEFAULT_FACTOR_VALUE,
   },
 });
+
+export const DEFAULT_ACTION_ATTRIBUTE_VALUE = {
+  value: '',
+  texts: FACTORS_TEXTS,
+  availableFactorTypes: ['parameter' as const],
+  selectedFactorType: 'parameter' as const,
+  defaultFactorType: 'parameter' as const,
+  withoutTypeSelector: true,
+
+  parameters: {
+    buttonLabel: 'Parameter',
+    buttonIcon: <VarTypeStringM />,
+    groups: PARAMETER_GROUPS,
+    items: PARAMETER_ITEMS,
+  },
+};
 
 export const DEFAULT_FACTOR_VALUE = {
   inputProps: {
@@ -75,9 +95,9 @@ export const DEFAULT_OPERATOR_VALUE = {
 
 export const DEFAULT_PARAMETER_VALUE = {
   value: '',
-  availableFactorTypes: ['parameter'],
-  selectedFactorType: 'parameter',
-  defaultFactorType: 'parameter',
+  availableFactorTypes: ['parameter' as const],
+  selectedFactorType: 'parameter' as const,
+  defaultFactorType: 'parameter' as const,
   withoutTypeSelector: true,
   onParamsClick: () => {
     console.log('param params click');
@@ -92,7 +112,7 @@ export const DEFAULT_PARAMETER_VALUE = {
   texts: FACTORS_TEXTS,
 };
 
-export const getAvailableFactorTypes = (operator?: OperatorsItem) => {
+export const getAvailableFactorTypes = (operator?: OperatorsItem): DefinedFactorTypes[] | undefined => {
   const operatorIdString = operator?.id.toString() || '';
   if (operatorIdString.includes('BOOL') || operatorIdString.includes('MATCHES_CURRENT')) {
     return undefined;
@@ -116,13 +136,14 @@ export const DEFAULT_CONTEXT_VALUE = {
   texts: CONTEXT_TEXTS,
 };
 
-export const DEFAULT_STEP = (subject?:  ContextItem | ContextGroup): ConditionStep => ({
+export const DEFAULT_STEP = (subject?: ContextItem | ContextGroup): ConditionStep => ({
   id: uuid(),
   stepName: '',
   context: {
     ...DEFAULT_CONTEXT_VALUE,
-    selectedItem: subject as ContextItem
+    selectedItem: subject as ContextItem,
   },
+  actionAttribute: { ...DEFAULT_ACTION_ATTRIBUTE_VALUE },
   conditions: [],
 });
 
@@ -158,7 +179,7 @@ export const STEPS_POPULATED = [
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'text',
+          selectedFactorType: 'text' as const,
           value: 'Anna',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
@@ -181,7 +202,7 @@ export const STEPS_POPULATED = [
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'number',
+          selectedFactorType: 'number' as const,
           value: 20,
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
@@ -192,7 +213,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_PARAMETER_VALUE,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[12],
+            ...PARAMETER_ITEMS[7],
           },
         },
         operator: {
@@ -204,7 +225,7 @@ export const STEPS_POPULATED = [
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'date',
+          selectedFactorType: 'date' as const,
           value: '2024-08-11T22:00:00.000Z',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[14]),
         },
@@ -232,7 +253,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_PARAMETER_VALUE,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[3], 
+            ...PARAMETER_ITEMS[3],
           },
         },
         operator: {
@@ -244,10 +265,10 @@ export const STEPS_POPULATED = [
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'parameter',
+          selectedFactorType: 'parameter' as const,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[14],
+            ...PARAMETER_ITEMS[4],
           },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[7]),
         },
@@ -258,7 +279,7 @@ export const STEPS_POPULATED = [
           ...DEFAULT_PARAMETER_VALUE,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[11], 
+            ...PARAMETER_ITEMS[4],
           },
         },
         operator: {
@@ -270,7 +291,7 @@ export const STEPS_POPULATED = [
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'formula',
+          selectedFactorType: 'formula' as const,
           value: '',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
@@ -281,22 +302,22 @@ export const STEPS_POPULATED = [
           ...DEFAULT_PARAMETER_VALUE,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[10], 
+            ...PARAMETER_ITEMS[8],
           },
         },
         operator: {
           ...DEFAULT_OPERATOR_VALUE,
           value: {
-            ...OPERATORS_ITEMS[2], 
+            ...OPERATORS_ITEMS[2],
             availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
           },
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'contextParameter',
+          selectedFactorType: 'contextParameter' as const,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[12], 
+            ...PARAMETER_ITEMS[2],
           },
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
@@ -307,20 +328,20 @@ export const STEPS_POPULATED = [
           ...DEFAULT_PARAMETER_VALUE,
           value: {
             type: '',
-            ...PARAMETER_ITEMS[13],
+            ...PARAMETER_ITEMS[1],
           },
         },
         operator: {
           ...DEFAULT_OPERATOR_VALUE,
           value: {
-            ...OPERATORS_ITEMS[10], 
+            ...OPERATORS_ITEMS[10],
           },
           availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
         factor: {
           ...DEFAULT_FACTOR_VALUE,
-          selectedFactorType: 'array',
-          defaultFactorType: 'text',
+          selectedFactorType: 'array' as const,
+          defaultFactorType: 'text' as const,
           value: '1,2,3,4,5,67',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
@@ -338,34 +359,64 @@ export const STEPS_POPULATED = [
   },
 ];
 
-
 export const STEPS_POPULATED_PARAMETER_ERRORS = STEPS_POPULATED.map(step => ({
   ...step,
   conditions: step.conditions.map(condition => ({
     ...condition,
     parameter: {
       ...condition.parameter,
-      errorText: 'Condition parameter error text'
-    }
-  }))
-}))
+      errorText: 'Condition parameter error text',
+    },
+  })),
+}));
+
 export const STEPS_POPULATED_OPERATOR_ERRORS = STEPS_POPULATED.map(step => ({
   ...step,
   conditions: step.conditions.map(condition => ({
     ...condition,
     operator: {
       ...condition.operator,
-      errorText: 'Condition operator error text'
-    }
-  }))
-}))
+      errorText: 'Condition operator error text',
+    },
+  })),
+}));
+
 export const STEPS_POPULATED_FACTOR_ERRORS = STEPS_POPULATED.map(step => ({
   ...step,
   conditions: step.conditions.map(condition => ({
     ...condition,
     factor: {
       ...condition.factor,
-      errorText: 'Condition factor error text'
-    }
-  }))
-}))
+      errorText: 'Condition factor error text',
+    },
+  })),
+}));
+
+export const STEPS_POPULATED_ACTION_ATTRIBUTE = STEPS_POPULATED.map(step => ({
+  ...step,
+  actionAttribute: {
+    ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
+    error: true, errorText: 'Action attribute error text',
+    value: {
+      type: '',
+      ...PARAMETER_ITEMS[2],
+    },
+  }
+}));
+
+
+export const STEPS_POPULATED_CONTEXT_ERROR = STEPS_POPULATED.map(step => ({
+  ...step,
+  actionAttribute: {
+    ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
+    value: {
+      type: '',
+      ...PARAMETER_ITEMS[2],
+    },
+  },
+  context: {
+    ...step.context,
+    error: true,
+    errorText: 'Context error text',
+  }
+}));
