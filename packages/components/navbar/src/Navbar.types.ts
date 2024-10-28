@@ -1,12 +1,12 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export type NavbarProps = {
   className?: string;
   color?: string;
-  description: string;
-  logo: React.ReactNode | string;
-  children?: React.ReactNode;
-  actions?: React.ReactNode;
-  additionalNodes?: React.ReactNode[];
-  alertNotification?: React.ReactNode;
+  description: ReactNode;
+  logo: ReactNode;
+  children?: ReactNode;
+  actions?: ReactNode;
+  additionalNodes?: ReactNode[];
+  alertNotification?: ReactNode;
 };
