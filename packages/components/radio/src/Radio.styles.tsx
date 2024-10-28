@@ -29,17 +29,6 @@ export const AntRadio = styled(({ ...rest }) => <AntdRadio {...rest} />)`
   .ant-radio + span {
     flex-grow: 1;
   }
-  .ant-radio-inner::after {
-    top: unset;
-    left: unset;
-  }
-
-  .ant-radio-inner {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 export const AntRadioGroup = styled(AntdRadio.Group)<{ fullWidth?: boolean; big?: boolean }>`
