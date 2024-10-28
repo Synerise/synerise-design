@@ -164,7 +164,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     return (
       <DefaultTable<T>
         scroll={{ x: 'auto' }}
-        tableLayout="auto"
+        tableLayout="fixed"
         {...props}
         locale={tableLocale}
         title={renderHeader}

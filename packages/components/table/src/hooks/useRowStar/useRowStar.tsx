@@ -9,7 +9,7 @@ const STAR_COL_WIDTH_SELECTON = 40;
 
 const createRowStarColumn =
   ({ isStarred, toggleStarred }: Pick<UseStarredApi, 'isStarred' | 'toggleStarred'>) =>
-  ({ locale, rowStar, selection, getRowKey }: CreateRowStarColumnProps): DSColumnType<AnyRecordType> => ({
+  ({ locale, rowStar, selection, getRowKey, loading }: CreateRowStarColumnProps): DSColumnType<AnyRecordType> => ({
     key: '_row-star',
     className: `${rowStar?.className || ''} ds-table-star-column`,
     width: !!selection && !!rowStar ? STAR_COL_WIDTH_SELECTON : STAR_COL_WIDTH_SINGLE,
@@ -18,7 +18,7 @@ const createRowStarColumn =
       ((value, record): React.ReactNode => {
         const { expandedChild } = record;
         const keyString = String(getRowKey(record));
-        if (expandedChild && rowStar?.disableForExpandedRows) return null;
+        if (loading || (expandedChild && rowStar?.disableForExpandedRows)) return null;
 
         return (
           <Tooltip title={locale?.starRowTooltip}>
