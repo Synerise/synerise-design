@@ -24,6 +24,7 @@ import {
 } from '@synerise/ds-utils';
 import Result from '@synerise/ds-result';
 import Scrollbar from '@synerise/ds-scrollbar';
+import Divider from '@synerise/ds-divider';
 import { theme } from '@synerise/ds-core';
 import { itemSizes } from '@synerise/ds-list-item';
 
@@ -34,18 +35,23 @@ import {
   ContextItem,
   ContextItemsInSubGroup,
   DropdownItemProps,
+  ListDivider,
 } from '../ContextSelector.types';
 import ContextSelectorDropdownItem from './ContextSelectorDropdownItem';
 
-import {
-  NO_GROUP_NAME,
-  ITEM_SIZE,
-  DROPDOWN_HEIGHT,
-  TABS_HEIGHT,
-  SUBGROUP_HEADER_HEIGHT,
-  SEARCH_HEIGHT,
-} from '../constants';
+import { NO_GROUP_NAME, DROPDOWN_HEIGHT, TABS_HEIGHT, SUBGROUP_HEADER_HEIGHT, SEARCH_HEIGHT } from '../constants';
 import { isGroup, isListTitle } from './utils';
+
+const ITEM_SIZE = {
+  [itemSizes.LARGE]: 50,
+  [itemSizes.DEFAULT]: 32,
+  title: 32,
+  divider: 16,
+};
+
+function isDivider(element: DropdownItemProps): element is ListDivider {
+  return (element as ListDivider).type === 'divider';
+}
 
 const ContextSelectorDropdown = ({
   texts,
@@ -88,14 +94,21 @@ const ContextSelectorDropdown = ({
     return `ds-context-item ds-context-item-${uuid()}`;
   }, []);
 
+  const resetList = useCallback(() => {
+    if (listRef.current) {
+      listRef.current.resetAfterIndex(0, false);
+    }
+  }, [listRef]);
+
   const handleOnSetGroup = useCallback(
     (item: ContextItem | ContextGroup) => {
       if (isGroup(item)) {
         onSetGroup && onSetGroup(item);
         setActiveGroup(item);
+        resetList();
       }
     },
-    [onSetGroup]
+    [onSetGroup, setActiveGroup, resetList]
   );
 
   useOnClickOutside(
@@ -104,6 +117,7 @@ const ContextSelectorDropdown = ({
       if (getClosest(event.target as HTMLElement, '.ds-info-card') === null) {
         onClickOutside && onClickOutside();
         setDropdownVisible(false);
+        resetList();
       }
     },
     onClickOutsideEvents
@@ -111,7 +125,8 @@ const ContextSelectorDropdown = ({
 
   const clearSearch = useCallback(() => {
     setSearchQuery('');
-  }, []);
+    resetList();
+  }, [setSearchQuery, resetList]);
 
   const hideDropdown = useCallback(() => {
     setDropdownVisible(false);
@@ -145,7 +160,12 @@ const ContextSelectorDropdown = ({
       }
 
       const resultItems: DropdownItemProps[] = [];
-      Object.keys(groupedItems).forEach((key: string) => {
+      Object.keys(groupedItems).forEach((key: string, index) => {
+        if (index > 0) {
+          resultItems.push({
+            type: 'divider',
+          });
+        }
         if (key !== NO_GROUP_NAME && !activeGroup) {
           resultItems.push({
             type: 'title',
@@ -294,9 +314,10 @@ const ContextSelectorDropdown = ({
   const handleSearch = useCallback(
     val => {
       setSearchQuery(val);
+      resetList();
       onSearch && onSearch(val);
     },
-    [onSearch]
+    [setSearchQuery, resetList, onSearch]
   );
 
   const getTabs = useMemo(() => {
@@ -324,6 +345,7 @@ const ContextSelectorDropdown = ({
   const getItemSize = (index: number) => {
     const item = activeItems[index];
     if (isListTitle(item)) return ITEM_SIZE.title;
+    if (isDivider(item)) return ITEM_SIZE.divider;
     return menuItemHeight ? ITEM_SIZE[menuItemHeight] : ITEM_SIZE[itemSizes.DEFAULT];
   };
 
@@ -363,6 +385,7 @@ const ContextSelectorDropdown = ({
           onClearInput={() => {
             handleSearch('');
             onSearch && onSearch('');
+            resetList();
           }}
           placeholder={texts.searchPlaceholder}
           value={searchQuery}
@@ -381,6 +404,7 @@ const ContextSelectorDropdown = ({
             handleTabClick={(index: number) => {
               setActiveTab(index);
               setActiveGroup(undefined);
+              resetList();
             }}
             visible={visible}
           />
@@ -415,6 +439,13 @@ const ContextSelectorDropdown = ({
               >
                 {({ index, style }) => {
                   const item = activeItems[index];
+                  if (item && isDivider(item)) {
+                    return (
+                      <div style={style}>
+                        <Divider marginTop={8} marginBottom={8} />
+                      </div>
+                    );
+                  }
                   return item && isListTitle(item) ? (
                     <S.Title style={style}>{item.title}</S.Title>
                   ) : (

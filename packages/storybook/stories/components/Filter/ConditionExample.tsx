@@ -17,11 +17,12 @@ type ConditionExampleProps = {
   onChange: (steps: ConditionStep[]) => void;
   hoverDisabled?: boolean;
   readOnly?: boolean;
+  showActionAttribute?: boolean;
   addStepType?: string;
 };
 
 export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps>(
-  ({ steps, onChange, hoverDisabled, readOnly = false, addStepType }, ref) => {
+  ({ steps, onChange, hoverDisabled, readOnly = false, addStepType, showActionAttribute }, ref) => {
     const {
       updateStepName,
       duplicateStep,
@@ -73,6 +74,7 @@ export const ConditionExample = forwardRef<HTMLDivElement, ConditionExampleProps
           texts={CONDITION_TEXTS}
           minConditionsLength={1}
           maxConditionsLength={10}
+          showActionAttribute={showActionAttribute}
           autoClearCondition
           inputProps={{
             autoResize: {

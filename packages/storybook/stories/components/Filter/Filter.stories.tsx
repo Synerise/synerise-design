@@ -126,3 +126,7 @@ export default {
 } as FilterMeta;
 
 export const Default: FilterStory = {};
+
+export const WithActionAttribute: FilterStory = {
+  args: {}
+};

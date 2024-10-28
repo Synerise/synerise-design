@@ -120,9 +120,14 @@ export const DraggedLabel = styled.span`
   font-size: 13px;
 `;
 
-export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefined; hoverDisabled?: boolean }>`
+export const Step = styled.div<{
+  active: boolean;
+  showSuffix: boolean | undefined;
+  hoverDisabled?: boolean;
+  singleStepCondition?: boolean;
+}>`
   
-  padding: 12px 0 12px;
+  padding: ${({ singleStepCondition }) => (singleStepCondition ? '24px 0' : '12px 0')};
   position: relative;
 
   ${(props): false | FlattenInterpolation<ThemeProps> =>
@@ -162,7 +167,8 @@ export const Step = styled.div<{ active: boolean; showSuffix: boolean | undefine
       }
     }
   }
-  background-color: ${(props): string => (props.active ? props.theme.palette['grey-050'] : 'transparent')};
+  background-color: ${(props): string =>
+    props.active && !props.singleStepCondition ? props.theme.palette['grey-050'] : 'transparent'};
   &:hover {
     ${(props): string | false => !props.hoverDisabled && `background-color: ${props.theme.palette['grey-050']}`};
     ${StepCruds} {
@@ -381,4 +387,9 @@ export const ConditionRow = styled.div<{
 
 export const AddStepButton = styled.div`
   margin: 12px 24px 0;
+`;
+
+export const ActionAttribute = styled.div`
+  margin-left: 8px;
+  display: flex;
 `;

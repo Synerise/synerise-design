@@ -6,8 +6,6 @@ export type AddConditionProps = {
   stepId: React.ReactText;
   conditionsNumber: number;
   texts: Partial<ConditionTexts>;
-  selectedSubject: boolean;
-  selectedContext: boolean;
-  readOnly?: boolean;
+  isDisabled?: boolean;
   errorText?: React.ReactNode | string;
 };

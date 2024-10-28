@@ -13,9 +13,16 @@ const TextTrigger: React.FC<TextTriggerProps> = ({
   inactiveColor = 'grey-800',
   onClick,
   onFocus,
+  isDisabled = false,
 }) => {
   return (
-    <S.TextTrigger onFocus={onFocus} inactiveColor={theme.palette[inactiveColor]} tabIndex={0} onClick={onClick}>
+    <S.TextTrigger
+      onFocus={isDisabled ? undefined : onFocus}
+      inactiveColor={theme.palette[inactiveColor]}
+      tabIndex={0}
+      onClick={isDisabled ? undefined : onClick}
+      isDisabled={isDisabled}
+    >
       <Title level={size}>{value}</Title>
       <S.IconWrapper expanded={expanded}>
         <Icon component={<AngleDownS />} />

@@ -49,4 +49,5 @@ export type FormatPickerProps = {
   currenciesConfig?: CurrencyConfig[];
   buttonType?: string;
   disabled?: boolean;
+  maxFixedLength?: number;
 };

@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 
 // eslint-disable-next-line import/prefer-default-export
-export const TextTrigger = styled.div<{ inactiveColor: string; onFocus?: () => void }>`
+export const TextTrigger = styled.div<{ inactiveColor: string; onFocus?: () => void; isDisabled?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${props => (props.isDisabled ? 'default' : 'pointer')};
+  opacity: ${props => (props.isDisabled ? 0.4 : 1)};
   .ds-title {
     margin: 0;
   }

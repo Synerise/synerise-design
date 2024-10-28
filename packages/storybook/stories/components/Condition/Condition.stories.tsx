@@ -8,10 +8,11 @@ import type { FactorValueType } from '@synerise/ds-factors';
 import type { OperatorsItem } from '@synerise/ds-operators';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
-import type { ConditionMeta, ConditionStory } from './Condition.types'
+import type { ConditionMeta, ConditionStory } from './Condition.types';
 
 import {
   CONDITION_TEXTS,
+  DEFAULT_ACTION_ATTRIBUTE_VALUE,
   DEFAULT_CONDITION_ROW,
   DEFAULT_CONTEXT_VALUE,
   DEFAULT_FACTOR_VALUE,
@@ -25,7 +26,6 @@ import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
 
-
 export default {
   component: Condition,
   title: 'Components/Filter/Condition',
@@ -38,6 +38,7 @@ export default {
     enableChangeOrder,
     enableAddCondition,
     showStepName,
+    showActionAttribute,
     ...args
   }) => {
     const [steps, setSteps] = useState(args.steps);
@@ -54,12 +55,32 @@ export default {
                   ...step.context,
                   selectedItem: item as ContextItem,
                 },
-                conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
+                conditions:
+                  step.conditions.length === 0 && !showActionAttribute ? [DEFAULT_CONDITION_ROW()] : step.conditions,
               }
             : step;
         })
       );
       args.onChangeContext?.(stepId, item);
+    };
+
+    const handleChangeActionAttribute = (stepId: ReactText, item?: FactorValueType) => {
+      setSteps(
+        steps.map(step => {
+          return step.id === stepId
+            ? {
+                ...step,
+                actionAttribute: {
+                  ...DEFAULT_ACTION_ATTRIBUTE_VALUE,
+                  ...step.actionAttribute,
+                  value: item,
+                },
+                conditions: step.conditions.length === 0 ? [DEFAULT_CONDITION_ROW()] : step.conditions,
+              }
+            : step;
+        })
+      );
+      args.onChangeActionAttribute?.(stepId, item);
     };
 
     const handleChangeParameter = (stepId: ReactText, conditionId: ReactText, value: FactorValueType) => {
@@ -297,13 +318,15 @@ export default {
       >
         <Condition
           {...args}
+          showActionAttribute={showActionAttribute}
           steps={steps}
           onChangeContext={handleChangeContext}
           onChangeSubject={handleChangeContext}
           onChangeParameter={handleChangeParameter}
-          onUpdateStepName={showStepName && handleUpdateStepName}
+          onChangeActionAttribute={handleChangeActionAttribute}
+          onUpdateStepName={showStepName ? handleUpdateStepName : undefined}
           onChangeOperator={handleChangeOperator}
-          addCondition={enableAddCondition && handleAddCondition}
+          addCondition={enableAddCondition ? handleAddCondition : undefined}
           removeCondition={handleRemoveCondition}
           renderAddStep={addStepType === 'Custom' ? renderCustomAddStep : undefined}
           onChangeFactorValue={handleChangeFactorValue}
@@ -311,7 +334,7 @@ export default {
           removeStep={handleRemoveStep}
           duplicateStep={handleDuplicateStep}
           addStep={addStepType === 'Default' ? handleAddStep : undefined}
-          onChangeOrder={enableChangeOrder && handleChangeOrder}
+          onChangeOrder={enableChangeOrder ? handleChangeOrder : undefined}
         />
       </div>
     );
@@ -322,6 +345,8 @@ export default {
     autoClearCondition: BOOLEAN_CONTROL,
     showSuffix: BOOLEAN_CONTROL,
     readOnly: BOOLEAN_CONTROL,
+    showActionAttribute: BOOLEAN_CONTROL,
+    onChangeActionAttribute: { action: 'onChangeActionAttribute' },
     onChangeContext: { action: 'onChangeContext' },
     onChangeSubject: { action: 'onChangeSubject' },
     onDeactivate: { action: 'onDeactivate' },

@@ -1,15 +1,17 @@
 import React from 'react';
-import Icon, { ApiM, FolderM, FormM, MegaphoneM, NotificationsM, SegmentM, WebhookM } from '@synerise/ds-icon';
+import { ApiM, FolderM, FormM, MegaphoneM, SegmentM, WebhookM } from '@synerise/ds-icon';
 import type { ContextItem } from '@synerise/ds-context-selector';
-import { getPopupContainer } from '@synerise/ds-utils';
-import InformationCard, { InformationCardTooltip } from '@synerise/ds-information-card';
+
+import InformationCard from '@synerise/ds-information-card';
 
 export const CONTEXT_TEXTS = {
   buttonLabel: 'Choose',
   searchPlaceholder: 'Search',
   noResults: 'No results',
   loadingResults: 'Loading results',
-  showMore: 'Show more'
+  showMore: 'Show more',
+  recentItemsGroupName: 'Recent',
+  allItemsGroupName: 'Items'
 };
 
 export const CONTEXT_GROUPS = [

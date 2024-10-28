@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon';
+
 import * as S from './style/Factors.style';
-import { FactorsProps } from './Factors.types';
+import { DefinedFactorTypes, FactorsProps, SelectedFactorType } from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';
 import FactorValue from './FactorValue/FactorValue';
 import DynamicKey from './FactorValue/DynamicKey/DynamicKey';
@@ -13,7 +14,7 @@ import ParameterInput from './FactorValue/Parameter/Parameter';
 import NumberInput from './FactorValue/Number/NumberInput';
 import DateRangeInput from './FactorValue/DateRange/DateRange';
 
-export const factorTypes = {
+export const factorTypes: Record<DefinedFactorTypes, SelectedFactorType> = {
   text: {
     icon: <TextM />,
     name: 'Text',
@@ -221,7 +222,7 @@ const Factors = ({
   }, [selectedFactorType, defaultFactorType]);
 
   const selectedFactor = useMemo(() => {
-    return factorTypes[factorType];
+    return factorTypes[factorType]
   }, [factorType]);
 
   return (

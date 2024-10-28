@@ -163,7 +163,7 @@ const OperatorsDropdown = ({
   return (
     <Dropdown.Wrapper
       data-testid="ds-operators-dropdown-wrapper"
-      style={{ width: '300px', zIndex: 9999999 }}
+      style={{ width: '300px', zIndex: 1005 }}
       ref={overlayRef}
       onKeyDown={(e): void => {
         setSearchInputFocus(false);

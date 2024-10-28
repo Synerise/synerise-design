@@ -3,6 +3,7 @@ import { VariableSizeList } from 'react-window';
 import { v4 as uuid } from 'uuid';
 
 import Dropdown from '@synerise/ds-dropdown';
+import Divider from '@synerise/ds-divider';
 import Icon, { ArrowRightCircleM, SearchM } from '@synerise/ds-icon';
 import Tabs from '@synerise/ds-tabs';
 import { useSearchResults, getGroupName, focusWithArrowKeys, useOnClickOutside, getClosest } from '@synerise/ds-utils';
@@ -14,6 +15,8 @@ import { itemSizes } from '@synerise/ds-list-item';
 import * as S from './Parameter.style';
 import { ParameterDropdownProps, ParameterGroup, ParameterItem } from '../../Factors.types';
 import ParameterDropdownItem from './ParameterDropdownItem';
+import { groupItems } from './utils';
+
 import { useGroups } from './useGroups';
 import type { MixedDropdownItemProps, ParameterDropdownTitleProps, DropdownItem } from './Parameter.types';
 import {
@@ -26,8 +29,15 @@ import {
   NO_GROUP_NAME,
 } from './Parameter.constants';
 
+export type TitleItem = { type: 'title'; title: string };
+export type DividerItem = { type: 'divider' };
+
 const isListTitle = (element?: MixedDropdownItemProps): element is ParameterDropdownTitleProps => {
   return (element as ParameterDropdownTitleProps).title !== undefined;
+};
+
+const isDivider = (item: MixedDropdownItemProps | TitleItem | DividerItem): item is DividerItem => {
+  return (item as DividerItem).type === 'divider';
 };
 
 const ParameterDropdown = ({
@@ -71,9 +81,16 @@ const ParameterDropdown = ({
     });
   }, [visibleGroups, activeTab]);
 
+  const resetList = React.useCallback(() => {
+    if (listRef.current) {
+      listRef.current.resetAfterIndex(0, false);
+    }
+  }, [listRef]);
+
   const clearSearch = useCallback(() => {
     setSearchQuery('');
-  }, []);
+    resetList();
+  }, [setSearchQuery, resetList]);
 
   const handleOnSetGroup = useCallback((item: ParameterGroup) => {
     setActiveGroup(item);
@@ -81,7 +98,8 @@ const ParameterDropdown = ({
 
   const hideDropdown = useCallback(() => {
     setDropdownVisible(false);
-  }, [setDropdownVisible]);
+    resetList();
+  }, [setDropdownVisible, resetList]);
 
   const groupByGroupName = useCallback(
     (dropdownItems: (ParameterItem | ParameterGroup)[], maxItemsInGroup?: number): MixedDropdownItemProps[] => {
@@ -105,8 +123,8 @@ const ParameterDropdown = ({
             title: key,
           });
         }
-        const groupItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
-        groupItems.forEach((item: ParameterItem) => {
+        const maxGroupedItems = maxItemsInGroup ? groupedItems[key].slice(0, maxItemsInGroup) : groupedItems[key];
+        maxGroupedItems.forEach((item: ParameterItem) => {
           const resultItem = !item.groupId
             ? {
                 className: classNames,
@@ -126,7 +144,7 @@ const ParameterDropdown = ({
           resultItems.push(resultItem);
         });
         if (maxItemsInGroup && groupedItems[key].length > maxItemsInGroup) {
-          const anyItem = groupItems[0];
+          const anyItem = maxGroupedItems[0];
           resultItems.push({
             className: classNames,
             select: handleOnSetGroup,
@@ -167,34 +185,57 @@ const ParameterDropdown = ({
     maxSearchResultsInGroup
   );
 
+  const mapItemToDropdownItem = React.useCallback(
+    (item: ParameterItem) => {
+      return {
+        className: classNames,
+        item,
+        searchQuery,
+        hideDropdown,
+        select: setSelected,
+      };
+    },
+    [classNames, searchQuery, hideDropdown, setSelected]
+  );
+
   const currentItems = useMemo((): MixedDropdownItemProps[] | undefined => {
     if (searchQuery) {
       return searchResults;
     }
     const hasSubgroups = Boolean(currentTabItems?.subGroups);
     if (hasSubgroups && !activeGroup) {
-      return currentTabItems?.subGroups?.map((subGroup: ParameterGroup) => {
+      const groupedItems = (items || [])
+        .filter((item: ParameterItem) => item.groupId === currentTabItems?.id)
+        .map(mapItemToDropdownItem);
+      const subGroups = (currentTabItems?.subGroups || []).map((subGroup: ParameterGroup) => {
         return {
           className: classNames,
           item: subGroup,
           searchQuery,
-          select: setActiveGroup,
+          select: (group: ParameterGroup) => {
+            setActiveGroup(group);
+            resetList();
+          },
         };
       });
+
+      return groupItems([...groupedItems, ...subGroups], activeGroup);
     }
     if (activeGroup) {
-      return items
-        ?.filter((item: ParameterItem) => item.groupId === activeGroup.id)
-        .map((item: ParameterItem) => {
-          return {
-            className: classNames,
-            item,
-            searchQuery,
-            hideDropdown,
-            select: setSelected,
-          };
-        });
+      return groupItems(
+        (items || []).filter((item: ParameterItem) => item.groupId === activeGroup.id).map(mapItemToDropdownItem),
+        activeGroup
+      );
     }
+    if (activeTab && groups && groups[activeTab]) {
+      return groupItems(
+        (items || [])
+          .filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
+          .map(mapItemToDropdownItem),
+        activeGroup
+      );
+    }
+
     if (activeTab && visibleGroups && visibleGroups[activeTab]) {
       return items
         ?.filter((item: ParameterItem) => item.groupId === (visibleGroups[activeTab] as ParameterGroup).id)
@@ -245,6 +286,9 @@ const ParameterDropdown = ({
     activeTab,
     groupByGroupName,
     recentItems,
+    groups,
+    mapItemToDropdownItem,
+    resetList,
     texts.parameter.allItemsGroupName,
     texts.parameter.recentItemsGroupName,
   ]);
@@ -322,6 +366,7 @@ const ParameterDropdown = ({
             handleTabClick={(index: number) => {
               setActiveTab(index);
               setActiveGroup(undefined);
+              resetList();
             }}
           />
         </S.TabsWrapper>
@@ -352,10 +397,18 @@ const ParameterDropdown = ({
               >
                 {({ index, style }) => {
                   const listItem = currentItems[index];
-                  if (isListTitle(listItem)) {
-                    return <S.Title style={style}>{listItem.title}</S.Title>;
+                  if (listItem && isDivider(listItem)) {
+                    return (
+                      <div style={style}>
+                        <Divider marginTop={8} marginBottom={8} />
+                      </div>
+                    );
                   }
-                  return <ParameterDropdownItem style={style} {...(listItem as DropdownItem<typeof listItem.item>)} />;
+                  return isListTitle(listItem) ? (
+                    <S.Title style={style}>{listItem.title}</S.Title>
+                  ) : (
+                    <ParameterDropdownItem style={style} {...(listItem as DropdownItem<typeof listItem.item>)} />
+                  );
                 }}
               </S.StyledList>
             </Scrollbar>

@@ -4,6 +4,8 @@ import type { ConditionMeta, ConditionStory } from './Condition.types';
 import StoriesMeta from './Condition.stories';
 import {
   STEPS_POPULATED,
+  STEPS_POPULATED_ACTION_ATTRIBUTE,
+  STEPS_POPULATED_CONTEXT_ERROR,
   STEPS_POPULATED_FACTOR_ERRORS,
   STEPS_POPULATED_OPERATOR_ERRORS,
   STEPS_POPULATED_PARAMETER_ERRORS,
@@ -46,6 +48,22 @@ export const WithFactorErrors: ConditionStory = {
   args: {
     maxConditionsLength: undefined,
     steps: STEPS_POPULATED_FACTOR_ERRORS,
+  },
+};
+
+export const WithActionAttribute: ConditionStory = {
+  args: {
+    maxConditionsLength: undefined,
+    steps: STEPS_POPULATED_ACTION_ATTRIBUTE,
+    showActionAttribute: true,
+  },
+};
+
+export const ContextErrorMessage: ConditionStory = {
+  args: {
+    maxConditionsLength: undefined,
+    steps: STEPS_POPULATED_CONTEXT_ERROR,
+    showActionAttribute: false,
   },
 };
 

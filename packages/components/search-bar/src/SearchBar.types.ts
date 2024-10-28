@@ -13,4 +13,4 @@ export type SearchBarProps = Pick<InputProps, 'handleInputRef'> & {
   autofocusDelay?: number;
   disabled?: boolean;
   borderRadius?: boolean;
-}
+};

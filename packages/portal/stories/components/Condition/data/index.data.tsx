@@ -165,7 +165,7 @@ export const DEFAULT_CONDITION_ROW = () => ({
   },
   factor: {
     inputProps: {
-      autoResize: { stretchToFit: true, minWidth: '200px'}
+      autoResize: { stretchToFit: true, minWidth: '200px' },
     },
     selectedFactorType: '',
     defaultFactorType: 'text',
@@ -183,6 +183,9 @@ export const DEFAULT_STEP = (subject = undefined) => ({
     iconPlaceholder: <NotificationsM />,
     selectedItem: subject,
     items: SUBJECT_ITEMS,
+  },
+  actionAttribute: {
+    value: '',
   },
   conditions: [],
 });

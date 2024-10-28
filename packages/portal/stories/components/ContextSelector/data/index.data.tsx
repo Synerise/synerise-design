@@ -40,6 +40,15 @@ export const CONTEXT_GROUPS = [
 
 export const CONTEXT_ITEMS = [
   {
+    name: 'Excluded from search',
+    id: 'EXCLUDED_FROM_SEARCH',
+    icon: <ApiM />,
+    groupId: 'RECENT',
+    groupName: 'Internal apps',
+    disabled: false,
+    excludeFromSearchResults: true,
+  },
+  {
     name: 'Schema builder app',
     id: 'SCHEMA_BUILDER_APP',
     icon: <ApiM />,

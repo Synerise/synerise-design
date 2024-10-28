@@ -9,7 +9,7 @@ import { LogicOperatorValue } from '@synerise/ds-logic/dist/Logic.types';
 import { usePrevious } from '@synerise/ds-utils';
 
 import * as S from './Filter.styles';
-import { Expression, FilterProps } from './Filter.types';
+import { Expression, FilterProps, StepType } from './Filter.types';
 
 const component = {
   LOGIC: Logic,
@@ -18,9 +18,9 @@ const component = {
 
 const TRANSITION_DURATION = 0.5;
 const TRANSITION_DURATION_MAX = 1.5;
-const TOP_TRANSITION_ZINDEX = 10003;
-const BOTTOM_TRANSITION_ZINDEX = 10002;
-const DRAGGING_TRANSITION_ZINDEX = 10004;
+const TOP_TRANSITION_ZINDEX = 1003;
+const BOTTOM_TRANSITION_ZINDEX = 1002;
+const DRAGGING_TRANSITION_ZINDEX = 1004;
 
 const rearrangeItems = (sourceArray: Expression[], oldIndex: number, newIndex: number) => {
   sourceArray.splice(newIndex, 0, sourceArray.splice(oldIndex, 1)[0]);
@@ -46,6 +46,7 @@ const Filter = ({
   renderHeaderRightSide,
   visibilityConfig = { isStepCardHeaderVisible: true },
   readOnly = false,
+  singleStepCondition = false,
   getMoveByLabel,
 }: FilterProps) => {
   const previousExpressions = usePrevious(expressions);
@@ -53,24 +54,27 @@ const Filter = ({
   const expressionRefs = useRef({});
   const movedExpressionId = useRef<string | null>(null);
 
-  const SORTABLE_CONFIG = {
-    ghostClass: 'ghost-element',
-    className: 'sortable-list',
-    handle: '.step-card-drag-handler',
-    animation: 200,
-    forceFallback: true,
-    filter: '.ds-matching-toggle, .step-card-right-side',
-    onStart: () => {
-      movedExpressionId.current = null;
-    },
-    onChoose: (evt: MoveEvent) => {
-      // eslint-disable-next-line no-param-reassign
-      evt.item.style.zIndex = DRAGGING_TRANSITION_ZINDEX;
-    },
-    onUnchoose: (evt: MoveEvent) => {
-      evt.item.style.removeProperty('z-index');
-    },
-  };
+  const SORTABLE_CONFIG = useMemo(
+    () => ({
+      ghostClass: 'ghost-element',
+      className: 'sortable-list',
+      handle: '.step-card-drag-handler',
+      animation: 200,
+      forceFallback: true,
+      filter: '.ds-matching-toggle, .step-card-right-side',
+      onStart: () => {
+        movedExpressionId.current = null;
+      },
+      onChoose: (evt: MoveEvent) => {
+        // eslint-disable-next-line no-param-reassign
+        evt.item.style.zIndex = DRAGGING_TRANSITION_ZINDEX;
+      },
+      onUnchoose: (evt: MoveEvent) => {
+        evt.item.style.removeProperty('z-index');
+      },
+    }),
+    []
+  );
 
   useEffect(() => {
     if (movedExpressionId.current && previousExpressions?.length) {
@@ -217,19 +221,26 @@ const Filter = ({
 
       const props = {
         LOGIC: {
-          onChange: (value: LogicOperatorValue): void => onChangeLogic(expression.id, value),
+          onChange: onChangeLogic
+            ? (value: LogicOperatorValue): void => onChangeLogic(expression.id, value)
+            : undefined,
           options: logicOptions,
         },
         STEP: {
           ...reorderProps,
-          onChangeMatching: (value: boolean): void => onChangeStepMatching(expression.id, value),
-          onChangeName: (value: string): void => onChangeStepName(expression.id, value),
-          onDelete: (): void => onDeleteStep(expression.id),
-          onDuplicate: !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
+          onChangeMatching: onChangeStepMatching
+            ? (value: boolean): void => onChangeStepMatching(expression.id, value)
+            : undefined,
+          onChangeName: onChangeStepName ? (value: string): void => onChangeStepName(expression.id, value) : undefined,
+          onDelete: onDeleteStep ? (): void => onDeleteStep(expression.id) : undefined,
+          onDuplicate: onDuplicateStep && !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
           headerRightSide: renderStepHeaderRightSide && renderStepHeaderRightSide(expression, index),
+          isDraggable: Boolean(onChangeOrder),
+          singleStepCondition: Boolean(singleStepCondition),
+          additionalFields: (expression as StepType).data.additionalFields,
           getMoveByLabel,
           texts: {
             ...text.step,
@@ -258,6 +269,8 @@ const Filter = ({
       stepExpressionCount,
       text.step,
       visibilityConfig.isStepCardHeaderVisible,
+      singleStepCondition,
+      onChangeOrder,
     ]
   );
 
@@ -292,6 +305,17 @@ const Filter = ({
     [text.dropMeHere, componentProps, expressions.length, readOnly]
   );
 
+  const renderExpressions = useCallback(() => {
+    if (onChangeOrder) {
+      return (
+        <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
+          {expressions.map(renderExpression)}
+        </ReactSortable>
+      );
+    }
+    return expressions.map(renderExpression);
+  }, [renderExpression, SORTABLE_CONFIG, expressions, onChangeOrder]);
+
   return (
     <S.FilterWrapper>
       <S.FilterHeader>
@@ -319,13 +343,7 @@ const Filter = ({
       </S.FilterHeader>
 
       <>
-        {expressions.length > 0 ? (
-          <ReactSortable {...SORTABLE_CONFIG} list={expressions} setList={onChangeOrder}>
-            {expressions.map(renderExpression)}
-          </ReactSortable>
-        ) : (
-          <Placeholder text={text.placeholder.chooseCondition} />
-        )}
+        {expressions.length > 0 ? renderExpressions() : <Placeholder text={text.placeholder.chooseCondition} />}
         {addFilterComponent && !readOnly && (
           <S.AddButtonWrapper>
             {typeof addFilterComponent === 'function' ? addFilterComponent({ isLimitExceeded }) : addFilterComponent}

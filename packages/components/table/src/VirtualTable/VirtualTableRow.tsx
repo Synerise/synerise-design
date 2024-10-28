@@ -97,6 +97,7 @@ function VirtualTableRow<T extends object>({
           event.stopPropagation();
           onRowClick && onRowClick(rowData);
         }}
+        onRowClickAvailable={onRowClick !== undefined}
       >
         {mergedColumns.map((column, columnIndex) => {
           const firstWithSelectionAndStar = selection && rowStar && columnIndex === 2;

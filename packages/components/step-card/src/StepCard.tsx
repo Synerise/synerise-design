@@ -29,7 +29,10 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
       headerRightSide,
       isHeaderVisible = true,
       readOnly = false,
+      singleStepCondition = false,
       getMoveByLabel,
+      isDraggable = true,
+      additionalFields,
     },
     ref
   ) => {
@@ -181,16 +184,20 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
         {isHeaderVisible && (
           <S.Header onMouseOver={resetMoveSuccess} onFocus={resetMoveSuccess} className="step-card-drag-handler">
             <S.LeftSide readOnly={readOnly}>
-              {!readOnly && <S.DragIcon component={<DragHandleM />} />}
-              <Matching
-                matching={matching}
-                onChange={onChangeMatching}
-                texts={{ matching: text.matching, notMatching: text.notMatching }}
-                readOnly={readOnly}
-              />
-              <Title withoutMargin level={4}>
-                {matching ? text.conditionType : text.notConditionType}
-              </Title>
+              {!readOnly && isDraggable && <S.DragIcon component={<DragHandleM />} />}
+              {matching !== undefined && onChangeMatching && (
+                <>
+                  <Matching
+                    matching={matching}
+                    onChange={onChangeMatching}
+                    texts={{ matching: text.matching, notMatching: text.notMatching }}
+                    readOnly={readOnly}
+                  />
+                  <Title withoutMargin level={4}>
+                    {matching ? text.conditionType : text.notConditionType}
+                  </Title>
+                </>
+              )}
             </S.LeftSide>
             {(!readOnly || headerRightSide) && (
               <S.RightSide className="step-card-right-side">{renderRightSide()}</S.RightSide>
@@ -198,7 +205,8 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
           </S.Header>
         )}
 
-        <S.Body>{children}</S.Body>
+        <S.Body singleStepCondition={singleStepCondition}>{children}</S.Body>
+        {additionalFields && <S.AdditionalFields>{additionalFields}</S.AdditionalFields>}
         {footer && <S.Footer>{footer}</S.Footer>}
       </S.Container>
     );

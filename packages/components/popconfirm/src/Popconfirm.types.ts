@@ -15,9 +15,9 @@ export type PopconfirmProps = Omit<AntdPopconfirmProps, 'okType'> & {
   buttonsAlign?: 'left' | 'right';
   okType?: AntdPopconfirmProps['okType'] | string;
   children?: ReactNode;
-}
+};
 
 export type PopconfirmType = {
-  (props: PopconfirmProps): JSX.Element,
+  (props: PopconfirmProps): JSX.Element;
   ConfirmMessage: (props: ConfirmMessageProps) => JSX.Element;
 };

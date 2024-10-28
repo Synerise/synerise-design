@@ -92,7 +92,7 @@ export const getDisabledTimeOptions = (
       }
     }
   }
-  
+
   const intervalStartDate = lowerLimit ? legacyParse(lowerLimit) : undefined;
   const intervalEndDate = upperLimit ? legacyParse(upperLimit) : undefined;
   const interval = getInterval(dayAsDate, intervalStartDate, intervalEndDate);

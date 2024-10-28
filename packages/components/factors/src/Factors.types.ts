@@ -29,6 +29,7 @@ export type ParameterValueType = Pick<ListItemProps, 'renderHoverTooltip' | 'hov
   id: ReactText;
   groupId?: ReactText;
   description?: string;
+  value?: React.ReactText | null;
   informationCardProps?: Partial<InformationCardProps>;
 };
 
@@ -39,14 +40,17 @@ export type ParameterGroup = {
   icon?: ReactNode;
   allowEmpty?: boolean;
   subGroups?: ParameterGroup[];
+  groupName?: string;
 };
 
 export type ParameterItem = {
   id: ReactText;
   name: string;
-  groupId: ReactText;
-  icon?: ReactNode;
+  groupId?: React.ReactText;
+  groupName?: string;
+  icon?: React.ReactNode;
   disabled?: boolean;
+  excludeFromSearchResults?: boolean;
 };
 
 export type FactorValueType =

@@ -4,12 +4,14 @@ import ContextSelector from '@synerise/ds-context-selector';
 
 import { useIntl } from 'react-intl';
 import { DragHandleM } from '@synerise/ds-icon';
+import Factors from '@synerise/ds-factors';
 import * as S from '../Condition.style';
 import * as T from './ConditionStep.types';
 import { StepHeader } from './StepHeader';
 import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
-import { SUBJECT } from '../constants';
+import { ACTION_ATTRIBUTE, SUBJECT } from '../constants';
+import { EmptyCondition } from './EmptyCondition';
 
 export const ConditionStep = ({
   step,
@@ -25,6 +27,7 @@ export const ConditionStep = ({
   draggableEnabled,
   selectSubject,
   selectContext,
+  selectActionAttribute,
   selectOperator,
   selectParameter,
   setStepConditionFactorType,
@@ -41,6 +44,9 @@ export const ConditionStep = ({
   showSuffix,
   inputProps,
   readOnly = false,
+  singleStepCondition = false,
+  showActionAttribute,
+  showEmptyConditionPlaceholder = false,
 }: T.ConditionStepProps) => {
   const { formatMessage } = useIntl();
   const text = useMemo(
@@ -112,8 +118,10 @@ export const ConditionStep = ({
           stepId={step.id}
           addCondition={onAddCondition}
           conditionsNumber={step.conditions.length}
-          selectedSubject={Boolean(step.subject?.selectedItem)}
-          selectedContext={Boolean(step.context?.selectedItem)}
+          isDisabled={
+            (!step.subject?.selectedItem && !step.context?.selectedItem) ||
+            (showActionAttribute && !step.actionAttribute?.value)
+          }
         />
       )
     );
@@ -128,6 +136,8 @@ export const ConditionStep = ({
     text,
     readOnly,
     step.addConditionErrorText,
+    showActionAttribute,
+    step.actionAttribute?.value,
   ]);
 
   const renderConditionRow = useCallback(
@@ -204,16 +214,25 @@ export const ConditionStep = ({
     ]
   );
 
+  const hasSelectedSubjectOrContext = useMemo(() => {
+    return step.subject?.selectedItem || step.context?.selectedItem;
+  }, [step.subject?.selectedItem, step.context?.selectedItem]);
+
+  const contextOrActionErrorText = useMemo(() => {
+    return step.context?.errorText || (showActionAttribute && step.actionAttribute?.errorText);
+  }, [showActionAttribute, step.actionAttribute?.errorText, step.context?.errorText])
+
   return (
     <S.Step
       key={step.id}
       id={`condition-step-${step.id}`}
       data-dropLabel={text.dropLabel}
       data-conditionSuffix={text.conditionSuffix}
-      style={hasPriority ? { zIndex: 10001 } : undefined}
+      style={hasPriority ? { zIndex: 1001 } : undefined}
       active={step.id === currentStepId && currentField !== ''}
-      hoverDisabled={Boolean(currentStepId)}
+      hoverDisabled={Boolean(currentStepId) || singleStepCondition}
       showSuffix={showSuffix}
+      singleStepCondition={singleStepCondition}
     >
       {!updateStepName && (
         <S.DraggedLabel>{step.subject?.selectedItem?.name || step.context?.selectedItem?.name}</S.DraggedLabel>
@@ -237,6 +256,7 @@ export const ConditionStep = ({
           {step.context && (
             <ContextSelector
               {...step.context}
+              errorText={undefined}
               getPopupContainerOverride={getPopupContainerOverride}
               onActivate={onActivate}
               onDeactivate={onDeactivate}
@@ -245,17 +265,56 @@ export const ConditionStep = ({
               readOnly={step.context.readOnly || readOnly}
             />
           )}
+          {contextOrActionErrorText && <S.ErrorWrapper>{contextOrActionErrorText}</S.ErrorWrapper>}
         </S.Subject>
-        <S.ConditionRows>
-          {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
-          {addConditionButton}
-        </S.ConditionRows>
-        {!updateStepName && withCruds && (
-          <S.StepConditionCruds
-            onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
-            onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
-            duplicateTooltip={text.duplicateTooltip}
-            deleteTooltip={text.removeTooltip}
+        {hasSelectedSubjectOrContext || !showEmptyConditionPlaceholder ? (
+          <>
+            {showActionAttribute && (
+              <S.ActionAttribute
+                style={{ zIndex: step.id === currentStepId && currentField === ACTION_ATTRIBUTE ? 10002 : 0 }}
+              >
+                <Factors
+                  {...step.actionAttribute}
+                  errorText={undefined}
+                  value={step.actionAttribute?.value}
+                  withoutTypeSelector
+                  selectedFactorType="parameter"
+                  defaultFactorType="parameter"
+                  inputProps={inputProps}
+                  getPopupContainerOverride={getPopupContainerOverride}
+                  onActivate={(): void => {
+                    setCurrentCondition('');
+                    onActivate && onActivate();
+                    setCurrentField && setCurrentField(ACTION_ATTRIBUTE);
+                    setCurrentStep && setCurrentStep(step.id);
+                  }}
+                  onDeactivate={onDeactivate}
+                  onChangeValue={(value): void => selectActionAttribute(value, step.id)}
+                  opened={step.id === currentStepId && currentField === ACTION_ATTRIBUTE}
+                  readOnly={readOnly}
+                  error={Boolean(step.actionAttribute?.errorText)}
+                />
+              </S.ActionAttribute>
+            )}
+            <S.ConditionRows>
+              {step.conditions.length > 0 && step.conditions.map(renderConditionRow)}
+              {addConditionButton}
+            </S.ConditionRows>
+            {!updateStepName && withCruds && (
+              <S.StepConditionCruds
+                onDuplicate={duplicateStep ? (): void => duplicateStep(step.id) : undefined}
+                onDelete={removeStep ? (): void => removeStep(step.id) : undefined}
+                duplicateTooltip={text.duplicateTooltip}
+                deleteTooltip={text.removeTooltip}
+              />
+            )}
+          </>
+        ) : (
+          <EmptyCondition
+            label={
+              texts?.emptyConditionLabel ||
+              formatMessage({ id: 'DS.CONDITION.EMPTY_CONDITION_LABEL', defaultMessage: 'Choose event first' })
+            }
           />
         )}
       </S.StepConditions>

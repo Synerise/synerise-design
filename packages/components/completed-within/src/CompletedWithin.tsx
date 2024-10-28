@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import Icon, { ClockM, Close3S } from '@synerise/ds-icon';
 
@@ -10,7 +10,7 @@ import * as S from './CompleteWithin.styles';
 
 export const DEFAULT_PERIODS = ['SECONDS', 'MINUTES', 'HOURS', 'DAYS', 'MONTHS', 'YEARS'];
 
-const CompletedWithin: React.FC<CompletedWithinProps> = ({
+const CompletedWithin = ({
   value,
   maxValue,
   onSetValue,
@@ -19,10 +19,10 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
   placeholder,
   tooltip,
   readOnly,
-}) => {
+}: CompletedWithinProps) => {
   const intl = useIntl();
 
-  const texts = React.useMemo(
+  const texts = useMemo(
     () => ({
       header: intl.formatMessage({ id: 'DS.COMPLETED-WITHIN.HEADER', defaultMessage: 'Completed within' }),
       completedLabel: intl.formatMessage({
@@ -39,7 +39,7 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
     [text, intl]
   );
 
-  const getPeriods = React.useMemo(() => {
+  const getPeriods = useMemo(() => {
     if (periods !== undefined && periods.length) {
       return periods;
     }
@@ -49,19 +49,19 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
     }));
   }, [periods, intl]);
 
-  const [innerValue, setInnerValue] = React.useState<string | number | undefined>(value.value);
-  const [innerPeriod, setInnerPeriod] = React.useState<Period>(value.period);
-  const [tooltipVisible, setTooltipVisible] = React.useState(false);
-  const [settingsVisible, setSettingsVisible] = React.useState(false);
+  const [innerValue, setInnerValue] = useState<string | number | undefined>(value.value);
+  const [innerPeriod, setInnerPeriod] = useState<Period>(value.period);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [settingsVisible, setSettingsVisible] = useState(false);
 
-  const hasValue = React.useMemo(() => value.value !== undefined && value.value > 0, [value]);
+  const hasValue = useMemo(() => value.value !== undefined && value.value > 0, [value]);
 
-  const handleVisibleChange = React.useCallback(
+  const handleVisibleChange = useCallback(
     (visible: boolean) => {
       setSettingsVisible(visible);
       setTooltipVisible(false);
       if (!visible && innerValue && innerPeriod) {
-        const newValue = maxValue && maxValue < innerValue ? maxValue : innerValue;
+        const newValue = maxValue && maxValue < parseFloat(`${innerValue}`) ? maxValue : innerValue;
         onSetValue({
           value: Number(newValue),
           period: innerPeriod,
@@ -71,18 +71,18 @@ const CompletedWithin: React.FC<CompletedWithinProps> = ({
     [innerPeriod, innerValue, maxValue, onSetValue]
   );
 
-  const handleClear = React.useCallback(() => {
+  const handleClear = useCallback(() => {
     setInnerPeriod(undefined);
     setInnerValue(undefined);
     onSetValue({ value: undefined, period: undefined });
   }, [onSetValue]);
 
-  const triggerMode = React.useMemo(() => {
+  const triggerMode = useMemo(() => {
     if (hasValue || placeholder) return 'icon-label';
     return 'single-icon';
   }, [hasValue, placeholder]);
 
-  const triggerLabel = React.useMemo(() => {
+  const triggerLabel = useMemo(() => {
     return hasValue
       ? `${texts.completedLabel} ${value.value} ${
           getPeriods.find(singlePeriod => singlePeriod.value === value.period)?.label
