@@ -30,20 +30,16 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   } = props;
   const intl = useIntl();
   const selectedRange = value || defaultValue;
-  const [popupVisible, setPopupVisible] = useState<boolean | undefined>(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(selectedRange);
-  const [inputActive, setInputActive] = useState<boolean>();
-  const [isTopAligned, setIsTopAligned] = useState<boolean>(true);
+  const [inputActive, setInputActive] = useState(false);
+  const [isTopAligned, setIsTopAligned] = useState(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
-  useEffect((): void => {
-    if (popupVisible !== undefined) {
-      setPopupVisible(undefined);
-    }
-  }, [popupVisible]);
+  
 
-  useEffect((): void => {
+  useEffect(() => {
     if (!isEqual(selectedRange, selectedDate)) {
       setSelectedDate(selectedRange);
     }
@@ -78,12 +74,13 @@ const DateRangePicker = (props: DateRangePickerProps) => {
     },
     [defaultValue, onApply]
   );
+  
 
   const conditionalVisibilityProps = {
     ...(popupVisible === false && { visible: false }),
   };
 
-  const handleRangePickerInputClick = readOnly ? undefined : (): void => setPopupVisible(undefined);
+  const handleRangePickerInputClick = readOnly ? undefined : (): void => setPopupVisible(true);
   const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
     <RangePickerInput
       onClick={handleRangePickerInputClick}
@@ -92,7 +89,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
       texts={allTexts}
       valueFormatOptions={valueFormatOptions}
       onChange={onApplyCallback}
-      active={!!inputActive}
+      active={inputActive}
       {...rangePickerInputProps}
       readOnly={readOnly}
     />
