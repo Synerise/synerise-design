@@ -25,7 +25,7 @@ export type HandlerConfig = Record<
   }
 >;
 
-export interface SliderProps extends AntdSliderProps {
+export type SliderProps = AntdSliderProps & {
   type?: 'allocation' | 'default';
   allocationConfig?: AllocationConfig;
   label?: ReactNode;

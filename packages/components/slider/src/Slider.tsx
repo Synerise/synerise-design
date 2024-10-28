@@ -110,7 +110,7 @@ const Slider = (props: SliderProps): JSX.Element => {
         hideMinAndMaxMarks={hideMinAndMaxMarks}
         tipFormatter={(tipValue?: number): React.ReactNode => (
           <S.DescriptionWrapper>
-            {description && <S.Description range={range}>{description}</S.Description>}
+            {description && <S.Description range={Boolean(range)}>{description}</S.Description>}
             {tipFormatter && tipFormatter(tipValue)}
           </S.DescriptionWrapper>
         )}
