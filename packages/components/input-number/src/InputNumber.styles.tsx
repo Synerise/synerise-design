@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import BaseAntInputNumber, { InputNumberProps} from 'antd/lib/input-number';
+import BaseAntInputNumber, { InputNumberProps } from 'antd/lib/input-number';
 import { ThemeProps } from '@synerise/ds-core';
 
 export const InputNumberContainer = styled.div`
@@ -10,7 +10,9 @@ export const InputNumberContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const NumberOnlyBaseAntInputNumber = (props: InputNumberProps<number>) => <BaseAntInputNumber<number>  {...props}/>;
+const NumberOnlyBaseAntInputNumber = forwardRef<HTMLInputElement, InputNumberProps<number>>(
+  (props: InputNumberProps<number>, ref) => <BaseAntInputNumber<number> {...props} ref={ref} />
+);
 
 export const AntdInputNumber = styled(NumberOnlyBaseAntInputNumber)`
   color: ${(props): string => props.theme.palette['grey-700']};

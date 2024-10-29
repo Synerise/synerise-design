@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import '@synerise/ds-core/dist/js/style';
@@ -29,9 +29,10 @@ const InputNumber = ({
 }: InputNumberProps) => {
   const { formatValue, thousandDelimiter, decimalDelimiter } = useDataFormat();
   const [localValue, setLocalValue] = useState<number | null | undefined>(value ?? defaultValue);
+  const antdInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (value !== undefined && value !== undefined && value !== localValue) {
+    if (value !== undefined && value !== localValue) {
       setLocalValue(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,6 +69,23 @@ const InputNumber = ({
     [formatter, parser, defaultValue, onChange]
   );
 
+  useEffect(() => {
+    const input = antdInputRef.current;
+    const cancelNonNumeric = (event: KeyboardEvent) => {
+      if (!/^\d*(\.|,)?\d*$/i.test(event.key)) {
+        event.preventDefault();
+      }
+    };
+    if (input) {
+      input.addEventListener('keypress', cancelNonNumeric);
+    }
+    return () => {
+      if (input) {
+        input.removeEventListener('keypress', cancelNonNumeric);
+      }
+    };
+  });
+
   return (
     <S.InputNumberContainer>
       {label && !raw && (
@@ -79,6 +97,7 @@ const InputNumber = ({
         {!!prefixel && <S.Prefixel>{prefixel}</S.Prefixel>}
         <S.AntdInputNumber
           {...antdProps}
+          ref={antdInputRef}
           onChange={handleOnChange}
           id={id}
           error={showError}
