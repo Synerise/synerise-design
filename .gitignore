@@ -53,3 +53,5 @@ storybook-static
 styleguide/
 packages/docs-site/website/docs
 **/yarn-error.log
+
+*.tgz
