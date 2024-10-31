@@ -99,6 +99,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
   ]);
 
   return isDragDrop ? (
+    // @ts-expect-error
     <DndProvider backend={HTML5Backend}>
       <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>{collapseContent}</SidebarContext.Provider>
     </DndProvider>

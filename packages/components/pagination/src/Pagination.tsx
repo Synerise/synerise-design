@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntPagination, { PaginationProps } from 'antd/lib/pagination';
@@ -18,8 +18,10 @@ const ITEM_RENDER_TYPE = {
   jumpNext: 'jump-next',
 };
 
-const Pagination: React.FC<PaginationProps> = props => {
-  const renderItem = React.useCallback((current, type, originalElement) => {
+type Arguments = Parameters<Required<PaginationProps>['itemRender']>;
+
+const Pagination = (props: PaginationProps) => {
+  const renderItem = useCallback((_current: Arguments[0], type: Arguments[1], originalElement: Arguments[2]) => {
     switch (type) {
       case ITEM_RENDER_TYPE.prev: {
         return (

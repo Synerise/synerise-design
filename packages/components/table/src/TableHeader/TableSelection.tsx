@@ -28,7 +28,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
   const isShowingSubset = dataSourceFull && dataSourceFull.length !== dataSource.length;
 
   const getRowsForKeys = useCallback(
-    keys => {
+    (keys: Key[]) => {
       if (selection) {
         let rows: T[] = [];
         allData.forEach((record: T) => {
@@ -58,7 +58,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
   const selectAll = useCallback(() => {
     if (dataSource && selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keys: ReactText[] = isShowingSubset ? [...selectedRowKeys] : [];
+      let keys: Key[] = isShowingSubset ? [...selectedRowKeys] : [];
       dataSource.forEach((record: T) => {
         const rowChildren = record[childrenColumnName];
 
@@ -66,8 +66,8 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
           keys = [
             ...keys,
 
-            ...rowChildren.reduce((acc: ReactText[], child: T) => {
-              const key = getRowKey(child) as ReactText;
+            ...rowChildren.reduce((acc: Key[], child: T) => {
+              const key = getRowKey(child);
               return key && isRecordSelectable(child, checkRowSelectionStatus) ? [...acc, key] : acc;
             }, []),
           ];
@@ -87,7 +87,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
     if (selection) {
       if (isShowingSubset) {
         const { selectedRowKeys } = selection;
-        let keysToUnselect: ReactText[] = [];
+        let keysToUnselect: Key[] = [];
 
         dataSource.forEach((record: T) => {
           const rowChildren = record[childrenColumnName];
@@ -95,8 +95,8 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
           if (Array.isArray(rowChildren)) {
             keysToUnselect = [
               ...keysToUnselect,
-              ...rowChildren.reduce((acc: ReactText[], child: T) => {
-                const key = getRowKey(child) as ReactText;
+              ...rowChildren.reduce((acc: Key[], child: T) => {
+                const key = getRowKey(child);
                 return key ? [...acc, key] : acc;
               }, []),
             ];
@@ -132,7 +132,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
   const selectInvert = useCallback(() => {
     if (dataSource && selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keys: ReactText[] = isShowingSubset ? [...selectedRowKeys] : [];
+      let keys: Key[] = isShowingSubset ? [...selectedRowKeys] : [];
       dataSource.forEach((record: T): void => {
         const rowChildren = record[childrenColumnName];
 
@@ -140,7 +140,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
         const selectableChildren = hasChildren ? getSelectableChildren(rowChildren) : false;
         if (selectableChildren) {
           selectableChildren.forEach((child: T) => {
-            const key = getRowKey(child) as ReactText;
+            const key = getRowKey(child) as Key;
             if (selectedRowKeys.includes(key)) {
               if (isShowingSubset) keys.splice(keys.indexOf(key), 1);
             } else {
@@ -149,7 +149,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
           });
         }
         if (!selectableChildren || selection.independentSelectionExpandedRows) {
-          const key = getRowKey(record) as ReactText;
+          const key = getRowKey(record) as Key;
           if (selectedRowKeys.includes(key)) {
             if (isShowingSubset) keys.splice(keys.indexOf(key), 1);
           } else if (isRecordSelectable(record, checkRowSelectionStatus)) {

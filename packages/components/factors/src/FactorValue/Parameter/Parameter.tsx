@@ -7,7 +7,7 @@ import Icon, { AngleDownS } from '@synerise/ds-icon';
 import { getPopupContainer } from '@synerise/ds-utils';
 import InformationCard from '@synerise/ds-information-card';
 
-import { InputProps, ParameterValueType } from '../../Factors.types';
+import { InputProps, ParameterItem, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './Parameter.constants';
@@ -50,8 +50,8 @@ const ParameterInput = ({
   );
 
   const handleChange = useCallback(
-    val => {
-      onChange(val);
+    (val: ParameterItem) => {
+      onChange(val as ParameterValueType);
     },
     [onChange]
   );

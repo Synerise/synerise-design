@@ -130,7 +130,7 @@ function VirtualTableRow<T extends object>({
               width={column.width}
               maxWidth={calculateToPixelsIfDefined(column?.maxWidth)}
             >
-              {renderColumn(column, rowData, columnIndex)}
+              <>{renderColumn(column, rowData, columnIndex)}</>
             </S.ColWrapper>
           );
         })}

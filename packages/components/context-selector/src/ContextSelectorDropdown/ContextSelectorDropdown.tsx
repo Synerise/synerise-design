@@ -312,7 +312,7 @@ const ContextSelectorDropdown = ({
   }, [activeItems, listRef]);
 
   const handleSearch = useCallback(
-    val => {
+    (val: string) => {
       setSearchQuery(val);
       resetList();
       onSearch && onSearch(val);

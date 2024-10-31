@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Icon, { CalendarM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 import { theme } from '@synerise/ds-core';
 import { Label } from '@synerise/ds-input';
-import DatePicker from '@synerise/ds-date-picker/dist/DatePicker';
+import DatePicker from '@synerise/ds-date-picker';
 import format from '@synerise/ds-date-picker/dist/format';
 import * as S from '../../SubtleForm.styles';
 import { SelectContainer, ContentAbove, MaskedDatePlaceholder } from './DatePicker.styles';
 import { SubtleDatePickerProps } from './DatePicker.types';
 import { getFormattingString, replaceLettersWithUnderscore } from './utils';
 
-const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
+const SubtleDatePicker = ({
   value,
   suffix,
   suffixTooltip,
@@ -27,36 +27,36 @@ const SubtleDatePicker: React.FC<SubtleDatePickerProps> = ({
   onDropdownVisibleChange,
   disabled,
   ...rest
-}) => {
-  const [active, setActive] = React.useState<boolean>(false);
-  const [blurred, setBlurred] = React.useState<boolean>(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+}: SubtleDatePickerProps) => {
+  const [active, setActive] = useState(false);
+  const [blurred, setBlurred] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const hasError = error || !!errorText;
   const { showTime } = rest;
-  const dateFormattingString = React.useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
-  const formatValue = React.useCallback(
-    (val): string => {
+  const dateFormattingString = useMemo(() => getFormattingString(dateFormat, showTime), [dateFormat, showTime]);
+  const formatValue = useCallback(
+    (val: Date) => {
       if (!val) return '';
       return format(val, dateFormattingString);
     },
     [dateFormattingString]
   );
-  const getDisplayText = React.useCallback((): string | undefined => {
+  const getDisplayText = useCallback((): string | undefined => {
     return value && !!String(value).trim() ? formatValue(value) : placeholder;
   }, [value, placeholder, formatValue]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) {
       setActive(false);
       setBlurred(true);
     }
   }, [error, errorText]);
-  const handleActivate = React.useCallback((): void => {
+  const handleActivate = useCallback((): void => {
     setActive(true);
     setBlurred(false);
   }, []);
 
-  const handleDeactivate = React.useCallback((): void => {
+  const handleDeactivate = useCallback((): void => {
     setActive(false);
     setBlurred(true);
   }, []);

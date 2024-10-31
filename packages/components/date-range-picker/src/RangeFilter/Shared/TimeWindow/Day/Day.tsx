@@ -1,7 +1,5 @@
-import React from 'react';
-// @ts-ignore
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
-// @ts-ignore
 import customParseFormatPlugin from 'dayjs/plugin/customParseFormat';
 import Button from '@synerise/ds-button';
 import Icon, { CheckS, Close3S } from '@synerise/ds-icon';
@@ -13,33 +11,22 @@ import * as S from './Day.styles';
 
 dayjs.extend(customParseFormatPlugin);
 
-const Day: React.FC<DayProps> = ({
-  active,
-  label,
-  onToggle,
-  onClear,
-  readOnly,
-  restricted,
-  dayKey,
-  texts,
-  intl,
-  ...rest
-}: DayProps) => {
-  const [hovered, setHovered] = React.useState<boolean>(false);
-  const type = React.useMemo(() => (active ? 'primary' : 'secondary'), [active]);
-  const handleIconClick = React.useCallback((): void => {
+const Day = ({ active, label, onToggle, onClear, readOnly, restricted, dayKey, texts, intl, ...rest }: DayProps) => {
+  const [hovered, setHovered] = useState(false);
+  const type = useMemo(() => (active ? 'primary' : 'secondary'), [active]);
+  const handleIconClick = useCallback((): void => {
     !readOnly && onClear(dayKey);
   }, [readOnly, onClear, dayKey]);
 
-  const handleMouseLeave = React.useCallback(() => {
+  const handleMouseLeave = useCallback(() => {
     setHovered(false);
   }, []);
 
-  const handleButtonClick = React.useCallback((): void => {
+  const handleButtonClick = useCallback((): void => {
     onToggle && onToggle(dayKey, true);
   }, [onToggle, dayKey]);
 
-  const icon = React.useMemo(() => {
+  const icon = useMemo(() => {
     return hovered && !readOnly ? (
       <Icon component={<Close3S />} onClick={handleIconClick} color={theme.palette['red-600']} />
     ) : (
@@ -47,15 +34,15 @@ const Day: React.FC<DayProps> = ({
     );
   }, [hovered, handleIconClick, readOnly]);
 
-  const getPopupContainer = React.useCallback(
+  const getPopupContainer = useCallback(
     (node: HTMLElement): HTMLElement => (node.parentElement ? node.parentElement : document.body),
     []
   );
-
-  const handleTooltipVisibleChange = React.useCallback((visible: boolean): void => setHovered(visible), []);
+  const labelForTooltip = typeof label === 'function' ? label(false) : label;
+  const handleTooltipVisibleChange = useCallback((visible: boolean): void => setHovered(visible), []);
   return (
     <S.Container>
-      <Tooltip trigger={['hover']} title={active ? label : texts.clickToSelect || 'Click to select'}>
+      <Tooltip trigger={['hover']} title={active ? labelForTooltip : texts.clickToSelect || 'Click to select'}>
         <Button
           {...rest}
           onMouseLeave={handleMouseLeave}
@@ -64,7 +51,9 @@ const Day: React.FC<DayProps> = ({
           type={type}
           mode="label-icon"
         >
-          <S.Content>{label}</S.Content>
+          <S.Content>
+            <>{label}</>
+          </S.Content>
         </Button>
       </Tooltip>
       {restricted && (
@@ -82,4 +71,4 @@ const Day: React.FC<DayProps> = ({
     </S.Container>
   );
 };
-export default React.memo(Day);
+export default memo(Day);

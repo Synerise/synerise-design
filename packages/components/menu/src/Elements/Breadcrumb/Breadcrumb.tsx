@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, RefObject, useCallback, useEffect, useRef, useState } from 'react';
 import Icon, { AngleRightS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -6,7 +6,7 @@ import * as S from './Breadcrumb.styles';
 import { MenuItemProps } from '../Item/MenuItem.types';
 import { BreadcrumbProps } from './Breadcrumb.types';
 
-const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
+const Breadcrumb = ({
   path,
   disabled,
   highlight,
@@ -17,15 +17,15 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
   gradientOverlap,
   highlightActivePath,
   ...rest
-}) => {
+}: BreadcrumbProps & MenuItemProps) => {
   const { prefixel } = rest;
   const breadcrumbsArray = [...path];
   const pathToDisplay: typeof path = compact ? breadcrumbsArray.reverse() : breadcrumbsArray;
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [gradient, setGradient] = React.useState<boolean>(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [gradient, setGradient] = useState(false);
 
-  const renderWithHighlighting = React.useCallback(
-    (name: string | React.ReactNode): React.ReactNode => {
+  const renderWithHighlighting = useCallback(
+    (name: ReactNode) => {
       if (highlight && typeof name === 'string') {
         const index = name.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
         if (index === -1) {
@@ -48,7 +48,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     [highlight]
   );
 
-  const attachActiveClassName = React.useCallback(
+  const attachActiveClassName = useCallback(
     (index: number): string => {
       if (compact) {
         return !!highlightActivePath && index === 0 ? 'active' : '';
@@ -73,7 +73,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     }
     return startWithArrow || path.length > 1 || index > 0;
   };
-  const isOverflown = (elementRef: React.RefObject<HTMLDivElement>): boolean => {
+  const isOverflown = (elementRef: RefObject<HTMLDivElement>): boolean => {
     if (elementRef !== null && elementRef.current !== null) {
       const element = elementRef.current;
       return element.scrollWidth > element.clientWidth;
@@ -81,7 +81,7 @@ const Breadcrumb: React.FC<BreadcrumbProps & MenuItemProps> = ({
     return false;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const shouldRenderGradientOverlap = gradientOverlap && isOverflown(contentRef);
     setGradient(!!shouldRenderGradientOverlap);
   }, [path, contentRef, gradientOverlap]);

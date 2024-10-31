@@ -15,6 +15,7 @@ export type StepCardTexts = {
 
 export type StepCardProps = {
   footer?: ReactNode;
+  children?: ReactNode;
   matching: boolean;
   name: string;
   onChangeName?: (name: string) => void;

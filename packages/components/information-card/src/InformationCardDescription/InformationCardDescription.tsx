@@ -29,12 +29,12 @@ export const InformationCardDescription = ({
           placeholder="placeholder"
           suffixTooltip="Edit"
           {...descriptionConfig}
-          {...(descriptionConfig.error
-            ? {
-                error: descriptionConfig.error,
-                errorText: (isError: boolean, text: string) => (isError ? text : ''),
-              }
-            : {})}
+          // {...(descriptionConfig.error
+          //   ? {
+          //       error: descriptionConfig.error,
+          //       errorText: (isError: boolean, text: string) => (isError ? text : ''),
+          //     }
+          //   : {})}
           disabled={descriptionConfig.disabled}
         />
       );

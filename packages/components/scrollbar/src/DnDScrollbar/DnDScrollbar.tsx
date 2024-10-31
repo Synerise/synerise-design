@@ -1,4 +1,12 @@
-import React, { useRef, useState, useCallback, useEffect, WheelEvent, MouseEvent, UIEvent } from 'react';
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  WheelEvent,
+  MouseEvent as ReactMouseEvent,
+  UIEvent,
+} from 'react';
 import * as S from './DnDScrollbar.styles';
 import { ScrollbarProps } from '../Scrollbar.types';
 
@@ -23,12 +31,12 @@ export const DnDScrollbar = ({
   const scrollThumbRef = useRef<HTMLDivElement>(null);
   const observer = useRef<ResizeObserver | null>(null);
   const [thumbHeight, setThumbHeight] = useState(48);
-  const [scrollStartPosition, setScrollStartPosition] = useState<number>(0);
-  const [initialScrollTop, setInitialScrollTop] = useState<number>(0);
+  const [scrollStartPosition, setScrollStartPosition] = useState(0);
+  const [initialScrollTop, setInitialScrollTop] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
   const handleTrackClick = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
+    (event: ReactMouseEvent<HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       const { current: trackCurrent } = scrollTrackRef;
@@ -62,7 +70,7 @@ export const DnDScrollbar = ({
     thumb.style.top = `${newTop}px`;
   }, [thumbHeight]);
 
-  const handleThumbMousedown = useCallback(event => {
+  const handleThumbMousedown = useCallback((event: ReactMouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     setScrollStartPosition(event.clientY);
     if (contentRef.current) setInitialScrollTop(contentRef.current.scrollTop);
@@ -70,7 +78,7 @@ export const DnDScrollbar = ({
   }, []);
 
   const handleThumbMouseup = useCallback(
-    event => {
+    (event: MouseEvent) => {
       event.stopPropagation();
       if (isDragging) {
         setIsDragging(false);
@@ -80,7 +88,7 @@ export const DnDScrollbar = ({
   );
 
   const handleThumbMousemove = useCallback(
-    event => {
+    (event: MouseEvent) => {
       event.stopPropagation();
       if (isDragging && contentRef.current !== null) {
         const { scrollHeight: contentScrollHeight, offsetHeight: contentOffsetHeight } = contentRef.current;

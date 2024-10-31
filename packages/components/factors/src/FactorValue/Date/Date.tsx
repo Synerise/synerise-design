@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { getPopupContainer } from '@synerise/ds-utils';
 import DatePicker from '@synerise/ds-date-picker';
 import { FactorsProps, InputProps } from '../../Factors.types';
 
-const DateInput: React.FC<InputProps> = ({
+const DateInput: FC<InputProps> = ({
   value,
   onChange,
   texts,
@@ -21,7 +21,7 @@ const DateInput: React.FC<InputProps> = ({
     setLocalValue(value);
   }, [value]);
 
-  const changeHandler = React.useCallback(
+  const changeHandler = useCallback(
     (date: Date | undefined) => {
       onChange(date);
     },
@@ -30,12 +30,12 @@ const DateInput: React.FC<InputProps> = ({
 
   const localValueAsDate = useMemo(() => (localValue ? new Date(String(localValue)) : undefined), [localValue]);
 
-  const handleClear = React.useCallback(() => {
+  const handleClear = useCallback(() => {
     onChange(undefined);
   }, [onChange]);
 
-  const handleVisibleChange = React.useCallback(
-    visible => {
+  const handleVisibleChange = useCallback(
+    (visible: boolean) => {
       if (!visible) {
         onDeactivate && onDeactivate();
         onChange(localValueAsDate);

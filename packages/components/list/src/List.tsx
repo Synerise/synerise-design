@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { v4 as uuid } from 'uuid';
 import '@synerise/ds-core/dist/js/style';
 import Radio from '@synerise/ds-radio';
@@ -9,7 +9,8 @@ import './style/index.less';
 import { TextItem, ListDivider, ItemWrapper } from './Elements';
 import { ListPropsType } from './List.types';
 
-const RadioGroupWrapper: React.FC<{ options?: RadioGroupProps }> = ({ children, options }) => (
+type RadioGroupWrapperProps = { options?: RadioGroupProps; children?: ReactNode };
+const RadioGroupWrapper = ({ children, options }: RadioGroupWrapperProps) => (
   <Radio.Group {...options}>{children}</Radio.Group>
 );
 

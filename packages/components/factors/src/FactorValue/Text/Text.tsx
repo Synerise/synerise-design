@@ -7,6 +7,7 @@ import React, {
   MutableRefObject,
   ReactText,
   ReactNode,
+  ChangeEvent,
 } from 'react';
 import { debounce } from 'lodash';
 import type { RefSelectProps } from 'antd';
@@ -59,14 +60,14 @@ const TextInput = ({
     }, 300)
   ).current;
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       debouncedOnChange.cancel();
     };
   }, [debouncedOnChange]);
 
   const handleChange = useCallback(
-    event => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       setLocalValue(event.target.value);
       debouncedOnChange(event.target.value);
       if (!event.target.value.length) {
@@ -79,7 +80,7 @@ const TextInput = ({
   );
 
   const handleApply = useCallback(
-    val => {
+    (val: string) => {
       setOpenExpanseEditor(false);
       setLocalValue(val);
       debouncedOnChange(val);
@@ -88,7 +89,7 @@ const TextInput = ({
   );
 
   const handleAutocomplete = useCallback(
-    val => {
+    (val: string | number) => {
       setLocalValue(val);
       debouncedOnChange(val);
     },

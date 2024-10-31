@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from '../../RelativeRangePicker.styles';
 import { RANGES_ICON } from '../../../constants';
 import { Props } from './ModeDropdown.types';
+import { RelativeMode } from '../../../DateRangePicker.types';
 
 const MODE_TRANSLATION_KEYS = {
   PAST: 'last',
   FUTURE: 'next',
   SINCE: 'since',
 };
-const ModeDrop: React.FC<Props> = ({ currentGroup, onModeChange, modes, texts }: Props) => {
-  const [dropVisible, setDropVisible] = React.useState<boolean>(false);
-  const overlayRef = React.useRef<HTMLDivElement>(null);
+const ModeDrop = ({ currentGroup, onModeChange, modes, texts }: Props) => {
+  const [dropVisible, setDropVisible] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
-  const handleMenuItemClick = React.useCallback(
-    (mode): void => {
+  const handleMenuItemClick = useCallback(
+    (mode: RelativeMode) => {
       onModeChange && onModeChange(mode);
       setDropVisible(false);
     },
@@ -32,7 +33,7 @@ const ModeDrop: React.FC<Props> = ({ currentGroup, onModeChange, modes, texts }:
         {modes.map(mode => (
           <S.DropMenuItem
             key={mode}
-            onClick={(): void => handleMenuItemClick(mode)}
+            onClick={() => handleMenuItemClick(mode)}
             prefixel={<Icon component={RANGES_ICON[mode]} />}
             suffixel={mode === currentGroup ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : null}
           >
@@ -48,7 +49,7 @@ const ModeDrop: React.FC<Props> = ({ currentGroup, onModeChange, modes, texts }:
         key="TOGGLE"
         mode="single-icon"
         type="secondary"
-        onClick={(): void => setDropVisible(true)}
+        onClick={() => setDropVisible(true)}
         disabled={!modes || !modes?.length || modes.length === 1}
       >
         {!!currentGroup && <Icon key={currentGroup} component={[RANGES_ICON[currentGroup]]} />}

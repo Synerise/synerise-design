@@ -10,27 +10,24 @@ import Danger from './Danger/Danger';
 import { MenuDivider } from '../../Menu.styles';
 import { MenuDividerProps } from '../../Menu.types';
 
-
-const MenuItem: React.FC<SubMenuProps & MenuItemProps & MenuDividerProps> = props => {
-  const {
-    prefixel,
-    suffixel,
-    ordered,
-    disabled,
-    danger,
-    text,
-    description,
-    subMenu,
-    children,
-    type,
-    indentLevel,
-    timeToHideTooltip,
-
-    onClick,
-    menuItemKey,
-    onTitleClick,
-    ...rest
-  } = props;
+const MenuItem = ({
+  prefixel,
+  suffixel,
+  ordered,
+  disabled,
+  danger,
+  text,
+  description,
+  subMenu,
+  children,
+  type,
+  indentLevel,
+  timeToHideTooltip,
+  onClick,
+  menuItemKey,
+  onTitleClick,
+  ...rest
+}: SubMenuProps & MenuItemProps & MenuDividerProps) => {
   if (subMenu) {
     return (
       <SubMenuItem
@@ -63,7 +60,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps & MenuDividerProps> = prop
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onClick={(menuInfo): void => {
+          onClick={menuInfo => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}
@@ -81,7 +78,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps & MenuDividerProps> = prop
           disabled={disabled}
           description={description}
           indentLevel={indentLevel || 0}
-          onClick={(menuInfo): void => {
+          onClick={menuInfo => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}
@@ -103,7 +100,7 @@ const MenuItem: React.FC<SubMenuProps & MenuItemProps & MenuDividerProps> = prop
           description={description}
           timeToHideTooltip={timeToHideTooltip}
           indentLevel={indentLevel || 0}
-          onClick={(menuInfo): void => {
+          onClick={menuInfo => {
             menuInfo.domEvent.stopPropagation();
             onClick && onClick(menuInfo);
           }}

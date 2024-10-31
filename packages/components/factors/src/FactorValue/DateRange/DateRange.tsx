@@ -25,7 +25,7 @@ const DateRangeInput = ({
   );
 
   const handleVisibleChange = useCallback(
-    visible => {
+    (visible: boolean) => {
       if (!visible) {
         onDeactivate && onDeactivate();
       }

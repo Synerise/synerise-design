@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode, MouseEvent as ReactMouseEvent } from 'react';
 import type { BadgeStatus } from '@synerise/ds-badge';
 import { AvatarProps as AntAvatarProps } from 'antd/lib/avatar';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
@@ -22,11 +22,11 @@ export type Size = 'small' | 'medium' | 'large' | 'extraLarge' | undefined;
 
 export type TooltipObject = TooltipProps & {
   // Backwards compatibility:
-  name?: React.ReactNode;
-  email?: React.ReactNode;
+  name?: ReactNode;
+  email?: ReactNode;
 };
 
-export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon' | 'src'> {
+export type AvatarProps = Omit<AntAvatarProps, 'size' | 'icon' | 'src'> & {
   src?: string;
   /**
    * Aligns a badge with the avatar
@@ -39,7 +39,7 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon' | 'src
   /**
    * Provides a custom component as a child. If both are provided, the prop icon has a greater priority
    */
-  iconComponent?: React.ReactNode;
+  iconComponent?: ReactNode;
   /**
    * Auto scale icons for sizes
    * @default true
@@ -61,14 +61,15 @@ export interface AvatarProps extends Omit<AntAvatarProps, 'size' | 'icon' | 'src
    * Text on a tooltip
    */
   tooltip?: TooltipObject | boolean;
-}
+  children?: ReactNode;
+};
 
 type DefinedAvatarProps = Pick<AvatarProps, 'style' | 'disabled' | 'iconComponent' | 'size' | 'src'> & {
   backgroundColor?: 'auto' | Color | string;
   badgeStatus?: BadgeStatus;
   text?: string;
   tooltip?: TooltipObject | boolean;
-  onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (event?: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
 export type ObjectAvatar = {
@@ -81,6 +82,7 @@ export type ObjectAvatar = {
 export type ObjectAvatarProps = DefinedAvatarProps & {
   object?: ObjectAvatar;
   color?: Color;
+  children?: ReactNode;
 };
 
 export type UserAvatar = {
@@ -92,4 +94,5 @@ export type UserAvatar = {
 
 export type UserAvatarProps = DefinedAvatarProps & {
   user?: UserAvatar;
+  children?: ReactNode;
 };

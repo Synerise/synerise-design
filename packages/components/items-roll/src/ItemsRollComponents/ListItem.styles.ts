@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
+import DSListItem from '@synerise/ds-list-item';
+
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 
-export const ListItem = styled(Menu.Item)`
+export const ListItem = styled(DSListItem)`
   & {
     ${RemoveIconWrapper} {
       opacity: 0;

@@ -70,11 +70,11 @@
   "resolutions": {
     "**/@typescript-eslint/eslint-plugin": "4.9.1",
     "**/@typescript-eslint/parser": "4.9.1",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "rc-util": "^5.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18",
+    "react-dom": "^18",
     "sortablejs": "1.15.0"
   },
   "volta": {
@@ -84,8 +84,8 @@
   "dependencies": {
     "antd": "4.24.0",
     "invariant": "^2.2.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18",
+    "react-dom": "^18",
     "react-perfect-scrollbar": "^1.5.8",
     "react-styleguidist": "^11.0.5"
   },

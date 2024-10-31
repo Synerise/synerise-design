@@ -3,7 +3,7 @@ import Button from 'antd/lib/button';
 import * as S from './ButtonGroup.styles';
 import { ButtonGroupProps } from './ButtonGroup.types';
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({
+const ButtonGroup = ({
   className,
   children,
   title,
@@ -14,7 +14,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   disabled,
   splitMode,
   error,
-}) => (
+}: ButtonGroupProps) => (
   <S.Container
     className={`ds-button-group ${className || ''}`}
     fullWidth={fullWidth}

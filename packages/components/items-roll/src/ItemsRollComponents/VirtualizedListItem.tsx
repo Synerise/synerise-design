@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListChildComponentProps } from 'react-window';
-import Menu from '@synerise/ds-menu';
+import ListItem from '@synerise/ds-list-item';
 
 import * as S from './ListItem.styles';
 import { RemoveIcon } from './ItemRemoveIcon';
@@ -18,22 +18,24 @@ const ItemRenderer =
 
     return (
       <S.ListItem>
-        <Menu.Item
+        <ListItem
           className="items-roll-list-item"
           highlight={highlight}
           onClick={onClick}
           style={style}
           suffixel={
             <S.SuffixelWrapper>
-              {suffixel}
-              {!!onItemRemove && (
-                <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
-              )}
+              <>
+                {suffixel}
+                {!!onItemRemove && (
+                  <RemoveIcon id={item.id} handleRemove={onItemRemove} tooltipLabel={tooltipLabel} group={group} />
+                )}
+              </>
             </S.SuffixelWrapper>
           }
         >
           {item.text}
-        </Menu.Item>
+        </ListItem>
       </S.ListItem>
     );
   };

@@ -12,6 +12,7 @@ export type BasicItemProps = {
   suffixel?: ReactNode | AddonRenderer;
   danger?: boolean;
   actions?: ReactNode;
+  children?: ReactNode;
   onClick?: MenuProps['onClick'];
   description?: ReactNode;
   copyable?: boolean;
@@ -31,4 +32,4 @@ export type BasicItemProps = {
   tooltipProps?: MenuItemProps['tooltipProps'];
   hoverTooltipProps?: MenuItemProps['hoverTooltipProps'];
   renderHoverTooltip?: MenuItemProps['renderHoverTooltip'];
-}
+};

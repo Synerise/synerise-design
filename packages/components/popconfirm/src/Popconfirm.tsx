@@ -53,7 +53,9 @@ const Popconfirm: PopconfirmType = ({
     }
   }, [visible, antdProps.visible]);
 
-  return disabled ? <>{antdProps.children}</> : (
+  return disabled ? (
+    <>{antdProps.children}</>
+  ) : (
     <AntdPopconfirm
       {...antdProps}
       disabled={disabled}
@@ -71,7 +73,9 @@ const Popconfirm: PopconfirmType = ({
             <S.PopconfirmContentWrapper>
               <S.PopconfirmHeaderWrapper>
                 {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
-                <S.PopconfirmTitle>{title}</S.PopconfirmTitle>
+                <S.PopconfirmTitle>
+                  <>{title}</>
+                </S.PopconfirmTitle>
               </S.PopconfirmHeaderWrapper>
               <S.PopconfirmTextWrapper>
                 {description && (

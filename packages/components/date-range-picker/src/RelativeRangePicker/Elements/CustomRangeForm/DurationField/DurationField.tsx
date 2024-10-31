@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
 import set from 'ramda/src/set';
@@ -19,7 +19,7 @@ const DurationField = ({
   texts,
 }: Props) => {
   const { duration } = currentRange;
-  React.useEffect(() => {
+  useEffect(() => {
     if (duration?.value < 1) {
       handleDurationValueChange(1);
     }

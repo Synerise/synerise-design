@@ -1,13 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useRef,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useImperativeHandle,
-  ReactText,
-} from 'react';
+import React, { useCallback, useState, useRef, forwardRef, useEffect, useMemo, useImperativeHandle, Key } from 'react';
 import type { CSSProperties, HTMLAttributes, Ref, ReactElement, UIEvent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import type { ListOnScrollProps } from 'react-window';
@@ -216,7 +207,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     (key: string, record: T) => {
       const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange, checkRowSelectionStatus } =
         selection as RowSelection<T>;
-      const handleChange = (keys: ReactText[], records: T[]) => {
+      const handleChange = (keys: Key[], records: T[]) => {
         if (isSticky && listScrollTopRef.current) {
           setIsHeaderVisible(true);
         }
@@ -665,4 +656,4 @@ type VirtualTableType = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERT
   p: VirtualTableProps<T> & { ref?: Ref<VirtualTableRef> }
 ) => ReactElement;
 
-export default forwardRef(VirtualTable) as VirtualTableType
+export default forwardRef(VirtualTable) as VirtualTableType;

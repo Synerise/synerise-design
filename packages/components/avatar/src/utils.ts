@@ -1,4 +1,4 @@
-import React from 'react';
+import { cloneElement, ReactElement, ReactNode } from 'react';
 import Icon from '@synerise/ds-icon';
 import selectColorByLetter, { ColorObject } from '@synerise/ds-utils/dist/selectColorByLetter/selectColorByLetter';
 
@@ -17,8 +17,8 @@ export function getUserText(user: UserAvatar, src: string | null = '', text: str
   return null;
 }
 
-export function isIconComponent(component: React.ReactNode | undefined): boolean {
-  return component ? (component as Function).name === Icon.name : false;
+export function isIconComponent(component: ReactNode | undefined): boolean {
+  return component ? (component as unknown as Function).name === Icon.name : false;
 }
 
 export function getObjectName(name: string | null = '', text = ''): string | null {
@@ -27,10 +27,10 @@ export function getObjectName(name: string | null = '', text = ''): string | nul
   return null;
 }
 
-export function addIconColor(iconComponent: React.ReactNode, color: string): React.ReactElement {
-  let iconElement = iconComponent as React.ReactElement;
+export function addIconColor(iconComponent: ReactNode, color: string): ReactElement {
+  let iconElement = iconComponent as ReactElement;
   if (iconElement && !iconElement?.props?.color) {
-    iconElement = React.cloneElement(iconElement, { color });
+    iconElement = cloneElement(iconElement, { color });
   }
   return iconElement;
 }

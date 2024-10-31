@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
@@ -11,7 +11,7 @@ import { SelectionCount, SelectionHint, AddButton } from '../../../Shared';
 import Grid from '../../../Shared/TimeWindow/Grid/Grid';
 import Day from '../../../Shared/TimeWindow/Day/Day';
 import * as S from '../../../RangeFilter.styles';
-import { MonthlyProps, MonthlySchedule, MonthlyScheduleDayValue } from './Monthly.types';
+import { MonthlyProps, MonthlySchedule } from './Monthly.types';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import { DayKey } from '../../../Shared/TimeWindow/TimeWindow.types';
@@ -53,8 +53,8 @@ const Monthly = ({
   errorTexts,
 }: MonthlyProps) => {
   const intl = useIntl();
-  const allTexts = React.useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
-  const defaultDayValue = React.useMemo(
+  const allTexts = useMemo(() => getDefaultTexts(intl, false, texts), [texts, intl]);
+  const defaultDayValue = useMemo(
     () => ({
       start: DEFAULT_RANGE_START,
       stop: DEFAULT_RANGE_END,
@@ -65,14 +65,14 @@ const Monthly = ({
     }),
     [valueSelectionMode]
   );
-  const [filteredSchedule, setFilteredSchedule] = React.useState<string[]>(Object.keys(value));
-  const [activeDays, setActiveDays] = React.useState<DayKey[]>([]);
-  const ref = React.useRef<HTMLDivElement>();
+  const [filteredSchedule, setFilteredSchedule] = useState<string[]>(Object.keys(value));
+  const [activeDays, setActiveDays] = useState<DayKey[]>([]);
+  const ref = useRef<HTMLDivElement>();
   const [controlKeyPressed, shiftKeyPressed] = useShiftAndControlKeys(ref);
 
   const { isSundayFirstWeekDay } = useDataFormat();
 
-  const allKeys = React.useMemo(() => {
+  const allKeys = useMemo(() => {
     if (periodType === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
       if (isSundayFirstWeekDay) {
         let keys: number[] = [];
@@ -86,7 +86,7 @@ const Monthly = ({
     return range(0, 31);
   }, [periodType, isSundayFirstWeekDay]);
 
-  const getGridSettings = (): Partial<GridProps> => {
+  const getGridSettings = () => {
     const settings = {
       [DAYS_OF_PERIOD_ENUM.DAY_OF_MONTH]: {
         numberOfDays: 31,
@@ -98,18 +98,17 @@ const Monthly = ({
         reverseGroup: 7,
         labelInverted: countedFrom === COUNTED_FROM_ENUM.ENDING,
         inverted: countedFrom === COUNTED_FROM_ENUM.ENDING,
-        rowLabelFormatter: (rowIndex: number): string =>
-          intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK[rowIndex]),
+        rowLabelFormatter: (rowIndex: number) => intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_NTH_WEEK[rowIndex]),
       },
     };
     return settings[periodType] as Partial<GridProps>;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setFilteredSchedule(Object.keys(value));
   }, [value]);
 
-  const removeEmptyEntries = React.useCallback(
+  const removeEmptyEntries = useCallback(
     (monthlySchedule: MonthlySchedule) => {
       const emptyEntries = Object.keys(monthlySchedule).filter(key => Object.keys(monthlySchedule[key]).length === 0);
       const scheduleToUpdate = monthlySchedule;
@@ -121,7 +120,7 @@ const Monthly = ({
     [onChange]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const entriesWithActiveDaysValue = activeDays.length
       ? Object.keys(value).filter(id =>
           activeDays.every(day => !!value[id][day] && haveActiveDaysCommonRange(value[id], activeDays))
@@ -131,8 +130,8 @@ const Monthly = ({
     setFilteredSchedule(entriesWithActiveDaysValue);
   }, [value, activeDays, removeEmptyEntries]);
 
-  const handleDayTimeChange = React.useCallback(
-    (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
+  const handleDayTimeChange = useCallback(
+    (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string) => {
       const updatedSchedule = value;
       const [start, end, inverted] = dayValue;
 
@@ -160,8 +159,8 @@ const Monthly = ({
     },
     [value, onChange]
   );
-  const getDayValue = React.useCallback(
-    (dayKey: DayKey, guid: string): MonthlyScheduleDayValue => {
+  const getDayValue = useCallback(
+    (dayKey: DayKey, guid: string) => {
       if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
         return value[guid][dayKey];
       }
@@ -170,8 +169,8 @@ const Monthly = ({
     [value, defaultDayValue]
   );
 
-  const handleModeChange = React.useCallback(
-    (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string): void => {
+  const handleModeChange = useCallback(
+    (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
       dayKeys.forEach(day => {
         updatedSchedule[guid][day] = {
@@ -184,8 +183,8 @@ const Monthly = ({
     [value, onChange]
   );
 
-  const handleRangeDelete = React.useCallback(
-    (guid: string, activeDaysArray): void => {
+  const handleRangeDelete = useCallback(
+    (guid: string, activeDaysArray: DayKey[]) => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
         delete updatedSchedule[guid][activeDay];
@@ -195,8 +194,8 @@ const Monthly = ({
     [value, onChange]
   );
 
-  const dayWeekFormatter = React.useCallback(
-    (dayKey: DayKey, long: boolean): string => {
+  const dayWeekFormatter = useCallback(
+    (dayKey: DayKey, long: boolean) => {
       const weekStartIndex = Math.floor((dayKey as number) / 7);
       const dayOfWeek = (dayKey as number) - weekStartIndex * 7;
       const weekday = intl.formatMessage(MONTHLY_SCHEDULER_INTL_KEYS_WEEKDAYS_LONG[dayOfWeek]);
@@ -206,16 +205,16 @@ const Monthly = ({
     [intl]
   );
 
-  const dayMonthFormatter = React.useCallback(
-    (dayKey: DayKey): string => {
+  const dayMonthFormatter = useCallback(
+    (dayKey: DayKey) => {
       const locale = intl.locale.substring(0, 2);
       return MONTH_DAYS(locale)[dayKey];
     },
     [intl]
   );
 
-  const dayFormatter = React.useCallback(
-    (dayKey: DayKey, long: boolean): React.ReactNode => {
+  const dayFormatter = useCallback(
+    (dayKey: DayKey, long: boolean) => {
       if (periodType === DAYS_OF_PERIOD_ENUM.DAY_OF_WEEK) {
         return dayWeekFormatter(dayKey, long);
       }
@@ -224,32 +223,32 @@ const Monthly = ({
     [periodType, dayWeekFormatter, dayMonthFormatter]
   );
 
-  const checkDay = React.useCallback((dayKey: DayKey): void => {
+  const checkDay = useCallback((dayKey: DayKey) => {
     setActiveDays([dayKey]);
   }, []);
 
-  const getDayLabel = React.useCallback(
-    (dayKey: DayKey, long?: boolean): string | object | React.ReactNode => {
+  const getDayLabel = useCallback(
+    (dayKey: DayKey, long?: boolean) => {
       return dayFormatter(dayKey, long || false);
     },
     [dayFormatter]
   );
 
-  const excludeDayFromActive = React.useCallback(
+  const excludeDayFromActive = useCallback(
     (dayKey: DayKey) => {
       setActiveDays(activeDays.filter(day => day !== dayKey));
     },
     [activeDays]
   );
 
-  const isDayRestricted = React.useCallback(
-    (dayKey: DayKey): boolean => {
+  const isDayRestricted = useCallback(
+    (dayKey: DayKey) => {
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value]
   );
 
-  const removeDaySelection = React.useCallback(
+  const removeDaySelection = useCallback(
     (dayKey: DayKey) => {
       const updatedSchedule = value;
       Object.keys(value).forEach(key => {
@@ -260,21 +259,21 @@ const Monthly = ({
     },
     [value, onChange, excludeDayFromActive]
   );
-  const uncheckActiveDay = React.useCallback(
-    (dayKey: DayKey): void => {
+  const uncheckActiveDay = useCallback(
+    (dayKey: DayKey) => {
       removeDaySelection(dayKey);
     },
     [removeDaySelection]
   );
-  const handleSelectAll = React.useCallback((): void => {
+  const handleSelectAll = useCallback(() => {
     setActiveDays(allKeys);
   }, [allKeys]);
-  const handleUnselectAll = React.useCallback((): void => {
+  const handleUnselectAll = useCallback(() => {
     setActiveDays([]);
   }, []);
 
-  const checkActiveDay = React.useCallback(
-    (dayKey: DayKey): void => {
+  const checkActiveDay = useCallback(
+    (dayKey: DayKey) => {
       if (!isDayRestricted(dayKey)) {
         checkDay(dayKey);
       }
@@ -292,8 +291,8 @@ const Monthly = ({
     [checkDay, isDayRestricted, activeDays, controlKeyPressed, shiftKeyPressed]
   );
 
-  const handleToggleDay = React.useCallback(
-    (dayKey: DayKey, forcedState?: boolean): void => {
+  const handleToggleDay = useCallback(
+    (dayKey: DayKey, forcedState?: boolean) => {
       if (typeof forcedState !== 'undefined') {
         if (controlKeyPressed && forcedState) {
           activeDays.includes(dayKey) ? excludeDayFromActive(dayKey) : checkActiveDay(dayKey);
@@ -307,8 +306,8 @@ const Monthly = ({
     [controlKeyPressed, activeDays, uncheckActiveDay, checkActiveDay, excludeDayFromActive]
   );
 
-  const renderDay = React.useCallback(
-    (dayKey: DayKey): JSX.Element => {
+  const renderDay = useCallback(
+    (dayKey: DayKey) => {
       const isActive = activeDays.includes(dayKey);
       return (
         <Day
@@ -329,7 +328,7 @@ const Monthly = ({
     [activeDays, getDayLabel, isDayRestricted, disabled, intl, handleToggleDay, removeDaySelection, allTexts]
   );
 
-  const handleRangeAdd = React.useCallback((): void => {
+  const handleRangeAdd = useCallback(() => {
     const updatedDay = {};
     const guid = Object.keys(value).find(key => activeDays.every(day => value[key][day] === undefined));
     activeDays.forEach(day => {
@@ -346,8 +345,8 @@ const Monthly = ({
     onChange(updatedSchedule);
   }, [value, activeDays, defaultDayValue, onChange]);
 
-  const renderGridTitle = React.useCallback(
-    count => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
+  const renderGridTitle = useCallback(
+    (count: number) => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
     [allTexts.selected]
   );
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
@@ -357,7 +356,7 @@ const Monthly = ({
     return activeDays.length === 1 && errorTexts && errorTexts[guid] && errorTexts[guid][activeDays[0]];
   };
   return (
-    <S.NewFilterContainer ref={ref as React.RefObject<HTMLDivElement>}>
+    <S.NewFilterContainer ref={ref as RefObject<HTMLDivElement>}>
       <Grid
         reverseGroup={0}
         onUnselectAll={handleUnselectAll}
@@ -381,18 +380,18 @@ const Monthly = ({
             errorTexts={getErrorTextsForFormRow(guid)}
             onChange={NOOP}
             key={`value-range-${guid}`}
-            onDayTimeChange={(dayValue, dayKey): void => {
+            onDayTimeChange={(dayValue, dayKey) => {
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
             texts={allTexts}
-            onMultipleDayTimeChange={(dates): void => handleDayTimeChange(dates, activeDays, guid)}
+            onMultipleDayTimeChange={dates => handleDayTimeChange(dates, activeDays, guid)}
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             getDayLabel={getDayLabel as any}
             activeDays={activeDays}
-            getDayValue={(dayKey: DayKey): MonthlyScheduleDayValue => getDayValue(dayKey, guid)}
-            onRangeDelete={disabled ? undefined : (): void => handleRangeDelete(guid, activeDays)}
-            onModeChange={(mode): void => handleModeChange(mode, activeDays, guid)}
+            getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}
+            onRangeDelete={disabled ? undefined : () => handleRangeDelete(guid, activeDays)}
+            onModeChange={mode => handleModeChange(mode, activeDays, guid)}
             valueSelectionModes={valueSelectionMode}
             hideHeader={index !== 0}
             renderSuffix={RENDER_EMPTY_NODE_FN}

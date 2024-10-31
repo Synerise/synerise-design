@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import Step from './Step/Step';
 
 export type StepperOrientation = 'vertical' | 'horizontal' | string;
@@ -16,6 +16,7 @@ export type StepperProps = {
   orientation?: StepperOrientation;
   style?: CSSProperties;
   size?: StepperSize;
+  children?: ReactNode;
 };
 
 export type StepperSubComponents = { Step: typeof Step };

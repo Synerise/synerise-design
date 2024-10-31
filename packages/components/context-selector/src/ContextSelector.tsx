@@ -8,7 +8,7 @@ import InformationCard from '@synerise/ds-information-card';
 import { getPopupContainer } from '@synerise/ds-utils';
 
 import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDropdown';
-import { ContextProps } from './ContextSelector.types';
+import { ContextGroup, ContextItem, ContextProps } from './ContextSelector.types';
 import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
 import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
 import { useTexts } from './hooks/useTexts';
@@ -73,14 +73,14 @@ const ContextSelector = ({
     setDropdownVisible(defaultDropdownVisibility ?? false);
   }, [defaultDropdownVisibility]);
   const handleChange = useCallback(
-    val => {
+    (val: ContextItem | ContextGroup) => {
       setDropdownVisible(false);
       onSelectItem(val);
     },
     [onSelectItem]
   );
   const handleOnSetGroup = useCallback(
-    val => {
+    (val: ContextItem | ContextGroup) => {
       onSetGroup && onSetGroup(val);
     },
     [onSetGroup]

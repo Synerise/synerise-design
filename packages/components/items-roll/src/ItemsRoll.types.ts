@@ -1,9 +1,9 @@
-import { ReactNode, CSSProperties, SVGProps } from 'react';
-import { IntlShape } from 'react-intl';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { ReactNode, CSSProperties, SVGProps } from 'react';
+import type { IntlShape } from 'react-intl';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
-export type ItemRollElement = MenuItemProps & {
+export type ItemRollElement = ListItemProps & {
   id: string;
   group?: string;
 };
@@ -47,7 +47,7 @@ export type ItemsRollProps = {
   style?: CSSProperties;
   showMoreStep?: number;
   texts?: {
-    [k in Texts]?: string | ReactNode;
+    [k in Texts]?: ReactNode;
   };
   useFooter?: boolean;
   useVirtualizedList?: boolean;
