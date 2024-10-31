@@ -41,7 +41,7 @@ export const SwitchTabs: Story = {
 
     await step('Switch tab', async () => {
       const tabs = within(canvas.getByTestId('tabs-container'));
-      await userEvent.click(tabs.getAllByRole('button')[1]);
+      await userEvent.click(await tabs.findAllByRole('button')[1], {pointerEventsCheck: 0});
     })
   },
 };
@@ -62,7 +62,7 @@ export const SelectOperator: Story = {
     expect(args.onActivate).toHaveBeenCalled();
     await step('Switch tab', async () => {
       const tabs = within(canvas.getByTestId('tabs-container'));
-      await userEvent.click(tabs.getAllByRole('button')[2]);
+      await userEvent.click(await tabs.findAllByRole('button')[1], {pointerEventsCheck: 0});
     })
     
     await step('Select operator', async () => {

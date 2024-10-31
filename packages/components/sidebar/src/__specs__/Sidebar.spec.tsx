@@ -2,8 +2,7 @@ import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Sidebar from "../index";
 import SidebarWithButton from '../../dist/SidebarWithButton/SidebarWithButton';
-import { fireEvent, prettyDOM } from '@testing-library/dom';
-import { screen, render } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 
 describe('Sidebar', () => {
   const HEADER_1 = 'header first';

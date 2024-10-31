@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FixedSizeList } from 'react-window';
 
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
@@ -14,7 +14,7 @@ import { ListProps } from './List.types';
 export const itemsInGroup = (group: string, items: ItemRollElement[]): ItemRollElement[] =>
   items.filter(item => item.group === group);
 
-const List: React.FC<ListProps> = ({
+const List = ({
   groups,
   items,
   onItemClick,
@@ -26,7 +26,53 @@ const List: React.FC<ListProps> = ({
   visibleItems,
   virtualizedRowHeight = 32,
   virtualizedRowWidth,
-}) => {
+}: ListProps) => {
+  const groupedList = useMemo(() => {
+    return (
+      <Menu>
+        {groups?.map(group => {
+          const groupItems = itemsInGroup(group, visibleItems);
+
+          return groupItems.length > 0 ? (
+            // @ts-ignore
+            <Menu.ItemGroup key={group} title={group}>
+              {groupItems.map(item => (
+                <ItemElement
+                  group={group}
+                  key={item.id}
+                  highlight={searchValue}
+                  onItemClick={onItemClick}
+                  onItemRemove={onItemRemove}
+                  item={item}
+                  removeTooltipLabel={removeTooltipLabel}
+                />
+              ))}
+            </Menu.ItemGroup>
+          ) : null;
+        })}
+      </Menu>
+    );
+  }, [groups, onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
+
+  const standardList = useMemo(() => {
+    return (
+      <div>
+        {visibleItems.map(item => (
+          <ItemElement
+            key={item.id}
+            highlight={searchValue}
+            item={item}
+            onItemClick={onItemClick}
+            onItemRemove={onItemRemove}
+            removeTooltipLabel={removeTooltipLabel}
+          />
+        ))}
+      </div>
+    );
+  }, [onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
+
+  const finalItems = groups ? groupedList : standardList;
+
   return visibleItems.length === 0 ? (
     <S.NoResults>
       <S.NoResultIconWrapper>
@@ -37,7 +83,7 @@ const List: React.FC<ListProps> = ({
   ) : (
     <S.ListWrapper>
       {useVirtualizedList && !groups ? (
-        <Menu data-testid="items-roll-virtualized-list">
+        <div data-testid="items-roll-virtualized-list">
           <FixedSizeList
             height={visibleItems.length * virtualizedRowHeight}
             itemData={items}
@@ -52,41 +98,9 @@ const List: React.FC<ListProps> = ({
               tooltipLabel: removeTooltipLabel,
             })}
           </FixedSizeList>
-        </Menu>
+        </div>
       ) : (
-        <Menu>
-          {groups
-            ? groups.map(group => {
-                const groupItems = itemsInGroup(group, visibleItems);
-
-                return groupItems.length > 0 ? (
-                  // @ts-ignore
-                  <Menu.ItemGroup key={group} title={group}>
-                    {groupItems.map(item => (
-                      <ItemElement
-                        group={group}
-                        key={item.id}
-                        highlight={searchValue}
-                        onItemClick={onItemClick}
-                        onItemRemove={onItemRemove}
-                        item={item}
-                        removeTooltipLabel={removeTooltipLabel}
-                      />
-                    ))}
-                  </Menu.ItemGroup>
-                ) : null;
-              })
-            : visibleItems.map(item => (
-                <ItemElement
-                  key={item.id}
-                  highlight={searchValue}
-                  item={item}
-                  onItemClick={onItemClick}
-                  onItemRemove={onItemRemove}
-                  removeTooltipLabel={removeTooltipLabel}
-                />
-              ))}
-        </Menu>
+        finalItems
       )}
     </S.ListWrapper>
   );

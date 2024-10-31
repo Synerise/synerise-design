@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Table from '../index';
-import { fireEvent, screen, getByRole, waitFor } from '@testing-library/react';
+import { fireEvent, screen, getByRole, waitFor, render } from '@testing-library/react';
 import { Grid2M } from '@synerise/ds-icon';
 
 const props = {

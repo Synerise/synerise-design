@@ -60,17 +60,17 @@ export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
     const canvas = within(canvasElement);
     await step('open parameter dropdown', async () => {
       const parameterDropdownTrigger = canvas.getByText('Parameter');
-      await sleep(500);
+      // await sleep(500);
       await userEvent.click(parameterDropdownTrigger);
 
       return await waitFor(() => expect(canvas.getByPlaceholderText('Search')).toBeInTheDocument());
     });
     await step('select new factor type', async () => {
       await waitFor(() => expect(canvas.getByText('Points')).not.toHaveStyle({ pointerEvents: 'none' }));
-      await sleep(500);
+      // await sleep(500);
       return await userEvent.click(canvas.getByText('Points'));
     });
-    await sleep(500);
+    // await sleep(500);
     await waitFor(() => expect(args.onChangeValue).toHaveBeenCalledOnce());
   },
 };
@@ -140,6 +140,6 @@ export const DateRangePickerOpen: StoryObj<FactorsProps> = {
   const canvas = within(canvasElement.parentElement!);
     await userEvent.click(await canvas.findByText('Start date'));
     await waitFor(() => expect(canvas.getByRole('tooltip')).toBeInTheDocument());
-    await sleep(1000);
+    // await sleep(1000);
   },
 };

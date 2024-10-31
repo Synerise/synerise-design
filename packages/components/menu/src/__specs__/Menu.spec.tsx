@@ -1,13 +1,12 @@
 import React from 'react';
-import { fireEvent, prettyDOM } from '@testing-library/dom';
-import { RenderResult, screen } from '@testing-library/react';
+import { RenderResult, screen, fireEvent } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { theme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';
-import { MenuItemProps, TriggerHandle } from '../Elements/Item/MenuItem.types';
+import { MenuItemProps } from '../Elements/Item/MenuItem.types';
 
 describe('Simple menu', () => {
   const data = [

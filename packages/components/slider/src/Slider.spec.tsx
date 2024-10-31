@@ -1,7 +1,6 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, screen, prettyDOM } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import { defaultColorsOrder, theme } from '@synerise/ds-core';
 import Slider from './index';

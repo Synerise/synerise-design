@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { cleanup, fireEvent, screen } from '@testing-library/react';
+import { cleanup, fireEvent, screen, within } from '@testing-library/react';
 
 import ItemsRoll from '../ItemsRoll';
 import { propsFactory, ACTIONS, ITEM_TEXT } from './utils';
@@ -65,11 +65,11 @@ describe('ItemsRoll', () => {
 
     fireEvent.click(actionMenuTrigger);
 
-    const actionMenu = screen.getByTestId('items-roll-action-menu') as HTMLElement;
+    const actionMenu = await screen.findByTestId('items-roll-action-menu') as HTMLElement;
 
     expect(await screen.findByText('Import')).toBeInTheDocument();
     expect(await screen.findByText('Export')).toBeInTheDocument();
-    expect(actionMenu.querySelectorAll('li').length).toBe(2);
+    expect(within(actionMenu).getAllByRole('menuitem').length).toBe(2);
   });
 
   it('renders without change selection when onChangeSelection is NOT provided', () => {

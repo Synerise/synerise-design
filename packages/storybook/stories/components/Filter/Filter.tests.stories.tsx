@@ -11,7 +11,7 @@ import { OPERATORS_ITEMS } from '../Operators/data/index.data';
 
 import { sleep } from '../../utils';
 
-const SLEEP_TIME = 300;
+// const SLEEP_TIME = 10;
 
 export default {
   ...StoriesMeta,
@@ -59,10 +59,10 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getByText(FILTER_TEXTS.addFilter));
       await waitFor(() => expect(canvas.findAllByText(CONTEXT_ITEM.name)));
       await waitFor(() => expect(canvas.getAllByText(CONTEXT_ITEM.name)[0]).not.toHaveStyle({ pointerEvents: 'none' }));
-      await sleep(SLEEP_TIME);
+      // await sleep(SLEEP_TIME);
       await userEvent.click(canvas.getAllByText(CONTEXT_ITEM.name)[0]);
     });
-    await sleep(SLEEP_TIME);
+    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onAddStep).toHaveBeenCalled());
 
     await step('Select parameter', async () => {
@@ -75,7 +75,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText(PARAMETER_ITEM.name)[0]);
     });
 
-    await sleep(SLEEP_TIME);
+    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalled());
 
     const operatorsDropdown = await canvas.findByTestId('ds-operators-dropdown-wrapper');
@@ -90,7 +90,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(within(operatorsDropdown).getAllByTestId('tab-container')[2]);
     });
 
-    await sleep(SLEEP_TIME);
+    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalled());
 
     await step('Select operator', async () => {
@@ -101,7 +101,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText(OPERATOR_ITEM.name)[0]);
     });
 
-    await sleep(SLEEP_TIME);
+    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalled());
 
     await step('Select factor type', async () => {
@@ -112,7 +112,7 @@ export const PopulateFilter: FilterStory = {
       await userEvent.click(canvas.getAllByText('Parameter')[0]);
     });
 
-    await sleep(SLEEP_TIME);
+    // await sleep(SLEEP_TIME);
     await waitFor(() => expect(args.onExpressionStepChange).toHaveBeenCalled());
 
     await step('Select factor parameter', async () => {

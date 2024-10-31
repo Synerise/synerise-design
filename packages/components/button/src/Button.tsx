@@ -26,17 +26,16 @@ const Button = ({
   const [rippleClassName, setRippleClassName] = useState('');
   const [pressed, setPressed] = useState<boolean>(false);
 
-  // @ts-expect-error TS7030: Not all code paths return a value
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
+    let rippleAnimation: ReturnType<typeof setTimeout>;
     if (rippleClassName !== '') {
-      const rippleAnimation = setTimeout(() => {
+      rippleAnimation = setTimeout(() => {
         setRippleClassName('');
       }, S.RIPPLE_ANIMATION_TIME - RIPPLE_ANIMATION_OFFSET);
-      return () => {
-        clearTimeout(rippleAnimation);
-      };
     }
+    return () => {
+      rippleAnimation && clearTimeout(rippleAnimation);
+    };
   }, [rippleClassName]);
 
   const handleClick = (event: MouseEvent<HTMLElement>): void => {

@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 
 import { DSProvider } from '@synerise/ds-core';
 import { getDataFormatConfigFromNotation, DataFormatNotationType } from '@synerise/ds-data-format';
+import { NOOP } from '../../index';
 
 import { NOOP } from '../../index';
 
 type Options = Omit<RenderOptions, 'queries'>;
 
 const renderWithProvider = (
-  node: React.ReactElement,
+  node: ReactNode,
   options?: Options,
   props?: {
     locale?: string;
@@ -18,8 +19,7 @@ const renderWithProvider = (
 ): RenderResult => {
   const rendered = render(
     <DSProvider
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      onError={() => {}}
+      onError={NOOP}
       locale={props?.locale ?? undefined}
       onErrorIntl={NOOP}
       {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
@@ -30,7 +30,7 @@ const renderWithProvider = (
   );
   return {
     ...rendered,
-    rerender: (ui: React.ReactElement, opt?: Options): RenderResult =>
+    rerender: (ui: ReactNode, opt?: Options): RenderResult =>
       renderWithProvider(ui, { container: rendered.container, ...opt }),
   };
 };

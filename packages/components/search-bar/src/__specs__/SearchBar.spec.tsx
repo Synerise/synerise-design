@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import SearchBar from './../SearchBar';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
 import { waitFor } from '@testing-library/react';
 
 describe('SearchBar', () => {

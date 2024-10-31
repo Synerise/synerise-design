@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen, waitFor, wait } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { ViewMeta } from '../ColumnManager.types';
 import ColumnManager from '../ColumnManager';
@@ -269,12 +269,10 @@ describe('ColumnManager', () => {
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    renderWithProvider(
-      COLUMN_MANAGER(true, hide, save, apply, '')
-    );
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     fireEvent.click(screen.getByText('Save view'));
-    await waitFor(async() => expect(await screen.findByPlaceholderText('Name')).toBeInTheDocument())
+    await waitFor(async () => expect(await screen.findByPlaceholderText('Name')).toBeInTheDocument());
 
     const nameInput = screen.getByPlaceholderText('Name');
     const modalApply = screen.getByTestId('ds-modal-apply');
@@ -297,7 +295,7 @@ describe('ColumnManager', () => {
     const modalApply = screen.getByTestId('ds-modal-apply');
 
     fireEvent.click(modalApply);
-    await waitFor(async () => expect(await screen.findByText('Must not be empty')))
+    await waitFor(async () => expect(await screen.findByText('Must not be empty')));
 
     const errorMessage = screen.getByText('Must not be empty');
 
@@ -326,11 +324,13 @@ describe('ColumnManager', () => {
     const firstItem = visibleColumns[0];
     const firstSwitch = firstItem.querySelector('.ant-switch');
     firstSwitch && fireEvent.click(firstSwitch);
-    await wait();
-    const hiddenColumns = screen.queryAllByTestId('ds-column-manager-hidden-item');
+    await waitFor(() => {
+      const hiddenColumns = screen.queryAllByTestId('ds-column-manager-hidden-item');
+      expect(hiddenColumns.length).toBe(3);
+    });
+
     visibleColumns = screen.queryAllByTestId('ds-column-manager-visible-item');
 
-    expect(hiddenColumns.length).toBe(3);
     expect(visibleColumns.length).toBe(1);
   });
 
@@ -341,10 +341,10 @@ describe('ColumnManager', () => {
     renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'City' } });
-    await wait();
-    const filteredColumns = screen.queryAllByTestId('ds-column-manager-filtered-item');
-
-    expect(filteredColumns.length).toBe(1);
+    await waitFor(() => {
+      const filteredColumns = screen.queryAllByTestId('ds-column-manager-filtered-item');
+      expect(filteredColumns.length).toBe(1);
+    });
   });
 
   it('should show ItemFilter component', async () => {
@@ -354,8 +354,6 @@ describe('ColumnManager', () => {
     renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
     fireEvent.click(screen.getByTestId('ds-column-manager-show-filters'));
-    await wait();
-
-    expect(screen.getByText('Item filter')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Item filter')).toBeTruthy());
   });
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import dayjs from 'dayjs';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { DSProvider } from '@synerise/ds-core';
 import { useDataFormat, DataFormatNotationType } from '@synerise/ds-data-format';

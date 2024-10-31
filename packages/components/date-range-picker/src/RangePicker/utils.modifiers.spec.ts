@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import { getModifiers } from './utils';
 
 describe('DateRangePicker modifiers', () => {

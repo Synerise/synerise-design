@@ -121,7 +121,6 @@ const stories = {
             <Menu.Item
               highlight={value}
               style={{ paddingLeft: '12px' }}
-              onItemHover={NOOP}
               prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
@@ -135,14 +134,14 @@ const stories = {
           tooltip: recentTooltip,
           title: recentTitle,
           rowHeight: 32,
-          itemRender: item => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item>{item && item.text}</Menu.Item>,
         }}
         suggestions={boolean('Show suggestions', true) ? suggestions : []}
         suggestionsDisplayProps={{
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: item => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
@@ -199,7 +198,6 @@ const stories = {
           itemRender: item => (
             <Menu.Item
               style={{ paddingLeft: '12px' }}
-              onItemHover={NOOP}
               prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
             >
               {item && item.text}
@@ -214,7 +212,7 @@ const stories = {
           title: recentTitle,
           rowHeight: 50,
           itemRender: item => (
-            <Menu.Item onItemHover={NOOP} {...item} style={{ paddingLeft: '12px' }}>
+            <Menu.Item {...item} style={{ paddingLeft: '12px' }}>
               {item.text}
             </Menu.Item>
           ),
@@ -224,7 +222,7 @@ const stories = {
           tooltip: suggestionsTooltip,
           title: suggestionsTitle,
           rowHeight: 32,
-          itemRender: item => <Menu.Item onItemHover={NOOP}>{item && item.text}</Menu.Item>,
+          itemRender: item => <Menu.Item>{item && item.text}</Menu.Item>,
         }}
         textLookupConfig={{
           parameters: 'text',
