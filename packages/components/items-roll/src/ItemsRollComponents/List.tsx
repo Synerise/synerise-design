@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { FixedSizeList } from 'react-window';
 
 import Icon, { SearchNoResultsM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import { GroupItem } from '@synerise/ds-list-item';
 
 import ItemElement from './ListItem';
 import ItemRenderer from './VirtualizedListItem';
@@ -29,13 +29,13 @@ const List = ({
 }: ListProps) => {
   const groupedList = useMemo(() => {
     return (
-      <Menu>
+      <>
         {groups?.map(group => {
           const groupItems = itemsInGroup(group, visibleItems);
 
           return groupItems.length > 0 ? (
             // @ts-ignore
-            <Menu.ItemGroup key={group} title={group}>
+            <GroupItem key={group} title={group}>
               {groupItems.map(item => (
                 <ItemElement
                   group={group}
@@ -47,16 +47,16 @@ const List = ({
                   removeTooltipLabel={removeTooltipLabel}
                 />
               ))}
-            </Menu.ItemGroup>
+            </GroupItem>
           ) : null;
         })}
-      </Menu>
+      </>
     );
   }, [groups, onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
 
   const standardList = useMemo(() => {
     return (
-      <div>
+      <>
         {visibleItems.map(item => (
           <ItemElement
             key={item.id}
@@ -67,7 +67,7 @@ const List = ({
             removeTooltipLabel={removeTooltipLabel}
           />
         ))}
-      </div>
+      </>
     );
   }, [onItemClick, onItemRemove, removeTooltipLabel, searchValue, visibleItems]);
 

@@ -209,7 +209,6 @@ export const RawDateRangePicker = ({
 
   useEffect(() => {
     if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
-      console.log('HOW DID I GET HERE?', JSON.stringify(value));
       const { to, from } = normalizeRange(value);
       setLocalValue({
         ...value,

@@ -78,7 +78,7 @@ export const SelectOperator: Story = {
 };
 
 export const SearchForOperator: Story = {
-  play: async ({ args, canvasElement, step }) => {
+  play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
     await userEvent.click(canvas.getByText(args.texts?.buttonLabel || OPERATORS_TEXTS.buttonLabel));
