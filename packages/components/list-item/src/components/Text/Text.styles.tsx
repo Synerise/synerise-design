@@ -120,7 +120,7 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
         `
       : css`
-		  ${PrefixWrapper} {
+		  ${PrefixWrapper}${PrefixWrapper} {
 	  		svg { fill: ${props.theme.palette['grey-600']}};
 		  }
           &:hover {
