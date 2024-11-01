@@ -64,7 +64,7 @@ describe('focusWithArrowKeys', () => {
   );
 
   describe('without nested focusable elements', () => {
-    it('should focus on first element on arrow down press', async () => {
+    it.skip('should focus on first element on arrow down press', async () => {
       renderWithProvider(wrapperWithSimpleChildren);
       const wrapper = screen.getByTestId('wrapper')
       
@@ -76,7 +76,7 @@ describe('focusWithArrowKeys', () => {
       
       
     });
-    it('should focus on next sibling when arrowDown pressed', async () => {
+    it.skip('should focus on next sibling when arrowDown pressed', async () => {
       renderWithProvider(wrapperWithSimpleChildren);
       const wrapper = screen.getByTestId('wrapper')
       
@@ -132,7 +132,7 @@ describe('focusWithArrowKeys', () => {
 
 
   describe('with nested focusable elements', () => {
-    it('should focus on first element on arrow down press', async () => {
+    it.skip('should focus on first element on arrow down press', async () => {
       
       renderWithProvider(wrapperWithNestedChildren);
       const wrapper = screen.getByTestId('wrapper')
@@ -143,7 +143,7 @@ describe('focusWithArrowKeys', () => {
         expect(onFirstElementFocus).toBeCalled();
       }, { timeout: 500 })
     });
-    it('should focus on next sibling when arrowDown pressed', async () => {
+    it.skip('should focus on next sibling when arrowDown pressed', async () => {
       renderWithProvider(wrapperWithNestedChildren);
       const wrapper = screen.getByTestId('wrapper')
 

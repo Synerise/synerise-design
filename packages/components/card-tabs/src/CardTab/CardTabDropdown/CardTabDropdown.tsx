@@ -3,7 +3,6 @@ import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Icon, { OptionVerticalM, EditM, DuplicateM, TrashM } from '@synerise/ds-icon';
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
-import { theme } from '@synerise/ds-core';
 
 import * as S from '../CardTab.styles';
 import { CardTabDropdownProps } from './CardTabDropdown.types';
@@ -71,7 +70,6 @@ const CardTabDropdown = ({ editNameHandler, duplicateHandler, removeHandler, tex
           }}
           data-testid="ds-card-tabs-contextmenu"
           component={<OptionVerticalM />}
-          color={theme.palette['grey-600']}
         />
       </Dropdown>
     </S.CardTabSuffix>
