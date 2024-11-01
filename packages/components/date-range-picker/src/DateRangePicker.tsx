@@ -2,6 +2,8 @@ import React, { useCallback, useState, useRef, useMemo, useEffect } from 'react'
 import { isEqual } from 'lodash';
 import './style/index.less';
 import { useIntl } from 'react-intl';
+import { Popover } from 'antd';
+
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { DateRangePickerProps } from './DateRangePicker.types';
@@ -37,7 +39,6 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
-  
 
   useEffect(() => {
     if (!isEqual(selectedRange, selectedDate)) {
@@ -74,7 +75,6 @@ const DateRangePicker = (props: DateRangePickerProps) => {
     },
     [defaultValue, onApply]
   );
-  
 
   const conditionalVisibilityProps = {
     ...(popupVisible === false && { visible: false }),
@@ -99,7 +99,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
   return (
     <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
-      <S.PopoverWrapper
+      <Popover
         content={
           <RawDateRangePicker
             {...props}
@@ -128,7 +128,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         {...conditionalVisibilityProps}
       >
         {triggerElement}
-      </S.PopoverWrapper>
+      </Popover>
     </S.PickerWrapper>
   );
 };

@@ -29,7 +29,7 @@ const FactorValue = ({
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
     if (!selectedFactor) {
-      return <></>;
+      return undefined;
     }
     const InputComponent: React.ElementType = selectedFactor.input;
 

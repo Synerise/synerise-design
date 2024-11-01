@@ -43,7 +43,7 @@ const FactorTypeSelector = ({
       data-testid="ds-factors-type-selector"
       readOnly={readOnly}
     >
-      <Icon component={selectedFactor?.icon} />
+      <Icon component={selectedFactor.icon} />
     </S.TriggerButton>
   );
 

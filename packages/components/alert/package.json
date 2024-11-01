@@ -46,6 +46,6 @@
     "@synerise/ds-core": "*",
     "antd": "4.24.0",
     "react": ">=16.9.0 <= 18.3.1",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   }
 }

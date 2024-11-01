@@ -47,7 +47,7 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 18.3.1",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@svgr/core": "^5.4.0",
