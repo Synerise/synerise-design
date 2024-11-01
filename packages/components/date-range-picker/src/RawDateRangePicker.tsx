@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useMemo, useCallback, useEffect } from 'react';
+import React, { ReactNode, useState, useMemo, useCallback } from 'react';
 import { omitBy, isUndefined } from 'lodash';
 import { useIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
@@ -6,7 +6,7 @@ import fnsStartOfSecond from 'date-fns/startOfSecond';
 import { legacyParse } from '@date-fns/upgrade/v2';
 import { Container, Separator, Addon, PopupWrapper } from './DateRangePicker.styles';
 import RangePicker from './RangePicker/RangePicker';
-import { RELATIVE, ABSOLUTE, MODES } from './constants';
+import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
 import * as CONST from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
 import type { DateRangePickerProps, AddonType } from './DateRangePicker.types';
@@ -70,13 +70,13 @@ type RawDateRangePickerProps = DateRangePickerProps & {
 };
 
 export const RawDateRangePicker = ({
-  showRelativePicker,
+  showRelativePicker = true,
   showFilter,
   showTime,
   format,
   valueFormatOptions,
   disabledDate,
-  validate,
+  validate = (): { valid: boolean } => ({ valid: true }),
   forceAdjacentMonths,
   savedFilters,
   onFilterSave,
@@ -89,14 +89,14 @@ export const RawDateRangePicker = ({
   showNowButton = true,
   alignContentToTop,
   relativeFuture,
-  relativePast,
-  ranges,
+  relativePast = true,
+  ranges = [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
   relativeModes,
   rangeUnits,
   showCustomRange,
-  valueTransformer,
+  valueTransformer = defaultValueTransformer,
   onValueChange,
-  isTruncateMs,
+  isTruncateMs = true,
   forceAbsolute,
   onApply,
   texts,
@@ -207,18 +207,17 @@ export const RawDateRangePicker = ({
     setMode(updatedMode);
   }, [mode]);
 
-  useEffect(() => {
-    if (value && value.type === 'RELATIVE' && (!value.from || !value.to)) {
-      const { to, from } = normalizeRange(value);
-      setLocalValue({
-        ...value,
+  const fullValue = useMemo(() => {
+    if (localValue && localValue.type === 'RELATIVE' && (!localValue.from || !localValue.to)) {
+      const { to, from } = normalizeRange(localValue);
+      return {
+        ...localValue,
         from,
         to,
-      });
+      };
     }
-  }, [value]);
-
-  const { from, to, key } = localValue;
+    return localValue;
+  }, [localValue]);
 
   const addons = useMemo(() => {
     const result: AddonType[] = [];
@@ -307,6 +306,7 @@ export const RawDateRangePicker = ({
       </Container>
     );
   } else {
+    const { from, to, key } = localValue;
     const validator = validate ? validate(localValue) : { valid: true };
     const isValidAbsolute = !Object.keys(localValue).includes('key') && Boolean(from && to);
 
@@ -349,7 +349,7 @@ export const RawDateRangePicker = ({
           message={!validator.valid ? validator.message : null}
           onSwitchMode={handleSwitchMode}
           texts={allTexts}
-          value={localValue}
+          value={fullValue}
           showTime={showTime}
           format={format}
           valueFormatOptions={valueFormatOptions}
