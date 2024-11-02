@@ -1,6 +1,7 @@
 import '@formatjs/intl-relativetimeformat/polyfill';
 import '@formatjs/intl-pluralrules/polyfill';
 
+import '@testing-library/jest-dom/jest-globals';
 import '@testing-library/jest-dom'
 
 import '../__mocks__/resizeObserverMock';

@@ -208,7 +208,7 @@ const RangeForm = ({
     ) : null;
 
   return (
-    <S.Container>
+    <S.Container data-testid="range-filter-form">
       <S.Row justifyContent="flex-start" mode={rangeDisplayMode}>
         {rangeDisplayMode !== RANGE_DISPLAY_MODES.SLIDER && limitModeSelect()}
         {mode === FORM_MODES.HOUR ? singleHourPicker() : renderRangeUI()}

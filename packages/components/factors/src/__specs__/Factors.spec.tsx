@@ -4,7 +4,7 @@ import Factors from './../Factors';
 import { FactorsProps, FactorType, FactorValueType } from '../Factors.types';
 import { FACTORS_GROUPS, FACTORS_ITEMS, FACTORS_TEXTS } from './data/Factors.data';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, prettyDOM, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const DEFAULT_PROPS: FactorsProps = {
@@ -32,11 +32,10 @@ const DEFAULT_PROPS: FactorsProps = {
 const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
 describe('Factors component', () => {
-
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
   });
-  
+
   test('Should render', () => {
     const { container } = renderWithProvider(RENDER_FACTORS());
 
@@ -81,9 +80,7 @@ describe('Factors component', () => {
   });
 
   test('Should display list of factor types, without excluded ones', () => {
-    const { container } = renderWithProvider(
-      RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] })
-    );
+    const { container } = renderWithProvider(RENDER_FACTORS({ unavailableFactorTypes: ['number', 'formula'] }));
     const factorsTypeSelector = container.querySelector('.ds-factors-type-selector');
 
     factorsTypeSelector && fireEvent.click(factorsTypeSelector);
@@ -122,9 +119,7 @@ describe('Factors component', () => {
   });
   test('should call onDeactivate Parameter factor', () => {
     const handleDeactivate = jest.fn();
-    renderWithProvider(
-      RENDER_FACTORS({ selectedFactorType: 'parameter', onDeactivate: handleDeactivate })
-    );
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'parameter', onDeactivate: handleDeactivate }));
 
     userEvent.click(screen.getByText('Parameter'));
     userEvent.click(document.body);
@@ -133,9 +128,7 @@ describe('Factors component', () => {
   });
   test('should call onDeactivate Text factor', () => {
     const handleDeactivate = jest.fn();
-    renderWithProvider(
-      RENDER_FACTORS({ selectedFactorType: 'text', onDeactivate: handleDeactivate })
-    );
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'text', onDeactivate: handleDeactivate }));
 
     fireEvent.focus(screen.getByPlaceholderText('Value'));
     fireEvent.blur(screen.getByPlaceholderText('Value'));
@@ -143,23 +136,17 @@ describe('Factors component', () => {
     expect(handleDeactivate).toBeCalled();
   });
   test('should render dateRange factor with date filter with slider UI', async () => {
-    renderWithProvider(
-      RENDER_FACTORS({ selectedFactorType: 'dateRange' })
-    );
+    renderWithProvider(RENDER_FACTORS({ selectedFactorType: 'dateRange' }));
 
-    userEvent.click(screen.getByText('Start date'));
+    userEvent.click(await screen.findByText('Start date'));
+    userEvent.click(await screen.findByText('Today'));
+    await waitFor(async () => expect(screen.getByText('Select date filter').closest('button')).not.toBeDisabled());
     
-    const todayBtn = screen.getByText('Today')
-    expect(todayBtn).toBeInTheDocument();
-    userEvent.click(todayBtn);
-
-    const filterAdd = await screen.findByText('Select date filter');
-    expect(filterAdd).toBeInTheDocument();
-    userEvent.click(filterAdd);
-
-    const slider = screen.getAllByRole('slider');
+    userEvent.click(screen.getByText('Select date filter'));
+    
+    const rangeForm = await screen.findByTestId('range-filter-form');
+    const slider = await within(rangeForm).findAllByRole('slider');
     expect(slider.length).toBe(2);
-
   });
   test.todo('should show tooltip on mousehover on selected parameter');
   test.todo('the type of autocomplete should allow autosizing');

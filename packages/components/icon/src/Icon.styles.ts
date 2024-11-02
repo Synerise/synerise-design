@@ -18,7 +18,7 @@ export const IconContainer = styled.div<Props>`
       height: ${props.size || defaultSize}px;
       color: inherit;
 
-    &&& svg {
+    svg {
       display: block;
       ${
         props.color &&

@@ -252,7 +252,7 @@ export const RawDateRangePicker = ({
     }
     if (showFilter) {
       const addonKey = 'filter';
-      const filterEnabled = (localValue.from && localValue.to) || isLifetime(localValue);
+      const filterEnabled = (fullValue.from && fullValue.to) || isLifetime(fullValue);
       const label = localValue?.filter ? allTexts.filterEnabled : allTexts.selectDateFilter;
       result.push({
         content: (
@@ -284,6 +284,7 @@ export const RawDateRangePicker = ({
     valueTransformer,
     visibleAddonKey,
     handleAddonCollapse,
+    fullValue,
     handleRemoveFilterClick,
     handleModalOpenClick,
   ]);
@@ -359,7 +360,12 @@ export const RawDateRangePicker = ({
     );
   }
   return (
-    <PopupWrapper alignContentToTop={alignContentToTop} hasFilter={showFilter} hasRelativePicker={showRelativePicker}>
+    <PopupWrapper
+      data-testid="date-range-picker-container"
+      alignContentToTop={alignContentToTop}
+      hasFilter={showFilter}
+      hasRelativePicker={showRelativePicker}
+    >
       {content}
     </PopupWrapper>
   );

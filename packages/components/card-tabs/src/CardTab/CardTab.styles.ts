@@ -160,7 +160,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     border-style: solid;
   }
 
-  ${CardSuffixWrapper}${CardSuffixWrapper} {
+  ${CardSuffixWrapper} {
     svg {
       color: ${({ theme, active }): string => {
         if (active) return theme.palette.white;
@@ -173,7 +173,7 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
     }
   }
 
-  ${CardTabSuffix}${CardTabSuffix} {
+  ${CardTabSuffix} {
     svg {
       color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])} !important;
       fill: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])} !important;
@@ -183,25 +183,6 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
         color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['red-600'])} !important;
         fill: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['red-600'])} !important;
       }
-    }
-  }
-
-  ${CardIconPrefix}${CardIconPrefix} {
-    svg {
-      color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
-      fill: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
-    }
-  }
-  ${CardDragPrefix}${CardDragPrefix} {
-    svg {
-      color: ${({ theme, active }): string => {
-        if (active) return theme.palette.white;
-        return theme.palette['grey-600'];
-      }};
-      fill: ${({ theme, active }): string => {
-        if (active) return theme.palette.white;
-        return theme.palette['grey-600'];
-      }};
     }
   }
 
@@ -259,14 +240,14 @@ export const CardTabContainer = styled.div<CardTabContainerProps>`
         fill: ${({ theme, active }): string => {
           if (active) return theme.palette.white;
           return theme.palette['grey-600'];
-        }};
+        }} !important;
       }
     }
 
     ${CardDotPrefix} {
       display: ${(props): string => (props.draggable ? 'none' : 'flex')};
     }
-    ${CardIconPrefix}${CardIconPrefix} {
+    ${CardIconPrefix} {
       display: ${(props): string => (props.draggable ? 'none' : 'flex')};
       svg {
         color: ${({ theme, active }): string => (active ? theme.palette.white : theme.palette['grey-600'])};
