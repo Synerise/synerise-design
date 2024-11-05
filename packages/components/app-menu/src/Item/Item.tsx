@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 
 import SubMenuContext from '../SubMenu/SubMenuContext/SubMenuContext';
@@ -6,12 +6,12 @@ import MenuContext from '../MenuContext/MenuContext';
 import Icon from './Icon/Icon';
 import * as S from './Item.styles';
 
-type ItemProps = {
-  subMenu?: React.ReactElement;
+type ItemProps = PropsWithChildren<{
+  subMenu?: ReactElement;
   id: string;
   name: string;
   className?: string;
-};
+}>;
 
 const Item: React.FC<ItemProps> & { Icon: typeof Icon } = ({ children, subMenu, id, name, className }) => {
   const menuContext = React.useContext(MenuContext);
