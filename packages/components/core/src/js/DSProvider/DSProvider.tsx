@@ -1,5 +1,5 @@
 import '../style';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { DataFormatConfigProvider, DataFormatConfigProviderProps } from '@synerise/ds-data-format';
 
@@ -9,11 +9,11 @@ import ThemeProvider from './ThemeProvider';
 import { LocaleProviderProps } from './LocaleProvider/LocaleProvider';
 import { ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 
-export interface DSProviderProps extends LocaleProviderProps, ThemeProviderProps, DataFormatConfigProviderProps {}
+export type DSProviderProps = PropsWithChildren<
+  LocaleProviderProps & ThemeProviderProps & DataFormatConfigProviderProps
+>;
 
-const DSProvider: React.FC<DSProviderProps> = props => {
-  const { locale, messages, timeZone, children, theme, dataFormatConfig } = props;
-
+const DSProvider = ({ locale, messages, timeZone, children, theme, dataFormatConfig }: DSProviderProps) => {
   return (
     <LocaleProvider locale={locale} messages={messages} timeZone={timeZone}>
       <ThemeProvider theme={theme}>
