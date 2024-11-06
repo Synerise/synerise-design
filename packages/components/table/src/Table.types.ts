@@ -57,7 +57,7 @@ export type Filter = {
 };
 
 export type RowType<T> = {
-  key?: string | number;
+  key?: Key;
   children?: T[];
 };
 
