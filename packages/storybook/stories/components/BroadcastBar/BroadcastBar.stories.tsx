@@ -6,7 +6,7 @@ import { color, type } from '../BroadcastBar/BroadcastBar.data';
 
 
 export default {
-  title: "Components/BroadcastBar",
+  title: "Components/Alert/BroadcastBar",
   tags: ['autodocs'],
   component: BroadcastBar,
   decorators: [centeredPaddedWrapper],
