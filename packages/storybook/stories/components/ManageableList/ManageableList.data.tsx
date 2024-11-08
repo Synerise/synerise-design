@@ -1,0 +1,246 @@
+import React, { ReactElement, ReactNode } from 'react';
+import { faker } from '@faker-js/faker';
+import { action } from '@storybook/addon-actions';
+
+import Icon, { FolderM, ShowM } from '@synerise/ds-icon';
+import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
+import Button from '@synerise/ds-button';
+import Status from '@synerise/ds-status';
+import { Input } from '@synerise/ds-input';
+import { Tag, TagShape } from '@synerise/ds-tags';
+import { theme } from '@synerise/ds-core';
+
+import { avatar1 } from '../../constants';
+
+export const TEXTS = {
+  addItemLabel: 'Add position',
+  showMoreLabel: 'show all',
+  showLessLabel: 'show less',
+  more: 'more',
+  less: 'less',
+  activateItemTitle: 'By activating this filter, you will cancel your unsaved filter settings',
+  activate: 'Activate',
+  cancel: 'Cancel',
+  deleteConfirmationTitle: 'Delete filter',
+  deleteConfirmationDescription:
+    'Deleting this filter will permanently remove it from templates library. All tables using this filter will be reset.',
+  deleteLabel: 'Delete',
+  moveToTopTooltip: 'Move to the top of list',
+  moveToBottomTooltip: 'Move to the bottom of list',
+};
+
+export type ItemType = {
+  id: string;
+  name: string;
+  canAdd?: boolean;
+  canUpdate?: boolean;
+  canDelete?: boolean;
+  icon: ReactNode;
+};
+
+export const ITEMS: ItemType[] = [
+  {
+    id: '00000000-0000-0000-0000-000000000000',
+    name: 'Default',
+    canAdd: true,
+    canUpdate: false,
+    canDelete: false,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000001',
+    name: 'Basic',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000002',
+    name: 'My folder',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000003',
+    name: 'My folder 2',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000004',
+    name: 'My folder 3',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000005',
+    name: 'My folder 4',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+  {
+    id: '00000000-0000-0000-0000-000000000006',
+    name: 'My folder 5',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    icon: <FolderM />,
+  },
+];
+export const EMPTY_ITEM = (): ItemType => ({
+  id: `${faker.number.int()}`,
+  name: '',
+  canAdd: true,
+  canUpdate: true,
+  canDelete: true,
+  icon: <FolderM />,
+});
+
+const BASE_ITEM = (name?: string) => ({
+  id: `${faker.number.int()}`,
+  name: name || 'Content item',
+  canUpdate: true,
+  canDuplicate: true,
+  canDelete: true,
+});
+
+const DROPDOWN_MENU = (
+  <DropdownMenu>
+    <DropdownMenuItem> Option 1</DropdownMenuItem>
+    <DropdownMenuItem> Option 2 </DropdownMenuItem>
+    <DropdownMenuItem> Option 3 </DropdownMenuItem>
+  </DropdownMenu>
+);
+
+export type ContentItemType = {
+  id: string;
+  name: string;
+  canAdd?: boolean;
+  canUpdate?: boolean;
+  canDelete?: boolean;
+  hideHeaderSuffixOnHover?: boolean;
+  icon?: ReactNode;
+  tag?: ReactElement;
+  dropdown?: ReactElement;
+  content?: ReactNode;
+  additionalSuffix?: ReactNode;
+  headerSuffix?: ReactNode;
+};
+export const CONTENT_ITEMS: ContentItemType[] = [
+  {
+    ...BASE_ITEM('With label'),
+  },
+  {
+    ...BASE_ITEM('With tag and label'),
+    tag: (
+      <Tag
+        name={'A'}
+        shape={TagShape.SINGLE_CHARACTER_SQUARE}
+        color={theme.palette['grey-200']}
+        textColor={theme.palette['grey-500']}
+      />
+    ),
+  },
+  {
+    ...BASE_ITEM('With icon'),
+    icon: <FolderM />,
+  },
+  {
+    ...BASE_ITEM('With tag, icon and expander'),
+    icon: <FolderM />,
+    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />,
+    tag: (
+      <Tag
+        name={'A'}
+        shape={TagShape.SINGLE_CHARACTER_SQUARE}
+        color={theme.palette['grey-200']}
+        textColor={theme.palette['grey-500']}
+      />
+    ),
+  },
+  {
+    ...BASE_ITEM('With dropdown'),
+    dropdown: DROPDOWN_MENU,
+  },
+  {
+    ...BASE_ITEM('With custom suffix'),
+    hideHeaderSuffixOnHover: true,
+    headerSuffix: <Status label={'Draft'} type={'disabled'} />,
+    dropdown: DROPDOWN_MENU,
+  },
+  {
+    ...BASE_ITEM('With additional suffix'),
+    additionalSuffix: (
+      <Button type="ghost" mode="single-icon" onClick={action('additional button action')}>
+        <Icon component={<ShowM />} />
+      </Button>
+    ),
+  },
+  {
+    ...BASE_ITEM('With options'),
+    icon: <FolderM />,
+    dropdown: DROPDOWN_MENU,
+  },
+  {
+    ...BASE_ITEM('With expander and options'),
+    icon: <FolderM />,
+    dropdown: DROPDOWN_MENU,
+    content: <Input label={'Label'} placeholder={'Placeholder'} style={{ width: '472px' }} resetMargin />,
+  },
+];
+
+export type FilterItemType = {
+  id: string;
+  name: string;
+  created?: string;
+  canAdd?: boolean;
+  canUpdate?: boolean;
+  canDelete?: boolean;
+  canDuplicate?: boolean;
+  hideHeaderSuffixOnHover?: boolean;
+  icon?: ReactNode;
+  user?: Record<string, string>;
+  description?: string;
+  tag?: ReactElement;
+  dropdown?: ReactElement;
+  content?: ReactNode;
+  additionalSuffix?: ReactNode;
+  headerSuffix?: ReactNode;
+};
+
+export const FILTER_ITEMS: FilterItemType[] = [
+  {
+    ...BASE_ITEM('Position 0'),
+    description: 'The last 10 days of all customers sales ',
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    canDuplicate: true,
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+      avatar_url: avatar1,
+    },
+    created: '2020-02-14T08:50:05+00:00',
+  },
+  {
+    ...BASE_ITEM('Position 1'),
+    canAdd: true,
+    canUpdate: true,
+    canDelete: true,
+    user: {
+      firstname: 'Jan',
+      lastname: 'Nowak',
+    },
+    created: '2020-02-12T08:50:05+00:00',
+  },
+];
