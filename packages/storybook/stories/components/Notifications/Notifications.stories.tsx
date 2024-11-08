@@ -11,7 +11,7 @@ import {
 } from '../../utils';
 
 export default {
-  title: "Components/Notification",
+  title: "Components/Alert/Notification",
   tags: ['autodocs'],
   component: Notification,
   decorators: [centeredPaddedWrapper],

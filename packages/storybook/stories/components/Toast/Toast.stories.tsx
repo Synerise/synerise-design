@@ -17,7 +17,7 @@ import { color, colorIcon, customColor, data, type } from './Toast.data';
 
 
 export default {
-  title: "Components/Toast",
+  title: "Components/Alert/Toast",
   tags: ['autodocs'],
   component: Toast,
   decorators: [centeredPaddedWrapper],
