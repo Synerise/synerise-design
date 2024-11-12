@@ -9,7 +9,7 @@ const useResizeToFit = <T extends HTMLElement = HTMLDivElement>({ onResize, auto
   const elementRef = useRef<T>(null);
 
   const resizeObserver = useRef(
-    new window.ResizeObserver(() => {
+    new ResizeObserver(() => {
       elementRef.current && onResize(elementRef.current.clientWidth);
     })
   ).current;

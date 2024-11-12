@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, RefObject, useCallback } from 'react';
 const useResizeObserver = (elementRef: RefObject<HTMLElement | undefined>) => {
   const [dimensions, setDimensions] = useState<DOMRect>(new DOMRect());
   const resizeObserver = useRef(
-    new window.ResizeObserver(entries => {
+    new ResizeObserver(entries => {
       const { contentRect } = entries[0];
       setDimensions(contentRect);
     })

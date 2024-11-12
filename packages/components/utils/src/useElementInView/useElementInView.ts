@@ -13,7 +13,7 @@ const useElementInView = <T extends HTMLElement = HTMLElement>(
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const intersectionObserver = new window.IntersectionObserver(
+    const intersectionObserver = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
       },

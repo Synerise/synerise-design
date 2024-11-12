@@ -44,7 +44,7 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       )
     ).current;
 
-    const resizeObserver = useRef(new window.ResizeObserver(debouncedResize)).current;
+    const resizeObserver = useRef(new ResizeObserver(debouncedResize)).current;
 
     useEffect(() => {
       if (wrapperRef.current) {

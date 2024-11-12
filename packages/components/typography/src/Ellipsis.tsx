@@ -26,7 +26,7 @@ export const Ellipsis = ({ tooltip, children, className, tooltipProps }: Ellipsi
     )
   ).current;
 
-  const resizeObserver = useRef(new window.ResizeObserver(debouncedResize)).current;
+  const resizeObserver = useRef(new ResizeObserver(debouncedResize)).current;
 
   useEffect(() => {
     if (textComponentRef.current) {
