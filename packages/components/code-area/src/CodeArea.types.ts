@@ -16,8 +16,9 @@ export type CodeAreaTexts = {
   fullscreenTitle: ReactNode;
 };
 
-export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = MonacoEditorProps & {
+export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<MonacoEditorProps, 'language'> & {
   label?: ReactNode;
+  fullscreenLabel?: ReactNode;
   description?: ReactNode;
   texts?: Partial<CodeAreaTexts>;
   counter?: {
@@ -28,12 +29,20 @@ export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = 
   syntaxOptions?: CodeAreaSyntaxOption<SyntaxName>[];
   currentSyntax: SyntaxName;
   allowFullscreen?: boolean;
+  readOnly?: boolean;
   tooltip?: ReactNode;
+  getPopupContainer?: (node: HTMLElement) => HTMLElement;
   tooltipProps?: TooltipExtendedProps & TooltipProps;
   style?: CSSProperties;
+  zIndex?: string | number;
   className?: string;
   renderFooterContent?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
   renderAdditionalDescription?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
   onFullscreenChange?: (isFullscreen: boolean) => void;
   onSyntaxChange?: (newSyntax: SyntaxName) => void;
+};
+
+export type CodeAreaEditorProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = CodeAreaProps<SyntaxName> & {
+  isFullscreen: boolean;
+  toggleFullscreen: () => void;
 };

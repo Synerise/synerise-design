@@ -44,24 +44,28 @@ const syntaxOptions = [
 
 ## API
 
-| Property                    | Description                                                    | Type                                  | Default        |
-| --------------------------- | -------------------------------------------------------------- | ------------------------------------- | -------------- |
-| label                       | label above editor                                             | `ReactNode`                           | -              |
-| description                 | description below editor                                       | `ReactNode`                           | -              |
-| counter                     | limit character count                                          | `{ limit: number; placement?: 'bottom' &#124; 'top'; }` | - |
-| errorText                   | error message to show below editor  (also adds "error styles") | `ReactNode`                           | -              |
-| syntaxOptions               | array of available syntaxes                                    | `CodeAreaSyntaxOption[]`              | -              |
-| currentSyntax               | current syntax of editor value                                 | `CodeAreaSyntax`                      | -              |
-| allowFullscreen             | renders fullscreen mode button                                 | `boolean`                             | -              |
-| tooltip                     | tooltip text displayed next to label                           | `ReactNode`                           | -              |
-| tooltipProps                | tooltip properties (see @synerise/ds-tooltip)                  | `TooltipExtendedProps & TooltipProps` | -              |
-| style                       | custom style added to outermost div                            | `CSSProperties`                       | -              |
-| className                   | class name to add to outermost div                             | `string`                              | -              |
-| renderFooterContent         | renders custom content in footer bar                           |  `(CodeAreaStateProps) => ReactNode`  | -              |
-| renderAdditionalDescription | renders custom content above description                       |  `(CodeAreaStateProps) => ReactNode`  | -              |
-| onFullscreenChange          | triggered when fullscreen is toggled on/off                    | `(isFullscreen: boolean) => void`     | -              |
-| onSyntaxChange              | triggered when user switches syntax                            | `(newSyntax: SyntaxName) => void`     | -              |
-| texts                       | customise displayed texts                                      | `CodeAreaTexts`                       | -              |
+| Property                    | Description                                                    | Type                                                    | Default |
+|-----------------------------|----------------------------------------------------------------|---------------------------------------------------------|---------|
+| label                       | label above editor                                             | `ReactNode`                                             | -       |
+| fullscreenLabel             | label above editor in fullscreen mode (defaults to label prop) | `ReactNode`                                             | -       |
+| description                 | description below editor                                       | `ReactNode`                                             | -       |
+| counter                     | limit character count                                          | `{ limit: number; placement?: 'bottom' &#124; 'top'; }` | -       |
+| errorText                   | error message to show below editor  (also adds "error styles") | `ReactNode`                                             | -       |
+| syntaxOptions               | array of available syntaxes                                    | `CodeAreaSyntaxOption[]`                                | -       |
+| currentSyntax               | current syntax of editor value                                 | `CodeAreaSyntax`                                        | -       |
+| allowFullscreen             | renders fullscreen mode button                                 | `boolean`                                               | -       |
+| readOnly                    | renders readOnly mode                                          | `boolean`                                               | -       |
+| tooltip                     | tooltip text displayed next to label                           | `ReactNode`                                             | -       |
+| tooltipProps                | tooltip properties (see @synerise/ds-tooltip)                  | `TooltipExtendedProps & TooltipProps`                   | -       |
+| style                       | custom style added to outermost div                            | `CSSProperties`                                         | -       |
+| className                   | class name to add to outermost div                             | `string`                                                | -       |
+| renderFooterContent         | renders custom content in footer bar                           | `(CodeAreaStateProps) => ReactNode`                     | -       |
+| renderAdditionalDescription | renders custom content above description                       | `(CodeAreaStateProps) => ReactNode`                     | -       |
+| onFullscreenChange          | triggered when fullscreen is toggled on/off                    | `(isFullscreen: boolean) => void`                       | -       |
+| onSyntaxChange              | triggered when user switches syntax                            | `(newSyntax: SyntaxName) => void`                       | -       |
+| texts                       | customise displayed texts                                      | `CodeAreaTexts`                                         | -       |
+| getPopupContainer           | customise where fullscreen layer is rendered into              | getPopupContainer (@synerise/ds-utils)                  | -       |
+
 
 ### CodeAreaTexts
 

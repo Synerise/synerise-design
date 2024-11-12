@@ -81,6 +81,7 @@ const stories = {
           onChange={ (updatedContent: string) => { action('onChange')(updatedContent); handleChange(updatedContent)} }
           label={text('Label', 'Label')}
           tooltip={tooltip}
+          readOnly={boolean('readOnly', false)}
           description={text('Description', 'Description')}
           texts={{
             fullscreen: 'Fullscreen mode',

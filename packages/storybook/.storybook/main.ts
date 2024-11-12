@@ -1,16 +1,18 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
-import { join, dirname } from 'path';
+import { join, dirname, resolve } from 'path';
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 import { configureSort } from 'storybook-multilevel-sort';
 import deeperSortSetup from "storybook-deeper-sort";
-
 
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
+
+const MONACO_DIR = resolve(__dirname, '../../../node_modules/monaco-editor');
+
 deeperSortSetup(
   ["Introduction", "Tokens", "Components", ["*", "Tests"]],
 );
-
 configureSort({
   typeOrder: ['docs', 'story'],
   storyOrder: {
@@ -111,8 +113,34 @@ const config: StorybookConfig = {
             },
           ],
         },
+        // @synerise/ds-code-area monaco editor
+        {
+          test: /\.ttf$/,
+          include: MONACO_DIR,
+          use: ['file-loader'],
+        },
+        {
+          test: /\.js$/,
+          include: MONACO_DIR,
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [['@babel/preset-env', { targets: 'defaults' }]],
+                plugins: [
+                  '@babel/plugin-transform-nullish-coalescing-operator',
+                  '@babel/plugin-transform-class-properties',
+                  '@babel/plugin-transform-optional-chaining',
+                  '@babel/plugin-transform-class-static-block',
+                ],
+              },
+            },
+          ],
+        },
       ],
     };
+    const monacoPlugin = new MonacoWebpackPlugin({ languages: ['typescript', 'json', 'javascript', 'css', 'html'] });
+    config.plugins = [...(config.plugins || []), monacoPlugin];
 
     config.resolve = {
       ...(config.resolve || {}),

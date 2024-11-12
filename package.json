@@ -90,12 +90,10 @@
     "react-styleguidist": "^11.0.5"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.8.7",
+    "@babel/cli": "^7.20.0",
+    "@babel/core": "^7.20.12",
     "@babel/helper-environment-visitor": "7.18.9",
     "@babel/helper-string-parser": "7.19.4",
-    "@babel/plugin-proposal-class-properties": "7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
     "@babel/preset-env": "7.24.3",
     "@babel/preset-react": "7.8.3",
     "@babel/preset-typescript": "7.8.3",

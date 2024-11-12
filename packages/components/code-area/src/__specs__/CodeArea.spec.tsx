@@ -5,9 +5,9 @@ import userEvent from '@testing-library/user-event';
 import CodeArea from '../CodeArea';
 
 const LABEL = 'LABEL';
+const FULLSCREEN_LABEL = 'FULLSCREEN_LABEL';
 const SYNTAX = 'json';
 const DESCRIPTION = 'DESCRIPTION';
-const TOOLTIP = 'TOOLTIP';
 const TEXTS = {
   fullscreen: 'FULLSCREEN BUTTON',
   closeFullscreen: 'CLOSE FULLSCREEN BUTTON'
@@ -91,16 +91,15 @@ describe('CodeArea', () => {
 
   it('should show CodeArea in fullscreen mode', async() => {
     const onFullscreenChange = jest.fn();
-    renderWithProvider(<CodeArea currentSyntax={SYNTAX}  allowFullscreen texts={TEXTS} onFullscreenChange={onFullscreenChange} description={DESCRIPTION} />);
+    renderWithProvider(<div data-popup-container><CodeArea currentSyntax={SYNTAX} fullscreenLabel={FULLSCREEN_LABEL} allowFullscreen texts={TEXTS} onFullscreenChange={onFullscreenChange} description={DESCRIPTION} /></div>);
 
     const button = screen.getByText(TEXTS.fullscreen);
     expect(button).toBeInTheDocument();
 
     userEvent.click(button);
 
-    const closeButton = await screen.findByText(TEXTS.closeFullscreen);
-
-    expect(closeButton).toBeInTheDocument();
+    expect(await screen.findByText(TEXTS.closeFullscreen)).toBeInTheDocument();
+    expect(await screen.findByText(FULLSCREEN_LABEL)).toBeInTheDocument();
 
     expect(onFullscreenChange).toHaveBeenCalledTimes(1);
   });
