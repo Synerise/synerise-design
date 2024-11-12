@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
+
 import { SidebarWithButtonProps } from './SidebarWithButton.types';
 import * as S from './SidebarWithButton.styles';
 
-const SidebarWithButton: React.FC<SidebarWithButtonProps> = ({ dataSource, buttonLabel, title }) => {
-  const [dropdownVisible, setDropdownVisible] = React.useState(false);
-  const ref = React.useRef<HTMLDivElement>(null);
+const SidebarWithButton = ({ dataSource, buttonLabel, title }: SidebarWithButtonProps) => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => {
     setDropdownVisible(false);
   });
@@ -28,7 +29,7 @@ const SidebarWithButton: React.FC<SidebarWithButtonProps> = ({ dataSource, butto
           </Dropdown.Wrapper>
         }
       >
-        <Button onClick={(): void => setDropdownVisible(!dropdownVisible)} type="ghost-primary" mode="label-icon">
+        <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="ghost-primary" mode="label-icon">
           {buttonLabel}
           <Icon component={<AngleDownS />} />
         </Button>
