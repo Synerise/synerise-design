@@ -1,0 +1,77 @@
+import { Title, Subtitle, Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import { theme } from '@synerise/ds-core';
+import { generatePalette } from './Colors.data.ts';
+
+<Meta title="Tokens/Colors" />
+ 
+<Title>Color tokens</Title>
+
+<ColorPalette>
+  <ColorItem
+    title="Primary colors"
+    colors={{ Blue: theme.palette['blue-600'], Grey: theme.palette['grey-600'] }}
+  />
+</ColorPalette>
+
+<ColorPalette>
+  <ColorItem
+    title="Alert colors"
+    colors={{ Success: theme.palette['green-600'], Warning: theme.palette['yellow-600'], Error: theme.palette['red-600'] }}
+  />
+  </ColorPalette>
+
+  <Subtitle>Primary colors full palette</Subtitle>
+  <ColorPalette>
+  <ColorItem
+    title="Blue"
+    colors={generatePalette('blue')}
+  />
+  <ColorItem
+    title="Grey"
+    colors={generatePalette('grey')}
+  />
+</ColorPalette>
+
+<Subtitle>Secondary colors full palette</Subtitle>
+<ColorPalette>
+  <ColorItem
+    title="Yellow"
+    colors={generatePalette('yellow')}
+  />
+  <ColorItem
+    title="Orange"
+    colors={generatePalette('orange')}
+  />
+  <ColorItem
+    title="Mars"
+    colors={generatePalette('mars')}
+  />
+  <ColorItem
+    title="Red"
+    colors={generatePalette('red')}
+  />
+  <ColorItem
+    title="Pink"
+    colors={generatePalette('pink')}
+  />
+  <ColorItem
+    title="Violet"
+    colors={generatePalette('violet')}
+  />
+  <ColorItem
+    title="Purple"
+    colors={generatePalette('purple')}
+  />
+  <ColorItem
+    title="Cyan"
+    colors={generatePalette('cyan')}
+  />
+  <ColorItem
+    title="Fern"
+    colors={generatePalette('fern')}
+  />
+  <ColorItem
+    title="Green"
+    colors={generatePalette('green')}
+  />
+</ColorPalette>
