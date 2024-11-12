@@ -47,7 +47,7 @@
     "date-fns": "2.16.1",
     "lodash": "^4.17.21",
     "react-day-picker": "^7.4.8",
-    "react-intl": "3.12.0",
+    "react-intl": "6.8.4",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {

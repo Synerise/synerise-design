@@ -40,7 +40,7 @@
     "@synerise/ds-logic": "^0.8.53",
     "@synerise/ds-typography": "^0.16.3",
     "@synerise/ds-utils": "^0.30.2",
-    "react-intl": "3.12.0"
+    "react-intl": "6.8.4"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
