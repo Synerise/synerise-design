@@ -1,9 +1,20 @@
-import React from 'react';
-import { IntlProvider } from 'react-intl';
+import React, { ReactNode } from 'react';
+
+import {
+  IntlProvider,
+  InvalidConfigError,
+  MessageFormatError,
+  MissingDataError,
+  MissingTranslationError,
+  UnsupportedFormatterError,
+} from 'react-intl';
+import type { FormatError } from 'intl-messageformat';
+import { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
+
 import { flatten } from 'flat';
 import * as merge from 'deepmerge';
 import AntConfigProvider from 'antd/lib/config-provider';
-import { MessageFormatElement } from 'intl-messageformat-parser';
+
 import antMessages from './antLocales';
 
 type Messages = Record<string, string> | Record<string, MessageFormatElement[]>;
@@ -11,12 +22,22 @@ type NestedMessages = {
   [key: string]: string | NestedMessages;
 };
 
-export interface LocaleProviderProps {
+export type LocaleProviderProps = {
   locale?: string; // ex. pl, en-GB
   messages?: NestedMessages;
   defaultMessages?: NestedMessages;
   timeZone?: string; // Europe/Warsaw
-}
+  children?: ReactNode;
+  onError?: (
+    error:
+      | MissingTranslationError
+      | MessageFormatError
+      | MissingDataError
+      | InvalidConfigError
+      | UnsupportedFormatterError
+      | FormatError
+  ) => void;
+};
 
 interface LocaleProviderState {
   dsLocales: NestedMessages;
@@ -44,7 +65,7 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
   getLangForCode = (code: string): string => code.substring(0, 2);
 
   render(): React.ReactNode {
-    const { defaultMessages = {}, messages = {}, locale, timeZone, children } = this.props;
+    const { defaultMessages = {}, messages = {}, locale, timeZone, children, onError } = this.props;
     const { dsLocales } = this.state;
     const code = locale || DEFAULT_LANG;
     const lang = this.getLangForCode(code);
@@ -62,7 +83,7 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
           locale={code}
           messages={currentMessages as Messages}
           timeZone={timeZone}
-          onError={(): void => undefined}
+          onError={onError}
         >
           {children}
         </IntlProvider>

@@ -4,6 +4,8 @@ import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { DSProvider } from '@synerise/ds-core';
 import { getDataFormatConfigFromNotation, DataFormatNotationType } from '@synerise/ds-data-format';
 
+import { NOOP } from '../../index';
+
 type Options = Omit<RenderOptions, 'queries'>;
 
 const renderWithProvider = (
@@ -17,6 +19,7 @@ const renderWithProvider = (
   const rendered = render(
     <DSProvider
       locale={props?.locale ?? undefined}
+      onError={NOOP}
       {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
     >
       {node}

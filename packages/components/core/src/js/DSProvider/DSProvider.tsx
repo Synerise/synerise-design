@@ -13,9 +13,9 @@ export type DSProviderProps = PropsWithChildren<
   LocaleProviderProps & ThemeProviderProps & DataFormatConfigProviderProps
 >;
 
-const DSProvider = ({ locale, messages, timeZone, children, theme, dataFormatConfig }: DSProviderProps) => {
+const DSProvider = ({ locale, messages, timeZone, children, theme, dataFormatConfig, onError }: DSProviderProps) => {
   return (
-    <LocaleProvider locale={locale} messages={messages} timeZone={timeZone}>
+    <LocaleProvider locale={locale} messages={messages} timeZone={timeZone} onError={onError}>
       <ThemeProvider theme={theme}>
         <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>{children}</DataFormatConfigProvider>
       </ThemeProvider>
