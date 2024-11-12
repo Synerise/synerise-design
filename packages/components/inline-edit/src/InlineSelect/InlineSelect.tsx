@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { toCamelCase } from '@synerise/ds-utils';
+
+import { NOOP, toCamelCase } from '@synerise/ds-utils';
 import Icon, { AngleDownS } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
 import { AutosizeInput } from '@synerise/ds-input';
+
 import * as S from './InlineSelect.style';
 import SelectDropdown from './SelectDropdown/SelectDropdown';
 import { InlineSelectProps } from './InlineSelect.types';
@@ -94,6 +96,7 @@ const InlineSelect = ({
             autoComplete="off"
             placeholder={placeholder}
             disabled={disabled}
+            onChange={NOOP}
           />
         </AutosizeInput>
         {!hideIcon && (

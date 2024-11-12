@@ -38,14 +38,19 @@ export const FullscreenHeader = styled(FlexRow)`
   padding: 16px 24px;
 `;
 
-export const CodeAreaWrapper = styled.div<{ isFullscreen: boolean; requiredSpace: number }>`
+export const CodeAreaWrapper = styled.div<{
+  readOnly: boolean;
+  isFullscreen: boolean;
+  requiredSpace: number;
+  zIndex?: number | string;
+}>`
   ${props => {
     if (props.isFullscreen) {
       return css`
         position: fixed;
         width: 100vw;
         height: 100vh;
-        z-index: 999;
+        z-index: ${props.zIndex !== undefined ? props.zIndex : props.theme.variables['zindex-modal']};
         left: 0;
         top: 0;
         background: ${props.theme.palette.white};
@@ -61,6 +66,16 @@ export const CodeAreaWrapper = styled.div<{ isFullscreen: boolean; requiredSpace
       margin-bottom: 12px;
     `;
   }}
+  ${EditorWrapper} {
+    ${props =>
+      props.readOnly &&
+      css`
+        background: ${props.theme.palette['grey-050']};
+        .monaco-editor .cursors-layer > .cursor {
+          display: none !important;
+        }
+      `};
+  }
 `;
 
 export const AdditionalDescription = styled.div`
