@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.225.0](https://github.com/synerise/synerise-design/compare/portal@0.224.0...portal@0.225.0) (2024-11-12)
+
+
+### Features
+
+* **code-area:** readonly and fullscreenlabel prop support ([553b36c](https://github.com/synerise/synerise-design/commit/553b36c2e3efe4037d67eeb08d106318cd2d8b08))
+
+
+
+
+
 # [0.224.0](https://github.com/synerise/synerise-design/compare/portal@0.223.3...portal@0.224.0) (2024-11-12)
 
 
