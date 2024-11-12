@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.62](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.61...@synerise/ds-empty-states@0.2.62) (2024-11-12)
+
+**Note:** Version bump only for package @synerise/ds-empty-states
+
+
+
+
+
 ## [0.2.61](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.60...@synerise/ds-empty-states@0.2.61) (2024-10-29)
 
 **Note:** Version bump only for package @synerise/ds-empty-states

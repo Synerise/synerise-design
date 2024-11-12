@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.80...@synerise/ds-app-menu@0.7.0) (2024-11-12)
+
+
+### Features
+
+* **app-menu:** declare children for react 18 forward compatibility ([d568605](https://github.com/Synerise/synerise-design/commit/d56860576236ba68cdf636c22c741e36cd640225))
+
+
+
+
+
 ## [0.6.80](https://github.com/Synerise/synerise-design/compare/@synerise/ds-app-menu@0.6.79...@synerise/ds-app-menu@0.6.80) (2024-10-29)
 
 **Note:** Version bump only for package @synerise/ds-app-menu

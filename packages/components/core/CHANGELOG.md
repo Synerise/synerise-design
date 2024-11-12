@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.41.0...@synerise/ds-core@0.42.0) (2024-11-12)
+
+
+### Features
+
+* **core:** declare children for react 18 forward compatibility ([c5c500d](https://github.com/synerise/synerise-design/commit/c5c500de76dd9534957be64350d7e7b5fabe4ce9))
+* **core:** reactintl bumped and onerror intlprovider ([08f4558](https://github.com/synerise/synerise-design/commit/08f4558757a55c63db55767fff9fc6714728d26b))
+
+
+
+
+
 # [0.41.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.40.23...@synerise/ds-core@0.41.0) (2024-10-01)
 
 

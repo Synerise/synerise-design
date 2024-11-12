@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.224.0](https://github.com/synerise/synerise-design/compare/portal@0.223.3...portal@0.224.0) (2024-11-12)
+
+
+### Features
+
+* **core:** reactintl bumped and onerror intlprovider ([08f4558](https://github.com/synerise/synerise-design/commit/08f4558757a55c63db55767fff9fc6714728d26b))
+* **short-cuts:** new component short-cuts ([ed8a6d6](https://github.com/synerise/synerise-design/commit/ed8a6d6570c9a8c8eaf9f216f2df256b9a162b34))
+
+
+
+
+
 ## [0.223.3](https://github.com/synerise/synerise-design/compare/portal@0.223.2...portal@0.223.3) (2024-10-28)
 
 **Note:** Version bump only for package portal

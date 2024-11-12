@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.13.7...@synerise/ds-operators@0.14.0) (2024-11-12)
+
+
+### Features
+
+* **core:** reactintl bumped and onerror intlprovider ([08f4558](https://github.com/Synerise/synerise-design/commit/08f4558757a55c63db55767fff9fc6714728d26b))
+
+
+
+
+
 ## [0.13.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-operators@0.13.6...@synerise/ds-operators@0.13.7) (2024-10-29)
 
 **Note:** Version bump only for package @synerise/ds-operators

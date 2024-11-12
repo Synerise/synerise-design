@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.30.2...@synerise/ds-utils@0.31.0) (2024-11-12)
+
+
+### Features
+
+* **core:** reactintl bumped and onerror intlprovider ([08f4558](https://github.com/synerise/synerise-design/commit/08f4558757a55c63db55767fff9fc6714728d26b))
+
+
+
+
+
 ## [0.30.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.30.1...@synerise/ds-utils@0.30.2) (2024-10-29)
 
 **Note:** Version bump only for package @synerise/ds-utils

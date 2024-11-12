@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.5.4...@synerise/ds-data-format@0.6.0) (2024-11-12)
+
+
+### Features
+
+* **core:** reactintl bumped and onerror intlprovider ([08f4558](https://github.com/Synerise/synerise-design/commit/08f4558757a55c63db55767fff9fc6714728d26b))
+
+
+
+
+
 ## [0.5.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-data-format@0.5.3...@synerise/ds-data-format@0.5.4) (2024-09-26)
 
 **Note:** Version bump only for package @synerise/ds-data-format
