@@ -174,7 +174,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectActionAttribute = useCallback(
-    (value, stepId) => {
+    (value: FactorValueType, stepId: string | number) => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       setCurrentField(PARAMETER);
