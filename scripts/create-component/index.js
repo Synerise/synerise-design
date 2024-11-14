@@ -13,7 +13,9 @@ const { smush, pascalize } = require('../utils/string.js');
 
 const packagesDir = path.resolve(__dirname, '..', '..', 'packages', 'components');
 const storiesDir = path.resolve(__dirname, '..', '..', 'packages', 'portal', 'stories', 'components');
+const storiesCSF3Dir = path.resolve(__dirname, '..', '..', 'packages', 'storybook', 'stories', 'components');
 const storiesTemplateDir = path.resolve(__dirname, 'stories-template');
+const storiesCSF3TemplateDir = path.resolve(__dirname, 'stories-csf3-template');
 const templateDir = path.resolve(__dirname, 'package-template');
 
 
@@ -23,7 +25,6 @@ const copyPackageFromTemplateDir = (source, dest, vars) => {
       if (err) reject(err);
       else {
         resolve(createdFiles)
-        createComponent(vars)
       };
     });
   });
@@ -44,7 +45,7 @@ async function main() {
     {
       type: 'input',
       name: 'name',
-      message: 'Component Name (kabab-case)',
+      message: 'Component Name (kebab-case)',
       validate: name => (name.length > 0 ? true : 'invalid name'),
     },
     {
@@ -68,6 +69,7 @@ async function main() {
 
   const folderPath = path.resolve(packagesDir, folderName);
   const storiesPath = path.resolve(storiesDir, componentName);
+  const storiesCSF3Path = path.resolve(storiesCSF3Dir, componentName);
 
   const vars = {
     ...answers,
@@ -76,7 +78,8 @@ async function main() {
     folderName,
     folderPath,
     packageName,
-    storiesPath
+    storiesPath,
+    storiesCSF3Path
   };
 
   if (fs.existsSync(folderPath)) {
@@ -85,7 +88,8 @@ async function main() {
 
   await copyPackageFromTemplateDir(templateDir, folderPath, vars);
   await copyPackageFromTemplateDir(storiesTemplateDir, storiesPath, vars);
-
+  await copyPackageFromTemplateDir(storiesCSF3TemplateDir, storiesCSF3Path, vars);
+  createComponent(vars)
   return vars;
 }
 
