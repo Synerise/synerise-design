@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.63...@synerise/ds-empty-states@0.3.0) (2024-11-14)
+
+
+### Features
+
+* **empty-states:** added iconPosition and textAlign props ([cbc0c70](https://github.com/Synerise/synerise-design/commit/cbc0c70bc0e7cd4843c10acb4265ae43ec6a1368))
+
+
+
+
+
 ## [0.2.63](https://github.com/Synerise/synerise-design/compare/@synerise/ds-empty-states@0.2.62...@synerise/ds-empty-states@0.2.63) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-empty-states

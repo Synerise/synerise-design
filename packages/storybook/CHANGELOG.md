@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.24.0...storybook7@0.25.0) (2024-11-14)
+
+
+### Features
+
+* **empty-states:** added iconPosition and textAlign props ([cbc0c70](https://github.com/Synerise/synerise-design/commit/cbc0c70bc0e7cd4843c10acb4265ae43ec6a1368))
+* **navbar:** new stories of navbar ([fde1357](https://github.com/Synerise/synerise-design/commit/fde13572539797dfd322405be23283fa7d5b169c))
+* **skeleton:** new stories of skeleton ([03f887f](https://github.com/Synerise/synerise-design/commit/03f887ff05f183b7d5cf520372db48e989089144))
+
+
+
+
+
 # [0.24.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.23.0...storybook7@0.24.0) (2024-11-12)
 
 
