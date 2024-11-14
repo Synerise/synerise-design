@@ -166,11 +166,6 @@
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.14.4.tgz"
   integrity sha512-i2wXrWQNkH6JplJQGn3Rd2I4Pij8GdHkXwHMxm+zV5YG/Jci+bCNrWZEWC4o+umiDkRrRs4dVzH3X4GP7vyjQQ==
 
-"@babel/compat-data@^7.17.7", "@babel/compat-data@^7.20.1":
-  version "7.24.4"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/compat-data/-/compat-data-7.24.4.tgz"
-  integrity sha1-bxAjcukJTyXZCMoNNPx0x0YGBZo=
-
 "@babel/compat-data@^7.20.5":
   version "7.21.0"
   resolved "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.21.0.tgz"
@@ -591,17 +586,6 @@
     browserslist "^4.16.6"
     semver "^6.3.0"
 
-"@babel/helper-compilation-targets@^7.17.7", "@babel/helper-compilation-targets@^7.20.0", "@babel/helper-compilation-targets@^7.22.6", "@babel/helper-compilation-targets@^7.23.6":
-  version "7.23.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-compilation-targets/-/helper-compilation-targets-7.23.6.tgz"
-  integrity sha1-TXkGmxbLzxRhKJ7M+72BUBrjmZE=
-  dependencies:
-    "@babel/compat-data" "^7.23.5"
-    "@babel/helper-validator-option" "^7.23.5"
-    browserslist "^4.22.2"
-    lru-cache "^5.1.1"
-    semver "^6.3.1"
-
 "@babel/helper-compilation-targets@^7.20.7":
   version "7.20.7"
   resolved "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.20.7.tgz"
@@ -621,6 +605,17 @@
     "@babel/compat-data" "^7.22.9"
     "@babel/helper-validator-option" "^7.22.15"
     browserslist "^4.21.9"
+    lru-cache "^5.1.1"
+    semver "^6.3.1"
+
+"@babel/helper-compilation-targets@^7.22.6", "@babel/helper-compilation-targets@^7.23.6":
+  version "7.23.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-compilation-targets/-/helper-compilation-targets-7.23.6.tgz"
+  integrity sha1-TXkGmxbLzxRhKJ7M+72BUBrjmZE=
+  dependencies:
+    "@babel/compat-data" "^7.23.5"
+    "@babel/helper-validator-option" "^7.23.5"
+    browserslist "^4.22.2"
     lru-cache "^5.1.1"
     semver "^6.3.1"
 
@@ -691,21 +686,6 @@
     "@babel/helper-optimise-call-expression" "^7.16.0"
     "@babel/helper-replace-supers" "^7.16.0"
     "@babel/helper-split-export-declaration" "^7.16.0"
-
-"@babel/helper-create-class-features-plugin@^7.18.6":
-  version "7.24.4"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.24.4.tgz"
-  integrity sha1-yAb3N4imgApc+7wE0t9+5NknzOM=
-  dependencies:
-    "@babel/helper-annotate-as-pure" "^7.22.5"
-    "@babel/helper-environment-visitor" "^7.22.20"
-    "@babel/helper-function-name" "^7.23.0"
-    "@babel/helper-member-expression-to-functions" "^7.23.0"
-    "@babel/helper-optimise-call-expression" "^7.22.5"
-    "@babel/helper-replace-supers" "^7.24.1"
-    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
-    "@babel/helper-split-export-declaration" "^7.22.6"
-    semver "^6.3.1"
 
 "@babel/helper-create-class-features-plugin@^7.21.0":
   version "7.21.0"
@@ -829,18 +809,6 @@
     "@babel/helper-module-imports" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/traverse" "^7.13.0"
-    debug "^4.1.1"
-    lodash.debounce "^4.0.8"
-    resolve "^1.14.2"
-    semver "^6.1.2"
-
-"@babel/helper-define-polyfill-provider@^0.3.3":
-  version "0.3.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-define-polyfill-provider/-/helper-define-polyfill-provider-0.3.3.tgz"
-  integrity sha1-hhLlW+XVHwzR82tKWoOSTomIS3o=
-  dependencies:
-    "@babel/helper-compilation-targets" "^7.17.7"
-    "@babel/helper-plugin-utils" "^7.16.7"
     debug "^4.1.1"
     lodash.debounce "^4.0.8"
     resolve "^1.14.2"
@@ -1235,15 +1203,15 @@
   resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.14.5.tgz"
   integrity sha512-/37qQCE3K0vvZKwoK4XU/irIJQdIfCJuhU5eKnNxpFDsOkgFaUAwbv+RYw6eYgsC0E4hS7r5KqGULUogqui0fQ==
 
-"@babel/helper-plugin-utils@^7.16.7", "@babel/helper-plugin-utils@^7.18.9", "@babel/helper-plugin-utils@^7.22.5", "@babel/helper-plugin-utils@^7.24.0":
-  version "7.24.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-plugin-utils/-/helper-plugin-utils-7.24.0.tgz"
-  integrity sha1-lFaBkxpS8Vzoef1bhs4trm09fyo=
-
 "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.20.2":
   version "7.20.2"
   resolved "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.20.2.tgz"
   integrity sha512-8RvlJG2mj4huQ4pZ+rU9lqKi9ZKiRmuvGuM2HlWmkmgOhbs6zEAw6IEiJ5cQqGbDzGZOhwuOQNtZMi/ENLjZoQ==
+
+"@babel/helper-plugin-utils@^7.22.5", "@babel/helper-plugin-utils@^7.24.0":
+  version "7.24.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-plugin-utils/-/helper-plugin-utils-7.24.0.tgz"
+  integrity sha1-lFaBkxpS8Vzoef1bhs4trm09fyo=
 
 "@babel/helper-plugin-utils@^7.25.9":
   version "7.25.9"
@@ -1266,7 +1234,7 @@
     "@babel/helper-wrap-function" "^7.13.0"
     "@babel/types" "^7.13.0"
 
-"@babel/helper-remap-async-to-generator@^7.18.9", "@babel/helper-remap-async-to-generator@^7.22.20":
+"@babel/helper-remap-async-to-generator@^7.22.20":
   version "7.22.20"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-remap-async-to-generator/-/helper-remap-async-to-generator-7.22.20.tgz"
   integrity sha1-e2jhy0+pZNKZb9Bjcj+0jsqEmOA=
@@ -1793,19 +1761,19 @@
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.9.6.tgz"
   integrity sha512-AoeIEJn8vt+d/6+PXDRPaksYhnlbMIiejioBZvvMQsOjW/JYK6k/0dKnvvP3EhK5GfMBWDPtrxRtegWdAcdq9Q==
 
-"@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.18.6", "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.24.1.tgz"
-  integrity sha1-tkXZuowrxbevUPD+lJ+e2+sHyM8=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.23.3.tgz"
   integrity sha1-XNHIe6k4DQr7eEaSkslU/uXSQRo=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/-/plugin-bugfix-safari-id-destructuring-collision-in-function-expression-7.24.1.tgz"
+  integrity sha1-tkXZuowrxbevUPD+lJ+e2+sHyM8=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.13.12":
   version "7.13.12"
@@ -1816,15 +1784,6 @@
     "@babel/helper-skip-transparent-expression-wrappers" "^7.12.1"
     "@babel/plugin-proposal-optional-chaining" "^7.13.12"
 
-"@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.18.9", "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.24.1.tgz"
-  integrity sha1-2oJh8ml/D0GwhVuR06IKH7/ScdM=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
-    "@babel/plugin-transform-optional-chaining" "^7.24.1"
-
 "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.23.3.tgz"
@@ -1833,6 +1792,15 @@
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
     "@babel/plugin-transform-optional-chaining" "^7.23.3"
+
+"@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining/-/plugin-bugfix-v8-spread-parameters-in-optional-chaining-7.24.1.tgz"
+  integrity sha1-2oJh8ml/D0GwhVuR06IKH7/ScdM=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
+    "@babel/plugin-transform-optional-chaining" "^7.24.1"
 
 "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly@^7.23.3":
   version "7.23.3"
@@ -1857,16 +1825,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/helper-remap-async-to-generator" "^7.13.0"
-    "@babel/plugin-syntax-async-generators" "^7.8.4"
-
-"@babel/plugin-proposal-async-generator-functions@^7.20.1":
-  version "7.20.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-async-generator-functions/-/plugin-proposal-async-generator-functions-7.20.7.tgz"
-  integrity sha1-v7cnbS1XPLZ7o3mYSiM04mK6UyY=
-  dependencies:
-    "@babel/helper-environment-visitor" "^7.18.9"
-    "@babel/helper-plugin-utils" "^7.20.2"
-    "@babel/helper-remap-async-to-generator" "^7.18.9"
     "@babel/plugin-syntax-async-generators" "^7.8.4"
 
 "@babel/plugin-proposal-async-generator-functions@^7.8.3":
@@ -1902,14 +1860,6 @@
     "@babel/helper-create-class-features-plugin" "^7.13.0"
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-proposal-class-properties@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.18.6.tgz"
-  integrity sha1-sRD1l0GJX37CGm//aW7EYmXERqM=
-  dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.18.6"
-    "@babel/helper-plugin-utils" "^7.18.6"
-
 "@babel/plugin-proposal-class-static-block@^7.14.3":
   version "7.14.3"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-class-static-block/-/plugin-proposal-class-static-block-7.14.3.tgz"
@@ -1918,15 +1868,6 @@
     "@babel/helper-create-class-features-plugin" "^7.14.3"
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-class-static-block" "^7.12.13"
-
-"@babel/plugin-proposal-class-static-block@^7.18.6":
-  version "7.21.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-class-static-block/-/plugin-proposal-class-static-block-7.21.0.tgz"
-  integrity sha1-d73Wb7e2BfOmEwLSJL36z1VHl30=
-  dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.21.0"
-    "@babel/helper-plugin-utils" "^7.20.2"
-    "@babel/plugin-syntax-class-static-block" "^7.14.5"
 
 "@babel/plugin-proposal-decorators@7.8.3":
   version "7.8.3"
@@ -1954,14 +1895,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-dynamic-import" "^7.8.3"
 
-"@babel/plugin-proposal-dynamic-import@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-dynamic-import/-/plugin-proposal-dynamic-import-7.18.6.tgz"
-  integrity sha1-crz41Ah5n1R9dZKYw8J8fn+qTZQ=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-
 "@babel/plugin-proposal-dynamic-import@^7.8.3":
   version "7.8.3"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-dynamic-import/-/plugin-proposal-dynamic-import-7.8.3.tgz"
@@ -1986,28 +1919,12 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
 
-"@babel/plugin-proposal-export-namespace-from@^7.18.9":
-  version "7.18.9"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-export-namespace-from/-/plugin-proposal-export-namespace-from-7.18.9.tgz"
-  integrity sha1-X3MTqzSM2xnVkBRfkkdUDpR2EgM=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.9"
-    "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
-
 "@babel/plugin-proposal-json-strings@^7.14.2":
   version "7.14.2"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-json-strings/-/plugin-proposal-json-strings-7.14.2.tgz"
   integrity sha512-w2DtsfXBBJddJacXMBhElGEYqCZQqN99Se1qeYn8DVLB33owlrlLftIbMzn5nz1OITfDVknXF433tBrLEAOEjA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
-    "@babel/plugin-syntax-json-strings" "^7.8.3"
-
-"@babel/plugin-proposal-json-strings@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-json-strings/-/plugin-proposal-json-strings-7.18.6.tgz"
-  integrity sha1-foeIwYEcOTr/digX59vx69DAXws=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
     "@babel/plugin-syntax-json-strings" "^7.8.3"
 
 "@babel/plugin-proposal-json-strings@^7.8.3":
@@ -2024,14 +1941,6 @@
   integrity sha512-1JAZtUrqYyGsS7IDmFeaem+/LJqujfLZ2weLR9ugB0ufUPjzf8cguyVT1g5im7f7RXxuLq1xUxEzvm68uYRtGg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
-    "@babel/plugin-syntax-logical-assignment-operators" "^7.10.4"
-
-"@babel/plugin-proposal-logical-assignment-operators@^7.18.9":
-  version "7.20.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-logical-assignment-operators/-/plugin-proposal-logical-assignment-operators-7.20.7.tgz"
-  integrity sha1-37yqj3tNN7Uei/tG2Upa6iu4nYM=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.20.2"
     "@babel/plugin-syntax-logical-assignment-operators" "^7.10.4"
 
 "@babel/plugin-proposal-nullish-coalescing-operator@7.8.3", "@babel/plugin-proposal-nullish-coalescing-operator@^7.8.3":
@@ -2058,14 +1967,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-nullish-coalescing-operator" "^7.8.3"
 
-"@babel/plugin-proposal-nullish-coalescing-operator@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.18.6.tgz"
-  integrity sha1-/dlAqZp0Dld9bHU6tvu0P9uUZ+E=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
-    "@babel/plugin-syntax-nullish-coalescing-operator" "^7.8.3"
-
 "@babel/plugin-proposal-numeric-separator@7.8.3", "@babel/plugin-proposal-numeric-separator@^7.8.3":
   version "7.8.3"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-numeric-separator/-/plugin-proposal-numeric-separator-7.8.3.tgz"
@@ -2080,14 +1981,6 @@
   integrity sha512-DcTQY9syxu9BpU3Uo94fjCB3LN9/hgPS8oUL7KrSW3bA2ePrKZZPJcc5y0hoJAM9dft3pGfErtEUvxXQcfLxUg==
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
-    "@babel/plugin-syntax-numeric-separator" "^7.10.4"
-
-"@babel/plugin-proposal-numeric-separator@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-numeric-separator/-/plugin-proposal-numeric-separator-7.18.6.tgz"
-  integrity sha1-iZsU+6/ofwU9LF/wWzYCnGLhPHU=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
     "@babel/plugin-syntax-numeric-separator" "^7.10.4"
 
 "@babel/plugin-proposal-object-rest-spread@7.12.1":
@@ -2136,17 +2029,6 @@
     "@babel/plugin-syntax-object-rest-spread" "^7.8.3"
     "@babel/plugin-transform-parameters" "^7.14.2"
 
-"@babel/plugin-proposal-object-rest-spread@^7.20.2":
-  version "7.20.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.20.7.tgz"
-  integrity sha1-qmYpQO9CV3nHVTSlxB6dk27cOQo=
-  dependencies:
-    "@babel/compat-data" "^7.20.5"
-    "@babel/helper-compilation-targets" "^7.20.7"
-    "@babel/helper-plugin-utils" "^7.20.2"
-    "@babel/plugin-syntax-object-rest-spread" "^7.8.3"
-    "@babel/plugin-transform-parameters" "^7.20.7"
-
 "@babel/plugin-proposal-object-rest-spread@^7.9.0":
   version "7.9.0"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.9.0.tgz"
@@ -2172,14 +2054,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
 
-"@babel/plugin-proposal-optional-catch-binding@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-optional-catch-binding/-/plugin-proposal-optional-catch-binding-7.18.6.tgz"
-  integrity sha1-+UANDmo+qTup73CwnnLdbaY4oss=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.18.6"
-    "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
-
 "@babel/plugin-proposal-optional-catch-binding@^7.8.3":
   version "7.8.3"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-optional-catch-binding/-/plugin-proposal-optional-catch-binding-7.8.3.tgz"
@@ -2188,7 +2062,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-syntax-optional-catch-binding" "^7.8.0"
 
-"@babel/plugin-proposal-optional-chaining@7.21.0", "@babel/plugin-proposal-optional-chaining@^7.18.9":
+"@babel/plugin-proposal-optional-chaining@7.21.0":
   version "7.21.0"
   resolved "https://registry.npmjs.org/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.21.0.tgz"
   integrity sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==
@@ -2230,14 +2104,6 @@
     "@babel/helper-create-class-features-plugin" "^7.13.0"
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-proposal-private-methods@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-private-methods/-/plugin-proposal-private-methods-7.18.6.tgz"
-  integrity sha1-UgnefSE0V1SKmENvoogvUvS+a+o=
-  dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.18.6"
-    "@babel/helper-plugin-utils" "^7.18.6"
-
 "@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2":
   version "7.21.0-placeholder-for-preset-env.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.21.0-placeholder-for-preset-env.2.tgz"
@@ -2263,16 +2129,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-private-property-in-object" "^7.14.0"
 
-"@babel/plugin-proposal-private-property-in-object@^7.18.6":
-  version "7.21.11"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.21.11.tgz"
-  integrity sha1-adWXCGtnYMQSZSXPoVTzRjH/Jyw=
-  dependencies:
-    "@babel/helper-annotate-as-pure" "^7.18.6"
-    "@babel/helper-create-class-features-plugin" "^7.21.0"
-    "@babel/helper-plugin-utils" "^7.20.2"
-    "@babel/plugin-syntax-private-property-in-object" "^7.14.5"
-
 "@babel/plugin-proposal-unicode-property-regex@^7.12.13":
   version "7.12.13"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.12.13.tgz"
@@ -2280,14 +2136,6 @@
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
-
-"@babel/plugin-proposal-unicode-property-regex@^7.18.6":
-  version "7.18.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.18.6.tgz"
-  integrity sha1-r2E9LNXmQ2Q7Zc3tZCB7Fchct44=
-  dependencies:
-    "@babel/helper-create-regexp-features-plugin" "^7.18.6"
-    "@babel/helper-plugin-utils" "^7.18.6"
 
 "@babel/plugin-proposal-unicode-property-regex@^7.4.4", "@babel/plugin-proposal-unicode-property-regex@^7.8.3":
   version "7.8.8"
@@ -2388,19 +2236,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.3"
 
-"@babel/plugin-syntax-import-assertions@^7.20.0", "@babel/plugin-syntax-import-assertions@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.24.1.tgz"
-  integrity sha1-2zqtckFToA6qwRWj+4mN5UTjSXE=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-syntax-import-assertions@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.23.3.tgz"
   integrity sha1-nAWn9ZKYKv8aJ2gmCthLzT8Md/w=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-syntax-import-assertions@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.24.1.tgz"
+  integrity sha1-2zqtckFToA6qwRWj+4mN5UTjSXE=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-syntax-import-attributes@^7.23.3":
   version "7.23.3"
@@ -2627,19 +2475,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-arrow-functions@^7.18.6", "@babel/plugin-transform-arrow-functions@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.24.1.tgz"
-  integrity sha1-K/JjYXBgycxFvNv0krjMgFCCvyc=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-arrow-functions@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.23.3.tgz"
   integrity sha1-lMbc/XMa+Q8np5UJ+at/shIPw4s=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-arrow-functions@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.24.1.tgz"
+  integrity sha1-K/JjYXBgycxFvNv0krjMgFCCvyc=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-arrow-functions@^7.8.3":
   version "7.8.3"
@@ -2677,15 +2525,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/helper-remap-async-to-generator" "^7.13.0"
 
-"@babel/plugin-transform-async-to-generator@^7.18.6", "@babel/plugin-transform-async-to-generator@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-async-to-generator/-/plugin-transform-async-to-generator-7.24.1.tgz"
-  integrity sha1-DiIHA7ifIhaADOexxTywz1IcN/Q=
-  dependencies:
-    "@babel/helper-module-imports" "^7.24.1"
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-remap-async-to-generator" "^7.22.20"
-
 "@babel/plugin-transform-async-to-generator@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-async-to-generator/-/plugin-transform-async-to-generator-7.23.3.tgz"
@@ -2693,6 +2532,15 @@
   dependencies:
     "@babel/helper-module-imports" "^7.22.15"
     "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/helper-remap-async-to-generator" "^7.22.20"
+
+"@babel/plugin-transform-async-to-generator@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-async-to-generator/-/plugin-transform-async-to-generator-7.24.1.tgz"
+  integrity sha1-DiIHA7ifIhaADOexxTywz1IcN/Q=
+  dependencies:
+    "@babel/helper-module-imports" "^7.24.1"
+    "@babel/helper-plugin-utils" "^7.24.0"
     "@babel/helper-remap-async-to-generator" "^7.22.20"
 
 "@babel/plugin-transform-async-to-generator@^7.8.3":
@@ -2711,19 +2559,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-block-scoped-functions@^7.18.6", "@babel/plugin-transform-block-scoped-functions@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-block-scoped-functions/-/plugin-transform-block-scoped-functions-7.24.1.tgz"
-  integrity sha1-HJR5niD81cTUWJUju8V7dpKXk4A=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-block-scoped-functions@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-block-scoped-functions/-/plugin-transform-block-scoped-functions-7.23.3.tgz"
   integrity sha1-/hF31xX7VpZjCV4E81mFJdmOjHc=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-block-scoped-functions@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-block-scoped-functions/-/plugin-transform-block-scoped-functions-7.24.1.tgz"
+  integrity sha1-HJR5niD81cTUWJUju8V7dpKXk4A=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-block-scoped-functions@^7.8.3":
   version "7.8.3"
@@ -2738,13 +2586,6 @@
   integrity sha512-5KdpkGxsZlTk+fPleDtGKsA+pon28+ptYmMO8GBSa5fHERCJWAzj50uAfCKBqq42HO+Zot6JF1x37CRprwmN4g==
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
-
-"@babel/plugin-transform-block-scoping@^7.20.2":
-  version "7.24.4"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-block-scoping/-/plugin-transform-block-scoping-7.24.4.tgz"
-  integrity sha1-KPXAELZvu4zN7vhTvvGTXENNcBI=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-block-scoping@^7.23.4":
   version "7.23.4"
@@ -2828,20 +2669,6 @@
     "@babel/helper-split-export-declaration" "^7.12.13"
     globals "^11.1.0"
 
-"@babel/plugin-transform-classes@^7.20.2", "@babel/plugin-transform-classes@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-classes/-/plugin-transform-classes-7.24.1.tgz"
-  integrity sha1-W8j8Fg7ZY3gYS8EAQq9H9QiE3LE=
-  dependencies:
-    "@babel/helper-annotate-as-pure" "^7.22.5"
-    "@babel/helper-compilation-targets" "^7.23.6"
-    "@babel/helper-environment-visitor" "^7.22.20"
-    "@babel/helper-function-name" "^7.23.0"
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-replace-supers" "^7.24.1"
-    "@babel/helper-split-export-declaration" "^7.22.6"
-    globals "^11.1.0"
-
 "@babel/plugin-transform-classes@^7.23.5":
   version "7.23.5"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-classes/-/plugin-transform-classes-7.23.5.tgz"
@@ -2854,6 +2681,20 @@
     "@babel/helper-optimise-call-expression" "^7.22.5"
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-replace-supers" "^7.22.20"
+    "@babel/helper-split-export-declaration" "^7.22.6"
+    globals "^11.1.0"
+
+"@babel/plugin-transform-classes@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-classes/-/plugin-transform-classes-7.24.1.tgz"
+  integrity sha1-W8j8Fg7ZY3gYS8EAQq9H9QiE3LE=
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.22.5"
+    "@babel/helper-compilation-targets" "^7.23.6"
+    "@babel/helper-environment-visitor" "^7.22.20"
+    "@babel/helper-function-name" "^7.23.0"
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-replace-supers" "^7.24.1"
     "@babel/helper-split-export-declaration" "^7.22.6"
     globals "^11.1.0"
 
@@ -2892,14 +2733,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-computed-properties@^7.18.9", "@babel/plugin-transform-computed-properties@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-computed-properties/-/plugin-transform-computed-properties-7.24.1.tgz"
-  integrity sha1-vH54f44CHsz7Z3r18TwpqZNO2Kc=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/template" "^7.24.0"
-
 "@babel/plugin-transform-computed-properties@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-computed-properties/-/plugin-transform-computed-properties-7.23.3.tgz"
@@ -2907,6 +2740,14 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/template" "^7.22.15"
+
+"@babel/plugin-transform-computed-properties@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-computed-properties/-/plugin-transform-computed-properties-7.24.1.tgz"
+  integrity sha1-vH54f44CHsz7Z3r18TwpqZNO2Kc=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/template" "^7.24.0"
 
 "@babel/plugin-transform-computed-properties@^7.8.3":
   version "7.8.3"
@@ -2929,19 +2770,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-destructuring@^7.20.2", "@babel/plugin-transform-destructuring@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-destructuring/-/plugin-transform-destructuring-7.24.1.tgz"
-  integrity sha1-segkOvSgIGhBlzeGKSuMjdhEc0U=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-destructuring@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-destructuring/-/plugin-transform-destructuring-7.23.3.tgz"
   integrity sha1-jJ7mgiixKuPf+YblbtG6TzxEYxE=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-destructuring@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-destructuring/-/plugin-transform-destructuring-7.24.1.tgz"
+  integrity sha1-segkOvSgIGhBlzeGKSuMjdhEc0U=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-destructuring@^7.8.3":
   version "7.8.8"
@@ -2965,14 +2806,6 @@
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-dotall-regex@^7.18.6", "@babel/plugin-transform-dotall-regex@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-dotall-regex/-/plugin-transform-dotall-regex-7.24.1.tgz"
-  integrity sha1-1WkT0vEnlcyZMIAbhMb4xHUTrBM=
-  dependencies:
-    "@babel/helper-create-regexp-features-plugin" "^7.22.15"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-dotall-regex@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-dotall-regex/-/plugin-transform-dotall-regex-7.23.3.tgz"
@@ -2980,6 +2813,14 @@
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.22.15"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-dotall-regex@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-dotall-regex/-/plugin-transform-dotall-regex-7.24.1.tgz"
+  integrity sha1-1WkT0vEnlcyZMIAbhMb4xHUTrBM=
+  dependencies:
+    "@babel/helper-create-regexp-features-plugin" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-dotall-regex@^7.4.4", "@babel/plugin-transform-dotall-regex@^7.8.3":
   version "7.8.3"
@@ -2996,19 +2837,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-duplicate-keys@^7.18.9", "@babel/plugin-transform-duplicate-keys@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-duplicate-keys/-/plugin-transform-duplicate-keys-7.24.1.tgz"
-  integrity sha1-U0enl/6CuNCXSdEOn1uDZlrbyog=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-duplicate-keys@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-duplicate-keys/-/plugin-transform-duplicate-keys-7.23.3.tgz"
   integrity sha1-ZkcGygpd/o0GZTf5kDL8Hci3IM4=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-duplicate-keys@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-duplicate-keys/-/plugin-transform-duplicate-keys-7.24.1.tgz"
+  integrity sha1-U0enl/6CuNCXSdEOn1uDZlrbyog=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-duplicate-keys@^7.8.3":
   version "7.8.3"
@@ -3041,14 +2882,6 @@
     "@babel/helper-builder-binary-assignment-operator-visitor" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-exponentiation-operator@^7.18.6", "@babel/plugin-transform-exponentiation-operator@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.24.1.tgz"
-  integrity sha1-ZlDr61vVwBLV9fkKJmE6CBYui6Q=
-  dependencies:
-    "@babel/helper-builder-binary-assignment-operator-visitor" "^7.22.15"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-exponentiation-operator@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.23.3.tgz"
@@ -3056,6 +2889,14 @@
   dependencies:
     "@babel/helper-builder-binary-assignment-operator-visitor" "^7.22.15"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-exponentiation-operator@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.24.1.tgz"
+  integrity sha1-ZlDr61vVwBLV9fkKJmE6CBYui6Q=
+  dependencies:
+    "@babel/helper-builder-binary-assignment-operator-visitor" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-exponentiation-operator@^7.8.3":
   version "7.8.3"
@@ -3119,20 +2960,20 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-for-of@^7.18.8", "@babel/plugin-transform-for-of@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-for-of/-/plugin-transform-for-of-7.24.1.tgz"
-  integrity sha1-Z0SERrZ6tsCRNgzjcX59OlniAv0=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
-
 "@babel/plugin-transform-for-of@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-for-of/-/plugin-transform-for-of-7.23.3.tgz"
   integrity sha1-r+EV/w+85zXgKGjUFIkJPGPhVVk=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-for-of@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-for-of/-/plugin-transform-for-of-7.24.1.tgz"
+  integrity sha1-Z0SERrZ6tsCRNgzjcX59OlniAv0=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
 
 "@babel/plugin-transform-for-of@^7.9.0":
   version "7.9.0"
@@ -3149,15 +2990,6 @@
     "@babel/helper-function-name" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-function-name@^7.18.9", "@babel/plugin-transform-function-name@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.24.1.tgz"
-  integrity sha1-jLpvdzBibMTf5MovpRYhWgWSs2E=
-  dependencies:
-    "@babel/helper-compilation-targets" "^7.23.6"
-    "@babel/helper-function-name" "^7.23.0"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-function-name@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.23.3.tgz"
@@ -3166,6 +2998,15 @@
     "@babel/helper-compilation-targets" "^7.22.15"
     "@babel/helper-function-name" "^7.23.0"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-function-name@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.24.1.tgz"
+  integrity sha1-jLpvdzBibMTf5MovpRYhWgWSs2E=
+  dependencies:
+    "@babel/helper-compilation-targets" "^7.23.6"
+    "@babel/helper-function-name" "^7.23.0"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-function-name@^7.8.3":
   version "7.8.3"
@@ -3198,19 +3039,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-literals@^7.18.9", "@babel/plugin-transform-literals@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-literals/-/plugin-transform-literals-7.24.1.tgz"
-  integrity sha1-ChmCKXr4Pms8lJcmhgZ99YjFwJY=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-literals@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-literals/-/plugin-transform-literals-7.23.3.tgz"
   integrity sha1-ghRmXwBQbq1z3hV+uiM+c4HzvrQ=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-literals@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-literals/-/plugin-transform-literals-7.24.1.tgz"
+  integrity sha1-ChmCKXr4Pms8lJcmhgZ99YjFwJY=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-literals@^7.8.3":
   version "7.8.3"
@@ -3242,19 +3083,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-member-expression-literals@^7.18.6", "@babel/plugin-transform-member-expression-literals@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-member-expression-literals/-/plugin-transform-member-expression-literals-7.24.1.tgz"
-  integrity sha1-iW0jYByS9DeviwE3GtNL63XfRIk=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-member-expression-literals@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-member-expression-literals/-/plugin-transform-member-expression-literals-7.23.3.tgz"
   integrity sha1-43s/BQIon0d6wOd2sFqDPYU8q8w=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-member-expression-literals@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-member-expression-literals/-/plugin-transform-member-expression-literals-7.24.1.tgz"
+  integrity sha1-iW0jYByS9DeviwE3GtNL63XfRIk=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-member-expression-literals@^7.8.3":
   version "7.8.3"
@@ -3272,14 +3113,6 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     babel-plugin-dynamic-import-node "^2.3.3"
 
-"@babel/plugin-transform-modules-amd@^7.19.6", "@babel/plugin-transform-modules-amd@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-amd/-/plugin-transform-modules-amd-7.24.1.tgz"
-  integrity sha1-ttgp7RUlhTaXfpx8xkN4FIcf+jk=
-  dependencies:
-    "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-modules-amd@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-amd/-/plugin-transform-modules-amd-7.23.3.tgz"
@@ -3287,6 +3120,14 @@
   dependencies:
     "@babel/helper-module-transforms" "^7.23.3"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-modules-amd@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-amd/-/plugin-transform-modules-amd-7.24.1.tgz"
+  integrity sha1-ttgp7RUlhTaXfpx8xkN4FIcf+jk=
+  dependencies:
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-modules-amd@^7.9.0":
   version "7.9.0"
@@ -3316,15 +3157,6 @@
     "@babel/helper-simple-access" "^7.13.12"
     babel-plugin-dynamic-import-node "^2.3.3"
 
-"@babel/plugin-transform-modules-commonjs@^7.19.6", "@babel/plugin-transform-modules-commonjs@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.24.1.tgz"
-  integrity sha1-5xuh0NaeBJoiv5Czhn4mOCPT8bk=
-  dependencies:
-    "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-simple-access" "^7.22.5"
-
 "@babel/plugin-transform-modules-commonjs@^7.23.0", "@babel/plugin-transform-modules-commonjs@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.23.3.tgz"
@@ -3332,6 +3164,15 @@
   dependencies:
     "@babel/helper-module-transforms" "^7.23.3"
     "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/helper-simple-access" "^7.22.5"
+
+"@babel/plugin-transform-modules-commonjs@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.24.1.tgz"
+  integrity sha1-5xuh0NaeBJoiv5Czhn4mOCPT8bk=
+  dependencies:
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helper-plugin-utils" "^7.24.0"
     "@babel/helper-simple-access" "^7.22.5"
 
 "@babel/plugin-transform-modules-commonjs@^7.9.0":
@@ -3365,16 +3206,6 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     babel-plugin-dynamic-import-node "^2.3.3"
 
-"@babel/plugin-transform-modules-systemjs@^7.19.6", "@babel/plugin-transform-modules-systemjs@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.24.1.tgz"
-  integrity sha1-K5Ylo9TkRbq6yXiNrsOQlOaxHj4=
-  dependencies:
-    "@babel/helper-hoist-variables" "^7.22.5"
-    "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-validator-identifier" "^7.22.20"
-
 "@babel/plugin-transform-modules-systemjs@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.23.3.tgz"
@@ -3383,6 +3214,16 @@
     "@babel/helper-hoist-variables" "^7.22.5"
     "@babel/helper-module-transforms" "^7.23.3"
     "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/helper-validator-identifier" "^7.22.20"
+
+"@babel/plugin-transform-modules-systemjs@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.24.1.tgz"
+  integrity sha1-K5Ylo9TkRbq6yXiNrsOQlOaxHj4=
+  dependencies:
+    "@babel/helper-hoist-variables" "^7.22.5"
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helper-plugin-utils" "^7.24.0"
     "@babel/helper-validator-identifier" "^7.22.20"
 
 "@babel/plugin-transform-modules-systemjs@^7.9.0":
@@ -3413,14 +3254,6 @@
     "@babel/helper-module-transforms" "^7.14.0"
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-modules-umd@^7.18.6", "@babel/plugin-transform-modules-umd@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-umd/-/plugin-transform-modules-umd-7.24.1.tgz"
-  integrity sha1-aSIMZmU6Gc8sCHK5x2K5pIuL6+8=
-  dependencies:
-    "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-modules-umd@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-umd/-/plugin-transform-modules-umd-7.23.3.tgz"
@@ -3428,6 +3261,14 @@
   dependencies:
     "@babel/helper-module-transforms" "^7.23.3"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-modules-umd@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-modules-umd/-/plugin-transform-modules-umd-7.24.1.tgz"
+  integrity sha1-aSIMZmU6Gc8sCHK5x2K5pIuL6+8=
+  dependencies:
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-modules-umd@^7.9.0":
   version "7.9.0"
@@ -3444,7 +3285,7 @@
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
 
-"@babel/plugin-transform-named-capturing-groups-regex@^7.19.1", "@babel/plugin-transform-named-capturing-groups-regex@^7.22.5":
+"@babel/plugin-transform-named-capturing-groups-regex@^7.22.5":
   version "7.22.5"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-named-capturing-groups-regex/-/plugin-transform-named-capturing-groups-regex-7.22.5.tgz"
   integrity sha1-Z/4Y7ozgLVfIVRheJ+PclZsumR8=
@@ -3466,19 +3307,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-new-target@^7.18.6", "@babel/plugin-transform-new-target@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-new-target/-/plugin-transform-new-target-7.24.1.tgz"
-  integrity sha1-KcWZiPo9AVfeHIcaKM2DCWNjzDQ=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-new-target@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-new-target/-/plugin-transform-new-target-7.23.3.tgz"
   integrity sha1-VJG7eO1qyH6ZCVfOo2fqt4HE2YA=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-new-target@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-new-target/-/plugin-transform-new-target-7.24.1.tgz"
+  integrity sha1-KcWZiPo9AVfeHIcaKM2DCWNjzDQ=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-new-target@^7.8.3":
   version "7.8.3"
@@ -3548,14 +3389,6 @@
     "@babel/helper-plugin-utils" "^7.12.13"
     "@babel/helper-replace-supers" "^7.12.13"
 
-"@babel/plugin-transform-object-super@^7.18.6", "@babel/plugin-transform-object-super@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-object-super/-/plugin-transform-object-super-7.24.1.tgz"
-  integrity sha1-5x1qsTSDzKie2VpHT1Qrv8IKBSA=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-replace-supers" "^7.24.1"
-
 "@babel/plugin-transform-object-super@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-object-super/-/plugin-transform-object-super-7.23.3.tgz"
@@ -3563,6 +3396,14 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-replace-supers" "^7.22.20"
+
+"@babel/plugin-transform-object-super@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-object-super/-/plugin-transform-object-super-7.24.1.tgz"
+  integrity sha1-5x1qsTSDzKie2VpHT1Qrv8IKBSA=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
+    "@babel/helper-replace-supers" "^7.24.1"
 
 "@babel/plugin-transform-object-super@^7.8.3":
   version "7.8.3"
@@ -3620,19 +3461,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-parameters@^7.20.1", "@babel/plugin-transform-parameters@^7.20.7", "@babel/plugin-transform-parameters@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-parameters/-/plugin-transform-parameters-7.24.1.tgz"
-  integrity sha1-mDwV0RTaGQUGx1thbOsPgXr8xRA=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-parameters@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-parameters/-/plugin-transform-parameters-7.23.3.tgz"
   integrity sha1-g+9dG69LEHL6blSysJmaeyUn4q8=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-parameters@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-parameters/-/plugin-transform-parameters-7.24.1.tgz"
+  integrity sha1-mDwV0RTaGQUGx1thbOsPgXr8xRA=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-parameters@^7.8.7":
   version "7.9.3"
@@ -3693,19 +3534,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-property-literals@^7.18.6", "@babel/plugin-transform-property-literals@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-property-literals/-/plugin-transform-property-literals-7.24.1.tgz"
-  integrity sha1-1qmuq5bwN0n07r6wtuqOkOyViCU=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-property-literals@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-property-literals/-/plugin-transform-property-literals-7.23.3.tgz"
   integrity sha1-VFGPFKxHVdIrkhYuSoUtMIpWCHU=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-property-literals@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-property-literals/-/plugin-transform-property-literals-7.24.1.tgz"
+  integrity sha1-1qmuq5bwN0n07r6wtuqOkOyViCU=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-property-literals@^7.8.3":
   version "7.8.3"
@@ -3904,20 +3745,20 @@
   dependencies:
     regenerator-transform "^0.14.2"
 
-"@babel/plugin-transform-regenerator@^7.18.6", "@babel/plugin-transform-regenerator@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-regenerator/-/plugin-transform-regenerator-7.24.1.tgz"
-  integrity sha1-Ylt1RbrlI2O9wfu9xyUrUEZAnIw=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    regenerator-transform "^0.15.2"
-
 "@babel/plugin-transform-regenerator@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-regenerator/-/plugin-transform-regenerator-7.23.3.tgz"
   integrity sha1-FBr9SiBXKYYCBp/Ofy3FFz5sVhw=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+    regenerator-transform "^0.15.2"
+
+"@babel/plugin-transform-regenerator@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-regenerator/-/plugin-transform-regenerator-7.24.1.tgz"
+  integrity sha1-Ylt1RbrlI2O9wfu9xyUrUEZAnIw=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
     regenerator-transform "^0.15.2"
 
 "@babel/plugin-transform-regenerator@^7.8.7":
@@ -3934,19 +3775,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-reserved-words@^7.18.6", "@babel/plugin-transform-reserved-words@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-reserved-words/-/plugin-transform-reserved-words-7.24.1.tgz"
-  integrity sha1-jecp9ey6r1z4O2feE7rTiiG+V8E=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-reserved-words@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-reserved-words/-/plugin-transform-reserved-words-7.23.3.tgz"
   integrity sha1-QTDc7hK9PdVwXFh5R+txXaEu+sg=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-reserved-words@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-reserved-words/-/plugin-transform-reserved-words-7.24.1.tgz"
+  integrity sha1-jecp9ey6r1z4O2feE7rTiiG+V8E=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-reserved-words@^7.8.3":
   version "7.8.3"
@@ -3982,19 +3823,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-shorthand-properties@^7.18.6", "@babel/plugin-transform-shorthand-properties@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-shorthand-properties/-/plugin-transform-shorthand-properties-7.24.1.tgz"
-  integrity sha1-upoJFEz1XTXsa5OjIlO+ytjuW1U=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-shorthand-properties@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-shorthand-properties/-/plugin-transform-shorthand-properties-7.23.3.tgz"
   integrity sha1-l9gqObDgwk+KmBVoqO2FF0X1khA=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-shorthand-properties@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-shorthand-properties/-/plugin-transform-shorthand-properties-7.24.1.tgz"
+  integrity sha1-upoJFEz1XTXsa5OjIlO+ytjuW1U=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-shorthand-properties@^7.8.3":
   version "7.8.3"
@@ -4019,20 +3860,20 @@
     "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.12.1"
 
-"@babel/plugin-transform-spread@^7.19.0", "@babel/plugin-transform-spread@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-spread/-/plugin-transform-spread-7.24.1.tgz"
-  integrity sha1-oaz5FSy/aQ5NoLoQeQs6x9Kys5E=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
-
 "@babel/plugin-transform-spread@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-spread/-/plugin-transform-spread-7.23.3.tgz"
   integrity sha1-QdF6rLEr3lUWhAPG8ta9ylY9Niw=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+    "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
+
+"@babel/plugin-transform-spread@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-spread/-/plugin-transform-spread-7.24.1.tgz"
+  integrity sha1-oaz5FSy/aQ5NoLoQeQs6x9Kys5E=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.22.5"
 
 "@babel/plugin-transform-spread@^7.8.3":
@@ -4049,19 +3890,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-sticky-regex@^7.18.6", "@babel/plugin-transform-sticky-regex@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-sticky-regex/-/plugin-transform-sticky-regex-7.24.1.tgz"
-  integrity sha1-8D5nKRLG4gPtjW4CcdnCET3AMbk=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-sticky-regex@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-sticky-regex/-/plugin-transform-sticky-regex-7.23.3.tgz"
   integrity sha1-3sRViKtKcjy1ecYJspSj0b0i/wQ=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-sticky-regex@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-sticky-regex/-/plugin-transform-sticky-regex-7.24.1.tgz"
+  integrity sha1-8D5nKRLG4gPtjW4CcdnCET3AMbk=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-sticky-regex@^7.8.3":
   version "7.8.3"
@@ -4085,19 +3926,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-transform-template-literals@^7.18.9", "@babel/plugin-transform-template-literals@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-template-literals/-/plugin-transform-template-literals-7.24.1.tgz"
-  integrity sha1-FeIWaHOjDYYX4+LMrbhmQ9Mnqrc=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-template-literals@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-template-literals/-/plugin-transform-template-literals-7.23.3.tgz"
   integrity sha1-Xw8CjrFOULXQ92vlf5AEV1dTnQc=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-template-literals@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-template-literals/-/plugin-transform-template-literals-7.24.1.tgz"
+  integrity sha1-FeIWaHOjDYYX4+LMrbhmQ9Mnqrc=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-template-literals@^7.8.3":
   version "7.8.3"
@@ -4114,19 +3955,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-typeof-symbol@^7.18.9", "@babel/plugin-transform-typeof-symbol@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.24.1.tgz"
-  integrity sha1-aDH3hkcIDewET36faAA9mUJPlMc=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-typeof-symbol@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.23.3.tgz"
   integrity sha1-nfq5esyHSVwMRJAU65xUfYlmvKQ=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-typeof-symbol@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-typeof-symbol/-/plugin-transform-typeof-symbol-7.24.1.tgz"
+  integrity sha1-aDH3hkcIDewET36faAA9mUJPlMc=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-typeof-symbol@^7.8.4":
   version "7.8.4"
@@ -4179,19 +4020,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-unicode-escapes@^7.18.10", "@babel/plugin-transform-unicode-escapes@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-escapes/-/plugin-transform-unicode-escapes-7.24.1.tgz"
-  integrity sha1-+z+hZnZUmsfHRJ25s0JhSYXCo6Q=
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-unicode-escapes@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-escapes/-/plugin-transform-unicode-escapes-7.23.3.tgz"
   integrity sha1-H2bRbKsB+rmNeEhn0k9wwcpluSU=
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-unicode-escapes@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-escapes/-/plugin-transform-unicode-escapes-7.24.1.tgz"
+  integrity sha1-+z+hZnZUmsfHRJ25s0JhSYXCo6Q=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-unicode-property-regex@^7.23.3":
   version "7.23.3"
@@ -4217,14 +4058,6 @@
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/plugin-transform-unicode-regex@^7.18.6", "@babel/plugin-transform-unicode-regex@^7.24.1":
-  version "7.24.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.24.1.tgz"
-  integrity sha1-V8PBkdaPmYrEa3CDgMHOTRNTY4U=
-  dependencies:
-    "@babel/helper-create-regexp-features-plugin" "^7.22.15"
-    "@babel/helper-plugin-utils" "^7.24.0"
-
 "@babel/plugin-transform-unicode-regex@^7.23.3":
   version "7.23.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.23.3.tgz"
@@ -4232,6 +4065,14 @@
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.22.15"
     "@babel/helper-plugin-utils" "^7.22.5"
+
+"@babel/plugin-transform-unicode-regex@^7.24.1":
+  version "7.24.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.24.1.tgz"
+  integrity sha1-V8PBkdaPmYrEa3CDgMHOTRNTY4U=
+  dependencies:
+    "@babel/helper-create-regexp-features-plugin" "^7.22.15"
+    "@babel/helper-plugin-utils" "^7.24.0"
 
 "@babel/plugin-transform-unicode-regex@^7.8.3":
   version "7.8.3"
@@ -4256,87 +4097,6 @@
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.22.15"
     "@babel/helper-plugin-utils" "^7.24.0"
-
-"@babel/preset-env@7.20.2":
-  version "7.20.2"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/preset-env/-/preset-env-7.20.2.tgz"
-  integrity sha1-mxZCqke7n0Oob5YwAReA2rf4ZQY=
-  dependencies:
-    "@babel/compat-data" "^7.20.1"
-    "@babel/helper-compilation-targets" "^7.20.0"
-    "@babel/helper-plugin-utils" "^7.20.2"
-    "@babel/helper-validator-option" "^7.18.6"
-    "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression" "^7.18.6"
-    "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining" "^7.18.9"
-    "@babel/plugin-proposal-async-generator-functions" "^7.20.1"
-    "@babel/plugin-proposal-class-properties" "^7.18.6"
-    "@babel/plugin-proposal-class-static-block" "^7.18.6"
-    "@babel/plugin-proposal-dynamic-import" "^7.18.6"
-    "@babel/plugin-proposal-export-namespace-from" "^7.18.9"
-    "@babel/plugin-proposal-json-strings" "^7.18.6"
-    "@babel/plugin-proposal-logical-assignment-operators" "^7.18.9"
-    "@babel/plugin-proposal-nullish-coalescing-operator" "^7.18.6"
-    "@babel/plugin-proposal-numeric-separator" "^7.18.6"
-    "@babel/plugin-proposal-object-rest-spread" "^7.20.2"
-    "@babel/plugin-proposal-optional-catch-binding" "^7.18.6"
-    "@babel/plugin-proposal-optional-chaining" "^7.18.9"
-    "@babel/plugin-proposal-private-methods" "^7.18.6"
-    "@babel/plugin-proposal-private-property-in-object" "^7.18.6"
-    "@babel/plugin-proposal-unicode-property-regex" "^7.18.6"
-    "@babel/plugin-syntax-async-generators" "^7.8.4"
-    "@babel/plugin-syntax-class-properties" "^7.12.13"
-    "@babel/plugin-syntax-class-static-block" "^7.14.5"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-    "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
-    "@babel/plugin-syntax-import-assertions" "^7.20.0"
-    "@babel/plugin-syntax-json-strings" "^7.8.3"
-    "@babel/plugin-syntax-logical-assignment-operators" "^7.10.4"
-    "@babel/plugin-syntax-nullish-coalescing-operator" "^7.8.3"
-    "@babel/plugin-syntax-numeric-separator" "^7.10.4"
-    "@babel/plugin-syntax-object-rest-spread" "^7.8.3"
-    "@babel/plugin-syntax-optional-catch-binding" "^7.8.3"
-    "@babel/plugin-syntax-optional-chaining" "^7.8.3"
-    "@babel/plugin-syntax-private-property-in-object" "^7.14.5"
-    "@babel/plugin-syntax-top-level-await" "^7.14.5"
-    "@babel/plugin-transform-arrow-functions" "^7.18.6"
-    "@babel/plugin-transform-async-to-generator" "^7.18.6"
-    "@babel/plugin-transform-block-scoped-functions" "^7.18.6"
-    "@babel/plugin-transform-block-scoping" "^7.20.2"
-    "@babel/plugin-transform-classes" "^7.20.2"
-    "@babel/plugin-transform-computed-properties" "^7.18.9"
-    "@babel/plugin-transform-destructuring" "^7.20.2"
-    "@babel/plugin-transform-dotall-regex" "^7.18.6"
-    "@babel/plugin-transform-duplicate-keys" "^7.18.9"
-    "@babel/plugin-transform-exponentiation-operator" "^7.18.6"
-    "@babel/plugin-transform-for-of" "^7.18.8"
-    "@babel/plugin-transform-function-name" "^7.18.9"
-    "@babel/plugin-transform-literals" "^7.18.9"
-    "@babel/plugin-transform-member-expression-literals" "^7.18.6"
-    "@babel/plugin-transform-modules-amd" "^7.19.6"
-    "@babel/plugin-transform-modules-commonjs" "^7.19.6"
-    "@babel/plugin-transform-modules-systemjs" "^7.19.6"
-    "@babel/plugin-transform-modules-umd" "^7.18.6"
-    "@babel/plugin-transform-named-capturing-groups-regex" "^7.19.1"
-    "@babel/plugin-transform-new-target" "^7.18.6"
-    "@babel/plugin-transform-object-super" "^7.18.6"
-    "@babel/plugin-transform-parameters" "^7.20.1"
-    "@babel/plugin-transform-property-literals" "^7.18.6"
-    "@babel/plugin-transform-regenerator" "^7.18.6"
-    "@babel/plugin-transform-reserved-words" "^7.18.6"
-    "@babel/plugin-transform-shorthand-properties" "^7.18.6"
-    "@babel/plugin-transform-spread" "^7.19.0"
-    "@babel/plugin-transform-sticky-regex" "^7.18.6"
-    "@babel/plugin-transform-template-literals" "^7.18.9"
-    "@babel/plugin-transform-typeof-symbol" "^7.18.9"
-    "@babel/plugin-transform-unicode-escapes" "^7.18.10"
-    "@babel/plugin-transform-unicode-regex" "^7.18.6"
-    "@babel/preset-modules" "^0.1.5"
-    "@babel/types" "^7.20.2"
-    babel-plugin-polyfill-corejs2 "^0.3.3"
-    babel-plugin-polyfill-corejs3 "^0.6.0"
-    babel-plugin-polyfill-regenerator "^0.4.1"
-    core-js-compat "^3.25.1"
-    semver "^6.3.0"
 
 "@babel/preset-env@7.24.3":
   version "7.24.3"
@@ -4762,17 +4522,6 @@
   version "0.1.4"
   resolved "https://registry.npmjs.org/@babel/preset-modules/-/preset-modules-0.1.4.tgz"
   integrity sha512-J36NhwnfdzpmH41M1DrnkkgAqhZaqr/NBdPfQ677mLzlaXo+oDiv1deyCDtgAhz8p328otdob0Du7+xgHGZbKg==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
-    "@babel/plugin-proposal-unicode-property-regex" "^7.4.4"
-    "@babel/plugin-transform-dotall-regex" "^7.4.4"
-    "@babel/types" "^7.4.4"
-    esutils "^2.0.2"
-
-"@babel/preset-modules@^0.1.5":
-  version "0.1.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/preset-modules/-/preset-modules-0.1.6.tgz"
-  integrity sha1-MbzdjxlThDcznRevANF32FTZ1Fg=
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-proposal-unicode-property-regex" "^7.4.4"
@@ -6398,11 +6147,6 @@
   version "2.2.0"
   resolved "https://registry.npmjs.org/@formatjs/intl-utils/-/intl-utils-2.2.0.tgz"
   integrity sha512-+Az7tR1av1DHZu9668D8uh9atT6vp+FFmEF8BrEssv0OqzpVjpVBGVmcgPzQP8k2PQjVlm/h2w8cTt0knn132w==
-
-"@formatjs/intl-utils@^2.3.0":
-  version "2.3.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-utils/-/intl-utils-2.3.0.tgz#2dc8c57044de0340eb53a7ba602e59abf80dc799"
-  integrity sha1-LcjFcETeA0DrU6e6YC5Zq/gNx5k=
 
 "@formatjs/intl@2.10.14":
   version "2.10.14"
@@ -13994,15 +13738,6 @@ babel-plugin-polyfill-corejs2@^0.2.0:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
     semver "^6.1.1"
 
-babel-plugin-polyfill-corejs2@^0.3.3:
-  version "0.3.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.3.3.tgz"
-  integrity sha1-XRvTg20KGeG4S78tlkDMtvlRwSI=
-  dependencies:
-    "@babel/compat-data" "^7.17.7"
-    "@babel/helper-define-polyfill-provider" "^0.3.3"
-    semver "^6.1.1"
-
 babel-plugin-polyfill-corejs2@^0.4.10:
   version "0.4.10"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.4.10.tgz"
@@ -14045,14 +13780,6 @@ babel-plugin-polyfill-corejs3@^0.2.0:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
     core-js-compat "^3.9.1"
 
-babel-plugin-polyfill-corejs3@^0.6.0:
-  version "0.6.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.6.0.tgz"
-  integrity sha1-Vq2II3E36t5IWnG1L3Lb7VfGIwo=
-  dependencies:
-    "@babel/helper-define-polyfill-provider" "^0.3.3"
-    core-js-compat "^3.25.1"
-
 babel-plugin-polyfill-corejs3@^0.8.5:
   version "0.8.6"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.8.6.tgz"
@@ -14067,13 +13794,6 @@ babel-plugin-polyfill-regenerator@^0.2.0:
   integrity sha512-Goy5ghsc21HgPDFtzRkSirpZVW35meGoTmTOb2bxqdl60ghub4xOidgNTHaZfQ2FaxQsKmwvXtOAkcIS4SMBWg==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
-
-babel-plugin-polyfill-regenerator@^0.4.1:
-  version "0.4.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/babel-plugin-polyfill-regenerator/-/babel-plugin-polyfill-regenerator-0.4.1.tgz"
-  integrity sha1-OQ+Rw42QRzWS7UM1HoAanT4P10c=
-  dependencies:
-    "@babel/helper-define-polyfill-provider" "^0.3.3"
 
 babel-plugin-polyfill-regenerator@^0.5.3:
   version "0.5.3"
@@ -16227,13 +15947,6 @@ copy-webpack-plugin@^5.0.5, copy-webpack-plugin@^5.1.0:
     schema-utils "^1.0.0"
     serialize-javascript "^2.1.2"
     webpack-log "^2.0.0"
-
-core-js-compat@^3.25.1:
-  version "3.37.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/core-js-compat/-/core-js-compat-3.37.0.tgz"
-  integrity sha1-2VcOVEFjd5u03/EDHHly9EkY3HM=
-  dependencies:
-    browserslist "^4.23.0"
 
 core-js-compat@^3.31.0, core-js-compat@^3.36.1:
   version "3.36.1"

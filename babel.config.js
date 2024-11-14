@@ -41,8 +41,6 @@ module.exports = api => {
 
     plugins: [
       'babel-plugin-styled-components',
-      '@babel/plugin-proposal-object-rest-spread',
-      '@babel/plugin-proposal-class-properties',
       [
         'transform-rename-import',
         {
