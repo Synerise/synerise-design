@@ -10,7 +10,11 @@ import * as S from '../Item.styles';
 export type BaseComponentProps = ItemProps & {
   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
 };
-
+/**
+ *
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ *
+ */
 export const BaseComponent: React.FC<BaseComponentProps> = ({
   icon: IconComponent,
   item,
@@ -80,9 +84,7 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
         onDeleteConfirmationVisibilityChange={NOOP}
       />
     </S.SuffixWrapper>
-  ) : (
-    undefined
-  );
+  ) : undefined;
 
   return (
     <S.Item

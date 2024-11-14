@@ -16,6 +16,9 @@ import { TreeMenuTexts, TreeMenuProps, TreeNode, TreeData, TreeMenuItem } from '
 import * as S from './TreeMenu.styles';
 import { generateTree, getCount } from './utils';
 
+/**
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ */
 export const defaultItemTypes = {
   folder: {
     name: 'Folder',
@@ -46,7 +49,11 @@ const updateChildrenKeys = (children: TreeData[] | undefined): TreeData[] => {
       })
     : [];
 };
-
+/**
+ *
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ *
+ */
 const TreeMenu: React.FC<TreeMenuProps> = ({
   dataSource = [],
   showToolbar = true,
