@@ -16,6 +16,9 @@ import TagsListContainer from './TagsList.styles';
 export const DEFAULT_STEP = 10;
 export const DEFAULT_ITEMS_VISIBLE = 10;
 
+/**
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ */
 export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: number): [TagsListItem[], TagsListItem] {
   const newItems = [...items];
   const idx = index || newItems.findIndex((findItem: TagsListItem) => findItem.id === item.id);
@@ -23,6 +26,9 @@ export function replaceItem(items: TagsListItem[], item: TagsListItem, index?: n
   return [newItems, newItems[idx]];
 }
 
+/**
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ */
 const TagsList: React.FC<TagsListProps> = props => {
   const {
     items: controlledItems,

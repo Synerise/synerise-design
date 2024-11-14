@@ -31,6 +31,9 @@ function getNewItem(name: string): TagsListItem {
   };
 }
 
+/**
+ * @deprecated - this component will not receive any more updates and will be removed in DesignSystem 1.x
+ */
 const AddModal = ({
   items: propItems,
   disabled = false,
