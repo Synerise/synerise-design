@@ -1,39 +1,63 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { EmptyStatesSize, FontSize } from './EmptyStates.types';
 
 const FONT_SIZE_DEFAULT = 14;
-const mapElementsPosition = {
-  right: 'row',
-  bottom: 'column',
+
+const getFlexStyle = (iconPosition: 'top' | 'left' | 'right') => {
+  return iconPosition === 'top'
+    ? css`
+        flex-direction: ${mapIconPosition[iconPosition]};
+        align-items: center;
+      `
+    : css`
+        flex-direction: ${mapIconPosition[iconPosition]};
+        gap: 16px;
+        align-items: flex-start;
+      `;
 };
 
-export const TextWrapper = styled.div<{ labelPosition: 'bottom' | 'right' }>`
+const mapIconPosition = {
+  right: 'row-reverse',
+  top: 'column',
+  left: 'row',
+};
+
+const mapTextAlign = {
+  right: 'flex-end',
+  left: 'flex-start',
+  center: 'center',
+  justify: 'center',
+};
+
+export const EmptyStatesIconContainer = styled.div``;
+
+export const TextWrapper = styled.div`
   display: flex;
   line-height: 16px;
   max-width: 440px;
   word-wrap: break-word;
-  justify-content: ${(props): string => (props.labelPosition === 'bottom' ? 'center' : 'flex-start')};
-  text-align: center;
   padding-bottom: 8px;
 `;
-export const HeaderWrapper = styled.div<{ fontSize?: EmptyStatesSize; size?: EmptyStatesSize }>`
+export const HeaderWrapper = styled.div<{ fontSize?: EmptyStatesSize; size?: EmptyStatesSize; hasIcon?: boolean }>`
   display: flex;
   line-height: 16px;
-  color: ${(props): string => props.theme.palette['grey-800']};
-  font-size: ${(props): string => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
+  margin-top: ${props => (props.hasIcon && props.size === EmptyStatesSize.SMALL ? '12px' : '')};
+  color: ${props => props.theme.palette['grey-800']};
+  font-size: ${props => FontSize[props.fontSize as string] || FONT_SIZE_DEFAULT}px;
   font-weight: 500;
-  padding-bottom: ${(props): string => (props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px')};
+  padding-bottom: ${props => (props.fontSize === EmptyStatesSize.SMALL ? '12px' : '18px')};
 `;
+
 export const ButtonWrapper = styled.div`
   padding-top: 12px;
   display: flex;
 `;
-export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'; mode?: 'absolute' }>`
+
+export const EmptyStatesWrapper = styled.div<{ iconPosition: 'top' | 'left' | 'right'; mode?: 'absolute' }>`
   display: flex;
-  flex-direction: ${(props): string => mapElementsPosition[props.labelPosition]};
-  align-items: center;
-  justify-content: center;
-  ${(props): FlattenSimpleInterpolation | false =>
+  ${props => getFlexStyle(props.iconPosition)}
+
+  ${props =>
     props.mode === 'absolute' &&
     css`
       position: absolute;
@@ -41,16 +65,12 @@ export const EmptyStatesWrapper = styled.div<{ labelPosition: 'bottom' | 'right'
       left: 50%;
     `};
 `;
-export const EmptyStatesIconContainer = styled.div<{ size?: EmptyStatesSize }>`
-  margin-bottom: ${(props): string => (props.size === EmptyStatesSize.SMALL ? '8px' : '40px')};
-`;
-export const StatusIconContainer = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  text-align: center;
+
+export const EmptyStatesContent = styled.div<{ textAlign: 'left' | 'right' | 'center' | 'justify' }>`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  flex-direction: column;
+  text-align: ${props => props.textAlign};
+  > * {
+    justify-content: ${props => mapTextAlign[props.textAlign]};
+  }
 `;

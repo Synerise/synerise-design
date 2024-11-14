@@ -11,34 +11,36 @@ const mapSizeToPx = {
 const EmptyStates = ({
   size = EmptyStatesSize.SMALL,
   label,
-  labelPosition = 'right',
   text,
   button,
   fontSize,
   customIcon,
   className,
   mode,
+  iconPosition = 'top',
+  textAlign = 'center',
 }: EmptyStatesProps) => {
   return (
-    <S.EmptyStatesWrapper mode={mode} className={`ds-empty-states ${className}`} labelPosition={labelPosition}>
+    <S.EmptyStatesWrapper iconPosition={iconPosition} mode={mode} className={`ds-empty-states ${className}`}>
       {customIcon && (
-        <S.EmptyStatesIconContainer size={size}>
-          <S.StatusIconContainer>
-            <Icon data-testid="empty-states-custom-icon" component={customIcon} size={mapSizeToPx[size]} />
-          </S.StatusIconContainer>
+        <S.EmptyStatesIconContainer>
+          <Icon data-testid="empty-states-custom-icon" component={customIcon} size={mapSizeToPx[size]} />
         </S.EmptyStatesIconContainer>
       )}
-      {text && (
-        <S.HeaderWrapper data-testid="empty-states-header" size={size} fontSize={fontSize}>
-          {text}
-        </S.HeaderWrapper>
-      )}
-      {label && (
-        <S.TextWrapper data-testid="empty-states-label" labelPosition={labelPosition}>
-          {label}
-        </S.TextWrapper>
-      )}
-      {button && <S.ButtonWrapper>{button}</S.ButtonWrapper>}
+      <S.EmptyStatesContent textAlign={textAlign}>
+        {text && (
+          <S.HeaderWrapper
+            hasIcon={Boolean(customIcon)}
+            data-testid="empty-states-header"
+            size={size}
+            fontSize={fontSize}
+          >
+            {text}
+          </S.HeaderWrapper>
+        )}
+        {label && <S.TextWrapper data-testid="empty-states-label">{label}</S.TextWrapper>}
+        {button && <S.ButtonWrapper>{button}</S.ButtonWrapper>}
+      </S.EmptyStatesContent>
     </S.EmptyStatesWrapper>
   );
 };
