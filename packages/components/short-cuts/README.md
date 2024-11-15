@@ -26,8 +26,9 @@ import ShortCuts from '@synerise/ds-short-cuts'
 
 ## API
 
-| Property   | Description            | Type                                                      | Default   |
-| size       | sizes of short cut     | `S` , `L`                                                 | -         |
-| children   | render component       | ReactNode                                                 | -         |
-| color      | type of colors         | string                                                    | -         |
-| icon       | render icon            | ReactNode                                                 | -         |
+| Property   | Description              | Type                                                      | Default   |
+| size       | sizes of short cut       | `S` , `L`                                                 | -         |
+| children   | content to display       | ReactNode                                                 | -         |
+| color      | type of colors           | string                                                    | -         |
+| icon       | icon to display          | ReactNode                                                 | -         |
+| autoWidth  | auto width for more text | boolean                                                   | `false`   |

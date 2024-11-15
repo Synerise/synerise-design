@@ -1,42 +1,52 @@
 import styled from 'styled-components';
 import Icon from '@synerise/ds-icon';
 
-import { ReactNode } from 'react';
-
-const getPadding = (props: { size?: 'S' | 'L'; color?: 'dark' | 'light'; icon?: ReactNode }): string => {
-  if (props.size === 'L' && props.icon) {
-    return '8px';
-  }
-  if (props.size === 'S' && props.icon) {
-    return '4px';
-  }
+const getPadding = (props: { size?: 'S' | 'L' }): string => {
   if (props.size === 'L') {
-    return '8px 14px';
+    return '0 8px';
   }
   if (props.size === 'S') {
-    return '4px 10px';
+    return '0 4px';
   }
   return '0px';
+};
+
+const getWidth = (props: { size?: 'S' | 'L'; autoWidth?: boolean }): string => {
+  if (props.size && props.autoWidth) {
+    return '100%';
+  }
+  if (props.size === 'L') {
+    return '24px';
+  }
+  if (props.size === 'S') {
+    return '18px';
+  }
+  return '100%';
 };
 
 export const ShortCutWrapper = styled.div<{ color?: 'dark' | 'light'; size?: 'S' | 'L' }>`
   display: flex;
   background-color: ${(props): string =>
     props.color === 'dark' ? props.theme.palette['grey-600'] : props.theme.palette.white};
-  border-radius: 6px;
-  border-bottom: 2px solid
+  border-radius: 3px;
+  border-bottom: 1px solid
     ${(props): string => (props.color === 'dark' ? props.theme.palette['grey-500'] : props.theme.palette['grey-300'])};
   box-shadow: 0 0 10px 2px
     ${(props): string => (props.color === 'dark' ? props.theme.palette['grey-300'] : props.theme.palette['grey-100'])};
 `;
 
-export const Wrapper = styled.div<{ size?: 'S' | 'L'; color?: 'dark' | 'light'; icon?: ReactNode }>`
+export const Wrapper = styled.div<{
+  size?: 'S' | 'L';
+  color?: 'dark' | 'light';
+  autoWidth?: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: ${(props): string => (props.size === 'S' ? '28px' : '36px')};
+  height: ${(props): string => (props.size === 'S' ? '17px' : '23px')};
+  width: ${(props): string => getWidth(props)};
   padding: ${(props): string => getPadding(props)};
-  font-size: 18px;
+  font-size: 11px;
   color: ${(props): string => (props.color === 'dark' ? props.theme.palette.white : props.theme.palette['grey-600'])};
 `;
 

@@ -6,6 +6,7 @@ export type ShortCutsProps = WithHTMLAttributes<
   {
     size?: 'S' | 'L';
     color?: 'light' | 'dark';
+    autoWidth?: boolean;
   }
 > &
   ExactlyOne<{ icon?: ReactNode }, { children?: ReactNode }>;
