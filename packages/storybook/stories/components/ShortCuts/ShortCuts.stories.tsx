@@ -3,13 +3,13 @@ import React from 'react';
 import type { StoryObj, Meta } from '@storybook/react';
 
 import ShortCuts from '@synerise/ds-short-cuts';
-import { ArrowDownM } from '@synerise/ds-icon';
+import { ArrowDownS } from '@synerise/ds-icon';
 
 import {
   centeredPaddedWrapper,
-  CLASSNAME_ARG_CONTROL,
   REACT_NODE_AS_STRING,
   controlFromOptionsArray,
+  BOOLEAN_CONTROL,
 } from '../../utils';
 
 const COLOR_OPTIONS = {
@@ -31,6 +31,7 @@ export default {
       mapping: COLOR_OPTIONS
     },
     children: REACT_NODE_AS_STRING,
+    autoWidth: BOOLEAN_CONTROL,
   },
 } as Meta<typeof ShortCuts>;
 
@@ -41,6 +42,7 @@ export const Default: Story = {
     size: 'L',
     color: 'dark',
     children: 'S',
+    autoWidth: false,
   },
 };
 
@@ -48,6 +50,6 @@ export const ShortCutWithIcon: Story = {
   ...Default,
   args: {
     ...Default.args,
-    icon: <ArrowDownM/>,
+    icon: <ArrowDownS/>,
   },
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
 import ShortCuts from '@synerise/ds-short-cuts';
-import { ArrowDownM } from '@synerise/ds-icon';
+import { ArrowDownS } from '@synerise/ds-icon';
 
 const ShortCutsSizes = {
   Small: 'S',
@@ -20,11 +20,12 @@ const stories = {
     const size = select('Size', ShortCutsSizes, 'S');
     const color = select('Color', ShortCutsColor, 'light');
     const shortCutText = text('Text', 'S');
-    const renderIcon = boolean('set icon', true);
+    const renderIcon = boolean('Set icon', true);
+    const autoWidth = boolean('Set auto width for more text', false);
 
     return (
       <div>
-        <ShortCuts color={color} size={size} children={shortCutText} icon={renderIcon ? <ArrowDownM/> : undefined} />
+        <ShortCuts color={color} size={size} children={shortCutText} autoWidth={autoWidth} icon={renderIcon ? <ArrowDownS /> : undefined} />
       </div>
     )
   },
