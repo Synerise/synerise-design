@@ -6,6 +6,7 @@ import * as allIcons from '@synerise/ds-icon/dist/icons';
 import * as allIconsL from '@synerise/ds-icon/dist/icons/L';
 import * as allIconsXL from '@synerise/ds-icon/dist/icons/XL';
 import * as allIconsAdditional from '@synerise/ds-icon/dist/icons/additional';
+import * as allColorIcons from '@synerise/ds-icon/dist/icons/colorIcons';
 
 import { IconWrapper, IconsWrapper } from './Icon.stories.styles';
 
@@ -89,4 +90,8 @@ export const AdditionalL: StoryObj<IconProps> = {
 
 export const AdditionalXL: StoryObj<IconProps> = {
   render: (args) => renderIcons(allIconsXL, '', 96),
+};
+
+export const AdditionalColor: StoryObj<IconProps> = {
+  render: (args) => renderIcons(allColorIcons, '', 48),
 };
