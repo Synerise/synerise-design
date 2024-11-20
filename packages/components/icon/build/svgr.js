@@ -9,14 +9,17 @@ const LIB_DIR = 'src/icons';
 const ADDITIONAL_LIB_DIR = 'src/icons/additional';
 const L_LIB_DIR = 'src/icons/L';
 const XL_LIB_DIR = 'src/icons/XL';
+const COLOR_LIB_DIR = 'src/icons/colorIcons';
 
 const INDEX_DIST_FILE = `${LIB_DIR}/index.ts`;
 const ADDITIONAL_INDEX_DIST_FILE = `${ADDITIONAL_LIB_DIR}/index.ts`;
 const L_INDEX_DIST_FILE = `${L_LIB_DIR}/index.ts`;
 const XL_INDEX_DIST_FILE = `${XL_LIB_DIR}/index.ts`;
+const COLOR_INDEX_DIST_FILE = `${COLOR_LIB_DIR}/index.ts`;
 
-const LIB_DIRS = [LIB_DIR, ADDITIONAL_LIB_DIR, L_LIB_DIR, XL_LIB_DIR];
-const DIST_FILES = [INDEX_DIST_FILE, ADDITIONAL_INDEX_DIST_FILE, L_INDEX_DIST_FILE, XL_INDEX_DIST_FILE];
+
+const LIB_DIRS = [LIB_DIR, ADDITIONAL_LIB_DIR, L_LIB_DIR, XL_LIB_DIR, COLOR_LIB_DIR];
+const DIST_FILES = [INDEX_DIST_FILE, ADDITIONAL_INDEX_DIST_FILE, L_INDEX_DIST_FILE, XL_INDEX_DIST_FILE, COLOR_INDEX_DIST_FILE];
 
 const titlecase = input => input[0].toLocaleUpperCase() + input.slice(1);
 
@@ -103,4 +106,5 @@ buildIconsSet('src/svg/*.svg', LIB_DIR, INDEX_DIST_FILE);
 buildIconsSet('src/svg/additional/*.svg', ADDITIONAL_LIB_DIR, ADDITIONAL_INDEX_DIST_FILE);
 buildIconsSet('src/svg/L/*.svg', L_LIB_DIR, L_INDEX_DIST_FILE);
 buildIconsSet('src/svg/XL/*.svg', XL_LIB_DIR, XL_INDEX_DIST_FILE);
+buildIconsSet('src/svg/colorIcons/*.svg', COLOR_LIB_DIR, COLOR_INDEX_DIST_FILE);
 
