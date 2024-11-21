@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.25.14...@synerise/ds-context-selector@0.25.15) (2024-11-21)
+
+
+### Bug Fixes
+
+* **context-selector:** make texts optional prop ([44279cf](https://github.com/Synerise/synerise-design/commit/44279cf859db1d3a9ea4ac0fc6e927423fb63407))
+
+
+
+
+
 ## [0.25.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-context-selector@0.25.13...@synerise/ds-context-selector@0.25.14) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-context-selector

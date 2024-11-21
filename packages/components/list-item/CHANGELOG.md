@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.18...@synerise/ds-list-item@0.4.19) (2024-11-21)
+
+
+### Bug Fixes
+
+* fixed types with htmlattributes ([7e84ba3](https://github.com/Synerise/synerise-design/commit/7e84ba316db9abee7bf16a46fa6b15ea76337cf4))
+
+
+
+
+
 ## [0.4.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.17...@synerise/ds-list-item@0.4.18) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-list-item

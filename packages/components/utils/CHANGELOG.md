@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.31.1...@synerise/ds-utils@0.31.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+* **factors:** deep merge of default and prop texts ([787b436](https://github.com/synerise/synerise-design/commit/787b4367213922eca21292a0a933c7ff5c241dd9))
+
+
+
+
+
 ## [0.31.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-utils@0.31.0...@synerise/ds-utils@0.31.1) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-utils

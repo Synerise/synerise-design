@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.3.0...@synerise/ds-code-area@0.3.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/Synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+
+
+
+
+
 # [0.3.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.2.0...@synerise/ds-code-area@0.3.0) (2024-11-12)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.4.1...@synerise/ds-description@0.4.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/Synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+* fixed types with htmlattributes ([7e84ba3](https://github.com/Synerise/synerise-design/commit/7e84ba316db9abee7bf16a46fa6b15ea76337cf4))
+
+
+
+
+
 ## [0.4.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-description@0.4.0...@synerise/ds-description@0.4.1) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-description

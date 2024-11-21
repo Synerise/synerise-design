@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.42.0...@synerise/ds-core@0.42.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **context-selector:** make texts optional prop ([44279cf](https://github.com/synerise/synerise-design/commit/44279cf859db1d3a9ea4ac0fc6e927423fb63407))
+* **core:** onError fn types ([c34bdfe](https://github.com/synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+* **factors:** deep merge of default and prop texts ([787b436](https://github.com/synerise/synerise-design/commit/787b4367213922eca21292a0a933c7ff5c241dd9))
+
+
+
+
+
 # [0.42.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-core@0.41.0...@synerise/ds-core@0.42.0) (2024-11-12)
 
 

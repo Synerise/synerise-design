@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.14](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.24.13...@synerise/ds-input@0.24.14) (2024-11-21)
+
+
+### Bug Fixes
+
+* **input:** input disabled text color ([7ee428a](https://github.com/synerise/synerise-design/commit/7ee428a4ce5a1de348d8d9cedd8d53691ff3660d))
+
+
+
+
+
 ## [0.24.13](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.24.12...@synerise/ds-input@0.24.13) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-input

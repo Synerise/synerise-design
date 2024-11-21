@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.60.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.60.1...@synerise/ds-table@0.60.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+
+
+
+
+
 ## [0.60.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-table@0.60.0...@synerise/ds-table@0.60.1) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-table

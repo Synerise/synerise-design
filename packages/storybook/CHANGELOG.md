@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.25.0...storybook7@0.26.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/Synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+* **factors:** deep merge of default and prop texts ([787b436](https://github.com/Synerise/synerise-design/commit/787b4367213922eca21292a0a933c7ff5c241dd9))
+* **short-cuts:** fixes to short-cuts ([ee67cb5](https://github.com/Synerise/synerise-design/commit/ee67cb5f1224bba613cc7469f7afa6a4a0f09d75))
+
+
+### Features
+
+* **icon:** new group of icons ([1c21158](https://github.com/Synerise/synerise-design/commit/1c2115898ec0b4df9282400e275e66b38fa78d12))
+* **modal:** new stories modal ([59edf6d](https://github.com/Synerise/synerise-design/commit/59edf6d75a1dd21b37c69d476dc637072c42abe3))
+
+
+
+
+
 # [0.25.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.24.0...storybook7@0.25.0) (2024-11-14)
 
 

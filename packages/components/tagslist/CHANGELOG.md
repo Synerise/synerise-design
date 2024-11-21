@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.11.2...@synerise/ds-tagslist@0.11.3) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/Synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+
+
+
+
+
 ## [0.11.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tagslist@0.11.1...@synerise/ds-tagslist@0.11.2) (2024-11-14)
 
 **Note:** Version bump only for package @synerise/ds-tagslist

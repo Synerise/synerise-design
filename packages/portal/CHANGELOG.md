@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.225.1](https://github.com/synerise/synerise-design/compare/portal@0.225.0...portal@0.225.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **core:** onError fn types ([c34bdfe](https://github.com/synerise/synerise-design/commit/c34bdfe9da898d7999c605f9fbcbba4716dfb6d4))
+* **short-cuts:** fixes to short-cuts ([ee67cb5](https://github.com/synerise/synerise-design/commit/ee67cb5f1224bba613cc7469f7afa6a4a0f09d75))
+
+
+
+
+
 # [0.225.0](https://github.com/synerise/synerise-design/compare/portal@0.224.0...portal@0.225.0) (2024-11-12)
 
 

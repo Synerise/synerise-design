@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.29](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.5.28...@synerise/ds-cruds@0.5.29) (2024-11-21)
+
+
+### Bug Fixes
+
+* fixed types with htmlattributes ([7e84ba3](https://github.com/Synerise/synerise-design/commit/7e84ba316db9abee7bf16a46fa6b15ea76337cf4))
+
+
+
+
+
 ## [0.5.28](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cruds@0.5.27...@synerise/ds-cruds@0.5.28) (2024-11-12)
 
 **Note:** Version bump only for package @synerise/ds-cruds
