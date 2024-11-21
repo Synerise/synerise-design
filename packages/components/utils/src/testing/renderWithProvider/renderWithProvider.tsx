@@ -19,7 +19,7 @@ const renderWithProvider = (
   const rendered = render(
     <DSProvider
       locale={props?.locale ?? undefined}
-      onError={NOOP}
+      onErrorIntl={NOOP}
       {...(props?.notation ? { dataFormatConfig: getDataFormatConfigFromNotation(props.notation) } : {})}
     >
       {node}

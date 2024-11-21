@@ -6153,6 +6153,15 @@
     "@formatjs/intl-localematcher" "0.5.6"
     tslib "2"
 
+"@formatjs/ecma402-abstract@2.2.3":
+  version "2.2.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/ecma402-abstract/-/ecma402-abstract-2.2.3.tgz#dc5a032e1971c709b32b9ab511fa35504a7d3bc9"
+  integrity sha1-3FoDLhlxxwmzK5q1Efo1UEp9O8k=
+  dependencies:
+    "@formatjs/fast-memoize" "2.2.3"
+    "@formatjs/intl-localematcher" "0.5.7"
+    tslib "2"
+
 "@formatjs/fast-memoize@2.2.2":
   version "2.2.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/fast-memoize/-/fast-memoize-2.2.2.tgz#2409ec10f5f7d6c65f4c04e6c2d6cc56fa1e4cef"
@@ -6160,45 +6169,59 @@
   dependencies:
     tslib "2"
 
-"@formatjs/icu-messageformat-parser@2.9.1":
-  version "2.9.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-messageformat-parser/-/icu-messageformat-parser-2.9.1.tgz#f127c6a8196446c7d842c08b1230f10cf27a3dc3"
-  integrity sha1-8SfGqBlkRsfYQsCLEjDxDPJ6PcM=
+"@formatjs/fast-memoize@2.2.3":
+  version "2.2.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/fast-memoize/-/fast-memoize-2.2.3.tgz#74e64109279d5244f9fc281f3ae90c407cece823"
+  integrity sha1-dOZBCSedUkT5/CgfOukMQHzs6CM=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/icu-skeleton-parser" "1.8.5"
     tslib "2"
 
-"@formatjs/icu-skeleton-parser@1.8.5":
-  version "1.8.5"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.8.5.tgz#c25355778b9ea49bb0dcd85af727a375b9fcea62"
-  integrity sha1-wlNVd4uepJuw3Nha9yejdbn86mI=
+"@formatjs/icu-messageformat-parser@2.9.3":
+  version "2.9.3"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-messageformat-parser/-/icu-messageformat-parser-2.9.3.tgz#7785cb48ba980ebcbe67a0a3fe12837032b95518"
+  integrity sha1-d4XLSLqYDry+Z6Cj/hKDcDK5VRg=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/icu-skeleton-parser" "1.8.7"
     tslib "2"
 
-"@formatjs/intl-displaynames@6.8.1":
-  version "6.8.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-displaynames/-/intl-displaynames-6.8.1.tgz#9cb16ecdd08410c884f0edf9057abb23ef842a86"
-  integrity sha1-nLFuzdCEEMiE8O35BXq7I++EKoY=
+"@formatjs/icu-skeleton-parser@1.8.7":
+  version "1.8.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.8.7.tgz#c0c21d75428bf7213ac23a0efbf4dbfa868b800d"
+  integrity sha1-wMIddUKL9yE6wjoO+/Tb+oaLgA0=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/intl-localematcher" "0.5.6"
+    "@formatjs/ecma402-abstract" "2.2.3"
     tslib "2"
 
-"@formatjs/intl-listformat@7.7.1":
-  version "7.7.1"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-listformat/-/intl-listformat-7.7.1.tgz#267b7aff8ad3bf28d6608caab5dad26346a7b07c"
-  integrity sha1-Jnt6/4rTvyjWYIyqtdrSY0ansHw=
+"@formatjs/intl-displaynames@6.8.4":
+  version "6.8.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-displaynames/-/intl-displaynames-6.8.4.tgz#5fbfa6fa08fd306bf4ed6f056eba12a71404cbbd"
+  integrity sha1-X7+m+gj9MGv07W8FbroSpxQEy70=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/intl-localematcher" "0.5.6"
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/intl-localematcher" "0.5.7"
+    tslib "2"
+
+"@formatjs/intl-listformat@7.7.4":
+  version "7.7.4"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-listformat/-/intl-listformat-7.7.4.tgz#a102e418f4b7846317e8835a31eecd670c428d0a"
+  integrity sha1-oQLkGPS3hGMX6INaMe7NZwxCjQo=
+  dependencies:
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/intl-localematcher" "0.5.7"
     tslib "2"
 
 "@formatjs/intl-localematcher@0.5.6":
   version "0.5.6"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-localematcher/-/intl-localematcher-0.5.6.tgz#cd0cd99483673d3196a15b4e2c924cfda7f002f8"
   integrity sha1-zQzZlINnPTGWoVtOLJJM/afwAvg=
+  dependencies:
+    tslib "2"
+
+"@formatjs/intl-localematcher@0.5.7":
+  version "0.5.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl-localematcher/-/intl-localematcher-0.5.7.tgz#f889d076881b785d11ff993b966f527d199436d0"
+  integrity sha1-+InQdogbeF0R/5k7lm9SfRmUNtA=
   dependencies:
     tslib "2"
 
@@ -6232,17 +6255,17 @@
   resolved "https://registry.npmjs.org/@formatjs/intl-utils/-/intl-utils-2.2.0.tgz"
   integrity sha512-+Az7tR1av1DHZu9668D8uh9atT6vp+FFmEF8BrEssv0OqzpVjpVBGVmcgPzQP8k2PQjVlm/h2w8cTt0knn132w==
 
-"@formatjs/intl@2.10.11":
-  version "2.10.11"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl/-/intl-2.10.11.tgz#f63c62cc540709b35d080188838b3dbb262f47ca"
-  integrity sha1-9jxizFQHCbNdCAGIg4s9uyYvR8o=
+"@formatjs/intl@2.10.14":
+  version "2.10.14"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@formatjs/intl/-/intl-2.10.14.tgz#3de1c6dfb39c286a4f48125740d45a5cb4dc3923"
+  integrity sha1-PeHG37OcKGpPSBJXQNRaXLTcOSM=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/fast-memoize" "2.2.2"
-    "@formatjs/icu-messageformat-parser" "2.9.1"
-    "@formatjs/intl-displaynames" "6.8.1"
-    "@formatjs/intl-listformat" "7.7.1"
-    intl-messageformat "10.7.3"
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/fast-memoize" "2.2.3"
+    "@formatjs/icu-messageformat-parser" "2.9.3"
+    "@formatjs/intl-displaynames" "6.8.4"
+    "@formatjs/intl-listformat" "7.7.4"
+    intl-messageformat "10.7.6"
     tslib "2"
 
 "@gar/promisify@^1.1.3":
@@ -11770,7 +11793,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.2.21", "@types/react@>=16", "@types/react@^16", "@types/react@^17", "@types/react@^17.0.39", "@types/react@^18.3.11":
+"@types/react@*", "@types/react@16 || 17 || 18", "@types/react@18.2.21", "@types/react@>=16", "@types/react@^16", "@types/react@^17", "@types/react@^17.0.39":
   version "17.0.80"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@types/react/-/react-17.0.80.tgz#a5dfc351d6a41257eb592d73d3a85d3b7dbcbb41"
   integrity sha1-pd/DUdakElfrWS1z06hdO328u0E=
@@ -22149,14 +22172,14 @@ intl-messageformat-parser@^3.6.4:
   dependencies:
     "@formatjs/intl-unified-numberformat" "^3.2.0"
 
-intl-messageformat@10.7.3:
-  version "10.7.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/intl-messageformat/-/intl-messageformat-10.7.3.tgz#a5cbc886f1db4b6324e6bfc4fd8f91a3e3e37c31"
-  integrity sha1-pcvIhvHbS2Mk5r/E/Y+Ro+PjfDE=
+intl-messageformat@10.7.6:
+  version "10.7.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/intl-messageformat/-/intl-messageformat-10.7.6.tgz#d486c780508a2fb8c383e95462951276cf0bcdf4"
+  integrity sha1-1IbHgFCKL7jDg+lUYpUSds8LzfQ=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/fast-memoize" "2.2.2"
-    "@formatjs/icu-messageformat-parser" "2.9.1"
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/fast-memoize" "2.2.3"
+    "@formatjs/icu-messageformat-parser" "2.9.3"
     tslib "2"
 
 invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
@@ -31002,20 +31025,20 @@ react-inspector@^5.1.0:
     is-dom "^1.0.0"
     prop-types "^15.0.0"
 
-react-intl@6.8.4:
-  version "6.8.4"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-intl/-/react-intl-6.8.4.tgz#e39b6a71bbce5db90460abba4869c9f58b38fc1e"
-  integrity sha1-45tqcbvOXbkEYKu6SGnJ9Ys4/B4=
+react-intl@6.8.7:
+  version "6.8.7"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-intl/-/react-intl-6.8.7.tgz#e6f08f365810a366031358ff1c7dd8cf7e649bdd"
+  integrity sha1-5vCPNlgQo2YDE1j/HH3Yz35km90=
   dependencies:
-    "@formatjs/ecma402-abstract" "2.2.1"
-    "@formatjs/icu-messageformat-parser" "2.9.1"
-    "@formatjs/intl" "2.10.11"
-    "@formatjs/intl-displaynames" "6.8.1"
-    "@formatjs/intl-listformat" "7.7.1"
+    "@formatjs/ecma402-abstract" "2.2.3"
+    "@formatjs/icu-messageformat-parser" "2.9.3"
+    "@formatjs/intl" "2.10.14"
+    "@formatjs/intl-displaynames" "6.8.4"
+    "@formatjs/intl-listformat" "7.7.4"
     "@types/hoist-non-react-statics" "3"
-    "@types/react" "^18.3.11"
+    "@types/react" "16 || 17 || 18"
     hoist-non-react-statics "3"
-    intl-messageformat "10.7.3"
+    intl-messageformat "10.7.6"
     tslib "2"
 
 react-is@17.0.2, react-is@^17.0.0, react-is@^17.0.1, react-is@^17.0.2:

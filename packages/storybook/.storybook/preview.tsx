@@ -43,7 +43,6 @@ const preview: Preview = {
     mockDateDecorator,
     (Story, storyContext) => {
       const DSProviderProps = {
-        code: 'en_GB',
         dataFormatConfig: {
           startWeekDayNotation: storyContext.globals.dataFormat,
           dateFormatNotation: storyContext.globals.dataFormat,
@@ -53,7 +52,6 @@ const preview: Preview = {
         locale: storyContext.globals.locale,
         timeZone: storyContext.globals.timeZone,
       };
-
       return <DSProvider {...DSProviderProps}>{Story()}</DSProvider>;
     },
   ],

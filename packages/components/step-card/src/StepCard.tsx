@@ -44,7 +44,7 @@ const StepCard = forwardRef<HTMLDivElement, StepCardProps>(
         conditionType: formatMessage({ id: 'DS.STEP-CARD.CONDITION-TYPE' }),
         notConditionType: formatMessage({ id: 'DS.STEP-CARD.NOT-CONDITION-TYPE' }),
         namePlaceholder: formatMessage({ id: 'DS.STEP-CARD.NAME-PLACEHOLDER' }),
-        moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE' }),
+        moveTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE', defaultMessage: 'Move' }),
         moveUpTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE-UP', defaultMessage: 'Move Up' }),
         moveDownTooltip: formatMessage({ id: 'DS.STEP-CARD.MOVE-DOWN', defaultMessage: 'Move Down' }),
         deleteTooltip: formatMessage({ id: 'DS.STEP-CARD.DELETE' }),
