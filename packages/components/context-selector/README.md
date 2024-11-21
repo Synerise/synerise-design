@@ -89,7 +89,7 @@ import ContextSelector from '@synerise/ds-context-selector'
 | onSelectItem              | Callback called when user selects item                        | (item: ContextItem \ ContextGroup \ undefined) => void | -                     | 
 | defaultDropdownVisibility | default visibility of dropdown                                | boolean                                                | false                 |
 | opened                    | Whether if dropdown should opens from outside of component    | boolean                                                | false                 | 
-| texts                     | Translations object                                           | ContextSelectorTexts                                   | -                     | 
+| texts                     | Translations object                                           | ContextTexts                                   | -                     | 
 | selectedItem              | Selected item                                                 | ContextItem \ undefined                                | undefined             | 
 | addMode                   | If true trigger doesn't change style when value is set        | ContextItem \ undefined                                | undefined             | 
 | customTriggerComponent    | Add custom trigger                                            | React.ReactNode                                        | undefined             | 
@@ -139,11 +139,14 @@ import ContextSelector from '@synerise/ds-context-selector'
 | customSuffix  | Use custom suffix instead of default 'check' icon                | React.ReactNode | -       |
 
 
-### ContextSelectorTexts
+### ContextTexts
+| Property             | Description                               | Type      | Default      |
+|----------------------|-------------------------------------------|-----------|--------------|
+| buttonLabel          | Button label                              | ReactNode | 'Choose'     |
+| noResults            | No results info                           | ReactNode | 'No results' |
+| searchPlaceholder    | Search box placeholder                    | string    | 'Search'     |
+| showMore             | Show more button label                    | ReactNode | 'Show more'  |
+| recentItemsGroupName | Dropdown section title for recent results | string    | 'Recent'     |
+| allItemsGroupName    | Dropdown section title for all results    | string    | 'All'        |
 
-| Property          | Description            | Type                     | Default      | 
-| ---               | ---                    | ---                      | ---          | 
-| buttonLabel       | Button label           | string \ React.ReactNode | 'Choose'     | 
-| noResults         | No results info        | string \ React.ReactNode | 'No results' | 
-| searchPlaceholder | Search box placeholder | string                   | 'Search'     | 
  

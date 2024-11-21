@@ -6,11 +6,14 @@ import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ListItemProps, ItemSize } from '@synerise/ds-list-item';
 
 export type ContextTexts = {
-  buttonLabel: string;
+  buttonLabel: ReactNode;
   searchPlaceholder: string;
-  loadingResults: string;
-  noResults: string;
-  showMore: string;
+  /**
+   * @deprecated - Skeleton is displayed instead
+   */
+  loadingResults?: string;
+  noResults: ReactNode;
+  showMore: ReactNode;
   recentItemsGroupName: string;
   allItemsGroupName: string;
 };
@@ -58,7 +61,7 @@ export type ContextProps = {
   groups: ContextGroup[];
   items: ContextItem[];
   recentItems?: ContextItem[];
-  texts: ContextTexts;
+  texts?: Partial<ContextTexts>;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onSetGroup?: (item: ContextItem | ContextGroup | undefined) => void;
   opened?: boolean;

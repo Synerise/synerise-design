@@ -11,6 +11,7 @@ import ContextSelectorDropdown from './ContextSelectorDropdown/ContextSelectorDr
 import { ContextProps } from './ContextSelector.types';
 import { ItemWrapper, ErrorWrapper } from './ContextSelector.styles';
 import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
+import { useTexts } from './hooks/useTexts';
 
 const ContextSelector = ({
   defaultDropdownVisibility,
@@ -46,6 +47,7 @@ const ContextSelector = ({
   getMenuEntryProps,
   dropdownDimensionsConfig,
 }: ContextProps) => {
+  const allTexts = useTexts(texts);
   const [dropdownVisible, setDropdownVisible] = useState(defaultDropdownVisibility ?? false);
   const dimensionsConfig = {
     defaultHeight: DROPDOWN_HEIGHT,
@@ -109,7 +111,7 @@ const ContextSelector = ({
   }, [onOpen]);
 
   const triggerButton = useMemo(() => {
-    const { buttonLabel } = texts;
+    const { buttonLabel } = allTexts;
     const hasError = Boolean(errorText);
 
     return addMode && !selectedItem ? (
@@ -176,7 +178,7 @@ const ContextSelector = ({
       />
     );
   }, [
-    texts,
+    allTexts,
     addMode,
     selectedItem,
     disabled,
@@ -222,7 +224,7 @@ const ContextSelector = ({
               groups={groups}
               items={items}
               recentItems={recentItems}
-              texts={texts}
+              texts={allTexts}
               visible={dropdownVisible}
               loading={loading}
               menuItemHeight={menuItemHeight}

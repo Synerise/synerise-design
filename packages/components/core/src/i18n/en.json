@@ -4,6 +4,14 @@
       "SHOW-LESS": "Show less",
       "SHOW-MORE": "Show more"
     },
+    "CONTEXT-SELECTOR": {
+      "BUTTON_LABEL": "Choose",
+      "SEARCH_PLACEHOLDER": "Search",
+      "NO_RESULTS": "No results",
+      "SHOW_MORE": "Show more",
+      "RECENT": "Recent",
+      "ALL": "All"
+    },
     "DESCRIPTION": {
       "COPY-VALUE": "Copy value",
       "COPIED": "Copied"
