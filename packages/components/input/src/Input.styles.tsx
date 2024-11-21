@@ -146,14 +146,14 @@ export const AntdInput = styled(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
   )
-)<{ error?: boolean; readOnly?: boolean; autoResize?: AutoResizeProp }>`
+)<{ error?: boolean; readOnly?: boolean; autoResize?: AutoResizeProp; disabled?: boolean }>`
   ${props => (props.error ? errorInputStyle(props) : '')};
 
   &&& {
     min-height: ${props => (props.autoResize ? '16' : '32')}px;
     transition: all 0.3s, width 0ms, min-width 0ms, max-width 0ms;
     grid-area: 1 / 1;
-    color: ${props => props.theme.palette['grey-700']};
+    color: ${props => (props.disabled ? props.theme.palette['grey-500'] : props.theme.palette['grey-700'])};
     z-index: 1;
     &::placeholder {
       color: ${props => props.theme.palette['grey-500']};
