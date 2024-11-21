@@ -27,8 +27,8 @@ const ManageableListComponent = <T extends object>({
   onItemEdit,
   onChangeOrder,
   items,
-  maxToShowItems = INITIALLY_VISIBLE_COUNT,
-  visibleItemsLimit = INITIALLY_VISIBLE_COUNT,
+  maxToShowItems,
+  visibleItemsLimit,
   loading,
   type = ListType.DEFAULT,
   addButtonDisabled = false,
@@ -48,7 +48,7 @@ const ManageableListComponent = <T extends object>({
 }: ManageableListProps<T>) => {
   const [allItemsVisible, setAllItemsVisible] = useState(false);
 
-  const visibleLimit = visibleItemsLimit || maxToShowItems;
+  const visibleLimit = visibleItemsLimit || maxToShowItems || INITIALLY_VISIBLE_COUNT;
 
   const getExpandedIds = useCallback(() => {
     return expandedIds !== undefined ? expandedIds : items.filter(item => item.expanded).map(item => item.id);
