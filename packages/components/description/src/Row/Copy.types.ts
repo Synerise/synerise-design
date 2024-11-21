@@ -1,7 +1,10 @@
-import { HTMLAttributes } from 'react';
-import { RowTexts } from './DescriptionRow.types';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { RowTexts } from './DescriptionRow.types';
 
-export type CopyProps = {
-  copyValue: string;
-  texts?: RowTexts;
-} & HTMLAttributes<HTMLDivElement>;
+export type CopyProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    copyValue: string;
+    texts?: RowTexts;
+  }
+>;

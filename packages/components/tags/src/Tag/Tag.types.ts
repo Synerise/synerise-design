@@ -1,24 +1,28 @@
-import { HTMLAttributes, ReactNode } from 'react';
-import { TagsTexts } from '../Tags.types';
+import type { ReactNode } from 'react';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
+import type { TagsTexts } from '../Tags.types';
 
-export type TagProps = {
-  id?: string | number;
-  name?: string;
-  textColor?: string;
-  color?: string;
-  image?: string;
-  shape?: TagShape;
-  removable?: boolean;
-  className?: string;
-  disabled?: boolean;
-  onClick?: () => void;
-  onRemove?: (tag: string | number) => void;
-  prefixel?: ReactNode;
-  suffixel?: ReactNode;
-  texts?: TagsTexts;
-  asPill?: boolean;
-  dashed?: boolean;
-} & HTMLAttributes<HTMLDivElement>;
+export type TagProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    id?: string | number;
+    name?: string;
+    textColor?: string;
+    color?: string;
+    image?: string;
+    shape?: TagShape;
+    removable?: boolean;
+    className?: string;
+    disabled?: boolean;
+    onClick?: () => void;
+    onRemove?: (tag: string | number) => void;
+    prefixel?: ReactNode;
+    suffixel?: ReactNode;
+    texts?: TagsTexts;
+    asPill?: boolean;
+    dashed?: boolean;
+  }
+>;
 
 // @deprecated - use TagProps instead
 export type Props = TagProps;

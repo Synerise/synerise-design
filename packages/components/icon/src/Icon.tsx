@@ -2,19 +2,9 @@ import React from 'react';
 import * as S from './Icon.styles';
 import { IconProps } from './Icon.types';
 
-const Icon: React.FC<IconProps> = props => {
-  const { color, name, size, stroke, onClick, component, className, style, ...rest } = props;
+const Icon = ({ name, component, className, ...rest }: IconProps) => {
   return (
-    <S.IconContainer
-      className={`ds-icon ${className || ''}`}
-      style={style}
-      color={color}
-      title={name}
-      size={size}
-      stroke={stroke}
-      onClick={onClick}
-      {...rest}
-    >
+    <S.IconContainer className={`ds-icon ${className || ''}`} title={name} {...rest}>
       {component}
     </S.IconContainer>
   );

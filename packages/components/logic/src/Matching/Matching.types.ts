@@ -1,14 +1,17 @@
-import { HTMLAttributes } from 'react';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
 export type MatchingTexts = {
   matching: string;
   notMatching: string;
 };
 
-export type MatchingProps = {
-  matching: boolean;
-  sentence?: string;
-  onChange: (matching: boolean) => void;
-  texts?: MatchingTexts;
-  readOnly?: boolean;
-} & Omit<HTMLAttributes<HTMLDivElement>, 'onChange'>;
+export type MatchingProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    matching: boolean;
+    sentence?: string;
+    onChange: (matching: boolean) => void;
+    texts?: MatchingTexts;
+    readOnly?: boolean;
+  }
+>;
