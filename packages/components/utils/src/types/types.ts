@@ -12,3 +12,9 @@ export type ExactlyOne<T, U> = (T & { [K in keyof U]?: never }) | (U & { [K in k
 
 export type WithHTMLAttributes<ElementType extends HTMLElement, BaseType> = BaseType &
   Omit<HTMLAttributes<ElementType>, keyof BaseType>;
+
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;

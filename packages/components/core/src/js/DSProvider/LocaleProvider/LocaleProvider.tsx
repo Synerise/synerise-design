@@ -55,11 +55,11 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
   componentDidMount(): void {
     const { locale } = this.props;
     const lang = this.getLangForCode(locale || DEFAULT_LANG);
-    import(`../../../i18n/${lang}.json`).then(dsLocales =>
+    import(`../../../i18n/${lang}.json`).then(dsLocales => {
       this.setState({
         dsLocales,
-      })
-    );
+      });
+    });
   }
 
   getLangForCode = (code: string): string => code.substring(0, 2);

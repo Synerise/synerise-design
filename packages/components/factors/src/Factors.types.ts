@@ -6,6 +6,7 @@ import type { MenuItemProps } from '@synerise/ds-menu';
 import type { AutoResizeProp } from '@synerise/ds-input';
 import type { InformationCardProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
+import type { LiteralStringUnion, DeepPartial } from '@synerise/ds-utils';
 
 export const ALL_FACTOR_TYPES = [
   'text',
@@ -18,7 +19,7 @@ export const ALL_FACTOR_TYPES = [
   'date',
   'dateRange',
 ] as const;
-export type FactorType = typeof ALL_FACTOR_TYPES[number] | string;
+export type FactorType = LiteralStringUnion<typeof ALL_FACTOR_TYPES[number]>;
 export type DefinedFactorTypes = typeof ALL_FACTOR_TYPES[number];
 export type DynamicKeyValueType = { key: ReactText; value: ReactText };
 export type FormulaValueType = { name: string; value: string };
@@ -70,7 +71,7 @@ export type SelectedFactorType = {
 };
 
 export type FactorsTexts = {
-  dateRangePicker: Partial<DateRangeTexts>;
+  dateRangePicker: DateRangeTexts;
   datePicker: {
     apply: string;
     clearTooltip: string;
@@ -97,7 +98,7 @@ export type FactorsTexts = {
   modalApply: string;
   modalCancel: string;
   modalTitle: string;
-  factorTypes?: {
+  factorTypes: {
     [k in DefinedFactorTypes]: string;
   };
 };
@@ -117,7 +118,7 @@ export type FactorsProps = {
   onDeactivate?: () => void;
   onChangeValue: (value: FactorValueType) => void;
   value: FactorValueType;
-  textType?: 'autocomplete' | 'expansible' | 'default' | string;
+  textType?: LiteralStringUnion<'autocomplete' | 'expansible' | 'default'>;
   autoResize?: AutoResizeProp;
   autocompleteText?: {
     options: string[];
@@ -140,7 +141,7 @@ export type FactorsProps = {
   };
   onParamsClick?: () => void;
   formulaEditor?: ReactNode;
-  texts?: Partial<FactorsTexts>;
+  texts?: DeepPartial<FactorsTexts>;
   opened?: boolean;
   allowClear?: boolean;
   loading?: boolean;

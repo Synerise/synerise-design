@@ -35,7 +35,7 @@ export const TestSelectingLifetimePreset: Story = {
     const canvas = within(canvasElement);
     
     await step('Open picker popover', async () => {
-      const input = canvas.getByText(texts.startDate);
+      const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     
@@ -63,7 +63,7 @@ export const TestSelectingCustomRange: Story = {
     const canvas = within(canvasElement);
     
     await step('Open picker popover', async () => {
-      const input = canvas.getByText(texts.startDate);
+      const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
@@ -95,7 +95,7 @@ export const TestSelectingMoreRangesDropdown: Story = {
     const canvas = within(canvasElement);
     
     await step('Open picker popover', async () => {
-      const input = canvas.getByText(texts.startDate);
+      const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
@@ -119,7 +119,7 @@ export const TestToggleRelativeSection: Story = {
     const canvas = within(canvasElement);
     
     await step('Open picker popover', async () => {
-      const input = canvas.getByText(texts.startDate);
+      const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
     await waitFor(() => expect(args.onVisibleChange).toHaveBeenCalled());
@@ -153,7 +153,7 @@ export const TestSelectTime: Story = {
     const canvas = within(canvasElement);
     
     await step('Open picker popover', async () => {
-      const input = canvas.getByText(texts.startDate);
+      const input = await canvas.findByText(texts.startDate);
       await userEvent.click(input);
     })
 
