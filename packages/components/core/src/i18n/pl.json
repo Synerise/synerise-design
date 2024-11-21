@@ -4,6 +4,15 @@
       "SHOW-LESS": "Pokaż mniej",
       "SHOW-MORE": "Pokaż więcej"
     },
+    "CONTEXT-SELECTOR": {
+      "BUTTON_LABEL": "Wybierz",
+      "SEARCH_PLACEHOLDER": "Szukaj",
+      "NO_RESULTS": "Brak wyników",
+      "SHOW_MORE": "Więcej",
+      "RECENT": "Ostatnie",
+      "ALL": "Wszystkie"
+    },
+    
     "MANAGABLE-LIST": {
       "LESS": "mniej",
       "MORE": "więcej",
