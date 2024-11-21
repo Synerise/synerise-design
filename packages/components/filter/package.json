@@ -38,14 +38,13 @@
     "@synerise/ds-logic": "^0.9.1",
     "@synerise/ds-step-card": "^0.12.1",
     "@synerise/ds-utils": "^0.31.1",
-    "react-intl": "6.8.4",
     "react-sortablejs": "^6.0.0",
     "sortablejs": "1.15.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "@synerise/ds-step-card": "*",
     "react": ">=16.9.0 <= 17.0.2",
+    "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "5.0.1"
   }
 }

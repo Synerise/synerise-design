@@ -52,7 +52,6 @@
     "array-move": "^3.0.1",
     "random-hash": "^4.0.1",
     "rc-menu": "8.10.8",
-    "react-intl": "6.8.4",
     "react-sortable-hoc": "^1.11.0",
     "simplebar-react": "^2.3.3",
     "tree-model": "^1.0.7",
@@ -61,6 +60,7 @@
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 17.0.2",
+    "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "5.0.1"
   }
 }

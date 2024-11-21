@@ -35,12 +35,12 @@
     "@synerise/ds-dropdown": "^0.18.23",
     "@synerise/ds-icon": "^0.66.4",
     "@synerise/ds-scrollbar": "^0.11.18",
-    "@synerise/ds-utils": "^0.31.1",
-    "react-intl": "6.8.4"
+    "@synerise/ds-utils": "^0.31.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
     "react": ">=16.9.0 <= 17.0.2",
+    "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "5.0.1"
   }
 }

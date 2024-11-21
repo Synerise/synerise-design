@@ -1,14 +1,6 @@
 import React, { ReactNode } from 'react';
-
-import {
-  IntlProvider,
-  InvalidConfigError,
-  MessageFormatError,
-  MissingDataError,
-  MissingTranslationError,
-  UnsupportedFormatterError,
-} from 'react-intl';
-import type { FormatError } from 'intl-messageformat';
+import { IntlProvider } from 'react-intl';
+import { OnErrorFn } from '@formatjs/intl';
 import { MessageFormatElement } from '@formatjs/icu-messageformat-parser';
 
 import { flatten } from 'flat';
@@ -22,25 +14,20 @@ type NestedMessages = {
   [key: string]: string | NestedMessages;
 };
 
+type onErrorFnParameters = Parameters<OnErrorFn>;
 export type LocaleProviderProps = {
-  locale?: string; // ex. pl, en-GB
+  locale?: string;
+  defaultLocale?: string;
   messages?: NestedMessages;
   defaultMessages?: NestedMessages;
-  timeZone?: string; // Europe/Warsaw
+  timeZone?: string;
   children?: ReactNode;
-  onError?: (
-    error:
-      | MissingTranslationError
-      | MessageFormatError
-      | MissingDataError
-      | InvalidConfigError
-      | UnsupportedFormatterError
-      | FormatError
-  ) => void;
+  onErrorIntl?: (error: onErrorFnParameters[0], { dsLocalesLoaded }: { dsLocalesLoaded: boolean }) => void;
 };
 
 interface LocaleProviderState {
   dsLocales: NestedMessages;
+  dsLocalesLoaded: boolean;
 }
 
 const DEFAULT_LANG = 'en-US';
@@ -50,6 +37,7 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
 
   state = {
     dsLocales: {},
+    dsLocalesLoaded: false,
   };
 
   componentDidMount(): void {
@@ -58,6 +46,7 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
     import(`../../../i18n/${lang}.json`).then(dsLocales => {
       this.setState({
         dsLocales,
+        dsLocalesLoaded: true,
       });
     });
   }
@@ -65,8 +54,8 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
   getLangForCode = (code: string): string => code.substring(0, 2);
 
   render(): React.ReactNode {
-    const { defaultMessages = {}, messages = {}, locale, timeZone, children, onError } = this.props;
-    const { dsLocales } = this.state;
+    const { defaultMessages = {}, messages = {}, locale, defaultLocale, timeZone, children, onErrorIntl } = this.props;
+    const { dsLocales, dsLocalesLoaded } = this.state;
     const code = locale || DEFAULT_LANG;
     const lang = this.getLangForCode(code);
     const localeData = messages || {};
@@ -83,7 +72,8 @@ export default class LocaleProvider extends React.Component<LocaleProviderProps,
           locale={code}
           messages={currentMessages as Messages}
           timeZone={timeZone}
-          onError={onError}
+          defaultLocale={defaultLocale}
+          onError={error => onErrorIntl?.(error, { dsLocalesLoaded })}
         >
           {children}
         </IntlProvider>
