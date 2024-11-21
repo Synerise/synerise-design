@@ -1,13 +1,13 @@
-import React from 'react';
+import type { ReactNode } from 'react';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export type IconProps = {
-  color?: string;
-  name?: string;
-  title?: string;
-  size?: string | number;
-  stroke?: boolean;
-  onClick?: React.MouseEventHandler;
-  component?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-} & React.HTMLAttributes<HTMLDivElement>;
+export type IconProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    color?: string;
+    name?: string;
+    size?: string | number;
+    stroke?: boolean;
+    component?: ReactNode;
+  }
+>;

@@ -1,13 +1,20 @@
-import { HTMLAttributes, ReactElement, ReactNode, Key } from 'react';
+import type { ReactElement, ReactNode, Key } from 'react';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export type CardSummaryItemProps = {
-  key: Key;
-  label?: ReactNode;
-  value: ReactNode;
-  summaryRowObjects?: ReactElement[];
-} & HTMLAttributes<HTMLDivElement>;
+export type CardSummaryItemProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    key: Key;
+    label?: ReactNode;
+    value: ReactNode;
+    summaryRowObjects?: ReactElement[];
+  }
+>;
 
-export type CardSummaryProps = {
-  title?: ReactNode;
-  items: CardSummaryItemProps[];
-} & HTMLAttributes<HTMLDivElement>;
+export type CardSummaryProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    title?: ReactNode;
+    items: CardSummaryItemProps[];
+  }
+>;

@@ -1,10 +1,14 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import type { WithHTMLAttributes } from '@synerise/ds-utils';
 
-export type SingleActionProps = {
-  title: ReactNode;
-  className?: string;
-  inactive?: boolean;
-  onClick: () => void;
-  icon: ReactNode;
-  iconSize?: number;
-} & Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'className' | 'onClick'>;
+export type SingleActionProps = WithHTMLAttributes<
+  HTMLDivElement,
+  {
+    title: ReactNode;
+    className?: string;
+    inactive?: boolean;
+    onClick: () => void;
+    icon: ReactNode;
+    iconSize?: number;
+  }
+>;
