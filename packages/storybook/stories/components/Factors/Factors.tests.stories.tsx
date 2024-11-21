@@ -127,15 +127,15 @@ export const ArrayEditorOpen: StoryObj<FactorsProps> = {
   },
 };
 
-export const DareRangePickerOpen: StoryObj<FactorsProps> = {
+export const DateRangePickerOpen: StoryObj<FactorsProps> = {
   ...SwitchFactorType,
   args: {
     ...SwitchFactorType.args,
     selectedFactorType: 'dateRange',
   },
-  play: async ({ canvasElement, step, args }) => {
-    const canvas = within(canvasElement.parentElement!);
-    await userEvent.click(canvas.getByText('Start date'));
+  play: async ({ canvasElement }) => {
+  const canvas = within(canvasElement.parentElement!);
+    await userEvent.click(await canvas.findByText('Start date'));
     await waitFor(() => expect(canvas.getByRole('tooltip')).toBeInTheDocument());
   },
 };
