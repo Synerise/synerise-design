@@ -30,27 +30,13 @@ export const INDEX_MAP = {
   '9': 'fern-600',
 };
 
-export const AllocationSlider = styled(AntdSlider)<SliderProps & { blockedHandlersKeys: number[] }>`
-  ${(props): FlattenSimpleInterpolation =>
-    createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
+export const AllocationSliderWrapper = styled.div<{
+  blockedHandlersKeys: number[];
+  tracksColorMap: SliderProps['tracksColorMap'];
+}>`
+  position: relative;
 
-  &.ant-slider:hover {
-    ${(props): FlattenSimpleInterpolation =>
-      createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)};
-  }
-
-  .ant-slider-handle-value,
-  .ant-slider-rail,
-  .ant-slider-track,
-  .ant-slider-dot {
-    display: none;
-  }
-  && .ant-slider-mark-text:last-of-type {
-    padding-right: 0;
-  }
-  && .ant-slider-mark-text {
-    user-select: none;
-  }
+  ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
 
   && ${({ blockedHandlersKeys, theme }) =>
     defineCssSelectorWithRule({
@@ -66,11 +52,32 @@ export const AllocationSlider = styled(AntdSlider)<SliderProps & { blockedHandle
     })}
 `;
 
+export const AllocationSlider = styled(AntdSlider)<SliderProps>`
+  ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)}
+
+  &.ant-slider:hover {
+    ${props => createTracksStyles(props, props.tracksColorMap ? props.tracksColorMap : INDEX_MAP)};
+  }
+
+  .ant-slider-handle-value,
+  .ant-slider-rail,
+  .ant-slider-track,
+  .ant-slider-dot {
+    display: none;
+  }
+  && .ant-slider-mark-text:last-of-type {
+    padding-right: 0;
+  }
+  && .ant-slider-mark-text {
+    user-select: none;
+  }
+`;
+
 export const Mark = styled.div`
   text-align: center;
 `;
 
-const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800'): string => {
+const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800') => {
   const colors = buildDefaultTracksColorMap();
   if (props.isCustomColor) {
     return (props.getColor && props.getColor(props.index)) || defaultColor;
@@ -79,7 +86,7 @@ const getColor = (props: StyledProps<TrackProps>, defaultColor = 'grey-800'): st
 };
 
 export const MarkLetter = styled.div<{ index: number | string }>`
-  border-radius: ${(props): string => props.theme.variable('@border-radius-base')};
+  border-radius: ${props => props.theme.variable('@border-radius-base')};
   width: 25px;
   height: 25px;
   display: inline-block;
@@ -89,7 +96,7 @@ export const MarkLetter = styled.div<{ index: number | string }>`
   color: white;
   top: -70px;
 
-  background-color: ${(props): string => getColor(props as StyledProps<TrackProps>, 'grey-400')};
+  background-color: ${props => getColor(props as StyledProps<TrackProps>, 'grey-400')};
 `;
 
 export const MarkValue = styled.div`
@@ -105,11 +112,11 @@ export const MarkTooltipWrapper = styled.div`
 `;
 
 export const Track = styled.div<TrackProps>`
-  width: ${(props): number => props.width}%;
+  width: ${props => props.width}%;
   height: 6px;
-  background-color: ${(props): string => getColor(props)};
-  border-radius: ${(props): string => props.theme.palette['@border-radius-base']};
-  z-index: ${(props): number => props.index};
+  background-color: ${props => getColor(props)};
+  border-radius: ${props => props.theme.palette['@border-radius-base']};
+  z-index: ${props => props.index};
 `;
 
 export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
@@ -117,6 +124,8 @@ export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
   height: 6px;
   width: 100%;
   overflow: hidden;
+  position: absolute;
+  bottom: 3px;
 
   & > div:first-child,
   & > div:last-child {
@@ -132,7 +141,7 @@ export const TrackContainer = styled.div<{ controlGroup?: boolean }>`
 `;
 
 export const Title = styled.div`
-  color: ${(props): string => props.theme.variable('@gray-color-darker-1')};
+  color: ${props => props.theme.variable('@gray-color-darker-1')};
   padding-bottom: 32px;
   font-weight: 500;
 `;

@@ -102,26 +102,26 @@ const Allocation = ({
   };
 
   return (
-    <S.AllocationSlider
-      {...rest}
-      useColorPalette
-      tracksColorMap={tracksColorMap}
-      dots={false}
-      value={mapUserAllocationToHandles(allocations)}
-      range
-      min={0}
-      max={100}
-      marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
-      onChange={handleChange}
-      step={1}
-      tipFormatter={(value?: number) => (
-        <DescriptionWrapper>
-          {description && <Description>{description}</Description>}
-          {tipFormatter && tipFormatter(value)}
-        </DescriptionWrapper>
-      )}
-      blockedHandlersKeys={blockedHandlersKeys}
-    >
+    <S.AllocationSliderWrapper blockedHandlersKeys={blockedHandlersKeys} tracksColorMap={tracksColorMap}>
+      <S.AllocationSlider
+        {...rest}
+        useColorPalette
+        tracksColorMap={tracksColorMap}
+        dots={false}
+        value={mapUserAllocationToHandles(allocations)}
+        range
+        min={0}
+        max={100}
+        marks={mapUserAllocationToMarks(allocations, markRenderer, variants)}
+        onChange={handleChange}
+        step={1}
+        tipFormatter={(value?: number) => (
+          <DescriptionWrapper>
+            {description && <Description>{description}</Description>}
+            {tipFormatter && tipFormatter(value)}
+          </DescriptionWrapper>
+        )}
+      />
       <BlockedHandlersWithTooltip
         blockedHandlersKeys={blockedHandlersKeys}
         handlersPosition={currentHandlersPercentagePositions}
@@ -133,7 +133,7 @@ const Allocation = ({
           <S.Track key={`${u}-${index}`} className={`ant-slider-segment-${index}`} index={index} width={u} />
         ))}
       </S.TrackContainer>
-    </S.AllocationSlider>
+    </S.AllocationSliderWrapper>
   );
 };
 
