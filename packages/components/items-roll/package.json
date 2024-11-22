@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-items-roll",
-  "version": "0.7.15",
+  "version": "0.7.16",
   "description": "ItemsRoll UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -39,7 +39,7 @@
     "@synerise/ds-dropdown": "^0.18.24",
     "@synerise/ds-icon": "^0.67.0",
     "@synerise/ds-menu": "^0.20.6",
-    "@synerise/ds-popconfirm": "^0.10.60",
+    "@synerise/ds-popconfirm": "^0.10.61",
     "@synerise/ds-search": "^0.9.19",
     "@synerise/ds-tooltip": "^0.14.49",
     "@synerise/ds-utils": "^0.31.2",
