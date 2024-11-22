@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import LocaleProvider from '../LocaleProvider';
 
@@ -23,26 +23,26 @@ describe('LocaleProvider', () => {
   };
 
   it('should flat keys', async function() {
-    const C = render(
+    render(
       <LocaleProvider locale="en-GB" messages={messages}>
         <ExampleComponentIntl />
       </LocaleProvider>
     );
     
-    expect(await C.findByText('Translated Test')).toBeInTheDocument();
-    expect(await C.findByText('VALUE')).toBeInTheDocument();
+    expect(await screen.findByText('Translated Test')).toBeInTheDocument();
+    expect(await screen.findByText('VALUE')).toBeInTheDocument();
   });
 
   it('should render key name if translation is missing', function() {
     const mockedError = jest.fn();
     
-    const C = render(
-      <LocaleProvider locale="es" messages={messages} onError={mockedError}>
+    render(
+      <LocaleProvider locale="es" messages={messages} onErrorIntl={mockedError}>
         <ExampleComponentIntl />
       </LocaleProvider>
     );
 
-    expect(C.getByText('FOO.BAR.ITEM')).toBeInTheDocument();
+    expect(screen.getByText('FOO.BAR.ITEM')).toBeInTheDocument();
     expect(mockedError).toHaveBeenCalled();
   });
 
@@ -68,13 +68,13 @@ describe('LocaleProvider', () => {
       },
     };
 
-    const C = render(
+    render(
       <LocaleProvider locale="pl" messages={messagesPl} defaultMessages={messagesDefault}>
         <ExampleComponentIntl />
       </LocaleProvider>
     );
 
-    expect(C.getByText('PL_VALUE')).toBeInTheDocument();
-    expect(C.getByText('Fallback_1')).toBeInTheDocument();
+    expect(screen.getByText('PL_VALUE')).toBeInTheDocument();
+    expect(screen.getByText('Fallback_1')).toBeInTheDocument();
   });
 });
