@@ -105,6 +105,8 @@ export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
 export const PopconfirmWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const PopconfirmContentWrapper = styled.div`
