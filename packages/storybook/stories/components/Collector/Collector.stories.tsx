@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { isEqual } from 'lodash';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Collector, { CollectorProps, CollectorValue } from '@synerise/ds-collector';
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, fixedWrapper588, REACT_NODE_AS_STRING, STRING_CONTROL } from '../../utils';
-import { getSuggestions, TEXTS } from './Collector.const';
+import { SUGGESTIONS_SAME_LABEL, SUGGESTIONS, TEXTS } from './Collector.const';
 import { HeaderWrapper } from './Collestor.styles';
 
 export default {
@@ -15,23 +16,23 @@ export default {
     layout: 'centered',
   },
   decorators: [fixedWrapper588],
-  render: args => {
+  render: ({suggestions, ...args}) => {
     const [selected, setSelected] = useState<CollectorValue[]>(args.selected || []);
     const handleItemSelect = (item: CollectorValue) => {
-      if (!selected.find(i => i.text === item.text)) {
+      if (!selected.find(i => isEqual(i, item))) {
         setSelected([...selected, item]);
       }
       args.onItemSelect?.(item);
     };
     const handleMultipleItemsSelect = (items: CollectorValue[]) => {
       const itemsToAdd = items.filter(item => {
-        return !selected.find(i => i.text === item.text);
+        return !selected.find(i => isEqual(i, item));
       });
       setSelected([...selected, ...itemsToAdd]);
       args.onMultipleItemsSelect?.(items);
     };
     const handleItemDeselect = (item: CollectorValue) => {
-      setSelected(selected.filter(i => i.text !== item.text));
+      setSelected(selected.filter(i => !isEqual(i, item)));
       args.onItemDeselect?.(item);
     };
     const handleCancel = () => {
@@ -48,7 +49,7 @@ export default {
         text: value,
       };
     };
-
+    const filteredSuggestions = suggestions.filter(suggestion => !selected.includes(suggestion))
     return (
       <Collector
         {...args}
@@ -60,7 +61,7 @@ export default {
         onItemDeselect={handleItemDeselect}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
-        suggestions={getSuggestions().filter(suggestion => !selected.includes(suggestion))}
+        suggestions={filteredSuggestions}
       />
     );
   },
@@ -87,6 +88,7 @@ export default {
   },
   args: {
     allowMultipleValues: true,
+    suggestions: SUGGESTIONS
   },
 } as Meta<CollectorProps>;
 
@@ -120,6 +122,14 @@ export const AllowCustomValues: Story = {
     allowCustomValue: true,
   },
 };
+
+export const DuplicateLabels: Story = {
+  args: {
+    ...WithLabelAndDescription.args,
+    allowCustomValue: true,
+    suggestions: SUGGESTIONS_SAME_LABEL
+  },
+};
 export const AllowPaste: Story = {
   args: {
     ...WithLabelAndDescription.args,
@@ -144,13 +154,13 @@ export const DropdownCustomisation: Story = {
 export const FixedHeight: Story = {
   args: {
     ...WithLabelAndDescription.args,
-    selected: getSuggestions().slice(1, 8),
+    selected: SUGGESTIONS.slice(1, 8),
     fixedHeight: true,
   },
 };
 export const VariableHeight: Story = {
   args: {
     ...WithLabelAndDescription.args,
-    selected: getSuggestions().slice(1, 12),
+    selected: SUGGESTIONS.slice(1, 12),
   },
 };

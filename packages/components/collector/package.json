@@ -42,7 +42,8 @@
     "@synerise/ds-scrollbar": "^0.11.19",
     "@synerise/ds-search": "^0.9.19",
     "@synerise/ds-utils": "^0.31.2",
-    "classnames": "2.3.2"
+    "classnames": "2.3.2",
+    "lodash.isequal": "^4.5.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -50,5 +51,8 @@
     "react": ">=16.9.0 <= 17.0.2",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/lodash.isequal": "^4.5.8"
   }
 }
