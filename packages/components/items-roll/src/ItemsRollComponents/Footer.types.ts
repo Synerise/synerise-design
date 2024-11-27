@@ -1,7 +1,8 @@
-import { Texts, ItemsRollProps } from '../ItemsRoll.types';
+import type { ReactNode } from 'react';
+import type { Texts, ItemsRollProps } from '../ItemsRoll.types';
 
 export type FooterProps = Pick<ItemsRollProps, 'onClearAll' | 'maxToShowItems' | 'showMoreStep'> & {
-  allTexts: { [k in Texts]: string | React.ReactNode };
+  allTexts: { [k in Texts]: ReactNode };
   itemsCount: number;
   showAdditionalItems: () => void;
   showDefaultItemsAmount: () => void;
@@ -11,12 +12,12 @@ export type FooterProps = Pick<ItemsRollProps, 'onClearAll' | 'maxToShowItems' |
 
 export type ShowLessButtonProps = {
   showDefaultItemsAmount: () => void;
-  showLessLabel: string | React.ReactNode;
+  showLessLabel: ReactNode;
 };
 
 export type ShowMoreButtonProps = {
   getShowMoreNumber: number;
-  moreLabel: string | React.ReactNode;
+  moreLabel: ReactNode;
   showAdditionalItems: () => void;
-  showLabel: string | React.ReactNode;
+  showLabel: ReactNode;
 };

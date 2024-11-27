@@ -1,9 +1,10 @@
-import { ReactNode, CSSProperties, SVGProps } from 'react';
-import { IntlShape } from 'react-intl';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
+import type { ReactNode, CSSProperties, SVGProps } from 'react';
+import type { IntlShape } from 'react-intl';
+import type { MenuItemProps } from '@synerise/ds-menu';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { DropdownProps } from '@synerise/ds-dropdown/dist/Dropdown';
 
-export type ItemRollElement = MenuItemProps & {
+export type ItemRollElement<BaseType extends ListItemProps | MenuItemProps = ListItemProps> = BaseType & {
   id: string;
   group?: string;
 };
@@ -33,7 +34,7 @@ export type ItemsRollProps = {
   onSearchClear?: () => void;
   searchValue?: string;
   searchPlaceholder?: string;
-  actions?: ItemRollElement[];
+  actions?: ItemRollElement<MenuItemProps>[];
   changeSelectionIcon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
   changeSelectionDropdownProps?: DropdownProps;
   customSidebarActions?: ReactNode;

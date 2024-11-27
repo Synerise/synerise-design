@@ -120,9 +120,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
         `
       : css`
-		  ${PrefixWrapper} {
-	  		svg { fill: ${props.theme.palette['grey-600']}};
-		  }
+		      ${PrefixWrapper} > .ds-icon > svg {
+            fill: ${props.theme.palette['grey-600']};
+          }
           &:hover {
             ${Inner} {
               background: ${props.theme.palette['grey-050']};

@@ -6,12 +6,12 @@ import { InformationCardPropertyListProps } from './InformationCardPropertyList.
 export const InformationCardPropertyList = ({ items }: InformationCardPropertyListProps) => {
   return (
     <S.InformationCardPropertyListWrapper data-testid="information-card-property-list">
-      {items?.map(({ type, label, value }) => {
+      {items?.map(({ type, label, value, key }) => {
         if (type === 'divider') {
-          return <S.Divider dashed />;
+          return <S.Divider dashed key={key} />;
         }
         return (
-          <S.InformationCardPropertyItem key="">
+          <S.InformationCardPropertyItem key={key}>
             {label && <S.InformationCardPropertyItemLabel>{label}:</S.InformationCardPropertyItemLabel>}
             <S.InformationCardPropertyItemValue>{value}</S.InformationCardPropertyItemValue>
           </S.InformationCardPropertyItem>

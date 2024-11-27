@@ -7,9 +7,9 @@ import { InformationCardSummaryProps } from './InformationCardSummary.types';
 export const InformationCardSummary = ({ items }: InformationCardSummaryProps) => {
   return (
     <S.InformationCardSummaryWrapper data-testid="information-card-summary">
-      {items?.map(({ icon, label, tooltip, tooltipProps }) => {
+      {items?.map(({ icon, label, tooltip, tooltipProps, key }) => {
         const item = (
-          <S.InformationCardSummaryItem>
+          <S.InformationCardSummaryItem key={key}>
             {icon && <div>{icon}</div>}
             {label && <div>{label}</div>}
           </S.InformationCardSummaryItem>

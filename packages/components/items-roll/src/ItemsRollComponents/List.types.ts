@@ -1,5 +1,5 @@
-import React from 'react';
-import { ItemRollElement, ItemsRollProps } from '../ItemsRoll.types';
+import type { ReactNode } from 'react';
+import type { ItemRollElement, ItemsRollProps } from '../ItemsRoll.types';
 
 export type ListProps = Pick<
   ItemsRollProps,
@@ -12,7 +12,7 @@ export type ListProps = Pick<
   | 'virtualizedRowHeight'
   | 'virtualizedRowWidth'
 > & {
-  noResultsLabel: string | React.ReactNode;
-  removeTooltipLabel: string | React.ReactNode;
+  noResultsLabel: ReactNode;
+  removeTooltipLabel: ReactNode;
   visibleItems: ItemRollElement[];
 };
