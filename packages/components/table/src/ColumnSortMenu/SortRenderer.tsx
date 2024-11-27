@@ -2,18 +2,18 @@ import React, { useState, MouseEvent as ReactMouseEvent } from 'react';
 import { partial } from 'lodash';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { Close2M, SortAscendingM, SortDescendingM, SortAzM, SortZaM } from '@synerise/ds-icon';
-import Menu from '@synerise/ds-menu';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { DSColumnType, OnSortFn } from '../Table.types';
 import { useTableLocaleContext } from '../utils/locale';
 import * as S from './SortRender.styles';
 import { SortStateAPI, toSortOrder } from './useSortState';
 import { CheckIcon, DefaultSortIcon, StringSortIcon } from './SortIcons';
 
-interface SortRendererProps<T> {
+type SortRendererProps<T> = {
   sortStateApi: SortStateAPI;
   column: DSColumnType<T>;
   onSort?: OnSortFn;
-}
+};
 
 const handleButtonClick = (event: ReactMouseEvent<HTMLElement, MouseEvent>) => {
   event.stopPropagation();
@@ -26,6 +26,30 @@ export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: Sort
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const locale = useTableLocaleContext();
+  const menuDataSource: MenuItemProps[] = [
+    {
+      key: 'ascend',
+      prefixel: <Icon component={<SortAscendingM />} />,
+      suffixel: <CheckIcon isActive={columnSortOrder === 'ascend'} />,
+      text: locale.columnSortAscend,
+    },
+
+    {
+      key: 'descend',
+      prefixel: <Icon component={<SortDescendingM />} />,
+      suffixel: <CheckIcon isActive={columnSortOrder === 'descend'} />,
+
+      text: locale.columnSortDescend,
+    },
+  ];
+  if (columnSortOrder) {
+    menuDataSource.push({
+      key: 'null',
+      type: 'danger',
+      prefixel: <Icon component={<Close2M />} />,
+      text: locale.columnSortClear,
+    });
+  }
   return (
     <Dropdown
       onVisibleChange={isVisible => {
@@ -41,27 +65,8 @@ export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: Sort
               onSortOrderChange(toSortOrder(String(key)));
             }}
             style={{ width: 220 }}
-          >
-            <Menu.Item
-              key="ascend"
-              prefixel={<Icon component={<SortAscendingM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
-            >
-              {locale.columnSortAscend}
-            </Menu.Item>
-            <Menu.Item
-              key="descend"
-              prefixel={<Icon component={<SortDescendingM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
-            >
-              {locale.columnSortDescend}
-            </Menu.Item>
-            {!!columnSortOrder && (
-              <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
-                {locale.columnSortClear}
-              </Menu.Item>
-            )}
-          </Menu>
+            dataSource={menuDataSource}
+          />
         </Dropdown.Wrapper>
       }
     >
