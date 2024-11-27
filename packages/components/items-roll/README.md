@@ -34,7 +34,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 ## API
 
 | Property                     | Description                                                                                                       | Type                                                    | Default |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|---------|
 | actions                      | ItemRollElement array with configuration for action dropdown menu                                                 | ItemRollElement[]                                       | -       |
 | changeSelectionIcon          | The custom changeSelection icon                                                                                   | `(props: React.SVGProps<SVGSVGElement>) => JSX.Element` | EditM   |
 | changeSelectionDropdownProps | Object with ds-dropdown props                                                                                     | DropdownProps                                           |         |
@@ -54,11 +54,13 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | searchValue                  | Value of search input component                                                                                   | string                                                  | -       |
 | showMoreStep                 | Amount of items to load on show more button click                                                                 | number                                                  | 10      |
 | style                        | Object with CSS properties                                                                                        | React.CSSProperties                                     | -       |
+| renderCount                  | Custom items count renderer                                                                                       | (count: number) => ReactNode                            | -       |
 | texts                        | Object contains texts for buttons, title etc.                                                                     | Texts                                                   | -       |
 | useFooter                    | Whether the footer is visibile                                                                                    | boolean                                                 | -       |
 | useVirtualizedList           | Whether to use react-virtualized for list                                                                         | boolean                                                 | `false` |
 | virtualizedRowHeight         | Height of virtualizedlist row                                                                                     | number                                                  | 32px    |
 | virtualizedRowWidth          | Width of virtualized list                                                                                         | number                                                  | -       |
+
 
 #### ItemRollElement
 

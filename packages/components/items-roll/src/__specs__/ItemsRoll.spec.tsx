@@ -375,4 +375,24 @@ describe('ItemsRoll', () => {
     expect(onChangeSelection).toHaveBeenCalled();
     expect(onVisibleChange).toHaveBeenCalled();
   });
+
+  it('renders with custom counter', async () => {
+    const onSearch = jest.fn();
+    const onSearchClear = jest.fn();
+    const onClearAll = jest.fn();
+    const onChangeSelection = jest.fn();
+    const CUSTOM_COUNTER = 'custom counter'
+    const renderCount = (count: number) => <>{`${CUSTOM_COUNTER}-${count}`}</>
+
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
+
+    renderWithProvider(<ItemsRoll {...props} renderCount={renderCount}/>);
+
+    expect(await screen.findByText(`${CUSTOM_COUNTER}-${props.items.length}`)).toBeInTheDocument();
+  });
 });
