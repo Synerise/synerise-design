@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button, { ButtonProps } from '@synerise/ds-button';
-import Menu, { AntdMenuProps, MenuItemProps } from '@synerise/ds-menu';
+import Menu, { AntdMenuProps } from '@synerise/ds-menu';
 
 export const TabsContainer = styled.div<{ block?: boolean }>`
   padding-top: 5px;
@@ -50,8 +50,3 @@ export const HiddenTabs = styled.div`
   pointer-events: none;
 `;
 export const DropdownMenu = styled(Menu)<AntdMenuProps>``;
-export const DropdownMenuItem = styled(Menu.Item)<MenuItemProps>`
-  &&& {
-    border: none;
-  }
-`;
