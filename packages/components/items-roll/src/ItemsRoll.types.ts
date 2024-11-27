@@ -29,6 +29,7 @@ export type ItemsRollProps = {
   intl?: IntlShape;
   items: ItemRollElement[];
   onSearch?: (value: string) => void;
+  renderCount?: (count: number) => ReactNode;
   onSearchClear?: () => void;
   searchValue?: string;
   searchPlaceholder?: string;

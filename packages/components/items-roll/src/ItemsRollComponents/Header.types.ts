@@ -1,5 +1,5 @@
-import React from 'react';
-import { ItemsRollProps, Texts } from '../ItemsRoll.types';
+import type { ReactNode } from 'react';
+import type { ItemsRollProps, Texts } from '../ItemsRoll.types';
 
 export type HeaderProps = Pick<
   ItemsRollProps,
@@ -14,6 +14,6 @@ export type HeaderProps = Pick<
   | 'hideSearch'
   | 'customSidebarActions'
 > & {
-  allTexts: { [k in Texts]: string | React.ReactNode };
-  itemsCount: number;
+  allTexts: { [k in Texts]: ReactNode };
+  itemsCount: ReactNode;
 };

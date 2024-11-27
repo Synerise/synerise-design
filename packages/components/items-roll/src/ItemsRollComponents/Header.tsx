@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { SearchInput } from '@synerise/ds-search/dist/Elements';
 import Icon, { EditM } from '@synerise/ds-icon';
 import Dropdown from '@synerise/ds-dropdown';
@@ -8,7 +8,7 @@ import Extras from '../Extras';
 import { HeaderProps } from './Header.types';
 import * as S from '../ItemsRoll.styles';
 
-const Header: React.FC<HeaderProps> = ({
+const Header = ({
   actions,
   allTexts,
   changeSelectionIcon: ChangeSelectionIcon = EditM,
@@ -21,8 +21,8 @@ const Header: React.FC<HeaderProps> = ({
   searchValue,
   onSearchClear,
   searchPlaceholder,
-}) => {
-  const ChangeSelectionButton = React.useMemo(
+}: HeaderProps) => {
+  const ChangeSelectionButton = useMemo(
     () => (
       <S.ChangeSelection type="ghost" mode="icon-label" onClick={onChangeSelection}>
         <Icon component={<ChangeSelectionIcon />} size={24} />
@@ -34,9 +34,7 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <S.ContainerSpaceBetween>
-      <S.HeaderLeft>
-        {allTexts.itemsLabel}: <S.Bold>{itemsCount}</S.Bold>
-      </S.HeaderLeft>
+      <S.HeaderLeft>{itemsCount}</S.HeaderLeft>
       <S.HeaderRight>
         {onChangeSelection &&
           (changeSelectionDropdownProps ? (
