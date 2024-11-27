@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Popconfirm from '@synerise/ds-popconfirm';
 import Icon, { ArrowDownCircleM, ArrowUpCircleM, CloseS, WarningFillM } from '@synerise/ds-icon';
 
 import * as S from '../ItemsRoll.styles';
 import { ShowLessButtonProps, ShowMoreButtonProps, FooterProps } from './Footer.types';
 
-const ShowLessButton: React.FC<ShowLessButtonProps> = ({ showDefaultItemsAmount, showLessLabel }) => (
+const ShowLessButton = ({ showDefaultItemsAmount, showLessLabel }: ShowLessButtonProps) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showDefaultItemsAmount}>
     <S.ArrowIcon component={<ArrowUpCircleM />} size={20} />
     <span className="bold-label">{showLessLabel}</span>
   </S.ShowButton>
 );
 
-const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
-  showLabel,
-  moreLabel,
-  showAdditionalItems,
-  getShowMoreNumber,
-}) => (
+const ShowMoreButton = ({ showLabel, moreLabel, showAdditionalItems, getShowMoreNumber }: ShowMoreButtonProps) => (
   <S.ShowButton type="ghost" mode="icon-label" onClick={showAdditionalItems}>
     <S.ArrowIcon component={<ArrowDownCircleM />} size={20} />
     <S.ShowButtonLabel>
@@ -30,7 +25,7 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({
   </S.ShowButton>
 );
 
-const Footer: React.FC<FooterProps> = ({
+const Footer = ({
   allTexts,
   itemsCount,
   maxToShowItems = 10,
@@ -40,17 +35,17 @@ const Footer: React.FC<FooterProps> = ({
   showMoreStep = 10,
   visibleItemsCount,
   searchMode,
-}) => {
-  const getShowMoreNumber = React.useMemo(
+}: FooterProps) => {
+  const getShowMoreNumber = useMemo(
     () => (visibleItemsCount + showMoreStep < itemsCount ? showMoreStep : itemsCount - visibleItemsCount),
     [itemsCount, showMoreStep, visibleItemsCount]
   );
 
-  const showDivider = React.useMemo(() => {
+  const showDivider = useMemo(() => {
     return !searchMode || (searchMode && itemsCount > maxToShowItems);
   }, [searchMode, maxToShowItems, itemsCount]);
 
-  const buttonsConfiguration = React.useMemo((): React.ReactElement => {
+  const buttonsConfiguration = useMemo(() => {
     if (visibleItemsCount === itemsCount)
       return <ShowLessButton showLessLabel={allTexts.showLessLabel} showDefaultItemsAmount={showDefaultItemsAmount} />;
 
