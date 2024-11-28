@@ -1,5 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeProps } from '@synerise/ds-core';
+import styled from 'styled-components';
 import { InputWrapper } from '@synerise/ds-input/dist/InputMultivalue/InputMultivalue.styles';
 import { Label as DSLabel } from '@synerise/ds-input';
 
@@ -8,11 +7,11 @@ export const Container = styled.div``;
 export const ClearIconWrapper = styled.div`
   margin-left: 3px;
   .ds-icon > svg {
-    fill: ${(props): string => props.theme.palette['red-600']};
+    fill: ${props => props.theme.palette['red-600']};
   }
   &:hover {
     .ds-icon > svg {
-      fill: ${(props): string => props.theme.palette['red-600']};
+      fill: ${props => props.theme.palette['red-600']};
     }
   }
 `;
@@ -21,32 +20,9 @@ export const DefaultIconWrapper = styled.div`
   margin-left: 3px;
   &&:hover {
     .ds-icon > svg {
-      fill: ${(props): string => props.theme.palette['grey-600']};
+      fill: ${props => props.theme.palette['grey-600']};
     }
   }
-`;
-const disabledStyled = (props: ThemeProps): FlattenSimpleInterpolation => css`
-  &:hover,
-  &,
-  && > * {
-    cursor: not-allowed;
-  }
-  opacity: 0.8;
-  color: ${props.theme.palette[`grey-600`]};
-  background: ${props.theme.palette['grey-050']};
-`;
-const errorInputStyle = (props: ThemeProps): string => `
-  &&, .ant-input {
-    border-color: ${props.theme.palette['red-600']};
-    box-shadow: inset 0 0 0 2px ${props.theme.palette['red-600']};
-    background: ${props.theme.palette['red-050']};
-    border-radius: 4px;
-  }
-`;
-const activeStyle = (props: ThemeProps): FlattenSimpleInterpolation => css`
-  box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-600']};
-  border-color: ${props.theme.palette['blue-600']};
-  background: ${props.theme.palette['blue-050']};
 `;
 
 export const RangeInputWrapper = styled(InputWrapper)<{
@@ -59,19 +35,18 @@ export const RangeInputWrapper = styled(InputWrapper)<{
   display: flex;
   align-items: center;
   & {
-    .ant-input {
-      ${(props): false | FlattenSimpleInterpolation => !!props.active && activeStyle(props)}
-      ${(props): string => (props.error ? errorInputStyle(props) : '')}
-      ${(props): FlattenSimpleInterpolation | false => !!props.disabled && disabledStyled(props)}
-    }
+    opacity: 1;
     padding: 2px 8px 2px 12px;
+  }
+  ${DefaultIconWrapper} {
+    opacity: 0.4;
   }
 `;
 export const DateWrapper = styled.div<{ highlight?: boolean }>`
-  color: ${(props): string => (props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-500'])};
+  color: ${props => (props.highlight ? props.theme.palette['blue-600'] : props.theme.palette['grey-500'])};
 `;
 export const DateValue = styled.div`
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${props => props.theme.palette['grey-600']};
 `;
 export const IconSeparator = styled.div`
   display: flex;
@@ -82,11 +57,11 @@ export const Label = styled(DSLabel)`
   margin-bottom: 8px;
 `;
 export const ErrorText = styled.div`
-  color: ${(props): string => props.theme.palette['red-600']};
+  color: ${props => props.theme.palette['red-600']};
   margin-bottom: 4px;
 `;
 export const Description = styled.div`
-  color: ${(props): string => props.theme.palette['grey-600']};
+  color: ${props => props.theme.palette['grey-600']};
 `;
 
 export const ContentBelow = styled.div`

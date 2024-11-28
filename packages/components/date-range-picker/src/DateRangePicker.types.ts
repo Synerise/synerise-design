@@ -39,12 +39,13 @@ export type AdditionalMapper = {
   rightTop: CustomColorArrow;
   rightBottom: CustomColorArrow;
 };
-export interface DateRangePickerProps extends WrappedComponentProps {
+export type DateRangePickerProps = WrappedComponentProps & {
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.
    */
   containerClass?: string;
   readOnly?: boolean;
+  disabled?: boolean;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
   /**
@@ -82,7 +83,16 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   valueTransformer?: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
   disableAbsoluteTimepickerInRelative?: boolean;
-  rangePickerInputProps?: RangePickerInputProps;
+  rangePickerInputProps?: Omit<RangePickerInputProps, 'disabled' | 'readOnly'> & {
+    /**
+     * @deprecated - pass 'disabled' prop directly to DateRangePicker
+     */
+    disabled?: RangePickerInputProps['disabled'];
+    /**
+     * @deprecated - pass 'readOnly' prop directly to DateRangePicker
+     */
+    readOnly?: RangePickerInputProps['readOnly'];
+  };
   allowedFilterTypes?: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   renderPopoverTrigger?: (...args: any) => JSX.Element;
@@ -90,7 +100,7 @@ export interface DateRangePickerProps extends WrappedComponentProps {
   filterValueSelectionModes?: DateLimitMode[];
   filterRangeDisplayMode?: RangeDisplayMode;
   getPopupContainer?: (node: HTMLElement) => HTMLElement;
-}
+};
 
 /**
  * @deprecated use `DateRangePickerProps`
