@@ -28,6 +28,7 @@ export type ItemsRollGroup = string;
 export type ItemsRollProps = {
   // @deprecated
   intl?: IntlShape;
+  isDisabled?: boolean;
   items: ItemRollElement[];
   onSearch?: (value: string) => void;
   renderCount?: (count: number) => ReactNode;
