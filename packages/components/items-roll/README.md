@@ -42,6 +42,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | customSidebarActions         | Allow put developer sidebar actions that are not defined                                                          | React.ReactNode                                         | -       |
 | groups                       | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
 | hideSearch                   | Hide search component in itemsroll                                                                                | booleam                                                 | -       |
+| isDisabled                   | prevents rendering 'remove' / 'clear all' buttons                                                                 | booleam                                                 | -       |
 | items                        | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
 | maxToShowItems               | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
 | onClearAll                   | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |

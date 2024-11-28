@@ -108,6 +108,7 @@ export default {
     useFooter: BOOLEAN_CONTROL,
     useVirtualizedList: BOOLEAN_CONTROL,
     hideSearch: BOOLEAN_CONTROL,
+    isDisabled: BOOLEAN_CONTROL,
     searchPlaceholder: STRING_CONTROL,
     items: {
       control: false,

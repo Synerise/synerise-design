@@ -13,6 +13,7 @@ export const ItemsRoll = ({
   customSidebarActions,
   groups,
   hideSearch,
+  isDisabled,
   items,
   maxToShowItems = 10,
   onClearAll,
@@ -112,7 +113,7 @@ export const ItemsRoll = ({
         groups={groups}
         items={items}
         onItemClick={onItemClick}
-        onItemRemove={onItemRemove}
+        onItemRemove={!isDisabled ? onItemRemove : undefined}
         noResultsLabel={allTexts.noResultsLabel}
         removeTooltipLabel={allTexts.removeTooltipLabel}
         searchValue={searchValue}
@@ -127,7 +128,7 @@ export const ItemsRoll = ({
           allTexts={allTexts}
           itemsCount={items.length}
           maxToShowItems={maxToShowItems}
-          onClearAll={onClearAll}
+          onClearAll={!isDisabled ? onClearAll : undefined}
           showAdditionalItems={showAdditionalItems}
           showDefaultItemsAmount={showDefaultItemsAmount}
           showMoreStep={showMoreStep}

@@ -8,7 +8,7 @@ import { RemoveIconProps } from './ItemRemoveIcon.types';
 
 export const RemoveIcon = ({ id, handleRemove, tooltipLabel, group }: RemoveIconProps) => (
   <Tooltip title={tooltipLabel}>
-    <RemoveIconWrapper>
+    <RemoveIconWrapper data-testid="items-roll-remove-icon">
       <Icon
         className="element-remove-icon"
         onClick={(event: MouseEvent<HTMLDivElement>) => {
