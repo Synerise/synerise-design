@@ -24,8 +24,9 @@ const DateRangePicker = (props: DateRangePickerProps) => {
     onVisibleChange,
     popoverProps = {},
     rangePickerInputProps = {},
-    renderPopoverTrigger = (): void => undefined,
+    renderPopoverTrigger = () => undefined,
     readOnly = false,
+    disabled,
     getPopupContainer,
   } = props;
   const intl = useIntl();
@@ -37,13 +38,13 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
-  useEffect((): void => {
+  useEffect(() => {
     if (popupVisible !== undefined) {
       setPopupVisible(undefined);
     }
   }, [popupVisible]);
 
-  useEffect((): void => {
+  useEffect(() => {
     if (!isEqual(selectedRange, selectedDate)) {
       setSelectedDate(selectedRange);
     }
@@ -69,7 +70,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   }, [checkContentAlignement]);
 
   const onApplyCallback = useCallback(
-    (range: Partial<DateFilter> | undefined): void => {
+    (range: Partial<DateFilter> | undefined) => {
       const finalDateRange = range === undefined && defaultValue !== undefined ? defaultValue : range;
       onApply && onApply(finalDateRange);
       setSelectedDate(finalDateRange as DateRange);
@@ -83,7 +84,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
     ...(popupVisible === false && { visible: false }),
   };
 
-  const handleRangePickerInputClick = readOnly ? undefined : (): void => setPopupVisible(undefined);
+  const handleRangePickerInputClick = readOnly ? undefined : () => setPopupVisible(undefined);
   const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
     <RangePickerInput
       onClick={handleRangePickerInputClick}
@@ -95,10 +96,11 @@ const DateRangePicker = (props: DateRangePickerProps) => {
       active={!!inputActive}
       {...rangePickerInputProps}
       readOnly={readOnly}
+      disabled={disabled}
     />
   );
 
-  if (readOnly) return <>{triggerElement}</>;
+  if (readOnly || disabled) return <>{triggerElement}</>;
 
   return (
     <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
@@ -122,7 +124,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         trigger="click"
         overlayStyle={{ maxWidth: '700px', fontWeight: 'unset' }}
         overlayClassName="ds-date-range-popover"
-        onVisibleChange={(visibility: boolean): void => {
+        onVisibleChange={(visibility: boolean) => {
           visibility && checkContentAlignement();
           setInputActive(visibility);
           onVisibleChange && onVisibleChange(visibility);
