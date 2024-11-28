@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 
 import Icon, { FolderM, ShowM } from '@synerise/ds-icon';
-import { DropdownMenu, DropdownMenuItem } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
+import { DropdownMenu } from '@synerise/ds-manageable-list/dist/Item/FilterItem/FilterItem.styles';
 import Button from '@synerise/ds-button';
 import Status from '@synerise/ds-status';
 import { Input } from '@synerise/ds-input';
@@ -113,13 +113,7 @@ const BASE_ITEM = (name?: string) => ({
   canDelete: true,
 });
 
-const DROPDOWN_MENU = (
-  <DropdownMenu>
-    <DropdownMenuItem> Option 1</DropdownMenuItem>
-    <DropdownMenuItem> Option 2 </DropdownMenuItem>
-    <DropdownMenuItem> Option 3 </DropdownMenuItem>
-  </DropdownMenu>
-);
+const DROPDOWN_MENU = <DropdownMenu dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3' }]} />;
 
 export type ContentItemType = {
   id: string;
