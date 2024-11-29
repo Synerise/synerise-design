@@ -102,6 +102,7 @@ const orderedStyle = css`
 
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
+  min-width: 175px;
   ${props =>
     props.disabled
       ? css`
