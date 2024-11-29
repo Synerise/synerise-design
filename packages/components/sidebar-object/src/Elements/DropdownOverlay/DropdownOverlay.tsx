@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Menu from '@synerise/ds-menu';
 import Icon, { Add3M, FolderM, SearchM } from '@synerise/ds-icon';
@@ -32,6 +32,18 @@ const DropdownOverlay = ({
   useOnClickOutside(ref, () => {
     onDropdownOutsideClick && onDropdownOutsideClick();
   });
+
+  const menuDataSource = useMemo(() => {
+    return filteredData?.map(item => ({
+      key: `${item[foldersIdKey]}-${item.id}`,
+      onClick: () => onFolderSelect(item),
+      checked: parentFolder[foldersIdKey] === item[foldersIdKey],
+      prefixel: <Icon component={<FolderM />} />,
+      highlight: searchValue,
+      text: item[foldersDisplayKey],
+    }));
+  }, [filteredData, foldersDisplayKey, foldersIdKey, onFolderSelect, parentFolder, searchValue]);
+
   return (
     <DropdownWrapper ref={ref}>
       <Dropdown.SearchInput
@@ -43,23 +55,7 @@ const DropdownOverlay = ({
         autofocus
       />
       <MenuWrapper withBottomAction={!!onAddFolderClick}>
-        {filteredData?.length > 0 ? (
-          <Menu>
-            {filteredData?.map(item => (
-              <Menu.Item
-                key={`${item[foldersIdKey]}-${item.id}`}
-                onClick={(): void => onFolderSelect(item)}
-                checked={parentFolder[foldersIdKey] === item[foldersIdKey]}
-                prefixel={<Icon component={<FolderM />} />}
-                highlight={searchValue}
-              >
-                {item[foldersDisplayKey]}
-              </Menu.Item>
-            ))}
-          </Menu>
-        ) : (
-          <Result type="no-results" />
-        )}
+        {filteredData?.length > 0 ? <Menu dataSource={menuDataSource} /> : <Result type="no-results" />}
       </MenuWrapper>
       {onAddFolderClick && (
         <Dropdown.BottomAction onClickAction={(): void => onAddFolderClick(searchValue)} style={{ padding: '8px' }}>
