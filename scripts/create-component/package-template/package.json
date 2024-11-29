@@ -25,7 +25,8 @@
     "types": "tsc --noEmit",
     "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
     "test": "jest",
-    "test:watch": "npm run test -- --watchAll"
+    "test:watch": "npm run test -- --watchAll",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
   },
   "sideEffects": [
     "dist/style/*",

@@ -15,6 +15,8 @@ export const fixedWrapper800: Decorator = Story => <div style={{ width: '800px' 
 
 export const fixedWrapper1000: Decorator = Story => <div style={{ width: '1000px' }}>{Story()}</div>;
 
+export const fixedWrapper1200: Decorator = Story => <div style={{ width: '1200px' }}>{Story()}</div>;
+
 export const flexColumnWrapper: Decorator = Story => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{Story()}</div>
 );
