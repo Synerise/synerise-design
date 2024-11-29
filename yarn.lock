@@ -137,14 +137,6 @@
     "@babel/highlight" "^7.24.2"
     picocolors "^1.0.0"
 
-"@babel/code-frame@^7.24.7":
-  version "7.24.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/code-frame/-/code-frame-7.24.7.tgz#882fd9e09e8ee324e496bd040401c6f046ef4465"
-  integrity sha1-iC/Z4J6O4yTklr0EBAHG8EbvRGU=
-  dependencies:
-    "@babel/highlight" "^7.24.7"
-    picocolors "^1.0.0"
-
 "@babel/code-frame@^7.25.9", "@babel/code-frame@^7.26.0":
   version "7.26.2"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/code-frame/-/code-frame-7.26.2.tgz#4b5fab97d33338eff916235055f0ebc21e573a85"
@@ -451,16 +443,6 @@
     "@babel/types" "^7.23.5"
     "@jridgewell/gen-mapping" "^0.3.2"
     "@jridgewell/trace-mapping" "^0.3.17"
-    jsesc "^2.5.1"
-
-"@babel/generator@^7.25.6":
-  version "7.25.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/generator/-/generator-7.25.6.tgz#0df1ad8cb32fe4d2b01d8bf437f153d19342a87c"
-  integrity sha1-DfGtjLMv5NKwHYv0N/FT0ZNCqHw=
-  dependencies:
-    "@babel/types" "^7.25.6"
-    "@jridgewell/gen-mapping" "^0.3.5"
-    "@jridgewell/trace-mapping" "^0.3.25"
     jsesc "^2.5.1"
 
 "@babel/generator@^7.25.9", "@babel/generator@^7.26.0":
@@ -1438,11 +1420,6 @@
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-string-parser/-/helper-string-parser-7.24.1.tgz"
   integrity sha1-+Zw201k9uVQHBdBzmh8QteIMaW4=
 
-"@babel/helper-string-parser@^7.24.8":
-  version "7.24.8"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-string-parser/-/helper-string-parser-7.24.8.tgz#5b3329c9a58803d5df425e5785865881a81ca48d"
-  integrity sha1-WzMpyaWIA9XfQl5XhYZYgagcpI0=
-
 "@babel/helper-string-parser@^7.25.9":
   version "7.25.9"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-string-parser/-/helper-string-parser-7.25.9.tgz#1aabb72ee72ed35789b4bbcad3ca2862ce614e8c"
@@ -1482,11 +1459,6 @@
   version "7.24.5"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-validator-identifier/-/helper-validator-identifier-7.24.5.tgz"
   integrity sha1-kYsaf6IwVmA1BjcAib2ZDYcg22I=
-
-"@babel/helper-validator-identifier@^7.24.7":
-  version "7.24.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/helper-validator-identifier/-/helper-validator-identifier-7.24.7.tgz#75b889cfaf9e35c2aaf42cf0d72c8e91719251db"
-  integrity sha1-dbiJz6+eNcKq9Czw1yyOkXGSUds=
 
 "@babel/helper-validator-identifier@^7.25.9":
   version "7.25.9"
@@ -1687,16 +1659,6 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@babel/highlight@^7.24.7":
-  version "7.24.7"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/highlight/-/highlight-7.24.7.tgz#a05ab1df134b286558aae0ed41e6c5f731bf409d"
-  integrity sha1-oFqx3xNLKGVYquDtQebF9zG/QJ0=
-  dependencies:
-    "@babel/helper-validator-identifier" "^7.24.7"
-    chalk "^2.4.2"
-    js-tokens "^4.0.0"
-    picocolors "^1.0.0"
-
 "@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.4.3", "@babel/parser@^7.7.5", "@babel/parser@^7.8.4", "@babel/parser@^7.8.6", "@babel/parser@^7.9.0":
   version "7.9.3"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.9.3.tgz"
@@ -1741,13 +1703,6 @@
   version "7.24.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/parser/-/parser-7.24.1.tgz"
   integrity sha1-HkFtNic5P6sctbDy8XlqEArpEzo=
-
-"@babel/parser@^7.25.0", "@babel/parser@^7.25.6":
-  version "7.25.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/parser/-/parser-7.25.6.tgz#85660c5ef388cbbf6e3d2a694ee97a38f18afe2f"
-  integrity sha1-hWYMXvOIy79uPSppTul6OPGK/i8=
-  dependencies:
-    "@babel/types" "^7.25.6"
 
 "@babel/parser@^7.25.9", "@babel/parser@^7.26.0", "@babel/parser@^7.26.2":
   version "7.26.2"
@@ -4803,15 +4758,6 @@
     "@babel/parser" "^7.24.0"
     "@babel/types" "^7.24.0"
 
-"@babel/template@^7.25.0":
-  version "7.25.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/template/-/template-7.25.0.tgz#e733dc3134b4fede528c15bc95e89cb98c52592a"
-  integrity sha1-5zPcMTS0/t5SjBW8leicuYxSWSo=
-  dependencies:
-    "@babel/code-frame" "^7.24.7"
-    "@babel/parser" "^7.25.0"
-    "@babel/types" "^7.25.0"
-
 "@babel/template@^7.25.9":
   version "7.25.9"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/template/-/template-7.25.9.tgz#ecb62d81a8a6f5dc5fe8abfc3901fc52ddf15016"
@@ -4946,20 +4892,7 @@
     debug "^4.3.1"
     globals "^11.1.0"
 
-"@babel/traverse@^7.25.6":
-  version "7.25.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/traverse/-/traverse-7.25.6.tgz#04fad980e444f182ecf1520504941940a90fea41"
-  integrity sha1-BPrZgORE8YLs8VIFBJQZQKkP6kE=
-  dependencies:
-    "@babel/code-frame" "^7.24.7"
-    "@babel/generator" "^7.25.6"
-    "@babel/parser" "^7.25.6"
-    "@babel/template" "^7.25.0"
-    "@babel/types" "^7.25.6"
-    debug "^4.3.1"
-    globals "^11.1.0"
-
-"@babel/traverse@^7.25.9", "@babel/traverse@^7.7.2":
+"@babel/traverse@^7.25.6", "@babel/traverse@^7.25.9", "@babel/traverse@^7.7.2":
   version "7.25.9"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/traverse/-/traverse-7.25.9.tgz#a50f8fe49e7f69f53de5bea7e413cd35c5e13c84"
   integrity sha1-pQ+P5J5/afU95b6n5BPNNcXhPIQ=
@@ -5073,15 +5006,6 @@
   dependencies:
     "@babel/helper-string-parser" "^7.23.4"
     "@babel/helper-validator-identifier" "^7.22.20"
-    to-fast-properties "^2.0.0"
-
-"@babel/types@^7.25.0", "@babel/types@^7.25.6":
-  version "7.25.6"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@babel/types/-/types-7.25.6.tgz#893942ddb858f32ae7a004ec9d3a76b3463ef8e6"
-  integrity sha1-iTlC3bhY8yrnoATsnTp2s0Y++OY=
-  dependencies:
-    "@babel/helper-string-parser" "^7.24.8"
-    "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
 "@babel/types@^7.25.9", "@babel/types@^7.26.0":
@@ -29842,7 +29766,7 @@ react-docgen@^7.0.0:
     resolve "^1.22.1"
     strip-indent "^4.0.0"
 
-react-dom@^16.8.3, react-dom@^18, react-dom@^18.2.0:
+react-dom@^16.8.3, react-dom@^18, react-dom@^18.2.0, react-dom@^18.3.1:
   version "18.3.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
   integrity sha1-wiZdeVEbV9R5s90/36UVNklMXLQ=
@@ -30423,7 +30347,7 @@ react-window@^1.8.7:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^18, react@^18.2.0:
+react@^16.6.0, react@^16.8.3, react@^17.0.1, react@^18, react@^18.2.0, react@^18.3.1:
   version "18.3.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
   integrity sha1-SauJIAnFOTNiW9FrJTP8dUyrKJE=
