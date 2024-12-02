@@ -1,8 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Radio, { RadioProps, RadioGroupProps } from '@synerise/ds-radio';
+import { Label } from '@synerise/ds-input'
 import { fixedWrapper300 } from '../../utils';
 import { RadioChangeEvent } from 'antd/lib/radio';
+
 
 type StoryProps = RadioGroupProps & RadioProps;
 
@@ -68,5 +70,26 @@ export const RadioButtons: StoryObj<StoryProps> = {
     buttonStyle: 'solid',
     fullWidth: false,
     big: true,
+  },
+};
+
+export const RadioWithLabelAndTooltip: StoryObj<StoryProps> = {
+  render: ({ defaultValue, onChange, children, ...args }) => {
+    const handleChange = (event: RadioChangeEvent) => {
+      onChange?.(event);
+    };
+    return (
+      <Radio.Group onChange={handleChange} defaultValue={defaultValue}>
+        <Radio {...args} value="A">
+          <Label tooltip='Label A' label='Label A'/>
+        </Radio>
+        <Radio {...args} value="B">
+          <Label tooltip='Label B' label='Label B'/>
+        </Radio>
+      </Radio.Group>
+    );
+  },
+  args: {
+    description: 'Description',
   },
 };
