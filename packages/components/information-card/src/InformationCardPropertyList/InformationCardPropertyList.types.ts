@@ -4,7 +4,7 @@ export type InformationCardPropertyItemTypes = 'divider';
 export type InformationCardPropertyItem = {
   label: ReactNode;
   value?: ReactNode;
-  key?: Key;
+  id?: Key;
   type?: InformationCardPropertyItemTypes;
 };
 export type InformationCardPropertyListProps = {

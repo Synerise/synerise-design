@@ -6,7 +6,7 @@ export type InformationCardSummaryItem = {
   icon: ReactNode;
   tooltip?: ReactNode;
   tooltipProps?: TooltipProps;
-  key?: Key;
+  id?: Key;
 };
 export type InformationCardSummaryProps = {
   items?: InformationCardSummaryItem[];
