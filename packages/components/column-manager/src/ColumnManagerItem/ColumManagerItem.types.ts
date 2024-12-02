@@ -1,10 +1,11 @@
-import React from 'react';
+import type { ReactText, ReactNode } from 'react';
+import type { ThemePropsVars } from '@synerise/ds-core';
 
 export type ColumnType = string | 'text' | 'number' | 'date' | 'boolean' | 'list';
 
 export type Column = {
   id: string;
-  key: React.ReactText;
+  key: ReactText;
   name: string;
   visible: boolean;
   type: ColumnType;
@@ -20,9 +21,7 @@ export type ColumnProps = {
   searchQuery?: string;
   item: Column;
   texts: {
-    [k: string]: string | React.ReactNode;
+    [k: string]: ReactNode;
   };
-  theme: {
-    [k: string]: string;
-  };
+  theme: ThemePropsVars;
 };

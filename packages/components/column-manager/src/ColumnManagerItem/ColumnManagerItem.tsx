@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { withTheme } from 'styled-components';
 import Icon, {
   CheckS,
   DividerM,
@@ -13,14 +14,12 @@ import Icon, {
   VarTypeNumberM,
   VarTypeStringM,
 } from '@synerise/ds-icon';
-import Switch from '@synerise/ds-switch/dist/Switch';
-import { withTheme } from 'styled-components';
+import Switch from '@synerise/ds-switch';
 import Dropdown from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
-import Menu from '@synerise/ds-menu';
 import { escapeRegEx } from '@synerise/ds-utils';
-
 import Tooltip from '@synerise/ds-tooltip';
+
 import * as S from './ColumnManagerItem.styles';
 import { ColumnProps } from './ColumManagerItem.types';
 
@@ -37,7 +36,7 @@ const typeIcon = {
   list: <VarTypeListM />,
 };
 
-const ColumnManagerItem: React.FC<ColumnProps> = ({
+const ColumnManagerItem = ({
   item,
   theme,
   setFixed,
@@ -47,8 +46,8 @@ const ColumnManagerItem: React.FC<ColumnProps> = ({
   texts,
   showGroupSettings,
   ...rest
-}) => {
-  const columnName = React.useMemo(() => {
+}: ColumnProps) => {
+  const columnName = useMemo(() => {
     if (searchQuery) {
       const escapedQuery = escapeRegEx(searchQuery);
       const startOfQuery = item.name.toLowerCase().search(escapedQuery.toLowerCase());
@@ -58,33 +57,31 @@ const ColumnManagerItem: React.FC<ColumnProps> = ({
     return item.name;
   }, [item.name, searchQuery]);
 
-  const fixedMenu = (): React.ReactElement => (
-    <S.FixedMenu>
-      <Menu.Item
-        onClick={(): void => setFixed(item.id, FIXED_TYPES.left)}
-        prefixel={<Icon component={<Grid4M />} color={theme.palette['grey-600']} />}
-        suffixel={item.fixed === FIXED_TYPES.left && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
-      >
-        {texts.fixedLeft}
-      </Menu.Item>
-      <Menu.Item
-        onClick={(): void => setFixed(item.id, FIXED_TYPES.right)}
-        prefixel={<Icon component={<Grid5M />} color={theme.palette['grey-600']} />}
-        suffixel={
-          item.fixed === FIXED_TYPES.right && <Icon component={<CheckS />} color={theme.palette['green-600']} />
-        }
-      >
-        {texts.fixedRight}
-      </Menu.Item>
-      <Menu.Item
-        onClick={(): void => showGroupSettings(item)}
-        prefixel={<Icon component={<DividerM />} color={theme.palette['grey-600']} />}
-        suffixel={item.group && <Icon component={<CheckS />} color={theme.palette['green-600']} />}
-      >
-        {texts.group}
-      </Menu.Item>
-    </S.FixedMenu>
-  );
+  const menuDataSource = useMemo(() => {
+    return [
+      {
+        onClick: () => setFixed(item.id, FIXED_TYPES.left),
+        prefixel: <Icon component={<Grid4M />} color={theme.palette['grey-600']} />,
+        suffixel: item.fixed === FIXED_TYPES.left && <Icon component={<CheckS />} color={theme.palette['green-600']} />,
+        text: texts.fixedLeft,
+      },
+      {
+        onClick: () => setFixed(item.id, FIXED_TYPES.right),
+        prefixel: <Icon component={<Grid5M />} color={theme.palette['grey-600']} />,
+        suffixel: item.fixed === FIXED_TYPES.right && (
+          <Icon component={<CheckS />} color={theme.palette['green-600']} />
+        ),
+        text: texts.fixedRight,
+      },
+      {
+        onClick: () => showGroupSettings(item),
+        prefixel: <Icon component={<DividerM />} color={theme.palette['grey-600']} />,
+        suffixel: item.group && <Icon component={<CheckS />} color={theme.palette['green-600']} />,
+
+        text: texts.group,
+      },
+    ];
+  }, [item, setFixed, showGroupSettings, texts.fixedLeft, texts.fixedRight, texts.group, theme.palette]);
 
   return (
     <S.ColumnManagerItem {...rest}>
@@ -99,14 +96,14 @@ const ColumnManagerItem: React.FC<ColumnProps> = ({
           {item.fixed && <Icon component={<PinM />} color={theme.palette['grey-400']} />}
         </S.Icons>
         {item.visible && (
-          <Dropdown overlay={fixedMenu()}>
+          <Dropdown overlay={<S.FixedMenu dataSource={menuDataSource} />}>
             <Button type="ghost" mode="single-icon">
               <Icon component={<OptionHorizontalM />} color={theme.palette['grey-700']} />
             </Button>
           </Dropdown>
         )}
         <Tooltip title={item.visible ? texts.switchOff : texts.switchOn} placement="topRight">
-          <Switch checked={item.visible} label="" onChange={(): void => switchAction(item.id, item.visible)} />
+          <Switch checked={item.visible} label="" onChange={() => switchAction(item.id, item.visible)} />
         </Tooltip>
       </S.ItemPart>
     </S.ColumnManagerItem>
