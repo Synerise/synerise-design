@@ -69,7 +69,7 @@ describe('ItemsRoll', () => {
 
     expect(await screen.findByText('Import')).toBeInTheDocument();
     expect(await screen.findByText('Export')).toBeInTheDocument();
-    expect(within(actionMenu).getAllByRole('menuitem').length).toBe(2);
+    expect(within(actionMenu).queryAllByRole('menuitem').length).toBe(2);
   });
 
   it('renders without change selection when onChangeSelection is NOT provided', () => {
@@ -374,5 +374,43 @@ describe('ItemsRoll', () => {
 
     expect(onChangeSelection).toHaveBeenCalled();
     expect(onVisibleChange).toHaveBeenCalled();
+  });
+
+  it('renders with custom counter', async () => {
+    const onSearch = jest.fn();
+    const onSearchClear = jest.fn();
+    const onClearAll = jest.fn();
+    const onChangeSelection = jest.fn();
+    const CUSTOM_COUNTER = 'custom counter'
+    const renderCount = (count: number) => <>{`${CUSTOM_COUNTER}-${count}`}</>
+
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
+
+    renderWithProvider(<ItemsRoll {...props} renderCount={renderCount}/>);
+
+    expect(await screen.findByText(`${CUSTOM_COUNTER}-${props.items.length}`)).toBeInTheDocument();
+  });
+  it('does not render clear / remove buttons if isDisabled prop is true', async () => {
+    const onSearch = jest.fn();
+    const onSearchClear = jest.fn();
+    const onClearAll = jest.fn();
+    const onChangeSelection = jest.fn();
+    
+    const props = propsFactory({
+      onSearch,
+      onSearchClear,
+      onClearAll,
+      onChangeSelection,
+    });
+
+    renderWithProvider(<ItemsRoll {...props} isDisabled />);
+    expect(await screen.findByText('Change selection')).toBeInTheDocument();
+    expect(screen.queryByTestId('items-roll-remove-icon')).not.toBeInTheDocument();
+    expect(screen.queryByText('Clear all')).not.toBeInTheDocument();
   });
 });

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.15...@synerise/ds-progress-bar@0.7.16) (2024-11-29)
+
+**Note:** Version bump only for package @synerise/ds-progress-bar
+
+
+
+
+
+## [0.7.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.14...@synerise/ds-progress-bar@0.7.15) (2024-11-28)
+
+**Note:** Version bump only for package @synerise/ds-progress-bar
+
+
+
+
+
 ## [0.7.14](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.13...@synerise/ds-progress-bar@0.7.14) (2024-11-21)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar

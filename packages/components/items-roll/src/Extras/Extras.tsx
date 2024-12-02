@@ -1,33 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import Dropdown from '@synerise/ds-dropdown';
-import ListItem from '@synerise/ds-list-item';
+import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import Icon, { OptionHorizontalM } from '@synerise/ds-icon';
 
-import { ItemRollElement } from '../ItemsRoll.types';
+import type { ItemRollElement } from '../ItemsRoll.types';
 
 export type ExtrasProps = {
-  actions: ItemRollElement[];
+  actions: ItemRollElement<MenuItemProps>[];
 };
 
-const ItemMenu = styled.div`
+const ItemMenu = styled(Menu)`
   padding: 8px;
 `;
 
-const Extras: React.FC<ExtrasProps> = ({ actions }) => {
+const Extras = ({ actions }: ExtrasProps) => {
   return (
     <Dropdown
       trigger={['click']}
       placement="bottomRight"
       overlay={
-        <ItemMenu data-testid="items-roll-action-menu">
-          {actions.map(action => (
-            <ListItem {...action} key={action.id}>
-              {action.text}
-            </ListItem>
-          ))}
-        </ItemMenu>
+        <div data-testid="items-roll-action-menu">
+          <ItemMenu dataSource={actions} />
+        </div>
       }
     >
       <Button type="ghost" mode="single-icon">

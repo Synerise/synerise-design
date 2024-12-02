@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.68.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.67.1...@synerise/ds-icon@0.68.0) (2024-11-29)
+
+
+### Features
+
+* **icon:** 2 new color icons ([14f8f7f](https://github.com/Synerise/synerise-design/commit/14f8f7f8aa8bacb57e6c7b655137776621f094e4))
+
+
+
+
+
+## [0.67.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.67.0...@synerise/ds-icon@0.67.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* **icon:** color icons export missing ([3d0ff44](https://github.com/Synerise/synerise-design/commit/3d0ff442c2bb6da9c8bdd4505637ded4ed759e95))
+
+
+
+
+
 # [0.67.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-icon@0.66.4...@synerise/ds-icon@0.67.0) (2024-11-21)
 
 

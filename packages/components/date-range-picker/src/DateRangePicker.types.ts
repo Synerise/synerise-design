@@ -49,6 +49,7 @@ export type DateRangePickerProps = {
    */
   containerClass?: string;
   readOnly?: boolean;
+  disabled?: boolean;
   disableDefaultTexts?: boolean;
   disabledDate?: (date?: Date) => boolean;
   /**
@@ -86,7 +87,16 @@ export type DateRangePickerProps = {
   valueTransformer?: (value: DateRange) => DateRange;
   arrowColor?: AdditionalMapper;
   disableAbsoluteTimepickerInRelative?: boolean;
-  rangePickerInputProps?: RangePickerInputProps;
+  rangePickerInputProps?: Omit<RangePickerInputProps, 'disabled' | 'readOnly'> & {
+    /**
+     * @deprecated - pass 'disabled' prop directly to DateRangePicker
+     */
+    disabled?: RangePickerInputProps['disabled'];
+    /**
+     * @deprecated - pass 'readOnly' prop directly to DateRangePicker
+     */
+    readOnly?: RangePickerInputProps['readOnly'];
+  };
   allowedFilterTypes?: string[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   renderPopoverTrigger?: (...args: any) => JSX.Element;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import DSListItem from '@synerise/ds-list-item';
-
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 
 export const ListItem = styled(DSListItem)`

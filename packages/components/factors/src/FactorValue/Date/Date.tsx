@@ -1,9 +1,9 @@
-import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getPopupContainer } from '@synerise/ds-utils';
 import DatePicker from '@synerise/ds-date-picker';
 import { FactorsProps, InputProps } from '../../Factors.types';
 
-const DateInput: FC<InputProps> = ({
+const DateInput = ({
   value,
   onChange,
   texts,
@@ -14,7 +14,7 @@ const DateInput: FC<InputProps> = ({
   allowClear,
   readOnly = false,
   getPopupContainerOverride,
-}) => {
+}: InputProps) => {
   const [localValue, setLocalValue] = useState<FactorsProps['value']>(value);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ const DateInput: FC<InputProps> = ({
   return (
     <DatePicker
       onClear={handleClear}
-      onValueChange={date => setLocalValue(date?.toDateString())}
       onApply={changeHandler}
       value={localValueAsDate}
       showTime

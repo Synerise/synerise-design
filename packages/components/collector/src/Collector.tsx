@@ -76,7 +76,6 @@ const Collector = ({
   const [selectedValues, setSelectedValues] = useState<CollectorValue[]>(
     selected && allowMultipleValues ? selected : []
   );
-
   const [filteredSuggestions, setFilteredSuggestions] = useState<CollectorValue[]>(suggestions || []);
 
   const filterLookupKey = useMemo(() => lookupConfig?.filter || 'text', [lookupConfig]);

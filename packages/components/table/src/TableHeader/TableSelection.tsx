@@ -1,27 +1,26 @@
 import React, { useCallback, useMemo } from 'react';
-import type { Key, ReactElement, ReactNode, ReactText } from 'react';
+import type { Key, ReactText } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
-import Menu from '@synerise/ds-menu';
+import type { MenuItemProps } from '@synerise/ds-menu';
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
 import Icon, { OptionVerticalM } from '@synerise/ds-icon';
 
 import * as S from '../Table.styles';
-import { Selection, SelectionItem } from '../Table.types';
+import type { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
-import { Props } from './TableSelection.types';
+import type { Props } from './TableSelection.types';
 import { useRowKey } from '../hooks/useRowKey';
 import { isRecordSelectable } from '../utils';
 
-// @ts-ignore
-function TableSelection<T extends { key: ReactText; children?: T[] }>({
+const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   dataSource,
   dataSourceFull,
   selection,
   rowKey,
   locale,
   childrenColumnName,
-}: Props<T>): ReactElement | null {
+}: Props<T>) => {
   const { getRowKey } = useRowKey(rowKey);
 
   const allData = dataSourceFull || dataSource;
@@ -206,6 +205,36 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
 
   const selectionTooltipTitle = !allSelected ? locale?.selectAllTooltip : locale?.unselectAll;
 
+  const menuDataSource = useMemo(() => {
+    return selection?.selections
+      ?.filter(Boolean)
+      .map((selectionMenuElement: Selection | SelectionItem): MenuItemProps => {
+        switch (selectionMenuElement) {
+          case SELECTION_ALL: {
+            return !allSelected
+              ? { onClick: selectAll, text: locale?.selectAll }
+              : { onClick: unselectAll, text: locale?.unselectAll };
+          }
+          case SELECTION_INVERT: {
+            return { onClick: selectInvert, text: locale?.selectInvert };
+          }
+          default: {
+            const sel = selectionMenuElement as Selection;
+            return { ...sel, text: sel.label };
+          }
+        }
+      });
+  }, [
+    allSelected,
+    locale?.selectAll,
+    locale?.selectInvert,
+    locale?.unselectAll,
+    selectAll,
+    selectInvert,
+    selection?.selections,
+    unselectAll,
+  ]);
+
   return selection?.selectedRowKeys ? (
     <S.Selection data-popup-container>
       <Tooltip title={selectionTooltipTitle}>
@@ -227,35 +256,7 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
         <Dropdown
           disabled={isEmpty || allSelectableRecordsCount === 0}
           trigger={['click']}
-          overlay={
-            <S.SelectionMenu>
-              {selection?.selections
-                .filter(Boolean)
-                .map((selectionMenuElement: Selection | SelectionItem): ReactNode => {
-                  switch (selectionMenuElement) {
-                    case SELECTION_ALL: {
-                      return !allSelected ? (
-                        <Menu.Item onClick={selectAll}>{locale?.selectAll}</Menu.Item>
-                      ) : (
-                        <Menu.Item onClick={unselectAll}>{locale?.unselectAll}</Menu.Item>
-                      );
-                    }
-                    case SELECTION_INVERT: {
-                      return <Menu.Item onClick={selectInvert}>{locale?.selectInvert}</Menu.Item>;
-                    }
-                    default: {
-                      const sel = selectionMenuElement as Selection;
-                      return (
-                        // eslint-disable-next-line react/jsx-handler-names
-                        <Menu.Item key={sel.key} onClick={sel.onClick}>
-                          {sel.label}
-                        </Menu.Item>
-                      );
-                    }
-                  }
-                })}
-            </S.SelectionMenu>
-          }
+          overlay={<S.SelectionMenu dataSource={menuDataSource} />}
         >
           <Tooltip title={locale?.selectionOptionsTooltip}>
             <Button mode="single-icon" type="ghost">
@@ -266,6 +267,6 @@ function TableSelection<T extends { key: ReactText; children?: T[] }>({
       )}
     </S.Selection>
   ) : null;
-}
+};
 
 export default TableSelection;

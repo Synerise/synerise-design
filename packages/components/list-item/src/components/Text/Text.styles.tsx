@@ -102,6 +102,7 @@ const orderedStyle = css`
 
 export const Wrapper = styled.div<StyledListItemProps>`
   display: flex;
+  min-width: 175px;
   ${props =>
     props.disabled
       ? css`
@@ -120,10 +121,9 @@ export const Wrapper = styled.div<StyledListItemProps>`
           }
         `
       : css`
-          ${PrefixWrapper} > .ds-icon > svg {
+		      ${PrefixWrapper} > .ds-icon > svg {
             fill: ${props.theme.palette['grey-600']};
           }
-            
           &:hover {
             ${Inner} {
               background: ${props.theme.palette['grey-050']};

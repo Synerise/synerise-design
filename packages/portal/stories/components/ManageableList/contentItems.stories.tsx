@@ -107,11 +107,7 @@ const attachDropdownKnobs = (item, knobValue): ItemProps => {
   return {
     ...item,
     dropdown: knobValue ? (
-      <DropdownMenu>
-        <DropdownMenuItem> Option 1</DropdownMenuItem>
-        <DropdownMenuItem> Option 2 </DropdownMenuItem>
-        <DropdownMenuItem> Option 3 </DropdownMenuItem>
-      </DropdownMenu>
+      <DropdownMenu dataSource={[{ text: 'Option 1' }, { text: 'Option 2' }, { text: 'Option 3' }]} />
     ) : null,
   };
 };

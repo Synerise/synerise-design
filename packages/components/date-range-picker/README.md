@@ -51,6 +51,8 @@ const value = {
 | ranges                    | An array containing custom ranges which may be used as a short-hand              | DateRange[]                | []                                                            |
 | popoverProps              | Object representing props applied to the Antd Popover component                  | AntdPopoverProps           | {}                                                            |
 | rangeUnits                | Units available in relative range picker                                         | RelativeUnits[]            | ['SECONDS','MINUTES','HOURS','DAYS','WEEKS','MONTHS','YEARS'] |
+| readOnly                  | Makes picker readonly                                                            | boolean                    | `false`                                                       |
+| disabled                  | Makes picker disabled                                                            | boolean                    | `false`                                                       |
 | relativePast              | Enable relative filter for past ranges                                           | boolean                    | `false`                                                       |
 | relativeFuture            | Enable relative filter for future ranges                                         | boolean                    | `false`                                                       |
 | showTime                  | Enable user to choose particular hour                                            | boolean                    | `false`                                                       |

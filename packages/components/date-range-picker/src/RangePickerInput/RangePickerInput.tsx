@@ -51,13 +51,6 @@ const RangePickerInput = ({
     [onChange]
   );
 
-  const handleInputClick = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
-      onClick && onClick(event);
-    },
-    [onClick]
-  );
-
   const getText = useCallback(
     (dateToDisplay?: NullableDateLimit): string => {
       const dateValue = dateToDisplay ? new Date(dateToDisplay) : new Date();
@@ -115,7 +108,7 @@ const RangePickerInput = ({
       <S.Container
         tabIndex={0}
         onFocus={onFocus}
-        onClick={handleInputClick}
+        onClick={!disabled ? onClick : undefined}
         onBlur={onBlur}
         onMouseEnter={handleIconMouseEnter}
         onMouseLeave={handleIconMouseLeave}
@@ -129,7 +122,7 @@ const RangePickerInput = ({
         >
           {placeholder}
           <S.IconSeparator />
-          {!readOnly && hovered && hasValue && allowClear ? (
+          {!readOnly && !disabled && hovered && hasValue && allowClear ? (
             <Tooltip title={texts?.clear}>
               <S.ClearIconWrapper>
                 <Icon component={<Close3S />} onClick={handleClear} />

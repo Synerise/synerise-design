@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import Icon, { CloseS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
@@ -6,14 +6,13 @@ import { theme } from '@synerise/ds-core';
 import { RemoveIconWrapper } from './ItemRemoveIcon.styles';
 import { RemoveIconProps } from './ItemRemoveIcon.types';
 
-// eslint-disable-next-line import/prefer-default-export
-export const RemoveIcon: React.FC<RemoveIconProps> = ({ id, handleRemove, tooltipLabel, group }) => (
+export const RemoveIcon = ({ id, handleRemove, tooltipLabel, group }: RemoveIconProps) => (
   <Tooltip title={tooltipLabel}>
-    <RemoveIconWrapper>
+    <RemoveIconWrapper data-testid="items-roll-remove-icon">
       <Icon
         className="element-remove-icon"
-        onClick={(e: React.MouseEvent<HTMLDivElement>): void => {
-          e.stopPropagation();
+        onClick={(event: MouseEvent<HTMLDivElement>) => {
+          event.stopPropagation();
           handleRemove(id, group);
         }}
         component={<CloseS />}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Tag } from '@synerise/ds-tags';
 import { ThemeProps } from '@synerise/ds-core';
 import type { StatusType } from './Status.types';
@@ -18,15 +18,17 @@ const typeColor = (props: ThemeProps & { type: StatusType }) =>
 export const StatusTag = styled(Tag)<{ type: StatusType; dashed?: boolean }>`
   && {
     transition: opacity 0.25s;
-    border: ${(props): string => (props.dashed ? '1px dashed' : '1px solid')};
+    border: ${props => (props.dashed ? '1px dashed' : '1px solid')};
     ${props => {
       const color = typeColor(props);
-      return color
-        ? `
-        color: ${color};
-        border-color: ${color};
-      `
-        : '';
+
+      return (
+        color &&
+        css`
+          color: ${color};
+          border-color: ${color};
+        `
+      );
     }}
   }
 `;

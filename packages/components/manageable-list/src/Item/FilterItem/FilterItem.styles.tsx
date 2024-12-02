@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 import Menu from '@synerise/ds-menu';
-import React from 'react';
+
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';
 import { ItemMeta } from '../ItemMeta/ItemMeta.styles';
 
@@ -84,11 +84,4 @@ export const ItemHeader = styled.div`
 
 export const DropdownMenu = styled(Menu)`
   padding: 8px;
-`;
-export const DropdownMenuItem = styled(({ children, ...rest }) => (
-  <Menu.Item {...rest}>{children}</Menu.Item>
-))`
-  &&& {
-    height: 32px;
-  }
 `;

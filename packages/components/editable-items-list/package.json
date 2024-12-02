@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-editable-items-list",
-  "version": "0.1.34",
+  "version": "0.1.36",
   "description": "EditableItemsList UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,9 +34,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.21.19",
-    "@synerise/ds-cruds": "^0.5.29",
-    "@synerise/ds-icon": "^0.67.0",
+    "@synerise/ds-button": "^0.21.21",
+    "@synerise/ds-cruds": "^0.5.31",
+    "@synerise/ds-icon": "^0.68.0",
     "@synerise/ds-utils": "^0.31.2"
   },
   "peerDependencies": {

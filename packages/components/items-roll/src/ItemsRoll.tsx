@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Footer, Header, List } from './ItemsRollComponents';
@@ -13,6 +13,7 @@ export const ItemsRoll = ({
   customSidebarActions,
   groups,
   hideSearch,
+  isDisabled,
   items,
   maxToShowItems = 10,
   onClearAll,
@@ -21,6 +22,7 @@ export const ItemsRoll = ({
   onItemRemove,
   onSearchClear,
   onSearch,
+  renderCount,
   searchValue,
   searchPlaceholder,
   showMoreStep = 10,
@@ -55,13 +57,13 @@ export const ItemsRoll = ({
       }
     : defaultTexts;
 
-  const [visibleItemsAmount, setVisibleItemsAmount] = React.useState(maxToShowItems);
+  const [visibleItemsAmount, setVisibleItemsAmount] = useState(maxToShowItems);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setVisibleItemsAmount(maxToShowItems);
   }, [maxToShowItems]);
 
-  const showAdditionalItems = React.useCallback(() => {
+  const showAdditionalItems = useCallback(() => {
     if (visibleItemsAmount + showMoreStep < items.length) {
       setVisibleItemsAmount(visibleItemsAmount + showMoreStep);
     } else {
@@ -69,14 +71,26 @@ export const ItemsRoll = ({
     }
   }, [items.length, visibleItemsAmount, showMoreStep]);
 
-  const visibleItems = React.useMemo(
+  const visibleItems = useMemo(
     () => (visibleItemsAmount === items.length ? items : items.slice(0, visibleItemsAmount)),
     [items, visibleItemsAmount]
   );
 
-  const showDefaultItemsAmount = React.useCallback(() => {
+  const showDefaultItemsAmount = useCallback(() => {
     setVisibleItemsAmount(maxToShowItems);
   }, [maxToShowItems]);
+
+  const itemsCount = useMemo(
+    () =>
+      renderCount ? (
+        renderCount(items.length)
+      ) : (
+        <>
+          {allTexts.itemsLabel}: <S.Bold>{items.length}</S.Bold>
+        </>
+      ),
+    [allTexts.itemsLabel, items.length, renderCount]
+  );
 
   return (
     <S.Wrapper style={style || {}} className={className || ''} data-testid="ds-items-roll">
@@ -87,7 +101,7 @@ export const ItemsRoll = ({
         changeSelectionDropdownProps={changeSelectionDropdownProps}
         customSidebarActions={customSidebarActions}
         hideSearch={hideSearch}
-        itemsCount={items.length}
+        itemsCount={itemsCount}
         onChangeSelection={onChangeSelection}
         onSearch={onSearch}
         onSearchClear={onSearchClear}
@@ -99,7 +113,7 @@ export const ItemsRoll = ({
         groups={groups}
         items={items}
         onItemClick={onItemClick}
-        onItemRemove={onItemRemove}
+        onItemRemove={!isDisabled ? onItemRemove : undefined}
         noResultsLabel={allTexts.noResultsLabel}
         removeTooltipLabel={allTexts.removeTooltipLabel}
         searchValue={searchValue}
@@ -114,7 +128,7 @@ export const ItemsRoll = ({
           allTexts={allTexts}
           itemsCount={items.length}
           maxToShowItems={maxToShowItems}
-          onClearAll={onClearAll}
+          onClearAll={!isDisabled ? onClearAll : undefined}
           showAdditionalItems={showAdditionalItems}
           showDefaultItemsAmount={showDefaultItemsAmount}
           showMoreStep={showMoreStep}

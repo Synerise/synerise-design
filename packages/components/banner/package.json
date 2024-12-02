@@ -1,0 +1,52 @@
+{
+  "name": "@synerise/ds-banner",
+  "version": "0.0.1",
+  "description": "Banner UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@synerise/ds-button": "^0.21.21",
+    "@synerise/ds-icon": "^0.68.0",
+    "@synerise/ds-tags": "^0.10.20",
+    "@synerise/ds-tooltip": "^0.14.51",
+    "@synerise/ds-typography": "^0.16.8",
+    "@synerise/ds-utils": "^0.31.2",
+    "uuid": "^8.3.2"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "antd": "4.7.0",
+    "react": ">=16.9.0 <= 17.0.2",
+    "react-intl": ">= 3.12.0 <= 6.8",
+    "styled-components": "^5.0.1"
+  }
+}

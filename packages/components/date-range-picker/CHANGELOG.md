@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.4...@synerise/ds-date-range-picker@0.31.5) (2024-11-29)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
+## [0.31.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.3...@synerise/ds-date-range-picker@0.31.4) (2024-11-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** disabled prop ([0503abf](https://github.com/Synerise/synerise-design/commit/0503abff0e55498ab1c90d0092a01973f5628e7f))
+
+
+
+
+
+## [0.31.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.2...@synerise/ds-date-range-picker@0.31.3) (2024-11-22)
+
+**Note:** Version bump only for package @synerise/ds-date-range-picker
+
+
+
+
+
 ## [0.31.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.1...@synerise/ds-date-range-picker@0.31.2) (2024-11-21)
 
 

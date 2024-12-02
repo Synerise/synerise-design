@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ReactText } from 'react';
+import React, { useState, useCallback, ReactText, useMemo } from 'react';
 import { withTheme } from 'styled-components';
 
 import Icon, {
@@ -15,8 +15,7 @@ import ModalProxy from '@synerise/ds-modal';
 import Result from '@synerise/ds-result';
 import Button from '@synerise/ds-button';
 import Dropdown from '@synerise/ds-dropdown';
-import { ItemType } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
-import Menu from '@synerise/ds-menu';
+import { ItemType, MenuItemProps } from '@synerise/ds-menu';
 
 import ItemName from '../ItemName/ItemName';
 import ItemMeta from '../ItemMeta/ItemMeta';
@@ -61,6 +60,44 @@ const FilterItemComponent = ({
     return onDuplicate && onDuplicate({ id: item.id });
   }, [item.id, onDuplicate]);
 
+  const dropdownMenuDataSource = useMemo(() => {
+    const menuItems: MenuItemProps[] = [];
+    if (item.canUpdate) {
+      menuItems.push({
+        onClick: enterEditMode,
+        prefixel: <Icon component={<EditM />} color={theme.palette['grey-600']} />,
+        text: texts.itemActionRename,
+      });
+    }
+    if (item.canDuplicate) {
+      menuItems.push({
+        onClick: handleDuplicate,
+        prefixel: <Icon component={<DuplicateM />} color={theme.palette['grey-600']} />,
+        text: texts.itemActionDuplicate,
+      });
+    }
+    if (item.canDelete) {
+      menuItems.push({
+        type: ItemType.DANGER,
+        onClick: handleRemove,
+        prefixel: <Icon component={<TrashM />} />,
+        text: texts.itemActionDelete,
+      });
+    }
+    return menuItems;
+  }, [
+    enterEditMode,
+    handleDuplicate,
+    handleRemove,
+    item.canDelete,
+    item.canDuplicate,
+    item.canUpdate,
+    texts.itemActionDelete,
+    texts.itemActionDuplicate,
+    texts.itemActionRename,
+    theme.palette,
+  ]);
+
   return (
     <>
       <S.ItemContainer
@@ -97,36 +134,7 @@ const FilterItemComponent = ({
             <Dropdown
               trigger={['click']}
               placement="bottomRight"
-              overlay={
-                <DropdownMenu>
-                  {item.canUpdate && (
-                    <Menu.Item
-                      onClick={enterEditMode}
-                      prefixel={<Icon component={<EditM />} color={theme.palette['grey-600']} />}
-                    >
-                      {texts.itemActionRename}
-                    </Menu.Item>
-                  )}
-                  {item.canDuplicate && (
-                    <Menu.Item
-                      onClick={handleDuplicate}
-                      prefixel={<Icon component={<DuplicateM />} color={theme.palette['grey-600']} />}
-                    >
-                      {texts.itemActionDuplicate}
-                    </Menu.Item>
-                  )}
-                  {item.canDelete && (
-                    <Menu.Item
-                      type={ItemType.DANGER}
-                      danger
-                      onClick={handleRemove}
-                      prefixel={<Icon component={<TrashM />} />}
-                    >
-                      {texts.itemActionDelete}
-                    </Menu.Item>
-                  )}
-                </DropdownMenu>
-              }
+              overlay={<DropdownMenu dataSource={dropdownMenuDataSource} />}
             >
               <S.FilterDropdownTrigger className="ds-dropdown-trigger" mode="single-icon" type="ghost">
                 <Icon component={<OptionHorizontalM />} color={theme.palette['grey-600']} />

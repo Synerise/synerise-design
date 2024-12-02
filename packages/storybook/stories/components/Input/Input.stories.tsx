@@ -9,7 +9,7 @@ import Icon, { FileM, SearchM } from '@synerise/ds-icon';
 import { addonType, renderAddonComponent } from './Input.utils';
 import { Modal } from './Input.styles';
 
-import { centeredPaddedWrapper, controlFromOptionsArray, fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, centeredPaddedWrapper, controlFromOptionsArray, fixedWrapper300 } from '../../utils';
 
 const defaultRender = (args: InputProps) => {
   const [{ value }, updateArgs] = useArgs();
@@ -30,6 +30,10 @@ export default {
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: defaultRender,
+  argTypes: {
+    disabled: BOOLEAN_CONTROL,
+    readOnly: BOOLEAN_CONTROL
+  }
 } as Meta<InputProps>;
 
 type Story = StoryObj<InputProps>;

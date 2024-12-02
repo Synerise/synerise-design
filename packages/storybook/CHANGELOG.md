@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.26.1...storybook7@0.27.0) (2024-11-28)
+
+
+### Bug Fixes
+
+* **date-range-picker:** disabled prop ([0503abf](https://github.com/Synerise/synerise-design/commit/0503abff0e55498ab1c90d0092a01973f5628e7f))
+
+
+### Features
+
+* **items-roll:** add renderCount prop ([ec61af1](https://github.com/Synerise/synerise-design/commit/ec61af19b812608c1f12a736eeceaf32c85722e7))
+* **items-roll:** isDisabled prop added ([e7eec53](https://github.com/Synerise/synerise-design/commit/e7eec53b482981a424c5b5ab80899407e660999b))
+
+
+
+
+
+## [0.26.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.26.0...storybook7@0.26.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* **collector:** fix filtering ([e5b4e1e](https://github.com/Synerise/synerise-design/commit/e5b4e1e33f18064289d3555c9a1819d0e3d1d205))
+
+
+
+
+
 # [0.26.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.25.0...storybook7@0.26.0) (2024-11-21)
 
 

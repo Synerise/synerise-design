@@ -1,6 +1,7 @@
 import { ElementType, MouseEvent } from 'react';
 import { ButtonProps as AntdButtonProps } from 'antd/lib/button';
 import { JustifyContentProperty } from 'csstype';
+import { LiteralStringUnion } from '@synerise/ds-utils';
 
 export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
   /**
@@ -8,8 +9,7 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
    *
    * @default secondary
    */
-  type?:
-    | string
+  type?: LiteralStringUnion<
     | 'primary'
     | 'secondary'
     | 'tertiary'
@@ -18,36 +18,26 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
     | 'ghost'
     | 'ghost-white'
     | 'custom-color'
-    | 'custom-color-ghost';
+    | 'custom-color-ghost'
+  >;
   /**
    * Defines the type of the button content. It affects content inside the button
    *
    * @default simple
    */
-  mode?: 'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label' | string;
+  mode?: LiteralStringUnion<'single-icon' | 'split' | 'two-icons' | 'label-icon' | 'icon-label'>;
   /**
    * Defines color of `custom-color` button.
    *
    * @default red
    */
-  color?:
-    | string
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
+  color?: LiteralStringUnion<
+    'blue' | 'grey' | 'red' | 'green' | 'yellow' | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet'
+  >;
   /**
    * Defines shape of the button.
    */
-  groupVariant?: string | 'left-rounded' | 'squared' | 'right-rounded';
+  groupVariant?: LiteralStringUnion<'left-rounded' | 'squared' | 'right-rounded'>;
   /**
    * Defines justify of content in button.
    */
@@ -61,20 +51,9 @@ export type ButtonProps = Omit<AntdButtonProps, 'type'> & {
    * Sets the handler to handle `click` event
    */
   onClick?: (event: MouseEvent<HTMLElement>) => void;
-  iconColor?:
-    | string
-    | 'blue'
-    | 'grey'
-    | 'red'
-    | 'green'
-    | 'yellow'
-    | 'pink'
-    | 'mars'
-    | 'orange'
-    | 'fern'
-    | 'cyan'
-    | 'purple'
-    | 'violet';
+  iconColor?: LiteralStringUnion<
+    'blue' | 'grey' | 'red' | 'green' | 'yellow' | 'pink' | 'mars' | 'orange' | 'fern' | 'cyan' | 'purple' | 'violet'
+  >;
   error?: boolean;
   activated?: boolean;
   readOnly?: boolean;

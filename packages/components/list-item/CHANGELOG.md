@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.5.0...@synerise/ds-list-item@0.5.1) (2024-11-29)
+
+**Note:** Version bump only for package @synerise/ds-list-item
+
+
+
+
+
+# [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.19...@synerise/ds-list-item@0.5.0) (2024-11-28)
+
+
+### Features
+
+* **items-roll:** replaced Menu.Item with ListItem ([2cfcbdc](https://github.com/Synerise/synerise-design/commit/2cfcbdc501c0ad21557372c0f9d9cb76b3d034cb))
+
+
+
+
+
 ## [0.4.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-list-item@0.4.18...@synerise/ds-list-item@0.4.19) (2024-11-21)
 
 

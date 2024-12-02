@@ -1,12 +1,8 @@
 import React from 'react';
+import isEqual from 'lodash.isequal';
 import { CollectorValue } from './Collector.types';
 
 const INPUT_MIN_WIDTH = 150;
-export const arrayToLowerCase = (array: CollectorValue[] = [], lookupKey: string): CollectorValue[] =>
-  array.map(element => ({
-    ...element,
-    [lookupKey]: element[lookupKey] && (element[lookupKey] as string).toLowerCase(),
-  }));
 
 export const scrollWithHorizontalArrow = (
   ref: React.RefObject<HTMLElement>,
@@ -39,10 +35,9 @@ export const filterValueSuggestions = (
   searchValue: string,
   lookupKey: string
 ): CollectorValue[] => {
-  const selectedLowerCase = arrayToLowerCase(selected, lookupKey);
-  return suggestions.filter(
-    item =>
-      (item[lookupKey] as string).toLowerCase().includes(searchValue.toLowerCase()) &&
-      !selectedLowerCase.find(x => x[lookupKey] && item[lookupKey] && x[lookupKey] === item[lookupKey].toLowerCase())
-  );
+  return suggestions.filter(suggestion => {
+    const matchesSearchValue = (suggestion[lookupKey] as string).toLowerCase().includes(searchValue.toLowerCase());
+    const notInSelected = !selected.find(item => isEqual(item, suggestion));
+    return matchesSearchValue && notInSelected;
+  });
 };

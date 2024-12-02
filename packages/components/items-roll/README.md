@@ -34,7 +34,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 ## API
 
 | Property                     | Description                                                                                                       | Type                                                    | Default |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|---------|
 | actions                      | ItemRollElement array with configuration for action dropdown menu                                                 | ItemRollElement[]                                       | -       |
 | changeSelectionIcon          | The custom changeSelection icon                                                                                   | `(props: React.SVGProps<SVGSVGElement>) => JSX.Element` | EditM   |
 | changeSelectionDropdownProps | Object with ds-dropdown props                                                                                     | DropdownProps                                           |         |
@@ -42,6 +42,7 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | customSidebarActions         | Allow put developer sidebar actions that are not defined                                                          | React.ReactNode                                         | -       |
 | groups                       | Array of strings where each one corresponds to a group prop in ItemRollElement                                    | string[]                                                | -       |
 | hideSearch                   | Hide search component in itemsroll                                                                                | booleam                                                 | -       |
+| isDisabled                   | prevents rendering 'remove' / 'clear all' buttons                                                                 | booleam                                                 | -       |
 | items                        | ItemRollElement array for list                                                                                    | ItemRollElement[]                                       | -       |
 | maxToShowItems               | Amount of initial ItemsRollElement to render. Note that if number is greater than 20, list will becoma scrollable | number                                                  | 10      |
 | onClearAll                   | Callback function that is fired when click on clearAll button                                                     | () => void                                              | -       |
@@ -54,11 +55,13 @@ import ItemsRoll from '@synerise/ds-items-roll';
 | searchValue                  | Value of search input component                                                                                   | string                                                  | -       |
 | showMoreStep                 | Amount of items to load on show more button click                                                                 | number                                                  | 10      |
 | style                        | Object with CSS properties                                                                                        | React.CSSProperties                                     | -       |
+| renderCount                  | Custom items count renderer                                                                                       | (count: number) => ReactNode                            | -       |
 | texts                        | Object contains texts for buttons, title etc.                                                                     | Texts                                                   | -       |
 | useFooter                    | Whether the footer is visibile                                                                                    | boolean                                                 | -       |
 | useVirtualizedList           | Whether to use react-virtualized for list                                                                         | boolean                                                 | `false` |
 | virtualizedRowHeight         | Height of virtualizedlist row                                                                                     | number                                                  | 32px    |
 | virtualizedRowWidth          | Width of virtualized list                                                                                         | number                                                  | -       |
+
 
 #### ItemRollElement
 

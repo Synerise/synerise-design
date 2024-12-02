@@ -108,6 +108,7 @@ export default {
     useFooter: BOOLEAN_CONTROL,
     useVirtualizedList: BOOLEAN_CONTROL,
     hideSearch: BOOLEAN_CONTROL,
+    isDisabled: BOOLEAN_CONTROL,
     searchPlaceholder: STRING_CONTROL,
     items: {
       control: false,
@@ -127,6 +128,7 @@ export default {
     useVirtualizedList: false,
     hideSearch: false,
     withChangeSelectionDropdown: false,
+    renderCount: (count: number) => <>Items: {count} / 500</>,
   },
 } as Meta<StoryType>;
 
@@ -140,6 +142,9 @@ export const Empty: Story = {
 
 export const VirtualisedList: Story = {
   args: {
+    useVirtualizedList: true,
+    renderCount: undefined,
+    virtualizedRowHeight: 32,
     items: ITEMS_1000,
   },
 };

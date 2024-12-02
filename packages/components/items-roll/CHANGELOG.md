@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.8.0...@synerise/ds-items-roll@0.8.1) (2024-11-29)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.7.16...@synerise/ds-items-roll@0.8.0) (2024-11-28)
+
+
+### Features
+
+* **items-roll:** add renderCount prop ([ec61af1](https://github.com/Synerise/synerise-design/commit/ec61af19b812608c1f12a736eeceaf32c85722e7))
+* **items-roll:** isDisabled prop added ([e7eec53](https://github.com/Synerise/synerise-design/commit/e7eec53b482981a424c5b5ab80899407e660999b))
+* **items-roll:** replaced Menu.Item with ListItem ([2cfcbdc](https://github.com/Synerise/synerise-design/commit/2cfcbdc501c0ad21557372c0f9d9cb76b3d034cb))
+
+
+
+
+
+## [0.7.16](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.7.15...@synerise/ds-items-roll@0.7.16) (2024-11-22)
+
+**Note:** Version bump only for package @synerise/ds-items-roll
+
+
+
+
+
 ## [0.7.15](https://github.com/Synerise/synerise-design/compare/@synerise/ds-items-roll@0.7.14...@synerise/ds-items-roll@0.7.15) (2024-11-21)
 
 **Note:** Version bump only for package @synerise/ds-items-roll

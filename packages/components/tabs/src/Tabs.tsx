@@ -99,39 +99,32 @@ const Tabs = ({ activeTab, tabs, handleTabClick, configuration, underscore, bloc
     },
     [handleTabClick]
   );
-
+  const dropdownMenuItems = hiddenTabs.map((item, index) => ({
+    key: `${item.label}-dropdown-${index}`,
+    onClick: () => handleHiddenTabClick(visibleTabs.length + index),
+    disabled: item.disabled,
+    text: item.label,
+  }));
   const renderHiddenTabs = useMemo(() => {
     return (
       <S.TabsDropdownContainer data-testid="tabs-dropdown-container">
-        {hiddenTabs.length > 0 && (
-          <S.DropdownMenu>
-            {hiddenTabs.map((item, index) => (
-              <S.DropdownMenuItem
-                // eslint-disable-next-line react/no-array-index-key
-                key={`${item.label}-dropdown-${index}`}
-                onClick={() => handleHiddenTabClick(visibleTabs.length + index)}
-                disabled={item.disabled}
-              >
-                {item.label}
-              </S.DropdownMenuItem>
-            ))}
-          </S.DropdownMenu>
-        )}
+        {hiddenTabs.length > 0 && <S.DropdownMenu dataSource={dropdownMenuItems} />}
         {hiddenTabs.length > 0 && configuration && <S.TabsDropdownDivider />}
         {configuration && (
-          <S.DropdownMenu>
-            <S.DropdownMenuItem
-              key="configuration-btn"
-              onClick={handleConfigurationAction}
-              disabled={!!configuration?.disabled}
-            >
-              {configuration.label}
-            </S.DropdownMenuItem>
-          </S.DropdownMenu>
+          <S.DropdownMenu
+            dataSource={[
+              {
+                key: 'configuration-btn',
+                onClick: handleConfigurationAction,
+                disabled: !!configuration?.disabled,
+                text: configuration.label,
+              },
+            ]}
+          />
         )}
       </S.TabsDropdownContainer>
     );
-  }, [hiddenTabs, configuration, handleConfigurationAction, handleHiddenTabClick, visibleTabs.length]);
+  }, [hiddenTabs.length, dropdownMenuItems, configuration, handleConfigurationAction]);
 
   const renderDropdown = () => {
     return (

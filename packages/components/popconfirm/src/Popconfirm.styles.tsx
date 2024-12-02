@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import Button, { ButtonProps } from '@synerise/ds-button';
 
-
-
 export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
@@ -103,6 +101,8 @@ export const PopconfirmCloseIcon = styled.div<{ titlePadding?: boolean }>`
 export const PopconfirmWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const PopconfirmContentWrapper = styled.div`
