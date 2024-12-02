@@ -6096,13 +6096,6 @@
     "@types/node" "*"
     jest-mock "^27.5.1"
 
-"@jest/expect-utils@^29.7.0":
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jest/expect-utils/-/expect-utils-29.7.0.tgz"
-  integrity sha1-Aj7+XSaopw8hZ30KGvwPCkTjocY=
-  dependencies:
-    jest-get-type "^29.6.3"
-
 "@jest/fake-timers@^24.3.0", "@jest/fake-timers@^24.9.0", "@jest/fake-timers@^27", "@jest/fake-timers@^27.5.1":
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@jest/fake-timers/-/fake-timers-27.5.1.tgz#76979745ce0579c8a94a4678af7a748eda8ada74"
@@ -7869,6 +7862,20 @@
   version "5.6.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@sindresorhus/is/-/is-5.6.0.tgz"
   integrity sha1-Qd1gk9NGUs3bXVve7gTq/DOCZmg=
+
+"@sinonjs/commons@^1.7.0":
+  version "1.8.6"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@sinonjs/commons/-/commons-1.8.6.tgz#80c516a4dc264c2a69115e7578d62581ff455ed9"
+  integrity sha1-gMUWpNwmTCppEV51eNYlgf9FXtk=
+  dependencies:
+    type-detect "4.0.8"
+
+"@sinonjs/fake-timers@^8.0.1":
+  version "8.1.0"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/@sinonjs/fake-timers/-/fake-timers-8.1.0.tgz#3fdc2b6cb58935b21bfb8d1625eb1300484316e7"
+  integrity sha1-P9wrbLWJNbIb+40WJesTAEhDFuc=
+  dependencies:
+    "@sinonjs/commons" "^1.7.0"
 
 "@storybook/addon-actions@6.5.16", "@storybook/addon-actions@^6.5.15":
   version "6.5.16"
@@ -16174,7 +16181,7 @@ diff-sequences@^27.5.1:
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/diff-sequences/-/diff-sequences-27.5.1.tgz#eaecc0d327fd68c8d9672a1e64ab8dccb2ef5327"
   integrity sha1-6uzA0yf9aMjZZyoeZKuNzLLvUyc=
 
-diff-sequences@^29.4.3, diff-sequences@^29.6.3:
+diff-sequences@^29.4.3:
   version "29.6.3"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/diff-sequences/-/diff-sequences-29.6.3.tgz"
   integrity sha1-Ter4lNEUB8Ue/IQYAS+ecLhOqSE=
@@ -17589,17 +17596,6 @@ expect@^27.5.1:
     jest-get-type "^27.5.1"
     jest-matcher-utils "^27.5.1"
     jest-message-util "^27.5.1"
-
-expect@^29.7.0:
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/expect/-/expect-29.7.0.tgz"
-  integrity sha1-V4h0WQ3LMhRRQITAgRXYruYeEbw=
-  dependencies:
-    "@jest/expect-utils" "^29.7.0"
-    jest-get-type "^29.6.3"
-    jest-matcher-utils "^29.7.0"
-    jest-message-util "^29.7.0"
-    jest-util "^29.7.0"
 
 exponential-backoff@^3.1.1:
   version "3.1.1"
@@ -21434,16 +21430,6 @@ jest-diff@^27.5.1:
     jest-get-type "^27.5.1"
     pretty-format "^27.5.1"
 
-jest-diff@^29.7.0:
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-diff/-/jest-diff-29.7.0.tgz"
-  integrity sha1-AXk0pm67fs9vIF6EaZvhCv1wRYo=
-  dependencies:
-    chalk "^4.0.0"
-    diff-sequences "^29.6.3"
-    jest-get-type "^29.6.3"
-    pretty-format "^29.7.0"
-
 jest-docblock@^27.5.1:
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-docblock/-/jest-docblock-27.5.1.tgz#14092f364a42c6108d42c33c8cf30e058e25f6c0"
@@ -21503,11 +21489,6 @@ jest-get-type@^27.5.1:
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-get-type/-/jest-get-type-27.5.1.tgz#3cd613c507b0f7ace013df407a1c1cd578bcb4f1"
   integrity sha1-PNYTxQew96zgE99Aehwc1Xi8tPE=
-
-jest-get-type@^29.6.3:
-  version "29.6.3"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-get-type/-/jest-get-type-29.6.3.tgz"
-  integrity sha1-NvSZ/c6hl8EEWhJzGcBIFyOQj9E=
 
 jest-haste-map@^24.9.0:
   version "24.9.0"
@@ -21629,16 +21610,6 @@ jest-matcher-utils@^27.0.0, jest-matcher-utils@^27.5.1:
     jest-get-type "^27.5.1"
     pretty-format "^27.5.1"
 
-jest-matcher-utils@^29.7.0:
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-matcher-utils/-/jest-matcher-utils-29.7.0.tgz"
-  integrity sha1-ro/sef8kn9WSzoDj7kdOg6bETxI=
-  dependencies:
-    chalk "^4.0.0"
-    jest-diff "^29.7.0"
-    jest-get-type "^29.6.3"
-    pretty-format "^29.7.0"
-
 jest-message-util@^27.5.1:
   version "27.5.1"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-message-util/-/jest-message-util-27.5.1.tgz#bdda72806da10d9ed6425e12afff38cd1458b6cf"
@@ -21651,21 +21622,6 @@ jest-message-util@^27.5.1:
     graceful-fs "^4.2.9"
     micromatch "^4.0.4"
     pretty-format "^27.5.1"
-    slash "^3.0.0"
-    stack-utils "^2.0.3"
-
-jest-message-util@^29.7.0:
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-message-util/-/jest-message-util-29.7.0.tgz"
-  integrity sha1-i8OS4gTpXf51ZKu+cqQE4o5R9/M=
-  dependencies:
-    "@babel/code-frame" "^7.12.13"
-    "@jest/types" "^29.6.3"
-    "@types/stack-utils" "^2.0.0"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.9"
-    micromatch "^4.0.4"
-    pretty-format "^29.7.0"
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
@@ -21853,32 +21809,6 @@ jest-snapshot@^27.5.1:
     natural-compare "^1.4.0"
     pretty-format "^27.5.1"
     semver "^7.3.2"
-
-jest-snapshot@^29.7.0:
-  version "29.7.0"
-  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/jest-snapshot/-/jest-snapshot-29.7.0.tgz"
-  integrity sha1-wsV0w/UYZdobsykDZ3imm/iKa+U=
-  dependencies:
-    "@babel/core" "^7.11.6"
-    "@babel/generator" "^7.7.2"
-    "@babel/plugin-syntax-jsx" "^7.7.2"
-    "@babel/plugin-syntax-typescript" "^7.7.2"
-    "@babel/types" "^7.3.3"
-    "@jest/expect-utils" "^29.7.0"
-    "@jest/transform" "^29.7.0"
-    "@jest/types" "^29.6.3"
-    babel-preset-current-node-syntax "^1.0.0"
-    chalk "^4.0.0"
-    expect "^29.7.0"
-    graceful-fs "^4.2.9"
-    jest-diff "^29.7.0"
-    jest-get-type "^29.6.3"
-    jest-matcher-utils "^29.7.0"
-    jest-message-util "^29.7.0"
-    jest-util "^29.7.0"
-    natural-compare "^1.4.0"
-    pretty-format "^29.7.0"
-    semver "^7.5.3"
 
 jest-util@^24.0.0, jest-util@^24.9.0:
   version "24.9.0"
@@ -26880,7 +26810,7 @@ pretty-format@^27.0.0, pretty-format@^27.0.2, pretty-format@^27.5.1:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-pretty-format@^29.5.0, pretty-format@^29.7.0:
+pretty-format@^29.5.0:
   version "29.7.0"
   resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/pretty-format/-/pretty-format-29.7.0.tgz"
   integrity sha1-ykLHWDEPNlv6caC9oKgHFgt3aBI=
@@ -32025,10 +31955,10 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-detect@^4.0.0, type-detect@^4.0.8:
+type-detect@4.0.8, type-detect@^4.0.0, type-detect@^4.0.8:
   version "4.0.8"
-  resolved "https://registry.npmjs.org/type-detect/-/type-detect-4.0.8.tgz"
-  integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
+  integrity sha1-dkb7XxiHHPu3dJ5pvTmmOI63RQw=
 
 type-fest@^0.11.0:
   version "0.11.0"
