@@ -1,6 +1,6 @@
-import React, { ReactNode, PureComponent } from 'react';
+import React, { ReactNode, useState, useMemo, useCallback } from 'react';
 import { omitBy, isUndefined } from 'lodash';
-import { injectIntl, WrappedComponentProps } from 'react-intl';
+import { useIntl } from 'react-intl';
 import fnsIsValid from 'date-fns/isValid';
 import fnsStartOfSecond from 'date-fns/startOfSecond';
 import { legacyParse } from '@date-fns/upgrade/v2';
@@ -10,7 +10,7 @@ import RangePicker from './RangePicker/RangePicker';
 import { RELATIVE, ABSOLUTE, MODES, RELATIVE_PRESETS, ABSOLUTE_PRESETS } from './constants';
 import * as CONST from './constants';
 import relativeToAbsolute from './dateUtils/relativeToAbsolute';
-import type { DateRangePickerProps, State, AddonType, Texts } from './DateRangePicker.types';
+import type { DateRangePickerProps, AddonType } from './DateRangePicker.types';
 import type { DateFilter, DateRange, RelativeDateRange } from './date.types';
 import AddonCollapse from './AddonCollapse/AddonCollapse';
 import RelativeRangePicker from './RelativeRangePicker/RelativeRangePicker';
@@ -20,6 +20,16 @@ import RangeFilter from './RangeFilter/RangeFilter';
 import RangeFilterStatus from './RangeFilter/Shared/RangeFilterStatus/RangeFilterStatus';
 import { FilterDefinition, FilterValue } from './RangeFilter/RangeFilter.types';
 import { isLifetime } from './RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+
+const isRelative = (dateRange: DateRange): dateRange is RelativeDateRange => {
+  const isLegacyCustom = Object.keys(dateRange).includes('key') && dateRange.key === undefined;
+  return (
+    (dateRange.key &&
+      (CONST.RELATIVE_PRESETS.map(preset => preset.key).includes(dateRange.key) ||
+        dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
+    isLegacyCustom
+  );
+};
 
 export function defaultValueTransformer(value: DateRange): DateRange {
   const { id, timestamp, translationKey, filter } = value;
@@ -56,151 +66,166 @@ export function defaultValueTransformer(value: DateRange): DateRange {
   }
   return value;
 }
-type RawDateRangePickerProps = WrappedComponentProps &
-  Omit<DateRangePickerProps, 'texts'> & {
-    texts: Texts;
-    alignContentToTop?: boolean;
-  };
+type RawDateRangePickerProps = DateRangePickerProps & {
+  alignContentToTop?: boolean;
+};
 
-export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, State> {
-  static defaultProps = {
-    ranges: [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
-    relativePast: true,
-    showRelativePicker: true,
-    validate: (): { valid: boolean } => ({ valid: true }),
-    valueTransformer: defaultValueTransformer,
-    isTruncateMs: true,
-  };
+export const RawDateRangePicker = ({
+  showRelativePicker = true,
+  showFilter,
+  showTime,
+  format,
+  valueFormatOptions,
+  disabledDate,
+  validate = (): { valid: boolean } => ({ valid: true }),
+  forceAdjacentMonths,
+  savedFilters,
+  onFilterSave,
+  containerClass = 'ds-date-range-picker',
+  footerProps,
+  allowedFilterTypes,
+  disableAbsoluteTimepickerInRelative = false,
+  filterValueSelectionModes,
+  filterRangeDisplayMode,
+  showNowButton = true,
+  alignContentToTop,
+  relativeFuture,
+  relativePast = true,
+  ranges = [...RELATIVE_PRESETS, ...ABSOLUTE_PRESETS],
+  relativeModes,
+  rangeUnits,
+  showCustomRange,
+  valueTransformer = defaultValueTransformer,
+  onValueChange,
+  isTruncateMs = true,
+  forceAbsolute,
+  onApply,
+  texts,
+  value,
+}: RawDateRangePickerProps) => {
+  const [localValue, setLocalValue] = useState(normalizeRange(value));
+  const [mode, setMode] = useState(MODES.DATE);
+  const [visibleAddonKey, setVisibleAddonKey] = useState<string | undefined>('relative-picker');
 
-  constructor(props: RawDateRangePickerProps) {
-    super(props);
-    const { intl } = props;
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      mode: MODES.DATE,
-      value: normalizeRange(props.value, intl.timeZone),
-      visibleAddonKey: 'relative-picker',
-    };
-  }
+  const intl = useIntl();
+  const { timeZone } = intl;
 
-  componentDidUpdate(prevProps: Readonly<RawDateRangePickerProps>): void {
-    const { value } = this.props;
-    if (prevProps.value !== value) {
-      this.handleRangeChange(value);
-    }
-  }
-
-  handleFilterCancel = (): void => {
-    this.setState({ mode: MODES.DATE });
-  };
-
-  handleFilterApply = (filter?: FilterValue<FilterDefinition>): void => {
-    const { value } = this.state;
-    this.setState({ mode: MODES.DATE, value: { ...value, filter: filter as DateFilter } });
-  };
-
-  allTexts = () => {
-    const { texts, intl } = this.props;
+  const allTexts = useMemo(() => {
     return getDefaultTexts(intl, false, texts);
-  };
+  }, [intl, texts]);
 
-  handleRangeChange = (range?: DateRange): void => {
-    if (!range) {
-      return;
-    }
-    if (range.from && !fnsIsValid(range?.from)) {
-      return;
-    }
-    const { onValueChange, valueTransformer, isTruncateMs } = this.props;
-    const { value, mode } = this.state;
-    const newValue = normalizeRange({ ...range, filter: value.filter });
-    if (isTruncateMs) {
-      if (newValue.from !== undefined) {
-        newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+  const handleRangeChange = useCallback(
+    (range?: DateRange) => {
+      if (!range) {
+        return;
       }
-      if (newValue.to !== undefined) {
-        newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+      if (range.from && !fnsIsValid(range?.from)) {
+        return;
       }
-    }
-    if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
-      this.setState({ mode: MODES.DATE });
-    }
-    if (range?.key) {
-      newValue.key = range?.key;
-    }
-    // transformation has to take place here, because `key` property might get omitted by valueTransformer
-    const legacyValue = valueTransformer?.(newValue) ?? newValue;
-    this.setState({ value: { ...legacyValue, translationKey: range?.translationKey } });
-    onValueChange && onValueChange(legacyValue);
-  };
 
-  handleApply = (): void => {
-    const { intl } = this.props;
-    const { value } = this.state;
-    const { forceAbsolute, onApply } = this.props;
-    if (forceAbsolute && value.type === RELATIVE) {
+      const newValue = normalizeRange({ ...range, filter: localValue.filter });
+      if (isTruncateMs) {
+        if (newValue.from !== undefined) {
+          newValue.from = fnsStartOfSecond(legacyParse(newValue.from));
+        }
+        if (newValue.to !== undefined) {
+          newValue.to = fnsStartOfSecond(legacyParse(newValue.to));
+        }
+      }
+      if ((newValue.type === 'RELATIVE' || newValue.key === CONST.ALL_TIME) && mode === MODES.TIME) {
+        setMode(MODES.DATE);
+      }
+      if (range?.key) {
+        newValue.key = range?.key;
+      }
+
+      // transformation has to take place here, because `key` property might get omitted by valueTransformer
+      const legacyValue = valueTransformer?.(newValue) ?? newValue;
+      setLocalValue({ ...legacyValue, translationKey: range?.translationKey });
+      onValueChange && onValueChange(legacyValue);
+    },
+    [isTruncateMs, mode, localValue.filter, onValueChange, valueTransformer]
+  );
+
+  const handleAddonCollapse = useCallback((addonKey: string, expanded: boolean) => {
+    setVisibleAddonKey(expanded ? addonKey : undefined);
+  }, []);
+
+  const handleFilterApply = useCallback(
+    (filter?: FilterValue<FilterDefinition>) => {
+      setMode(MODES.DATE);
+      setLocalValue({ ...localValue, filter: filter as DateFilter });
+    },
+    [localValue]
+  );
+
+  const handleRemoveFilterClick = useCallback(() => {
+    handleFilterApply(undefined);
+  }, [handleFilterApply]);
+
+  const handleModalOpenClick = useCallback(() => {
+    setMode(MODES.FILTER);
+  }, []);
+
+  const handleFilterCancel = useCallback(() => {
+    setMode(MODES.DATE);
+  }, []);
+
+  const handleApply = useCallback(() => {
+    if (forceAbsolute && localValue.type === RELATIVE) {
       onApply &&
         onApply({
-          ...value,
-          ...relativeToAbsolute(value),
+          ...localValue,
+          ...relativeToAbsolute(localValue),
         });
       return;
     }
-    if (value.key === CONST.ALL_TIME) {
-      onApply && onApply(omitBy(value, isUndefined));
+    if (localValue.key === CONST.ALL_TIME) {
+      onApply && onApply(omitBy(localValue, isUndefined));
       return;
     }
 
     if (onApply) {
       const valueToEmit = {
-        ...value,
+        ...localValue,
         from:
-          value.type === ABSOLUTE && value.from instanceof Date ? toIsoString(value.from, intl.timeZone) : undefined,
-        to: value.type === ABSOLUTE && value.to instanceof Date ? toIsoString(value.to, intl.timeZone) : undefined,
-        type: value.type,
+          localValue.type === ABSOLUTE && localValue.from instanceof Date
+            ? toIsoString(localValue.from, timeZone)
+            : undefined,
+        to:
+          localValue.type === ABSOLUTE && localValue.to instanceof Date
+            ? toIsoString(localValue.to, timeZone)
+            : undefined,
+        type: localValue.type,
       } as DateRange;
 
       onApply(valueToEmit);
     }
-  };
+  }, [forceAbsolute, timeZone, localValue, onApply]);
 
-  handleModalOpenClick = (): void => {
-    this.setState({ mode: MODES.FILTER });
-  };
-
-  handleRemoveFilterClick = (): void => {
-    this.handleFilterApply(undefined);
-  };
-
-  handleSwitchMode = (): void => {
-    const { mode } = this.state;
+  const handleSwitchMode = useCallback(() => {
     const updatedMode = mode === MODES.TIME ? MODES.DATE : MODES.TIME;
-    this.setState({ mode: updatedMode });
-  };
+    setMode(updatedMode);
+  }, [mode]);
 
-  handleAddonCollapse = (addonKey: string, expanded: boolean): void => {
-    this.setState(state => ({ ...state, visibleAddonKey: expanded ? addonKey : undefined }));
-  };
+  const fullValue = useMemo(() => {
+    if (localValue && localValue.type === 'RELATIVE' && (!localValue.from || !localValue.to)) {
+      const { to, from } = normalizeRange(localValue);
+      return {
+        ...localValue,
+        from,
+        to,
+      };
+    }
+    return localValue;
+  }, [localValue]);
 
-  getAddons = (): AddonType[] => {
-    const {
-      showRelativePicker,
-      showFilter,
-      relativeFuture,
-      relativePast,
-      ranges,
-      relativeModes,
-      rangeUnits,
-      showCustomRange,
-      valueTransformer,
-    } = this.props;
-    const { value, visibleAddonKey } = this.state;
-    const allTexts = this.allTexts();
-    const addons: AddonType[] = [];
+  const addons = useMemo(() => {
+    const result: AddonType[] = [];
     if (showRelativePicker && !!relativeModes && relativeModes?.length > 0) {
       const addonKey = 'relative-picker';
-      const rangeTranslationKey = value?.translationKey;
-      addons.push({
+      const rangeTranslationKey = localValue?.translationKey;
+      result.push({
         content: (
           <AddonCollapse
             content={
@@ -208,8 +233,8 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
                 future={relativeFuture}
                 past={relativePast}
                 ranges={ranges}
-                value={value}
-                onChange={this.handleRangeChange}
+                value={localValue}
+                onChange={handleRangeChange}
                 relativeModes={relativeModes}
                 texts={allTexts}
                 rangeUnits={rangeUnits}
@@ -219,7 +244,7 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
             }
             expanded={addonKey === visibleAddonKey}
             title={allTexts.relativeDateRange}
-            onCollapseChange={(expanded): void => this.handleAddonCollapse(addonKey, expanded)}
+            onCollapseChange={expanded => handleAddonCollapse(addonKey, expanded)}
             collapsedSummary={rangeTranslationKey && allTexts[rangeTranslationKey]}
           />
         ),
@@ -228,142 +253,123 @@ export class RawDateRangePicker extends PureComponent<RawDateRangePickerProps, S
     }
     if (showFilter) {
       const addonKey = 'filter';
-      const filterEnabled = (value.from && value.to) || isLifetime(value);
-      const label = value?.filter ? allTexts.filterEnabled : allTexts.selectDateFilter;
-      addons.push({
+      const filterEnabled = (fullValue.from && fullValue.to) || isLifetime(fullValue);
+      const label = localValue?.filter ? allTexts.filterEnabled : allTexts.selectDateFilter;
+      result.push({
         content: (
           <RangeFilterStatus
-            onFilterRemove={this.handleRemoveFilterClick}
-            filter={value.filter}
+            onFilterRemove={handleRemoveFilterClick}
+            filter={localValue.filter}
             texts={allTexts}
             disabled={!filterEnabled}
             label={label}
-            onClick={this.handleModalOpenClick}
+            onClick={handleModalOpenClick}
           />
         ),
         key: addonKey,
       });
     }
-    return addons;
-  };
+    return result;
+  }, [
+    showRelativePicker,
+    relativeModes,
+    showFilter,
+    localValue,
+    relativeFuture,
+    relativePast,
+    ranges,
+    handleRangeChange,
+    allTexts,
+    rangeUnits,
+    showCustomRange,
+    valueTransformer,
+    visibleAddonKey,
+    handleAddonCollapse,
+    fullValue,
+    handleRemoveFilterClick,
+    handleModalOpenClick,
+  ]);
 
-  render(): JSX.Element {
-    const {
-      showRelativePicker,
-      showFilter,
-      showTime,
-      format,
-      valueFormatOptions,
-      disabledDate,
-      validate,
-      forceAdjacentMonths,
-      savedFilters,
-      onFilterSave,
-      intl,
-      containerClass = 'ds-date-range-picker',
-      footerProps,
-      allowedFilterTypes,
-      disableAbsoluteTimepickerInRelative = false,
-      filterValueSelectionModes,
-      filterRangeDisplayMode,
-      showNowButton = true,
-      alignContentToTop,
-    } = this.props;
-    const { value, mode } = this.state;
-    if (value.type === 'RELATIVE' && (!value.from || !value.to)) {
-      const absolute = normalizeRange(value);
-      Object.assign(value, { from: absolute.from, to: absolute.to });
-    }
-    const { from, to, key } = value;
-    const addons = this.getAddons();
-    const allTexts = this.allTexts();
+  let content: ReactNode | undefined;
+  if (mode === MODES.FILTER) {
+    content = (
+      <Container>
+        <RangeFilter
+          texts={allTexts}
+          value={localValue.filter}
+          onCancel={handleFilterCancel}
+          onApply={handleFilterApply}
+          savedFilters={savedFilters}
+          allowedFilterTypes={allowedFilterTypes}
+          onFilterSave={onFilterSave}
+          valueSelectionModes={filterValueSelectionModes}
+          rangeDisplayMode={filterRangeDisplayMode}
+        />
+      </Container>
+    );
+  } else {
+    const { from, to, key } = localValue;
+    const validator = validate ? validate(localValue) : { valid: true };
+    const isValidAbsolute = !Object.keys(localValue).includes('key') && Boolean(from && to);
 
-    function isRelative(dateRange: DateRange): dateRange is RelativeDateRange {
-      const isLegacyCustom = Object.keys(value).includes('key') && key === undefined;
-      return (
-        (dateRange.key &&
-          (CONST.RELATIVE_PRESETS.map(e => e.key).includes(dateRange.key) ||
-            dateRange.key === CONST.CUSTOM_RANGE_KEY)) ||
-        isLegacyCustom
-      );
-    }
+    const isValidRelative = isRelative(localValue) && Boolean(localValue.offset && localValue.duration);
+    const isValidSince = localValue.type === 'SINCE' && Boolean(localValue.offset && localValue.duration);
+    // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
+    const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
+    const canSwitchToTimePicker =
+      isValid && !isLifetime(localValue) && (!disableAbsoluteTimepickerInRelative || localValue.type === 'ABSOLUTE');
 
-    let content: ReactNode | undefined;
-    if (mode === MODES.FILTER) {
-      content = (
-        <Container>
-          <RangeFilter
-            texts={allTexts}
-            value={value.filter}
-            onCancel={this.handleFilterCancel}
-            onApply={this.handleFilterApply}
-            savedFilters={savedFilters}
-            allowedFilterTypes={allowedFilterTypes}
-            onFilterSave={onFilterSave}
-            valueSelectionModes={filterValueSelectionModes}
-            rangeDisplayMode={filterRangeDisplayMode}
-          />
-        </Container>
-      );
-    } else {
-      const validator = validate ? validate(value) : { valid: true };
-      const isValidAbsolute = !Object.keys(value).includes('key') && Boolean(from && to);
-
-      const isValidRelative = isRelative(value) && Boolean(value.offset && value.duration);
-      const isValidSince = value.type === 'SINCE' && Boolean(value.offset && value.duration);
-      // TODO apply ranges and find mapped lifetime here, this applies only for defaultValueTransformer
-      const isValid = (isValidAbsolute || isValidRelative || isValidSince || key === CONST.ALL_TIME) && validator.valid;
-      const canSwitchToTimePicker =
-        isValid && !isLifetime(value) && (!disableAbsoluteTimepickerInRelative || value.type === 'ABSOLUTE');
-
-      content = (
-        <Container className={containerClass}>
-          <RangePicker
-            showNowButton={showNowButton}
-            value={normalizeRange(value)}
-            onChange={this.handleRangeChange}
-            mode={mode}
-            disabledDate={disabledDate}
-            onSwitchMode={this.handleSwitchMode}
-            dateOnly={!showTime}
-            canSwitchMode={canSwitchToTimePicker}
-            texts={allTexts}
-            forceAdjacentMonths={forceAdjacentMonths}
-            intl={intl}
-          />
-          {addons.length > 0 && <Separator />}
-          {addons.map(
-            (addon, index: number): ReactNode => (
-              <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
-                {addon.content}
-              </Addon>
-            )
-          )}
-          <Footer
-            canApply={isValid || isLifetime(value)}
-            onApply={this.handleApply}
-            dateOnly={!showTime}
-            mode={mode}
-            canSwitchMode={isValid}
-            message={!validator.valid ? validator.message : null}
-            onSwitchMode={this.handleSwitchMode}
-            texts={allTexts}
-            value={value}
-            showTime={showTime}
-            format={format}
-            valueFormatOptions={valueFormatOptions}
-            {...footerProps}
-          />
-        </Container>
-      );
-    }
-    return (
-      <PopupWrapper alignContentToTop={alignContentToTop} hasFilter={showFilter} hasRelativePicker={showRelativePicker}>
-        {content}
-      </PopupWrapper>
+    content = (
+      <Container className={containerClass}>
+        <RangePicker
+          showNowButton={showNowButton}
+          value={normalizeRange(localValue)}
+          onChange={handleRangeChange}
+          mode={mode}
+          disabledDate={disabledDate}
+          onSwitchMode={handleSwitchMode}
+          dateOnly={!showTime}
+          canSwitchMode={canSwitchToTimePicker}
+          texts={allTexts}
+          forceAdjacentMonths={forceAdjacentMonths}
+          intl={intl}
+        />
+        {addons.length > 0 && <Separator />}
+        {addons.map(
+          (addon, index: number): ReactNode => (
+            <Addon last={addons.length === index + 1} className="addon-wrapper" key={addon.key}>
+              {addon.content}
+            </Addon>
+          )
+        )}
+        <Footer
+          canApply={isValid || isLifetime(localValue)}
+          onApply={handleApply}
+          dateOnly={!showTime}
+          mode={mode}
+          canSwitchMode={isValid}
+          message={!validator.valid ? validator.message : null}
+          onSwitchMode={handleSwitchMode}
+          texts={allTexts}
+          value={fullValue}
+          showTime={showTime}
+          format={format}
+          valueFormatOptions={valueFormatOptions}
+          {...footerProps}
+        />
+      </Container>
     );
   }
-}
+  return (
+    <PopupWrapper
+      data-testid="date-range-picker-container"
+      alignContentToTop={alignContentToTop}
+      hasFilter={showFilter}
+      hasRelativePicker={showRelativePicker}
+    >
+      {content}
+    </PopupWrapper>
+  );
+};
 
-// @ts-ignore
-export default injectIntl(RawDateRangePicker);
+export default RawDateRangePicker;

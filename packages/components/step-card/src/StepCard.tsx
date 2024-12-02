@@ -1,11 +1,12 @@
 import React, { useRef, forwardRef, useEffect, useMemo, useState, createRef } from 'react';
 import { useIntl } from 'react-intl';
-import Matching from '@synerise/ds-logic/dist/Matching/Matching';
+
+import { Matching } from '@synerise/ds-logic';
 import Cruds from '@synerise/ds-cruds';
 import { InlineAlert } from '@synerise/ds-alert';
 import { DragHandleM } from '@synerise/ds-icon';
-
 import { Title } from '@synerise/ds-typography';
+
 import * as S from './StepCard.styles';
 import { StepCardProps } from './StepCard.types';
 

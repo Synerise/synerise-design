@@ -1,8 +1,8 @@
 import React, { forwardRef, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-import BaseAntInput, { InputProps } from 'antd/lib/input';
-import TextArea, { TextAreaProps } from 'antd/lib/input/TextArea';
+import BaseAntInput, { InputProps, InputRef } from 'antd/lib/input';
+import TextArea, { TextAreaProps, TextAreaRef } from 'antd/lib/input/TextArea';
 
 import MaskedInput from 'antd-mask-input';
 import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
@@ -142,7 +142,7 @@ export const IconWrapper = styled.div`
 `;
 
 export const AntdInput = styled(
-  forwardRef<BaseAntInput, InputProps & { error?: boolean; size?: SizeType }>(
+  forwardRef<InputRef, InputProps & { error?: boolean; size?: SizeType }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
   )
@@ -186,7 +186,7 @@ export const AntdInput = styled(
 `;
 
 export const AntdMaskedInput = styled(
-  forwardRef<MaskedInput, AntdMaskedInputProps & { error?: boolean }>(
+  forwardRef<InputRef, AntdMaskedInputProps & { error?: boolean }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <MaskedInput autoComplete="off" {...props} ref={ref} />
   )
@@ -206,7 +206,7 @@ export const AntdMaskedInput = styled(
 `;
 
 export const AntdTextArea = styled(
-  forwardRef<TextArea, TextAreaProps & { error?: boolean }>(
+  forwardRef<TextAreaRef, TextAreaProps & { error?: boolean }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <TextArea autoComplete="off" {...props} ref={ref} />
   )

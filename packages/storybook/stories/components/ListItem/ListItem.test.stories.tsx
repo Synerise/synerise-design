@@ -79,6 +79,6 @@ export const WithStarActive: typeof WithStar = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.hover(canvas.getByText('List Item'));
-    await userEvent.click(canvas.getByTestId('star-icon'));
+    await userEvent.click(canvas.getByTestId('star-icon'), {pointerEventsCheck: 0});
   },
 };

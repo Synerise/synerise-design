@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
@@ -17,7 +17,6 @@ import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeD
 const Footer = ({
   canApply,
   onApply,
-  intl,
   canSwitchMode,
   onSwitchMode,
   mode,
@@ -32,8 +31,8 @@ const Footer = ({
   ...rest
 }: Props) => {
   const { formatValue } = useDataFormat();
+  const { locale, timeZone } = useIntl();
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
-  const { locale, timeZone } = intl;
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
@@ -43,7 +42,7 @@ const Footer = ({
       const parseDate = timeZone ? new Date(toIsoString(date, timeZone)) : date;
       return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [format, timeZone, locale, formatValue, showTime, valueFormatOptions, footerFormat]
+    [footerFormat, format, formatValue, locale, showTime, timeZone, valueFormatOptions]
   );
 
   const ChosenRange = useMemo(() => {
@@ -86,4 +85,4 @@ const Footer = ({
   );
 };
 
-export default injectIntl(Footer);
+export default Footer;

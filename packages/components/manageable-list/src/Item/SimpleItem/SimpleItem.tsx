@@ -10,7 +10,7 @@ const SimpleItemComponent = ({ item, onRemove, onSelect, onUpdate, texts, additi
   const [editMode, setEditMode] = useState(false);
 
   const updateName = useCallback(
-    (updateParams): void => {
+    (updateParams: { id: string | number; name: string }) => {
       setEditMode(false);
       onUpdate && onUpdate(updateParams);
     },

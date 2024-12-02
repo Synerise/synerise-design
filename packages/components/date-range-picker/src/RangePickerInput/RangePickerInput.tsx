@@ -11,7 +11,7 @@ import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
-import type { DateRange } from '../date.types';
+import type { DateRange, NullableDateLimit } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
 
 const RangePickerInput = ({
@@ -56,7 +56,7 @@ const RangePickerInput = ({
   );
 
   const getText = useCallback(
-    (dateToDisplay): string => {
+    (dateToDisplay?: NullableDateLimit) => {
       const realDate = new Date(toIsoString(dateToDisplay, intl.timeZone));
       return formatValue(realDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },

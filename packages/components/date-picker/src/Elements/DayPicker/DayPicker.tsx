@@ -13,7 +13,7 @@ import * as S from '../Navbar/Navbar.styles';
 
 const captionElement = (): null => null;
 
-const Picker: React.FC<DayPickerProps> = props => {
+const Picker = (props: DayPickerProps) => {
   const {
     month,
     onMonthChange,

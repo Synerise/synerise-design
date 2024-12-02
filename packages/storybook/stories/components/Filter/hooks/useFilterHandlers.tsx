@@ -154,6 +154,7 @@ export const useFilterHandlers = ({ isDateFilterOn, conditionFooterRelativeDateR
           return exp;
         })
       );
+      args.onExpressionStepChange?.();
     };
 
     return (

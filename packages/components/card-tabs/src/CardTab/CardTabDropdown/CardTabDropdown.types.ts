@@ -1,9 +1,8 @@
-import { MouseEvent } from 'react';
-import { CardTabTexts } from '../CardTab.types';
+import type { CardTabTexts, ListItemEventType } from '../CardTab.types';
 
-export interface CardTabDropdownProps {
-  editNameHandler?: (event?: MouseEvent<HTMLElement>) => void;
-  duplicateHandler?: (event?: MouseEvent<HTMLElement>) => void;
-  removeHandler?: (event?: MouseEvent<HTMLElement>) => void;
+export type CardTabDropdownProps = {
+  editNameHandler?: (event: ListItemEventType) => void;
+  duplicateHandler?: (event: ListItemEventType) => void;
+  removeHandler?: (event: ListItemEventType) => void;
   texts: CardTabTexts;
-}
+};

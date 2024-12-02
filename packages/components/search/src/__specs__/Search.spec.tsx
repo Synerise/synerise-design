@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
 import Menu from '@synerise/ds-menu';
 import { VarTypeStringM } from '@synerise/ds-icon';
 
@@ -35,21 +35,21 @@ const parametersDisplayProps = {
   title: PARAMETERS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
 };
 const suggestionsDisplayProps = {
   tooltip: 'Suggest',
   title: SUGGESTIONS_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
 };
 const recentDisplayProps = {
   tooltip: 'Recent',
   title: RECENT_TITLE,
   rowHeight: 32,
   visibleRows: 3,
-  itemRender: (item: object) => <Menu.Item onItemHover={NOOP}>{item && (item as { text: string }).text}</Menu.Item>,
+  itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
 };
 
 // const INPUT_EXPAND_ANIMATION_DURATION = 200;
@@ -310,9 +310,9 @@ describe('Search with dropdown', () => {
     );
 
     const btn = screen.getByTestId('btn') as HTMLInputElement;
-    // ACT
+    
     btn.click();
-    const title = screen.getByText(RECENT_TITLE) as HTMLElement;
+    const title = await screen.findByText(RECENT_TITLE) as HTMLElement;
     expect(title).toBeTruthy();
   });
 

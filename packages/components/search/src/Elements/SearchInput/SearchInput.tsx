@@ -1,6 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
-import Input from 'antd/lib/input';
+import Input, { InputRef } from 'antd/lib/input';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import { theme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
@@ -10,7 +10,7 @@ import { SearchInputProps, SearchInputState } from './SearchInput.types';
 import SearchButton from '../SearchButton/SearchButton';
 
 class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
-  private inputRef = React.createRef<Input>();
+  private inputRef = React.createRef<InputRef>();
 
   constructor(props: SearchInputProps) {
     super(props);
@@ -39,7 +39,7 @@ class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
   componentDidUpdate = (): void => {
     const { moveCursorToEnd, value } = this.props;
     const input = this.inputRef;
-    if (moveCursorToEnd && input && input.current) {
+    if (moveCursorToEnd && input && input.current?.input) {
       input.current.input.selectionStart = value.length || 0;
       input.current.input.selectionEnd = value.length || 0;
     }

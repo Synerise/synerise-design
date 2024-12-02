@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, prettyDOM, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import Tag from '@synerise/ds-tags/dist/Tag/Tag';
 import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
 import FileM from '@synerise/ds-icon';

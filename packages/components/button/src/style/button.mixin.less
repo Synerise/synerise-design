@@ -632,10 +632,7 @@
 
 .@{btn-prefix-cls}-sm {
   padding: 0 12px;
-
-  > span {
-    margin: 0 4px;
-  }
+  font-size: 13px;
 }
 
 .@{btn-prefix-cls} {
@@ -647,8 +644,9 @@
   }
 
   &-background-ghost&-danger {
+    .button-variant-ghost();
     background-color: @btn-danger-ghost-bg !important;
-    .button-variant-ghost(@btn-danger-bg);
+    // .button-variant-ghost(@btn-danger-bg);
   }
 }
 

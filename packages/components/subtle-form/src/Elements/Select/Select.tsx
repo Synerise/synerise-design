@@ -64,7 +64,7 @@ const SubtleSelect: React.FC<SubtleSelectProps> = ({
             disabled={disabled}
           >
             <S.MainContent className="main-content" hasMargin>
-              {value && !!String(value).trim() ? value : placeholder}
+              <>{value && !!String(value).trim() ? value : placeholder}</>
             </S.MainContent>
             {!active && !disabled && (
               <S.Suffix select>

@@ -13,7 +13,7 @@ export const SubtitleItemWrapper = styled.ul`
 // eslint-disable-next-line import/prefer-default-export
 export const SubmenuText = styled(({ children, disabled, childrenCollapsed, ...rest }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
-  <Text {...rest} disabled={disabled} onItemHover={NOOP} onClick={NOOP} tabIndex={-1}>
+  <Text {...rest} disabled={disabled} onClick={NOOP} tabIndex={-1}>
     {children}
   </Text>
 ))`

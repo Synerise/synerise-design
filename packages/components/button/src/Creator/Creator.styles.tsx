@@ -100,6 +100,11 @@ export const Creator = styled(({ status, pressed, withLabel, ...rest }) => <Butt
     justify-content: ${(props): string => (props.withLabel && !props.block ? `flex-start` : 'center')};
     align-items: center;
 
+    &.ant-btn > span {
+      display: flex;
+      align-items: center;
+    }
+
     ${IconContainer} {
       margin: auto 12px;
       svg {

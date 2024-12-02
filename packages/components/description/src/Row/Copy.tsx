@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, MouseEvent } from 'react';
 import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
 import Icon, { CopyClipboardM } from '@synerise/ds-icon';
 
@@ -30,7 +30,7 @@ const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyP
   }, [copyValue, setTooltipTitle, textsObj.copiedTooltip]);
 
   const handleMouseEnter = useCallback(
-    event => {
+    (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setTooltipTitle(textsObj.copyTooltip);
       setTooltipVisible(true);
@@ -40,7 +40,7 @@ const Copy = ({ copyValue, texts, className, onMouseEnter, onMouseLeave }: CopyP
   );
 
   const handleMouseLeave = useCallback(
-    event => {
+    (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setTooltipVisible(false);
       onMouseLeave && onMouseLeave(event);

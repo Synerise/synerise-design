@@ -1,8 +1,8 @@
-import '../style';
 import React, { PropsWithChildren } from 'react';
 
 import { DataFormatConfigProvider, DataFormatConfigProviderProps } from '@synerise/ds-data-format';
 
+import '../style';
 import LocaleProvider from './LocaleProvider';
 import ThemeProvider from './ThemeProvider';
 

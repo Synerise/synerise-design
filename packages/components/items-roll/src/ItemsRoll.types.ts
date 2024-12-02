@@ -50,7 +50,7 @@ export type ItemsRollProps = {
   style?: CSSProperties;
   showMoreStep?: number;
   texts?: {
-    [k in Texts]?: string | ReactNode;
+    [k in Texts]?: ReactNode;
   };
   useFooter?: boolean;
   useVirtualizedList?: boolean;

@@ -10,11 +10,10 @@ import React, {
   useCallback,
 } from 'react';
 import { v4 as uuid } from 'uuid';
-import { StyledComponent } from 'styled-components';
-import AntdInput, { InputProps as AntdInputProps } from 'antd/lib/input';
-import AntdTextArea from 'antd/lib/input/TextArea';
-import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
-import AntdMaskedInput from 'antd-mask-input';
+import type { StyledComponent } from 'styled-components';
+import type { InputProps as AntdInputProps, InputRef } from 'antd/lib/input';
+import type { TextAreaRef } from 'antd/lib/input/TextArea';
+import type { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 
 import { useResizeObserver } from '@synerise/ds-utils';
 
@@ -38,7 +37,7 @@ import type { AutosizeInputRefType } from './AutosizeInput/AutosizeInput.types';
 const VERTICAL_BORDER_OFFSET = 2;
 
 const createInputComponent =
-  <E extends AntdInput | AntdMaskedInput, T extends AntdInputProps | AntdMaskedInputProps>(
+  <T extends AntdInputProps | AntdMaskedInputProps>(
     WrappedComponent: StyledComponent<ComponentType<AntdInputProps | AntdMaskedInputProps>, { error?: string }>
   ): ComponentType<BaseProps & T> =>
   ({
@@ -66,13 +65,13 @@ const createInputComponent =
   }) => {
     const id = useMemo(() => uuid(), []);
     const charCount = getCharCount(antdInputProps.value, counterLimit);
-    const expandableTextAreaRef = useRef<AntdTextArea | null>(null);
+    const expandableTextAreaRef = useRef<TextAreaRef | null>(null);
     const [expanded, setExpanded] = useState(false);
     const [overflown, setOverflown] = useState(false);
     const scrollLeftRef = useRef(0);
     const hasErrorMessage = Boolean(errorText);
     const paddingDiff = useRef<number>();
-    const inputRef = useRef<E>(null);
+    const inputRef = useRef<InputRef>(null);
     const autosizeRef = useRef<AutosizeInputRefType | null>(null);
     const externalRef = useRef<HTMLInputElement | null>(null);
     const elementRef = useRef<HTMLDivElement | null>(null);
@@ -96,13 +95,13 @@ const createInputComponent =
     }, [handleInputRef]);
 
     useEffect(() => {
-      if (inputRef.current) {
+      if (inputRef.current?.input) {
         const { paddingLeft, paddingRight } = getComputedStyle(inputRef.current.input);
         paddingDiff.current = parseFloat(paddingLeft) + parseFloat(paddingRight);
       }
     });
     useEffect(() => {
-      if (!autoResize && expandable && inputRef && inputRef.current) {
+      if (!autoResize && expandable && inputRef.current?.input) {
         setOverflown(inputRef.current.input.scrollWidth > inputRef.current.input.clientWidth);
       }
     }, [autoResize, expandable, expanded]);
@@ -112,12 +111,13 @@ const createInputComponent =
       if (counterLimit && newValue.length > counterLimit) {
         return;
       }
+      // @ts-ignore
       antdInputProps.onChange && antdInputProps.onChange(event);
     };
 
     const handleExpandableTextareaBlur = (event: FocusEvent<HTMLTextAreaElement>) => {
       setExpanded(false);
-      if (inputRef.current) {
+      if (inputRef.current?.input) {
         inputRef.current.input.value = event.target.value;
         inputRef.current.input.focus();
       }
@@ -149,7 +149,7 @@ const createInputComponent =
           setOverflown(isNowOverflown);
         }
         if (counterLimit && newValue.length > counterLimit) return;
-
+        // @ts-ignore
         antdInputProps.onChange && antdInputProps.onChange(event);
       },
       [antdInputProps, autoResize, counterLimit, expandable, overflown]
@@ -157,18 +157,18 @@ const createInputComponent =
 
     const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
     const preAutosize = () => {
-      scrollLeftRef.current = inputRef.current?.input.scrollLeft || 0;
-      inputRef.current && inputRef.current.input.style.removeProperty('max-width');
+      scrollLeftRef.current = inputRef.current?.input?.scrollLeft || 0;
+      inputRef.current?.input && inputRef.current.input.style.removeProperty('max-width');
     };
 
     const onAutosize = (newWidth: number) => {
       const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
-      if (stretchToFit && inputRef.current && parentRect?.width && paddingDiff.current) {
+      if (stretchToFit && inputRef.current?.input && parentRect?.width && paddingDiff.current) {
         inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
         inputRef.current.input.scrollLeft = scrollLeftRef.current;
       }
 
-      if (autoResize && inputRef.current && expandable) {
+      if (autoResize && inputRef.current?.input && expandable) {
         const style = window.getComputedStyle(inputRef.current.input);
         const minWidth = parseInt(style.minWidth, 10);
         setOverflown(newWidth > minWidth);
@@ -257,8 +257,8 @@ const createInputComponent =
     );
   };
 
-export const Input = createInputComponent<AntdInput, AntdInputProps>(S.AntdInput);
-export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
+export const Input = createInputComponent<AntdInputProps>(S.AntdInput);
+export const MaskedInput = createInputComponent<AntdMaskedInputProps>(S.AntdMaskedInput);
 
 export const RawMaskedInput = S.AntdMaskedInput;
 

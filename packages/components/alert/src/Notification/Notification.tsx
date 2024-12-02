@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { notification } from 'antd';
 import { NotificationInstance } from 'antd/lib/notification';
 import type { ArgsProps, NotificationApi } from 'antd/es/notification';
@@ -82,9 +82,10 @@ export function mountInstance(
   element.setAttribute('class', className);
   const cont = getContainer();
   cont.appendChild(element);
-  const jsxEl = <S.NotificationsWrapper>{contextHolder}</S.NotificationsWrapper>;
   const renderPromsie = new Promise<HTMLElement>(resolve => {
-    ReactDOM.render(jsxEl, element, () => resolve(element));
+    const root = createRoot(element);
+    const jsxEl = <S.NotificationsWrapper ref={() => resolve(element)}>{contextHolder}</S.NotificationsWrapper>;
+    root.render(jsxEl);
   });
   const cleanUpFunction = (): void => {
     cont.removeChild(element);

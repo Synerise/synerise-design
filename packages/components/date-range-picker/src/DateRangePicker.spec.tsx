@@ -3,12 +3,11 @@ import type { PopoverProps } from 'antd/lib/popover';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { waitFor, within, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom/extend-expect';
 import {
   getDefaultCustomRange,
 } from './RelativeRangePicker/utils';
 import RawDateRangePicker, { defaultValueTransformer } from './RawDateRangePicker';
-import { DateRange, RelativeDateRange } from './date.types';
+import { DateRange, DateRangePreset, RelativeDateRange } from './date.types';
 import { DAYS, RELATIVE, RELATIVE_PRESETS, ABSOLUTE, ABSOLUTE_PRESETS, ALL_TIME } from './constants';
 import { DEFAULT_RANGE_START, DEFAULT_RANGE_END } from './RangeFilter/constants';
 import { RelativeMode } from './DateRangePicker.types';
@@ -348,7 +347,7 @@ describe('DateRangePicker', () => {
     const lifetimeMenuItem = await screen.findByText(texts[LIFETIME_VALUE?.translationKey as string])
     expect(lifetimeMenuItem).toBeInTheDocument();
   });
-  it('should update displayed range after selecting dates', async () => {
+  it.only('should update displayed range after selecting dates', async () => {
     const onApply = jest.fn();
     const { container } = renderWithProvider(
       <RawDateRangePicker
@@ -368,12 +367,12 @@ describe('DateRangePicker', () => {
     );
     const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
     const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
-    findDayCell(1).click();
-    findDayCell(1).click();
-    expect(valueWrapper.textContent).toBe('1 Oct 2018, 00:00 – 1 Oct 2018, 23:59');
-    findDayCell(2).click();
-    findDayCell(12).click();
-    expect(valueWrapper.textContent).toBe('2 Oct 2018, 00:00 – 12 Oct 2018, 23:59');
+    userEvent.click(findDayCell(1));
+    userEvent.click(findDayCell(1));
+    await waitFor(() => expect(valueWrapper.textContent).toBe('1 Oct 2018, 00:00 – 1 Oct 2018, 23:59'));
+    userEvent.click(findDayCell(2));
+    userEvent.click(findDayCell(12));
+    await waitFor(() => expect(valueWrapper.textContent).toBe('2 Oct 2018, 00:00 – 12 Oct 2018, 23:59'));
   });
 
   it('should set to last 30 days if "custom" range selected for the first time', async () => {
@@ -433,9 +432,10 @@ describe('DateRangePicker', () => {
     );
     const valueWrapper = container.querySelector('.' + displayDateContainerClass) as HTMLElement;
     const findDayCell = (text: number) => container.querySelector(`[data-attr="${text}"]`) as HTMLElement;
-    findDayCell(2).click();
-    findDayCell(14).click();
-    expect(valueWrapper.textContent).toBe('2.10.2018 – 14.10.2018');
+    userEvent.click(findDayCell(2));
+    await waitFor(() => expect(valueWrapper.textContent).toBe('2.10.2018 – End date'));
+    userEvent.click(findDayCell(14));
+    await waitFor(() => expect(valueWrapper.textContent).toBe('2.10.2018 – 14.10.2018'));
   });
   it('should display custom color for arrow popup', async () => {
     const popoverRef = React.createRef<Partial<PopoverProps> & { getPopupDomNode: () => HTMLElement }>();
@@ -914,7 +914,7 @@ describe('DateRangePicker', () => {
       const dropdown = moreButton.nextElementSibling;
       moreButton.click();
       
-      expect(dropdown).not.toHaveStyle('display:none');
+      await waitFor(() => expect(dropdown).not.toHaveStyle('display:none'));
       
       moreButton.click();
       

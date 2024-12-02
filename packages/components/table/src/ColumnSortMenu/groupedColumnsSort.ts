@@ -32,8 +32,8 @@ export const sortRows = <T>(sortOrder: ColumnSortOrder, compareFn: CompareFn<T>,
 export const sortDataSourceRows = <T extends GroupType<T>>(
   sortStateApi: SortStateAPI,
   sortingColumns?: DSColumnType<T>[],
-  dataSource?: T[]
-): T[] => {
+  dataSource?: readonly T[]
+): readonly T[] => {
   if (!dataSource) {
     return [];
   }
@@ -42,25 +42,23 @@ export const sortDataSourceRows = <T extends GroupType<T>>(
     return dataSource;
   }
 
-  return dataSource?.map(
-    (dataItem: T): T => {
-      const sortedRows = sortingColumns.reduce<T[]>(
-        (currRows, { sorter, key }): T[] => {
-          const sortOrder = sortStateApi.getColumnSortOrder(String(key));
+  return dataSource?.map((dataItem: T): T => {
+    const sortedRows = sortingColumns.reduce<T[]>(
+      (currRows, { sorter, key }): T[] => {
+        const sortOrder = sortStateApi.getColumnSortOrder(String(key));
 
-          if (!sortOrder || typeof sorter !== 'function') {
-            return currRows;
-          }
+        if (!sortOrder || typeof sorter !== 'function') {
+          return currRows;
+        }
 
-          return sortRows(sortOrder, sorter, currRows);
-        },
-        [...dataItem.rows]
-      );
+        return sortRows(sortOrder, sorter, currRows);
+      },
+      [...dataItem.rows]
+    );
 
-      return {
-        ...dataItem,
-        rows: sortedRows,
-      };
-    }
-  );
+    return {
+      ...dataItem,
+      rows: sortedRows,
+    };
+  });
 };

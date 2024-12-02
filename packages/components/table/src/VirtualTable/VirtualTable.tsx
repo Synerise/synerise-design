@@ -1,13 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  useRef,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useImperativeHandle,
-  ReactText,
-} from 'react';
+import React, { useCallback, useState, useRef, forwardRef, useEffect, useMemo, useImperativeHandle, Key } from 'react';
 import type { CSSProperties, HTMLAttributes, Ref, ReactElement, UIEvent } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import type { ListOnScrollProps } from 'react-window';
@@ -216,7 +207,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
     (key: string, record: T) => {
       const { selectedRowKeys, limit, independentSelectionExpandedRows, onChange, checkRowSelectionStatus } =
         selection as RowSelection<T>;
-      const handleChange = (keys: ReactText[], records: T[]) => {
+      const handleChange = (keys: Key[], records: T[]) => {
         if (isSticky && listScrollTopRef.current) {
           setIsHeaderVisible(true);
         }
@@ -369,7 +360,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
 
   const createItemData = useCallback(
     (
-      data: T[],
+      data: readonly T[],
       defaultTableProps: DSTableProps<T> | undefined
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ): VirtualTableRowProps<any>['data'] => ({
@@ -419,7 +410,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   );
 
   const renderBody = useCallback(
-    (rawData: T[], meta: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => {
+    (rawData: readonly T[], meta: CustomizeScrollBodyInfo, defaultTableProps?: DSTableProps<T>) => {
       const { onScroll, ref } = meta;
       customBodyOnScrollRef.current = onScroll;
       // sticky header feature does NOT work without the ref assigned to a html node in the document.
@@ -430,7 +421,7 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
         ref.current = connectObject;
       }
 
-      const renderVirtualList = (data: T[]) => {
+      const renderVirtualList = (data: readonly T[]) => {
         const listHeight = data.length * cellHeight - scroll.y + infiniteLoaderOffset;
 
         const listMaxScroll =
@@ -661,6 +652,8 @@ const VirtualTable = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?
   );
 };
 
-export default forwardRef(VirtualTable) as <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
+type VirtualTableType = <T extends object & RowType<T> & { [EXPANDED_ROW_PROPERTY]?: boolean }>(
   p: VirtualTableProps<T> & { ref?: Ref<VirtualTableRef> }
 ) => ReactElement;
+
+export default forwardRef(VirtualTable) as VirtualTableType;

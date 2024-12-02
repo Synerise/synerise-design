@@ -3,7 +3,7 @@ import Divider from '@synerise/ds-divider';
 import * as S from './FieldSet.styles';
 import { FieldSetProps } from './FieldSet.types';
 
-const FieldSet: React.FC<FieldSetProps> = ({ className, heading, description, withLine, children }) => (
+const FieldSet = ({ className, heading, description, withLine, children }: FieldSetProps) => (
   <>
     <S.TopWrapper className={className}>
       <S.Heading>{heading}</S.Heading>

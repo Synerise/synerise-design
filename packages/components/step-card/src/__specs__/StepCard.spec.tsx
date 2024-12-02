@@ -1,7 +1,8 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
+
 import StepCard, { REORDER_THROTTLE } from './../StepCard';
-import { fireEvent, waitFor, screen } from '@testing-library/dom';
 
 const TEXTS = {
   matching: 'Matching',

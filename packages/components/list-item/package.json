@@ -38,13 +38,13 @@
     "@synerise/ds-tooltip": "^0.14.51",
     "@synerise/ds-utils": "^0.31.2",
     "copy-to-clipboard": "^3.3.1",
-    "rc-trigger": "^5.2.5",
+    "rc-trigger": "^5.3.4",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.7.0",
-    "react": ">=16.9.0 <= 17.0.2",
-    "styled-components": "5.0.1"
+    "antd": "4.24.0",
+    "react": ">=16.9.0 <= 18.3.1",
+    "styled-components": "^5.3.3"
   }
 }

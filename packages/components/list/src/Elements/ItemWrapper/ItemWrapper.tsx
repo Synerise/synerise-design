@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import * as S from './ItemWrapper.styles';
 
-const ItemWrapper: React.FC = ({ children }) => <S.Wrapper>{children}</S.Wrapper>;
+type ItemWrapperProps = {
+  children?: ReactNode;
+};
+
+const ItemWrapper = ({ children }: ItemWrapperProps) => <S.Wrapper>{children}</S.Wrapper>;
 
 export default ItemWrapper;

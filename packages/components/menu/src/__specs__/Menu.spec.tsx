@@ -1,13 +1,12 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/dom';
-import { RenderResult } from '@testing-library/react';
+import { RenderResult, screen, fireEvent } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { theme } from '@synerise/ds-core';
 import Icon, { CloseS } from '@synerise/ds-icon';
 
 import Menu from '../Menu';
-import { MenuItemProps, TriggerHandle } from '../Elements/Item/MenuItem.types';
+import { MenuItemProps } from '../Elements/Item/MenuItem.types';
 
 describe('Simple menu', () => {
   const data = [
@@ -259,54 +258,52 @@ describe('Menu item', () => {
     expect(menuItem).toHaveClass('custom-class');
     expect(menuItem).toHaveClass('another-class');
   });
-  it('should show tooltip on hover', () => {
-    type undocumentedMethods = { getPopupDomNode: () => HTMLElement };
-    const ref = React.createRef<TriggerHandle>();
-    const { getByText } = renderWithProvider(
+  it('should show tooltip on hover', async () => {
+    renderWithProvider(
       <Menu>
         <Menu.Item
           type={undefined}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          onItemHover={() => undefined}
           hoverTooltipProps={{
-            ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
             mouseEnterDelay: 0,
           }}
-          renderHoverTooltip={() => <div>tooltip content</div>}
+          renderHoverTooltip={() => <div data-testid="hover-tooltip">tooltip content</div>}
         >
           Menu item
         </Menu.Item>
       </Menu>
     );
-    const element = getByText('Menu item');
+    const element = screen.getByText('Menu item');
+    const tooltip = screen.queryByTestId('hover-tooltip');
+    expect(tooltip).not.toBeInTheDocument();
     fireEvent.mouseOver(element);
-    expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
+
+    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent('tooltip content');
   });
-  it('should show tooltip on hover on disabled item', () => {
-    type undocumentedMethods = { getPopupDomNode: () => HTMLElement };
-    const ref = React.createRef<TriggerHandle>();
-    const { getByText } = renderWithProvider(
+  it('should show tooltip on hover on disabled item', async () => {
+    renderWithProvider(
       <Menu>
         <Menu.Item
           type={undefined}
           disabled={true}
           onMouseEnter={() => undefined}
           onMouseLeave={() => undefined}
-          onItemHover={() => undefined}
           hoverTooltipProps={{
-            ref: ref as React.RefObject<TriggerHandle> & ((_: HTMLElement) => void), // TODO find a way to avoid casting to union of ref | function
             mouseEnterDelay: 0,
           }}
-          renderHoverTooltip={() => <div>tooltip content</div>}
+          renderHoverTooltip={() => <div data-testid="hover-tooltip">tooltip content</div>}
         >
           Menu item
         </Menu.Item>
       </Menu>
     );
-    const element = getByText('Menu item');
+    const element = screen.getByText('Menu item');
+    const tooltip = screen.queryByTestId('hover-tooltip');
+    expect(tooltip).not.toBeInTheDocument();
     fireEvent.mouseOver(element);
-    expect(ref.current.getPopupDomNode()).toHaveTextContent('tooltip content');
+
+    expect(await screen.findByTestId('hover-tooltip')).toHaveTextContent('tooltip content');
   });
   it('should have data-name attribute with children as value', () => {
     const { container } = renderWithProvider(

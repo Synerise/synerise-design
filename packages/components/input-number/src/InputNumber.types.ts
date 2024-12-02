@@ -4,10 +4,10 @@ import { InputNumberProps as AntdInputNumberProps } from 'antd/lib/input-number'
 import type { TooltipProps } from '@synerise/ds-tooltip';
 import { NumberToFormatOptions } from '@synerise/ds-data-format';
 
-export type InputNumberProps = AntdInputNumberProps & {
+export type InputNumberProps = AntdInputNumberProps<number> & {
   errorText?: ReactNode;
   label?: ReactNode;
-  defaultValue?: number;
+  defaultValue?: number | null;
   description?: ReactNode;
   error?: boolean;
   prefixel?: ReactNode;

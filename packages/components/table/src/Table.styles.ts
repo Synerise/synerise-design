@@ -317,6 +317,13 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
   & .ant-table th.ant-table-cell {
     white-space: ${(props): string => (props.disableColumnNamesLineBreak ? 'nowrap' : 'normal')};
   }
+
+  &&&
+    .ant-table-thead
+    > tr
+    > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    position: relative;
+  }
 `;
 
 export const Skeleton = styled(DSSkeleton)`

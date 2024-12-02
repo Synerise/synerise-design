@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { waitFor, userEvent, within, expect } from '@storybook/test';
+import { waitFor, userEvent, within, expect, fn } from '@storybook/test';
 
 import type { FormatPickerProps } from '@synerise/ds-format-picker';
 
@@ -18,6 +18,9 @@ export default {
 type Story = StoryObj<FormatPickerProps>;
 
 export const OpenedModal: Story = {
+  args: {
+    onFormattedValueChange: fn(),
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
     await waitFor(() => expect(args.onFormattedValueChange).toHaveBeenCalled());
@@ -27,11 +30,14 @@ export const OpenedModal: Story = {
 };
 
 export const CurrencyType: Story = {
+  args: {
+    onFormattedValueChange: fn(),
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement.parentElement!);
 
     await waitFor(() => expect(args.onFormattedValueChange).toHaveBeenCalled());
-    
+
     await userEvent.click(canvas.getByRole('button'));
 
     await waitFor(() => expect(canvas.getByTestId('ds-format-picker-overlay')).toBeInTheDocument(), WAIT_FOR_OPTIONS);
@@ -51,6 +57,9 @@ export const CurrencyType: Story = {
 };
 
 export const CurrencyDropdownOpen: Story = {
+  args: {
+    onFormattedValueChange: fn(),
+  },
   play: async ({ canvasElement, step, args }) => {
     const canvas = within(canvasElement.parentElement!);
 

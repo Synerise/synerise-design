@@ -6,7 +6,7 @@ import Icon, { InfoFillS } from '@synerise/ds-icon';
 import * as S from './Header.styles';
 import { HeaderProps } from './Header.types';
 
-const MenuHeader: React.FC<HeaderProps> = ({ headerText, tooltip }: HeaderProps) => {
+const MenuHeader = ({ headerText, tooltip }: HeaderProps) => {
   return (
     <S.MenuHeader>
       {headerText}

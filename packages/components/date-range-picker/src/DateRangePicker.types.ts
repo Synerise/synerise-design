@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { IntlShape } from 'react-intl';
-
 import { PopoverProps } from 'antd/lib/popover';
 
 import { DateToFormatOptions } from '@synerise/ds-data-format';
@@ -41,7 +40,9 @@ export type AdditionalMapper = {
   rightBottom: CustomColorArrow;
 };
 export type DateRangePickerProps = {
-  // @deprecated - this prop will be dropped in v1.x
+  /**
+   * @deprecated use `valueFormatOptions` instead
+   */
   intl?: IntlShape;
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.

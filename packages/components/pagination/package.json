@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.7.0",
-    "react": ">=16.9.0 <= 17.0.2"
+    "antd": "4.24.0",
+    "react": ">=16.9.0 <= 18.3.1"
   }
 }
