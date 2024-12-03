@@ -28120,9 +28120,9 @@ react-mount-animation@0.0.9:
     react "^17.0.1"
 
 react-onclickoutside@^6.9.0:
-  version "6.9.0"
-  resolved "https://registry.npmjs.org/react-onclickoutside/-/react-onclickoutside-6.9.0.tgz"
-  integrity sha512-8ltIY3bC7oGhj2nPAvWOGi+xGFybPNhJM0V1H8hY/whNcXgmDeaeoCMPPd8VatrpTsUWjb/vGzrmu6SrXVty3A==
+  version "6.13.1"
+  resolved "http://artifactory.service:80/artifactory/api/npm/npm-release/react-onclickoutside/-/react-onclickoutside-6.13.1.tgz#1f5e0241c08784b6e65745d91aca0d700c548a89"
+  integrity sha1-H14CQcCHhLbmV0XZGsoNcAxUiok=
 
 react-perfect-scrollbar@^1.5.8:
   version "1.5.8"

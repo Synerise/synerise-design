@@ -28,8 +28,6 @@ const textLookupConfig = {
   suggestions: 'text',
 };
 
-const NOOP = () => {};
-
 const parametersDisplayProps = {
   tooltip: 'Parameters',
   title: PARAMETERS_TITLE,
@@ -52,8 +50,6 @@ const recentDisplayProps = {
   itemRender: (item: object) => <Menu.Item>{item && (item as { text: string }).text}</Menu.Item>,
 };
 
-// const INPUT_EXPAND_ANIMATION_DURATION = 200;
-// const waitForDropdownToExpand = () => new Promise(r => setTimeout(r, INPUT_EXPAND_ANIMATION_DURATION));
 const dropdownMaxHeight = 400;
 describe('Search with dropdown', () => {
   it('should render', () => {
@@ -61,7 +57,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip="clear"
@@ -83,7 +78,6 @@ describe('Search with dropdown', () => {
       />
     );
 
-    // ASSERT
     expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
   });
 
@@ -92,7 +86,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
@@ -116,10 +109,8 @@ describe('Search with dropdown', () => {
 
     const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
-    // ACT
     fireEvent.change(input, { target: { value: INPUT_VALUE } });
 
-    // ASSERT
     expect(onChange).toBeCalledWith(INPUT_VALUE);
   });
 
@@ -128,7 +119,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
@@ -152,14 +142,12 @@ describe('Search with dropdown', () => {
 
     const btn = screen.getByTestId('btn') as HTMLInputElement;
 
-    // ACT
-    await btn.click();
+    btn.click();
     await waitFor(
       () => {
         const parameter = screen.getByText('City') as HTMLInputElement;
         parameter.click();
-        // ASSERT
-        expect(onParameterValueChange).toBeCalledWith('City', { text: 'City', icon: <VarTypeStringM /> });
+            expect(onParameterValueChange).toBeCalledWith('City', { text: 'City', icon: <VarTypeStringM /> });
       },
       {
         timeout: 1000,
@@ -172,7 +160,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}
@@ -195,10 +182,8 @@ describe('Search with dropdown', () => {
     );
 
     const btn = screen.getByTestId('btn') as HTMLInputElement;
-    // ACT
     btn.click();
     const inputWithValue = screen.getByDisplayValue('TestValue') as HTMLInputElement;
-    // ASSERT
     expect(inputWithValue).toBeTruthy();
   });
 
@@ -207,7 +192,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
@@ -233,11 +217,10 @@ describe('Search with dropdown', () => {
     );
 
     const btn = screen.getByTestId('btn') as HTMLButtonElement;
-    // ACT
     userEvent.click(btn);
     userEvent.click(screen.getByText(/City/i));
 
-    const title = screen.getByText(SUGGESTIONS_TITLE);
+    const title = await screen.findByText(SUGGESTIONS_TITLE);
     expect(title).toBeTruthy();
   });
 
@@ -246,7 +229,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
@@ -272,10 +254,9 @@ describe('Search with dropdown', () => {
     );
 
     const btn = screen.getByTestId('btn') as HTMLInputElement;
-    // ACT
     userEvent.click(btn);
 
-    const title = screen.getByText(PARAMETERS_TITLE) as HTMLElement;
+    const title = await screen.findByText(PARAMETERS_TITLE) as HTMLElement;
     expect(title).toBeTruthy();
   });
 
@@ -284,7 +265,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <div>
         <button>differentElement</button>
@@ -321,7 +301,6 @@ describe('Search with dropdown', () => {
     const onParameterValueChange = jest.fn();
     const onClear = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <Search
         clearTooltip={'clear'}

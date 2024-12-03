@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 
 import { SearchInput } from '../Elements';
@@ -16,7 +16,6 @@ describe('SearchInput component', () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
@@ -30,7 +29,6 @@ describe('SearchInput component', () => {
       />
     );
 
-    // ASSERT
     expect(screen.getByPlaceholderText(PLACEHOLDER)).toBeTruthy();
   });
 
@@ -41,7 +39,6 @@ describe('SearchInput component', () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
@@ -55,27 +52,23 @@ describe('SearchInput component', () => {
       />
     );
 
-    // ACT
     userEvent.click(screen.getByTestId('btn') as HTMLElement);
 
     const input = screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement;
 
-    // ACT
     userEvent.type(input, INPUT_VALUE);
 
-    // ASSERT
     expect(onChange).toHaveBeenCalledTimes(11);
     expect(screen.getByRole('textbox').getAttribute('value')).toBe(INPUT_VALUE);
   });
 
-  it('should have onToggle callback', () => {
+  it('should have onToggle callback', async () => {
     const onChange = jest.fn();
     const onClear = jest.fn();
     const onKeyDown = jest.fn();
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
@@ -89,20 +82,15 @@ describe('SearchInput component', () => {
       />
     );
 
-    // ASSERT
     const btn = screen.getByTestId('btn') as HTMLElement;
 
-    // ACT
     userEvent.click(btn);
 
-    // ASSERT
-    expect(onToggle).toBeCalledWith(false);
+    await waitFor(() => expect(onToggle).toBeCalledWith(false));
 
-    // ACT
     userEvent.click(btn);
 
-    // ASSERT
-    expect(onToggle).toBeCalledWith(true);
+    await waitFor(() => expect(onToggle).toBeCalledWith(true));
   });
 
   it('should have onClick callback', () => {
@@ -112,7 +100,6 @@ describe('SearchInput component', () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
@@ -126,10 +113,8 @@ describe('SearchInput component', () => {
       />
     );
 
-    // ACT
     userEvent.click(screen.getByPlaceholderText(PLACEHOLDER) as HTMLInputElement);
 
-    // ASSERT
     expect(onClick).toBeCalled();
   });
 
@@ -140,7 +125,6 @@ describe('SearchInput component', () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <SearchInput
         clearTooltip={'clear'}
@@ -154,7 +138,6 @@ describe('SearchInput component', () => {
       />
     );
 
-    // ACT
     userEvent.click(screen.getByTestId('btn') as HTMLInputElement);
     userEvent.type(screen.getByPlaceholderText(PLACEHOLDER) as HTMLDivElement, INPUT_VALUE);
     userEvent.click(screen.getByTestId('clear'));
@@ -169,7 +152,6 @@ describe('SearchInput component', () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
 
-    // ARRANGE
     renderWithProvider(
       <div>
         <button>outside</button>
@@ -187,7 +169,6 @@ describe('SearchInput component', () => {
       </div>
     );
 
-    // ACT
     userEvent.click(screen.getByTestId('btn') as HTMLInputElement);
     userEvent.click(screen.getByText('outside'));
 

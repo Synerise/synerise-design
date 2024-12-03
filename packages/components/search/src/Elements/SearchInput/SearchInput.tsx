@@ -1,186 +1,163 @@
-import React from 'react';
-import onClickOutside from 'react-onclickoutside';
+import React, { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Input, { InputRef } from 'antd/lib/input';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+
+import Tooltip from '@synerise/ds-tooltip';
+import { useOnClickOutside, usePrevious } from '@synerise/ds-utils';
 import { theme } from '@synerise/ds-core';
 import Icon, { Close3M } from '@synerise/ds-icon';
 
 import * as S from '../../Search.styles';
-import { SearchInputProps, SearchInputState } from './SearchInput.types';
+import { SearchInputProps } from './SearchInput.types';
 import SearchButton from '../SearchButton/SearchButton';
 
-class SearchInput extends React.Component<SearchInputProps, SearchInputState> {
-  private inputRef = React.createRef<InputRef>();
+const SearchInput = ({
+  alwaysExpanded,
+  alwaysHighlight,
+  clearTooltip,
+  filterLabel,
+  filterLookupKey,
+  onKeyDown,
+  onClick,
+  onChange,
+  onClear,
+  onToggle,
+  onButtonClick,
+  moveCursorToEnd,
+  placeholder,
+  textLookupKey,
+  value,
+  closeOnClickOutside,
+  disableInput,
+  focusTrigger,
+  toggleTrigger,
+  inputProps = {},
+}: SearchInputProps) => {
+  const inputRef = useRef<InputRef>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isInputOpen, setIsInputOpen] = useState(alwaysExpanded || !!value || !!filterLabel);
+  const [inputOffset, setInputOffset] = useState(0);
+  const [isResultChosen, setIsResultChosen] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(true);
 
-  constructor(props: SearchInputProps) {
-    super(props);
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = {
-      inputOffset: 0,
-      isInputOpen: props.alwaysExpanded || !!props.value || !!props.filterLabel,
-      isInputFocused: true,
-      isResultChosen: false,
-    };
-  }
+  const prevFocusTrigger = usePrevious(focusTrigger);
+  const prevToggleTrigger = usePrevious(toggleTrigger);
+  useLayoutEffect(() => {
+    if (prevFocusTrigger !== focusTrigger) {
+      focusInput();
+    }
+    if (prevToggleTrigger !== toggleTrigger) {
+      toggleOpen();
+    }
+  });
 
-  getSnapshotBeforeUpdate(prevProps: Readonly<SearchInputProps>): null {
-    const { focusTrigger, toggleTrigger } = this.props;
-    if (prevProps.focusTrigger !== focusTrigger) {
-      setTimeout(() => {
-        this.focusInput();
-      }, 0);
+  useOnClickOutside(wrapperRef, () => {
+    if (closeOnClickOutside && !alwaysExpanded) {
+      setIsInputOpen(false);
+      onToggle && onToggle(false);
     }
-    if (prevProps.toggleTrigger !== toggleTrigger) {
-      this.toggleOpen();
-    }
-    return null;
-  }
+  });
 
-  componentDidUpdate = (): void => {
-    const { moveCursorToEnd, value } = this.props;
-    const input = this.inputRef;
-    if (moveCursorToEnd && input && input.current?.input) {
-      input.current.input.selectionStart = value.length || 0;
-      input.current.input.selectionEnd = value.length || 0;
-    }
+  const focusInput = () => {
+    inputRef.current && inputRef.current.focus();
   };
 
-  focusInput = (): void => {
-    this.inputRef.current && this.inputRef.current.focus();
+  const handleSearchInputContentClick = () => {
+    onClick && onClick();
+    focusInput();
   };
 
-  toggleOpen = (): void => {
-    const { onToggle } = this.props;
-    const { isInputOpen } = this.state;
-    onToggle && onToggle(!isInputOpen);
-    this.setState(prevState => ({
-      isInputOpen: !prevState.isInputOpen,
-    }));
+  const handleOffsetWithFilter = (ref: HTMLDivElement | null) => {
+    ref && setInputOffset(ref.getBoundingClientRect().width);
   };
 
-  handleSearchButtonClick = (): void => {
-    const { alwaysExpanded, onButtonClick } = this.props;
+  const handleChangeValue = ({ target: { value: changedValue } }: ChangeEvent<HTMLInputElement>) => {
+    onChange(changedValue);
+    setIsResultChosen(false);
+  };
+
+  const toggleOpen = () => {
+    setIsInputOpen(open => {
+      onToggle && onToggle(!open);
+      return !open;
+    });
+  };
+
+  const handleSearchButtonClick = () => {
     if (!alwaysExpanded) {
-      this.toggleOpen();
-      this.focusInput();
+      toggleOpen();
+      focusInput();
       onButtonClick && onButtonClick();
     }
   };
 
-  handleClearValue = (): void => {
-    const { onClear } = this.props;
-    this.setState({
-      inputOffset: 0,
-      isResultChosen: false,
-    });
-    this.focusInput();
+  const handleClearValue = () => {
+    setInputOffset(0);
+    setIsResultChosen(false);
+    focusInput();
     onClear();
   };
 
-  handleChangeValue = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>): void => {
-    const { onChange } = this.props;
-    onChange(value);
-    this.setState({
-      isResultChosen: false,
-    });
-  };
-
-  handleSearchInputContentClick = (): void => {
-    const { onClick } = this.props;
-    onClick && onClick();
-    this.focusInput();
-  };
-
-  handleOffsetWithFilter = (ref: HTMLDivElement | null): void => {
-    ref && this.setState({ inputOffset: ref.getBoundingClientRect().width });
-  };
-
-  // This handler is used for onClickOutside HOC
-  handleClickOutside = (): void => {
-    const { closeOnClickOutside, onToggle, value, filterLabel } = this.props;
-    if (closeOnClickOutside && !value && !filterLabel) {
-      this.setState({
-        isInputOpen: false,
-      });
-      onToggle && onToggle(false);
+  useEffect(() => {
+    if (moveCursorToEnd && inputRef.current?.input) {
+      inputRef.current.input.selectionStart = value.length || 0;
+      inputRef.current.input.selectionEnd = value.length || 0;
     }
-  };
+  }, [moveCursorToEnd, value.length]);
 
-  render(): React.ReactElement {
-    const {
-      alwaysExpanded,
-      alwaysHighlight,
-      clearTooltip,
-      filterLabel,
-      filterLookupKey,
-      onKeyDown,
-      placeholder,
-      textLookupKey,
-      value,
-      disableInput,
-      inputProps = {},
-    } = this.props;
-    const { isInputOpen, inputOffset, isResultChosen, isInputFocused } = this.state;
-
-    return (
-      <S.SearchInputWrapper>
-        <S.SearchInputContent
-          className={isInputOpen || !!value || !!filterLabel ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
-          offset={inputOffset}
-          filterLabel={filterLabel}
-          onClick={this.handleSearchInputContentClick}
-        >
-          <S.LeftSide isOpen={isInputOpen}>
-            {filterLabel && (
-              <S.Filter ref={this.handleOffsetWithFilter}>
-                {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
-                <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
-              </S.Filter>
-            )}
-          </S.LeftSide>
-          <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
-            <Input
-              placeholder={placeholder}
-              ref={this.inputRef}
-              value={value}
-              onChange={this.handleChangeValue}
-              onKeyDown={onKeyDown}
-              onFocus={(): void => {
-                this.setState({ isInputFocused: true });
-              }}
-              onBlur={(): void => {
-                this.setState({ isInputFocused: false });
-              }}
-              autoComplete="off"
-              autoFocus
-              disabled={disableInput}
-              {...inputProps}
-            />
-          </S.SearchInner>
-        </S.SearchInputContent>
-        <SearchButton
-          inputOpen={isInputOpen}
-          hidden={!!value || !!filterLabel}
-          inputFocused={isInputFocused}
-          clickable={!alwaysExpanded}
-          onClick={this.handleSearchButtonClick}
-        />
-        <S.ClearButton hidden={!value && !filterLabel}>
-          <Icon
-            data-testid="clear"
-            onClick={this.handleClearValue}
-            component={
-              <Tooltip title={clearTooltip}>
-                <Close3M />
-              </Tooltip>
-            }
-            color={theme.palette['red-600']}
-            size={18}
+  return (
+    <S.SearchInputWrapper ref={wrapperRef}>
+      <S.SearchInputContent
+        className={isInputOpen || !!value || !!filterLabel ? 'is-open search-input-wrapper' : 'search-input-wrapper'}
+        offset={inputOffset}
+        filterLabel={filterLabel}
+        onClick={handleSearchInputContentClick}
+      >
+        <S.LeftSide isOpen={isInputOpen}>
+          {filterLabel && (
+            <S.Filter ref={handleOffsetWithFilter}>
+              {filterLabel.icon && !isResultChosen && <Icon component={filterLabel.icon} />}
+              <span>{filterLabel[filterLookupKey || ''] || filterLabel[textLookupKey || '']}</span>
+            </S.Filter>
+          )}
+        </S.LeftSide>
+        <S.SearchInner hasValue={!!value} alwaysHighlight={alwaysHighlight}>
+          <Input
+            placeholder={placeholder}
+            ref={inputRef}
+            value={value}
+            onChange={handleChangeValue}
+            onKeyDown={onKeyDown}
+            onFocus={() => setIsInputFocused(true)}
+            onBlur={() => setIsInputFocused(false)}
+            autoComplete="off"
+            autoFocus
+            disabled={disableInput}
+            {...inputProps}
           />
-        </S.ClearButton>
-      </S.SearchInputWrapper>
-    );
-  }
-}
+        </S.SearchInner>
+      </S.SearchInputContent>
+      <SearchButton
+        inputOpen={isInputOpen}
+        hidden={!!value || !!filterLabel}
+        inputFocused={isInputFocused}
+        clickable={!alwaysExpanded}
+        onClick={handleSearchButtonClick}
+      />
+      <S.ClearButton hidden={!value && !filterLabel}>
+        <Icon
+          data-testid="clear"
+          onClick={handleClearValue}
+          component={
+            <Tooltip title={clearTooltip}>
+              <Close3M />
+            </Tooltip>
+          }
+          color={theme.palette['red-600']}
+          size={18}
+        />
+      </S.ClearButton>
+    </S.SearchInputWrapper>
+  );
+};
 
-export default onClickOutside(SearchInput);
+export default SearchInput;
