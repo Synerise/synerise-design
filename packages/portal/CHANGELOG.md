@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.226.0](https://github.com/synerise/synerise-design/compare/portal@0.225.2...portal@0.226.0) (2024-12-04)
+
+
+### Features
+
+* **banner:** new component ([881a411](https://github.com/synerise/synerise-design/commit/881a41113241463b940eb9b2a6bde9ab10c143a4))
+
+
+
+
+
 ## [0.225.2](https://github.com/synerise/synerise-design/compare/portal@0.225.1...portal@0.225.2) (2024-11-28)
 
 **Note:** Version bump only for package portal

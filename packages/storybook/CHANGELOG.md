@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.27.0...storybook7@0.28.0) (2024-12-04)
+
+
+### Bug Fixes
+
+* **radio:** add new stories with tooltip ([300ee31](https://github.com/Synerise/synerise-design/commit/300ee31032064feb29116bad6e34c7d66f9538cc))
+
+
+### Features
+
+* **banner:** new component ([881a411](https://github.com/Synerise/synerise-design/commit/881a41113241463b940eb9b2a6bde9ab10c143a4))
+
+
+
+
+
 # [0.27.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.26.1...storybook7@0.27.0) (2024-11-28)
 
 

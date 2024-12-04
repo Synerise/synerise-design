@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-short-cuts@0.1.4...@synerise/ds-short-cuts@0.2.0) (2024-12-04)
+
+
+### Features
+
+* **banner:** new component ([881a411](https://github.com/Synerise/synerise-design/commit/881a41113241463b940eb9b2a6bde9ab10c143a4))
+
+
+
+
+
 ## [0.1.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-short-cuts@0.1.3...@synerise/ds-short-cuts@0.1.4) (2024-11-29)
 
 **Note:** Version bump only for package @synerise/ds-short-cuts

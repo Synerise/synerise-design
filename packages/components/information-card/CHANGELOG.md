@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.7.1...@synerise/ds-information-card@0.7.2) (2024-12-04)
+
+
+### Bug Fixes
+
+* **information-card:** key prop in iterator ([6db2bf0](https://github.com/Synerise/synerise-design/commit/6db2bf04ae3ecc2f15bb4d39875575dc2884a2d9))
+
+
+
+
+
 ## [0.7.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.7.0...@synerise/ds-information-card@0.7.1) (2024-11-29)
 
 **Note:** Version bump only for package @synerise/ds-information-card
