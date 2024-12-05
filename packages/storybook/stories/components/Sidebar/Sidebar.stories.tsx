@@ -11,7 +11,7 @@ import { createSidebarPanels, SIDEBAR_WITH_BUTTON_DATA } from './Sidebar.data';
 
 export default {
   component: Sidebar,
-  title: 'tokens/Sidebar',
+  title: 'Components/Sidebar',
   decorators: [fixedWrapper300],
   argTypes: {
     children: STRING_CONTROL,
