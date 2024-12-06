@@ -1,0 +1,1 @@
+export { PanelsResizer } from './PanelsResizer';
