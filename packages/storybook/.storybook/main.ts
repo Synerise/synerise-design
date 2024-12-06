@@ -60,7 +60,7 @@ const config: StorybookConfig = {
     check: false,
   },
   staticDirs: ['../public'],
-  async webpackFinal(config, { configType }) {
+  async webpackFinal(config) {
     config.module = {
       ...(config.module || {}),
       rules: [
