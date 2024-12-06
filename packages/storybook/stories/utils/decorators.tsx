@@ -40,6 +40,26 @@ export const footerWrapper: Decorator = Story => (
   </div>
 );
 
+export const headerWrapper: Decorator = Story => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      display: 'flex',
+      flexDirection: 'column',
+
+      alignItems: 'stretch',
+      padding: '0 16px',
+      background: '#fff',
+    }}
+  >
+    {Story()}
+  </div>
+);
+
 export const centeredPaddedWrapper: Decorator = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
