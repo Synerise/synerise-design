@@ -46,6 +46,14 @@ export const FactorInput = styled.div<{ withoutTypeSelector: boolean; inputTextT
       width: auto;
     }
 
+    li.ds-menu-item {
+      border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0')};
+    }
+
+    .ant-menu-item {
+      border-radius: ${(props): string => (props.withoutTypeSelector ? '3px' : '0')};
+    }
+
     .ds-autocomplete {
       display: flex;
       > * {

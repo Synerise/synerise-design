@@ -15,6 +15,12 @@ export const Group = styled(InputGroup)<{ withoutTypeSelector: boolean }>`
       > .ds-input-group-item-0 {
         ${(props): string => (props.withoutTypeSelector ? '' : 'flex: 0 0 auto')}
       }
+
+      > .ds-input-group-item-1 {
+        .ant-btn {
+          border-radius: 0 3px 3px 0;
+        }
+      }
     }
 
     &.ds-factors-parameter,
