@@ -40,7 +40,7 @@
     "@synerise/ds-tooltip": "^0.14.52",
     "@synerise/ds-utils": "^0.31.2",
     "copy-to-clipboard": "^3.3.1",
-    "highlight.js": "^11.2.0",
+    "highlight.js": "^10.7.2",
     "react-animate-height": "^2.0.23"
   },
   "peerDependencies": {

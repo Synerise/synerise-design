@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
+// @ts-ignore
 import hljs from 'highlight.js/lib/core';
+
 import * as S from './Highlight.styles';
 import { HighlightProps } from './Highlight.types';
 
-const Highlight: React.FC<HighlightProps> = ({ languages, style, children }) => {
-  const elementRef = React.useRef<HTMLDivElement>(null);
+const Highlight = ({ languages, style, children }: HighlightProps) => {
+  const elementRef = useRef<HTMLDivElement>(null);
 
-  const manageHighlight = React.useCallback(() => {
+  const manageHighlight = useCallback(async () => {
     if (elementRef.current) {
       const elements = elementRef.current.querySelectorAll('pre code');
-      languages.forEach(language => {
-        // eslint-disable-next-line import/no-dynamic-require, global-require, @typescript-eslint/no-var-requires
-        hljs.registerLanguage(language, require(`highlight.js/lib/languages/${language}`));
-      });
+      await Promise.all(
+        languages.map(async language => {
+          const module = await import(`highlight.js/lib/languages/${language}`);
+          return hljs.registerLanguage(language, module.default);
+        })
+      );
+
       elements.forEach(element => {
         hljs.highlightElement(element as HTMLElement);
       });
     }
   }, [languages]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     manageHighlight();
   }, [manageHighlight]);
 

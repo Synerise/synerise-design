@@ -1,8 +1,9 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export interface HighlightProps {
   languages: LanguageHighlight[];
   style?: CSSProperties;
+  children?: ReactNode;
 }
 
 export type LanguageHighlight =
