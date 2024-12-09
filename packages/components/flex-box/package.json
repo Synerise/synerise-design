@@ -1,0 +1,47 @@
+{
+  "name": "@synerise/ds-flex-box",
+  "version": "0.0.1",
+  "description": "FlexBox UI Component for the Synerise Design System",
+  "license": "ISC",
+  "repository": "Synerise/synerise-design",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "LICENSE.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "npm run build:js && npm run build:css && npm run defs",
+    "build:css": "node ../../../scripts/style/less.js",
+    "build:js": "babel --delete-dir-on-start --root-mode upward src --out-dir dist --extensions '.js,.ts,.tsx'",
+    "build:watch": "npm run build:js -- --watch",
+    "defs": "tsc --declaration --outDir dist/ --emitDeclarationOnly",
+    "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watchAll",
+    "types": "tsc --noEmit",
+    "upgrade:ds": "ncu -f \"@synerise/ds-*\" -u"
+  },
+  "sideEffects": [
+    "dist/style/*",
+    "*.less"
+  ],
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@rebass/grid": "^6.1.0"
+  },
+  "peerDependencies": {
+    "@synerise/ds-core": "*",
+    "react": ">=16.9.0 <= 17.0.2",
+    "styled-components": "5.0.1"
+  },
+  "devDependencies": {
+    "@types/rebass__grid": "^6.0.14"
+  }
+}
