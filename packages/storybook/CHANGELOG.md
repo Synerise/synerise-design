@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.29.0...storybook7@0.30.0) (2024-12-09)
+
+
+### Features
+
+* **code-snippet:** add new stories of code-snippet ([c450c37](https://github.com/Synerise/synerise-design/commit/c450c374620acd2b8619c506d868834287f4e769))
+* **drawer:** new stories for drawer ([16d3b92](https://github.com/Synerise/synerise-design/commit/16d3b92142d83043f8607b0c406e755b47bf843f))
+* **menu:** new stories menu ([96a7a70](https://github.com/Synerise/synerise-design/commit/96a7a702c2a461d62ada1feccbe3725b579e352f))
+
+
+
+
+
 # [0.29.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.28.0...storybook7@0.29.0) (2024-12-06)
 
 

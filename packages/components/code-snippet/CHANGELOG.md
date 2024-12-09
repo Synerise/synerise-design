@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@0.3.85...@synerise/ds-code-snippet@0.4.0) (2024-12-09)
+
+
+### Features
+
+* **code-snippet:** add new stories of code-snippet ([c450c37](https://github.com/Synerise/synerise-design/commit/c450c374620acd2b8619c506d868834287f4e769))
+
+
+
+
+
 ## [0.3.85](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@0.3.84...@synerise/ds-code-snippet@0.3.85) (2024-12-04)
 
 **Note:** Version bump only for package @synerise/ds-code-snippet

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.27.6...@synerise/ds-factors@0.27.7) (2024-12-09)
+
+
+### Bug Fixes
+
+* **factors:** fixes border radius of selector ([c5b2276](https://github.com/Synerise/synerise-design/commit/c5b22761a81c19d06901b9fe0d011a9461d1e5e3))
+
+
+
+
+
 ## [0.27.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.27.5...@synerise/ds-factors@0.27.6) (2024-12-04)
 
 **Note:** Version bump only for package @synerise/ds-factors
