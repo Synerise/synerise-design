@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, MouseEventHandler, ReactNode } from 'react';
 
 export type BreadcrumbProps = {
   prefixel?: ReactNode;
@@ -8,6 +8,7 @@ export type BreadcrumbProps = {
   className?: string;
   description?: ReactNode;
   onPathClick?: (path: string & { id?: number | string }) => void;
+  onClick?: MouseEventHandler<HTMLDivElement>;
   compact?: boolean;
   startWithArrow?: boolean;
   gradientOverlap?: boolean;
