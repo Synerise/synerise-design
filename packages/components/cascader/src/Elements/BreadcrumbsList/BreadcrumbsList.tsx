@@ -32,6 +32,7 @@ export const BreadcrumbsList = ({
         key={`${item.id}`}
         description={item.path[item.path.length - 1]}
         highlight={highlight}
+        onClick={() => onBreadCrumbClick && onBreadCrumbClick(item)}
       />
     ),
     listProps: listPropsObject,
