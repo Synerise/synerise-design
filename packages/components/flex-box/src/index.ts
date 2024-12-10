@@ -1,1 +1,1 @@
-export { Flex, Box } from '@rebass/grid';
+export { Flex, Box, BoxProps, FlexProps } from '@rebass/grid';
