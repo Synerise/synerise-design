@@ -14,9 +14,12 @@ yarn add @synerise/ds-flex-box
 
 ## Usage
 ```
-import FlexBox from '@synerise/ds-flex-box'
+import {Flex, Box} from '@synerise/ds-flex-box'
 
-<FlexBox />
+<Flex>
+  <Box />
+</Flex>
+
 
 ```
 
