@@ -37,4 +37,7 @@ export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
 
 export type InputProps = BaseProps & AntdInputProps;
 
+/**
+ * @deprecated MaskedInput component will no longer receive any updates
+ */
 export type MaskedInputProps = BaseProps & AntdMaskedInputProps;
