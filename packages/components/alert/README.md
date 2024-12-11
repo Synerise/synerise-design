@@ -30,6 +30,8 @@ import Alert from '@synerise/ds-alert'
 
 ### Notifications
 
+**DEPRECATED** Notification component will no longer be supported
+
 Notifications API offer three things:
 
   * `<Notification/>` component for styled content,

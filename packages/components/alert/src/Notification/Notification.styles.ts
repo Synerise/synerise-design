@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '@synerise/ds-core';
 
+/**
+ * @deprecated - Notification component will no longer be supported
+ **/
 export const NotificationsContainer = styled.div`
   background-color: ${(props): string => (props?.theme || theme).palette?.['grey-800']};
   color: white;
@@ -12,15 +15,24 @@ export const NotificationsContainer = styled.div`
   min-height: 50px;
 `;
 
+/**
+ * @deprecated - Notification component will no longer be supported
+ **/
 export const Shrink = styled.div`
   flex-grow: 0;
 `;
 
+/**
+ * @deprecated - Notification component will no longer be supported
+ **/
 export const TextLabel = styled.div`
   flex-grow: 1;
   font-size: 13px;
 `;
 
+/**
+ * @deprecated - Notification component will no longer be supported
+ **/
 export const NotificationsWrapper = styled.div`
   & .ant-notification-bottom .ant-notification-hook-holder {
     margin: 0;
