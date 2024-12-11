@@ -1,6 +1,7 @@
 import React, { useMemo, isValidElement, useState, Key } from 'react';
 import { fn } from '@storybook/test';
 import { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Table, { VirtualTableProps, VirtualTable } from '@synerise/ds-table';
 import Button from '@synerise/ds-button';
@@ -25,13 +26,14 @@ type StoryType = VirtualTableProps<RowType> & {
 export default {
   ...TableMeta,
   parameters: {
-    ...TableMeta.parameters
+    ...TableMeta.parameters,
+    actions: { argTypesRegex: 'onSort' },
   },
   title: 'Components/Table/InModal',
   decorators: [fixedWrapper1000],
   render: ({ showIconsInHeader, showHeaderButton, selectionLimit, selectionHideSelectAll, columnsData, dataSource, ...args }) => {
     const [searchValue, setSearchValue] = useState('');
-    const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>(['1','3','4','5']);
     const [starredRowKeys, setStarredRowKeys] = useState<string[]>([]);
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -150,6 +152,7 @@ export default {
 
 export const InModal: Story = {
   args: {
+    selection: {onChange: action('selection.onChange') },
     columnsData: COLUMNS,
     selectionLimit: 5,
     scroll: { y: 500, x: 0 },

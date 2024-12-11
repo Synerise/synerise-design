@@ -1,11 +1,11 @@
-import React from 'react';
+import { ReactText } from 'react';
 import { RowSelection, Locale } from '../Table.types';
 
-export interface Props<T extends { key: React.ReactText }> {
+export type Props<T extends { key: ReactText }> = {
   selection?: RowSelection<T>;
   dataSource: T[];
   dataSourceFull?: T[];
   locale?: Locale;
   rowKey?: Function | string;
   childrenColumnName: string;
-}
+};

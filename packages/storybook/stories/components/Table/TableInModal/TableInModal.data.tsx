@@ -20,8 +20,8 @@ export const DATA_SOURCE: RowType[] = [...new Array(5000)].map((i, k) => {
   const name = k === 1 ? faker.lorem.sentences(8) : faker.person.fullName();
   return {
     key: String(k + 1),
-    unavailable: Math.random() < 0.1,
-    disabled: Math.random() < 0.3,
+    unavailable: (k+1) % 6 === 0,
+    disabled: k % 3 === 0,
     name: (
       <Text size="medium" ellipsis={{ tooltip: name }}>
         {name}

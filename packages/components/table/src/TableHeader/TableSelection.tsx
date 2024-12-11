@@ -9,9 +9,10 @@ import Icon, { OptionVerticalM } from '@synerise/ds-icon';
 import * as S from '../Table.styles';
 import type { Selection, SelectionItem } from '../Table.types';
 import { SELECTION_ALL, SELECTION_INVERT } from '../Table';
-import type { Props } from './TableSelection.types';
-import { useRowKey } from '../hooks/useRowKey';
+import { Props } from './TableSelection.types';
 import { isRecordSelectable } from '../utils';
+import { useRowKey } from '../hooks/useRowKey';
+import { useBulkSelectionCount } from '../hooks/useBulkSelection';
 
 const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   dataSource,
@@ -67,13 +68,18 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
 
             ...rowChildren.reduce((acc: ReactText[], child: T) => {
               const key = getRowKey(child) as ReactText;
-              return key && isRecordSelectable(child, checkRowSelectionStatus) ? [...acc, key] : acc;
+              return key && (isRecordSelectable(child, checkRowSelectionStatus) || selectedRowKeys.includes(key))
+                ? [...acc, key]
+                : acc;
             }, []),
           ];
         }
         if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
           const key = getRowKey(record);
-          keys = key !== undefined && isRecordSelectable(record, checkRowSelectionStatus) ? [...keys, key] : [...keys];
+          keys =
+            key !== undefined && (isRecordSelectable(record, checkRowSelectionStatus) || selectedRowKeys.includes(key))
+              ? [...keys, key]
+              : [...keys];
         }
       });
       const uniqueKeys = Array.from(new Set(keys));
@@ -84,54 +90,51 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
 
   const unselectAll = useCallback(() => {
     if (selection) {
-      if (isShowingSubset) {
-        const { selectedRowKeys } = selection;
-        let keysToUnselect: ReactText[] = [];
+      const { selectedRowKeys, checkRowSelectionStatus } = selection;
+      let keysToUnselect: ReactText[] = [];
 
-        dataSource.forEach((record: T) => {
-          const rowChildren = record[childrenColumnName];
+      dataSource.forEach((record: T) => {
+        const rowChildren = record[childrenColumnName];
 
-          if (Array.isArray(rowChildren)) {
-            keysToUnselect = [
-              ...keysToUnselect,
-              ...rowChildren.reduce((acc: ReactText[], child: T) => {
-                const key = getRowKey(child) as ReactText;
-                return key ? [...acc, key] : acc;
-              }, []),
-            ];
-          }
-          if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
-            const key = getRowKey(record);
-            keysToUnselect = key !== undefined ? [...keysToUnselect, key] : [...keysToUnselect];
-          }
-        });
-        const keysLeft = selectedRowKeys.filter(key => !keysToUnselect.includes(key));
-        const rows = getRowsForKeys(keysLeft);
-        selection.onChange(keysLeft, rows);
-      } else {
-        selection.onChange([], []);
-      }
+        if (Array.isArray(rowChildren)) {
+          keysToUnselect = [
+            ...keysToUnselect,
+            ...rowChildren.reduce((acc: ReactText[], child: T) => {
+              const key = getRowKey(child) as ReactText;
+              return key && isRecordSelectable(child, checkRowSelectionStatus) ? [...acc, key] : acc;
+            }, []),
+          ];
+        }
+        if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
+          const key = getRowKey(record);
+          keysToUnselect =
+            key !== undefined && isRecordSelectable(record, checkRowSelectionStatus)
+              ? [...keysToUnselect, key]
+              : [...keysToUnselect];
+        }
+      });
+      const keysLeft = selectedRowKeys.filter(key => !keysToUnselect.includes(key));
+      const rows = getRowsForKeys(keysLeft);
+      selection.onChange(keysLeft, rows);
     }
-  }, [dataSource, getRowKey, getRowsForKeys, isShowingSubset, selection, childrenColumnName]);
+  }, [dataSource, getRowKey, getRowsForKeys, selection, childrenColumnName]);
 
   const getSelectableChildren = useCallback(
     (children: T[] | undefined) => {
-      const selectionStatusValidator =
-        selection && 'checkRowSelectionStatus' in selection ? selection.checkRowSelectionStatus : undefined;
+      const selectionStatusValidator = selection?.checkRowSelectionStatus || undefined;
       return children
         ? children.filter(
             (child: T) => isRecordSelectable(child, selectionStatusValidator) && getRowKey(child) !== undefined
           )
         : [];
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [getRowKey, selection?.checkRowSelectionStatus]
   );
 
   const selectInvert = useCallback(() => {
     if (dataSource && selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keys: ReactText[] = isShowingSubset ? [...selectedRowKeys] : [];
+      let keys: ReactText[] = [...selectedRowKeys];
       dataSource.forEach((record: T): void => {
         const rowChildren = record[childrenColumnName];
 
@@ -141,7 +144,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
           selectableChildren.forEach((child: T) => {
             const key = getRowKey(child) as ReactText;
             if (selectedRowKeys.includes(key)) {
-              if (isShowingSubset) keys.splice(keys.indexOf(key), 1);
+              keys.splice(keys.indexOf(key), 1);
             } else {
               keys = [...keys, key];
             }
@@ -149,9 +152,11 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
         }
         if (!selectableChildren || selection.independentSelectionExpandedRows) {
           const key = getRowKey(record) as ReactText;
+          const isSelectable = isRecordSelectable(record, checkRowSelectionStatus);
+          if (!isSelectable) return;
           if (selectedRowKeys.includes(key)) {
-            if (isShowingSubset) keys.splice(keys.indexOf(key), 1);
-          } else if (isRecordSelectable(record, checkRowSelectionStatus)) {
+            keys.splice(keys.indexOf(key), 1);
+          } else {
             keys = [...keys, key];
           }
         }
@@ -159,51 +164,17 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
       const rows = getRowsForKeys(keys);
       selection.onChange(keys, rows);
     }
-  }, [childrenColumnName, dataSource, selection, isShowingSubset, getRowsForKeys, getSelectableChildren, getRowKey]);
+  }, [childrenColumnName, dataSource, selection, getRowsForKeys, getSelectableChildren, getRowKey]);
 
-  const isEmpty = useMemo(() => {
-    return dataSource.length === 0;
-  }, [dataSource]);
+  const { allRecordsCount, selectableRecordsCount, selectableAndSelectedRecordsCount, selectedRecordsCount } =
+    useBulkSelectionCount({ dataSource, selection, childrenColumnName, rowKey });
 
-  const allSelectableRecordsCount = useMemo(() => {
-    if (isEmpty || !selection) return 0;
-    const { independentSelectionExpandedRows, checkRowSelectionStatus } = selection;
-    return dataSource.reduce((count: number, record: T) => {
-      const isSelectable = +isRecordSelectable(record, checkRowSelectionStatus);
-      const rowChildren = record[childrenColumnName];
-      if (independentSelectionExpandedRows) {
-        return Array.isArray(rowChildren)
-          ? count + getSelectableChildren(rowChildren).length + isSelectable
-          : count + isSelectable;
-      }
-      return Array.isArray(rowChildren) ? count + getSelectableChildren(rowChildren).length : count + isSelectable;
-    }, 0);
-  }, [childrenColumnName, dataSource, getSelectableChildren, isEmpty, selection]);
+  const isIndeterminate = selectedRecordsCount > 0 && allRecordsCount !== selectableRecordsCount;
+  const disabledBulkSelection = allRecordsCount === 0 || selectableRecordsCount === 0;
+  const isChecked = !disabledBulkSelection && allRecordsCount === selectableRecordsCount;
+  const isAllSelected = selectableRecordsCount === selectableAndSelectedRecordsCount;
 
-  const allSelected = useMemo(() => {
-    if (isEmpty || !selection) return false;
-    const { selectedRowKeys } = selection;
-    const selectedKeysInDataSourceCount = isShowingSubset
-      ? dataSource.reduce((count: number, record: T) => {
-          const rowChildren = record[childrenColumnName];
-          if (Array.isArray(rowChildren)) {
-            return rowChildren.reduce((childCount: number, child: T) => {
-              const key = getRowKey(child) as Key;
-              return selectedRowKeys.includes(key) ? childCount + 1 : childCount;
-            }, 0);
-          }
-          if (!Array.isArray(rowChildren) || selection.independentSelectionExpandedRows) {
-            const key = getRowKey(record) as Key;
-            return selectedRowKeys.includes(key) ? count + 1 : count;
-          }
-          return count;
-        }, 0)
-      : selectedRowKeys.length;
-
-    return allSelectableRecordsCount === selectedKeysInDataSourceCount;
-  }, [isEmpty, selection, isShowingSubset, dataSource, allSelectableRecordsCount, childrenColumnName, getRowKey]);
-
-  const selectionTooltipTitle = !allSelected ? locale?.selectAllTooltip : locale?.unselectAll;
+  const selectionTooltipTitle = !isAllSelected ? locale?.selectAllTooltip : locale?.unselectAll;
 
   const menuDataSource = useMemo(() => {
     return selection?.selections
@@ -211,7 +182,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
       .map((selectionMenuElement: Selection | SelectionItem): MenuItemProps => {
         switch (selectionMenuElement) {
           case SELECTION_ALL: {
-            return !allSelected
+            return !isAllSelected
               ? { onClick: selectAll, text: locale?.selectAll }
               : { onClick: unselectAll, text: locale?.unselectAll };
           }
@@ -225,7 +196,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
         }
       });
   }, [
-    allSelected,
+    isAllSelected,
     locale?.selectAll,
     locale?.selectInvert,
     locale?.unselectAll,
@@ -239,22 +210,22 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
     <S.Selection data-popup-container>
       <Tooltip title={selectionTooltipTitle}>
         <Button.Checkbox
-          disabled={isEmpty || allSelectableRecordsCount === 0}
+          disabled={disabledBulkSelection}
           data-testid="ds-table-batch-selection-button"
-          checked={allSelected && allSelectableRecordsCount > 0}
-          onChange={(isChecked): void => {
-            if (isChecked) {
+          checked={isChecked}
+          onChange={() => {
+            if (!isAllSelected) {
               selectAll();
             } else {
               unselectAll();
             }
           }}
-          indeterminate={selection?.selectedRowKeys.length > 0 && !allSelected}
+          indeterminate={isIndeterminate}
         />
       </Tooltip>
       {selection?.selections && (
         <Dropdown
-          disabled={isEmpty || allSelectableRecordsCount === 0}
+          disabled={disabledBulkSelection}
           trigger={['click']}
           overlay={<S.SelectionMenu dataSource={menuDataSource} />}
         >
