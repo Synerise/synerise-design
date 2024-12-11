@@ -116,6 +116,7 @@ export const ConditionStep = ({
           errorText={step.addConditionErrorText}
           texts={text}
           stepId={step.id}
+          data-testid="ds-add-condition-button"
           addCondition={onAddCondition}
           conditionsNumber={step.conditions.length}
           isDisabled={
@@ -220,7 +221,7 @@ export const ConditionStep = ({
 
   const contextOrActionErrorText = useMemo(() => {
     return step.context?.errorText || (showActionAttribute && step.actionAttribute?.errorText);
-  }, [showActionAttribute, step.actionAttribute?.errorText, step.context?.errorText])
+  }, [showActionAttribute, step.actionAttribute?.errorText, step.context?.errorText]);
 
   return (
     <S.Step
