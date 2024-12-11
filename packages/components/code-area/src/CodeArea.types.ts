@@ -1,6 +1,7 @@
-import type { CSSProperties, ReactNode } from 'react';
-import { MonacoEditorProps } from 'react-monaco-editor';
-import { TooltipProps } from 'antd/lib/tooltip';
+import type monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import type { EditorProps } from '@monaco-editor/react';
+import type { ReactNode, CSSProperties } from 'react';
+import type { TooltipProps } from 'antd/lib/tooltip';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type CodeAreaSyntax = 'json' | 'html' | 'css' | 'typescript' | 'javascript' | string;
@@ -16,9 +17,8 @@ export type CodeAreaTexts = {
   fullscreenTitle: ReactNode;
 };
 
-export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<MonacoEditorProps, 'language'> & {
+export type CodeAreaCommonProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<EditorProps, 'language'> & {
   label?: ReactNode;
-  fullscreenLabel?: ReactNode;
   description?: ReactNode;
   texts?: Partial<CodeAreaTexts>;
   counter?: {
@@ -29,20 +29,39 @@ export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = 
   syntaxOptions?: CodeAreaSyntaxOption<SyntaxName>[];
   currentSyntax: SyntaxName;
   allowFullscreen?: boolean;
+  isFullscreen: boolean;
+  toggleFullscreen: () => void;
+  value?: string;
+  defaultValue?: string;
   readOnly?: boolean;
   tooltip?: ReactNode;
-  getPopupContainer?: (node: HTMLElement) => HTMLElement;
   tooltipProps?: TooltipExtendedProps & TooltipProps;
   style?: CSSProperties;
   zIndex?: string | number;
   className?: string;
   renderFooterContent?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
-  renderAdditionalDescription?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
-  onFullscreenChange?: (isFullscreen: boolean) => void;
   onSyntaxChange?: (newSyntax: SyntaxName) => void;
 };
 
-export type CodeAreaEditorProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = CodeAreaProps<SyntaxName> & {
-  isFullscreen: boolean;
-  toggleFullscreen: () => void;
+export type CodeAreaEditorProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> =
+  CodeAreaCommonProps<SyntaxName> & {
+    fullscreenLabel?: ReactNode;
+    renderAdditionalDescription?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
+  };
+
+export type CodeAreaProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> = Omit<
+  CodeAreaEditorProps<SyntaxName>,
+  'toggleFullscreen' | 'isFullscreen'
+> & {
+  onFullscreenChange?: (isFullscreen: boolean) => void;
+  getPopupContainer?: (node: HTMLElement) => HTMLElement;
 };
+
+export type CodeAreaEditorRawProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> =
+  CodeAreaCommonProps<SyntaxName> & {
+    isValid: boolean;
+    isSyntaxSelectVisible?: boolean;
+    onDidChangeMarkers?: (markers: monaco.editor.IMarker[]) => void;
+    counterLimit?: number;
+    count?: number;
+  };

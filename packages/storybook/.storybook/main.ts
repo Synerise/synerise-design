@@ -122,6 +122,7 @@ const config: StorybookConfig = {
         {
           test: /\.js$/,
           include: MONACO_DIR,
+          type: 'javascript/auto',
           use: [
             {
               loader: 'babel-loader',
@@ -139,7 +140,7 @@ const config: StorybookConfig = {
         },
       ],
     };
-    const monacoPlugin = new MonacoWebpackPlugin({ languages: ['typescript', 'json', 'javascript', 'css', 'html'] });
+    const monacoPlugin = new MonacoWebpackPlugin({ languages: ['typescript', 'json', 'javascript', 'css', 'html', 'python'] });
     config.plugins = [...(config.plugins || []), monacoPlugin];
 
     config.resolve = {

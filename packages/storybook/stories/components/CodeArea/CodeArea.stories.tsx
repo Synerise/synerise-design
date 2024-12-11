@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import CodeArea, { CodeAreaProps, CodeAreaSyntax } from '@synerise/ds-code-area';
@@ -34,7 +34,7 @@ export default {
       args.onChange?.(updatedContent, event);
       setContent(updatedContent);
     };
-    const handeSyntaxChange = (newSyntax: CodeAreaSyntax) => {
+    const handleSyntaxChange = (newSyntax: CodeAreaSyntax) => {
       args.onSyntaxChange?.(newSyntax);
       setSyntax(newSyntax);
     };
@@ -44,7 +44,7 @@ export default {
         value={content}
         onChange={handleChange}
         currentSyntax={syntax}
-        onSyntaxChange={handeSyntaxChange}
+        onSyntaxChange={handleSyntaxChange}
       />
     );
   },
