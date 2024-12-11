@@ -258,8 +258,15 @@ const createInputComponent =
   };
 
 export const Input = createInputComponent<AntdInput, AntdInputProps>(S.AntdInput);
-export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
 
+/**
+ * @deprecated MaskedInput component will no longer receive any updates
+ */
+
+export const MaskedInput = createInputComponent<AntdMaskedInput, AntdMaskedInputProps>(S.AntdMaskedInput);
+/**
+ * @deprecated RawMaskedInput component will no longer receive any updates
+ */
 export const RawMaskedInput = S.AntdMaskedInput;
 
 export const RawInput = (props: DSInputProps) => {
