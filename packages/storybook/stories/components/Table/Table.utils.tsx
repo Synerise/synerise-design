@@ -94,20 +94,8 @@ export const TableMeta = {
     layout: 'padded',
   },
   argTypes: {
-    onRowClick: {
-      action: 'onRowClick',
-    },
-    onSearch: {
-      action: 'onSearch',
-    },
-    onRow: {
-      action: 'onRow',
-    },
     onSort: {
       action: 'onSort',
-    },
-    onHeaderRow: {
-      action: 'onHeaderRow',
     },
     showHeaderButton: {
       ...STORY_ARG_TYPE,
