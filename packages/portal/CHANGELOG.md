@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.227.0](https://github.com/synerise/synerise-design/compare/portal@0.226.0...portal@0.227.0) (2024-12-11)
+
+
+### Features
+
+* **code-area:** switch monaco library ([c0d4ef6](https://github.com/synerise/synerise-design/commit/c0d4ef68e26e791e99b4086b9847cbb524505af1))
+
+
+
+
+
 # [0.226.0](https://github.com/synerise/synerise-design/compare/portal@0.225.2...portal@0.226.0) (2024-12-04)
 
 

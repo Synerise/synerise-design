@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.25.7...@synerise/ds-condition@0.26.0) (2024-12-11)
+
+
+### Features
+
+* **condition:** Add missing data-testid to Condition component ([4cd6638](https://github.com/Synerise/synerise-design/commit/4cd6638eaecf9e85fd2288a974c3216ae6fafa15))
+
+
+
+
+
 ## [0.25.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.25.6...@synerise/ds-condition@0.25.7) (2024-12-09)
 
 **Note:** Version bump only for package @synerise/ds-condition

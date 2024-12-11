@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.3.4...@synerise/ds-code-area@0.4.0) (2024-12-11)
+
+
+### Features
+
+* **code-area:** switch monaco library ([c0d4ef6](https://github.com/Synerise/synerise-design/commit/c0d4ef68e26e791e99b4086b9847cbb524505af1))
+
+
+
+
+
 ## [0.3.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.3.3...@synerise/ds-code-area@0.3.4) (2024-12-04)
 
 **Note:** Version bump only for package @synerise/ds-code-area

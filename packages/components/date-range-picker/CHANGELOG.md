@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.6...@synerise/ds-date-range-picker@0.31.7) (2024-12-11)
+
+
+### Bug Fixes
+
+* **date-range-picker:** monthly filter dropdowns ([9933d1d](https://github.com/Synerise/synerise-design/commit/9933d1d678d7dec4f4c0bf78b8fa6d97c44a7c3c))
+
+
+
+
+
 ## [0.31.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-date-range-picker@0.31.5...@synerise/ds-date-range-picker@0.31.6) (2024-12-04)
 
 **Note:** Version bump only for package @synerise/ds-date-range-picker

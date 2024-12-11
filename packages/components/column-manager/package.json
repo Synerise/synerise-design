@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-column-manager",
-  "version": "0.13.6",
+  "version": "0.13.7",
   "description": "ColumnManager UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -31,7 +31,7 @@
   "sideEffects": false,
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-alert": "^0.8.41",
+    "@synerise/ds-alert": "^0.8.42",
     "@synerise/ds-button": "^0.22.0",
     "@synerise/ds-drawer": "^0.6.31",
     "@synerise/ds-dropdown": "^0.18.27",

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.30.0...storybook7@0.31.0) (2024-12-11)
+
+
+### Bug Fixes
+
+* **table:** bulk selection logic ([a796815](https://github.com/Synerise/synerise-design/commit/a7968157686afb989e9da096e8817913a7f27130))
+
+
+### Features
+
+* **code-area:** switch monaco library ([c0d4ef6](https://github.com/Synerise/synerise-design/commit/c0d4ef68e26e791e99b4086b9847cbb524505af1))
+
+
+
+
+
 # [0.30.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.29.0...storybook7@0.30.0) (2024-12-09)
 
 
