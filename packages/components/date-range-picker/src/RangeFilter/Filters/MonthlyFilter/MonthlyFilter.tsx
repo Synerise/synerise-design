@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent, ReactNode, ReactText } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 import { Tag, TagShape } from '@synerise/ds-tags';
@@ -20,7 +20,7 @@ import TimeWindow from '../../Shared/TimeWindow/TimeWindow';
 import { TimeWindowProps } from '../../Shared/TimeWindow/TimeWindow.types';
 import { getDefaultTexts } from '../../../utils';
 
-class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilterState> {
+class MonthlyFilter extends PureComponent<MonthlyFilterProps, MonthlyFilterState> {
   static defaultProps = {
     maxEntries: 4,
   };
@@ -31,17 +31,17 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     },
   };
 
-  componentDidMount(): void {
+  componentDidMount() {
     const { value } = this.props;
     value.length && this.handleCollapse(value[0].id);
   }
 
-  setData = (definition: Month[]): void => {
+  setData = (definition: Month[]) => {
     const { onChange } = this.props;
     return onChange(definition);
   };
 
-  handleAddRow = (): void => {
+  handleAddRow = () => {
     const id = uuid();
     const { value, countedFromPeriods, daysOfPeriods } = this.props;
     const defaultPeriod = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS)[0].value;
@@ -50,14 +50,14 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     this.handleCollapse(id);
   };
 
-  handleRemoveRow = (index: React.ReactText): void => {
+  handleRemoveRow = (index: ReactText) => {
     const { value } = this.props;
     const result = value.filter((item, key) => key !== index);
     this.handleRemoveRowCollapse(value[index].id);
     this.setData([...result]);
   };
 
-  handleRemoveRowCollapse = (deletedId: string): void => {
+  handleRemoveRowCollapse = (deletedId: string) => {
     const { value } = this.props;
     const { visible } = this.state;
     const itemKey = value.findIndex(item => item.id === deletedId);
@@ -66,7 +66,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     visible[deletedId] && (next || prev) && this.handleCollapse(next ? next.id : prev.id);
   };
 
-  handleTypeChange = (val: string, index: number): void => {
+  handleTypeChange = (val: string, index: number) => {
     const { value } = this.props;
 
     value[index] = {
@@ -77,7 +77,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     this.setData(value);
   };
 
-  handlePeriodTypeChange = (val: string, index: number): void => {
+  handlePeriodTypeChange = (val: string, index: number) => {
     const { value } = this.props;
     const data = [...value];
     data[index] = {
@@ -87,7 +87,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     this.setData(data);
   };
 
-  handleDefinitionChange = (definition: Month, index: number): void => {
+  handleDefinitionChange = (definition: Month, index: number) => {
     const { value } = this.props;
     const data = [...value];
     const currentDefinition: Month = data[index];
@@ -151,7 +151,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     return settings[item.period] as Partial<TimeWindowProps>;
   };
 
-  handleCollapse = (id: React.ReactText): void => {
+  handleCollapse = (id: ReactText) => {
     const { visible } = this.state;
     const updatedVisible = {};
     const visibleKeys = visible ? Object.keys(visible) : [];
@@ -165,7 +165,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     });
   };
 
-  renderDaysOfField = (item: Month, key: number): React.ReactNode => {
+  renderDaysOfField = (item: Month, key: number) => {
     const { intl, daysOfPeriods, disabled } = this.props;
     if (daysOfPeriods?.length === 1) {
       return (
@@ -177,7 +177,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     const dataSource = (daysOfPeriods || DEFAULT_DAYS_OF_PERIODS).map(period => ({
       checked: item?.period === period.value,
       text: intl.formatMessage({ id: period.translationKey as string }),
-      onSelect: (): void => {
+      onClick: () => {
         this.handleTypeChange(period.value as string, key);
       },
     }));
@@ -209,7 +209,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     );
   };
 
-  renderCountedFromField = (item: Month, key: number): React.ReactNode => {
+  renderCountedFromField = (item: Month, key: number): ReactNode => {
     const { intl, countedFromPeriods, disabled } = this.props;
 
     if (countedFromPeriods?.length === 1) {
@@ -222,7 +222,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
     const dataSource = (countedFromPeriods || DEFAULT_COUNTED_FROM).map(i => ({
       checked: item?.periodType === i.value,
       text: intl.formatMessage({ id: i.translationKey as string }),
-      onSelect: (): void => {
+      onClick: () => {
         this.handlePeriodTypeChange(i.value as string, key);
       },
     }));
@@ -289,7 +289,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
             hideExpander={false}
             onExpand={this.handleCollapse}
             expanded={visible[item.id]}
-            onRemove={(): void => this.handleRemoveRow(key)}
+            onRemove={() => this.handleRemoveRow(key)}
             item={{
               tag: (
                 <Tag
@@ -336,7 +336,7 @@ class MonthlyFilter extends React.PureComponent<MonthlyFilterProps, MonthlyFilte
                     // @ts-expect-error: FIXME: Type '{ [day: number]: DenormalizedFilter; }' is not assignable to type 'Days'.
                     days={item.definition}
                     // @ts-expect-error: FIXME: Type '(definition: Month) => void' is not assignable to type '(days: Days) => void'.
-                    onChange={(definition: Month): void => this.handleDefinitionChange(definition, key)}
+                    onChange={(definition: Month) => this.handleDefinitionChange(definition, key)}
                     onRangeClear={onRangeClear}
                     onRangeCopy={onRangeCopy}
                     onRangePaste={onRangePaste}
