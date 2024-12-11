@@ -11,8 +11,8 @@ import Icon, { UserAddM, CloseM } from '@synerise/ds-icon';
 import * as S from './Notification.styles';
 
 /**
- * Typings for using better autocompletion for defining an argument for `notificationOpen`'s message property.
- */
+ * @deprecated - Notification component will no longer be supported
+ **/
 export type NotificationProps = {
   /** content of the notification */
   children?: JSX.Element | React.ReactNode | React.ReactNode[];
@@ -33,9 +33,8 @@ type ApiHook = NotificationApiHook[0];
 type ContextHolder = NotificationApiHook[1];
 
 /**
- * Component with the content of the notification.
- * Note that in order to show notification you need to use `notificationOpen`
- */
+ * @deprecated - Notification component will no longer be supported
+ **/
 export function Notification({
   buttonText,
   children = undefined,
@@ -67,12 +66,7 @@ export function Notification({
 }
 
 /**
- * creates a div, mounts it in getContainer and returns reference to it.
- * This is a helper function for creating a getContainer-compatible element,
- * which later should be passed to getContainer option in `antd-notification`'s api
- *
- * @param @contextHolder notification's hook api context
- * @param @getContainer where to mount styled wrapper; can be a ref=React.useRef, <div ref={ref}/>
+ * @deprecated - Notification component will no longer be supported
  **/
 export function mountInstance(
   contextHolder?: ContextHolder,
@@ -93,27 +87,8 @@ export function mountInstance(
 }
 
 /**
- * Function for showing new notifications.
- * It requires proper context to be injected (see `notificationApi.useNotification`)
- * and `message` prop in its first argument.
- * Below you will find an example usage.
- * Please remember that it is on you to provide contextHolder in the right place.
- * ```
- *   import { notificationApi, Notification, notificationOpen } from '@synerise/ds-alert';
- *   const [api, contextHolder] = notificationApi.useNotification();
- *
- *   function App() {
- *     return (<div id="app">
- *       {contextHolder}
- *       <button onClick={() => notificationOpen({
- *         message: <Notification>You have been notified.</Notification>
- *       })}>
- *         Show notification
- *       </button>);
- *
- *    ReactDOM.render(<App/>, document.querySelector('#app'));
- * ```
- */
+ * @deprecated - Notification component will no longer be supported
+ **/
 export async function notificationOpen(
   {
     type = 'info',

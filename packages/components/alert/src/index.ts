@@ -16,9 +16,8 @@ export const AlertStyles = {
 };
 
 /**
- * notificationApi is required for properly handling injecting ContextApi for styling and locales.
- * It's a proxy to `antd`'s `notification` module.
- */
+ * @deprecated - Notification component will no longer be supported
+ **/
 export const notificationsApi = notification;
 
 export type { NotificationProps } from './Notification/Notification';
@@ -46,5 +45,8 @@ export type { AlertSize } from './AlertInfo/AlertInfo.types';
 
 // @deprecated use AlertStyles.Alert instead
 export { AlertMessage } from './Alert.styles';
-// @deprecated use AlertStyles.Notification instead
+
+/**
+ * @deprecated - Notification component will no longer be supported
+ **/
 export * as S from './Notification/Notification.styles';
