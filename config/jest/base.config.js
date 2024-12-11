@@ -13,7 +13,7 @@ module.exports = {
       '<rootDir>/config/jest/__mocks__/fileMock.js',
     '\\.svg$': '<rootDir>/config/jest/__mocks__/svgrMock.js',
     '^rc-virtual-list$': '<rootDir>/config/jest/__mocks__/rc-virtual-list.js',
-    "react-monaco-editor": "<rootDir>/config/jest/__mocks__/monacoMock.jsx"
+    "@monaco-editor/react": "<rootDir>/config/jest/__mocks__/monacoMock.jsx"
   },
   rootDir: path.resolve(__dirname, '..', '..'),
   setupFilesAfterEnv: ['<rootDir>/config/jest/setup/index.js'],

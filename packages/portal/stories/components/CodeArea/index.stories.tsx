@@ -78,7 +78,7 @@ const stories = {
         <CodeArea
           value={store.state.content}
           defaultValue="// Enter code"
-          onChange={ (updatedContent: string) => { action('onChange')(updatedContent); handleChange(updatedContent)} }
+          onChange={ (updatedContent) => { action('onChange')(updatedContent); handleChange(updatedContent)} }
           label={text('Label', 'Label')}
           tooltip={tooltip}
           readOnly={boolean('readOnly', false)}

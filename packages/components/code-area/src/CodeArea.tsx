@@ -11,13 +11,15 @@ const CodeArea = ({
   onFullscreenChange,
   ...codeAreaProps
 }: CodeAreaProps) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
+    setIsFullscreen(prevState => !prevState);
     onFullscreenChange && onFullscreenChange(isFullscreen);
   };
+
   return (
     <div ref={wrapperRef}>
       <CodeAreaEditor {...codeAreaProps} toggleFullscreen={toggleFullscreen} isFullscreen={false} />
@@ -30,4 +32,5 @@ const CodeArea = ({
     </div>
   );
 };
+
 export default CodeArea;

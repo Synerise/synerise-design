@@ -1,10 +1,14 @@
-import type { monaco } from 'react-monaco-editor';
 import { theme } from '@synerise/ds-core';
+import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
 
-export const MONACO_DEFAULT_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
+export const MONACO_DEFAULT_OPTIONS: editor.IStandaloneEditorConstructionOptions = {
   minimap: { enabled: false },
   automaticLayout: true,
   renderLineHighlight: 'none',
+  quickSuggestions: {
+    other: true,
+    strings: true,
+  },
   scrollbar: {
     verticalScrollbarSize: 11,
     verticalSliderSize: 3,
@@ -17,7 +21,7 @@ export const TRIGGER_SOURCE = 'ds-code-area';
 
 const TRANSPARENT = '#00000000';
 export const DS_MONACO_THEME_NAME = 'DSTheme';
-export const DS_MONACO_THEME: monaco.editor.IStandaloneThemeData = {
+export const DS_MONACO_THEME: editor.IStandaloneThemeData = {
   base: 'vs',
   inherit: true,
   rules: [],

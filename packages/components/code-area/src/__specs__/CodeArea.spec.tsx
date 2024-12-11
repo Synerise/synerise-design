@@ -34,13 +34,13 @@ const TEST_IDS = {
 
 describe('CodeArea', () => {
   it('should render CodeArea with label', () => {
-    renderWithProvider(<CodeArea currentSyntax={SYNTAX} label={LABEL} />);
+    renderWithProvider(<CodeArea currentSyntax={SYNTAX} label={LABEL} syntaxOptions={SYNTAX_OPTIONS} />);
     expect(screen.getByText(LABEL)).toBeInTheDocument();
     expect(screen.getByText(SYNTAX)).toBeInTheDocument();
   });
 
   it('should render CodeArea with custom footer content', () => {
-    renderWithProvider(<CodeArea currentSyntax={SYNTAX} renderFooterContent={customContent} />);
+    renderWithProvider(<CodeArea currentSyntax={SYNTAX} renderFooterContent={customContent} syntaxOptions={SYNTAX_OPTIONS} />);
     const bottomBar = screen.getByTestId(TEST_IDS.bottomBar);
     expect(getByText(bottomBar, CUSTOM_CONTENT)).toBeInTheDocument();
   });
@@ -103,6 +103,4 @@ describe('CodeArea', () => {
 
     expect(onFullscreenChange).toHaveBeenCalledTimes(1);
   });
-
-  
 });
