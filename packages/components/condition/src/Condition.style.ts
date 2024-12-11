@@ -256,7 +256,7 @@ export const Step = styled.div<{
 
 export const Subject = styled.div``;
 
-export const RemoveIconWrapper = styled.span`
+export const RemoveIconWrapper = styled.span.attrs({ 'data-testid': 'ds-conditions-remove-row' })`
   visibility: hidden;
   pointer-events: none;
   opacity: 0;

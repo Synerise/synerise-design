@@ -180,8 +180,8 @@ describe('Condition component', () => {
   });
 
   test('Should not render remove condition row button for single condition row', () => {
-    const { container } = renderWithProvider(RENDER_CONDITIONS());
-    const removeButton = container.querySelector('.ds-conditions-remove-row');
+    const { queryByTestId } = renderWithProvider(RENDER_CONDITIONS());
+    const removeButton = queryByTestId('ds-conditions-remove-row');
 
     expect(removeButton).toBeFalsy();
   });
@@ -199,8 +199,8 @@ describe('Condition component', () => {
 
   test('Should call removeCondition callback', () => {
     const removeCondition = jest.fn();
-    const { container } = renderWithProvider(RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }));
-    const removeButton = container.querySelector('.ds-conditions-remove-row');
+    const { getAllByTestId } = renderWithProvider(RENDER_CONDITIONS({ removeCondition, steps: getSteps(1, 2) }));
+    const removeButton = getAllByTestId('ds-conditions-remove-row')[0];
 
     removeButton && fireEvent.click(removeButton);
 
