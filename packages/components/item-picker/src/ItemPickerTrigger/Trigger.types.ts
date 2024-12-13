@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { ListItemProps } from '@synerise/ds-list-item';
-import { ItemPickerSize } from '../ItemPicker.types';
+import type { ReactNode } from 'react';
+import type { ListItemProps } from '@synerise/ds-list-item';
+import type { ItemPickerSize, ItemPickerProps } from '../ItemPicker.types';
 
 export type ItemPickerTriggerProps = {
   openDropdown: () => void;
@@ -20,7 +20,7 @@ export type ItemPickerTriggerProps = {
   yesText: string;
   noText: string;
   withClearConfirmation: boolean;
-};
+} & Pick<ItemPickerProps, 'informationCardTooltipProps'>;
 
 // @deprecated
 export type Props = ItemPickerTriggerProps;

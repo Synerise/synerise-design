@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { IntlShape } from 'react-intl';
 import type { SearchBarProps } from '@synerise/ds-search-bar/dist/SearchBar.types';
 import type { DropdownProps } from '@synerise/ds-dropdown';
+import type { InformationCardTooltipProps } from '@synerise/ds-information-card';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import type { ScrollbarAdditionalProps } from '@synerise/ds-scrollbar';
 
@@ -19,7 +20,7 @@ export type ItemPickerProps = {
   closeOnBottomAction?: boolean;
   description?: ReactNode;
   disabled?: boolean;
-  dropdownBottomAction?: React.ReactNode;
+  dropdownBottomAction?: ReactNode;
   dropdownProps?: Partial<DropdownProps>;
   dropdownRowHeight?: number;
   dropdownVisibleRows?: number;
@@ -30,12 +31,13 @@ export type ItemPickerProps = {
   onFocus?: () => void;
   noResults?: string;
   noText?: string;
-  placeholderIcon?: React.ReactNode;
+  placeholderIcon?: ReactNode;
   searchPlaceholder?: string;
   searchBarProps?: Partial<SearchBarProps>;
   selectedItem?: ListItemProps | undefined;
   size?: ItemPickerSize;
   tooltip?: ReactNode;
+  informationCardTooltipProps?: Omit<InformationCardTooltipProps, 'children'>;
   withClearConfirmation?: boolean;
   yesText?: string;
   scrollbarProps?: ScrollbarAdditionalProps;

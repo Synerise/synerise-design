@@ -40,6 +40,7 @@ const ItemPicker = ({
   yesText = intl.formatMessage({ id: 'DS.ITEM-PICKER.YES-TEXT', defaultMessage: 'Yes' }),
   withClearConfirmation,
   scrollbarProps,
+  informationCardTooltipProps,
 }: ItemPickerProps) => {
   const [dropdownOpened, setDropdownOpened] = useState(false);
   const clearSearchBarValue = useRef<number>();
@@ -122,6 +123,7 @@ const ItemPicker = ({
         yesText={yesText}
         noText={noText}
         withClearConfirmation={Boolean(withClearConfirmation)}
+        informationCardTooltipProps={informationCardTooltipProps}
       />
     ),
     [
@@ -129,18 +131,19 @@ const ItemPicker = ({
       selectedItem,
       onClear,
       dropdownOpened,
+      placeholder,
+      placeholderIcon,
       error,
       disabled,
-      placeholderIcon,
-      placeholder,
       openDropdown,
       closeDropdown,
       size,
       changeButtonLabel,
+      withClearConfirmation,
       clearConfirmTitle,
       yesText,
       noText,
-      withClearConfirmation,
+      informationCardTooltipProps,
     ]
   );
 

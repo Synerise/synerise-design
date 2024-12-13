@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, MouseEvent, useCallback } from 'react';
 import { theme } from '@synerise/ds-core';
 import Icon, { AngleDownS, Close3S, WarningFillM } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -7,7 +7,7 @@ import Popconfirm from '@synerise/ds-popconfirm';
 import * as S from './Trigger.styles';
 import { Props } from './Trigger.types';
 
-const Trigger: React.FC<Props> = ({
+const Trigger = ({
   selected,
   clear,
   onClear,
@@ -25,9 +25,10 @@ const Trigger: React.FC<Props> = ({
   yesText,
   noText,
   withClearConfirmation,
-}) => {
-  const handleClear = React.useCallback(
-    (event: React.MouseEvent<HTMLDivElement>): void => {
+  informationCardTooltipProps,
+}: Props) => {
+  const handleClear = useCallback(
+    (event: MouseEvent<HTMLDivElement>): void => {
       event.stopPropagation();
       closeDropdown();
       onClear && onClear();
@@ -35,7 +36,7 @@ const Trigger: React.FC<Props> = ({
     [onClear, closeDropdown]
   );
 
-  const renderClear = React.useMemo(() => {
+  const renderClear = useMemo(() => {
     const tooltip = (
       <Tooltip title={clear}>
         <S.ClearIconWrapper>
@@ -68,7 +69,7 @@ const Trigger: React.FC<Props> = ({
     return null;
   }, [clear, selected, withClearConfirmation, handleClear, clearConfirmTitle, yesText, noText]);
 
-  const renderAngleIcon = React.useMemo(() => {
+  const renderAngleIcon = useMemo(() => {
     return (
       size === 'small' && (
         <S.AngleIconWrapper>
@@ -78,21 +79,21 @@ const Trigger: React.FC<Props> = ({
     );
   }, [size]);
 
-  const handleChangeButtonClick = React.useCallback(
-    (event: React.MouseEvent) => {
+  const handleChangeButtonClick = useCallback(
+    (event: MouseEvent) => {
       event.stopPropagation();
       openDropdown();
     },
     [openDropdown]
   );
 
-  const handleOpen = React.useCallback(() => {
+  const handleOpen = useCallback(() => {
     if (!selected || (selected && size === 'small' && !withClearConfirmation)) {
       openDropdown();
     }
   }, [selected, openDropdown, size, withClearConfirmation]);
 
-  const renderChangeButton = React.useMemo(() => {
+  const renderChangeButton = useMemo(() => {
     return (
       size === 'large' &&
       withChangeButton && (
@@ -105,42 +106,64 @@ const Trigger: React.FC<Props> = ({
     );
   }, [withChangeButton, changeButtonLabel, size, handleChangeButtonClick]);
 
-  return (
-    <S.TriggerWrapper
-      tabIndex={selected ? undefined : 0}
-      size={size}
-      opened={opened}
-      disabled={disabled}
-      error={error}
-      onClick={handleOpen}
-      selected={Boolean(selected)}
-      clearable={Boolean(onClear && renderClear)}
-    >
-      <S.Trigger size={size}>
-        {selected ? (
-          <>
-            <S.Value>
-              {selected.prefixel && <S.Prefix data-testid="value-prefixel">{selected.prefixel}</S.Prefix>}
-              <S.ValueText>{selected.text}</S.ValueText>
-            </S.Value>
-            {renderChangeButton}
-          </>
-        ) : (
-          <S.Placeholder size={size}>
-            {placeholderIcon && (
-              <S.Prefix data-testid="placeholder-icon">
-                <Icon component={placeholderIcon} />
-              </S.Prefix>
-            )}
-            {placeholder}
-          </S.Placeholder>
-        )}
-      </S.Trigger>
-      <S.IconWrapper size={size}>
-        {onClear && renderClear}
-        {renderAngleIcon}
-      </S.IconWrapper>
-    </S.TriggerWrapper>
+  const renderedTrigger = useMemo(
+    () => (
+      <S.TriggerWrapper
+        tabIndex={selected ? undefined : 0}
+        size={size}
+        opened={opened}
+        disabled={disabled}
+        error={error}
+        onClick={handleOpen}
+        selected={Boolean(selected)}
+        clearable={Boolean(onClear && renderClear)}
+      >
+        <S.Trigger size={size}>
+          {selected ? (
+            <>
+              <S.Value>
+                {selected.prefixel && <S.Prefix data-testid="value-prefixel">{selected.prefixel}</S.Prefix>}
+                <S.ValueText>{selected.text}</S.ValueText>
+              </S.Value>
+              {renderChangeButton}
+            </>
+          ) : (
+            <S.Placeholder size={size}>
+              {placeholderIcon && (
+                <S.Prefix data-testid="placeholder-icon">
+                  <Icon component={placeholderIcon} />
+                </S.Prefix>
+              )}
+              {placeholder}
+            </S.Placeholder>
+          )}
+        </S.Trigger>
+        <S.IconWrapper size={size}>
+          {onClear && renderClear}
+          {renderAngleIcon}
+        </S.IconWrapper>
+      </S.TriggerWrapper>
+    ),
+    [
+      disabled,
+      error,
+      handleOpen,
+      onClear,
+      opened,
+      placeholder,
+      placeholderIcon,
+      renderAngleIcon,
+      renderChangeButton,
+      renderClear,
+      selected,
+      size,
+    ]
+  );
+
+  return informationCardTooltipProps ? (
+    <S.TriggerTooltip {...informationCardTooltipProps}>{renderedTrigger}</S.TriggerTooltip>
+  ) : (
+    renderedTrigger
   );
 };
 

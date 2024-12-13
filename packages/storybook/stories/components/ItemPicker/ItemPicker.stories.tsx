@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 
@@ -7,9 +7,9 @@ import type { ItemPickerProps } from '@synerise/ds-item-picker';
 import type { MenuItemProps } from '@synerise/ds-menu';
 
 import { FLAT_DATA_SOURCE, ICONS } from './ItemPicker.data';
+import { CompleteExample } from '../InformationCard/InformationCard.stories';
 
 import { centeredPaddedWrapper, fixedWrapper300, reactNodeAsSelect } from '../../utils';
-import { InfoXl } from '@synerise/ds-icon';
 
 type Story = StoryObj<ItemPickerProps>;
 
@@ -55,5 +55,17 @@ export const WithPlaceholder: Story = {
 export const SelectedItem: Story = {
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
+  },
+};
+
+export const WithInfocard: Story = {
+  args: {
+    selectedItem: FLAT_DATA_SOURCE[3],
+    informationCardTooltipProps: {
+      informationCardProps: CompleteExample.args,
+      triggerProps: {
+        popupPlacement: 'top'
+      }
+    },
   },
 };
