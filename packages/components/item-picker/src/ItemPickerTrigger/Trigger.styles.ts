@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
+import { InformationCardTooltip } from '@synerise/ds-information-card';
 import { ItemPickerSize } from '../ItemPicker.types';
 
 type TriggerWrapperProps = {
@@ -114,15 +115,16 @@ export const Trigger = styled.div<{ size: ItemPickerSize }>`
 export const TriggerWrapper = styled.div<TriggerWrapperProps>`
   width: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   cursor: ${props => {
     if (props.disabled) return 'not-allowed';
     if (props.selected) return 'default';
     return 'pointer';
   }};
   pointer-events: ${props => (props.disabled ? 'none' : 'all')};
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  
   position: relative;
   border-radius: 3px;
   transition: all 0.3s ease;
@@ -213,4 +215,8 @@ export const ValueText = styled.span`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+`;
+
+export const TriggerTooltip = styled(InformationCardTooltip)`
+  width: 100%;
 `;

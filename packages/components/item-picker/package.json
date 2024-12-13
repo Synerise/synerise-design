@@ -39,6 +39,7 @@
     "@synerise/ds-dropdown": "^0.18.27",
     "@synerise/ds-flag": "^0.5.3",
     "@synerise/ds-icon": "^0.68.0",
+    "@synerise/ds-information-card": "^0.7.3",
     "@synerise/ds-input": "^0.24.17",
     "@synerise/ds-list-item": "^0.6.0",
     "@synerise/ds-popconfirm": "^0.10.64",
