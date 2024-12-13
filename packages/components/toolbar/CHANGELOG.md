@@ -1,0 +1,11 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2024-12-13)
+
+
+### Features
+
+* **toolbar:** toolbar component ([b0fb739](https://github.com/Synerise/synerise-design/commit/b0fb7394e56be240e0f56591d8d5c243783098aa))

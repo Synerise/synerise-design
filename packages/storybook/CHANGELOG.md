@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.31.0...storybook7@0.32.0) (2024-12-13)
+
+
+### Features
+
+* **item-picker:** infocard props for trigger ([0916327](https://github.com/Synerise/synerise-design/commit/0916327fd34fdaf2836860953e57c510564001d5))
+* **toolbar:** toolbar component ([b0fb739](https://github.com/Synerise/synerise-design/commit/b0fb7394e56be240e0f56591d8d5c243783098aa))
+
+
+
+
+
 # [0.31.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.30.0...storybook7@0.31.0) (2024-12-11)
 
 
