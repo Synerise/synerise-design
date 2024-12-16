@@ -2,14 +2,22 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 
-import Icon, { ClockS, AbTestXl, CalendarXl, LaunchXl } from '@synerise/ds-icon';
+import Icon, { ClockS, AbTestXl, CalendarXl, LaunchXl, AdOnDemandL } from '@synerise/ds-icon';
 import CardSelect from '@synerise/ds-card-select';
 import type { CardSelectProps } from '@synerise/ds-card-select';
 
 import { theme } from '@synerise/ds-core';
-import { cardSelectWrapper, reactNodeAsSelect, NUMBER_CONTROL, BOOLEAN_CONTROL, REACT_NODE_AS_STRING, controlFromOptionsArray, CLASSNAME_ARG_CONTROL } from '../../utils';
+import {
+  cardSelectWrapper,
+  reactNodeAsSelect,
+  NUMBER_CONTROL,
+  BOOLEAN_CONTROL,
+  REACT_NODE_AS_STRING,
+  controlFromOptionsArray,
+  CLASSNAME_ARG_CONTROL,
+} from '../../utils';
 
-type CardSelectStoryProps = CardSelectProps & { showTag?: boolean, showTagTooltip?: boolean }
+type CardSelectStoryProps = CardSelectProps & { showTag?: boolean; showTagTooltip?: boolean };
 
 type Story = StoryObj<CardSelectStoryProps>;
 
@@ -20,6 +28,8 @@ const tagProps = {
 };
 
 const tagTooltipProps = { title: 'Coming in Q3' };
+
+const infoTooltipProps = { title: 'Displayed only by calling a dedicated SDK method' };
 
 export default {
   component: CardSelect,
@@ -35,7 +45,15 @@ export default {
       args.onChange?.();
     };
     const { showTag, showTagTooltip, ...rest } = args;
-    return <CardSelect tagProps={showTag ? tagProps : undefined} tagTooltipProps={showTagTooltip ? tagTooltipProps : undefined} {...rest} onChange={handleChange} />;
+    return (
+      <CardSelect
+        tagProps={showTag ? tagProps : undefined}
+        tagTooltipProps={showTagTooltip ? tagTooltipProps : undefined}
+        infoTooltipProps={showTagTooltip ? infoTooltipProps : undefined}
+        {...rest}
+        onChange={handleChange}
+      />
+    );
   },
   args: {
     title: 'A/B Tests',
@@ -78,11 +96,20 @@ export const WithTick: Story = {
   },
 };
 
+export const WithInformationalTooltip: Story = {
+  args: {
+    tickVisible: true,
+    icon: <AdOnDemandL />,
+    infoTooltipProps,
+    title: 'On demand',
+  },
+};
+
 export const WithTag: Story = {
   parameters: {
     controls: {
-      exclude: ['showTag', 'showTagTooltip']
-    }
+      exclude: ['showTag', 'showTagTooltip'],
+    },
   },
   args: {
     title: 'Semantic search',
@@ -94,8 +121,8 @@ export const WithTag: Story = {
 export const WithTooltipOnTag: Story = {
   parameters: {
     controls: {
-      exclude: ['showTag', 'showTagTooltip']
-    }
+      exclude: ['showTag', 'showTagTooltip'],
+    },
   },
   args: {
     title: 'Semantic search',
@@ -108,15 +135,15 @@ export const WithTooltipOnTag: Story = {
 export const WithShadow: Story = {
   parameters: {
     controls: {
-      exclude: ['showTag', 'showTagTooltip']
-    }
+      exclude: ['showTag', 'showTagTooltip'],
+    },
   },
   args: {
     title: 'Semantic search',
     description: 'Method interprets user queries contextually for more meaningful results',
     tagProps,
     icon: <AbTestXl />,
-    raised: true
+    raised: true,
   },
 };
 
@@ -138,8 +165,8 @@ export const SmallSizeWithTick: Story = {
 export const SmallSizeWithTag: Story = {
   parameters: {
     controls: {
-      exclude: ['showTag', 'showTagTooltip']
-    }
+      exclude: ['showTag', 'showTagTooltip'],
+    },
   },
   args: {
     tickVisible: true,

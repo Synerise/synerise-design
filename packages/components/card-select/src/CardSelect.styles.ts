@@ -98,12 +98,19 @@ export const IconWrapper = styled.div<{ size?: CardSelectSizeType }>`
   text-align: center;
   width: 100%;
 `;
-export const Aside = styled.div<{ size?: CardSelectSizeType }>`
+export const Aside = styled.div<{
+  size?: CardSelectSizeType;
+  elementsPosition?: CardSelectAlignType;
+  tickVisible?: Boolean;
+}>`
+  width: 100%;
+  justify-content: ${props => (props.tickVisible ? 'space-between' : 'flex-end')};
+  top: 0;
+  left: 0;
   display: flex;
-  padding: 0;
-  justify-content: center;
+  flex-direction: ${props => (props.elementsPosition === 'left' ? 'row-reverse' : 'row')};
   position: absolute;
-  top: ${(props): string | number => sizeCondition('4px', '14px', props)};
+  padding: ${props => sizeCondition('4px', '14px', props)};
 `;
 export const Container = styled.div<
   {
@@ -153,11 +160,6 @@ export const Container = styled.div<
 
   ${Title}, ${Description}, ${IconWrapper} {
     text-align: ${(props): string => props.elementsPosition};
-  }
-
-  ${Aside} {
-    ${(props): string => (props.elementsPosition === 'left' ? 'right' : 'left')}: ${(props): string | number =>
-      sizeCondition('4px', '14px', props)};
   }
 
   ${IconWrapper} {
