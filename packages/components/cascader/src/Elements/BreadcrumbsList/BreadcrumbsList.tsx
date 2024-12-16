@@ -1,5 +1,8 @@
 import React from 'react';
 import { renderSearchList } from '@synerise/ds-search/dist/Elements/SearchItems/SearchItems';
+import Icon, { CheckS } from '@synerise/ds-icon';
+import { theme } from '@synerise/ds-core';
+
 import { Path } from '../../Cascader.types';
 import { BreadcrumbsListProps } from './BreadcrumbsList.types';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
@@ -15,6 +18,7 @@ export const BreadcrumbsList = ({
   onBreadCrumbClick,
   rowHeight,
   scrollTop,
+  selectedIds,
 }: BreadcrumbsListProps) => {
   const listPropsObject = { scrollTop };
   return renderSearchList<Path>({
@@ -24,17 +28,24 @@ export const BreadcrumbsList = ({
     width,
     rowHeight: rowHeight || DEFAULT_ROW_HEIGHT,
     onItemClick: onBreadCrumbClick,
-    itemRender: (item: Path) => (
-      <Breadcrumb
-        gradientOverlap
-        compact
-        path={item.path}
-        key={`${item.id}`}
-        description={item.path[item.path.length - 1]}
-        highlight={highlight}
-        onClick={() => onBreadCrumbClick && onBreadCrumbClick(item)}
-      />
-    ),
+    itemRender: (item: Path) => {
+      const tickIcon = (
+        <div>
+          <Icon color={theme.palette['green-600']} component={<CheckS />} />
+        </div>
+      );
+      return (
+        <Breadcrumb
+          gradientOverlap
+          compact
+          path={item.path}
+          key={`${item.id}`}
+          suffixel={selectedIds.includes(item.id) ? tickIcon : undefined}
+          description={item.path[item.path.length - 1]}
+          highlight={highlight}
+        />
+      );
+    },
     listProps: listPropsObject,
   });
 };

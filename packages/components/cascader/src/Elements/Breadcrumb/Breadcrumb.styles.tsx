@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
+import ListItem from '@synerise/ds-list-item';
+import { Inner } from '@synerise/ds-list-item/dist/components/Text/Text.styles';
 
 const TRANSITION_FN = '0.3s ease-in-out';
 
@@ -128,54 +130,19 @@ export const InnerWrapper = styled.div`
   user-select: none;
 `;
 
-export const Breadcrumb = styled.div<{
+export const Breadcrumb = styled(ListItem)<{
   clickable?: boolean;
   prefixel?: boolean;
   size?: string;
   disabled?: boolean;
   compact?: boolean;
+  isNavigation?: boolean;
 }>`
-  display: flex;
-  align-items: center;
-  min-width: 200px;
-  margin: 0;
-  padding-left: 12px;
-  padding-right: 12px;
-  font-size: 13px;
-  line-height: 1.39;
-  font-weight: 500;
-  user-select: none;
-  border-radius: 3px;
-  transition: background-color 0.2s ease-out, color 0.2s ease-out;
-  min-height: 50px;
-  background: none;
-  border: none;
-  color: ${props => props.theme.palette['grey-700']};
-  cursor: pointer;
-  opacity: 1;
-
   ${BreadcrumbContent} {
     direction: ${props => (props.compact ? 'rtl' : 'ltr')};
     flex-wrap: ${props => (props.compact ? 'no-wrap' : 'wrap')};
   }
-
-  & {
-    .ds-icon {
-      height: 18px;
-      display: flex;
-      align-items: center;
-    }
-  }
-
   &:hover {
-    background: ${props => props.theme.palette['grey-050']};
-    color: ${props => props.theme.palette['blue-600']};
-    ${ArrowRight} > .ds-icon > svg {
-      fill: ${props => (props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600'])};
-    }
-    ${BreadcrumbName}, ${Description} {
-      color: ${props => (props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600'])};
-    }
     ${ContentWrapper}::after {
       opacity: 0;
     }
@@ -183,19 +150,54 @@ export const Breadcrumb = styled.div<{
       opacity: 0;
     }
   }
-  &:focus:not(:active) {
-    box-shadow: inset 0 0 0 2px ${props => props.theme.palette['blue-600']};
-  }
-  &:focus:active {
-    ${ContentWrapper}::before {
-      background-image: ${props => `-webkit-linear-gradient( left,
-    ${props.theme.palette['grey-100']} 0%,
-    rgba(255,255,255,0) 100%
-  )`};
-    }
-  }
+  ${props =>
+    props.isNavigation
+      ? css`
+          &:hover, &:active, &:focus, &:focus:active {
+            ${Inner} {
+              background: transparent;
+            }
+          }
+          ${BreadcrumbName}, ${Description} {
+            &:hover {
+              color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+            }
+          }
+          &&& {
+            ${PrefixWrapper}:hover {
+              .ds-icon > svg {
+                fill: ${props.theme.palette['blue-600']} !important;
+            }
+          }
+          &:focus {
+            ${Inner} {
+              box-shadow: none;
+            }
+          }
+        `
+      : css`
+          &:hover {
+            background: ${props.theme.palette['grey-050']};
+            color: ${props.theme.palette['blue-600']};
+            ${ArrowRight} > .ds-icon > svg {
+              fill: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+            }
 
-  ${props => !!props.clickable && disableDefaultClickingStyles(props)}
+            ${BreadcrumbName}, ${Description} {
+              color: ${props.disabled ? props.theme.palette['grey-600'] : props.theme.palette['blue-600']};
+            }
+          }
+          &:focus:not(:active) {
+            box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
+          }
+          &:focus:active {
+            ${ContentWrapper}::before {
+              background-image: ${`-webkit-linear-gradient( left, ${props.theme.palette['grey-100']} 0%, rgba(255,255,255,0) 100%)`};
+            }
+          }
+        `}
+
+  ${props => props.clickable && !props.isNavigation && disableDefaultClickingStyles(props)}
 `;
 
 export const BreadcrumbRoute = styled.div`

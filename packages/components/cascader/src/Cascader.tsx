@@ -167,6 +167,7 @@ export const Cascader = ({
               highlight={searchQuery}
               onBreadCrumbClick={handleBreadCrumbClick}
               scrollTop={scrollTop}
+              selectedIds={selectedIds}
             />
           </S.CascaderScrollbar>
         )}
