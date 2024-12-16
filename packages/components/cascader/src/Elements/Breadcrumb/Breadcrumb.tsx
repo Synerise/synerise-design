@@ -19,6 +19,7 @@ export const Breadcrumb = ({
   highlightActivePath,
   className,
   prefixel,
+  isNavigation,
   ...rest
 }: BreadcrumbProps) => {
   const pathToDisplay: typeof path = useMemo(() => {
@@ -50,6 +51,7 @@ export const Breadcrumb = ({
       disabled={disabled}
       compact={compact}
       clickable={!!onPathClick}
+      isNavigation={isNavigation}
       {...rest}
     >
       <S.OuterWrapper>

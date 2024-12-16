@@ -1,6 +1,7 @@
-import { Path } from '../../Cascader.types';
+import type { ReactText } from 'react';
+import type { Path } from '../../Cascader.types';
 
-export interface BreadcrumbsListProps {
+export type BreadcrumbsListProps = {
   paths: Path[];
   width: number | string;
   rowHeight?: number;
@@ -8,4 +9,5 @@ export interface BreadcrumbsListProps {
   highlight?: string;
   onBreadCrumbClick?: (breadcrumb: Path) => void;
   scrollTop: number;
-}
+  selectedIds: ReactText[];
+};

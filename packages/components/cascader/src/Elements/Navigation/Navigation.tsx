@@ -20,6 +20,7 @@ export const Navigation = ({
     return breadcrumbVisible && activeCategory ? (
       <>
         <Breadcrumb
+          isNavigation
           path={activeCategory.path}
           onPathClick={onPathClick}
           gradientOverlap
