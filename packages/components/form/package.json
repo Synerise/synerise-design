@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-form",
-  "version": "0.6.51",
+  "version": "0.6.52",
   "description": "Form UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,13 +34,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-autocomplete": "^0.8.32",
-    "@synerise/ds-button": "^0.22.0",
-    "@synerise/ds-cruds": "^0.5.32",
-    "@synerise/ds-divider": "^0.7.18",
-    "@synerise/ds-icon": "^0.68.0",
-    "@synerise/ds-input": "^0.24.18",
-    "@synerise/ds-typography": "^0.16.9",
+    "@synerise/ds-autocomplete": "^0.8.33",
+    "@synerise/ds-button": "^0.22.1",
+    "@synerise/ds-cruds": "^0.5.33",
+    "@synerise/ds-divider": "^0.7.19",
+    "@synerise/ds-icon": "^0.69.0",
+    "@synerise/ds-input": "^0.24.19",
+    "@synerise/ds-typography": "^0.16.10",
     "@synerise/ds-utils": "^0.31.2"
   },
   "peerDependencies": {

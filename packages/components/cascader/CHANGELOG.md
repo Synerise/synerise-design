@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.31](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.5.30...@synerise/ds-cascader@0.5.31) (2024-12-16)
+
+
+### Bug Fixes
+
+* **cascader:** display tick icon for search results ([c61cf06](https://github.com/Synerise/synerise-design/commit/c61cf0606556f146d48396b8712b22b6c9c14fe5))
+
+
+
+
+
 ## [0.5.30](https://github.com/Synerise/synerise-design/compare/@synerise/ds-cascader@0.5.29...@synerise/ds-cascader@0.5.30) (2024-12-13)
 
 **Note:** Version bump only for package @synerise/ds-cascader

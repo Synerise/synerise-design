@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.32.0...storybook7@0.33.0) (2024-12-16)
+
+
+### Features
+
+* informational tooltip ([4af1bb4](https://github.com/Synerise/synerise-design/commit/4af1bb4efcc8c06046b62a6aa8aa65c63312f816))
+
+
+
+
+
 # [0.32.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.31.0...storybook7@0.32.0) (2024-12-13)
 
 
