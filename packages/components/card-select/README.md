@@ -68,6 +68,7 @@ yarn add @synerise/ds-card-select
 
 | tagProps                   | Defines a ribbon-style tag                                           | `TagProps`         | -                                               |
 | tagTooltipProps            | Defines tooltip for the ribbon tag                                   | `TooltipProps`     | -                                               |
+| infoTooltipProps           | Defines a tooltip with information about the purpose of the card     | `TooltipProps`     | -                                               |
 
 
 ### TagProps

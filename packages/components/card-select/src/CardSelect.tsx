@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { withTheme } from 'styled-components';
-import Icon, { Check3M } from '@synerise/ds-icon';
+import Icon, { Check3M, InfoFillS } from '@synerise/ds-icon';
 import { TagShape } from '@synerise/ds-tags';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Tooltip from '@synerise/ds-tooltip';
@@ -36,6 +36,7 @@ const CardSelect = ({
   error,
   tagProps,
   tagTooltipProps,
+  infoTooltipProps,
 }: CardSelectProps) => {
   const [isPressed, setIsPressed] = useState(false);
   const wrapperRef = useRef(null);
@@ -87,7 +88,13 @@ const CardSelect = ({
         elementsPosition={elementsPosition}
         stretchToFit={stretchToFit}
       >
-        <S.Aside size={size} tabIndex={disabled ? undefined : 0} ref={tickIconRef}>
+        <S.Aside
+          size={size}
+          elementsPosition={elementsPosition}
+          tickVisible={tickVisible}
+          tabIndex={disabled ? undefined : 0}
+          ref={tickIconRef}
+        >
           {tickVisible && (
             <S.TickIcon
               className="ds-card-select-tick"
@@ -107,6 +114,11 @@ const CardSelect = ({
               )}
             </S.TickIcon>
           )}
+          {infoTooltipProps && (
+            <Tooltip {...infoTooltipProps}>
+              <Icon component={<InfoFillS />} color={theme.palette['grey-400']} />
+            </Tooltip>
+          )}
         </S.Aside>
 
         <S.Main>
@@ -116,20 +128,22 @@ const CardSelect = ({
             </S.IconWrapper>
           )}
 
-          {title ? (
+          {title && (
             <S.Title size={size} hasIcon={!!icon}>
               {title}
             </S.Title>
-          ) : null}
+          )}
 
-          {description && size !== 'small' ? (
+          {description && size !== 'small' && (
             <S.Description size={size} hasTitle={!!title} hasIcon={!!icon}>
               {description}
             </S.Description>
-          ) : null}
+          )}
         </S.Main>
 
-        <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+        {customTickVisible && customTickVisibleComponent && (
+          <S.Aside size={size}>{customTickVisible && customTickVisibleComponent}</S.Aside>
+        )}
       </S.Container>
     </S.CardWrapper>
   );
