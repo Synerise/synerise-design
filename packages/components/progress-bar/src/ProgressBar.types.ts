@@ -1,11 +1,12 @@
-import { ProgressProps as AntProgressProps } from 'antd/lib/progress/progress';
+import type { ReactNode, CSSProperties } from 'react';
+import type { ProgressProps as AntProgressProps } from 'antd/lib/progress/progress';
 
-export interface ProgressProps extends AntProgressProps {
+export type ProgressProps = AntProgressProps & {
   amount?: number;
   showLabel?: boolean;
-  description?: string;
+  description?: ReactNode;
   thick?: boolean;
-  labelFormatter?: (amount?: string | number, percent?: string | number) => React.ReactNode;
-  containerStyles?: React.CSSProperties;
+  labelFormatter?: (amount?: string | number, percent?: string | number) => ReactNode;
+  containerStyles?: CSSProperties;
   maxPercent?: boolean;
-}
+};
