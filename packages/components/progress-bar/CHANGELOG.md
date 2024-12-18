@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.18...@synerise/ds-progress-bar@0.8.0) (2024-12-18)
+
+
+### Features
+
+* **progress-bar:** description type expand to ReactNode ([cb3671f](https://github.com/Synerise/synerise-design/commit/cb3671f2299f1b6c2eb5a255d02a7402071e21bc))
+
+
+
+
+
 ## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.17...@synerise/ds-progress-bar@0.7.18) (2024-12-16)
 
 **Note:** Version bump only for package @synerise/ds-progress-bar
