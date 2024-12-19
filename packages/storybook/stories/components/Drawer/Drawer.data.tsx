@@ -32,7 +32,7 @@ export const closeActionTypes = {
   singleCloseIcon: 'singleCloseIcon',
 };
 
-export const renderDrawerContent = query => {
+export const renderDrawerContent = (query?: string) => {
   const content =
     query && query.length > 0 ? (
       <Result type="no-results" noSearchResults description={texts.noResults} />

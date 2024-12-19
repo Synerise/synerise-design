@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import type { StoryObj, Meta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Button from '@synerise/ds-button';
 import Drawer from '@synerise/ds-drawer';
@@ -170,7 +171,7 @@ export const WithSearchAndTabs: Story = {
                 activeTab={activeTab}
                 tabs={TABS}
                 handleTabClick={setActiveTab}
-                configuration={{ label: 'Configure'}}
+                configuration={{ label: 'Configure', action: () => {}}}
               />
             </Drawer.DrawerHeader>
             <SearchBar
