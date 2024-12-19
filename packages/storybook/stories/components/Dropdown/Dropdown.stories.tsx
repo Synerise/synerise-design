@@ -1,9 +1,25 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useRef } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
+import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import Menu from '@synerise/ds-menu';
+import SearchBar from '@synerise/ds-search-bar';
+import Icon, { SearchM } from '@synerise/ds-icon';
+import { theme } from '@synerise/ds-core';
+import Result from '@synerise/ds-result';
+import Tabs from '@synerise/ds-tabs';
+import { DropdownSkeleton } from '@synerise/ds-skeleton';
+import Scrollbar from '@synerise/ds-scrollbar';
+
+import { data, dataCopy, dataItems, tabsWithIcons } from './Dropdown.data';
+
+import * as S from './Dropdown.styles';
+
+import { controlFromOptionsArray } from '../../utils';
+
 
 export default {
   title: 'Components/Dropdown',
@@ -20,7 +36,9 @@ export default {
     );
   },
   argTypes: {
+    placement: {...controlFromOptionsArray('select', ['topLeft', 'topRight', 'topCenter', 'bottomLeft', 'bottomRight', 'bottomCenter'])},
   },
+
   args: {
     overlay: <>hello</>
   },
@@ -34,4 +52,283 @@ export const Default: Story = {
         children: <Button>Click</Button>,
     }
 };
+
+export const Example: Story = {
+  args: {
+    overlay: <Dropdown.Wrapper
+      style={{ width: '220px' }}
+      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+    >
+      <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+      <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
+    </Dropdown.Wrapper>,
+    children: <Button>Click</Button>,
+  }
+};
+
+export const Placement: Story = {
+  ...Example,
+  args: {
+    ...Example.args,
+    placement: 'topCenter',
+  },
+};
+
+export const Copyable: Story = {
+  args: {
+    overlay: <Dropdown.Wrapper
+      style={{ width: '220px' }}
+      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+    >
+      <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+      <Menu dataSource={dataCopy} asDropdownMenu={true} style={{ width: '100%' }} />
+    </Dropdown.Wrapper>,
+    children: <Button>Click</Button>,
+  }
+};
+
+export const withSearch: Story = {
+  render: () => {
+    const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
+    const [filteredData, setFilteredData] = useState(data);
+    const filter = (searchTerm: string) => {
+      setValue(searchTerm);
+
+      const newData =
+        data.filter(item => {
+          return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+      setFilteredData(newData);
+    };
+
+    const onClearInput = () => {
+      setValue('');
+      setFilteredData(data);
+    };
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [value, setValue] = useState('');
+    const [searchRef, setSearchRef]= useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    return (
+      <div>
+        <Dropdown
+          visible={dropdownVisible}
+          placement="bottomLeft"
+          overlay={
+            <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
+              focusWithArrowKeys(e, 'ds-menu-item',() => {searchRef.current.input.focus()})} ref={ref} >
+              <SearchBar
+                handleInputRef={setSearchRef}
+                onSearchChange={filter}
+                onClearInput={onClearInput}
+                placeholder="Search"
+                value={value}
+                iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+              />
+              {filteredData?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
+                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true}  style={{ width: '220px' }}/>}
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="primary">
+            Dropdown
+          </Button>
+        </Dropdown>
+      </div>
+    )
+  },
+    args: {
+    }
+};
+
+export const withTabs: Story = {
+  render: () => {
+    const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
+    const [filteredData, setFilteredData] = useState(data);
+    const filter = (searchTerm: string) => {
+      setValue(searchTerm);
+
+      const newData =
+        data.filter(item => {
+          return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+
+      setFilteredData(newData);
+    };
+
+    const onClearInput = () => {
+      setValue('');
+      setFilteredData(data);
+    };
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [value, setValue] = useState('');
+    const [activeTab, setActiveTab] = useState(0);
+    const [searchRef, setSearchRef]= useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    return (
+      <div>
+        <Dropdown
+          visible={dropdownVisible}
+          placement="bottomLeft"
+          overlay={
+            <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
+              focusWithArrowKeys(e, 'ds-menu-item',() => {searchRef.current.input.focus()})} ref={ref} >
+              <SearchBar
+                handleInputRef={setSearchRef}
+                onSearchChange={filter}
+                onClearInput={onClearInput}
+                placeholder="Search"
+                value={value}
+                iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
+              />
+              <S.TabsWrapper>
+                <Tabs
+                  block
+                  tabs={ tabsWithIcons }
+                  activeTab={activeTab}
+                  handleTabClick={(index: number) => {
+                    setActiveTab(index);
+                  }}
+                />
+              </S.TabsWrapper>
+              {filteredData?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
+                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true}  style={{ width: '220px' }}/>}
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="primary">
+            Dropdown
+          </Button>
+        </Dropdown>
+      </div>
+    )
+  },
+  args: {
+  }
+};
+
+export const withTextTrigger: Story = {
+  render: () => {
+    const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    return (
+      <div>
+        <Dropdown
+          trigger={['click']}
+          overlayStyle={{ borderRadius: '3px' }}
+          visible={dropdownVisible}
+          placement="bottomLeft"
+          overlay={
+            <Dropdown.Wrapper
+              style={{ width: '220px' }}
+              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {
+              })}
+              ref={ref}
+            >
+              <Menu dataSource={data} asDropdownMenu={true} style={{ width: '204px' }}/>
+            </Dropdown.Wrapper>
+          }
+        >
+          <Dropdown.TextTrigger
+            onClick={() => setDropdownVisible(!dropdownVisible)}
+            size={5}
+            value={'Select'}
+            inactiveColor={'blue-600'}
+          />
+        </Dropdown>
+      </div>
+    );
+  },
+  args: {
+  }
+};
+
+export const withSkeleton: Story = {
+  render: () => {
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    return (
+      <div>
+      <Dropdown
+        trigger={['click']}
+        overlayStyle={{ borderRadius: '3px' }}
+        visible={dropdownVisible}
+        placement="bottomLeft"
+        overlay={
+          <Dropdown.Wrapper
+            style={{ width: '220px' }}
+            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            ref={ref}
+          >
+            <div style={{width: '200px'}}>
+              <DropdownSkeleton/>
+            </div>
+          </Dropdown.Wrapper>
+        }
+      >
+          <Dropdown.TextTrigger
+            onClick={() => setDropdownVisible(!dropdownVisible)}
+            size={5}
+            value={'Select'}
+            inactiveColor={'blue-600'}
+          />
+        </Dropdown>
+      </div>
+    );
+  },
+  args: {
+  }
+};
+
+
+export const resizableContent: Story = {
+  render: () => {
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    useOnClickOutside(ref, () => {
+      setDropdownVisible(false);
+    });
+    return (
+      <div>
+        <Dropdown
+          trigger={['click']}
+          overlayStyle={{ borderRadius: '3px' }}
+          visible={dropdownVisible}
+          placement="bottomLeft"
+          overlay={
+            <Dropdown.Wrapper
+              style={{ width: '200px' }}
+              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
+            >
+              <Scrollbar absolute maxHeight={300}>
+                <Menu dataSource={dataItems} asDropdownMenu={true} style={{ width: '100%' }} />
+              </Scrollbar>
+            </Dropdown.Wrapper>
+          }
+        >
+          <Button onClick={() => setDropdownVisible(!dropdownVisible)} type="primary">
+            Dropdown
+          </Button>
+        </Dropdown>
+      </div>
+    );
+  },
+  args: {
+  }
+};
+
 
