@@ -25,7 +25,8 @@ export const PanelsResizer = ({ leftPanel, rightPanel, initial, scrollable }: Pa
       const initialVector = getInitialVector(initial, containerWidth);
       setVector(initialVector);
     }
-  }, [initial]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleMouseMove = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
@@ -62,7 +63,7 @@ export const PanelsResizer = ({ leftPanel, rightPanel, initial, scrollable }: Pa
         style={{
           width: calculateLeftPanelWidth(vector),
           pointerEvents: isResizing ? 'none' : 'auto',
-          overflow: scrollable ? 'auto' : 'hidden',
+          ...(scrollable ? { overflow: 'auto' } : {}),
         }}
       >
         {leftPanel}
@@ -74,7 +75,7 @@ export const PanelsResizer = ({ leftPanel, rightPanel, initial, scrollable }: Pa
           width: calculateRightPanelWidth(vector),
           pointerEvents: isResizing ? 'none' : 'auto',
           zIndex: 4,
-          overflow: scrollable ? 'auto' : 'hidden',
+          ...(scrollable ? { overflow: 'auto' } : {}),
         }}
       >
         {rightPanel}
