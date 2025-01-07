@@ -1,4 +1,4 @@
-image: artifactory.snrinternal.com/docker.io/node:16.20.2
+image: node:16.20.2
 
 variables:
   APP: ds-docs
