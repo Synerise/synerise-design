@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.33.0...storybook7@0.34.0) (2025-01-07)
+
+
+### Bug Fixes
+
+* **storybook7:** js error fix ([e993af8](https://github.com/Synerise/synerise-design/commit/e993af875da03c102f00105ae77b5affbc2cb4a8))
+
+
+### Features
+
+* **dropdown:** add stories for dropdown   ([42d1bed](https://github.com/Synerise/synerise-design/commit/42d1bedb0d539ad2bbacfdcef32661665fa1a689))
+* **message:** new stories for message ([6775a73](https://github.com/Synerise/synerise-design/commit/6775a73e15d884a575bcabc0101545450a0be659))
+* **subtle-form:** new stories for subtle-form ([23c4d5d](https://github.com/Synerise/synerise-design/commit/23c4d5da6ca91c242a24be49476f2a755a4b9a52))
+
+
+
+
+
 # [0.33.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.32.0...storybook7@0.33.0) (2024-12-16)
 
 
