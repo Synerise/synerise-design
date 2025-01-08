@@ -3,7 +3,16 @@ import Divider from '@synerise/ds-divider';
 import * as S from './FieldSet.styles';
 import { FieldSetProps } from './FieldSet.types';
 
-const FieldSet = ({ className, prefix, title, description, component, button, onTitleClick }: FieldSetProps) => {
+const FieldSet = ({
+  className,
+  prefix,
+  title,
+  description,
+  component,
+  button,
+  onTitleClick,
+  divider = true,
+}: FieldSetProps) => {
   return (
     <S.ContainerWrapper className={`ds-field-set ${className}`}>
       <S.HeaderWrapper>
@@ -15,7 +24,7 @@ const FieldSet = ({ className, prefix, title, description, component, button, on
           <S.Description>{description}</S.Description>
         </S.FieldSetTitle>
       </S.HeaderWrapper>
-      <Divider />
+      {divider && <Divider />}
       {component && <S.ComponentWrapper>{component}</S.ComponentWrapper>}
       {button && <S.ActionButton>{button}</S.ActionButton>}
     </S.ContainerWrapper>
