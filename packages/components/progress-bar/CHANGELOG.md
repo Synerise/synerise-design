@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.8.0...@synerise/ds-progress-bar@0.9.0) (2025-01-08)
+
+
+### Features
+
+* **progress-bar:** stacked multivalue progressbar ([ad14272](https://github.com/Synerise/synerise-design/commit/ad14272c2c1bcbd359544b97402ef95fb611e451))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-progress-bar@0.7.18...@synerise/ds-progress-bar@0.8.0) (2024-12-18)
 
 

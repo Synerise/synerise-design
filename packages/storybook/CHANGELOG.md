@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.34.0...storybook7@0.35.0) (2025-01-08)
+
+
+### Features
+
+* **progress-bar:** stacked multivalue progressbar ([ad14272](https://github.com/Synerise/synerise-design/commit/ad14272c2c1bcbd359544b97402ef95fb611e451))
+
+
+
+
+
 # [0.34.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.33.0...storybook7@0.34.0) (2025-01-07)
 
 
