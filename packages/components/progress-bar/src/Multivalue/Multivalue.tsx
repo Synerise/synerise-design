@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MultivalueProps } from './Multivalue.types';
 import * as S from './MultiValue.styles';
 
@@ -8,14 +8,19 @@ const normalizePercent = (value: number): number => {
   return value;
 };
 
-const Multivalue: React.FC<MultivalueProps> = (props: MultivalueProps) => {
-  const { values } = props;
-  const sortedByPercent = values.sort((a, b) => {
-    return b.percent - a.percent;
-  });
+const Multivalue = ({ values, stackedBars = true, ...htmlAttributes }: MultivalueProps) => {
+  const finalValues = useMemo(
+    () =>
+      stackedBars
+        ? values.sort((a, b) => {
+            return b.percent - a.percent;
+          })
+        : values,
+    [stackedBars, values]
+  );
   return (
-    <S.Container>
-      {sortedByPercent.map((val, index) => (
+    <S.Container stackedBars={stackedBars} {...htmlAttributes}>
+      {finalValues.map((val, index) => (
         <S.Multivalue
           // eslint-disable-next-line react/no-array-index-key
           key={`${val.color}-${val.percent}-${index}`}

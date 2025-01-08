@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { Label } from '@synerise/ds-typography';
 import { ProgressTilesProps } from './ProgressTiles.types';
@@ -6,8 +6,8 @@ import * as S from './ProgressTiles.styles';
 
 const MAX_PERCENT = 100;
 
-export const ProgressTiles: React.FC<ProgressTilesProps> = ({ colors, label, tileWidth, percent }) => {
-  const getTilesConfig = React.useCallback(() => {
+export const ProgressTiles = ({ colors, label, tileWidth, percent }: ProgressTilesProps) => {
+  const getTilesConfig = useCallback(() => {
     const TILES_COUNT = colors.length;
 
     const tileWidthRatio = MAX_PERCENT / TILES_COUNT;

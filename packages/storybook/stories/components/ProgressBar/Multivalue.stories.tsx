@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Multivalue } from '@synerise/ds-progress-bar';
 import { COLORS } from './ProgressBar.constants';
-import { fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
 
 type MultivalueProps = typeof Multivalue;
 
@@ -16,6 +16,7 @@ export default {
   },
   argTypes: {
     values: { control: false },
+    stackedBars: BOOLEAN_CONTROL
   },
   args: {
     values: [
@@ -36,3 +37,22 @@ export default {
 } as Meta<MultivalueProps>;
 
 export const MultivalueBar: StoryObj<MultivalueProps> = {};
+export const MultivalueBarNotStacked: StoryObj<MultivalueProps> = {
+  args: {
+    stackedBars: false,
+    values: [
+      {
+        percent: 10,
+        color: COLORS.mars,
+      },
+      {
+        percent: 25,
+        color: COLORS.yellow,
+      },
+      {
+        percent: 65,
+        color: COLORS.grey,
+      },
+    ],
+  }
+};
