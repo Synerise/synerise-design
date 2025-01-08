@@ -2,6 +2,7 @@ import React , { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import {
+  BOOLEAN_CONTROL,
   centeredPaddedWrapper, reactNodeAsSelect,
   STRING_CONTROL,
 } from '../../utils';
@@ -30,6 +31,7 @@ export default {
   argTypes: {
     title: STRING_CONTROL,
     description: STRING_CONTROL,
+    divider: BOOLEAN_CONTROL,
     prefix: {
       ...reactNodeAsSelect(
         ['expander', 'switch'],
@@ -101,7 +103,8 @@ type Story = StoryObj<typeof FieldSet>;
 
 export const Default: Story = {
   args: {
-    title: 'Advanced option'
+    title: 'Advanced option',
+    divider: true,
   }
 };
 
@@ -110,6 +113,7 @@ export const withDescription: Story = {
   args: {
     title: 'Advanced option',
     description: 'This section is for advanced users only',
+    divider: true,
   }
 };
 
@@ -120,6 +124,7 @@ export const withExpander: Story = {
     description: 'This section is for advanced users only',
     prefix: 'expander',
     component: 'checkbox',
+    divider: true,
   }
 };
 
@@ -130,6 +135,7 @@ export const withSwitch: Story = {
     description: 'This section is for advanced users only',
     prefix: 'switch',
     component: 'checkbox',
+    divider: true,
   }
 };
 
@@ -139,6 +145,7 @@ export const withSecondLevel: Story = {
     title: 'Advanced option',
     description: 'This section is for advanced users only',
     component: 'checkbox',
+    divider: true,
   }
 };
 

@@ -44,6 +44,6 @@ export const ComponentWrapper = styled.div`
 export const Description = styled.div`
   display: flex;
   line-height: 16px;
-  font-size: 12px;
+  font-size: 13px;
   word-wrap: break-word;
 `;

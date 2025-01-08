@@ -8,4 +8,5 @@ export type FieldSetProps = {
   button?: ReactNode;
   onTitleClick?: (ev: ReactMouseEvent<HTMLElement, MouseEvent>) => void;
   className?: string;
+  divider?: boolean;
 };
