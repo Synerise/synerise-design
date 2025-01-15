@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.19](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.7.18...@synerise/ds-result@0.7.19) (2025-01-15)
+
+**Note:** Version bump only for package @synerise/ds-result
+
+
+
+
+
 ## [0.7.18](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.7.17...@synerise/ds-result@0.7.18) (2024-12-16)
 
 **Note:** Version bump only for package @synerise/ds-result

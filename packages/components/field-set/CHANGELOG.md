@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.48](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.47...@synerise/ds-field-set@0.2.48) (2025-01-15)
+
+
+### Bug Fixes
+
+* **field-set:** make divider optional and fix description font-size ([3eb7620](https://github.com/Synerise/synerise-design/commit/3eb762012f8dd11fbcffe4e4f77b9037130b164c))
+
+
+
+
+
 ## [0.2.47](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.2.46...@synerise/ds-field-set@0.2.47) (2024-12-16)
 
 **Note:** Version bump only for package @synerise/ds-field-set

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.53](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.6.52...@synerise/ds-form@0.6.53) (2025-01-15)
+
+
+### Bug Fixes
+
+* **field-set:** make divider optional and fix description font-size ([3eb7620](https://github.com/Synerise/synerise-design/commit/3eb762012f8dd11fbcffe4e4f77b9037130b164c))
+
+
+
+
+
 ## [0.6.52](https://github.com/Synerise/synerise-design/compare/@synerise/ds-form@0.6.51...@synerise/ds-form@0.6.52) (2024-12-16)
 
 **Note:** Version bump only for package @synerise/ds-form

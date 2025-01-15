@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.5.23...@synerise/ds-action-area@0.5.24) (2025-01-15)
+
+**Note:** Version bump only for package @synerise/ds-action-area
+
+
+
+
+
 ## [0.5.23](https://github.com/Synerise/synerise-design/compare/@synerise/ds-action-area@0.5.22...@synerise/ds-action-area@0.5.23) (2024-12-16)
 
 **Note:** Version bump only for package @synerise/ds-action-area
