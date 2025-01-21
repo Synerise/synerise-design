@@ -3,7 +3,7 @@ import React from 'react';
 import type { StoryObj, Meta } from '@storybook/react';
 
 import ShortCuts from '@synerise/ds-short-cuts';
-import { ArrowDownS } from '@synerise/ds-icon';
+import { ArrowUpM } from '@synerise/ds-icon';
 
 import {
   centeredPaddedWrapper,
@@ -50,6 +50,6 @@ export const ShortCutWithIcon: Story = {
   ...Default,
   args: {
     ...Default.args,
-    icon: <ArrowDownS/>,
+    icon: <ArrowUpM/>,
   },
 };
