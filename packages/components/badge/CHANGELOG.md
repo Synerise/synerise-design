@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.8.24...@synerise/ds-badge@0.8.25) (2025-01-21)
+
+**Note:** Version bump only for package @synerise/ds-badge
+
+
+
+
+
 ## [0.8.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-badge@0.8.23...@synerise/ds-badge@0.8.24) (2025-01-15)
 
 **Note:** Version bump only for package @synerise/ds-badge

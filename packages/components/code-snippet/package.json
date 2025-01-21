@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-code-snippet",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "CodeSnippet UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,10 +34,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.22.2",
-    "@synerise/ds-icon": "^0.69.1",
-    "@synerise/ds-scrollbar": "^0.11.23",
-    "@synerise/ds-tooltip": "^0.14.54",
+    "@synerise/ds-button": "^0.22.3",
+    "@synerise/ds-icon": "^0.70.0",
+    "@synerise/ds-scrollbar": "^0.11.24",
+    "@synerise/ds-tooltip": "^0.14.55",
     "@synerise/ds-utils": "^0.31.2",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^10.7.2",

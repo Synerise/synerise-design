@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.228.0](https://github.com/synerise/synerise-design/compare/portal@0.227.0...portal@0.228.0) (2025-01-21)
+
+
+### Features
+
+* **short-cuts:** adjust to designs changes ([f68f9a6](https://github.com/synerise/synerise-design/commit/f68f9a6e8ff4b1591631691afc7bc3298b4e1049))
+
+
+
+
+
 # [0.227.0](https://github.com/synerise/synerise-design/compare/portal@0.226.0...portal@0.227.0) (2024-12-11)
 
 
