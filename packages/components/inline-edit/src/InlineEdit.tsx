@@ -4,6 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { toCamelCase } from '@synerise/ds-utils';
 import { AutosizeInput } from '@synerise/ds-input';
+import { theme } from '@synerise/ds-core';
 
 import * as S from './InlineEdit.styles';
 import { InlineEditProps } from './InlineEdit.types';
@@ -15,6 +16,7 @@ const InlineEdit = ({
   disabled,
   autoFocus,
   hideIcon,
+  customIcon,
   tooltipTitle,
   error,
   input,
@@ -104,8 +106,8 @@ const InlineEdit = ({
       </AutosizeInput>
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
-          <S.IconWrapper disabled={disabled} onClick={handleFocusInput} size={size}>
-            <Icon component={<EditS />} size={24} />
+          <S.IconWrapper customIcon={Boolean(customIcon)} disabled={disabled} onClick={handleFocusInput} size={size}>
+            <Icon color={theme.palette[`grey-600`]} component={customIcon || <EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}

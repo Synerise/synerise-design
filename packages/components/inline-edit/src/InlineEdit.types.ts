@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 export type InputProps = {
   name?: string;
@@ -23,4 +23,5 @@ export interface InlineEditProps {
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
+  customIcon?: ReactNode;
 }

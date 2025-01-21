@@ -6,7 +6,7 @@ import Tabs from '@synerise/ds-tabs';
 import { withState } from '@dump247/storybook-state';
 import Icon, {
   AngleDownS,
-  ArrowRightCircleM,
+  ArrowRightCircleM, EditM,
   HelpM,
   MailM,
   OptionHorizontalM,
@@ -201,6 +201,7 @@ const stories = {
         handleOnEnterPress: () => action('onEnterPress'),
         placeholder: 'Example text',
         size: 'normal',
+        customIcon: <EditM/>,
       }}
       more={
         <Button type="ghost" mode="icon-label">
