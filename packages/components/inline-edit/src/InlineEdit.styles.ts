@@ -45,11 +45,11 @@ export const FontStyleWatcher = styled.div`
   pointer-events: none;
 `;
 
-export const IconWrapper = styled.div<{ size: string; disabled?: boolean } & ThemeProps>`
+export const IconWrapper = styled.div<{ size: string; disabled?: boolean; customIcon?: boolean } & ThemeProps>`
   display: ${(props): string => (props.disabled ? 'none' : 'flex')};
   border-radius: 24px;
   color: ${(props): string => props.theme.palette['grey-600']};
-  background: ${(props): string => props.theme.palette['grey-100']};
+  background: ${(props): string => (props.customIcon ? undefined : props.theme.palette['grey-100'])};
   margin: 0;
   font-size: 11px;
   justify-content: center;
@@ -59,12 +59,12 @@ export const IconWrapper = styled.div<{ size: string; disabled?: boolean } & The
   height: 24px;
   line-height: inherit;
   cursor: pointer;
-  &:hover {
+  &&&:hover {
     background-color: ${(props): string => props.theme.palette.white};
   }
   div :active {
-    border-radius: 24px;
-    background-color: ${(props): string => props.theme.palette['grey-300']};
+    border-radius: ${(props): string => (props.customIcon ? '0px' : '24px')};
+    background-color: ${(props): string => (props.customIcon ? undefined : props.theme.palette['grey-300'])};
   }
 `;
 

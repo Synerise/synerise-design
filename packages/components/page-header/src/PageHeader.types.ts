@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TooltipProps } from '@synerise/ds-tooltip/dist/Tooltip.types';
 
 export type PageHeaderProps = {
@@ -33,5 +33,6 @@ export type PageHeaderProps = {
     error?: boolean;
     disabled?: boolean;
     hideIcon?: boolean;
+    customIcon?: ReactNode;
   };
 };

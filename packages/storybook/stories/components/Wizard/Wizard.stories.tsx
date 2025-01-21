@@ -7,7 +7,7 @@ import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
 import { ObjectAvatar } from '@synerise/ds-avatar';
-import Icon, { AcademyM, ChatM, HelpM, MailM } from '@synerise/ds-icon';
+import Icon, { AcademyM, ChatM, EditM, HelpM, MailM } from '@synerise/ds-icon';
 import Stepper from '@synerise/ds-stepper';
 
 import {
@@ -95,6 +95,7 @@ export const EditableTitle: Story = {
       handleOnEnterPress: () => action('onEnterPress'),
       placeholder: 'Example text',
       size: 'normal',
+      customIcon: <EditM/>,
     },
   },
 };
