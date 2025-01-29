@@ -1,9 +1,7 @@
-import { WrappedComponentProps } from 'react-intl';
+import type { DateToFormatOptions } from '@synerise/ds-data-format';
 
-import { DateToFormatOptions } from '@synerise/ds-data-format';
-
-import { Texts } from '../DateRangePicker.types';
-import { DateRange } from '../date.types';
+import type { Texts } from '../DateRangePicker.types';
+import type { DateRange } from '../date.types';
 
 export type Props = {
   mode: string;
@@ -22,4 +20,4 @@ export type Props = {
   valueFormatOptions?: DateToFormatOptions;
   showTime?: boolean;
   displayDateContainerClass?: string;
-} & WrappedComponentProps;
+};

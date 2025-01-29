@@ -2,33 +2,12 @@ import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { BadgeProps } from './Badge.types';
-import AntdBadge from './Badge.styles';
+import StyledBadge from './Badge.styles';
 
-const Badge: React.FC<BadgeProps> = ({
-  flag,
-  outlined,
-  backgroundColor,
-  textColor,
-  backgroundColorHue,
-  textColorHue,
-  pulsing,
-  customColor,
-  ...antdProps
-}) => {
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <AntdBadge
-      flag={flag}
-      outlined={outlined}
-      backgroundColor={backgroundColor}
-      textColor={textColor}
-      backgroundColorHue={backgroundColorHue}
-      textColorHue={textColorHue}
-      pulsing={pulsing}
-      customColor={customColor}
-      {...antdProps}
-    />
-  );
+const Badge = ({ dot, ...props }: BadgeProps) => {
+  const { status } = props;
+  const isDot = dot !== undefined ? dot : status !== undefined;
+  return <StyledBadge {...props} dot={isDot} />;
 };
 
 export default Badge;

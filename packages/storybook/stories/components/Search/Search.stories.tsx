@@ -4,11 +4,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import Search, { SearchProps } from '@synerise/ds-search';
 import Icon from '@synerise/ds-icon';
 import ListItem from '@synerise/ds-list-item';
-
+import Divider from '@synerise/ds-divider';
 import { theme } from '@synerise/ds-core';
 
 import { fixedWrapper300 } from '../../utils';
-import Divider from '@synerise/ds-divider';
 import {
   getItemsWithAvatar,
   getSuggestions,

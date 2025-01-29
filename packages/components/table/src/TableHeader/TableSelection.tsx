@@ -28,7 +28,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   const isShowingSubset = dataSourceFull && dataSourceFull.length !== dataSource.length;
 
   const getRowsForKeys = useCallback(
-    keys => {
+    (keys: Key[]) => {
       if (selection) {
         let rows: T[] = [];
         allData.forEach((record: T) => {
@@ -58,16 +58,15 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   const selectAll = useCallback(() => {
     if (dataSource && selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keys: ReactText[] = isShowingSubset ? [...selectedRowKeys] : [];
+      let keys: Key[] = isShowingSubset ? [...selectedRowKeys] : [];
       dataSource.forEach((record: T) => {
         const rowChildren = record[childrenColumnName];
 
         if (Array.isArray(rowChildren)) {
           keys = [
             ...keys,
-
-            ...rowChildren.reduce((acc: ReactText[], child: T) => {
-              const key = getRowKey(child) as ReactText;
+            ...rowChildren.reduce((acc: Key[], child: T) => {
+              const key = getRowKey(child);
               return key && (isRecordSelectable(child, checkRowSelectionStatus) || selectedRowKeys.includes(key))
                 ? [...acc, key]
                 : acc;
@@ -91,7 +90,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   const unselectAll = useCallback(() => {
     if (selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keysToUnselect: ReactText[] = [];
+      let keysToUnselect: Key[] = [];
 
       dataSource.forEach((record: T) => {
         const rowChildren = record[childrenColumnName];
@@ -99,8 +98,8 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
         if (Array.isArray(rowChildren)) {
           keysToUnselect = [
             ...keysToUnselect,
-            ...rowChildren.reduce((acc: ReactText[], child: T) => {
-              const key = getRowKey(child) as ReactText;
+            ...rowChildren.reduce((acc: Key[], child: T) => {
+              const key = getRowKey(child) as Key;
               return key && isRecordSelectable(child, checkRowSelectionStatus) ? [...acc, key] : acc;
             }, []),
           ];
@@ -134,7 +133,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
   const selectInvert = useCallback(() => {
     if (dataSource && selection) {
       const { selectedRowKeys, checkRowSelectionStatus } = selection;
-      let keys: ReactText[] = [...selectedRowKeys];
+      let keys: Key[] = [...selectedRowKeys];
       dataSource.forEach((record: T): void => {
         const rowChildren = record[childrenColumnName];
 
@@ -142,7 +141,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
         const selectableChildren = hasChildren ? getSelectableChildren(rowChildren) : false;
         if (selectableChildren) {
           selectableChildren.forEach((child: T) => {
-            const key = getRowKey(child) as ReactText;
+            const key = getRowKey(child) as Key;
             if (selectedRowKeys.includes(key)) {
               keys.splice(keys.indexOf(key), 1);
             } else {
@@ -151,7 +150,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
           });
         }
         if (!selectableChildren || selection.independentSelectionExpandedRows) {
-          const key = getRowKey(record) as ReactText;
+          const key = getRowKey(record) as Key;
           const isSelectable = isRecordSelectable(record, checkRowSelectionStatus);
           if (!isSelectable) return;
           if (selectedRowKeys.includes(key)) {
@@ -168,11 +167,9 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
 
   const { allRecordsCount, selectableRecordsCount, selectableAndSelectedRecordsCount, selectedRecordsCount } =
     useBulkSelectionCount({ dataSource, selection, childrenColumnName, rowKey });
-
-  const isIndeterminate = selectedRecordsCount > 0 && allRecordsCount !== selectableRecordsCount;
+  const isIndeterminate = selectedRecordsCount > 0 && selectableRecordsCount !== selectableAndSelectedRecordsCount;
   const disabledBulkSelection = allRecordsCount === 0 || selectableRecordsCount === 0;
-  const isChecked = !disabledBulkSelection && allRecordsCount === selectableRecordsCount;
-  const isAllSelected = selectableRecordsCount === selectableAndSelectedRecordsCount;
+  const isAllSelected = !disabledBulkSelection && selectableRecordsCount === selectableAndSelectedRecordsCount;
 
   const selectionTooltipTitle = !isAllSelected ? locale?.selectAllTooltip : locale?.unselectAll;
 
@@ -212,7 +209,7 @@ const TableSelection = <T extends { key: ReactText; children?: T[] }>({
         <Button.Checkbox
           disabled={disabledBulkSelection}
           data-testid="ds-table-batch-selection-button"
-          checked={isChecked}
+          checked={isAllSelected}
           onChange={() => {
             if (!isAllSelected) {
               selectAll();

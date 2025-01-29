@@ -12,7 +12,7 @@ import { RelativeUnits } from '../../../date.types';
 
 export const setOffsetType = set(lensPath(['offset', 'type']));
 
-const CustomRangeForm: React.FC<Props> = ({
+const CustomRangeForm = ({
   ranges,
   rangeUnits,
   currentRange,

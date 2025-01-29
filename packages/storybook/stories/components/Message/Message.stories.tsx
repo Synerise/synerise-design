@@ -4,8 +4,6 @@ import { Meta, StoryObj } from '@storybook/react';
 import message from '@synerise/ds-message';
 import Button from '@synerise/ds-button';
 
-
-
 export default {
   title: 'Components/Message',
   component: message,
@@ -15,17 +13,12 @@ export default {
   },
   render: args => {
     return (
-      <Button
-        {...args}
-        onClick={() => message.success('Thanks!')}
-      >
+      <Button {...args} onClick={() => message.success('Thanks!')}>
         Click me!
       </Button>
     );
   },
-  argTypes: {
-  },
-
+  argTypes: {},
 } as Meta<typeof message>;
 
 type Story = StoryObj<typeof message>;

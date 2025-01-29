@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from '@synerise/ds-select';
 import InputNumber from '@synerise/ds-input-number';
 import * as S from '../../../RelativeRangePicker.styles';
@@ -8,7 +8,7 @@ import { Props } from './OffsetField.types';
 import { RelativeUnits } from '../../../../date.types';
 
 const SELECT_DROPDOWN_OFFSET = -4;
-const OffsetField: React.FC<Props> = ({
+const OffsetField = ({
   handleOffsetValueChange,
   currentGroup,
   handleChange,
@@ -17,7 +17,7 @@ const OffsetField: React.FC<Props> = ({
   rangeUnits,
 }: Props) => {
   const { offset } = currentRange;
-  React.useEffect(() => {
+  useEffect(() => {
     if (offset?.value < 0) {
       handleOffsetValueChange(0);
     }

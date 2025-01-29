@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import DSTimePicker from '@synerise/ds-time-picker';
 
 export const Container = styled.div`
   display: grid;
@@ -14,5 +13,3 @@ export const Container = styled.div`
   }
   padding: 16px 24px 0 24px;
 `;
-
-export const Picker = styled(DSTimePicker)``;

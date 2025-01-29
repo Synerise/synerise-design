@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { MouseEvent, useCallback, useRef, useState } from 'react';
 import find from 'ramda/src/find';
 import { isEqual } from 'lodash';
 import Icon, { AngleDownS, CheckS } from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { theme } from '@synerise/ds-core';
-import type { ListItemProps } from '@synerise/ds-list-item';
+import type { ItemData } from '@synerise/ds-list-item';
 import * as S from '../../RelativeRangePicker.styles';
 import { RangeDropdownProps } from './RangeDropdown.types';
 import { DateRange } from '../../../date.types';
@@ -35,23 +35,23 @@ export const isLifetime = (range?: DateRange, fallback = false): boolean => {
   return legacyDef || (fallback && reasonableDef) || legacyValueButLifetimeForSure;
 };
 
-const RangeDropdown: React.FC<RangeDropdownProps> = ({
+const RangeDropdown = ({
   ranges,
   currentRange,
   texts,
   onChange,
   valueTransformer = (e: DateRange | object): DateRange | object => e,
 }: RangeDropdownProps) => {
-  const [dropVisible, setDropVisible] = React.useState<boolean>(false);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const [dropVisible, setDropVisible] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(dropdownRef, () => {
     setDropVisible(false);
   });
 
-  const onMenuItemClick: ListItemProps['onClick'] = React.useCallback(
-    (itemData): void => {
-      const range = findRangeByKey(ranges, itemData.key);
+  const onMenuItemClick = useCallback(
+    (itemData: ItemData<MouseEvent>): void => {
+      const range = findRangeByKey(ranges, itemData.key as string);
       onChange(range);
       setDropVisible(false);
     },

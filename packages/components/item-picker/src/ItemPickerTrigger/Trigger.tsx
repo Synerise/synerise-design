@@ -122,7 +122,11 @@ const Trigger = ({
           {selected ? (
             <>
               <S.Value>
-                {selected.prefixel && <S.Prefix data-testid="value-prefixel">{selected.prefixel}</S.Prefix>}
+                {selected.prefixel && (
+                  <S.Prefix data-testid="value-prefixel">
+                    <>{selected.prefixel}</>
+                  </S.Prefix>
+                )}
                 <S.ValueText>{selected.text}</S.ValueText>
               </S.Value>
               {renderChangeButton}

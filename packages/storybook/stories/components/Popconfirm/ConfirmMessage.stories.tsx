@@ -7,7 +7,7 @@ import Popconfirm, { ConfirmMessageProps } from '@synerise/ds-popconfirm';
 import Button from '@synerise/ds-button';
 import Icon, { WarningFillM } from '@synerise/ds-icon';
 
-import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, fixedWrapper300, centeredPaddedWrapper } from '../../utils';
 
 type Story = StoryObj<ConfirmMessageProps>;
 
@@ -15,7 +15,7 @@ export default {
   component: Popconfirm.ConfirmMessage,
   title: 'Components/Popconfirm',
   tags: ['autodocs'],
-  decorators: [fixedWrapper300],
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: args => {
     return <Popconfirm.ConfirmMessage {...args} />;
   },

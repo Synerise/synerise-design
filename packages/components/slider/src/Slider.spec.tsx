@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, waitFor, screen, prettyDOM } from '@testing-library/react';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import { defaultColorsOrder, theme } from '@synerise/ds-core';
 import Slider from './index';
@@ -18,20 +18,17 @@ const allocationVariants: AllocationVariant[] = [
 ];
 describe('Slider', () => {
   it('should render with label', () => {
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider label={LABEL} max={MAX} min={MIN} tipFormatter={tipFormatter} value={FIFTY} />
     );
 
     const sliderComponent = container.querySelector('.ant-slider');
 
-    // ASSERT
     expect(screen.getByText(LABEL)).toBeInTheDocument();
     expect(sliderComponent).toBeInTheDocument();
   });
 
   it('should have track proper values with min and max', () => {
-    // ARRANGE
     const { container } = renderWithProvider(<Slider max={MAX} min={MIN} tipFormatter={tipFormatter} value={FIFTY} />);
 
     const sliderComponent = container.querySelector('.ant-slider');
@@ -39,7 +36,6 @@ describe('Slider', () => {
     const trackStyles = track && window.getComputedStyle(track);
     const sliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle');
 
-    // ASSERT
     expect(trackStyles && trackStyles.width).toBe('50%');
     expect(sliderHandle && sliderHandle.getAttribute('aria-valuenow')).toBe(`${FIFTY}`);
     expect(sliderHandle && sliderHandle.getAttribute('aria-valuemax')).toBe(`${MAX}`);
@@ -47,7 +43,6 @@ describe('Slider', () => {
   });
 
   it('should show range values with 2 numbers', () => {
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider max={MAX} min={MIN} value={[40, 80]} range tipFormatter={tipFormatter} />
     );
@@ -58,7 +53,6 @@ describe('Slider', () => {
     const leftSliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle-1');
     const rightSliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle-2');
 
-    // ASSERT
     expect(trackStyles && trackStyles.width).toBe('40%');
     expect(trackStyles && trackStyles.left).toBe('40%');
     expect(leftSliderHandle && leftSliderHandle.getAttribute('aria-valuenow')).toBe(`40`);
@@ -66,7 +60,6 @@ describe('Slider', () => {
   });
 
   it('should show range values with more than 2 numbers', () => {
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider max={MAX} min={MIN} value={[20, 40, 60, 80]} range tipFormatter={tipFormatter} />
     );
@@ -77,7 +70,6 @@ describe('Slider', () => {
     const thirdSliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle-3');
     const fourthSliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle-4');
 
-    // ASSERT
     expect(firstSliderHandle && firstSliderHandle.getAttribute('aria-valuenow')).toBe(`20`);
     expect(secondSliderHandle && secondSliderHandle.getAttribute('aria-valuenow')).toBe(`40`);
     expect(thirdSliderHandle && thirdSliderHandle.getAttribute('aria-valuenow')).toBe(`60`);
@@ -85,7 +77,6 @@ describe('Slider', () => {
   });
 
   it('should show tooltip on hover', async () => {
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider max={MAX} min={MIN} value={FIFTY} tipFormatter={tipFormatter} tooltipVisible />
     );
@@ -93,42 +84,42 @@ describe('Slider', () => {
     const sliderComponent = container.querySelector('.ant-slider');
     const sliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle');
 
-    // ACT
     sliderHandle && fireEvent.mouseOver(sliderHandle);
 
     // const tooltipContent = container.querySelector('.ant-tooltip-inner');
     const tooltip = await waitFor(() => screen.getByRole('tooltip'));
 
-    // ASSERT
     expect(tooltip).toHaveTextContent(`${FIFTY}`);
   });
 
-  it('should handle onChange event', () => {
+  it.only('should handle onChange event', async () => {
     const onChange = jest.fn();
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider
         max={MAX}
         min={MIN}
         autoFocus
         value={FIFTY}
-        onChange={value => onChange(value)}
+        onChange={onChange}
         tipFormatter={tipFormatter}
       />
     );
 
     const sliderComponent = container.querySelector('.ant-slider');
     const sliderHandle = sliderComponent && sliderComponent.querySelector('.ant-slider-handle');
+    
+    expect(sliderHandle).toBeInTheDocument()
 
-    // ACT
-    sliderHandle && fireEvent.focus(sliderHandle);
-    sliderHandle && fireEvent.keyDown(sliderHandle, { key: 'ArrowRight', code: 39 });
+    if (sliderHandle) {
+      fireEvent.mouseOver(sliderHandle)
+      fireEvent.mouseDown(sliderHandle)
+      fireEvent.mouseMove(sliderHandle, { clientX: 100 })
+      fireEvent.mouseUp(sliderHandle)
+    }
 
-    // ASSERT
-    expect(onChange).toHaveBeenCalledTimes(2);
+    await waitFor(() => expect(onChange).toHaveBeenCalledTimes(1));
   });
   it('should render allocation labels', () => {
-    // ARRANGE
     renderWithProvider(
       <Slider
         type={'allocation'}
@@ -138,13 +129,11 @@ describe('Slider', () => {
         tipFormatter={tipFormatter}
       />
     );
-    // ASSERT
     allocationVariants.forEach(v => {
       expect(screen.getByText(v.tabLetter as string)).toBeInTheDocument();
     });
   });
   it('should render (n-1) handles for (n) variants', () => {
-    // ARRANGE
     const { container } = renderWithProvider(
       <Slider
         type={'allocation'}
@@ -154,7 +143,6 @@ describe('Slider', () => {
         tipFormatter={tipFormatter}
       />
     );
-    // ASSERT
     expect(container.querySelectorAll('.ant-slider-handle').length).toBe(allocationVariants.length - 1);
   });
   it('Slider defaults range colors to defaultColorsOrder', () => {

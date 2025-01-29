@@ -15,7 +15,7 @@ export type RangeFormContainerProps = {
   errorTexts?: FilterErrorType;
   activeDays: DayKey[];
   dayKeys: DayKey | DayKey[];
-  getDayLabel: (dayKey: DayKey, long?: boolean) => string | object | ReactNode;
+  getDayLabel: (dayKey: DayKey, long?: boolean) => ReactNode;
   getDayValue: (dayKey: DayKey) => Partial<FilterDefinition>;
   onMultipleDayTimeChange: (value: DateValue) => void;
   onDayTimeChange: (value: DateValue, dayKey: DayKey) => void;

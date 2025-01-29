@@ -1,8 +1,8 @@
-import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import React from 'react';
-import Cruds from '../Cruds';
+import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { fireEvent } from '@testing-library/react';
 import { Settings2S } from '@synerise/ds-icon';
+import Cruds from '../Cruds';
 
 const ICON = {
   add: '.add-s',

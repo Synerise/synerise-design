@@ -1,10 +1,10 @@
-import React, { ReactText, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import InputNumber from '@synerise/ds-input-number';
 import { debounce } from 'lodash';
 import { InputProps } from '../../Factors.types';
 
 const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, readOnly = false }: InputProps) => {
-  const [localValue, setLocalValue] = useState<string | number | undefined>(value as number);
+  const [localValue, setLocalValue] = useState<string | number | null | undefined>(value as number);
   const onChangeRef = useRef(onChange);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, read
   }, [value]);
 
   const debouncedOnChange = useRef(
-    debounce((inputValue: ReactText | undefined): void => {
+    debounce((inputValue: string | number | null | undefined): void => {
       onChangeRef.current && onChangeRef.current(inputValue);
     }, 300)
   ).current;
@@ -27,7 +27,7 @@ const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, read
     };
   }, [debouncedOnChange]);
 
-  const handleChange = (val: string | number | undefined): void => {
+  const handleChange = (val: string | number | null| undefined): void => {
     setLocalValue(val);
     debouncedOnChange(val);
   };

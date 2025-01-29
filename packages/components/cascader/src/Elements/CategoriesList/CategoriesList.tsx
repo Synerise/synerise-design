@@ -17,13 +17,13 @@ export const CategoriesList = ({
   selectedIds,
 }: CategoriesListProps) => {
   const onCategoryClickHandler = useCallback(
-    item => {
+    (item: Category) => {
       onCategoryClick && onCategoryClick(item);
     },
     [onCategoryClick]
   );
   const onSuffixelClickHandler = useCallback(
-    (item, event: MouseEvent<HTMLDivElement>) => {
+    (item: Category, event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       onSuffixelClick && onSuffixelClick(item);
     },

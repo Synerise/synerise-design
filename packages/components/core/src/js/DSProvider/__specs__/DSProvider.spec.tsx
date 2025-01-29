@@ -1,8 +1,7 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import DSProvider from '../DSProvider';
 import { FormattedMessage } from 'react-intl';
-import { LocaleProviderProps } from '../LocaleProvider/LocaleProvider';
 
 describe('DSProvider', function() {
   const messages = {
@@ -10,19 +9,26 @@ describe('DSProvider', function() {
       CLICK: 'Click this',
     },
   };
-  const C = mount(
-    <DSProvider locale="en" messages={messages}>
-      <div>
-        <FormattedMessage id="CLICK" />
-      </div>
-    </DSProvider>
-  );
+  
   it('should render', function() {
-    const props = C.find('IntlProvider').props() as LocaleProviderProps;
-    expect(props.locale).toBe('en');
+    render(
+      <DSProvider locale="en" messages={messages}>
+        <div data-testid="wrapper">
+          <FormattedMessage id="CLICK" />
+        </div>
+      </DSProvider>
+    );
+    expect(screen.getByTestId('wrapper')).toBeInTheDocument();
   });
   it('should render translated text', function() {
-    expect(C.text()).toBe('Click this');
+    render(
+      <DSProvider locale="en" messages={messages}>
+        <div data-testid="wrapper">
+          <FormattedMessage id="CLICK" />
+        </div>
+      </DSProvider>
+    );
+    expect(screen.getByText('Click this')).toBeInTheDocument();
   });
   it.todo('index module exports theme as named export');
   it.todo('index module exports theme as the default export');

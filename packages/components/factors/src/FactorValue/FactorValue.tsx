@@ -28,6 +28,9 @@ const FactorValue = ({
   getMenuEntryProps,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
+    if (!selectedFactor) {
+      return undefined;
+    }
     const InputComponent: React.ElementType = selectedFactor.input;
 
     return (
@@ -58,8 +61,7 @@ const FactorValue = ({
       />
     );
   }, [
-    selectedFactor.input,
-    selectedFactor.name,
+    selectedFactor,
     factorKey,
     value,
     texts,

@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import { removeEmptyEntries } from './utils';
 import { WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
 

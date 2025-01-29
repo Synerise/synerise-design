@@ -347,7 +347,7 @@ class Search extends React.PureComponent<SearchProps<AnyObject, AnyObject>, Sear
         disableInput={disableInput}
         inputProps={inputProps}
         alwaysExpanded={alwaysExpanded}
-        closeOnClickOutside={!alwaysExpanded && !isListVisible}
+        closeOnClickOutside={!alwaysExpanded && !isListVisible && !value && !label}
       />
     );
   }

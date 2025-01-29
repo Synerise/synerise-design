@@ -50,7 +50,7 @@ const infocardProps = {
 };
 
 export const generateInfoCard = (item: ContextItem) => {
-  const randomCount = Math.floor(Math.random() * 100);
+  const randomCount = <span className="chromatic-ignore">{Math.floor(Math.random() * 100)}</span>;
   return {
     ...item,
     renderHoverTooltip: () => (

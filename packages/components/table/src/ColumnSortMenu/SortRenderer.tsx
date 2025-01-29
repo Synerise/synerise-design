@@ -76,6 +76,7 @@ export const CommonRenderer = <T extends unknown>({ column, sortStateApi }: Sort
         mode="single-icon"
         className="ds-sort-dropdown-button"
         onClick={handleButtonClick}
+        data-testid="table-common-sorter-button"
       >
         <DefaultSortIcon sortOrder={columnSortOrder} />
       </S.ToggleButton>
@@ -90,6 +91,28 @@ export const StringRenderer = <T extends unknown>({ column, sortStateApi }: Sort
   const onSortOrderChange = partial(setColumnSortOrder, columnKey);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const locale = useTableLocaleContext();
+  const menuDataSource: MenuItemProps[] = [
+    {
+      key: 'ascend',
+      prefixel: <Icon component={<SortAzM />} />,
+      suffixel: <CheckIcon isActive={columnSortOrder === 'ascend'} />,
+      text: locale.columnSortAz,
+    },
+    {
+      key: 'descend',
+      prefixel: <Icon component={<SortZaM />} />,
+      suffixel: <CheckIcon isActive={columnSortOrder === 'descend'} />,
+      text: locale.columnSortZa,
+    },
+  ];
+  if (columnSortOrder) {
+    menuDataSource.push({
+      key: 'null',
+      type: 'danger',
+      prefixel: <Icon component={<Close2M />} />,
+      text: locale.columnSortClear,
+    });
+  }
 
   return (
     <Dropdown
@@ -106,27 +129,8 @@ export const StringRenderer = <T extends unknown>({ column, sortStateApi }: Sort
               onSortOrderChange(toSortOrder(String(key)));
             }}
             style={{ width: 170 }}
-          >
-            <Menu.Item
-              key="ascend"
-              prefixel={<Icon component={<SortAzM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'ascend'} />}
-            >
-              {locale.columnSortAz}
-            </Menu.Item>
-            <Menu.Item
-              key="descend"
-              prefixel={<Icon component={<SortZaM />} />}
-              suffixel={<CheckIcon isActive={columnSortOrder === 'descend'} />}
-            >
-              {locale.columnSortZa}
-            </Menu.Item>
-            {!!columnSortOrder && (
-              <Menu.Item key="null" type="danger" prefixel={<Icon component={<Close2M />} />}>
-                {locale.columnSortClear}
-              </Menu.Item>
-            )}
-          </Menu>
+            dataSource={menuDataSource}
+          />
         </Dropdown.Wrapper>
       }
     >
@@ -136,6 +140,7 @@ export const StringRenderer = <T extends unknown>({ column, sortStateApi }: Sort
         mode="single-icon"
         className="ds-sort-dropdown-button"
         onClick={handleButtonClick}
+        data-testid="table-string-sorter-button"
       >
         <StringSortIcon sortOrder={columnSortOrder} />
       </S.ToggleButton>

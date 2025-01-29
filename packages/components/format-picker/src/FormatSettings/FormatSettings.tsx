@@ -67,6 +67,10 @@ const FormatSettings = ({
 }: FormatSettingsProps) => {
   const intl = useIntl();
 
+  const handleSelectCurrency = (currency: string) => {
+    onCurrencyChange(currency);
+  };
+
   const handleDecreaseFixedLength = useCallback(() => {
     if (format.fixedLength > 0) {
       onFixedLengthChange(format.fixedLength - 1);
@@ -124,13 +128,16 @@ const FormatSettings = ({
             <Dropdown
               trigger={['click']}
               disabled={disabled}
+              hideOnItemClick
               overlay={
                 <S.DropdownWrapper>
                   {currenciesConfig.map(({ currency, label }) => (
                     <S.ListItem
                       key={currency}
                       suffixel={`${text.currencyMenuItemPrefix} ${getFormattedValue({ currency })}`}
-                      onClick={(): void => onCurrencyChange(currency)}
+                      onClick={() => {
+                        handleSelectCurrency(currency);
+                      }}
                     >
                       {label}
                     </S.ListItem>

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { RemoveIcon } from './ItemRemoveIcon';
 import * as S from './ListItem.styles';
-import { ItemElementProps } from './ListItem.types';
+import type { ItemElementProps } from './ListItem.types';
 
 const ItemElement = ({ item, group, highlight, onItemClick, onItemRemove, removeTooltipLabel }: ItemElementProps) => {
   const onClick = useCallback(() => onItemClick && onItemClick(item.id, group), [onItemClick, item.id, group]);

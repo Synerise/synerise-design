@@ -38,11 +38,11 @@ export default {
   decorators: [cardSelectWrapper],
   render: args => {
     const [{ value }, updateArgs] = useArgs();
-    const handleChange = () => {
+    const handleChange = (newValue: boolean) => {
       updateArgs({
-        value: !value,
+        value: newValue,
       });
-      args.onChange?.();
+      args.onChange?.(newValue);
     };
     const { showTag, showTagTooltip, ...rest } = args;
     return (
@@ -51,6 +51,7 @@ export default {
         tagTooltipProps={showTagTooltip ? tagTooltipProps : undefined}
         infoTooltipProps={showTagTooltip ? infoTooltipProps : undefined}
         {...rest}
+        value={value}
         onChange={handleChange}
       />
     );

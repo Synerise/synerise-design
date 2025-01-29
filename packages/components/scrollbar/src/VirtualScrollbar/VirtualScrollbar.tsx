@@ -1,7 +1,7 @@
 import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'react';
 import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
-import { debounce } from 'lodash';
-import { useCombinedRefs } from '@synerise/ds-utils';
+// import { debounce } from 'lodash';
+import { useCombinedRefs, useResizeObserver } from '@synerise/ds-utils';
 import './style/index.less';
 import * as S from './VirtualScrollbar.styles';
 import { VirtualScrollbarProps } from '../Scrollbar.types';
@@ -31,30 +31,17 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
     const combinedScrollRef = useCombinedRefs(forwardedRef, scrollRef);
     const [lastScrollTop, setLastScrollTop] = useState(0);
 
-    const debouncedResize = useRef(
-      debounce(
-        () => {
-          if (combinedScrollRef && combinedScrollRef.current) {
-            const scrollEvent = new window.Event('scroll');
-            combinedScrollRef.current.dispatchEvent(scrollEvent);
-          }
-        },
-        100,
-        { leading: true, trailing: true }
-      )
-    ).current;
+    const { height, width } = useResizeObserver(wrapperRef);
 
-    const resizeObserver = useRef(new ResizeObserver(debouncedResize)).current;
-
+    const triggerScrollbarGeometryUpdate = useCallback(() => {
+      const scrollEvent = new window.Event('scroll');
+      wrapperRef.current && wrapperRef.current.dispatchEvent(scrollEvent);
+      combinedScrollRef.current && combinedScrollRef.current.dispatchEvent(scrollEvent);
+    }, [combinedScrollRef]);
+    
     useEffect(() => {
-      if (wrapperRef.current) {
-        resizeObserver.observe(wrapperRef.current);
-      }
-      return () => {
-        resizeObserver.disconnect();
-        debouncedResize.cancel();
-      };
-    }, [resizeObserver, debouncedResize]);
+      triggerScrollbarGeometryUpdate()
+    }, [height, width, triggerScrollbarGeometryUpdate]);
 
     const handleReachEnd = useCallback(() => {
       if (combinedScrollRef?.current?.scrollTop === lastScrollTop) {
@@ -90,6 +77,20 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
         wrapper && handleWheel && wrapper.removeEventListener('wheel', handleWheel);
       };
     }, [confineScroll]);
+
+    useEffect(() => {
+      const endHandler = ({ target }: TransitionEvent | AnimationEvent) => {
+        if (target instanceof HTMLElement && combinedScrollRef.current && target.contains(combinedScrollRef.current)) {
+          triggerScrollbarGeometryUpdate();
+        }
+      };
+      document.body.addEventListener('transitionend', endHandler);
+      document.body.addEventListener('animationend', endHandler);
+      return () => {
+        document.body.removeEventListener('transitionend', endHandler);
+        document.body.removeEventListener('animationend', endHandler);
+      };
+    });
 
     return (
       <PerfectScrollbar

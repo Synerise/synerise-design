@@ -1,8 +1,8 @@
-import '../style';
 import React, { PropsWithChildren } from 'react';
 
 import { DataFormatConfigProvider, DataFormatConfigProviderProps } from '@synerise/ds-data-format';
 
+import '../style';
 import LocaleProvider from './LocaleProvider';
 import ThemeProvider from './ThemeProvider';
 
@@ -22,6 +22,7 @@ const DSProvider = ({
   theme,
   dataFormatConfig,
   onErrorIntl,
+  onDSLocalesLoaded,
 }: DSProviderProps) => {
   return (
     <LocaleProvider
@@ -30,6 +31,7 @@ const DSProvider = ({
       timeZone={timeZone}
       defaultLocale={defaultLocale}
       onErrorIntl={onErrorIntl}
+      onDSLocalesLoaded={onDSLocalesLoaded}
     >
       <ThemeProvider theme={theme}>
         <DataFormatConfigProvider dataFormatConfig={dataFormatConfig}>{children}</DataFormatConfigProvider>

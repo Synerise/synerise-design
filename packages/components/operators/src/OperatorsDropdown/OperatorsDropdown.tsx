@@ -139,7 +139,7 @@ const OperatorsDropdown = ({
   ]);
 
   const handleSearch = useCallback(
-    val => {
+    (val: string) => {
       setSearchQuery(val);
     },
     [setSearchQuery]

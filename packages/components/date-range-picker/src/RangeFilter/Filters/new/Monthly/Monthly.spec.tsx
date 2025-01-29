@@ -1,5 +1,4 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import Monthly from './Monthly';
 import { fireEvent, screen } from '@testing-library/react';

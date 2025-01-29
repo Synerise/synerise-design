@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import { Carousel } from 'antd';
+import AntdPopconfirm from 'antd/lib/popconfirm';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './Popconfirm.styles';
 import ConfirmMessage from './ConfirmMessage/ConfirmMessage';
@@ -26,6 +27,7 @@ const Popconfirm: PopconfirmType = ({
   cancelText,
   okText,
   buttonsAlign,
+  disabled,
   ...antdProps
 }) => {
   const renderImageCarousel = useMemo(() => {
@@ -51,9 +53,12 @@ const Popconfirm: PopconfirmType = ({
     }
   }, [visible, antdProps.visible]);
 
-  return (
-    <S.AntdPopconfirm
+  return disabled ? (
+    <>{antdProps.children}</>
+  ) : (
+    <AntdPopconfirm
       {...antdProps}
+      disabled={disabled}
       visible={visible}
       onVisibleChange={(isVisible: boolean): void => {
         if (antdProps.onVisibleChange) {
@@ -68,7 +73,9 @@ const Popconfirm: PopconfirmType = ({
             <S.PopconfirmContentWrapper>
               <S.PopconfirmHeaderWrapper>
                 {icon && <S.PopconfirmIcon>{icon}</S.PopconfirmIcon>}
-                <S.PopconfirmTitle>{title}</S.PopconfirmTitle>
+                <S.PopconfirmTitle>
+                  <>{title}</>
+                </S.PopconfirmTitle>
               </S.PopconfirmHeaderWrapper>
               <S.PopconfirmTextWrapper>
                 {description && (

@@ -28,8 +28,7 @@ const TableHeader = ({
   hideTitlePart,
   childrenColumnName,
   isLoading,
-}: 
-// @ts-ignore
+}: // @ts-ignore
 Props) => {
   const { formatValue } = useDataFormat();
 
@@ -44,7 +43,7 @@ Props) => {
           locale={locale}
         />
       );
-      
+
     return selectedRows && selectedRows > 0 ? (
       <S.Left data-testid="ds-table-selection">
         {selection && !hideSelectAll && (
@@ -101,7 +100,8 @@ Props) => {
           )}
           {!isLoading && !hideTitlePart && (
             <S.TitlePart>
-              <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong> <span>{locale?.pagination?.items}</span>
+              <strong>{formatValue(dataSourceTotalCount || dataSource.length)}</strong>{' '}
+              <span>{locale?.pagination?.items}</span>
             </S.TitlePart>
           )}
         </S.TitleContainer>
@@ -145,8 +145,12 @@ Props) => {
             disabled={filter.disabled}
           />
         ))}
-        {filterComponent}
-        {searchComponent}
+        {filterComponent && (
+          <S.RightSideWrapper data-testid="ds-table-filter-wrapper">{filterComponent}</S.RightSideWrapper>
+        )}
+        {searchComponent && (
+          <S.RightSideWrapper data-testid="ds-table-search-wrapper">{searchComponent}</S.RightSideWrapper>
+        )}
       </S.Right>
     </S.Header>
   );

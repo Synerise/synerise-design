@@ -31,7 +31,7 @@ export default {
       table: { category: 'Story options' },
     },
   },
-  render: ({ layoutNativeScroll, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
+  render: ({ layoutNativeScroll, onAddStep, onExpressionStepChange, showStepTags, isDateFilterOn, conditionFooterRelativeDateRange, ...args }) => {
     const {
       expressions,
       handleChangeLogic,
@@ -45,7 +45,7 @@ export default {
       renderHeaderRightSide,
       renderStepContent,
       renderStepHeaderRightSide,
-    } = useFilterHandlers({ ...args, isDateFilterOn, conditionFooterRelativeDateRange });
+    } = useFilterHandlers({ ...args, isDateFilterOn, conditionFooterRelativeDateRange, onExpressionStepChange });
 
     const [matching, setMatching] = useState(true);
 
@@ -77,7 +77,7 @@ export default {
                 <ContextSelector
                   disabled={isLimitExceeded}
                   texts={{ ...CONTEXT_TEXTS, buttonLabel: 'Add filter' }}
-                  onSelectItem={handleAddStep}
+                  onSelectItem={(item) => {onAddStep?.(item); handleAddStep(item)}}
                   items={CONTEXT_CLIENT_ITEMS}
                   groups={CONTEXT_CLIENT_GROUPS}
                   addMode={true}

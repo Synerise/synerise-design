@@ -1,6 +1,5 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { US_NOTATION } from '@synerise/ds-data-format';

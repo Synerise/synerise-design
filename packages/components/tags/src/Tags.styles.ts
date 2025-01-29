@@ -3,6 +3,7 @@ import Button from '@synerise/ds-button';
 import SearchBar from '@synerise/ds-search-bar/';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
+import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
 
 export const Container = styled.div`
   margin-bottom: 24px;
@@ -42,6 +43,10 @@ export const CreateTagDropdownButton = styled(Button)<{ marginless: boolean }>`
   display: flex;
   align-items: center;
   position: absolute;
+
+  ${ButtonLabel} {
+    justify-content: flex-start;
+  }
 
   && {
     font-weight: 400;

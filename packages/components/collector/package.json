@@ -47,10 +47,10 @@
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.7.0",
-    "react": ">=16.9.0 <= 17.0.2",
+    "antd": "4.24.16",
+    "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/lodash.isequal": "^4.5.8"

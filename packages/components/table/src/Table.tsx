@@ -60,7 +60,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
   const tableLocale = useTableLocale(intl, locale);
   const { formatValue } = useDataFormat();
 
-  const renderHeader = useCallback(() => {
+  const renderHeader = useCallback((): JSX.Element => {
     const size = selection && selection?.selectedRowKeys && selection?.selectedRowKeys.length;
     const data = grouped
       ? // @ts-ignore
@@ -72,29 +72,29 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
         }, [])
       : dataSource;
     const totalCount = dataSourceTotalCount || dataSource?.length || dataSourceFull?.length;
-    return (
-      !hideTitleBar && (
-        <TableHeader
-          withBorderTop={headerWithBorderTop}
-          selectedRows={size}
-          title={title}
-          filters={filters}
-          itemsMenu={itemsMenu}
-          selection={selection}
-          dataSource={data}
-          dataSourceFull={dataSourceFull}
-          dataSourceTotalCount={totalCount}
-          searchComponent={searchComponent}
-          filterComponent={filterComponent}
-          headerButton={headerButton}
-          rowKey={rowKey}
-          locale={tableLocale}
-          renderSelectionTitle={renderSelectionTitle}
-          hideTitlePart={hideTitlePart}
-          childrenColumnName={getChildrenColumnName(expandable?.childrenColumnName)}
-          isLoading={loading}
-        />
-      )
+    return !hideTitleBar ? (
+      <TableHeader
+        withBorderTop={headerWithBorderTop}
+        selectedRows={size}
+        title={title}
+        filters={filters}
+        itemsMenu={itemsMenu}
+        selection={selection}
+        dataSource={data}
+        dataSourceFull={dataSourceFull}
+        dataSourceTotalCount={totalCount}
+        searchComponent={searchComponent}
+        filterComponent={filterComponent}
+        headerButton={headerButton}
+        rowKey={rowKey}
+        locale={tableLocale}
+        renderSelectionTitle={renderSelectionTitle}
+        hideTitlePart={hideTitlePart}
+        childrenColumnName={getChildrenColumnName(expandable?.childrenColumnName)}
+        isLoading={loading}
+      />
+    ) : (
+      <></>
     );
   }, [
     selection,
@@ -164,7 +164,7 @@ const DSTable = <T extends object>(props: DSTableProps<T>) => {
     return (
       <DefaultTable<T>
         scroll={{ x: 'auto' }}
-        tableLayout="auto"
+        tableLayout="fixed"
         {...props}
         locale={tableLocale}
         title={renderHeader}

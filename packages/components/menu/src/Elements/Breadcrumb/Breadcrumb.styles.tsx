@@ -102,8 +102,7 @@ export const disableDefaultClickingStyles = (
 `;
 
 export const Breadcrumb = styled(({ children, disabled, onPathClick, compact, ...rest }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  <Text disabled={disabled} onItemHover={NOOP} onClick={NOOP} {...rest}>
+  <Text disabled={disabled} onClick={NOOP} {...rest}>
     {children}
   </Text>
 ))`

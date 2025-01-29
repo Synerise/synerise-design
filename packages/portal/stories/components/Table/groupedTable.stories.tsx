@@ -586,7 +586,6 @@ const stories = {
                 itemRender: (item: FilterElement) => (
                   <Menu.Item
                     highlight={store.state.searchValue}
-                    onItemHover={(): void => { }}
                     prefixel={item && <Icon component={item && item.icon} />}
                   >
                     {item && item.text}
@@ -601,7 +600,7 @@ const stories = {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: FilterElement) => (
-                  <Menu.Item onItemHover={(): void => { }}>{item && item.text}</Menu.Item>
+                  <Menu.Item >{item && item.text}</Menu.Item>
                 ),
                 divider: (
                   <div style={{ padding: '12px', paddingBottom: '0px' }}>
@@ -616,7 +615,7 @@ const stories = {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: FilterElement) => (
-                  <Menu.Item onItemHover={(): void => { }}>{item && item.text}</Menu.Item>
+                  <Menu.Item >{item && item.text}</Menu.Item>
                 ),
               }}
               textLookupConfig={{

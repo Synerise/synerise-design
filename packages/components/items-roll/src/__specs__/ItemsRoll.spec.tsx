@@ -65,7 +65,7 @@ describe('ItemsRoll', () => {
 
     fireEvent.click(actionMenuTrigger);
 
-    const actionMenu = screen.getByTestId('items-roll-action-menu') as HTMLElement;
+    const actionMenu = await screen.findByTestId('items-roll-action-menu') as HTMLElement;
 
     expect(await screen.findByText('Import')).toBeInTheDocument();
     expect(await screen.findByText('Export')).toBeInTheDocument();

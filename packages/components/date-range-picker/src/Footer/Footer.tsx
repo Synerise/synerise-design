@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import Button from '@synerise/ds-button';
 import Tooltip from '@synerise/ds-tooltip';
@@ -17,7 +17,6 @@ import { toIsoStringWithoutZone } from '../utils';
 const Footer = ({
   canApply,
   onApply,
-  intl,
   canSwitchMode,
   onSwitchMode,
   mode,
@@ -32,19 +31,20 @@ const Footer = ({
   ...rest
 }: Props) => {
   const { formatValue } = useDataFormat();
+  const { locale } = useIntl();
   const footerFormat = format || (showTime ? 'MMM D, YYYY, HH:mm' : 'MMM D, YYYY');
 
   const footerDateToString = useCallback(
     (date: Date | string) => {
       if (format || typeof date === 'string') {
-        return fnsFormat(getDateFromString(date), footerFormat, intl.locale);
+        return fnsFormat(getDateFromString(date), footerFormat, locale);
       }
 
       const parseDate = new Date(toIsoStringWithoutZone(date));
 
       return formatValue(parseDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [footerFormat, format, formatValue, intl.locale, valueFormatOptions, showTime]
+    [footerFormat, format, formatValue, locale, valueFormatOptions, showTime]
   );
 
   const ChosenRange = useMemo(() => {
@@ -87,4 +87,4 @@ const Footer = ({
   );
 };
 
-export default injectIntl(Footer);
+export default Footer;

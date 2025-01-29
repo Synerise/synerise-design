@@ -30,6 +30,7 @@ export default {
   },
   argTypes: {},
   args: {
+    defaultValue: 'A',
     description: 'Description',
     children: 'Label',
   },

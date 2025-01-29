@@ -1,5 +1,6 @@
 import Modal from '@synerise/ds-modal';
 import React from 'react';
+import { SelectValue } from 'antd/lib/select';
 import Select from '@synerise/ds-select';
 import Icon, { InfoFillS, Add3M } from '@synerise/ds-icon';
 
@@ -63,7 +64,7 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
 }: GroupSettingsProps) => {
   const [groupBy, setGroupBy] = React.useState<GroupType | undefined>(undefined);
   const [ranges, setRanges] = React.useState<Range[]>([EMPTY_RANGE]);
-  const [interval, setIntervalValue] = React.useState<string | number | undefined>(undefined);
+  const [interval, setIntervalValue] = React.useState<string | number | null | undefined>(undefined);
   const [error, setError] = React.useState<React.ReactNode | undefined>(undefined);
 
   const clearState = React.useCallback(() => {
@@ -187,8 +188,8 @@ const ColumnManagerGroupSettings: React.FC<GroupSettingsProps> = ({
   }, [column]);
 
   const handleGroupTypeChange = React.useCallback(
-    (value): void => {
-      setGroupBy(value);
+    (value: SelectValue): void => {
+      setGroupBy(value as GroupType);
       setError(undefined);
     },
     [setGroupBy, setError]

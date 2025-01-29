@@ -1,5 +1,5 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
-export interface Props {
-  children: React.ReactChildren | Element | Element[] | JSX.Element | JSX.Element[];
-}
+export type Props = {
+  children: ReactNode;
+};

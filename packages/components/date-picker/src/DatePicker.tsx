@@ -103,7 +103,7 @@ const DatePicker = ({
   ) : (
     <Dropdown
       overlay={
-        <S.OverlayContainer ref={ref}>
+        <S.OverlayContainer data-testid="date-picker-overlay-container" ref={ref}>
           <RawDatePicker
             {...rest}
             showTime={showTime}
