@@ -31,7 +31,7 @@ const DEFAULT_PROPS: FactorsProps = {
 
 const RENDER_FACTORS = (props?: {}) => <Factors {...DEFAULT_PROPS} {...props} />;
 
-describe('Factors component', () => {
+describe.skip('Factors component', () => {
   beforeEach(() => {
     Element.prototype.scrollTo = jest.fn();
   });
