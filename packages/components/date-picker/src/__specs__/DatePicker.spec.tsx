@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { US_NOTATION } from '@synerise/ds-data-format';
@@ -96,7 +96,7 @@ describe('RawDatePicker', () => {
     expect(screen.getByText('1930-1939')).toBeTruthy();
     expect(screen.getByText('2000-2009')).toBeTruthy();
   });
-  it('should proceed to TimePicker after choosing the day', () => {
+  it('should proceed to TimePicker after choosing the day', async () => {
     const { container, getByTestId } = renderWithProvider(
       <RawDatePicker
         onApply={jest.fn()}
@@ -110,7 +110,8 @@ describe('RawDatePicker', () => {
     );
     const dayOne = container.querySelector('[data-attr="1"]') as HTMLElement;
     dayOne.click();
-    expect(getByTestId('tp-overlay-container')).toBeTruthy();
+    await waitFor(() => expect(getByTestId('tp-overlay-container')).toBeInTheDocument());
+    
   });
   it('should show previous year on left arrow click', () => {
     const { container } = renderWithProvider(
@@ -290,7 +291,7 @@ describe('RawDatePicker', () => {
     expect(screen.getByText('Śr')).toBeTruthy();
   });
 
-  it('should show prev and next arrows in TimePicker as disabled if following and previous days are disabled', () => {
+  it('should show prev and next arrows in TimePicker as disabled if following and previous days are disabled', async () => {
     const defaultDay = new Date('1996-10-27T03:24:00');
     const allowedDay = new Date(defaultDay.getTime());
     allowedDay.setHours(0);
@@ -321,7 +322,7 @@ describe('RawDatePicker', () => {
     );
     const dayOne = (container.querySelector('[data-attr="27"]')) as HTMLElement;
     dayOne.click();
-    screen.getByTestId('tp-overlay-container');
+    await waitFor(() => expect(screen.getByTestId('tp-overlay-container')).toBeInTheDocument());
     const navigationArrows = container.querySelectorAll(NAVBAR_ITEM_SELECTOR);
     const toNextDay = navigationArrows[1];
     const toPrevDay = navigationArrows[0];

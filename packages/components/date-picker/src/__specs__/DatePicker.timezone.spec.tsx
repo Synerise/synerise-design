@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, waitFor, within } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';

@@ -109,6 +109,7 @@
     "@commitlint/config-lerna-scopes": "8.3.4",
     "@formatjs/intl-pluralrules": "5.3.1",
     "@formatjs/intl-relativetimeformat": "11.4.1",
+    "@jest/fake-timers": "^27",
     "@jridgewell/gen-mapping": "0.3.2",
     "@storybook/components": "7.6.5",
     "@storybook/react-webpack5": "7.6.5",
