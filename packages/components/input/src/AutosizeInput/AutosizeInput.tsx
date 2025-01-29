@@ -36,7 +36,10 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
       children,
       transformWrapperRef = (element: HTMLElement) => element,
       transformRef = (element: HTMLElement) => element,
-      ...props
+      placeholder,
+      value,
+      defaultValue,
+      style,
     },
     forwardedRef
   ) => {
@@ -48,10 +51,30 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
 
     const [inputWidth, setInputWidth] = useState(0);
 
-    const { width: updatedSizerWidth } = useResizeObserver(sizerRef);
-    const { width: updatedPlaceholderWidth } = useResizeObserver(placeholderSizerRef);
+    const usedValue = value ?? defaultValue ?? '';
+    const hasValue = Boolean(usedValue);
 
-    const usedValue = props.value ?? props.defaultValue ?? '';
+    const resizeHandler = useCallback(
+      (newSizerWidth: DOMRect) => {
+        const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
+        const calculatedWidth = calculateInputWidth({
+          sizerWidth: newSizerWidth.width,
+          hasValue: !!sizerRef.current?.textContent,
+          placeholderIsMinWidth,
+          placeholderWidth,
+          minWidth: +minWidth,
+          placeholder,
+        });
+
+        if (inputWrapperRef.current) {
+          inputWrapperRef.current.style.width = `${calculatedWidth + +extraWidth}px`;
+        }
+      },
+      [extraWidth, minWidth, placeholder, placeholderIsMinWidth]
+    );
+
+    useResizeObserver(sizerRef, resizeHandler);
+    const { width: updatedPlaceholderWidth } = useResizeObserver(placeholderSizerRef);
 
     const copyInputStyles = () => {
       if (inputRef.current) {
@@ -77,27 +100,28 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
 
     const resize = useCallback(
       (width: number) => {
-        preAutosize && preAutosize(width);
-        setInputWidth(width + +extraWidth);
-        onAutosize && onAutosize(width);
+        if (inputWidth !== width + +extraWidth) {
+          preAutosize && preAutosize(width);
+          setInputWidth(width + +extraWidth);
+          onAutosize && onAutosize(width);
+        }
       },
-      [extraWidth, onAutosize, preAutosize]
+      [extraWidth, inputWidth, onAutosize, preAutosize]
     );
 
     const updateInputWidth = () => {
       const sizerWidth = sizerRef.current?.scrollWidth;
       const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
-
       const calculatedWidth = calculateInputWidth({
         sizerWidth,
-        usedValue,
+        hasValue,
         placeholderIsMinWidth,
         placeholderWidth,
         minWidth: +minWidth,
-        placeholder: props.placeholder,
+        placeholder,
       });
 
-      if ((sizerWidth && usedValue && calculatedWidth) || (props.placeholder && placeholderWidth) || sizerRef.current) {
+      if ((sizerWidth && hasValue && calculatedWidth) || (placeholder && placeholderWidth) || sizerRef.current) {
         resize(calculatedWidth);
       }
     };
@@ -133,15 +157,14 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     }, [handleInputRef, transformRef, transformWrapperRef]);
 
     useEffect(updateInputWidth, [
-      usedValue,
-      props.placeholder,
+      hasValue,
+      placeholder,
       extraWidth,
       placeholderIsMinWidth,
       onAutosize,
       setInputWidth,
       minWidth,
       updatedPlaceholderWidth,
-      updatedSizerWidth,
       preAutosize,
       resize,
     ]);
@@ -158,7 +181,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     const wrapperStyle: CSSProperties = {
       ...wrapperStyleProp,
       position: 'relative',
-      display: props.style?.display ?? 'inline-block',
+      display: style?.display ?? 'inline-block',
     };
 
     return (
@@ -167,9 +190,9 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
           {usedValue}
         </div>
         {children}
-        {props.placeholder ? (
+        {placeholder ? (
           <div ref={placeholderSizerRef} style={sizerStyle} data-testid="placeholder-sizer">
-            {props.placeholder}
+            {placeholder}
           </div>
         ) : null}
       </div>

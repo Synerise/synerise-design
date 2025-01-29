@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.35.3",
+  "version": "0.36.0",
   "scripts": {
     "docs-watch": "node ../../../scripts/docs/watch.js",
     "examples": "docusaurus-examples",
@@ -26,7 +26,7 @@
     "sass": "^1.43.4"
   },
   "peerDependencies": {
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0"
+    "react": "^16.10.0 || 17 || 18",
+    "react-dom": "^16.10.0 || 17 || 18"
   }
 }

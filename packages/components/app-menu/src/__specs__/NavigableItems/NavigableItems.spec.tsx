@@ -1,8 +1,8 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { fireEvent, screen } from '@testing-library/react';
 
 import NavigableItems from '../../NavigableItems/NavigableItems';
-import { fireEvent, waitForElement } from '@testing-library/react';
 
 describe('NavigableItems', () => {
   const onHideMenu = jest.fn();
@@ -32,30 +32,29 @@ describe('NavigableItems', () => {
       })
     );
 
-    // ARRANGE
-    const { getByText, queryByText, getByRole, queryAllByRole } = renderWithProvider(Component);
+    renderWithProvider(Component);
 
-    expect(queryAllByRole('listitem').length).toEqual(1); // Only one nav button is visible on start
-    expect(getByText('Item #1')).toBeTruthy();
-    expect(getByText('Item #3')).toBeTruthy();
-    expect(queryByText('Item #4')).toBeFalsy();
-    expect(queryByText('Item #5')).toBeFalsy();
+    expect(screen.queryAllByRole('listitem').length).toEqual(1); // Only one nav button is visible on start
+    expect(screen.getByText('Item #1')).toBeTruthy();
+    expect(screen.getByText('Item #3')).toBeTruthy();
+    expect(screen.queryByText('Item #4')).toBeFalsy();
+    expect(screen.queryByText('Item #5')).toBeFalsy();
 
     // Navigate bottom
-    fireEvent.click(getByRole('listitem'));
-    await waitForElement(() => getByText('Item #4'));
-    expect(getByText('Item #4')).toBeTruthy();
-    expect(getByText('Item #5')).toBeTruthy();
-    expect(queryByText('Item #1')).toBeFalsy();
+    fireEvent.click(screen.getByRole('listitem'));
+    await screen.findByText('Item #4');
+    expect(screen.getByText('Item #4')).toBeTruthy();
+    expect(screen.getByText('Item #5')).toBeTruthy();
+    expect(screen.queryByText('Item #1')).toBeFalsy();
 
     //Navigate top
-    fireEvent.click(getByRole('listitem'));
-    await waitForElement(() => getByText('Item #1'));
-    expect(getByText('Item #1')).toBeTruthy();
-    expect(queryByText('Item #5')).toBeFalsy();
+    fireEvent.click(screen.getByRole('listitem'));
+    await screen.findByText('Item #1');
+    expect(screen.getByText('Item #1')).toBeTruthy();
+    expect(screen.queryByText('Item #5')).toBeFalsy();
 
     //Call onHideMenu
-    fireEvent.click(getByText('Item #1'));
+    fireEvent.click(screen.getByText('Item #1'));
     expect(onHideMenu).toHaveBeenCalled();
   });
 
@@ -74,11 +73,10 @@ describe('NavigableItems', () => {
       })
     );
 
-    // ARRANGE
-    const { getByText, queryAllByRole } = renderWithProvider(Component);
+    renderWithProvider(Component);
 
-    expect(queryAllByRole('listitem').length).toEqual(0);
-    expect(getByText('Item #1')).toBeTruthy();
-    expect(getByText('Item #5')).toBeTruthy();
+    expect(screen.queryAllByRole('listitem').length).toEqual(0);
+    expect(screen.getByText('Item #1')).toBeTruthy();
+    expect(screen.getByText('Item #5')).toBeTruthy();
   });
 });

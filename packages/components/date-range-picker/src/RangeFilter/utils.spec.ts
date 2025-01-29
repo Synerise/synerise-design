@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { denormalizeValue, isValidValue, normalizeValue } from './utils';
 import { FilterValue } from './RangeFilter.types';
 

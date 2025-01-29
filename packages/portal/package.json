@@ -1,6 +1,6 @@
 {
   "name": "portal",
-  "version": "0.227.0",
+  "version": "0.229.0",
   "private": true,
   "homepage": "./",
   "repository": "synerise/synerise-design",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@use-it/interval": "^1.0.0",
-    "antd": "4.7.0",
+    "antd": "4.24.16",
     "final-form": "4.18.7",
     "moment": "^2.30.1",
     "ramda": "0.27.0",
@@ -33,7 +33,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
     "@babel/plugin-proposal-optional-chaining": "7.21.0",
     "@babel/plugin-transform-nullish-coalescing-operator": "7.24.1",
-    "@babel/preset-env": "7.20.2",
+    "@babel/preset-env": "7.24.3",
     "@babel/preset-react": "7.18.6",
     "@dump247/storybook-state": "1.6.1",
     "@icons/material": "0.4.1",
@@ -51,19 +51,14 @@
     "@storybook/react": "^6.5.15",
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "5.2.0",
-    "@synerise/portal-plugin-docs-inline-stories-links-to-sources": "^0.1.0",
-    "@testing-library/jest-dom": "5.1.1",
-    "@testing-library/react": "10.0.1",
-    "@types/jest": "29.5.4",
+    "@synerise/portal-plugin-docs-inline-stories-links-to-sources": "^0.2.0",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
     "babel-loader": "^8.3.0",
-    "babel-plugin-transform-rename-import": "2.3.0",
     "css-loader": "3.4.2",
-    "enzyme-adapter-react-16": "1.15.2",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-config-react-app": "5.2.0",
@@ -77,12 +72,12 @@
     "less-vars-loader": "1.1.0",
     "monaco-editor-webpack-plugin": "^7.0.1",
     "react-docgen-typescript-loader": "3.7.1",
-    "style-loader": "1.1.3",
-    "styled-components": "5.0.1"
+    "style-loader": "1.1.3"
   },
   "peerDependencies": {
-    "react": ">=16.9.0 <= 17.0.2",
-    "react-dom": ">=16 <= 17.0.2",
-    "react-intl": ">=3.12.0 <= 6.8"
+    "react": ">=16.9.0 <= 18.3.1",
+    "react-dom": ">=16 <= 18",
+    "react-intl": ">=3.12.0 <= 6.8",
+    "styled-components": "^5.3.3"
   }
 }

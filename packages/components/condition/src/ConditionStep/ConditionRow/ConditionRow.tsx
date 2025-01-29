@@ -128,6 +128,9 @@ export const ConditionRow = ({
           >
             {renderConditionParameterWrapper && (
               <Factors
+                selectedFactorType=""
+                defaultFactorType=""
+                value=""
                 {...conditionParameter}
                 inputProps={inputProps}
                 getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
@@ -141,7 +144,7 @@ export const ConditionRow = ({
                   currentField === PARAMETER
                 }
                 readOnly={readOnly}
-                error={Boolean(conditionParameter.errorText)}
+                error={Boolean(conditionParameter?.errorText)}
               />
             )}
             {lastConditionWrapper === 'parameter' && removeConditionTrigger}
@@ -152,6 +155,8 @@ export const ConditionRow = ({
               withRemoveTrigger={lastConditionWrapper === 'operator'}
             >
               <Operators
+                groups={[]}
+                items={[]}
                 {...conditionOperator}
                 getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}
                 onActivate={() => onActivate && onActivate(OPERATOR)}
@@ -164,7 +169,7 @@ export const ConditionRow = ({
                   currentField === OPERATOR
                 }
                 readOnly={readOnly}
-                errorText={conditionOperator.errorText}
+                errorText={conditionOperator?.errorText}
               />
               {lastConditionWrapper === 'operator' && removeConditionTrigger}
             </S.ConditionWrapper>
@@ -176,6 +181,9 @@ export const ConditionRow = ({
             >
               {conditionFactor?.withCustomFactor || (
                 <Factors
+                  selectedFactorType=""
+                  defaultFactorType=""
+                  value=""
                   {...conditionFactorProps}
                   inputProps={inputProps}
                   getPopupContainerOverride={getPopupContainerOverride || getPopupContainer}

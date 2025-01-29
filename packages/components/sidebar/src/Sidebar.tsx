@@ -75,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
       <S.AntdCollapse
         {...activeKeysProp}
         className={isDragDrop ? 'is-drag-drop' : ''}
-        expandIconPosition="right"
+        expandIconPosition="end"
         expandIcon={(panelProps): React.ReactElement => {
           const checkActive = panelProps.isActive;
           return isActive(checkActive);
@@ -99,6 +99,7 @@ const Sidebar: React.FC<SidebarProps> & { Panel: typeof Panel } = ({
   ]);
 
   return isDragDrop ? (
+    // @ts-expect-error
     <DndProvider backend={HTML5Backend}>
       <SidebarContext.Provider value={{ order, setOrder: changeOrder }}>{collapseContent}</SidebarContext.Provider>
     </DndProvider>

@@ -25,7 +25,7 @@ const arrowDownSvgWithCustomColor = (color: string): string => {
   return iconWithColor;
 };
 
-export const MenuDivider = styled.div`
+export const MenuDivider = styled.div<{ level?: number }>`
   height: 1px;
   width: ${(props): string => (props?.level && props?.level > 1 ? '75%' : '100%')};
   margin: ${(props: MenuDividerProps): string => (props.higher ? '16px' : '8px')}
@@ -60,7 +60,8 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
           }
         }
 
-        li.ant-menu-submenu {
+        li.ant-menu-submenu,
+        li.-submenu {
           &::before {
             content: '';
           }
@@ -68,14 +69,16 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
       }
     `}
   > li {
-    > .ant-menu-submenu-title {
+    > .ant-menu-submenu-title,
+    > .-submenu-title {
       padding-left: 12px !important;
     }
     &:not(.ant-menu-submenu) {
       padding-left: 12px !important;
     }
   }
-  .ant-menu-submenu-title {
+  .ant-menu-submenu-title,
+  .-submenu-title {
     display: flex;
     ${overflowStyles}
     .ds-submenu-title-wrapper {
@@ -87,7 +90,8 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
       }
     }
   }
-  &&& .ant-menu-item-selected {
+  &&& .ant-menu-item-selected,
+  &&& .-item-selected {
     &:focus:not(:active) {
       color: ${(props): string => props.theme.palette['blue-600']};
       background: ${(props): string => props.theme.palette['blue-050']};
@@ -98,10 +102,14 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
     }
   }
   && {
-    .ant-menu-submenu-open {
+    .ant-menu-submenu-open,
+    .-submenu-open {
       .ant-menu-inline,
+      .-inline,
       .ant-menu-vertical,
-      .ant-menu-vertical-left {
+      .-vertical,
+      .ant-menu-vertical-left,
+      .-vertical-left {
         border-right-width: 0px;
         margin: 8px 0 8px 0;
       }
@@ -125,8 +133,8 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     font-weight: 500;
     border-radius: 3px;
     transition: background-color 0.2s ease-out;
-    && .ant-menu-submenu-title:hover {
-      && > i.ant-menu-submenu-arrow {
+    && .ant-menu-submenu-title:hover, && .-submenu-title:hover {
+      && > i.ant-menu-submenu-arrow, && > i.-submenu-arrow {
          background-image: url("${(props): string =>
            props.disabled
              ? arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])
@@ -141,7 +149,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
          }
       }
     }
-    > .ant-menu-submenu-title {
+    > .ant-menu-submenu-title, > .-submenu-title {
       line-height: 1.39;
       height: auto;
       margin: 0;
@@ -166,19 +174,26 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
           }
         `}
     }
-    .ant-menu-item {
+    .ant-menu-item, .-item {
       padding-right:5px;
       padding-left: 10px !important;
       margin-left: 24px;
       max-width: 176px;
     }
+      
+    .ant-menu-title-content {
+      .ant-menu-item, .-item {
+        margin-left: 0;
+      }
+    }
+
     .ds-menu-prefix {
       margin-left: 0px ;
     }
     
-    &.ant-menu-item-selected {
+    &.ant-menu-item-selected, &.-item-selected {
       background:inherit;
-      .ant-menu-submenu-title {
+      .ant-menu-submenu-title, .-submenu-title {
           &:focus,
           &:active {
             background: ${(props): string => props.theme.palette['blue-050']};
@@ -204,7 +219,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       !props.disabled &&
       `
     &:focus {
-       > .ant-menu-submenu-title{
+       > .ant-menu-submenu-title, > .-submenu-title {
          box-shadow: inset 0 0 0 2px ${props.theme.palette['blue-600']};
       }
     }
@@ -212,10 +227,10 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     i {
       right: 12px;
     }
-    > .ant-menu-submenu-title:hover {
+    > .ant-menu-submenu-title:hover, > .-submenu-title:hover {
       color: ${(props): string => props.theme.palette['blue-600']};
     }
-    &&.ant-menu-submenu-open > .ant-menu-submenu-title {
+    &&.ant-menu-submenu-open > .ant-menu-submenu-title, &&.-submenu-open > .-submenu-title {
       &:not(:hover) {
         color: ${(props): string => props.theme.palette['grey-700']};
       }
@@ -236,7 +251,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
       }
 
       
-      & > i.ant-menu-submenu-arrow {
+      & > i.ant-menu-submenu-arrow, & > i.-submenu-arrow {
          transform: rotate(180deg);
          background-image: url("${(props): string =>
            props.disabled
@@ -244,43 +259,43 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
              : arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
     }
-    > .ant-menu-submenu-title {
+    > .ant-menu-submenu-title, > .-submenu-title {
       border-radius: 3px;
-      & > i.ant-menu-submenu-arrow {
+      & > i.ant-menu-submenu-arrow, & > i.-submenu-arrow {
           transform: rotate(0deg);
           top:calc(50% - 12px);
           right:5px;
           height:24px;
           width:24px;
       }
-      & > i.ant-menu-submenu-arrow::after,
-      & > i.ant-menu-submenu-arrow::before {
+      & > i.ant-menu-submenu-arrow::after, & > i.-submenu-arrow::after,
+      & > i.ant-menu-submenu-arrow::before, & > i.-submenu-arrow::before {
               background-image: none;
               display:none;
       }
 
-      &:hover > i.ant-menu-submenu-arrow::after,
-      &:hover > i.ant-menu-submenu-arrow::before{
+      &:hover > i.ant-menu-submenu-arrow::after, &:hover > i.-submenu-arrow::after,
+      &:hover > i.ant-menu-submenu-arrow::before, &:hover > i.-submenu-arrow::before {
           background-image: none;
       }
       &:hover {
         color: ${(props): string => props.theme.palette['blue-600']};
         background: ${(props): string => props.theme.palette['grey-050']};
       }
-      & > i.ant-menu-submenu-arrow{
+      & > i.ant-menu-submenu-arrow, & > i.-submenu-arrow{
         background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['grey-400'])}");
       }
-      &:hover > i.ant-menu-submenu-arrow{
+      &:hover > i.ant-menu-submenu-arrow, &:hover > i.-submenu-arrow{
         background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
     }
-     &&.ant-menu-submenu-open > .ant-menu-submenu-title:hover {
-      & > i.ant-menu-submenu-arrow{
+     &&.ant-menu-submenu-open > .ant-menu-submenu-title:hover, &&.-submenu-open > .-submenu-title:hover {
+      & > i.ant-menu-submenu-arrow, & > i.-submenu-arrow{
         background-image: url("${(props): string => arrowDownSvgWithCustomColor(props.theme.palette['blue-600'])}");
       }
      }
 
-    > li.ant-menu-submenu {
+    > li.ant-menu-submenu, > li.-submenu {
       &:hover {
         background: none !important;
       }
@@ -298,7 +313,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
         i {
           right: 12px;
         }
-        > .ant-menu-submenu {
+        > .ant-menu-submenu, > .-submenu {
           &:hover {
             ${(props): string | false =>
               !props.disabled &&

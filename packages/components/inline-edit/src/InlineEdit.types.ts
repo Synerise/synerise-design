@@ -1,16 +1,23 @@
-import React from 'react';
+import type {
+  ReactNode,
+  ChangeEvent,
+  CSSProperties,
+  FocusEventHandler,
+  InputHTMLAttributes,
+  KeyboardEventHandler,
+} from 'react';
 
 export type InputProps = {
   name?: string;
   value: string | number;
   disabled?: boolean;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onEnterPress?: React.KeyboardEventHandler<HTMLInputElement>;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
+  onEnterPress?: KeyboardEventHandler<HTMLInputElement>;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   maxLength?: number;
-  autoComplete?: string;
   readOnly?: boolean;
+  autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete'];
 };
 
 export interface InlineEditProps {
@@ -19,8 +26,9 @@ export interface InlineEditProps {
   className?: string;
   disabled?: boolean;
   input: InputProps;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   autoFocus?: boolean;
   error?: boolean;
   hideIcon?: boolean;
+  customIcon?: ReactNode;
 }

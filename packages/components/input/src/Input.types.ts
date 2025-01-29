@@ -1,9 +1,7 @@
 import { ReactNode, ReactElement, MutableRefObject } from 'react';
 import { InputProps as AntdInputProps, TextAreaProps as AntdTextAreaProps } from 'antd/lib/input';
-import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 
-import { TooltipProps } from 'antd/lib/tooltip';
-import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
+import { TooltipProps } from '@synerise/ds-tooltip';
 
 export type AutoResizeProp = boolean | { minWidth: string; maxWidth?: string; stretchToFit?: boolean };
 export type Props = BaseProps<HTMLInputElement | HTMLTextAreaElement>;
@@ -11,7 +9,7 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   error?: boolean;
   className?: string;
   tooltip?: ReactNode;
-  tooltipConfig?: TooltipExtendedProps & TooltipProps;
+  tooltipConfig?: TooltipProps;
   errorText?: ReactNode;
   label?: ReactNode;
   description?: ReactNode;
@@ -30,14 +28,8 @@ export type BaseProps<RefElementType extends HTMLTextAreaElement | HTMLInputElem
   expandableTooltip?: ReactNode;
 };
 /**
- * @deprecated use `InputProps`, `TextareaProps` or `MaskedInputProps` instead
+ * @deprecated use `InputProps`, `TextareaProps` instead
  */
-export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> &
-  (AntdInputProps | AntdTextAreaProps | AntdMaskedInputProps);
+export type EnhancedProps = BaseProps<HTMLInputElement | HTMLTextAreaElement> & (AntdInputProps | AntdTextAreaProps);
 
 export type InputProps = BaseProps & AntdInputProps;
-
-/**
- * @deprecated MaskedInput component will no longer receive any updates
- */
-export type MaskedInputProps = BaseProps & AntdMaskedInputProps;

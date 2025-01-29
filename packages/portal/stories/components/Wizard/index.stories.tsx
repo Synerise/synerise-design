@@ -3,6 +3,7 @@ import React from 'react';
 import Wizard from '@synerise/ds-wizard';
 import { ObjectAvatar } from '@synerise/ds-avatar';
 import {
+  EditM,
   MailM,
 } from '@synerise/ds-icon';
 import { boolean, text, object } from '@storybook/addon-knobs';
@@ -87,6 +88,7 @@ const inlineEditProps = {
   handleOnEnterPress: () => action('onEnterPress'),
   placeholder: 'Example text',
   size: 'normal',
+  customIcon: <EditM/>,
 }
 
 

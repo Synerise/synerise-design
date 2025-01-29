@@ -30,7 +30,7 @@ export default {
   render: ({ relativeModes, ...args }) => {
     const relativeFuture = relativeModes?.includes('FUTURE');
     const relativePast = relativeModes?.includes('PAST');
-    return <DateRangePicker {...args} relativeFuture={relativeFuture} relativePast={relativePast} />;
+    return <DateRangePicker {...args} relativeModes={relativeModes} relativeFuture={relativeFuture} relativePast={relativePast} />;
   },
   argTypes: {
     ...generalArgTypes,

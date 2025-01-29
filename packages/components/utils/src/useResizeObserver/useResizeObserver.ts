@@ -1,11 +1,15 @@
 import { useEffect, useState, useRef, RefObject, useCallback } from 'react';
 
-const useResizeObserver = (elementRef: RefObject<HTMLElement | undefined>) => {
+const useResizeObserver = (
+  elementRef: RefObject<HTMLElement | undefined>,
+  resizeHandler?: (dimensions: DOMRect) => void
+) => {
   const [dimensions, setDimensions] = useState<DOMRect>(new DOMRect());
   const resizeObserver = useRef(
     new ResizeObserver(entries => {
       const { contentRect } = entries[0];
       setDimensions(contentRect);
+      resizeHandler && resizeHandler(contentRect);
     })
   ).current;
 

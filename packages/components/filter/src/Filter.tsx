@@ -165,7 +165,8 @@ const Filter = ({
   );
 
   const getContextTypeTexts = useCallback(
-    expression => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (expression: any) => {
       const contextType = expression.expressionType;
       return {
         matching: contextType === 'attribute' ? text.step.have : text.step.performed,
@@ -178,7 +179,7 @@ const Filter = ({
   );
 
   const isActive = useCallback(
-    expression => {
+    (expression: Expression) => {
       return expression.id === activeExpressionId;
     },
     [activeExpressionId]
@@ -221,19 +222,17 @@ const Filter = ({
 
       const props = {
         LOGIC: {
-          onChange: onChangeLogic
-            ? (value: LogicOperatorValue): void => onChangeLogic(expression.id, value)
-            : undefined,
+          onChange: onChangeLogic ? (value: LogicOperatorValue) => onChangeLogic(expression.id, value) : undefined,
           options: logicOptions,
         },
         STEP: {
           ...reorderProps,
           onChangeMatching: onChangeStepMatching
-            ? (value: boolean): void => onChangeStepMatching(expression.id, value)
+            ? (value: boolean) => onChangeStepMatching(expression.id, value)
             : undefined,
-          onChangeName: onChangeStepName ? (value: string): void => onChangeStepName(expression.id, value) : undefined,
-          onDelete: onDeleteStep ? (): void => onDeleteStep(expression.id) : undefined,
-          onDuplicate: onDuplicateStep && !isLimitExceeded ? (): void => onDuplicateStep(expression.id) : undefined,
+          onChangeName: onChangeStepName ? (value: string) => onChangeStepName(expression.id, value) : undefined,
+          onDelete: onDeleteStep ? () => onDeleteStep(expression.id) : undefined,
+          onDuplicate: onDuplicateStep && !isLimitExceeded ? () => onDuplicateStep(expression.id) : undefined,
           footer: renderStepFooter && renderStepFooter(expression),
           children: renderStepContent && renderStepContent(expression, !!activeExpressionId && !isActive(expression)),
           isHeaderVisible: visibilityConfig.isStepCardHeaderVisible,
@@ -275,7 +274,8 @@ const Filter = ({
   );
 
   const renderExpression = useCallback(
-    (expression, index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (expression: any, index: number) => {
       const Component = component[expression.type];
       const LogicComponent = expression.logic && component[expression.logic.type];
 
@@ -287,10 +287,10 @@ const Filter = ({
           key={expression.id}
           data-dropLabel={text.dropMeHere}
           index={index}
-          onMouseDown={(): void => setActiveExpressionId(expression.id)}
+          onMouseDown={() => setActiveExpressionId(expression.id)}
         >
           <Component {...expression.data} {...componentProps(expression, index)} readOnly={readOnly} />
-          {expression.logic && index + 1 < expressions.length && (
+          {expression.logic && index + 1 < expressions.length && LogicComponent && (
             <S.LogicWrapper data-testid="condition-logic">
               <LogicComponent
                 {...expression.logic.data}

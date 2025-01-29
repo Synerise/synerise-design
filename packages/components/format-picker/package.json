@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-format-picker",
-  "version": "0.6.8",
+  "version": "0.7.0",
   "description": "FormatPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,22 +34,22 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.22.2",
-    "@synerise/ds-button-group": "^0.7.28",
-    "@synerise/ds-checkbox": "^0.12.22",
-    "@synerise/ds-data-format": "^0.6.1",
-    "@synerise/ds-dropdown": "^0.18.30",
-    "@synerise/ds-icon": "^0.69.1",
-    "@synerise/ds-list-item": "^0.6.2",
-    "@synerise/ds-radio": "^0.12.18",
-    "@synerise/ds-tooltip": "^0.14.54",
-    "@synerise/ds-typography": "^0.16.11",
-    "@synerise/ds-utils": "^0.31.2"
+    "@synerise/ds-button": "^0.23.0",
+    "@synerise/ds-button-group": "^0.8.0",
+    "@synerise/ds-checkbox": "^0.13.0",
+    "@synerise/ds-data-format": "^0.7.0",
+    "@synerise/ds-dropdown": "^0.19.0",
+    "@synerise/ds-icon": "^0.71.0",
+    "@synerise/ds-list-item": "^0.7.0",
+    "@synerise/ds-radio": "^0.13.0",
+    "@synerise/ds-tooltip": "^0.15.0",
+    "@synerise/ds-typography": "^0.17.0",
+    "@synerise/ds-utils": "^0.32.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 <= 17.0.2",
+    "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   }
 }

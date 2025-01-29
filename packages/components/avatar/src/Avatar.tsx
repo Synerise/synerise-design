@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement, cloneElement } from 'react';
 import Tooltip from '@synerise/ds-tooltip';
 import '@synerise/ds-core/dist/js/style';
 
@@ -16,7 +16,7 @@ export const ICON_SIZES = {
   extraLarge: 42,
 };
 
-const Avatar: React.FC<AvatarProps> = ({
+const Avatar = ({
   backgroundColor,
   backgroundColorHue = '500',
   children,
@@ -26,20 +26,21 @@ const Avatar: React.FC<AvatarProps> = ({
   iconScale = true,
   tooltip = {},
   size = DEFAULT_SIZE,
+  src,
   ...antdProps
-}) => {
+}: AvatarProps) => {
   const sizes = { ...ICON_SIZES };
-  let iconElement = iconComponent as React.ReactElement;
+  let iconElement = iconComponent as ReactElement;
 
   // Enforce icon to be scaled
-  if (isIconComponent(iconElement?.type) && iconScale) {
+  if (isIconComponent(iconComponent) && iconScale) {
     if (iconElement.props.component?.type?.name?.match(/S$/)) {
       sizes.small = 24;
     }
 
     const iconSize = sizes[size] || sizes[DEFAULT_SIZE];
 
-    iconElement = React.cloneElement(iconElement, {
+    iconElement = cloneElement(iconElement, {
       size: iconSize,
     });
   }
@@ -59,6 +60,7 @@ const Avatar: React.FC<AvatarProps> = ({
         backgroundColorHue={backgroundColorHue}
         disabled={disabled}
         size={size}
+        src={src !== '' ? src : undefined}
         {...antdProps}
       >
         {iconElement || children}

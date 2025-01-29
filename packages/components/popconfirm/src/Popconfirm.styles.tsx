@@ -1,9 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import Popconfirm from 'antd/lib/popconfirm';
 import Button, { ButtonProps } from '@synerise/ds-button';
-
-export const AntdPopconfirm = styled(({ ...rest }) => <Popconfirm {...rest} />)``;
 
 export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>`
   display: flex;

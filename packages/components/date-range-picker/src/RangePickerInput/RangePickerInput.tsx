@@ -11,8 +11,12 @@ import { RangePickerInputProps } from './RangePickerInput.types';
 import * as S from './RangePickerInput.styles';
 
 import { normalizeRange } from '../utils';
-import type { DateRange } from '../date.types';
+import type { DateRange, NullableDateLimit, DateLimit } from '../date.types';
 import { isLifetime } from '../RelativeRangePicker/Elements/RangeDropdown/RangeDropdown';
+
+const isDateLimit = (dateLimit: DateLimit | NullableDateLimit | undefined): dateLimit is DateLimit => {
+  return dateLimit !== undefined && dateLimit !== null;
+};
 
 const RangePickerInput = ({
   value,
@@ -43,7 +47,6 @@ const RangePickerInput = ({
   const showError = error || !!errorText;
   const hasValue = dateRangeValue?.from && dateRangeValue?.to;
 
-  const intl = useIntl();
   const handleIconMouseEnter = useCallback(() => setHovered(true), []);
   const handleIconMouseLeave = useCallback(() => setHovered(false), []);
 
@@ -56,17 +59,19 @@ const RangePickerInput = ({
   );
 
   const getText = useCallback(
-    (dateToDisplay): string => {
-      const realDate = new Date(toIsoString(dateToDisplay, intl.timeZone));
+    (dateToDisplay: DateLimit): string => {
+      const realDate = new Date(
+        toIsoString(typeof dateToDisplay === 'string' ? new Date(dateToDisplay) : dateToDisplay, timeZone)
+      );
       return formatValue(realDate, { ...getDefaultDataTimeOptions(showTime), ...valueFormatOptions });
     },
-    [intl?.timeZone, formatValue, showTime, valueFormatOptions]
+    [timeZone, formatValue, showTime, valueFormatOptions]
   );
 
   const renderFromDate = useCallback(() => {
-    const isFromDateDefined = dateRangeValue && dateRangeValue.from;
+    const isFromDateDefined = dateRangeValue && isDateLimit(dateRangeValue.from);
     const text =
-      dateRangeValue && isFromDateDefined ? (
+      dateRangeValue && isDateLimit(dateRangeValue.from) ? (
         <S.DateValue>{getText(dateRangeValue.from)}</S.DateValue>
       ) : (
         texts?.startDatePlaceholder
@@ -79,7 +84,7 @@ const RangePickerInput = ({
     const isFromDateDefined = dateRangeValue && dateRangeValue.from;
 
     const text =
-      isEndDateDefined && dateRangeValue ? (
+      dateRangeValue && isDateLimit(dateRangeValue.to) ? (
         <S.DateValue>{getText(dateRangeValue.to)}</S.DateValue>
       ) : (
         texts?.endDatePlaceholder
@@ -97,6 +102,7 @@ const RangePickerInput = ({
       <>
         {preferRelativeDesc &&
           dateRangeValue?.translationKey &&
+          // @ts-ignore
           `${texts?.[dateRangeValue.translationKey] || dateRangeValue?.translationKey} (`}
         {renderFromDate()}
         <Icon component={<ArrowRightS />} color={theme.palette['grey-400']} />

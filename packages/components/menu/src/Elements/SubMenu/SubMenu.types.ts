@@ -1,27 +1,27 @@
+import type { ReactNode } from 'react';
 import { MenuProps } from 'antd/lib/menu';
-import React from 'react';
 import { MenuItemProps } from '../Item/MenuItem.types';
 
-export interface SubMenuProps extends Omit<MenuProps, 'dataSource' | 'footer'> {
-  key?: React.ReactText;
+export type SubMenuProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
+  key?: string | number;
   danger?: boolean;
   disabled?: boolean;
   parent?: boolean;
-  prefixel?: React.ReactNode;
-  suffixel?: React.ReactNode;
-  text?: string | React.ReactNode;
-  description?: string | React.ReactNode;
+  prefixel?: ReactNode;
+  suffixel?: ReactNode;
+  text?: ReactNode;
+  description?: ReactNode;
   ordered?: boolean | undefined;
   subMenu?: SubMenuProps[];
   copyable?: boolean;
-  copyHint?: string | React.ReactNode;
+  copyHint?: ReactNode;
   copyValue?: string;
   childrenCollapsed?: boolean;
   onTitleClick?: () => void;
   checked?: boolean;
   size?: 'default' | 'large';
-}
-export interface SubMenuState {
+};
+export type SubMenuState = {
   uuidKey: string;
-}
+};
 export type SubMenuItemProps = SubMenuProps & MenuItemProps & { onClick?: (item: SubMenuProps) => void };

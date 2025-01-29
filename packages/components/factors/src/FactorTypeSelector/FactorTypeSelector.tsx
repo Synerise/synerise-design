@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Dropdown from '@synerise/ds-dropdown';
 import Icon, { CheckS } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
@@ -17,6 +17,7 @@ const FactorTypeSelector = ({
   texts,
   readOnly,
 }: FactorTypeSelectorProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const typesList = useMemo(() => {
     let list = availableFactorTypes || ALL_FACTOR_TYPES;
     if (unavailableFactorTypes !== undefined) {
@@ -29,7 +30,10 @@ const FactorTypeSelector = ({
         key={factorTypes[type].name}
         prefixel={<Icon component={factorTypes[type].icon} />}
         suffixel={type === selectedFactorType ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : ''}
-        onClick={(): void => setSelectedFactorType(type)}
+        onClick={() => {
+          setSelectedFactorType(type);
+          setDropdownOpen(false);
+        }}
       >
         {texts[type]}
       </ListItem>
@@ -51,7 +55,13 @@ const FactorTypeSelector = ({
 
   return (
     <Tooltip title={texts[selectedFactorType]} trigger={['hover']}>
-      <Dropdown overlay={<S.FactorTypeList>{typesList}</S.FactorTypeList>} trigger={['click']} disabled={readOnly}>
+      <Dropdown
+        open={dropdownOpen}
+        onOpenChange={setDropdownOpen}
+        dropdownRender={() => <S.FactorTypeList>{typesList}</S.FactorTypeList>}
+        trigger={['click']}
+        disabled={readOnly}
+      >
         {trigger}
       </Dropdown>
     </Tooltip>

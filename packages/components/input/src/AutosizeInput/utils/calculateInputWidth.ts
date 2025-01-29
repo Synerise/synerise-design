@@ -2,7 +2,7 @@ import type { AutosizeInputProps } from '../AutosizeInput.types';
 
 type CalculateWidthProps = {
   sizerWidth?: number;
-  usedValue?: AutosizeInputProps['value'];
+  hasValue?: boolean;
   placeholderIsMinWidth?: AutosizeInputProps['placeholderIsMinWidth'];
   placeholderWidth?: number | null;
   minWidth?: number;
@@ -11,14 +11,14 @@ type CalculateWidthProps = {
 
 const calculateInputWidth = ({
   sizerWidth,
-  usedValue,
+  hasValue,
   placeholderIsMinWidth,
   placeholderWidth,
   minWidth,
   placeholder,
 }: CalculateWidthProps) => {
   let width = 0;
-  if (sizerWidth && usedValue) {
+  if (sizerWidth && hasValue) {
     /* If the input field has content, update the sizer to match its width  */
     width = sizerWidth;
     if (placeholderIsMinWidth && placeholderWidth && sizerWidth < placeholderWidth) {

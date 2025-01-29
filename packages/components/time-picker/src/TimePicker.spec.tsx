@@ -3,7 +3,7 @@ import { fireEvent, waitFor, within, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
 
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
+import { renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
 
 import TimePicker from './index';
 import { TEST_CASES_FOR_12_HOUR_CLOCK } from './constants/timePicker.spec.constants';
@@ -20,23 +20,23 @@ describe('TimePicker', () => {
   it('should render without any props', () => {
     renderWithProvider(<TimePicker />);
 
-    expect(screen.getByTestId(CONTAINER_TESTID)).toBeTruthy();
+    expect(screen.getByTestId(CONTAINER_TESTID)).toBeInTheDocument();
   });
 
   it('should render opened by default', async () => {
     renderWithProvider(<TimePicker defaultOpen />);
-
+    
     const overlayContainer = await screen.findByTestId(OVERLAY_CONTAINER_TESTID);
-    expect(overlayContainer).toBeTruthy();
+    expect(overlayContainer).toBeInTheDocument();
   });
 
-  it('should render overlay after clicking on input', () => {
+  it('should render overlay after clicking on input', async () => {
     renderWithProvider(<TimePicker />);
 
     const input = screen.getByTestId(INPUT_TESTID);
     userEvent.click(input);
 
-    expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+    expect(await screen.findByTestId(OVERLAY_CONTAINER_TESTID)).toBeInTheDocument();
   });
 
   it('should not open overlay if disabled', () => {
@@ -45,7 +45,7 @@ describe('TimePicker', () => {
     const input = screen.getByTestId(INPUT_TESTID);
     userEvent.click(input);
 
-    expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeFalsy();
+    expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).not.toBeInTheDocument();
   });
 
   it('should overlay close on blur', () => {
@@ -54,7 +54,7 @@ describe('TimePicker', () => {
     const input = screen.getByTestId(INPUT_TESTID);
     fireEvent.blur(input);
 
-    expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeFalsy();
+    expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).not.toBeInTheDocument();
   });
 
   it('should overlay stay open on blur if alwaysOpen is passed', async () => {
@@ -65,14 +65,15 @@ describe('TimePicker', () => {
 
     await waitFor(
       () => {
-        expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+        expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeInTheDocument();
       },
       { timeout: 1000 }
     );
     fireEvent.blur(input);
+    await sleep(800)
     await waitFor(
       () => {
-        expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeTruthy();
+        expect(screen.queryByTestId(OVERLAY_CONTAINER_TESTID)).toBeInTheDocument();
       },
       { timeout: 1000 }
     );

@@ -35,6 +35,7 @@ export type RangeKey =
   | 'ALL_TIME';
 
 export type NullableDateLimit = null | string | Date;
+export type DateLimit = string | Date;
 
 export interface DateFilter {
   key?: string;

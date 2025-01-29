@@ -137,7 +137,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     );
   };
 
-  onOffsetValueChange = (value: string | number | undefined): void => {
+  onOffsetValueChange = (value: string | number | null | undefined): void => {
     const { currentRange } = this.state;
     if (typeof value === 'number' && value >= 0 && currentRange) {
       const changes = setOffsetValue(value, currentRange);
@@ -145,7 +145,7 @@ class RelativeRangePicker extends React.PureComponent<Props & WrappedComponentPr
     }
   };
 
-  onDurationValueChange = (value: string | number | undefined): void => {
+  onDurationValueChange = (value: string | number | null | undefined): void => {
     const { currentRange } = this.state;
     if (value && currentRange) {
       const changes = setDurationValue(value, currentRange);

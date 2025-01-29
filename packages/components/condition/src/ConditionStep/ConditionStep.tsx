@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo, ReactText } from 'react';
+import { useIntl } from 'react-intl';
+
 import Subject from '@synerise/ds-subject';
 import ContextSelector from '@synerise/ds-context-selector';
-
-import { useIntl } from 'react-intl';
 import { DragHandleM } from '@synerise/ds-icon';
 import Factors from '@synerise/ds-factors';
+
 import * as S from '../Condition.style';
 import * as T from './ConditionStep.types';
 import { StepHeader } from './StepHeader';
@@ -12,6 +13,7 @@ import { AddCondition } from './AddCondition';
 import { ConditionRow } from './ConditionRow';
 import { ACTION_ATTRIBUTE, SUBJECT } from '../constants';
 import { EmptyCondition } from './EmptyCondition';
+import { StepConditions } from '../Condition.types';
 
 export const ConditionStep = ({
   step,
@@ -142,7 +144,7 @@ export const ConditionStep = ({
   ]);
 
   const renderConditionRow = useCallback(
-    (condition, conditionIndex) => {
+    (condition: StepConditions, conditionIndex: number) => {
       const handleActivation =
         (conditionId: string): ((field: string) => void) =>
         (fieldType: string): void => {
@@ -167,7 +169,7 @@ export const ConditionStep = ({
           minConditionLength={minConditionsLength}
           maxConditionLength={maxConditionsLength}
           conditionsNumber={step.conditions.length}
-          onActivate={handleActivation(condition.id)}
+          onActivate={handleActivation(condition.id as string)}
           stepId={step.id}
           currentStepId={currentStepId}
           currentConditionId={currentConditionId}

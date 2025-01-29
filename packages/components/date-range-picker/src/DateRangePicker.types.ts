@@ -41,7 +41,9 @@ export type AdditionalMapper = {
   rightBottom: CustomColorArrow;
 };
 export type DateRangePickerProps = {
-  // @deprecated - this prop will be dropped in v1.x
+  /**
+   * @deprecated this prop will be dropped in v1.x
+   */
   intl?: IntlShape;
   /**
    * overwrite default container's class. Default value is `ds-date-range-picker`.

@@ -105,10 +105,19 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
         : ''}
 
     ${(props): undefined | FlattenSimpleInterpolation => props.size && applySizeStyles(props)}
-    &.ant-menu-item-only-child {
+
+    > .-title-content,
+    > .ant-menu-title-content {
+      display: flex;
+      width: 100%;
+    }
+
+    &.ant-menu-item-only-child,
+    &.-item-only-child {
       margin-bottom: 0px;
     }
-    &.ant-menu-item-selected {
+    &.ant-menu-item-selected,
+    &.-item-selected {
       background: ${(props): string => props.theme.palette['blue-050']};
       color: ${(props): string => props.theme.palette['blue-600']};
       .ds-menu-prefix > .ds-icon > svg {
@@ -130,7 +139,9 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
       }
     }
     &.ant-menu-item-disabled,
-    &.ant-menu-submenu-disabled {
+    &.-item-disabled,
+    &.ant-menu-submenu-disabled,
+    &.-submenu-disabled {
       color: ${(props): string => props.theme.palette['grey-600']} !important;
     }
     & .ds-menu-prefix > * > .ant-avatar::after {

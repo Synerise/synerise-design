@@ -1,11 +1,9 @@
 import React, { forwardRef, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-import BaseAntInput, { InputProps } from 'antd/lib/input';
-import TextArea, { TextAreaProps } from 'antd/lib/input/TextArea';
+import BaseAntInput, { InputProps, InputRef } from 'antd/lib/input';
+import TextArea, { TextAreaProps, TextAreaRef } from 'antd/lib/input/TextArea';
 
-import MaskedInput from 'antd-mask-input';
-import { MaskedInputProps as AntdMaskedInputProps } from 'antd-mask-input/build/main/lib/MaskedInput';
 import { ThemeProps } from '@synerise/ds-core';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
 
@@ -142,7 +140,7 @@ export const IconWrapper = styled.div`
 `;
 
 export const AntdInput = styled(
-  forwardRef<BaseAntInput, InputProps & { error?: boolean; size?: SizeType }>(
+  forwardRef<InputRef, InputProps & { error?: boolean; size?: SizeType }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <BaseAntInput autoComplete="off" {...props} ref={ref} />
   )
@@ -185,28 +183,8 @@ export const AntdInput = styled(
   }
 `;
 
-export const AntdMaskedInput = styled(
-  forwardRef<MaskedInput, AntdMaskedInputProps & { error?: boolean }>(
-    // eslint-disable-next-line
-    ({ error, ...props }, ref) => <MaskedInput autoComplete="off" {...props} ref={ref} />
-  )
-)<{ error?: boolean; autoResize?: AutoResizeProp }>`
-  ${props => (props.error ? errorInputStyle(props) : '')};
-
-  && {
-    min-height: ${props => (props.autoResize ? '16' : '32')}px;
-    color: ${props => props.theme.palette['grey-700']};
-    z-index: 1;
-    letter-spacing: 1.8px;
-    &::placeholder {
-      letter-spacing: 1.8px;
-      color: ${props => props.theme.palette['grey-700']};
-    }
-  }
-`;
-
 export const AntdTextArea = styled(
-  forwardRef<TextArea, TextAreaProps & { error?: boolean }>(
+  forwardRef<TextAreaRef, TextAreaProps & { error?: boolean }>(
     // eslint-disable-next-line
     ({ error, ...props }, ref) => <TextArea autoComplete="off" {...props} ref={ref} />
   )

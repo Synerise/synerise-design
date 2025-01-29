@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
+import type { SliderSingleProps, SliderRangeProps } from 'antd/lib/slider';
 
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
@@ -36,7 +36,8 @@ export type SliderProps = AntdSliderProps & {
   tracksColorMap?: ColorMapProps;
   thickness?: number;
   description?: ReactNode;
+  children?: ReactNode;
   hideMinAndMaxMarks?: boolean;
   disabled?: boolean;
   handlers?: HandlerConfig;
-}
+};

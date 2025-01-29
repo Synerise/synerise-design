@@ -13,10 +13,6 @@ Input UI Component
 
 <iframe src="/storybook-static/iframe.html?id=components-input--textarea"></iframe>
 
-## MaskedInput
-
-<iframe src="/storybook-static/iframe.html?id=components-input--maskedinput"></iframe>
-
 ## API
 
 ### Input
@@ -71,17 +67,6 @@ $flexItemSurroundingTheInput {
 ```
 
 See https://css-tricks.com/flexbox-truncated-text/ for more details.
-
-
-### MaskedInput
-
-Same as Input api with additional props:
-
-| Property         | Description                                                                     | Type                                                              | Default |
-| ---------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------- | ------- |
-| mask             | The masking pattern to be applied to the input                                  | string (https://github.com/insin/inputmask-core#pattern)          | -       |
-| placeholderChar  | Customized placeholder character used to fill in editable parts of the pattern. | string                                                            | '\_'    |
-| formatCharacters | Customized format character definitions for use in the pattern.                 | Object (https://github.com/insin/inputmask-core#formatcharacters) | -       |
 
 ### InputGroup
 

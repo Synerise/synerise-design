@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@synerise/ds-button';
+import { ButtonLabel } from '@synerise/ds-button/dist/Button.styles';
 import DSContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
 
 export const ContentItem = styled(DSContentItem)`
@@ -24,7 +25,7 @@ export const SuffixText = styled.span`
   margin-right: 16px;
 `;
 export const CreatorButton = styled(Button.Creator)`
-  &&& {
+  ${ButtonLabel} {
     justify-content: flex-start;
   }
 `;

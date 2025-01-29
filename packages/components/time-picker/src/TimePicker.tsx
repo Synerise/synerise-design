@@ -259,8 +259,8 @@ const TimePicker = <ValueType extends Date | string = Date>({
     <S.Container className={`ds-time-picker ${className || ''}`} data-testid="tp-container" style={containerStyle}>
       <S.Dropdown
         trigger={trigger}
-        visible={alwaysOpen || open}
-        onVisibleChange={onVisibleChange}
+        open={alwaysOpen || open}
+        onOpenChange={onVisibleChange}
         placement={placement}
         overlay={overlay}
         disabled={disabled}

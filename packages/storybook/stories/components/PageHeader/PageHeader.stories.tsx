@@ -6,7 +6,7 @@ import PageHeader from '@synerise/ds-page-header';
 import { theme }from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import Skeleton, { SkeletonAvatar } from '@synerise/ds-skeleton';
-import Icon, { AngleDownS, HelpM, MailM, OptionHorizontalM } from '@synerise/ds-icon';
+import Icon, { AngleDownS, EditM, HelpM, MailM, OptionHorizontalM } from '@synerise/ds-icon';
 
 import Tabs from '@synerise/ds-tabs';
 import Dropdown from '@synerise/ds-dropdown';
@@ -167,6 +167,7 @@ export const withDropdown: Story = {
         },
         placeholder: 'Example text',
         size: 'normal',
+        customIcon: <EditM/>,
       }}
       more={
         <Dropdown

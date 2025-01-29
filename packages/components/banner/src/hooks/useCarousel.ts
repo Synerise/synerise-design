@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import Carousel from 'antd/lib/carousel';
+import { CarouselRef } from 'antd/lib/carousel';
 
 export const useCarousel = () => {
-  const bannerRef = useRef<Carousel>(null);
+  const bannerRef = useRef<CarouselRef>(null);
   const handleDotClick = (index: number) => {
     bannerRef.current && bannerRef.current.goTo(index);
   };

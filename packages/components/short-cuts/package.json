@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-short-cuts",
-  "version": "0.2.2",
+  "version": "0.4.0",
   "description": "ShortCuts UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,11 +34,11 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.69.1",
-    "@synerise/ds-typography": "^0.16.11"
+    "@synerise/ds-icon": "^0.71.0",
+    "@synerise/ds-typography": "^0.17.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 <= 17.0.2"
+    "react": ">=16.9.0 <= 18.3.1"
   }
 }

@@ -3,6 +3,7 @@ import { select, boolean, text } from '@storybook/addon-knobs';
 import InlineEdit from '@synerise/ds-inline-edit';
 import { action } from '@storybook/addon-actions';
 import InlineSelect from '@synerise/ds-inline-edit/dist/InlineSelect/InlineSelect';
+import { EditM } from '@synerise/ds-icon';
 
 const DEFAULT_VALUE = 'Input value';
 const dataSource = [{ text: 'Alisa Strosin' }, { text: 'Ayden Dietrich	' }, { text: 'Murl Schimmel' }];
@@ -15,6 +16,7 @@ const stories = {
     const widthLimit = boolean('Width limit', false);
     const error = boolean('Error', false);
     const disabled = boolean('Disabled', false);
+    const customIcon = boolean('CustomIcon', false)
 
     return (
       <div style={{ padding: 8, display: 'inline-block' }}>
@@ -33,6 +35,7 @@ const stories = {
           error={error}
           disabled={disabled}
           hideIcon={boolean('HideIcon', false)}
+          customIcon={customIcon ? <EditM/> : undefined}
         />
       </div>
     );

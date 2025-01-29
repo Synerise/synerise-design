@@ -1,7 +1,7 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import React from 'react';
 import Filter from '../Filter';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
 import Button from '@synerise/ds-button';
 
 const DEFAULT_TEXTS = {

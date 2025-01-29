@@ -1,13 +1,13 @@
-import { ReactNode, ReactText, Ref } from 'react';
-import { ColumnType, TableProps } from 'antd/lib/table';
-import { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
-import { LiteralStringUnion } from '@synerise/ds-utils';
+import type { Key, ReactNode, Ref } from 'react';
+import type { ColumnType, TableProps } from 'antd/lib/table';
+import type { TableLocale, TableRowSelection } from 'antd/lib/table/interface';
+import type { LiteralStringUnion } from '@synerise/ds-utils';
 
-import DSTable from './Table';
-import { GroupType } from './GroupTable/GroupTable.types';
-import { RowStar } from './hooks/useRowStar';
-import { SortRender } from './ColumnSortMenu/TitleWithSort';
-import { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
+import type DSTable from './Table';
+import type { GroupType } from './GroupTable/GroupTable.types';
+import type { RowStar } from './hooks/useRowStar';
+import type { SortRender } from './ColumnSortMenu/TitleWithSort';
+import type { ColumnSortOrder, ColumnsSortState } from './ColumnSortMenu/useSortState';
 
 export type AntTableProps<T> = Omit<
   TableProps<T>,
@@ -29,9 +29,9 @@ export type SelectionItem =
 
 export type RowSelection<T> = Omit<TableRowSelection<T>, 'selections'> & {
   fixed?: boolean;
-  selectedRowKeys: ReactText[];
+  selectedRowKeys: Key[];
   selections?: SelectionItem[];
-  onChange: (selectedRowKeys: ReactText[], selectedRows: T[]) => void;
+  onChange: (selectedRowKeys: Key[], selectedRows: T[]) => void;
   limit?: number;
   independentSelectionExpandedRows?: boolean;
   checkRowSelectionStatus?: (record: T) => { disabled?: boolean; unavailable?: boolean };
@@ -57,7 +57,7 @@ export type Filter = {
 };
 
 export type RowType<T> = {
-  key?: string | number;
+  key?: Key;
   children?: T[];
 };
 
@@ -114,7 +114,7 @@ export type OnSortFn = (singleColumnSort: SingleColumnSort, sortState: ColumnsSo
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type DSTableProps<T extends any & GroupType<T>> = AntTableProps<T> & {
-  title?: string | ReactNode;
+  title?: ReactNode | (() => ReactNode);
   hideTitleBar?: boolean;
   headerWithBorderTop?: boolean;
   itemsMenu?: string | ReactNode;

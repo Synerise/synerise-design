@@ -12,6 +12,10 @@ import ContextSelectorMeta, {
   FlatListDataStructure,
 } from './ContextSelector.stories';
 
+import { sleep } from '../../utils';
+
+const SLEEP_TIME = 100;
+
 export default {
   ...ContextSelectorMeta,
   title: 'Components/Filter/ContextSelector/Tests',
@@ -49,6 +53,8 @@ export const SelectItemFromCategory: Story = {
       );
 
       await userEvent.click(canvas.getByText(subGroupName));
+      
+      await sleep(SLEEP_TIME);
 
       await waitFor(() => {
         expect(canvas.getByTestId('dropdown-back-action-label')).toBeInTheDocument();
@@ -56,7 +62,7 @@ export const SelectItemFromCategory: Story = {
 
       await userEvent.click(canvas.getAllByRole('menuitem')[3]);
 
-      expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]);
+      await waitFor(() => expect(args.onSelectItem).toHaveBeenCalledWith(CONTEXT_ITEMS[9]));
 
       await waitFor(() => expect(canvas.getByText(CONTEXT_ITEMS[9].name)).toBeInTheDocument());
 

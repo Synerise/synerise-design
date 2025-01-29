@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.10.25...@synerise/ds-tags@0.11.0) (2025-01-29)
+
+
+### Features
+
+* antd@4.24 react@18 ([d97a667](https://github.com/Synerise/synerise-design/commit/d97a667b1f33aed3177e1851de3b6f60be2d46a6))
+
+
+
+
+
+## [0.10.25](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.10.24...@synerise/ds-tags@0.10.25) (2025-01-21)
+
+**Note:** Version bump only for package @synerise/ds-tags
+
+
+
+
+
 ## [0.10.24](https://github.com/Synerise/synerise-design/compare/@synerise/ds-tags@0.10.23...@synerise/ds-tags@0.10.24) (2025-01-15)
 
 **Note:** Version bump only for package @synerise/ds-tags

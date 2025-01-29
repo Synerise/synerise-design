@@ -112,7 +112,7 @@ export const VirtualTableWrapper = styled.div<{
             z-index: 99;
           }
           .ant-table-title,
-          .ant-table-sticky-header {
+          .ant-table-sticky-holder {
             transition: top 0.3s ease-in-out;
           }
           ${props.isHeaderVisible &&
@@ -120,7 +120,7 @@ export const VirtualTableWrapper = styled.div<{
             .ant-table-title {
               top: ${props.titleBarTop}px;
             }
-            .ant-table-sticky-header {
+            .ant-table-sticky-holder {
               top: ${props.titleBarTop + props.titleBarHeight}px !important;
             }
           `};

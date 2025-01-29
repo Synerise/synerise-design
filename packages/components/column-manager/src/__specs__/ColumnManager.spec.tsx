@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, wait } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
 import { ViewMeta } from '../ColumnManager.types';
 import ColumnManager from '../ColumnManager';
@@ -218,8 +218,7 @@ const COLUMN_MANAGER = (
 
 describe('ColumnManager', () => {
   it('should render', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       COLUMN_MANAGER(
         true,
         () => {},
@@ -230,18 +229,17 @@ describe('ColumnManager', () => {
     );
 
     //ASSERT
-    expect(getByText('Manage columns')).toBeTruthy();
-    expect(getByText('Visible')).toBeTruthy();
-    expect(getByText('Hidden')).toBeTruthy();
-    expect(getByText('Save view')).toBeTruthy();
-    expect(getByText('Cancel')).toBeTruthy();
-    expect(getByText('Apply')).toBeTruthy();
+    expect(screen.getByText('Manage columns')).toBeTruthy();
+    expect(screen.getByText('Visible')).toBeTruthy();
+    expect(screen.getByText('Hidden')).toBeTruthy();
+    expect(screen.getByText('Save view')).toBeTruthy();
+    expect(screen.getByText('Cancel')).toBeTruthy();
+    expect(screen.getByText('Apply')).toBeTruthy();
   });
 
   it('should close himself when close or cancel button has been clicked', () => {
-    // ARRANGE
     const hide = jest.fn();
-    const { getByTestId } = renderWithProvider(
+    renderWithProvider(
       COLUMN_MANAGER(
         true,
         hide,
@@ -251,140 +249,111 @@ describe('ColumnManager', () => {
       )
     );
 
-    // ACT
-    fireEvent.click(getByTestId('ds-column-manager-close'));
-    fireEvent.click(getByTestId('ds-column-manager-cancel'));
+    fireEvent.click(screen.getByTestId('ds-column-manager-close'));
+    fireEvent.click(screen.getByTestId('ds-column-manager-cancel'));
 
-    // ASSERT
     expect(hide).toBeCalledTimes(2);
   });
 
   it('should call onApply function with current columns configuration', () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
-    const { getByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, () => {}, apply, ''));
+    renderWithProvider(COLUMN_MANAGER(true, hide, () => {}, apply, ''));
 
-    // ACT
-    fireEvent.click(getByTestId('ds-column-manager-apply'));
+    fireEvent.click(screen.getByTestId('ds-column-manager-apply'));
 
-    // ASSERT
     expect(apply).toBeCalledWith(COLUMNS, undefined);
   });
 
   it('should save new filter', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByPlaceholderText, getByText } = renderWithProvider(
-      COLUMN_MANAGER(true, hide, save, apply, '')
-    );
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
-    // ACT
-    fireEvent.click(getByText('Save view'));
-    await wait();
+    fireEvent.click(screen.getByText('Save view'));
+    await waitFor(async () => expect(await screen.findByPlaceholderText('Name')).toBeInTheDocument());
 
-    // ARRANGE
-    const nameInput = getByPlaceholderText('Name');
-    const modalApply = getByTestId('ds-modal-apply');
+    const nameInput = screen.getByPlaceholderText('Name');
+    const modalApply = screen.getByTestId('ds-modal-apply');
 
-    // ACT
     fireEvent.change(nameInput, { target: { value: 'Test name' } });
     fireEvent.click(modalApply);
 
-    // ASSERT
     expect(save).toBeCalledWith({ meta: { name: 'Test name', description: '' }, columns: COLUMNS });
   });
 
   it('should show validation error on new filter modal', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
-    // ACT
-    fireEvent.click(getByText('Save view'));
-    await wait();
+    fireEvent.click(screen.getByText('Save view'));
+    await waitFor(async () => expect(await screen.findByTestId('ds-modal-apply')).toBeInTheDocument());
 
-    // ARRANGE
-    const modalApply = getByTestId('ds-modal-apply');
+    const modalApply = screen.getByTestId('ds-modal-apply');
 
-    // ACT
     fireEvent.click(modalApply);
-    await wait();
+    await waitFor(async () => expect(await screen.findByText('Must not be empty')));
 
-    // ARRNGE
-    const errorMessage = getByText('Must not be empty');
+    const errorMessage = screen.getByText('Must not be empty');
 
-    // ASSERT
     expect(errorMessage).toBeTruthy();
   });
 
   it('should show 2 visible and 2 hidden columns', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
-    const hiddenColumns = queryAllByTestId('ds-column-manager-hidden-item');
-    const visibleColumns = queryAllByTestId('ds-column-manager-visible-item');
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
+    const hiddenColumns = screen.queryAllByTestId('ds-column-manager-hidden-item');
+    const visibleColumns = screen.queryAllByTestId('ds-column-manager-visible-item');
 
-    // ASSERT
     expect(hiddenColumns.length).toBe(2);
     expect(visibleColumns.length).toBe(2);
   });
 
   it('should show move first column to hidden list', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
-    let visibleColumns = queryAllByTestId('ds-column-manager-visible-item');
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
+    let visibleColumns = screen.queryAllByTestId('ds-column-manager-visible-item');
 
-    // ACT
     const firstItem = visibleColumns[0];
     const firstSwitch = firstItem.querySelector('.ant-switch');
     firstSwitch && fireEvent.click(firstSwitch);
-    await wait();
-    const hiddenColumns = queryAllByTestId('ds-column-manager-hidden-item');
-    visibleColumns = queryAllByTestId('ds-column-manager-visible-item');
+    await waitFor(() => {
+      const hiddenColumns = screen.queryAllByTestId('ds-column-manager-hidden-item');
+      expect(hiddenColumns.length).toBe(3);
+    });
 
-    // ASSERT
-    expect(hiddenColumns.length).toBe(3);
+    visibleColumns = screen.queryAllByTestId('ds-column-manager-visible-item');
+
     expect(visibleColumns.length).toBe(1);
   });
 
   it('should show columns which contains `city` in name', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { queryAllByTestId, getByPlaceholderText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
-    // ACT
-    fireEvent.change(getByPlaceholderText('Search'), { target: { value: 'City' } });
-    await wait();
-    const filteredColumns = queryAllByTestId('ds-column-manager-filtered-item');
-
-    // ASSERT
-    expect(filteredColumns.length).toBe(1);
+    fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'City' } });
+    await waitFor(() => {
+      const filteredColumns = screen.queryAllByTestId('ds-column-manager-filtered-item');
+      expect(filteredColumns.length).toBe(1);
+    });
   });
 
   it('should show ItemFilter component', async () => {
-    // ARRANGE
     const hide = jest.fn();
     const apply = jest.fn();
     const save = jest.fn();
-    const { getByTestId, getByText } = renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
+    renderWithProvider(COLUMN_MANAGER(true, hide, save, apply, ''));
 
-    // ACT
-    fireEvent.click(getByTestId('ds-column-manager-show-filters'));
-    await wait();
-
-    // ASSERT
-    expect(getByText('Item filter')).toBeTruthy();
+    fireEvent.click(screen.getByTestId('ds-column-manager-show-filters'));
+    await waitFor(() => expect(screen.getByText('Item filter')).toBeTruthy());
   });
 });

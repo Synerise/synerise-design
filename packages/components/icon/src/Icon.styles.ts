@@ -17,18 +17,22 @@ export const IconContainer = styled.div<Props>`
       width: ${props.size || defaultSize}px;
       height: ${props.size || defaultSize}px;
       color: inherit;
+
     svg {
-        display: block;
-        fill: ${props.color};
-        color: ${props.color};
-        width: ${props.size || defaultSize}px;
-        height: ${props.size || defaultSize}px;
-        ${props.onClick && 'cursor: pointer;'};
-        ${
-          props.stroke &&
+      display: block;
+      ${
+        props.color &&
+        css`
+          fill: ${props.color};
+          color: ${props.color};
+          ${props.stroke &&
           css`
             stroke: ${props.color};
-          `
-        };
-      `};
+          `};
+        `
+      }
+      width: ${props.size || defaultSize}px;
+      height: ${props.size || defaultSize}px;
+      ${props.onClick && 'cursor: pointer;'};
+    `};
 `;

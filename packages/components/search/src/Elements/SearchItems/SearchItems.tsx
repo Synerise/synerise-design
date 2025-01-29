@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, ReactNode, ReactElement, CSSProperties, useEffect, cloneElement } from 'react';
-import Menu from '@synerise/ds-menu';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import Menu from '@synerise/ds-menu';
+import type { MenuItemProps } from '@synerise/ds-menu';
 
 import { SearchItemListProps } from './SearchItems.types';
 
@@ -100,7 +100,7 @@ SearchItemListProps<any>) => {
     </List>
   );
 
-  return renderInMenu ? <Menu>{list}</Menu> : <>{list}</>;
+  return renderInMenu ? <Menu tabIndex={-1}>{list}</Menu> : <>{list}</>;
 };
 
 export default SearchItems;

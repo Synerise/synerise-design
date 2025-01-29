@@ -471,7 +471,6 @@ const stories = {
                   return (
                     <S.DropdownMenuItem
                       highlight={store.state.searchValue}
-                      onItemHover={(): void => { }}
                       prefixel={item && <Icon component={item && item.icon} color={theme.palette['grey-600']} />}
                     >
                       {item && item.text}
@@ -487,7 +486,7 @@ const stories = {
                 title: 'Recent',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <S.DropdownMenuItem onItemHover={(): void => { }}>{item && item.text}</S.DropdownMenuItem>
+                  <S.DropdownMenuItem>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               suggestions={store.state.searchSuggestions}
@@ -496,7 +495,7 @@ const stories = {
                 title: 'Suggestions',
                 rowHeight: 32,
                 itemRender: (item: AnyObject) => (
-                  <S.DropdownMenuItem onItemHover={(): void => { }}>{item && item.text}</S.DropdownMenuItem>
+                  <S.DropdownMenuItem>{item && item.text}</S.DropdownMenuItem>
                 ),
               }}
               textLookupConfig={{

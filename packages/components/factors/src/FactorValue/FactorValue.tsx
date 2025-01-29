@@ -26,9 +26,12 @@ const FactorValue = ({
   allowClear,
   readOnly = false,
   getMenuEntryProps,
-includeTimezoneOffset,
+  includeTimezoneOffset,
 }: FactorValueProps) => {
   const inputType = React.useMemo(() => {
+    if (!selectedFactor) {
+      return undefined;
+    }
     const InputComponent: React.ElementType = selectedFactor.input;
 
     return (
@@ -60,8 +63,7 @@ includeTimezoneOffset,
       />
     );
   }, [
-    selectedFactor.input,
-    selectedFactor.name,
+    selectedFactor,
     factorKey,
     value,
     texts,

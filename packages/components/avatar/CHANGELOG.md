@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.17.28...@synerise/ds-avatar@0.18.0) (2025-01-29)
+
+
+### Features
+
+* antd@4.24 react@18 ([d97a667](https://github.com/synerise/synerise-design/commit/d97a667b1f33aed3177e1851de3b6f60be2d46a6))
+
+
+
+
+
+## [0.17.28](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.17.27...@synerise/ds-avatar@0.17.28) (2025-01-21)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
 ## [0.17.27](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.17.26...@synerise/ds-avatar@0.17.27) (2025-01-15)
 
 **Note:** Version bump only for package @synerise/ds-avatar

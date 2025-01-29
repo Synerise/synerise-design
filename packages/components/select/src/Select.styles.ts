@@ -48,8 +48,8 @@ export const SelectContainer = styled.div<{ hasBottomMargin?: boolean }>`
 
 export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>)<{
   size?: string;
-  prefixel?: boolean;
-  suffixel?: boolean;
+  withPrefixel?: boolean;
+  withSuffixel?: boolean;
 }>`
   ${(props): string | false =>
     props.size === 'large' &&
@@ -111,8 +111,8 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
       margin-top: 0;
     }
     .ant-select-selector {
-      ${(props): string | false => !!props.prefixel && withPrefixStyles()}
-      ${(props): string | false => !!props.suffixel && withSuffixStyles()}
+      ${(props): string | false => !!props.withPrefixel && withPrefixStyles()}
+      ${(props): string | false => !!props.withSuffixel && withSuffixStyles()}
     }
     span[aria-label='search'] {
       svg {
@@ -121,8 +121,7 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
       width: 24px;
       height: 24px;
       background-color: rgba(0, 0, 0, 0);
-      background-image: ${(props: ThemeProps): string =>
-        `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
+      background-image: ${(props): string => `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
     }
   }
 

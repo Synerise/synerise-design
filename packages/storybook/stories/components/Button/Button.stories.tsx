@@ -104,15 +104,19 @@ export const IconSolo: Story = {
   args: {
     type: 'primary',
     mode: 'single-icon',
-    icon: <Icon component={<AngleDownS />} />,
+    children: <Icon component={<AngleDownS />} />,
   },
 };
 
 export const IconLeft: Story = {
   ...IconSolo,
   args: {
-    ...IconSolo.args,
-    children: 'Label',
+    children: (
+      <>
+        <Icon component={<AngleDownS />} /> 
+        Label
+      </>
+    ),
     mode: 'icon-label',
   },
 };
@@ -126,7 +130,8 @@ export const IconRight: Story = {
     </Button>
   ),
   args: {
-    ...IconLeft.args,
+    children: 'Label',
+    icon: <Icon component={<AngleDownS />} />,
     mode: 'label-icon',
   },
 };
@@ -141,8 +146,20 @@ export const TwoIcons: Story = {
     </Button>
   ),
   args: {
-    ...IconLeft.args,
+    icon: <Icon component={<AngleDownS />} />,
+    children: 'Label',
     mode: 'two-icons',
+  },
+};
+
+export const SplitRight: Story = {
+  args: {
+    children: (
+      <>
+        Label <Icon component={<AngleDownS />} />{' '}
+      </>
+    ),
+    mode: 'split',
   },
 };
 
@@ -170,7 +187,7 @@ export const CustomLabel: Story = {
 };
 
 export const DisabledTooltip: Story = {
-  render: (args) => {
+  render: args => {
     const buttonElement = <Button {...args} />;
     const { disabled } = args;
     return disabled ? (

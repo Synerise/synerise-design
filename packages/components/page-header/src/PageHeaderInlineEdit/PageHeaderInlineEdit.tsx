@@ -24,6 +24,7 @@ export const PageHeaderInlineEdit = ({ inlineEdit }: PageHeaderInlineEditProps) 
         error={inlineEdit.error}
         disabled={inlineEdit.disabled}
         hideIcon={inlineEdit.hideIcon}
+        customIcon={inlineEdit.customIcon}
         style={inlineEdit.style}
       />
     </S.WrapperPageHeaderInlineEdit>

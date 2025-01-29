@@ -80,7 +80,7 @@ const DatePicker = <ValueType extends Date | string = Date>(props: DatePickerPro
       disabled={disabled}
       autoFocus={!disabled && autoFocus}
       allowClear={allowClear}
-      value={pickerInputValue}  
+      value={pickerInputValue}
       showTime={showTime}
       onClick={
         !readOnly
@@ -108,7 +108,7 @@ const DatePicker = <ValueType extends Date | string = Date>(props: DatePickerPro
   ) : (
     <Dropdown
       overlay={
-        <S.OverlayContainer ref={ref}>
+        <S.OverlayContainer data-testid="date-picker-overlay-container" ref={ref}>
           <RawDatePicker<ValueType>
             {...rest}
             includeTimezoneOffset={includeTimezoneOffset}

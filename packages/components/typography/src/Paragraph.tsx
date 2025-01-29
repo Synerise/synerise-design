@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { MediumParagraph, SmallParagraph, XSmallParagraph } from './CommonElements';
 
 type TextProps = {
   size?: 'medium' | 'small' | 'xsmall';
+  children?: ReactNode;
 };
 
 const MapSizeToComponent = {
@@ -11,8 +12,7 @@ const MapSizeToComponent = {
   xsmall: XSmallParagraph,
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export const Paragraph: React.FC<TextProps> = ({ size = 'medium', children }) => {
+export const Paragraph = ({ size = 'medium', children }: TextProps) => {
   const Component = MapSizeToComponent[size];
   return <Component className="ds-paragraph">{children}</Component>;
 };

@@ -120,16 +120,16 @@ export const AntdCollapse = styled(Collapse as any as React.ComponentType<Collap
     opacity: 1;
   }
 
-  &.ant-collapse-icon-position-right > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-end > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px;
     user-select: none;
-    .ant-collapse-arrow {
+    .ant-collapse-expand-icon {
       right: 24px;
       position: absolute;
     }
   }
 
-  &.ant-collapse-icon-position-right.is-drag-drop > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
+  &.ant-collapse-icon-position-end.is-drag-drop > ${PanelWrapper} > .ant-collapse-item > .ant-collapse-header {
     padding: 18px 24px 18px 0;
     cursor: pointer;
 

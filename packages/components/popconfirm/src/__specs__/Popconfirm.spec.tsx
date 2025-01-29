@@ -111,9 +111,7 @@ describe('Popconfirm', () => {
       </Popconfirm>
     );
 
-    
     fireEvent.click(screen.getByText(TEXT));
-
     
     expect(document.querySelectorAll('button').length).toBe(1);
   });

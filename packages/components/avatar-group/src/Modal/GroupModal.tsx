@@ -12,7 +12,7 @@ import { DataSource } from '../AvatarGroup.types';
 import * as S from './GroupModal.styles';
 import { GroupModalProps } from './GroupModal.types';
 
-const GroupModal: React.FC<GroupModalProps> = ({
+const GroupModal = ({
   renderRowMenu,
   title,
   listTitle,
@@ -25,7 +25,7 @@ const GroupModal: React.FC<GroupModalProps> = ({
   okText,
   cancelText,
   inviteText,
-}) => {
+}: GroupModalProps) => {
   const getColums = React.useMemo(() => {
     return [
       {

@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-condition",
-  "version": "0.26.3",
+  "version": "0.27.0",
   "description": "Condition UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,25 +34,25 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.22.2",
-    "@synerise/ds-context-selector": "^0.25.24",
-    "@synerise/ds-cruds": "^0.5.34",
-    "@synerise/ds-factors": "^0.27.11",
-    "@synerise/ds-icon": "^0.69.1",
-    "@synerise/ds-inline-edit": "^0.9.7",
-    "@synerise/ds-input": "^0.24.20",
-    "@synerise/ds-operators": "^0.14.8",
-    "@synerise/ds-subject": "^0.10.30",
-    "@synerise/ds-tooltip": "^0.14.54",
-    "@synerise/ds-utils": "^0.31.2",
+    "@synerise/ds-button": "^0.23.0",
+    "@synerise/ds-context-selector": "^0.26.0",
+    "@synerise/ds-cruds": "^0.6.0",
+    "@synerise/ds-factors": "^0.28.0",
+    "@synerise/ds-icon": "^0.71.0",
+    "@synerise/ds-inline-edit": "^0.10.0",
+    "@synerise/ds-input": "^0.25.0",
+    "@synerise/ds-operators": "^0.15.0",
+    "@synerise/ds-subject": "^0.11.0",
+    "@synerise/ds-tooltip": "^0.15.0",
+    "@synerise/ds-utils": "^0.32.0",
     "lodash": "^4.17.19",
     "react-sortablejs": "^6.0.0",
     "sortablejs": "1.15.1"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "react": ">=16.9.0 <= 17.0.2",
+    "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   }
 }

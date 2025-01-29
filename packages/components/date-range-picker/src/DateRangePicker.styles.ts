@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Popover } from 'antd';
+
 import { AdditionalMapper } from './DateRangePicker.types';
 
 const getHeight = (hasFilter?: boolean, hasRelativePicker?: boolean) => {
@@ -34,7 +34,6 @@ export const Separator = styled.div`
   margin: 0;
   border-top: 1px solid ${(props): string => props.theme.palette['grey-200']};
 `;
-export const PopoverWrapper = styled(Popover)``;
 
 export const Addon = styled.div<{ last?: boolean }>`
   ${(props): string | false => !props.last && `border-bottom: 1px solid ${props.theme.palette['grey-200']};`}

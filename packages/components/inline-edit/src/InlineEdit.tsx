@@ -4,6 +4,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { EditS } from '@synerise/ds-icon';
 import { toCamelCase } from '@synerise/ds-utils';
 import { AutosizeInput } from '@synerise/ds-input';
+import { theme } from '@synerise/ds-core';
 
 import * as S from './InlineEdit.styles';
 import { InlineEditProps } from './InlineEdit.types';
@@ -15,6 +16,7 @@ const InlineEdit = ({
   disabled,
   autoFocus,
   hideIcon,
+  customIcon,
   tooltipTitle,
   error,
   input,
@@ -84,28 +86,23 @@ const InlineEdit = ({
         wrapperClassName="autosize-input"
       >
         <input
-          itemRef=""
           onScroll={handleScroll}
           id={input.name ? toCamelCase(input.name) : 'id'}
+          {...input}
           className="autosize-input"
           data-testid="inline-edit-autosize-input"
-          placeholder={input.placeholder}
-          maxLength={input.maxLength}
           onKeyPress={handleKeyPress}
           disabled={disabled}
-          name={input.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          readOnly={input.readOnly}
           value={input.value || ''}
-          autoComplete={input.autoComplete}
           ref={inputRef}
         />
       </AutosizeInput>
       {!hideIcon && (
         <Tooltip data-testid="inline-edit-icon" title={tooltipTitle}>
-          <S.IconWrapper disabled={disabled} onClick={handleFocusInput} size={size}>
-            <Icon component={<EditS />} size={24} />
+          <S.IconWrapper customIcon={Boolean(customIcon)} disabled={disabled} onClick={handleFocusInput} size={size}>
+            <Icon color={theme.palette[`grey-600`]} component={customIcon || <EditS />} size={24} />
           </S.IconWrapper>
         </Tooltip>
       )}
