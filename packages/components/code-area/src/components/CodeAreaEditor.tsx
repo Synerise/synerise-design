@@ -71,11 +71,11 @@ export const CodeAreaEditor = ({
           label={label}
           tooltip={tooltip}
           tooltipConfig={
-            (tooltip || tooltipProps) && {
+            (tooltip || tooltipProps) ? {
               ...tooltipProps,
               placement: isFullscreen ? 'right' : undefined,
               title: tooltip,
-            }
+            } : undefined
           }
         />
       )

@@ -5,8 +5,11 @@ import { ReactSortable } from 'react-sortablejs';
 import Icon, { Add3M } from '@synerise/ds-icon';
 
 import Button from '@synerise/ds-button';
-import { NOOP } from '@synerise/ds-utils';
-import usePrevious from '@synerise/ds-utils/dist/usePrevious/usePrevious';
+import { NOOP, usePrevious } from '@synerise/ds-utils';
+import { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import { SubjectItem } from '@synerise/ds-subject';
+import { FactorValueType } from '@synerise/ds-factors';
+import { OperatorsGroup, OperatorsItem } from '@synerise/ds-operators';
 
 import * as T from './Condition.types';
 import { ConditionStep } from './ConditionStep';
@@ -114,7 +117,7 @@ const Condition = (props: T.ConditionProps) => {
   }, [currentConditionId, currentField, prevSteps, steps]);
 
   const clearConditionRow = useCallback(
-    stepId => {
+    (stepId: string | number) => {
       const step = steps.find(s => s.id === stepId);
       if (step === undefined || step.conditions.length === 0) return;
       if (removeCondition && addCondition) {
@@ -143,7 +146,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectSubject = useCallback(
-    (value, stepId: ReactText): void => {
+    (value: SubjectItem, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       if (showActionAttribute) {
@@ -157,7 +160,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectContext = useCallback(
-    (value, stepId: ReactText): void => {
+    (value: ContextItem | ContextGroup | undefined, stepId: ReactText): void => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       if (showActionAttribute) {
@@ -171,7 +174,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectActionAttribute = useCallback(
-    (value, stepId) => {
+    (value: FactorValueType, stepId: string | number) => {
       clearConditionRow(stepId);
       setCurrentStepId(stepId);
       setCurrentField(PARAMETER);
@@ -181,7 +184,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectParameter = useCallback(
-    (stepId: ReactText, conditionId: ReactText, value): void => {
+    (stepId: ReactText, conditionId: ReactText, value: FactorValueType): void => {
       if (conditionId && onChangeParameter) {
         autoClearCondition && onChangeOperator && onChangeOperator(stepId, conditionId, undefined);
         autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
@@ -195,8 +198,8 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const selectOperator = useCallback(
-    (stepId: ReactText, conditionId: ReactText, value): void => {
-      if (conditionId && onChangeOperator) {
+    (stepId: ReactText, conditionId: ReactText, value: OperatorsItem | OperatorsGroup | undefined): void => {
+      if (conditionId && onChangeOperator && value && 'groupId' in value) {
         autoClearCondition && onChangeFactorValue && onChangeFactorValue(stepId, conditionId, undefined);
         onChangeOperator(stepId, conditionId, value);
         setCurrentConditionId(conditionId);
@@ -208,7 +211,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const setStepConditionFactorType = useCallback(
-    (stepId, conditionId, factorType): void => {
+    (stepId: string | number, conditionId: string | number, factorType?: string): void => {
       setCurrentConditionId(conditionId);
       setCurrentStepId(stepId);
       setCurrentField(FACTOR);
@@ -218,7 +221,7 @@ const Condition = (props: T.ConditionProps) => {
   );
 
   const setStepConditionFactorValue = useCallback(
-    (stepId, conditionId, value) => {
+    (stepId: string | number, conditionId: string | number, value: FactorValueType) => {
       setCurrentField(DEFAULT_FIELD);
       setCurrentStepId(stepId);
       onChangeFactorValue && onChangeFactorValue(stepId, conditionId, value);

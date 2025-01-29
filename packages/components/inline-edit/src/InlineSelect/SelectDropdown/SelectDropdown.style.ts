@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Scrollbar from '@synerise/ds-scrollbar';
+import DSListItem from '@synerise/ds-list-item';
 import { ScrollbarProps } from '@synerise/ds-scrollbar/dist/Scrollbar.types';
 
 export const DropdownWrapper = styled.div`
@@ -25,3 +26,7 @@ export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
     }
   }
 `;
+
+export const ListItem = styled(DSListItem)`
+  min-width: auto;
+`

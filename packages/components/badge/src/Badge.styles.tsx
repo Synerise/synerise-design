@@ -35,7 +35,7 @@ export const beforeElementAnimation = keyframes`
   }
 `;
 
-// eslint-disable-next-line react/jsx-props-no-spreading
+
 export default styled(
   ({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, customColor, ...rest }) => (
     <Badge {...rest} />

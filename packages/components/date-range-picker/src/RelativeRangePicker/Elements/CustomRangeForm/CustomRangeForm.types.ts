@@ -6,8 +6,8 @@ export type Props = {
   currentRange: RelativeDateRange;
   currentGroup: string | null;
   handleChange: (value: DateRange) => void;
-  handleDurationValueChange: (value?: string | number) => void;
-  handleOffsetValueChange: (value?: string | number) => void;
+  handleDurationValueChange: (value?: string | number | null) => void;
+  handleOffsetValueChange: (value?: string | number | null) => void;
   handleModeChange: (mode: RelativeMode | null) => void;
   handleTimestampChange?: (timestamp: Date | undefined) => void;
   timestamp?: Date | undefined;

@@ -189,7 +189,6 @@ export const getDefaultTexts = (intl: IntlShape, disableDefault?: boolean, texts
     datesFilter: getIntlMessage(`DS.DATE-RANGE-PICKER.DATES_FILTER`, intl, disableDefault, 'Date filter'),
     cancel: getIntlMessage(`DS.DATE-RANGE-PICKER.CANCEL`, intl, disableDefault, 'Cancel'),
     everyDay: getIntlMessage(`DS.DATE-RANGE-PICKER.EVERY_DAY`, intl, disableDefault, 'Every day'),
-
     nthDayOfMonth: getIntlMessage(`DS.DATE-RANGE-PICKER.NTH-DAY-OF-MONTH`, intl, disableDefault, 'Day of month'),
     daysOf: getIntlMessage(`DS.DATE-RANGE-PICKER.DAYS-OF`, intl, disableDefault, 'Days of'),
     countedFrom: getIntlMessage(`DS.DATE-RANGE-PICKER.COUNTED-FROM`, intl, disableDefault, 'Counted from'),

@@ -1,5 +1,4 @@
 import React, { UIEvent, useState, useCallback } from 'react';
-import ListItem from '@synerise/ds-list-item';
 import type { ListItemProps } from '@synerise/ds-list-item';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
 import * as S from './SelectDropdown.style';
@@ -18,9 +17,10 @@ const SelectDropdown = <ItemType extends ListItemProps>({
   const rowCount = dropdownVisibleRows || DEFAULT_VISIBLE_ROWS;
   const rowHeight = dropdownRowHeight || DEFAULT_ROW_HEIGHT;
   const [scrollTop, setScrollTop] = useState(0);
-  const handleItemClick: ListItemProps['onClick'] = useCallback(
-    item => {
+  const handleItemClick = useCallback(
+    (item: ItemType) => {
       onSelect(item);
+      // @ts-ignore TODO expects ItemData from @synerise/ds-list-item
       // eslint-disable-next-line no-unused-expressions
       item.onClick?.(item);
       closeDropdown();
@@ -39,7 +39,7 @@ const SelectDropdown = <ItemType extends ListItemProps>({
           <SearchItems
             data={dataSource}
             // eslint-disable-next-line react/jsx-handler-names
-            itemRender={(item: ItemType) => <ListItem key={item?.text as string} {...item} />}
+            itemRender={(item: ItemType) => <S.ListItem key={item?.text as string} {...item} />}
             onItemClick={handleItemClick}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}

@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, ReactNode, useEffect, useCallback, useState, useMemo } from 'react';
+import React, { RefObject, useRef, useEffect, useCallback, useState, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
@@ -10,7 +10,7 @@ import { SelectionCount, SelectionHint, AddButton } from '../../../Shared';
 import Grid from '../../../Shared/TimeWindow/Grid/Grid';
 import Day from '../../../Shared/TimeWindow/Day/Day';
 import * as S from '../../../RangeFilter.styles';
-import { WeeklyProps, WeeklySchedule, WeeklyScheduleDayValue } from './Weekly.types';
+import { WeeklyProps, WeeklySchedule } from './Weekly.types';
 import { DateLimitMode } from '../../../Shared/TimeWindow/RangeFormContainer/RangeForm/RangeForm.types';
 import type { DateValue } from '../../../Shared/TimeWindow/RangeFormContainer/RangeFormContainer.types';
 import { DayKey } from '../../WeeklyFilter/WeeklyFilter.types';
@@ -80,7 +80,7 @@ const Weekly = ({
   }, [value, activeDays]);
 
   const handleDayTimeChange = useCallback(
-    (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string): void => {
+    (dayValue: DateValue, dayKey: DayKey | DayKey[], guid: string) => {
       const updatedSchedule = value;
       const [start, end, inverted] = dayValue;
       if (dayKey instanceof Array) {
@@ -109,7 +109,7 @@ const Weekly = ({
     [value, onChange]
   );
   const getDayValue = useCallback(
-    (dayKey: DayKey, guid: string): WeeklyScheduleDayValue => {
+    (dayKey: DayKey, guid: string) => {
       if (typeof dayKey === 'number' && value[guid] && !!value[guid][dayKey]) {
         return value[guid][dayKey];
       }
@@ -118,7 +118,7 @@ const Weekly = ({
     [value, defaultDayValue]
   );
   const handleModeChange = useCallback(
-    (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string): void => {
+    (selectedMode: DateLimitMode, dayKeys: DayKey[], guid: string) => {
       const updatedSchedule = value;
       dayKeys.forEach(day => {
         updatedSchedule[guid][day] = {
@@ -131,7 +131,7 @@ const Weekly = ({
     [value, onChange]
   );
   const handleRangeDelete = useCallback(
-    (guid: string, activeDaysArray): void => {
+    (guid: string, activeDaysArray: DayKey[]) => {
       const updatedSchedule = value;
       activeDaysArray.forEach((activeDay: DayKey) => {
         delete updatedSchedule[guid][activeDay];
@@ -146,12 +146,12 @@ const Weekly = ({
     [intl]
   );
 
-  const checkDay = useCallback((dayKey: DayKey): void => {
+  const checkDay = useCallback((dayKey: DayKey) => {
     setActiveDays([dayKey]);
   }, []);
 
   const getDayLabel = useCallback(
-    (dayKey: DayKey): ReactNode => {
+    (dayKey: DayKey) => {
       return dayFormatter(dayKey);
     },
     [dayFormatter]
@@ -165,7 +165,7 @@ const Weekly = ({
   );
 
   const isDayRestricted = useCallback(
-    (dayKey: DayKey): boolean => {
+    (dayKey: DayKey) => {
       return Object.keys(value).some((key: string) => !!value[key][dayKey]);
     },
     [value]
@@ -183,19 +183,19 @@ const Weekly = ({
     [value, onChange, excludeDayFromActive]
   );
   const uncheckActiveDay = useCallback(
-    (dayKey: DayKey): void => {
+    (dayKey: DayKey) => {
       removeDaySelection(dayKey);
     },
     [removeDaySelection]
   );
-  const handleSelectAll = useCallback((): void => {
+  const handleSelectAll = useCallback(() => {
     setActiveDays(allKeys);
   }, [allKeys]);
-  const handleUnselectAll = useCallback((): void => {
+  const handleUnselectAll = useCallback(() => {
     setActiveDays([]);
   }, []);
   const checkActiveDay = useCallback(
-    (dayKey: DayKey): void => {
+    (dayKey: DayKey) => {
       if (!isDayRestricted(dayKey)) {
         checkDay(dayKey);
       }
@@ -214,7 +214,7 @@ const Weekly = ({
   );
 
   const handleToggleDay = useCallback(
-    (dayKey: DayKey, forcedState?: boolean): void => {
+    (dayKey: DayKey, forcedState?: boolean) => {
       if (typeof forcedState !== 'undefined') {
         if (controlKeyPressed && forcedState) {
           activeDays.includes(dayKey) ? excludeDayFromActive(dayKey) : checkActiveDay(dayKey);
@@ -229,7 +229,7 @@ const Weekly = ({
   );
 
   const renderDay = useCallback(
-    (dayKey: DayKey): JSX.Element => {
+    (dayKey: DayKey) => {
       const isActive = activeDays.includes(dayKey);
       return (
         <Day
@@ -250,7 +250,7 @@ const Weekly = ({
     [activeDays, getDayLabel, isDayRestricted, disabled, intl, handleToggleDay, removeDaySelection, allTexts]
   );
 
-  const handleRangeAdd = useCallback((): void => {
+  const handleRangeAdd = useCallback(() => {
     const updatedDay = {};
     const guid = Object.keys(value).find(key => activeDays.every(day => value[key][day] === undefined));
     activeDays.forEach(day => {
@@ -268,7 +268,7 @@ const Weekly = ({
   }, [value, activeDays, defaultDayValue, onChange]);
 
   const renderGridTitle = useCallback(
-    count => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
+    (count: number) => <SelectionCount selectedDayCount={count} label={allTexts.selected} />,
     [allTexts.selected]
   );
   const canAddRange = canAddAnotherRange(value, activeDays, maxEntries);
@@ -300,18 +300,18 @@ const Weekly = ({
             onChange={NOOP}
             errorTexts={getErrorTextsForFormRow(guid)}
             key={`value-range-${guid}`}
-            onDayTimeChange={(dayValue, dayKey): void => {
+            onDayTimeChange={(dayValue, dayKey) => {
               handleDayTimeChange(dayValue, dayKey, guid);
             }}
             texts={allTexts}
-            onMultipleDayTimeChange={(dates): void => handleDayTimeChange(dates, activeDays, guid)}
+            onMultipleDayTimeChange={dates => handleDayTimeChange(dates, activeDays, guid)}
             dayKeys={activeDays}
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             getDayLabel={getDayLabel as any}
             activeDays={activeDays}
-            getDayValue={(dayKey: DayKey): WeeklyScheduleDayValue => getDayValue(dayKey, guid)}
-            onRangeDelete={disabled ? undefined : (): void => handleRangeDelete(guid, activeDays)}
-            onModeChange={(mode): void => handleModeChange(mode, activeDays, guid)}
+            getDayValue={(dayKey: DayKey) => getDayValue(dayKey, guid)}
+            onRangeDelete={disabled ? undefined : () => handleRangeDelete(guid, activeDays)}
+            onModeChange={mode => handleModeChange(mode, activeDays, guid)}
             valueSelectionModes={valueSelectionMode}
             hideHeader={index !== 0}
             renderSuffix={RENDER_EMPTY_NODE_FN}

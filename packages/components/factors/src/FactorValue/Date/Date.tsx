@@ -35,7 +35,7 @@ const DateInput = ({
   }, [onChange]);
 
   const handleVisibleChange = useCallback(
-    visible => {
+    (visible: boolean) => {
       if (!visible) {
         onDeactivate && onDeactivate();
         onChange(localValueAsDate);

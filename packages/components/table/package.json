@@ -64,17 +64,17 @@
     "copy-to-clipboard": "^3.3.1",
     "lodash": "^4.17.21",
     "ramda": "0.27.0",
-    "rc-resize-observer": "^0.2.1",
-    "rc-table": "7.10.4",
+    "rc-resize-observer": "^1.2.0",
+    "rc-table": "~7.26.0",
     "react-window": "^1.8.7",
     "unit-to-px": "^1.0.5",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
-    "antd": "4.7.0",
-    "react": ">=16.9.0 <= 17.0.2",
+    "antd": "4.24.16",
+    "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
-    "styled-components": "5.0.1"
+    "styled-components": "^5.3.3"
   }
 }

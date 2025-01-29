@@ -1,11 +1,11 @@
-import React from 'react';
+import type { Key } from 'react';
 import { TableProps } from 'rc-table/lib/Table';
 import { DSTableProps, RowSelection } from '../Table.types';
 
 export type RowSelectionProps<T> = {
   rowKey: TableProps<T>['rowKey'];
   independentSelectionExpandedRows?: boolean;
-  selectedRowKeys: React.ReactText[];
+  selectedRowKeys: Key[];
   selectedRecords: T[];
   limit?: number;
   record: T;

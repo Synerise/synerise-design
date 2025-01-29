@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Key } from 'react';
 import Checkbox from '@synerise/ds-checkbox/dist';
 import Status from '@synerise/ds-status';
 import Button from '@synerise/ds-button';
@@ -27,7 +27,7 @@ function GroupTableBody<T extends unknown>({
   }, [group, getRowKey]);
 
   const selectedRowsNumber = React.useMemo(() => {
-    return selection?.selectedRowKeys?.filter((key: React.ReactText) => allRowKeys.includes(key)).length || 0;
+    return selection?.selectedRowKeys?.filter((key: Key) => allRowKeys.includes(key)).length || 0;
   }, [allRowKeys, selection]);
 
   const activeColumn = React.useMemo(() => {

@@ -110,7 +110,7 @@ const Factors = ({
       withoutTypeSelector={withoutTypeSelector}
       className={`ds-factors ds-factors-${factorType}`}
     >
-      {!withoutTypeSelector && setSelectedFactorType && (
+      {selectedFactor && !withoutTypeSelector && setSelectedFactorType && (
         <FactorTypeSelector
           texts={allTexts.factorTypes}
           selectedFactorType={factorType}

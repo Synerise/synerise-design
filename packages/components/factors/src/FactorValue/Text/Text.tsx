@@ -7,9 +7,10 @@ import React, {
   MutableRefObject,
   ReactText,
   ReactNode,
+  ChangeEvent,
 } from 'react';
 import { debounce } from 'lodash';
-import { Select } from 'antd';
+import type { RefSelectProps } from 'antd';
 import Icon, { FullScreenM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 import Autocomplete from '@synerise/ds-autocomplete';
@@ -34,7 +35,7 @@ const TextInput = ({
   readOnly = false,
 }: InputProps) => {
   const [openExpanseEditor, setOpenExpanseEditor] = useState(false);
-  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | Select | null | undefined>>();
+  const [inputRef, setInputRef] = useState<MutableRefObject<HTMLInputElement | RefSelectProps | null | undefined>>();
   const [localValue, setLocalValue] = useState(value);
   const [localError, setLocalError] = useState(false);
   const onChangeRef = useRef(onChange);
@@ -59,14 +60,14 @@ const TextInput = ({
     }, 300)
   ).current;
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       debouncedOnChange.cancel();
     };
   }, [debouncedOnChange]);
 
   const handleChange = useCallback(
-    event => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       setLocalValue(event.target.value);
       debouncedOnChange(event.target.value);
       if (!event.target.value.length) {
@@ -79,7 +80,7 @@ const TextInput = ({
   );
 
   const handleApply = useCallback(
-    val => {
+    (val: string) => {
       setOpenExpanseEditor(false);
       setLocalValue(val);
       debouncedOnChange(val);
@@ -88,7 +89,7 @@ const TextInput = ({
   );
 
   const handleAutocomplete = useCallback(
-    val => {
+    (val: string | number) => {
       setLocalValue(val);
       debouncedOnChange(val);
     },

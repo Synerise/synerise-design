@@ -5,7 +5,7 @@ import isChromatic from "chromatic/isChromatic";
 
 import Popconfirm, { PopconfirmProps } from '@synerise/ds-popconfirm';
 
-import { BOOLEAN_CONTROL, fixedWrapper300 } from '../../utils';
+import { BOOLEAN_CONTROL, centeredPaddedWrapper, fixedWrapper300 } from '../../utils';
 import Button from '@synerise/ds-button';
 import Icon, { CloseM, WarningFillM } from '@synerise/ds-icon';
 
@@ -15,7 +15,7 @@ export default {
   component: Popconfirm,
   title: 'Components/Popconfirm',
   tags: ['autodocs'],
-  decorators: [fixedWrapper300],
+  decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: args => {
     return <Popconfirm {...args} />;
   },

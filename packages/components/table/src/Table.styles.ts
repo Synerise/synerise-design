@@ -65,8 +65,8 @@ export const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  gap: 8px;
   > * {
-    margin-left: 8px;
     min-width: 32px;
   }
 
@@ -74,6 +74,8 @@ export const Right = styled.div`
     min-width: unset;
   }
 `;
+
+export const RightSideWrapper = styled.div``;
 
 export const Icon = styled.div`
   transition: all 0.5s ease;
@@ -316,6 +318,13 @@ export const TableWrapper = styled.div<{ hideColumnNames?: boolean; disableColum
   }
   & .ant-table th.ant-table-cell {
     white-space: ${(props): string => (props.disableColumnNamesLineBreak ? 'nowrap' : 'normal')};
+  }
+
+  &&&
+    .ant-table-thead
+    > tr
+    > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    position: relative;
   }
 `;
 

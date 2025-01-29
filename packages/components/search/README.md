@@ -55,7 +55,7 @@ return (
           title: "recentTitle",
           rowHeight: 32,
           visibleRows: 3,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item>{item && item.text}</Menu.Item>,
           divider: (
             <div style={{ padding: '12px', paddingBottom: '0px' }}>
               <Divider dashed />{' '}
@@ -70,7 +70,6 @@ return (
           itemRender: (item: FilterElement) => (
             <Menu.Item
               highlight={value}
-              onItemHover={(): void => {}}
               prefixel={item && <Icon component={item && item.icon} />}
             >
               {item && item.text}
@@ -82,7 +81,7 @@ return (
           title: "suggestionsTitle",
           rowHeight: 32,
           visibleRows: 6,
-          itemRender: (item: FilterElement) => <Menu.Item onItemHover={(): void => {}}>{item && item.text}</Menu.Item>,
+          itemRender: (item: FilterElement) => <Menu.Item>{item && item.text}</Menu.Item>,
         }}
       />
 )

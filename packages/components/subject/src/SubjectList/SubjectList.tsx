@@ -43,6 +43,7 @@ const SubjectList: React.FC<SubjectListProps> = ({ items, onSelectItem, hideDrop
     <Dropdown.Wrapper
       style={{ width: '300px' }}
       ref={overlayRef}
+      data-testid="subject-overlay"
       onKeyDown={(e): void => {
         setSearchInputFocus(false);
         // eslint-disable-next-line @typescript-eslint/no-empty-function

@@ -86,21 +86,16 @@ const InlineEdit = ({
         wrapperClassName="autosize-input"
       >
         <input
-          itemRef=""
           onScroll={handleScroll}
           id={input.name ? toCamelCase(input.name) : 'id'}
+          {...input}
           className="autosize-input"
           data-testid="inline-edit-autosize-input"
-          placeholder={input.placeholder}
-          maxLength={input.maxLength}
           onKeyPress={handleKeyPress}
           disabled={disabled}
-          name={input.name}
           onChange={handleChange}
           onBlur={handleBlur}
-          readOnly={input.readOnly}
           value={input.value || ''}
-          autoComplete={input.autoComplete}
           ref={inputRef}
         />
       </AutosizeInput>

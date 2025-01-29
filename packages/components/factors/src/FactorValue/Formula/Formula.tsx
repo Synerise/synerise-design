@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import Button from '@synerise/ds-button';
 import Icon, { EditS } from '@synerise/ds-icon';
 import Badge from '@synerise/ds-badge';
-import { FormulaValueType, InputProps } from '../../Factors.types';
+import { FactorValueType, FormulaValueType, InputProps } from '../../Factors.types';
 import FormulaModal from './FormulaModal';
 import * as S from './Formula.styles';
 
@@ -34,7 +34,7 @@ const FormulaInput = ({
   }, [value, texts.formula.buttonPlaceholder]);
 
   const handleChange = useCallback(
-    val => {
+    (val: FactorValueType) => {
       setOpenFormulaModal(false);
       onChange(val);
     },

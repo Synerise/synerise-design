@@ -97,6 +97,7 @@ export const DropMenu = styled.div`
 `;
 export const DropMenuItem = styled(ListItem)`
   max-height: 32px;
+  min-width: auto;
   .ds-icon {
     margin-right: -6px;
   }

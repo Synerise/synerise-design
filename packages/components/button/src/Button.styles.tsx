@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, FlattenInterpolation, FlattenSimpleInterpolation, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 import Button from 'antd/lib/button';
 import { IconContainer } from '@synerise/ds-icon';
@@ -20,7 +20,7 @@ const splitType = {
   secondary: 'secondary',
   tertiary: 'tertiary',
 };
-const pressedStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
+const pressedStyles = (props: ThemeProps) => css`
   color: ${props.theme.palette['blue-600']};
   background: ${props.theme.palette['blue-100']};
   svg {
@@ -29,7 +29,7 @@ const pressedStyles = (props: ThemeProps): FlattenSimpleInterpolation => css`
   &.ant-btn .btn-focus {
     box-shadow: inset 0 0 0 1px ${props.theme.palette['blue-300']};
   }
-  > span:not(.btn-focus) + .ds-icon:before {
+  ${ButtonLabel} > .ds-icon:before {
     background-color: ${props.theme.palette['blue-200']};
   }
 `;
@@ -109,7 +109,12 @@ export const ButtonFocus = styled.div`
   z-index: 99;
   box-shadow: inset 0 0 0 0 transparent;
 `;
-
+export const ButtonLabel = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+`;
 // eslint-disable-next-line react/jsx-props-no-spreading
 export const AntdButton = styled(
   ({
@@ -140,16 +145,24 @@ export const AntdButton = styled(
     padding: 0 12px;
     position: relative;
     overflow: hidden;
-    justify-content: ${(props): FlattenInterpolation<ThemeProps> | false => props.justifyContent};
-    ${(props): FlattenInterpolation<ThemeProps> | false =>
+    justify-content: ${props => props.justifyContent};
+    ${props =>
       props.shape &&
       props.shape === 'circle' &&
       css`
         border-radius: 50%;
       `};
-    > *:not(.btn-focus) {
+
+    &:not(:disabled):not(:focus) {
+      ${ButtonLabel} span { 
+        color: inherit;
+      }
+    }
+
+    ${ButtonLabel} > *:not(.btn-focus) {
       position: relative;
     }
+    ${ButtonLabel} > .ds-icon,
     > .ds-icon {
       display: flex;
       align-items: center;
@@ -172,7 +185,7 @@ export const AntdButton = styled(
       }
     };
     
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode !== 'single-icon' &&
       css`
         &.ant-btn:not(.ds-expander):not(.ds-button-creator):not(.btn-search):not(.btn-search-open) {
@@ -183,7 +196,7 @@ export const AntdButton = styled(
     &&.ant-btn-default:not(.ds-expander):not(.ds-button-creator):not(.read-only),
     &&.ant-btn-secondary:not(.ds-expander):not(.ds-button-creator):not(.read-only){
       &:active{
-        ${(props): FlattenSimpleInterpolation => pressedStyles(props)}
+        ${props => pressedStyles(props)}
       }
       &:focus:not(:active) {
         color: ${(props): string => (props.error ? props.theme.palette['red-600'] : props.theme.palette['grey-600'])};
@@ -197,10 +210,10 @@ export const AntdButton = styled(
         &.ant-btn .btn-focus {
         box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-300']};
         }
-        > span:not(.btn-focus) +.ds-icon:before {
+        ${ButtonLabel} > .ds-icon:before {
         background-color: ${(props): string => props.theme.palette['blue-200']};
         }
-        ${(props): FlattenSimpleInterpolation => props.pressed && pressedStyles(props)}
+        ${props => props.pressed && pressedStyles(props)}
       }
       &:active{
         color: ${(props): string => props.theme.palette['blue-600']};
@@ -209,7 +222,7 @@ export const AntdButton = styled(
         }
       }
     }
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.readOnly &&
       css`
         &&.ant-btn {
@@ -223,7 +236,7 @@ export const AntdButton = styled(
             .btn-focus {
               box-shadow: inset 0 0 0 1px ${props.theme.palette['grey-300']};
             }
-            span,
+            ${ButtonLabel},
             svg {
               color: ${props.theme.palette['grey-700']};
             }
@@ -238,7 +251,7 @@ export const AntdButton = styled(
             .btn-focus {
               box-shadow: inset 0 0 0 0 ${props.theme.palette['grey-300']};
             }
-            span,
+            ${ButtonLabel},
             svg {
               color: ${props.theme.palette['grey-700']};
             }
@@ -248,7 +261,7 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${(props): FlattenInterpolation<ThemeProps> | false =>
+    ${props =>
       props.loading &&
       css`
         > *:not(.btn-focus) {
@@ -260,7 +273,7 @@ export const AntdButton = styled(
           visibility: visible;
         }
       `};
-    ${(props): FlattenInterpolation<ThemeProps> | false =>
+    ${props =>
       props.type === buttonType[props.type] &&
       !props.error &&
       css`
@@ -279,17 +292,16 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'split' &&
       css`
         &.ant-btn {
           padding-right: 0;
-          > span:not(.btn-focus) {
-            padding-right: 12px;
+          ${ButtonLabel} {
             position: relative;
           }
-          > span:not(.btn-focus) + .ds-icon {
-            margin: 0 4px 0 3px;
+          ${ButtonLabel} > .ds-icon {
+            margin: 0 4px 0 15px;
             position: relative;
             &:before {
               content: '';
@@ -306,41 +318,50 @@ export const AntdButton = styled(
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'two-icons' &&
       css`
         &.ant-btn {
           padding: 0;
-          > ${IconContainer}:first-of-type, > .ds-icon:first-of-type {
+          ${ButtonLabel} > ${IconContainer}:first-of-type,
+          ${ButtonLabel} > .ds-icon:first-of-type,
+          & > ${IconContainer}:first-of-type,
+          & > .ds-icon:first-of-type {
             margin: ${leftIcon};
           }
-          > ${IconContainer}:nth-of-type(2),
-          > .ds-icon:nth-of-type(2) {
+          ${ButtonLabel} > ${IconContainer}:nth-of-type(2),
+          ${ButtonLabel} > .ds-icon:nth-of-type(2),
+          & > ${IconContainer}:nth-of-type(2),
+          & > .ds-icon:nth-of-type(2) {
             margin: ${rightIcon};
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'label-icon' &&
       css`
         &.ant-btn {
           padding-right: 0;
-          > ${IconContainer}, > .ds-icon {
+          ${ButtonLabel} > ${IconContainer},
+          ${ButtonLabel} > .ds-icon,
+          & > ${IconContainer},
+          & > .ds-icon {
             margin: ${rightIcon};
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'icon-label' &&
       css`
         &.ant-btn {
           padding-left: 0;
-          > ${IconContainer}, > .ds-icon {
+          ${ButtonLabel} > ${IconContainer}, ${ButtonLabel} > .ds-icon,
+          & > ${IconContainer}, & > .ds-icon {
             margin: ${leftIcon};
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'single-icon' &&
       css`
         &.ant-btn:not(.ds-expander) {
@@ -349,12 +370,13 @@ export const AntdButton = styled(
           justify-content: center;
           padding: 0;
           width: 32px;
-          > ${IconContainer}, > .ds-icon {
+          ${ButtonLabel} > ${IconContainer}, ${ButtonLabel} > .ds-icon,
+          & > ${IconContainer}, & > .ds-icon {
             margin: 0 4px 0 4px;
           }
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.mode === 'single-icon' &&
       props.size === 'large' &&
       css`
@@ -362,33 +384,33 @@ export const AntdButton = styled(
           width: 48px;
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.groupVariant === 'squared' &&
       css`
         &.ant-btn {
           border-radius: 0;
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.groupVariant === 'left-rounded' &&
       css`
         &.ant-btn {
           border-radius: 3px 0 0 3px;
         }
       `}
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.groupVariant === 'right-rounded' &&
       css`
         &.ant-btn {
           border-radius: 0 3px 3px 0;
         }
       `}
-      ${(props): FlattenSimpleInterpolation | false =>
+      ${props =>
         props.activated &&
         css`
           &&&.ant-btn:not(.read-only) {
             background-color: ${props.theme.palette[`blue-050`]};
-            span {
+            ${ButtonLabel} {
               color: ${props.theme.palette['blue-600']};
             }
             svg {
@@ -396,7 +418,7 @@ export const AntdButton = styled(
             }
             &&&:focus {
               background-color: ${props.theme.palette[`blue-050`]};
-              span {
+              ${ButtonLabel} {
                 color: ${props.theme.palette['blue-600']};
               }
               svg {
@@ -412,13 +434,13 @@ export const AntdButton = styled(
           }
         `}
 
-      ${(props): FlattenSimpleInterpolation | false =>
+      ${props =>
         props.error &&
         css`
           &.ant-btn {
             background-color: ${props.theme.palette[`red-100`]};
             box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-            span {
+            ${ButtonLabel} {
               color: ${props.theme.palette[`red-600`]};
             }
             svg {
@@ -430,7 +452,7 @@ export const AntdButton = styled(
             &&&:hover:not(:disabled):not(:focus) {
               background-color: ${props.theme.palette[`red-200`]};
               box-shadow: inset 0 0 0 1px ${props.theme.palette['red-600']};
-              span {
+              ${ButtonLabel} {
                 color: ${props.theme.palette[`red-600`]};
               }
               svg {
@@ -440,7 +462,7 @@ export const AntdButton = styled(
             &:active {
               background-color: ${props.theme.palette[`red-700`]};
               box-shadow: none;
-              span {
+              ${ButtonLabel} {
                 color: ${props.theme.palette.white};
               }
               svg {
@@ -450,7 +472,7 @@ export const AntdButton = styled(
             &&&:focus:not(:active) {
               border: none !important;
               background-color: ${props.theme.palette[`red-100`]};
-              span {
+              ${ButtonLabel} {
                 color: ${props.theme.palette[`red-600`]};
               }
               .btn-focus {
@@ -465,12 +487,12 @@ export const AntdButton = styled(
             background-color: ${props.theme.palette[`red-700`]};
           }
         `}
-          ${(props): FlattenSimpleInterpolation | false =>
+          ${props =>
             props.error &&
             props.type === 'secondary' &&
             css`
               &&&.ant-btn {
-                span {
+                ${ButtonLabel} {
                   color: ${props.theme.palette[`red-600`]};
                 }
                 svg {
@@ -493,7 +515,7 @@ export const AntdButton = styled(
                 }
                 &&&:active {
                   background-color: ${props.theme.palette[`red-700`]};
-                  span {
+                  ${ButtonLabel} {
                     color: ${props.theme.palette.white};
                   }
                   svg {
@@ -507,7 +529,7 @@ export const AntdButton = styled(
             `}
         
 
-    ${(props): FlattenSimpleInterpolation | false =>
+    ${props =>
       props.type === 'custom-color' &&
       !props.error &&
       css`
@@ -515,7 +537,7 @@ export const AntdButton = styled(
           background-color: ${props.theme.palette[`${props.customColor}-600`]};
           border: 0 solid transparent;
           color: ${props.theme.palette.white};
-          span {
+          ${ButtonLabel} {
             color: ${props.theme.palette.white};
           }
 
@@ -542,7 +564,7 @@ export const AntdButton = styled(
             background-color: ${props.theme.palette[
               props.readOnly ? `${props.customColor}-600` : `${props.customColor}-500`
             ]};
-            span {
+            ${ButtonLabel} {
               color: ${props.theme.palette.white};
             }
             svg {
@@ -555,7 +577,7 @@ export const AntdButton = styled(
             opacity: 0.4;
             background-color: ${props.theme.palette[`${props.customColor}-600`]};
 
-            span {
+            ${ButtonLabel} {
               color: ${props.theme.palette.white};
             }
 
@@ -566,7 +588,7 @@ export const AntdButton = styled(
           }
         }
       `}
-      ${(props): FlattenSimpleInterpolation | false =>
+      ${props =>
         props.type === 'custom-color-ghost' &&
         !props.error &&
         css`
@@ -576,7 +598,7 @@ export const AntdButton = styled(
           }
           &:hover:not(:disabled):not(:focus) {
             color: ${props.theme.palette[`${props.customColor}-500`]};
-            span {
+            ${ButtonLabel} {
               color: ${props.theme.palette[`${props.customColor}-500`]};
             }
             svg {

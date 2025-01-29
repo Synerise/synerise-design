@@ -8,9 +8,13 @@ import Dropdown from '@synerise/ds-dropdown';
 import Tooltip from '@synerise/ds-tooltip';
 
 import OperatorsDropdown from './OperatorsDropdown/OperatorsDropdown';
-import { OperatorsItem, OperatorsProps } from './Operator.types';
+import { OperatorsGroup, OperatorsItem, OperatorsProps } from './Operator.types';
 import * as S from './Operators.style';
 import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './constants';
+
+const isOperatorItem = (item: OperatorsGroup | OperatorsItem): item is OperatorsItem => {
+  return 'groupId' in item;
+};
 
 const Operators = ({
   value,
@@ -46,8 +50,8 @@ const Operators = ({
     [texts, formatMessage]
   );
   const handleChange = useCallback(
-    val => {
-      onChange(val);
+    (val: OperatorsItem | OperatorsGroup) => {
+      (!val || isOperatorItem(val)) && onChange(val);
     },
     [onChange]
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { DataFormatConfig } from '../types';
 import { DataFormatConfigContext, DataFormatIntlsContext } from '../contexts';
@@ -7,12 +7,13 @@ import { useDataFormatUtils, useSingleIntl } from '../hooks';
 
 export type DataFormatConfigProviderProps = {
   dataFormatConfig?: DataFormatConfig;
+  children?: ReactNode;
 };
 
-export const DataFormatConfigProvider: React.FC<DataFormatConfigProviderProps> = ({
+export const DataFormatConfigProvider = ({
   dataFormatConfig: dataFormatConfigFromProps,
   children,
-}) => {
+}: DataFormatConfigProviderProps) => {
   const dataFormatConfig = dataFormatConfigFromProps ?? DEFAULT_DATA_FORMAT_CONFIG;
   const { getLocaleFromNotation } = useDataFormatUtils();
 

@@ -423,7 +423,6 @@ export default {
                 itemRender: (item: AnyObject) => (
                   <Menu.Item
                     highlight={searchValue}
-                    onItemHover={() => {}}
                     prefixel={item && <Icon component={item && item.icon} />}
                   >
                     {item && item.text}
@@ -437,7 +436,7 @@ export default {
                 tooltip: 'Recent',
                 title: 'Recent',
                 rowHeight: 32,
-                itemRender: (item: AnyObject) => <Menu.Item onItemHover={() => {}}>{item && item.text}</Menu.Item>,
+                itemRender: (item: AnyObject) => <Menu.Item>{item && item.text}</Menu.Item>,
               }}
               divider={
                 <div style={{ padding: '12px', paddingBottom: '0px' }}>
@@ -450,7 +449,7 @@ export default {
                 tooltip: 'Suggestions',
                 title: 'Suggestions',
                 rowHeight: 32,
-                itemRender: (item: AnyObject) => <Menu.Item onItemHover={() => {}}>{item && item.text}</Menu.Item>,
+                itemRender: (item: AnyObject) => <Menu.Item >{item && item.text}</Menu.Item>,
               }}
               textLookupConfig={{
                 parameters: 'text',

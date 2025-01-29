@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { fireEvent, queryByTestId } from '@testing-library/react';
+import { fireEvent, waitFor, screen } from '@testing-library/react';
 
 import { VarTypeNumberM } from '@synerise/ds-icon';
 import Icon from '@synerise/ds-icon';
@@ -22,45 +22,39 @@ const RENDER_OPERATORS = (props?: {}) => <Operators {...DEFAULT_PROPS} {...props
 
 describe('Operators component', () => {
   test('Should render', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(RENDER_OPERATORS());
-    // ASSERT
-    expect(getByText(OPERATORS_TEXTS.buttonLabel)).toBeTruthy();
+    renderWithProvider(RENDER_OPERATORS());
+    expect(screen.getByText(OPERATORS_TEXTS.buttonLabel)).toBeInTheDocument();
   });
 
-  test('Should show searchbar, tabs and list of operators', () => {
-    // ARRANGE
-    const { getByText, getByPlaceholderText, getByTestId } = renderWithProvider(RENDER_OPERATORS());
+  test('Should show searchbar, tabs and list of operators', async () => {
+    renderWithProvider(RENDER_OPERATORS());
 
-    // ACT
-    const trigger = getByText(OPERATORS_TEXTS.buttonLabel);
-    fireEvent.click(trigger);
-    const search = getByPlaceholderText(OPERATORS_TEXTS.searchPlaceholder);
-    const tabs = getByTestId('tabs-container');
-    const dateOptions = getByText('Date');
+    const trigger = screen.getByText(OPERATORS_TEXTS.buttonLabel);
+    userEvent.click(trigger);
 
-    expect(search).toBeTruthy();
-    expect(tabs).toBeTruthy();
-    expect(dateOptions).toBeTruthy();
+    const search = await screen.findByPlaceholderText(OPERATORS_TEXTS.searchPlaceholder);
+    const tabs = await screen.findByTestId('tabs-container');
+    const dateOptions = await screen.findByText('Date');
+
+    expect(search).toBeInTheDocument();
+    expect(tabs).toBeInTheDocument();
+    expect(dateOptions).toBeInTheDocument();
   });
 
-  test('Should show no tabs if single group', () => {
-    // ARRANGE
-    const groups = OPERATORS_GROUPS.slice(0,1);
-    const { getByText, queryByTestId } = renderWithProvider(RENDER_OPERATORS({groups: groups}));
+  test('Should show no tabs if single group', async () => {
+    const groups = OPERATORS_GROUPS.slice(0, 1);
+    renderWithProvider(RENDER_OPERATORS({ groups: groups }));
 
-    // ACT
-    const trigger = getByText(OPERATORS_TEXTS.buttonLabel);
-    fireEvent.click(trigger);
-    const tabs = queryByTestId('tabs-container');
+    const trigger = screen.getByText(OPERATORS_TEXTS.buttonLabel);
+    userEvent.click(trigger);
 
-    // ASSERT
-    expect(tabs).not.toBeInTheDocument()
-    
+    await screen.findByPlaceholderText(OPERATORS_TEXTS.searchPlaceholder);
+
+    expect(screen.queryByTestId('tabs-container')).not.toBeInTheDocument();
   });
 
   test('Should show selected value', () => {
-    const { getByText } = renderWithProvider(
+    renderWithProvider(
       RENDER_OPERATORS({
         value: {
           name: 'Equal',
@@ -71,29 +65,34 @@ describe('Operators component', () => {
       })
     );
 
-    expect(getByText('Equal')).toBeTruthy();
+    expect(screen.getByText('Equal')).toBeInTheDocument();
   });
 
-  test('should call onActivate', () => {
-    // ARRANGE
+  test('should call onActivate', async () => {
     const handleActivate = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_OPERATORS({ onActivate: handleActivate }));
+    renderWithProvider(RENDER_OPERATORS({ onActivate: handleActivate }));
 
-    // ACT
-    userEvent.click(getByText(OPERATORS_TEXTS.buttonLabel));
+    userEvent.click(screen.getByText(OPERATORS_TEXTS.buttonLabel));
 
-    // ASSERT
-    expect(handleActivate).toBeCalled();
+    await waitFor(() => expect(handleActivate).toBeCalled());
   });
-  test('should call onDeactivate', () => {
-    // ARRANGE
+
+  test('should call onDeactivate', async () => {
     const handleDeactivate = jest.fn();
-    const { getByText } = renderWithProvider(RENDER_OPERATORS({ onDeactivate: handleDeactivate }));
+    const handleActivate = jest.fn();
+    const OTHER_ELEMENT = 'OTHER_ELEMENT';
+    renderWithProvider(
+      <>
+        <div>{OTHER_ELEMENT}</div>
+        {RENDER_OPERATORS({ onDeactivate: handleDeactivate, onActivate: handleActivate })}
+      </>
+    );
 
-    // ACT
-    userEvent.click(getByText(OPERATORS_TEXTS.buttonLabel));
-    userEvent.click(document.body);
+    userEvent.click(screen.getByText(OPERATORS_TEXTS.buttonLabel));
+    await waitFor(() => expect(handleActivate).toHaveBeenCalled());
 
-    expect(handleDeactivate).toBeCalled();
+    userEvent.click(screen.getByText(OTHER_ELEMENT));
+
+    await waitFor(() => expect(handleDeactivate).toHaveBeenCalled());
   });
 });

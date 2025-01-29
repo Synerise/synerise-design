@@ -2,6 +2,8 @@ import React, { useCallback, useState, useRef, useMemo, useEffect } from 'react'
 import { isEqual } from 'lodash';
 import './style/index.less';
 import { useIntl } from 'react-intl';
+import { Popover } from 'antd';
+
 import RawDateRangePicker from './RawDateRangePicker';
 import * as S from './DateRangePicker.styles';
 import { DateRangePickerProps } from './DateRangePicker.types';
@@ -31,18 +33,13 @@ const DateRangePicker = (props: DateRangePickerProps) => {
   } = props;
   const intl = useIntl();
   const selectedRange = value || defaultValue;
-  const [popupVisible, setPopupVisible] = useState<boolean | undefined>(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(selectedRange);
-  const [inputActive, setInputActive] = useState<boolean>();
-  const [isTopAligned, setIsTopAligned] = useState<boolean>(true);
+  const [inputActive, setInputActive] = useState(false);
+  const [isTopAligned, setIsTopAligned] = useState(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const allTexts = useMemo(() => getDefaultTexts(intl, disableDefaultTexts, texts), [texts, disableDefaultTexts, intl]);
-  useEffect(() => {
-    if (popupVisible !== undefined) {
-      setPopupVisible(undefined);
-    }
-  }, [popupVisible]);
 
   useEffect(() => {
     if (!isEqual(selectedRange, selectedDate)) {
@@ -84,7 +81,8 @@ const DateRangePicker = (props: DateRangePickerProps) => {
     ...(popupVisible === false && { visible: false }),
   };
 
-  const handleRangePickerInputClick = readOnly ? undefined : () => setPopupVisible(undefined);
+  const handleRangePickerInputClick = readOnly ? undefined : () => setPopupVisible(true);
+  const hasCustomTrigger = !!popoverTrigger;
   const triggerElement = popoverTrigger || renderPopoverTrigger({ setPopupVisible }) || (
     <RangePickerInput
       onClick={handleRangePickerInputClick}
@@ -93,7 +91,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
       texts={allTexts}
       valueFormatOptions={valueFormatOptions}
       onChange={onApplyCallback}
-      active={!!inputActive}
+      active={inputActive}
       {...rangePickerInputProps}
       readOnly={readOnly}
       disabled={disabled}
@@ -104,7 +102,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
 
   return (
     <S.PickerWrapper ref={wrapperRef} arrowColor={arrowColor}>
-      <S.PopoverWrapper
+      <Popover
         content={
           <RawDateRangePicker
             {...props}
@@ -126,6 +124,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         overlayClassName="ds-date-range-popover"
         onVisibleChange={(visibility: boolean) => {
           visibility && checkContentAlignement();
+          visibility && hasCustomTrigger && setPopupVisible(true);
           setInputActive(visibility);
           onVisibleChange && onVisibleChange(visibility);
         }}
@@ -133,7 +132,7 @@ const DateRangePicker = (props: DateRangePickerProps) => {
         {...conditionalVisibilityProps}
       >
         {triggerElement}
-      </S.PopoverWrapper>
+      </Popover>
     </S.PickerWrapper>
   );
 };

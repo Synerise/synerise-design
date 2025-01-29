@@ -11,9 +11,9 @@ export type ConditionRowProps = {
   onDeactivate?: () => void;
   conditionId: React.ReactText;
   addCondition?: (stepId: React.ReactText) => void;
-  conditionParameter: FactorsProps;
-  conditionOperator: OperatorsProps;
-  conditionFactor: FactorsProps;
+  conditionParameter?: Omit<FactorsProps, 'onChangeValue'>;
+  conditionOperator?: Omit<OperatorsProps, 'onChange'>;
+  conditionFactor?: Omit<FactorsProps, 'onChangeValue'>;
   removeCondition: ConditionProps['removeCondition'];
   minConditionLength: ConditionProps['minConditionsLength'];
   maxConditionLength: ConditionProps['maxConditionsLength'];

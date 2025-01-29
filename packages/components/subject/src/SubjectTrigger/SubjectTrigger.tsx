@@ -19,7 +19,7 @@ const SubjectTrigger: React.FC<SubjectTriggerProps> = ({
   }, [selectedItem, placeholder]);
 
   return (
-    <Button type="custom-color" mode="two-icons" color={color} onClick={onClick}>
+    <Button data-testid="subject-trigger" type="custom-color" mode="two-icons" color={color} onClick={onClick}>
       <Icon component={icon} />
       {label}
       <Icon component={<AngleDownS />} />

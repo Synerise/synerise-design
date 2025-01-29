@@ -15,7 +15,7 @@ describe('Modal', () => {
   it('should not render modal if there is no visible prop or visible is false', () => {
     renderWithProvider(<Modal title={titleMock} description={descriptionMock} />);
 
-    const modalDialog = screen.queryByRole('document');
+    const modalDialog = screen.queryByRole('dialog');
 
     expect(modalDialog).not.toBeInTheDocument();
   });
@@ -55,7 +55,7 @@ describe('Modal', () => {
   it('should render custom size correctly', () => {
     renderWithProvider(<Modal title="Test Title" size="medium" visible />);
 
-    const modalDialog = screen.getByRole('document');
+    const modalDialog = screen.getByRole('dialog');
     expect(modalDialog).toHaveStyle({ width: '792px' });
   });
 

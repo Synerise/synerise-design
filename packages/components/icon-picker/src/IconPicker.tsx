@@ -12,7 +12,7 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
   const [focus, setFocus] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const filter = (searchTerm: string): void => {
+  const filter = (searchTerm: string) => {
     setValue(searchTerm);
     const final = data.filter((item: FilterElement): boolean => {
       return item.category.toLowerCase().includes(searchTerm.toLowerCase());
@@ -25,35 +25,33 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
     setOpen(false);
   });
 
-  const onClearInput = (): void => {
+  const onClearInput = () => {
     setValue('');
     setFilteredData(data);
   };
 
-  const toggleOpen = (): void => {
-    setOpen(prevState => !prevState);
-    setFocus(() => {
-      return !isOpen && true;
-    });
+  const toggleOpen = (newState: boolean) => {
+    setOpen(newState);
+    setFocus(newState);
   };
 
   return (
     <Dropdown
       visible={isOpen}
+      onVisibleChange={toggleOpen}
       trigger={trigger}
       placement="bottomRight"
       overlay={
         <S.Overlay ref={ref}>
           <Overlay
             value={value}
-            onSearchChange={(val: string): void => filter(val)}
+            onSearchChange={(val: string) => filter(val)}
             onClearInput={onClearInput}
             placeholder={placeholder}
             data={filteredData}
-            onSelect={(val): void => {
-              setOpen(prevState => !prevState);
+            onSelect={(val) => {
+              toggleOpen(false)
               onSelect(val);
-              setFocus(false);
             }}
             focus={focus}
             noResultMsg={noResultMsg}
@@ -61,7 +59,7 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
         </S.Overlay>
       }
     >
-      {button && React.cloneElement(button, { onClick: toggleOpen })}
+      {button}
     </Dropdown>
   );
 };

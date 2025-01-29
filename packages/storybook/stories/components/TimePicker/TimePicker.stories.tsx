@@ -13,6 +13,7 @@ import {
   REACT_NODE_AS_STRING,
   STRING_CONTROL,
 } from '../../utils';
+import { within } from '@storybook/test';
 
 type Story = StoryObj<TimePickerProps>;
 
@@ -72,8 +73,21 @@ export const Raw: Story = {
   },
 };
 
-export const OpenByDefault: Story = {
+export const OpenAlways: Story = {
   args: {
     alwaysOpen: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await canvas.findByTestId('tp-overlay-container');
+  }
+};
+export const OpenByDefault: Story = {
+  args: {
+    defaultOpen: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement.parentElement!);
+    await canvas.findByTestId('tp-overlay-container');
+  }
 };

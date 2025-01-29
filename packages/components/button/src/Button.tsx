@@ -20,23 +20,23 @@ const Button = ({
   color = 'red',
   error,
   activated,
+  children,
   ...antdProps
 }: ButtonProps) => {
   const rippleRef = useRef<HTMLSpanElement>(null);
   const [rippleClassName, setRippleClassName] = useState('');
   const [pressed, setPressed] = useState<boolean>(false);
 
-  // @ts-expect-error TS7030: Not all code paths return a value
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
+    let rippleAnimation: ReturnType<typeof setTimeout>;
     if (rippleClassName !== '') {
-      const rippleAnimation = setTimeout(() => {
+      rippleAnimation = setTimeout(() => {
         setRippleClassName('');
       }, S.RIPPLE_ANIMATION_TIME - RIPPLE_ANIMATION_OFFSET);
-      return () => {
-        clearTimeout(rippleAnimation);
-      };
     }
+    return () => {
+      rippleAnimation && clearTimeout(rippleAnimation);
+    };
   }, [rippleClassName]);
 
   const handleClick = (event: MouseEvent<HTMLElement>): void => {
@@ -80,11 +80,12 @@ const Button = ({
       pressed={pressed}
       className={classNameString}
       customColor={color}
-      /* eslint-disable-next-line react/jsx-props-no-spreading */
       {...antdProps}
     >
       {!antdProps.readOnly && <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />}
-      {antdProps.children}
+      <S.ButtonLabel data-testid="ds-button-label" className="ds-button-label">
+        {children}
+      </S.ButtonLabel>
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">
           <Icon component={<SpinnerM />} color="#fff" />

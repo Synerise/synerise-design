@@ -24,7 +24,7 @@ export type ColorHue = '900' | '800' | '700' | '600' | '500' | '400' | '300' | '
 
 export type Status = 'active' | 'inactive' | 'blocked' | 'processing' | 'warning' | undefined;
 
-export interface BadgeProps extends Omit<AntBadgeProps, 'status'> {
+export type BadgeProps = Omit<AntBadgeProps, 'status'> & {
   flag?: boolean;
   status?: Status;
   outlined?: boolean;

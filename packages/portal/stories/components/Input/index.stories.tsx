@@ -4,9 +4,7 @@ import {
   TextArea,
   RawInput,
   InputGroup,
-  MaskedInput,
   InputMultivalue,
-  RawMaskedInput,
   AutoResizeProp,
 } from '@synerise/ds-input';
 
@@ -220,16 +218,7 @@ const stories = {
         ))}
       </Select>
     );
-    const inputMask = (
-      <RawMaskedInput
-        size={size}
-        disabled={boolean('Disabled', false)}
-        onChange={e => setValue(e.target.value)}
-        value={value}
-        error={boolean('Set input error', false)}
-        mask={inputOptionMask[dateMaskKey]}
-      />
-    );
+    
     const select = (
       <Select
         size={size}
@@ -282,7 +271,6 @@ const stories = {
       InputNumber: inputNumber,
       Button: select,
       Select: whiteSelect,
-      InputWithMask: inputMask,
     };
     const leftSideComponent = knobSelect(
       'Set left-side component',
@@ -316,207 +304,7 @@ const stories = {
       </InputGroup>
     );
   },
-  withFlags: () => {
-    const [value, setValue] = useState<string>('');
-    const size = knobSelect('Set size', sizes as any, 'default');
-    const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [searchQuery, setSearchQuery] = useState<string>('');
-    const inputOptionMask = { '---- ----': '1111-1111', '--- --- ---': '111-111-111' };
-    const dateMask = knobSelect('SelectDateMask', Object.keys(inputOptionMask), '--- --- ---');
-    useEffect(() => {
-      setValue('');
-    }, [dateMask]);
-    const countries = [
-      { name: 'Argentina +123', code: 'AR', prefix: '+123' },
-      { name: 'Albania +456', code: 'Al', prefix: '+456' },
-      { name: 'Austria +78', code: 'AT', prefix: '+78' },
-      { name: 'Brazil +123', code: 'BR', prefix: '+123' },
-    ];
-    const [results, setResults] = useState<Country[]>(countries);
-    const ref = useRef<HTMLDivElement>(null);
-    useOnClickOutside(ref, () => {
-      setDropdownVisible(false);
-    });
-    const renderPrefix = (country: Country) => (
-      <div style={{ display: 'flex' }}>
-        <FlagContainer style={{ paddingRight: '8px', paddingTop: '2px' }}>
-          <DSFlag country={country.code} size={20} />
-        </FlagContainer>
-        {country.prefix}
-      </div>
-    );
-    const [prefix, setPrefix] = useState(renderPrefix(countries[3]));
-    type Country = { name: string; code: string; prefix: string };
-
-    const phoneNumberSelect = (
-      <Select
-        onChange={countryCode => {
-          const selectedCountry = results.find(result => result.code === countryCode);
-          setPrefix(renderPrefix(selectedCountry));
-        }}
-        dropdownStyle={{ width: '300px' }}
-        style={{ width: '107px' }}
-        dropdownClassName="dropdownWidth"
-        size={size}
-        dropdownRender={menu => (
-          <div style={{ width: '240px', paddingTop: '0px' }}>
-            {' '}
-            <SearchBar
-              onSearchChange={value => {
-                setSearchQuery(value);
-                setResults(getAllElementsFiltered(countries as object[], value, 'name') as Country[]);
-              }}
-              placeholder="Search"
-              value={searchQuery}
-              onClearInput={(): void => {
-                setSearchQuery('');
-                setResults(getAllElementsFiltered(countries as object[], '', 'name') as Country[]);
-              }}
-              iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
-              autofocus
-            />{' '}
-            <div style={{ padding: '8px', alignItems: 'center', justifyContent: 'center' }}>{menu}</div>
-          </div>
-        )}
-        value={prefix as unknown as SelectValue}
-        error={boolean('Set select error', false)}
-        onClick={(): void => setDropdownVisible(!dropdownVisible)}
-      >
-        {results.map(country => (
-          <Select.Option key={country.code}>
-            <div style={{ display: 'flex', fontWeight: !!searchQuery ? 400 : 500 }}>
-              <FlagContainer style={{ paddingRight: '12px' }}>
-                <DSFlag country={country.code} size={20} />
-              </FlagContainer>
-              {renderWithHighlightedText(searchQuery, country.name)}
-            </div>
-          </Select.Option>
-        ))}
-      </Select>
-    );
-
-    const inputMask = (
-      <RawMaskedInput
-        disabled={boolean('Disabled', false)}
-        onChange={e => setValue(e.target.value)}
-        size={size}
-        value={value}
-        error={boolean('Set input error', false)}
-        mask={inputOptionMask[dateMask]}
-      />
-    );
-
-    return (
-      <InputGroup
-        size={size}
-        tooltip={text('Tooltip', 'This is example tooltip!')}
-        label={text('Label', 'Label')}
-        description={text('Description', 'Description')}
-        errors={array('Errors', [])}
-        resetMargin={boolean('ResetMargin', false)}
-        compact
-      >
-        {phoneNumberSelect}
-        {inputMask}
-      </InputGroup>
-    );
-  },
-  inputWithMask: () => {
-    const autoResize = boolean('Set autoResize', true, 'autoresize');
-
-    const autoResizeProp: AutoResizeProp = autoResize && {
-      minWidth: `${number('Set autoResize min width', 150, undefined, 'autoresize')}px`,
-      maxWidth: `${number('Set autoResize max width', 300, undefined, 'autoresize')}px`,
-    };
-
-    const [creditCardvalue, setCreditCardvalue] = useState<string>('');
-    const [dateValue, setDateValue] = useState<string>('');
-    const [birthdateValue, setBirthdateValue] = useState<string>('');
-    const [phoneValue, setPhoneValue] = useState<string>('');
-    const [phonePrefixValue, setPhonePrefixValue] = useState<string>('');
-    const [passwordValue, setPasswordValue] = useState<string>('');
-    const [zipCardValue, setZipCardValue] = useState<string>('');
-    const inputOptionMask = {
-      'DD-MM-YYYY': '11-11-1111',
-      'DD-MM-YYYY h:mm A': '11-11-1111 1:11 PM',
-      'DD-MM-YYYY H:mm': '11-11-1111 11:11',
-      'MM-DD-YYYY': '11-11-1111',
-      'MM-DD-YYYY h:mm A': '11-11-1111 1:11 PM',
-      'MM-DD-YYYY H:mm': '11-11-1111 11:11',
-      'D MMMM, YYYY': '11 1111, 1111',
-      'D MMMM, YYYY h:mm A': '11 1111, 1111, 1:11 PM',
-      'D MMMM, YYYY H:mm': '11 1111, 1111, 11:11',
-      'MMMM d, YYYY': '1111 11, 1111',
-      'MMMM d, YYYY h:mm A': '1111 11, 1111 1:11 PM',
-      'MMMM d, YYYY H:mm': '1111 11, 1111 11:11 ',
-      'ddd, MMMM d, YYYY h:mm A': '111, 1111 11, 1111 1:11 PM',
-      'ddd, MMMM d, YYYY H:mm': '111, 1111 11, 1111 11:11',
-    };
-    const dateMask = select('SelectDateMask', Object.keys(inputOptionMask), 'DD-MM-YYYY');
-    useEffect(() => {
-      setDateValue('');
-    }, [dateMask]);
-
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', width: 200 }}>
-        <Input
-          label="Password"
-          value={passwordValue}
-          onChange={e => setPasswordValue(e.target.value)}
-          type="password"
-          autoResize={autoResizeProp}
-          placeholder="Placeholder"
-        />
-
-        <MaskedInput
-          label="Phone number"
-          value={phoneValue}
-          autoResize={autoResizeProp}
-          onChange={e => setPhoneValue(e.target.value)}
-          mask="(+11) 111-111-111"
-        />
-
-        <MaskedInput
-          label="Phone number with prefix"
-          value={phonePrefixValue}
-          autoResize={autoResizeProp}
-          onChange={e => setPhonePrefixValue(e.target.value)}
-          mask="(+11) 1111-1111"
-        />
-
-        <MaskedInput
-          label="Date"
-          value={dateValue}
-          autoResize={autoResizeProp}
-          onChange={e => setDateValue(e.target.value)}
-          mask={inputOptionMask[dateMask]}
-        />
-
-        <MaskedInput
-          label="Birthdate"
-          value={birthdateValue}
-          autoResize={autoResizeProp}
-          onChange={e => setBirthdateValue(e.target.value)}
-          mask="11-11-1111"
-        />
-
-        <MaskedInput
-          label="Credit card"
-          value={creditCardvalue}
-          autoResize={autoResizeProp}
-          onChange={e => setCreditCardvalue(e.target.value)}
-          mask="1111-1111-1111-1111"
-        />
-        <MaskedInput
-          label="Zip-code"
-          value={zipCardValue}
-          autoResize={autoResizeProp}
-          onChange={e => setZipCardValue(e.target.value)}
-          mask="11-111"
-        />
-      </div>
-    );
-  },
+  
   inputWithIcons: () => {
     const [value, setValue] = useState<string>('');
     const size = knobSelect('Set size', sizes as any, 'default');

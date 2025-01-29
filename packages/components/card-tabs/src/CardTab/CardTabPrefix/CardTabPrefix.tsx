@@ -1,6 +1,5 @@
 import React from 'react';
 import Icon, { DragHandleM } from '@synerise/ds-icon';
-import { theme } from '@synerise/ds-core';
 import * as S from '../CardTab.styles';
 import { prefixType } from '../CardTab.types';
 import { Props } from './CardTabPrefix.types';
@@ -16,7 +15,7 @@ const CardTabPrefix = ({ prefix, draggable, tag, prefixIcon, colorDot }: Props) 
       )}
       {prefix === prefixType.ICON && prefixIcon && (
         <S.CardIconPrefix>
-          <Icon component={prefixIcon} color={theme.palette['grey-600']} />
+          <Icon component={prefixIcon} />
         </S.CardIconPrefix>
       )}
       {prefix === prefixType.DOT && colorDot && (

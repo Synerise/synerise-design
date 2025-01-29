@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {
+  CSSProperties,
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import 'rc-trigger/assets/index.less';
 import classNames from 'classnames';
 import { useTheme } from 'styled-components';
 import copy from 'copy-to-clipboard';
 import Trigger from 'rc-trigger';
-import { HoverEventHandler } from 'rc-menu/lib/interface';
 
 import Tooltip from '@synerise/ds-tooltip';
 import { escapeRegEx } from '@synerise/ds-utils';
@@ -16,21 +24,21 @@ import { triggerPlacements } from '../../../utils';
 import { VisibilityTrigger } from '../../../Menu.types';
 import { AddonRenderer, BasicItemProps } from './Text.types';
 
-const renderAddon = (addon: React.ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): React.ReactNode => {
+const renderAddon = (addon: ReactNode | AddonRenderer, ...params: Parameters<AddonRenderer>): ReactNode => {
   return addon instanceof Function ? addon(...params) : addon;
 };
 
-export type HoverTooltipProps = React.PropsWithChildren<{
+export type HoverTooltipProps = PropsWithChildren<{
   hoverTooltipProps?: BasicItemProps['hoverTooltipProps'];
   renderHoverTooltip?: () => JSX.Element;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }>;
 
 function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, style }: HoverTooltipProps): JSX.Element {
   const dsTheme = useTheme() as ThemePropsVars;
   const zIndex = parseInt(dsTheme.variables['zindex-tooltip'], 10);
 
-  const cancelBubblingEvent = React.useCallback(
+  const cancelBubblingEvent = useCallback(
     () =>
       (ev: Event): void => {
         ev.stopPropagation();
@@ -53,13 +61,13 @@ function WithHoverTooltip({ hoverTooltipProps, renderHoverTooltip, children, sty
         zIndex={zIndex}
         {...hoverTooltipProps}
       >
-        <div style={style}>{children as React.ReactElement}</div>
+        <div style={style}>{children as ReactElement}</div>
       </Trigger>
     </div>
   );
 }
 
-const Text: React.FC<BasicItemProps> = ({
+const Text: FC<BasicItemProps> = ({
   parent,
   disabled,
   prefixel,
@@ -84,19 +92,18 @@ const Text: React.FC<BasicItemProps> = ({
   hoverTooltipProps,
   renderHoverTooltip,
   size = 'default',
-  onItemHover,
   ...rest
 }) => {
-  const [hovered, setHovered] = React.useState(false);
-  const [clicked, setClicked] = React.useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const canCopyToClipboard = copyable && copyHint && copyValue && !disabled;
   const showSuffixOnHover = suffixVisibilityTrigger === VisibilityTrigger.HOVER;
   const showPrefixOnHover = prefixVisibilityTrigger === VisibilityTrigger.HOVER;
 
-  const suffixElement = React.useMemo(() => renderAddon(suffixel, hovered), [suffixel, hovered]);
-  const prefixElement = React.useMemo(() => renderAddon(prefixel, hovered), [prefixel, hovered]);
+  const suffixElement = useMemo(() => renderAddon(suffixel, hovered), [suffixel, hovered]);
+  const prefixElement = useMemo(() => renderAddon(prefixel, hovered), [prefixel, hovered]);
 
-  const renderChildren = (): React.ReactNode => {
+  const renderChildren = (): ReactNode => {
     if (highlight && typeof children === 'string') {
       const index = children.toLocaleLowerCase().indexOf(highlight.toLocaleLowerCase());
       if (index === -1) {
@@ -116,28 +123,27 @@ const Text: React.FC<BasicItemProps> = ({
     }
     return children;
   };
-  const shouldRenderSuffix = React.useMemo((): boolean => {
+  const shouldRenderSuffix = useMemo((): boolean => {
     if (showSuffixOnHover) {
       return (!!suffixElement || !!checked) && hovered;
     }
     return !!suffixElement || !!checked;
   }, [showSuffixOnHover, suffixElement, checked, hovered]);
 
-  const shouldRenderPrefix = React.useMemo((): boolean => {
+  const shouldRenderPrefix = useMemo((): boolean => {
     if (showPrefixOnHover) {
       return !!prefixElement && hovered;
     }
     return !!prefixElement;
   }, [showPrefixOnHover, prefixElement, hovered]);
-  const renderPrefixElement = (isHover: boolean): React.ReactNode =>
+  const renderPrefixElement = (isHover: boolean): ReactNode =>
     prefixel instanceof Function ? prefixel(isHover) : prefixel;
 
-  const className = React.useMemo<string>(() => {
+  const className = useMemo<string>(() => {
     return classNames('ds-menu-item', rest.className, size);
   }, [rest.className, size]);
 
   const element = (
-    // @ts-ignore
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
       onMouseOver={(): void => {
@@ -157,7 +163,6 @@ const Text: React.FC<BasicItemProps> = ({
       ordered={ordered}
       size={size}
       onClick={onClick}
-      onItemHover={onItemHover as unknown as HoverEventHandler}
       {...rest}
       data-name={typeof children === 'string' ? children : undefined}
       className={className}

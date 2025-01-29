@@ -85,7 +85,7 @@ const config: StorybookConfig = {
                           },
                         },
                         {
-                          original: '@synerise/ds-((?!core|icon)[a-z0-9-]+)(/dist)?(.*)',
+                          original: '@synerise/ds-((?!core|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
                           replacement: '@synerise/ds-$1/src$3',
                         },
                       ],
@@ -130,7 +130,6 @@ const config: StorybookConfig = {
                 presets: [['@babel/preset-env', { targets: 'defaults' }]],
                 plugins: [
                   '@babel/plugin-transform-nullish-coalescing-operator',
-                  '@babel/plugin-transform-class-properties',
                   '@babel/plugin-transform-optional-chaining',
                   '@babel/plugin-transform-class-static-block',
                 ],

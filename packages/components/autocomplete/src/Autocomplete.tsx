@@ -3,7 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
-import Select from 'antd/lib/select';
+import type { RefSelectProps} from 'antd/lib/select';
 import { AutosizeWrapper } from '@synerise/ds-input';
 import type { AutosizeInputRefType } from '@synerise/ds-input';
 import { useResizeObserver } from '@synerise/ds-utils';
@@ -27,7 +27,7 @@ const Autocomplete = (props: AutocompleteProps) => {
     ...rest
   } = props;
   const scrollLeftRef = useRef(0);
-  const antSelectRef = useRef<Select | null>(null);
+  const antSelectRef = useRef<RefSelectProps | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const autosizeRef = useRef<AutosizeInputRefType | null>(null);
   const autocompleteInputRef = useRef<HTMLDivElement | null>(null);

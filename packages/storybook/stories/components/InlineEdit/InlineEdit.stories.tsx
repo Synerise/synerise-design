@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { fn } from '@storybook/test';
@@ -22,17 +22,17 @@ const InlineEditMeta = {
     layout: 'centered',
   },
   decorators: [fixedWrapper300],
-  render: ({ ...args }) => {
-    const [{ input }, updateArgs] = useArgs();
+  render: ({ input, ...args }) => {
+    const [value, setValue] = useState(input.value);
     const handleValueChange = (event: ChangeEvent<HTMLInputElement>) => {
-      updateArgs({ input: { ...input, value: event.target.value } });
+      setValue(event.target.value);
       input.onChange?.(event);
     };
     const inputProp = {
       ...input,
       onChange: handleValueChange,
     };
-    return <InlineEdit {...args} input={inputProp} />;
+    return <InlineEdit {...args} input={{...inputProp, value}} />;
   },
   argTypes: {
     className: CLASSNAME_ARG_CONTROL,
@@ -49,7 +49,7 @@ const InlineEditMeta = {
       value: '',
       maxLength: 120,
       placeholder: 'Placeholder',
-      autoComplete: 'false',
+      autoComplete: 'off',
       onChange: fn(),
     },
   },

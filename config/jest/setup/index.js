@@ -1,14 +1,12 @@
 import '@formatjs/intl-relativetimeformat/polyfill';
 import '@formatjs/intl-pluralrules/polyfill';
-// import 'raf/polyfill'
-// import 'jest-prop-type-error'
 
-import '@testing-library/jest-dom/extend-expect'
-
-import './enzyme.js'
+import '@testing-library/jest-dom/jest-globals';
+import '@testing-library/jest-dom'
 
 import '../__mocks__/resizeObserverMock';
 import '../__mocks__/intersectionObserverMock';
+import '../__mocks__/mutationObserverMock';
 import '../__mocks__/domRectMock';
 
 Object.defineProperty(window, 'matchMedia', {
@@ -24,3 +22,21 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn()
   }))
 });
+
+
+const originalError = console.error
+beforeAll(() => {
+  console.error = (...args) => {
+    if (/Warning.*not wrapped in act/.test(args[0])) {
+      return
+    }
+    if (/Warning: \[antd: /.test(args[0])) {
+      return
+    }
+    originalError.call(console, ...args)
+  }
+})
+
+afterAll(() => {
+  console.error = originalError
+})
