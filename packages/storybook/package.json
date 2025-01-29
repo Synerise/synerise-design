@@ -1,6 +1,6 @@
 {
   "name": "storybook7",
-  "version": "0.36.0",
+  "version": "0.37.0",
   "private": true,
   "engines": {
     "node": "^16"
@@ -43,10 +43,10 @@
     "chromatic": "10.1.0",
     "he": "^1.2.0",
     "storybook": "7.6.5",
+    "storybook-addon-mock-date": "^0.6.0",
     "storybook-addon-pseudo-states": "^3.1.1",
     "storybook-deeper-sort": "^1.1.4",
     "storybook-mock-date-decorator": "^2.0.3",
-    "storybook-addon-mock-date": "^0.6.0",
     "storybook-multilevel-sort": "^2.0.0"
   }
 }

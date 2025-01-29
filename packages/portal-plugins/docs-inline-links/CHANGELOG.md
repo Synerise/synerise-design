@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/synerise/synerise-design/compare/@synerise/portal-plugin-docs-inline-stories-links-to-sources@0.1.0...@synerise/portal-plugin-docs-inline-stories-links-to-sources@0.2.0) (2025-01-29)
+
+
+### Features
+
+* antd@4.24 react@18 ([d97a667](https://github.com/synerise/synerise-design/commit/d97a667b1f33aed3177e1851de3b6f60be2d46a6))
+
+
+
+
+
 # 0.1.0 (2023-03-30)
 
 

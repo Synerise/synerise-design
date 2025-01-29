@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "private": true,
-  "version": "0.35.3",
+  "version": "0.36.0",
   "scripts": {
     "docs-watch": "node ../../../scripts/docs/watch.js",
     "examples": "docusaurus-examples",

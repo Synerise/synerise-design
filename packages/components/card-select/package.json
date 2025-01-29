@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card-select",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Card-Select UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,10 +34,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.70.0",
-    "@synerise/ds-tags": "^0.10.25",
-    "@synerise/ds-tooltip": "^0.14.55",
-    "@synerise/ds-utils": "^0.31.2",
+    "@synerise/ds-icon": "^0.71.0",
+    "@synerise/ds-tags": "^0.11.0",
+    "@synerise/ds-tooltip": "^0.15.0",
+    "@synerise/ds-utils": "^0.32.0",
     "styled-is": "^1.3.0"
   },
   "peerDependencies": {

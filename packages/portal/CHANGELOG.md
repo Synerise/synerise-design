@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.229.0](https://github.com/synerise/synerise-design/compare/portal@0.228.0...portal@0.229.0) (2025-01-29)
+
+
+### Features
+
+* antd@4.24 react@18 ([d97a667](https://github.com/synerise/synerise-design/commit/d97a667b1f33aed3177e1851de3b6f60be2d46a6))
+
+
+
+
+
 # [0.228.0](https://github.com/synerise/synerise-design/compare/portal@0.227.0...portal@0.228.0) (2025-01-21)
 
 

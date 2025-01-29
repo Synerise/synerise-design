@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-list-item",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "description": "ListItem UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,9 +34,9 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-icon": "^0.70.0",
-    "@synerise/ds-tooltip": "^0.14.55",
-    "@synerise/ds-utils": "^0.31.2",
+    "@synerise/ds-icon": "^0.71.0",
+    "@synerise/ds-tooltip": "^0.15.0",
+    "@synerise/ds-utils": "^0.32.0",
     "copy-to-clipboard": "^3.3.1",
     "rc-trigger": "^5.3.4",
     "uuid": "^8.3.2"

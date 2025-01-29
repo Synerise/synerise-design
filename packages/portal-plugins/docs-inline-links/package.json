@@ -1,6 +1,6 @@
 {
   "name": "@synerise/portal-plugin-docs-inline-stories-links-to-sources",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "repository": "synerise/synerise-design",
   "main": "./src/babel-stories-links.js",
