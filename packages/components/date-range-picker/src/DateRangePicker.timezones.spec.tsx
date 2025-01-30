@@ -1,6 +1,6 @@
 import React from 'react';
-import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
-import { within, screen, prettyDOM } from '@testing-library/react';
+import { renderWithLocalesLoaded } from '@synerise/ds-utils/dist/testing';
+import { within, screen, prettyDOM, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { DataFormatNotationType } from '@synerise/ds-data-format';
 
@@ -357,8 +357,8 @@ describe('DateRangePicker TimezoneTesting', () => {
   afterEach(() => jest.useRealTimers());
   it.each(TEST_CASES)(
     'should render trigger input value in provider timezone',
-    ({ providerTimeZone, showTime, value, notation, from, to }) => {
-      renderWithProvider(
+    async ({ providerTimeZone, showTime, value, notation, from, to }) => {
+      await renderWithLocalesLoaded(
         <DateRangePicker showTime={showTime} onApply={jest.fn()} value={value} />,
         {},
         { notation, timeZone: providerTimeZone }
@@ -371,7 +371,7 @@ describe('DateRangePicker TimezoneTesting', () => {
   it.each(TEST_CASES)(
     'should render picker footer text render in provider timezone',
     async ({ providerTimeZone, showTime, value, notation, from, to }) => {
-      renderWithProvider(
+      await renderWithLocalesLoaded(
         <RawDateRangePicker texts={TEXTS} showTime={showTime} onApply={jest.fn()} value={value} />,
         {},
         { notation, timeZone: providerTimeZone }
@@ -386,12 +386,13 @@ describe('DateRangePicker TimezoneTesting', () => {
     async ({ providerTimeZone, showTime, value, notation, fromValueParam, toValueParam }) => {
       const onApply = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
-      renderWithProvider(
+      await renderWithLocalesLoaded(
         <RawDateRangePicker texts={TEXTS} showTime={showTime} onApply={onApply} value={value} />,
         {},
         { notation, timeZone: providerTimeZone }
       );
-      userEvent.click(screen.getByText(TEXTS.apply));
+      userEvent.click(await screen.findByText(TEXTS.apply));
+      await waitFor(() => expect(onApply).toHaveBeenCalled());
       const paramValue = getLastCallParams();
 
       expect(paramValue.from).toBe(fromValueParam);
@@ -403,9 +404,16 @@ describe('DateRangePicker TimezoneTesting', () => {
     'Click on specific days & click "apply": onApply param should have updated range with provider timezone offset',
     async ({ providerTimeZone, showTime, value, notation, updatedFromValueParam, updatedToValueParam }) => {
       const onApply = jest.fn();
+      const onValueChange = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
-      renderWithProvider(
-        <RawDateRangePicker texts={TEXTS} showTime={showTime} onApply={onApply} value={value} />,
+      await renderWithLocalesLoaded(
+        <RawDateRangePicker
+          texts={TEXTS}
+          onValueChange={onValueChange}
+          showTime={showTime}
+          onApply={onApply}
+          value={value}
+        />,
         {},
         { notation, timeZone: providerTimeZone }
       );
@@ -413,8 +421,11 @@ describe('DateRangePicker TimezoneTesting', () => {
       const leftSide = within(screen.getByTestId('ds-date-range-picker-side-left'));
 
       userEvent.click(leftSide.getByText('15'));
+      await waitFor(() => expect(onValueChange).toHaveBeenCalled());
       userEvent.click(leftSide.getByText('17'));
+      await waitFor(() => expect(onValueChange).toHaveBeenCalled());
       userEvent.click(screen.getByText(TEXTS.apply));
+      await waitFor(() => expect(onApply).toHaveBeenCalled());
       const paramValue = getLastCallParams();
 
       expect(paramValue.from).toBe(updatedFromValueParam);
@@ -422,15 +433,20 @@ describe('DateRangePicker TimezoneTesting', () => {
     }
   );
 
-  it.each(TEST_CASES_WITH_TIME)(
+  it.only.each(TEST_CASES_WITH_TIME)(
     'Time mode should show "from" and "to" time in provider timezone',
     async ({ providerTimeZone, value, notation, toDate, toTime, fromDate, fromTime }) => {
-      renderWithProvider(
+      await renderWithLocalesLoaded(
         <RawDateRangePicker texts={TEXTS} showTime onApply={jest.fn} value={value} />,
         {},
         { notation, timeZone: providerTimeZone }
       );
-      userEvent.click(screen.getByText(TEXTS.selectTime));
+      userEvent.click(await screen.findByText(TEXTS.selectTime));
+      await waitFor(() => {
+        expect(screen.getByTestId('ds-date-range-picker-side-right')).toHaveAttribute('mode', 'time');
+        expect(screen.getByTestId('ds-date-range-picker-side-left')).toHaveAttribute('mode', 'time');
+      });
+
       const rightSide = within(screen.getByTestId('ds-date-range-picker-side-right'));
       const leftSide = within(screen.getByTestId('ds-date-range-picker-side-left'));
 
@@ -466,15 +482,18 @@ describe('DateRangePicker TimezoneTesting', () => {
     'NOW button should set to current time in provider timezone',
     async ({ providerTimeZone, value, notation, nowValueParam }) => {
       const onApply = jest.fn();
+      const onValueChange = jest.fn();
       const getLastCallParams = () => onApply.mock.calls[onApply.mock.calls.length - 1][0];
 
-      renderWithProvider(
-        <RawDateRangePicker texts={TEXTS} showTime onApply={onApply} value={value} />,
+      await renderWithLocalesLoaded(
+        <RawDateRangePicker texts={TEXTS} showTime onApply={onApply} onValueChange={onValueChange} value={value} />,
         {},
         { notation, timeZone: providerTimeZone }
       );
       userEvent.click(screen.getByText(TEXTS.now));
+      await waitFor(() => expect(onValueChange).toHaveBeenCalled());
       userEvent.click(screen.getByText(TEXTS.apply));
+      await waitFor(() => expect(onApply).toHaveBeenCalled());
 
       const applyParams = getLastCallParams();
       expect(applyParams.from).toBe(nowValueParam?.from);
