@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-sidebar",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Sidebar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -37,7 +37,7 @@
     "@synerise/ds-button": "^0.23.0",
     "@synerise/ds-dropdown": "^0.19.0",
     "@synerise/ds-icon": "^0.71.0",
-    "@synerise/ds-menu": "^0.21.0",
+    "@synerise/ds-menu": "^0.21.1",
     "@synerise/ds-utils": "^0.32.0",
     "dnd-core": "10.0.2",
     "immutability-helper": "^3.0.1",

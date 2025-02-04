@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.21.0...@synerise/ds-menu@0.21.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **menu:** menu inline padding ([a3dd86b](https://github.com/Synerise/synerise-design/commit/a3dd86bfcf7c3178f38c78273297173c121f3f6c))
+
+
+
+
+
 # [0.21.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.20.12...@synerise/ds-menu@0.21.0) (2025-01-29)
 
 

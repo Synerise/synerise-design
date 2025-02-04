@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-card-tabs",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "description": "CardTabs UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,8 +38,8 @@
     "@synerise/ds-cruds": "^0.6.0",
     "@synerise/ds-dropdown": "^0.19.0",
     "@synerise/ds-icon": "^0.71.0",
-    "@synerise/ds-inline-edit": "^0.10.0",
-    "@synerise/ds-menu": "^0.21.0",
+    "@synerise/ds-inline-edit": "^0.10.1",
+    "@synerise/ds-menu": "^0.21.1",
     "@synerise/ds-tooltip": "^0.15.0",
     "@synerise/ds-typography": "^0.17.0",
     "@synerise/ds-utils": "^0.32.0",

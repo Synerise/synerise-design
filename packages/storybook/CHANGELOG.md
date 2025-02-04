@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.37.0...storybook7@0.38.0) (2025-02-04)
+
+
+### Features
+
+* **alert:** new stories for alert ([281436c](https://github.com/Synerise/synerise-design/commit/281436cf7ca3955e192de762d638e0a06be3ac36))
+
+
+
+
+
 # [0.37.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.36.0...storybook7@0.37.0) (2025-01-29)
 
 

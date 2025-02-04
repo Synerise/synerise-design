@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-information-card",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "InformationCard UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -44,7 +44,7 @@
     "@synerise/ds-divider": "^0.8.0",
     "@synerise/ds-dropdown": "^0.19.0",
     "@synerise/ds-icon": "^0.71.0",
-    "@synerise/ds-menu": "^0.21.0",
+    "@synerise/ds-menu": "^0.21.1",
     "@synerise/ds-scrollbar": "^0.12.0",
     "@synerise/ds-subtle-form": "^0.10.0",
     "@synerise/ds-tooltip": "^0.15.0",
