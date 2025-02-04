@@ -95,7 +95,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     align-items: center;
     margin: 0;
     transition: background-color ${TRANSITION_FN};
-    padding-left: ${(props): string => (props.prefixel ? '8' : '12')}px;
+    padding-left: 12px;
     ${(props): string =>
       props.disabled
         ? `
