@@ -143,6 +143,8 @@ const Text: FC<BasicItemProps> = ({
     return classNames('ds-menu-item', rest.className, size);
   }, [rest.className, size]);
 
+  const mergedStyle = { ...style, paddingLeft: 'revert-layer' };
+
   const element = (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <S.Wrapper
@@ -159,7 +161,7 @@ const Text: FC<BasicItemProps> = ({
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
       description={description}
-      style={renderHoverTooltip ? undefined : style}
+      style={renderHoverTooltip ? undefined : mergedStyle}
       ordered={ordered}
       size={size}
       onClick={onClick}
@@ -204,7 +206,11 @@ const Text: FC<BasicItemProps> = ({
   );
   if (renderHoverTooltip) {
     return (
-      <WithHoverTooltip hoverTooltipProps={hoverTooltipProps} renderHoverTooltip={renderHoverTooltip} style={style}>
+      <WithHoverTooltip
+        hoverTooltipProps={hoverTooltipProps}
+        renderHoverTooltip={renderHoverTooltip}
+        style={mergedStyle}
+      >
         {element}
       </WithHoverTooltip>
     );
