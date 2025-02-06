@@ -88,7 +88,7 @@ export const PreBlock = styled.pre<{
   isButtonVisible?: boolean;
 }>`
   & {
-    font-family: Monaco;
+    font-family: 'IBM Plex Mono Regular', monospace;
     font-size: ${FONT_SIZE_DEFAULT}px;
     line-height: ${LINE_HEIGHT_DEFAULT}px;
     margin: 0;

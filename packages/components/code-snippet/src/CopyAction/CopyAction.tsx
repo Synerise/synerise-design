@@ -1,5 +1,5 @@
 import React from 'react';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 import Icon from '@synerise/ds-icon';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './CopyAction.styles';
