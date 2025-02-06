@@ -50,7 +50,7 @@ export const BlockCodeWrapperSingle = styled.code<{
 }>`
   & {
     display: block;
-    font-family: Monaco;
+    font-family: 'IBM Plex Mono Regular', monospace;
     font-size: ${(props): string => `${props.fontSize || FONT_SIZE_DEFAULT}px`};
     line-height: ${LINE_HEIGHT_DEFAULT}px;
     color: ${(props): string => props.theme.palette[`grey-600`]};

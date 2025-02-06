@@ -1,11 +1,12 @@
 import React from 'react';
 
+import './style/index.less';
 import InlineCode from './CodeTypes/InlineCode/InlineCode';
 import SingleCode from './CodeTypes/SingleCode/SingleCode';
 import MultiCode from './CodeTypes/MultiCode/MultiCode';
 import { CodeSnippetProps, CodeSnippetType, FontSize } from './CodeSnippet.types';
 
-const CodeSnippet: React.FC<CodeSnippetProps> = ({
+const CodeSnippet = ({
   type = CodeSnippetType.INLINE,
   languages = ['javascript', 'typescript', 'json'],
   children = '',
@@ -21,7 +22,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   onExpand,
   onCopy,
   customTriggerComponent,
-}) => {
+}: CodeSnippetProps) => {
   switch (type) {
     case CodeSnippetType.SINGLE_LINE:
       return (
