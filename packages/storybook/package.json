@@ -7,7 +7,6 @@
     "url": "https://github.com/Synerise/synerise-design.git"
   },
   "scripts": {
-    "build-docs": "yarn build-storybook",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
@@ -58,7 +57,7 @@
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "7.6.5",
     "@use-it/interval": "^1.0.0",
-    "chromatic": "10.1.0",
+    "chromatic": "^11.25.0",
     "he": "^1.2.0",
     "storybook": "7.6.5",
     "storybook-addon-mock-date": "^0.6.0",

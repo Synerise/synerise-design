@@ -62,7 +62,7 @@ docs_build:
     - yarn --frozen-lockfile
     # - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - yarn build
-    - yarn npx:lerna run build-docs
+    - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-build
     # - yarn docs-build
     # - mv docs/dist/ packages/docs-site/website/build/styleguide
@@ -163,10 +163,10 @@ chromatic_publish_sb7:
     - yarn install --frozen-lockfile
     - yarn build
   script:
-    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-docs --quiet)
+    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-storybook --quiet)
     - yarn npx:lerna run pack:ci --since origin/master
     - (cd packages/storybook/storybook-static/static; ls > index.txt)
-    - yarn storybook:chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
+    - (cd packages/storybook; npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --storybook-build-dir ./storybook-static/ --exit-zero-on-changes)
   interruptible: true
 
 chromatic_publish_baseline:

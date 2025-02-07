@@ -13,7 +13,7 @@
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn build:core && yarn build:all",
-    "build-storybook": "storybook build",
+    "build-storybook": "cd packages/storybook && yarn build-storybook",
     "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-{data-format,core}",
     "build:core": "yarn npx:lerna run build --scope=@synerise/ds-{data-format,core}",
     "component:create": "node ./scripts/create-component/index.js",
