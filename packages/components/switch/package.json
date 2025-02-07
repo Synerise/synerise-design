@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-switch",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Switch UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-input": "^0.25.0",
+    "@synerise/ds-input": "^0.25.1",
     "@synerise/ds-typography": "^0.17.0",
     "@synerise/ds-utils": "^0.32.0",
     "classnames": "2.3.2",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.25.0...@synerise/ds-input@0.25.1) (2025-02-07)
+
+
+### Bug Fixes
+
+* **input:** rhs label content flex ([f153840](https://github.com/synerise/synerise-design/commit/f153840032180dc8305900c0b3597ff9adaaaeb0))
+
+
+
+
+
 # [0.25.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.24.21...@synerise/ds-input@0.25.0) (2025-01-29)
 
 

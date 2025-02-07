@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-banner",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Banner UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@synerise/ds-button": "^0.23.0",
     "@synerise/ds-icon": "^0.71.0",
-    "@synerise/ds-tags": "^0.11.0",
+    "@synerise/ds-tags": "^0.11.1",
     "@synerise/ds-tooltip": "^0.15.0",
     "@synerise/ds-typography": "^0.17.0",
     "@synerise/ds-utils": "^0.32.0",
