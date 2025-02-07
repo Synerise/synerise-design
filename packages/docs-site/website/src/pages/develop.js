@@ -73,11 +73,11 @@ const Develop = () => {
             <ul className="no-margin">
               <li>for yarn</li>
             </ul>
-            <code className="ds-code">yarn add react-intl styled-components antd@4.7.0</code>
+            <code className="ds-code">yarn add react-intl@6.8.7 styled-components@5.3.3 antd@4.24.16</code>
             <ul className="no-margin">
               <li>for npm</li>
             </ul>
-            <code className="ds-code">npm install react-intl styled-components antd@4.7.0 --save</code>
+            <code className="ds-code">npm install react-intl@6.8.7 styled-components@5.3.3 antd@4.24.16 --save</code>
             <p className="small-margin">And then, you can install a component (example with the Button component):</p>
             <ul className="no-margin">
               <li>for yarn</li>

@@ -164,6 +164,7 @@ chromatic_publish_sb7:
     - yarn install --frozen-lockfile
     - yarn build
   script:
+    - test ! -e packages/storybook/storybook-static && (cd packages/storybook; yarn build-docs --quiet)
     - yarn npx:lerna run pack:ci --since origin/master
     - (cd packages/storybook/storybook-static/static; ls > index.txt)
     - yarn storybook:chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
