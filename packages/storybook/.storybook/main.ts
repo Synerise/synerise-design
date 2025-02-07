@@ -1,6 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import { join, dirname, resolve } from 'path';
-import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 import { configureSort } from 'storybook-multilevel-sort';
 import deeperSortSetup from "storybook-deeper-sort";
 
@@ -30,6 +29,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-interactions'),
+    
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('storybook-addon-pseudo-states'),
   ],
@@ -139,8 +139,6 @@ const config: StorybookConfig = {
         },
       ],
     };
-    const monacoPlugin = new MonacoWebpackPlugin({ languages: ['typescript', 'json', 'javascript', 'css', 'html', 'python'] });
-    config.plugins = [...(config.plugins || []), monacoPlugin];
 
     config.resolve = {
       ...(config.resolve || {}),
