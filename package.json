@@ -11,8 +11,6 @@
   },
   "workspaces": [
     "packages/components/*",
-    "packages/portal",
-    "packages/portal-plugins/*",
     "packages/storybook",
     "packages/docs-site/website"
   ],
@@ -30,9 +28,7 @@
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
     "pack:ci": "npx lerna run pack --since master",
-    "storybook": "yarn run build && cd packages/portal && yarn run storybook",
-    "storybook-both": "yarn run storybook & yarn run storybook7",
-    "storybook7": "cd packages/storybook && storybook dev -p 6006",
+    "storybook": "yarn run build && cd packages/storybook && storybook dev -p 6006",
     "storybook:chromatic": "npx chromatic --trace-changed=expanded --storybook-base-dir=packages/storybook --storybook-config-dir=packages/storybook/.storybook --only-changed --debug --skip-update-check --exit-zero-on-changes",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "types": "yarn npx:lerna run types --parallel",

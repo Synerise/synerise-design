@@ -52,5 +52,5 @@ exclude_patterns:
   - "**/*.d.ts"
   - "**/__specs__/"
   - "packages/docs-site/"
-  - "packages/portal/"
+  - "packages/storybook/"
   - "scripts/"

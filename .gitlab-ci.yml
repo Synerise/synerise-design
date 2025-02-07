@@ -60,11 +60,11 @@ docs_build:
       - dev
   script:
     - yarn --frozen-lockfile
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+    # - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - yarn build
     - yarn npx:lerna run build-docs
-    - mv packages/portal/storybook-static/ packages/docs-site/website/build
-    - mv packages/storybook/storybook-static/ packages/docs-site/website/build/storybook-new
+    - mv packages/storybook/storybook-static/ packages/docs-site/website/build
+    # - mv packages/storybook/storybook-static/ packages/docs-site/website/build/storybook-new
     - yarn docs-build
     - mv docs/dist/ packages/docs-site/website/build/styleguide
     
@@ -137,21 +137,21 @@ k8s-prod-gitops:
       - ENV: p001
         AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
-chromatic_publish:
-  stage: deploy
-  only:
-    refs:
-      - merge_requests
-    variables:
-      - $CHROMATIC_PROJECT_TOKEN
-  script:
-    - test ! -e packages/portal/storybook-static && yarn install
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
-    - test ! -e packages/portal/storybook-static && (yarn build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
-    - yarn npx:lerna run pack:ci --since origin/master
-    - (cd packages/portal/storybook-static/static; ls > index.txt)
-    - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
-  interruptible: true
+# chromatic_publish:
+#   stage: deploy
+#   only:
+#     refs:
+#       - merge_requests
+#     variables:
+#       - $CHROMATIC_PROJECT_TOKEN
+#   script:
+#     - test ! -e packages/portal/storybook-static && yarn install
+#     - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+#     - test ! -e packages/portal/storybook-static && (yarn build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+#     - yarn npx:lerna run pack:ci --since origin/master
+#     - (cd packages/portal/storybook-static/static; ls > index.txt)
+#     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/)
+#   interruptible: true
 
 chromatic_publish_sb7:
   stage: deploy
@@ -164,6 +164,8 @@ chromatic_publish_sb7:
     - yarn install --frozen-lockfile
     - yarn build
   script:
+    - yarn npx:lerna run pack:ci --since origin/master
+    - (cd packages/storybook/storybook-static/static; ls > index.txt)
     - yarn storybook:chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7
   interruptible: true
 
@@ -182,23 +184,23 @@ chromatic_publish_baseline:
     - (cd packages/storybook; yarn chromatic --project-token=$CHROMATIC_PROJECT_TOKEN_SB7 --auto-accept-changes)
   interruptible: true
 
-chromatic_publish_merge_to_dest_branch:
-  stage: deploy
-  when: manual
-  only:
-    refs:
-      - merge_requests
-    variables:
-      - $CHROMATIC_PROJECT_TOKEN
-      - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
-      - $EMAIL
-      - $GIT_AUTHOR_NAME
-      - $GIT_COMMITTER_NAME
-  allow_failure: true
-  script:
-    - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
-    - test ! -e packages/portal/storybook-static && yarn install
-    - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
-    - test ! -e packages/portal/storybook-static && (yarn build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
-    - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/) 
+# chromatic_publish_merge_to_dest_branch:
+#   stage: deploy
+#   when: manual
+#   only:
+#     refs:
+#       - merge_requests
+#     variables:
+#       - $CHROMATIC_PROJECT_TOKEN
+#       - $CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+#       - $EMAIL
+#       - $GIT_AUTHOR_NAME
+#       - $GIT_COMMITTER_NAME
+#   allow_failure: true
+#   script:
+#     - git checkout HEAD~0; git merge --no-commit origin/"$CI_MERGE_REQUEST_TARGET_BRANCH_NAME";
+#     - test ! -e packages/storybook/storybook-static && yarn install
+#     # - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
+#     - test ! -e packages/portal/storybook-static && (yarn build ${SB_OPTS:---since}; cd packages/portal; yarn build-docs --quiet)
+#     - (cd packages/portal; npx chromatic@6.11 ${SB_DEPLOY_OPTS:---allow-console-errors --exit-zero-on-changes} --project-token=$CHROMATIC_PROJECT_TOKEN --storybook-build-dir ./storybook-static/) 
   

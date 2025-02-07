@@ -25,7 +25,7 @@
     "build:esm": "babel --root-mode upward src --extensions '.js,.ts,.tsx' -d dist/esm/ src/ ",
     "build:svgr": "node ./build/svgr.js && node ./build/rename.js",
     "build:watch": "npm run build:js -- --watch",
-    "pack:ci": "npm pack --pack-destination ../../portal/storybook-static/static",
+    "pack:ci": "npm pack --pack-destination ../../storybook/storybook-static/static",
     "prepublish": "npm run build",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
