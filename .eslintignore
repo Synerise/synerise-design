@@ -13,5 +13,4 @@ config/
 **/icon/build/*.js
 **/flag/build/*.js
 packages/storybook
-packages/docs-site
 __specs__

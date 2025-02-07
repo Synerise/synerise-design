@@ -63,14 +63,13 @@ docs_build:
     # - sed -i 's/metadata.hasCustomBabel = !!/mainConfig = mainConfig || {}; metadata.hasCustomBabel = !!/' packages/portal/node_modules/@storybook/telemetry/dist/cjs/storybook-metadata.js
     - yarn build
     - yarn npx:lerna run build-docs
-    - mv packages/storybook/storybook-static/ packages/docs-site/website/build
-    # - mv packages/storybook/storybook-static/ packages/docs-site/website/build/storybook-new
-    - yarn docs-build
-    - mv docs/dist/ packages/docs-site/website/build/styleguide
+    - mv packages/storybook/storybook-static/ packages/docs-site/storybook-build
+    # - yarn docs-build
+    # - mv docs/dist/ packages/docs-site/website/build/styleguide
     
   artifacts:
     paths:
-      - packages/docs-site/website/build/*
+      - packages/docs-site/storybook-build/*
 
 docs_deploy:
   image: artifactory.snrinternal.com/docker.io/docker:stable

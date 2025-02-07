@@ -2,38 +2,30 @@
   "name": "root",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": "^16"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Synerise/synerise-design.git"
   },
   "workspaces": [
     "packages/components/*",
-    "packages/storybook",
-    "packages/docs-site/website"
+    "packages/storybook"
   ],
   "scripts": {
     "bootstrap": "yarn npx:lerna bootstrap",
     "build": "yarn build:core && yarn build:all",
-    "build-storybook": "cd packages/storybook && yarn build-storybook",
+    "build-storybook": "storybook build",
     "build:all": "yarn npx:lerna run build --ignore=@synerise/ds-{data-format,core}",
     "build:core": "yarn npx:lerna run build --scope=@synerise/ds-{data-format,core}",
     "component:create": "node ./scripts/create-component/index.js",
-    "docs-build": "npx styleguidist build",
-    "docs-dev": "npx styleguidist server",
-    "docs-watch": "cd packages/docs-site/website && yarn docs-watch",
     "lerna:version": "yarn npx:lerna version --conventional-commits",
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
-    "pack:ci": "npx lerna run pack --since master",
-    "storybook": "yarn run build && cd packages/storybook && storybook dev -p 6006",
+    "pack:ci": "npx lerna run pack:ci --since origin/master",
+    "storybook": "storybook dev -p 6006",
     "storybook:chromatic": "npx chromatic --trace-changed=expanded --storybook-base-dir=packages/storybook --storybook-config-dir=packages/storybook/.storybook --only-changed --debug --skip-update-check --exit-zero-on-changes",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "types": "yarn npx:lerna run types --parallel",
-    "upgrade:ds": "yarn npx:lerna run upgrade:ds",
-    "zeplin": "cd config/zeplin && zeplin connect"
+    "upgrade:ds": "yarn npx:lerna run upgrade:ds"
   },
   "husky": {
     "hooks": {
