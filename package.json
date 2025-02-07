@@ -2,6 +2,9 @@
   "name": "root",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "^18"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Synerise/synerise-design.git"
@@ -69,16 +72,14 @@
     "sortablejs": "1.15.0"
   },
   "volta": {
-    "node": "16.20.2",
+    "node": "18.18.2",
     "yarn": "1.22.22"
   },
   "dependencies": {
     "antd": "4.24.16",
-    "invariant": "^2.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-perfect-scrollbar": "^1.5.8",
-    "react-styleguidist": "^11.0.5"
+    "react-perfect-scrollbar": "^1.5.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.5",

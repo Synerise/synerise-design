@@ -1,4 +1,4 @@
-image: node:16.20.2
+image: quay.io/synerise/base-build-images:nodejs18
 
 variables:
   APP: ds-docs
@@ -129,6 +129,7 @@ k8s-prod-gitops:
   only:
     refs:
       - master
+      - tags
     variables:
       - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true"
   parallel:
