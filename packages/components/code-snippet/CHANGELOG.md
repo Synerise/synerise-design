@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@0.5.0...@synerise/ds-code-snippet@0.5.1) (2025-02-07)
+
+
+### Bug Fixes
+
+* **code-snippet:** fixes to font family ([149d776](https://github.com/Synerise/synerise-design/commit/149d77688f2a9092a8600d57af03a3f494f755e8))
+
+
+
+
+
 # [0.5.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-snippet@0.4.3...@synerise/ds-code-snippet@0.5.0) (2025-01-29)
 
 

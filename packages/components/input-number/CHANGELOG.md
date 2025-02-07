@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.11.0...@synerise/ds-input-number@0.11.1) (2025-02-07)
+
+
+### Bug Fixes
+
+* **input-number:** onchange arg for 0 ([fab49a3](https://github.com/Synerise/synerise-design/commit/fab49a332358a0c2ef8eb7b828c0c9b760d2c3e5))
+
+
+
+
+
 # [0.11.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-input-number@0.10.22...@synerise/ds-input-number@0.11.0) (2025-01-29)
 
 
