@@ -64,7 +64,7 @@ const InputNumber = ({
         typeof parsedFormattedValue === 'string' ? parseFloat(parsedFormattedValue) : parsedFormattedValue;
       const resultValue = Number.isNaN(valueAsNumber) ? defaultValue : valueAsNumber;
       setLocalValue(resultValue);
-      onChange && onChange(resultValue || null);
+      onChange && onChange(resultValue ?? null);
     },
     [formatter, parser, defaultValue, onChange]
   );
