@@ -78,13 +78,6 @@ const config: StorybookConfig = {
                     {
                       replacements: [
                         {
-                          original: '@synerise/ds-core(/dist)?(.*)',
-                          replacement: (_importName, isDist, rest) => {
-                            let result = '@synerise/ds-core/src';
-                            return isDist ? `${result}${rest}` : `${result}/js`;
-                          },
-                        },
-                        {
                           original: '@synerise/ds-((?!core|icon$|icon/)[a-z0-9-]+)(/dist)?(.*)',
                           replacement: '@synerise/ds-$1/src$3',
                         },
