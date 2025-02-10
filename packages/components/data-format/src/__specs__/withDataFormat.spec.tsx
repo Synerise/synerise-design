@@ -18,6 +18,9 @@ const EU_FORMATTED_TIME = '15:40';
 const EU_FORMATTED_INT_NUMBER = '1 234 567';
 const EU_FORMATTED_FLOAT_NUMBER = '1 234 567,89';
 
+const normalizeSpaces = (content: string | null) => {
+  return content?.replace(/\u00A0|\u202F/g, ' ');
+};
 describe('withDataFormat', () => {
   const FunctionComponent: React.FC<WithDataFormatProps> = ({
     formatValue,
@@ -33,7 +36,7 @@ describe('withDataFormat', () => {
         <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
         <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
         <span>{formatValue(DATE_TO_FORMAT)}</span>
-        <span>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+        <span data-testid="formatted-time">{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
         <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
         <span>firstDayOfWeek: {firstDayOfWeek.toString()}</span>
         <span>is12HoursClock: {is12HoursClock.toString()}</span>
@@ -64,7 +67,7 @@ describe('withDataFormat', () => {
           <span>{formatValue(FLOAT_NUMBER_TO_FORMAT)}</span>
           <span>{formatValue(INT_NUMBER_TO_FORMAT, { minimumFractionDigits: 2, prefix: 'Salary: ' })}</span>
           <span>{formatValue(DATE_TO_FORMAT)}</span>
-          <span>{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
+          <span data-testid="formatted-time">{formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })}</span>
           <span>isSundayFirstWeekDay: {isSundayFirstWeekDay.toString()}</span>
           <span>firstDayOfWeek: {firstDayOfWeek}</span>
           <span>is12HoursClock: {is12HoursClock.toString()}</span>
@@ -96,13 +99,17 @@ describe('withDataFormat', () => {
 
   it('should render properly FunctionComponentWithDataFormat with US notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<FunctionComponentWithDataFormat />, {}, { notation: US_NOTATION });
+    const { getByText, getByTestId } = renderWithProvider(
+      <FunctionComponentWithDataFormat />,
+      {},
+      { notation: US_NOTATION }
+    );
 
     // ASSERT
     expect(getByText(US_FORMATTED_FLOAT_NUMBER)).toBeTruthy();
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
-    expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(US_FORMATTED_TIME);
     expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
     expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
     expect(getByText('is12HoursClock: true')).toBeTruthy();
@@ -130,13 +137,17 @@ describe('withDataFormat', () => {
 
   it('should render properly ClassComponentWithDataFormat with US notation', () => {
     // ARRANGE
-    const { getByText } = renderWithProvider(<ClassComponentWithDataFormat />, {}, { notation: US_NOTATION });
+    const { getByText, getByTestId } = renderWithProvider(
+      <ClassComponentWithDataFormat />,
+      {},
+      { notation: US_NOTATION }
+    );
 
     // ASSERT
     expect(getByText(US_FORMATTED_FLOAT_NUMBER)).toBeTruthy();
     expect(getByText(`Salary: ${US_FORMATTED_INT_NUMBER}.00`)).toBeTruthy();
     expect(getByText(US_FORMATTED_DATE)).toBeTruthy();
-    expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    expect(normalizeSpaces(getByTestId('formatted-time').textContent)).toBe(US_FORMATTED_TIME);
     expect(getByText('isSundayFirstWeekDay: true')).toBeTruthy();
     expect(getByText('firstDayOfWeek: 0')).toBeTruthy();
     expect(getByText('is12HoursClock: true')).toBeTruthy();
