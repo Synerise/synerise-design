@@ -27,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.2",
     "@babel/cli": "^7.23.2",
+    "@babel/helper-builder-react-jsx-experimental": "^7.12.11",
     "@babel/helper-environment-visitor": "7.18.9",
     "@babel/helper-string-parser": "7.19.4",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

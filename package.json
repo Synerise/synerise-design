@@ -24,8 +24,7 @@
     "lint": "eslint . --ext .ts --ext .tsx --max-warnings 0",
     "npx:lerna": "npx lerna",
     "pack:ci": "npx lerna run pack:ci --since origin/master",
-    "storybook": "storybook dev -p 6006",
-    "storybook:chromatic": "npx chromatic --trace-changed=expanded --storybook-base-dir=packages/storybook --storybook-config-dir=packages/storybook/.storybook --only-changed --debug --skip-update-check --exit-zero-on-changes",
+    "storybook": "cd packages/storybook && yarn storybook",
     "test:ci": "npx lerna run test --stream --concurrency 3",
     "types": "yarn npx:lerna run types --parallel",
     "upgrade:ds": "yarn npx:lerna run upgrade:ds"
@@ -65,6 +64,7 @@
     "@babel/core": "7.23.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "loader-utils": "^2.0.4",
     "rc-trigger": "5.3.4",
     "rc-util": "5.43.0",
     "react": "^18",

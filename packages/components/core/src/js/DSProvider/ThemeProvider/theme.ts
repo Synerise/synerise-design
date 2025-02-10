@@ -1,5 +1,4 @@
 import { ThemeProps as SCThemeProps, useTheme as originalUseTheme } from 'styled-components';
-// @ts-ignore
 import vars from './variables';
 import breakpoints from './breakpoints';
 
@@ -46,7 +45,6 @@ export const defaultColorsOrder = [
 ] as const;
 
 export type DefaultColor = typeof defaultColorsOrder[number];
-
 const colorsOrder = defaultColorsOrder.map(color => vars.colors[color]);
 
 export const theme: ThemePropsVars = {
