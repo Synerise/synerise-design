@@ -6,4 +6,5 @@ export type DividerProps = AntDividerProps & {
   marginBottom?: number;
   labelAbove?: ReactNode;
   labelBelow?: ReactNode;
+  hiddenLine?: boolean;
 };

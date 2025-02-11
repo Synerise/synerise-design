@@ -1,28 +1,20 @@
 import React from 'react';
 import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
-import AntdDivider from 'antd/lib/divider';
-import * as S from './Divider.styles';
+import { Line } from './components/Line';
 import { DividerProps } from './Divider.types';
+import * as S from './Divider.styles';
 
-const Divider = ({ marginBottom, marginTop, style, labelAbove, labelBelow, ...antdDividerProps }: DividerProps) => {
-  const divider = (
-    <AntdDivider
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...antdDividerProps}
-      style={{
-        marginBottom,
-        marginTop,
-        ...style,
-      }}
-    />
-  );
+const Divider = (props: DividerProps) => {
+  const { labelAbove, labelBelow, hiddenLine = false } = props;
+
   const contentAbove = labelAbove && <S.Label level={7}>{labelAbove}</S.Label>;
   const contentBelow = labelBelow && <S.Label level={7}>{labelBelow}</S.Label>;
+  const line = !hiddenLine && <Line {...props} />;
   return (
     <>
       {contentAbove}
-      {divider}
+      {line}
       {contentBelow}
     </>
   );
