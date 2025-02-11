@@ -267,6 +267,7 @@ export const Label = styled.label`
 export const Counter = styled.div`
   font-weight: 500;
   flex: 1 0 auto;
+  text-align: end;
   color: ${props => props.theme.palette['grey-500']};
 `;
 
