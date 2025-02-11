@@ -72,7 +72,7 @@ const InputNumber = ({
   useEffect(() => {
     const input = antdInputRef.current;
     const cancelNonNumeric = (event: KeyboardEvent) => {
-      if (!/^\d*(\.|,)?\d*$/i.test(event.key)) {
+      if (!/^-?\d*(\.|,)?\d*$/i.test(event.key)) {
         event.preventDefault();
       }
     };

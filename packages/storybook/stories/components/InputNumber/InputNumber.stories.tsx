@@ -58,7 +58,7 @@ export const WithLabelAndDescription: Story = {
   },
 };
 
-export const WithDefaultVaue: Story = {
+export const WithDefaultValue: Story = {
   args: {
     defaultValue: 40,
   },
