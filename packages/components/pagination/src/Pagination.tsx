@@ -20,7 +20,7 @@ const ITEM_RENDER_TYPE = {
 
 type Arguments = Parameters<Required<PaginationProps>['itemRender']>;
 
-const Pagination = ({locale, ...props}: PaginationProps) => {
+const Pagination = ({ locale, ...props }: PaginationProps) => {
   const renderItem = useCallback((_current: Arguments[0], type: Arguments[1], originalElement: Arguments[2]) => {
     switch (type) {
       case ITEM_RENDER_TYPE.prev: {
@@ -59,7 +59,7 @@ const Pagination = ({locale, ...props}: PaginationProps) => {
     }
   }, []);
 
-  return <AntPagination {...props} locale={{ page: '', ...locale}} itemRender={renderItem} />;
+  return <AntPagination {...props} locale={{ page: '', ...locale }} itemRender={renderItem} />;
 };
 
 export default Pagination;

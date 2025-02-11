@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import Button, { ButtonProps } from '@synerise/ds-button';
 
-
-
 export const PopconfirmContent = styled.div<{ buttonsAlign?: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;

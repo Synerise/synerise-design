@@ -34,4 +34,4 @@ export type BadgeProps = Omit<AntBadgeProps, 'status'> & {
   textColorHue?: ColorHue;
   pulsing?: boolean;
   customColor?: Color | DefaultColor;
-}
+};

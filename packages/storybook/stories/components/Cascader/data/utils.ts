@@ -1,4 +1,4 @@
-import { MenuItemProps } from '@synerise/ds-menu/dist/Elements/Item/MenuItem.types';
+import { MenuItemProps } from '@synerise/ds-menu';
 import type { Category } from '@synerise/ds-cascader';
 
 export const removeDuplicates = (data: MenuItemProps[]): MenuItemProps[] => {

@@ -222,9 +222,7 @@ const Filter = ({
 
       const props = {
         LOGIC: {
-          onChange: onChangeLogic
-            ? (value: LogicOperatorValue) => onChangeLogic(expression.id, value)
-            : undefined,
+          onChange: onChangeLogic ? (value: LogicOperatorValue) => onChangeLogic(expression.id, value) : undefined,
           options: logicOptions,
         },
         STEP: {

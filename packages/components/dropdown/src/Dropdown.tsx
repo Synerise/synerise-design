@@ -39,7 +39,7 @@ const Dropdown: ComponentType<DropdownProps> & SubComponents = ({
 }: DropdownProps) => {
   const openMerged = open !== undefined ? open : visible;
   const onOpenChangeMerged = onOpenChange !== undefined ? onOpenChange : onVisibleChange;
-  
+
   const [isOpen, setIsOpen] = useState(openMerged || false);
   const overlayWrapperRef = useRef<HTMLDivElement | null>(null);
 

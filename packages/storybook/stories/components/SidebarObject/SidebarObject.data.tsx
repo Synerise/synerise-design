@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Icon, { ArrowLeftM, StarFillM, StarM } from '@synerise/ds-icon';
-import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
+import { ContentItem } from '@synerise/ds-manageable-list';
 import Tooltip from '@synerise/ds-tooltip';
 import Drawer from '@synerise/ds-drawer';
 import Status from '@synerise/ds-status';

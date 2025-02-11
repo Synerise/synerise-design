@@ -2,7 +2,6 @@ import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import BaseAntCheckbox, { CheckboxProps } from 'antd/lib/checkbox';
 import { ThemeProps } from '@synerise/ds-core';
 
-
 const checkSvgWithCustomColor = (color: string): string => {
   const colorValueForSvg = color.replace(/#/, '%23');
   const iconWithColor = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='3 3 18 18' >/><path fill='none' d='M0 0h24v24H0z' /><path style='fill: ${colorValueForSvg};' stroke-width='1' stroke='${colorValueForSvg}' d='M10.61 15.744a.75.75 0 01-.535-.224l-3.11-3.162a.75.75 0 011.07-1.052l2.575 2.618 5.355-5.444a.75.75 0 111.07 1.052l-5.89 5.988a.75.75 0 01-.535.224z'/></svg>`;
@@ -23,7 +22,7 @@ const soloCss = css`
  */
 type CompoundedComponent = React.ForwardRefExoticComponent<CheckboxProps & React.RefAttributes<HTMLInputElement>> & {
   Group: typeof BaseAntCheckbox.Group;
-}
+};
 export const AntdCheckbox = styled(BaseAntCheckbox as CompoundedComponent)<Props & ThemeProps>`
   && {
     display: flex;

@@ -27,7 +27,7 @@ const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, read
     };
   }, [debouncedOnChange]);
 
-  const handleChange = (val: string | number | null| undefined): void => {
+  const handleChange = (val: string | number | null | undefined): void => {
     setLocalValue(val);
     debouncedOnChange(val);
   };

@@ -9,7 +9,7 @@ import Status from '@synerise/ds-status';
 import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { action } from '@storybook/addon-actions';
-import Switch from '@synerise/ds-switch/dist/Switch';
+import Switch from '@synerise/ds-switch';
 import Badge from '@synerise/ds-badge';
 import DSFlag from '@synerise/ds-flag';
 

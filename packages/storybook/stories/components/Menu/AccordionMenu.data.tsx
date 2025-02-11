@@ -8,7 +8,6 @@ import Badge from '@synerise/ds-badge';
 import Avatar from '@synerise/ds-avatar';
 
 import * as S from './AccordionMenu.styles';
-import { controlFromOptionsArray } from '../../utils';
 import { AVATAR_IMAGE as IMG_SRC } from '../../constants';
 import { ActionsMenu, CheckboxWithTooltip, Rename, RenameWithDelete, SwitchWithTooltip } from './Menu.data';
 
@@ -51,9 +50,6 @@ export const parentChilds = {
   parent2: ['p2-Child 1', 'p2-Child 2', 'p2-Child 3'],
   parent3: ['p3-Child 1', 'p3-Child 2', 'p3-Child 3'],
 };
-
-
-
 
 export function renderSuffix(
   suffixElementType: string,
@@ -113,7 +109,6 @@ export function renderSuffix(
       return null;
     default:
       return null;
-      break;
   }
 }
 
@@ -134,20 +129,16 @@ export const renderPrefixIcon = (prefixIconType: string, isChecked?: boolean, on
           </Tooltip>
         </React.Fragment>
       );
-      break;
     case prefixType.singleIcon:
       return <Icon color={theme.palette['grey-700']} component={<ShowM />} />;
-      break;
     case prefixType.avatar:
       return (
         <Badge status="active">
           <Avatar size="small" src={IMG_SRC} shape="circle" hasStatus={true} />
         </Badge>
       );
-      break;
     case prefixType.checkbox:
       return <CheckboxWithTooltip checked={isChecked} onChecked={onChecked} />;
-      break;
     default:
       return null;
   }

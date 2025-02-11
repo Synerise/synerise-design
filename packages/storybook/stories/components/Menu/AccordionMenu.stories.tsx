@@ -23,7 +23,7 @@ import {
   prefixType,
   renderPrefixIcon,
   renderSuffix,
-  suffixType,
+  suffixType
 } from './AccordionMenu.data';
 
 const initialOpenKeys = ['p1-Parent 1'];

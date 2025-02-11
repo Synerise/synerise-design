@@ -21,6 +21,7 @@ export type {
 } from './SectionMessage/SectionMessage.types';
 
 export { default as Toast } from './Toast/Toast';
+export { default as BroadcastBar } from './BroadcastBar/BroadcastBar';
 
 export { default as IconAlert } from './IconAlert/IconAlert';
 export type { IconAlertType } from './IconAlert/IconAlert.types';

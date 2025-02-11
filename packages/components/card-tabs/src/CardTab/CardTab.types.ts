@@ -23,7 +23,7 @@ export type Color =
   | 'purple'
   | 'violet';
 
-export type ListItemEventType = MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>
+export type ListItemEventType = MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>;
 
 export type CardTabTexts = {
   changeNameTooltip?: ReactNode;

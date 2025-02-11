@@ -49,8 +49,8 @@ const IconPicker: React.FC<IconPickerProps> = ({ button, data, onSelect, trigger
             onClearInput={onClearInput}
             placeholder={placeholder}
             data={filteredData}
-            onSelect={(val) => {
-              toggleOpen(false)
+            onSelect={val => {
+              toggleOpen(false);
               onSelect(val);
             }}
             focus={focus}

@@ -29,4 +29,4 @@ export const StyledScrollbar = styled(Scrollbar)<ScrollbarProps>`
 
 export const ListItem = styled(DSListItem)`
   min-width: auto;
-`
+`;

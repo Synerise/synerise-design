@@ -38,9 +38,9 @@ export const VirtualScrollbar = forwardRef<HTMLElement, VirtualScrollbarProps>(
       wrapperRef.current && wrapperRef.current.dispatchEvent(scrollEvent);
       combinedScrollRef.current && combinedScrollRef.current.dispatchEvent(scrollEvent);
     }, [combinedScrollRef]);
-    
+
     useEffect(() => {
-      triggerScrollbarGeometryUpdate()
+      triggerScrollbarGeometryUpdate();
     }, [height, width, triggerScrollbarGeometryUpdate]);
 
     const handleReachEnd = useCallback(() => {
