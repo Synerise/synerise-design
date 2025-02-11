@@ -19,7 +19,7 @@ export const MaxValue = styled.strong`
   font-weight: 500;
   color: ${(props): string => props.theme.palette['grey-800']};
 `;
-export const AntdProgressBar = styled(Progress)<{thick?: boolean; maxPercent?: boolean}>`
+export const AntdProgressBar = styled(Progress)<{ thick?: boolean; maxPercent?: boolean }>`
   &.ant-progress-line {
     width: 100%;
     height: ${(props): string => (props.thick ? '3px' : '6px')};

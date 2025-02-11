@@ -15,7 +15,6 @@ import { useInfiniteScroll } from './useInfiniteScroll';
 import { fixedWrapper1000 } from '../../../utils';
 
 type RowType = typeof DATA_SOURCE[number];
-
 type VirtualTableType = VirtualTableProps<RowType>;
 type Story = StoryObj<VirtualTableType>;
 

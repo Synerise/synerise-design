@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExpressionM, FolderM, VarTypeNumberM, VarTypeStringM } from '@synerise/ds-icon';
-import { FactorValueType, ParameterItem, ParameterValueType } from '@synerise/ds-factors/dist/Factors.types';
+import type { FactorValueType, ParameterItem, ParameterValueType } from '@synerise/ds-factors';
 import InformationCard from '@synerise/ds-information-card';
 
 const generateInfoCard = (item: ParameterValueType) => {

@@ -3,6 +3,8 @@ import onClickOutside from 'react-onclickoutside';
 import Scrollbar from '@synerise/ds-scrollbar';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
+import './style/index.less';
+
 import { hasSomeElement, getAllElementsFiltered, hasSomeElementFiltered } from './Elements/utils/searchUtils';
 import * as S from './Search.styles';
 import { SearchProps, SearchState, SelectResultDataKeys, AnyObject } from './Search.types';

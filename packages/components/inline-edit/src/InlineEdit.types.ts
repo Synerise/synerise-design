@@ -1,4 +1,11 @@
-import type { ReactNode, ChangeEvent, CSSProperties, FocusEventHandler, InputHTMLAttributes, KeyboardEventHandler } from 'react';
+import type {
+  ReactNode,
+  ChangeEvent,
+  CSSProperties,
+  FocusEventHandler,
+  InputHTMLAttributes,
+  KeyboardEventHandler,
+} from 'react';
 
 export type InputProps = {
   name?: string;
@@ -10,7 +17,7 @@ export type InputProps = {
   placeholder?: string;
   maxLength?: number;
   readOnly?: boolean;
-  autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete']
+  autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete'];
 };
 
 export interface InlineEditProps {

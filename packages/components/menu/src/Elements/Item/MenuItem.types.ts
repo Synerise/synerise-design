@@ -37,7 +37,7 @@ export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   highlight?: string;
   suffixVisibilityTrigger?: VisibilityTrigger | string;
   prefixVisibilityTrigger?: VisibilityTrigger | string;
-  
+
   children?: ReactNode;
   type?: ItemType | string;
   indentLevel?: number;
@@ -47,4 +47,4 @@ export type MenuItemProps = Omit<MenuProps, 'dataSource' | 'footer'> & {
   tooltipProps?: TooltipProps;
   hoverTooltipProps?: TriggerProps & { ref?: LegacyRef<TriggerHandle> };
   renderHoverTooltip?: () => JSX.Element;
-}
+};

@@ -3,7 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 import AntdAutoComplete from 'antd/lib/auto-complete';
 import { ErrorText, Description, Label } from '@synerise/ds-typography';
-import type { RefSelectProps} from 'antd/lib/select';
+import type { RefSelectProps } from 'antd/lib/select';
 import { AutosizeWrapper } from '@synerise/ds-input';
 import type { AutosizeInputRefType } from '@synerise/ds-input';
 import { useResizeObserver } from '@synerise/ds-utils';

@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import Menu from '@synerise/ds-menu';
-import InlineEdit from '@synerise/ds-inline-edit';
-import { InlineEditProps } from '@synerise/ds-inline-edit/dist/InlineEdit.types';
-
 
 export const HoverableIconWrapper = styled.div`
   &&&:hover {

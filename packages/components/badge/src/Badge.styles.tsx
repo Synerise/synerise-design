@@ -35,7 +35,6 @@ export const beforeElementAnimation = keyframes`
   }
 `;
 
-
 export default styled(
   ({ flag, outlined, backgroundColor, textColor, backgroundColorHue, textColorHue, pulsing, customColor, ...rest }) => (
     <Badge {...rest} />

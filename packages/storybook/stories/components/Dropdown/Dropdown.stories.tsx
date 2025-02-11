@@ -19,7 +19,7 @@ import { data, dataCopy, dataItems, tabsWithIcons } from './Dropdown.data';
 import * as S from './Dropdown.styles';
 
 import { controlFromOptionsArray } from '../../utils';
-
+import { fn } from '@storybook/test';
 
 export default {
   title: 'Components/Dropdown',
@@ -29,41 +29,45 @@ export default {
     layout: 'centered',
   },
   render: args => {
-    return (
-      <Dropdown
-        {...args}
-      />
-    );
+    return <Dropdown {...args} />;
   },
   argTypes: {
-    placement: {...controlFromOptionsArray('select', ['topLeft', 'topRight', 'topCenter', 'bottomLeft', 'bottomRight', 'bottomCenter'])},
+    placement: {
+      ...controlFromOptionsArray('select', [
+        'topLeft',
+        'topRight',
+        'topCenter',
+        'bottomLeft',
+        'bottomRight',
+        'bottomCenter',
+      ]),
+    },
   },
-
   args: {
-    overlay: <>hello</>
+    onVisibleChange: fn(),
+    overlay: <>hello</>,
   },
 } as Meta<DropdownProps>;
 
-type Story = StoryObj<DropdownProps & { children: ReactNode}>;
+type Story = StoryObj<DropdownProps & { children: ReactNode }>;
 
 export const Default: Story = {
-    args: {
-        overlay: <div>Dropdown overlay content</div>,
-        children: <Button>Click</Button>,
-    }
+  args: {
+    overlay: <div>Dropdown overlay content</div>,
+    children: <Button>Click</Button>,
+  },
 };
 
 export const Example: Story = {
   args: {
-    overlay: <Dropdown.Wrapper
-      style={{ width: '220px' }}
-      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-    >
-      <Dropdown.BackAction label="Attributes" onClick={() => {}} />
-      <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
-    </Dropdown.Wrapper>,
+    overlay: (
+      <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}>
+        <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+        <Menu dataSource={data} asDropdownMenu={true} style={{ width: '100%' }} />
+      </Dropdown.Wrapper>
+    ),
     children: <Button>Click</Button>,
-  }
+  },
 };
 
 export const Placement: Story = {
@@ -76,28 +80,30 @@ export const Placement: Story = {
 
 export const Copyable: Story = {
   args: {
-    overlay: <Dropdown.Wrapper
-      style={{ width: '220px' }}
-      onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-    >
-      <Dropdown.BackAction label="Attributes" onClick={() => {}} />
-      <Menu dataSource={dataCopy} asDropdownMenu={true} style={{ width: '100%' }} />
-    </Dropdown.Wrapper>,
+    onVisibleChange: fn(),
+    overlay: (
+      <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}>
+        <Dropdown.BackAction label="Attributes" onClick={() => {}} />
+        <Menu dataSource={dataCopy} asDropdownMenu={true} style={{ width: '100%' }} />
+      </Dropdown.Wrapper>
+    ),
     children: <Button>Click</Button>,
-  }
+  },
 };
 
 export const withSearch: Story = {
-  render: () => {
+  args: {
+    onVisibleChange: fn(),
+  },
+  render: args => {
     const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
     const [filteredData, setFilteredData] = useState(data);
     const filter = (searchTerm: string) => {
       setValue(searchTerm);
 
-      const newData =
-        data.filter(item => {
-          return item.text.toLowerCase().includes(searchTerm.toLowerCase());
-        });
+      const newData = data.filter(item => {
+        return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+      });
 
       setFilteredData(newData);
     };
@@ -108,7 +114,7 @@ export const withSearch: Story = {
     };
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [value, setValue] = useState('');
-    const [searchRef, setSearchRef]= useState(false);
+    const searchRef = useRef<HTMLDivElement | null>(null);
     const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
@@ -116,21 +122,32 @@ export const withSearch: Story = {
     return (
       <div>
         <Dropdown
+          {...args}
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={
-            <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
-              focusWithArrowKeys(e, 'ds-menu-item',() => {searchRef.current.input.focus()})} ref={ref} >
+            <Dropdown.Wrapper
+              style={{ width: '220px' }}
+              onKeyDown={e =>
+                focusWithArrowKeys(e, 'ds-menu-item', () => {
+                  searchRef.current?.focus();
+                })
+              }
+              ref={ref}
+            >
               <SearchBar
-                handleInputRef={setSearchRef}
+                handleInputRef={ref => (searchRef.current = ref.current)}
                 onSearchChange={filter}
                 onClearInput={onClearInput}
                 placeholder="Search"
                 value={value}
                 iconLeft={<Icon component={<SearchM />} color={theme.palette['grey-600']} />}
               />
-              {filteredData?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
-                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true}  style={{ width: '220px' }}/>}
+              {filteredData?.length === 0 ? (
+                <Result type="no-results" noSearchResults description={'No results'} />
+              ) : (
+                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true} style={{ width: '100%' }} />
+              )}
             </Dropdown.Wrapper>
           }
         >
@@ -139,23 +156,20 @@ export const withSearch: Story = {
           </Button>
         </Dropdown>
       </div>
-    )
+    );
   },
-    args: {
-    }
 };
 
 export const withTabs: Story = {
-  render: () => {
+  render: args => {
     const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
     const [filteredData, setFilteredData] = useState(data);
     const filter = (searchTerm: string) => {
       setValue(searchTerm);
 
-      const newData =
-        data.filter(item => {
-          return item.text.toLowerCase().includes(searchTerm.toLowerCase());
-        });
+      const newData = data.filter(item => {
+        return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+      });
 
       setFilteredData(newData);
     };
@@ -167,21 +181,29 @@ export const withTabs: Story = {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [value, setValue] = useState('');
     const [activeTab, setActiveTab] = useState(0);
-    const [searchRef, setSearchRef]= useState(false);
+
     const ref = useRef<HTMLDivElement>(null);
+    const searchRef = useRef<HTMLDivElement | null>(null);
     useOnClickOutside(ref, () => {
       setDropdownVisible(false);
     });
     return (
       <div>
         <Dropdown
+          {...args}
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={
-            <Dropdown.Wrapper style={{ width: '220px' }} onKeyDown={e=>
-              focusWithArrowKeys(e, 'ds-menu-item',() => {searchRef.current.input.focus()})} ref={ref} >
+            <Dropdown.Wrapper
+              onKeyDown={e =>
+                focusWithArrowKeys(e, 'ds-menu-item', () => {
+                  searchRef.current?.focus();
+                })
+              }
+              ref={ref}
+            >
               <SearchBar
-                handleInputRef={setSearchRef}
+                handleInputRef={ref => (searchRef.current = ref.current)}
                 onSearchChange={filter}
                 onClearInput={onClearInput}
                 placeholder="Search"
@@ -191,15 +213,18 @@ export const withTabs: Story = {
               <S.TabsWrapper>
                 <Tabs
                   block
-                  tabs={ tabsWithIcons }
+                  tabs={tabsWithIcons}
                   activeTab={activeTab}
                   handleTabClick={(index: number) => {
                     setActiveTab(index);
                   }}
                 />
               </S.TabsWrapper>
-              {filteredData?.length === 0 ? <Result type="no-results" noSearchResults description={'No results'} /> :
-                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true}  style={{ width: '220px' }}/>}
+              {filteredData?.length === 0 ? (
+                <Result type="no-results" noSearchResults description={'No results'} />
+              ) : (
+                <Menu dataSource={filteredData} highlight={value} asDropdownMenu={true} />
+              )}
             </Dropdown.Wrapper>
           }
         >
@@ -208,14 +233,12 @@ export const withTabs: Story = {
           </Button>
         </Dropdown>
       </div>
-    )
+    );
   },
-  args: {
-  }
 };
 
 export const withTextTrigger: Story = {
-  render: () => {
+  render: args => {
     const data = [{ text: 'Preview' }, { text: 'Edit' }, { text: 'Duplicate' }];
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -225,18 +248,14 @@ export const withTextTrigger: Story = {
     return (
       <div>
         <Dropdown
+          {...args}
           trigger={['click']}
           overlayStyle={{ borderRadius: '3px' }}
           visible={dropdownVisible}
           placement="bottomLeft"
           overlay={
-            <Dropdown.Wrapper
-              style={{ width: '220px' }}
-              onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {
-              })}
-              ref={ref}
-            >
-              <Menu dataSource={data} asDropdownMenu={true} style={{ width: '204px' }}/>
+            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})} ref={ref}>
+              <Menu dataSource={data} asDropdownMenu={true} style={{ width: '204px' }} />
             </Dropdown.Wrapper>
           }
         >
@@ -250,12 +269,10 @@ export const withTextTrigger: Story = {
       </div>
     );
   },
-  args: {
-  }
 };
 
 export const withSkeleton: Story = {
-  render: () => {
+  render: args => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, () => {
@@ -263,23 +280,20 @@ export const withSkeleton: Story = {
     });
     return (
       <div>
-      <Dropdown
-        trigger={['click']}
-        overlayStyle={{ borderRadius: '3px' }}
-        visible={dropdownVisible}
-        placement="bottomLeft"
-        overlay={
-          <Dropdown.Wrapper
-            style={{ width: '220px' }}
-            onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
-            ref={ref}
-          >
-            <div style={{width: '200px'}}>
-              <DropdownSkeleton/>
-            </div>
-          </Dropdown.Wrapper>
-        }
-      >
+        <Dropdown
+          {...args}
+          trigger={['click']}
+          overlayStyle={{ borderRadius: '3px' }}
+          visible={dropdownVisible}
+          placement="bottomLeft"
+          overlay={
+            <Dropdown.Wrapper onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})} ref={ref}>
+              <div style={{ width: '200px' }}>
+                <DropdownSkeleton />
+              </div>
+            </Dropdown.Wrapper>
+          }
+        >
           <Dropdown.TextTrigger
             onClick={() => setDropdownVisible(!dropdownVisible)}
             size={5}
@@ -290,13 +304,10 @@ export const withSkeleton: Story = {
       </div>
     );
   },
-  args: {
-  }
 };
 
-
 export const resizableContent: Story = {
-  render: () => {
+  render: args => {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, () => {
@@ -305,6 +316,7 @@ export const resizableContent: Story = {
     return (
       <div>
         <Dropdown
+          {...args}
           trigger={['click']}
           overlayStyle={{ borderRadius: '3px' }}
           visible={dropdownVisible}
@@ -327,8 +339,4 @@ export const resizableContent: Story = {
       </div>
     );
   },
-  args: {
-  }
 };
-
-

@@ -121,8 +121,7 @@ export const AntdSelect = styled(Select as unknown as React.ComponentType<Props>
       width: 24px;
       height: 24px;
       background-color: rgba(0, 0, 0, 0);
-      background-image: ${(props): string =>
-        `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
+      background-image: ${(props): string => `url("${searchIconWithCustomColor(props.theme.palette['grey-400'])}")`};
     }
   }
 

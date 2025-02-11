@@ -39,7 +39,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
       placeholder,
       value,
       defaultValue,
-      style
+      style,
     },
     forwardedRef
   ) => {
@@ -48,28 +48,30 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     const sizerRef = useRef<HTMLDivElement>(null);
     const placeholderSizerRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
-    
+
     const [inputWidth, setInputWidth] = useState(0);
 
     const usedValue = value ?? defaultValue ?? '';
     const hasValue = Boolean(usedValue);
 
-    const resizeHandler = useCallback((newSizerWidth: DOMRect) => {
-      const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
-      const calculatedWidth = calculateInputWidth({
-        sizerWidth: newSizerWidth.width,
-        hasValue: !!sizerRef.current?.textContent,
-        placeholderIsMinWidth,
-        placeholderWidth,
-        minWidth: +minWidth,
-        placeholder,
-      });
-      
-      if (inputWrapperRef.current) {
-        inputWrapperRef.current.style.width = `${calculatedWidth + +extraWidth}px`;
-      }
+    const resizeHandler = useCallback(
+      (newSizerWidth: DOMRect) => {
+        const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
+        const calculatedWidth = calculateInputWidth({
+          sizerWidth: newSizerWidth.width,
+          hasValue: !!sizerRef.current?.textContent,
+          placeholderIsMinWidth,
+          placeholderWidth,
+          minWidth: +minWidth,
+          placeholder,
+        });
 
-    }, [extraWidth, minWidth, placeholder, placeholderIsMinWidth])
+        if (inputWrapperRef.current) {
+          inputWrapperRef.current.style.width = `${calculatedWidth + +extraWidth}px`;
+        }
+      },
+      [extraWidth, minWidth, placeholder, placeholderIsMinWidth]
+    );
 
     useResizeObserver(sizerRef, resizeHandler);
     const { width: updatedPlaceholderWidth } = useResizeObserver(placeholderSizerRef);
@@ -106,8 +108,6 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
       },
       [extraWidth, inputWidth, onAutosize, preAutosize]
     );
-
-    
 
     const updateInputWidth = () => {
       const sizerWidth = sizerRef.current?.scrollWidth;
