@@ -33,3 +33,4 @@ import Divider from '@synerise/ds-divider';
 | orientation  | Position of title inside divider | enum: left right center   | center     |
 | style        | Style object of container        | React.CSSProperties       | -          |
 | type         | Direction type of divider        | enum: horizontal vertical | horizontal |
+| hiddenLine   | Posibility to show only headers  | boolean                   |`false`     |
