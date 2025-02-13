@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import Icon, { AddM, InfoFillS, FileUploadL } from '@synerise/ds-icon';
 import Tooltip from '@synerise/ds-tooltip';
 
+import { useTheme } from '@synerise/ds-core';
 import FileView from './FileView/FileView';
 import { FileContent, FileUploaderProps } from './FileUploader.types';
 import * as S from './FileUploader.styles';
@@ -40,6 +41,8 @@ const FileUploader = ({
   texts,
 }: FileUploaderProps) => {
   const [uploadSuccess, setUploadSuccess] = useState(true);
+  const theme = useTheme();
+
   const finalTexts = {
     buttonLabel: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL" defaultMessage="Upload file" />,
     buttonLabelLarge: <FormattedMessage id="DS.FILE-UPLOADER.BUTTON-LABEL-LARGE" defaultMessage="Upload file" />,
@@ -128,13 +131,13 @@ const FileUploader = ({
           >
             {mode === 'multi-large' && files.length === 0 ? (
               <>
-                <Icon component={<FileUploadL />} size={48} />
+                <Icon color={theme.palette['grey-800']} component={<FileUploadL />} size={48} />
                 <S.LargeDropAreaLabel>{finalTexts.buttonLabelLarge}</S.LargeDropAreaLabel>
                 <S.LargeDropAreaDescription>{finalTexts.buttonDescription}</S.LargeDropAreaDescription>
               </>
             ) : (
               <>
-                <Icon component={<AddM />} size={24} />
+                <Icon color={theme.palette['grey-600']} component={<AddM />} size={24} />
                 <S.DropAreaLabel>{finalTexts.buttonLabel}</S.DropAreaLabel>
               </>
             )}
