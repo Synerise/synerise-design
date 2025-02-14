@@ -130,7 +130,6 @@ k8s-prod-gitops:
   only:
     refs:
       - master
-      - tags
     variables:
       - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true"
   parallel:
