@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.8.0...@synerise/ds-divider@0.9.0) (2025-02-14)
+
+
+### Features
+
+* divider no line option ([9f885cc](https://github.com/Synerise/synerise-design/commit/9f885ccc43fccbe19e682bcbb9f8c4fb35bc86ab))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-divider@0.7.21...@synerise/ds-divider@0.8.0) (2025-01-29)
 
 

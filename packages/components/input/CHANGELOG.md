@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.25.1...@synerise/ds-input@0.25.2) (2025-02-14)
+
+
+### Bug Fixes
+
+* **input:** input counter text alignemt n ([093d1b2](https://github.com/synerise/synerise-design/commit/093d1b25a40ef1a426351525a5fc735d85628c48))
+
+
+
+
+
 ## [0.25.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-input@0.25.0...@synerise/ds-input@0.25.1) (2025-02-07)
 
 

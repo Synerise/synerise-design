@@ -1,6 +1,6 @@
 {
   "name": "storybook7",
-  "version": "0.38.0",
+  "version": "0.38.1",
   "private": true,
   "engines": {
     "node": "^16"

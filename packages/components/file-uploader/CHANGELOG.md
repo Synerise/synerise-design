@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.8.0...@synerise/ds-file-uploader@0.8.1) (2025-02-14)
+
+
+### Bug Fixes
+
+* **file-uploader:** css rule specificity ([70334e5](https://github.com/Synerise/synerise-design/commit/70334e545c882cc2da7db39ec89178653b41e398))
+
+
+
+
+
 # [0.8.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-file-uploader@0.7.11...@synerise/ds-file-uploader@0.8.0) (2025-01-29)
 
 
