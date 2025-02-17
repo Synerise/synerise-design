@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-cruds",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Cruds UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -35,7 +35,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@synerise/ds-icon": "^0.71.1",
-    "@synerise/ds-tooltip": "^0.15.2",
+    "@synerise/ds-tooltip": "^0.15.3",
     "@synerise/ds-utils": "^0.32.1"
   },
   "peerDependencies": {
