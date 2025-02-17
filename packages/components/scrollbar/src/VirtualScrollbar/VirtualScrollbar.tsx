@@ -2,7 +2,7 @@ import React, { useCallback, forwardRef, useRef, useEffect, useState } from 'rea
 import PerfectScrollbar from '@ofsajd/react-perfect-scrollbar';
 // import { debounce } from 'lodash';
 import { useCombinedRefs, useResizeObserver } from '@synerise/ds-utils';
-import './style/index.less';
+import '../style/index.less';
 import * as S from './VirtualScrollbar.styles';
 import { VirtualScrollbarProps } from '../Scrollbar.types';
 
