@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.28.6...@synerise/ds-factors@0.28.7) (2025-02-18)
+
+
+### Bug Fixes
+
+* **factors:** dynamic key and number typing glitch ([9ba57b7](https://github.com/Synerise/synerise-design/commit/9ba57b79900d7a77c52d3b13e8a1e4ef0ce1cad1))
+* autosizer fixes ([2c09f50](https://github.com/Synerise/synerise-design/commit/2c09f50c4545e8246f5b4ccfc1b8282c8fa647fd))
+
+
+
+
+
 ## [0.28.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.28.5...@synerise/ds-factors@0.28.6) (2025-02-17)
 
 **Note:** Version bump only for package @synerise/ds-factors

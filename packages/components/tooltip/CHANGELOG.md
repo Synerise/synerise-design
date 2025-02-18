@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.15.3...@synerise/ds-tooltip@0.16.0) (2025-02-18)
+
+
+### Features
+
+* **tooltip:** image prop added ([7670e4a](https://github.com/synerise/synerise-design/commit/7670e4af87d8531e4411d2f1e3c430c24af08fa8))
+
+
+
+
+
 ## [0.15.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.15.2...@synerise/ds-tooltip@0.15.3) (2025-02-17)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

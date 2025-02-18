@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.38.1...storybook7@0.39.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* autosizer fixes ([2c09f50](https://github.com/Synerise/synerise-design/commit/2c09f50c4545e8246f5b4ccfc1b8282c8fa647fd))
+
+
+### Features
+
+* **tooltip:** image prop added ([7670e4a](https://github.com/Synerise/synerise-design/commit/7670e4af87d8531e4411d2f1e3c430c24af08fa8))
+
+
+
+
+
 ## [0.38.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.38.0...storybook7@0.38.1) (2025-02-14)
 
 

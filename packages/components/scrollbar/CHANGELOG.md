@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.12.3...@synerise/ds-scrollbar@0.12.4) (2025-02-18)
+
+
+### Bug Fixes
+
+* **scrollbar:** reverted temp workaround ([51cfd53](https://github.com/Synerise/synerise-design/commit/51cfd53b214838b9159ea90fc41b167280e391f1))
+
+
+
+
+
 ## [0.12.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-scrollbar@0.12.2...@synerise/ds-scrollbar@0.12.3) (2025-02-17)
 
 
