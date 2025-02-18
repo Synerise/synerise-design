@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useEffect, UIEvent } from 'react';
+
 import SearchBar from '@synerise/ds-search-bar';
 import type { ListItemProps } from '@synerise/ds-list-item';
-import ListItem from '@synerise/ds-list-item';
 import Result from '@synerise/ds-result';
 import Icon, { SearchM } from '@synerise/ds-icon';
 import { SearchItems } from '@synerise/ds-search/dist/Elements';
+
 import * as S from './ItemPickerDropdown.style';
 import { ItemPickerDropdownProps } from './ItemPickerDropdown.types';
 
@@ -84,7 +85,7 @@ const ItemPickerDropdown = ({
           <SearchItems
             data={filteredDataSource}
             highlight={searchBarProps?.value ?? searchQuery}
-            itemRender={(item: ListItemProps) => <ListItem key={item?.text as string} {...item} />}
+            itemRender={(item: ListItemProps) => <S.ListItem key={item?.text as string} {...item} />}
             onItemClick={(i): void => handleChange(i)}
             rowHeight={rowHeight}
             height={rowCount * rowHeight}
