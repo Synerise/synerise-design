@@ -32,7 +32,7 @@ export const COLUMNS: ColumnType[] = [
     fixed: undefined,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: chromaticCellRender,
+    className: 'chromatic-ignore',
   },
   {
     id: '1',
@@ -43,7 +43,7 @@ export const COLUMNS: ColumnType[] = [
     fixed: undefined,
     icon: { component: <VarTypeStringM /> },
     iconTooltip: { component: <InfoFillS /> },
-    render: chromaticCellRender,
+    className: 'chromatic-ignore',
   },
   {
     id: '2',

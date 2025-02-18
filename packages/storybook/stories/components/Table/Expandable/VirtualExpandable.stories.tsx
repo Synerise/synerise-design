@@ -46,12 +46,12 @@ export default {
         title: 'Name',
         dataIndex: 'name',
         key: 'name',
+        className: 'chromatic-ignore',
         icon: { component: <VarTypeStringM /> },
         iconTooltip: { component: <InfoFillS /> },
         render: name => {
           return (
             <TableCell.AvatarLabelCell
-              className="chromatic-ignore"
               avatarAction={fn()}
               avatar={<ObjectAvatar size="medium" iconComponent={<Icon component={<MailM />} color="red" />} />}
               title={name}
@@ -66,18 +66,20 @@ export default {
         title: 'Age',
         dataIndex: 'age',
         key: 'age',
+        className: 'chromatic-ignore',
         icon: { component: <VarTypeNumberM /> },
         iconTooltip: { component: <InfoFillS /> },
-        render: chromaticCellRender,
+        // render: chromaticCellRender,
       },
       {
         dataIndex: 'children',
         key: 'children',
         width: 72,
+        className: 'chromatic-ignore',
         render: (children, record) => {
           if (children !== undefined) {
             return (
-              <TableCell.ActionCell key={record.key} className="chromatic-ignore">
+              <TableCell.ActionCell key={record.key}>
                 <Button.Expander
                   expanded={expandedRows.indexOf(record.key) >= 0}
                   onClick={event => {

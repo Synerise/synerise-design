@@ -1,17 +1,30 @@
-import React, { ReactNode, KeyboardEvent, MouseEvent, useCallback} from 'react';
+import React, { ReactNode, KeyboardEvent, MouseEvent, useCallback } from 'react';
+import { WithHTMLAttributes } from '@synerise/ds-utils';
 import * as S from './Text.styles';
 
-export type TextProps = {
-  disabled?: boolean;
-  icon?: JSX.Element;
-  danger?: boolean;
-  actions?: ReactNode;
-  children?: ReactNode;
-  onSelect?: (e?: MouseEvent | KeyboardEvent) => void;
-  size?: S.ListItemType;
-}
+export type TextProps = WithHTMLAttributes<
+  HTMLLIElement,
+  {
+    disabled?: boolean;
+    icon?: JSX.Element;
+    danger?: boolean;
+    actions?: ReactNode;
+    children?: ReactNode;
+    onSelect?: (e?: MouseEvent | KeyboardEvent) => void;
+    size?: S.ListItemType;
+  }
+>;
 
-const Text = ({ disabled, icon, onSelect, danger, actions, children, size = 'small' }: TextProps) => {
+const Text = ({
+  disabled,
+  icon,
+  onSelect,
+  danger,
+  actions,
+  children,
+  size = 'small',
+  ...htmlAttributes
+}: TextProps) => {
   const onKeyUpHandler = useCallback(
     (event: KeyboardEvent): void | false => event.nativeEvent.code === 'Space' && onSelect && onSelect(event),
     [onSelect]
@@ -25,6 +38,7 @@ const Text = ({ disabled, icon, onSelect, danger, actions, children, size = 'sma
       danger={danger}
       icon={icon}
       size={size}
+      {...htmlAttributes}
     >
       {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
       <S.ContentWrapper icon={icon}>{children}</S.ContentWrapper>

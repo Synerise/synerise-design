@@ -107,6 +107,7 @@ export default {
                 key: 'first_name',
                 sorter: (a, b) => a.first_name.localeCompare(b.first_name),
                 sortRender: 'string',
+                className: 'chromatic-ignore',
               };
             }
             case 'last_name': {
@@ -116,6 +117,7 @@ export default {
                 key: 'last_name',
                 sorter: (a, b) => a.last_name.localeCompare(b.last_name),
                 sortRender: 'string',
+                className: 'chromatic-ignore',
               };
             }
             case 'city': {
@@ -127,6 +129,7 @@ export default {
                 iconTooltip: { component: <InfoFillS /> },
                 sortRender: 'string',
                 sorter: (a, b) => a.city.localeCompare(b.city),
+                className: 'chromatic-ignore',
               };
             }
             case 'age': {
@@ -137,6 +140,7 @@ export default {
                 iconTooltip: { component: <InfoFillS /> },
                 key: 'age',
                 sortRender: 'string',
+                className: 'chromatic-ignore',
                 sorter: (a, b) => a.age - b.age,
               };
             }
@@ -148,6 +152,7 @@ export default {
                 dataIndex: 'last_activity',
                 key: 'last_activity',
                 sortRender: 'string',
+                className: 'chromatic-ignore',
                 render: last_activity => moment(last_activity).format('DD/MM/YYYY HH:mm'),
                 sorter: (a, b) => (moment(a.last_activity).isBefore(moment(b.last_activity)) ? -1 : 1),
               };
@@ -160,6 +165,7 @@ export default {
                 icon: { component: <VarTypeListM /> },
                 iconTooltip: { component: <InfoFillS /> },
                 dataIndex: column.key,
+                className: 'chromatic-ignore',
               };
           }
         });

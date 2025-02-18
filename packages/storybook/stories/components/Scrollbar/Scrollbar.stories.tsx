@@ -35,7 +35,6 @@ export const LargeSize: Story = {
   args: {
     largeSize: true,
     children: getContent('horizontal'),
-    maxWidth: 300,
     maxHeight: undefined
   },
 };
@@ -68,7 +67,6 @@ export const DndScrollbar: Story = {
 
 export const Horizontal: Story = {
   args: {
-    maxWidth: 300,
     children: getContent('horizontal'),
     maxHeight: undefined,
   },
@@ -86,7 +84,7 @@ export const InfiniteScrollbar: Story = {
       }, 2000);
     };
     const getItem = item => {
-      return <List.Item>{item.name}</List.Item>;
+      return <List.Item className='chromatic-ignore'>{item.name}</List.Item>;
     };
     return (
       <Scrollbar {...args} hasMore={1000 > data.length} fetchData={fetchMoreData} loading={loading}>
@@ -121,7 +119,7 @@ export const VirtualisedList: Story = {
           {({ index, style }) => {
             const item = INITIAL_DATA[index];
             return (
-              <span key={`${item.name}-${index}`} style={style}>
+              <span className='chromatic-ignore' key={`${item.name}-${index}`} style={style}>
                 {index}.{item.name}
               </span>
             );
