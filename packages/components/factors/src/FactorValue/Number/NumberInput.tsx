@@ -11,12 +11,8 @@ const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, read
     onChangeRef.current = onChange;
   }, [localValue, onChange]);
 
-  useEffect(() => {
-    setLocalValue(value as number);
-  }, [value]);
-
   const debouncedOnChange = useRef(
-    debounce((inputValue: string | number | null | undefined): void => {
+    debounce((inputValue: string | number | null | undefined) => {
       onChangeRef.current && onChangeRef.current(inputValue);
     }, 300)
   ).current;
@@ -27,7 +23,7 @@ const NumberInput = ({ error, value, onChange, texts, opened, onDeactivate, read
     };
   }, [debouncedOnChange]);
 
-  const handleChange = (val: string | number | null | undefined): void => {
+  const handleChange = (val: string | number | null | undefined) => {
     setLocalValue(val);
     debouncedOnChange(val);
   };
