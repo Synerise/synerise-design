@@ -2,7 +2,7 @@ import React from 'react';
 import { faker } from '@faker-js/faker';
 
 export const getContent = (orientation?: string) => (
-  <div style={{ width: orientation === 'horizontal' ? '600px' : 'auto' }}>
+  <div className='chromatic-ignore' style={{ width: orientation === 'horizontal' ? '600px' : 'auto' }}>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum laborum nisi officia ut vitae? Architecto dolor
     dolores doloribus exercitationem explicabo ipsam, nisi nobis odit quo, recusandae rem ut. Architecto corporis
     deserunt distinctio dolores dolorum eligendi ex fuga, harum impedit ipsam molestias mollitia nesciunt nihil nulla,
@@ -47,7 +47,7 @@ const ITEM_STYLE = {
 
 export const renderItem = (item: ItemType) => {
   return (
-    <div style={ITEM_STYLE} key={`${item.id}-${item.name}`}>
+    <div className='chromatic-ignore' style={ITEM_STYLE} key={`${item.id}-${item.name}`}>
       {item.id}.{item.name}
     </div>
   );

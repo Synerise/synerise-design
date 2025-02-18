@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { injectIntl } from 'react-intl';
 import { Meta, StoryObj } from '@storybook/react';
+import styled from 'styled-components';
 
 import DateRangePicker, { CONST, RawDateRangePicker, utils } from '@synerise/ds-date-range-picker';
 import type { DateRangePickerProps } from '@synerise/ds-date-range-picker';
@@ -9,9 +10,7 @@ import Tooltip from '@synerise/ds-tooltip';
 
 import { datePickerArgTypes, filterArgTypes, generalArgTypes, relativeArgTypes } from './argTypes';
 import { ABSOLUTE_RANGE, RANGE_WITH_START_DATE, TEXTS } from './constants';
-import { useState } from 'react';
 import { centeredPaddedWrapper } from '../../utils';
-import styled from 'styled-components';
 
 export default {
   title: 'Components/Pickers/DateRangePicker',
@@ -19,7 +18,6 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
-    date: new Date("March 10, 2021 10:00:00"),
   },
   decorators: [centeredPaddedWrapper],
   render: ({ relativeModes, ...args }) => {
@@ -53,6 +51,7 @@ export const Default: Story = {
 
 export const WithoutPopover: Story = {
   parameters: {
+    date: new Date("March 10, 2021 10:00:00"),
     layout: 'centered',
   },
   render: args => {
