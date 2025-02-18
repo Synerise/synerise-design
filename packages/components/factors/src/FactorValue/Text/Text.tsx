@@ -47,10 +47,6 @@ const TextInput = ({
   }, [inputRef, opened]);
 
   useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
-
-  useEffect(() => {
     onChangeRef.current = onChange;
   }, [localValue, onChange]);
 
