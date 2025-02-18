@@ -20,3 +20,4 @@ export { default as avatar17 } from './avatars/av-anonym-017.png';
 export { default as avatar18 } from './avatars/av-anonym-018.png';
 export { default as avatar19 } from './avatars/av-anonym-019.png';
 export { default as avatar20 } from './avatars/av-anonym-020.png';
+export { default as tooltipImage } from './img/tooltipImage.png'
