@@ -37,6 +37,7 @@ const Tooltip = ({
   children,
   button,
   render,
+  image,
   ...props
 }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -83,6 +84,7 @@ const Tooltip = ({
           <S.TooltipTitleWrapper>{type && shouldRenderTitle(type, title)}</S.TooltipTitleWrapper>
         </S.TooltipTitle>
         <S.TooltipDescription tooltipType={type}>
+          {image && <S.TooltipImage>{image}</S.TooltipImage>}
           {type === 'largeScrollable' ? (
             <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
               <>{shouldRenderDescription(description, type)}</>

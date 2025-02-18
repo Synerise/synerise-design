@@ -24,6 +24,7 @@ import {
   STYLE_ARG_CONTROL,
 } from '../../utils';
 import { TUTORIALS, TOOLTIP_TITLE } from './Tooltip.data';
+import { tooltipImage } from '../../constants/images';
 
 export type StoryProps = TooltipProps & {};
 
@@ -88,7 +89,16 @@ export const Default: Story = {};
 export const LargeType: Story = {
   args: {
     type: 'largeSimple',
-    
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a.',
+  },
+};
+
+
+export const LargeTypeWithImage: Story = {
+  args: {
+    type: 'largeSimple',
+    image: <img src={tooltipImage} />,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a.',
   },

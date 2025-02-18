@@ -22,6 +22,7 @@ export default interface TooltipExtendedProps {
   icon?: ReactNode;
   status?: ReactNode;
   title?: ReactNode;
+  image?: ReactNode;
   description?: descriptionType;
   tutorials?: Tutorial[];
   tutorialAutoplay?: boolean;

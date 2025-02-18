@@ -10,6 +10,9 @@ export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipTyp
   overflow-wrap: break-word;
   min-width: 0;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   ${(props): SimpleInterpolation =>
     props.tooltipType === 'largeScrollable' &&
     css`
@@ -64,6 +67,17 @@ export const TooltipStatus = styled.div<Omit<TooltipExtendedProps, 'type'> & { t
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+`;
+
+export const TooltipImage = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  img,
+  video {
+    max-width: 100%;
+  }
 `;
 
 export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
