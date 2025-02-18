@@ -32,7 +32,17 @@ export default {
   render: defaultRender,
   argTypes: {
     disabled: BOOLEAN_CONTROL,
-    readOnly: BOOLEAN_CONTROL
+    readOnly: BOOLEAN_CONTROL,
+
+    autoResize: {
+      control: 'select',
+      options: ['false', 'min & max width', 'stretch to fit'],
+      mapping: {
+        'false': false,
+        'min & max width': { minWidth: '150px', maxWidth:'300px' },
+        'stretch to fit': { minWidth: '150px', stretchToFit: true }
+      }
+    }
   }
 } as Meta<InputProps>;
 

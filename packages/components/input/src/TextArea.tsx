@@ -65,7 +65,7 @@ export const TextArea = ({
         charCount={charCount}
         renderCustomCounter={renderCustomCounter}
       />
-      <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)}>
+      <S.InputWrapper>
         <ElementIcons
           handleIconsClick={handleIconsClick}
           disabled={antdTextareaProps.disabled}

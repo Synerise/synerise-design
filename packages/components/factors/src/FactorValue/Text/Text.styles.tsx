@@ -19,16 +19,6 @@ export const InputWrapper = styled.div`
     > * {
       min-width: 0;
     }
-
-    input {
-      padding: 0;
-      &:before {
-        display: none;
-      }
-      input {
-        max-height: 30px;
-      }
-    }
   }
 `;
 

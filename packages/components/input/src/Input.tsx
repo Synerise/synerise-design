@@ -60,9 +60,12 @@ export const Input = ({
   const externalRef = useRef<HTMLInputElement | null>(null);
   const elementRef = useRef<HTMLDivElement | null>(null);
 
+  const iconCount = useMemo(() => {
+    return Number(!!icon1) + Number(!!icon2) + Number(!!expandable);
+  }, [icon1, icon2, expandable]);
+
   const handleIconsClick = useElementFocus(inputRef);
   const { inputAddonHeight } = useInputAddonHeight(inputRef);
-  useResizeObserver(elementRef);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -140,30 +143,40 @@ export const Input = ({
   );
 
   const stretchToFit = autoResize && autoResize !== true && Boolean(autoResize.stretchToFit);
-  const preAutosize = () => {
+  const preAutosize = useCallback(() => {
     scrollLeftRef.current = inputRef.current?.input?.scrollLeft || 0;
     inputRef.current?.input && inputRef.current.input.style.removeProperty('max-width');
-  };
+  }, []);
 
-  const onAutosize = (newWidth: number) => {
-    const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
-    if (stretchToFit && inputRef.current?.input && parentRect?.width && paddingDiff.current) {
-      inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
-      inputRef.current.input.scrollLeft = scrollLeftRef.current;
-    }
+  const onAutosize = useCallback(
+    (newWidth?: number) => {
+      const parentRect = elementRef.current && elementRef.current.getBoundingClientRect();
+      if (stretchToFit && inputRef.current?.input && parentRect?.width && paddingDiff.current) {
+        inputRef.current.input.style.maxWidth = `${parentRect?.width - paddingDiff.current}px`;
+        inputRef.current.input.scrollLeft = scrollLeftRef.current;
+      }
 
-    if (autoResize && inputRef.current?.input && expandable) {
-      const style = window.getComputedStyle(inputRef.current.input);
-      const minWidth = parseInt(style.minWidth, 10);
-      setOverflown(newWidth > minWidth);
-    }
-  };
+      if (newWidth !== undefined && autoResize && inputRef.current?.input && expandable) {
+        const style = window.getComputedStyle(inputRef.current.input);
+        const minWidth = parseInt(style.minWidth, 10);
+        setOverflown(newWidth > minWidth);
+      }
+    },
+    [autoResize, expandable, stretchToFit]
+  );
+
+  const handleWrapperResize = useCallback(() => {
+    preAutosize();
+    onAutosize();
+  }, [onAutosize, preAutosize]);
+
+  useResizeObserver(elementRef, handleWrapperResize);
 
   const autoSizedComponent = (
     <AutosizeWrapper
       preAutosize={preAutosize}
       onAutosize={onAutosize}
-      value={antdInputProps.value as string}
+      value={antdInputProps.value}
       autoResize={!!autoResize}
     >
       <S.AntdInput
@@ -196,7 +209,13 @@ export const Input = ({
   );
 
   return (
-    <S.OuterWrapper ref={elementRef} autoResize={autoResize} className={className} resetMargin={resetMargin}>
+    <S.OuterWrapper
+      ref={elementRef}
+      autoResize={autoResize}
+      className={className}
+      resetMargin={resetMargin}
+      iconCount={iconCount}
+    >
       <ContentAboveElement
         label={label}
         counterLimit={counterLimit}
@@ -206,7 +225,7 @@ export const Input = ({
         charCount={charCount}
         renderCustomCounter={renderCustomCounter}
       />
-      <S.InputWrapper icon1={Boolean(icon1)} icon2={Boolean(icon2)} icon3={!!expandable}>
+      <S.InputWrapper iconCount={iconCount}>
         <ElementIcons
           handleIconsClick={handleIconsClick}
           disabled={antdInputProps.disabled}
@@ -248,9 +267,3 @@ export const RawInput = (props: InputProps) => {
 
 export { default as InputGroup } from './InputGroup';
 export { default as InputMultivalue } from './InputMultivalue/InputMultivalue';
-
-// @deprecated
-export const AutoResize = Object.assign(S.AutoResize);
-
-// @deprecated
-export const WrapperAutoResize = Object.assign(S.WrapperAutoResize);

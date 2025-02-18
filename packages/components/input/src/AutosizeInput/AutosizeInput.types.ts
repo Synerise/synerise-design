@@ -22,6 +22,7 @@ export type AutosizeInputRefType = {
   inputRef: MutableRefObject<HTMLInputElement | null>;
   sizerRef: RefObject<HTMLDivElement>;
   wrapperRef: RefObject<HTMLDivElement>;
+  inputWrapperRef: RefObject<HTMLElement>;
   placeholderSizerRef: RefObject<HTMLDivElement>;
   copyInputStyles: () => void;
   updateInputWidth: () => void;

@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/react';
 import Autocomplete from '@synerise/ds-autocomplete';
 import type { AutocompleteProps } from '@synerise/ds-autocomplete';
 
-import { within, userEvent, expect } from '@storybook/test';
+import { within, userEvent, expect, fn } from '@storybook/test';
 
 import { Primary } from './Autocomplete.stories';
 import { fixedWrapper400, fixedWrapper200 } from '../../utils';
@@ -54,10 +54,20 @@ const runAutocompleteTest = async (canvasElement, value) => {
   }
 }
 
+const eventArgs = {
+  onKeyUp: fn(),
+  onKeyDown: fn(),
+  onInputKeyDown: fn(),
+  onDropdownVisibleChange: fn(),
+  onBlur: fn(),
+  onFocus: fn(),
+}
+
 export const AutoResizeMinAndMax = {
   ...Primary,
   decorators: [fixedWrapper400],
   args: {
+    ...eventArgs,
     autoResize: {
       minWidth: '150px',
       maxWidth: '300px'
@@ -72,6 +82,7 @@ export const AutoResizeMinAndMax = {
 export const AutoResizeWithinParent = {
   ...Primary,
   args: {
+    ...eventArgs,
     autoResize: {
       minWidth: '150px',
       stretchToFit: true
@@ -88,6 +99,7 @@ export const AutoResizeWithinParent = {
 export const AutoResizeMinWidth = {
   ...Primary,
   args: {
+    ...eventArgs,
     autoResize: {
       minWidth: '150px'
     }
