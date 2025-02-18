@@ -84,6 +84,7 @@ export const DEFAULT_FACTOR_VALUE = {
     groups: PARAMETER_GROUPS,
     items: PARAMETER_ITEMS,
   },
+  textType: 'autocomplete',
   texts: FACTORS_TEXTS,
 };
 
@@ -162,7 +163,7 @@ export const STEPS_POPULATED = [
     },
     conditions: [
       {
-        id: '3fa1111f-59b5-4d40-8ea8-ebc4083238c2',
+        id: '3fa1111f-59b5-4d40-8ea8-ebc4123238c2',
         parameter: {
           ...DEFAULT_PARAMETER_VALUE,
           value: {
@@ -181,6 +182,53 @@ export const STEPS_POPULATED = [
           ...DEFAULT_FACTOR_VALUE,
           selectedFactorType: 'text' as const,
           value: 'Anna',
+          availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
+        },
+      },
+      {
+        id: '3fa1111f-59b5-4d40-8ea8-ebc4177238c2',
+        parameter: {
+          ...DEFAULT_PARAMETER_VALUE,
+          value: {
+            type: '',
+            ...PARAMETER_ITEMS[1],
+          },
+        },
+        operator: {
+          ...DEFAULT_OPERATOR_VALUE,
+          value: {
+            ...OPERATORS_ITEMS[2],
+          },
+          availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
+        },
+        factor: {
+          ...DEFAULT_FACTOR_VALUE,
+          selectedFactorType: 'text' as const,
+          value: '1,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,67',
+          availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
+        },
+      },
+
+      {
+        id: '3fa1111f-59b5-4d40-8ea8-ebc4083238c2',
+        parameter: {
+          ...DEFAULT_PARAMETER_VALUE,
+          value: {
+            type: '',
+            ...PARAMETER_ITEMS[1],
+          },
+        },
+        operator: {
+          ...DEFAULT_OPERATOR_VALUE,
+          value: {
+            ...OPERATORS_ITEMS[2],
+          },
+          availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
+        },
+        factor: {
+          ...DEFAULT_FACTOR_VALUE,
+          selectedFactorType: 'text' as const,
+          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus volutpat ligula neque, non semper ipsum.',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[2]),
         },
       },
@@ -343,6 +391,31 @@ export const STEPS_POPULATED = [
           selectedFactorType: 'array' as const,
           defaultFactorType: 'text' as const,
           value: '1,2,3,4,5,67',
+          availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
+        },
+      },
+
+      {
+        id: '75efa0d3-23dd-48e0-a02b-8700a69815qa',
+        parameter: {
+          ...DEFAULT_PARAMETER_VALUE,
+          value: {
+            type: '',
+            ...PARAMETER_ITEMS[1],
+          },
+        },
+        operator: {
+          ...DEFAULT_OPERATOR_VALUE,
+          value: {
+            ...OPERATORS_ITEMS[10],
+          },
+          availableFactors: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
+        },
+        factor: {
+          ...DEFAULT_FACTOR_VALUE,
+          selectedFactorType: 'array' as const,
+          defaultFactorType: 'text' as const,
+          value: '1,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,671,2,3,4,5,67',
           availableFactorTypes: getAvailableFactorTypes(OPERATORS_ITEMS[10]),
         },
       },

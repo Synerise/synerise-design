@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { IconProps } from '@synerise/ds-icon';
 import { fn } from '@storybook/test';
 
+import { IconProps } from '@synerise/ds-icon';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
 import { theme } from '@synerise/ds-core';
 import { TableCell, DSColumnType } from '@synerise/ds-table';

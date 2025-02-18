@@ -14,7 +14,7 @@ import ContextSelectorMeta, {
 
 import { sleep } from '../../utils';
 
-const SLEEP_TIME = 100;
+const SLEEP_TIME = 200;
 
 export default {
   ...ContextSelectorMeta,
@@ -51,6 +51,7 @@ export const SelectItemFromCategory: Story = {
         () => expect(canvas.getByText(subGroupName)).not.toHaveStyle({ pointerEvents: 'none' }),
         TIMEOUT_OPTIONS
       );
+      await sleep(SLEEP_TIME);
 
       await userEvent.click(canvas.getByText(subGroupName));
       

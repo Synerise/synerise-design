@@ -1,8 +1,6 @@
-import styled, { css, FlattenInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { AutoResizeProp } from '@synerise/ds-input';
 import { autoresizeConfObjToCss } from '@synerise/ds-input/dist/Input.styles';
-
-import { ThemeProps } from '@synerise/ds-core';
 
 export const LabelWrapper = styled.div`
   margin: 0px 0px 8px 0px;
@@ -19,32 +17,35 @@ export const LoaderWrapper = styled.div`
   margin-right: 10px;
 `;
 
-const active = (): FlattenInterpolation<ThemeProps> => css`
+const active = () => css`
   transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
-  box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['blue-600']};
-  border: 1px solid ${(props): string => props.theme.palette['blue-600']};
-  background-color: ${(props): string => props.theme.palette['blue-050']};
+  box-shadow: inset 0 0 0 1px ${props => props.theme.palette['blue-600']};
+  border: 1px solid ${props => props.theme.palette['blue-600']};
+  background-color: ${props => props.theme.palette['blue-050']};
 `;
 
-const error = (): FlattenInterpolation<ThemeProps> => css`
+const error = () => css`
   transition: ease-in-out all 0.2s, width 0s, min-width 0s, max-width 0s;
-  box-shadow: inset 0 0 0 1px ${(props): string => props.theme.palette['red-600']};
-  background: ${(props): string => props.theme.palette['red-050']};
-  border: 1px solid ${(props): string => props.theme.palette['red-600']};
+  box-shadow: inset 0 0 0 1px ${props => props.theme.palette['red-600']};
+  background: ${props => props.theme.palette['red-050']};
+  border: 1px solid ${props => props.theme.palette['red-600']};
 `;
 
-const readonly = (): FlattenInterpolation<ThemeProps> => css`
-  background-color: ${(props): string => props.theme.palette.white};
-  color: ${(props): string => props.theme.palette['grey-700']};
+const readonly = () => css`
+  background-color: ${props => props.theme.palette.white};
+  color: ${props => props.theme.palette['grey-700']};
   input {
     cursor: auto;
   }
 `;
 
 export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
+  input {
+    font-feature-settings: 'tnum';
+  }
   .ant-select-auto-complete {
-    width: ${(props): string => (props.autoResize ? '100%' : '200px')};
-    ${(props): string => autoresizeConfObjToCss(props)};
+    width: ${props => (props.autoResize ? '100%' : '200px')};
+    ${props => autoresizeConfObjToCss({ ...props, boxSizing: 'border-box' })};
     grid-area: 1 / 1;
   }
 
@@ -65,7 +66,7 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
 
     .ant-select-selection__clear {
       font-size: 15px;
-      color: ${(props): string => props.theme.palette['grey-600']};
+      color: ${props => props.theme.palette['grey-600']};
       width: 16px;
       height: 16px;
       margin-top: -7px;
@@ -75,7 +76,7 @@ export const AutocompleteWrapper = styled.div<{ autoResize?: AutoResizeProp }>`
       right: 12px;
 
       &:hover {
-        color: ${(props): string => props.theme.palette['grey-700']};
+        color: ${props => props.theme.palette['grey-700']};
       }
     }
 
@@ -96,7 +97,7 @@ export const ComponentWrapper = styled.div<{ error?: boolean; readOnly?: boolean
 &&& {
   .ant-select-auto-complete {
     
-    ${(props): FlattenInterpolation<ThemeProps> => {
+    ${props => {
       if (props.readOnly) {
         return css`
           .ant-select-selector {

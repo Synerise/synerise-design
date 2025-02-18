@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import BaseAntInput, { InputProps, InputRef } from 'antd/lib/input';
@@ -19,48 +19,47 @@ const errorInputStyle = (props: ThemeProps) => `
   }
 `;
 
-export type AutoResizeInputProps = {
+const INPUT_PADDING = 12;
+const INPUT_BORDER = 1;
+const ICON_SIZE = 24;
+
+type AutoSizeConfProps = {
   autoResize?: AutoResizeProp;
-  suffixel?: ReactNode;
-  prefixel?: ReactNode;
-  icon1?: ReactNode;
-  icon2?: ReactNode;
+  boxSizing?: 'content-box' | 'border-box';
+  iconCount?: number;
 };
 
-const getPaddingAutoResize = (props: AutoResizeInputProps) => {
-  if (props.prefixel || props.suffixel) {
-    return '0 43px';
-  }
-  if (props.icon1 || props.icon2) {
-    return '0 25px';
-  }
-  return '0 13px';
+const getIconsWidth = (iconCount: number) => {
+  return iconCount > 0 ? iconCount * ICON_SIZE + (iconCount - 1) * 4 : 0;
 };
 
-export function autoresizeConfObjToCss({ autoResize }: { autoResize?: AutoResizeProp }) {
+export function autoresizeConfObjToCss({ autoResize, iconCount, boxSizing = 'content-box' }: AutoSizeConfProps) {
+  // autosized inputs have box-sizing set to content-box!
+  const elementPadding = boxSizing === 'content-box' ? 2 * (INPUT_PADDING + INPUT_BORDER) : 0;
+  const finalPadding = getIconsWidth(iconCount || 0) + elementPadding;
+
   if (!autoResize) return '';
   if (typeof autoResize === 'object') {
-    return `
-      ${autoResize.maxWidth ? `max-width: ${autoResize.maxWidth};` : ''}
-      min-width: ${autoResize.minWidth};
+    return css`
+      ${autoResize.maxWidth ? `max-width: calc(${autoResize.maxWidth} - ${finalPadding}px);` : ''}
+      min-width: calc(${autoResize.minWidth} - ${finalPadding}px);
     `;
   }
-  return `max-width: 400px; min-width: 150px;`;
+  return css`
+    max-width: calc(400px - ${finalPadding}px);
+    min-width: calc(150px - ${finalPadding}px);
+  `;
 }
 
 export const Wrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-export const InputWrapper = styled.div<{ icon1?: boolean; icon2?: boolean; icon3?: boolean }>`
+export const InputWrapper = styled.div<{ iconCount?: number }>`
   position: relative;
   && .ant-input {
     padding-right: ${props => {
-      const iconsCount = Number(props.icon1) + Number(props.icon2) + Number(props.icon3);
-      if (iconsCount === 3) return '92px;';
-      if (iconsCount === 2) return '64px;';
-      if (iconsCount === 1) return '36px;';
-      return '12px';
+      return `${getIconsWidth(props.iconCount || 0) + INPUT_PADDING}px`;
     }};
     &::placeholder {
       line-height: 1.29;
@@ -71,10 +70,11 @@ export const InputWrapper = styled.div<{ icon1?: boolean; icon2?: boolean; icon3
   }
 `;
 
-export const OuterWrapper = styled.div<{
-  resetMargin?: boolean;
-  autoResize?: AutoResizeProp;
-}>`
+export const OuterWrapper = styled.div<
+  {
+    resetMargin?: boolean;
+  } & AutoSizeConfProps
+>`
   margin: ${props => (props.resetMargin ? '0' : '0 0 16px 0')};
   &.active {
     && {
@@ -86,8 +86,10 @@ export const OuterWrapper = styled.div<{
     }
   }
   input {
-    ${(props: AutoResizeInputProps) => autoresizeConfObjToCss(props)}
+    padding: 7px ${INPUT_PADDING}px;
+    ${props => autoresizeConfObjToCss(props)}
   }
+
   ${props =>
     props.autoResize &&
     `
@@ -228,31 +230,7 @@ export const ExpandableWrapper = styled.div<{ expanded: boolean }>`
 export const ContentBelow = styled.div`
   margin-top: 8px;
 `;
-export const WrapperAutoResize = styled.div<{
-  autoResize?: AutoResizeProp;
-}>`
-  display: inline-grid;
-  align-items: center
-  justify-items: start;
-  ${(props: AutoResizeInputProps) => autoresizeConfObjToCss(props)}
-`;
-export const AutoResize = styled.div<AutoResizeInputProps>`
-  max-height: 32px;
-  grid-area: 1 / 1;
-  visibility: hidden;
-  white-space: pre;
-  padding: ${props => getPaddingAutoResize(props)};
-  ${(props: AutoResizeInputProps) => (props.autoResize && props.suffixel ? autoresizeConfObjToCss(props) : '')};
-  @media (max-width: 1420px) {
-    max-width: 300px;
-  }
-  @media (max-width: 1150px) {
-    max-width: 200px;
-  }
-  @media (max-width: 1100px) {
-    max-width: 150px;
-  }
-`;
+
 export const ErrorText = styled.div`
   color: ${props => props.theme.palette['red-600']};
   margin-bottom: 4px;

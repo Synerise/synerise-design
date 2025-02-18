@@ -1,5 +1,5 @@
 export { default as Label } from './Label/Label';
-export { Input, RawInput, InputGroup, InputMultivalue, AutoResize, WrapperAutoResize } from './Input';
+export { Input, RawInput, InputGroup, InputMultivalue } from './Input';
 
 export { TextArea, RawTextArea } from './TextArea';
 export type { TextareaProps } from './TextArea.types';

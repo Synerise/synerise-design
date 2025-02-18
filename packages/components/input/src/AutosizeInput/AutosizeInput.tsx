@@ -1,12 +1,13 @@
 import React, {
   CSSProperties,
-  useState,
   useEffect,
   useRef,
   useLayoutEffect,
   forwardRef,
   useImperativeHandle,
   useCallback,
+  useMemo,
+  useState,
 } from 'react';
 import { useResizeObserver } from '@synerise/ds-utils';
 import type { AutosizeInputRefType, AutosizeInputProps } from './AutosizeInput.types';
@@ -22,6 +23,17 @@ const sizerStyle: CSSProperties = {
   whiteSpace: 'pre',
 };
 
+const FONT_CSS_PROPS: (keyof CSSProperties)[] = [
+  'fontSize',
+  'fontFamily',
+  'fontWeight',
+  'fontFeatureSettings',
+  'fontStyle',
+  'letterSpacing',
+  'fontStretch',
+  'textTransform',
+];
+
 const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
   (
     {
@@ -34,8 +46,8 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
       minWidth = 0,
       handleInputRef,
       children,
-      transformWrapperRef = (element: HTMLElement) => element,
-      transformRef = (element: HTMLElement) => element,
+      transformWrapperRef,
+      transformRef,
       placeholder,
       value,
       defaultValue,
@@ -43,139 +55,114 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     },
     forwardedRef
   ) => {
+    const usedValue = value ?? defaultValue ?? '';
+    const [sizerValue, setSizerValue] = useState(usedValue);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const inputWrapperRef = useRef<HTMLElement | null>(null);
     const sizerRef = useRef<HTMLDivElement>(null);
     const placeholderSizerRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const [inputWidth, setInputWidth] = useState(0);
+    const transformWrapper = useMemo(() => {
+      return transformWrapperRef || ((element: HTMLElement) => element);
+    }, [transformWrapperRef]);
 
-    const usedValue = value ?? defaultValue ?? '';
-    const hasValue = Boolean(usedValue);
+    const transformElement = useMemo(() => {
+      return transformRef || ((element: HTMLElement) => element);
+    }, [transformRef]);
 
-    const resizeHandler = useCallback(
-      (newSizerWidth: DOMRect) => {
-        const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
-        const calculatedWidth = calculateInputWidth({
-          sizerWidth: newSizerWidth.width,
-          hasValue: !!sizerRef.current?.textContent,
-          placeholderIsMinWidth,
-          placeholderWidth,
-          minWidth: +minWidth,
-          placeholder,
-        });
+    const contentWidth = useRef<number | undefined>();
+    const placeholderWidth = useRef<number | undefined>();
 
-        if (inputWrapperRef.current) {
-          inputWrapperRef.current.style.width = `${calculatedWidth + +extraWidth}px`;
-        }
-      },
-      [extraWidth, minWidth, placeholder, placeholderIsMinWidth]
-    );
-
-    useResizeObserver(sizerRef, resizeHandler);
-    const { width: updatedPlaceholderWidth } = useResizeObserver(placeholderSizerRef);
-
-    const copyInputStyles = () => {
-      if (inputRef.current) {
-        const computedStyle = window.getComputedStyle(inputRef.current);
-        if (sizerRef.current) {
-          sizerRef.current.style.fontSize = computedStyle.fontSize;
-          sizerRef.current.style.fontFamily = computedStyle.fontFamily;
-          sizerRef.current.style.fontWeight = computedStyle.fontWeight;
-          sizerRef.current.style.fontStyle = computedStyle.fontStyle;
-          sizerRef.current.style.letterSpacing = computedStyle.letterSpacing;
-          sizerRef.current.style.textTransform = computedStyle.textTransform;
-        }
-        if (placeholderSizerRef.current) {
-          placeholderSizerRef.current.style.fontSize = computedStyle.fontSize;
-          placeholderSizerRef.current.style.fontFamily = computedStyle.fontFamily;
-          placeholderSizerRef.current.style.fontWeight = computedStyle.fontWeight;
-          placeholderSizerRef.current.style.fontStyle = computedStyle.fontStyle;
-          placeholderSizerRef.current.style.letterSpacing = computedStyle.letterSpacing;
-          placeholderSizerRef.current.style.textTransform = computedStyle.textTransform;
-        }
-      }
-    };
-
-    const resize = useCallback(
-      (width: number) => {
-        if (inputWidth !== width + +extraWidth) {
-          preAutosize && preAutosize(width);
-          setInputWidth(width + +extraWidth);
-          onAutosize && onAutosize(width);
-        }
-      },
-      [extraWidth, inputWidth, onAutosize, preAutosize]
-    );
-
-    const updateInputWidth = () => {
-      const sizerWidth = sizerRef.current?.scrollWidth;
-      const placeholderWidth = placeholderSizerRef.current?.scrollWidth;
+    const applyNewWidth = useCallback(() => {
       const calculatedWidth = calculateInputWidth({
-        sizerWidth,
-        hasValue,
+        sizerWidth: contentWidth.current,
+        hasValue: !!sizerRef.current?.textContent,
         placeholderIsMinWidth,
-        placeholderWidth,
+        placeholderWidth: placeholderWidth.current ?? placeholderSizerRef.current?.scrollWidth,
         minWidth: +minWidth,
         placeholder,
       });
 
-      if ((sizerWidth && hasValue && calculatedWidth) || (placeholder && placeholderWidth) || sizerRef.current) {
-        resize(calculatedWidth);
+      if (inputWrapperRef.current) {
+        const finalWidth = calculatedWidth + +extraWidth;
+        if (finalWidth !== parseFloat(inputWrapperRef.current.style.width)) {
+          preAutosize && preAutosize(calculatedWidth);
+          inputWrapperRef.current.style.width = `${finalWidth}px`;
+          onAutosize && onAutosize(calculatedWidth);
+        }
+      }
+    }, [extraWidth, minWidth, onAutosize, placeholder, placeholderIsMinWidth, preAutosize]);
+
+    const resizeContentHandler = useCallback(
+      (newWidth: DOMRect) => {
+        contentWidth.current = newWidth.width;
+        applyNewWidth();
+      },
+      [applyNewWidth]
+    );
+
+    const resizePlaceholderHandler = useCallback(
+      (newWidth: DOMRect) => {
+        placeholderWidth.current = newWidth.width;
+        applyNewWidth();
+      },
+      [applyNewWidth]
+    );
+
+    useResizeObserver(sizerRef, resizeContentHandler);
+    useResizeObserver(placeholderSizerRef, resizePlaceholderHandler);
+
+    const copyInputStyles = () => {
+      if (inputRef.current) {
+        const computedStyle = window.getComputedStyle(inputRef.current);
+        FONT_CSS_PROPS.forEach(cssProperty => {
+          if (sizerRef.current) {
+            sizerRef.current.style[cssProperty] = computedStyle[cssProperty];
+          }
+          if (placeholderSizerRef.current) {
+            placeholderSizerRef.current.style[cssProperty] = computedStyle[cssProperty];
+          }
+        });
       }
     };
 
-    /* Copy styles of the input field to the sizer, ensuring that the width of the input adjusts accordingly */
     useLayoutEffect(() => {
       copyInputStyles();
     }, []);
 
     useEffect(() => {
-      if (inputWrapperRef.current) {
-        inputWrapperRef.current.style.width = `${inputWidth}px`;
-      }
-    }, [inputWidth]);
+      inputRef.current && setSizerValue(inputRef.current.value);
+    }, [usedValue]);
 
     useEffect(() => {
       if (sizerRef.current) {
         const sizerSibling = sizerRef.current.nextElementSibling;
-        const inputElement = sizerSibling instanceof HTMLElement && transformRef(sizerSibling);
-        const inputWrapperElement = sizerSibling instanceof HTMLElement && transformWrapperRef(sizerSibling);
+        const inputElement = sizerSibling instanceof HTMLElement && transformElement(sizerSibling);
+        const inputWrapperElement = sizerSibling instanceof HTMLElement && transformWrapper(sizerSibling);
         if (inputWrapperElement && inputWrapperElement instanceof HTMLElement) {
           inputWrapperRef.current = inputWrapperElement;
         }
-        if (inputElement) {
+        if (inputElement && !inputRef.current) {
           if (inputElement && inputElement instanceof HTMLInputElement) {
             inputRef.current = inputElement;
+            setSizerValue(inputRef.current.value);
             inputRef.current.style.boxSizing = 'content-box';
             handleInputRef && handleInputRef(inputElement, sizerSibling);
             copyInputStyles();
           }
         }
       }
-    }, [handleInputRef, transformRef, transformWrapperRef]);
-
-    useEffect(updateInputWidth, [
-      hasValue,
-      placeholder,
-      extraWidth,
-      placeholderIsMinWidth,
-      onAutosize,
-      setInputWidth,
-      minWidth,
-      updatedPlaceholderWidth,
-      preAutosize,
-      resize,
-    ]);
+    }, [handleInputRef, transformElement, transformWrapper]);
 
     useImperativeHandle(forwardedRef, () => ({
       inputRef,
       sizerRef,
       wrapperRef,
+      inputWrapperRef,
       placeholderSizerRef,
       copyInputStyles,
-      updateInputWidth,
+      updateInputWidth: applyNewWidth,
     }));
 
     const wrapperStyle: CSSProperties = {
@@ -187,7 +174,7 @@ const AutosizeInput = forwardRef<AutosizeInputRefType, AutosizeInputProps>(
     return (
       <div ref={wrapperRef} className={wrapperClassName} style={wrapperStyle} data-testid="wrapper">
         <div style={sizerStyle} ref={sizerRef} data-testid="sizer">
-          {usedValue}
+          {sizerValue}
         </div>
         {children}
         {placeholder ? (
