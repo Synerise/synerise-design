@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import type { StoryObj, Meta } from '@storybook/react';
-
 
 import Menu, { MenuItemProps } from '@synerise/ds-menu';
 import { focusWithArrowKeys } from '@synerise/ds-utils';
 
-import { multipleItems, suffixType, prefixType, deleteState, ordered, simpleText, renderPrefix, renderSuffix } from './Menu.data';
+import {
+  multipleItems,
+  suffixType,
+  prefixType,
+  deleteState,
+  ordered,
+  simpleText,
+  renderPrefix,
+  renderSuffix,
+} from './Menu.data';
 
 import {
   fixedWrapper200,
@@ -15,7 +23,6 @@ import {
   controlFromOptionsArray,
   BOOLEAN_CONTROL,
 } from '../../utils';
-
 
 export default {
   title: 'Components/Menu/Menu',
@@ -57,7 +64,7 @@ export const Default: Story = {
       key: !!item.key ? item.key : uuid(),
       className: 'ds-menu-item',
     }));
-    
+
     return (
       <div
         style={{ width: '200px', borderRadius: '3px', overflow: 'hidden' }}
@@ -116,10 +123,8 @@ export const withDeleteState: Story = {
     ...Default.args,
     dataSource: deleteState,
     prefixel: 'singleIcon',
-
   },
 };
-
 
 export const withSubMenu: Story = {
   render: ({ prefixel, suffixel, dataSource, children, ...rest }) => {
@@ -188,9 +193,12 @@ export const withSubMenu: Story = {
           ],
         },
       ],
-    } as object;
-    const [selectedKeys, setSelectedKeys] = React.useState([]);
-
+    };
+    const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+    const [openKeys, setOpenKeys] = useState<string[]>(['Parent 1']);
+    const handleOpenChange = (updatedOpenKeys) => {
+      setOpenKeys(updatedOpenKeys)
+    }
     const onClickCallback = (clickedKey: string) => {
       if (selectedKeys.indexOf(clickedKey) !== -1) {
         setSelectedKeys([]);
@@ -198,14 +206,19 @@ export const withSubMenu: Story = {
       }
       setSelectedKeys([clickedKey]);
     };
-    const itemsWithOnClick = props.dataSource.map(item =>
-      {
-        let newItem = item;
-        newItem.onTitleClick = ()=>{onClickCallback(item.key)}
-        newItem.subMenu = item.subMenu.map(submenuItem => ({ ...submenuItem, onClick: () => {onClickCallback(submenuItem.key)} }))
-        return newItem;
-      }
-    );
+    const itemsWithOnClick = props.dataSource.map(item => {
+      let newItem = item;
+      newItem.onTitleClick = () => {
+        onClickCallback(item.key);
+      };
+      newItem.subMenu = item.subMenu.map(submenuItem => ({
+        ...submenuItem,
+        onClick: () => {
+          onClickCallback(submenuItem.key);
+        },
+      }));
+      return newItem;
+    });
 
     return (
       <div
@@ -213,7 +226,7 @@ export const withSubMenu: Story = {
         onKeyDown={e => focusWithArrowKeys(e, 'ds-menu-item', () => {})}
       >
         <div style={{ background: 'rgba(0,0,0,0)', width: '200px' }}>
-          <Menu dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} ordered />
+          <Menu onOpenChange={handleOpenChange} dataSource={itemsWithOnClick} selectable selectedKeys={selectedKeys} openKeys={openKeys} ordered />
         </div>
       </div>
     );
