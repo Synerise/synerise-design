@@ -112,6 +112,7 @@ export const AntdMenu = styled(Menu)<AntdMenuProps>`
       .-vertical-left {
         border-right-width: 0px;
         margin: 8px 0 8px 0;
+        padding-left: 24px;
       }
     }
   }
@@ -177,8 +178,7 @@ export const SubMenuItem = styled(Menu.SubMenu)<SubMenuProps>`
     .ant-menu-item, .-item {
       padding-right:5px;
       padding-left: 10px !important;
-      margin-left: 24px;
-      max-width: 176px;
+      
     }
       
     .ant-menu-title-content {
