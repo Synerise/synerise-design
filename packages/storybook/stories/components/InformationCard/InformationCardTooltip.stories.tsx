@@ -28,6 +28,7 @@ type Story = StoryObj<InformationCardTooltipProps>;
 export const DefaultStory: Story = {
   name: 'InformationCardTooltip',
 };
+
 export const InformationCardTooltipTopPlacement: Story = {
   args: {
     children: <Button type="primary">Button with infocard</Button>,

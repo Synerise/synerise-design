@@ -96,8 +96,8 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
                   )
                 );
               }}
-              title={title ? copyableSlot(title) : <></>}
-              description={subtitle ? copyableSlot(subtitle) : <></>}
+              title={typeof title === 'string' ? copyableSlot(title) : title}
+              description={typeof subtitle === 'string' ? copyableSlot(subtitle) : subtitle}
               headerSideChildren={undefined}
               compactHeader={false}
               withoutPadding

@@ -27,22 +27,28 @@ yarn workspace @synerise/ds-information-card build
 ## Usage
 
 ```js
-import InformationCard from '@synerise/ds-information-card';
-import Popover from 'antd/popover';
+import { InformationCardTooltip } from '@synerise/ds-information-card';
 
-<Popover
-  defaultVisible={false}
-  placement="right"
-  content={() => <InformationCard title="Entity full name" subtitle="entity.id" />}
+<InformationCardTooltip
+  informationCardProps={{
+    title: 'Title',
+    subtitle: 'Subtitle',
+    icon: <SegmentM color="mars" />,
+    iconColor: 'mars',
+    avatarTooltipText: 'Tooltip Text',
+  }}
+  triggerProps={{
+    popupPlacement: 'top'
+  }}
 >
-  Entity short name
-</Popover>;
+  <button>Element to attach infocard to</button>
+</InformationCardTooltip>;
 ```
 
 Generally, components require being capable of rendering this and usually an additional effort is required to get them to support rendering.
 See text's menu item element `packages/components/menu/src/Elements/Item/Text/Text.tsx`.
 
-Note that `title` and `subtitle` are required props. For just a single line of text consider using just tooltip or popover.
+Note that `title` and `subtitle` are required props. For just a single line of text consider using @synerise/ds-tooltip.
 
 ### Usage with dropdown and other components relying on `rc-trigger` `getPopupContainer`
 

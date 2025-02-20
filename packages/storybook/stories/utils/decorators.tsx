@@ -68,6 +68,15 @@ export const centeredPaddedWrapper: Decorator = (Story, storyContext) => {
   );
 };
 
+
+export const overflowTestWrapper: Decorator = (Story, storyContext) => {
+  const height = storyContext.viewMode === 'story' ? '100vh' : '100px';
+  const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
+  return (
+    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end', width, height }}>{Story()}</div>
+  );
+};
+
 export const cardSelectWrapper: Decorator = (Story, storyContext) => {
   const height = storyContext.viewMode === 'story' ? '100vh' : '200px';
   const width = storyContext.viewMode === 'story' ? '100vw' : '100%';
