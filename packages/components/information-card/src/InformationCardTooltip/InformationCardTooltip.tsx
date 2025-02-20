@@ -20,6 +20,15 @@ export const InformationCardTooltip = ({
   const renderedInfocard = useMemo(() => <InformationCard {...informationCardProps} />, [informationCardProps]);
 
   const cancelBubblingEvent = useCallback(() => (event: Event) => event.stopPropagation(), []);
+  const { popupAlign } = triggerProps || {};
+  const triggerPopupAlign = {
+    overflow: {
+      adjustX: true,
+      adjustY: true,
+      ...popupAlign?.overflow,
+    },
+    ...popupAlign,
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -34,6 +43,7 @@ export const InformationCardTooltip = ({
         mouseEnterDelay={0.2}
         popupStyle={{ zIndex }}
         zIndex={zIndex}
+        popupAlign={triggerPopupAlign}
         {...triggerProps}
       >
         <S.InformationCardTooltipTrigger>{children}</S.InformationCardTooltipTrigger>

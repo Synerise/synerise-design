@@ -5,7 +5,7 @@ import DSDivider from '@synerise/ds-divider';
 import { macro } from '@synerise/ds-typography';
 import * as S from '@synerise/ds-tooltip/dist/Tooltip.styles';
 
-const INFOCARD_WIDTH = 320;
+const INFOCARD_WIDTH = 350;
 
 export const Flex = styled.div`
   display: flex;
@@ -18,8 +18,10 @@ export const Copyable = styled(DescriptionCopyable)`
 `;
 
 export const Divider = styled(DSDivider)`
-  border-color: ${props => props.theme.palette['grey-300']};
-  margin: 8px 0;
+  && {
+    border-color: ${props => props.theme.palette['grey-300']};
+    margin: 8px 0;
+  }
 `;
 
 export const FooterWrapper = styled(Flex)`
@@ -104,6 +106,10 @@ export const InfoCardWrapper = styled.div<{
   ${CardStyles.Card.Title}${CardStyles.Card.Title} {
     margin-bottom: 0;
     font-size: 14px;
+  }
+
+  ${CardStyles.Card.Description}${CardStyles.Card.Description} {
+    font-size: 11px;
   }
 
   .ds-button {
