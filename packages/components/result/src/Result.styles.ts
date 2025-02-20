@@ -17,7 +17,6 @@ export const Title = styled.h4`
   ${T.macro.h500};
   margin: 0 0 24px;
   text-align: center;
-  max-width: 240px;
   word-break: break-word;
 `;
 
