@@ -1,10 +1,10 @@
-import React, { ReactNode, useState, useRef } from 'react';
+import React, { ReactNode, useState, useRef} from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import Dropdown from '@synerise/ds-dropdown';
 import type { DropdownProps } from '@synerise/ds-dropdown';
 import Button from '@synerise/ds-button';
-import { focusWithArrowKeys, useOnClickOutside } from '@synerise/ds-utils';
+import { focusWithArrowKeys } from '@synerise/ds-utils';
 import Menu from '@synerise/ds-menu';
 import SearchBar from '@synerise/ds-search-bar';
 import Icon, { SearchM } from '@synerise/ds-icon';
@@ -18,8 +18,17 @@ import { data, dataCopy, dataItems, tabsWithIcons } from './Dropdown.data';
 
 import * as S from './Dropdown.styles';
 
-import { controlFromOptionsArray } from '../../utils';
+import Advanced from './Advanced';
+
 import { fn } from '@storybook/test';
+
+import { useOnClickOutside } from '@synerise/ds-utils';
+import { controlFromOptionsArray } from '../../utils';
+
+type DataType = {
+  id: string;
+  text:string
+}
 
 export default {
   title: 'Components/Dropdown',
@@ -340,3 +349,48 @@ export const resizableContent: Story = {
     );
   },
 };
+
+export const SearchAndInfiniteLoader: Story = {
+  render: () => {
+    const generateData = () => {
+      return Array.from(Array(30).keys()).map((_, index) => ({
+        id: `test_${Math.ceil(Math.random() * 1000) + '_' + index}`,
+        text: `Test_${index}`,
+      }));
+    };
+
+    const [data, setData] = useState<DataType[]>(generateData());
+    const [value, setValue] = useState<string | null>(null);
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [query, setQuery] = useState('');
+
+    const onSearchChange = (query: string) => {
+      setQuery(query);
+    };
+
+    const onChange = ({ id }: { id: string }) => {
+      setValue(id);
+      setDropdownVisible(false);
+    };
+
+    const onLoadMore = () => setData([...data, ...generateData()]);
+
+    const filteredData = query.length > 1 ? data.filter(dates => dates.text.toLowerCase().includes(query.toLowerCase())) : data;
+
+    return (
+      <Advanced
+        data={filteredData}
+        value={value}
+        onSearch={onSearchChange}
+        onChange={onChange}
+        visible={dropdownVisible}
+        onLoadMore={onLoadMore}
+        onVisibilityChange={setDropdownVisible}
+      >
+        <Button onClick={() => setDropdownVisible(!dropdownVisible)}>{value || 'Set value'}</Button>
+      </Advanced>
+    );
+  }
+};
+
+
