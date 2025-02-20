@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.8.4...@synerise/ds-result@0.8.5) (2025-02-20)
+
+
+### Bug Fixes
+
+* **result:** remove title max-width ([06bc737](https://github.com/Synerise/synerise-design/commit/06bc73714c7bb462ff35f3e0ff2c1dfde8b46d7f))
+
+
+
+
+
 ## [0.8.4](https://github.com/Synerise/synerise-design/compare/@synerise/ds-result@0.8.3...@synerise/ds-result@0.8.4) (2025-02-18)
 
 **Note:** Version bump only for package @synerise/ds-result

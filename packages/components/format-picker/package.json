@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-format-picker",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "description": "FormatPicker UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -38,7 +38,7 @@
     "@synerise/ds-button-group": "^0.8.1",
     "@synerise/ds-checkbox": "^0.13.4",
     "@synerise/ds-data-format": "^0.7.0",
-    "@synerise/ds-dropdown": "^0.19.5",
+    "@synerise/ds-dropdown": "^0.19.6",
     "@synerise/ds-icon": "^0.71.1",
     "@synerise/ds-list-item": "^0.7.4",
     "@synerise/ds-radio": "^0.13.4",

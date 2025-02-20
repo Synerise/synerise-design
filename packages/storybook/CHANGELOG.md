@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.39.0...storybook7@0.40.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* **menu:** nested menu style ([e76b0eb](https://github.com/Synerise/synerise-design/commit/e76b0eb95bb7b16d20f6604c712f062c5a2c80b9))
+
+
+### Features
+
+* **dropdown:** new stories for dropdown ([60c7f8d](https://github.com/Synerise/synerise-design/commit/60c7f8d3112905753ca7acbd3536c18baf56eca2))
+* **information-card:** title and subtitle prop types ([8180cbb](https://github.com/Synerise/synerise-design/commit/8180cbb1820a76b737e83159e32375d546c8c64d))
+
+
+
+
+
 # [0.39.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.38.1...storybook7@0.39.0) (2025-02-18)
 
 

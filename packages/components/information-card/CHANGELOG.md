@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.8.6...@synerise/ds-information-card@0.9.0) (2025-02-20)
+
+
+### Features
+
+* **information-card:** title and subtitle prop types ([8180cbb](https://github.com/Synerise/synerise-design/commit/8180cbb1820a76b737e83159e32375d546c8c64d))
+
+
+
+
+
 ## [0.8.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.8.5...@synerise/ds-information-card@0.8.6) (2025-02-18)
 
 **Note:** Version bump only for package @synerise/ds-information-card
