@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.9.0...@synerise/ds-information-card@0.9.1) (2025-02-21)
+
+
+### Bug Fixes
+
+* **information-card:** prevent rendering copy icon for empty string ([43403ec](https://github.com/Synerise/synerise-design/commit/43403ec058df73120ade0f4b0cd8b3635b9a5da6))
+
+
+
+
+
 # [0.9.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-information-card@0.8.6...@synerise/ds-information-card@0.9.0) (2025-02-20)
 
 

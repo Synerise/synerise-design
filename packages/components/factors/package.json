@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-factors",
-  "version": "0.28.8",
+  "version": "0.28.9",
   "description": "Factors UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -41,7 +41,7 @@
     "@synerise/ds-date-range-picker": "^0.32.8",
     "@synerise/ds-dropdown": "^0.19.6",
     "@synerise/ds-icon": "^0.71.1",
-    "@synerise/ds-information-card": "^0.9.0",
+    "@synerise/ds-information-card": "^0.9.1",
     "@synerise/ds-inline-edit": "^0.10.7",
     "@synerise/ds-input": "^0.25.6",
     "@synerise/ds-input-number": "^0.11.7",
