@@ -47,20 +47,21 @@ const InformationCard = forwardRef<HTMLDivElement, InformationCardProps>(
     const mainSlideRef = useRef<HTMLDivElement>(null);
 
     const { height } = useResizeObserver(mainSlideRef);
-    const copyableSlot = (content: string) => (
-      <RowWrapper copyable>
-        <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
-          <span>{content}</span>
-          <S.Copyable
-            copyValue={content}
-            texts={{
-              copyTooltip: copyTooltip ?? 'Copy to clipboard',
-              copiedTooltip: copiedTooltip ?? 'Copied',
-            }}
-          />
-        </S.Flex>
-      </RowWrapper>
-    );
+    const copyableSlot = (content: string) =>
+      content && (
+        <RowWrapper copyable>
+          <S.Flex style={{ backgroundColor: '', alignItems: 'center', textAlign: 'left' }}>
+            <span>{content}</span>
+            <S.Copyable
+              copyValue={content}
+              texts={{
+                copyTooltip: copyTooltip ?? 'Copy to clipboard',
+                copiedTooltip: copiedTooltip ?? 'Copied',
+              }}
+            />
+          </S.Flex>
+        </RowWrapper>
+      );
 
     const hasFooter = !!(footerText || actionButton || actionsMenu);
 
