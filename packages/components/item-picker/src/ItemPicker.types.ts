@@ -34,6 +34,7 @@ export type ItemPickerProps = {
   placeholderIcon?: ReactNode;
   searchPlaceholder?: string;
   searchBarProps?: Partial<SearchBarProps>;
+  hideSearchBar?: boolean;
   selectedItem?: ListItemProps | undefined;
   size?: ItemPickerSize;
   tooltip?: ReactNode;

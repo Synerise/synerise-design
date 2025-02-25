@@ -34,6 +34,7 @@ const ItemPicker = ({
   placeholderIcon,
   searchPlaceholder = intl.formatMessage({ id: 'DS.ITEM-PICKER.SEARCH', defaultMessage: 'Search' }),
   searchBarProps,
+  hideSearchBar,
   selectedItem,
   tooltip,
   size = 'small',
@@ -72,6 +73,7 @@ const ItemPicker = ({
   const dropdownOverlay = useMemo(
     () => (
       <ItemPickerDropdown
+        hideSearchBar={hideSearchBar}
         searchBarProps={searchBarProps}
         clearSearchQuery={clearSearchBarValue.current}
         onChange={onChange}
@@ -100,6 +102,7 @@ const ItemPicker = ({
       closeOnBottomAction,
       dropdownOpened,
       scrollbarProps,
+      hideSearchBar,
     ]
   );
 

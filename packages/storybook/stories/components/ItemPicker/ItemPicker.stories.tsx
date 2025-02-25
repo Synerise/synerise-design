@@ -18,10 +18,10 @@ export default {
   title: 'Components/Pickers/ItemPicker',
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
-  render: (args) => {
+  render: args => {
     const [{ selectedItem }, updateArgs] = useArgs();
     const handleChange = (item: MenuItemProps) => {
       updateArgs({ selectedItem: item });
@@ -52,6 +52,12 @@ export const WithPlaceholder: Story = {
   },
 };
 
+export const WithoutSearchBar: Story = {
+  args: {
+    hideSearchBar: true,
+  },
+};
+
 export const SelectedItem: Story = {
   args: {
     selectedItem: FLAT_DATA_SOURCE[3],
@@ -64,8 +70,8 @@ export const WithInfocard: Story = {
     informationCardTooltipProps: {
       informationCardProps: CompleteExample.args,
       triggerProps: {
-        popupPlacement: 'top'
-      }
+        popupPlacement: 'top',
+      },
     },
   },
 };
