@@ -6,6 +6,10 @@ import { DATE_CONSTANTS_TARGET_FORMATS } from '../constants';
 const DATE_TARGET_FORMATS = [
   'date',
   'datetime',
+  'relative-from',
+  'relative-to',
+  'relative-from-without-suffix',
+  'relative-to-without-suffix',
   'time',
   'weekday-long',
   'weekday-short',

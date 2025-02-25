@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import dayjs from 'dayjs';
 
+import { screen } from '@testing-library/react';
+
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { FormattedDateTime, DataFormatNotationType } from '@synerise/ds-data-format';
 

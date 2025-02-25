@@ -16,6 +16,8 @@ import {
   convertDateToTimeString,
   convertDateToDateString,
   convertDateToWeekdayLongString,
+  convertDateToRelativeToString,
+  convertDateToRelativeFromString,
   convertNumberString,
   convertDateToWeekdayShortString,
   convertDateToMonthLongString,
@@ -27,6 +29,10 @@ import {
 import {
   DATE,
   DATETIME,
+  RELATIVE_TO,
+  RELATIVE_FROM,
+  RELATIVE_TO_WITHOUT_SUFFIX,
+  RELATIVE_FROM_WITHOUT_SUFFIX,
   EU_DECIMAL_DELIMITER,
   EU_NOTATION,
   EU_THOUSAND_DELIMITER,
@@ -126,6 +132,22 @@ export const useDataFormatUtils = (): {
 
       if (options?.targetFormat === TIME) {
         return convertDateToTimeString(value, timeFormatIntl, options);
+      }
+
+      if (options?.targetFormat === RELATIVE_TO) {
+        return convertDateToRelativeToString(value);
+      }
+
+      if (options?.targetFormat === RELATIVE_TO_WITHOUT_SUFFIX) {
+        return convertDateToRelativeToString(value, true);
+      }
+
+      if (options?.targetFormat === RELATIVE_FROM) {
+        return convertDateToRelativeFromString(value);
+      }
+
+      if (options?.targetFormat === RELATIVE_FROM_WITHOUT_SUFFIX) {
+        return convertDateToRelativeFromString(value, true);
       }
 
       if (options?.targetFormat === WEEKDAY_LONG) {

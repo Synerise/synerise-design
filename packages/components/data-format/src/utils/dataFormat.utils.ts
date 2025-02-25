@@ -1,4 +1,6 @@
 import { IntlShape } from 'react-intl';
+import dayjs from 'dayjs';
+import relativeTimePlugin from 'dayjs/plugin/relativeTime';
 
 import { CommonFormatOptions, DateToFormatOptions, Delimiter, NumberToFormatOptions } from '../types';
 import {
@@ -26,6 +28,8 @@ import {
   UPPER_FIRST,
   COMPACT_LARGER_NUMBER,
 } from '../constants';
+
+dayjs.extend(relativeTimePlugin);
 
 export const convertNumberString = (
   value: number,
@@ -71,6 +75,14 @@ export const convertDateToDateTimeString = (
   const date = dateTimePartsToString(translatedDateParts);
   const time = dateTimePartsToString(getTimeParts(value, timeFormatIntl, options?.timeOptions));
   return `${date}, ${time}`;
+};
+
+export const convertDateToRelativeToString = (value: Date, withoutSuffix?: boolean): string => {
+  return dayjs().to(dayjs(value), withoutSuffix);
+};
+
+export const convertDateToRelativeFromString = (value: Date, withoutSuffix?: boolean): string => {
+  return dayjs().from(dayjs(value), withoutSuffix);
 };
 
 export const convertDateToTimeString = (
