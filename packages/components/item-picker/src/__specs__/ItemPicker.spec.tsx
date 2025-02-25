@@ -1,11 +1,12 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import Icon, { LaptopM, MobileM, UserM } from '@synerise/ds-icon';
 import Avatar from '@synerise/ds-avatar';
 import DSFlag from '@synerise/ds-flag';
 import ItemPicker from '../ItemPicker';
 import { ItemPickerProps, ItemPickerSize } from '../ItemPicker.types';
 import renderWithProvider from '@synerise/ds-utils/dist/testing/renderWithProvider/renderWithProvider';
+import { Placeholder } from '../ItemPickerTrigger/Trigger.styles';
 
 const imgSrc = 'https://www.w3schools.com/howto/img_avatar.png';
 
@@ -305,6 +306,23 @@ describe('ItemPicker component', () => {
     fireEvent.click(getByText(CHANGE_BUTTON_LABEL));
 
     expect(getByText(BOTTOM_ACTION_LABEL)).toBeTruthy();
+  });
+  it('should render without search bar', () => {
+    const handleClear = jest.fn();
+    const handleChange = jest.fn();
+    const { getByText } = renderWithProvider(
+      <ITEM_PICKER onClear={handleClear} onChange={handleChange} hideSearchBar />
+    );
+    fireEvent.click(getByText(PLACEHOLDER));
+    expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeFalsy();
+  });
+
+  it('should render with search bar', () => {
+    const handleClear = jest.fn();
+    const handleChange = jest.fn();
+    const { getByText } = renderWithProvider(<ITEM_PICKER onClear={handleClear} onChange={handleChange} />);
+    fireEvent.click(getByText(PLACEHOLDER));
+    expect(screen.queryByPlaceholderText(SEARCH_PLACEHOLDER)).toBeTruthy();
   });
   it.todo('should call onYReachEnd function');
   it.todo('should shows loading state');

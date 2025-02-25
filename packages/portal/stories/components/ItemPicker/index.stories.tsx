@@ -58,6 +58,7 @@ const stories = {
           dropdownProps={{
             getPopupContainer: () => document.querySelector('.ds-items-picker'),
           }}
+          hideSearchBar={boolean('Hide search bar', false)}
           scrollbarProps={
             boolean('additional scrollbar props', true)
               ? {

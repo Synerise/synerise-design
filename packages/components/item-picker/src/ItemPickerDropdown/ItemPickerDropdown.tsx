@@ -23,6 +23,7 @@ const ItemPickerDropdown = ({
   closeOnBottomAction,
   isDropdownOpened,
   searchBarProps,
+  hideSearchBar,
   scrollbarProps,
   clearSearchQuery,
 }: ItemPickerDropdownProps) => {
@@ -64,15 +65,17 @@ const ItemPickerDropdown = ({
 
   return (
     <S.DropdownWrapper data-testid="ds-item-picker-dropdown">
-      <SearchBar
-        iconLeft={<Icon component={<SearchM />} />}
-        onSearchChange={setSearchQuery}
-        placeholder={placeholder}
-        value={searchQuery}
-        onClearInput={(): void => setSearchQuery('')}
-        autofocus={isDropdownOpened}
-        {...searchBarProps}
-      />
+      {hideSearchBar !== true && (
+        <SearchBar
+          iconLeft={<Icon component={<SearchM />} />}
+          onSearchChange={setSearchQuery}
+          placeholder={placeholder}
+          value={searchQuery}
+          onClearInput={(): void => setSearchQuery('')}
+          autofocus={isDropdownOpened}
+          {...searchBarProps}
+        />
+      )}
       <S.ListWrapper>
         {filteredDataSource?.length === 0 && <Result type="no-results" description={noResults} />}
         <S.StyledScrollbar

@@ -17,6 +17,7 @@ export type ItemPickerDropdownProps = {
   isDropdownOpened: boolean;
   searchBarProps?: Partial<SearchBarProps>;
   scrollbarProps?: ScrollbarAdditionalProps;
+  hideSearchBar?: boolean;
 };
 
 // @deprecated
