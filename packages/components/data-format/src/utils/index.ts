@@ -18,6 +18,8 @@ export {
 export {
   convertNumberString,
   convertDateToDateTimeString,
+  convertDateToRelativeToString,
+  convertDateToRelativeFromString,
   convertDateToTimeString,
   convertDateToDateString,
   convertDateToWeekdayLongString,
