@@ -46,6 +46,12 @@ export default {
 
 export const Default: Story = {};
 
+export const withDescription: Story = {
+  args: {
+    description: 'This is popconfirm modal example with simple body text here',
+  }
+};
+
 export const Open: Story = {
   args: {
     visible: true,
