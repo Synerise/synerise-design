@@ -232,6 +232,7 @@ export const Container = styled.div<{
 export const WrapperSectionMessage = styled.div`
   position: relative;
   font-size: 13px;
+  min-width: 0;
   color: inherit;
 `;
 
@@ -248,22 +249,24 @@ export const AlertMessage = styled.div<{
   ${props => props.noToastContent && 'padding-bottom: 14px;'};
   font-weight: 500;
   overflow: hidden;
+  overflow-wrap: break-word;
   text-overflow: ellipsis;
   padding-right: ${props => getWidth(props.hasClose, props.hasExpander)};
   color: ${(props): string =>
     props.customColorText ? props.theme.palette[`${props.customColorText}-600`] : getColorText(props)};
 `;
-export const AlertDescription = styled.span<{
+export const AlertDescription = styled.div<{
   customColorText?: CustomColorType;
   color?: ColorType;
-  button?: ReactNode | boolean;
-  expandedContent?: ReactNode | boolean;
+  button?: boolean;
+  expandedContent?: boolean;
 }>`
-  display: flex;
   font-size: 13px;
   line-height: 1.39;
   font-weight: normal;
+  overflow: hidden;
   overflow-wrap: anywhere;
+  text-overflow: ellipsis;
   padding-bottom: ${(props): string => (props.button || props.expandedContent ? '16px' : '0')};
   margin-top: 2px;
   color: ${(props): string =>

@@ -39,8 +39,8 @@ const Toast = ({
     <S.AlertContent hasBottomMargin={Boolean(button || description || (expandedContent && expanded))}>
       {description && (
         <S.AlertDescription
-          expandedContent={expandedContent}
-          button={button}
+          expandedContent={!!expandedContent}
+          button={!!button}
           customColorText={customColorText}
           color={color}
         >
