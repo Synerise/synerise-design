@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.230.0](https://github.com/synerise/synerise-design/compare/portal@0.229.0...portal@0.230.0) (2025-02-27)
+
+
+### Features
+
+* **item-picker:** adds prop hideSearchBar ([4e38e91](https://github.com/synerise/synerise-design/commit/4e38e91e88bd878752408532a55239fe97e4886d))
+
+
+
+
+
 # [0.229.0](https://github.com/synerise/synerise-design/compare/portal@0.228.0...portal@0.229.0) (2025-01-29)
 
 

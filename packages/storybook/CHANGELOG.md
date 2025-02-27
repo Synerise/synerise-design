@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.40.0...storybook7@0.41.0) (2025-02-27)
+
+
+### Features
+
+* **item-picker:** adds prop hideSearchBar ([4e38e91](https://github.com/Synerise/synerise-design/commit/4e38e91e88bd878752408532a55239fe97e4886d))
+
+
+
+
+
 # [0.40.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.39.0...storybook7@0.40.0) (2025-02-20)
 
 

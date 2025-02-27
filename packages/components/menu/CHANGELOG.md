@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.21.6...@synerise/ds-menu@0.21.7) (2025-02-27)
+
+
+### Bug Fixes
+
+* **menu:** inline / sub menu bg color ([d0fb444](https://github.com/Synerise/synerise-design/commit/d0fb444ccf507880ada2e5a859a4cc85f648d22b))
+
+
+
+
+
 ## [0.21.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.21.5...@synerise/ds-menu@0.21.6) (2025-02-20)
 
 

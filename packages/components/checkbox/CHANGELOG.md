@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.5](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.13.4...@synerise/ds-checkbox@0.13.5) (2025-02-27)
+
+
+### Bug Fixes
+
+* **checkbox:** add reactNode to type of description ([f7d681d](https://github.com/synerise/synerise-design/commit/f7d681d042a90678379daa0231632a600ab8d9a7))
+
+
+
+
+
 ## [0.13.4](https://github.com/synerise/synerise-design/compare/@synerise/ds-checkbox@0.13.3...@synerise/ds-checkbox@0.13.4) (2025-02-18)
 
 **Note:** Version bump only for package @synerise/ds-checkbox
