@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.8](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.21.7...@synerise/ds-menu@0.21.8) (2025-02-27)
+
+
+### Bug Fixes
+
+* **menu:** fix styles to allow ellipsis ([aa0eb66](https://github.com/Synerise/synerise-design/commit/aa0eb66c9e9a7598d8194fe46a5bae082c6bf2fb))
+
+
+
+
+
 ## [0.21.7](https://github.com/Synerise/synerise-design/compare/@synerise/ds-menu@0.21.6...@synerise/ds-menu@0.21.7) (2025-02-27)
 
 
