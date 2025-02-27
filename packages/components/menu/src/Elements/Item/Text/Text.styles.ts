@@ -110,6 +110,7 @@ export const Wrapper = styled(MenuItem)<WrapperProps>`
     > .ant-menu-title-content {
       display: flex;
       flex-grow: 1;
+      max-width: 100%;
     }
 
     &.ant-menu-item-only-child,
