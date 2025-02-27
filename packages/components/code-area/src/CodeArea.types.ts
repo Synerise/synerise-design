@@ -1,5 +1,5 @@
 import type monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import type { EditorProps } from '@monaco-editor/react';
+import type { EditorProps, loader } from '@monaco-editor/react';
 import type { ReactNode, CSSProperties } from 'react';
 import type { TooltipProps } from 'antd/lib/tooltip';
 import TooltipExtendedProps from '@synerise/ds-tooltip/dist/Tooltip.types';
@@ -41,6 +41,7 @@ export type CodeAreaCommonProps<SyntaxName extends CodeAreaSyntax = CodeAreaSynt
   className?: string;
   renderFooterContent?: (props: { isFullscreen?: boolean; count?: number; isValid?: boolean }) => ReactNode;
   onSyntaxChange?: (newSyntax: SyntaxName) => void;
+  loaderConfig?: Parameters<typeof loader.config>[0];
 };
 
 export type CodeAreaEditorProps<SyntaxName extends CodeAreaSyntax = CodeAreaSyntax> =

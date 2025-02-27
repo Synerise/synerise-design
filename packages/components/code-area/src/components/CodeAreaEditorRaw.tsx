@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { editor } from 'monaco-editor/esm/vs/editor/editor.api';
-import Editor, { Monaco, EditorProps } from '@monaco-editor/react';
+import Editor, { Monaco, EditorProps, loader } from '@monaco-editor/react';
 
 import Loader from '@synerise/ds-loader';
 
@@ -33,9 +33,11 @@ export const CodeAreaEditorRaw = ({
   currentSyntax,
   readOnly,
   onSyntaxChange,
+  loaderConfig,
   ...props
 }: CodeAreaEditorRawProps) => {
   const monacoRef = useRef<Monaco | null>(null);
+  const loaderConfigSet = useRef(false);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -44,6 +46,11 @@ export const CodeAreaEditorRaw = ({
   const monacoAriaContainerElement = useMemo(() => {
     return document.createElement('div');
   }, []);
+
+  if (loaderConfig && !loaderConfigSet.current) {
+    loader.config(loaderConfig);
+    loaderConfigSet.current = true;
+  }
 
   const editorOptions: EditorProps['options'] = useMemo(() => {
     return {

@@ -42,8 +42,7 @@
     "@synerise/ds-input": "^0.25.7",
     "@synerise/ds-tooltip": "^0.16.1",
     "@synerise/ds-typography": "^0.17.5",
-    "@synerise/ds-utils": "^0.32.2",
-    "monaco-editor": "0.34.1"
+    "@synerise/ds-utils": "^0.32.2"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",
@@ -51,5 +50,8 @@
     "react": ">=16.9.0 <= 18.3.1",
     "react-intl": ">=3.12.0 <= 6.8",
     "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "monaco-editor": "0.34.1"
   }
 }
