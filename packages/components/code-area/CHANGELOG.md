@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.5.9...@synerise/ds-code-area@0.6.0) (2025-03-03)
+
+
+### Features
+
+* **code-area:** pass loader config via prop ([20d5bd2](https://github.com/Synerise/synerise-design/commit/20d5bd2e624a67c1a00111730b56819317970b0e))
+
+
+
+
+
 ## [0.5.9](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.5.8...@synerise/ds-code-area@0.5.9) (2025-02-27)
 
 **Note:** Version bump only for package @synerise/ds-code-area
