@@ -9,6 +9,7 @@ import Tooltip, { TooltipProps } from '@synerise/ds-tooltip';
 import { Tag, TagShape } from '@synerise/ds-tags';
 import { UserAvatar } from '@synerise/ds-avatar';
 import InformationCard from '@synerise/ds-information-card';
+import ShortCuts from '@synerise/ds-short-cuts';
 import Status from '@synerise/ds-status';
 import Icon, { InfoFillS, InfoM, SegmentM } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
@@ -68,23 +69,25 @@ export default {
     type: 'default',
   },
   play: async ({ canvasElement, args }) => {
-        const canvas = within(canvasElement.parentElement!);
-        await userEvent.click(await canvas.findByTestId('tooltip-trigger'));
-        let propToFind = args.title;
-        if (args.type === 'largeSimple') {propToFind = args.description}
-        if (args.type === 'tutorial') { propToFind = args.tutorials![0].title}
-        if (args.render) {
-
-        }
-        else {
-            await waitFor(async () => expect(await canvas.findByText(propToFind as string)).toBeInTheDocument());
-        }
-      },
+    const canvas = within(canvasElement.parentElement!);
+    await userEvent.click(await canvas.findByTestId('tooltip-trigger'));
+    let propToFind = args.title;
+    if (args.type === 'largeSimple') {
+      propToFind = args.description;
+    }
+    if (args.type === 'tutorial') {
+      propToFind = args.tutorials![0].title;
+    }
+    if (args.render) {
+    } else {
+      await waitFor(async () => expect(await canvas.findByText(propToFind as string)).toBeInTheDocument());
+    }
+  },
 } as Meta<StoryProps>;
 
 type Story = StoryObj<StoryProps>;
 
-export const Default: Story = {};
+export const Simple: Story = {};
 
 export const LargeType: Story = {
   args: {
@@ -94,13 +97,17 @@ export const LargeType: Story = {
   },
 };
 
-
 export const LargeTypeWithImage: Story = {
   args: {
     type: 'largeSimple',
     image: <img src={tooltipImage} />,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a.',
+    button: {
+      label: 'More info',
+      onClick: action('click'),
+      buttonIcon: <Icon component={<InfoM />} />,
+    },
+    icon: <Icon color={theme.palette.white} component={<InfoM />} />,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   },
 };
 
@@ -108,6 +115,7 @@ export const LargeScrollableType: Story = {
   args: {
     type: 'largeScrollable',
     title: TOOLTIP_TITLE,
+    icon: <Icon  color={theme.palette.white} component={<InfoM />} />,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis pellentesque felis, luctus vestibulum ligula. Vestibulum tristique vulputate nulla, sed tempor nisi rhoncus a. Suspendisse sit amet vulputate dui, sit amet congue dolor. Ut sagittis ex sed turpis tristique, in hendrerit ligula venenatis. Aenean fringilla libero a rhoncus viverra. Sed non orci libero. Etiam venenatis ultrices odio, vel sodales massa facilisis ac. Vivamus ac fermentum elit. Aenean vel facilisis tortor, sit amet ornare erat. ',
 
@@ -119,15 +127,9 @@ export const LargeScrollableType: Story = {
   },
 };
 
-export const IconType: Story = {
-  args: {
-    type: 'icon',
-  },
-};
-
 export const TagWithTooltip: Story = {
-  render: args => (
-    <Tooltip type="default" title="More than just example text" {...args}>
+  render: ({ title }) => (
+    <Tooltip title={title}>
       <Tag
         name="A"
         shape={TagShape.SINGLE_CHARACTER_ROUND}
@@ -139,6 +141,7 @@ export const TagWithTooltip: Story = {
     </Tooltip>
   ),
 };
+
 const firstName = 'Jan';
 const lastName = 'Nowak';
 export const AvatarWithTooltip: Story = {
@@ -152,27 +155,14 @@ export const AvatarWithTooltip: Story = {
   },
 };
 
-export const HeaderAndLabelType: Story = {
+export const WithButtonInFooter: Story = {
   args: {
-    type: 'header-label',
-  },
-};
-
-export const ButtonType: Story = {
-  args: {
-    type: 'button',
+    type: 'largeSimple',
     button: {
       label: 'More info',
       onClick: action('click'),
       buttonIcon: <Icon component={<InfoM />} />,
     },
-  },
-};
-
-export const StatusType: Story = {
-  args: {
-    status: <Status type="disabled" label="API" />,
-    type: 'status',
   },
 };
 
@@ -187,16 +177,5 @@ export const WithCustomComponent: Story = {
         iconColor="red"
       />
     ),
-  },
-};
-
-export const TutorialType: Story = {
-  args: {
-    type: 'tutorial',
-    title: undefined,
-    description: undefined,
-    tutorialAutoplay: true,
-    tutorialAutoplaySpeed: 5000,
-    tutorials: TUTORIALS,
   },
 };
