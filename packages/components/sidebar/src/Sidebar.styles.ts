@@ -24,7 +24,6 @@ const themePaletteGrey700 = (props: ThemeProps) => props.theme.palette['grey-700
 const themePaletteGrey800 = (props: ThemeProps) => props.theme.palette['grey-800'];
 const themePaletteBlue050 = (props: ThemeProps) => props.theme.palette['blue-050'];
 const themePaletteGrey200 = (props: ThemeProps) => props.theme.palette['grey-200'];
-const themePaletteGrey050 = (props: ThemeProps) => props.theme.palette['grey-050'];
 const themePaletteBlue600 = (props: ThemeProps) => props.theme.palette['blue-600'];
 
 export const SidebarHandle = styled.div`
@@ -94,10 +93,6 @@ export const AntdCollapse = styled(Collapse as any as React.ComponentType<Collap
         &:hover {
           color: ${themePaletteGrey800};
         }
-      }
-
-      .ant-collapse-header {
-        background: ${themePaletteGrey050};
       }
     }
 
