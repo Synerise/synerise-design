@@ -15,12 +15,10 @@ const shouldRenderDescription = (description: descriptionType, type: tooltipType
   if (type === 'default' || !description) return null;
   return description;
 };
-const shouldRenderTitle = (type: tooltipTypes, title: ReactNode): ReactNode | null => {
-  return type !== 'largeSimple' ? title : null;
-};
-const shouldRenderStatus = (status: ReactNode | null, type: tooltipTypes): descriptionType | null => {
-  if (type === 'status' || status) return status;
-  return null;
+
+const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: ReactNode): ReactNode | undefined => {
+  if (tooltipType !== 'icon') return tooltipIcon;
+  return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
 };
 
 const Tooltip = ({
@@ -43,16 +41,9 @@ const Tooltip = ({
   const [isVisible, setIsVisible] = useState(false);
   const timeoutClickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const shouldRenderIcon = (tooltipType: tooltipTypes, tooltipIcon: ReactNode): ReactNode | undefined => {
-    if (tooltipType !== 'icon') return null;
-    if (tooltipIcon && icon) return icon;
-    return <Icon component={<NotificationsM />} color={theme.palette['orange-500']} />;
-  };
-
   const renderButton = useMemo(() => {
-    const buttonMode = (): string => {
-      // @ts-ignore
-      const { buttonIcon, label } = button;
+    const { buttonIcon, label, onClick } = button || {};
+    const buttonMode = () => {
       if (buttonIcon && label) return 'icon-label';
       if (buttonIcon) return 'single-icon';
       return 'label';
@@ -61,9 +52,9 @@ const Tooltip = ({
     return button ? (
       <S.TooltipButton>
         {/* eslint-disable-next-line react/jsx-handler-names */}
-        <Button type="ghost-white" mode={buttonMode()} onClick={button?.onClick}>
-          {button?.buttonIcon}
-          {button?.label}
+        <Button type="ghost-white" mode={buttonMode()} onClick={onClick}>
+          {buttonIcon}
+          {label}
         </Button>
       </S.TooltipButton>
     ) : (
@@ -75,37 +66,30 @@ const Tooltip = ({
     event.stopPropagation();
   };
 
+  const finalDescription = shouldRenderDescription(description, type);
+
   const tooltipComponent = (
     <S.TooltipComponent onClick={captureClick} tooltipType={type}>
       <S.TooltipContent>
-        <S.TooltipStatus tooltipType={type}>{type && shouldRenderStatus(status, type)}</S.TooltipStatus>
-        <S.TooltipTitle tooltipType={type}>
-          {type && shouldRenderIcon(type, icon)}
-          <S.TooltipTitleWrapper>{type && shouldRenderTitle(type, title)}</S.TooltipTitleWrapper>
-        </S.TooltipTitle>
-        <S.TooltipDescription tooltipType={type}>
-          {image && <S.TooltipImage>{image}</S.TooltipImage>}
-          {type === 'largeScrollable' ? (
-            <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
-              <>{shouldRenderDescription(description, type)}</>
-            </Scrollbar>
-          ) : (
-            shouldRenderDescription(description, type)
-          )}
-        </S.TooltipDescription>
-      </S.TooltipContent>
-      {renderButton}
-    </S.TooltipComponent>
-  );
-
-  const buttonComponent = (
-    <S.TooltipComponent onClick={captureClick} tooltipType={type}>
-      <S.TooltipContent>
-        <S.TooltipStatus tooltipType={type}>{status}</S.TooltipStatus>
-        <S.TooltipTitle tooltipType={type}>
-          <S.TooltipTitleWrapper>{title}</S.TooltipTitleWrapper>
-        </S.TooltipTitle>
-        <S.TooltipDescription tooltipType={type}>{description}</S.TooltipDescription>
+        {status && <S.TooltipStatus>{status}</S.TooltipStatus>}
+        {title && (
+          <S.TooltipTitle tooltipType={type}>
+            {shouldRenderIcon(type, icon)}
+            <S.TooltipTitleWrapper>{title}</S.TooltipTitleWrapper>
+          </S.TooltipTitle>
+        )}
+        {image && <S.TooltipImage extraMargin={!!finalDescription}>{image}</S.TooltipImage>}
+        {finalDescription && (
+          <S.TooltipDescription tooltipType={type}>
+            {type === 'largeScrollable' ? (
+              <Scrollbar absolute maxHeight={90} style={{ paddingRight: 16 }}>
+                <>{finalDescription}</>
+              </Scrollbar>
+            ) : (
+              finalDescription
+            )}
+          </S.TooltipDescription>
+        )}
       </S.TooltipContent>
       {renderButton}
     </S.TooltipComponent>
@@ -125,17 +109,7 @@ const Tooltip = ({
     </S.TooltipComponent>
   );
 
-  let component: JSX.Element;
-  switch (type) {
-    case 'tutorial':
-      component = tutorialComponent;
-      break;
-    case 'button':
-      component = buttonComponent;
-      break;
-    default:
-      component = tooltipComponent;
-  }
+  const tooltipContent = type === 'tutorial' ? tutorialComponent : tooltipComponent;
 
   const overlayClassName = useMemo(() => {
     return `ds-tooltip-offset-${offset} ds-tooltip-type-${type}`;
@@ -144,12 +118,12 @@ const Tooltip = ({
   const titleExists = Boolean(description || title || icon || tutorials?.length);
 
   useEffect(() => {
-    return (): void => {
+    return () => {
       timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
     };
   }, []);
 
-  const handleOnClickHideDelay = (visible: boolean): void => {
+  const handleOnClickHideDelay = (visible: boolean) => {
     if (!visible) {
       timeoutClickRef.current && clearTimeout(timeoutClickRef.current);
       setIsVisible(false);
@@ -165,7 +139,7 @@ const Tooltip = ({
   const handleHideAfterClick = props.trigger === 'click' &&
     timeToHideAfterClick && {
       visible: isVisible,
-      onVisibleChange: (visible: boolean): void => {
+      onVisibleChange: (visible: boolean) => {
         handleOnClickHideDelay(visible);
       },
     };
@@ -189,8 +163,7 @@ const Tooltip = ({
   return titleExists ? (
     <AntdTooltip
       overlayClassName={overlayClassName}
-      autoAdjustOverflow={false}
-      title={component}
+      title={tooltipContent}
       align={{ offset: [0, 0] }}
       getPopupContainer={getPopupContainer}
       {...handleHideAfterClick}

@@ -1,8 +1,8 @@
-import styled, { css, SimpleInterpolation } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IconContainer } from '@synerise/ds-icon';
 import TooltipExtendedProps, { tooltipTypes } from './Tooltip.types';
 
-export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipType: tooltipTypes }>`
+export const TooltipDescription = styled.div<{ tooltipType: tooltipTypes }>`
   font-size: 13px;
   line-height: 1.38;
   font-weight: normal;
@@ -12,8 +12,7 @@ export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipTyp
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  ${(props): SimpleInterpolation =>
+  ${props =>
     props.tooltipType === 'largeScrollable' &&
     css`
       margin-top: 6px;
@@ -21,13 +20,11 @@ export const TooltipDescription = styled.div<TooltipExtendedProps & { tooltipTyp
     `};
 `;
 
-const titlesWithPadding = ['icon', 'tutorial', 'button', 'header-label'];
-
-export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
-  margin-bottom: ${({ tooltipType }): string => (titlesWithPadding.includes(String(tooltipType)) ? '8px' : '0px')};
+export const TooltipTitle = styled.div<{ tooltipType: tooltipTypes }>`
+  margin-bottom: ${({ tooltipType }) => (tooltipType === 'tutorial' ? '8px' : '0px')};
   font-size: 13px;
   line-height: 1.38;
-  font-weight: ${(props): number => (props.tooltipType === 'default' ? 400 : 500)};
+  font-weight: ${props => (props.tooltipType === 'default' ? 400 : 500)};
   display: flex;
   width: 100%;
   align-items: center;
@@ -40,7 +37,7 @@ export const TooltipTitle = styled.div<Omit<TooltipExtendedProps, 'type'> & { to
 
 export const TooltipTitleWrapper = styled.div`
   min-width: 0;
-  width: fit-content;
+  width: max-content;
   overflow-wrap: break-word;
 `;
 
@@ -60,8 +57,9 @@ export const TooltipContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 4px;
 `;
-export const TooltipStatus = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
+export const TooltipStatus = styled.div`
   padding-bottom: 2px;
   display: flex;
   flex-direction: column;
@@ -69,10 +67,11 @@ export const TooltipStatus = styled.div<Omit<TooltipExtendedProps, 'type'> & { t
   justify-content: flex-start;
 `;
 
-export const TooltipImage = styled.div`
+export const TooltipImage = styled.div<{ extraMargin: boolean }>`
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${props => props.extraMargin && 'margin-bottom: 4px;'}
 
   img,
   video {
@@ -80,12 +79,12 @@ export const TooltipImage = styled.div`
   }
 `;
 
-export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & { tooltipType: tooltipTypes }>`
+export const TooltipComponent = styled.div<{ tooltipType: tooltipTypes }>`
   background-color: rgba(56, 67, 80, 0.9);
   min-height: 24px;
   width: 100%;
   border-radius: 3px;
-  color: ${(props): string => props.theme.palette['grey-200']};
+  color: ${props => props.theme.palette['grey-200']};
   overflow: hidden;
   text-align: left;
 
@@ -95,35 +94,24 @@ export const TooltipComponent = styled.div<Omit<TooltipExtendedProps, 'type'> & 
     align-items: flex-start;
     justify-content: center;
 
-    ${(props): SimpleInterpolation => {
+    ${props => {
       const defaultPadding = css`
-        padding: 16px;
+        padding: 12px;
       `;
       switch (props.tooltipType) {
         case 'icon':
-          return css`
-            padding: 8px 16px 16px;
-          `;
         case 'largeSimple':
-          return defaultPadding;
         case 'largeScrollable':
+        case 'avatar':
+        case 'button':
+        case 'header-label':
           return defaultPadding;
+        // unused type (?) TBC
         case 'tutorial':
           return css`
             padding: 0;
           `;
-        case 'avatar':
-          return css`
-            padding: 8px 16px 16px;
-            text-align: center;
-            align-items: center;
-          `;
-        case 'button':
-          return defaultPadding;
-        case 'header-label':
-          return css`
-            padding: 13px 16px 16px;
-          `;
+        // unused type (?) TBC
         case 'status':
           return css`
             padding: 6px 25px 10px 21px;
