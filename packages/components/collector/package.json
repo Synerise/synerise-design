@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-collector",
-  "version": "0.13.9",
+  "version": "0.13.10",
   "description": "Collector UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,13 +34,13 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.23.2",
-    "@synerise/ds-divider": "^0.9.4",
-    "@synerise/ds-icon": "^0.71.2",
-    "@synerise/ds-input": "^0.25.7",
-    "@synerise/ds-list-item": "^0.7.5",
-    "@synerise/ds-scrollbar": "^0.12.5",
-    "@synerise/ds-search": "^0.10.8",
+    "@synerise/ds-button": "^0.23.3",
+    "@synerise/ds-divider": "^0.9.5",
+    "@synerise/ds-icon": "^0.72.0",
+    "@synerise/ds-input": "^0.25.8",
+    "@synerise/ds-list-item": "^0.7.6",
+    "@synerise/ds-scrollbar": "^0.12.6",
+    "@synerise/ds-search": "^0.10.9",
     "@synerise/ds-utils": "^0.32.2",
     "classnames": "2.3.2",
     "lodash.isequal": "^4.5.0"

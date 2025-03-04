@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.16.1...@synerise/ds-tooltip@0.16.2) (2025-03-04)
+
+
+### Bug Fixes
+
+* **tooltip:** refactored css and tooltip types ([76d9e9a](https://github.com/synerise/synerise-design/commit/76d9e9af7813e7390416252ab446b7872b081c64))
+
+
+
+
+
 ## [0.16.1](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.16.0...@synerise/ds-tooltip@0.16.1) (2025-02-27)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

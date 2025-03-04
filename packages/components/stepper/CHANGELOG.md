@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.5.5...@synerise/ds-stepper@0.5.6) (2025-03-04)
+
+**Note:** Version bump only for package @synerise/ds-stepper
+
+
+
+
+
 ## [0.5.5](https://github.com/Synerise/synerise-design/compare/@synerise/ds-stepper@0.5.4...@synerise/ds-stepper@0.5.5) (2025-02-27)
 
 **Note:** Version bump only for package @synerise/ds-stepper

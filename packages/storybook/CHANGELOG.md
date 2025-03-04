@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.41.0...storybook7@0.41.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* **tooltip:** refactored css and tooltip types ([76d9e9a](https://github.com/Synerise/synerise-design/commit/76d9e9af7813e7390416252ab446b7872b081c64))
+
+
+
+
+
 # [0.41.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.40.0...storybook7@0.41.0) (2025-02-27)
 
 

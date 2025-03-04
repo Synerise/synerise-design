@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.8](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.18.7...@synerise/ds-avatar@0.18.8) (2025-03-04)
+
+**Note:** Version bump only for package @synerise/ds-avatar
+
+
+
+
+
 ## [0.18.7](https://github.com/synerise/synerise-design/compare/@synerise/ds-avatar@0.18.6...@synerise/ds-avatar@0.18.7) (2025-02-27)
 
 **Note:** Version bump only for package @synerise/ds-avatar
