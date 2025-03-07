@@ -10,7 +10,7 @@ import Result from '@synerise/ds-result';
 
 
 import { BOOLEAN_CONTROL, CLASSNAME_ARG_CONTROL, controlFromOptionsArray, fixedWrapper200, fixedWrapper400, GETPOPUPCONTAINER_ARG_CONTROL, NUMBER_CONTROL, PREFIXCLS_ARG_CONTROL, REACT_NODE_AS_STRING, STRING_CONTROL, STYLE_ARG_CONTROL } from '../../utils';
-import { addonType, children, defaultRender, renderAddonComponent, values } from './data';
+import { addonType, childrens, defaultRender, renderAddonComponent, values } from './data';
 
 const { Option } = Select;
 
@@ -185,7 +185,7 @@ export const MultipleMode: Story = {
       dropdownStyle: { paddingRight: '0' },
       notFoundContent: <Result type="no-results" noSearchResults description={'No results'} />,
       listHeight: '100%',
-      children,
+      children: childrens.map(opt => <Option value={opt}>{opt}</Option>),
   }
 }
 
