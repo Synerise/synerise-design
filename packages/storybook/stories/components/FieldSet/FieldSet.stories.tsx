@@ -6,7 +6,7 @@ import FieldSet from '@synerise/ds-field-set';
 import { ExpanderWrapper } from '@synerise/ds-field-set/dist/FieldSet.styles';
 import Button from '@synerise/ds-button';
 import Checkbox from '@synerise/ds-checkbox';
-import { RawSwitch } from '@synerise/ds-switch';
+import Switch from '@synerise/ds-switch';
 import Radio from '@synerise/ds-radio';
 import { Input } from '@synerise/ds-input';
 import Select from '@synerise/ds-select';
@@ -25,6 +25,8 @@ export default {
     title: STRING_CONTROL,
     description: STRING_CONTROL,
     divider: BOOLEAN_CONTROL,
+    expandable: BOOLEAN_CONTROL,
+    defaultExpanded: BOOLEAN_CONTROL,
     prefix: {
       ...reactNodeAsSelect(['expander', 'switch'], {
         expander: (
@@ -32,7 +34,7 @@ export default {
             <Button.Expander expanded={true} />
           </ExpanderWrapper>
         ),
-        switch: <RawSwitch id="" defaultChecked={true} />,
+        switch: <Switch label="" defaultChecked={true} />,
       }),
     },
     component: {
@@ -115,6 +117,18 @@ export const withExpander: Story = {
     title: 'Advanced option',
     description: 'This section is for advanced users only',
     prefix: 'expander',
+    component: 'checkbox',
+    divider: true,
+  },
+};
+
+
+export const Expandable: Story = {
+  ...withDescription,
+  args: {
+    title: 'Advanced option',
+    description: 'This section is for advanced users only',
+    expandable: true,
     component: 'checkbox',
     divider: true,
   },

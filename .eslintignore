@@ -12,6 +12,8 @@ config/
 **/core/**/variables.js
 **/icon/build/*.js
 **/flag/build/*.js
+**/icon/src/icons/*
+**/flag/src/icons/*
 packages/portal
 packages/storybook
 packages/docs-site
