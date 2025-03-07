@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.3.6...@synerise/ds-field-set@0.4.0) (2025-03-07)
+
+
+### Features
+
+* **field-set:** add expandable prop ([3c918ca](https://github.com/Synerise/synerise-design/commit/3c918ca5092321eb75dd8e5ed78458ebe2f1f445))
+
+
+
+
+
 ## [0.3.6](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.3.5...@synerise/ds-field-set@0.3.6) (2025-03-04)
 
 **Note:** Version bump only for package @synerise/ds-field-set

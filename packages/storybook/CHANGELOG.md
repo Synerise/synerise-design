@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.41.1...storybook7@0.42.0) (2025-03-07)
+
+
+### Bug Fixes
+
+* **factors:** empty results in promoted group ([412c1b3](https://github.com/Synerise/synerise-design/commit/412c1b345ca761c32bdc1a478b04bdd582aa1757))
+
+
+### Features
+
+* **field-set:** add expandable prop ([3c918ca](https://github.com/Synerise/synerise-design/commit/3c918ca5092321eb75dd8e5ed78458ebe2f1f445))
+
+
+
+
+
 ## [0.41.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.41.0...storybook7@0.41.1) (2025-03-04)
 
 

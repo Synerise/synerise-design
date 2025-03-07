@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.28.12...@synerise/ds-factors@0.28.13) (2025-03-07)
+
+
+### Bug Fixes
+
+* **factors:** empty results in promoted group ([412c1b3](https://github.com/Synerise/synerise-design/commit/412c1b345ca761c32bdc1a478b04bdd582aa1757))
+
+
+
+
+
 ## [0.28.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-factors@0.28.11...@synerise/ds-factors@0.28.12) (2025-03-04)
 
 **Note:** Version bump only for package @synerise/ds-factors

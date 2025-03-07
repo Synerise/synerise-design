@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.13](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.27.12...@synerise/ds-condition@0.27.13) (2025-03-07)
+
+**Note:** Version bump only for package @synerise/ds-condition
+
+
+
+
+
 ## [0.27.12](https://github.com/Synerise/synerise-design/compare/@synerise/ds-condition@0.27.11...@synerise/ds-condition@0.27.12) (2025-03-04)
 
 **Note:** Version bump only for package @synerise/ds-condition
