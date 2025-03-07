@@ -47,3 +47,16 @@ export const Description = styled.div`
   font-size: 13px;
   word-wrap: break-word;
 `;
+
+export const CollapsibleContent = styled.div<{ expanded: boolean; maxHeight?: number }>`
+  transition: max-height 0.7s ease-in-out;
+  overflow: hidden;
+  ${props =>
+    props.expanded
+      ? `
+    max-height: ${props.maxHeight || 9999}px;
+    `
+      : `
+    max-height: 0;
+    `}
+`;
