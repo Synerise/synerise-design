@@ -43,6 +43,7 @@ describe('Field-Set', () => {
   })
 
   it('should render expander when expandable', async () => { 
+    const TEST_CONTENT = 'TEST_CONTENT';
     renderWithProvider(
       <FieldSet
         expandable
