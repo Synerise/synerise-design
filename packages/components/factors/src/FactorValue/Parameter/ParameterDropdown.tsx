@@ -227,14 +227,6 @@ const ParameterDropdown = ({
         activeGroup
       );
     }
-    if (activeTab && groups && groups[activeTab]) {
-      return groupItems(
-        (items || [])
-          .filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
-          .map(mapItemToDropdownItem),
-        activeGroup
-      );
-    }
 
     if (activeTab && visibleGroups && visibleGroups[activeTab]) {
       return items
@@ -248,6 +240,15 @@ const ParameterDropdown = ({
             select: setSelected,
           };
         });
+    }
+
+    if (activeTab && groups && groups[activeTab]) {
+      return groupItems(
+        (items || [])
+          .filter((item: ParameterItem) => item.groupId === (groups[activeTab] as ParameterGroup).id)
+          .map(mapItemToDropdownItem),
+        activeGroup
+      );
     }
 
     if ((recentItems || []).length > 0) {
