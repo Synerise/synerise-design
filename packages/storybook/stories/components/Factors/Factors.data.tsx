@@ -140,7 +140,7 @@ export const FACTORS_ITEMS_DATA: ParameterItem[] = [
   {
     id: 7,
     name: 'Attribute #4',
-    groupId: 5,
+    groupId: 1,
     icon: <VarTypeStringM />,
   },
 ];
