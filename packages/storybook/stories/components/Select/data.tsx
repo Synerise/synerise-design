@@ -10,9 +10,7 @@ import { TagShape } from '@synerise/ds-tags';
 
 const { Option } = Select;
 
-export const children = Array(26).map((i) => {
-    <Option key={`Options ${(i+10).toString(36).toUpperCase()}`}>{`Option ${(i+10).toString(36).toUpperCase()}`}</Option>
-})
+export const childrens = ['Option A', 'Option B', 'Option C', 'Option D', 'Option E', 'Option F', 'Option G', 'Option H', 'Option I',];
 
 export const values = ['Option A', 'Option B', 'Option C', 'Very long option name with overflow'];
 
