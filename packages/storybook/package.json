@@ -2,15 +2,11 @@
   "name": "storybook7",
   "version": "0.42.0",
   "private": true,
-  "engines": {
-    "node": "^16"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Synerise/synerise-design.git"
   },
   "scripts": {
-    "build-docs": "yarn build-storybook",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
@@ -19,14 +15,28 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "dependencies": {
+    "react-scripts": "3.4.0"
+  },
   "peerDependencies": {
     "antd": "4.24.16",
-    "invariant": "^2.2.4",
     "react": ">=16.9.0 <= 18.3.1",
     "react-dom": ">=16 <= 18",
     "typescript": "4.9.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/cli": "^7.23.2",
+    "@babel/helper-environment-visitor": "7.18.9",
+    "@babel/helper-string-parser": "7.19.4",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
+    "@babel/plugin-transform-optional-chaining": "^7.22.3",
+    "@babel/plugin-transform-nullish-coalescing-operator": "7.24.1",
+    "@babel/preset-env": "7.24.3",
+    "@babel/preset-react": "7.8.3",
+    "@babel/preset-typescript": "7.8.3",
+    "@babel/types": "^7.20.0",
     "@faker-js/faker": "8.4.1",
     "@storybook/addon-actions": "7.6.5",
     "@storybook/addon-essentials": "7.6.5",
@@ -35,18 +45,25 @@
     "@storybook/blocks": "7.6.5",
     "@storybook/icons": "^1.2.9",
     "@storybook/manager-api": "7.6.5",
+    "@storybook/preset-create-react-app": "7.6.5",
+    "@storybook/components": "7.6.5",
+
+    "@storybook/test-runner": "^0.18.0",
+    
     "@storybook/react": "7.6.5",
     "@storybook/react-webpack5": "7.6.5",
     "@storybook/test": "7.6.5",
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "7.6.5",
-    "chromatic": "10.1.0",
+    "@use-it/interval": "^1.0.0",
+    "chromatic": "^11.25.0",
     "he": "^1.2.0",
     "storybook": "7.6.5",
     "storybook-addon-mock-date": "^0.6.0",
     "storybook-addon-pseudo-states": "^3.1.1",
     "storybook-deeper-sort": "^1.1.4",
     "storybook-mock-date-decorator": "^2.0.3",
-    "storybook-multilevel-sort": "^2.0.0"
+    "storybook-multilevel-sort": "^2.0.0",
+    "webpack": "^5"
   }
 }

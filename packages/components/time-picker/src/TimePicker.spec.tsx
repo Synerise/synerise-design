@@ -8,6 +8,11 @@ import { renderWithProvider, sleep } from '@synerise/ds-utils/dist/testing';
 import TimePicker from './index';
 import { TEST_CASES_FOR_12_HOUR_CLOCK } from './constants/timePicker.spec.constants';
 
+const normalizeSpaces = (content: string | null) => {
+  return content?.replace(/\u00A0|\u202F/g, ' ');
+};
+
+
 describe('TimePicker', () => {
   const CONTAINER_TESTID = 'tp-container';
   const INPUT_TESTID = 'tp-input';
@@ -130,7 +135,7 @@ describe('TimePicker', () => {
     );
     const input = screen.getByPlaceholderText('10 AM') as HTMLInputElement;
 
-    expect(input.value).toBe('10 AM');
+    expect(normalizeSpaces(input.value)).toBe('10 AM');
   });
 
   it('should render correct value for 12 hour clock', async () => {
@@ -138,7 +143,7 @@ describe('TimePicker', () => {
       const date = dayjs(`12-04-2020 ${timeString}`, 'DD-MM-YYYY HH:mm:ss').toDate();
       renderWithProvider(<TimePicker value={date} />, {}, { notation: 'US' });
       const input = screen.getAllByTestId(INPUT_TESTID)[index] as HTMLInputElement;
-      return input.value;
+      return normalizeSpaces(input.value);
     };
 
     for (const [index, [key, value]] of Object.entries(Object.entries(TEST_CASES_FOR_12_HOUR_CLOCK))) {
@@ -171,7 +176,7 @@ describe('TimePicker', () => {
     const minutes = within(minutesWrapper).getByText('22')
     
     minutes.click();
-    expect(getLastCallParams()[1]).toBe('12:22:00 AM');
+    expect(normalizeSpaces(getLastCallParams()[1])).toBe('12:22:00 AM');
     
   });
 });

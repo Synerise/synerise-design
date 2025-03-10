@@ -32,6 +32,10 @@ const EU_FORMATTED_TIME = '15:40';
 const EU_FORMATTED_INT_NUMBER = '1 234 567';
 const EU_FORMATTED_FLOAT_NUMBER = '1 234 567,89';
 
+const normalizeSpaces = (content: string | null) => {
+  return content?.replace(/\u00A0|\u202F/g, ' ')
+}
+
 describe('useDataFormat', () => {
   it('Examples', () => {
     // ARRANGE
@@ -63,29 +67,29 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
 
     // moment('2023-06-25T15:40:00') > 3:40 PM
-    expect(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'time' })).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'time' }))).toBe(US_FORMATTED_TIME);
 
     // dayjs('2023-06-25T15:40:00') > 6/25/2023, 3:40 PM
-    expect(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'datetime' })).toBe(
+    expect(normalizeSpaces(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'datetime' }))).toBe(
       `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`
     );
 
     // new Date('2023-06-25T15:40:00') > June 25, 2023, 3:40:00 PM
     expect(
-      result.current.formatValue(DATE_TO_FORMAT, {
+      normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, {
         targetFormat: 'datetime',
         dateOptions: { month: 'long' },
         timeOptions: { second: 'numeric' },
-      })
+      }))
     ).toBe(`${US_FORMATTED_LONG_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
 
     // new Date('2023-06-25T15:40:00') > Jun 25, 2023, 3:40:00 PM
     expect(
-      result.current.formatValue(DATE_TO_FORMAT, {
+      normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, {
         targetFormat: 'datetime',
         dateOptions: { month: 'short' },
         timeOptions: { second: 'numeric' },
-      })
+      }))
     ).toBe(`${US_FORMATTED_SHORT_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
 
     // 1234567 > 1,234,567
@@ -146,22 +150,22 @@ describe('useDataFormat', () => {
     expect(result.current.formatValue('string')).toBe('string');
     expect(result.current.formatValue(DATE_TO_FORMAT)).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
-    expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'time' })).toBe(US_FORMATTED_TIME);
-    expect(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'datetime' })).toBe(
+    expect(normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'time' }))).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, { targetFormat: 'datetime' }))).toBe(
       `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`
     );
 
     expect(result.current.formatValue(MOMENT_TO_FORMAT)).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
-    expect(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'time' })).toBe(US_FORMATTED_TIME);
-    expect(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'datetime' })).toBe(
+    expect(normalizeSpaces(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'time' }))).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(result.current.formatValue(MOMENT_TO_FORMAT, { targetFormat: 'datetime' }))).toBe(
       `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`
     );
 
     expect(result.current.formatValue(DAYJS_TO_FORMAT)).toBe(US_FORMATTED_DATE);
     expect(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'date' })).toBe(US_FORMATTED_DATE);
-    expect(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'time' })).toBe(US_FORMATTED_TIME);
-    expect(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'datetime' })).toBe(
+    expect(normalizeSpaces(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'time' }))).toBe(US_FORMATTED_TIME);
+    expect(normalizeSpaces(result.current.formatValue(DAYJS_TO_FORMAT, { targetFormat: 'datetime' }))).toBe(
       `${US_FORMATTED_DATE}, ${US_FORMATTED_TIME}`
     );
 
@@ -306,11 +310,11 @@ describe('useDataFormat', () => {
 
     // ASSERT
     expect(
-      result.current.formatValue(DATE_TO_FORMAT, {
+      normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, {
         targetFormat: 'datetime',
         dateOptions: { month: 'long' },
         timeOptions: { second: 'numeric' },
-      })
+      }))
     ).toBe(`${US_FORMATTED_LONG_DATE}, ${US_FORMATTED_TIME_WITH_SECONDS}`);
 
     expect(
@@ -321,10 +325,10 @@ describe('useDataFormat', () => {
     ).toBe(`${US_FORMATTED_LONG_DATE}`);
 
     expect(
-      result.current.formatValue(DATE_TO_FORMAT, {
+      normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, {
         targetFormat: 'time',
         second: 'numeric',
-      })
+      }))
     ).toBe(`${US_FORMATTED_TIME_WITH_SECONDS}`);
 
     expect(
@@ -682,12 +686,12 @@ describe('useDataFormat', () => {
     ).toBe(`cze`);
 
     expect(
-      result.current.formatValue(DATE_TO_FORMAT, {
+      normalizeSpaces(result.current.formatValue(DATE_TO_FORMAT, {
         targetFormat: 'datetime',
         namingConvention: 'upperFirst',
         dateOptions: { month: 'long' },
         timeOptions: { second: 'numeric' },
-      })
+      }))
     ).toBe(`Czerwca 25, 2023, 3:40:00 PM`);
 
     expect(

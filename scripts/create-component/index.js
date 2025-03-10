@@ -12,10 +12,7 @@ const { createComponent } = require('../utils/templates.js');
 const { smush, pascalize } = require('../utils/string.js');
 
 const packagesDir = path.resolve(__dirname, '..', '..', 'packages', 'components');
-const storiesDir = path.resolve(__dirname, '..', '..', 'packages', 'portal', 'stories', 'components');
 const storiesCSF3Dir = path.resolve(__dirname, '..', '..', 'packages', 'storybook', 'stories', 'components');
-const storiesTemplateDir = path.resolve(__dirname, 'stories-template');
-const storiesCSF3TemplateDir = path.resolve(__dirname, 'stories-csf3-template');
 const templateDir = path.resolve(__dirname, 'package-template');
 
 
@@ -66,10 +63,9 @@ async function main() {
   const docsID = answers.name;
   const folderName = smush(answers.name);
   const packageName = toPackageName(answers.name);
-
   const folderPath = path.resolve(packagesDir, folderName);
-  const storiesPath = path.resolve(storiesDir, componentName);
   const storiesCSF3Path = path.resolve(storiesCSF3Dir, componentName);
+
 
   const vars = {
     ...answers,
@@ -78,17 +74,18 @@ async function main() {
     folderName,
     folderPath,
     packageName,
-    storiesPath,
     storiesCSF3Path
   };
 
   if (fs.existsSync(folderPath)) {
     throw new Error(`folder ${folderName} already exists`);
   }
+  if (!fs.existsSync(storiesCSF3Path)){
+    fs.mkdirSync(storiesCSF3Path);
+  }
 
   await copyPackageFromTemplateDir(templateDir, folderPath, vars);
-  await copyPackageFromTemplateDir(storiesTemplateDir, storiesPath, vars);
-  await copyPackageFromTemplateDir(storiesCSF3TemplateDir, storiesCSF3Path, vars);
+  // await copyPackageFromTemplateDir(storiesCSF3TemplateDir, storiesCSF3Path, vars);
   createComponent(vars)
   return vars;
 }

@@ -1,4 +1,4 @@
-FROM quay.io/synerise/base-images:nodejs18
+FROM quay.io/synerise/base-images:nodejs20
 
 LABEL maintainer="SYNERISE"
 

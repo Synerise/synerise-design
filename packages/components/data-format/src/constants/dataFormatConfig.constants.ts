@@ -14,4 +14,6 @@ export const DEFAULT_DATA_FORMAT_CONFIG: DataFormatConfig = {
   numberFormatNotation: DEFAULT_DATA_FORMAT_NOTATION,
 };
 
-export const DEFAULT_DATA_FORMAT_INTL: IntlShape = createIntl({ locale: DEFAULT_DATA_FORMAT_NOTATION });
+export const DEFAULT_DATA_FORMAT_INTL: IntlShape = createIntl({
+  locale: 'pl',
+});
