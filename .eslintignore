@@ -16,5 +16,4 @@ config/
 **/flag/src/icons/*
 packages/portal
 packages/storybook
-packages/docs-site
 __specs__

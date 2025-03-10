@@ -138,8 +138,7 @@ describe('Information card tooltip', () => {
   })
 });
 
-// packages/portal/stories/components/information-card
-export function WithDropdown(numberOfElements = 1) {
+function WithDropdown(numberOfElements = 1) {
   const [dropdownVisible, setDropdownVisible] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(

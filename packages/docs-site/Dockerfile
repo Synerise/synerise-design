@@ -15,4 +15,4 @@ USER $APP_USER
 
 WORKDIR ${APP_DIR}
 
-COPY website/build /srv/www
+COPY storybook-static /srv/www/storybook-static

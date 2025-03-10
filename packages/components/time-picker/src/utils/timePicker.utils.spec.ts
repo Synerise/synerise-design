@@ -68,6 +68,10 @@ const TEST_CASES_TIME_CHANGE_12_HOUR_CLOCK = [
   }
 ]
 
+const normalizeSpaces = (content: string | null) => {
+  return content?.replace(/\u00A0|\u202F/g, ' ');
+};
+
 describe('handleTimeChange util', () => {
   it('in 12hr mode should calculate correct value after change', () => {
     TEST_CASES_TIME_CHANGE_12_HOUR_CLOCK.forEach( testCase => {
@@ -79,7 +83,7 @@ describe('handleTimeChange util', () => {
       
       const newDate = handleTimeChange(value, unit, newValue, clockModeChanged, true, clockMode, []);
       const formattedTime = dayjs(newDate).format('hh:mm:ss A');
-      expect(formattedTime).toBe(result);
+      expect(normalizeSpaces(formattedTime)).toBe(result);
     });
   });
 

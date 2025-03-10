@@ -52,7 +52,6 @@ export const SelectItemFromCategory: Story = {
         TIMEOUT_OPTIONS
       );
       await sleep(SLEEP_TIME);
-
       await userEvent.click(canvas.getByText(subGroupName));
       
       await sleep(SLEEP_TIME);

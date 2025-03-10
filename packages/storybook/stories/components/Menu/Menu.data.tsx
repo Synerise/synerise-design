@@ -26,8 +26,6 @@ import Checkbox from '@synerise/ds-checkbox';
 import { useOnClickOutside } from '@synerise/ds-utils';
 import * as S from './Menu.styles';
 
-import { boolean } from '@storybook/addon-knobs';
-
 import { avatar10 } from '../../constants';
 
 export const TEXT_PLACEHOLDER = 'Option';
@@ -248,7 +246,7 @@ export const renderPrefix = (prefixIconType: string, isChecked?: boolean, onChec
     case prefixType.avatar:
       return (
         <Badge status="active">
-          <Avatar size="small" src={avatar10} shape="circle" hasStatus={boolean('Has status', true)} />
+          <Avatar size="small" src={avatar10} shape="circle" hasStatus />
         </Badge>
       );
     case prefixType.checkbox:

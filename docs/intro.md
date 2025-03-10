@@ -1,1 +1,0 @@
-Synerise Design System

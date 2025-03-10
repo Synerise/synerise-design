@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import moment from 'moment';
 import dayjs from 'dayjs';
+
+import { screen } from '@testing-library/react';
 
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import { FormattedTime, DataFormatNotationType } from '@synerise/ds-data-format';
@@ -16,6 +18,20 @@ const US_FORMATTED_TIME_WITH_SECONDS = '3:40:00 PM';
 const EU_NOTATION: DataFormatNotationType = 'EU';
 const EU_FORMATTED_TIME = '15:40';
 const EU_FORMATTED_TIME_WITH_SECONDS = '15:40:00';
+
+const WRAPPER_TESTID = 'test_result';
+const renderInWrapper = (content: ReactNode, ...rest) => {
+  return renderWithProvider(
+    <div data-testid={WRAPPER_TESTID}>
+      {content}
+    </div>,
+    ...rest
+  );
+}
+const normalizedResult = () => {
+  return screen.getByTestId(WRAPPER_TESTID).textContent?.replace(/\u00A0|\u202F/g, ' ')
+}
+
 
 describe('FormattedTime', () => {
   it('should render properly time with default notation', () => {
@@ -35,27 +51,18 @@ describe('FormattedTime', () => {
   });
 
   it('should render properly time with US notation', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedTime value={DATE_TO_FORMAT} />, {}, { notation: US_NOTATION });
-
-    // ASSERT
-    expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    renderInWrapper(<FormattedTime value={DATE_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    expect(normalizedResult()).toBe(US_FORMATTED_TIME);
   });
 
   it('should render properly time from moment', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedTime value={MOMENT_TO_FORMAT} />, {}, { notation: US_NOTATION });
-
-    // ASSERT
-    expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    renderInWrapper(<FormattedTime value={MOMENT_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    expect(normalizedResult()).toBe(US_FORMATTED_TIME);
   });
 
   it('should render properly time from daysjs', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(<FormattedTime value={DAYJS_TO_FORMAT} />, {}, { notation: US_NOTATION });
-
-    // ASSERT
-    expect(getByText(US_FORMATTED_TIME)).toBeTruthy();
+    renderInWrapper(<FormattedTime value={DAYJS_TO_FORMAT} />, {}, { notation: US_NOTATION });
+    expect(normalizedResult()).toBe(US_FORMATTED_TIME);
   });
 
   it('should render properly time with options and EU notation', () => {
@@ -71,14 +78,11 @@ describe('FormattedTime', () => {
   });
 
   it('should render properly time with options and US notation', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(
+    renderInWrapper(
       <FormattedTime value={DAYJS_TO_FORMAT} options={{ second: 'numeric' }} />,
       {},
       { notation: US_NOTATION }
     );
-
-    // ASSERT
-    expect(getByText(US_FORMATTED_TIME_WITH_SECONDS)).toBeTruthy();
+    expect(normalizedResult()).toBe(US_FORMATTED_TIME_WITH_SECONDS);
   });
 });
