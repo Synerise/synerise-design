@@ -63,7 +63,7 @@ docs_build:
     - yarn build
     - yarn build-storybook
     - mv packages/storybook/storybook-static/ packages/docs-site/storybook-static
-    
+
   artifacts:
     paths:
       - packages/docs-site/storybook-static/*
@@ -130,7 +130,7 @@ k8s-prod-gitops:
       - $LIBRARY_PIPELINE == "NO" && $GITOPS == "true"
   parallel:
     matrix:
-      - ENV: p001
+      - ENV: g001-misc1
         AUTODEPLOY_TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 chromatic_publish_sb7:
