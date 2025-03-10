@@ -1,6 +1,6 @@
 {
   "name": "storybook7",
-  "version": "0.42.0",
+  "version": "0.42.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -25,14 +25,14 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
     "@babel/cli": "^7.23.2",
+    "@babel/core": "^7.23.2",
     "@babel/helper-environment-visitor": "7.18.9",
     "@babel/helper-string-parser": "7.19.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-proposal-object-rest-spread": "7.8.3",
-    "@babel/plugin-transform-optional-chaining": "^7.22.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-nullish-coalescing-operator": "7.24.1",
+    "@babel/plugin-transform-optional-chaining": "^7.22.3",
     "@babel/preset-env": "7.24.3",
     "@babel/preset-react": "7.8.3",
     "@babel/preset-typescript": "7.8.3",
@@ -43,16 +43,14 @@
     "@storybook/addon-interactions": "7.6.5",
     "@storybook/addon-links": "7.6.5",
     "@storybook/blocks": "7.6.5",
+    "@storybook/components": "7.6.5",
     "@storybook/icons": "^1.2.9",
     "@storybook/manager-api": "7.6.5",
     "@storybook/preset-create-react-app": "7.6.5",
-    "@storybook/components": "7.6.5",
-
-    "@storybook/test-runner": "^0.18.0",
-    
     "@storybook/react": "7.6.5",
     "@storybook/react-webpack5": "7.6.5",
     "@storybook/test": "7.6.5",
+    "@storybook/test-runner": "^0.18.0",
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "7.6.5",
     "@use-it/interval": "^1.0.0",

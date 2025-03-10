@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.1](https://github.com/Synerise/synerise-design/compare/storybook7@0.42.0...storybook7@0.42.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* **select:** fixes to select multiple-mode ([dace818](https://github.com/Synerise/synerise-design/commit/dace818e385840c2b83dd18f44072349d64c500f))
+
+
+
+
+
 # [0.42.0](https://github.com/Synerise/synerise-design/compare/storybook7@0.41.1...storybook7@0.42.0) (2025-03-07)
 
 

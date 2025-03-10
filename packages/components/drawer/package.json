@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-drawer",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Drawer UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^0.32.2"
+    "@synerise/ds-utils": "^0.32.3"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

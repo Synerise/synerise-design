@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-utils",
-  "version": "0.32.2",
+  "version": "0.32.3",
   "description": "Utils UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "synerise/synerise-design",
@@ -33,7 +33,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-data-format": "^0.7.1",
+    "@synerise/ds-data-format": "^0.7.2",
     "latinize": "^0.5.0"
   },
   "peerDependencies": {

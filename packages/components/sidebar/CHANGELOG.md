@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.11](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.6.10...@synerise/ds-sidebar@0.6.11) (2025-03-10)
+
+
+### Bug Fixes
+
+* **sidebar:** sidebar background style fix ([e3f326a](https://github.com/Synerise/synerise-design/commit/e3f326ab5367b7a23ecf0acc130ee012d1dc9a4a))
+
+
+
+
+
 ## [0.6.10](https://github.com/Synerise/synerise-design/compare/@synerise/ds-sidebar@0.6.9...@synerise/ds-sidebar@0.6.10) (2025-03-04)
 
 **Note:** Version bump only for package @synerise/ds-sidebar
