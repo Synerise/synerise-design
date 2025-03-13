@@ -76,6 +76,7 @@ export const CodeAreaEditorRaw = ({
         const markers = monacoInstance.editor.getModelMarkers({});
         onDidChangeMarkers && onDidChangeMarkers(markers);
       });
+      monacoInstance.editor.colorize('test', 'html', {});
 
       beforeMount && beforeMount(monacoInstance);
     },
