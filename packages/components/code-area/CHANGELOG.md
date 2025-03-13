@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.6.2...@synerise/ds-code-area@0.6.3) (2025-03-13)
+
+
+### Bug Fixes
+
+* **code-area:** test colorize ([e52a589](https://github.com/Synerise/synerise-design/commit/e52a5898b6ca86da350445002e8e77aaa92b68ac))
+
+
+
+
+
 ## [0.6.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-code-area@0.6.1...@synerise/ds-code-area@0.6.2) (2025-03-10)
 
 **Note:** Version bump only for package @synerise/ds-code-area
