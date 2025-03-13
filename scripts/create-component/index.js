@@ -85,7 +85,6 @@ async function main() {
   }
 
   await copyPackageFromTemplateDir(templateDir, folderPath, vars);
-  // await copyPackageFromTemplateDir(storiesCSF3TemplateDir, storiesCSF3Path, vars);
   createComponent(vars)
   return vars;
 }

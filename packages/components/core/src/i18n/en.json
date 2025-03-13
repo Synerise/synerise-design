@@ -1,5 +1,9 @@
 {
   "DS": {
+    "MAPPING": {
+      "BULK_SELECTION_ENABLE": "Bulk actions",
+      "BULK_SELECTION_DISABLE": "Hide actions"
+    },
     "MENU": {
       "SHOW-LESS": "Show less",
       "SHOW-MORE": "Show more"

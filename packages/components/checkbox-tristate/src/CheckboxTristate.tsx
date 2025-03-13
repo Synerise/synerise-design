@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '@synerise/ds-checkbox';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox/Checkbox';
 import { CheckboxTristateChangeEvent, CheckboxTristateProps } from './CheckboxTristate.types';
@@ -19,14 +19,14 @@ export function checkedValue(checked: boolean, indeterminate: boolean): boolean 
   return indeterminate ? undefined : checked;
 }
 
-const CheckboxTristate: React.FC<CheckboxTristateProps> = props => {
+const CheckboxTristate = (props: CheckboxTristateProps) => {
   const { checked, defaultChecked, onChange, ...restProps } = props;
   const initialChecked = 'checked' in props ? checked : defaultChecked;
   const isControlled = 'checked' in props;
-  const [currentChecked, setChecked] = React.useState(initialChecked);
-  const [indeterminate, setIndeterminate] = React.useState(initialChecked === undefined);
+  const [currentChecked, setChecked] = useState(initialChecked);
+  const [indeterminate, setIndeterminate] = useState(initialChecked === undefined);
 
-  React.useEffect((): void => {
+  useEffect(() => {
     if (isControlled && (checked !== currentChecked || (checked === false && currentChecked === false))) {
       if (checked === undefined) {
         setIndeterminate(true);
@@ -38,7 +38,7 @@ const CheckboxTristate: React.FC<CheckboxTristateProps> = props => {
     }
   }, [isControlled, checked, currentChecked]);
 
-  const handleOnChange = (event: CheckboxChangeEvent): void => {
+  const handleOnChange = (event: CheckboxChangeEvent) => {
     const [newChecked, newIndeterminate] = nextCheckedValues(currentChecked, indeterminate);
     const tristateEvent = { ...event } as CheckboxTristateChangeEvent;
 
