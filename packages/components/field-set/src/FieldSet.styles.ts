@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Title = styled.div<{ description?: boolean; isClickable?: boolean }>`
   display: flex;
@@ -47,16 +47,20 @@ export const Description = styled.div`
   font-size: 13px;
   word-wrap: break-word;
 `;
-
-export const CollapsibleContent = styled.div<{ expanded: boolean; maxHeight?: number }>`
-  transition: max-height 0.7s ease-in-out;
-  overflow: hidden;
+export const CollapsibleContent = styled.div<{ expandable?: boolean; expanded?: boolean; maxHeight?: number }>`
+  position: relative;
   ${props =>
-    props.expanded
-      ? `
+    props.expandable &&
+    css`
+      transition: max-height 0.7s ease-in-out;
+      overflow: hidden;
+      ${props.expanded
+        ? `
     max-height: ${props.maxHeight || 9999}px;
     `
-      : `
+        : `
     max-height: 0;
     `}
+    `}
 `;
+export const CollapsibleContentInner = styled.div``;

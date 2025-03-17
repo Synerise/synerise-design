@@ -1,6 +1,7 @@
 import React, { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Divider from '@synerise/ds-divider';
 import Button from '@synerise/ds-button';
+import { useResizeObserver } from '@synerise/ds-utils';
 import * as S from './FieldSet.styles';
 import { FieldSetProps } from './FieldSet.types';
 
@@ -21,6 +22,9 @@ const FieldSet = ({
   const [maxHeight, setMaxHeight] = useState<number>();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const measureMaxHeightRef = useRef<HTMLDivElement | null>(null);
+
+  useResizeObserver(measureMaxHeightRef, (dimensions: DOMRect) => setMaxHeight(dimensions.height));
 
   useEffect(() => {
     containerRef.current?.scrollHeight && setMaxHeight(containerRef.current?.scrollHeight);
@@ -71,12 +75,15 @@ const FieldSet = ({
         <S.CollapsibleContent
           data-testid="field-set-collapsible"
           ref={containerRef}
-          expanded={!expandable || expanded}
+          expandable={expandable}
+          expanded={expandable && expanded}
           aria-hidden={expandable && !expanded}
           maxHeight={maxHeight}
         >
-          {component && <S.ComponentWrapper>{component}</S.ComponentWrapper>}
-          {button && <S.ActionButton>{button}</S.ActionButton>}
+          <S.CollapsibleContentInner ref={measureMaxHeightRef}>
+            {component && <S.ComponentWrapper>{component}</S.ComponentWrapper>}
+            {button && <S.ActionButton>{button}</S.ActionButton>}
+          </S.CollapsibleContentInner>
         </S.CollapsibleContent>
       )}
     </S.ContainerWrapper>
