@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-toolbar",
-  "version": "0.2.7",
+  "version": "1.0.0",
   "description": "Toolbar UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,10 +34,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-badge": "^0.9.7",
-    "@synerise/ds-button": "^0.23.4",
-    "@synerise/ds-tooltip": "^0.16.3",
-    "@synerise/ds-utils": "^0.32.3"
+    "@synerise/ds-badge": "^1.0.0",
+    "@synerise/ds-button": "^1.0.0",
+    "@synerise/ds-tooltip": "^1.0.0",
+    "@synerise/ds-utils": "^1.0.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

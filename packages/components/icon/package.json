@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-icon",
-  "version": "0.72.1",
+  "version": "1.0.0",
   "description": "Icon UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -42,7 +42,7 @@
   ],
   "types": "dist/esm/index.d.ts",
   "dependencies": {
-    "@synerise/ds-utils": "^0.32.3"
+    "@synerise/ds-utils": "^1.0.0"
   },
   "peerDependencies": {
     "@synerise/ds-core": "*",

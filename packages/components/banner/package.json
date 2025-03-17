@@ -1,6 +1,6 @@
 {
   "name": "@synerise/ds-banner",
-  "version": "0.2.9",
+  "version": "1.0.0",
   "description": "Banner UI Component for the Synerise Design System",
   "license": "ISC",
   "repository": "Synerise/synerise-design",
@@ -34,12 +34,12 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^0.23.4",
-    "@synerise/ds-icon": "^0.72.1",
-    "@synerise/ds-tags": "^0.11.9",
-    "@synerise/ds-tooltip": "^0.16.3",
-    "@synerise/ds-typography": "^0.17.7",
-    "@synerise/ds-utils": "^0.32.3",
+    "@synerise/ds-button": "^1.0.0",
+    "@synerise/ds-icon": "^1.0.0",
+    "@synerise/ds-tags": "^1.0.0",
+    "@synerise/ds-tooltip": "^1.0.0",
+    "@synerise/ds-typography": "^1.0.0",
+    "@synerise/ds-utils": "^1.0.0",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
