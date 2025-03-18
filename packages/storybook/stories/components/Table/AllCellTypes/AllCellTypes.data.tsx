@@ -13,7 +13,7 @@ import ProgressBar from '@synerise/ds-progress-bar';
 import Loader from '@synerise/ds-loader';
 import Tooltip from '@synerise/ds-tooltip';
 import Switch from '@synerise/ds-switch';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 
 import { AVATAR_IMAGE } from '../../../constants';
 import { Counter } from '../../Loader/Loader.data';

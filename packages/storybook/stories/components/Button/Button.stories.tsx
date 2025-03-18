@@ -16,6 +16,8 @@ import {
 } from '../../utils';
 
 import { BUTTON_CUSTOM_COLORS, BUTTON_TYPES } from './Button.constants';
+import { TagShape } from '@synerise/ds-tag';
+import { theme } from '@synerise/ds-core';
 
 type Story = StoryObj<ButtonProps>;
 
@@ -42,6 +44,23 @@ const meta: Meta<ButtonProps> = {
       ...reactNodeAsSelect(['AngleDownS', 'CheckS'], {
         AngleDownS: <Icon component={<AngleDownS />} />,
         CheckS: <Icon component={<CheckS />} />,
+      }),
+    },
+    tagProps: {
+      ...reactNodeAsSelect(['none', 'tag 1', 'tag 2'], {
+        none: undefined,
+        'tag 1': {
+          name: 'ON',
+          color: theme.palette['green-600'],
+        },
+        'tag 2': {
+          name: '5/12 HRS',
+          color: theme.palette['grey-400'],
+        },
+        'tag 3': {
+          name: '5/12 HRS',
+          color: theme.palette['grey-400'],
+        },
       }),
     },
     className: CLASSNAME_ARG_CONTROL,

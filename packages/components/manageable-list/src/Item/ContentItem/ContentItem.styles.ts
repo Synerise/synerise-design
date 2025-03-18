@@ -1,5 +1,5 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { Tag } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import { Tag } from '@synerise/ds-tag/dist/Tag.styles';
 import Button from '@synerise/ds-button';
 import { ThemeProps } from '@synerise/ds-core';
 import { ItemLabel } from '../SimpleItem/SimpleItem.styles';

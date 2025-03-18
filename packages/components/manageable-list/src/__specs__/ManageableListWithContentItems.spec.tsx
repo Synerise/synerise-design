@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import Tag from '@synerise/ds-tags/dist/Tag/Tag';
-import { TagShape } from '@synerise/ds-tags/dist/Tag/Tag.types';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import FileM from '@synerise/ds-icon';
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import ManageableList from '../ManageableList';

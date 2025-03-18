@@ -1,5 +1,5 @@
 import type { Key, ReactNode } from 'react';
-import type { TagProps } from '@synerise/ds-tags';
+import type { TagProps } from '@synerise/ds-tag';
 import type { TooltipProps } from '@synerise/ds-tooltip';
 
 type CardSelectTagProps = Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'>;

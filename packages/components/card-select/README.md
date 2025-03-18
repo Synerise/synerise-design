@@ -73,7 +73,7 @@ yarn add @synerise/ds-card-select
 
 ### TagProps
 
-accepts a subset of TagProps. See @synerise/ds-tags for API
+accepts a subset of TagProps. See @synerise/ds-tag for API
 ```
 Omit<TagProps, 'shape' | 'removable' | 'asPill' | 'onRemove' | 'image' | 'texts'>
 ```

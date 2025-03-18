@@ -5,7 +5,6 @@ import React, { ReactNode, useRef, useState, useMemo, useEffect, MouseEvent } fr
 import { Carousel } from 'antd';
 import { getPopupContainer } from '@synerise/ds-utils';
 import Icon, { NotificationsM } from '@synerise/ds-icon';
-import Button from '@synerise/ds-button';
 import { theme } from '@synerise/ds-core';
 import Scrollbar from '@synerise/ds-scrollbar';
 import * as S from './Tooltip.styles';
@@ -41,27 +40,6 @@ const Tooltip = ({
   const [isVisible, setIsVisible] = useState(false);
   const timeoutClickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const renderButton = useMemo(() => {
-    const { buttonIcon, label, onClick } = button || {};
-    const buttonMode = () => {
-      if (buttonIcon && label) return 'icon-label';
-      if (buttonIcon) return 'single-icon';
-      return 'label';
-    };
-
-    return button ? (
-      <S.TooltipButton>
-        {/* eslint-disable-next-line react/jsx-handler-names */}
-        <Button type="ghost-white" mode={buttonMode()} onClick={onClick}>
-          {buttonIcon}
-          {label}
-        </Button>
-      </S.TooltipButton>
-    ) : (
-      <></>
-    );
-  }, [button]);
-
   const captureClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
@@ -91,7 +69,7 @@ const Tooltip = ({
           </S.TooltipDescription>
         )}
       </S.TooltipContent>
-      {renderButton}
+      {button && <S.TooltipButton>{button}</S.TooltipButton>}
     </S.TooltipComponent>
   );
 

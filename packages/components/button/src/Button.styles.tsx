@@ -3,6 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
 import Button from 'antd/lib/button';
 import { IconContainer } from '@synerise/ds-icon';
+import DSTag from '@synerise/ds-tag';
 
 export const RIPPLE_ANIMATION_TIME = 500;
 
@@ -109,6 +110,11 @@ export const ButtonFocus = styled.div`
   z-index: 99;
   box-shadow: inset 0 0 0 0 transparent;
 `;
+
+export const Tag = styled(DSTag)`
+  margin: 0 0 0 8px;
+`;
+
 export const ButtonLabel = styled.div`
   display: flex;
   align-items: center;
@@ -139,7 +145,6 @@ export const AntdButton = styled(
 )`  
   && {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
-    border: 0;
     display: inline-flex;
     align-items: center;
     padding: 0 12px;
@@ -336,6 +341,10 @@ export const AntdButton = styled(
             margin: ${rightIcon};
           }
         }
+
+        ${Tag} {
+          margin: 0 12px 0 0;
+        }
       `}
     ${props =>
       props.mode === 'label-icon' &&
@@ -348,6 +357,9 @@ export const AntdButton = styled(
           & > .ds-icon {
             margin: ${rightIcon};
           }
+        }
+        ${Tag} {
+          margin: 0 12px 0 0;
         }
       `}
     ${props =>
@@ -613,5 +625,12 @@ export const AntdButton = styled(
             }
           }
         `}
+
+    &:hover:not(:disabled):not(:focus) {
+      ${Tag} span {
+        color: ${props => props.theme.palette.white};
+        cursor: inherit;
+      }
+    }
   }
 `;

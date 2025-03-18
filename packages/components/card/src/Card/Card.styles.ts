@@ -1,7 +1,6 @@
 import type { MouseEventHandler, ReactNode } from 'react';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { Title as DSTitle } from '@synerise/ds-typography';
-import { Container as TagsContainer } from '@synerise/ds-tags/dist/Tags.styles';
 import { ThemePropsVars } from '@synerise/ds-core';
 import { Backgrounds } from './Card.types';
 import { CardSummaryWrapper } from '../CardSummary/CardSummary.styles';
@@ -135,10 +134,6 @@ export const TitleWrapper = styled.div<{ compact?: boolean; description?: boolea
   gap: 4px;
   align-items: center;
   margin-bottom: ${(props): string => (props.description && !props.compact ? '6px' : '0')};
-
-  ${TagsContainer} {
-    margin-bottom: 0;
-  }
 `;
 
 export const TitleTag = styled.div``;

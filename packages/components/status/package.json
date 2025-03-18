@@ -34,7 +34,7 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-tags": "^1.0.0",
+    "@synerise/ds-tag": "^1.0.0",
     "@synerise/ds-utils": "^1.0.0"
   },
   "peerDependencies": {

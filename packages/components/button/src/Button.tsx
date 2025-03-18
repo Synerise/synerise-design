@@ -3,6 +3,7 @@ import '@synerise/ds-core/dist/js/style';
 import './style/index.less';
 
 import Icon, { SpinnerM } from '@synerise/ds-icon';
+import { TagShape } from '@synerise/ds-tag';
 
 import * as S from './Button.styles';
 import { ButtonProps } from './Button.types';
@@ -20,6 +21,7 @@ const Button = ({
   color = 'red',
   error,
   activated,
+  tagProps,
   children,
   ...antdProps
 }: ButtonProps) => {
@@ -85,6 +87,7 @@ const Button = ({
       {!antdProps.readOnly && <S.RippleEffect ref={rippleRef} className={`btn-ripple ${rippleClassName}`} />}
       <S.ButtonLabel data-testid="ds-button-label" className="ds-button-label">
         {children}
+        {tagProps && mode !== 'single-icon' && <S.Tag {...tagProps} shape={TagShape.MEDIUM_ROUND} asPill />}
       </S.ButtonLabel>
       {loading && (
         <S.Spinner className="btn-spinner" data-testid="button-spinner">

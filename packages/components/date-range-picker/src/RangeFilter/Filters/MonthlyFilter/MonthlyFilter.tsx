@@ -1,7 +1,7 @@
 import React, { PureComponent, ReactNode, ReactText } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import ContentItem from '@synerise/ds-manageable-list/dist/Item/ContentItem/ContentItem';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import { theme } from '@synerise/ds-core';
 import Button from '@synerise/ds-button';
 import { v4 as uuid } from 'uuid';

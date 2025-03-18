@@ -34,7 +34,6 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@synerise/ds-button": "^1.0.0",
     "@synerise/ds-icon": "^1.0.0",
     "@synerise/ds-scrollbar": "^1.0.0",
     "@synerise/ds-utils": "^1.0.0"

@@ -1,7 +1,16 @@
 import type { ReactNode } from 'react';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
-import type { TagsTexts } from '../Tags.types';
 
+export type TagTexts = {
+  addButtonLabel?: ReactNode;
+  searchPlaceholder?: string;
+  manageLinkLabel?: ReactNode;
+  createTagButtonLabel?: ReactNode;
+  dropdownNoTags?: ReactNode;
+  clearTooltip?: ReactNode;
+  deleteTooltip?: ReactNode;
+  noResultsLabel?: ReactNode;
+};
 export type TagProps = WithHTMLAttributes<
   HTMLDivElement,
   {
@@ -18,20 +27,18 @@ export type TagProps = WithHTMLAttributes<
     onRemove?: (tag: string | number) => void;
     prefixel?: ReactNode;
     suffixel?: ReactNode;
-    texts?: TagsTexts;
+    texts?: TagTexts;
     asPill?: boolean;
     dashed?: boolean;
   }
 >;
-
-// @deprecated - use TagProps instead
-export type Props = TagProps;
 
 export enum TagShape {
   SINGLE_CHARACTER_ROUND = 'single_character_round',
   SINGLE_CHARACTER_SQUARE = 'single_character_square',
   DEFAULT_ROUND = 'default_round',
   DEFAULT_SQUARE = 'default_square',
+  MEDIUM_ROUND = 'medium_round',
   SMALL_ROUND = 'small_round',
   SMALL_SQUARE = 'small_square',
   STATUS_NEUTRAL = 'status_custom',

@@ -4,9 +4,8 @@ import { Meta, StoryObj } from '@storybook/react';
 import Badge from '@synerise/ds-badge';
 import { theme } from '@synerise/ds-core';
 import Icon, { Add3M } from '@synerise/ds-icon';
-import { Tag } from '@synerise/ds-tags';
-import { TagProps, TagShape } from '@synerise/ds-tags';
-import { getColorText } from '@synerise/ds-tags/dist/Tag/Tag.styles';
+import Tag, { TagShape, TagProps } from '@synerise/ds-tag';
+import { getColorText } from '@synerise/ds-tag/dist/Tag.styles';
 
 import {
   BOOLEAN_CONTROL,

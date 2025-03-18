@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { WithHTMLAttributes } from '@synerise/ds-utils';
-import type { TagProps } from '@synerise/ds-tags';
+import type { TagProps } from '@synerise/ds-tag';
 
 type Texts = 'expand' | 'collapse' | 'closeTooltip';
 export type BannerTexts = {

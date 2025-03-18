@@ -4,6 +4,13 @@ export const ToolbarWrapper = styled.div`
   display: flex;
   gap: 8px;
 `;
+
+export const ToolbarDivider = styled.div`
+  width: 1px;
+  height: calc(100% + 8px);
+  margin: -4px 0;
+  background: ${props => props.theme.palette['grey-200']};
+`;
 export const ToolbarLabel = styled.div`
   display: flex;
   align-items: center;

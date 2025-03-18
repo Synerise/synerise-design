@@ -9,7 +9,7 @@ import DateRangePicker, { DateRange } from '@synerise/ds-date-range-picker';
 import { SavedFilter } from '@synerise/ds-date-range-picker/dist/RangeFilter/Shared/FilterDropdown/FilterDropdown.types';
 import { Expression } from '@synerise/ds-filter';
 import Icon, { CalendarM } from '@synerise/ds-icon';
-import { Tag, TagShape } from '@synerise/ds-tags';
+import Tag, { TagShape } from '@synerise/ds-tag';
 import Tooltip from '@synerise/ds-tooltip';
 
 import { ExpressionWithSteps } from '../Filter.types';

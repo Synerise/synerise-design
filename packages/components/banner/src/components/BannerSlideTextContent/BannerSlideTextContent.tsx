@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagShape } from '@synerise/ds-tags';
+import { TagShape } from '@synerise/ds-tag';
 
 import type { BannerSlideTextContentProps, BannerSlideContentProps } from '../../Banner.types';
 import * as S from '../../Banner.styles';

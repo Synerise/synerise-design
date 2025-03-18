@@ -1,6 +1,6 @@
 import { theme } from "@synerise/ds-core";
 import Icon, { LaptopM } from "@synerise/ds-icon";
-import { TagShape } from "@synerise/ds-tags";
+import { TagShape } from "@synerise/ds-tag";
 import Tooltip from "@synerise/ds-tooltip";
 import React from "react";
 import * as S from './Input.styles';

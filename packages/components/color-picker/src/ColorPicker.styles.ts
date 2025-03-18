@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-// @ts-ignore
+
 import { TagsStyles, Tag } from '@synerise/ds-tags';
 import Button from '@synerise/ds-button';
 import Icon from '@synerise/ds-icon';

@@ -9,22 +9,6 @@ Tags UI Component
 
 <iframe src="/storybook-static/iframe.html?id=components-tags--default"></iframe>
 
-## Tag API
-
-| Property  | Description                              | Type                              | Default                |
-| --------- | ---------------------------------------- | --------------------------------- | ---------------------- |
-| className | tag container class                      | string                            | -                      |
-| color     | primary color (background/border) of tag | string                            | -                      |
-| disabled  | whether tag should be disabled           | boolean                           | -                      |
-| id        | id of tag (necessary if using Tags)      | string / number                   | -                      |
-| name      | title of tag                             | string                            | -                      |
-| onClick   | onClick event on tag body                | () => void                        | -                      |
-| onRemove  | callback when tag is removed             | (tagKey: string / number) => void | -                      |
-| removable | show remove button                       | boolean                           | -                      |
-| shape     | shape of the tag                         | TagShape                          | TagShape.DEFAULT_ROUND |
-| textColor | color of tag name label                  | string                            | -                      |
-| dashed    | make border dashed                       | boolean                           | -                      |
-
 ## Tags API (Group of <Tag />)
 
 | Property         | Description                                                         | Type                                            | Default |
@@ -63,17 +47,3 @@ Tags UI Component
 | noResultsLabel       | Label displayed when filtering tags returns an empty array    | string / React.ReactNode | `No results` |
 | dropdownNoTags       | Text for a label displayed when no tags are found to be added | string / React.ReactNode |              |
 
-## TagShape Enum
-
-| Property                         |
-| -------------------------------- |
-| TagShape.SINGLE_CHARACTER_ROUND  |
-| TagShape.SINGLE_CHARACTER_SQUARE |
-| TagShape.DEFAULT_ROUND           |
-| TagShape.DEFAULT_SQUARE          |
-| TagShape.SMALL_ROUND             |
-| TagShape.SMALL_SQUARE            |
-| TagShape.STATUS_NEUTRAL          |
-| TagShape.STATUS_SUCCESS          |
-| TagShape.STATUS_ERROR            |
-| TagShape.STATUS_WARNING          |

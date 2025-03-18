@@ -1,78 +1,55 @@
 import { renderWithProvider } from '@synerise/ds-utils/dist/testing';
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { theme } from '@synerise/ds-core';
 
 import Button from '../index';
 import { CreatorStatus } from '../Creator/Creator.types';
 
 const LABEL_TEXT = 'Add something';
+const TEST_ID = 'button-creator';
 
 describe('Creator', () => {
   const onClick = jest.fn();
   it('should render', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator onClick={onClick}></Button.Creator>);
+    renderWithProvider(<Button.Creator data-testid={TEST_ID} onClick={onClick}></Button.Creator>);
 
-    // ACT
-    const creator = container.querySelector('.ds-button-creator');
-
-    // ASSERT
-    expect(creator).toBeTruthy();
+    expect(screen.getByTestId(TEST_ID)).toBeInTheDocument();
   });
   it('should handle onClick', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator onClick={onClick}></Button.Creator>);
+    renderWithProvider(<Button.Creator data-testid={TEST_ID} onClick={onClick}></Button.Creator>);
 
-    // ACT
-    const creator = container.querySelector('.ds-button-creator') as HTMLElement;
+    const creator = screen.getByTestId(TEST_ID)
     fireEvent.click(creator);
 
-    // ASSERT
     expect(onClick).toBeCalledTimes(1);
   });
   it('should render disabled with lower opacity', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(<Button.Creator onClick={onClick} disabled={true}></Button.Creator>);
+    renderWithProvider(<Button.Creator data-testid={TEST_ID} onClick={onClick} disabled={true}></Button.Creator>);
 
-    // ACT
-    const creator = container.querySelector('.ds-button-creator');
-
-    // ASSERT
+    const creator = screen.getByTestId(TEST_ID)
     expect(creator).toHaveStyle(`opacity:0.4`);
   });
   it('should render label text', () => {
-    // ARRANGE
-    const { getByText } = renderWithProvider(<Button.Creator onClick={onClick} label={LABEL_TEXT}></Button.Creator>);
+    renderWithProvider(<Button.Creator data-testid={TEST_ID} onClick={onClick} label={LABEL_TEXT}></Button.Creator>);
 
-    // ACT
-    const label = getByText(LABEL_TEXT);
+    const label = screen.getByText(LABEL_TEXT);
 
-    // ASSERT
     expect(label).toBeTruthy();
   });
   it('should render red when validated', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <Button.Creator onClick={onClick} status={'error' as CreatorStatus}></Button.Creator>
+    renderWithProvider(
+      <Button.Creator data-testid={TEST_ID} onClick={onClick} status={CreatorStatus.Error}></Button.Creator>
     );
-
-    // ACT
-    const creator = container.querySelector('.ds-button-creator') as HTMLElement;
-
-    // ASSERT
+    const creator = screen.getByTestId(TEST_ID);
     expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['red-600']}`);
   });
-  it('should render blue when uploading', () => {
-    // ARRANGE
-    const { container } = renderWithProvider(
-      <Button.Creator onClick={onClick} status={'upload' as CreatorStatus}></Button.Creator>
+  it('should render blue when uploading', async () => {
+    renderWithProvider(
+      <Button.Creator data-testid={TEST_ID} onClick={onClick} status={CreatorStatus.Upload}></Button.Creator>
     );
 
-    // ACT
-    const creator = container.querySelector('.ds-button-creator') as HTMLElement;
-
-    // ASSERT
-    expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['blue-300']}`);
+    const creator = screen.getByTestId(TEST_ID);
+    await waitFor(() => expect(creator).toHaveStyle(`border: 1px dashed ${theme.palette['blue-300']}`));
   });
 });
