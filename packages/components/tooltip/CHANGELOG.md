@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@1.0.0...@synerise/ds-tooltip@1.1.0) (2025-03-18)
+
+
+### Features
+
+* **button:** add support for tag in button ([32b6956](https://github.com/synerise/synerise-design/commit/32b6956d5e1f46df03abb4de8fbaf0a7d487043e))
+
+
+
+
+
 ## [0.16.3](https://github.com/synerise/synerise-design/compare/@synerise/ds-tooltip@0.16.2...@synerise/ds-tooltip@0.16.3) (2025-03-10)
 
 **Note:** Version bump only for package @synerise/ds-tooltip

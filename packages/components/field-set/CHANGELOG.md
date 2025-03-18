@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@1.0.0...@synerise/ds-field-set@1.0.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **field-set:** clipping in dynamic height fieldset content fixed ([5a8f3a0](https://github.com/Synerise/synerise-design/commit/5a8f3a0fedc67ffd2e7f9674d473ef47c3e921e3))
+
+
+
+
+
 ## [0.4.2](https://github.com/Synerise/synerise-design/compare/@synerise/ds-field-set@0.4.1...@synerise/ds-field-set@0.4.2) (2025-03-10)
 
 **Note:** Version bump only for package @synerise/ds-field-set
