@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { within, userEvent, expect, waitFor } from '@storybook/test';
+import { within, userEvent, fn, expect, waitFor } from '@storybook/test';
 import { ALL_FACTOR_TYPES } from '@synerise/ds-factors';
 import type { FactorsProps } from '@synerise/ds-factors';
 
@@ -21,6 +21,7 @@ export const SwitchFactorType: StoryObj<FactorsProps> = {
   ...Default,
   args: {
     ...Default.args,
+    onChangeValue: fn(),
     selectedFactorType: 'text',
     textType: 'default',
   },
@@ -60,17 +61,17 @@ export const SelectParameterFactorValue: StoryObj<FactorsProps> = {
     const canvas = within(canvasElement);
     await step('open parameter dropdown', async () => {
       const parameterDropdownTrigger = canvas.getByText('Parameter');
-      // await sleep(500);
+      await sleep(1000);
       await userEvent.click(parameterDropdownTrigger);
 
       return await waitFor(() => expect(canvas.getByPlaceholderText('Search')).toBeInTheDocument());
     });
     await step('select new factor type', async () => {
       await waitFor(() => expect(canvas.getByText('Points')).not.toHaveStyle({ pointerEvents: 'none' }));
-      // await sleep(500);
+      await sleep(500);
       return await userEvent.click(canvas.getByText('Points'));
     });
-    // await sleep(500);
+    await sleep(500);
     await waitFor(() => expect(args.onChangeValue).toHaveBeenCalledOnce());
   },
 };
