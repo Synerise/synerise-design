@@ -1,8 +1,15 @@
-import { ReactText, ReactNode } from 'react';
-import { SubjectItem, SubjectProps } from '@synerise/ds-subject/dist/Subject.types';
-import { FactorsProps, FactorType, FactorValueType, InputProps } from '@synerise/ds-factors/dist/Factors.types';
-import { OperatorsItem, OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
-import { ContextGroup, ContextItem, ContextProps } from '@synerise/ds-context-selector/dist/ContextSelector.types';
+import type { ReactText, ReactNode, ComponentType } from 'react';
+import type { SubjectItem, SubjectProps } from '@synerise/ds-subject';
+import type {
+  FactorsProps,
+  FactorType,
+  FactorValueComponentProps,
+  FactorValueType,
+  InputProps,
+  ParameterValueType,
+} from '@synerise/ds-factors';
+import type { OperatorsItem, OperatorsProps } from '@synerise/ds-operators';
+import type { ContextGroup, ContextItem, ContextProps } from '@synerise/ds-context-selector';
 import type { ConditionStepCrudActions } from './ConditionStep/ConditionStep.types';
 
 export type StepConditions = {
@@ -37,6 +44,19 @@ export type ConditionTexts = {
   emptyConditionLabel: string;
 };
 
+export type CustomContextSelectorProps = Pick<
+  ContextProps,
+  'onActivate' | 'onDeactivate' | 'onSelectItem' | 'selectedItem' | 'opened' | 'readOnly'
+> & {
+  getPopupContainer: ContextProps['getPopupContainerOverride'];
+};
+
+export type CustomParameterSelectorProps = Pick<FactorsProps, 'onActivate' | 'onDeactivate' | 'opened' | 'readOnly'> & {
+  getPopupContainer: FactorsProps['getPopupContainerOverride'];
+  onSelectItem: FactorsProps['onChangeValue'];
+  selectedItem?: ParameterValueType;
+};
+
 export type ConditionProps = {
   steps: ConditionStep[];
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
@@ -49,6 +69,10 @@ export type ConditionProps = {
   minConditionsLength: number;
   maxConditionsLength?: number | undefined;
   autoClearCondition?: boolean;
+  contextSelectorComponent?: ComponentType<CustomContextSelectorProps>;
+  parameterSelectorComponent?: ComponentType<FactorValueComponentProps>;
+  factorParameterSelectorComponent?: ComponentType<FactorValueComponentProps>;
+  actionAttributeParameterSelectorComponent?: ComponentType<FactorValueComponentProps>;
   onChangeContext: (stepId: ReactText, value: ContextItem | ContextGroup | undefined) => void;
   onChangeSubject: (stepId: ReactText, value: SubjectItem | undefined) => void;
   onChangeParameter: (stepId: ReactText, conditionId: ReactText, value: FactorValueType | undefined) => void;

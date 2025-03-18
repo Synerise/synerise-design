@@ -41,6 +41,26 @@ export const TooltipTitleWrapper = styled.div`
   overflow-wrap: break-word;
 `;
 
+export const TooltipHint = styled.div`
+  margin-left: 8px;
+  margin-right: -4px;
+  display: flex;
+  gap: 4px;
+`;
+export const TooltipKey = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: ${props => props.theme.palette['grey-700']};
+  border-bottom: 1px solid ${props => props.theme.palette['grey-500']};
+  box-shadow: 0px 1px 8px rgba(35, 41, 54, 0.5);
+  border-radius: 3px;
+`;
+
 export const TooltipButton = styled.div`
   width: 100%;
   padding: 8px;

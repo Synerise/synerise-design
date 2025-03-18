@@ -1,12 +1,20 @@
 import type { Key, ReactNode } from 'react';
 
 export type InformationCardPropertyItemTypes = 'divider';
-export type InformationCardPropertyItem = {
-  label: ReactNode;
-  value?: ReactNode;
+
+export type InformationCardPropertyDivider = {
+  type: InformationCardPropertyItemTypes;
   id?: Key;
-  type?: InformationCardPropertyItemTypes;
 };
+
+export type InformationCardPropertyItem =
+  | {
+      id?: Key;
+      label: ReactNode;
+      value?: ReactNode;
+    }
+  | InformationCardPropertyDivider;
+
 export type InformationCardPropertyListProps = {
   items?: InformationCardPropertyItem[];
   summaryItems?: InformationCardPropertyItem[];

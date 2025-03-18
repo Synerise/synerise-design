@@ -85,6 +85,24 @@ export const cardSelectWrapper: Decorator = (Story, storyContext) => {
   );
 };
 
+export const variableHeightDecorator: Decorator = (Story, storyContext) => {
+  const wrapperHeight = storyContext.args.variableHeight as string || '800px';
+  
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: wrapperHeight,
+      }}
+    >
+      {Story()}
+    </div>
+  );
+};
+
 export const buttonDecorator: Decorator = (Story, storyContext) => {
   const lightTypes = ['tertiary-white', 'ghost-white'];
   const backgroundColor = lightTypes.includes(storyContext.args.type as string)

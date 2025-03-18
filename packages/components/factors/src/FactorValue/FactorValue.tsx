@@ -31,18 +31,18 @@ const FactorValue = ({
     if (!selectedFactor) {
       return undefined;
     }
-    const InputComponent: React.ElementType = selectedFactor.input;
+    const FactorValueComponent = selectedFactor.component;
 
     return (
-      <InputComponent
+      <FactorValueComponent
         key={`${factorKey}-${selectedFactor.name}`}
         value={value}
-        placeholder={texts.valuePlaceholder}
+        // placeholder={texts.valuePlaceholder}
         onChange={onChangeValue}
         textType={textType}
         factorType={selectedFactorType}
         autocompleteText={autocompleteText}
-        parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 && parameters}
+        parameters={['parameter', 'contextParameter'].indexOf(selectedFactorType) >= 0 ? parameters : undefined}
         withoutTypeSelector={withoutTypeSelector}
         texts={texts}
         inputProps={inputProps}

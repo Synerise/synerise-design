@@ -5,7 +5,7 @@ import Tooltip from '@synerise/ds-tooltip';
 import Icon, { AngleRightS, CheckS } from '@synerise/ds-icon';
 import { theme } from '@synerise/ds-core';
 
-import type { BasicItemProps } from '../../ListItem.types';
+import { BasicItemProps, itemSizes } from '../../ListItem.types';
 import * as S from './Text.styles';
 import { HoverTooltip } from '../index';
 import { renderAddon, removeHandlerProps } from './utils';
@@ -130,6 +130,7 @@ const Text = (props: BasicItemProps) => {
       highlight={!!highlight}
       size={size}
       style={renderHoverTooltip ? undefined : style}
+      inTooltip={!!renderHoverTooltip}
       {...rest}
     >
       <Tooltip
@@ -147,7 +148,7 @@ const Text = (props: BasicItemProps) => {
           )}
           <S.Content className="ds-list-item-content" highlight={!!highlight}>
             {canCopyToClipboard && hovered && copyHint ? copyHint : childrenWithHighlight}
-            {!!description && <S.Description>{description}</S.Description>}
+            {description && size === itemSizes.LARGE && <S.Description>{description}</S.Description>}
           </S.Content>
           {parent && (
             <S.ArrowRight>

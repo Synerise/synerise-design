@@ -28,6 +28,10 @@ export default {
   parameters: {
     layout: 'centered',
   },
+  argTypes: {
+    disabled: BOOLEAN_CONTROL,
+    readOnly: BOOLEAN_CONTROL
+  },
   decorators: [fixedWrapper300, centeredPaddedWrapper],
   render: defaultRender,
   argTypes: {

@@ -26,7 +26,7 @@ export type ItemData<EventType> = {
   domEvent: EventType;
 };
 
-type ListItemEventHandler<EventType> = (item: ItemData<EventType>) => void;
+export type ListItemEventHandler<EventType> = (item: ItemData<EventType>) => void;
 
 export type TriggerHandle = Component<TriggerProps> & { getPopupDomNode: () => HTMLElement };
 

@@ -19,7 +19,7 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
       const nextSibling = activeElement.nextElementSibling as HTMLElement;
       const hasFocusableChildren = hasFocusableElementInside(activeElement, selector);
       elementToFocusOn =
-        nextSibling !== null && !hasFocusableChildren
+        nextSibling !== null && hasFocusableChildren
           ? nextSibling
           : (focusableElements[activeElementIndex + 1] as HTMLElement);
     } else {
@@ -39,7 +39,7 @@ const focusWithArrowKeys = (keyDownEvent: KeyboardEvent, focusableItemClass: str
     if (isItemFocused) {
       const prevSibling = activeElement.previousElementSibling as HTMLElement;
       elementToFocusOn =
-        prevSibling !== null && !hasFocusableElementInside(prevSibling, selector)
+        prevSibling !== null && hasFocusableElementInside(prevSibling, selector)
           ? prevSibling
           : (focusableElements[activeElementIndex - 1] as HTMLElement);
     }

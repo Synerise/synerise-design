@@ -6,13 +6,13 @@ import ListItem from '@synerise/ds-list-item';
 import { theme } from '@synerise/ds-core';
 import * as S from './FactorTypeSelector.styles';
 import { ALL_FACTOR_TYPES, FactorType, FactorTypeSelectorProps } from '../Factors.types';
-import { factorTypes } from '../Factors';
 
 const FactorTypeSelector = ({
   selectedFactorType,
   setSelectedFactorType,
   unavailableFactorTypes,
   availableFactorTypes,
+  factorTypeMapping,
   selectedFactor,
   texts,
   readOnly,
@@ -27,8 +27,8 @@ const FactorTypeSelector = ({
     return (list as FactorType[]).map((type: FactorType) => (
       <ListItem
         className="ds-factor-type"
-        key={factorTypes[type].name}
-        prefixel={<Icon component={factorTypes[type].icon} />}
+        key={factorTypeMapping[type].name}
+        prefixel={<Icon component={factorTypeMapping[type].icon} />}
         suffixel={type === selectedFactorType ? <Icon component={<CheckS />} color={theme.palette['green-600']} /> : ''}
         onClick={() => {
           setSelectedFactorType(type);
@@ -38,7 +38,14 @@ const FactorTypeSelector = ({
         {texts[type]}
       </ListItem>
     ));
-  }, [availableFactorTypes, unavailableFactorTypes, selectedFactorType, texts, setSelectedFactorType]);
+  }, [
+    availableFactorTypes,
+    unavailableFactorTypes,
+    factorTypeMapping,
+    selectedFactorType,
+    texts,
+    setSelectedFactorType,
+  ]);
 
   const trigger = (
     <S.TriggerButton

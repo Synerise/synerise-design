@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
-import Tooltip from '@synerise/ds-tooltip/dist/Tooltip';
+import Tooltip from '@synerise/ds-tooltip';
 
 import * as S from '../InformationCard.styles';
 import { InformationCardSummaryProps } from './InformationCardSummary.types';

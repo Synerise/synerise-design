@@ -25,7 +25,7 @@ const HoverTooltip = ({ hoverTooltipProps, renderHoverTooltip, children, style }
         zIndex={zIndex}
         {...hoverTooltipProps}
       >
-        <div style={style}>{children}</div>
+        <div style={{ position: 'relative', ...style }}>{children}</div>
       </Trigger>
     </div>
   );

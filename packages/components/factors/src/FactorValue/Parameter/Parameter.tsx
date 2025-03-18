@@ -7,7 +7,7 @@ import Icon, { AngleDownS } from '@synerise/ds-icon';
 import { getPopupContainer } from '@synerise/ds-utils';
 import InformationCard from '@synerise/ds-information-card';
 
-import { InputProps, ParameterItem, ParameterValueType } from '../../Factors.types';
+import { FactorValueComponentProps, ParameterItem, ParameterValueType } from '../../Factors.types';
 import { Value } from './Parameter.style';
 import ParameterDropdown from './ParameterDropdown';
 import { DROPDOWN_HEIGHT, DROPDOWN_HEIGHT_BELOW_THRESHOLD, DROPDOWN_HEIGHT_THRESHOLD } from './Parameter.constants';
@@ -27,9 +27,9 @@ const ParameterInput = ({
   error,
   loading,
   getMenuEntryProps,
-}: InputProps) => {
-  // @ts-ignore
-  const { buttonIcon, buttonLabel, selectedButtonColored, dropdownDimensionsConfig, ...restParameters } = parameters;
+}: FactorValueComponentProps) => {
+  const { buttonIcon, buttonLabel, selectedButtonColored, dropdownDimensionsConfig, ...restParameters } =
+    parameters || {};
   const dimensionsConfig = {
     defaultHeight: DROPDOWN_HEIGHT,
     lowerHeight: DROPDOWN_HEIGHT_BELOW_THRESHOLD,
@@ -128,7 +128,7 @@ const ParameterInput = ({
                 <InformationCard
                   icon={parameterIcon}
                   subtitle={parameter.id?.toString()}
-                  title={parameterName}
+                  title={parameterName as string}
                   descriptionConfig={
                     parameter.description
                       ? { value: parameter.description as string, disabled: true, label: undefined }

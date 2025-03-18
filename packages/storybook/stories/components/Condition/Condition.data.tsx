@@ -5,7 +5,7 @@ import { NotificationsM, VarTypeStringM } from '@synerise/ds-icon';
 import type { ConditionStep, StepConditions } from '@synerise/ds-condition';
 import type { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
 import type { OperatorsItem } from '@synerise/ds-operators';
-import type { DefinedFactorTypes } from '@synerise/ds-factors/dist/Factors.types'
+import type { DefinedFactorTypes } from '@synerise/ds-factors'
 
 import { CONTEXT_ITEMS, CONTEXT_GROUPS, CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { OPERATORS_GROUPS, OPERATORS_ITEMS } from '../Operators/data/index.data';

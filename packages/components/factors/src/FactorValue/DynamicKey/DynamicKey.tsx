@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { RawInput } from '@synerise/ds-input';
 import { debounce } from 'lodash';
 
-import { DynamicKeyValueType, InputProps } from '../../Factors.types';
+import { DynamicKeyValueType, FactorValueComponentProps } from '../../Factors.types';
 import * as S from './DynamicKey.style';
 
 const DynamicKey = ({
@@ -14,7 +14,7 @@ const DynamicKey = ({
   onDeactivate,
   error,
   readOnly = false,
-}: InputProps) => {
+}: FactorValueComponentProps) => {
   const [localValue, setLocalValue] = useState<DynamicKeyValueType>({
     key: (value as DynamicKeyValueType).key,
     value: (value as DynamicKeyValueType).value,

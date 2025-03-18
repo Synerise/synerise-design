@@ -1,4 +1,4 @@
-import type { ReactText, ReactNode, ElementType } from 'react';
+import type { ReactText, ReactNode, ComponentType } from 'react';
 
 import type { DateFilter } from '@synerise/ds-date-range-picker/dist/date.types';
 import type { Texts as DateRangeTexts } from '@synerise/ds-date-range-picker/dist/DateRangePicker.types';
@@ -68,7 +68,7 @@ export type FactorValueType =
 export type SelectedFactorType = {
   name: string;
   icon: ReactNode;
-  input: ElementType;
+  component: ComponentType<FactorValueComponentProps>;
 };
 
 export type FactorsTexts = {
@@ -104,6 +104,8 @@ export type FactorsTexts = {
   };
 };
 
+export type FactorTypeMapping = Record<DefinedFactorTypes, Partial<SelectedFactorType>>;
+
 export type FactorsProps = {
   factorKey?: ReactText;
   error?: boolean;
@@ -114,6 +116,7 @@ export type FactorsProps = {
   availableFactorTypes?: FactorType[];
   selectedFactorType: FactorType;
   defaultFactorType: FactorType;
+  customFactorValueComponents?: Partial<FactorTypeMapping>;
   getPopupContainerOverride?: (trigger: HTMLElement | null) => HTMLElement;
   onActivate?: () => void;
   onDeactivate?: () => void;
@@ -148,7 +151,7 @@ export type FactorsProps = {
   loading?: boolean;
   preventAutoloadData?: boolean;
   withCustomFactor?: ReactNode;
-  inputProps?: Partial<InputProps>;
+  inputProps?: Partial<FactorValueComponentProps>;
   readOnly?: boolean;
   getMenuEntryProps?: (arg?: ParameterValueType) => MenuItemProps;
 };
@@ -159,6 +162,7 @@ export type FactorTypeSelectorProps = Pick<
 > & {
   setSelectedFactorType: (factor: FactorType) => void;
   selectedFactor: SelectedFactorType;
+  factorTypeMapping: FactorTypeMapping;
   texts: {
     [k in DefinedFactorTypes]: string;
   };
@@ -193,7 +197,7 @@ export type FactorValueProps = Pick<
   selectedFactor: SelectedFactorType;
 };
 
-export type InputProps = Pick<
+export type FactorValueComponentProps = Pick<
   FactorsProps,
   | 'value'
   | 'parameters'

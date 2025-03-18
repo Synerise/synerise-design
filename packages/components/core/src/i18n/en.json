@@ -104,6 +104,27 @@
       "SEARCH-CLEAR": "Clear",
       "TITLE": "Filters"
     },
+    "ITEM-PICKER-DROPDOWN": {
+      "NO-ITEMS": "No items",
+      "NO-SEARCH-RESULTS": "No results found",
+      "NO-SEARCH-RESULTS-FOLDER": "Please check your phrase or try searching in different folders",
+      "NO-ACTIONS": "No actions available",
+      "REFRESH": "Refresh",
+      "RECENTS": "Recent",
+      "ACTIONS": "Actions",
+      "RESULTS": "Results",
+      "ITEMS": "Items",
+      "LOADING-MORE": "Loading more items...",
+      "LOADING-ERROR": "Loading error",
+      "LOADED-ALL": "All items loaded",
+      "ERROR-TITLE": "Items can't be laoded",
+      "ERROR-DESCRIPTION": "Try refreshing the list later",
+      "SHOW-MORE": "Show more",
+      "CLEAR-SEARCH-TOOLTIP": "Clear",
+      "BACK-TOOLTIP": "Back",
+      "SEARCH-EVERYWHERE": "Search all folders",
+      "SEARCH-PLACEHOLDER": "Search"
+    },
     "ITEM-PICKER": {
       "CLEAR-CONFIRM": "Are you sure you want to remove this selection?",
       "YES-TEXT": "Yes",

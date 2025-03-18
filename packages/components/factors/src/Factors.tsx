@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
 import { BookM, Calendar2M, DynamicKeyM, FormulaM, HashM, ListM, ShowM, TextM } from '@synerise/ds-icon';
+import { NOOP } from '@synerise/ds-utils';
 
 import * as S from './style/Factors.style';
-import { DefinedFactorTypes, FactorsProps, SelectedFactorType } from './Factors.types';
+import { DefinedFactorTypes, FactorsProps, FactorTypeMapping, SelectedFactorType } from './Factors.types';
 import FactorTypeSelector from './FactorTypeSelector/FactorTypeSelector';
 import FactorValue from './FactorValue/FactorValue';
 import DynamicKey from './FactorValue/DynamicKey/DynamicKey';
@@ -15,55 +16,53 @@ import NumberInput from './FactorValue/Number/NumberInput';
 import DateRangeInput from './FactorValue/DateRange/DateRange';
 import { useTexts } from './hooks/useTexts';
 
-export const factorTypes: Record<DefinedFactorTypes, SelectedFactorType> = {
+export const FACTOR_TYPE_MAPPING: Record<DefinedFactorTypes, SelectedFactorType> = {
   text: {
     icon: <TextM />,
     name: 'Text',
-    input: TextInput,
+    component: TextInput,
   },
   number: {
     icon: <HashM />,
     name: 'Number',
-    input: NumberInput,
+    component: NumberInput,
   },
   parameter: {
     icon: <BookM />,
     name: 'Parameter',
-    input: ParameterInput,
+    component: ParameterInput,
   },
   contextParameter: {
     icon: <ShowM />,
     name: 'Context parameter',
-    input: ParameterInput,
+    component: ParameterInput,
   },
   dynamicKey: {
     icon: <DynamicKeyM />,
     name: 'Dynamic key',
-    input: DynamicKey,
+    component: DynamicKey,
   },
   formula: {
     icon: <FormulaM />,
     name: 'Formula',
-    input: FormulaInput,
+    component: FormulaInput,
   },
   array: {
     icon: <ListM />,
     name: 'Array',
-    input: TextInput,
+    component: TextInput,
   },
   date: {
     icon: <Calendar2M />,
     name: 'Date',
-    input: DateInput,
+    component: DateInput,
   },
   dateRange: {
     icon: <Calendar2M />,
     name: 'Date range',
-    input: DateRangeInput,
+    component: DateRangeInput,
   },
 };
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = (): void => {};
 
 const Factors = ({
   selectedFactorType,
@@ -88,20 +87,35 @@ const Factors = ({
   onActivate,
   onDeactivate,
   getPopupContainerOverride,
+  customFactorValueComponents,
   error,
   inputProps,
   readOnly,
   getMenuEntryProps,
 }: FactorsProps) => {
   const allTexts = useTexts(texts);
-
   const factorType = useMemo(() => {
     return selectedFactorType || defaultFactorType;
   }, [selectedFactorType, defaultFactorType]);
 
-  const selectedFactor = useMemo(() => {
-    return factorTypes[factorType];
-  }, [factorType]);
+  const mergedFactorData = useMemo(() => {
+    return Object.entries(FACTOR_TYPE_MAPPING)
+      .map(([type, factorTypeData]) => {
+        const mergedData = customFactorValueComponents
+          ? { ...factorTypeData, ...customFactorValueComponents[type] }
+          : factorTypeData;
+        return [type, { ...factorTypeData, ...mergedData }];
+      })
+      .reduce((result, [type, factorTypeData]) => {
+        // eslint-disable-next-line no-param-reassign
+        result[type] = factorTypeData;
+        return result;
+      }, {}) as FactorTypeMapping;
+  }, [customFactorValueComponents]);
+
+  const selectedFactorData = useMemo(() => {
+    return mergedFactorData[factorType];
+  }, [mergedFactorData, factorType]);
 
   return (
     <S.Group
@@ -110,12 +124,13 @@ const Factors = ({
       withoutTypeSelector={withoutTypeSelector}
       className={`ds-factors ds-factors-${factorType}`}
     >
-      {selectedFactor && !withoutTypeSelector && setSelectedFactorType && (
+      {selectedFactorData && !withoutTypeSelector && setSelectedFactorType && (
         <FactorTypeSelector
           texts={allTexts.factorTypes}
+          factorTypeMapping={mergedFactorData}
           selectedFactorType={factorType}
           setSelectedFactorType={setSelectedFactorType}
-          selectedFactor={selectedFactor}
+          selectedFactor={selectedFactorData}
           availableFactorTypes={availableFactorTypes}
           unavailableFactorTypes={unavailableFactorTypes}
           readOnly={readOnly}
@@ -125,7 +140,7 @@ const Factors = ({
         value={value}
         onChangeValue={onChangeValue}
         onParamsClick={onParamsClick}
-        selectedFactor={selectedFactor}
+        selectedFactor={selectedFactorData}
         selectedFactorType={factorType}
         textType={textType}
         parameters={parameters}

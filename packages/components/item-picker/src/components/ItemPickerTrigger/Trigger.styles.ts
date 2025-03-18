@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { ThemeProps } from '@synerise/ds-core';
+
 import { InformationCardTooltip } from '@synerise/ds-information-card';
-import { ItemPickerSize } from '../ItemPicker.types';
+import { ItemPickerSize } from '../ItemPickerLegacy/ItemPickerLegacy.types';
 
 type TriggerWrapperProps = {
   opened: boolean;
@@ -198,9 +199,6 @@ export const TriggerWrapper = styled.div<TriggerWrapperProps>`
       Boolean(props.disabled) &&
       css`
         ${IconWrapper} {
-          opacity: 0.4;
-        }
-        ${Prefix} {
           opacity: 0.4;
         }
       `};

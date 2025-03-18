@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, ReactText } from 'react';
 import { useIntl } from 'react-intl';
 
 import Subject from '@synerise/ds-subject';
-import ContextSelector from '@synerise/ds-context-selector';
+import ContextSelector, { ContextProps } from '@synerise/ds-context-selector';
 import { DragHandleM } from '@synerise/ds-icon';
 import Factors from '@synerise/ds-factors';
 
@@ -48,6 +48,10 @@ export const ConditionStep = ({
   readOnly = false,
   singleStepCondition = false,
   showActionAttribute,
+  contextSelectorComponent: CustomContextSelectorComponent,
+  actionAttributeParameterSelectorComponent,
+  parameterSelectorComponent,
+  factorParameterSelectorComponent,
   showEmptyConditionPlaceholder = false,
 }: T.ConditionStepProps) => {
   const { formatMessage } = useIntl();
@@ -107,6 +111,44 @@ export const ConditionStep = ({
       />
     ),
     [draggableEnabled, duplicateStep, index, removeStep, step.id, step.stepName, text, updateStepName, readOnly]
+  );
+
+  const renderContextSelector = useCallback(
+    (contextData: Omit<ContextProps, 'onSelectItem'>) => {
+      return CustomContextSelectorComponent ? (
+        <CustomContextSelectorComponent
+          {...contextData}
+          getPopupContainer={getPopupContainerOverride}
+          onActivate={onActivate}
+          onDeactivate={onDeactivate}
+          opened={step.id === currentStepId && currentField === SUBJECT}
+          onSelectItem={value => selectContext(value, step.id)}
+          readOnly={contextData.readOnly || readOnly}
+        />
+      ) : (
+        <ContextSelector
+          {...contextData}
+          errorText={undefined}
+          getPopupContainerOverride={getPopupContainerOverride}
+          onActivate={onActivate}
+          onDeactivate={onDeactivate}
+          opened={step.id === currentStepId && currentField === SUBJECT}
+          onSelectItem={value => selectContext(value, step.id)}
+          readOnly={contextData.readOnly || readOnly}
+        />
+      );
+    },
+    [
+      CustomContextSelectorComponent,
+      currentField,
+      currentStepId,
+      getPopupContainerOverride,
+      onActivate,
+      onDeactivate,
+      readOnly,
+      selectContext,
+      step.id,
+    ]
   );
 
   const addConditionButton = useMemo(() => {
@@ -186,6 +228,8 @@ export const ConditionStep = ({
           stepType={step.context?.type}
           onDeactivate={onDeactivate}
           readOnly={readOnly}
+          parameterSelectorComponent={parameterSelectorComponent}
+          factorParameterSelectorComponent={factorParameterSelectorComponent}
         />
       );
     },
@@ -214,6 +258,8 @@ export const ConditionStep = ({
       setCurrentStep,
       inputProps,
       readOnly,
+      parameterSelectorComponent,
+      factorParameterSelectorComponent,
     ]
   );
 
@@ -256,18 +302,7 @@ export const ConditionStep = ({
               onSelectItem={(value): void => selectSubject(value, step.id)}
             />
           )}
-          {step.context && (
-            <ContextSelector
-              {...step.context}
-              errorText={undefined}
-              getPopupContainerOverride={getPopupContainerOverride}
-              onActivate={onActivate}
-              onDeactivate={onDeactivate}
-              opened={step.id === currentStepId && currentField === SUBJECT}
-              onSelectItem={(value): void => selectContext(value, step.id)}
-              readOnly={step.context.readOnly || readOnly}
-            />
-          )}
+          {step.context && renderContextSelector(step.context)}
           {contextOrActionErrorText && <S.ErrorWrapper>{contextOrActionErrorText}</S.ErrorWrapper>}
         </S.Subject>
         {hasSelectedSubjectOrContext || !showEmptyConditionPlaceholder ? (
@@ -278,6 +313,16 @@ export const ConditionStep = ({
               >
                 <Factors
                   {...step.actionAttribute}
+                  customFactorValueComponents={
+                    actionAttributeParameterSelectorComponent && {
+                      parameter: {
+                        component: actionAttributeParameterSelectorComponent,
+                      },
+                      contextParameter: {
+                        component: actionAttributeParameterSelectorComponent,
+                      },
+                    }
+                  }
                   errorText={undefined}
                   value={step.actionAttribute?.value}
                   withoutTypeSelector

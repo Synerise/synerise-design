@@ -1,34 +1,35 @@
-import React from 'react';
-import { FactorsProps, InputProps } from '@synerise/ds-factors/dist/Factors.types';
-import { OperatorsProps } from '@synerise/ds-operators/dist/Operator.types';
-import { ConditionProps, ConditionTexts } from '../../Condition.types';
+import type { ReactText } from 'react';
+import type { FactorsProps, FactorValueComponentProps } from '@synerise/ds-factors';
+import type { OperatorsProps } from '@synerise/ds-operators';
+import type { ConditionProps, ConditionTexts } from '../../Condition.types';
 
-export type ConditionRowProps = {
+export type ConditionRowProps = Pick<
+  ConditionProps,
+  'removeCondition' | 'getPopupContainerOverride' | 'factorParameterSelectorComponent' | 'parameterSelectorComponent'
+> & {
   index: number;
   error?: boolean;
   hasPriority?: boolean;
   onActivate?: (fieldType: string) => void;
   onDeactivate?: () => void;
-  conditionId: React.ReactText;
-  addCondition?: (stepId: React.ReactText) => void;
+  conditionId: ReactText;
+  addCondition?: (stepId: ReactText) => void;
   conditionParameter?: Omit<FactorsProps, 'onChangeValue'>;
   conditionOperator?: Omit<OperatorsProps, 'onChange'>;
   conditionFactor?: Omit<FactorsProps, 'onChangeValue'>;
-  removeCondition: ConditionProps['removeCondition'];
+  conditionsNumber: number;
+  stepId: ReactText;
+  currentStepId: ReactText;
+  currentConditionId: ReactText;
+  currentField: ReactText;
   minConditionLength: ConditionProps['minConditionsLength'];
   maxConditionLength: ConditionProps['maxConditionsLength'];
-  conditionsNumber: number;
-  stepId: React.ReactText;
-  currentStepId: React.ReactText;
-  currentConditionId: React.ReactText;
-  currentField: React.ReactText;
   selectParameter: ConditionProps['onChangeParameter'];
   selectOperator: ConditionProps['onChangeOperator'];
   setStepConditionFactorType: ConditionProps['onChangeFactorType'];
   setStepConditionFactorValue: ConditionProps['onChangeFactorValue'];
-  getPopupContainerOverride?: ConditionProps['getPopupContainerOverride'];
   texts: Partial<ConditionTexts>;
   stepType: 'event' | 'attribute' | 'default' | undefined;
-  inputProps?: Partial<InputProps>;
+  inputProps?: Partial<FactorValueComponentProps>;
   readOnly?: boolean;
 };

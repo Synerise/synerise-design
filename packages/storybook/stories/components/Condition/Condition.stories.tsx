@@ -1,9 +1,11 @@
 import React, { ReactText, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { action } from '@storybook/addon-actions';
 import Button from '@synerise/ds-button';
 import Condition, { ConditionStep } from '@synerise/ds-condition';
 import ContextSelector, { ContextGroup, ContextItem } from '@synerise/ds-context-selector';
+import ItemPicker, { ItemPickerProps, ItemPickerPropsNew } from '@synerise/ds-item-picker';
 import type { FactorValueType } from '@synerise/ds-factors';
 import type { OperatorsItem } from '@synerise/ds-operators';
 import Icon, { Add3M } from '@synerise/ds-icon';
@@ -25,6 +27,7 @@ import {
 import { CONTEXT_TEXTS } from '../ContextSelector/data/context.data';
 import { CONTEXT_CLIENT_GROUPS, CONTEXT_CLIENT_ITEMS } from '../ContextSelector/data/client.data';
 import { BOOLEAN_CONTROL, controlFromOptionsArray, fixedWrapper300, NUMBER_CONTROL } from '../../utils';
+import { ITEMS_IN_SECTIONS, SECTIONS } from '../ItemPicker/ItemPicker.data';
 
 export default {
   component: Condition,
@@ -391,4 +394,57 @@ export default {
   },
 } as ConditionMeta;
 
+type RenderTriggerType = Required<ItemPickerPropsNew<ItemType, undefined>>['renderTrigger'];
+type ItemType = typeof ITEMS_IN_SECTIONS[number];
+type TriggerProps = Parameters<RenderTriggerType>[0];
+
+const CustomContextSelector = ({
+  onActivate,
+  getPopupContainer,
+  onDeactivate,
+  onSelectItem,
+  selectedItem,
+  opened,
+  readOnly,
+}) => {
+  const renderTrigger = ({ selected, disabled }: Partial<TriggerProps>) => (
+    <Button disabled={disabled} mode={selected? 'icon-label' : ''} type="primary">{selected ? (<>{selected.prefixel} {selected.text}</>) :  'Choose context'}</Button>
+  );
+  const [localOpen, setLocalOpen] = useState(opened);
+  const handleOpenChange = (isOpen: boolean) => {
+    if (isOpen) {
+      onActivate();
+    } else {
+      onDeactivate();
+    }
+    setLocalOpen(isOpen);
+  };
+  const handleChange = (item: ItemType) => {
+    onSelectItem(item);
+    setLocalOpen(false)
+  }
+  return readOnly ? (
+    renderTrigger({ selected: selectedItem, disabled: true })
+  ) : (
+    <ItemPicker
+      dropdownProps={{
+        onOpenChange: handleOpenChange,
+        getPopupContainer,
+        open: localOpen,
+      }}
+      selectedItem={selectedItem}
+      onChange={handleChange}
+      isNewVersion
+      items={ITEMS_IN_SECTIONS}
+      sections={SECTIONS}
+      renderTrigger={renderTrigger}
+    />
+  );
+};
+
 export const Default: ConditionStory = {};
+export const WithCustomContextSelector: ConditionStory = {
+  args: {
+    contextSelectorComponent: CustomContextSelector,
+  },
+};

@@ -3,7 +3,7 @@ import DateRangePicker from '@synerise/ds-date-range-picker';
 import { getPopupContainer } from '@synerise/ds-utils';
 import { DateFilter, DateRange } from '@synerise/ds-date-range-picker/dist/date.types';
 import { useIntl } from 'react-intl';
-import { InputProps } from '../../Factors.types';
+import { FactorValueComponentProps } from '../../Factors.types';
 
 const DateRangeInput = ({
   getPopupContainerOverride,
@@ -14,7 +14,7 @@ const DateRangeInput = ({
   onDeactivate,
   allowClear,
   readOnly = false,
-}: InputProps) => {
+}: FactorValueComponentProps) => {
   const intl = useIntl();
 
   const changeHandler = useCallback(
